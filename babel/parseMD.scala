@@ -1,20 +1,16 @@
 import org.apache.hadoop.io.LongWritable
-
 import org.apache.hadoop.io.Text
-
 import org.apache.hadoop.conf.Configuration
-
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat
 
 val conf = new Configuration
-
 conf.set("textinputformat.record.delimiter", "// COMMAND ----------")
 
-val a = sc.newAPIHadoopFile("./IntroScalaNotebooks.scala", classOf[TextInputFormat], classOf[LongWritable], classOf[Text], conf).map(_._2.toString)
+val a = sc.newAPIHadoopFile("./db/IntroScalaNotebooks.scala", classOf[TextInputFormat], classOf[LongWritable], classOf[Text], conf).map(_._2.toString)
 
 // the above code snippet is from http://stackoverflow.com/questions/25259425/spark-reading-files-using-different-delimiter-than-new-line
 
-val b = a.map(x => x.replaceAll("// MAGIC ","")).map( x => { if (x.contains("%md")) x.replaceAll("%md","") else "```scala"+x+"```"})
+val b = a.map(x => x.replaceAll("// MAGIC %md","MYMAGICMD")).map(x => x.replaceAll("// MAGIC ","")).map( x => { if (x.contains("MYMAGICMD")) x.replaceAll("MYMAGICMD","") else "```scala"+x+"```"})
 
 b.coalesce(1,shuffle=true).saveAsTextFile("./tmp")
 

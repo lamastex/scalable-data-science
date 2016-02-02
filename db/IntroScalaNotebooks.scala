@@ -42,7 +42,7 @@
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC ### ** Create** and **Edit** a New Markdown Cell in this Notebook
+// MAGIC ### **Create** and **Edit** a New Markdown Cell in this Notebook
 // MAGIC * When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 // MAGIC 
 // MAGIC  ![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png)
@@ -238,7 +238,7 @@ df.registerTempTable("ScalaTempTable")
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### ** Persist DataFrames into Tables **
+// MAGIC #### **Persist DataFrames into Tables**
 // MAGIC Use **``saveAsTable``** to persist tables to be used in other notebooks.
 // MAGIC * These table definitions will persist even after cluster restarts.
 
@@ -257,7 +257,7 @@ df.write.saveAsTable("ScalaTestTable")
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### ** Display HTML **
+// MAGIC ### **Display HTML**
 // MAGIC Display HTML within your notebook, using the **displayHTML** command.
 
 // COMMAND ----------

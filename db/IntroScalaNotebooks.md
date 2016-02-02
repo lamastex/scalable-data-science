@@ -46,11 +46,11 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
 
  
-### ** Create** and **Edit** a New Markdown Cell in this Notebook
+### **Create** and **Edit** a New Markdown Cell in this Notebook
 * When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 
  ![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png)
-* Type **`` Hello, world!``** into your new cell (**````** indicates the cell is markdown).
+* Type **``%md Hello, world!``** into your new cell (**``%md``** indicates the cell is markdown).
 
 
 
@@ -70,7 +70,7 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
 ***
 #### ![Quick Note](http://training.databricks.com/databricks_guide/icon_note3_s.png) **Markdown Cell Tips**
-* To change a non-markdown cell to markdown, add **** to very start of the cell.
+* To change a non-markdown cell to markdown, add **%md** to very start of the cell.
 * After updating the contents of a markdown cell, click out of the cell to update the formatted contents of a markdown cell.
 * To edit an existing markdown cell, **doubleclick** the cell.
 ***
@@ -81,7 +81,7 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
 ### Run a **Scala Cell**
 * Run the following scala cell.
-* Note: There is no need for any special indicator (such as ````) necessary to create a Scala cell in a Scala notebook.
+* Note: There is no need for any special indicator (such as ``%md``) necessary to create a Scala cell in a Scala notebook.
 * Make sure the cell contents updates before moving on.
 * Press **Shift+Enter** when in the cell to run it and proceed to the next cell.
   * The cells contents should update.
@@ -269,7 +269,7 @@ df.registerTempTable("ScalaTempTable")
 
 
 
-#### ** Persist DataFrames into Tables **
+#### **Persist DataFrames into Tables**
 Use **``saveAsTable``** to persist tables to be used in other notebooks.
 * These table definitions will persist even after cluster restarts.
 
@@ -291,7 +291,7 @@ df.write.saveAsTable("ScalaTestTable")
 
 
 
-### ** Display HTML **
+### **Display HTML**
 Display HTML within your notebook, using the **displayHTML** command.
 
 
