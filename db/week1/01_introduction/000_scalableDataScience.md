@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 9 Feb 2016 23:11:13 UTC
+// Databricks notebook source exported at Tue, 9 Feb 2016 23:22:54 UTC
 
 
 # [STAT474 S1 2016: Special Topic in Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -37,8 +37,7 @@ We will also be borrowing more theoretical aspects from the following course:
 ## A Brief History of Data Analysis 
 #### by Anthony Joseph in BerkeleyX/CS100.1x
 
-
-[![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x]](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag)
+[![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag)
 
 
 
