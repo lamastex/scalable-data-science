@@ -1,7 +1,7 @@
-// Databricks notebook source exported at Tue, 9 Feb 2016 23:22:54 UTC
+// Databricks notebook source exported at Wed, 10 Feb 2016 00:14:40 UTC
 
 
-# [STAT474 S1 2016: Special Topic in Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
 
 
 ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
@@ -44,7 +44,7 @@ We will also be borrowing more theoretical aspects from the following course:
 
 
 
-# [STAT474 S1 2016: Special Topic in Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
 
 
 ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
