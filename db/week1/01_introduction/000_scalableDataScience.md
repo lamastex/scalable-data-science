@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 11 Feb 2016 00:34:58 UTC
+// Databricks notebook source exported at Thu, 11 Feb 2016 01:58:49 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,8 @@ and
 
 
 
- # What is Scalable [Data Science](https://en.wikipedia.org/wiki/Data_science) in one picture?
+ 
+# What is Scalable [Data Science](https://en.wikipedia.org/wiki/Data_science) in one picture?
 
 ![what is sds?](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/sds.png "sds")
 
