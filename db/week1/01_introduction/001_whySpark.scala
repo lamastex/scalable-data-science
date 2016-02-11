@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 11 Feb 2016 05:33:05 UTC
+// Databricks notebook source exported at Thu, 11 Feb 2016 06:01:47 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -22,8 +22,8 @@
 // MAGIC The followign talk outlines the motivation and insights behind BDAS' research approach and how they address the cross-disciplinary nature of Big Data challenges and current work.
 // MAGIC * **watch now (5 mins.):** 
 // MAGIC 
-// MAGIC [![Ion Stoica on State of Spark Union AmpCamp6]](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/v/s7kj9XzRBQk?rel=0&autoplay=1&modestbranding=1&start=91&end=386)
-// MAGIC 
+// MAGIC [![Ion Stoica on State of Spark Union AmpCamp6](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/v/s7kj9XzRBQk?rel=0&autoplay=1&modestbranding=1&start=91&end=386)
+// MAGIC  
 // MAGIC ## key points
 // MAGIC * started in 2011 with strong public-private funding
 // MAGIC   * Defense Advanced Research Projects Agency
@@ -116,13 +116,13 @@
 // MAGIC ## EXTRA: For a historical insight see excerpts from an interview with Ion Stoica
 // MAGIC 
 // MAGIC #### Beginnings of Apache Spark and Databricks (academia-industry roots)
-// MAGIC [![Ion Stoica on Starting Spark and DataBricks]](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=231&end=365)
+// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=231&end=365)
 // MAGIC 
 // MAGIC #### Advantages of Apache Spark: A Unified System for Batch, Stream, Interactive / Ad Hoc or Graph Processing
-// MAGIC [![Ion Stoica on Starting Spark and DataBricks]](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=458&end=726)
+// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=458&end=726)
 // MAGIC 
 // MAGIC #### Main Goal of Databricks Cloud: To Make Big Data Easy
-// MAGIC [![Ion Stoica on Starting Spark and DataBricks]](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=890&end=985)
+// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=890&end=985)
 // MAGIC 
 // MAGIC ***
 // MAGIC ***
