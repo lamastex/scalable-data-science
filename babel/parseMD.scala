@@ -6,7 +6,8 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat
 val conf = new Configuration
 conf.set("textinputformat.record.delimiter", "// COMMAND ----------")
 
-val scalaFileName = "../db/week1/01_introduction/000_scalableDataScience.scala"
+//val scalaFileName = "../db/week1/01_introduction/000_scalableDataScience.scala"
+val scalaFileName = "../db/week1/01_introduction/001_whySpark.scala"
 val a = sc.newAPIHadoopFile(scalaFileName, classOf[TextInputFormat], classOf[LongWritable], classOf[Text], conf).map(_._2.toString)
 
 // the above code snippet is from http://stackoverflow.com/questions/25259425/spark-reading-files-using-different-delimiter-than-new-line
