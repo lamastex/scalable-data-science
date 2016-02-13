@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 01:14:01 UTC
+// Databricks notebook source exported at Sat, 13 Feb 2016 01:25:54 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -59,7 +59,7 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
  
 ***
-### ** Create** and **Edit** a New Markdown Cell in this Notebook
+### **Create** and **Edit** a New Markdown Cell in this Notebook
 * When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 
  ![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png)
@@ -174,7 +174,9 @@ The main sources for the following content are (you are encouraged to read them 
 
 
 
-# We will get our hands dirty with the following ideas in Scala
+# Let's get our hands dirty in Scala
+
+We will go through the following programming concepts and tasks:
 * Assignments
 * Methods and Tab-completion
 * Functions in Scala

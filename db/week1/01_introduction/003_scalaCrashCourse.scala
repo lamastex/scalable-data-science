@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 01:14:01 UTC
+// Databricks notebook source exported at Sat, 13 Feb 2016 01:25:54 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -54,7 +54,7 @@
 
 // MAGIC %md 
 // MAGIC ***
-// MAGIC ### ** Create** and **Edit** a New Markdown Cell in this Notebook
+// MAGIC ### **Create** and **Edit** a New Markdown Cell in this Notebook
 // MAGIC * When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 // MAGIC 
 // MAGIC  ![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png)
@@ -161,7 +161,9 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # We will get our hands dirty with the following ideas in Scala
+// MAGIC # Let's get our hands dirty in Scala
+// MAGIC 
+// MAGIC We will go through the following programming concepts and tasks:
 // MAGIC * Assignments
 // MAGIC * Methods and Tab-completion
 // MAGIC * Functions in Scala
