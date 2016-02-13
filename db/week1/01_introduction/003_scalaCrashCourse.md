@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 12 Feb 2016 04:46:36 UTC
+// Databricks notebook source exported at Sat, 13 Feb 2016 01:14:01 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -76,7 +76,7 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
 
  **You Try Now!** 
-Just double-click the cell below and modify 
+Just double-click the cell below, modify the text following ``%md`` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
 ```
 > %md Hello, world!
 ```
@@ -116,12 +116,7 @@ Just double-click the cell below and modify
 
 ```scala
 
-println(System.currentTimeMillis) // println prints its argument as a line
-
-```
-```scala
-
-
+println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that prints its argument as a line
 
 ```
 
@@ -135,6 +130,7 @@ You will not be learning scala systematically and thoroughly in this course.  Yo
 If you are seriously interested in learning scala properly, then there are various resources, including:
 
 * [scala-lang.org](http://www.scala-lang.org/) is the **core Scala resource**.
+  * [tour-of-scala](http://docs.scala-lang.org/tutorials/tour/tour-of-scala)
 * MOOC
   * [courseera: Functional Programming Principles in Scala](https://www.coursera.org/course/progfun)
 * [Books](http://www.scala-lang.org/documentation/books.html)
@@ -178,20 +174,354 @@ The main sources for the following content are (you are encouraged to read them 
 
 
 
-## Functions in Scala
-## Operating on collections in Scala
+# We will get our hands dirty with the following ideas in Scala
+* Assignments
+* Methods and Tab-completion
+* Functions in Scala
+* Collections in Scala
+* Scala Closures for Functional Programming and MapReduce
+
+
+
+
+
+## Assignments 
+### value and variable as ``val`` and ``var``
+
+Let us assign the integer value ``5`` to `x` as follows:
 
 
 ```scala
 
-val a = 5
+val x : Int = 5 // <Ctrl+Enter> to declare a value x to be integer 5
+
+```
+
+
+
+Scala is statically typed, but it uses built-in type inference machinery to automatically figure out that ``x`` is an integer or ``Int`` type as follows. 
+Let's declare a value ``x`` to be ``Int`` 5 next without explictly using ``Int``.
+
+
+```scala
+
+val x = 5    // <Ctrl+Enter> to declare a value x as Int 5 (type automatically inferred)
+
+```
+
+
+
+Let's declare ``x`` as a ``Double`` or double-precision floating-point type using decimal such as ``5.0`` (a digit has to follow the decimal point!)
+
+
+```scala
+
+val x = 5.0   // <Ctrl+Enter> to declare a value x as Double 5
+
+```
+
+
+
+Alternatively, we can assign ``x`` as a ``Double`` explicitly.  Note that the decimal point is not needed in this case due to explicit typing as ``Double``.
+
+
+```scala
+
+val x :  Double = 5    // <Ctrl+Enter> to declare a value x as Double 5 (type automatically inferred)
+
+```
+
+
+
+Next note that labels need to be declared on first use. We have declared x to be a ``val`` which is short for *value*. This makes ``x`` immutable (cannot be changed).
+
+Thus, ``x`` cannot be just re-assigned, as the following code illustrates in the resulting error: ``... error: reassignment to val``.
+
+
+```scala
+
+x = 10    //  <Ctrl+Enter> to try to reassign val x to 10
+
+```
+
+
+
+Scala allows declaration of mutable variables as well using ``var``, as follows:
+
+
+```scala
+
+var y = 2    // <Shift+Enter> to declare a variable y to be integer 2 and go to next cell
 
 ```
 ```scala
 
-a+3
+y = 3    // <Shift+Enter> to change the value of y to 3
 
 ```
+
+
+
+## Methods and Tab-completion
+
+
+```scala
+
+val s = "hi"    // <Ctrl+Enter> to declare val s to String "hi"
+
+```
+
+
+
+You can place the cursor after ``.`` following a declared object and find out the methods available for it as shown in the image below.
+
+![tabCompletionAfterSDot PNG image](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/tabCompletionAfterSDot.png)
+
+**You Try** doing this next.
+
+
+```scala
+
+s.    // place cursor after the '.' and press Tab to see all available methods for s 
+
+```
+
+
+
+For example, 
+* scroll down to ``contains`` and double-click on it.  
+* This should lead to ``s.contains`` in your cell. 
+* Now add an argument String to see if ``s`` contains the argument, for example, try:
+  * ``s.("f")``
+  * ``s.contains("")`` and
+  * ``s.contains("i")``
+
+
+```scala
+
+s    // <Shift-Enter> recall the value of String s
+
+```
+```scala
+
+s.contains("f")     // <Shift-Enter> returns Boolean false since s does not contain the string "f"
+
+```
+```scala
+
+s.contains("")    // <Shift-Enter> returns Boolean true since s contains the empty string ""
+
+```
+```scala
+
+s.contains("i")    // <Ctrl+Enter> returns Boolean true since s contains the string "i"
+
+```
+
+
+
+## Functions
+
+
+```scala
+
+def square(x: Int): Int = x*x    // <Shitf+Enter> to define a function named square
+
+```
+```scala
+
+square(5)    // <Shitf+Enter> to call this function on argument 5
+
+```
+```scala
+
+y    // <Shitf+Enter> to recall that val y is Int 3
+
+```
+```scala
+
+square(y) // <Shitf+Enter> to call the function on val y of the right argument type Int
+
+```
+```scala
+
+x    // <Shitf+Enter> to recall x is Double 5.0
+
+```
+```scala
+
+square(x) // <Shift+Enter> to call the function on val x of type Double will give type mismatch error
+
+```
+```scala
+
+def square(x: Int): Int = { // <Shitf+Enter> to declare function in a block
+  val answer=x*x
+  answer // the last line of the function block is returned
+}
+
+```
+```scala
+
+square(5000)    // <Shift+Enter> to call the function
+
+```
+```scala
+
+// <Shift+Enter> to define function with input and output type as String
+def announceAndEmit(text: String) = 
+{
+  println(text)
+  text // the last line of the function block is returned
+}
+
+```
+```scala
+
+// <Ctrl+Enter> to call function which prints as line and returns as String
+announceAndEmit("roger roger")
+
+```
+
+
+
+## Scala Collections
+
+See the [overview](http://docs.scala-lang.org/overviews/collections/overview) and [introduction](http://docs.scala-lang.org/overviews/collections/introduction) to scala collections, the building blocks of Spark.
+
+
+```scala
+
+// <Ctrl+Enter> to declare (an immutable) val lst as List of Int's 1,2,3
+val lst = List(1, 2, 3)
+
+```
+
+
+
+There are several other Scala collections and we will introduce them as needed.  The two other most common ones are ``Array`` and ``Seq``.
+
+
+```scala
+
+val arr = Array(1,2,3) // <Shift-Enter> to declare an Array
+
+```
+```scala
+
+val seq = Seq(1,2,3)    // <Shift-Enter> to declare a Seq
+
+```
+
+
+
+##Scala Closures for Functional Programming and MapReduce
+
+We will apply such *closures* for processing scala collections with functional programming.
+
+### Five ways of adding 1
+
+1. explicit version:
+```%scala
+(x: Int) => x + 1  
+```
+
+2. type-inferred more intuitive version:
+```%scala
+x => x + 1   
+```
+
+3. placeholder syntax (each argument must be used exactly once):
+```%scala
+_ + 1 
+```
+
+4. type-inferred more intuitive version with code-block for larger function body:
+```%scala
+x => { 
+      // body is a block of code
+      val integerToAdd = 1
+      x + integerToAdd
+}
+```
+
+5. regular functions using ``def``:
+```%scala
+def addOne(x: Int): Int = x + 1
+ ```
+
+
+
+
+
+Now, let's apply closures for functional programming over scala collection (``List``) using ``foreach``, ``map``, ``filter`` and ``reduce``. In the end we will write out first mapReduce program!
+
+
+```scala
+
+// <Shift+Enter> to call the foreach method and print its contents element-per-line using println function
+lst.foreach(x => println(x))
+
+```
+```scala
+
+// <Shift+Enter> for same output as above where println is applied to each element of List lst
+lst.foreach(println)
+
+```
+```scala
+
+// <Shift+Enter> to map each value x of lst with x+10 to return a new List(11, 12, 13)
+lst.map(x => x + 10)  
+
+```
+```scala
+
+// <Shift+Enter> for the same as above using place-holder syntax
+lst.map(_ + 10)  
+
+```
+```scala
+
+// <Shift+Enter> to return a new List(1, 3) after filtering x's from lst if (x % 2 == 1) is true
+lst.filter(x => (x % 2 == 1) )
+
+```
+```scala
+
+// <Shift+Enter> for the same as above using place-holder syntax
+lst.filter( _ % 2 == 1 )
+
+```
+```scala
+
+// <Shift+Enter> to use reduce to add elements of lst two at a time to return Int 6
+lst.reduce( (x, y) => x + y )
+
+```
+```scala
+
+// <Ctrl+Enter> for the same as above but using place-holder syntax
+lst.reduce( _ + _ )
+
+```
+
+
+
+Let's combine ``map`` and ``reduce`` programs above to find the sum of after 10 has been added to every element of the original List ``lst`` as follows:
+
+
+```scala
+
+lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10,2+10,3+10)
+
+```
+
+
+
+There are lots of methods in Scala Collections.  See for example [API_scala.collection.Seq](http://www.scala-lang.org/api/2.10.4/index.html#scala.collection.Seq).
+
+
 
 
 

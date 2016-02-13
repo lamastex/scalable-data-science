@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 12 Feb 2016 04:46:36 UTC
+// Databricks notebook source exported at Sat, 13 Feb 2016 01:14:01 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -70,7 +70,7 @@
 // COMMAND ----------
 
 // MAGIC %md **You Try Now!** 
-// MAGIC Just double-click the cell below and modify 
+// MAGIC Just double-click the cell below, modify the text following ``%md`` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
 // MAGIC ```
 // MAGIC > %md Hello, world!
 // MAGIC ```
@@ -106,11 +106,7 @@
 
 // COMMAND ----------
 
-println(System.currentTimeMillis) // println prints its argument as a line
-
-// COMMAND ----------
-
-
+println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that prints its argument as a line
 
 // COMMAND ----------
 
@@ -123,6 +119,7 @@ println(System.currentTimeMillis) // println prints its argument as a line
 // MAGIC If you are seriously interested in learning scala properly, then there are various resources, including:
 // MAGIC 
 // MAGIC * [scala-lang.org](http://www.scala-lang.org/) is the **core Scala resource**.
+// MAGIC   * [tour-of-scala](http://docs.scala-lang.org/tutorials/tour/tour-of-scala)
 // MAGIC * MOOC
 // MAGIC   * [courseera: Functional Programming Principles in Scala](https://www.coursera.org/course/progfun)
 // MAGIC * [Books](http://www.scala-lang.org/documentation/books.html)
@@ -164,16 +161,301 @@ println(System.currentTimeMillis) // println prints its argument as a line
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Functions in Scala
-// MAGIC ## Operating on collections in Scala
+// MAGIC # We will get our hands dirty with the following ideas in Scala
+// MAGIC * Assignments
+// MAGIC * Methods and Tab-completion
+// MAGIC * Functions in Scala
+// MAGIC * Collections in Scala
+// MAGIC * Scala Closures for Functional Programming and MapReduce
 
 // COMMAND ----------
 
-val a = 5
+// MAGIC %md
+// MAGIC ## Assignments 
+// MAGIC ### value and variable as ``val`` and ``var``
+// MAGIC 
+// MAGIC Let us assign the integer value ``5`` to `x` as follows:
 
 // COMMAND ----------
 
-a+3
+val x : Int = 5 // <Ctrl+Enter> to declare a value x to be integer 5
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Scala is statically typed, but it uses built-in type inference machinery to automatically figure out that ``x`` is an integer or ``Int`` type as follows. 
+// MAGIC Let's declare a value ``x`` to be ``Int`` 5 next without explictly using ``Int``.
+
+// COMMAND ----------
+
+val x = 5    // <Ctrl+Enter> to declare a value x as Int 5 (type automatically inferred)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Let's declare ``x`` as a ``Double`` or double-precision floating-point type using decimal such as ``5.0`` (a digit has to follow the decimal point!)
+
+// COMMAND ----------
+
+val x = 5.0   // <Ctrl+Enter> to declare a value x as Double 5
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Alternatively, we can assign ``x`` as a ``Double`` explicitly.  Note that the decimal point is not needed in this case due to explicit typing as ``Double``.
+
+// COMMAND ----------
+
+val x :  Double = 5    // <Ctrl+Enter> to declare a value x as Double 5 (type automatically inferred)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Next note that labels need to be declared on first use. We have declared x to be a ``val`` which is short for *value*. This makes ``x`` immutable (cannot be changed).
+// MAGIC 
+// MAGIC Thus, ``x`` cannot be just re-assigned, as the following code illustrates in the resulting error: ``... error: reassignment to val``.
+
+// COMMAND ----------
+
+x = 10    //  <Ctrl+Enter> to try to reassign val x to 10
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Scala allows declaration of mutable variables as well using ``var``, as follows:
+
+// COMMAND ----------
+
+var y = 2    // <Shift+Enter> to declare a variable y to be integer 2 and go to next cell
+
+// COMMAND ----------
+
+y = 3    // <Shift+Enter> to change the value of y to 3
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Methods and Tab-completion
+
+// COMMAND ----------
+
+val s = "hi"    // <Ctrl+Enter> to declare val s to String "hi"
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC You can place the cursor after ``.`` following a declared object and find out the methods available for it as shown in the image below.
+// MAGIC 
+// MAGIC ![tabCompletionAfterSDot PNG image](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/tabCompletionAfterSDot.png)
+// MAGIC 
+// MAGIC **You Try** doing this next.
+
+// COMMAND ----------
+
+s.    // place cursor after the '.' and press Tab to see all available methods for s 
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC For example, 
+// MAGIC * scroll down to ``contains`` and double-click on it.  
+// MAGIC * This should lead to ``s.contains`` in your cell. 
+// MAGIC * Now add an argument String to see if ``s`` contains the argument, for example, try:
+// MAGIC   * ``s.("f")``
+// MAGIC   * ``s.contains("")`` and
+// MAGIC   * ``s.contains("i")``
+
+// COMMAND ----------
+
+s    // <Shift-Enter> recall the value of String s
+
+// COMMAND ----------
+
+s.contains("f")     // <Shift-Enter> returns Boolean false since s does not contain the string "f"
+
+// COMMAND ----------
+
+s.contains("")    // <Shift-Enter> returns Boolean true since s contains the empty string ""
+
+// COMMAND ----------
+
+s.contains("i")    // <Ctrl+Enter> returns Boolean true since s contains the string "i"
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Functions
+
+// COMMAND ----------
+
+def square(x: Int): Int = x*x    // <Shitf+Enter> to define a function named square
+
+// COMMAND ----------
+
+square(5)    // <Shitf+Enter> to call this function on argument 5
+
+// COMMAND ----------
+
+y    // <Shitf+Enter> to recall that val y is Int 3
+
+// COMMAND ----------
+
+square(y) // <Shitf+Enter> to call the function on val y of the right argument type Int
+
+// COMMAND ----------
+
+x    // <Shitf+Enter> to recall x is Double 5.0
+
+// COMMAND ----------
+
+square(x) // <Shift+Enter> to call the function on val x of type Double will give type mismatch error
+
+// COMMAND ----------
+
+def square(x: Int): Int = { // <Shitf+Enter> to declare function in a block
+  val answer=x*x
+  answer // the last line of the function block is returned
+}
+
+// COMMAND ----------
+
+square(5000)    // <Shift+Enter> to call the function
+
+// COMMAND ----------
+
+// <Shift+Enter> to define function with input and output type as String
+def announceAndEmit(text: String) = 
+{
+  println(text)
+  text // the last line of the function block is returned
+}
+
+// COMMAND ----------
+
+// <Ctrl+Enter> to call function which prints as line and returns as String
+announceAndEmit("roger roger")
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Scala Collections
+// MAGIC 
+// MAGIC See the [overview](http://docs.scala-lang.org/overviews/collections/overview) and [introduction](http://docs.scala-lang.org/overviews/collections/introduction) to scala collections, the building blocks of Spark.
+
+// COMMAND ----------
+
+// <Ctrl+Enter> to declare (an immutable) val lst as List of Int's 1,2,3
+val lst = List(1, 2, 3)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC There are several other Scala collections and we will introduce them as needed.  The two other most common ones are ``Array`` and ``Seq``.
+
+// COMMAND ----------
+
+val arr = Array(1,2,3) // <Shift-Enter> to declare an Array
+
+// COMMAND ----------
+
+val seq = Seq(1,2,3)    // <Shift-Enter> to declare a Seq
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ##Scala Closures for Functional Programming and MapReduce
+// MAGIC 
+// MAGIC We will apply such *closures* for processing scala collections with functional programming.
+// MAGIC 
+// MAGIC ### Five ways of adding 1
+// MAGIC 
+// MAGIC 1. explicit version:
+// MAGIC ```%scala
+// MAGIC (x: Int) => x + 1  
+// MAGIC ```
+// MAGIC 
+// MAGIC 2. type-inferred more intuitive version:
+// MAGIC ```%scala
+// MAGIC x => x + 1   
+// MAGIC ```
+// MAGIC 
+// MAGIC 3. placeholder syntax (each argument must be used exactly once):
+// MAGIC ```%scala
+// MAGIC _ + 1 
+// MAGIC ```
+// MAGIC 
+// MAGIC 4. type-inferred more intuitive version with code-block for larger function body:
+// MAGIC ```%scala
+// MAGIC x => { 
+// MAGIC       // body is a block of code
+// MAGIC       val integerToAdd = 1
+// MAGIC       x + integerToAdd
+// MAGIC }
+// MAGIC ```
+// MAGIC 
+// MAGIC 5. regular functions using ``def``:
+// MAGIC ```%scala
+// MAGIC def addOne(x: Int): Int = x + 1
+// MAGIC  ```
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Now, let's apply closures for functional programming over scala collection (``List``) using ``foreach``, ``map``, ``filter`` and ``reduce``. In the end we will write out first mapReduce program!
+
+// COMMAND ----------
+
+// <Shift+Enter> to call the foreach method and print its contents element-per-line using println function
+lst.foreach(x => println(x))
+
+// COMMAND ----------
+
+// <Shift+Enter> for same output as above where println is applied to each element of List lst
+lst.foreach(println)
+
+// COMMAND ----------
+
+// <Shift+Enter> to map each value x of lst with x+10 to return a new List(11, 12, 13)
+lst.map(x => x + 10)  
+
+// COMMAND ----------
+
+// <Shift+Enter> for the same as above using place-holder syntax
+lst.map(_ + 10)  
+
+// COMMAND ----------
+
+// <Shift+Enter> to return a new List(1, 3) after filtering x's from lst if (x % 2 == 1) is true
+lst.filter(x => (x % 2 == 1) )
+
+// COMMAND ----------
+
+// <Shift+Enter> for the same as above using place-holder syntax
+lst.filter( _ % 2 == 1 )
+
+// COMMAND ----------
+
+// <Shift+Enter> to use reduce to add elements of lst two at a time to return Int 6
+lst.reduce( (x, y) => x + y )
+
+// COMMAND ----------
+
+// <Ctrl+Enter> for the same as above but using place-holder syntax
+lst.reduce( _ + _ )
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Let's combine ``map`` and ``reduce`` programs above to find the sum of after 10 has been added to every element of the original List ``lst`` as follows:
+
+// COMMAND ----------
+
+lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10,2+10,3+10)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC There are lots of methods in Scala Collections.  See for example [API_scala.collection.Seq](http://www.scala-lang.org/api/2.10.4/index.html#scala.collection.Seq).
 
 // COMMAND ----------
 

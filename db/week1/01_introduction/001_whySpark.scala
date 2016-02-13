@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 11 Feb 2016 06:01:47 UTC
+// Databricks notebook source exported at Sat, 13 Feb 2016 01:15:56 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -22,7 +22,7 @@
 // MAGIC The followign talk outlines the motivation and insights behind BDAS' research approach and how they address the cross-disciplinary nature of Big Data challenges and current work.
 // MAGIC * **watch now (5 mins.):** 
 // MAGIC 
-// MAGIC [![Ion Stoica on State of Spark Union AmpCamp6](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/v/s7kj9XzRBQk?rel=0&autoplay=1&modestbranding=1&start=91&end=386)
+// MAGIC [![Ion Stoica on State of Spark Union AmpCamp6](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/v/s7kj9XzRBQk?rel=0&autoplay=1&modestbranding=1&start=91&end=386)
 // MAGIC  
 // MAGIC ## key points
 // MAGIC * started in 2011 with strong public-private funding
