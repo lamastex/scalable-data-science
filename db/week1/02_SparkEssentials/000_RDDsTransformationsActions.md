@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 07:27:48 UTC
+// Databricks notebook source exported at Sat, 13 Feb 2016 20:10:06 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -269,8 +269,54 @@ rdd0_1000000.reduce( (x,y)=>x+y ) // <Ctrl+Enter> to do reduce (action) to sum a
 ```
 ```scala
 
-// the following incorrectly returns Int 0 as we have overflowed out of Int's!!! (rigorous distributed numerics, anyone?)
-rdd0_1000000.reduce( (x,y)=>x*y ) // <Ctrl+Enter> to do reduce (action) to multiply and return Int ?
+// the following correctly returns Int = 0 although for wrong reason 
+// we have flowed out of Int's numeric limits!!! (but got lucky with 0*x=0 for any Int x)
+// <Shift+Enter> to do reduce (action) to multiply and return Int = 0
+rdd0_1000000.reduce( (x,y)=>x*y ) 
+
+```
+```scala
+
+// <Ctrl+Enter> to do reduce (action) to multiply 1*2*...*9*10 and return correct answer Int = 3628800
+sc.parallelize(Seq.range(1, 11)).reduce( (x,y)=>x*y ) 
+
+```
+
+
+
+**CAUTION: Know the limits of your numeric types!**
+
+
+```scala
+
+// <Ctrl+Enter> to do reduce (action) to multiply 1*2*...*20 and return wrong answer as Int = -2102132736
+//  we have overflowed out of Int's in a circle back to negative Ints!!! (rigorous distributed numerics, anyone?)
+sc.parallelize(Seq.range(1, 21)).reduce( (x,y)=>x*y ) 
+
+```
+```scala
+
+//<Ctrl+Enter> we can accomplish the multiplication using Long Integer types 
+// by adding 'L' ro integer values, Scala infers that it is type Long
+sc.parallelize(Seq.range(1L, 21L)).reduce( (x,y)=>x*y ) 
+
+```
+
+
+
+As the following products over Long Integers indicate, they are limited too!
+
+
+```scala
+
+ // <Shift+Enter> for wrong answer Long = -8718968878589280256 (due to Long's numeric limits)
+sc.parallelize(Seq.range(1L, 61L)).reduce( (x,y)=>x*y )
+
+```
+```scala
+
+// <Cntrl+Enter> for wrong answer Long = 0 (due to Long's numeric limits)
+sc.parallelize(Seq.range(1L, 100L)).reduce( (x,y)=>x*y ) 
 
 ```
 
