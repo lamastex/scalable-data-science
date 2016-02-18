@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 11 Feb 2016 01:58:49 UTC
+// Databricks notebook source exported at Thu, 18 Feb 2016 07:17:00 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -23,7 +23,7 @@
 // MAGIC Source: [Vasant Dhar, Data Science and Prediction, Communications of the ACM, Vol. 56 (1). p. 64, DOI:10.1145/2500499](http://dl.acm.org/citation.cfm?id=2500499)
 // MAGIC 
 // MAGIC ### key insights
-// MAGIC * Data Science is the study of the generalizabile extraction of knowledge from data.
+// MAGIC * Data Science is the study of *the generalizabile extraction of knowledge from data*.
 // MAGIC * A common epistemic requirement in assessing whether new knowledge is actionable for decision making is its predictive power, not just its ability to explain the past.
 // MAGIC * A *data scientist requires an integrated skill set spanning* 
 // MAGIC   * mathematics, 
@@ -73,6 +73,10 @@
 // MAGIC 
 // MAGIC We will also be borrowing more theoretical aspects from the following course:
 // MAGIC * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
+// MAGIC 
+// MAGIC The recommended readings are:
+// MAGIC * AAS
+// MAGIC * LSLF
 
 // COMMAND ----------
 
@@ -137,13 +141,15 @@
 
 // COMMAND ----------
 
-
-    
+// MAGIC %md
+// MAGIC 
+// MAGIC 20 minutes of 90+10 minutes are up!
+// MAGIC     
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## HOME WORK: Databases Versus Data Science
+// MAGIC ## EXTRA: Databases Versus Data Science
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch later 2:31)**: Why all the excitement about *Big Data Analytics*? (using google search to now-cast google flu-trends)
