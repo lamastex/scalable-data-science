@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 18 Feb 2016 07:17:00 UTC
+// Databricks notebook source exported at Thu, 18 Feb 2016 07:41:59 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -74,9 +74,13 @@
 // MAGIC We will also be borrowing more theoretical aspects from the following course:
 // MAGIC * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
 // MAGIC 
-// MAGIC The recommended readings are:
-// MAGIC * AAS
-// MAGIC * LSLF
+// MAGIC The two recommended readings are (already somewhat outdated!):
+// MAGIC * Learning Spark : lightning-fast data analytics by Holden Karau, Andy Konwinski, Patrick Wendell, and Matei Zaharia, O'Reilly, 2015.
+// MAGIC * Advanced analytics with Spark : patterns for learning from data at scale, O'Reilly, 2015.
+// MAGIC 
+// MAGIC ![LS](http://www.syndetics.com/index.aspx?type=xw12&isbn=9781449358624/LC.GIF&client=ucanterburyl&upc=&oclc=) and  ![aas](http://t3.gstatic.com/images?q=tbn:ANd9GcSQs35NvHVozz77dhXYc2Ce8lKyJkR3oVwaxyA5Ub4W7Kvtvf9i "aas")
+// MAGIC 
+// MAGIC **These are available at [UC Library](http://ipac.canterbury.ac.nz/ipac20/ipac.jsp?profile=a&npp=30&index=.CC&term=STAT478)**
 
 // COMMAND ----------
 
