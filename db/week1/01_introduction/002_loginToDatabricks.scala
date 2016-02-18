@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 12 Feb 2016 04:45:53 UTC
+// Databricks notebook source exported at Thu, 18 Feb 2016 07:21:02 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,6 +13,8 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
+// MAGIC How to donate your AWS credits to the course's databricks cluster.
 // MAGIC 
 // MAGIC Will need to be done after Paul instantiates the new cluster......
 
