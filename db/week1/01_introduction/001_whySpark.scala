@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 01:15:56 UTC
+// Databricks notebook source exported at Thu, 18 Feb 2016 07:19:36 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -90,7 +90,7 @@
 // MAGIC * Key Historical Milestones
 // MAGIC   * 1956-1979: [Stanford, MIT, CMU, and other universities develop set/list operations in LISP, Prolog, and other languages for parallel processing](http://www-formal.stanford.edu/jmc/history/lisp/lisp.html)
 // MAGIC   * 2004: READ: [Google's MapReduce: Simplified Data Processing on Large Clusters, by Jeffrey Dean and Sanjay Ghemawat](http://research.google.com/archive/mapreduce.html)
-// MAGIC   * 2006: [Yahoo!'s Apache Hadoop, originating from the Yahoo!?s Nutch Project, Doug Cutting](http://developer.yahoo.com/hadoop/)
+// MAGIC   * 2006: [Yahoo!'s Apache Hadoop, originating from the Yahoo!’s Nutch Project, Doug Cutting](http://developer.yahoo.com/hadoop/)
 // MAGIC   * 2009: [Cloud computing with Amazon Web Services Elastic MapReduce](http://aws.amazon.com/elasticmapreduce/), a Hadoop version modified for Amazon Elastic Cloud Computing (EC2) and Amazon Simple Storage System (S3), including support for Apache Hive and Pig.
 // MAGIC   * 2010: READ: [The Hadoop Distributed File System, by Konstantin Shvachko, Hairong Kuang, Sanjay Radia, and Robert Chansler. IEEE MSST](http://dx.doi.org/10.1109/MSST.2010.5496972) 
 // MAGIC * Apache Spark Core Papers</h1>
@@ -102,10 +102,15 @@
 // MAGIC %md
 // MAGIC ***
 // MAGIC ***
+// MAGIC 20 minutes
+// MAGIC 40 out of 90+10 minutes.
+// MAGIC 
 // MAGIC We have come to the end of this section.
 // MAGIC 
 // MAGIC **Next let us get everyone to login to databricks** to get our hands dirty with some Spark code! 
 // MAGIC 
+// MAGIC 10-15 minutes.
+// MAGIC Then break for 5.
 // MAGIC ***
 // MAGIC ***
 
