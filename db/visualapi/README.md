@@ -12,6 +12,7 @@ convert visualapi-3.png -resize 484 small/visualapi-3.png
 
 convert visualapi-3.png -resize 1000 med/visualapi-3.png
 
+for file in *.png; do convert $file -resize 1000 med/$file; done
 ```
 
 We are not modifying the content in each page and simply using them in databricks context. We believe this respects the CC-BY-NC-ND license of the [visualapi.pdf](http://training.databricks.com/visualapi.pdf).
