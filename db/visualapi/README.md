@@ -7,6 +7,13 @@ as follows:
 $ convert -density 300 visualapi.pdf -quality 100 visualapi.png
 ```
 
+```
+convert visualapi-3.png -resize 484 small/visualapi-3.png
+
+convert visualapi-3.png -resize 1000 med/visualapi-3.png
+
+```
+
 We are not modifying the content in each page and simply using them in databricks context. We believe this respects the CC-BY-NC-ND license of the [visualapi.pdf](http://training.databricks.com/visualapi.pdf).
 
 One can always start from the MIT-licensed images contributed by [Jeff Thompson](https://www.linkedin.com/profile/view?id=128303555) from:
