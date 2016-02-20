@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 18 Feb 2016 07:41:59 UTC
+// Databricks notebook source exported at Sat, 20 Feb 2016 18:19:32 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -33,10 +33,7 @@
 // MAGIC   * databases, and 
 // MAGIC   * optimization, 
 // MAGIC   * along with a deep understanding of the craft of problem formulation to engineer effective solutions.
-
-// COMMAND ----------
-
-// MAGIC %md 
+// MAGIC   
 // MAGIC Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
 // MAGIC 
 // MAGIC ### key insights
@@ -55,21 +52,17 @@
 // MAGIC   * financial modeling
 // MAGIC   * policing
 // MAGIC   * marketing
-// MAGIC   
-// MAGIC   The following image is from Figure 1 of [DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
-// MAGIC   
-// MAGIC   ![ML Fig 1](https://d2ufo47lrtsv5s.cloudfront.net/content/sci/349/6245/255/F1.large.jpg "ML Fig 1")
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Standing on shoulders of three giants!
+// MAGIC ## Standing on shoulders of giants!
 // MAGIC 
 // MAGIC This course will build on two other edX courses where needed.  
 // MAGIC * [BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x)
 // MAGIC * [BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x)
 // MAGIC 
-// MAGIC We encourage you to take these courses if you have more time.  For those of you (including the course coordinator) who have taken these courses formally in 2015 this course will be an *expanded scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills. 
+// MAGIC We encourage you to take these courses if you have more time.  For those of you (including the course coordinator) who have taken these courses formally in 2015, this course will be an *expanded scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills. 
 // MAGIC 
 // MAGIC We will also be borrowing more theoretical aspects from the following course:
 // MAGIC * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
@@ -84,7 +77,40 @@
 
 // COMMAND ----------
 
-
+// MAGIC %md
+// MAGIC # What should you be able to do at the end of this course?
+// MAGIC 
+// MAGIC ## 0. Understanding the principles of fault-tolerant scalable computing
+// MAGIC 
+// MAGIC * in-memory extensions of Map-reduce
+// MAGIC * resilient distributed datasets for fault-tolerance
+// MAGIC * ...
+// MAGIC 
+// MAGIC ## 1. Extract, Transform, Load, Interact, Explore and Analyze Data
+// MAGIC 
+// MAGIC #### Exploring Apache Web Logs (semi-structured data)
+// MAGIC [![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
+// MAGIC 
+// MAGIC #### Exploring Wikipedia Click Streams (structured data)
+// MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
+// MAGIC 
+// MAGIC 
+// MAGIC ## 2. Build Scalable Machine Learning Pipelines
+// MAGIC 
+// MAGIC ### Apply standard learning methods (we will choose from this list)
+// MAGIC * Supervised Learning Mehtods: Regression /Classification
+// MAGIC * Unsupervised Learning Methods: Clustering
+// MAGIC * Recommedation systems
+// MAGIC * Streaming
+// MAGIC * Graph processing
+// MAGIC * Geospatial data-processing
+// MAGIC * Topic modeling
+// MAGIC * Deep Learning
+// MAGIC * ...
+// MAGIC 
+// MAGIC 
+// MAGIC ####  Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
+// MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
 
 // COMMAND ----------
 
