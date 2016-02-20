@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 18 Feb 2016 07:21:02 UTC
+// Databricks notebook source exported at Sat, 20 Feb 2016 20:36:16 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -16,17 +16,59 @@
 // MAGIC 
 // MAGIC How to donate your AWS credits to the course's databricks cluster.
 // MAGIC 
-// MAGIC Will need to be done after Paul instantiates the new cluster......
+// MAGIC Paul, add the steps for AWS credit sharing here.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Have screenshots of loggingin ....
+// MAGIC # Steps to get to databricks cloud:
+// MAGIC 
+// MAGIC ### Step 1: go to [http://www.math.canterbury.ac.nz/databricks](http://www.math.canterbury.ac.nz/databricks)
+// MAGIC 
+// MAGIC ### Step 2: login using your email address and password given to you
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Have screenshots of loggingin and doing more and pre-flight test....
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_01_sds_2016S1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_02_sds_2016S1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Step 3: recognize your ``Home`` area in ``Workspace`` where you can read and write.
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_03_sds_2016S1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Step 4: cloning the ``scalable-data-science`` folder
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_04_sds_2016S1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Step 5: name the cloned ``scalable-data-science`` folder as ``scalable-data-science`` 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_05_sds_2016S1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Step 6: loading the ``003_scalaCrashCourse`` notebook
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_06_sds_2016S1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_07_sds_2016S1.png)
 
 // COMMAND ----------
 
