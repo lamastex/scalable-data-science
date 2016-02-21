@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 20 Feb 2016 19:28:56 UTC
+// Databricks notebook source exported at Sun, 21 Feb 2016 21:19:05 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,13 +14,13 @@
 
 // MAGIC %md
 // MAGIC # **Notebooks**
-// MAGIC Write Spark code for processing your data in notebooks.
+// MAGIC Write Spark code for processing your data in notebooks. **You should have already cloned this notebook and attached it to the ``classCluster`` by now.**
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC ### Notebooks can be written in **Python**, **Scala**, **R**, or **SQL**.
-// MAGIC * This is a Python notebook - which is indicated next to the title above.
+// MAGIC * This is a Scala notebook - which is indicated next to the title above by ``(Scala)``.
 
 // COMMAND ----------
 
