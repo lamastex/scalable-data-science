@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:53:46 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 05:25:08 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -26,7 +26,16 @@
 // MAGIC %md
 // MAGIC # Spark Cluster Overview:
 // MAGIC ## Driver Program, Cluster Manager and Worker Nodes
-// MAGIC See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apache.org/docs/latest/cluster-overview.html) for an overview of the spark cluster. This is embeded in-place below for convenience. Scroll to the bottom to see a Glossary of terms and their meanings.
+// MAGIC 
+// MAGIC The *driver* does the following:
+// MAGIC 1. connects to a *cluster manager* to allocate resources across applications
+// MAGIC * acquire *executors* on cluster nodes
+// MAGIC   * executor processs run compute tasks and cache data in memory or disk on a *worker node*
+// MAGIC * sends *application* (user program built on Spark) to the executors
+// MAGIC * sends *tasks* for the executors to run
+// MAGIC   * task is a unit of work that will sent to one executor
+// MAGIC   
+// MAGIC See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apache.org/docs/latest/cluster-overview.html) for an overview of the spark cluster. This is embeded in-place below for convenience. Scroll to the bottom to see a Glossary of terms used above and their meanings. You can right-click inside the embedded html ``<frame>...</frame>`` and use the left and right arrows to navigate within it!
 
 // COMMAND ----------
 
@@ -40,13 +49,20 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",
 
 // MAGIC %md
 // MAGIC ## The Abstraction of Resilient Distributed Dataset (RDD)
+// MAGIC 
+// MAGIC #### RDD is a fault-tolerant collection of elements that can be operated on in parallel
+// MAGIC 
+// MAGIC #### Two types of Operations are possible on an RDD
+// MAGIC * Transformations
+// MAGIC * Actions
+// MAGIC 
 // MAGIC **(watch now 2:26)**:
 // MAGIC 
 // MAGIC [![RDD in Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/3nreQ1N7Jvk/0.jpg)](https://www.youtube.com/v/3nreQ1N7Jvk?rel=0&autoplay=1&modestbranding=1&start=1&end=146)
 // MAGIC 
 // MAGIC ***
 // MAGIC 
-// MAGIC ## Spark Transformations
+// MAGIC ## Transformations
 // MAGIC **(watch now 1:18)**:
 // MAGIC 
 // MAGIC [![Spark Transformations by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/360UHWy052k/0.jpg)](https://www.youtube.com/v/360UHWy052k?rel=0&autoplay=1&modestbranding=1)
@@ -54,7 +70,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",
 // MAGIC ***
 // MAGIC 
 // MAGIC 
-// MAGIC ## Spark Actions
+// MAGIC ## Actions
 // MAGIC **(watch now 0:48)**:
 // MAGIC 
 // MAGIC [![Spark Actions by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F2G4Wbc5ZWQ/0.jpg)](https://www.youtube.com/v/F2G4Wbc5ZWQ?rel=0&autoplay=1&modestbranding=1&start=1&end=48)
@@ -97,9 +113,17 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",
 // MAGIC * A transformed RDD is executed only when an action runs on it.
 // MAGIC * You can also persist, or cache, RDDs in memory or on disk (this speeds up iterative ML algorithms that transforms the initial RDD iteratively).
 // MAGIC * Here is a great reference URL for working with Spark.
-// MAGIC     * [The latest Spark programming guide](http://spark.apache.org/docs/latest/programming-guide.html)
+// MAGIC     * [The latest Spark programming guide](http://spark.apache.org/docs/latest/programming-guide.html) and it is embedded below in-place for your convenience.
 // MAGIC     
-// MAGIC Let us get our hands dirty in Spark implementing these ideas!
+
+// COMMAND ----------
+
+displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html",800))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Let us get our hands dirty in Spark implementing these ideas!
 
 // COMMAND ----------
 
