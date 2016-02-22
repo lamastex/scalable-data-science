@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 20 Feb 2016 18:19:32 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 04:23:15 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -39,7 +39,7 @@
 // MAGIC ### key insights
 // MAGIC * ML is concerned with the building of computers that improve automatically through experience
 // MAGIC * ML lies at the intersection of computer science and statistics and at the core of artificial intelligence and data science
-// MAGIC * Rcent progress in ML is due to:
+// MAGIC * Recent progress in ML is due to:
 // MAGIC   * development of new algorithms and theory
 // MAGIC   * ongoing explosion in the availability of online data
 // MAGIC   * availability of low-cost computation (through clusters of commodity hardware in the *cloud*)
@@ -80,13 +80,17 @@
 // MAGIC %md
 // MAGIC # What should you be able to do at the end of this course?
 // MAGIC 
-// MAGIC ## 0. Understanding the principles of fault-tolerant scalable computing
+// MAGIC ## Understand the principles of fault-tolerant scalable computing using Apache Spark
 // MAGIC 
-// MAGIC * in-memory extensions of Map-reduce
+// MAGIC * in-memory and generic DAG extensions of Map-reduce
 // MAGIC * resilient distributed datasets for fault-tolerance
-// MAGIC * ...
+// MAGIC * skills to process today's big data using state-of-the art techniques in Apache Spark 1.6, in terms of:
+// MAGIC   * hands-on coding with real datasets
+// MAGIC   * an intuitive (non-mathematical) understanding of the ideas behind the technology and methods
+// MAGIC   * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
 // MAGIC 
-// MAGIC ## 1. Extract, Transform, Load, Interact, Explore and Analyze Data
+// MAGIC # More concretely, you will be able to:
+// MAGIC ### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
 // MAGIC 
 // MAGIC #### Exploring Apache Web Logs (semi-structured data)
 // MAGIC [![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
@@ -95,7 +99,7 @@
 // MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
 // MAGIC 
 // MAGIC 
-// MAGIC ## 2. Build Scalable Machine Learning Pipelines
+// MAGIC ### 2. Build Scalable Machine Learning Pipelines
 // MAGIC 
 // MAGIC ### Apply standard learning methods (we will choose from this list)
 // MAGIC * Supervised Learning Mehtods: Regression /Classification
@@ -111,6 +115,15 @@
 // MAGIC 
 // MAGIC ####  Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
 // MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # How will you be assessed?
+// MAGIC 
+// MAGIC The course is extremely hands-on and therefore gives 50% of the final grade for attending each lab and completing it. Completing a lab essentially involves going through the cells in the cloned notebooks for each week to strengthen your understanding. This will ensure that the concept as well as the syntax is understood for the learning outcomes for each week. There are additional videos and exercises you are encouraged to watch/complete.  These additional exercises will not be graded. You may use 1800-1830 hours to ask any questions about the contents in the current or previous weeks. 
+// MAGIC 
+// MAGIC Each student will be working on a course project and present the findings to the class in the last week or two. The course project will be given 50% of the grade. The project will typically involve applying Spark on a publicly available dataset or writing a report to demonstrate in-depth understanding of appropriate literature of interest to the student’s immediate research goals in academia or industry. Oral presentation of the project will constitute 10% of the grade. The remaining 40% of the grade will be for the written part of the project, which will be graded for replicability and ease of understanding. The written report will be encouraged for publication in a technical blog format in public repositories such as GitHub through a publishable mark-down'd databricks notebook (this is intended to show-case the actual skills of the student to potential employers directly). Group work on projects may be considered for complex projects.
 
 // COMMAND ----------
 
