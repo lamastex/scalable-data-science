@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 21 Feb 2016 21:19:05 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 04:49:55 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -200,7 +200,15 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC   * Python API added to reach a wider user community of programmes
 // MAGIC   * R API added more recently to reach a wider community of data analyststs 
 // MAGIC   * Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
-// MAGIC * See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/).
+// MAGIC * See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/). It is embedded in-place below for your convenience.
+
+// COMMAND ----------
+
+// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
+
+// COMMAND ----------
+
+displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/",500))
 
 // COMMAND ----------
 
@@ -213,6 +221,8 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC * Functions in Scala
 // MAGIC * Collections in Scala
 // MAGIC * Scala Closures for Functional Programming and MapReduce
+// MAGIC 
+// MAGIC **Remark**: You need to take a computer science course (from CourseEra, for example) to properly learn Scala.  Here, we will learn to use Scala by example to accomplish our data science tasks at hand.
 
 // COMMAND ----------
 
