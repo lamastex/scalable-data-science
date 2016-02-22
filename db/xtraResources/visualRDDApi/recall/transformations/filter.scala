@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:18:30 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 07:53:46 UTC
 // MAGIC %md
 // MAGIC # filter
 // MAGIC 
@@ -43,6 +43,3 @@ val y = x.filter(n => n%2 == 1)
 
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
-
-// COMMAND ----------
-
