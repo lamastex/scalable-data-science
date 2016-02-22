@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 10:07:13 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 22:01:04 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -61,6 +61,13 @@ dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",1000) // first 1000 bytes of t
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC ### Read the file into Spark
+// MAGIC * The `textFile` method on the available `SparkContext` `sc` can read the text file `sou17900108` into Spark and return an RDD of Strings
+// MAGIC * Each String represents one line of data from the file and can be displayed using `take` or `collect`.
+
+// COMMAND ----------
+
 val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt")
 
 // COMMAND ----------
@@ -73,100 +80,143 @@ sou17900108.collect
 
 // COMMAND ----------
 
-sou17900108
-.flatMap(line => line.split(" "))
-//.filter(x => x == "I")
-.map(x => (x,1)).reduceByKey(_+_).collect()
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ### For this toy example, let us use the file /databricks-datasets/README.md
-// MAGIC Let us display the first few lines of the file to see what it contains.
-
-// COMMAND ----------
-
-dbutils.fs.head("/databricks-datasets/README.md")
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ### Read the file into Spark
-// MAGIC * The textFile method on SparkContext reads a Text File into Spark and returns an RDD of Strings
-// MAGIC * Each String represents one line of data from the file
-
-// COMMAND ----------
-
-val file = sc.textFile("/databricks-datasets/README.md")
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC What does the RDD contain?
-
-// COMMAND ----------
-
-file.take(5)
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC ### Transform lines to words
 // MAGIC * We need to loop through each line and split the line into words
 // MAGIC * For now, let us split using whitespace
-// MAGIC * More sophisticated REGEX expressions can be used to split the line, but we can resreve them for later
+// MAGIC * More sophisticated regular expressions can be used to split the line (as we will see soon)
 
 // COMMAND ----------
 
-val words = file.flatMap(line => line.split(" "))
-
-// COMMAND ----------
-
-words.take(10)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC Let us remove words that have length 0
-
-// COMMAND ----------
-
-val filteredWords = words.filter(word => word.length > 0)
-
-// COMMAND ----------
-
-filteredWords.take(10)
+sou17900108
+.flatMap(line => line.split(" "))
+.take(100)
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Let us make our count of words case-insensitive
+// MAGIC ### Naive word count
+// MAGIC At a first glace, to do a word count of George Washingtons SoU address, we are templed to do the following:
+// MAGIC  * just break each line by the whitespace character " " and find the words using a `flatMap`
+// MAGIC  * then do the `map` with the closure `word => (word, 1)` to initialize each `word` with a integer count of `1` 
+// MAGIC     * ie., transform each word to a *(key, value)* pair or `Tuple` such as `(word, 1)`
+// MAGIC  * then count all *value*s with the same *key* (`word` is the Key in our case) by doing a
+// MAGIC    * `reduceByKey(_+_)` 
+// MAGIC  * and finally `collect()` to display the results.
 
 // COMMAND ----------
 
-val caseInsensitiveWords = filteredWords.map(word => word.toLowerCase)
+sou17900108
+.flatMap( line => line.split(" ") )
+.map( word => (word, 1) )
+.reduceByKey(_+_)
+.collect()
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC * Now, transform each word to a Tuple of (word, 1)
-// MAGIC * We can then group all Tuples with the same 'Key' (word) and do a count
+// MAGIC Unfortunately, as you can see from the `collect` above:
+// MAGIC * the words have punctuations at the end which means that the same words are being counted as different words. Eg: importance
+// MAGIC * empty words are being counted
+// MAGIC 
+// MAGIC So we need a bit of `regex`'ing or regular-expression matching (all readily available from Scala via Java String types).
+// MAGIC 
+// MAGIC We will cover the three things we want to do with a simple example from Middle Earth!
+// MAGIC * replace all multiple whitespace characters with one white space character " "
+// MAGIC * replace all punction characters we specify within `[` and `]` such as `[,?.!:;]` by the empty string "" (i.e., remove these punctuation characters)
+// MAGIC * convert everything to lower-case.
 
 // COMMAND ----------
 
-val wordTuples = caseInsensitiveWords.map(word => (word, 1))
+val example = "Master, Master!   It's me, Sméagol... mhrhm*%* But they took away our precious, they wronged us. Gollum will protect us..., Master, it's me Sméagol."
 
 // COMMAND ----------
 
-wordTuples.take(5)
+example.replaceAll("\\s+", " ") //replace multiple whitespace characters (including space, tab, new line, etc.) with one whitespace " "
+       .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
+       .toLowerCase() // converting to lower-case
 
 // COMMAND ----------
 
-val wordCounts = wordTuples.reduceByKey(_ + _)
+// MAGIC %md
+// MAGIC ### More sophisticated word count
+// MAGIC We are now ready to do a word count of George Washington's SoU on January 8th 1790 as follows:
 
 // COMMAND ----------
 
-wordCounts.collect
+val wordCount_sou17900108 = 
+sou17900108
+    .flatMap(line => 
+         line.replaceAll("\\s+", " ") //replace multiple whitespace characters (including space, tab, new line, etc.) with one whitespace " "
+             .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
+             .toLowerCase() // converting to lower-case
+             .split(" "))
+    .map(x => (x,1))
+    .reduceByKey(_+_)
+    
+wordCount_sou17900108.collect()
+
+// COMMAND ----------
+
+val top10 = wordCount_sou17900108.sortBy(_._2, false).collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Doing it all together for George Washington and Barrack Obama
+
+// COMMAND ----------
+
+//sc.textFile("dbfs:/datasets/sou/17900108.txt") // George Washington's first SoU
+sc.textFile("dbfs:/datasets/sou/20160112.txt")   // Barrack Obama's second SoU
+    .flatMap(line => 
+         line.replaceAll("\\s+", " ") //replace multiple whitespace characters (including space, tab, new line, etc.) with one whitespace " "
+             .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
+             .toLowerCase() // converting to lower-case
+             .split(" "))
+    .map(x => (x,1))
+    .reduceByKey(_+_)
+    .sortBy(_._2, false)
+    .collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## HOMEWORK 
+// MAGIC * HOWEWORK WordCount 1: `sortBy`
+// MAGIC * HOMEWROK WordCount 2: `dbutils.fs`
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ##### HOMEWORK WordCount 1. `sortBy`
+// MAGIC 
+// MAGIC Let's understand `sortBy` a bit more carefully.
+
+// COMMAND ----------
+
+val example = "Master, Master!   It's me, Sméagol... mhrhm*%* But they took away our precious, they wronged us. Gollum will protect us..., Master, it's me Sméagol."
+
+// COMMAND ----------
+
+val words = example.replaceAll("\\s+", " ") //replace multiple whitespace characters (including space, tab, new line, etc.) with one whitespace " "
+       .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
+       .toLowerCase() // converting to lower-case
+       .split(" ")
+
+// COMMAND ----------
+
+val rddWords = sc.parallelize(words)
+
+// COMMAND ----------
+
+rddWords.take(10)
+
+// COMMAND ----------
+
+val wordCounts = rddWords
+                  .map(x => (x,1))
+                  .reduceByKey(_+_)
 
 // COMMAND ----------
 
@@ -191,13 +241,14 @@ val top10 = wordCounts.sortBy({
 
 // COMMAND ----------
 
-caseInsensitiveWords.count
+rddWords.count
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## HOMEWORK
-// MAGIC ### What other commands does dbutils.fs support?
+// MAGIC ##### HOMEWORK WordCount 2: `dbutils.fs`
+// MAGIC 
+// MAGIC Have a brief look at what other commands dbutils.fs supports.  We will introduce them as needed.
 
 // COMMAND ----------
 
