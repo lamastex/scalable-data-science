@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 18 Feb 2016 07:23:04 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 04:48:37 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -20,6 +20,25 @@
 // MAGIC   * creating RDDs
 // MAGIC   * performing basic transformations on RDDs
 // MAGIC   * performing basic actions on RDDs
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Spark Cluster Overview:
+// MAGIC ## Driver Program, Cluster Manager and Worker Nodes
+// MAGIC See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apache.org/docs/latest/cluster-overview.html) for an overview of the spark cluster. This is embeded in-place below for convenience.
+
+// COMMAND ----------
+
+// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
+
+// COMMAND ----------
+
+displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",700))
+
+// COMMAND ----------
+
+displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html#glossary",700))
 
 // COMMAND ----------
 
@@ -90,9 +109,19 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ### Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ### Running **Spark**
 // MAGIC The variable **sc** allows you to access a Spark Context to run your Spark programs.
 // MAGIC * For more information about Spark, please refer to [Spark Overview](https://spark.apache.org/docs/latest/)
+// MAGIC 
+// MAGIC #### Recall ``SparkContext`` in the Driver Program
+// MAGIC ![](http://spark.apache.org/docs/latest/img/cluster-overview.png)
 // MAGIC 
 // MAGIC **NOTE: Do not create the *sc* variable - it is already initialized for you. **
 
@@ -171,29 +200,31 @@ rdd0_1000000.takeOrdered(5)(Ordering[Int].reverse) // <Ctrl+Enter> to get the la
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC **Transform the RDD by ``filter`` to make another RDD**
+// MAGIC ** Transform the RDD by ``map`` to make another RDD**
 // MAGIC 
-// MAGIC the ``filter`` transformation returns a new RDD that's formed by selecting those elements of the source RDD on which the function returns ``true``.
-// MAGIC     
-// MAGIC Let's declare another ``val`` RDD named ``rddFiltered`` by transforming our first RDD named ``rdd`` via the ``filter`` transformation ``x%2==0`` (of being even). 
-// MAGIC 
-// MAGIC This filter transformation based on the closure ``x => x%2==0`` will return ``true`` if the element, modulo two, equals zero. The closure is automatically passed on to the workers for evaluation (when an action is called later). 
-// MAGIC So this will take our RDD of (1,2,3,4) and return RDD of (2, 4).
-
-// COMMAND ----------
-
-val rddFiltered = rdd.filter( x => x%2==0 )    // <Ctrl+Enter> to declare rddFiltered from transforming rdd
-
-// COMMAND ----------
-
-rddFiltered.collect()    // <Ctrl+Enter> to collect (action) elements of rddFiltered; should be (2, 4)
+// MAGIC The ``map`` transformation returns a new RDD that's formed by passing each element of the source RDD through a function (closure). The closure is automatically passed on to the workers for evaluation (when an action is called later). 
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ** Transform the RDD by ``map`` to make another RDD**
+// MAGIC ### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map).
 // MAGIC 
-// MAGIC The ``map`` transformation returns a new RDD that's formed by passing each element of the source RDD through a function (closure). The closure is automatically passed on to the workers for evaluation (when an action is called later). 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-18.png)
+
+// COMMAND ----------
+
+val x = sc.parallelize(Array("b", "a", "c"))
+val y = x.map(z => (z,1))
+
+// COMMAND ----------
+
+println(x.collect().mkString(", "))
+println(y.collect().mkString(", "))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### more examples of map
 
 // COMMAND ----------
 
@@ -215,11 +246,38 @@ rdd.map( x => x*2).collect()    // <Ctrl+Enter> to perform collect (action) to s
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC **Transform the RDD by ``filter`` to make another RDD**
+// MAGIC 
+// MAGIC the ``filter`` transformation returns a new RDD that's formed by selecting those elements of the source RDD on which the function returns ``true``.
+// MAGIC     
+// MAGIC Let's declare another ``val`` RDD named ``rddFiltered`` by transforming our first RDD named ``rdd`` via the ``filter`` transformation ``x%2==0`` (of being even). 
+// MAGIC 
+// MAGIC This filter transformation based on the closure ``x => x%2==0`` will return ``true`` if the element, modulo two, equals zero. The closure is automatically passed on to the workers for evaluation (when an action is called later). 
+// MAGIC So this will take our RDD of (1,2,3,4) and return RDD of (2, 4).
+
+// COMMAND ----------
+
+val rddFiltered = rdd.filter( x => x%2==0 )    // <Ctrl+Enter> to declare rddFiltered from transforming rdd
+
+// COMMAND ----------
+
+rddFiltered.collect()    // <Ctrl+Enter> to collect (action) elements of rddFiltered; should be (2, 4)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **Perform the ``reduce`` action on the RDD**
 // MAGIC 
 // MAGIC Reduce aggregates a data set element using a function (closure). 
 // MAGIC This function takes two arguments and returns one and can often be seen as a binary operator. 
 // MAGIC This operator has to be commutative and associative so that it can be computed correctly in parallel (where we have little control over the order of the operations!).
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce).
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-94.png)
 
 // COMMAND ----------
 
