@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:48:37 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 04:53:46 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -26,7 +26,7 @@
 // MAGIC %md
 // MAGIC # Spark Cluster Overview:
 // MAGIC ## Driver Program, Cluster Manager and Worker Nodes
-// MAGIC See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apache.org/docs/latest/cluster-overview.html) for an overview of the spark cluster. This is embeded in-place below for convenience.
+// MAGIC See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apache.org/docs/latest/cluster-overview.html) for an overview of the spark cluster. This is embeded in-place below for convenience. Scroll to the bottom to see a Glossary of terms and their meanings.
 
 // COMMAND ----------
 
@@ -35,10 +35,6 @@
 // COMMAND ----------
 
 displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",700))
-
-// COMMAND ----------
-
-displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html#glossary",700))
 
 // COMMAND ----------
 
@@ -100,9 +96,8 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html#g
 // MAGIC * The lineage graph is a recipe for creating a result and it can be optimized before execution.
 // MAGIC * A transformed RDD is executed only when an action runs on it.
 // MAGIC * You can also persist, or cache, RDDs in memory or on disk (this speeds up iterative ML algorithms that transforms the initial RDD iteratively).
-// MAGIC * Here are two reference URLs for working with Spark.
+// MAGIC * Here is a great reference URL for working with Spark.
 // MAGIC     * [The latest Spark programming guide](http://spark.apache.org/docs/latest/programming-guide.html)
-// MAGIC     * And the second is the PySpark API.
 // MAGIC     
 // MAGIC Let us get our hands dirty in Spark implementing these ideas!
 
