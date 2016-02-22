@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:14:03 UTC
+// Databricks notebook source exported at Mon, 22 Feb 2016 04:14:19 UTC
 // MAGIC %md
 // MAGIC # Here is a visual guide to the transformations and actions on RDDs
 // MAGIC 
