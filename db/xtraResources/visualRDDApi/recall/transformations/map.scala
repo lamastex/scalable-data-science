@@ -1,6 +1,7 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:21:12 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:18:56 UTC
 // MAGIC %md
 // MAGIC # map
+// MAGIC Return a new RDD by applying a function to each element of this RDD.
 // MAGIC 
 // MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
 
