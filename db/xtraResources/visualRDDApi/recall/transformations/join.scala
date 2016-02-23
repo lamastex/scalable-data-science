@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 08:41:45 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 08:41:55 UTC
 // MAGIC %md
 // MAGIC # join
 // MAGIC Return a new RDD containing all pairs of elements having the same key in the original RDDs.
