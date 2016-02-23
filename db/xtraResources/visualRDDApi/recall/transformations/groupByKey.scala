@@ -1,6 +1,7 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:20:39 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:27:51 UTC
 // MAGIC %md
 // MAGIC # groupByKey
+// MAGIC Group the values for each key in the original RDD. Create a new pair where the original key corresponds to this collected group of values.
 // MAGIC 
 // MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
 
