@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 07:55:50 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:57:16 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -193,7 +193,8 @@ x.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC *CAUTION:* ``collect`` can crash the driver when called upon an RDD with massively many elements.  So, it is better to us other diplaying actions like ``take`` or ``takeOrdered`` as follows:
+// MAGIC *CAUTION:* ``collect`` can crash the driver when called upon an RDD with massively many elements.  
+// MAGIC So, it is better to use other diplaying actions like ``take`` or ``takeOrdered`` as follows:
 
 // COMMAND ----------
 
