@@ -1,6 +1,7 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:20:01 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:26:03 UTC
 // MAGIC %md
 // MAGIC # groupBy
+// MAGIC Group the data in the original RDD. Create pairs where the key is the output of a user function, and the value is all items for which the function yield this key. 
 // MAGIC 
 // MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
 
