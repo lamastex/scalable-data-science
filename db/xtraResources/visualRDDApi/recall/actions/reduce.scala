@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 08:05:52 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 09:04:50 UTC
 // MAGIC %md
 // MAGIC # reduce
 // MAGIC Aggregate all the elements of the RDD by applying a user function pairwise to elements and partial results, and returns a result to the driver.
@@ -34,6 +34,3 @@ val y = x.reduce((a,b) => a+b)
 
 println(x.collect.mkString(", "))
 println(y)
-
-// COMMAND ----------
-
