@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 08:20:41 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 08:20:46 UTC
 // MAGIC %md
 // MAGIC # sample
 // MAGIC Return a new RDD containing a statistical sample of the original RDD.
