@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 07:08:57 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:10:01 UTC
 // MAGIC %md
 // MAGIC # mapPartitions
 // MAGIC 
@@ -29,3 +29,6 @@ val xOut = x.glom().collect()
 // COMMAND ----------
 
 val yOut = y.glom().collect()
+
+// COMMAND ----------
+
