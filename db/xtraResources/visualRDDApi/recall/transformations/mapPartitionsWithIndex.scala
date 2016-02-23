@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 07:35:58 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:58:01 UTC
 // MAGIC %md
 // MAGIC # mapPartitionsWithIndex
 // MAGIC Return a new RDD by applying a function to each partition of this RDD, while tracking the index of the original partition. 
