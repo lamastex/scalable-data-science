@@ -1,6 +1,7 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:17:43 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 08:05:52 UTC
 // MAGIC %md
 // MAGIC # reduce
+// MAGIC Aggregate all the elements of the RDD by applying a user function pairwise to elements and partial results, and returns a result to the driver.
 // MAGIC 
 // MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
 
