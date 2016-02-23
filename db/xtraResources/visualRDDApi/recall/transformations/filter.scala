@@ -1,7 +1,7 @@
-// Databricks notebook source exported at Tue, 23 Feb 2016 07:21:07 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:22:49 UTC
 // MAGIC %md
 // MAGIC # filter
-// MAGIC Return a new RDD containing only elements that satisfy a predicate.
+// MAGIC Return a new RDD containing only elements of this RDD that satisfy a predicate.
 // MAGIC 
 // MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
 
