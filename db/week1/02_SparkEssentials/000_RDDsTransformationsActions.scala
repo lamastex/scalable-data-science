@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 09:25:12 UTC
+// Databricks notebook source exported at Tue, 23 Feb 2016 07:55:50 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -166,14 +166,14 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 
 // COMMAND ----------
 
-val rdd = sc.parallelize(Seq(1, 2, 3, 4))    // <Ctrl+Enter> to evaluate this cell (using default number of partitions)
+val x = sc.parallelize(Seq(1, 2, 3))    // <Ctrl+Enter> to evaluate this cell (using default number of partitions)
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC ### 2. Perform the `collect` action on the RDD
 // MAGIC 
-// MAGIC No action has been taken by ``sc.parallelize`` above.  To see what is "cooked" by the recipe for ``rdd`` we need to take an action.  
+// MAGIC No action has been taken by ``sc.parallelize`` above.  To see what is "cooked" by the recipe for RDD ``x`` we need to take an action.  
 // MAGIC 
 // MAGIC The simplest is the ``collect`` action which returns all of the elements of the RDD as an ``Array`` to the driver program and displays it.
 // MAGIC 
@@ -181,7 +181,14 @@ val rdd = sc.parallelize(Seq(1, 2, 3, 4))    // <Ctrl+Enter> to evaluate this ce
 
 // COMMAND ----------
 
-rdd.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1, 2, 3, 4)
+// MAGIC %md
+// MAGIC #### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect).
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-90.png)
+
+// COMMAND ----------
+
+x.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1, 2, 3)
 
 // COMMAND ----------
 
@@ -197,7 +204,7 @@ rdd.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be 
 
 // COMMAND ----------
 
-rdd.take(2)
+x.take(2)
 
 // COMMAND ----------
 
