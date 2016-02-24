@@ -1,7 +1,9 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 20:46:47 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 21:41:25 UTC
 // MAGIC %md
 // MAGIC ## 21 Easy Steps  
 // MAGIC ### For sharing your quota of UC's AWS Educate credits towards the course's databricks cloud.
+// MAGIC #### This is mandatory for those at UC! 
+// MAGIC ##### If you have a UC email address then you need to share your student credits to "fuel" the course's AWS clusters under the databricks' hood.
 
 // COMMAND ----------
 
@@ -128,9 +130,14 @@
 // MAGIC %md
 // MAGIC ## Step 21
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/awsEduShareIn21Steps_000021.png)
+// MAGIC 
+// MAGIC ## Now, please forward the Credit Code to your course coordinator by email 
+// MAGIC * with email's subject line "[aws credit code]"
+// MAGIC * and the email's body containing the Credit Code. In the above example the Credit Code is `CP3WEGXVI6X50C5`.
 
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC ## THANK YOU! 
 // MAGIC ### For sharing your quota of UC's AWS Educate credits towards the course's databricks cloud.
