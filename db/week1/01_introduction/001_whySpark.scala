@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:23:28 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 04:13:31 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -41,10 +41,6 @@
 // MAGIC   * the Mesos cluster resource manager, 
 // MAGIC   * the Spark in-memory computation framework, a sub-stack of the BDAS stack, 
 // MAGIC   * and more... 
-
-// COMMAND ----------
-
-
 
 // COMMAND ----------
 
