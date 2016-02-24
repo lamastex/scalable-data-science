@@ -1,6 +1,6 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 04:23:49 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 10:18:36 UTC
 // MAGIC %md
-// MAGIC # Here is a list of interesting papers from ACM that may help choose a project
+// MAGIC # List of interesting papers from ACM that may help choose a project
 
 // COMMAND ----------
 
