@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 11 Feb 2016 01:58:49 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 04:06:27 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -25,7 +25,7 @@ and
 Source: [Vasant Dhar, Data Science and Prediction, Communications of the ACM, Vol. 56 (1). p. 64, DOI:10.1145/2500499](http://dl.acm.org/citation.cfm?id=2500499)
 
 ### key insights
-* Data Science is the study of the generalizabile extraction of knowledge from data.
+* Data Science is the study of *the generalizabile extraction of knowledge from data*.
 * A common epistemic requirement in assessing whether new knowledge is actionable for decision making is its predictive power, not just its ability to explain the past.
 * A *data scientist requires an integrated skill set spanning* 
   * mathematics, 
@@ -35,17 +35,13 @@ Source: [Vasant Dhar, Data Science and Prediction, Communications of the ACM, Vo
   * databases, and 
   * optimization, 
   * along with a deep understanding of the craft of problem formulation to engineer effective solutions.
-
-
-
-
- 
+  
 Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
 
 ### key insights
 * ML is concerned with the building of computers that improve automatically through experience
 * ML lies at the intersection of computer science and statistics and at the core of artificial intelligence and data science
-* Rcent progress in ML is due to:
+* Recent progress in ML is due to:
   * development of new algorithms and theory
   * ongoing explosion in the availability of online data
   * availability of low-cost computation (through clusters of commodity hardware in the *cloud*)
@@ -58,32 +54,83 @@ Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T.
   * financial modeling
   * policing
   * marketing
-  
-  The following image is from Figure 1 of [DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
-  
-  ![ML Fig 1](https://d2ufo47lrtsv5s.cloudfront.net/content/sci/349/6245/255/F1.large.jpg "ML Fig 1")
 
 
 
 
 
-## Standing on shoulders of three giants!
+## Standing on shoulders of giants!
 
 This course will build on two other edX courses where needed.  
 * [BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x)
 * [BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x)
 
-We encourage you to take these courses if you have more time.  For those of you (including the course coordinator) who have taken these courses formally in 2015 this course will be an *expanded scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills. 
+We encourage you to take these courses if you have more time.  For those of you (including the course coordinator) who have taken these courses formally in 2015, this course will be an *expanded scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills. 
 
 We will also be borrowing more theoretical aspects from the following course:
 * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
 
+The two recommended readings are (already somewhat outdated!):
+* Learning Spark : lightning-fast data analytics by Holden Karau, Andy Konwinski, Patrick Wendell, and Matei Zaharia, O'Reilly, 2015.
+* Advanced analytics with Spark : patterns for learning from data at scale, O'Reilly, 2015.
 
-```scala
+![LS](http://www.syndetics.com/index.aspx?type=xw12&isbn=9781449358624/LC.GIF&client=ucanterburyl&upc=&oclc=) and  ![aas](http://t3.gstatic.com/images?q=tbn:ANd9GcSQs35NvHVozz77dhXYc2Ce8lKyJkR3oVwaxyA5Ub4W7Kvtvf9i "aas")
+
+**These are available at [UC Library](http://ipac.canterbury.ac.nz/ipac20/ipac.jsp?profile=a&npp=30&index=.CC&term=STAT478)**
 
 
 
-```
+
+
+# What should you be able to do at the end of this course?
+
+## Understand the principles of fault-tolerant scalable computing using Apache Spark
+
+* in-memory and generic DAG extensions of Map-reduce
+* resilient distributed datasets for fault-tolerance
+* skills to process today's big data using state-of-the art techniques in Apache Spark 1.6, in terms of:
+  * hands-on coding with real datasets
+  * an intuitive (non-mathematical) understanding of the ideas behind the technology and methods
+  * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
+
+# More concretely, you will be able to:
+### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
+
+#### Exploring Apache Web Logs (semi-structured data)
+[![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
+
+#### Exploring Wikipedia Click Streams (structured data)
+[![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
+
+
+### 2. Build Scalable Machine Learning Pipelines
+
+### Apply standard learning methods (we will choose from this list)
+* Supervised Learning Mehtods: Regression /Classification
+* Unsupervised Learning Methods: Clustering
+* Recommedation systems
+* Streaming
+* Graph processing
+* Geospatial data-processing
+* Topic modeling
+* Deep Learning
+* ...
+
+
+####  Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
+[![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
+
+
+
+
+
+# How will you be assessed?
+
+The course is extremely hands-on and therefore gives 50% of the final grade for attending each lab and completing it. Completing a lab essentially involves going through the cells in the cloned notebooks for each week to strengthen your understanding. This will ensure that the concept as well as the syntax is understood for the learning outcomes for each week. There are additional videos and exercises you are encouraged to watch/complete.  These additional exercises will not be graded. You may use 1800-1830 hours to ask any questions about the contents in the current or previous weeks. 
+
+Each student will be working on a course project and present the findings to the class in the last week or two. The course project will be done in [http://www.math.canterbury.ac.nz/databricks-projects](http://www.math.canterbury.ac.nz/databricks-projects) and count towards 50% of the grade. The project will typically involve applying Spark on a publicly available dataset or writing a report to demonstrate in-depth understanding of appropriate literature of interest to the student’s immediate research goals in academia or industry. Oral presentation of the project will constitute 10% of the grade. The remaining 40% of the grade will be for the written part of the project, which will be graded for replicability and ease of understanding. The written report will be encouraged for publication in a technical blog format in public repositories such as GitHub through a publishable mark-down'd databricks notebook (this is intended to show-case the actual skills of the student to potential employers directly). Group work on projects may be considered for complex projects.
+
+
 
 
 
@@ -143,16 +190,18 @@ We will also be borrowing more theoretical aspects from the following course:
   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY)
 
 
-```scala
 
 
+
+
+20 minutes of 90+10 minutes are up!
     
 
-```
 
 
 
-## HOME WORK: Databases Versus Data Science
+
+## EXTRA: Databases Versus Data Science
 #### by Anthony Joseph in BerkeleyX/CS100.1x
 
 * **(watch later 2:31)**: Why all the excitement about *Big Data Analytics*? (using google search to now-cast google flu-trends)
@@ -206,4 +255,3 @@ We will also be borrowing more theoretical aspects from the following course:
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
-
