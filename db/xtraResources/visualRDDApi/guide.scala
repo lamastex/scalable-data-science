@@ -1,9 +1,36 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:14:19 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 02:50:04 UTC
 // MAGIC %md
 // MAGIC # Here is a visual guide to the transformations and actions on RDDs
 // MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-0.png)
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Transformations
+// MAGIC 1. [map](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map)
+// MAGIC * [filter](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter)
+// MAGIC * [flatMap](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap)
+// MAGIC * [groupBy](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/groupBy)
+// MAGIC * [groupByKey](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/groupByKey)
+// MAGIC * [reduceByKey](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/reduceByKey)
+// MAGIC * [mapPartitions](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/mapPartitions)
+// MAGIC * [mapPartitionsWithIndex](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/mapPartitionsWithIndex)
+// MAGIC * [sample](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/sample)
+// MAGIC * [union](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/union)
+// MAGIC * [join](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/join)
+// MAGIC * [distinct](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/distinct)
+// MAGIC * [coalesce](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/coalesce)
+// MAGIC * ...
+// MAGIC 
+// MAGIC %md
+// MAGIC # Actions
+// MAGIC 1. [getNumPartitions](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions)
+// MAGIC * [collect](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect)
+// MAGIC * [reduce](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce)
+// MAGIC * ...
 
 // COMMAND ----------
 
@@ -58,13 +85,23 @@
 // MAGIC * [filter](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter)
 // MAGIC * [flatMap](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap)
 // MAGIC * [groupBy](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/groupBy)
+// MAGIC * [groupByKey](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/groupByKey)
+// MAGIC * [reduceByKey](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/reduceByKey)
+// MAGIC * [mapPartitions](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/mapPartitions)
+// MAGIC * [mapPartitionsWithIndex](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/mapPartitionsWithIndex)
+// MAGIC * [sample](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/sample)
+// MAGIC * [union](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/union)
+// MAGIC * [join](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/join)
+// MAGIC * [distinct](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/distinct)
+// MAGIC * [coalesce](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/coalesce)
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC Continue from:
 // MAGIC 
-// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-46.png)
+// MAGIC %md
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-68.png)
 
 // COMMAND ----------
 
@@ -91,3 +128,7 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Continue from:
+// MAGIC 
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-95.png)
