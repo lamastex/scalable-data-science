@@ -10,3 +10,4 @@ Unfortunately, pull requests cannot be accepted until the end of June 2016 when 
 Please send any typos or suggestions to raazesh.sainudiin@gmail.com
 
 Raazesh Sainudiin and Sivanand Sivaram
+with assistance from Dillon George
