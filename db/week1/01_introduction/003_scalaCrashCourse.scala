@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 04:49:55 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 10:25:52 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -534,7 +534,7 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // MAGIC * `%md` - Markdown
 // MAGIC * `%sql` - SQL
 // MAGIC * `%scala` - Scala
-// MAGIC * `%python` - Python
+// MAGIC * `%py` - Python
 // MAGIC * `%r` - R
 
 // COMMAND ----------
