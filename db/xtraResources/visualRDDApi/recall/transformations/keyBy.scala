@@ -1,9 +1,9 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 03:13:20 UTC
+// Databricks notebook source exported at Wed, 24 Feb 2016 03:19:45 UTC
 // MAGIC %md
 // MAGIC # keyBy
 // MAGIC Create a Pair RDD, forming one pair for each item in the original RDD. The pair's key is calculated from the value via a user-supplied function.
 // MAGIC 
-// MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
+// MAGIC Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide). xx
 
 // COMMAND ----------
 
