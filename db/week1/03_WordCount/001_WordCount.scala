@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 22 Feb 2016 22:01:04 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 03:16:15 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Using Spark to perform Word Count on US State of the Union Addresses
+// MAGIC # Word Count on US State of the Union Addresses
 // MAGIC 
 // MAGIC * Word Count in big data is the equivalent of 'Hello World' in programming
 // MAGIC * We count the number of occurences of each word in a document
