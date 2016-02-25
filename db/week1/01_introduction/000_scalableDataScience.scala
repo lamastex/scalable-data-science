@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 04:06:27 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 01:26:21 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ##### A bit about who your instructors are:
+// MAGIC  * **Raaz** from academia (10 years + 1 year in industry) [https://nz.linkedin.com/in/raazesh-sainudiin-45955845](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Raaz's academic CV](http://www.math.canterbury.ac.nz/~r.sainudiin/cv.shtml) and 
+// MAGIC  * **Siva** from industry (11 years) [https://www.linkedin.com/in/sivanand](https://www.linkedin.com/in/sivanand)
 
 // COMMAND ----------
 
@@ -92,10 +99,10 @@
 // MAGIC # More concretely, you will be able to:
 // MAGIC ### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
 // MAGIC 
-// MAGIC #### Exploring Apache Web Logs (semi-structured data)
+// MAGIC #### (watch later) Exploring Apache Web Logs (semi-structured data) - topic of weeks 2/3
 // MAGIC [![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
 // MAGIC 
-// MAGIC #### Exploring Wikipedia Click Streams (structured data)
+// MAGIC #### (watch later) Exploring Wikipedia Click Streams (structured data) - topic of weeks 2/3
 // MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
 // MAGIC 
 // MAGIC 
@@ -113,7 +120,7 @@
 // MAGIC * ...
 // MAGIC 
 // MAGIC 
-// MAGIC ####  Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
+// MAGIC ####  (watch later) Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
 // MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
 
 // COMMAND ----------
@@ -123,7 +130,7 @@
 // MAGIC 
 // MAGIC The course is extremely hands-on and therefore gives 50% of the final grade for attending each lab and completing it. Completing a lab essentially involves going through the cells in the cloned notebooks for each week to strengthen your understanding. This will ensure that the concept as well as the syntax is understood for the learning outcomes for each week. There are additional videos and exercises you are encouraged to watch/complete.  These additional exercises will not be graded. You may use 1800-1830 hours to ask any questions about the contents in the current or previous weeks. 
 // MAGIC 
-// MAGIC Each student will be working on a course project and present the findings to the class in the last week or two. The course project will be done in [http://www.math.canterbury.ac.nz/databricks-projects](http://www.math.canterbury.ac.nz/databricks-projects) and count towards 50% of the grade. The project will typically involve applying Spark on a publicly available dataset or writing a report to demonstrate in-depth understanding of appropriate literature of interest to the student’s immediate research goals in academia or industry. Oral presentation of the project will constitute 10% of the grade. The remaining 40% of the grade will be for the written part of the project, which will be graded for replicability and ease of understanding. The written report will be encouraged for publication in a technical blog format in public repositories such as GitHub through a publishable mark-down'd databricks notebook (this is intended to show-case the actual skills of the student to potential employers directly). Group work on projects may be considered for complex projects.
+// MAGIC Each student will be working on a course project and present the findings to the class in the last week or two. The course project will be done in [http://www.math.canterbury.ac.nz/databricks-projects](http://www.math.canterbury.ac.nz/databricks-projects) and counts towards 50% of the final grade. The project will typically involve applying Spark on a publicly available dataset or writing a report to demonstrate in-depth understanding of appropriate literature of interest to the student’s immediate research goals in academia or industry. Oral presentation of the project will constitute 10% of the grade. The remaining 40% of the grade will be for the written part of the project, which will be graded for replicability and ease of understanding. The written report will be encouraged for publication in a technical blog format in public repositories such as GitHub through a publishable mark-down'd databricks notebook (this is intended to show-case the actual skills of the student to potential employers directly). Group work on projects may be considered for complex projects.
 
 // COMMAND ----------
 
