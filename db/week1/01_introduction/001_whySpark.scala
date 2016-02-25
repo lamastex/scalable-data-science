@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 04:13:31 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 02:58:16 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,8 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Berkeley Data Analytics Stack is BDAS
+// MAGIC # The Berkeley Data Analytics Stack is BDAS
+// MAGIC ## Spark is a sub-stack of BDAS
 // MAGIC **Source:** 
 // MAGIC * [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
 // MAGIC * [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
@@ -45,17 +46,17 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## The big data problem, Hardware, distributing work, handling failed and slow machines
+// MAGIC ### The big data problem, Hardware, distributing work, handling failed and slow machines
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 1:48)**: The Big Data Problem
-// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/v/0JdJe5iehhw)
+// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/v/0JdJe5iehhw?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC *  **(watch now 1:43)**: Hardware for Big Data
-// MAGIC   * [![Hardware for Big Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/KmIIMdsXGzc/0.jpg)](https://www.youtube.com/v/KmIIMdsXGzc)
+// MAGIC   * [![Hardware for Big Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/KmIIMdsXGzc/0.jpg)](https://www.youtube.com/v/KmIIMdsXGzc?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * **(watch now 1:17)**: How to distribute work across a cluster of commodity machines?
-// MAGIC   * [![How to distribute work across a cluster of commodity machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Euk1v3VtNcM/0.jpg)](https://www.youtube.com/v/Euk1v3VtNcM)
+// MAGIC   * [![How to distribute work across a cluster of commodity machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Euk1v3VtNcM/0.jpg)](https://www.youtube.com/v/Euk1v3VtNcM?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * **(watch now 0:36)**: How to deal with failures or slow machines?
-// MAGIC   * [![How to deal with failures or slow machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NaHNsPEK3KA/0.jpg)](https://www.youtube.com/v/NaHNsPEK3KA)
+// MAGIC   * [![How to deal with failures or slow machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NaHNsPEK3KA/0.jpg)](https://www.youtube.com/v/NaHNsPEK3KA?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC   
 
 // COMMAND ----------
@@ -65,11 +66,11 @@
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 1:48)**: Map Reduce (is bounded by Disk I/O)
-// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/v/NqG_hYAKjYk)
+// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/v/NqG_hYAKjYk?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC *  **(watch now 2:49)**: Apache Spark (uses Memory instead of Disk)
-// MAGIC   * [![Apache Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/vat5Jki1lbI/0.jpg)](https://www.youtube.com/v/vat5Jki1lbI)
+// MAGIC   * [![Apache Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/vat5Jki1lbI/0.jpg)](https://www.youtube.com/v/vat5Jki1lbI?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * **(watch now 3:00)**: Spark Versus MapReduce
-// MAGIC   * [![Spark Versus MapReduce by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Ddq3Gua2QFg/0.jpg)](https://www.youtube.com/v/Ddq3Gua2QFg)
+// MAGIC   * [![Spark Versus MapReduce by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Ddq3Gua2QFg/0.jpg)](https://www.youtube.com/v/Ddq3Gua2QFg?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * SUMMARY
 // MAGIC     * uses memory instead of disk alone and is thus fater than Hadoop MapReduce
 // MAGIC     * resilience abstraction is by RDD (resilient distributed dataset)
@@ -129,10 +130,6 @@
 // MAGIC 
 // MAGIC ***
 // MAGIC ***
-
-// COMMAND ----------
-
-
 
 // COMMAND ----------
 
