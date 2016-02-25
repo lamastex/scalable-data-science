@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 10:21:39 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 03:14:14 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -35,6 +35,8 @@
 // MAGIC * sends *tasks* for the executors to run
 // MAGIC   * task is a unit of work that will sent to one executor
 // MAGIC   
+// MAGIC ![](http://spark.apache.org/docs/latest/img/cluster-overview.png)
+// MAGIC 
 // MAGIC See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apache.org/docs/latest/cluster-overview.html) for an overview of the spark cluster. This is embeded in-place below for convenience. Scroll to the bottom to see a Glossary of terms used above and their meanings. You can right-click inside the embedded html ``<frame>...</frame>`` and use the left and right arrows to navigate within it!
 
 // COMMAND ----------
