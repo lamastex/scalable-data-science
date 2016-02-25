@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 02:13:20 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 02:15:16 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -87,7 +87,7 @@
 // MAGIC %md
 // MAGIC # What should you be able to do at the end of this course?
 // MAGIC 
-// MAGIC ## Understand the principles of fault-tolerant scalable computing using Apache Spark
+// MAGIC ## Understand the principles of fault-tolerant scalable computing in Spark
 // MAGIC 
 // MAGIC * in-memory and generic DAG extensions of Map-reduce
 // MAGIC * resilient distributed datasets for fault-tolerance
