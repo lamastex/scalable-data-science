@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 10:25:52 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 03:10:07 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,7 +14,9 @@
 
 // MAGIC %md
 // MAGIC # **Notebooks**
-// MAGIC Write Spark code for processing your data in notebooks. **You should have already cloned this notebook and attached it to the ``classCluster`` by now.**
+// MAGIC Write Spark code for processing your data in notebooks. 
+// MAGIC 
+// MAGIC **NOTE**: You should have already cloned this notebook and attached it to the ``studentsEnrolled`` or ``studentsObserving1`` clusters by now. If not seek help from Siva by raising your hand.
 
 // COMMAND ----------
 
@@ -158,7 +160,7 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC 
 // MAGIC ## Scala Resources
 // MAGIC 
-// MAGIC You will not be learning scala systematically and thoroughly in this course.  You will learn Scala by doing various Spark jobs. 
+// MAGIC You will not be learning scala systematically and thoroughly in this course.  You will learn *to use* Scala by doing various Spark jobs. 
 // MAGIC 
 // MAGIC If you are seriously interested in learning scala properly, then there are various resources, including:
 // MAGIC 
