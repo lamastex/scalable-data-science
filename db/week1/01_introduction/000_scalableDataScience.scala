@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 01:26:21 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 02:13:20 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -49,7 +49,7 @@
 // MAGIC * Recent progress in ML is due to:
 // MAGIC   * development of new algorithms and theory
 // MAGIC   * ongoing explosion in the availability of online data
-// MAGIC   * availability of low-cost computation (through clusters of commodity hardware in the *cloud*)
+// MAGIC   * availability of low-cost computation (*through clusters of commodity hardware in the *cloud* )
 // MAGIC * The adoption of data science and ML methods is leading to more evidence-based decision-making across:
 // MAGIC   * health sciences (neuroscience research, )
 // MAGIC   * manufacturing
@@ -139,10 +139,10 @@
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 1:53):** A Brief History of Data Analysis
-// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag)
+// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag?rel=0&autoplay=1&modestbranding=1)
 // MAGIC   
 // MAGIC * **(watch now 5:05)**: Where does Data Come From?
-// MAGIC   * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/v/eEJFlHE7Gt4)
+// MAGIC   * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/v/eEJFlHE7Gt4?rel=0&autoplay=1&modestbranding=1)
 // MAGIC   * SUMMARY of Some of the sources of big data.
 // MAGIC      * online click-streams (a lot of it is recorded but a tiny amount is analyzed):
 // MAGIC        * record every click
@@ -181,13 +181,13 @@
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 2:03)**: Data Science Defined
-// MAGIC   * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/v/g4ujW1m2QNc)
+// MAGIC   * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/v/g4ujW1m2QNc?rel=0&autoplay=1&modestbranding=1)
 // MAGIC *  **(watch now 1:11)**: Cloud Computing
-// MAGIC   * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/v/TAZvh0WmOHM)
+// MAGIC   * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/v/TAZvh0WmOHM?rel=0&autoplay=1&modestbranding=1)
 // MAGIC   * In fact, if you are logged into `https://*.databricks.com/*` you are computing in the cloud!
 // MAGIC   * The Scalable Data Science course is supported by Databricks Academic Partners Program and the AWS Educate Grant to University of Canterbury (applied by Raaz Sainudiin in 2015).
 // MAGIC * **(watch now 3:31)**: What's hard about data science
-// MAGIC   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY)
+// MAGIC   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY?rel=0&autoplay=1&modestbranding=1)
 
 // COMMAND ----------
 
