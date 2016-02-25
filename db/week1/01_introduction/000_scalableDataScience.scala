@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 02:15:16 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 02:36:26 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -85,47 +85,6 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # What should you be able to do at the end of this course?
-// MAGIC 
-// MAGIC ## Understand the principles of fault-tolerant scalable computing in Spark
-// MAGIC 
-// MAGIC * in-memory and generic DAG extensions of Map-reduce
-// MAGIC * resilient distributed datasets for fault-tolerance
-// MAGIC * skills to process today's big data using state-of-the art techniques in Apache Spark 1.6, in terms of:
-// MAGIC   * hands-on coding with real datasets
-// MAGIC   * an intuitive (non-mathematical) understanding of the ideas behind the technology and methods
-// MAGIC   * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
-// MAGIC 
-// MAGIC # More concretely, you will be able to:
-// MAGIC ### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
-// MAGIC 
-// MAGIC #### (watch later) Exploring Apache Web Logs (semi-structured data) - topic of weeks 2/3
-// MAGIC [![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
-// MAGIC 
-// MAGIC #### (watch later) Exploring Wikipedia Click Streams (structured data) - topic of weeks 2/3
-// MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
-// MAGIC 
-// MAGIC 
-// MAGIC ### 2. Build Scalable Machine Learning Pipelines
-// MAGIC 
-// MAGIC ### Apply standard learning methods (we will choose from this list)
-// MAGIC * Supervised Learning Mehtods: Regression /Classification
-// MAGIC * Unsupervised Learning Methods: Clustering
-// MAGIC * Recommedation systems
-// MAGIC * Streaming
-// MAGIC * Graph processing
-// MAGIC * Geospatial data-processing
-// MAGIC * Topic modeling
-// MAGIC * Deep Learning
-// MAGIC * ...
-// MAGIC 
-// MAGIC 
-// MAGIC ####  (watch later) Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
-// MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
-
-// COMMAND ----------
-
-// MAGIC %md
 // MAGIC # How will you be assessed?
 // MAGIC 
 // MAGIC The course is extremely hands-on and therefore gives 50% of the final grade for attending each lab and completing it. Completing a lab essentially involves going through the cells in the cloned notebooks for each week to strengthen your understanding. This will ensure that the concept as well as the syntax is understood for the learning outcomes for each week. There are additional videos and exercises you are encouraged to watch/complete.  These additional exercises will not be graded. You may use 1800-1830 hours to ask any questions about the contents in the current or previous weeks. 
@@ -188,6 +147,50 @@
 // MAGIC   * The Scalable Data Science course is supported by Databricks Academic Partners Program and the AWS Educate Grant to University of Canterbury (applied by Raaz Sainudiin in 2015).
 // MAGIC * **(watch now 3:31)**: What's hard about data science
 // MAGIC   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY?rel=0&autoplay=1&modestbranding=1)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # What should *you* be able to do at the end of this course?
+// MAGIC * by following these sessions and doing some HOMEWORK expected of an honours UC student.
+// MAGIC 
+// MAGIC ## Understand the principles of fault-tolerant scalable computing in Spark
+// MAGIC 
+// MAGIC * in-memory and generic DAG extensions of Map-reduce
+// MAGIC * resilient distributed datasets for fault-tolerance
+// MAGIC * skills to process today's big data using state-of-the art techniques in Apache Spark 1.6, in terms of:
+// MAGIC   * hands-on coding with real datasets
+// MAGIC   * an intuitive (non-mathematical) understanding of the ideas behind the technology and methods
+// MAGIC   * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
+// MAGIC 
+// MAGIC # More concretely, you will be able to:
+// MAGIC ### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
+// MAGIC 
+// MAGIC #### (watch later) Exploring Apache Web Logs (semi-structured data) - topic of weeks 2/3
+// MAGIC [![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
+// MAGIC 
+// MAGIC #### (watch later) Exploring Wikipedia Click Streams (structured data) - topic of weeks 2/3
+// MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
+// MAGIC 
+// MAGIC 
+// MAGIC ### 2. Build Scalable Machine Learning Pipelines
+// MAGIC 
+// MAGIC ### Apply standard learning methods via scalably servable *end-to-end industrial ML pipelines*
+// MAGIC #### ETL, Model, Validate, Test, reETL (feature re-engineer), model validate, test,..., serve model to clients
+// MAGIC ##### (we will choose from this list)
+// MAGIC * Supervised Learning Mehtods: Regression /Classification
+// MAGIC * Unsupervised Learning Methods: Clustering
+// MAGIC * Recommedation systems
+// MAGIC * Streaming
+// MAGIC * Graph processing
+// MAGIC * Geospatial data-processing
+// MAGIC * Topic modeling
+// MAGIC * Deep Learning
+// MAGIC * ...
+// MAGIC 
+// MAGIC 
+// MAGIC ####  (watch later) Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
+// MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
 
 // COMMAND ----------
 
