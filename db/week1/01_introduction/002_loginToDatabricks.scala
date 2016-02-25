@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 03:01:11 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 03:06:56 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -92,7 +92,10 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Step 7: Attaching ``003_scalaCrashCourse`` notebook to the databricks cluster
+// MAGIC ### Step 7: Attaching ``003_scalaCrashCourse`` notebook to the databricks clusters
+// MAGIC #### UC-enrolled students connect to ``studentsEnrolled`` cluster.
+// MAGIC #### others plese connect to ``studentsObserving1`` cluster.
+// MAGIC #### in the example below our mock student has connected to the ``classCluster`` cluster.
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_08_sds_2016S1.png)
 
 // COMMAND ----------
