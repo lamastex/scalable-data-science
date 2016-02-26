@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 03:06:56 UTC
+// Databricks notebook source exported at Fri, 26 Feb 2016 07:15:47 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -118,7 +118,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## DBC Essentials: What is Databricks CLoud?
+// MAGIC ## DBC Essentials: What is Databricks Cloud?
 // MAGIC 
 // MAGIC ![DB workspace, spark, platform](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbTrImg_WorkspaceSparkPlatform700x.png)
 
