@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 03:10:07 UTC
+// Databricks notebook source exported at Fri, 26 Feb 2016 07:09:59 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -319,7 +319,7 @@ s.    // place cursor after the '.' and press Tab to see all available methods f
 // MAGIC * scroll down to ``contains`` and double-click on it.  
 // MAGIC * This should lead to ``s.contains`` in your cell. 
 // MAGIC * Now add an argument String to see if ``s`` contains the argument, for example, try:
-// MAGIC   * ``s.("f")``
+// MAGIC   * ``s.contains("f")``
 // MAGIC   * ``s.contains("")`` and
 // MAGIC   * ``s.contains("i")``
 
@@ -596,7 +596,7 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // COMMAND ----------
 
-// MAGIC %run "/databricks_guide/00 Welcome to Databricks"
+// MAGIC %run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
 
 // COMMAND ----------
 
