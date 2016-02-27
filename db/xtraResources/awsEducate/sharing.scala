@@ -1,8 +1,8 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 21:41:25 UTC
+// Databricks notebook source exported at Sat, 27 Feb 2016 23:19:19 UTC
 // MAGIC %md
 // MAGIC ## 21 Easy Steps  
 // MAGIC ### For sharing your quota of UC's AWS Educate credits towards the course's databricks cloud.
-// MAGIC #### This is mandatory for those at UC! 
+// MAGIC #### This is mandatory for those at UC (if your username is one of `...@canterbury.ac.nz` or `...@uclive.ac.nz`)! 
 // MAGIC ##### If you have a UC email address then you need to share your student credits to "fuel" the course's AWS clusters under the databricks' hood.
 
 // COMMAND ----------
