@@ -1,6 +1,6 @@
-// Databricks notebook source exported at Sat, 27 Feb 2016 20:25:11 UTC
+// Databricks notebook source exported at Sat, 27 Feb 2016 20:25:36 UTC
 // MAGIC %md
-// MAGIC # List of poniters to potential course projects
+// MAGIC # List of pointers to potential course projects
 
 // COMMAND ----------
 
