@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 26 Feb 2016 07:09:59 UTC
+// Databricks notebook source exported at Sun, 28 Feb 2016 05:41:21 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -518,9 +518,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC %md
-// MAGIC # Spark is written in Scala and the primary language for this course is Scala.
-// MAGIC # However, let us use the best language for the job!
+// MAGIC ## Spark is written in Scala and the primary language for this course is Scala.
+// MAGIC ### However, let us use the best language for the job!
 // MAGIC 
 // MAGIC ### Cells each have a type - **scala**, **python**, **r**, **sql**, **filesystem**, **command line** or **markdown**.
 // MAGIC * While cells default to the type of the Notebook, other cell types are supported as well.
@@ -541,7 +540,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // COMMAND ----------
 
-// MAGIC %md ### Cross-language cells can be used to mix commands from other languages.
+// MAGIC %md
+// MAGIC ### Cross-language cells can be used to mix commands from other languages.
 // MAGIC 
 // MAGIC Examples:
 
@@ -555,7 +555,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // COMMAND ----------
 
-// MAGIC %md ### Command line cells can be used to work with local files on the Spark driver node.
+// MAGIC %md
+// MAGIC ### Command line cells can be used to work with local files on the Spark driver node.
 // MAGIC * Start a cell with `%sh` to run a command line command
 
 // COMMAND ----------
@@ -567,7 +568,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // COMMAND ----------
 
-// MAGIC %md ### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
+// MAGIC %md
+// MAGIC ### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
 // MAGIC * Start a cell with `%fs` to run DBFS commands
 // MAGIC * Type `%fs help` for a list of commands
 
@@ -589,7 +591,6 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC ### Notebooks can be run from other notebooks using **%run**
 // MAGIC * Syntax: `%run /full/path/to/notebook`
 // MAGIC * This is commonly used to import functions you defined in other notebooks.
