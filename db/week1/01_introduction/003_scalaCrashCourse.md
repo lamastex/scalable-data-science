@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 01:25:54 UTC
+// Databricks notebook source exported at Fri, 26 Feb 2016 07:09:59 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,6 +14,44 @@ and
 
 
 
+# **Notebooks**
+Write Spark code for processing your data in notebooks. 
+
+**NOTE**: You should have already cloned this notebook and attached it to the ``studentsEnrolled`` or ``studentsObserving1`` clusters by now. If not seek help from Siva by raising your hand.
+
+
+
+
+
+### Notebooks can be written in **Python**, **Scala**, **R**, or **SQL**.
+* This is a Scala notebook - which is indicated next to the title above by ``(Scala)``.
+
+
+
+
+
+### **Creating a new Notebook**
+
+ ![Change Name](http://training.databricks.com/databricks_guide/Notebook/createNotebook.png)
+
+  * Click the tiangle on the right side of a folder to open the folder menu.
+  * Select **Create > Notebook**.
+  * Enter the name of the notebook, the language (Python, Scala, R or SQL) for the notebook, and a cluster to run it on.
+
+
+
+
+
+
+### ** Cloning a Notebook**
+  * You can clone a notebook to create a copy of it, for example if you want to edit or run an Example notebook like this one.
+  * Click **File > Clone** in the notebook context bar above.
+  * Enter a new name and location for your notebook. If Access Control is enabled, you can only clone to folders that you have Manage permissions on.
+
+
+
+
+
 # **Introduction to Scala through Scala Notebook** 
 
 * This introduction notebook describes how to get started running Scala code in Notebooks.
@@ -22,7 +60,7 @@ and
 
 
 
-### Clone Or Import This Notebook this notebook
+### Clone Or Import This Notebook
 * From the **File** menu at the top left of this notebook, choose **Clone** or click **Import Notebook** on the top right. This will allow you to interactively execute code cells as you proceed through the notebook.
 
 ![Menu Bar Clone Notebook](http://training.databricks.com/databricks_guide/2.8/clone.png) 
@@ -71,6 +109,19 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
   
   ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
   ***
+
+
+
+
+
+
+### **Running a cell in your notebook.**
+* #### Press **Shift+Enter** when in the cell to **run** it and proceed to the next cell.
+  * The cells contents should update.
+  ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
+* **NOTE:** Cells are not automatically run each time you open it.
+  * Instead, Previous results from running a cell are saved and displayed.
+* #### Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
 
 
 
@@ -125,7 +176,7 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 
 ## Scala Resources
 
-You will not be learning scala systematically and thoroughly in this course.  You will learn Scala by doing various Spark jobs. 
+You will not be learning scala systematically and thoroughly in this course.  You will learn *to use* Scala by doing various Spark jobs. 
 
 If you are seriously interested in learning scala properly, then there are various resources, including:
 
@@ -168,9 +219,19 @@ The main sources for the following content are (you are encouraged to read them 
   * Python API added to reach a wider user community of programmes
   * R API added more recently to reach a wider community of data analyststs 
   * Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
-* See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/).
+* See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/). It is embedded in-place below for your convenience.
 
 
+```scala
+
+%run "/scalable-data-science/xtraResources/support/sdsFunctions"
+
+```
+```scala
+
+displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/",500))
+
+```
 
 
 
@@ -182,6 +243,8 @@ We will go through the following programming concepts and tasks:
 * Functions in Scala
 * Collections in Scala
 * Scala Closures for Functional Programming and MapReduce
+
+**Remark**: You need to take a computer science course (from CourseEra, for example) to properly learn Scala.  Here, we will learn to use Scala by example to accomplish our data science tasks at hand.
 
 
 
@@ -294,7 +357,7 @@ For example,
 * scroll down to ``contains`` and double-click on it.  
 * This should lead to ``s.contains`` in your cell. 
 * Now add an argument String to see if ``s`` contains the argument, for example, try:
-  * ``s.("f")``
+  * ``s.contains("f")``
   * ``s.contains("")`` and
   * ``s.contains("i")``
 
@@ -528,6 +591,100 @@ There are lots of methods in Scala Collections.  See for example [API_scala.coll
 
 
 
+# Spark is written in Scala and the primary language for this course is Scala.
+# However, let us use the best language for the job!
+
+### Cells each have a type - **scala**, **python**, **r**, **sql**, **filesystem**, **command line** or **markdown**.
+* While cells default to the type of the Notebook, other cell types are supported as well.
+* For example, Python Notebooks can contain python, sql, markdown, and even Scala cells. This lets you write notebooks that do use multiple languages.
+* This cell is in **markdown** and is used for documentation purposes.
+
+
+
+
+
+### All types of cells can be created in any notebook, regardless of the language.
+
+To create a cell of another language, start the cell with:
+* `%md` - Markdown
+* `%sql` - SQL
+* `%scala` - Scala
+* `%py` - Python
+* `%r` - R
+
+
+
+
+ ### Cross-language cells can be used to mix commands from other languages.
+
+Examples:
+
+
+```scala
+
+%py print("For example, this is a scala notebook, but we can use %py to run python commands inline.")
+
+```
+```scala
+
+%r print("We can also access other languages such as R.")
+
+```
+
+
+ ### Command line cells can be used to work with local files on the Spark driver node.
+* Start a cell with `%sh` to run a command line command
+
+
+```scala
+
+%sh
+# This is a command line cell. Commands you write here will be executed as if they were run on the command line.
+# For example, in this cell we access the help pages for the bash shell.
+man bash
+
+```
+
+
+ ### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
+* Start a cell with `%fs` to run DBFS commands
+* Type `%fs help` for a list of commands
+
+
+
+
+
+# Further Reference / Homework
+
+Go through the following notebooks (``File`` and ``Clone`` them into your ``Workspace/Users/...``) to play and familiarize yourself with databricks cloud:
+* [Welcome to Databricks](/#workspace/databricks_guide/00 Welcome to Databricks) and watch the *Getting Started* videos for more details. This worksheet can be loaded below using ``%run "/databricks_guide/00 Welcome to Databricks"``
+* [Intro Scala Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/2 Intro Scala Notebooks)
+* [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala)
+* [FileStore](/#workspace/databricks_guide/02 Product Overview/12 FileStore) to organize files for access.
+
+You may also like to check out:
+* [Intro Python Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/1 Intro Python Notebooks)
+* [Intro R Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/4 Intro R Notebooks)
+
+
+
+
+
+
+### Notebooks can be run from other notebooks using **%run**
+* Syntax: `%run /full/path/to/notebook`
+* This is commonly used to import functions you defined in other notebooks.
+
+
+```scala
+
+%run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
+
+```
+
+
+
+
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
 
 
@@ -536,4 +693,3 @@ There are lots of methods in Scala Collections.  See for example [API_scala.coll
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
-
