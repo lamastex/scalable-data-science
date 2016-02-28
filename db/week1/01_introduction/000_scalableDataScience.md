@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 24 Feb 2016 04:06:27 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 02:36:26 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,14 @@
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+
+
+
+
+##### A bit about who your instructors are:
+ * **Raaz** from academia (10 years + 1 year in industry) [https://nz.linkedin.com/in/raazesh-sainudiin-45955845](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Raaz's academic CV](http://www.math.canterbury.ac.nz/~r.sainudiin/cv.shtml) and 
+ * **Siva** from industry (11 years) [https://www.linkedin.com/in/sivanand](https://www.linkedin.com/in/sivanand)
 
 
 
@@ -44,7 +52,7 @@ Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T.
 * Recent progress in ML is due to:
   * development of new algorithms and theory
   * ongoing explosion in the availability of online data
-  * availability of low-cost computation (through clusters of commodity hardware in the *cloud*)
+  * availability of low-cost computation (*through clusters of commodity hardware in the *cloud* )
 * The adoption of data science and ML methods is leading to more evidence-based decision-making across:
   * health sciences (neuroscience research, )
   * manufacturing
@@ -82,53 +90,11 @@ The two recommended readings are (already somewhat outdated!):
 
 
 
-# What should you be able to do at the end of this course?
-
-## Understand the principles of fault-tolerant scalable computing using Apache Spark
-
-* in-memory and generic DAG extensions of Map-reduce
-* resilient distributed datasets for fault-tolerance
-* skills to process today's big data using state-of-the art techniques in Apache Spark 1.6, in terms of:
-  * hands-on coding with real datasets
-  * an intuitive (non-mathematical) understanding of the ideas behind the technology and methods
-  * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
-
-# More concretely, you will be able to:
-### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
-
-#### Exploring Apache Web Logs (semi-structured data)
-[![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
-
-#### Exploring Wikipedia Click Streams (structured data)
-[![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
-
-
-### 2. Build Scalable Machine Learning Pipelines
-
-### Apply standard learning methods (we will choose from this list)
-* Supervised Learning Mehtods: Regression /Classification
-* Unsupervised Learning Methods: Clustering
-* Recommedation systems
-* Streaming
-* Graph processing
-* Geospatial data-processing
-* Topic modeling
-* Deep Learning
-* ...
-
-
-####  Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
-[![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
-
-
-
-
-
 # How will you be assessed?
 
 The course is extremely hands-on and therefore gives 50% of the final grade for attending each lab and completing it. Completing a lab essentially involves going through the cells in the cloned notebooks for each week to strengthen your understanding. This will ensure that the concept as well as the syntax is understood for the learning outcomes for each week. There are additional videos and exercises you are encouraged to watch/complete.  These additional exercises will not be graded. You may use 1800-1830 hours to ask any questions about the contents in the current or previous weeks. 
 
-Each student will be working on a course project and present the findings to the class in the last week or two. The course project will be done in [http://www.math.canterbury.ac.nz/databricks-projects](http://www.math.canterbury.ac.nz/databricks-projects) and count towards 50% of the grade. The project will typically involve applying Spark on a publicly available dataset or writing a report to demonstrate in-depth understanding of appropriate literature of interest to the student’s immediate research goals in academia or industry. Oral presentation of the project will constitute 10% of the grade. The remaining 40% of the grade will be for the written part of the project, which will be graded for replicability and ease of understanding. The written report will be encouraged for publication in a technical blog format in public repositories such as GitHub through a publishable mark-down'd databricks notebook (this is intended to show-case the actual skills of the student to potential employers directly). Group work on projects may be considered for complex projects.
+Each student will be working on a course project and present the findings to the class in the last week or two. The course project will be done in [http://www.math.canterbury.ac.nz/databricks-projects](http://www.math.canterbury.ac.nz/databricks-projects) and counts towards 50% of the final grade. The project will typically involve applying Spark on a publicly available dataset or writing a report to demonstrate in-depth understanding of appropriate literature of interest to the student’s immediate research goals in academia or industry. Oral presentation of the project will constitute 10% of the grade. The remaining 40% of the grade will be for the written part of the project, which will be graded for replicability and ease of understanding. The written report will be encouraged for publication in a technical blog format in public repositories such as GitHub through a publishable mark-down'd databricks notebook (this is intended to show-case the actual skills of the student to potential employers directly). Group work on projects may be considered for complex projects.
 
 
 
@@ -138,10 +104,10 @@ Each student will be working on a course project and present the findings to the
 #### by Anthony Joseph in BerkeleyX/CS100.1x
 
 * **(watch now 1:53):** A Brief History of Data Analysis
-  * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag)
+  * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag?rel=0&autoplay=1&modestbranding=1)
   
 * **(watch now 5:05)**: Where does Data Come From?
-  * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/v/eEJFlHE7Gt4)
+  * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/v/eEJFlHE7Gt4?rel=0&autoplay=1&modestbranding=1)
   * SUMMARY of Some of the sources of big data.
      * online click-streams (a lot of it is recorded but a tiny amount is analyzed):
        * record every click
@@ -181,13 +147,58 @@ Each student will be working on a course project and present the findings to the
 #### by Anthony Joseph in BerkeleyX/CS100.1x
 
 * **(watch now 2:03)**: Data Science Defined
-  * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/v/g4ujW1m2QNc)
+  * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/v/g4ujW1m2QNc?rel=0&autoplay=1&modestbranding=1)
 *  **(watch now 1:11)**: Cloud Computing
-  * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/v/TAZvh0WmOHM)
+  * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/v/TAZvh0WmOHM?rel=0&autoplay=1&modestbranding=1)
   * In fact, if you are logged into `https://*.databricks.com/*` you are computing in the cloud!
   * The Scalable Data Science course is supported by Databricks Academic Partners Program and the AWS Educate Grant to University of Canterbury (applied by Raaz Sainudiin in 2015).
 * **(watch now 3:31)**: What's hard about data science
-  * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY)
+  * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY?rel=0&autoplay=1&modestbranding=1)
+
+
+
+
+
+# What should *you* be able to do at the end of this course?
+* by following these sessions and doing some HOMEWORK expected of an honours UC student.
+
+## Understand the principles of fault-tolerant scalable computing in Spark
+
+* in-memory and generic DAG extensions of Map-reduce
+* resilient distributed datasets for fault-tolerance
+* skills to process today's big data using state-of-the art techniques in Apache Spark 1.6, in terms of:
+  * hands-on coding with real datasets
+  * an intuitive (non-mathematical) understanding of the ideas behind the technology and methods
+  * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
+
+# More concretely, you will be able to:
+### 1. Extract, Transform, Load, Interact, Explore and Analyze Data
+
+#### (watch later) Exploring Apache Web Logs (semi-structured data) - topic of weeks 2/3
+[![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
+
+#### (watch later) Exploring Wikipedia Click Streams (structured data) - topic of weeks 2/3
+[![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
+
+
+### 2. Build Scalable Machine Learning Pipelines
+
+### Apply standard learning methods via scalably servable *end-to-end industrial ML pipelines*
+#### ETL, Model, Validate, Test, reETL (feature re-engineer), model validate, test,..., serve model to clients
+##### (we will choose from this list)
+* Supervised Learning Mehtods: Regression /Classification
+* Unsupervised Learning Methods: Clustering
+* Recommedation systems
+* Streaming
+* Graph processing
+* Geospatial data-processing
+* Topic modeling
+* Deep Learning
+* ...
+
+
+####  (watch later) Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
+[![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
 
 
 
