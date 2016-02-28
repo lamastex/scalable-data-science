@@ -14,12 +14,12 @@ rm -rf ./MDparsed
 #FName=../db/week1/01_introduction/000_scalableDataScience # done Sun Feb 28 18:08:31 NZDT 2016
 #FName=../db/week1/01_introduction/001_whySpark # done Sun Feb 28 18:14:20 NZDT 2016
 #FName=../db/week1/01_introduction/002_loginToDatabricks # done Sun Feb 28 18:34:32 NZDT 2016
-FName=../db/week1/01_introduction/003_scalaCrashCourse # done 
+#FName=../db/week1/01_introduction/003_scalaCrashCourse # done Sun Feb 28 19:03:20 NZDT 2016
 ###############################################################################################
 
 ###########-- Week2 --#########################################################################
 #FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done 
-#FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done 
+FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done 
 ###############################################################################################
 echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
 
