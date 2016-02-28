@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 26 Feb 2016 07:09:59 UTC
+// Databricks notebook source exported at Sun, 28 Feb 2016 05:41:21 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -590,9 +590,8 @@ There are lots of methods in Scala Collections.  See for example [API_scala.coll
 
 
 
-
-# Spark is written in Scala and the primary language for this course is Scala.
-# However, let us use the best language for the job!
+## Spark is written in Scala and the primary language for this course is Scala.
+### However, let us use the best language for the job!
 
 ### Cells each have a type - **scala**, **python**, **r**, **sql**, **filesystem**, **command line** or **markdown**.
 * While cells default to the type of the Notebook, other cell types are supported as well.
@@ -615,7 +614,8 @@ To create a cell of another language, start the cell with:
 
 
 
- ### Cross-language cells can be used to mix commands from other languages.
+
+### Cross-language cells can be used to mix commands from other languages.
 
 Examples:
 
@@ -632,7 +632,8 @@ Examples:
 ```
 
 
- ### Command line cells can be used to work with local files on the Spark driver node.
+
+### Command line cells can be used to work with local files on the Spark driver node.
 * Start a cell with `%sh` to run a command line command
 
 
@@ -646,7 +647,8 @@ man bash
 ```
 
 
- ### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
+
+### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
 * Start a cell with `%fs` to run DBFS commands
 * Type `%fs help` for a list of commands
 
@@ -665,7 +667,6 @@ Go through the following notebooks (``File`` and ``Clone`` them into your ``Work
 You may also like to check out:
 * [Intro Python Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/1 Intro Python Notebooks)
 * [Intro R Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/4 Intro R Notebooks)
-
 
 
 
