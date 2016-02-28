@@ -6,6 +6,6 @@ Scalable data science is a technical course in the area of Big Data, aimed at th
 This is being prepared by Raazesh Sainudiin and Sivanand Sivaram 
 with assistance from Paul Brouwers and Dillon George.
 
-See [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) for the latest content in cloud-uploadable and locally browsable notebooks.  The Gitbook version of this content will lag by a few weeks. 
+See [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) for the latest content as cloud-uploadable and locally browsable notebooks.  The Gitbook version of this content will lag by a few weeks. 
 
 All course participants (enrolled and observing students for Semester 1 of 2016) may be able to do a course project if their project proposal gets approved by Raazesh Sainudiin, the course coordinator.
