@@ -10,15 +10,18 @@ rm -rf ./MDparsed
 
 # name of the root (without .scala extension) of the input scala file 
 # that needs to be parsed into markdown (.md file extension)
-FName=../db/week1/01_introduction/000_scalableDataScience
-
-#echo 'val ioFilenameRoot = "../db/week1/01_introduction/000_scalableDataScience"' > nowparse.scala
-echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
-
-#val ioFilenameRoot = "../db/week1/01_introduction/001_whySpark"
+###########-- Week1 --#########################################################################
+#FName=../db/week1/01_introduction/000_scalableDataScience # done Sun Feb 28 18:08:31 NZDT 2016
+FName=../db/week1/01_introduction/001_whySpark # done Sun Feb 28 18:08:31 NZDT 2016
 #val ioFilenameRoot = "../db/week1/01_introduction/002*.scala"
 #val ioFilenameRoot = "../db/week1/01_introduction/003*.scala"
+###############################################################################################
+
+###########-- Week2 --#########################################################################
 #val ioFilenameRoot = "../db/week1/02_SparkEssentials/000*.scala"
+###############################################################################################
+echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
+
 
 # prepare the scala file nowparse.scala for loading into spark-shell
 cat parseMD.scala >> nowparse.scala
