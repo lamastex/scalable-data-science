@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 28 Feb 2016 05:21:14 UTC
+// Databricks notebook source exported at Mon, 29 Feb 2016 23:10:38 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -164,11 +164,37 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC %md
 // MAGIC ### 1. Create an RDD
 // MAGIC 
-// MAGIC First, let us create an RDD of numbers (of integer type ``Int``) from a Scala ``Seq`` or ``List`` by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
+// MAGIC First, let us create an RDD of three elements (of integer type ``Int``) from a Scala ``Seq`` (or ``List`` or ``Array``) with the default number of partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
 
 // COMMAND ----------
 
 val x = sc.parallelize(Seq(1, 2, 3))    // <Ctrl+Enter> to evaluate this cell (using default number of partitions)
+
+// COMMAND ----------
+
+x.  // place the cursor after 'x.' and hit Tab to see the methods available for the RDD x we created
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Let's find out the number of partitions using `x.getNumPartitions`. 
+// MAGIC 
+// MAGIC This just returns the number of partitions in the RDD by default.
+// MAGIC 
+// MAGIC The default number depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
+
+// COMMAND ----------
+
+x.getNumPartitions 
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Next, let us create an RDD `x` of the same three elements from a Scala ``Array`` made of exactly two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
+
+// COMMAND ----------
+
+val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this cell (using 2 partitions)
 
 // COMMAND ----------
 
