@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 21:59:41 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 22:36:18 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -156,7 +156,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC * Transform the RDD by ``filter`` to make another RDD
 // MAGIC * Perform the ``reduce`` action on the RDD
 // MAGIC * Transform the RDD by ``flatMap`` to make another RDD
-// MAGIC * Perform the ``reduceByKey`` action on the RDD
+// MAGIC * Perform the ``reduceByKey`` action on a Pair RDD
 // MAGIC * HOMEWORK
 
 // COMMAND ----------
@@ -350,17 +350,19 @@ println(y.collect().mkString(", "))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce).
+// MAGIC ### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-94.png)
 
 // COMMAND ----------
 
+//Shift+Enter to make RDD x of inteegrs 1,2,3,4 and reduce it to sum
 val x = sc.parallelize(Array(1,2,3,4))
 val y = x.reduce((a,b) => a+b)
 
 // COMMAND ----------
 
+//Cntrl+Enter to collect and print RDD x and the Int y, sum of x
 println(x.collect.mkString(", "))
 println(y)
 
@@ -375,28 +377,30 @@ println(y)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap).
+// MAGIC ### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-31.png)
 
 // COMMAND ----------
 
+//Shift+Enter to make RDD x and flatMap it into RDD by closure (n => Array(n, n*100, 42))
 val x = sc.parallelize(Array(1,2,3))
 val y = x.flatMap(n => Array(n, n*100, 42))
 
 // COMMAND ----------
 
+//Cntrl+Enter to collect and print RDDs x and y
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 8. Perform the ``reduceByKey`` action on the RDD
+// MAGIC ### 8. Perform the ``reduceByKey`` action on a Pair RDD
 // MAGIC 
 // MAGIC Let's next look at what happens when we transform an RDD of strings. 
 // MAGIC 
-// MAGIC We will learn an extremely useful action called ``reduceByKey`` where reduce operations are only performed on values with the same key from an RDD of ``(key,value)`` pairs.
+// MAGIC We will learn an extremely useful action called ``reduceByKey`` where reduce operations are only performed on values with the same key from an RDD of ``(key,value)`` pairs called a *Pair RDD*.
 
 // COMMAND ----------
 
@@ -405,6 +409,35 @@ println(y.collect().mkString(", "))
 
 // COMMAND ----------
 
+// Cntrl+Enter to make RDD words and display it by collect
+val words = sc.parallelize(Array("a", "b", "a", "a", "b", "b", "a", "a", "a", "b", "b"))
+words.collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Let's make a Pair RDD called `wordCountPairRDD` that is made of (key,value) pairs with key=word and value=1 in order to encode each occurrence of each word in the RDD `words`, as follows:
+
+// COMMAND ----------
+
+// Shift+Enter to make and collect Pair RDD wordCountPairRDD
+val wordCountPairRDD = words.map(s => (s, 1))
+wordCountPairRDD.collect()
+
+// COMMAND ----------
+
+// Cntrl+Enter to reduceByKey and collect wordcounts RDD
+val wordcounts = wordCountPairRDD.reduceByKey(_ + _)
+wordcounts.collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Now, let us do just the crucial steps and avoid collecting intermediate RDDs (something we should avoid for large datasets anyways, as they may not fit in the driver program).
+
+// COMMAND ----------
+
+//Cntrl+Enter to make words RDD and do the word count in two lines
 val words = sc.parallelize(Array("a", "b", "a", "a", "b", "b", "a", "a", "a", "b", "b"))
 val wordcounts = words.map(s => (s, 1)).reduceByKey(_ + _).collect() 
 
