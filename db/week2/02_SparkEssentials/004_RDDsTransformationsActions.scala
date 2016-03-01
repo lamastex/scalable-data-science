@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 21:31:45 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 21:52:26 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -150,7 +150,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC %md
 // MAGIC ### We will do the following next:
 // MAGIC 1. Create an RDD using `sc.parallelize`
-// MAGIC * Perform the ``collect`` action on the RDD
+// MAGIC * Perform the `collect` action on the RDD and find the number of partitions it is made of using `getNumPartitions` action
 // MAGIC * Perform the ``take`` action on the RDD
 // MAGIC * Transform the RDD by ``map`` to make another RDD
 // MAGIC * Transform the RDD by ``filter`` to make another RDD
@@ -164,11 +164,11 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC %md
 // MAGIC ### 1. Create an RDD using `sc.parallelize`
 // MAGIC 
-// MAGIC First, let us create an RDD of three elements (of integer type ``Int``) from a Scala ``Seq`` (or ``List`` or ``Array``) with the default number of partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
+// MAGIC First, let us create an RDD of three elements (of integer type ``Int``) from a Scala ``Seq`` (or ``List`` or ``Array``) with two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
 
 // COMMAND ----------
 
-val x = sc.parallelize(Seq(1, 2, 3))    // <Shift+Enter> to evaluate this cell (using default number of partitions)
+val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this cell (using 2 partitions)
 
 // COMMAND ----------
 
@@ -177,32 +177,7 @@ x.  // place the cursor after 'x.' and hit Tab to see the methods available for 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let's find out the number of partitions using `x.getNumPartitions`.
-// MAGIC 
-// MAGIC You may look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) later.
-// MAGIC 
-// MAGIC %md
-// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
-// MAGIC 
-// MAGIC The default number of partitions for an RDD depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
-
-// COMMAND ----------
-
-x.getNumPartitions // <Ctrl+Enter> to evaluate this cell
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC Next, let us create an RDD `x` of the same three elements from a Scala ``Array``.  Specify `x` is made up of exactly two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
-
-// COMMAND ----------
-
-val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this cell (using 2 partitions)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ### 2. Perform the `collect` action on the RDD
+// MAGIC ### 2. Perform the `collect` action on the RDD and find the number of partitions it is made of using `getNumPartitions` action
 // MAGIC 
 // MAGIC No action has been taken by ``sc.parallelize`` above.  To see what is "cooked" by the recipe for RDD ``x`` we need to take an action.  
 // MAGIC 
@@ -213,7 +188,8 @@ val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this ce
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### You may look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect) later.
+// MAGIC #### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect) and return here to try out the example codes.
+// MAGIC 
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-90.png)
 
@@ -235,6 +211,27 @@ x.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Next, let us create an RDD `x` of the same three elements from a Scala ``Array``.  Specify `x` is made up of exactly two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
+
+// COMMAND ----------
+
+val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this cell (using 2 partitions)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
+// MAGIC 
+// MAGIC %md
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
+
+// COMMAND ----------
+
+x.getNumPartitions // <Ctrl+Enter> to evaluate this cell
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC We can see which elements of the RDD are in which parition by calling `glom()` before `collect()`. 
 // MAGIC 
 // MAGIC `glom()` flattens elements of the same partition into an `Array`. 
@@ -247,6 +244,23 @@ x.glom().collect() // glom() flattens elements on the same partition
 
 // MAGIC %md
 // MAGIC Thus from the output above, `Array[Array[Int]] = Array(Array(1), Array(2, 3))`, we know that `1` is in one partition while `2` and `3` are in another partition.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ##### You Try!
+// MAGIC Crate an RDD `x` with three elements, 1,2,3, and do not specifiy the number of partitions.  Then the default number of partitions will be used.
+// MAGIC Find out what this is for the cluster you are attached to. 
+// MAGIC 
+// MAGIC The default number of partitions for an RDD depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
+
+// COMMAND ----------
+
+val x = sc.parallelize(Seq(1, 2, 3))    // <Shift+Enter> to evaluate this cell (using default number of partitions)
+
+// COMMAND ----------
+
+x.getNumPartitions // <Ctrl+Enter> to evaluate this cell
 
 // COMMAND ----------
 
@@ -281,7 +295,7 @@ x.take(1 ) // fill in the parenthesis to take just one element from RDD x and Cn
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map).
+// MAGIC #### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-18.png)
 
@@ -309,7 +323,7 @@ println(y.collect().mkString(", "))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [filter transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter).
+// MAGIC #### Let us look at the [filter transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-24.png)
 
