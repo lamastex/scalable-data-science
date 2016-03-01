@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 21:52:26 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 21:58:20 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -211,15 +211,6 @@ x.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Next, let us create an RDD `x` of the same three elements from a Scala ``Array``.  Specify `x` is made up of exactly two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
-
-// COMMAND ----------
-
-val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this cell (using 2 partitions)
-
-// COMMAND ----------
-
-// MAGIC %md
 // MAGIC #### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
 // MAGIC 
 // MAGIC %md
@@ -227,7 +218,8 @@ val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this ce
 
 // COMMAND ----------
 
-x.getNumPartitions // <Ctrl+Enter> to evaluate this cell
+// <Ctrl+Enter> to evaluate this cell and find the number of partitions in RDD x
+x.getNumPartitions 
 
 // COMMAND ----------
 
@@ -249,7 +241,7 @@ x.glom().collect() // glom() flattens elements on the same partition
 
 // MAGIC %md
 // MAGIC ##### You Try!
-// MAGIC Crate an RDD `x` with three elements, 1,2,3, and do not specifiy the number of partitions.  Then the default number of partitions will be used.
+// MAGIC Crate an RDD `x` with three elements, 1,2,3, and this time do not specifiy the number of partitions.  Then the default number of partitions will be used.
 // MAGIC Find out what this is for the cluster you are attached to. 
 // MAGIC 
 // MAGIC The default number of partitions for an RDD depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
@@ -260,7 +252,11 @@ val x = sc.parallelize(Seq(1, 2, 3))    // <Shift+Enter> to evaluate this cell (
 
 // COMMAND ----------
 
-x.getNumPartitions // <Ctrl+Enter> to evaluate this cell
+x.getNumPartitions // <Shift+Enter> to evaluate this cell
+
+// COMMAND ----------
+
+x.glom().collect() // <Ctrl+Enter> to evaluate this cell
 
 // COMMAND ----------
 
