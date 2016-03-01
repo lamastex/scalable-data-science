@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 01:12:19 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 21:16:27 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -177,11 +177,14 @@ x.  // place the cursor after 'x.' and hit Tab to see the methods available for 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Let's find out the number of partitions using `x.getNumPartitions`. 
+// MAGIC #### Let's find out the number of partitions using `x.getNumPartitions`.
 // MAGIC 
-// MAGIC This just returns the number of partitions in the RDD by default.
+// MAGIC You may look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) later.
 // MAGIC 
-// MAGIC The default number depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
+// MAGIC %md
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
+// MAGIC 
+// MAGIC The default number of partitions for an RDD depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
 
 // COMMAND ----------
 
@@ -210,7 +213,7 @@ val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this ce
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect).
+// MAGIC #### You may look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect) later.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-90.png)
 
@@ -254,7 +257,17 @@ x.glom().collect() // glom() flattens elements on the same partition
 
 // COMMAND ----------
 
-x.take(2)
+x.take(2) // Ctrl+Enter to take two elements from the RDD x
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ##### You Try!
+// MAGIC Fill in the parenthes `( )` below in order to `take` just one element from RDD `x`.
+
+// COMMAND ----------
+
+x.take(1 ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
 
 // COMMAND ----------
 
