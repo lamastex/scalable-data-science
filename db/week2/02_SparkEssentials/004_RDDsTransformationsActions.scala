@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 21:58:20 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 21:59:41 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -277,7 +277,7 @@ x.take(2) // Ctrl+Enter to take two elements from the RDD x
 
 // COMMAND ----------
 
-x.take(1 ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
+x.take( ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
 
 // COMMAND ----------
 
