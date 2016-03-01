@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 21:16:27 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 21:31:45 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -287,11 +287,13 @@ x.take(1 ) // fill in the parenthesis to take just one element from RDD x and Cn
 
 // COMMAND ----------
 
-val x = sc.parallelize(Array("b", "a", "c"))
-val y = x.map(z => (z,1))
+// Shift+Enter to make RDD x and RDD y that is mapped from x
+val x = sc.parallelize(Array("b", "a", "c")) // make RDD x: [b, a, c]
+val y = x.map(z => (z,1))                    // map x into RDD y: [(b, 1), (a, 1), (c, 1)]
 
 // COMMAND ----------
 
+// Cntrl+Enter to collect and print the two RDDs
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
 
@@ -313,11 +315,15 @@ println(y.collect().mkString(", "))
 
 // COMMAND ----------
 
+//Shift+Enter to make RDD x and filter it by (n => n%2 == 1) to make RDD y
 val x = sc.parallelize(Array(1,2,3))
-val y = x.filter(n => n%2 == 1)
+// the closure (n => n%2 == 1) in the filter will 
+// return True if element n in RDD x has remainder 1 when divided by 2 (i.e., if n is odd)
+val y = x.filter(n => n%2 == 1) 
 
 // COMMAND ----------
 
+// Cntrl+Enter to collect and print the two RDDs
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
 
