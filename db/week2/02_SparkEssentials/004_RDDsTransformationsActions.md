@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 28 Feb 2016 05:21:14 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 22:39:18 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -159,34 +159,39 @@ Recall ``SparkContext`` is in the Driver Program.
 
 
 ### We will do the following next:
-1. Create an RDD
-* Perform the ``collect`` action on the RDD
+1. Create an RDD using `sc.parallelize`
+* Perform the `collect` action on the RDD and find the number of partitions it is made of using `getNumPartitions` action
 * Perform the ``take`` action on the RDD
 * Transform the RDD by ``map`` to make another RDD
 * Transform the RDD by ``filter`` to make another RDD
 * Perform the ``reduce`` action on the RDD
 * Transform the RDD by ``flatMap`` to make another RDD
-* Perform the ``reduceByKey`` action on the RDD
+* Perform the ``reduceByKey`` action on a Pair RDD
 * HOMEWORK
 
 
 
 
 
-### 1. Create an RDD
+### 1. Create an RDD using `sc.parallelize`
 
-First, let us create an RDD of numbers (of integer type ``Int``) from a Scala ``Seq`` or ``List`` by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
+First, let us create an RDD of three elements (of integer type ``Int``) from a Scala ``Seq`` (or ``List`` or ``Array``) with two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
 
 
 ```scala
 
-val x = sc.parallelize(Seq(1, 2, 3))    // <Ctrl+Enter> to evaluate this cell (using default number of partitions)
+val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this cell (using 2 partitions)
+
+```
+```scala
+
+x.  // place the cursor after 'x.' and hit Tab to see the methods available for the RDD x we created
 
 ```
 
 
 
-### 2. Perform the `collect` action on the RDD
+### 2. Perform the `collect` action on the RDD and find the number of partitions it is made of using `getNumPartitions` action
 
 No action has been taken by ``sc.parallelize`` above.  To see what is "cooked" by the recipe for RDD ``x`` we need to take an action.  
 
@@ -198,9 +203,16 @@ The simplest is the ``collect`` action which returns all of the elements of the 
 
 
 
-#### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect).
+#### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect) and return here to try out the example codes.
+
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-90.png)
+
+
+
+
+
+Let us perform a `collect` action on RDD `x` as follows: 
 
 
 ```scala
@@ -218,6 +230,65 @@ So, it is better to use other diplaying actions like ``take`` or ``takeOrdered``
 
 
 
+#### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
+
+
+```scala
+
+// <Ctrl+Enter> to evaluate this cell and find the number of partitions in RDD x
+x.getNumPartitions 
+
+```
+
+
+
+We can see which elements of the RDD are in which parition by calling `glom()` before `collect()`. 
+
+`glom()` flattens elements of the same partition into an `Array`. 
+
+
+```scala
+
+x.glom().collect() // glom() flattens elements on the same partition
+
+```
+
+
+
+Thus from the output above, `Array[Array[Int]] = Array(Array(1), Array(2, 3))`, we know that `1` is in one partition while `2` and `3` are in another partition.
+
+
+
+
+
+##### You Try!
+Crate an RDD `x` with three elements, 1,2,3, and this time do not specifiy the number of partitions.  Then the default number of partitions will be used.
+Find out what this is for the cluster you are attached to. 
+
+The default number of partitions for an RDD depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
+
+
+```scala
+
+val x = sc.parallelize(Seq(1, 2, 3))    // <Shift+Enter> to evaluate this cell (using default number of partitions)
+
+```
+```scala
+
+x.getNumPartitions // <Shift+Enter> to evaluate this cell
+
+```
+```scala
+
+x.glom().collect() // <Ctrl+Enter> to evaluate this cell
+
+```
+
+
+
 ### 3. Perform the `take` action on the RDD
 
 The ``.take(n)`` action returns an array with the first ``n`` elements of the RDD.
@@ -225,7 +296,19 @@ The ``.take(n)`` action returns an array with the first ``n`` elements of the RD
 
 ```scala
 
-x.take(2)
+x.take(2) // Ctrl+Enter to take two elements from the RDD x
+
+```
+
+
+
+##### You Try!
+Fill in the parenthes `( )` below in order to `take` just one element from RDD `x`.
+
+
+```scala
+
+x.take( ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
 
 ```
 
@@ -241,19 +324,21 @@ The ``map`` transformation returns a new RDD that's formed by passing each eleme
 
 
 
-#### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map).
+#### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map) and return here to try out the example codes.
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-18.png)
 
 
 ```scala
 
-val x = sc.parallelize(Array("b", "a", "c"))
-val y = x.map(z => (z,1))
+// Shift+Enter to make RDD x and RDD y that is mapped from x
+val x = sc.parallelize(Array("b", "a", "c")) // make RDD x: [b, a, c]
+val y = x.map(z => (z,1))                    // map x into RDD y: [(b, 1), (a, 1), (c, 1)]
 
 ```
 ```scala
 
+// Cntrl+Enter to collect and print the two RDDs
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
 
@@ -271,19 +356,23 @@ The ``filter`` transformation returns a new RDD that's formed by selecting those
 
 
 
-#### Let us look at the [filter transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter).
+#### Let us look at the [filter transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter) and return here to try out the example codes.
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-24.png)
 
 
 ```scala
 
+//Shift+Enter to make RDD x and filter it by (n => n%2 == 1) to make RDD y
 val x = sc.parallelize(Array(1,2,3))
-val y = x.filter(n => n%2 == 1)
+// the closure (n => n%2 == 1) in the filter will 
+// return True if element n in RDD x has remainder 1 when divided by 2 (i.e., if n is odd)
+val y = x.filter(n => n%2 == 1) 
 
 ```
 ```scala
 
+// Cntrl+Enter to collect and print the two RDDs
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
 
@@ -302,19 +391,21 @@ This operator has to be commutative and associative so that it can be computed c
 
 
 
-### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce).
+### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce) and return here to try out the example codes.
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-94.png)
 
 
 ```scala
 
+//Shift+Enter to make RDD x of inteegrs 1,2,3,4 and reduce it to sum
 val x = sc.parallelize(Array(1,2,3,4))
 val y = x.reduce((a,b) => a+b)
 
 ```
 ```scala
 
+//Cntrl+Enter to collect and print RDD x and the Int y, sum of x
 println(x.collect.mkString(", "))
 println(y)
 
@@ -331,19 +422,21 @@ Therefore your function should return a sequential collection such as an ``Array
 
 
 
-### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap).
+### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap) and return here to try out the example codes.
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-31.png)
 
 
 ```scala
 
+//Shift+Enter to make RDD x and flatMap it into RDD by closure (n => Array(n, n*100, 42))
 val x = sc.parallelize(Array(1,2,3))
 val y = x.flatMap(n => Array(n, n*100, 42))
 
 ```
 ```scala
 
+//Cntrl+Enter to collect and print RDDs x and y
 println(x.collect().mkString(", "))
 println(y.collect().mkString(", "))
 
@@ -351,11 +444,11 @@ println(y.collect().mkString(", "))
 
 
 
-### 8. Perform the ``reduceByKey`` action on the RDD
+### 8. Perform the ``reduceByKey`` action on a Pair RDD
 
 Let's next look at what happens when we transform an RDD of strings. 
 
-We will learn an extremely useful action called ``reduceByKey`` where reduce operations are only performed on values with the same key from an RDD of ``(key,value)`` pairs.
+We will learn an extremely useful action called ``reduceByKey`` where reduce operations are only performed on values with the same key from an RDD of ``(key,value)`` pairs called a *Pair RDD*.
 
 
 
@@ -366,6 +459,40 @@ We will learn an extremely useful action called ``reduceByKey`` where reduce ope
 
 ```scala
 
+// Cntrl+Enter to make RDD words and display it by collect
+val words = sc.parallelize(Array("a", "b", "a", "a", "b", "b", "a", "a", "a", "b", "b"))
+words.collect()
+
+```
+
+
+
+Let's make a Pair RDD called `wordCountPairRDD` that is made of (key,value) pairs with key=word and value=1 in order to encode each occurrence of each word in the RDD `words`, as follows:
+
+
+```scala
+
+// Shift+Enter to make and collect Pair RDD wordCountPairRDD
+val wordCountPairRDD = words.map(s => (s, 1))
+wordCountPairRDD.collect()
+
+```
+```scala
+
+// Cntrl+Enter to reduceByKey and collect wordcounts RDD
+val wordcounts = wordCountPairRDD.reduceByKey(_ + _)
+wordcounts.collect()
+
+```
+
+
+
+Now, let us do just the crucial steps and avoid collecting intermediate RDDs (something we should avoid for large datasets anyways, as they may not fit in the driver program).
+
+
+```scala
+
+//Cntrl+Enter to make words RDD and do the word count in two lines
 val words = sc.parallelize(Array("a", "b", "a", "a", "b", "b", "a", "a", "a", "b", "b"))
 val wordcounts = words.map(s => (s, 1)).reduceByKey(_ + _).collect() 
 
@@ -374,11 +501,11 @@ val wordcounts = words.map(s => (s, 1)).reduceByKey(_ + _).collect()
 
 
 ### 9. HOMEWORK 
-See the notebook in this folder named `001_RDDsTransformationsActionsHOMEWORK`. 
+See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 This notebook will give you more examples of the operations above as well as others we will be using later, including:
 * Perform the ``takeOrdered`` action on the RDD
 * Transform the RDD by ``distinct`` to make another RDD and
-* Let us do a bunch of transformations to our RDD and perform an action
+* Doing a bunch of transformations to our RDD and performing an action in a single cell.
 
 
 
