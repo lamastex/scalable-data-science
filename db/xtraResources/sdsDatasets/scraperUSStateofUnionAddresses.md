@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 21:25:02 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 22:52:18 UTC
 
 # Extract, Transform and Load (ETL) of the SoU Addresses
 
@@ -6,6 +6,9 @@
 #### by Paul Brouwers 
 ### And some Shell-level parsed-data exploration, injection into the distributed file system and testing
 #### by Raazesh Sainudiin
+
+This SoU dataset is used in the following notebooks:
+* [006_WordCount](/#workspace/scalable-data-science/week2/03_WordCount/006_WordCount).
 
 The code below is mainly there to show how the text content of each state of the union address was scraped from the following URL:
 * [http://stateoftheunion.onetwothree.net/texts/index.html](http://stateoftheunion.onetwothree.net/texts/index.html)
