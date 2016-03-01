@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 22:36:18 UTC
+// Databricks notebook source exported at Tue, 1 Mar 2016 22:39:18 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -445,11 +445,11 @@ val wordcounts = words.map(s => (s, 1)).reduceByKey(_ + _).collect()
 
 // MAGIC %md
 // MAGIC ### 9. HOMEWORK 
-// MAGIC See the notebook in this folder named `001_RDDsTransformationsActionsHOMEWORK`. 
+// MAGIC See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 // MAGIC This notebook will give you more examples of the operations above as well as others we will be using later, including:
 // MAGIC * Perform the ``takeOrdered`` action on the RDD
 // MAGIC * Transform the RDD by ``distinct`` to make another RDD and
-// MAGIC * Let us do a bunch of transformations to our RDD and perform an action
+// MAGIC * Doing a bunch of transformations to our RDD and performing an action in a single cell.
 
 // COMMAND ----------
 
