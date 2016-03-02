@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 21:25:26 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 21:28:30 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -159,6 +159,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC * Create a Pair RDD
 // MAGIC * Perform some transformations on a Pair RDD
 // MAGIC * Shipping Closures, Broadcast Variables and Accumulator Variables
+// MAGIC * Spark Essentials: Summary
 // MAGIC * HOMEWORK
 
 // COMMAND ----------
@@ -552,7 +553,7 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // MAGIC     
 // MAGIC  ***
 // MAGIC  
-// MAGIC  ### Spark Essentials: Summary
+// MAGIC  ### 11. Spark Essentials: Summary
 // MAGIC  **(watch now: 0:29)**
 // MAGIC  
 // MAGIC [![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/v/F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
@@ -562,7 +563,7 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 10. HOMEWORK 
+// MAGIC ### 12. HOMEWORK 
 // MAGIC See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 // MAGIC This notebook will give you more examples of the operations above as well as others we will be using later, including:
 // MAGIC * Perform the ``takeOrdered`` action on the RDD
