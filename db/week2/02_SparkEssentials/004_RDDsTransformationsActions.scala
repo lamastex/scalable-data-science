@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 20:40:39 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 21:08:11 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -158,6 +158,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC * Transform the RDD by ``flatMap`` to make another RDD
 // MAGIC * Create a Pair RDD
 // MAGIC * Perform some transformations on a Pair RDD
+// MAGIC * Shipping Closures, Broadcast Variables and Accumulator Variables
 // MAGIC * HOMEWORK
 
 // COMMAND ----------
@@ -508,6 +509,48 @@ val wordCountPairRDDGroupByKey = wordCountPairRDD.groupByKey() // <Shift+Enter> 
 // COMMAND ----------
 
 wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### 10. Shipping Closures, Broadcast Variables and Accumulator Variables
+// MAGIC 
+// MAGIC #### Closures, Broadcast and Accumulator Variables
+// MAGIC **(watch now 2:06)**:
+// MAGIC 
+// MAGIC [![Closures, Broadcast and Accumulators by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/I9Zcr4R35Ao/0.jpg)](https://www.youtube.com/v/I9Zcr4R35Ao?rel=0&autoplay=1&modestbranding=1)
+// MAGIC 
+// MAGIC 
+// MAGIC We will use these variables in the sequel.
+// MAGIC 
+// MAGIC #### SUMMARY
+// MAGIC Spark automatically creates closures 
+// MAGIC   * for functions that run on RDDs at workers,
+// MAGIC   * and for any global variables that are used by those workers
+// MAGIC   * one closure per worker is sent with every task
+// MAGIC   * and there's no communication between workers
+// MAGIC   * closures are one way from the driver to the worker
+// MAGIC   * any changes that you make to the global variables at the workers 
+// MAGIC     * are not sent to the driver or
+// MAGIC     * are not sent to other workers.
+// MAGIC   
+// MAGIC     
+// MAGIC  The problem we have is that these closures
+// MAGIC    * are automatically created are sent or re-sent with every job
+// MAGIC    * with a large global variable it's inefficient to send/resend lots of data to each worker
+// MAGIC    * we cannot communicate that back to the driver
+// MAGIC   
+// MAGIC   
+// MAGIC  To do this, Spark provides shared variables in two different types.
+// MAGIC   * **broadcast variables**
+// MAGIC     * lets us to efficiently send large read-only values to all of the workers
+// MAGIC     * these are saved at the workers for use in one or more Spark operations.    
+// MAGIC  * **accumulator variables**
+// MAGIC     * These allow us to aggregate values from workers back to the driver.
+// MAGIC     * only the driver can access the value of the accumulator 
+// MAGIC     * for the tasks, the accumulators are basically write-only
+// MAGIC     
+// MAGIC  ***
 
 // COMMAND ----------
 
