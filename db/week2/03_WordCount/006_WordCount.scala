@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 19:05:49 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 19:10:32 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -137,14 +137,18 @@ sou17900108.take(5) // <Cntrl+Enter> to display the first 5 elements of the cach
 
 // MAGIC %md
 // MAGIC #### Lifecycle of a Spark Program
-// MAGIC * Create RDD
-// MAGIC * Transform RDD
-// MAGIC * Cache RDD
-// MAGIC * Perform Actions with RDDs
-// MAGIC 
+// MAGIC     
 // MAGIC **(watch now 0:23)**:
 // MAGIC 
 // MAGIC [![Spark Program Lifecycle by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/HWZUqNYAJj4/0.jpg)](https://www.youtube.com/v/HWZUqNYAJj4?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC 
+// MAGIC ##### Summary
+// MAGIC * create RDDs from:
+// MAGIC   * some external data source (such as a distributed file system)
+// MAGIC   * parallelized collection in your driver program
+// MAGIC * lazily transform these RDDs into new RDDs
+// MAGIC * cache some of those RDDs for future reuse
+// MAGIC * you perform actions to execute parallel computation to produce results
 
 // COMMAND ----------
 
