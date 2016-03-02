@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 03:09:01 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 03:11:27 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -107,10 +107,13 @@ sou17900108.collect // <Cntrl+Enter> to display all the elements of RDD
 
 // COMMAND ----------
 
-### Cache the RDD in (distributed) memory to avoid recreating it for each action
-* Let's use `.cache()` after creating an RDD so that it is in memory after the first action (and thus avoid reconstruction for subsequent actions).
-  * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
-  * display the contents of the RDD using `take` or `collect`.
+// MAGIC %md
+// MAGIC ### Cache the RDD in (distributed) memory to avoid recreating it for each action
+// MAGIC * Above, every time we took an action on the same RDD, the RDD was reconstructed from the textfile.  
+// MAGIC   * Spark's advantage compared to Hadoop MapReduce is the ability to cache or store the RDD in distributed memory across the nodes.
+// MAGIC * Let's use `.cache()` after creating an RDD so that it is in memory after the first action (and thus avoid reconstruction for subsequent actions).
+// MAGIC   * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
+// MAGIC   * display the contents of the RDD using `take` or `collect`.
 
 // COMMAND ----------
 
