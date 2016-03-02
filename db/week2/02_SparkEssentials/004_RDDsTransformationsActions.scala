@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 21:19:32 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 21:25:26 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -551,6 +551,13 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // MAGIC     * for the tasks, the accumulators are basically write-only
 // MAGIC     
 // MAGIC  ***
+// MAGIC  
+// MAGIC  ### Spark Essentials: Summary
+// MAGIC  **(watch now: 0:29)**
+// MAGIC  
+// MAGIC [![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/v/F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
+// MAGIC 
+// MAGIC *NOTE:* In databricks cluster, we (the course coordinator/administrators) set the number of workers for you.
 
 // COMMAND ----------
 
