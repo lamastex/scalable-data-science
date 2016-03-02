@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 21:08:11 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 21:19:32 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -537,7 +537,7 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // MAGIC     
 // MAGIC  The problem we have is that these closures
 // MAGIC    * are automatically created are sent or re-sent with every job
-// MAGIC    * with a large global variable it's inefficient to send/resend lots of data to each worker
+// MAGIC    * with a large global variable it gets inefficient to send/resend lots of data to each worker
 // MAGIC    * we cannot communicate that back to the driver
 // MAGIC   
 // MAGIC   
@@ -545,7 +545,7 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // MAGIC   * **broadcast variables**
 // MAGIC     * lets us to efficiently send large read-only values to all of the workers
 // MAGIC     * these are saved at the workers for use in one or more Spark operations.    
-// MAGIC  * **accumulator variables**
+// MAGIC   * **accumulator variables**
 // MAGIC     * These allow us to aggregate values from workers back to the driver.
 // MAGIC     * only the driver can access the value of the accumulator 
 // MAGIC     * for the tasks, the accumulators are basically write-only
