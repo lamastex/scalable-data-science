@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 28 Feb 2016 05:28:33 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 03:09:01 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,10 +13,10 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Word Count on US State of the Union Addresses
+// MAGIC # Word Count on US State of the Union (SoU) Addresses
 // MAGIC 
 // MAGIC * Word Count in big data is the equivalent of 'Hello World' in programming
-// MAGIC * We count the number of occurences of each word in a document
+// MAGIC * We count the number of occurences of each word in the first and last (2016) SoU addresses.
 
 // COMMAND ----------
 
@@ -32,13 +32,14 @@
 // MAGIC 
 // MAGIC ## Let us investigate this dataset ourselves!
 // MAGIC 1. We first get the source text data by scraping and parsig from [http://stateoftheunion.onetwothree.net/texts/index.html](http://stateoftheunion.onetwothree.net/texts/index.html) as explained in 
-// MAGIC [scraping and parsing SoU addresses](/#workspace/scalable-data-science/week1/03_WordCount/scraperUSStateofUnionAddresses).
+// MAGIC [scraping and parsing SoU addresses](/#workspace/scalable-data-science/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses).
 // MAGIC * This data is already made available in DBFS, our distributed file system.
+// MAGIC * We only do the simplest word count with this data in this notebook and will do more sophisticated analyses in the sequel (including topic modeling, etc).
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ###DBFS and dbutils
+// MAGIC ###DBFS and dbutils - where is this dataset in our distributed file system?
 // MAGIC * Since we are on the databricks cloud, it has a file system called DBFS
 // MAGIC * DBFS is similar to HDFS, the Hadoop distributed file system
 // MAGIC * dbutils allows us to interact with dbfs.
@@ -46,7 +47,7 @@
 
 // COMMAND ----------
 
-display(dbutils.fs.ls("dbfs:/datasets/sou"))
+display(dbutils.fs.ls("dbfs:/datasets/sou")) // Cntrl+Enter to display the files in dbfs:/datasets/sou
 
 // COMMAND ----------
 
@@ -57,26 +58,77 @@ display(dbutils.fs.ls("dbfs:/datasets/sou"))
 
 // COMMAND ----------
 
-dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",1000) // first 1000 bytes of the file
+dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",673) // Cntrl+Enter to get the first 673 bytes of the file (which corresponds to the first five lines)
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Read the file into Spark
-// MAGIC * The `textFile` method on the available `SparkContext` `sc` can read the text file `sou17900108` into Spark and return an RDD of Strings
-// MAGIC * Each String represents one line of data from the file and can be displayed using `take` or `collect`.
+// MAGIC ##### You Try!
+// MAGIC Modify ``xxxx` in the cell below to read the first 1000 bytes from the file.
 
 // COMMAND ----------
 
+dbutils.fs.head("dbfs:/datasets/sou/17900108.txt", xxxx) // Cntrl+Enter to get the first 1000 bytes of the file
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Read the file into Spark Context as an RDD of Strings
+// MAGIC * The `textFile` method on the available `SparkContext` `sc` can read the text file `dbfs:/datasets/sou/17900108.txt` into Spark and create an RDD of Strings
+// MAGIC   * but this is done lazily until an action is taken on the RDD `sou17900108`!
+
+// COMMAND ----------
+
+val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt") // Shift+Enter to read in the textfile as RDD[String]
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Perform some actions on the RDD
+// MAGIC * Each String in the RDD `sou17900108` represents one line of data from the file and can be made to perform one of the following actions:
+// MAGIC   * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
+// MAGIC   * display the contents of the RDD using `take` or `collect`.
+
+// COMMAND ----------
+
+sou17900108.count() // <Shift+Enter> to count the number of elements in the RDD
+
+// COMMAND ----------
+
+sou17900108.take(5) // <Shift+Enter> to display the first 5 elements of RDD
+
+// COMMAND ----------
+
+sou17900108.take(5).foreach(println) // <Shift+Enter> to display the first 5 elements of RDD line by line
+
+// COMMAND ----------
+
+sou17900108.collect // <Cntrl+Enter> to display all the elements of RDD
+
+// COMMAND ----------
+
+### Cache the RDD in (distributed) memory to avoid recreating it for each action
+* Let's use `.cache()` after creating an RDD so that it is in memory after the first action (and thus avoid reconstruction for subsequent actions).
+  * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
+  * display the contents of the RDD using `take` or `collect`.
+
+// COMMAND ----------
+
+// Shift+Enter to read in the textfile as RDD[String] and cache it in distributed memory
 val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt")
+sou17900108.cache() // cache the RDD in memory
 
 // COMMAND ----------
 
-sou17900108.take(5)
+sou17900108.count() // Shift+Enter during this count action the RDD is constructed from texfile and cached
 
 // COMMAND ----------
 
-sou17900108.collect
+sou17900108.count() // Shift+Enter during this count action the cached RDD is used (notice less time taken by the same command)
+
+// COMMAND ----------
+
+sou17900108.take(5) // <Cntrl+Enter> to display the first 5 elements of the cached RDD
 
 // COMMAND ----------
 
