@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 22:39:18 UTC
+// Databricks notebook source exported at Wed, 2 Mar 2016 20:40:39 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -156,7 +156,8 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC * Transform the RDD by ``filter`` to make another RDD
 // MAGIC * Perform the ``reduce`` action on the RDD
 // MAGIC * Transform the RDD by ``flatMap`` to make another RDD
-// MAGIC * Perform the ``reduceByKey`` action on a Pair RDD
+// MAGIC * Create a Pair RDD
+// MAGIC * Perform some transformations on a Pair RDD
 // MAGIC * HOMEWORK
 
 // COMMAND ----------
@@ -396,16 +397,9 @@ println(y.collect().mkString(", "))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 8. Perform the ``reduceByKey`` action on a Pair RDD
+// MAGIC ### 8. Create a Pair RDD
 // MAGIC 
-// MAGIC Let's next look at what happens when we transform an RDD of strings. 
-// MAGIC 
-// MAGIC We will learn an extremely useful action called ``reduceByKey`` where reduce operations are only performed on values with the same key from an RDD of ``(key,value)`` pairs called a *Pair RDD*.
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-44.png)
+// MAGIC Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
 
 // COMMAND ----------
 
@@ -420,9 +414,33 @@ words.collect()
 
 // COMMAND ----------
 
-// Shift+Enter to make and collect Pair RDD wordCountPairRDD
+// Cntrl+Enter to make and collect Pair RDD wordCountPairRDD
 val wordCountPairRDD = words.map(s => (s, 1))
 wordCountPairRDD.collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### 9. Perform some transformations on a Pair RDD
+// MAGIC 
+// MAGIC Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
+// MAGIC 
+// MAGIC Now some of the Key-Value transformations that we could perform include the following.
+// MAGIC * **`reduceByKey` transformation**
+// MAGIC   * which takes an RDD and returns a new RDD of key-value pairs, such that:
+// MAGIC     * the values for each key are aggregated using the given reduced function
+// MAGIC     * and the reduce function has to be of the type that takes two values and returns one value.
+// MAGIC * **`sortByKey` transformation**
+// MAGIC   * this returns a new RDD of key-value pairs that's sorted by keys in ascending order
+// MAGIC * **`groupByKey` transformation**
+// MAGIC   * this returns a new RDD consisting of key and iterable-valued pairs.
+// MAGIC 
+// MAGIC Let's see some concrete examples next.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-44.png)
 
 // COMMAND ----------
 
@@ -444,7 +462,57 @@ val wordcounts = words.map(s => (s, 1)).reduceByKey(_ + _).collect()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 9. HOMEWORK 
+// MAGIC ##### You Try!
+// MAGIC You try evaluating `sortByKey()` which will make a new RDD that consists of the elements of the original pair RDD that are sorted by Keys.
+
+// COMMAND ----------
+
+// Shift+Enter and comprehend code
+val words = sc.parallelize(Array("a", "b", "a", "a", "b", "b", "a", "a", "a", "b", "b"))
+val wordCountPairRDD = words.map(s => (s, 1))
+val wordCountPairRDDSortedByKey = wordCountPairRDD.sortByKey()
+
+// COMMAND ----------
+
+wordCountPairRDD.collect() // Shift+Enter and comprehend code
+
+// COMMAND ----------
+
+wordCountPairRDDSortedByKey.collect() // Shift+Enter and comprehend code
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC The next key value transformation we will see is `groupByKey`
+// MAGIC 
+// MAGIC When we apply the `groupByKey` transformation to `wordCountPairRDD` we end up with a new RDD that contains two elements.
+// MAGIC The first element is the tuple `b` and an iterable `CompactBuffer(1,1,1,1,1)` obtained by grouping the value `1` for each of the five key value pairs `(b,1)`.
+// MAGIC Similarly the second element is the key `a` and an iterable `CompactBuffer(1,1,1,1,1,1)` obtained by grouping the value `1` for each of the six key value pairs `(a,1)`.
+// MAGIC 
+// MAGIC *CAUTION*: `groupByKey` can cause a large amount of data movement across the network.
+// MAGIC It also can create very large iterables at a worker.
+// MAGIC Imagine you have an RDD where you have 1 billion pairs that have the key `a`.
+// MAGIC All of the values will have to fit in a single worker if you use group by key.
+// MAGIC So instead of a group by key, consider using reduced by key.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-45.png)
+
+// COMMAND ----------
+
+val wordCountPairRDDGroupByKey = wordCountPairRDD.groupByKey() // <Shift+Enter> CAUTION: this transformation can be very wide!
+
+// COMMAND ----------
+
+wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### 10. HOMEWORK 
 // MAGIC See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 // MAGIC This notebook will give you more examples of the operations above as well as others we will be using later, including:
 // MAGIC * Perform the ``takeOrdered`` action on the RDD
