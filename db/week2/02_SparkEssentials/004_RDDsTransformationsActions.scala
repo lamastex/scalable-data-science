@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 01:10:04 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 22:18:10 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -218,7 +218,6 @@ x.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1
 // MAGIC %md
 // MAGIC #### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
 // MAGIC 
-// MAGIC %md
 // MAGIC ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
 
 // COMMAND ----------
@@ -282,7 +281,7 @@ x.take(2) // Ctrl+Enter to take two elements from the RDD x
 
 // COMMAND ----------
 
-x.take( ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
+x.take(  ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
 
 // COMMAND ----------
 
@@ -449,7 +448,8 @@ wordCountPairRDD.collect()
 // COMMAND ----------
 
 // Cntrl+Enter to reduceByKey and collect wordcounts RDD
-val wordcounts = wordCountPairRDD.reduceByKey(_ + _)
+//val wordcounts = wordCountPairRDD.reduceByKey( _ + _ )
+val wordcounts = wordCountPairRDD.reduceByKey( (v1,v2) => v1+v2 )
 wordcounts.collect()
 
 // COMMAND ----------
@@ -482,7 +482,7 @@ wordCountPairRDD.collect() // Shift+Enter and comprehend code
 
 // COMMAND ----------
 
-wordCountPairRDDSortedByKey.collect() // Shift+Enter and comprehend code
+wordCountPairRDDSortedByKey.collect() // Cntrl+Enter and comprehend code
 
 // COMMAND ----------
 
@@ -530,6 +530,7 @@ print(sum)
 val rdd = sc.parallelize(1 to 10)
 var sum = 0
 rdd.foreach(x => sum = sum + x)
+rdd.collect
 print(sum)
 
 // COMMAND ----------
