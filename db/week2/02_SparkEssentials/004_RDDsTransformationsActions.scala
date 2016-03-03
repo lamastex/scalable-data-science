@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 00:39:36 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 01:10:04 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -159,6 +159,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 // MAGIC * Transform the RDD by ``flatMap`` to make another RDD
 // MAGIC * Create a Pair RDD
 // MAGIC * Perform some transformations on a Pair RDD
+// MAGIC * Where in the cluster is your computation running?
 // MAGIC * Shipping Closures, Broadcast Variables and Accumulator Variables
 // MAGIC * Spark Essentials: Summary
 // MAGIC * HOMEWORK
@@ -515,7 +516,26 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 10. Shipping Closures, Broadcast Variables and Accumulator Variables
+// MAGIC ### 10. Where in the cluster is your computation running?
+
+// COMMAND ----------
+
+val list = 1 to 10
+var sum = 0
+list.foreach(x => sum = sum + x)
+print(sum)
+
+// COMMAND ----------
+
+val rdd = sc.parallelize(1 to 10)
+var sum = 0
+rdd.foreach(x => sum = sum + x)
+print(sum)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### 11. Shipping Closures, Broadcast Variables and Accumulator Variables
 // MAGIC 
 // MAGIC #### Closures, Broadcast and Accumulator Variables
 // MAGIC **(watch now 2:06)**:
@@ -554,7 +574,7 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // MAGIC     
 // MAGIC  ***
 // MAGIC  
-// MAGIC  ### 11. Spark Essentials: Summary
+// MAGIC  ### 12. Spark Essentials: Summary
 // MAGIC  **(watch now: 0:29)**
 // MAGIC  
 // MAGIC [![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/v/F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
@@ -564,7 +584,7 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 12. HOMEWORK 
+// MAGIC ### 13. HOMEWORK 
 // MAGIC See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 // MAGIC This notebook will give you more examples of the operations above as well as others we will be using later, including:
 // MAGIC * Perform the ``takeOrdered`` action on the RDD
