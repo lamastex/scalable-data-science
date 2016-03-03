@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 05:15:27 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 22:25:04 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -52,7 +52,7 @@
 // MAGIC 
 // MAGIC ### Files
 // MAGIC 
-// MAGIC **(watch now 1:43)**:
+// MAGIC **(watch later 1:43)**:
 // MAGIC 
 // MAGIC [![Files by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NJyBQ-cQ3Ac/0.jpg)](https://www.youtube.com/v/NJyBQ-cQ3Ac?rel=0&autoplay=1&modestbranding=1&start=1)
 
