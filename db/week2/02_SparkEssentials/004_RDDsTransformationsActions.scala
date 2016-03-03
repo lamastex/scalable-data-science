@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 21:28:30 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 00:39:36 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,8 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # **Introduction to Spark through Scala Notebook** 
+// MAGIC # **Introduction to Spark**
+// MAGIC ## Spark Essentials: RDDs, Transformations and Actions
 // MAGIC 
 // MAGIC * This introduction notebook describes how to get started running Spark (Scala) code in Notebooks.
 // MAGIC * Working with Spark's Resilient Distributed Datasets (RDDs)
