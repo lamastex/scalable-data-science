@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 2 Mar 2016 19:10:32 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 02:48:18 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -35,6 +35,26 @@
 // MAGIC [scraping and parsing SoU addresses](/#workspace/scalable-data-science/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses).
 // MAGIC * This data is already made available in DBFS, our distributed file system.
 // MAGIC * We only do the simplest word count with this data in this notebook and will do more sophisticated analyses in the sequel (including topic modeling, etc).
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Key Data Management Concepts 
+// MAGIC 
+// MAGIC ### The Structure Spectrum
+// MAGIC 
+// MAGIC **(watch now 1:10)**:
+// MAGIC 
+// MAGIC [![Structure Spectrum by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/pMSGGZVSwqo/0.jpg)](https://www.youtube.com/v/pMSGGZVSwqo?rel=0&autoplay=1&modestbranding=1&start=1&end=70)
+// MAGIC 
+// MAGIC Here we will be working with **unstructured** or **schema-never** data (plain text files).
+// MAGIC ***
+// MAGIC 
+// MAGIC ### Files
+// MAGIC 
+// MAGIC **(watch now 1:43)**:
+// MAGIC 
+// MAGIC [![Files by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NJyBQ-cQ3Ac/0.jpg)](https://www.youtube.com/v/NJyBQ-cQ3Ac?rel=0&autoplay=1&modestbranding=1&start=1)
 
 // COMMAND ----------
 
@@ -250,6 +270,74 @@ sc.textFile("dbfs:/datasets/sou/20160112.txt")   // Barrack Obama's second SoU
     .reduceByKey(_+_)
     .sortBy(_._2, false)
     .collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Reading all SoUs at once using `wholetextFiles`
+// MAGIC 
+// MAGIC Let us next read all text files (ending with `.txt`) in the directory `dbfs:/datasets/sou/` at once!
+// MAGIC 
+// MAGIC `SparkContext.wholeTextFiles` lets you read a directory containing multiple small text files, and returns each of them as `(filename, content)` pairs of strings. 
+// MAGIC 
+// MAGIC This is in contrast with `textFile`, which would return one record per line in each file.
+
+// COMMAND ----------
+
+val souAll = sc.wholeTextFiles("dbfs:/datasets/sou/*.txt") // Shift+Enter to read all text files in dbfs:/datasets/sou/
+souAll.cache() // let's cache this RDD for efficient reuse
+
+// COMMAND ----------
+
+souAll.count() // Shift+enter to count the number of entries in RDD[(String,String)]
+
+// COMMAND ----------
+
+souAll.count() // Cntrl+Enter to count the number of entries in cached RDD[(String,String)] again (much faster!)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Let's examine the first two elements of the RDD `souAll`.
+
+// COMMAND ----------
+
+souAll.take(2) // Cntr+Enter to see the first two elements of souAll
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Clearly, the elements are a pair of Strings, where the first String gives the filename and the second String gives the contents in the file. 
+// MAGIC 
+// MAGIC this can be very helpful to simply loop through the files and take an action, such as counting the number of words per address, as folows:
+
+// COMMAND ----------
+
+// this just collects the file names which is the first element of the tuple given by "._1" 
+souAll.map( fileContentsPair => fileContentsPair._1).collect()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Let us find the number of words in each od the SoU addresses next (we need to work with Strings inside the closure!).
+
+// COMMAND ----------
+
+val wcs = souAll.map( fileContentsPair => 
+  {
+    val wc = fileContentsPair._2
+                             .replaceAll("\\s+", " ") //replace multiple whitespace characters (including space, tab, new line, etc.) with one whitespace " "
+                             .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
+                             .toLowerCase() // converting to lower-case
+                             .split(" ") // split each word separated by white space
+                             .size // find the length of array
+    wc
+  }    
+)      
+
+// COMMAND ----------
+
+wcs.collect()
 
 // COMMAND ----------
 
