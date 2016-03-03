@@ -21,7 +21,11 @@ rm -rf ./MDparsed
 #FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Wed Mar  2 11:57:38 NZDT 2016
 #FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done Sun Feb 28 19:07:02 NZDT 2016
 #FName=../db/week2/03_WordCount/006_WordCount # done
-FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done
+#FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done
+###############################################################################################
+
+###########-- xtraResources --#########################################################################
+FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ###############################################################################################
 echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
 
