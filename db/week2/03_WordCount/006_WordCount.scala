@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 02:48:18 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 05:15:27 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -99,7 +99,7 @@ dbutils.fs.head("dbfs:/datasets/sou/17900108.txt", xxxx) // Cntrl+Enter to get t
 
 // COMMAND ----------
 
-val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt") // Shift+Enter to read in the textfile as RDD[String]
+val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt") // Cntrl+Enter to read in the textfile as RDD[String]
 
 // COMMAND ----------
 
@@ -243,7 +243,7 @@ sou17900108
              .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
              .toLowerCase() // converting to lower-case
              .split(" "))
-    .map(x => (x,1))
+    .map(x => (x, 1))
     .reduceByKey(_+_)
     
 wordCount_sou17900108.collect()
@@ -319,7 +319,7 @@ souAll.map( fileContentsPair => fileContentsPair._1).collect()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Let us find the number of words in each od the SoU addresses next (we need to work with Strings inside the closure!).
+// MAGIC Let us find the number of words in each of the SoU addresses next (we need to work with Strings inside the closure!).
 
 // COMMAND ----------
 
