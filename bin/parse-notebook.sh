@@ -10,4 +10,4 @@ if [ -z "$WHICH_PYTHON" ]; then
     exit 1
 fi
 
-eval "$WHICH_PYTHON $ROOT_DIR/dev/parse_md.py $1 $2"
+eval "$WHICH_PYTHON $ROOT_DIR/dev/parse_notebook.py $1 $2"

@@ -25,10 +25,10 @@ Steps to add newly created notebook in Databricks cloud (as `.scala`) into gitbo
 
 - Export notebook from Databricks cloud onto your local machine. We work with `.scala` notebooks
 most of the time, so currently we only support those.
-- Run `bin/parse-md.sh` to convert `.scala` notebook into `.md` document. Script takes input and
-output files/directories, also prints some minimal statistics. E.g.
+- Run `bin/parse-notebook.sh` to convert `.scala` notebook into `.md` document. Script takes input
+and output files/directories, also prints some minimal statistics. E.g.
 ```shell
-$ bin/parse-md.sh temp/scala-notebook.scala temp/
+$ bin/parse-notebook.sh temp/scala-notebook.scala temp/
 ```
 You can specify directory as output, or file. In case of directory markdown file name will be the
 same as `.scala` file.

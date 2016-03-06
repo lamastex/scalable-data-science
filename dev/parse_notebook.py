@@ -107,6 +107,10 @@ def main(args):
     input_file = verify_file(args[0])
     output_file = fix_file(args[1], input_file)
 
+    if not input_file.endswith(".scala"):
+        print "[ERROR] Expected Scala notebook, got %s" % input_file
+        sys.exit(1)
+
     print "[INFO] Input: %s" % input_file
     print "[INFO] Output: %s" % output_file
 
