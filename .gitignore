@@ -14,3 +14,11 @@ _book
 *.epub
 *.mobi
 *.pdf
+
+# Artefacts
+*.pyc
+*.log
+
+# Temp folders and Spark derby db
+temp/
+metastore_db/
