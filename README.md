@@ -12,7 +12,7 @@ the distributed graph processing framework of GraphX. We will solve instances of
 decision problems from various scientific domains.
 
 This is being prepared by Raazesh Sainudiin and Sivanand Sivaram
-with assistance from Paul Brouwers and Dillon George.
+with assistance from Paul Brouwers, Dillon George and Ivan Sadikov.
 
 See [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) for the latest content as cloud-uploadable and locally browsable notebooks. The
 Gitbook version of this content will lag by a few weeks.
