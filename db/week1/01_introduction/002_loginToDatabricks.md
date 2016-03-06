@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 12 Feb 2016 04:45:53 UTC
+// Databricks notebook source exported at Sat, 27 Feb 2016 23:25:50 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,20 +14,156 @@ and
 
 
 
+# Outline
 
-Will need to be done after Paul instantiates the new cluster......
-
-
-
-
-
-Have screenshots of loggingin ....
-
-
+### I. [21 Easy Steps for Sharing your AWS Educate Credits](/#workspace/scalable-data-science/xtraResources/awsEducate/sharing) (!! you HAVE to do this later !!)
+* if you are not in `*.cloud.databricks` and are browsing locally then go here for 
+    [the 21 easy steps for sharing your AWS Educate Credits](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/2016/S1/xtraResources/awsEducate/sharing.html)
+    
+### II. 7 Steps to the Databricks Cloud
+### III. Essentials of the Databricks Cloud
 
 
 
-Have screenshots of loggingin and doing more and pre-flight test....
+
+
+## I. Contributing your AWS credits to the course's databricks cluster.
+
+Paul, add the steps for AWS credit sharing here.
+
+
+
+
+
+## II. 7 Steps to the Databricks Cloud
+
+### Step 1: go to [http://www.math.canterbury.ac.nz/databricks](http://www.math.canterbury.ac.nz/databricks) and login using your email address and temporary password given to you in person (now).
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_01_sds_2016S1.png)
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_02_sds_2016S1.png)
+
+
+
+
+
+### Step 2: Change your password immediately (now).
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_pswdChange_sds_2016S1.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_pswdChanged_sds_2016S1.png)
+
+
+
+
+
+### Step 3: recognize your ``Home`` area in ``Workspace`` where you can read and write.
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_03_sds_2016S1.png)
+
+
+
+
+
+### Step 4: cloning the ``scalable-data-science/week1`` folder
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_04_sds_2016S1.png)
+
+
+
+
+
+### Step 5: rename the cloned ``week1 (*)`` folder as ``week1`` for simplicity.
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_05_sds_2016S1.png)
+
+**Note**: From week 2 onwards, you only need to clone the folder for that week (to preserve any changes you made to the notebooks from previous weeks).
+
+
+
+
+
+### Step 6: loading the ``003_scalaCrashCourse`` notebook
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_06_sds_2016S1.png)
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_07_sds_2016S1.png)
+
+
+
+
+
+### Step 7: Attaching ``003_scalaCrashCourse`` notebook to the databricks clusters
+#### UC-enrolled students connect to ``studentsEnrolled`` cluster.
+#### others plese connect to ``studentsObserving1`` cluster.
+#### in the example below our mock student has connected to the ``classCluster`` cluster.
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_08_sds_2016S1.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_09_sds_2016S1.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbLogin_10_sds_2016S1.png)
+
+**Finally**, you are ready to use the notebook in your own Workspace and follow along the material being covered, execute cells, modify examples and try them out right away, take extra notes in mark-down enhanced via latex, etc.
+
+
+
+
+
+## III. Essentials of Databricks Cloud (DBC)
+
+
+
+
+
+## DBC Essentials: What is Databricks Cloud?
+
+![DB workspace, spark, platform](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbTrImg_WorkspaceSparkPlatform700x.png)
+
+
+
+
+
+## DBC Essentials: Shard, Cluster, Notebook and Dashboard
+
+![DB workspace, spark, platform](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbTrImg_ShardClusterNotebookDashboard700x.png)
+
+
+
+
+
+## DBC Essentials: Team, State, Collaboration, Elastic Resources
+
+![DB workspace, spark, platform](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbTrImg_TeamStateCollaborationElasticResources700x.png)
+
+
+
+
+
+Let us dive into Scala crash course in a notebook!
 
 
 
@@ -42,4 +178,3 @@ Have screenshots of loggingin and doing more and pre-flight test....
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
-

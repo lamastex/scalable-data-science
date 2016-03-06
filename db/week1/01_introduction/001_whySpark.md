@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 01:15:56 UTC
+// Databricks notebook source exported at Thu, 25 Feb 2016 02:58:16 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,7 +14,8 @@ and
 
 
 
-# Berkeley Data Analytics Stack is BDAS
+# The Berkeley Data Analytics Stack is BDAS
+## Spark is a sub-stack of BDAS
 **Source:** 
 * [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
 * [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
@@ -44,25 +45,20 @@ The followign talk outlines the motivation and insights behind BDAS' research ap
   * and more... 
 
 
-```scala
 
 
 
-```
-
-
-
-## The big data problem, Hardware, distributing work, handling failed and slow machines
+### The big data problem, Hardware, distributing work, handling failed and slow machines
 #### by Anthony Joseph in BerkeleyX/CS100.1x
 
 * **(watch now 1:48)**: The Big Data Problem
-  * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/v/0JdJe5iehhw)
+  * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/v/0JdJe5iehhw?rel=0&autoplay=1&modestbranding=1&start=1)
 *  **(watch now 1:43)**: Hardware for Big Data
-  * [![Hardware for Big Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/KmIIMdsXGzc/0.jpg)](https://www.youtube.com/v/KmIIMdsXGzc)
+  * [![Hardware for Big Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/KmIIMdsXGzc/0.jpg)](https://www.youtube.com/v/KmIIMdsXGzc?rel=0&autoplay=1&modestbranding=1&start=1)
 * **(watch now 1:17)**: How to distribute work across a cluster of commodity machines?
-  * [![How to distribute work across a cluster of commodity machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Euk1v3VtNcM/0.jpg)](https://www.youtube.com/v/Euk1v3VtNcM)
+  * [![How to distribute work across a cluster of commodity machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Euk1v3VtNcM/0.jpg)](https://www.youtube.com/v/Euk1v3VtNcM?rel=0&autoplay=1&modestbranding=1&start=1)
 * **(watch now 0:36)**: How to deal with failures or slow machines?
-  * [![How to deal with failures or slow machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NaHNsPEK3KA/0.jpg)](https://www.youtube.com/v/NaHNsPEK3KA)
+  * [![How to deal with failures or slow machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NaHNsPEK3KA/0.jpg)](https://www.youtube.com/v/NaHNsPEK3KA?rel=0&autoplay=1&modestbranding=1&start=1)
   
 
 
@@ -73,11 +69,11 @@ The followign talk outlines the motivation and insights behind BDAS' research ap
 #### by Anthony Joseph in BerkeleyX/CS100.1x
 
 * **(watch now 1:48)**: Map Reduce (is bounded by Disk I/O)
-  * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/v/NqG_hYAKjYk)
+  * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/v/NqG_hYAKjYk?rel=0&autoplay=1&modestbranding=1&start=1)
 *  **(watch now 2:49)**: Apache Spark (uses Memory instead of Disk)
-  * [![Apache Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/vat5Jki1lbI/0.jpg)](https://www.youtube.com/v/vat5Jki1lbI)
+  * [![Apache Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/vat5Jki1lbI/0.jpg)](https://www.youtube.com/v/vat5Jki1lbI?rel=0&autoplay=1&modestbranding=1&start=1)
 * **(watch now 3:00)**: Spark Versus MapReduce
-  * [![Spark Versus MapReduce by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Ddq3Gua2QFg/0.jpg)](https://www.youtube.com/v/Ddq3Gua2QFg)
+  * [![Spark Versus MapReduce by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Ddq3Gua2QFg/0.jpg)](https://www.youtube.com/v/Ddq3Gua2QFg?rel=0&autoplay=1&modestbranding=1&start=1)
 * SUMMARY
     * uses memory instead of disk alone and is thus fater than Hadoop MapReduce
     * resilience abstraction is by RDD (resilient distributed dataset)
@@ -94,13 +90,15 @@ The followign talk outlines the motivation and insights behind BDAS' research ap
 
 * Key Historical Milestones
   * 1956-1979: [Stanford, MIT, CMU, and other universities develop set/list operations in LISP, Prolog, and other languages for parallel processing](http://www-formal.stanford.edu/jmc/history/lisp/lisp.html)
-  * 2004: READ: [Google's MapReduce: Simplified Data Processing on Large Clusters, by Jeffrey Dean and Sanjay Ghemawat](http://research.google.com/archive/mapreduce.html)
-  * 2006: [Yahoo!'s Apache Hadoop, originating from the Yahoo!?s Nutch Project, Doug Cutting](http://developer.yahoo.com/hadoop/)
+  * 2004: **READ**: [Google's MapReduce: Simplified Data Processing on Large Clusters, by Jeffrey Dean and Sanjay Ghemawat](http://research.google.com/archive/mapreduce.html)
+  * 2006: [Yahoo!'s Apache Hadoop, originating from the Yahoo!’s Nutch Project, Doug Cutting](http://developer.yahoo.com/hadoop/)
   * 2009: [Cloud computing with Amazon Web Services Elastic MapReduce](http://aws.amazon.com/elasticmapreduce/), a Hadoop version modified for Amazon Elastic Cloud Computing (EC2) and Amazon Simple Storage System (S3), including support for Apache Hive and Pig.
-  * 2010: READ: [The Hadoop Distributed File System, by Konstantin Shvachko, Hairong Kuang, Sanjay Radia, and Robert Chansler. IEEE MSST](http://dx.doi.org/10.1109/MSST.2010.5496972) 
+  * 2010: **READ**: [The Hadoop Distributed File System, by Konstantin Shvachko, Hairong Kuang, Sanjay Radia, and Robert Chansler. IEEE MSST](http://dx.doi.org/10.1109/MSST.2010.5496972) 
 * Apache Spark Core Papers</h1>
   * 2010: [Spark: Cluster Computing with Working Sets, Matei Zaharia, Mosharaf Chowdhury, Michael J. Franklin, Scott Shenker, Ion Stoica. USENIX HotCloud](http://people.csail.mit.edu/matei/papers/2010/hotcloud_spark.pdf).
-  * 2012: READ: [Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing, Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker and Ion Stoica. NSDI](http://usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf)
+  * 2012: **READ**: [Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing, Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker and Ion Stoica. NSDI](http://usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf)
+  
+  ![brief history of functional programming and big data by SparkCamp](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbTrImg_BriefHistoryFuncProgBigData700x.png)
 
 
 
@@ -108,10 +106,15 @@ The followign talk outlines the motivation and insights behind BDAS' research ap
 
 ***
 ***
+20 minutes
+40 out of 90+10 minutes.
+
 We have come to the end of this section.
 
 **Next let us get everyone to login to databricks** to get our hands dirty with some Spark code! 
 
+10-15 minutes.
+Then break for 5.
 ***
 ***
 
@@ -135,11 +138,6 @@ We have come to the end of this section.
 ***
 
 
-```scala
-
-
-
-```
 
 
 
@@ -152,4 +150,3 @@ We have come to the end of this section.
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
-

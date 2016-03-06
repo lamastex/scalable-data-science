@@ -1,0 +1,2 @@
+http://www.imagemagick.org/Usage/resize/
+convert X.png -resize 484 x.png

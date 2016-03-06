@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 13 Feb 2016 01:25:54 UTC
+// Databricks notebook source exported at Sun, 28 Feb 2016 05:41:21 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,6 +13,40 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC # **Notebooks**
+// MAGIC Write Spark code for processing your data in notebooks. 
+// MAGIC 
+// MAGIC **NOTE**: You should have already cloned this notebook and attached it to the ``studentsEnrolled`` or ``studentsObserving1`` clusters by now. If not seek help from Siva by raising your hand.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Notebooks can be written in **Python**, **Scala**, **R**, or **SQL**.
+// MAGIC * This is a Scala notebook - which is indicated next to the title above by ``(Scala)``.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### **Creating a new Notebook**
+// MAGIC 
+// MAGIC  ![Change Name](http://training.databricks.com/databricks_guide/Notebook/createNotebook.png)
+// MAGIC 
+// MAGIC   * Click the tiangle on the right side of a folder to open the folder menu.
+// MAGIC   * Select **Create > Notebook**.
+// MAGIC   * Enter the name of the notebook, the language (Python, Scala, R or SQL) for the notebook, and a cluster to run it on.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC ### ** Cloning a Notebook**
+// MAGIC   * You can clone a notebook to create a copy of it, for example if you want to edit or run an Example notebook like this one.
+// MAGIC   * Click **File > Clone** in the notebook context bar above.
+// MAGIC   * Enter a new name and location for your notebook. If Access Control is enabled, you can only clone to folders that you have Manage permissions on.
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # **Introduction to Scala through Scala Notebook** 
 // MAGIC 
 // MAGIC * This introduction notebook describes how to get started running Scala code in Notebooks.
@@ -20,7 +54,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Clone Or Import This Notebook this notebook
+// MAGIC ### Clone Or Import This Notebook
 // MAGIC * From the **File** menu at the top left of this notebook, choose **Clone** or click **Import Notebook** on the top right. This will allow you to interactively execute code cells as you proceed through the notebook.
 // MAGIC 
 // MAGIC ![Menu Bar Clone Notebook](http://training.databricks.com/databricks_guide/2.8/clone.png) 
@@ -69,6 +103,18 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC 
+// MAGIC ### **Running a cell in your notebook.**
+// MAGIC * #### Press **Shift+Enter** when in the cell to **run** it and proceed to the next cell.
+// MAGIC   * The cells contents should update.
+// MAGIC   ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
+// MAGIC * **NOTE:** Cells are not automatically run each time you open it.
+// MAGIC   * Instead, Previous results from running a cell are saved and displayed.
+// MAGIC * #### Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
+
+// COMMAND ----------
+
 // MAGIC %md **You Try Now!** 
 // MAGIC Just double-click the cell below, modify the text following ``%md`` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
 // MAGIC ```
@@ -114,7 +160,7 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC 
 // MAGIC ## Scala Resources
 // MAGIC 
-// MAGIC You will not be learning scala systematically and thoroughly in this course.  You will learn Scala by doing various Spark jobs. 
+// MAGIC You will not be learning scala systematically and thoroughly in this course.  You will learn *to use* Scala by doing various Spark jobs. 
 // MAGIC 
 // MAGIC If you are seriously interested in learning scala properly, then there are various resources, including:
 // MAGIC 
@@ -156,7 +202,15 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC   * Python API added to reach a wider user community of programmes
 // MAGIC   * R API added more recently to reach a wider community of data analyststs 
 // MAGIC   * Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
-// MAGIC * See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/).
+// MAGIC * See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/). It is embedded in-place below for your convenience.
+
+// COMMAND ----------
+
+// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
+
+// COMMAND ----------
+
+displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/",500))
 
 // COMMAND ----------
 
@@ -169,6 +223,8 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC * Functions in Scala
 // MAGIC * Collections in Scala
 // MAGIC * Scala Closures for Functional Programming and MapReduce
+// MAGIC 
+// MAGIC **Remark**: You need to take a computer science course (from CourseEra, for example) to properly learn Scala.  Here, we will learn to use Scala by example to accomplish our data science tasks at hand.
 
 // COMMAND ----------
 
@@ -263,7 +319,7 @@ s.    // place cursor after the '.' and press Tab to see all available methods f
 // MAGIC * scroll down to ``contains`` and double-click on it.  
 // MAGIC * This should lead to ``s.contains`` in your cell. 
 // MAGIC * Now add an argument String to see if ``s`` contains the argument, for example, try:
-// MAGIC   * ``s.("f")``
+// MAGIC   * ``s.contains("f")``
 // MAGIC   * ``s.contains("")`` and
 // MAGIC   * ``s.contains("i")``
 
@@ -458,6 +514,90 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // MAGIC %md
 // MAGIC There are lots of methods in Scala Collections.  See for example [API_scala.collection.Seq](http://www.scala-lang.org/api/2.10.4/index.html#scala.collection.Seq).
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Spark is written in Scala and the primary language for this course is Scala.
+// MAGIC ### However, let us use the best language for the job!
+// MAGIC 
+// MAGIC ### Cells each have a type - **scala**, **python**, **r**, **sql**, **filesystem**, **command line** or **markdown**.
+// MAGIC * While cells default to the type of the Notebook, other cell types are supported as well.
+// MAGIC * For example, Python Notebooks can contain python, sql, markdown, and even Scala cells. This lets you write notebooks that do use multiple languages.
+// MAGIC * This cell is in **markdown** and is used for documentation purposes.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### All types of cells can be created in any notebook, regardless of the language.
+// MAGIC 
+// MAGIC To create a cell of another language, start the cell with:
+// MAGIC * `%md` - Markdown
+// MAGIC * `%sql` - SQL
+// MAGIC * `%scala` - Scala
+// MAGIC * `%py` - Python
+// MAGIC * `%r` - R
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Cross-language cells can be used to mix commands from other languages.
+// MAGIC 
+// MAGIC Examples:
+
+// COMMAND ----------
+
+// MAGIC %py print("For example, this is a scala notebook, but we can use %py to run python commands inline.")
+
+// COMMAND ----------
+
+// MAGIC %r print("We can also access other languages such as R.")
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Command line cells can be used to work with local files on the Spark driver node.
+// MAGIC * Start a cell with `%sh` to run a command line command
+
+// COMMAND ----------
+
+// MAGIC %sh
+// MAGIC # This is a command line cell. Commands you write here will be executed as if they were run on the command line.
+// MAGIC # For example, in this cell we access the help pages for the bash shell.
+// MAGIC man bash
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
+// MAGIC * Start a cell with `%fs` to run DBFS commands
+// MAGIC * Type `%fs help` for a list of commands
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Further Reference / Homework
+// MAGIC 
+// MAGIC Go through the following notebooks (``File`` and ``Clone`` them into your ``Workspace/Users/...``) to play and familiarize yourself with databricks cloud:
+// MAGIC * [Welcome to Databricks](/#workspace/databricks_guide/00 Welcome to Databricks) and watch the *Getting Started* videos for more details. This worksheet can be loaded below using ``%run "/databricks_guide/00 Welcome to Databricks"``
+// MAGIC * [Intro Scala Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/2 Intro Scala Notebooks)
+// MAGIC * [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala)
+// MAGIC * [FileStore](/#workspace/databricks_guide/02 Product Overview/12 FileStore) to organize files for access.
+// MAGIC 
+// MAGIC You may also like to check out:
+// MAGIC * [Intro Python Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/1 Intro Python Notebooks)
+// MAGIC * [Intro R Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/4 Intro R Notebooks)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Notebooks can be run from other notebooks using **%run**
+// MAGIC * Syntax: `%run /full/path/to/notebook`
+// MAGIC * This is commonly used to import functions you defined in other notebooks.
+
+// COMMAND ----------
+
+// MAGIC %run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
 
 // COMMAND ----------
 
