@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 28 Feb 2016 05:28:33 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 22:25:04 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,10 +14,10 @@ and
 
 
 
-# Word Count on US State of the Union Addresses
+# Word Count on US State of the Union (SoU) Addresses
 
 * Word Count in big data is the equivalent of 'Hello World' in programming
-* We count the number of occurences of each word in a document
+* We count the number of occurences of each word in the first and last (2016) SoU addresses.
 
 
 
@@ -34,14 +34,36 @@ An interesting analysis of the textual content of the *State of the Union (SoU)*
 
 ## Let us investigate this dataset ourselves!
 1. We first get the source text data by scraping and parsig from [http://stateoftheunion.onetwothree.net/texts/index.html](http://stateoftheunion.onetwothree.net/texts/index.html) as explained in 
-[scraping and parsing SoU addresses](/#workspace/scalable-data-science/week1/03_WordCount/scraperUSStateofUnionAddresses).
+[scraping and parsing SoU addresses](/#workspace/scalable-data-science/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses).
 * This data is already made available in DBFS, our distributed file system.
+* We only do the simplest word count with this data in this notebook and will do more sophisticated analyses in the sequel (including topic modeling, etc).
 
 
 
 
 
-###DBFS and dbutils
+## Key Data Management Concepts 
+
+### The Structure Spectrum
+
+**(watch now 1:10)**:
+
+[![Structure Spectrum by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/pMSGGZVSwqo/0.jpg)](https://www.youtube.com/v/pMSGGZVSwqo?rel=0&autoplay=1&modestbranding=1&start=1&end=70)
+
+Here we will be working with **unstructured** or **schema-never** data (plain text files).
+***
+
+### Files
+
+**(watch later 1:43)**:
+
+[![Files by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NJyBQ-cQ3Ac/0.jpg)](https://www.youtube.com/v/NJyBQ-cQ3Ac?rel=0&autoplay=1&modestbranding=1&start=1)
+
+
+
+
+
+###DBFS and dbutils - where is this dataset in our distributed file system?
 * Since we are on the databricks cloud, it has a file system called DBFS
 * DBFS is similar to HDFS, the Hadoop distributed file system
 * dbutils allows us to interact with dbfs.
@@ -50,7 +72,7 @@ An interesting analysis of the textual content of the *State of the Union (SoU)*
 
 ```scala
 
-display(dbutils.fs.ls("dbfs:/datasets/sou"))
+display(dbutils.fs.ls("dbfs:/datasets/sou")) // Cntrl+Enter to display the files in dbfs:/datasets/sou
 
 ```
 
@@ -63,32 +85,114 @@ as follows:
 
 ```scala
 
-dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",1000) // first 1000 bytes of the file
+dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",673) // Cntrl+Enter to get the first 673 bytes of the file (which corresponds to the first five lines)
 
 ```
 
 
 
-### Read the file into Spark
-* The `textFile` method on the available `SparkContext` `sc` can read the text file `sou17900108` into Spark and return an RDD of Strings
-* Each String represents one line of data from the file and can be displayed using `take` or `collect`.
+##### You Try!
+Modify ``xxxx` in the cell below to read the first 1000 bytes from the file.
 
 
 ```scala
 
+dbutils.fs.head("dbfs:/datasets/sou/17900108.txt", xxxx) // Cntrl+Enter to get the first 1000 bytes of the file
+
+```
+
+
+
+### Read the file into Spark Context as an RDD of Strings
+* The `textFile` method on the available `SparkContext` `sc` can read the text file `dbfs:/datasets/sou/17900108.txt` into Spark and create an RDD of Strings
+  * but this is done lazily until an action is taken on the RDD `sou17900108`!
+
+
+```scala
+
+val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt") // Cntrl+Enter to read in the textfile as RDD[String]
+
+```
+
+
+
+### Perform some actions on the RDD
+* Each String in the RDD `sou17900108` represents one line of data from the file and can be made to perform one of the following actions:
+  * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
+  * display the contents of the RDD using `take` or `collect`.
+
+
+```scala
+
+sou17900108.count() // <Shift+Enter> to count the number of elements in the RDD
+
+```
+```scala
+
+sou17900108.take(5) // <Shift+Enter> to display the first 5 elements of RDD
+
+```
+```scala
+
+sou17900108.take(5).foreach(println) // <Shift+Enter> to display the first 5 elements of RDD line by line
+
+```
+```scala
+
+sou17900108.collect // <Cntrl+Enter> to display all the elements of RDD
+
+```
+
+
+
+### Cache the RDD in (distributed) memory to avoid recreating it for each action
+* Above, every time we took an action on the same RDD, the RDD was reconstructed from the textfile.  
+  * Spark's advantage compared to Hadoop MapReduce is the ability to cache or store the RDD in distributed memory across the nodes.
+* Let's use `.cache()` after creating an RDD so that it is in memory after the first action (and thus avoid reconstruction for subsequent actions).
+  * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
+  * display the contents of the RDD using `take` or `collect`.
+
+
+```scala
+
+// Shift+Enter to read in the textfile as RDD[String] and cache it in distributed memory
 val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt")
+sou17900108.cache() // cache the RDD in memory
 
 ```
 ```scala
 
-sou17900108.take(5)
+sou17900108.count() // Shift+Enter during this count action the RDD is constructed from texfile and cached
 
 ```
 ```scala
 
-sou17900108.collect
+sou17900108.count() // Shift+Enter during this count action the cached RDD is used (notice less time taken by the same command)
 
 ```
+```scala
+
+sou17900108.take(5) // <Cntrl+Enter> to display the first 5 elements of the cached RDD
+
+```
+
+
+
+#### Lifecycle of a Spark Program
+    
+**(watch now 0:23)**:
+
+[![Spark Program Lifecycle by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/HWZUqNYAJj4/0.jpg)](https://www.youtube.com/v/HWZUqNYAJj4?rel=0&autoplay=1&modestbranding=1&start=1)
+
+##### Summary
+* create RDDs from:
+  * some external data source (such as a distributed file system)
+  * parallelized collection in your driver program
+* lazily transform these RDDs into new RDDs
+* cache some of those RDDs for future reuse
+* you perform actions to execute parallel computation to produce results
+
+
 
 
 
@@ -170,7 +274,7 @@ sou17900108
              .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
              .toLowerCase() // converting to lower-case
              .split(" "))
-    .map(x => (x,1))
+    .map(x => (x, 1))
     .reduceByKey(_+_)
     
 wordCount_sou17900108.collect()
@@ -200,6 +304,85 @@ sc.textFile("dbfs:/datasets/sou/20160112.txt")   // Barrack Obama's second SoU
     .reduceByKey(_+_)
     .sortBy(_._2, false)
     .collect()
+
+```
+
+
+
+### Reading all SoUs at once using `wholetextFiles`
+
+Let us next read all text files (ending with `.txt`) in the directory `dbfs:/datasets/sou/` at once!
+
+`SparkContext.wholeTextFiles` lets you read a directory containing multiple small text files, and returns each of them as `(filename, content)` pairs of strings. 
+
+This is in contrast with `textFile`, which would return one record per line in each file.
+
+
+```scala
+
+val souAll = sc.wholeTextFiles("dbfs:/datasets/sou/*.txt") // Shift+Enter to read all text files in dbfs:/datasets/sou/
+souAll.cache() // let's cache this RDD for efficient reuse
+
+```
+```scala
+
+souAll.count() // Shift+enter to count the number of entries in RDD[(String,String)]
+
+```
+```scala
+
+souAll.count() // Cntrl+Enter to count the number of entries in cached RDD[(String,String)] again (much faster!)
+
+```
+
+
+
+Let's examine the first two elements of the RDD `souAll`.
+
+
+```scala
+
+souAll.take(2) // Cntr+Enter to see the first two elements of souAll
+
+```
+
+
+
+Clearly, the elements are a pair of Strings, where the first String gives the filename and the second String gives the contents in the file. 
+
+this can be very helpful to simply loop through the files and take an action, such as counting the number of words per address, as folows:
+
+
+```scala
+
+// this just collects the file names which is the first element of the tuple given by "._1" 
+souAll.map( fileContentsPair => fileContentsPair._1).collect()
+
+```
+
+
+
+Let us find the number of words in each of the SoU addresses next (we need to work with Strings inside the closure!).
+
+
+```scala
+
+val wcs = souAll.map( fileContentsPair => 
+  {
+    val wc = fileContentsPair._2
+                             .replaceAll("\\s+", " ") //replace multiple whitespace characters (including space, tab, new line, etc.) with one whitespace " "
+                             .replaceAll("""([,?.!:;])""", "") // replace the following punctions characters: , ? . ! : ; . with the empty string ""
+                             .toLowerCase() // converting to lower-case
+                             .split(" ") // split each word separated by white space
+                             .size // find the length of array
+    wc
+  }    
+)      
+
+```
+```scala
+
+wcs.collect()
 
 ```
 

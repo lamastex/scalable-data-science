@@ -18,14 +18,14 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week2 --#########################################################################
-#FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Wed Mar  2 11:57:38 NZDT 2016
-#FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done Sun Feb 28 19:07:02 NZDT 2016
-#FName=../db/week2/03_WordCount/006_WordCount # done
-#FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done
+#FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Sun Mar  6 20:51:27 NZDT 2016
+#FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done Sun Mar  6 20:53:56 NZDT 2016
+#FName=../db/week2/03_WordCount/006_WordCount # done Sun Mar  6 20:53:34 NZDT 2016
+#FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done Sun Mar  6 20:55:03 NZDT 2016
 ###############################################################################################
 
 ###########-- xtraResources --#########################################################################
-FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
+#FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ###############################################################################################
 echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
 

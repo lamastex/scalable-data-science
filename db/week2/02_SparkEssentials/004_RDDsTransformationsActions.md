@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 1 Mar 2016 22:39:18 UTC
+// Databricks notebook source exported at Thu, 3 Mar 2016 22:18:10 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,7 +14,8 @@ and
 
 
 
-# **Introduction to Spark through Scala Notebook** 
+# **Introduction to Spark**
+## Spark Essentials: RDDs, Transformations and Actions
 
 * This introduction notebook describes how to get started running Spark (Scala) code in Notebooks.
 * Working with Spark's Resilient Distributed Datasets (RDDs)
@@ -166,7 +167,11 @@ Recall ``SparkContext`` is in the Driver Program.
 * Transform the RDD by ``filter`` to make another RDD
 * Perform the ``reduce`` action on the RDD
 * Transform the RDD by ``flatMap`` to make another RDD
-* Perform the ``reduceByKey`` action on a Pair RDD
+* Create a Pair RDD
+* Perform some transformations on a Pair RDD
+* Where in the cluster is your computation running?
+* Shipping Closures, Broadcast Variables and Accumulator Variables
+* Spark Essentials: Summary
 * HOMEWORK
 
 
@@ -231,7 +236,6 @@ So, it is better to use other diplaying actions like ``take`` or ``takeOrdered``
 
 
 #### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
-
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
 
@@ -308,7 +312,7 @@ Fill in the parenthes `( )` below in order to `take` just one element from RDD `
 
 ```scala
 
-x.take( ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
+x.take(  ) // fill in the parenthesis to take just one element from RDD x and Cntrl+Enter
 
 ```
 
@@ -444,17 +448,9 @@ println(y.collect().mkString(", "))
 
 
 
-### 8. Perform the ``reduceByKey`` action on a Pair RDD
+### 8. Create a Pair RDD
 
-Let's next look at what happens when we transform an RDD of strings. 
-
-We will learn an extremely useful action called ``reduceByKey`` where reduce operations are only performed on values with the same key from an RDD of ``(key,value)`` pairs called a *Pair RDD*.
-
-
-
-
-
-![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-44.png)
+Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
 
 
 ```scala
@@ -472,15 +468,42 @@ Let's make a Pair RDD called `wordCountPairRDD` that is made of (key,value) pair
 
 ```scala
 
-// Shift+Enter to make and collect Pair RDD wordCountPairRDD
+// Cntrl+Enter to make and collect Pair RDD wordCountPairRDD
 val wordCountPairRDD = words.map(s => (s, 1))
 wordCountPairRDD.collect()
 
 ```
+
+
+
+### 9. Perform some transformations on a Pair RDD
+
+Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
+
+Now some of the Key-Value transformations that we could perform include the following.
+* **`reduceByKey` transformation**
+  * which takes an RDD and returns a new RDD of key-value pairs, such that:
+    * the values for each key are aggregated using the given reduced function
+    * and the reduce function has to be of the type that takes two values and returns one value.
+* **`sortByKey` transformation**
+  * this returns a new RDD of key-value pairs that's sorted by keys in ascending order
+* **`groupByKey` transformation**
+  * this returns a new RDD consisting of key and iterable-valued pairs.
+
+Let's see some concrete examples next.
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-44.png)
+
+
 ```scala
 
 // Cntrl+Enter to reduceByKey and collect wordcounts RDD
-val wordcounts = wordCountPairRDD.reduceByKey(_ + _)
+//val wordcounts = wordCountPairRDD.reduceByKey( _ + _ )
+val wordcounts = wordCountPairRDD.reduceByKey( (v1,v2) => v1+v2 )
 wordcounts.collect()
 
 ```
@@ -500,7 +523,138 @@ val wordcounts = words.map(s => (s, 1)).reduceByKey(_ + _).collect()
 
 
 
-### 9. HOMEWORK 
+##### You Try!
+You try evaluating `sortByKey()` which will make a new RDD that consists of the elements of the original pair RDD that are sorted by Keys.
+
+
+```scala
+
+// Shift+Enter and comprehend code
+val words = sc.parallelize(Array("a", "b", "a", "a", "b", "b", "a", "a", "a", "b", "b"))
+val wordCountPairRDD = words.map(s => (s, 1))
+val wordCountPairRDDSortedByKey = wordCountPairRDD.sortByKey()
+
+```
+```scala
+
+wordCountPairRDD.collect() // Shift+Enter and comprehend code
+
+```
+```scala
+
+wordCountPairRDDSortedByKey.collect() // Cntrl+Enter and comprehend code
+
+```
+
+
+
+
+The next key value transformation we will see is `groupByKey`
+
+When we apply the `groupByKey` transformation to `wordCountPairRDD` we end up with a new RDD that contains two elements.
+The first element is the tuple `b` and an iterable `CompactBuffer(1,1,1,1,1)` obtained by grouping the value `1` for each of the five key value pairs `(b,1)`.
+Similarly the second element is the key `a` and an iterable `CompactBuffer(1,1,1,1,1,1)` obtained by grouping the value `1` for each of the six key value pairs `(a,1)`.
+
+*CAUTION*: `groupByKey` can cause a large amount of data movement across the network.
+It also can create very large iterables at a worker.
+Imagine you have an RDD where you have 1 billion pairs that have the key `a`.
+All of the values will have to fit in a single worker if you use group by key.
+So instead of a group by key, consider using reduced by key.
+
+
+
+
+
+![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-45.png)
+
+
+```scala
+
+val wordCountPairRDDGroupByKey = wordCountPairRDD.groupByKey() // <Shift+Enter> CAUTION: this transformation can be very wide!
+
+```
+```scala
+
+wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
+
+```
+
+
+
+### 10. Where in the cluster is your computation running?
+
+
+```scala
+
+val list = 1 to 10
+var sum = 0
+list.foreach(x => sum = sum + x)
+print(sum)
+
+```
+```scala
+
+val rdd = sc.parallelize(1 to 10)
+var sum = 0
+rdd.foreach(x => sum = sum + x)
+rdd.collect
+print(sum)
+
+```
+
+
+
+### 11. Shipping Closures, Broadcast Variables and Accumulator Variables
+
+#### Closures, Broadcast and Accumulator Variables
+**(watch now 2:06)**:
+
+[![Closures, Broadcast and Accumulators by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/I9Zcr4R35Ao/0.jpg)](https://www.youtube.com/v/I9Zcr4R35Ao?rel=0&autoplay=1&modestbranding=1)
+
+
+We will use these variables in the sequel.
+
+#### SUMMARY
+Spark automatically creates closures 
+  * for functions that run on RDDs at workers,
+  * and for any global variables that are used by those workers
+  * one closure per worker is sent with every task
+  * and there's no communication between workers
+  * closures are one way from the driver to the worker
+  * any changes that you make to the global variables at the workers 
+    * are not sent to the driver or
+    * are not sent to other workers.
+  
+    
+ The problem we have is that these closures
+   * are automatically created are sent or re-sent with every job
+   * with a large global variable it gets inefficient to send/resend lots of data to each worker
+   * we cannot communicate that back to the driver
+  
+  
+ To do this, Spark provides shared variables in two different types.
+  * **broadcast variables**
+    * lets us to efficiently send large read-only values to all of the workers
+    * these are saved at the workers for use in one or more Spark operations.    
+  * **accumulator variables**
+    * These allow us to aggregate values from workers back to the driver.
+    * only the driver can access the value of the accumulator 
+    * for the tasks, the accumulators are basically write-only
+    
+ ***
+ 
+ ### 12. Spark Essentials: Summary
+ **(watch now: 0:29)**
+ 
+[![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/v/F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
+
+*NOTE:* In databricks cluster, we (the course coordinator/administrators) set the number of workers for you.
+
+
+
+
+
+### 13. HOMEWORK 
 See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 This notebook will give you more examples of the operations above as well as others we will be using later, including:
 * Perform the ``takeOrdered`` action on the RDD
