@@ -22,6 +22,7 @@ course project if their project proposal gets approved by Raazesh Sainudiin, the
 
 ## Build
 Steps to add newly created notebook in Databricks cloud (as `.scala`) into gitbook (`.md`):
+
 1. Export notebook from Databricks cloud onto your local machine. We work with `.scala` notebooks
 most of the time, so currently we only support those.
 2. Run `bin/parse-md.sh` to convert `.scala` notebook into `.md` document. Script takes input and
