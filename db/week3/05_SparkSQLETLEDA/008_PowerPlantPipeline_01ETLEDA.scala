@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 10 Mar 2016 03:17:26 UTC
+// Databricks notebook source exported at Thu, 10 Mar 2016 09:14:28 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -223,7 +223,7 @@ sqlContext.dropTempTable("power_plant_table") // don't Ctrl+Enter unless you wan
 // MAGIC %sql 
 // MAGIC -- Ctrl+Enter to query the rows via SQL
 // MAGIC 
-// MAGIC SELECT * FROM powerPlantTable
+// MAGIC SELECT * FROM power_plant_table
 
 // COMMAND ----------
 
