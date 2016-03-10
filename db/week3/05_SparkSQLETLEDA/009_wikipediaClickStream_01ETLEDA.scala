@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 10 Mar 2016 05:23:20 UTC
+// Databricks notebook source exported at Thu, 10 Mar 2016 09:12:56 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -556,15 +556,32 @@ displayHTML(frameIt("https://parquet.apache.org/documentation/latest/",350))
 
 // COMMAND ----------
 
-// Convert the dataset to a more efficent format to speed up our analysis
+// Convert the DatFrame to a more efficent format to speed up our analysis
 clickstream.
   write.
   mode(SaveMode.Overwrite).
-  parquet("/datasets/wiki-clickstream")
+  parquet("/datasets/wiki-clickstream") // warnings are harmless
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC #### Load parquet file efficiently and quickly into a DataFrame
+// MAGIC 
+// MAGIC Now we can simply load from this parquet file next time instead of creating the RDD from the text file (much slower).
+// MAGIC 
+// MAGIC Also using parquet files to store DataFrames allows us to go between languages quickly in a a scalable manner.
 
+// COMMAND ----------
+
+val clicks = sqlContext.read.parquet("/datasets/wiki-clickstream")
+
+// COMMAND ----------
+
+clicks.printSchema
+
+// COMMAND ----------
+
+display(clicks)  // let's display this DataFrame
 
 // COMMAND ----------
 
