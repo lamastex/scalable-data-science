@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 10 Mar 2016 03:20:14 UTC
+// Databricks notebook source exported at Thu, 10 Mar 2016 05:23:20 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -557,10 +557,14 @@ displayHTML(frameIt("https://parquet.apache.org/documentation/latest/",350))
 // COMMAND ----------
 
 // Convert the dataset to a more efficent format to speed up our analysis
-clickstreamRaw.
+clickstream.
   write.
   mode(SaveMode.Overwrite).
   parquet("/datasets/wiki-clickstream")
+
+// COMMAND ----------
+
+
 
 // COMMAND ----------
 
