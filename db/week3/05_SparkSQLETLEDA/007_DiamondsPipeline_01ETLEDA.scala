@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 10 Mar 2016 03:16:36 UTC
+// Databricks notebook source exported at Thu, 10 Mar 2016 09:17:08 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -103,8 +103,9 @@ diamondsRawDF.show()
 
 // COMMAND ----------
 
+import org.apache.spark.sql.types.DoubleType
 //we will convert price column from int to double later
-val diamondsDF = diamondsRawDF.select($"carat", $"cut", $"color", $"clarity", $"depth", $"table",$"price".as("price"), $"x", $"y", $"z")
+val diamondsDF = diamondsRawDF.select($"carat", $"cut", $"color", $"clarity", $"depth", $"table",$"price".cast(DoubleType).as("price"), $"x", $"y", $"z")
 diamondsDF.cache() // let's cache it for reuse
 diamondsDF.printSchema // print schema
 
@@ -311,7 +312,11 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 
 // COMMAND ----------
 
-diamondsDF.registerTempTable("diamonds") // Shift+Enter
+sqlContext.dropTempTable("diamonds")
+
+// COMMAND ----------
+
+diamondsDF.registerTempTable("diamondsForRaaz") // Shift+Enter
 
 // COMMAND ----------
 
