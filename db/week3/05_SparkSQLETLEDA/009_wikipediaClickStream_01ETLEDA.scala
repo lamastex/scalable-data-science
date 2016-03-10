@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 10 Mar 2016 09:12:56 UTC
+// Databricks notebook source exported at Thu, 10 Mar 2016 09:29:42 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -582,6 +582,32 @@ clicks.printSchema
 // COMMAND ----------
 
 display(clicks)  // let's display this DataFrame
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ##### DataFrame in python
+
+// COMMAND ----------
+
+// MAGIC %py
+// MAGIC clicksPy = sqlContext.read.parquet("/datasets/wiki-clickstream")
+
+// COMMAND ----------
+
+// MAGIC %py
+// MAGIC clicksPy.show()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC **You Try!**
+// MAGIC 
+// MAGIC Try to laoad a DataFrame in R from the parquet file just as we did for python.
+
+// COMMAND ----------
+
+// MAGIC %r
 
 // COMMAND ----------
 
