@@ -24,6 +24,13 @@ rm -rf ./MDparsed
 #FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done Sun Mar  6 20:55:03 NZDT 2016
 ###############################################################################################
 
+###########-- Week3 --#########################################################################
+#FName=../db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics # done Sun Mar 13 11:55:14 NZDT 2016
+#FName=../db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA # done Sun Mar 13 12:34:20 NZDT 2016
+#FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # done Sun Mar 13 12:35:15 NZDT 2016
+#FName=../db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA # done Sun Mar 13 12:36:02 NZDT 2016
+###############################################################################################
+
 ###########-- xtraResources --#########################################################################
 #FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ###############################################################################################

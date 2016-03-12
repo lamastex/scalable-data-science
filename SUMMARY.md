@@ -12,4 +12,9 @@
     * [Word Count: US State of Union Addesses](db/week2/03_WordCount/006_WordCount.md)
     * [EXTRA_Word Count: ETL of US State of Union Addesses](db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses.md)
 
+* [Week 3](db/week3/README.md)
+    * [Spark SQL Introduction](db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics.md)
+    * [ETL and EDA of Diamonds Data](db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA.md)
+    * [ETL and EDA of Power Plant Data](db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA.md)
+    * [ETL and EDA of Wiki Click Stream Data](db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA.md)
 
