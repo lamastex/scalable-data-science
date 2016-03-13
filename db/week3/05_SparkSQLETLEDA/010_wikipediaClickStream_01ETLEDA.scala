@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 20:01:28 UTC
+// Databricks notebook source exported at Sun, 13 Mar 2016 23:02:25 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -597,6 +597,18 @@ display(clicks)  // let's display this DataFrame
 
 // MAGIC %py
 // MAGIC clicksPy.show()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Now you can continue from the original python notebook also linked to this shard from here ([/#workspace/scalable-data-science/xtraResources/sparkSummitEast2016/Wikipedia Clickstream Data](/#workspace/scalable-data-science/xtraResources/sparkSummitEast2016/Wikipedia Clickstream Data)).
+// MAGIC 
+// MAGIC Recall from the beginning of this notebook that this python databricks notebook was used in the talk by Michael Armbrust at Spark Summit East February 2016 
+// MAGIC shared from [https://twitter.com/michaelarmbrust/status/699969850475737088](https://twitter.com/michaelarmbrust/status/699969850475737088)
+// MAGIC 
+// MAGIC (watch now, if you haven't already!)
+// MAGIC 
+// MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
 
 // COMMAND ----------
 
