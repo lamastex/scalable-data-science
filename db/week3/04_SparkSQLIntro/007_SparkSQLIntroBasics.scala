@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 19:57:26 UTC
+// Databricks notebook source exported at Mon, 14 Mar 2016 03:47:26 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -297,6 +297,11 @@ display(diamondsDF)
 // MAGIC [![Semi-Structured Tabular Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/G_67yUxdDbU/0.jpg)](https://www.youtube.com/v/G_67yUxdDbU?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC 
 // MAGIC ***
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Those who want to understand SparkSQL functionalities in more detail can see the [video lectures in Module 3 of Anthony Joseph's Introduction to Big data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module 3: Lectures) from the Community Edition of databricks.  The course has been added to this databricks shard at [/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x) as extra resources for the project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
