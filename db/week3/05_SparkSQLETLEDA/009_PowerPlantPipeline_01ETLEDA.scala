@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 15 Mar 2016 05:44:40 UTC
+// Databricks notebook source exported at Tue, 15 Mar 2016 05:47:41 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -207,7 +207,7 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 
 // COMMAND ----------
 
-// sqlContext. // uncomment and hit Tab after . to see what is possible
+sqlContext // put . after sqlContext and hit Tab to see what methods are available
 
 // COMMAND ----------
 
