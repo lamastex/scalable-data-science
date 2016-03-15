@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 15 Mar 2016 05:49:43 UTC
+// Databricks notebook source exported at Tue, 15 Mar 2016 05:51:48 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -211,7 +211,7 @@ sqlContext // put . after sqlContext and hit Tab to see what methods are availab
 
 // COMMAND ----------
 
-sqlContext.dropTempTable("power_plant_table") // don't Ctrl+Enter unless you want to remove the table!
+//sqlContext.dropTempTable("power_plant_table") // uncomment and Ctrl+Enter if you want to remove the table!
 
 // COMMAND ----------
 
