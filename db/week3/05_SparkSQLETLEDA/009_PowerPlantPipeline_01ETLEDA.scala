@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 20:00:23 UTC
+// Databricks notebook source exported at Tue, 15 Mar 2016 05:37:57 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -207,7 +207,7 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 
 // COMMAND ----------
 
-sqlContext. // hit Tab after . to see what is possible
+//sqlContext. // uncomment and hit Tab after . to see what is possible
 
 // COMMAND ----------
 
@@ -296,7 +296,9 @@ display(powerPlantDF.describe())
 
 // COMMAND ----------
 
-// MAGIC %md
+// MAGIC %md 
+// MAGIC ...and atmospheric pressure and relative humidity seem to have little to no linear correlation.
+// MAGIC 
 // MAGIC These pairwise plots can also be done directly using `display` on `select`ed columns of the DataFrame `powerPlantDF`.
 // MAGIC 
 // MAGIC In general we will shy from SQL as much as possible.  The illustations in `%sql` above are to mainly reassure those with a RDBMS background and SQL that their SQL expressibility can be directly used in Apache Spark and in databricks notebooks.
