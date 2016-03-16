@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 16 Mar 2016 02:09:36 UTC
+// Databricks notebook source exported at Wed, 16 Mar 2016 02:13:26 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -316,7 +316,8 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 
 // COMMAND ----------
 
-diamondsDF.registerTempTable("diamonds") // Shift+Enter to make a temporary table named diamonds from the diamondsDF
+// Shift+Enter to make a temporary table named diamonds from the diamondsDF
+diamondsDF.registerTempTable("diamonds") // it will re-register new table if another temp table named diamonds already exist
 
 // COMMAND ----------
 
