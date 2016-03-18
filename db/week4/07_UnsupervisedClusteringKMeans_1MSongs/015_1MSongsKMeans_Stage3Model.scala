@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 18 Mar 2016 04:50:09 UTC
+// Databricks notebook source exported at Fri, 18 Mar 2016 21:37:29 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -129,7 +129,7 @@ val model = new KMeans().setK(2).fit(trainingData)
 
 // COMMAND ----------
 
-model. // place cursor next to . and hit Tab to see all methods on model
+//model. // uncomment and place cursor next to . and hit Tab to see all methods on model
 
 // COMMAND ----------
 
