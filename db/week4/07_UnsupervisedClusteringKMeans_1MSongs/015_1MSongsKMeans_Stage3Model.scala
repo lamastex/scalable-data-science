@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 17 Mar 2016 03:13:43 UTC
+// Databricks notebook source exported at Fri, 18 Mar 2016 04:50:09 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -76,10 +76,6 @@ display(trainingData.select("duration", "tempo", "loudness", "features").limit(5
 // COMMAND ----------
 
 // MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/K_Means_Example_Step_2.svg)
 
 // COMMAND ----------
 
