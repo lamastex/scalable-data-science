@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 17 Mar 2016 03:12:15 UTC
+// Databricks notebook source exported at Fri, 18 Mar 2016 04:46:27 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -46,7 +46,7 @@ sc.textFile("databricks-datasets/songs/data-001/header.txt").collect()
 
 // COMMAND ----------
 
-//sc.textFile("databricks-datasets/songs/data-001/header.txt").collect.map(println) // to see line-by-line
+//sc.textFile("databricks-datasets/songs/data-001/header.txt").collect.map(println) // uncomment to see line-by-line
 
 // COMMAND ----------
 
