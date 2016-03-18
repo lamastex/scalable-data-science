@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 18 Mar 2016 04:46:27 UTC
+// Databricks notebook source exported at Fri, 18 Mar 2016 21:32:31 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -76,7 +76,12 @@ case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Do
 
 // COMMAND ----------
 
-val dataRDD = sc.textFile("/databricks-datasets/songs/data-001/part-000*")
+// this is loads all the data - a subset of the 1M songs dataset
+val dataRDD = sc.textFile("/databricks-datasets/songs/data-001/part-*") 
+
+// COMMAND ----------
+
+dataRDD.count // number of songs
 
 // COMMAND ----------
 
