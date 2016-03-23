@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 23 Mar 2016 06:07:51 UTC
+// Databricks notebook source exported at Wed, 23 Mar 2016 20:09:17 UTC
 // MAGIC %md
 // MAGIC ### A Note on being able to link-in scala docs from URL
 // MAGIC 
@@ -72,3 +72,14 @@
 // MAGIC http://docs.scala-lang.org/overviews/scaladoc/interface
 // MAGIC 
 // MAGIC The letters underneath the search box list all fields, methods and other tokens found during the creation of the Scaladoc. E.g. if you want to find where the .reverse method you are using is defined, click on R in the list of letters there, and then find in page to locate the .reverse method and the list of implementing classes/traits.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### databricks support
+// MAGIC 
+// MAGIC From: Brian Clapper at databricks 20160324
+// MAGIC 
+// MAGIC As near as I can tell, this issue (deep-linking to methods in a Scala class) is still not resolved. Methods do have HTML IDs, which means, in theory, you could construct a URL fragment to point to one. But Scaladoc already uses the fragment (the “#” sign part of the URL) to specify the class, and you can’t specify more than one fragment.
+// MAGIC 
+// MAGIC This, obviously, is not a problem we can solve. It’s a Scaladoc problem, and we have no control over that.
