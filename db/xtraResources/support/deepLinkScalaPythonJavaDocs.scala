@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 23 Mar 2016 06:05:35 UTC
+// Databricks notebook source exported at Wed, 23 Mar 2016 06:07:51 UTC
 // MAGIC %md
 // MAGIC ### A Note on being able to link-in scala docs from URL
 // MAGIC 
@@ -31,3 +31,44 @@
 
 // MAGIC %md
 // MAGIC Can anyone help with being able to better link to syntax for scala docs?
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Confirming that ScalaDoc doesn’t support deep linking to class methods. L
+// MAGIC 
+// MAGIC  
+// MAGIC 
+// MAGIC http://www.scala-lang.org/old/node/8798.html
+// MAGIC 
+// MAGIC Daniel Dekany :
+// MAGIC 
+// MAGIC > You can't link to methods in Scaladoc 2, right? I tried
+// MAGIC 
+// MAGIC > [[com.example.Class#method]], [[com.example.Class.method]],
+// MAGIC 
+// MAGIC > [[com.example.Class.method()]] etc., and they just end up being plain
+// MAGIC 
+// MAGIC > text in the HTML. Other projects that I have looked at either didn't
+// MAGIC 
+// MAGIC > have links to methods or just used instead of [[...]].
+// MAGIC 
+// MAGIC  
+// MAGIC 
+// MAGIC It has been discussed. The major limitation of a simple solution would
+// MAGIC 
+// MAGIC be ignoring alternatives of multiple overloaded methods. Would you
+// MAGIC 
+// MAGIC mind opening a Trac enhancement request? Depending on the feedback
+// MAGIC 
+// MAGIC from EPFL guys I may provide a implementation.
+// MAGIC 
+// MAGIC PF
+// MAGIC 
+// MAGIC  
+// MAGIC 
+// MAGIC Even if you follow this, you can’t get deep links to methods, you just land on the class page:
+// MAGIC 
+// MAGIC http://docs.scala-lang.org/overviews/scaladoc/interface
+// MAGIC 
+// MAGIC The letters underneath the search box list all fields, methods and other tokens found during the creation of the Scaladoc. E.g. if you want to find where the .reverse method you are using is defined, click on R in the list of letters there, and then find in page to locate the .reverse method and the list of implementing classes/traits.
