@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 24 Mar 2016 03:05:06 UTC
+// Databricks notebook source exported at Fri, 25 Mar 2016 20:52:59 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -175,8 +175,8 @@ B
 // MAGIC    So, the vector above is denoted by \\(\mathbf{a}\\), the lowercase, bold a.
 // MAGIC * \\(a_i\\) denotes the i-th entry of a vector. So for instance:
 // MAGIC   * \\(a_2\\) denotes the second entry of the vector and it is 1.0 for our vector.
-// MAGIC * If a vector is m-dimensional, then we say that \\(\mathbf{a}\\) is in \\(\mathbf{R}^m\\) and write \\(\mathbf{a} \in  \mathbf{R}^m\\).
-// MAGIC     * So our \\(\mathbf{a} \in  \mathbf{R}^4\\).
+// MAGIC * If a vector is m-dimensional, then we say that \\(\mathbf{a}\\) is in \\(\mathbb{R}^m\\) and write \\(\mathbf{a} \in  \mathbb{R}^m\\).
+// MAGIC     * So our \\(\mathbf{a} \in  \mathbb{R}^4\\).
 
 // COMMAND ----------
 
