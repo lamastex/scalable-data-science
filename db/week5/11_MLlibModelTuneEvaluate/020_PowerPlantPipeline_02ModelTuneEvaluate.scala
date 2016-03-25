@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 24 Mar 2016 03:08:06 UTC
+// Databricks notebook source exported at Fri, 25 Mar 2016 20:44:42 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -77,7 +77,7 @@
 
 // COMMAND ----------
 
-//%run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA"
+//%run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA" // uncomment and Ctrl+Enter
 
 // COMMAND ----------
 
