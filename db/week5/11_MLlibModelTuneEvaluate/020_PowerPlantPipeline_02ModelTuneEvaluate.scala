@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 25 Mar 2016 20:44:42 UTC
+// Databricks notebook source exported at Thu, 31 Mar 2016 20:46:21 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -77,7 +77,7 @@
 
 // COMMAND ----------
 
-//%run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA" // uncomment and Ctrl+Enter
+//%run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA"
 
 // COMMAND ----------
 
@@ -340,11 +340,19 @@ val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", 
 
 // COMMAND ----------
 
+displayHTML(frameIt("https://en.wikipedia.org/wiki/Coefficient_of_determination",500))
+
+// COMMAND ----------
+
 val rmse = metrics.rootMeanSquaredError
 
 // COMMAND ----------
 
 val explainedVariance = metrics.explainedVariance
+
+// COMMAND ----------
+
+
 
 // COMMAND ----------
 
@@ -384,13 +392,14 @@ predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Resi
 
 // COMMAND ----------
 
-// MAGIC %sql SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME <= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
-// MAGIC group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME <= -2.0 then 2 else 3 end
+// MAGIC %sql 
+// MAGIC SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
+// MAGIC group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC So we have about 70% of our training data within 1 RMSE and about 98% (70% + 29%) within 2 RMSE. So the model is pretty decent. Let's see if we can tune the model to improve it further.
+// MAGIC So we have about 70% of our training data within 1 RMSE and about 97% (70% + 27%) within 2 RMSE. So the model is pretty decent. Let's see if we can tune the model to improve it further.
 // MAGIC 
 // MAGIC **NOTE:** these numbers will vary across runs due to the seed in random sampling of training and test set, number of iterations, and other stopping rules in optimization, for example.
 
@@ -433,10 +442,10 @@ regEval.setLabelCol("PE")
 
 // COMMAND ----------
 
-//Let's create our crossvalidator with 5 fold cross validation
+//Let's create our crossvalidator with 3 fold cross validation
 val crossval = new CrossValidator()
 crossval.setEstimator(lrPipeline)
-crossval.setNumFolds(5)
+crossval.setNumFolds(3)
 crossval.setEvaluator(regEval)
 
 // COMMAND ----------
@@ -546,6 +555,21 @@ val dtModel = crossval.fit(trainingSet) // fit decitionTree with cv
 
 // COMMAND ----------
 
+dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC The line above will pull the Decision Tree model from the Pipeline and display it as an if-then-else string.
+// MAGIC 
+// MAGIC Next let's visualize it as a decision tree for regression.
+
+// COMMAND ----------
+
+display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel])
+
+// COMMAND ----------
+
 // MAGIC %md Now let's see how our DecisionTree model compares to our LinearRegression model
 
 // COMMAND ----------
@@ -567,14 +591,6 @@ println (f"R2: $r2")
 
 
 
-
-// COMMAND ----------
-
-dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
-
-// COMMAND ----------
-
-// MAGIC %md The line above will pull the Decision Tree model from the Pipeline and display it as an if-then-else string
 
 // COMMAND ----------
 
