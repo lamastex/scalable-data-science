@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 31 Mar 2016 02:09:14 UTC
+// Databricks notebook source exported at Thu, 31 Mar 2016 21:04:33 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -77,7 +77,14 @@
 
 // COMMAND ----------
 
-//%run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA" // uncomment and Ctrl+Enter
+// MAGIC %md
+// MAGIC * *Note:* We have already evaluated the `%run ...` command below. Therefore, you need to:
+// MAGIC      * first delete the cell below by pressing on `x` on the top-right corner of the cell and 
+// MAGIC      * revaluate it as instructed in **Rerun from here** instruction above.
+
+// COMMAND ----------
+
+// MAGIC %run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA"
 
 // COMMAND ----------
 
@@ -545,6 +552,11 @@ val dtModel = crossval.fit(trainingSet) // fit decitionTree with cv
 
 // COMMAND ----------
 
+import org.apache.spark.ml.regression.DecisionTreeRegressionModel
+import org.apache.spark.ml.PipelineModel
+
+// COMMAND ----------
+
 dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
 
 // COMMAND ----------
@@ -565,9 +577,6 @@ display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[D
 
 // COMMAND ----------
 
-import org.apache.spark.ml.regression.DecisionTreeRegressionModel
-import org.apache.spark.ml.PipelineModel
- 
 
 val predictionsAndLabels = dtModel.bestModel.transform(testSet)
 val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
@@ -608,6 +617,11 @@ displayHTML(frameIt("http://www.kdnuggets.com/2015/05/top-10-data-mining-algorit
 // COMMAND ----------
 
 displayHTML(frameIt("http://spark.apache.org/docs/latest/mllib-ensembles.html#gradient-boosted-trees-gbts",500))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC This can take over 400 to 500 seconds!
 
 // COMMAND ----------
 
@@ -654,7 +668,10 @@ println (f"R2: $r2")
 
 // COMMAND ----------
 
-// MAGIC %md We can use the toDebugString method to dump out what our trees and weighting look like:
+// MAGIC %md
+// MAGIC Note that the root mean squared error is much smaller now due to the ensemble of 120 trees from Gradient Boosting!
+// MAGIC 
+// MAGIC We can use the toDebugString method to dump out what our trees and weighting look like:
 
 // COMMAND ----------
 
@@ -822,7 +839,7 @@ Thread.sleep(Seconds(5).milliseconds)
 // COMMAND ----------
 
 // MAGIC %sql 
-// MAGIC --Note you made to run this a couple of times to see the refreshed data...
+// MAGIC --Note you may have to run this a couple of times to see the refreshed data...
 // MAGIC select * from power_plant_predictions
 
 // COMMAND ----------
@@ -833,7 +850,7 @@ Thread.sleep(Seconds(5).milliseconds)
 // COMMAND ----------
 
 // MAGIC %sql 
-// MAGIC select * from power_plant_table where at between 10 and 11 and AP between 1000 and 1010 and RH between 90 and 97 and v between 37 and 40 order by PE 
+// MAGIC select * from power_plant_table where AT between 10 and 11 and AP between 1000 and 1010 and RH between 90 and 97 and v between 37 and 40 order by PE 
 
 // COMMAND ----------
 
