@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 5 May 2016 04:16:01 UTC
+// Databricks notebook source exported at Mon, 9 May 2016 04:49:48 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -15,7 +15,10 @@
 // MAGIC %md
 // MAGIC This is a scala version of the python notebook in the following talk:
 // MAGIC 
-// MAGIC see [https://www.brighttalk.com/webcast/12891/199003](https://www.brighttalk.com/webcast/12891/199003)
+// MAGIC **Homework:**
+// MAGIC 
+// MAGIC See [https://www.brighttalk.com/webcast/12891/199003](https://www.brighttalk.com/webcast/12891/199003) (you need to subscript to Bright Talk).
+// MAGIC Then go through this scala version of the notebbok from the talk.
 
 // COMMAND ----------
 
