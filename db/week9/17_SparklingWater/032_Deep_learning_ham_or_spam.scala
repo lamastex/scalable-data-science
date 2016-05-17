@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 12 May 2016 03:49:49 UTC
+// Databricks notebook source exported at Tue, 17 May 2016 03:55:56 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -155,7 +155,7 @@ import org.apache.spark.ml.feature.HashingTF
 def hasher(df: DataFrame): DataFrame = {
   
   val hashingTF = new HashingTF().
-   setNumFeatures(1024). // Only the most-frequent 1024 terms are retained
+   setNumFeatures(1024). // number of features to retain
    setInputCol("filtered").
    setOutputCol("hashed")
   hashingTF.transform(df)
