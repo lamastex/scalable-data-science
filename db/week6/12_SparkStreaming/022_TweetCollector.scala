@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 31 Mar 2016 03:05:11 UTC
+// Databricks notebook source exported at Thu, 19 May 2016 22:46:37 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -16,6 +16,8 @@
 // MAGIC # Tweet Collector - capture live tweets
 // MAGIC 
 // MAGIC ### First let's take the twitter stream and write to DBFS as json files
+// MAGIC 
+// MAGIC #### See the notebook 022_TweetGenericCollector (this notebook is not robust and it is only for demo)
 
 // COMMAND ----------
 
