@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Thu, 12 May 2016 04:00:55 UTC
+# Databricks notebook source exported at Thu, 19 May 2016 21:12:36 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -343,7 +343,7 @@ len(local_labelled_images)
 
 # COMMAND ----------
 
-(_, url, tags) = local_labelled_images[50]
+(_, url, tags) = local_labelled_images[15]
 display_image(url)
 
 # COMMAND ----------
