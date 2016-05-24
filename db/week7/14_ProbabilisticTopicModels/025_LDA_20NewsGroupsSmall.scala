@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 7 Apr 2016 03:44:25 UTC
+// Databricks notebook source exported at Tue, 24 May 2016 18:29:28 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -64,6 +64,10 @@
 // COMMAND ----------
 
 // MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
+
+// COMMAND ----------
+
+displayHTML(frameIt("http://journalofdigitalhumanities.org/2-1/topic-modeling-and-digital-humanities-by-david-m-blei/",900))
 
 // COMMAND ----------
 
@@ -333,7 +337,8 @@ val corpus_df = corpus_body.zipWithIndex.toDF("corpus", "id")
 
 // COMMAND ----------
 
-display(corpus_df)
+//display(corpus_df) // uncomment to see corpus 
+// this was commented out after a member of the new group requested to remain anonymous on 20160525
 
 // COMMAND ----------
 
@@ -362,7 +367,8 @@ val tokenized_df = tokenizer.transform(corpus_df)
 
 // COMMAND ----------
 
-display(tokenized_df)
+//display(tokenized_df) // uncomment to see tokenized_df 
+// this was commented out after a member of the new group requested to remain anonymous on 20160525
 
 // COMMAND ----------
 
