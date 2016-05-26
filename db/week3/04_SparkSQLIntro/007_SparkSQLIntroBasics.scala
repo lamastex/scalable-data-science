@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 19:57:26 UTC
+// Databricks notebook source exported at Mon, 14 Mar 2016 04:03:22 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -297,6 +297,24 @@ display(diamondsDF)
 // MAGIC [![Semi-Structured Tabular Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/G_67yUxdDbU/0.jpg)](https://www.youtube.com/v/G_67yUxdDbU?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC 
 // MAGIC ***
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC This week's recommended homework and extra-work linked below will help further your understanding beyond the three example notebooks we will see next at: 
+// MAGIC * [Workspace -> scalable-data-science -> week3 -> 05_SparkSQLETLEDA](/#workspace/scalable-data-science/week3/05_SparkSQLETLEDA).
+// MAGIC 
+// MAGIC ### Recommended Homework
+// MAGIC This week's recommended homework is a deep dive into the [SparkSQL programming guide](http://spark.apache.org/docs/latest/sql-programming-guide.html) via a "databricksified" set of scala notebooks at: 
+// MAGIC * [Workspace -> scalable-data-science -> xtraResources -> ProgGuides1_6 -> sqlProgrammingGuide](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide).
+// MAGIC 
+// MAGIC ### Recommended Extra-work
+// MAGIC Those who want to understand SparkSQL functionalities in more detail can see:
+// MAGIC * [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module 3: Lectures) from the Community Edition of databricks.  
+// MAGIC 
+// MAGIC Anthony Joseph's Introduction to Big Data edX course (in python using pySpark) has been added to this databricks shard at:
+// MAGIC * [Workspace -> scalable-data-science -> xtraResources -> edXBigDataSeries2015 -> CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x), 
+// MAGIC as an extra resource for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
