@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 14 Jun 2016 04:30:47 UTC
+// Databricks notebook source exported at Tue, 14 Jun 2016 09:32:06 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -27,11 +27,29 @@
 // MAGIC A simple constraint satisfaction problem can be posed as a Boolean-valued statement involving such space-time sets.
 // MAGIC 
 // MAGIC Often, the first seps that a geospatial scientist or analyst needs to take in order to build intuition about the phenomenon of interest invovles such CSP problems.
+// MAGIC 
+// MAGIC Some simple examples of such CSP problems are:
+// MAGIC * Given a set of GPS trajectories for multiple entities find the set of entities that intersect with a given space-time set or a collection of space-time sets.
+// MAGIC * Find the set of entitites that were close to one another based on their trajectories during a given period of time.
+// MAGIC * Find entities that are spatio-temporally inconsistent - such as being in two places at the same time.
+// MAGIC * ...
 
 // COMMAND ----------
 
 // MAGIC %md 
 // MAGIC ## Microsoft Research's Beijing Taxicab Trajectories using Magellan
+// MAGIC 
+// MAGIC ### T-Drive trajectory data sample
+// MAGIC 
+// MAGIC Yu Zheng
+// MAGIC 
+// MAGIC 12 August 2011
+// MAGIC 
+// MAGIC **Abstract**
+// MAGIC 
+// MAGIC This is a sample of T-Drive trajectory dataset that contains a one-week trajectories of 10,357 taxis. The total number of points in this dataset is about 15 million and the total distance of the trajectories reaches 9 million kilometers.
+// MAGIC 
+// MAGIC Please cite the following papers when using the dataset: [1] Jing Yuan, Yu Zheng, Xing Xie, and Guangzhong Sun. Driving with knowledge from the physical world. In The 17th ACM SIGKDD international conference on Knowledge Discovery and Data mining, KDD'11, New York, NY, USA, 2011. ACM. [2] Jing Yuan, Yu Zheng, Chengyang Zhang, Wenlei Xie, Xing Xie, Guangzhong Sun, and Yan Huang. T-drive: driving directions based on taxi trajectories. In Proceedings of the 18th SIGSPATIAL International Conference on Advances in Geographic Information Systems, GIS '10, pages 99-108, New York, NY, USA,2010. ACM.
 // MAGIC 
 // MAGIC More details on the dataset and related papers are available [here](http://research.microsoft.com/apps/pubs/?id=152883).
 
@@ -57,9 +75,9 @@ displayHTML(frameIt("http://research.microsoft.com/apps/pubs/?id=152883",700))
 // MAGIC 
 // MAGIC ## Steps in this notebook
 // MAGIC 
-// MAGIC * 1. Download the taxi trips in Beiging
-// MAGIC * 2. Turn into Dataframe
-// MAGIC * 3. Define generic functions for CSP problem
+// MAGIC 1. Download the taxi trips in Beijing from MSR.
+// MAGIC * Turn them into Dataframes.
+// MAGIC * Define generic functions for the CSP problem.
 
 // COMMAND ----------
 
@@ -79,8 +97,12 @@ import org.apache.hadoop.mapreduce.Job
 
 // COMMAND ----------
 
-// MAGIC %md ####Load directly into spark
-// MAGIC See **[this post](https://sainudiin-canterbury-research.cloud.databricks.com/#externalnotebook/https%3A%2F%2Fdocs.cloud.databricks.com%2Fdocs%2Flatest%2Fdatabricks_guide%2Findex.html%2303%2520Accessing%2520Data%2F3%2520Common%2520File%2520Formats%2F6%2520Zip%2520Files%2520-%2520scala.html) for how to do so**
+// MAGIC %md 
+// MAGIC #### Load zip files directly into spark
+// MAGIC To learn how to do load zip files directly from the distributed file system see 
+// MAGIC * *Databricks Guide -> Accessing Data -> Common File Formats -> Zip Files - scala* 
+// MAGIC * or the importable notebook:
+// MAGIC   * [https://docs.cloud.databricks.com/docs/latest/databricks_guide/03%20Accessing%20Data/3%20Common%20File%20Formats/6%20Zip%20Files%20-%20scala.html](https://docs.cloud.databricks.com/docs/latest/databricks_guide/03%20Accessing%20Data/3%20Common%20File%20Formats/6%20Zip%20Files%20-%20scala.html).
 
 // COMMAND ----------
 
@@ -203,11 +225,11 @@ case class taxiRecord(
 
 // COMMAND ----------
 
-// MAGIC %md #TODO
+// MAGIC %md 
 // MAGIC 
-// MAGIC See make unix timestamp function to avoid calling java time library
+// MAGIC **An Ideal TODO:** See make unix timestamp function to avoid calling the java time library (as done in this notebook).
 // MAGIC 
-// MAGIC https://spark.apache.org/docs/1.6.1/api/scala/index.html#org.apache.spark.sql.functions$
+// MAGIC [https://spark.apache.org/docs/1.6.1/api/scala/index.html#org.apache.spark.sql.functions$](https://spark.apache.org/docs/1.6.1/api/scala/index.html#org.apache.spark.sql.functions$)
 
 // COMMAND ----------
 
