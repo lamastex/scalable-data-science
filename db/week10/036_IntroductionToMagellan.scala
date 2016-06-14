@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 19 May 2016 21:29:45 UTC
+// Databricks notebook source exported at Tue, 14 Jun 2016 03:16:47 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -20,11 +20,12 @@
 // MAGIC 
 // MAGIC First you need to attach the following two libraries:
 // MAGIC * the magellan library 
-// MAGIC   * Here we are using Spark 1.5.2 and the magellan library as a jar file is built from [github magellan source](https://github.com/harsha2010/magellan) - apparently magellan will be spark 2.0 ready in the future):
-// MAGIC   * currently build from source instead of using spark package: [http://spark-packages.org/package/harsha2010/magellan](http://spark-packages.org/package/harsha2010/magellan)
-// MAGIC * and also the esri-geometry-api-1.2.1 library
-// MAGIC to databricks cluster by following instructions here:
-// MAGIC * [using 3rd party libraries in databricks](https://databricks.com/blog/2015/07/28/using-3rd-party-libraries-in-databricks-spark-packages-and-maven-libraries.html)
+// MAGIC   * Here we are using Spark 1.5.2 and the magellan library as a jar file that was built from [github magellan source](https://github.com/harsha2010/magellan).
+// MAGIC     * we could not use the spark package: [http://spark-packages.org/package/harsha2010/magellan](http://spark-packages.org/package/harsha2010/magellan).
+// MAGIC     * apparently magellan will be spark 2.0 ready in the future).
+// MAGIC * and also the esri-geometry-api-1.2.1 library to databricks cluster.
+// MAGIC 
+// MAGIC See [using 3rd party libraries in databricks](https://databricks.com/blog/2015/07/28/using-3rd-party-libraries-in-databricks-spark-packages-and-maven-libraries.html) for help on attaching libraries in databricks.
 
 // COMMAND ----------
 
@@ -106,10 +107,6 @@ points.show(false)
 // COMMAND ----------
 
 // MAGIC %md ### Data Structure: Polygon
-
-// COMMAND ----------
-
-
 
 // COMMAND ----------
 
