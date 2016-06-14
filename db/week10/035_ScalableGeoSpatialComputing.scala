@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 14 Jun 2016 03:17:11 UTC
+// Databricks notebook source exported at Tue, 14 Jun 2016 03:20:20 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -58,7 +58,9 @@ displayHTML(frameIt("http://research.microsoft.com/en-us/projects/urbancomputing
 // MAGIC See for example the global EQ datastreams from US geological Service below.
 // MAGIC 
 // MAGIC **A bold idea: **
-// MAGIC Imagine the non-parametric inference problem of estimating co-exciting Hawkes-like processes for modelling earth quakes on the entire planet!
+// MAGIC Imagine the non-parametric inference problem of estimating co-exciting Hawkes-like processes for modelling earth quakes on the entire planet! 
+// MAGIC 
+// MAGIC For a global data source, see US geological Service's Earthquake hazards Program ["http://earthquake.usgs.gov/data/](http://earthquake.usgs.gov/data/).
 
 // COMMAND ----------
 
