@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 19 May 2016 21:18:02 UTC
+// Databricks notebook source exported at Tue, 14 Jun 2016 03:17:11 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -27,7 +27,7 @@
 // MAGIC # Some Concrete Examples of Scalable Geospatial Analytics
 // MAGIC 
 // MAGIC ## 1. Let us check out cross-domain data fusion in MSR's Urban Computing Group 
-// MAGIC * lots of interesting papers to read!!!
+// MAGIC * lots of interesting papers to read at [http://research.microsoft.com/en-us/projects/urbancomputing/](http://research.microsoft.com/en-us/projects/urbancomputing/).
 
 // COMMAND ----------
 
