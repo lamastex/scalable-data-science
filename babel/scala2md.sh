@@ -16,8 +16,8 @@ rm -rf ./MDparsed
 ###########-- Week1 --#########################################################################
 #FName=../db/week1/01_introduction/000_scalableDataScience # done Thu Jun 16 19:03:47 NZST 2016
 #FName=../db/week1/01_introduction/001_whySpark # done Thu Jun 16 20:00:33 NZST 2016
-#FName=../db/week1/01_introduction/002_loginToDatabricks # done Thu Jun 16 20:12:39 NZST 2016
-FName=../db/week1/01_introduction/003_scalaCrashCourse # done Thu Jun 16 20:26:14 NZST 2016
+FName=../db/week1/01_introduction/002_loginToDatabricks # done Thu Jun 16 20:12:39 NZST 2016
+#FName=../db/week1/01_introduction/003_scalaCrashCourse # done Thu Jun 16 20:26:14 NZST 2016
 ###############################################################################################
 
 ###########-- Week2 --#########################################################################
@@ -62,6 +62,7 @@ FName=../db/week1/01_introduction/003_scalaCrashCourse # done Thu Jun 16 20:26:1
 ###############################################################################################
 
 ###########-- xtraResources --#########################################################################
+#FName=../db/xtraResources/awsEducate/sharing # done Thu Jun 16 21:00:53 NZST 2016
 #FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ###############################################################################################
 

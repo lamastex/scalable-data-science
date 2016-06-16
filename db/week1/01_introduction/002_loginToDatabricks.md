@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 16 Jun 2016 08:07:34 UTC
+// Databricks notebook source exported at Thu, 16 Jun 2016 09:32:31 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -24,9 +24,9 @@ The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalab
 
 # Outline
 
-### I. [21 Easy Steps for Sharing your AWS Educate Credits](/#workspace/scalable-data-science/xtraResources/awsEducate/sharing) (!! you HAVE to do this later !!)
-* if you are not in `*.cloud.databricks` and are browsing locally then go here for 
-    [the 21 easy steps for sharing your AWS Educate Credits](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/2016/S1/xtraResources/awsEducate/sharing.html)
+### I. 21 Easy Steps for Sharing your AWS Educate Credits
+* [Workspace -> scalable-data-science -> xtraResources -> awsEducate -> sharing](/#workspace/scalable-data-science/xtraResources/awsEducate/sharing) (!! you HAVE to do this later !!)
+* If you are not in `*.cloud.databricks` or the above link is useless then go to [html here](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/2016/S1/xtraResources/awsEducate/sharing.html).
     
 ### II. 7 Steps to the Databricks Cloud
 ### III. Essentials of the Databricks Cloud

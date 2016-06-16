@@ -18,3 +18,7 @@
     * [ETL and EDA of Power Plant Data](db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA.md)
     * [ETL and EDA of Wiki Click Stream Data](db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA.md)
 
+* [Extra Resources](db/xtraResources/README.md)
+    * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
+    * [Linear Algebra Cheat Sheet](db/xtraResources/LinearAlgebra/LAlgCheatSheet.md)
+
