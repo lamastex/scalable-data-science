@@ -17,4 +17,4 @@ their project proposal gets approved by Raazesh Sainudiin, the course coordinato
 Please send any typos or suggestions to raazesh.sainudiin@gmail.com
 
 Raazesh Sainudiin and Sivanand Sivaram
-with assistance from Dillon George
+with assistance from Paul Brouwers, Dillon George and Ivan Sadikov
