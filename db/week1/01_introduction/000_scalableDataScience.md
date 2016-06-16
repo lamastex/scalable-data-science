@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 16 Jun 2016 06:58:18 UTC
+// Databricks notebook source exported at Thu, 16 Jun 2016 07:09:41 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,7 +14,7 @@ and
 
 
 
-This notebook's recorded Uji(有時):
+The [html](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week1/01_introduction/000_scalableDataScience.html) of this databricks notebook and its recorded Uji(有時):
 
 [![sds/uji/week1/01_introduction/000_scalableDataScience](http://img.youtube.com/vi/O8JbxgPpAU8/0.jpg)](https://www.youtube.com/v/O8JbxgPpAU8?rel=0&autoplay=1&modestbranding=1&start=0&end=2064)
 
