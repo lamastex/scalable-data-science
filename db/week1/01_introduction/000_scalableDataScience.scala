@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 25 Feb 2016 02:36:26 UTC
+// Databricks notebook source exported at Thu, 16 Jun 2016 06:58:18 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC This notebook's recorded Uji(有時):
+// MAGIC 
+// MAGIC [![sds/uji/week1/01_introduction/000_scalableDataScience](http://img.youtube.com/vi/O8JbxgPpAU8/0.jpg)](https://www.youtube.com/v/O8JbxgPpAU8?rel=0&autoplay=1&modestbranding=1&start=0&end=2064)
 
 // COMMAND ----------
 
@@ -178,7 +185,7 @@
 // MAGIC ### Apply standard learning methods via scalably servable *end-to-end industrial ML pipelines*
 // MAGIC #### ETL, Model, Validate, Test, reETL (feature re-engineer), model validate, test,..., serve model to clients
 // MAGIC ##### (we will choose from this list)
-// MAGIC * Supervised Learning Mehtods: Regression /Classification
+// MAGIC * Supervised Learning Methods: Regression /Classification
 // MAGIC * Unsupervised Learning Methods: Clustering
 // MAGIC * Recommedation systems
 // MAGIC * Streaming
