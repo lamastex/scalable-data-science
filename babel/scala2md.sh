@@ -15,8 +15,8 @@ rm -rf ./MDparsed
 # that needs to be parsed into markdown (.md file extension)
 ###########-- Week1 --#########################################################################
 #FName=../db/week1/01_introduction/000_scalableDataScience # done Thu Jun 16 19:03:47 NZST 2016
-FName=../db/week1/01_introduction/001_whySpark # done Thu Jun 16 20:00:33 NZST 2016
-#FName=../db/week1/01_introduction/002_loginToDatabricks # done Sun Feb 28 18:34:32 NZDT 2016
+#FName=../db/week1/01_introduction/001_whySpark # done Thu Jun 16 20:00:33 NZST 2016
+FName=../db/week1/01_introduction/002_loginToDatabricks # done Thu Jun 16 20:12:39 NZST 2016
 #FName=../db/week1/01_introduction/003_scalaCrashCourse # done Sun Feb 28 19:03:20 NZDT 2016
 ###############################################################################################
 
