@@ -1,10 +1,9 @@
-// Databricks notebook source exported at Fri, 17 Jun 2016 03:53:11 UTC
+// Databricks notebook source exported at Fri, 17 Jun 2016 04:03:52 UTC
 // This is a sequence of functions that can be accessed by other notebooks using the following %run command:
 // %run "/scalable-data-science/xtraResources/support/sdsFunctions"
 
 // COMMAND ----------
 
-//OHOHNONOYAYASEEININGITBOOKNOW 
 //This allows easy embedding of publicly available information into any other notebook
 //when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
 //Example usage:
@@ -15,7 +14,7 @@ def frameIt( u:String, h:Int ) : String = {
  width="95%" height="""" + h + """"
  sandbox>
   <p>
-    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+    <a href="http://spark.apache.org/docs/latest/index.html">
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
