@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 16 Jun 2016 09:32:31 UTC
+// Databricks notebook source exported at Fri, 17 Jun 2016 03:29:41 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -23,7 +23,7 @@
 // MAGIC # Outline
 // MAGIC 
 // MAGIC ### I. 21 Easy Steps for Sharing your AWS Educate Credits
-// MAGIC * [Workspace -> scalable-data-science -> xtraResources -> awsEducate -> sharing](/#workspace/scalable-data-science/xtraResources/awsEducate/sharing) (!! you HAVE to do this later !!)
+// MAGIC * [Workspace -> scalable-data-science -> xtraResources -> awsEducate -> sharing (relative to 'Workspace' link!)](/#workspace/scalable-data-science/xtraResources/awsEducate/sharing) 
 // MAGIC * If you are not in `*.cloud.databricks` or the above link is useless then go to [html here](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/2016/S1/xtraResources/awsEducate/sharing.html).
 // MAGIC     
 // MAGIC ### II. 7 Steps to the Databricks Cloud
