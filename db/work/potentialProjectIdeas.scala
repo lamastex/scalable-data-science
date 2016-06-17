@@ -1,4 +1,17 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 19:23:13 UTC
+// Databricks notebook source exported at Fri, 17 Jun 2016 03:20:58 UTC
+// MAGIC %md
+// MAGIC 
+// MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+// MAGIC 
+// MAGIC 
+// MAGIC ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
+// MAGIC 
+// MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
+// MAGIC and 
+// MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
 // MAGIC %md
 // MAGIC # List of pointers to potential course projects
 
@@ -29,7 +42,7 @@
 // MAGIC  * Looking back at big data (Digital humanities)
 // MAGIC    * As computational tools open up new ways of understanding history, historians and computer scientists are working together to explore the possibilities.
 // MAGIC    * [DOI:10.1145/2436256.2436263](http://dl.acm.org/citation.cfm?id=2436256.2436263)
-// MAGIC  * Compitational Epidemiology
+// MAGIC  * Computational Epidemiology
 // MAGIC    * The challenge of developing and using computer models to understand and control the diffusion of disease through populations.
 // MAGIC    * [DOI:10.1145/2483852.2483871](http://dl.acm.org/citation.cfm?id=2483871&picked=formats)
 // MAGIC  * Replicated Data Consistency Explained Through Baseball
@@ -98,3 +111,22 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Keep reading... 
+// MAGIC * Association for Computing Machinery (ACM) Communications is a nice central point for a quick overview into current computationallu focussed mathematical sciences.
+// MAGIC * PNAS/Science/Nature - usual popular science venues
+// MAGIC * Hacker News
+// MAGIC * ...
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+// MAGIC 
+// MAGIC 
+// MAGIC ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
+// MAGIC 
+// MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
+// MAGIC and 
+// MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
