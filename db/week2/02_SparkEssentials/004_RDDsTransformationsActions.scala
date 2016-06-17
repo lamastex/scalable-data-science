@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 22:18:10 UTC
+// Databricks notebook source exported at Fri, 17 Jun 2016 04:06:58 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,10 +13,23 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week2/02_SparkEssentials/004_RDDsTransformationsActions.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji") for **course mechanics, logistics, expectations and course-project suggestions**:
+// MAGIC [Workspace -> scalable-data-science -> work -> potentialProjectIdeas (relative to 'Workspace' link!)](/#workspace/scalable-data-science/work/potentialProjectIdeas)
+// MAGIC 
+// MAGIC [![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=0&end=797)
+// MAGIC 
+// MAGIC 
+// MAGIC and its remaining recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji")
+// MAGIC 
+// MAGIC [![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=797)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # **Introduction to Spark**
 // MAGIC ## Spark Essentials: RDDs, Transformations and Actions
 // MAGIC 
-// MAGIC * This introduction notebook describes how to get started running Spark (Scala) code in Notebooks.
+// MAGIC * This introductory notebook describes how to get started running Spark (Scala) code in Notebooks.
 // MAGIC * Working with Spark's Resilient Distributed Datasets (RDDs)
 // MAGIC   * creating RDDs
 // MAGIC   * performing basic transformations on RDDs
@@ -42,10 +55,22 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",700))
 
 // COMMAND ----------
