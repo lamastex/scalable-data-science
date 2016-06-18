@@ -24,14 +24,22 @@ rm -rf ./MDparsed
 #FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Sat Jun 18 16:29:12 NZST 2016
 #FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done  Sat Jun 18 16:29:31 NZST 2016
 #FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done Sat Jun 18 17:00:40 NZST 2016
-FName=../db/week2/03_WordCount/006_WordCount # done 
+#FName=../db/week2/03_WordCount/006_WordCount # done Sat Jun 18 19:14:52 NZST 2016
 ###############################################################################################
 
 ###########-- Week3 --#########################################################################
-#FName=../db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics # done Sun Mar 13 11:55:14 NZDT 2016
-#FName=../db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA # done Sun Mar 13 12:34:20 NZDT 2016
-#FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # done Sun Mar 13 12:35:15 NZDT 2016
-#FName=../db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA # done Sun Mar 13 12:36:02 NZDT 2016
+############################# this block done
+FName=../db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics # 
+#FName=../db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA # 
+#FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # 
+#FName=../db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA # 
+######sql-programming guide HOMEWORK ### this block done Sat Jun 18 19:53:55 NZST 2016
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/004_performanceTuning_sqlProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/005_distributedSqlEngine_sqlProgGuide
 ###############################################################################################
 
 ###########-- Week4 --#########################################################################

@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 19:57:26 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 07:46:37 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,14 @@
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+
+
+
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics](http://img.youtube.com/vi/6NoPvmTBVz0/0.jpg)](https://www.youtube.com/v/6NoPvmTBVz0?rel=0&autoplay=1&modestbranding=1&start=0&end=1473)
 
 
 
@@ -35,11 +43,22 @@ Some of them are embedded below in-place for your convenience.
 
 ```scala
 
-%run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-```
-```scala
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/SQL",500))
 
 ```
@@ -337,6 +356,26 @@ Let us see what Anthony Joseph in BerkeleyX/CS100.1x had to say about such data.
 [![Semi-Structured Tabular Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/G_67yUxdDbU/0.jpg)](https://www.youtube.com/v/G_67yUxdDbU?rel=0&autoplay=1&modestbranding=1&start=1)
 
 ***
+
+
+
+
+
+This week's recommended homework and extra-work linked below will help further your understanding beyond the three example notebooks we will see next at: 
+* [Workspace -> scalable-data-science -> week3 -> 05_SparkSQLETLEDA](/#workspace/scalable-data-science/week3/05_SparkSQLETLEDA).
+
+### Recommended Homework
+This week's recommended homework is a deep dive into the [SparkSQL programming guide](http://spark.apache.org/docs/latest/sql-programming-guide.html) via a "databricksified" set of scala notebooks at: 
+* [Workspace -> scalable-data-science -> xtraResources -> ProgGuides1_6 -> sqlProgrammingGuide](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide).
+
+### Recommended Extra-work
+Those who want to understand SparkSQL functionalities in more detail can see:
+* [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module 3: Lectures) from the Community Edition (CE) of databricks 
+  * NOTE on June 18 2016: AJ's 2015 course is now already in databricks CE so won't be re-fielded here in html/git-booked md, except in the .dbc archive of this 2016 instance of the scalable-data-science course - remarked (you should really see the 2016 version of Anthony Joseph + Ameet Talwarkar + Jon Bates edX course now... and Spark 2.0 will be another story I am sure...). 
+
+Anthony Joseph's Introduction to Big Data edX course (in python using pySpark) has been added to this databricks shard at:
+* [Workspace -> scalable-data-science -> xtraResources -> edXBigDataSeries2015 -> CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x), 
+as an extra resource for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 
 
