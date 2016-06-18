@@ -1,4 +1,26 @@
-// Databricks notebook source exported at Sun, 28 Feb 2016 05:22:02 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 04:23:16 UTC
+
+
+# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+
+
+### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
+
+*supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
+and 
+[![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+
+
+
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=4519&end=4612)
+
+
+
+
 
 # HOMEWORK notebook - RDDs Transformations and Actions
 Just go through the notebook and familiarize yourself with these transformations and actions.
@@ -312,6 +334,15 @@ val rddfM = rdd.flatMap(x => Array(x, x+5))    // <Shift+Enter> to flatMap the r
 rddfM.collect    // <Ctrl+Enter> to collect rddfM = (1, 6, 2, 7, 3, 8)
 
 ```
-```scala
 
-```
+
+
+
+# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+
+
+### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
+
+*supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
+and 
+[![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)

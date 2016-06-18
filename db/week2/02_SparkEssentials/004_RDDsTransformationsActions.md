@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 03:01:51 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 04:18:07 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -18,12 +18,14 @@ The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalab
 
 * [Workspace -> scalable-data-science -> work -> potentialProjectIdeas (relative to 'Workspace' link!)](/#workspace/scalable-data-science/work/potentialProjectIdeas)
 
+**NOTE:** The links to other notebook may not work in a different shard depending on where you uploaded the 'scalable-data-science' archive to! This can be easily fixed by correcting the directory containing 'scalable-data-science' folder. Here it is assumed to be in 'Workspace' folder.
+
 [![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=0&end=797)
 
 
 and its remaining recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji")
 
-[![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=797&end=4612)
+[![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=797&end=4537)
 
 
 
@@ -168,7 +170,7 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 #### Let us look at the legend and overview of the visual RDD Api in the following notebook:
 * [in Workspace -> scalable-data-science -> xtraResources -> visualRDDApi -> guide (relative to 'Workspace' link!)](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
 
-**NOTE:** The links to other notebook may not work in a different shard depending on where you uploaded the 'scalable-data-science' archive to! This can be easily fixed by correcting the directory containing 'scalable-data-science' folder. Here it is assumed to be in 'Workspace' folder.
+**NOTE:** The links to other notebook may not work in a different shard depending on where you uploaded the 'scalable-data-science' archive to! This can be easily fixed by correcting the directory containing 'scalable-data-science' folder. Here it is assumed to be in 'Workspace' folder. This NOTE won't keep reappearing :)
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
 
