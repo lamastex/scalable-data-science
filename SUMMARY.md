@@ -29,7 +29,7 @@
         * [Stage 1: Extract-Transform-Load](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL.md)
         * [Stage 2: Explore](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore.md)
         * [Stage 3: Model](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model.md)
-    * [Supervised Classification of Hand-written Digits via Decision Trees (CART and Gradient Boosted Trees)](db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition.md)
+    * [Supervised Classification of Hand-written Digits via Decision Trees](db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition.md)
 
 
 * [Extra Resources](db/xtraResources/README.md)
