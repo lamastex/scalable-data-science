@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 24 Mar 2016 03:06:37 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 23:40:46 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
 // MAGIC 
+// MAGIC [![sds/uji/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=3919&end=4399)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **HOMEWORK:** 
 // MAGIC * read: [http://arxiv.org/pdf/1509.02256.pdf](http://arxiv.org/pdf/1509.02256.pdf)  (also see References and Appendix A).
 // MAGIC * and go through the notebooks here: [Data Types - MLlib Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide)
@@ -31,7 +37,9 @@
 // MAGIC %md
 // MAGIC This is a transcript of Ameet's lecture in the video above:
 // MAGIC 
-// MAGIC **Homework:** Make sure you are understanding everything he is trying to convey!
+// MAGIC **HOMEWORK:** Make sure you are understanding everything he is trying to convey!
+// MAGIC 
+// MAGIC **Recall** from week 1's lectures that we are weaving over Ameet's course here to get to advanced applications "in a hurry" and it is assumed you have already done the edX Big Data Series from 2015 or will be doing the 2016 version, ideally with certification :)
 // MAGIC 
 // MAGIC In this segment, we'll begin our discussion
 // MAGIC of **distributed machine learning principles related
@@ -410,6 +418,15 @@
 // MAGIC #### Simple strategies for algorithms in a distributed setting: compute more and communicate less per iteration
 // MAGIC **HOMEWORK:** watch the video and understand why it is important at each iteration of an iterative algorithm
 // MAGIC to compute more and communicate less.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC **Recall** from week 1's lecture that the ideal mathematical preparation to fully digest this material requires a set of self-tutorials from Reza Zadeh's course in Distributed Algorithms and Optimization from Stanford:
+// MAGIC 
+// MAGIC * [http://stanford.edu/~rezab/dao/](http://stanford.edu/~rezab/dao/).
+// MAGIC 
+// MAGIC This is a minimal pre-requisite for designing new algorithms or improving exixting ones!!!
 
 // COMMAND ----------
 
