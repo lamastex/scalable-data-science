@@ -22,9 +22,9 @@ rm -rf ./MDparsed
 
 ###########-- Week2 --#########################################################################
 #FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Sat Jun 18 16:29:12 NZST 2016
-FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done  Sat Jun 18 16:29:31 NZST 2016
-#FName=../db/week2/03_WordCount/006_WordCount # done 
-#FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done 
+#FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done  Sat Jun 18 16:29:31 NZST 2016
+#FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done Sat Jun 18 17:00:40 NZST 2016
+FName=../db/week2/03_WordCount/006_WordCount # done 
 ###############################################################################################
 
 ###########-- Week3 --#########################################################################
