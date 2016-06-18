@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 08:41:05 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 08:58:54 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -89,7 +89,8 @@ require(sc.version.replace(".", "").toInt >= 140, "Spark 1.4.0+ is required to r
 ```
 
 
- ##Step 1: Business Understanding
+
+##Step 1: Business Understanding
 The first step in any machine learning task is to understand the business need. 
 
 As described in the overview we are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant.
@@ -99,7 +100,8 @@ The problem is a regression problem since the label (or target) we are trying to
 
 
 
- ##Step 2: Load Your Data
+
+##Step 2: Load Your Data
 Now that we understand what we are trying to do, we need to load our data and describe it, explore it and verify it.
 
 
@@ -191,7 +193,8 @@ Your table schema and preview should look like this after you click ```Create Ta
 
 
 
- ##Step 3: Explore Your Data
+
+##Step 3: Explore Your Data
 Now that we understand what we are trying to do, we need to load our data and describe it, explore it and verify it.
 
 
@@ -211,7 +214,6 @@ display(powerPlantDF)
 powerPlantDF.count() // count the number of rows in DF
 
 ```
-
 
 
 
@@ -283,7 +285,8 @@ Note that the output of the above command is the same as `display(powerPlantDF)`
 
 
 
- We can use the SQL `desc` command to describe the schema. This is the SQL equivalent of `powerPlantDF.printSchema` we saw earlier.
+
+We can use the SQL `desc` command to describe the schema. This is the SQL equivalent of `powerPlantDF.printSchema` we saw earlier.
 
 
 ```scala
@@ -293,7 +296,8 @@ Note that the output of the above command is the same as `display(powerPlantDF)`
 ```
 
 
- **Schema Definition**
+
+**Schema Definition**
 
 Our schema definition from UCI appears below:
 
@@ -310,7 +314,8 @@ PE is our label or target. This is the value we are trying to predict given the 
 
 
 
- Let's do some basic statistical analysis of all the columns. 
+
+Let's do some basic statistical analysis of all the columns. 
 
 We can use the describe function with no parameters to get some basic stats for each column like count, mean, max, min and standard deviation.  More information can be found in the [Spark API docs](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame)
 
@@ -322,7 +327,8 @@ display(powerPlantDF.describe())
 ```
 
 
- ##Step 4: Visualize Your Data
+
+##Step 4: Visualize Your Data
 
 To understand our data, we will look for correlations between features and the label.  This can be important when choosing a model.  E.g., if features and a label are linearly correlated, a linear model like Linear Regression can do well; if the relationship is very non-linear, more complex models such as Decision Trees can be better. We use the Databricks built in visualization to view each of our predictors in relation to the label column as a scatter plot to see the correlation between the predictors and the label.
 
@@ -334,7 +340,8 @@ To understand our data, we will look for correlations between features and the l
 ```
 
 
- It looks like there is strong linear correlation between temperature and Power Output
+
+It looks like there is strong linear correlation between temperature and Power Output
 
 
 ```scala
@@ -344,7 +351,8 @@ To understand our data, we will look for correlations between features and the l
 ```
 
 
- The linear correlation is not as strong between Exhaust Vacuum Speed and Power Output but there is some semblance of a pattern.
+
+The linear correlation is not as strong between Exhaust Vacuum Speed and Power Output but there is some semblance of a pattern.
 
 
 ```scala
@@ -395,7 +403,8 @@ We will do the following steps in the sequel.
 
 
 
- Datasource References:
+
+Datasource References:
 * Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
 * Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
 

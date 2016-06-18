@@ -31,7 +31,7 @@ rm -rf ./MDparsed
 ############################# this block done Sat Jun 18 20:53:48 NZST 2016
 #FName=../db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics #done Sat Jun 18 20:38:31 NZST 2016 
 #FName=../db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA # 
-#FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # 
+FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # 
 #FName=../db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA # 
 ######sql-programming guide HOMEWORK ### this block done Sat Jun 18 19:53:55 NZST 2016
 #FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide
