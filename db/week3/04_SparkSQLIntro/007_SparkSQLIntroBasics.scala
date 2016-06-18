@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 14 Mar 2016 04:03:22 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 07:46:37 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics](http://img.youtube.com/vi/6NoPvmTBVz0/0.jpg)](https://www.youtube.com/v/6NoPvmTBVz0?rel=0&autoplay=1&modestbranding=1&start=0&end=1473)
 
 // COMMAND ----------
 
@@ -32,10 +39,22 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/SQL",500))
 
 // COMMAND ----------
@@ -310,7 +329,8 @@ display(diamondsDF)
 // MAGIC 
 // MAGIC ### Recommended Extra-work
 // MAGIC Those who want to understand SparkSQL functionalities in more detail can see:
-// MAGIC * [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module 3: Lectures) from the Community Edition of databricks.  
+// MAGIC * [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module 3: Lectures) from the Community Edition (CE) of databricks 
+// MAGIC   * NOTE on June 18 2016: AJ's 2015 course is now already in databricks CE so won't be re-fielded here in html/git-booked md, except in the .dbc archive of this 2016 instance of the scalable-data-science course - remarked (you should really see the 2016 version of Anthony Joseph + Ameet Talwarkar + Jon Bates edX course now... and Spark 2.0 will be another story I am sure...). 
 // MAGIC 
 // MAGIC Anthony Joseph's Introduction to Big Data edX course (in python using pySpark) has been added to this databricks shard at:
 // MAGIC * [Workspace -> scalable-data-science -> xtraResources -> edXBigDataSeries2015 -> CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x), 
