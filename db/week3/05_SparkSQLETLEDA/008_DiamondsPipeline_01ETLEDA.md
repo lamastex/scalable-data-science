@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 19:59:09 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 08:36:28 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,14 @@
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+
+
+
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week3/05_SparkSQLETLEDA/008_DiamondsPipeline](http://img.youtube.com/vi/6NoPvmTBVz0/0.jpg)](https://www.youtube.com/v/6NoPvmTBVz0?rel=0&autoplay=1&modestbranding=1&start=1473&end=4069)
 
 
 
@@ -359,12 +367,14 @@ Looks like diamonds is already there (if not just execute the following cell).
 
 ```scala
 
-sqlContext.dropTempTable("diamonds")
+// uncomment next line and Ctrl+Enter to remove any temporary table named diamonds ONLY_IF it already exists!
+//sqlContext.dropTempTable("diamonds") 
 
 ```
 ```scala
 
-diamondsDF.registerTempTable("diamondsForRaaz") // Shift+Enter
+// Shift+Enter to make a temporary table named diamonds from the diamondsDF
+diamondsDF.registerTempTable("diamonds") // it will re-register new table if another temp table named diamonds already exist
 
 ```
 ```scala

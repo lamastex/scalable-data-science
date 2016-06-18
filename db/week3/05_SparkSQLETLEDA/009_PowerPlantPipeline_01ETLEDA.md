@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 20:00:23 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 08:41:05 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,14 @@
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+
+
+
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week3/05_SparkSQLETLEDA/008_DiamondsPipeline](http://img.youtube.com/vi/6NoPvmTBVz0/0.jpg)](https://www.youtube.com/v/6NoPvmTBVz0?rel=0&autoplay=1&modestbranding=1&start=4070&end=5401)
 
 
 
@@ -50,11 +58,22 @@ More information about Peaker or Peaking Power Plants can be found on Wikipedia 
 
 ```scala
 
-%run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-```
-```scala
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/Peaking_power_plant",300))
 
 ```
@@ -235,12 +254,12 @@ Note that table names are in lower-case only!
 
 ```scala
 
-sqlContext. // hit Tab after . to see what is possible
+sqlContext // put . after sqlContext and hit Tab to see what methods are available
 
 ```
 ```scala
 
-sqlContext.dropTempTable("power_plant_table") // don't Ctrl+Enter unless you want to remove the table!
+//sqlContext.dropTempTable("power_plant_table") // uncomment and Ctrl+Enter if you want to remove the table!
 
 ```
 
@@ -253,7 +272,6 @@ The following SQL statement simply selects all the columns (due to `*`) from `po
 
 %sql 
 -- Ctrl+Enter to query the rows via SQL
-
 SELECT * FROM power_plant_table
 
 ```
@@ -341,6 +359,8 @@ To understand our data, we will look for correlations between features and the l
 ```
 
 
+ 
+...and atmospheric pressure and relative humidity seem to have little to no linear correlation.
 
 These pairwise plots can also be done directly using `display` on `select`ed columns of the DataFrame `powerPlantDF`.
 

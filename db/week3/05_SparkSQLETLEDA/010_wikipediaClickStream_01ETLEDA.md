@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 12 Mar 2016 20:01:28 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 08:46:55 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,16 @@ and
 
 
 
- # <img width="300px" src="http://cdn.arstechnica.net/wp-content/uploads/2015/09/2000px-Wikipedia-logo-v2-en-640x735.jpg"/> Clickstream Analysis
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week3/05_SparkSQLETLEDA/008_DiamondsPipeline](http://img.youtube.com/vi/6NoPvmTBVz0/0.jpg)](https://www.youtube.com/v/6NoPvmTBVz0?rel=0&autoplay=1&modestbranding=1&start=5402)
+
+
+
+
+ 
+# <img width="300px" src="http://cdn.arstechnica.net/wp-content/uploads/2015/09/2000px-Wikipedia-logo-v2-en-640x735.jpg"/> Clickstream Analysis
 
 ** Dataset: 3.2 billion requests collected during the month of February 2015 grouped by (src, dest) **
 
@@ -63,11 +72,22 @@ Let's read the datahub-hosted link [https://datahub.io/dataset/wikipedia-clickst
 
 ```scala
 
-%run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-```
-```scala
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://datahub.io/dataset/wikipedia-clickstream",500))
 
 ```
@@ -659,6 +679,19 @@ clicksPy = sqlContext.read.parquet("/datasets/wiki-clickstream")
 clicksPy.show()
 
 ```
+
+
+
+Now you can continue from the original python notebook also linked to this shard from here ([/#workspace/scalable-data-science/xtraResources/sparkSummitEast2016/Wikipedia Clickstream Data](/#workspace/scalable-data-science/xtraResources/sparkSummitEast2016/Wikipedia Clickstream Data)).
+
+Recall from the beginning of this notebook that this python databricks notebook was used in the talk by Michael Armbrust at Spark Summit East February 2016 
+shared from [https://twitter.com/michaelarmbrust/status/699969850475737088](https://twitter.com/michaelarmbrust/status/699969850475737088)
+
+(watch now, if you haven't already!)
+
+[![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
+
+
 
 
 

@@ -28,8 +28,8 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week3 --#########################################################################
-############################# this block done
-FName=../db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics # 
+############################# this block done Sat Jun 18 20:53:48 NZST 2016
+#FName=../db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics #done Sat Jun 18 20:38:31 NZST 2016 
 #FName=../db/week3/05_SparkSQLETLEDA/008_DiamondsPipeline_01ETLEDA # 
 #FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # 
 #FName=../db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA # 
