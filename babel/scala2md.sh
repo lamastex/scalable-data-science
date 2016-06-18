@@ -43,7 +43,12 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week4 --#########################################################################
-FName=../db/week4/06_MLIntro/011_IntroToML #done Sat Jun 18 20:38:31 NZST 2016 
+#FName=../db/week4/06_MLIntro/011_IntroToML #done Sat Jun 18 20:38:31 NZST 2016 
+#FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro
+#FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL
+#FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore
+#FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model
+FName=../db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition
 ###############################################################################################
 
 ###########-- Week5 --#########################################################################
