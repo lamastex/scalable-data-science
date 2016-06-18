@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 15 Mar 2016 05:51:48 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 08:41:05 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week3/05_SparkSQLETLEDA/008_DiamondsPipeline](http://img.youtube.com/vi/6NoPvmTBVz0/0.jpg)](https://www.youtube.com/v/6NoPvmTBVz0?rel=0&autoplay=1&modestbranding=1&start=4070&end=5401)
 
 // COMMAND ----------
 
@@ -48,10 +55,22 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/Peaking_power_plant",300))
 
 // COMMAND ----------
