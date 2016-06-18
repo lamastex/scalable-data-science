@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 24 Mar 2016 03:05:56 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 23:27:13 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/10_LinearRegressionIntro/018_LinRegIntro.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week5/10_LinearRegressionIntro/018_LinRegIntro](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=2635&end=3918)
 
 // COMMAND ----------
 
@@ -34,7 +41,6 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC Please take notes in mark-down if you want.
 // MAGIC 
 // MAGIC For latex math within markdown you can do the following for in-line maths: \\( \mathbf{A}_{i,j} \in \mathbb{R}^1 \\). And to write maths in display mode do the following:
@@ -57,7 +63,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Take you own notes if you like.
+// MAGIC Take your own notes if you like.
 
 // COMMAND ----------
 
