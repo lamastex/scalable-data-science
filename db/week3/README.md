@@ -4,9 +4,8 @@ Introduction to Spark SQL, ETL and EDA of Diamonds, Power Plant and Wiki CLick S
 
 * Sections
     * [Spark SQL Introduction](04_SparkSQLIntro/007_SparkSQLIntroBasics.md)
-        * [HOMEWORK: sql programming guide](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide.md)
         * [HOMEWORK: overview](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide.md)
-	* [HOMEWORK: getting started](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide.md)
+        * [HOMEWORK: getting started](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide.md)
         * [HOMEWORK: data sources](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide.md)
         * [HOMEWORK: performance tuning](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/004_performanceTuning_sqlProgGuide.md)
         * [HOMEWORK: distributed sql engine](../xtraResources/ProgGuides1_6/sqlProgrammingGuide/005_distributedSqlEngine_sqlProgGuide.md)
