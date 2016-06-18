@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 18 Mar 2016 21:32:31 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 11:05:13 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,11 +13,19 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week4/07_UnsupervisedClustering/013_KMeans_Stage1ETL](http://img.youtube.com/vi/_Lxtxmn0L-w/0.jpg)](https://www.youtube.com/v/_Lxtxmn0L-w?rel=0&autoplay=1&modestbranding=1&start=4823&end=5370)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **SOURCE:** This is the scala version of the python notebook from the databricks Community Edition that has been added to this databricks shard at [Workspace -> scalable-data-science -> xtraResources -> dbCE -> MLlib -> unsupervised -> clustering -> k-means -> 1MSongsPy_ETLExploreModel](/#workspace/scalable-data-science/xtraResources/dbCE/MLlib/unsupervised/clustering/k-means/1MSongsPy_ETLExploreModel) as extra resources for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
-// MAGIC %md # Stage 1: Parsing songs data
+// MAGIC %md
+// MAGIC # Stage 1: Parsing songs data
 // MAGIC 
 // MAGIC ![ETL](http://training.databricks.com/databricks_guide/end-to-end-01.png)
 // MAGIC 
@@ -29,7 +37,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ### Text data files are stored in `dbfs:/databricks-datasets/songs/data-001` 
+// MAGIC %md
+// MAGIC ### Text data files are stored in `dbfs:/databricks-datasets/songs/data-001` 
 // MAGIC You can conveniently list files on distributed file system (DBFS, S3 or HDFS) using `%fs` commands.
 
 // COMMAND ----------
@@ -38,7 +47,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md As you can see in the listing we have data files and a single header file. The header file seems interesting and worth a first inspection at first. The file is 377 bytes, therefore it is safe to collect the entire content of the file in the notebook. 
+// MAGIC %md
+// MAGIC As you can see in the listing we have data files and a single header file. The header file seems interesting and worth a first inspection at first. The file is 377 bytes, therefore it is safe to collect the entire content of the file in the notebook. 
 
 // COMMAND ----------
 
@@ -50,7 +60,8 @@ sc.textFile("databricks-datasets/songs/data-001/header.txt").collect()
 
 // COMMAND ----------
 
-// MAGIC %md As seen above each line in the header consists of a name and a type separated by colon. We will need to parse the header file as follows:
+// MAGIC %md
+// MAGIC As seen above each line in the header consists of a name and a type separated by colon. We will need to parse the header file as follows:
 
 // COMMAND ----------
 
@@ -72,7 +83,8 @@ case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Do
 
 // COMMAND ----------
 
-// MAGIC %md Now we turn to data files. First, step is inspecting the first line of data to inspect its format.
+// MAGIC %md
+// MAGIC Now we turn to data files. First, step is inspecting the first line of data to inspect its format.
 
 // COMMAND ----------
 
@@ -89,7 +101,8 @@ dataRDD.take(3)
 
 // COMMAND ----------
 
-// MAGIC %md Each line of data consists of multiple fields separated by `\t`. With that information and what we learned from the header file, we set out to parse our data.
+// MAGIC %md
+// MAGIC Each line of data consists of multiple fields separated by `\t`. With that information and what we learned from the header file, we set out to parse our data.
 // MAGIC * We have already created a case class based on the header (which seems to agree with the 3 lines above).
 // MAGIC * Next, we will create a function that takes each line as input and returns the case class as output.
 
@@ -103,7 +116,8 @@ def parseLine(line: String): Song = {
 
 // COMMAND ----------
 
-// MAGIC %md With this function we can transform the dataRDD to another RDD that consists of Song case classes
+// MAGIC %md
+// MAGIC With this function we can transform the dataRDD to another RDD that consists of Song case classes
 
 // COMMAND ----------
 
@@ -111,7 +125,8 @@ val parsedRDD = dataRDD.map(parseLine)
 
 // COMMAND ----------
 
-// MAGIC %md To convert an RDD of case classes to a DataFrame, we just need to call the toDF method
+// MAGIC %md
+// MAGIC To convert an RDD of case classes to a DataFrame, we just need to call the toDF method
 
 // COMMAND ----------
 
@@ -119,7 +134,8 @@ val df = parsedRDD.toDF
 
 // COMMAND ----------
 
-// MAGIC %md Once we get a DataFrame we can register it as a temporary table. That will allow us to use its name in SQL queries.
+// MAGIC %md
+// MAGIC Once we get a DataFrame we can register it as a temporary table. That will allow us to use its name in SQL queries.
 
 // COMMAND ----------
 
@@ -127,7 +143,8 @@ df.registerTempTable("songsTable")
 
 // COMMAND ----------
 
-// MAGIC %md We can now cache our table. So far all operations have been lazy. This is the first time Spark will attempt to actually read all our data and apply the transformations. 
+// MAGIC %md
+// MAGIC We can now cache our table. So far all operations have been lazy. This is the first time Spark will attempt to actually read all our data and apply the transformations. 
 // MAGIC 
 // MAGIC **If you are running Spark 1.6+ the next command will throw a parsing error.**
 
@@ -137,7 +154,8 @@ df.registerTempTable("songsTable")
 
 // COMMAND ----------
 
-// MAGIC %md The error means that we are trying to convert a missing value to a Double. Here is an updated version of the parseLine function to deal with missing values
+// MAGIC %md
+// MAGIC The error means that we are trying to convert a missing value to a Double. Here is an updated version of the parseLine function to deal with missing values
 
 // COMMAND ----------
 
@@ -171,7 +189,8 @@ df.registerTempTable("songsTable")
 
 // COMMAND ----------
 
-// MAGIC %md And let's try caching the table. We are going to access this data multiple times in following notebooks, therefore it is a good idea to cache it in memory for faster subsequent access.
+// MAGIC %md
+// MAGIC And let's try caching the table. We are going to access this data multiple times in following notebooks, therefore it is a good idea to cache it in memory for faster subsequent access.
 
 // COMMAND ----------
 
@@ -179,7 +198,8 @@ df.registerTempTable("songsTable")
 
 // COMMAND ----------
 
-// MAGIC %md From now on we can easily query our data using the temporary table we just created and cached in memory. Since it is registered as a table we can conveniently use SQL as well as Spark API to access it.
+// MAGIC %md
+// MAGIC From now on we can easily query our data using the temporary table we just created and cached in memory. Since it is registered as a table we can conveniently use SQL as well as Spark API to access it.
 
 // COMMAND ----------
 
@@ -187,7 +207,8 @@ df.registerTempTable("songsTable")
 
 // COMMAND ----------
 
-// MAGIC %md Next up is exploring this data. Click on the Exploration notebook to continue the tutorial.
+// MAGIC %md
+// MAGIC Next up is exploring this data. Click on the Exploration notebook to continue the tutorial.
 
 // COMMAND ----------
 

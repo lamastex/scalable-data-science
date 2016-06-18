@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 18 Mar 2016 21:34:12 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 11:01:37 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,11 +13,19 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week4/07_UnsupervisedClustering/013_KMeans_Stage2Explore](http://img.youtube.com/vi/_Lxtxmn0L-w/0.jpg)](https://www.youtube.com/v/_Lxtxmn0L-w?rel=0&autoplay=1&modestbranding=1&start=5371&end=5616)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **SOURCE:** This is the scala version of the python notebook from the databricks Community Edition that has been added to this databricks shard at [Workspace -> scalable-data-science -> xtraResources -> dbCE -> MLlib -> unsupervised -> clustering -> k-means -> 1MSongsPy_ETLExploreModel](/#workspace/scalable-data-science/xtraResources/dbCE/MLlib/unsupervised/clustering/k-means/1MSongsPy_ETLExploreModel) as extra resources for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
-// MAGIC %md # Stage 2: Exploring songs data
+// MAGIC %md
+// MAGIC # Stage 2: Exploring songs data
 // MAGIC 
 // MAGIC ![Explore](http://training.databricks.com/databricks_guide/end-to-end-02.png)
 // MAGIC 
@@ -26,11 +34,13 @@
 
 // COMMAND ----------
 
-// MAGIC %md ## A first inspection
+// MAGIC %md
+// MAGIC ## A first inspection
 
 // COMMAND ----------
 
-// MAGIC %md A first step to any data exploration is viewing sample data. For this purpose we can use a simple SQL query that returns first 10 rows.
+// MAGIC %md
+// MAGIC A first step to any data exploration is viewing sample data. For this purpose we can use a simple SQL query that returns first 10 rows.
 
 // COMMAND ----------
 
@@ -54,7 +64,8 @@ display(sqlContext.sql("SELECT duration, year FROM songsTable")) // Aggregation 
 
 // COMMAND ----------
 
-// MAGIC %md ## Exercises
+// MAGIC %md
+// MAGIC ## Exercises
 // MAGIC 
 // MAGIC 1. Why do you think average song durations increase dramatically in 70's?
 // MAGIC 2. Add error bars with standard deviation around each average point in the plot.
@@ -64,7 +75,8 @@ display(sqlContext.sql("SELECT duration, year FROM songsTable")) // Aggregation 
 
 // COMMAND ----------
 
-// MAGIC %md ## Sampling and visualizing
+// MAGIC %md
+// MAGIC ## Sampling and visualizing
 // MAGIC 
 // MAGIC Another technique for visually exploring large data, which we are going to try, is sampling data. 
 // MAGIC * First step is generating a sample.
@@ -84,7 +96,8 @@ display(sqlContext.sql("SELECT duration, year FROM songsTable")) // Aggregation 
 
 // COMMAND ----------
 
-// MAGIC %md ## Exercises
+// MAGIC %md
+// MAGIC ## Exercises
 // MAGIC 
 // MAGIC 
 // MAGIC 1. Add jitter to year value in the plot above.
@@ -92,7 +105,8 @@ display(sqlContext.sql("SELECT duration, year FROM songsTable")) // Aggregation 
 
 // COMMAND ----------
 
-// MAGIC %md Next step is clustering the data. Click on the next notebook (Model) to follow the tutorial.
+// MAGIC %md
+// MAGIC Next step is clustering the data. Click on the next notebook (Model) to follow the tutorial.
 
 // COMMAND ----------
 

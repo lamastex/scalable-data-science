@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 17 Mar 2016 03:11:14 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 11:06:46 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,11 +13,19 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week4/08_MLIntro/016_DecisionTrees_HandWrittenDigitRecognition](http://img.youtube.com/vi/_Lxtxmn0L-w/0.jpg)](https://www.youtube.com/v/_Lxtxmn0L-w?rel=0&autoplay=1&modestbranding=1&start=4697&end=4823)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **SOURCE:** This is the scala version of the python notebook from the databricks Community Edition that has been added to this databricks shard at [Workspace -> scalable-data-science -> xtraResources -> dbCE -> MLlib -> unsupervised -> clustering -> k-means -> 1MSongsPy_ETLExploreModel](/#workspace/scalable-data-science/xtraResources/dbCE/MLlib/unsupervised/clustering/k-means/1MSongsPy_ETLExploreModel) as extra resources for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
-// MAGIC %md #Data Science with Apache Spark and Scala in Databricks
+// MAGIC %md
+// MAGIC #Data Science with Apache Spark and Scala in Databricks
 
 // COMMAND ----------
 
@@ -37,7 +45,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ### 1. ETL
+// MAGIC %md
+// MAGIC ### 1. ETL
 // MAGIC 
 // MAGIC The first step of most data science projects is extracting, transforming and loading data into well formated tables. Our example starts with ETL as well. By following the ETL noteboook you can expect to learn about following Spark concepts:
 // MAGIC * RDD: Resilient Distributed Dataset
@@ -49,7 +58,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ### 2. Explore
+// MAGIC %md
+// MAGIC ### 2. Explore
 // MAGIC Exploratory analysis is a key step in any real data project. Data scientists use variety of tools to explore and visualize their data. In the second notebook of this tutorial we introduce several tools in Python and Databricks notebooks that can help you visually explore your large data. By reading this notebook and finishing its exercises you will become familiar with:
 // MAGIC * How to view the schema of a table
 // MAGIC * How to display ggplot and matplotlib figures in Notebooks
@@ -58,7 +68,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ### 3. Model
+// MAGIC %md
+// MAGIC ### 3. Model
 // MAGIC The end goal of many data scientists is producing useful models. These models are often used for prediction of new and upcoming events in production. In our third notebook we construct a simple K-means clustering model. In this notebook you will learn about:
 // MAGIC * Feature transformation
 // MAGIC * Fitting a model using SparkML API

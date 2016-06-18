@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 18 Mar 2016 04:37:17 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 11:13:05 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,11 +13,19 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition](http://img.youtube.com/vi/_Lxtxmn0L-w/0.jpg)](https://www.youtube.com/v/_Lxtxmn0L-w?rel=0&autoplay=1&modestbranding=1&start=1546&end=4696)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **SOURCE:** This is from the databricks Community Edition that has been added to this databricks shard at [Workspace -> scalable-data-science -> xtraResources -> dbCE -> MLlib -> supervised -> classificationDecisionTrees -> handWrittenDigitRecognition](/#workspace/scalable-data-science/xtraResources/dbCE/MLlib/supervised/classificationDecisionTrees/handWrittenDigitRecognition) as extra resources for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
-// MAGIC %md # Decision Trees for handwritten digit recognition
+// MAGIC %md
+// MAGIC # Decision Trees for handwritten digit recognition
 // MAGIC 
 // MAGIC This notebook demonstrates learning a [Decision Tree](https://en.wikipedia.org/wiki/Decision_tree_learning) using Spark's distributed implementation.  It gives the reader a better understanding of some critical [hyperparameters](https://en.wikipedia.org/wiki/Hyperparameter_optimization) for the tree learning algorithm, using examples to demonstrate how tuning the hyperparameters can improve accuracy.
 // MAGIC 
@@ -39,15 +47,28 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/Decision_tree_learning",500))
 
 // COMMAND ----------
 
-// MAGIC %md ## Load MNIST training and test datasets
+// MAGIC %md
+// MAGIC ## Load MNIST training and test datasets
 // MAGIC 
 // MAGIC Our datasets are vectors of pixels representing images of handwritten digits.  For example:
 // MAGIC 
@@ -56,7 +77,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Decision_tree_learning",500))
 
 // COMMAND ----------
 
-// MAGIC %md These datasets are stored in the popular LibSVM dataset format.  We will load them using MLlib's LibSVM dataset reader utility.
+// MAGIC %md
+// MAGIC These datasets are stored in the popular LibSVM dataset format.  We will load them using MLlib's LibSVM dataset reader utility.
 
 // COMMAND ----------
 
@@ -76,7 +98,8 @@ println(s"We have ${training.count} training images and ${test.count} test image
 
 // COMMAND ----------
 
-// MAGIC %md *Note*: In Spark 1.6 and later versions, Spark SQL has a LibSVM data source.  The above cell can be simplified to:
+// MAGIC %md 
+// MAGIC *Note*: In Spark 1.6 and later versions, Spark SQL has a LibSVM data source.  The above cell can be simplified to:
 // MAGIC ```
 // MAGIC val training = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-train.txt")
 // MAGIC val test = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-test.txt")
@@ -115,7 +138,8 @@ display(training)
 
 // COMMAND ----------
 
-// MAGIC %md ## Train a Decision Tree
+// MAGIC %md
+// MAGIC ## Train a Decision Tree
 // MAGIC 
 // MAGIC We begin by training a decision tree using the default settings.  Before training, we want to tell the algorithm that the labels are categories 0-9, rather than continuous values.  We use the `StringIndexer` class to do this.  We tie this feature preprocessing together with the tree algorithm using a `Pipeline`.  ML Pipelines are tools Spark provides for piecing together Machine Learning algorithms into workflows.  To learn more about Pipelines, check out other ML example notebooks in Databricks and the [ML Pipelines user guide](http://spark.apache.org/docs/latest/ml-guide.html). Also See [mllib-decision-tree.html#basic-algorithm](http://spark.apache.org/docs/latest/mllib-decision-tree.html#basic-algorithm).
 
@@ -145,7 +169,8 @@ val pipeline = new Pipeline().setStages(Array(indexer, dtc))
 
 // COMMAND ----------
 
-// MAGIC %md Now, let's fit a model to our data.
+// MAGIC %md
+// MAGIC Now, let's fit a model to our data.
 
 // COMMAND ----------
 
@@ -153,7 +178,8 @@ val model = pipeline.fit(training)
 
 // COMMAND ----------
 
-// MAGIC %md We can inspect the learned tree by displaying it using Databricks ML visualization.  (Visualization is available for several but not all models.)
+// MAGIC %md
+// MAGIC We can inspect the learned tree by displaying it using Databricks ML visualization.  (Visualization is available for several but not all models.)
 
 // COMMAND ----------
 
@@ -163,7 +189,8 @@ display(tree)
 
 // COMMAND ----------
 
-// MAGIC %md Above, we can see how the tree makes predictions.  When classifying a new example, the tree starts at the "root" node (at the top).  Each tree node tests a pixel value and goes either left or right.  At the bottom "leaf" nodes, the tree predicts a digit as the image's label.
+// MAGIC %md
+// MAGIC Above, we can see how the tree makes predictions.  When classifying a new example, the tree starts at the "root" node (at the top).  Each tree node tests a pixel value and goes either left or right.  At the bottom "leaf" nodes, the tree predicts a digit as the image's label.
 
 // COMMAND ----------
 
@@ -177,7 +204,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Hyperparameter_optimization",
 
 // COMMAND ----------
 
-// MAGIC %md ## Exploring "maxDepth": training trees of different sizes
+// MAGIC %md
+// MAGIC ## Exploring "maxDepth": training trees of different sizes
 // MAGIC 
 // MAGIC In this section, we test tuning a single hyperparameter `maxDepth`, which determines how deep (and large) the tree can be.  We will train trees at varying depths and see how it affects the accuracy on our held-out test set.
 // MAGIC 
@@ -214,7 +242,8 @@ val accuracies = (0 until 8).map { maxDepth =>
 
 // COMMAND ----------
 
-// MAGIC %md We can display our accuracy results and see immediately that deeper, larger trees are more powerful classifiers, achieving higher accuracies.
+// MAGIC %md
+// MAGIC We can display our accuracy results and see immediately that deeper, larger trees are more powerful classifiers, achieving higher accuracies.
 // MAGIC 
 // MAGIC *Note:* When you run `display()`, you will get a table.  Click on the plot icon below the table to create a plot, and use "Plot Options" to adjust what is displayed.
 
@@ -224,11 +253,13 @@ display(accuracies)
 
 // COMMAND ----------
 
-// MAGIC %md Even though deeper trees are more powerful, they are not always better.  If we kept increasing the depth, training would take longer and longer.  We also might risk [overfitting](https://en.wikipedia.org/wiki/Overfitting) (fitting the training data so well that our predictions get worse on test data); it is important to tune parameters *based on [held-out data](https://en.wikipedia.org/wiki/Test_set)* to prevent overfitting.
+// MAGIC %md
+// MAGIC Even though deeper trees are more powerful, they are not always better.  If we kept increasing the depth, training would take longer and longer.  We also might risk [overfitting](https://en.wikipedia.org/wiki/Overfitting) (fitting the training data so well that our predictions get worse on test data); it is important to tune parameters *based on [held-out data](https://en.wikipedia.org/wiki/Test_set)* to prevent overfitting.
 
 // COMMAND ----------
 
-// MAGIC %md ## Exploring "maxBins": discretization for efficient distributed computing
+// MAGIC %md
+// MAGIC ## Exploring "maxBins": discretization for efficient distributed computing
 // MAGIC 
 // MAGIC This section explores a more expert-level setting `maxBins`.  For efficient distributed training of Decision Trees, Spark and most other libraries discretize (or "bin") continuous features (such as pixel values) into a finite number of values.  This is an important step for the distributed implementation, but it introduces a tradeoff: Larger `maxBins` mean your data will be more accurately represented, but it will also mean more communication (and slower training).
 // MAGIC 
@@ -261,11 +292,13 @@ display(accuracies)
 
 // COMMAND ----------
 
-// MAGIC %md We can see that extreme discretization (black and white) hurts accuracy, but only a bit.  Using more bins increases the accuracy (but also makes learning more costly).
+// MAGIC %md
+// MAGIC We can see that extreme discretization (black and white) hurts accuracy, but only a bit.  Using more bins increases the accuracy (but also makes learning more costly).
 
 // COMMAND ----------
 
-// MAGIC %md #### What's next?
+// MAGIC %md
+// MAGIC #### What's next?
 // MAGIC 
 // MAGIC * **Explore**: Try out tuning other parameters of trees---or even ensembles like [Random Forests or Gradient-Boosted Trees](http://spark.apache.org/docs/latest/ml-classification-regression.html#tree-ensembles).
 // MAGIC * **Automated tuning**: This type of tuning does not have to be done by hand.  (We did it by hand here to show the effects of tuning in detail.)  MLlib provides automated tuning functionality via `CrossValidator`.  Check out the other Databricks ML Pipeline guides or the [Spark ML user guide](http://spark.apache.org/docs/latest/ml-guide.html) for details.

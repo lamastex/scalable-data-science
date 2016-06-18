@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 18 Mar 2016 21:37:29 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 10:59:31 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,11 +13,19 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week4/07_UnsupervisedClustering/013_KMeans_Stage3Model](http://img.youtube.com/vi/_Lxtxmn0L-w/0.jpg)](https://www.youtube.com/v/_Lxtxmn0L-w?rel=0&autoplay=1&modestbranding=1&start=5617)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC **SOURCE:** This is the scala version of the python notebook from the databricks Community Edition that has been added to this databricks shard at [Workspace -> scalable-data-science -> xtraResources -> dbCE -> MLlib -> unsupervised -> clustering -> k-means -> 1MSongsPy_ETLExploreModel](/#workspace/scalable-data-science/xtraResources/dbCE/MLlib/unsupervised/clustering/k-means/1MSongsPy_ETLExploreModel) as extra resources for this project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
 
 // COMMAND ----------
 
-// MAGIC %md # Stage 3: Modeling Songs via k-means
+// MAGIC %md
+// MAGIC # Stage 3: Modeling Songs via k-means
 // MAGIC 
 // MAGIC ![Model](http://training.databricks.com/databricks_guide/end-to-end-03.png)
 // MAGIC 
@@ -25,7 +33,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md We pick the most commonly used and simplest clustering algorithm (KMeans) for our job. The SparkML KMeans implementation expects input in a vector column. Fortunately, there are already utilities in SparkML that can help us convert existing columns in our table to a vector field. It is called `VectorAssembler`. Here we import that functionality and use it to create a new DataFrame
+// MAGIC %md
+// MAGIC We pick the most commonly used and simplest clustering algorithm (KMeans) for our job. The SparkML KMeans implementation expects input in a vector column. Fortunately, there are already utilities in SparkML that can help us convert existing columns in our table to a vector field. It is called `VectorAssembler`. Here we import that functionality and use it to create a new DataFrame
 
 // COMMAND ----------
 
@@ -75,10 +84,6 @@ display(trainingData.select("duration", "tempo", "loudness", "features").limit(5
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC #### [Demonstration of the standard algorithm](https://en.wikipedia.org/wiki/K-means_clustering#Initialization_methods)
 // MAGIC (1) ![](https://upload.wikimedia.org/wikipedia/commons/5/5e/K_Means_Example_Step_1.svg)
@@ -98,6 +103,22 @@ display(trainingData.select("duration", "tempo", "loudness", "features").limit(5
 
 // COMMAND ----------
 
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/K-means_clustering#Standard_algorithm",500))
 
 // COMMAND ----------
@@ -118,7 +139,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/K-means_clustering#Standard_a
 
 // COMMAND ----------
 
-// MAGIC %md We can now pass this new DataFrame to the `KMeans` model and ask it to categorize different rows in our data to two different classes (`setK(2)`). We place the model in a immutable `val`ue named `model`.
+// MAGIC %md
+// MAGIC We can now pass this new DataFrame to the `KMeans` model and ask it to categorize different rows in our data to two different classes (`setK(2)`). We place the model in a immutable `val`ue named `model`.
 // MAGIC 
 // MAGIC **Note:** This command performs multiple spark jobs (one job per iteration in the KMeans algorithm). You will see the progress bar starting over and over again.
 
@@ -164,7 +186,8 @@ val transformed = modelTransformed.select("duration", "tempo", "loudness", "pred
 
 // COMMAND ----------
 
-// MAGIC %md To comfortably visualize the data we produce a random sample. 
+// MAGIC %md 
+// MAGIC To comfortably visualize the data we produce a random sample. 
 // MAGIC Remember the `display()` function? We can use it to produce a nicely rendered table of transformed DataFrame. 
 
 // COMMAND ----------
@@ -173,7 +196,8 @@ display(transformed.sample(false, fraction = 0.005))
 
 // COMMAND ----------
 
-// MAGIC %md To generate a scatter plot matrix, click on the plot button bellow the table and select `scatter`. That will transform your table to a scatter plot matrix. It automatically picks all numeric columns as values. To include predicted clusters, click on `Plot Options` and drag `prediction` to the list of Keys. You will get the following plot. On the diagonal panels you see the PDF of marginal distribution of each variable. Non-diagonal panels show a scatter plot between variables of the two variables of the row and column. For example the top right panel shows the scatter plot between duration and loudness. Each point is colored according to the cluster it is assigned to.
+// MAGIC %md
+// MAGIC To generate a scatter plot matrix, click on the plot button bellow the table and select `scatter`. That will transform your table to a scatter plot matrix. It automatically picks all numeric columns as values. To include predicted clusters, click on `Plot Options` and drag `prediction` to the list of Keys. You will get the following plot. On the diagonal panels you see the PDF of marginal distribution of each variable. Non-diagonal panels show a scatter plot between variables of the two variables of the row and column. For example the top right panel shows the scatter plot between duration and loudness. Each point is colored according to the cluster it is assigned to.
 
 // COMMAND ----------
 
@@ -181,7 +205,8 @@ display(transformed.sample(false, fraction = 0.1)) // try fraction=1.0 as this d
 
 // COMMAND ----------
 
-// MAGIC %md Do you see the problem in our clusters based on the plot? 
+// MAGIC %md 
+// MAGIC Do you see the problem in our clusters based on the plot? 
 // MAGIC 
 // MAGIC As you can see there is very little correlation between loudness, and tempo and generated clusters. To see that, focus on the panels in the first and second columns of the scatter plot matrix. For varying values of loudness and tempo prediction does not change. Instead, duration of a song alone predicts what cluster it belongs to. Why is that?
 // MAGIC 
@@ -195,7 +220,8 @@ display(transformed.sample(false, fraction = 1.0).select("duration", "prediction
 
 // COMMAND ----------
 
-// MAGIC %md There are known techniques for dealing with skewed features. A simple technique is applying a power transformation. We are going to use the simplest and most common power transformation: logarithm.
+// MAGIC %md
+// MAGIC There are known techniques for dealing with skewed features. A simple technique is applying a power transformation. We are going to use the simplest and most common power transformation: logarithm.
 // MAGIC 
 // MAGIC In following cell we repeat the clustering experiment with a transformed DataFrame that includes a new column called `log_duration`.
 
@@ -212,7 +238,8 @@ display(transformed2.sample(false, fraction = 0.1))
 
 // COMMAND ----------
 
-// MAGIC %md The new clustering model makes much more sense. Songs with high tempo and loudness are put in one cluster and song duration does not affect song categories. 
+// MAGIC %md
+// MAGIC The new clustering model makes much more sense. Songs with high tempo and loudness are put in one cluster and song duration does not affect song categories. 
 
 // COMMAND ----------
 
