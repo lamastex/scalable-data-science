@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 17 Jun 2016 04:28:53 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 03:01:51 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,7 +14,8 @@
 
 // MAGIC %md
 // MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week2/02_SparkEssentials/004_RDDsTransformationsActions.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji") for **course mechanics, logistics, expectations and course-project suggestions**:
-// MAGIC [Workspace -> scalable-data-science -> work -> potentialProjectIdeas (relative to 'Workspace' link!)](/#workspace/scalable-data-science/work/potentialProjectIdeas)
+// MAGIC 
+// MAGIC * [Workspace -> scalable-data-science -> work -> potentialProjectIdeas (relative to 'Workspace' link!)](/#workspace/scalable-data-science/work/potentialProjectIdeas)
 // MAGIC 
 // MAGIC [![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=0&end=797)
 // MAGIC 
