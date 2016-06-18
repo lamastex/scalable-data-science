@@ -16,12 +16,12 @@ rm -rf ./MDparsed
 ###########-- Week1 --#########################################################################
 #FName=../db/week1/01_introduction/000_scalableDataScience # done Thu Jun 16 19:03:47 NZST 2016
 #FName=../db/week1/01_introduction/001_whySpark # done Thu Jun 16 20:00:33 NZST 2016
-FName=../db/week1/01_introduction/002_loginToDatabricks # done Thu Jun 16 20:12:39 NZST 2016
+#FName=../db/week1/01_introduction/002_loginToDatabricks # done Thu Jun 16 20:12:39 NZST 2016
 #FName=../db/week1/01_introduction/003_scalaCrashCourse # done Thu Jun 16 20:26:14 NZST 2016
 ###############################################################################################
 
 ###########-- Week2 --#########################################################################
-#FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Sun Mar  6 20:51:27 NZDT 2016
+FName=../db/week2/02_SparkEssentials/004_RDDsTransformationsActions # done Sun Mar  6 20:51:27 NZDT 2016
 #FName=../db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK # done Sun Mar  6 20:53:56 NZDT 2016
 #FName=../db/week2/03_WordCount/006_WordCount # done Sun Mar  6 20:53:34 NZDT 2016
 #FName=../db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses # done Sun Mar  6 20:55:03 NZDT 2016

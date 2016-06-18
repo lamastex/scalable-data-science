@@ -12,7 +12,11 @@ val a = sc.newAPIHadoopFile(ioFilenameRoot+".scala", classOf[TextInputFormat], c
 
 // the above code snippet is from http://stackoverflow.com/questions/25259425/spark-reading-files-using-different-delimiter-than-new-line
 
+// this works but misses frameIt in git-book
 val b = a.map(x => x.replaceAll("// MAGIC %md","MYMAGICMD")).map(x => x.replaceAll("// MAGIC ","")).map( x => { if (x.contains("MYMAGICMD")) x.replaceAll("MYMAGICMD","") else "```scala"+x+"```"})
+
+//TODO!!! -- may be...
+//val b = a.map(x => x.replaceAll("// MAGIC %md","MYMAGICMD")).map(x => x.replaceAll("// MAGIC ","")).map( x => { if (x.contains("MYMAGICMD")) x.replaceAll("MYMAGICMD","") else "```scala"+x+"```"}).map( x=> {if (x.contains("frameIt($url)")) or OHOHNONOYAYASEEININGITBOOKNOW  then just return '%md [url](url)})
 
 b.coalesce(1,shuffle=true).saveAsTextFile("./MDparsed")
 

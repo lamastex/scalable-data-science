@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 22:18:10 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 03:01:51 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -14,10 +14,25 @@ and
 
 
 
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week2/02_SparkEssentials/004_RDDsTransformationsActions.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji") for **course mechanics, logistics, expectations and course-project suggestions**:
+
+* [Workspace -> scalable-data-science -> work -> potentialProjectIdeas (relative to 'Workspace' link!)](/#workspace/scalable-data-science/work/potentialProjectIdeas)
+
+[![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=0&end=797)
+
+
+and its remaining recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji")
+
+[![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=797&end=4612)
+
+
+
+
+
 # **Introduction to Spark**
 ## Spark Essentials: RDDs, Transformations and Actions
 
-* This introduction notebook describes how to get started running Spark (Scala) code in Notebooks.
+* This introductory notebook describes how to get started running Spark (Scala) code in Notebooks.
 * Working with Spark's Resilient Distributed Datasets (RDDs)
   * creating RDDs
   * performing basic transformations on RDDs
@@ -45,11 +60,22 @@ See [http://spark.apache.org/docs/latest/cluster-overview.html](http://spark.apa
 
 ```scala
 
-%run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-```
-```scala
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("http://spark.apache.org/docs/latest/cluster-overview.html",700))
 
 ```
@@ -133,13 +159,16 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/programming-guide.html"
 
 
 
-# Let us get our hands dirty in Spark implementing these ideas!
+## Let us get our hands dirty in Spark implementing these ideas!
 
 
 
 
 
-### Let us look at the [legend and overview of the visual RDD Api](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
+#### Let us look at the legend and overview of the visual RDD Api in the following notebook:
+* [in Workspace -> scalable-data-science -> xtraResources -> visualRDDApi -> guide (relative to 'Workspace' link!)](/#workspace/scalable-data-science/xtraResources/visualRDDApi/guide).
+
+**NOTE:** The links to other notebook may not work in a different shard depending on where you uploaded the 'scalable-data-science' archive to! This can be easily fixed by correcting the directory containing 'scalable-data-science' folder. Here it is assumed to be in 'Workspace' folder.
 
 ![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
 
