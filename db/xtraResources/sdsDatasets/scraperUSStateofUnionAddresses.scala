@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 04:45:23 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 04:47:52 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,9 +13,9 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week2/03_WordCount/006_WordCount.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
 // MAGIC 
-// MAGIC [![sds/uji/week2/03_wordcount/006_wordcount](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=5075)
+// MAGIC [![sds/uji/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=5075)
 
 // COMMAND ----------
 
