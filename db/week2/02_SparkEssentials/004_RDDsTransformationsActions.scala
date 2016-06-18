@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 03:01:51 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 04:11:12 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -22,7 +22,7 @@
 // MAGIC 
 // MAGIC and its remaining recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji")
 // MAGIC 
-// MAGIC [![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=797&end=4612)
+// MAGIC [![sds/uji/week2/02_SparkEssentials/004_RDDsTransformationsActions](http://img.youtube.com/vi/zgkvusQdNLY/0.jpg)](https://www.youtube.com/v/zgkvusQdNLY?rel=0&autoplay=1&modestbranding=1&start=797&end=4537)
 
 // COMMAND ----------
 
