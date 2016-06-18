@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 25 Mar 2016 20:52:59 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 23:23:54 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/09_LinearAlgebraIntro/017_LAlgIntro.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week5/09_LinearAlgebraIntro/017_LAlgIntro](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=0&end=2634)
 
 // COMMAND ----------
 
@@ -27,10 +34,6 @@
 // MAGIC * Arithmetic operations with vectors and matrices
 // MAGIC 
 // MAGIC We will see the accompanying Scala computations in the local or non-distributed setting.
-
-// COMMAND ----------
-
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
 
 // COMMAND ----------
 
@@ -204,7 +207,6 @@ val x = DenseVector.zeros[Double](5) // this will output x: breeze.linalg.DenseV
 
 // COMMAND ----------
 
-// MAGIC 
 // MAGIC %md
 // MAGIC #### Transpose
 // MAGIC **(watch now 1:02)**:
@@ -234,7 +236,6 @@ a.t
 
 // COMMAND ----------
 
-// MAGIC 
 // MAGIC %md
 // MAGIC #### Addition and Subtraction
 // MAGIC **(watch now 0:59)**:
@@ -450,8 +451,7 @@ Math.sqrt(4*4 + 3*3) // check
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
-// MAGIC **Home Work:** read this! [https://github.com/scalanlp/breeze/wiki/Quickstart](https://github.com/scalanlp/breeze/wiki/Quickstart)
+// MAGIC **HOMEWORK:** read this! [https://github.com/scalanlp/breeze/wiki/Quickstart](https://github.com/scalanlp/breeze/wiki/Quickstart)
 // MAGIC 
 // MAGIC  It is here in markdown'd via wget and pandoc for your convenience.
 // MAGIC 
