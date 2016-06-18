@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 08:41:05 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 08:58:54 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -83,7 +83,8 @@ require(sc.version.replace(".", "").toInt >= 140, "Spark 1.4.0+ is required to r
 
 // COMMAND ----------
 
-// MAGIC %md ##Step 1: Business Understanding
+// MAGIC %md
+// MAGIC ##Step 1: Business Understanding
 // MAGIC The first step in any machine learning task is to understand the business need. 
 // MAGIC 
 // MAGIC As described in the overview we are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant.
@@ -92,7 +93,8 @@ require(sc.version.replace(".", "").toInt >= 140, "Spark 1.4.0+ is required to r
 
 // COMMAND ----------
 
-// MAGIC %md ##Step 2: Load Your Data
+// MAGIC %md
+// MAGIC ##Step 2: Load Your Data
 // MAGIC Now that we understand what we are trying to do, we need to load our data and describe it, explore it and verify it.
 
 // COMMAND ----------
@@ -174,7 +176,8 @@ powerPlantDF.printSchema // print the schema of the DataFrame that was inferred
 
 // COMMAND ----------
 
-// MAGIC %md ##Step 3: Explore Your Data
+// MAGIC %md
+// MAGIC ##Step 3: Explore Your Data
 // MAGIC Now that we understand what we are trying to do, we need to load our data and describe it, explore it and verify it.
 
 // COMMAND ----------
@@ -192,7 +195,6 @@ powerPlantDF.count() // count the number of rows in DF
 
 // COMMAND ----------
 
-// MAGIC %md
 // MAGIC %md
 // MAGIC #### Viewing as Table via SQL
 // MAGIC Let us look at what tables are already available, as follows:
@@ -250,7 +252,8 @@ sqlContext // put . after sqlContext and hit Tab to see what methods are availab
 
 // COMMAND ----------
 
-// MAGIC %md We can use the SQL `desc` command to describe the schema. This is the SQL equivalent of `powerPlantDF.printSchema` we saw earlier.
+// MAGIC %md
+// MAGIC We can use the SQL `desc` command to describe the schema. This is the SQL equivalent of `powerPlantDF.printSchema` we saw earlier.
 
 // COMMAND ----------
 
@@ -258,7 +261,8 @@ sqlContext // put . after sqlContext and hit Tab to see what methods are availab
 
 // COMMAND ----------
 
-// MAGIC %md **Schema Definition**
+// MAGIC %md
+// MAGIC **Schema Definition**
 // MAGIC 
 // MAGIC Our schema definition from UCI appears below:
 // MAGIC 
@@ -274,7 +278,8 @@ sqlContext // put . after sqlContext and hit Tab to see what methods are availab
 
 // COMMAND ----------
 
-// MAGIC %md Let's do some basic statistical analysis of all the columns. 
+// MAGIC %md
+// MAGIC Let's do some basic statistical analysis of all the columns. 
 // MAGIC 
 // MAGIC We can use the describe function with no parameters to get some basic stats for each column like count, mean, max, min and standard deviation.  More information can be found in the [Spark API docs](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame)
 
@@ -284,7 +289,8 @@ display(powerPlantDF.describe())
 
 // COMMAND ----------
 
-// MAGIC %md ##Step 4: Visualize Your Data
+// MAGIC %md
+// MAGIC ##Step 4: Visualize Your Data
 // MAGIC 
 // MAGIC To understand our data, we will look for correlations between features and the label.  This can be important when choosing a model.  E.g., if features and a label are linearly correlated, a linear model like Linear Regression can do well; if the relationship is very non-linear, more complex models such as Decision Trees can be better. We use the Databricks built in visualization to view each of our predictors in relation to the label column as a scatter plot to see the correlation between the predictors and the label.
 
@@ -294,7 +300,8 @@ display(powerPlantDF.describe())
 
 // COMMAND ----------
 
-// MAGIC %md It looks like there is strong linear correlation between temperature and Power Output
+// MAGIC %md
+// MAGIC It looks like there is strong linear correlation between temperature and Power Output
 
 // COMMAND ----------
 
@@ -302,7 +309,8 @@ display(powerPlantDF.describe())
 
 // COMMAND ----------
 
-// MAGIC %md The linear correlation is not as strong between Exhaust Vacuum Speed and Power Output but there is some semblance of a pattern.
+// MAGIC %md
+// MAGIC The linear correlation is not as strong between Exhaust Vacuum Speed and Power Output but there is some semblance of a pattern.
 
 // COMMAND ----------
 
@@ -345,7 +353,8 @@ display(powerPlantDF)
 
 // COMMAND ----------
 
-// MAGIC %md Datasource References:
+// MAGIC %md
+// MAGIC Datasource References:
 // MAGIC * Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
 // MAGIC * Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
 
