@@ -24,7 +24,7 @@
     * [ETL and EDA of Wiki Click Stream Data](db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA.md)
 
 * [Week 4](db/week4/README.md)
-    * [Introduction to Machine Learning](db/week4/06_MLIntro/011_IntroToML.scala.md)
+    * [Introduction to Machine Learning](db/week4/06_MLIntro/011_IntroToML.md)
     * Unsupervised Clustering of 1 Million Songs via K-Means in 3 Stages
         * [Stage 1: Extract-Transform-Load](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL.md)
         * [Stage 2: Explore](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore.md)
