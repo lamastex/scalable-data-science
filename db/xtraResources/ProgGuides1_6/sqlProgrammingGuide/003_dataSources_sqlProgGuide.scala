@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 14 Mar 2016 04:41:03 UTC
+// Databricks notebook source exported at Sat, 18 Jun 2016 07:08:06 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -198,10 +198,22 @@ sqlContext.tables.show()
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("https://parquet.apache.org/documentation/latest/",500))
 
 // COMMAND ----------
