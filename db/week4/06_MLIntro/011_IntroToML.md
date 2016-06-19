@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 10:23:12 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 08:36:55 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -48,7 +48,7 @@ I may consider teaching a theoretical course in statistical learning if there is
 * Probability, 
 in the future.
 
-Such a could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning:
+Such a course could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning:
   * Short course on Non-parametric Density Estimation at Centre for Mathematics and its Applications, Ecole Polytechnique, Palaiseau, France 
      * [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf)
 
