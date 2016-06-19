@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 31 Mar 2016 20:46:21 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 00:01:55 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -12,7 +12,15 @@
 
 // COMMAND ----------
 
-// MAGIC %md #Power Plant ML Pipeline Application
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=4400)
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC #Power Plant ML Pipeline Application
 // MAGIC This is an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
 // MAGIC 
 // MAGIC ###Table of Contents
@@ -94,7 +102,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ##Step 5: Data Preparation
+// MAGIC %md
+// MAGIC ##Step 5: Data Preparation
 // MAGIC 
 // MAGIC The next step is to prepare the data. Since all of this data is numeric and consistent, this is a simple task for us today.
 // MAGIC 
@@ -134,14 +143,11 @@ val vectorizer =  new VectorAssembler()
 
 // COMMAND ----------
 
-// MAGIC %md ##Step 6: Data Modeling
+// MAGIC %md
+// MAGIC ##Step 6: Data Modeling
 // MAGIC Now let's model our data to predict what the power output will be given a set of sensor readings
 // MAGIC 
 // MAGIC Our first model will be based on simple linear regression since we saw some linear patterns in our data based on the scatter plots during the exploration stage.
-
-// COMMAND ----------
-
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
 
 // COMMAND ----------
 
@@ -159,6 +165,22 @@ val vectorizer =  new VectorAssembler()
 
 // COMMAND ----------
 
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("http://spark.apache.org/docs/latest/mllib-linear-methods.html#regression",300))
 
 // COMMAND ----------
@@ -171,7 +193,9 @@ var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L
 // MAGIC %md
 // MAGIC ### A Note on being able to link-in scala docs from URL
 // MAGIC 
-// MAGIC Unfortunately we cannot deep-link-in to scala docs as explained here: [http://www.scala-lang.org/old/node/8798.html](http://www.scala-lang.org/old/node/8798.html).
+// MAGIC Unfortunately we cannot stably deep-link-in to scala docs as explained here: [http://www.scala-lang.org/old/node/8798.html](http://www.scala-lang.org/old/node/8798.html).
+// MAGIC 
+// MAGIC **todo** databricks-support suggested this problem was resolved a few weeks later, but this has not been verified for our "frameIt" purposed yet (note added June 19, 2016). Pull requests will be most welcome here :)
 // MAGIC 
 // MAGIC Our best option now seems to go to the following link and search for randomSplit in the search-box there:
 // MAGIC * [http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame)
@@ -232,7 +256,8 @@ lr.explainParams()
 
 // COMMAND ----------
 
-// MAGIC %md The cell below is based on the Spark ML pipeline API. More information can be found in the Spark ML Programming Guide at https://spark.apache.org/docs/latest/ml-guide.html
+// MAGIC %md
+// MAGIC The cell below is based on the Spark ML pipeline API. More information can be found in the Spark ML Programming Guide at https://spark.apache.org/docs/latest/ml-guide.html
 
 // COMMAND ----------
 
@@ -311,7 +336,8 @@ println("Linear Regression Equation: " + equation)
 
 // COMMAND ----------
 
-// MAGIC %md Based on examining the fitted Linear Regression Equation above:
+// MAGIC %md
+// MAGIC Based on examining the fitted Linear Regression Equation above:
 // MAGIC * There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91.
 // MAGIC * But our other dimenensions seem to have little to no correlation with Power Output. 
 // MAGIC 
@@ -328,7 +354,8 @@ display(predictionsAndLabels.select("AT", "V", "AP", "RH", "PE", "Predicted_PE")
 
 // COMMAND ----------
 
-// MAGIC %md Now that we have real predictions we can use an evaluation metric such as Root Mean Squared Error to validate our regression model. The lower the Root Mean Squared Error, the better our model.
+// MAGIC %md
+// MAGIC Now that we have real predictions we can use an evaluation metric such as Root Mean Squared Error to validate our regression model. The lower the Root Mean Squared Error, the better our model.
 
 // COMMAND ----------
 
@@ -352,10 +379,6 @@ val explainedVariance = metrics.explainedVariance
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 val r2 = metrics.r2
 
 // COMMAND ----------
@@ -366,7 +389,8 @@ println (f"R2: $r2")
 
 // COMMAND ----------
 
-// MAGIC %md Generally a good model will have 68% of predictions within 1 RMSE and 95% within 2 RMSE of the actual value. Let's calculate and see if our RMSE meets this criteria.
+// MAGIC %md
+// MAGIC Generally a good model will have 68% of predictions within 1 RMSE and 95% within 2 RMSE of the actual value. Let's calculate and see if our RMSE meets this criteria.
 
 // COMMAND ----------
 
@@ -388,7 +412,8 @@ predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Resi
 
 // COMMAND ----------
 
-// MAGIC %md We can see this definitively if we count the number of predictions within + or - 1.0 and + or - 2.0 and display this as a pie chart:
+// MAGIC %md
+// MAGIC We can see this definitively if we count the number of predictions within + or - 1.0 and + or - 2.0 and display this as a pie chart:
 
 // COMMAND ----------
 
@@ -405,7 +430,8 @@ predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Resi
 
 // COMMAND ----------
 
-// MAGIC %md #Step 7: Tuning and Evaluation
+// MAGIC %md
+// MAGIC #Step 7: Tuning and Evaluation
 // MAGIC 
 // MAGIC Now that we have a model with all of the data let's try to make a better model by tuning over several parameters.
 
@@ -489,7 +515,8 @@ val cvModel = crossval.fit(trainingSet)
 
 // COMMAND ----------
 
-// MAGIC %md Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
+// MAGIC %md
+// MAGIC Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
 
 // COMMAND ----------
 
@@ -510,7 +537,8 @@ println (f"R2: $r2")
 
 // COMMAND ----------
 
-// MAGIC %md So our initial untuned and tuned linear regression models are statistically identical.
+// MAGIC %md
+// MAGIC So our initial untuned and tuned linear regression models are statistically identical.
 // MAGIC 
 // MAGIC Given that the only linearly correlated variable is Temperature, it makes sense try another machine learning method such a Decision Tree to handle non-linear data and see if we can improve our model
 // MAGIC 
@@ -570,7 +598,8 @@ display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[D
 
 // COMMAND ----------
 
-// MAGIC %md Now let's see how our DecisionTree model compares to our LinearRegression model
+// MAGIC %md
+// MAGIC Now let's see how our DecisionTree model compares to our LinearRegression model
 
 // COMMAND ----------
 
@@ -594,14 +623,17 @@ println (f"R2: $r2")
 
 // COMMAND ----------
 
-// MAGIC %md So our DecisionTree was slightly worse than our LinearRegression model (LR: 4.51 vs DT: 5.03). Maybe we can try an Ensemble method such as Gradient-Boosted Decision Trees to see if we can strengthen our model by using an ensemble of weaker trees with weighting to reduce the error in our model.
+// MAGIC %md
+// MAGIC So our DecisionTree was slightly worse than our LinearRegression model (LR: 4.51 vs DT: 5.03). Maybe we can try an Ensemble method such as Gradient-Boosted Decision Trees to see if we can strengthen our model by using an ensemble of weaker trees with weighting to reduce the error in our model.
 // MAGIC 
-// MAGIC *Note since this is a complex model, the cell below can take about *16 minutes* or so to run, go out and grab a coffee and come back :-).*
+// MAGIC *Note since this is a complex model, the cell below can take about *16 minutes* or so to run on a small cluster with a couple nodes with about 6GB RAM, go out and grab a coffee and come back :-).*
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ***DON'T run the next 3 cells in class!***
+// MAGIC ***DON'T run the next 3 cells in class (all of us together)!***
+// MAGIC 
+// MAGIC This GBTRegressor code will be way faster on a larger cluster of course (if only I run them while you all watch), as in the AWS Educate funded clusters we are currently on now - thanks again to the databricks Academic Partners Programm for this shard in the first place and especially to AJ for pointing me to the AWS Educate grant in 2015 :)
 
 // COMMAND ----------
 
@@ -663,7 +695,8 @@ println (f"R2: $r2")
 
 // COMMAND ----------
 
-// MAGIC %md We can use the toDebugString method to dump out what our trees and weighting look like:
+// MAGIC %md 
+// MAGIC We can use the toDebugString method to dump out what our trees and weighting look like:
 
 // COMMAND ----------
 
@@ -671,13 +704,15 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
 
 // COMMAND ----------
 
-// MAGIC %md ### Conclusion
+// MAGIC %md
+// MAGIC ### Conclusion
 // MAGIC 
 // MAGIC Wow! So our best model is in fact our Gradient Boosted Decision tree model which uses an ensemble of 120 Trees with a depth of 3 to construct a better model than the single decision tree.
 
 // COMMAND ----------
 
-// MAGIC %md #Step 8: Deployment will be done later
+// MAGIC %md
+// MAGIC #Step 8: Deployment will be done later
 // MAGIC 
 // MAGIC Now that we have a predictive model it is time to deploy the model into an operational environment. 
 // MAGIC 
@@ -695,7 +730,8 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
 
 // COMMAND ----------
 
-// MAGIC %md Datasource References:
+// MAGIC %md
+// MAGIC Datasource References:
 // MAGIC * Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
 // MAGIC * Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
 
