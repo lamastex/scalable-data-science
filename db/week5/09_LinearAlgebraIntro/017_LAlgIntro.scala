@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 23:23:54 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 08:59:36 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -27,7 +27,7 @@
 // MAGIC * Ameet's Linear Algebra Review in CS190.1x Scalable Machine Learning Course that is archived in edX from 2015 and
 // MAGIC * **Home Work:** read this! [https://github.com/scalanlp/breeze/wiki/Quickstart](https://github.com/scalanlp/breeze/wiki/Quickstart)
 // MAGIC 
-// MAGIC Using this and the  we'll provide a review of basic linear algebra concepts that will recur throughout the course.  These concepts include:
+// MAGIC Using the above resources we'll provide a review of basic linear algebra concepts that will recur throughout the course.  These concepts include:
 // MAGIC 
 // MAGIC 1. Matrices
 // MAGIC * Vectors
@@ -278,7 +278,7 @@ B - A // should be -A-A=-2A
 // MAGIC 
 // MAGIC All Tensors support a set of operators, similar to those used in Matlab or Numpy. 
 // MAGIC 
-// MAGIC For extra work see: [Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet](/#workspace/scalable-data-science/xtraResources/LinearAlgebra/LAlgCheatSheet) for a list of most of the operators and various operations. 
+// MAGIC For **HOMEWORK** see: [Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet](/#workspace/scalable-data-science/xtraResources/LinearAlgebra/LAlgCheatSheet) for a list of most of the operators and various operations. 
 // MAGIC 
 // MAGIC Some of the basic ones are reproduced here, to give you an idea.
 // MAGIC 
