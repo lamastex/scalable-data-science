@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 14 Mar 2016 00:42:51 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 02:52:45 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -15,6 +15,8 @@ and
 
 
 This is an elaboration of the [Apache Spark 1.6 sql-progamming-guide](http://spark.apache.org/docs/latest/sql-programming-guide.html).
+
+Any contributions in this 'databricksification' of the programming guide are most welcome. Please feel free to send pull-requests or just fork and push yourself at [https://github.com/raazesh-sainudiin/scalable-data-science](https://github.com/raazesh-sainudiin/scalable-data-science).
 
 # [Spark Sql Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide)
 

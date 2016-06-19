@@ -34,7 +34,7 @@ rm -rf ./MDparsed
 #FName=../db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA # 
 #FName=../db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA # 
 ######sql-programming guide HOMEWORK ### this block done Sat Jun 18 19:53:55 NZST 2016
-FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide
 #FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide
 #FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide
 #FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide
@@ -83,17 +83,16 @@ FName=../db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide
 
 ###########-- xtraResources --#########################################################################
 #FName=../db/xtraResources/awsEducate/sharing # done Thu Jun 16 21:00:53 NZST 2016
-#START HERE NExt
 #FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ################ to be done for below
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/004_DistributedMatrix
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/005_RowMatrix
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/006_IndexedRowMatrix
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/007_CoordinateMatrix
-#FName=..db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/004_DistributedMatrix
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/005_RowMatrix
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/006_IndexedRowMatrix
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/007_CoordinateMatrix
+FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix
 ###############################################################################################
 
 echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
