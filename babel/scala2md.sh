@@ -45,7 +45,7 @@ rm -rf ./MDparsed
 ###########-- Week4 --#########################################################################
 # this block done around Sat Jun 18 20:38:31 NZST 2016 
 #FName=../db/week4/06_MLIntro/011_IntroToML 
-FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro
+#FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model
@@ -85,6 +85,7 @@ FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intr
 #FName=../db/xtraResources/awsEducate/sharing # done Thu Jun 16 21:00:53 NZST 2016
 #FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ################ done Sun Jun 19 20:45:20 NZST 2016
+FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide
 #FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector
 #FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint
 #FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix

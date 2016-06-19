@@ -6,7 +6,7 @@ Introduction to Non-distributed and Distributed Linear Algebra and Applied Linea
         * [HOMEWORK: breeze linear algebra cheat sheet](../db/xtraResources/LinearAlgebra/LAlgCheatSheet.md)
     * [Linear Regression Introduction](10_LinearRegressionIntro/018_LinRegIntro.md)
     * [Distributed Linear Algebra for Linear Regression Introduction](10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.md)
-        * HOMEWORK: Spark Data Types for Distributed Linear Algebra
+        * [HOMEWORK: Spark Data Types for Distributed Linear Algebra](../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide.md)
             * [Local Vector](../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector.md)
             * [Labeled Point](../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint.md)
             * [Local Matrix](../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix.md)
