@@ -50,10 +50,11 @@ rm -rf ./MDparsed
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model
 #FName=../db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition
- db/week5/09_LinearAlgebraIntro/017_LAlgIntro.scala                                  | 18 ++++++------
- db/week5/10_LinearRegressionIntro/018_LinRegIntro.scala                             | 12 ++++++--
- db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.scala                  | 21 ++++++++++++--
- db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate.scala
+####### github syncing frozen in databricks shard for linear algebra cheat-sheet - ARRRGGGHHHHH - unujified still... smoke break now...
+# db/week5/09_LinearAlgebraIntro/017_LAlgIntro.scala                                  | 18 ++++++------
+# db/week5/10_LinearRegressionIntro/018_LinRegIntro.scala                             | 12 ++++++--
+# db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.scala                  | 21 ++++++++++++--
+# db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate.scala
 ###############################################################################################
 
 ###########-- Week5 --#########################################################################
