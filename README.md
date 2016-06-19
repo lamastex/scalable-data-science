@@ -25,13 +25,15 @@ All course projects by seven enrolled and four observing students for Semester 1
 Please read [how to contribute](./CONTRIBUTING.md) and a note on [babel](./babel/README.md).
 
 ## Supported By
-[Databricks Academic Partners Program](https://databricks.com/academic) and [AWS Web Services Educate](https://www.awseducate.com/microsite/CommunitiesEngageHome).
+[Databricks Academic Partners Program](https://databricks.com/academic) and [AMazon Web Services Educate](https://www.awseducate.com/microsite/CommunitiesEngageHome).
 
 Raazesh Sainudiin
 
 Laboratory for Mathematical Statistical Experiments, Christchurch Centre and 
 
 School of Mathematics and Statistics
+
+University of Canterbury
 
 Private Bag 4800
 
