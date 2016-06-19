@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 07:39:31 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 02:14:35 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,10 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+
 
 // COMMAND ----------
 
@@ -34,7 +38,6 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC ## Quick Reference
 // MAGIC 
 // MAGIC The following table assumes that Numpy is used with `from numpy import *` and Breeze with:
@@ -47,7 +50,6 @@ import breeze.numerics._
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC ### Creation
 // MAGIC 
 // MAGIC | Operation                       | Breeze                                        | Matlab            | Numpy           |R
@@ -92,7 +94,6 @@ DenseMatrix.zeros[Double](2,3)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC #### Reading and writing Matrices
 // MAGIC 
 // MAGIC Currently, Breeze supports IO for Matrices in two ways: Java serialization and csv. The latter comes from two functions: `breeze.linalg.csvread` and `breeze.linalg.csvwrite`. `csvread` takes a File, and optionally parameters for how the CSV file is delimited (e.g. if it is actually a tsv file, you can set tabs as the field delimiter.) and returns a [DenseMatrix](Data-Structures#densematrix). Similarly, `csvwrite` takes a File and a DenseMatrix, and writes the contents of a matrix to a file.
@@ -107,7 +108,18 @@ DenseMatrix.zeros[Double](2,3)
 // MAGIC |(tail)                    |`a(1 to -1)`                                     |`a(2:end)`   |`a[1:]`      |`a[2:length(a)]` or ` tail(a,n=length(a)-1)`
 // MAGIC |(last element)            |`a( -1 )`                                        |`a(end)`     |`a[-1]`      |`tail(a, n=1)`
 // MAGIC |Extract column of matrix  |`a(::, 2)`                                       |`a(:,3)`     |`a[:,2]`     |`a[,2]`
-// MAGIC 
+
+// COMMAND ----------
+
+val matrix = DenseMatrix.rand(2, 3)
+
+// COMMAND ----------
+
+val two_one = matrix(1, 0) // Remember the index starts from zero
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ### Other Manipulation
 // MAGIC 
 // MAGIC |Operation                       |Breeze                                   |Matlab              |Numpy                          |R
