@@ -14,26 +14,29 @@ decision problems from various scientific domains.
 This is being prepared by Raazesh Sainudiin and Sivanand Sivaram
 with assistance from Paul Brouwers, Dillon George and Ivan Sadikov.
 
-See [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) for the latest content as cloud-uploadable and locally browsable notebooks. The
-Gitbook version of this content will lag by a few weeks.
+See [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) for content as cloud-uploadable and locally browsable notebooks. 
 
-All course participants (enrolled and observing students for Semester 1 of 2016) may be able to do a
-course project if their project proposal gets approved by Raazesh Sainudiin, the course coordinator.
+The Gitbook version of this content is [https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details](https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details).
 
-## Build
-Steps to add newly created notebook in Databricks cloud (as `.scala`) into gitbook (`.md`):
+All course projects by seven enrolled and four observing students for Semester 1 of 2016 at UC, Ilam are part of this content.
 
-- Export notebook from Databricks cloud onto your local machine. We work with `.scala` notebooks
-most of the time, so currently we only support those.
-- Run `bin/parse-notebook.sh` to convert `.scala` notebook into `.md` document. Script takes input
-and output files/directories, also prints some minimal statistics. E.g.
-```shell
-$ bin/parse-notebook.sh temp/scala-notebook.scala temp/
-```
-You can specify directory as output, or file. In case of directory markdown file name will be the
-same as `.scala` file.
-
-- Save converted notebook into repository / Gitbook.
 
 ## Contribute
-Please read [how to contribute](./CONTRIBUTING.md).
+Please read [how to contribute](./CONTRIBUTING.md) and a note on [babel](./babel/README.md).
+
+## Supported By
+[Databricks Academic Partners Program](https://databricks.com/academic) and [AWS Web Services Educate](https://www.awseducate.com/microsite/CommunitiesEngageHome).
+
+Raazesh Sainudiin
+
+Laboratory for Mathematical Statistical Experiments, Christchurch Centre and 
+
+School of Mathematics and Statistics
+
+Private Bag 4800
+
+Christchurch 8041
+
+New Zealand
+
+Sun Jun 19 21:59:19 NZST 2016

@@ -1,5 +1,32 @@
 #!/usr/bin/env python
+# pull accepted by Raazesh Sainudiin from Ivan Sadikov
 
+####################################################################################################
+### Build
+#Steps to add newly created notebook in Databricks cloud (as `.scala`) into gitbook (`.md`):
+#
+#- Export notebook from Databricks cloud onto your local machine. We work with `.scala` notebooks
+#most of the time, so currently we only support those.
+#- Run `bin/parse-notebook.sh` to convert `.scala` notebook into `.md` document. Script takes input
+#and output files/directories, also prints some minimal statistics. E.g.
+#```shell
+#$ cd ../
+#$ bin/parse-notebook.sh temp/scala-notebook.scala temp/
+## to parse a whole lot of them by recursively looking into a dir named tempTest you can just do
+#$ for i in $(find tempTest -name "*.scala") ; do bin/parse-notebook.sh $i ${i%/*}; done
+## but perhaps first check that these are the .scala files you want to markdown
+#$ for i in $(find tempTest -name "*.scala") ; do echo $i ${i%/*}; done
+#```
+#You can specify directory as output, or file. In case of directory markdown file name will be the
+#same as `.scala` file.
+#
+#- Save converted notebook into repository / Gitbook.
+####################################################################################################
+# unfortunately, this parser is not as ascii-reparseable as Raaz's clunky spark-shell based babel
+# it does not preserve white-space structure among others
+# it will be nice to improve this by ensuring diff with raaz's babel output .md
+# see ../babel/README.md for details on babel via a couple lines in spark
+####################################################################################################
 import sys, os
 
 class Cell(object):

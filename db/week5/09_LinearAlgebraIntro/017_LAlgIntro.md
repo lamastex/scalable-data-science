@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 23:23:54 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 08:59:36 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -29,7 +29,7 @@ This is a `breeze`'y `scala`rific break-down of:
 * Ameet's Linear Algebra Review in CS190.1x Scalable Machine Learning Course that is archived in edX from 2015 and
 * **Home Work:** read this! [https://github.com/scalanlp/breeze/wiki/Quickstart](https://github.com/scalanlp/breeze/wiki/Quickstart)
 
-Using this and the  we'll provide a review of basic linear algebra concepts that will recur throughout the course.  These concepts include:
+Using the above resources we'll provide a review of basic linear algebra concepts that will recur throughout the course.  These concepts include:
 
 1. Matrices
 * Vectors
@@ -318,7 +318,7 @@ B - A // should be -A-A=-2A
 
 All Tensors support a set of operators, similar to those used in Matlab or Numpy. 
 
-For extra work see: [Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet](/#workspace/scalable-data-science/xtraResources/LinearAlgebra/LAlgCheatSheet) for a list of most of the operators and various operations. 
+For **HOMEWORK** see: [Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet](/#workspace/scalable-data-science/xtraResources/LinearAlgebra/LAlgCheatSheet) for a list of most of the operators and various operations. 
 
 Some of the basic ones are reproduced here, to give you an idea.
 
