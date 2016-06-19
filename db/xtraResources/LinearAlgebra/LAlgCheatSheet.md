@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 3 Mar 2016 07:39:31 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 02:24:27 UTC
 
 
 # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,22 @@
 *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 and 
 [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+
+
+
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/xtraResources/LinearAlgebra/LAlgCheatSheet.html) of this databricks HOMEWORK notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week5/09_LinearAlgebraIntro/017_LAlgIntro-Homework-db/xtraResources/LinearAlgebra/LAlgCheatSheet](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=1547&end=1673)
+
+
+
+
+
+The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/09_LinearAlgebraIntro/017_LAlgIntro.html) of the context/parent databricks notebook (for this databricks HOMEWORK notebook) and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+
+[![sds/uji/week5/09_LinearAlgebraIntro/017_LAlgIntro](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=0&end=2634)
 
 
 
@@ -37,7 +53,6 @@ vectors to column vectors is performed using a transpose-slice
 
 
 
-
 ## Quick Reference
 
 The following table assumes that Numpy is used with `from numpy import *` and Breeze with:
@@ -49,7 +64,6 @@ import breeze.linalg._
 import breeze.numerics._
 
 ```
-
 
 
 
@@ -102,7 +116,6 @@ mat.or.vec(2,3)
 
 
 
-
 #### Reading and writing Matrices
 
 Currently, Breeze supports IO for Matrices in two ways: Java serialization and csv. The latter comes from two functions: `breeze.linalg.csvread` and `breeze.linalg.csvwrite`. `csvread` takes a File, and optionally parameters for how the CSV file is delimited (e.g. if it is actually a tsv file, you can set tabs as the field delimiter.) and returns a [DenseMatrix](Data-Structures#densematrix). Similarly, `csvwrite` takes a File and a DenseMatrix, and writes the contents of a matrix to a file.
@@ -117,6 +130,20 @@ Currently, Breeze supports IO for Matrices in two ways: Java serialization and c
 |(tail)                    |`a(1 to -1)`                                     |`a(2:end)`   |`a[1:]`      |`a[2:length(a)]` or ` tail(a,n=length(a)-1)`
 |(last element)            |`a( -1 )`                                        |`a(end)`     |`a[-1]`      |`tail(a, n=1)`
 |Extract column of matrix  |`a(::, 2)`                                       |`a(:,3)`     |`a[:,2]`     |`a[,2]`
+
+
+```scala
+
+val matrix = DenseMatrix.rand(2, 3)
+
+```
+```scala
+
+val two_one = matrix(1, 0) // Remember the index starts from zero
+
+```
+
+
 
 ### Other Manipulation
 

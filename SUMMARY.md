@@ -31,8 +31,37 @@
         * [Stage 3: Model](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model.md)
     * [Supervised Classification of Hand-written Digits via Decision Trees](db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition.md)
 
+* [Week 5](db/week5/README.md)
+    * [Linear Algebra Introduction](db/week5/09_LinearAlgebraIntro/017_LAlgIntro.md)
+        * [HOMEWORK: breeze linear algebra cheat sheet](db/xtraResources/LinearAlgebra/LAlgCheatSheet.md)
+    * [Linear Regression Introduction](db/week5/10_LinearRegressionIntro/018_LinRegIntro.md)
+    * [Distributed Linear Algebra for Linear Regression Introduction](db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.md)
+        * HOMEWORK: Spark Data Types for Distributed Linear Algebra
+            * [Local Vector](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector.md)
+            * [Labeled Point](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint.md)
+            * [Local Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix.md)
+            * [Distributed Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/004_DistributedMatrix.md)
+            * [Row Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/005_RowMatrix.md)
+            * [Indexed Row Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/006_IndexedRowMatrix.md)
+            * [Coordinate Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/007_CoordinateMatrix.md)
+            * [Block Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix.md)
+    * [Power Plant Pipeline: Model, Tune, Evaluate](db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate)
 
 * [Extra Resources](db/xtraResources/README.md)
     * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
+    * Databricksified Spark SQL Programming Guide 1.6
+        * [overview](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide.md)
+        * [getting started](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide.md)
+        * [data sources](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide.md)
+        * [performance tuning](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/004_performanceTuning_sqlProgGuide.md)
+        * [distributed sql engine](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/005_distributedSqlEngine_sqlProgGuide.md)
     * [Linear Algebra Cheat Sheet](db/xtraResources/LinearAlgebra/LAlgCheatSheet.md)
-
+    * Databricksified Data Types in MLLib Programming Guide 1.6 
+        * [Local Vector](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector.md)
+        * [Labeled Point](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint.md)
+        * [Local Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix.md)
+        * [Distributed Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/004_DistributedMatrix.md)
+        * [Row Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/005_RowMatrix.md)
+        * [Indexed Row Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/006_IndexedRowMatrix.md)
+        * [Coordinate Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/007_CoordinateMatrix.md)
+        * [Block Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix.md)
