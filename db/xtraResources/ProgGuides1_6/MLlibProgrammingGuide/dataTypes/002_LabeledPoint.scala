@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 22 Mar 2016 04:18:20 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 02:59:22 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -109,7 +109,8 @@ import org.apache.spark.rdd.RDD
 
 // COMMAND ----------
 
-// MAGIC %md ## Load MNIST training and test datasets
+// MAGIC %md 
+// MAGIC ## Load MNIST training and test datasets
 // MAGIC 
 // MAGIC Our datasets are vectors of pixels representing images of handwritten digits.  For example:
 // MAGIC 
