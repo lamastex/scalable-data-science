@@ -43,15 +43,25 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week4 --#########################################################################
-#FName=../db/week4/06_MLIntro/011_IntroToML #done Sat Jun 18 20:38:31 NZST 2016 
+# this block done around Sat Jun 18 20:38:31 NZST 2016 
+#FName=../db/week4/06_MLIntro/011_IntroToML 
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore
 #FName=../db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model
-FName=../db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition
+#FName=../db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition
+ db/week5/09_LinearAlgebraIntro/017_LAlgIntro.scala                                  | 18 ++++++------
+ db/week5/10_LinearRegressionIntro/018_LinRegIntro.scala                             | 12 ++++++--
+ db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.scala                  | 21 ++++++++++++--
+ db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate.scala
 ###############################################################################################
 
 ###########-- Week5 --#########################################################################
+# this block done around 
+#FName=../db/week5/09_LinearAlgebraIntro/017_LAlgIntro.scala
+#FName=../db/week5/10_LinearRegressionIntro/018_LinRegIntro.scala
+#FName=../db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.scala
+#FName=../db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate.scala
 ###############################################################################################
 
 ###########-- Week6 --#########################################################################
