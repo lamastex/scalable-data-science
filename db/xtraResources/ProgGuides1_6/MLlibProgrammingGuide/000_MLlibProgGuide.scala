@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 22 Mar 2016 04:16:56 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 02:51:24 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,9 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This is an elaboration of the [Apache Spark 1.6 mllib-progamming-guide](http://spark.apache.org/docs/latest/mllib-guide.html).
+// MAGIC This is an elaboration of the small subset of [Apache Spark 1.6 mllib-progamming-guide](http://spark.apache.org/docs/latest/mllib-guide.html) that one needs to dive a bit deeper into distributed linear algebra.
+// MAGIC 
+// MAGIC Any contributions in this 'databricksification' of the programming guide are most welcome. Please feel free to send pull-requests or just fork and push yourself at [https://github.com/raazesh-sainudiin/scalable-data-science](https://github.com/raazesh-sainudiin/scalable-data-science).
 // MAGIC 
 // MAGIC # [Overview](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/000_MLlibProgGuide)
 // MAGIC 
