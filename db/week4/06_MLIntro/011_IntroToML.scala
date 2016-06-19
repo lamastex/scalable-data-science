@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 18 Jun 2016 10:23:12 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 08:36:55 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -45,7 +45,7 @@
 // MAGIC * Probability, 
 // MAGIC in the future.
 // MAGIC 
-// MAGIC Such a could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning:
+// MAGIC Such a course could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning:
 // MAGIC   * Short course on Non-parametric Density Estimation at Centre for Mathematics and its Applications, Ecole Polytechnique, Palaiseau, France 
 // MAGIC      * [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf)
 
