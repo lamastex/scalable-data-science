@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 19 Jun 2016 02:14:35 UTC
+// Databricks notebook source exported at Sun, 19 Jun 2016 02:19:48 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -12,7 +12,17 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/09_LinearAlgebraIntro/017_LAlgIntro.html) of this databricks HOMEWORK notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week5/09_LinearAlgebraIntro/017_LAlgIntro](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=1547&end=1673)
 
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week5/09_LinearAlgebraIntro/017_LAlgIntro.html) of the context/parent databricks notebook (for this databricks HOMEWORK notebook) and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week5/09_LinearAlgebraIntro/017_LAlgIntro](http://img.youtube.com/vi/y6F-e6m1m2s/0.jpg)](https://www.youtube.com/v/y6F-e6m1m2s?rel=0&autoplay=1&modestbranding=1&start=0&end=2634)
 
 // COMMAND ----------
 
