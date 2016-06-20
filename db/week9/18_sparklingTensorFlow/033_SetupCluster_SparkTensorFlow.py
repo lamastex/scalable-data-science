@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Thu, 12 May 2016 03:51:07 UTC
+# Databricks notebook source exported at Mon, 20 Jun 2016 03:55:12 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -33,7 +33,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 1. Set cluster variable and check
+# MAGIC ## Step 1. Set cluster variable and check
 
 # COMMAND ----------
 
@@ -52,9 +52,16 @@ dbutils.fs.ls("dbfs:/databricks/init/%s/" % clusterName)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 2. To (re)create init scripts
+# MAGIC If ``pillow-install.sh` and `tensorflow-install.sh` are already in this cluster then skip **Step 2** below.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Step 2. To (re)create init scripts
 # MAGIC 
 # MAGIC If the `.sh` files above are not there, then evaluate the cell below and restart the cluster.
+# MAGIC 
+# MAGIC **Sub-step 2.1**
 
 # COMMAND ----------
 
@@ -88,7 +95,8 @@ echo "------ python packages --------"
 
 # COMMAND ----------
 
-# MAGIC %md You now need to restart your cluster.
+# MAGIC %md 
+# MAGIC **Sub-step 2.2** You now need to restart your cluster.
 
 # COMMAND ----------
 
