@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 24 Jun 2016 23:14:35 UTC
+// Databricks notebook source exported at Fri, 24 Jun 2016 23:37:01 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -10,6 +10,7 @@
 // MAGIC * How the Course Actualized
 // MAGIC * Course Plan
 // MAGIC * Logistics
+// MAGIC * In News
 
 // COMMAND ----------
 
@@ -155,20 +156,27 @@
 // MAGIC %md
 // MAGIC ## In News
 // MAGIC 
+// MAGIC The course received some attention in Australasian Press.
 // MAGIC 
-// MAGIC Here is the original draft to the Press.
+// MAGIC The original draft that was sent to the Press appears below. Various substrings of it appeared in the following news feeds:
 // MAGIC 
-// MAGIC ## An Australasian First Story! UC leads cloud computing use for big data analytics
+// MAGIC * [math.canterbury.ac.nz](http://www.math.canterbury.ac.nz/php/rss/news/?feed=news&articleId=1888), 
+// MAGIC * [educators.co.nz](https://educators.co.nz/story/university-canterbury-embraces-cloud-computing-and-big-data/), 
+// MAGIC * [scoop.co.nz](http://www.scoop.co.nz/stories/ED1605/S00003/uc-leads-cloud-computing-use-for-big-data-analytics.htm), 
+// MAGIC * [itbrief.co.nz](https://itbrief.co.nz/article/university-canterbury-embraces-cloud-computing-and-big-data/), 
+// MAGIC * [computerworld.co.nz](http://www.computerworld.co.nz/article/599291/aws-board-university-canterbury-leads-cloud-use-big-data-analytics/). 
+// MAGIC 
+// MAGIC ### An Australasian First Story! UC leads cloud computing use for big data analytics
 // MAGIC 
 // MAGIC The University of Canterbury is the first university in Australasia to establish cutting edge training using cloud infrastructure to solve big-data analysis problems and give staff and students free access to this cloud infrastructure. 
 // MAGIC 
 // MAGIC UC Senior Lecturer from the School of Mathematics and Statistics Dr Raazesh Sainudiin secured grants from Databricks Academic Partners Program and Amazon Web Services Educate which enable free and ongoing access for all UC faculty, staff and students to use the enormous cloud-computing infrastructure for academic teaching and research. 
 // MAGIC 
-// MAGIC This provides UC with huge potential to emerge as a leader in big data analytics in this region of the globe, says Dr Sainudiin, who was formerly the Principal Data Scientist, Research and Development, at Wynyard Group and is now part of UC’s Big Data Working Group. He is giving a presentation about UC’s capabilities in industrial research and big data analytics to members of the local tech industry on 3 May.
+// MAGIC This provides UC with huge potential to emerge as a leader in big data analytics in this region of the globe, says Dr Sainudiin, who was formerly a Principal Data Scientist, Research and Development, at Wynyard Group and is now part of UC’s Big Data Working Group. He is giving a presentation about UC’s capabilities in industrial research and big data analytics to members of the local tech industry on 3 May.
 // MAGIC 
 // MAGIC “In today's digital world, data about every conceivable aspect of life is being collected and amassed at an unprecedented scale. To give you some idea of how much data we are talking about, it was estimated that a whopping 2.5 exabytes - or 2,500,000,000,000,000,000 bytes - of data were generated every single day, and that was back in 2012. This massive data could potentially hold answers for many critical questions and problems facing our world today. But to be able to get at these important answers, the first step is to be able to explore and analyse this gargantuan volume of data in a meaningful way,” he says.
 // MAGIC 
-// MAGIC “For example, what if all past and present recorded and real-time data of earthquakes on the planet could be analysed simultaneously? Or consider the live analysis of every tweet on Earth. There are on average 60 tweets per second. The scale of such volumes of data is such that they can't be stored, let alone analysed, by one computer or even a 100 computers in any sort of reasonable timeframe. Cloud computing allows you to scale up access instantly to over 10,000 off-site computers simultaneously, as required by the scale of the real-world big data problem at hand, and complete the data analyses in the least amount of time needed - usually a matter of hours.”
+// MAGIC “For example, what if all past and present recorded and real-time data of earthquakes on the planet could be analysed simultaneously? Or consider the live analysis of every tweet on Earth. There are on average 60 tweets per second (made publicly observable). The scale of such volumes of data is such that they can't be stored, let alone analysed, by one computer or even a 100 computers in any sort of reasonable timeframe. Cloud computing allows you to scale up access instantly to over 10,000 off-site computers simultaneously, as required by the scale of the real-world big data problem at hand, and complete the data analyses in the least amount of time needed - usually a matter of hours.”
 // MAGIC 
 // MAGIC UC has already established a research cluster (at [http:www.math.canterbury.ac.nz/databricks-projects](http://www.math.canterbury.ac.nz/databricks-projects)) with thousands of computer nodes running Apache Spark, a lightning-fast cluster computing engine for large-scale data processing. This locally set-up resource taps into the infrastructure being used by UC students in the course STAT478: Special Topics in Scalable Data Science, including several students who are full-time employees in the local tech industry. 
 // MAGIC 
@@ -185,11 +193,11 @@
 // MAGIC 
 // MAGIC “The combination of AWS and Databricks is broadly in line with what we think digital humanities students and researchers will need, and benefits from excellent levels of usability and scalability. This kind of approach is of crucial importance to the future of digital humanities, as researchers move into big data analysis and we seek to provide our students with the tools and experiences they need to succeed in their careers both inside and outside university,” Prof Smithies says.
 // MAGIC 
-// MAGIC Designed to be industry oriented, this course complements courses from the Computer Science department and is also adaptable to distance learning. UC's Machine Learning expert and Senior Lecturer in Computer Science and Software Engineering, Kourosh Neshatian, says the course has students from a wide range of backgrounds and something for everyone to learn. 
+// MAGIC Designed to be industry oriented, this course complements courses from the Computer Science department and is also adaptable to distance learning. UC's Machine Learning expert and Senior Lecturer in Computer Science and Software Engineering, Dr. Kourosh Neshatian, says the course has students from a wide range of backgrounds and something for everyone to learn. 
 // MAGIC 
-// MAGIC “Most of the tools used in the course are state-of-the-art technology in this domain and are mostly free software. The course is very applied; every topic and subtopic is accompanied with its own relevant program which can be run by the teacher and student as the lecture progresses. From this point of view it nicely complements my Machine Learning (ML) course which is more concerned with designing ML algorithms.”
+// MAGIC “Most of the tools used in the course are state-of-the-art technology in this domain and are mostly free software. The course is very applied; every topic and subtopic is accompanied with its own relevant program which can be run by the teacher and student as the lecture progresses. From this point of view it nicely complements my Machine Learning (ML) course which is more concerned with designing ML algorithms,” says Dr. Neshatian.
 // MAGIC 
-// MAGIC UC Associate Professor Rick Beatson, recipient of the 2015 UC Innovation Medal, and Dr Sainudiin are making a technical presentation about UC’s capabilities in industrial research and big data analytics to Canterbury Tech (formerly Canterbury Software Cluster), a non-profit organisation of local tech insiders and entrepreneurs next month (http://canterburytech.nz/events/May-2016-event/). This technical presentation held at UC's Centre for Entrepreneurship is an industrial outreach activity by UC's Big Data Working Group.
+// MAGIC UC Associate Professor Rick Beatson, recipient of the 2015 UC Innovation Medal, and Dr Sainudiin are making a technical presentation about UC’s capabilities in industrial research and big data analytics to Canterbury Tech (formerly Canterbury Software Cluster), a non-profit organisation of local tech insiders and entrepreneurs next month (http://canterburytech.nz/events/May-2016-event/). This technical presentation held at [UC's Centre for Entrepreneurship](http://www.uce.canterbury.ac.nz/) is an industrial outreach activity by UC's Big Data Working Group led by David Humm from [UC's Research & Innovation](http://www.research.canterbury.ac.nz/).
 // MAGIC 
 // MAGIC Dr Sainudiin is keen to introduce this freely available on-demand scalable computing resource to interested postgraduate students, faculty and staff across the University.
 // MAGIC 
