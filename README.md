@@ -43,7 +43,7 @@ Furthermore, due to the anticipation of Spark 2.0 this mostly Spark 1.6 version 
 
 Please send any typos or suggestions to raazesh.sainudiin@gmail.com
 
-Please read a note on [babel](https://github.com/raazesh-sainudiin/scalable-data-science/babel/README.md) to understand how the gitbook is generated from the `.scala` source of the databricks notebook.
+Please read a note on [babel](https://github.com/raazesh-sainudiin/scalable-data-science/blob/master/babel/README.md) to understand how the gitbook is generated from the `.scala` source of the databricks notebook.
 
 ## Supported By
 [Databricks Academic Partners Program](https://databricks.com/academic) and [Amazon Web Services Educate](https://www.awseducate.com/microsite/CommunitiesEngageHome).
