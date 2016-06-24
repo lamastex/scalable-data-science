@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 24 Jun 2016 01:26:46 UTC
+// Databricks notebook source exported at Fri, 24 Jun 2016 01:27:57 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -101,7 +101,7 @@
 // MAGIC For future versions of this course, we would like to expand on integration and inter-operation of Spark with its related ecosystem components, for example, Have a queue (Kafka) for ingestion and save distributed data onto a store (Cassandra). 
 // MAGIC These topics can help us get deeper into Spark streaming and Datasource API and Catalyst. 
 // MAGIC Another possibility which would be of interest to engineers is to go deeper into Spark architecture - its roots from Mesos, how RDDs work, DAG scheduler, Block manager, Catalyst and Tungsten optimizers, Spark memory management and contents from [Jacek Laskowski's gitbook](https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details). 
-// MAGIC A different possibility which can interest statisticans and mathematicians is to build a databricksified scalarific variant on the [Distributed Algorithms and Optimization course by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/).
+// MAGIC A different possibility which can interest statisticans and mathematicians is to build a databricksified scalarific variant on the [Distributed Algorithms and Optimization course by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford University](http://stanford.edu/~rezab/dao/).
 
 // COMMAND ----------
 
