@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 24 Jun 2016 23:37:01 UTC
+// Databricks notebook source exported at Fri, 24 Jun 2016 23:42:37 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -18,14 +18,14 @@
 // MAGIC 
 // MAGIC ## How the Course Actualized?
 // MAGIC 
-// MAGIC by Raazesh Sainudiin
+// MAGIC by Raazesh Sainudiin, 25th of June 2016, Christchurch, Aotearoa New Zealand.
 // MAGIC 
 // MAGIC **How did I get into scalable-data-science?**:
 // MAGIC I spent the northern fall of 2014 on Sabbatical at the [Department of Mathematics, Malott Hall, Cornell University, Ithaca, NY USA 14853](https://www.math.cornell.edu/~raazesh/). 
 // MAGIC During this time I attended weekly seminars in Computer Science, Machine Learning, Probability and Statistics. 
 // MAGIC It become quite clear that computational methods that can scalably handle massive volumes of data will be essential for making decisions in all branches of science, engineering and technology.    
-// MAGIC Coincidentally, I was offered a job as 'Intelligent Systems Specialist' in the R&D Group of Wynyards Group, a nascent company that builds security-related software tools, in Christchurch New Zealand for 2015.  
-// MAGIC Given that this role was all about integrating data from multiple sources on a massive scale, I was excited to extend my leave from academia and was kindly granted a year-long leave of absence (without pay) from the School of Mathematics and Statistics, College of Engineering, University of Canterbury -- my home institution. 
+// MAGIC Coincidentally, I was offered a job as 'Intelligent Systems Specialist' in the R&D division of Wynyard Group, a nascent company that builds security-related software tools, in Christchurch New Zealand for 2015.  
+// MAGIC Given that this role was all about integrating data from multiple sources on a massive scale, I was excited to extend my leave from academia and was kindly granted a year-long leave of absence (without pay) from the School of Mathematics and Statistics, College of Engineering, University of Canterbury (my home institution). 
 // MAGIC Both my Head of School and the Pro-Vice Chancellor of the Engineering College kindly encouraged me to get industrial research experience. 
 // MAGIC 
 // MAGIC **First half of 2015 in industrial R&D**:
