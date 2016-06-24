@@ -16,9 +16,9 @@ You can easily call the spark job on all the files you want to mark down once th
 For now it is being done file by file to test output in git's `.md` renderer and gitbook's `.md` renderer.
 This is not done "automagically" in order to allow for gitbook-fielding variations in the ascii `//MAGIC` in the databricks .scala notebook.
 Thus `./scala2md.sh` is done step by step on purpose to produce output in `./MDparsed/part-00000` from the input in `./nowparse.scala`.
-All the action called by the spark-shell is in `parseMD.scala`.
+All the transformations and the final action called by the spark-shell is in `parseMD.scala`.
 
-There are issues with rendering luaLatex code that renders well in databricks notebook but not always in both githud and in gitbook.
+There are issues with rendering the tex code, that renders well in databricks notebook, in the tex dialect of github and gitbook.
 Gitbook is the main target for markdown rendering. The hope is to allow mathematical expressions in latex in GitBook and databricks notebooks.
 
 It would be nice to allow the `displayHTML(frameIt("http:someUrlYouWantToShowInPlace"))` function in the databricks notebook to also appear in gitbook in time.
