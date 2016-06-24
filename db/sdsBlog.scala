@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 24 Jun 2016 23:42:37 UTC
+// Databricks notebook source exported at Fri, 24 Jun 2016 23:43:33 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -7,7 +7,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC * How the Course Actualized
+// MAGIC * How the Course Actualized?
 // MAGIC * Course Plan
 // MAGIC * Logistics
 // MAGIC * In News
@@ -155,6 +155,8 @@
 
 // MAGIC %md
 // MAGIC ## In News
+// MAGIC 
+// MAGIC by Raazesh Sainudiin
 // MAGIC 
 // MAGIC The course received some attention in Australasian Press.
 // MAGIC 
