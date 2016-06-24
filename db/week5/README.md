@@ -15,5 +15,5 @@ Introduction to Non-distributed and Distributed Linear Algebra and Applied Linea
             * [Indexed Row Matrix](../xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/006_IndexedRowMatrix.md)
             * [Coordinate Matrix](../xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/007_CoordinateMatrix.md)
             * [Block Matrix](../xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix.md)
-    * [Power Plant Pipeline: Model, Tune, Evaluate](11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate)
+    * [Power Plant Pipeline: Model, Tune, Evaluate](11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate.md)
 
