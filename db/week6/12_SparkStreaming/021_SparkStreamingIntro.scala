@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 31 Mar 2016 02:38:00 UTC
+// Databricks notebook source exported at Fri, 24 Jun 2016 23:55:05 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week6/12_SparkStreaming/021_SparkStreamingIntro.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week6/12_SparkStreaming/021_SparkStreamingIntro](http://img.youtube.com/vi/jqLcr2eS-Vs/0.jpg)](https://www.youtube.com/v/jqLcr2eS-Vs?rel=0&autoplay=1&modestbranding=1&start=0&end=2111)
 
 // COMMAND ----------
 
@@ -46,8 +53,8 @@
 // MAGIC `reduce`, `join` and `window`. 
 // MAGIC   
 // MAGIC Finally, processed data can be pushed out
-// MAGIC to filesystems, databases, and live dashboards. In fact, you can apply
-// MAGIC * Spark?s [machine learning](http://spark.apache.org/docs/latest/mllib-guide.html) and
+// MAGIC to filesystems, databases, and live dashboards. In fact, you can apply Spark's 
+// MAGIC * [machine learning](http://spark.apache.org/docs/latest/mllib-guide.html) and
 // MAGIC * [graph processing](http://spark.apache.org/docs/latest/graphx-programming-guide.html) algorithms 
 // MAGIC on data streams.
 // MAGIC 
