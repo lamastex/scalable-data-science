@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 01:13:14 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 01:55:02 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -132,7 +132,7 @@
 // MAGIC The databricks Educate team gave us a shard just for such research projects with cluster-creation capabilities that can be controlled by us. We had to be very careful when using this research shrad as some students who were initially given cluster-launching rights raked a larger bill and were not managing resources wisely. We finally, decided to administer the cluster launches ourselves.
 // MAGIC 
 // MAGIC AWS will charge to your credit-card if the AWS credits you have pooled does not cover the monthly costs. There is no way to retroactively recover the charge from AWS credits pooled later.
-// MAGIC It also paid to look at historical spot-pricing time series from various AWS (sub)-zones to determine the currently cheapest places to launch our clusters on spot prices.
+// MAGIC It also paid to look at historical spot-pricing time series from various AWS availability zones to determine the currently cheapest places to launch our clusters on spot prices.
 // MAGIC 
 // MAGIC ### Databricks Academic Partners Program
 // MAGIC 
@@ -145,7 +145,7 @@
 // MAGIC ## Community edition
 // MAGIC 
 // MAGIC With support from daatbricks we got community edition account for each student towards the second half of the course and encouraged student to work in CE. 
-// MAGIC This was the `exit strategy` so the student will have a central place to continue learning and keeping up with Spark's rapid evolutions.
+// MAGIC This was the long-term (and possibly life-long) learning strategy so the student will have a central place to continue learning and keeping up with Spark's rapid evolutions.
 // MAGIC We will be releasing the contents of the course as a `.dbc` archive that can be uploaded into anyone's databricks CE to learn by taking advantage of our course contents and notebooks.
 
 // COMMAND ----------
