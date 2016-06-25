@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 19 May 2016 22:47:43 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 00:00:31 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -17,13 +17,13 @@
 // MAGIC # Generic Twitter Collector
 // MAGIC 
 // MAGIC 
-// MAGIC Remeber that the use of twitter itself comes with various strings attached. Read:
+// MAGIC Remeber that the use of twitter itself comes with various strings attached. 
 // MAGIC 
-// MAGIC - [Twitter Rules](https://twitter.com/rules)
+// MAGIC - **Read:** [Twitter Rules](https://twitter.com/rules)
 // MAGIC 
 // MAGIC 
-// MAGIC Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings.  Read:
-// MAGIC - [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
+// MAGIC Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings.
+// MAGIC - **Read:** [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
 
 // COMMAND ----------
 
