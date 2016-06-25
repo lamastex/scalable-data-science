@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 31 Mar 2016 21:09:27 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 00:18:01 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week6/13_StreamingMLlib_ModelTuneEvaluateDeploy/024_PowerPlantPipeline_03ModelTuneEvaluateDeploy.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week6/13_StreamingMLlib_ModelTuneEvaluateDeploy/024_PowerPlantPipeline_03ModelTuneEvaluateDeploy](http://img.youtube.com/vi/jqLcr2eS-Vs/0.jpg)](https://www.youtube.com/v/jqLcr2eS-Vs?rel=0&autoplay=1&modestbranding=1&start=4520)
 
 // COMMAND ----------
 
@@ -84,7 +91,7 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA"
+// MAGIC %run "/scalable-data-science/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA" // use right path!
 
 // COMMAND ----------
 
@@ -164,6 +171,22 @@ val vectorizer =  new VectorAssembler()
 
 // COMMAND ----------
 
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("http://spark.apache.org/docs/latest/mllib-linear-methods.html#regression",300))
 
 // COMMAND ----------
