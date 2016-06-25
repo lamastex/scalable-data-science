@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 03:00:21 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 04:59:42 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -12,7 +12,20 @@
 
 // COMMAND ----------
 
-val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+// MAGIC %md
+// MAGIC #Tweet Analytics
+// MAGIC 
+// MAGIC [Presentation contents](https://github.com/aaa121/Spark-Tweet-Streaming-Presentation-May-2016).
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Extract-Transform-Load (ETL) Processing of Streamed Tweets
+// MAGIC This notebook should be runned after the tweets have been collected in batches. The operations performed in this notebooks are:
+// MAGIC   * Read/Load the Streamed Tweets in batches of RDD
+// MAGIC   * Read/Load the Streamed Tweets in merged batches of RDDs
+// MAGIC   * Save the Tweets in Parquet format, convert to Dataframe Table and run SQL queries
+// MAGIC   * Explore the Streamed Tweets using SQL queries: Filter, Plot and Re-Shape
 
 // COMMAND ----------
 
