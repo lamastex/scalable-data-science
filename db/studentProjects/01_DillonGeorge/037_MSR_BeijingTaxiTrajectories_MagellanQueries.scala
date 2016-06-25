@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 14 Jun 2016 09:32:06 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 05:04:25 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -131,7 +131,7 @@ val locations = (zipURLs, localZipFiles).zipped.par.toList
 locations.par.foreach(location => location match {
   case (url, file) => {
     println("Doing: ", url)
-    FileUtils.copyURLToFile(url, file)  // This takes a long time, download in parallel not serial? Just wget it? 
+    FileUtils.copyURLToFile(url, file)
   }
   case _ => Unit
 })
@@ -193,8 +193,6 @@ display(lines.toDF)
 
 // COMMAND ----------
 
-import java.util.Date
-
 import magellan.{Point, Polygon, PolyLine}
 import magellan.coord.NAD83
 
@@ -205,7 +203,6 @@ import org.apache.spark.sql.types._
 import org.apache.spark.sql.functions._
 
 import java.sql.Timestamp
-import java.text.SimpleDateFormat
 
 // COMMAND ----------
 
@@ -215,7 +212,7 @@ import java.text.SimpleDateFormat
 
 case class taxiRecord(
   taxiId: Int,
-  timeStamp: Timestamp,
+  time: String,
   point: Point
   )
 
@@ -237,7 +234,7 @@ val dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
 // COMMAND ----------
 
-// MAGIC %md Now parse the data line by line, splitting by commas and casting to the correct datatypes. Wrapping in a try-catch block will avoid crashes when invalid data is encountered. Currently this invalid entries are discarded, but may be of interest to see if some data can be recovered. For further information on data cleaning of location data see __TODO__ Chapter in Spark book
+// MAGIC %md Now parse the data line by line, splitting by commas and casting to the correct datatypes. Wrapping in a try-catch block will avoid crashes when invalid data is encountered. Currently this invalid entries are discarded, but may be of interest to see if some data can be recovered. For further information on data cleaning of location data in chapter 8 of [Advanced Analytics with Spark](http://shop.oreilly.com/product/0636920035091.do)
 
 // COMMAND ----------
 
@@ -245,27 +242,25 @@ val taxiData = lines.map{line =>
   try {
     val parts = line.split(",")
     val id = parts(0).toInt
-    
-    val time: Date = dateFormat.parse(parts(1))
-    
-    val timeStamp = new Timestamp(time.getTime())
+    val time = parts(1)
     
     val point = Point(parts(2).toDouble, 
                       parts(3).toDouble)
     
-    taxiRecord(id, timeStamp, point)
+    taxiRecord(id, time, point)
     
   } catch {
-    // Lable invalid datapoints
+    // Label invalid datapoints
       case e: Throwable => {
         val p = Point(-1.0, -1.0)
         val id = -1
-        val timeStamp = new Timestamp(0)
-        taxiRecord( id, timeStamp, p)
+        val time = "0000-00-00 00:00:00"
+        taxiRecord( id, time, p)
       }
   }
 }
 .toDF
+.select($"taxiId", to_utc_timestamp($"time", "yyyy-MM-dd HH:mm:ss").as("timeStamp"), $"point") //
 .repartition(100)
 .where($"taxiId" > -1)
 .cache()
@@ -316,7 +311,7 @@ import com.esri.core.geometry.GeometryEngine.geodesicDistanceOnWGS84
 
 // COMMAND ----------
 
-// MAGIC %md Implicit conversion from a Magellan Point to a Esri Point. This makes things easier when going between Magellan and ESRI.
+// MAGIC %md Implicit conversion from a Magellan Point to a Esri Point. This makes things easier when going between Magellan and ESRI points.
 
 // COMMAND ----------
 
@@ -340,14 +335,13 @@ implicit def toEsri(point: Point) = {
 
 case class Circle(radius: Double, center: Point)
 
-
 // COMMAND ----------
 
 // MAGIC %md A point then intersects the circle when the distance between the point and the circles center is less than its radius.
 // MAGIC 
 // MAGIC To codify this define a user defined function(udf) to act on the a column of points given a circle returning the geodesic distance of the points from the center returning true when the point lies within the center. For more information on using udfs see the follwing helpful [blogpost](http://www.sparktutorials.net/using-sparksql-udfs-to-create-date-times-in-spark-1.5), and the official [documentation.](https://spark.apache.org/docs/1.5.2/api/scala/#org.apache.spark.sql.UserDefinedFunction) 
 // MAGIC 
-// MAGIC For information on the geodesic distance function see the esri documentation. __TODO__ Add link to documentation. The implicit function defined above allows us to call ESRI functions using magellan datatypes.
+// MAGIC For information on the geodesic distance function see the relevant ESRI documentation [here](https://github.com/Esri/geometry-api-java/wiki). The implicit function defined above allows us to call ESRI functions using magellan datatypes.
 
 // COMMAND ----------
 
@@ -412,18 +406,17 @@ case class PolygonContainer(polygons: DataFrame) extends SpaceTimeVolume {
 
 // COMMAND ----------
 
-// MAGIC %md __TODO__: Leaflet vis?
+// MAGIC %md To show the result of this consider the following polygon.
 
 // COMMAND ----------
 
 case class PolygonRecord(polygon: Polygon)
 
 val tiananmenSquare = Array(
-  Point(116.395674, 39.907510),
-  Point(116.399375, 39.907650),
-  Point(116.399858, 39.900259),
-  Point(116.399858, 39.900259),
-  Point(116.395674, 39.907510)
+    Point(116.3931388,39.9063043),
+    Point(116.3938048,39.8986498),
+    Point(116.3892702,39.8980945),
+    Point(116.3894568,39.9061898)
 )
 
 val polygonDF = PolygonContainer(
@@ -435,16 +428,67 @@ polygonDF.polygons.show()
 
 // COMMAND ----------
 
+// MAGIC %md This is a polygon covering an area approximating that around Tiananmen Square. And we wish to find all the all the taxis that travel around the square over a timeframe given below.
+
+// COMMAND ----------
+
+def genLeafletHTML(): String = {
+
+  val accessToken = "pk.eyJ1IjoiZHRnIiwiYSI6ImNpaWF6MGdiNDAwanNtemx6MmIyNXoyOWIifQ.ndbNtExCMXZHKyfNtEN0Vg"
+
+  val generatedHTML = f"""<!DOCTYPE html>
+  <html>
+  <head>
+  <title>Maps</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+  <style>
+  #map {width: 600px; height:400px;}
+  </style>
+
+  </head>
+  <body>
+  <div id="map" style="width: 1000px; height: 600px"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+  <script type="text/javascript">
+  var map = L.map('map').setView([39.913818, 116.363625], 14);
+
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=$accessToken', {
+  maxZoom: 18,
+  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+  '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+  'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+  id: 'mapbox.streets'
+  }).addTo(map);
+
+  var polygon = L.polygon([
+    [39.9063043, 116.3931388],
+    [39.8986498, 116.3938048],
+    [39.8980945, 116.3892702],
+    [39.9061898, 116.3894568]
+    ]).addTo(map);
+  </script>
+
+
+  </body>
+  """
+  generatedHTML
+}
+displayHTML(genLeafletHTML)
+
+// COMMAND ----------
+
 // MAGIC %md Specifying the Time frame we are interested in.
 
 // COMMAND ----------
 
-val startTime: Timestamp = new Timestamp(dateFormat.parse("2008-02-03 00:00:00.0").getTime)
-val endTime: Timestamp = new Timestamp(dateFormat.parse("2008-02-03 00:05:00.0").getTime)
+val startTime: Timestamp = Timestamp.valueOf("2008-02-03 00:00:00.0")
+val endTime: Timestamp = Timestamp.valueOf("2008-02-03 01:00:00.0")
 
 // COMMAND ----------
 
-// MAGIC %md Now the getIntersectingTrips function can be run and the data points that intersect the space time volume are found.
+// MAGIC %md Now the `getIntersectingTrips` function can be run and the data points that intersect the space time volume are found.
 
 // COMMAND ----------
 
@@ -452,7 +496,23 @@ val intersectingTrips = polygonDF.getIntersectingTrips(taxiData, startTime, endT
 
 // COMMAND ----------
 
+// MAGIC %md Here are all the points that pass through the polygon:
+
+// COMMAND ----------
+
 display(intersectingTrips.select($"taxiId", $"timeStamp"))
+
+// COMMAND ----------
+
+// MAGIC %md A list of all the taxis that take a trip around the square:
+
+// COMMAND ----------
+
+display(intersectingTrips.select($"taxiId").distinct)
+
+// COMMAND ----------
+
+display(intersectingTrips.groupBy($"taxiId").count.orderBy(-$"count"))
 
 // COMMAND ----------
 
