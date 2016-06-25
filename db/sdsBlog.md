@@ -1,8 +1,8 @@
-// Databricks notebook source exported at Fri, 24 Jun 2016 23:43:33 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 01:13:14 UTC
 
 # Scalable Data Science from Middle Earth
 
-2016 Paul Brouwers, Raazesh Sainudiin and Sivanand Siavaram
+2016 Paul Brouwers, Raazesh Sainudiin and Sivanand Sivaram
 
 
 
@@ -120,26 +120,23 @@ Froma system administrator's point of view we had to solve the following problem
 
 #### AWS Educate credit pooling
 
-We had the following 21 steps each student of the course could follow to share their AWS credit codes with us. 
-These AWS credits were pooled into the ....
+We [shared these 21 steps](https://github.com/raazesh-sainudiin/scalable-data-science/blob/master/db/xtraResources/awsEducate/sharing.md) each student of the course could follow in order to share their AWS credit codes with us. These AWS credits were pooled into the databricks' AWS account that we managed for the course.
 
 #### Setting some safe-guards in AWS
 
-To prevent a student from accidentally launching hundreds of nodes we set some limits in the AWS account. Details...
+To prevent a student from accidentally launching hundreds of nodes we set some limits in the AWS account (including maximum number of nodes that can be launched and the sizes of the nodes, etc).
 
 #### AWS Costs
 
-We typically launched a 4 node cluster 24/7 on spot-prices.  This cluster only costed a maximum of 316 USD/month (recheck costs).
-Thus we only needed credits from about 3 students per month to pay for this. Since several faculty sat in on the course and some of them also donated their credit we were able to provide the 24/7 service for the duration of the course.
+We typically launched a 4 node cluster 24/7 on spot-prices.  This cluster only costed a maximum of 316 USD/month and averaged around 100 USD/month.  Thus we only needed credits from about 3 students per month to pay for this. Since several faculty sat in on the course and two of them also donated their AWS credits we were able to provide the 24/7 service for the duration of the course.
   
-During lab/lecture times we launched two larger clusters (details here on number of nodes, costs for the 2 hours, etc here) on-demand to ensure uninterrupted course intreactions.
+During lab/lecture times we launched two larger clusters (with 9 nodes) on-demand to ensure uninterrupted course intreactions. The on-demand clusters costed 10x more per hour but was easily manageable within our budget for the few hours during and after our weekly meetings in order to handle the load from up to 30 students.
 
 For some of the student projects we needed to have nodes with upto 30GB of RAM per node and be able to scale up to several tens of nodes.  
-The databricks Educate team gave us a shard for research projects with cluster-creation capabilities. We had to be very careful when using these 
+The databricks Educate team gave us a shard just for such research projects with cluster-creation capabilities that can be controlled by us. We had to be very careful when using this research shrad as some students who were initially given cluster-launching rights raked a larger bill and were not managing resources wisely. We finally, decided to administer the cluster launches ourselves.
 
-charges if you misjudge costs - watchout! 
-Some details here... 
-It paid to look at historical spot-pricing time series to determine the appropriate zone.
+AWS will charge to your credit-card if the AWS credits you have pooled does not cover the monthly costs. There is no way to retroactively recover the charge from AWS credits pooled later.
+It also paid to look at historical spot-pricing time series from various AWS (sub)-zones to determine the currently cheapest places to launch our clusters on spot prices.
 
 ### Databricks Academic Partners Program
 
@@ -153,7 +150,7 @@ We did not allow students the ability to launch their own clusters. This was don
 
 With support from daatbricks we got community edition account for each student towards the second half of the course and encouraged student to work in CE. 
 This was the `exit strategy` so the student will have a central place to continue learning and keeping up with Spark's rapid evolutions.
-We will be releasing the contants of the course as a `.dbc` archive that can be uploaded into anyone's databricks CE to learn by taking advantage of our course contents and notebooks.
+We will be releasing the contents of the course as a `.dbc` archive that can be uploaded into anyone's databricks CE to learn by taking advantage of our course contents and notebooks.
 
 
 
