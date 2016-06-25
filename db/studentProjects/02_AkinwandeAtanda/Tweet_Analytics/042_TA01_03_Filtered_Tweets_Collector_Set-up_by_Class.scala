@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 02:52:34 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 04:58:46 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,8 +13,15 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC #Tweet Analytics
 // MAGIC 
-// MAGIC # Generic Twitter Collector
+// MAGIC [Presentation contents](https://github.com/aaa121/Spark-Tweet-Streaming-Presentation-May-2016).
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC ## Filtered Generic Twitter Collector by Selected Retrieved Keys
 // MAGIC 
 // MAGIC 
 // MAGIC Remeber that the use of twitter itself comes with various strings attached. 
