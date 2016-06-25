@@ -1,8 +1,8 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 01:12:33 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 01:13:14 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
-// MAGIC 2016 Paul Brouwers, Raazesh Sainudiin and Sivanand Siavaram
+// MAGIC 2016 Paul Brouwers, Raazesh Sainudiin and Sivanand Sivaram
 
 // COMMAND ----------
 
