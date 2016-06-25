@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Sat, 25 Jun 2016 03:10:56 UTC
+# Databricks notebook source exported at Sat, 25 Jun 2016 05:02:13 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,15 @@
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC #Tweet Analytics
+# MAGIC 
+# MAGIC [Presentation contents](https://github.com/aaa121/Spark-Tweet-Streaming-Presentation-May-2016).
+
+# COMMAND ----------
+
+# MAGIC %md
 # MAGIC ## Creating Machine Learning Pipeline with Loop
+# MAGIC 
 # MAGIC * The loop is created to test the sentitive of the designed algorithm to elasticNetParam
 # MAGIC * Read the Spark ML documentation for Logistic Regression
 # MAGIC * The dataset "pos_neg_category" can be split into two or three categories as done in previous note. In this note, the dataset is randomly split into training, validating and testing data
