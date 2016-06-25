@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 05:07:11 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 05:39:24 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -118,7 +118,8 @@ val zipURLs = (1 until numZipFiles + 1).map(i => new URL(f"http://research.micro
 
 // COMMAND ----------
 
-// MAGIC %md Load all these URLS into the distributed filesystem
+// MAGIC %md 
+// MAGIC Load all these URLS into the distributed filesystem
 
 // COMMAND ----------
 
@@ -126,7 +127,8 @@ val localZipFiles = (1 until numZipFiles+1).map(i => new File(f"/home/ubuntu/dat
 
 // COMMAND ----------
 
-// MAGIC %md Download the files and copy them to the appropriate locations
+// MAGIC %md 
+// MAGIC Download the files and copy them to the appropriate locations
 
 // COMMAND ----------
 
@@ -142,7 +144,8 @@ locations.par.foreach(location => location match {
 
 // COMMAND ----------
 
-// MAGIC %md ###Load these zipfiles into DBFS
+// MAGIC %md 
+// MAGIC ###Load these zipfiles into DBFS
 
 // COMMAND ----------
 
@@ -154,11 +157,13 @@ locations.par.foreach(location => location match {
 
 // COMMAND ----------
 
-// MAGIC %md ###Now turn these zip files into RDDs
+// MAGIC %md 
+// MAGIC ###Now turn these zip files into RDDs
 
 // COMMAND ----------
 
-// MAGIC %md ###Turn into a (K, V) RDD
+// MAGIC %md 
+// MAGIC ###Turn into a (K, V) RDD
 // MAGIC The Key is the name of the file,  Value is that files contents.
 
 // COMMAND ----------
@@ -174,7 +179,7 @@ val zipFileRDD = sc.union(zipFileRDDs)
 
 // COMMAND ----------
 
- zipFileRDD.map(s => s._1.toString()).collect().foreach(println)
+zipFileRDD.map(s => s._1.toString()).collect().foreach(println)
 
 // COMMAND ----------
 
@@ -193,7 +198,7 @@ display(lines.toDF)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #Now that the data is in DBFS, lets turn it into a dataframe.
+// MAGIC ### Now that the data is in DBFS, lets turn it into a dataframe.
 
 // COMMAND ----------
 
@@ -210,7 +215,8 @@ import java.sql.Timestamp
 
 // COMMAND ----------
 
-// MAGIC %md Now we define the schema for our the rows in our taxi data frame. This follows directly from the Raam Sriharsha's Uber Example
+// MAGIC %md 
+// MAGIC Now we define the schema for our the rows in our taxi data frame. This follows directly from the Raam Sriharsha's Uber Example
 
 // COMMAND ----------
 
@@ -222,7 +228,8 @@ case class taxiRecord(
 
 // COMMAND ----------
 
-// MAGIC %md Use Java date/time utilities to parse the date strings in the zip files.
+// MAGIC %md 
+// MAGIC Use Java date/time utilities to parse the date strings in the zip files.
 
 // COMMAND ----------
 
@@ -238,7 +245,8 @@ val dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
 // COMMAND ----------
 
-// MAGIC %md Now parse the data line by line, splitting by commas and casting to the correct datatypes. Wrapping in a try-catch block will avoid crashes when invalid data is encountered. Currently this invalid entries are discarded, but may be of interest to see if some data can be recovered. For further information on data cleaning of location data in chapter 8 of [Advanced Analytics with Spark](http://shop.oreilly.com/product/0636920035091.do)
+// MAGIC %md 
+// MAGIC Now parse the data line by line, splitting by commas and casting to the correct datatypes. Wrapping in a try-catch block will avoid crashes when invalid data is encountered. Currently this invalid entries are discarded, but may be of interest to see if some data can be recovered. For further information on data cleaning of location data in chapter 8 of [Advanced Analytics with Spark](http://shop.oreilly.com/product/0636920035091.do)
 
 // COMMAND ----------
 
@@ -291,7 +299,8 @@ taxiDataNoMagellan.write.parquet("dbfs:/datasets/t-drive-trips")
 
 // COMMAND ----------
 
-// MAGIC %md ###Now to do Some further work with this data 
+// MAGIC %md 
+// MAGIC ###Now to do Some further work with this data 
 
 // COMMAND ----------
 
@@ -299,7 +308,8 @@ taxiData.count
 
 // COMMAND ----------
 
-// MAGIC %md First for additional functionality we use the ESRI Geometry api. This is a Java library with various functions for working with geometric data.
+// MAGIC %md 
+// MAGIC First for additional functionality we use the ESRI Geometry api. This is a Java library with various functions for working with geometric data.
 // MAGIC 
 // MAGIC Note that Magellan does built functionality ontop of this library but the functions we need are not exposed through Magellan.
 // MAGIC 
@@ -315,7 +325,8 @@ import com.esri.core.geometry.GeometryEngine.geodesicDistanceOnWGS84
 
 // COMMAND ----------
 
-// MAGIC %md Implicit conversion from a Magellan Point to a Esri Point. This makes things easier when going between Magellan and ESRI points.
+// MAGIC %md 
+// MAGIC Implicit conversion from a Magellan Point to a Esri Point. This makes things easier when going between Magellan and ESRI points.
 
 // COMMAND ----------
 
@@ -325,13 +336,15 @@ implicit def toEsri(point: Point) = {
 
 // COMMAND ----------
 
-// MAGIC %md ###Outlining the Geospatial Constraint Satisfaction Problem (CSP)
+// MAGIC %md 
+// MAGIC ###Outlining the Geospatial Constraint Satisfaction Problem (CSP)
 // MAGIC 
 // MAGIC The problem being addressed in this section can be considered as finding trajectories that satisfy some constraints on time and spatial location. These constraints can be visualised as a three dimensional object with dimensions of longitude, latitude and time. Then trajectory segments that intersect this object are those segments that satisfy the given constraints.
 
 // COMMAND ----------
 
-// MAGIC %md We wish to implement generic functions that find these trajectories of interest.
+// MAGIC %md 
+// MAGIC We wish to implement generic functions that find these trajectories of interest.
 // MAGIC 
 // MAGIC To begin with we first define a circle datatype to represent circular regions in space. The circle is defined in terms of its center, and radius.
 
@@ -341,7 +354,8 @@ case class Circle(radius: Double, center: Point)
 
 // COMMAND ----------
 
-// MAGIC %md A point then intersects the circle when the distance between the point and the circles center is less than its radius.
+// MAGIC %md 
+// MAGIC A point then intersects the circle when the distance between the point and the circles center is less than its radius.
 // MAGIC 
 // MAGIC To codify this define a user defined function(udf) to act on the a column of points given a circle returning the geodesic distance of the points from the center returning true when the point lies within the center. For more information on using udfs see the follwing helpful [blogpost](http://www.sparktutorials.net/using-sparksql-udfs-to-create-date-times-in-spark-1.5), and the official [documentation.](https://spark.apache.org/docs/1.5.2/api/scala/#org.apache.spark.sql.UserDefinedFunction) 
 // MAGIC 
@@ -353,7 +367,8 @@ val intersectsCircle = udf( (center: Point, radius: Double, point: Point) => geo
 
 // COMMAND ----------
 
-// MAGIC %md Here below generic functions are defined for Geospatial Constraint Satisfaction problems.
+// MAGIC %md 
+// MAGIC Here below generic functions are defined for Geospatial Constraint Satisfaction problems.
 // MAGIC 
 // MAGIC The SpaceTimeVolume trait, provides an 'blackbox' interface that can be queried to find trajectories satisfying constraints.
 
@@ -366,7 +381,8 @@ val intersectsCircle = udf( (center: Point, radius: Double, point: Point) => geo
 
 // COMMAND ----------
 
-// MAGIC %md To make things generic we define a trait ```SpaceTimeVolume``` as the interface to the CSP functionality. Then specific functionality for each type of geometric region is defined in the case classes that extend this trait.
+// MAGIC %md 
+// MAGIC To make things generic we define a trait ```SpaceTimeVolume``` as the interface to the CSP functionality. Then specific functionality for each type of geometric region is defined in the case classes that extend this trait.
 
 // COMMAND ----------
 
@@ -406,11 +422,13 @@ case class PolygonContainer(polygons: DataFrame) extends SpaceTimeVolume {
 
 // COMMAND ----------
 
-// MAGIC %md ### __Example__: Taxis going past Tiananmen Square
+// MAGIC %md 
+// MAGIC ### __Example__: Taxis going past Tiananmen Square
 
 // COMMAND ----------
 
-// MAGIC %md To show the result of this consider the following polygon.
+// MAGIC %md 
+// MAGIC To show the result of this consider the following polygon.
 
 // COMMAND ----------
 
@@ -432,7 +450,8 @@ polygonDF.polygons.show()
 
 // COMMAND ----------
 
-// MAGIC %md This is a polygon covering an area approximating that around Tiananmen Square. And we wish to find all the all the taxis that travel around the square over a timeframe given below.
+// MAGIC %md 
+// MAGIC This is a polygon covering an area approximating that around Tiananmen Square. And we wish to find all the all the taxis that travel around the square over a timeframe given below.
 
 // COMMAND ----------
 
@@ -483,7 +502,8 @@ displayHTML(genLeafletHTML)
 
 // COMMAND ----------
 
-// MAGIC %md Specifying the Time frame we are interested in.
+// MAGIC %md 
+// MAGIC Specifying the Time frame we are interested in.
 
 // COMMAND ----------
 
@@ -492,7 +512,8 @@ val endTime: Timestamp = Timestamp.valueOf("2008-02-03 01:00:00.0")
 
 // COMMAND ----------
 
-// MAGIC %md Now the `getIntersectingTrips` function can be run and the data points that intersect the space time volume are found.
+// MAGIC %md 
+// MAGIC Now the `getIntersectingTrips` function can be run and the data points that intersect the space time volume are found.
 
 // COMMAND ----------
 
@@ -500,7 +521,8 @@ val intersectingTrips = polygonDF.getIntersectingTrips(taxiData, startTime, endT
 
 // COMMAND ----------
 
-// MAGIC %md Here are all the points that pass through the polygon:
+// MAGIC %md 
+// MAGIC Here are all the points that pass through the polygon:
 
 // COMMAND ----------
 
@@ -508,7 +530,8 @@ display(intersectingTrips.select($"taxiId", $"timeStamp"))
 
 // COMMAND ----------
 
-// MAGIC %md A list of all the taxis that take a trip around the square:
+// MAGIC %md 
+// MAGIC A list of all the taxis that take a trip around the square:
 
 // COMMAND ----------
 
