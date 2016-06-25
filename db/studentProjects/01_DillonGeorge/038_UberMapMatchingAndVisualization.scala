@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 05:08:32 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 05:34:34 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -45,7 +45,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Map_matching",600))
 
 // COMMAND ----------
 
-// MAGIC %md ## Why are we interested in map-matching?
+// MAGIC %md
+// MAGIC ## Why are we interested in map-matching?
 // MAGIC 
 // MAGIC Mainly because we can naturally deal with noise in raw GPS trajectories of entities moving along *mapped ways*, such as, vehicles, pedestrians or cyclists.  
 // MAGIC 
@@ -56,7 +57,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Map_matching",600))
 
 // COMMAND ----------
 
-// MAGIC %md ## How are we map-matching?
+// MAGIC %md
+// MAGIC ## How are we map-matching?
 // MAGIC 
 // MAGIC We are using `graphHopper` for this for now. See [https://en.wikipedia.org/wiki/GraphHopper](https://en.wikipedia.org/wiki/GraphHopper).
 
@@ -75,7 +77,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/GraphHopper",600))
 
 // COMMAND ----------
 
-// MAGIC %md # Steps in this worksheet
+// MAGIC %md
+// MAGIC # Steps in this worksheet
 
 // COMMAND ----------
 
@@ -90,7 +93,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/GraphHopper",600))
 
 // COMMAND ----------
 
-// MAGIC %md ## 1. Preliminaries
+// MAGIC %md 
+// MAGIC ## 1. Preliminaries
 
 // COMMAND ----------
 
@@ -122,17 +126,20 @@ import org.apache.spark.sql.functions._
 
 // COMMAND ----------
 
-// MAGIC %md ### Next, you need to do the following only once in a cluster (ignore this step the second time!):
+// MAGIC %md 
+// MAGIC ### Next, you need to do the following only once in a cluster (ignore this step the second time!):
 // MAGIC * follow section below on **Step 1: Loading our OSM Data ** 
 // MAGIC * follow section below on **Step 2: Initialising GraphHopper**
 
 // COMMAND ----------
 
-// MAGIC %md ## 2. Setting up leaflet for visualisation
+// MAGIC %md
+// MAGIC ## 2. Setting up leaflet for visualisation
 
 // COMMAND ----------
 
-// MAGIC %md Take an array of Strings in 'GeoJson' format, then insert this into a prebuild html string that contains all the code neccesary to display these features using Leaflet.
+// MAGIC %md
+// MAGIC Take an array of Strings in 'GeoJson' format, then insert this into a prebuild html string that contains all the code neccesary to display these features using Leaflet.
 // MAGIC The resulting html can be displayed in DataBricks using the displayHTML function.
 // MAGIC 
 // MAGIC See http://leafletjs.com/examples/geojson.html for a detailed example of using GeoJson with Leaflet.
@@ -221,7 +228,8 @@ def genLeafletHTML(features: Array[String]): String = {
 
 // COMMAND ----------
 
-// MAGIC %md ##3. Load Uber Data as in earlier analysis. Then convert to an RDD for mapmatching
+// MAGIC %md 
+// MAGIC ##3. Load Uber Data as in earlier analysis. Then convert to an RDD for mapmatching
 
 // COMMAND ----------
 
@@ -245,7 +253,8 @@ display(uberData)
 
 // COMMAND ----------
 
-// MAGIC %md We will consider a trip to be invalid when it contains less that two data points, as this is required by Graph Hopper. First identify the all trips that are valid.
+// MAGIC %md
+// MAGIC We will consider a trip to be invalid when it contains less that two data points, as this is required by Graph Hopper. First identify the all trips that are valid.
 
 // COMMAND ----------
 
@@ -257,7 +266,8 @@ display(uberCountsFiltered)
 
 // COMMAND ----------
 
-// MAGIC %md Next is to join this list of valid Ids with the original data set, only the entries for those trips contained in `uberCountsFiltered`.
+// MAGIC %md
+// MAGIC Next is to join this list of valid Ids with the original data set, only the entries for those trips contained in `uberCountsFiltered`.
 
 // COMMAND ----------
 
@@ -267,7 +277,8 @@ val uberValidData = uberData
 
 // COMMAND ----------
 
-// MAGIC %md Now seeing how many data points were dropped:
+// MAGIC %md 
+// MAGIC Now seeing how many data points were dropped:
 
 // COMMAND ----------
 
@@ -279,7 +290,8 @@ display(uberValidData)
 
 // COMMAND ----------
 
-// MAGIC %md Graphopper considers a trip to be a sequence of (latitude, longitude, time) tuples. First the relevant columns are selected from the DataFrame, and then the rows are mapped to key-value pairs with the tripId as the key. After this is done the `reduceByKey` step merges all the (lat, lon, time) arrays for each key (trip Id) so that there is one entry for each trip id containing all the relevant data points.
+// MAGIC %md 
+// MAGIC Graphopper considers a trip to be a sequence of (latitude, longitude, time) tuples. First the relevant columns are selected from the DataFrame, and then the rows are mapped to key-value pairs with the tripId as the key. After this is done the `reduceByKey` step merges all the (lat, lon, time) arrays for each key (trip Id) so that there is one entry for each trip id containing all the relevant data points.
 
 // COMMAND ----------
 
@@ -300,15 +312,18 @@ display(ubers.toDF)
 
 // COMMAND ----------
 
-// MAGIC %md ## 4. Start Map Matching
+// MAGIC %md 
+// MAGIC ## 4. Start Map Matching
 
 // COMMAND ----------
 
-// MAGIC %md Now stepping into GraphHopper land we first define som utility functions for interfacing with the GraphHopper map matching library.
+// MAGIC %md 
+// MAGIC Now stepping into GraphHopper land we first define som utility functions for interfacing with the GraphHopper map matching library.
 
 // COMMAND ----------
 
-// MAGIC %md This function takes a `MatchResult` from graphhopper and converts it into an Array of `LON,LAT` points.
+// MAGIC %md 
+// MAGIC This function takes a `MatchResult` from graphhopper and converts it into an Array of `LON,LAT` points.
 
 // COMMAND ----------
 
@@ -335,7 +350,8 @@ def extractLatLong(mr: MatchResult): Array[(Double, Double)] = {
 
 // COMMAND ----------
 
-// MAGIC %md https://github.com/graphhopper/graphhopper/blob/0.6/docs/core/technical.md
+// MAGIC %md 
+// MAGIC Read [https://github.com/graphhopper/graphhopper/blob/0.6/docs/core/technical.md](https://github.com/graphhopper/graphhopper/blob/0.6/docs/core/technical.md).
 
 // COMMAND ----------
 
@@ -343,7 +359,8 @@ def extractLatLong(mr: MatchResult): Array[(Double, Double)] = {
 
 // COMMAND ----------
 
-// MAGIC %md This function returns a new GrapHopper object, with all settings defined and reading the graph from the location in dbfs. __Note__:  `setAllowWrites(false)` ensures that multiple GraphHopper objects can read from the same files simultaneously. 
+// MAGIC %md 
+// MAGIC This function returns a new GrapHopper object, with all settings defined and reading the graph from the location in dbfs. __Note__:  `setAllowWrites(false)` ensures that multiple GraphHopper objects can read from the same files simultaneously. 
 
 // COMMAND ----------
 
@@ -439,7 +456,8 @@ case class UberMatched(id: Int, lat: Double, lon: Double, time: Long) // Define 
 
 // COMMAND ----------
 
-// MAGIC %md Here we convert the map matched points into a dataframe and explore certain things about the matched points
+// MAGIC %md 
+// MAGIC Here we convert the map matched points into a dataframe and explore certain things about the matched points
 
 // COMMAND ----------
 
@@ -456,13 +474,15 @@ display(matchTripsDF.groupBy($"id").count.orderBy(-$"count"))
 
 // COMMAND ----------
 
-// MAGIC %md Finally it useful to be able to visualise the results of the map matching.
+// MAGIC %md 
+// MAGIC Finally it useful to be able to visualise the results of the map matching.
 // MAGIC 
 // MAGIC These next few steps take the map matched trips and convert them into json using the Spray-Json library. See [here](https://github.com/spray/spray-json) for documentation on the library.
 
 // COMMAND ----------
 
-// MAGIC %md To make the visualisation less clutterd only one trip will be selected. Though little would have to be done to extend this to multiple/all of the trajectories.
+// MAGIC %md 
+// MAGIC To make the visualisation less clutterd only one trip will be selected. Though little would have to be done to extend this to multiple/all of the trajectories.
 // MAGIC 
 // MAGIC Here we select only those points that belong to the trip with id `10193`, it is selected only because it contains the most points after map matching. 
 
@@ -472,7 +492,8 @@ val filterTrips = matchTrips.filter{case (id, values) => id == 10193 || id == 11
 
 // COMMAND ----------
 
-// MAGIC %md Next a schema for the json representation of a trajectory. Then the filtered trips are collected to the master and converted to strings of Json
+// MAGIC %md 
+// MAGIC Next a schema for the json representation of a trajectory. Then the filtered trips are collected to the master and converted to strings of Json
 
 // COMMAND ----------
 
@@ -494,7 +515,8 @@ val mapMatchedTrajectories = filterTrips.collect.map{case (key, matchedPoints) =
 
 // COMMAND ----------
 
-// MAGIC %md Now the same is done except using the original trajectory rather than the map matched one.
+// MAGIC %md 
+// MAGIC Now the same is done except using the original trajectory rather than the map matched one.
 
 // COMMAND ----------
 
@@ -521,7 +543,8 @@ val originalJson = UberData(coordinates = originalLatLon).toJson.prettyPrint  //
 
 // COMMAND ----------
 
-// MAGIC %md ## 5. Display result of a map-matched trajectory
+// MAGIC %md 
+// MAGIC ## 5. Display result of a map-matched trajectory
 
 // COMMAND ----------
 
@@ -533,7 +556,8 @@ displayHTML(trajHTML)
 
 // COMMAND ----------
 
-// MAGIC %md ###Visualization & MapMatching (Further things one could do).
+// MAGIC %md 
+// MAGIC ###Visualization & MapMatching (Further things one could do).
 // MAGIC - Show Direction of Travel
 // MAGIC - Get timestamp for points, currently Graphhopper map matching does no preserve this information.
 // MAGIC - Map the matched coordinates to OSM Way Ids. See [here](https://discuss.graphhopper.com/t/how-to-get-the-osm-resource-reference-for-a-node-edge-in-the-match-result/200) to extract OSM ids from the      graphhopper graph edges
@@ -543,11 +567,13 @@ displayHTML(trajHTML)
 
 // COMMAND ----------
 
-// MAGIC %md # 6. Do the following two steps once in a given cluster
+// MAGIC %md 
+// MAGIC # 6. Do the following two steps once in a given cluster
 
 // COMMAND ----------
 
-// MAGIC %md ## Step 1: Loading our OSM Data (_Only needs to be done once_)
+// MAGIC %md 
+// MAGIC ## Step 1: Loading our OSM Data (_Only needs to be done once_)
 
 // COMMAND ----------
 
@@ -575,11 +601,13 @@ dbutils.fs.mkdirs("dbfs:/datasets/graphhopper/graphHopperData") // Where graphho
 
 // COMMAND ----------
 
-// MAGIC %md ## Step 2: Initialising GraphHopper  (_Only needs to be done once for each OSM file_)
+// MAGIC %md 
+// MAGIC ## Step 2: Initialising GraphHopper  (_Only needs to be done once for each OSM file_)
 
 // COMMAND ----------
 
-// MAGIC %md Process an OSM file, creating from it a GraphHopper Graph. The contents of this graph are then stored in the distributed filesystem to be accessed for later use.
+// MAGIC %md 
+// MAGIC Process an OSM file, creating from it a GraphHopper Graph. The contents of this graph are then stored in the distributed filesystem to be accessed for later use.
 // MAGIC This ensures that the processing step only takes place once, and subsequent GraphHopper objects can simply read these files to start map matching.
 
 // COMMAND ----------
@@ -602,7 +630,8 @@ hopper.importOrLoad()
 
 // COMMAND ----------
 
-// MAGIC %md Move the GraphHopper object to dbfs:
+// MAGIC %md 
+// MAGIC Move the GraphHopper object to dbfs:
 
 // COMMAND ----------
 
