@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 03:45:56 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 03:47:22 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -18,11 +18,9 @@
 // MAGIC [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set):
 // MAGIC The data set consists of 50 samples from each of three species of Iris (Iris setosa, Iris versicolor and Iris virginica). 
 // MAGIC 
-// MAGIC * [setosa] <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg" width="300">
-// MAGIC 
-// MAGIC * [versicolor] <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg" width="400">
-// MAGIC 
-// MAGIC * [virginica] <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Iris_virginica.jpg" width="400">
+// MAGIC setosa: <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg" width="300">,
+// MAGIC versicolor: <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg" width="400">, and
+// MAGIC virginica: <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Iris_virginica.jpg" width="400">
 // MAGIC 
 // MAGIC Based on Fisher's linear discriminant model, this data set became a typical test case for many statistical classification techniques in machine learning such as support vector machines.
 // MAGIC The use of this data set in cluster analysis however is uncommon, since the data set only contains two clusters with rather obvious separation. One of the clusters contains Iris setosa, while the other cluster contains both Iris virginica and Iris versicolor and is not separable without the species information Fisher used. 
