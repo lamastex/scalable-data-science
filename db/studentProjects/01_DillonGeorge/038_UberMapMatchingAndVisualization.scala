@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 14 Jun 2016 09:49:40 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 05:08:32 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -25,13 +25,17 @@
 
 // COMMAND ----------
 
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
 def frameIt( u:String, h:Int ) : String = {
       """<iframe 
  src=""""+ u+""""
  width="95%" height="""" + h + """"
  sandbox>
   <p>
-    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+    <a href="http://spark.apache.org/docs/latest/index.html">
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
@@ -43,18 +47,18 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Map_matching",600))
 
 // MAGIC %md ## Why are we interested in map-matching?
 // MAGIC 
-// MAGIC Mainly because we can naturally deal with naturally occuring noise in raw GPS trajectories of entities moving along *mapped ways*, such as, vehicles, pedestrians or cyclists.  
+// MAGIC Mainly because we can naturally deal with noise in raw GPS trajectories of entities moving along *mapped ways*, such as, vehicles, pedestrians or cyclists.  
 // MAGIC 
 // MAGIC * Trajectories from sources like Uber are typically noisy and we will map-match such trajectories in this worksheet.
 // MAGIC * Often, such trajectories lead to significant *graph-dimensionality* reduction as you will see below.  
 // MAGIC * More importantly, map-matching is a natural first step towards learning distributions over historical trajectories of an entity.
-// MAGIC * Moreover, a set of map-matched trajectories (with additional work using kNN operations) can be turned into a graphX graph that can vertex programmed and joined with other graphX representations of the map itself.
+// MAGIC * Moreover, a set of map-matched trajectories (with additional work using kNN operations) can be turned into a graphX graph that can be vertex-programmed and joined with other graphX representations of the map itself.
 
 // COMMAND ----------
 
 // MAGIC %md ## How are we map-matching?
 // MAGIC 
-// MAGIC We are using `graphHopper` for this for now.
+// MAGIC We are using `graphHopper` for this for now. See [https://en.wikipedia.org/wiki/GraphHopper](https://en.wikipedia.org/wiki/GraphHopper).
 
 // COMMAND ----------
 
@@ -114,6 +118,8 @@ import DefaultJsonProtocol._
 
 import scala.util.{Try, Success, Failure}
 
+import org.apache.spark.sql.functions._
+
 // COMMAND ----------
 
 // MAGIC %md ### Next, you need to do the following only once in a cluster (ignore this step the second time!):
@@ -136,7 +142,6 @@ import scala.util.{Try, Success, Failure}
 def genLeafletHTML(features: Array[String]): String = {
 
   val featureArray = features.reduce(_ + "," +  _)
-  //TODO: Need to add own api key, current key is from leaflet tutorial
   val accessToken = "pk.eyJ1IjoiZHRnIiwiYSI6ImNpaWF6MGdiNDAwanNtemx6MmIyNXoyOWIifQ.ndbNtExCMXZHKyfNtEN0Vg"
 
   val generatedHTML = f"""<!DOCTYPE html>
@@ -216,32 +221,72 @@ def genLeafletHTML(features: Array[String]): String = {
 
 // COMMAND ----------
 
-// MAGIC %md ##3. Load table of Uber Data from earlier analysis. Then convert to an RDD for mapmatching
+// MAGIC %md ##3. Load Uber Data as in earlier analysis. Then convert to an RDD for mapmatching
 
 // COMMAND ----------
 
-val uberData = sqlContext.sql("SELECT * from uberTable")
+case class UberRecord(tripId: Int, time: String, latlon: Array[Double])
+
+val uberData = sc.textFile("dbfs:/datasets/magellan/all.tsv").map { line =>
+  val parts = line.split("\t" )
+  val tripId = parts(0).toInt
+  val time  = parts(1)
+  val latlon = Array(parts(3).toDouble, parts(2).toDouble)
+  UberRecord(tripId, time, latlon)
+}.
+repartition(100).
+toDF().
+select($"tripId", to_utc_timestamp($"time", "yyyy-MM-dd'T'HH:mm:ss").as("timeStamp"), $"latlon").
+cache()
 
 // COMMAND ----------
 
-// MAGIC %md Do some data preprocessing and filter out all trips with less than two data points. This is needed for Graph Hopper to work. 
+display(uberData)
 
 // COMMAND ----------
 
-val UberCountsFiltered = uberData.groupBy($"tripId".alias("validTripId")).count.filter($"count" > 1)
+// MAGIC %md We will consider a trip to be invalid when it contains less that two data points, as this is required by Graph Hopper. First identify the all trips that are valid.
+
+// COMMAND ----------
+
+val uberCountsFiltered = uberData.groupBy($"tripId".alias("validTripId")).count.filter($"count" > 1).drop("count")
+
+// COMMAND ----------
+
+display(uberCountsFiltered)
+
+// COMMAND ----------
+
+// MAGIC %md Next is to join this list of valid Ids with the original data set, only the entries for those trips contained in `uberCountsFiltered`.
 
 // COMMAND ----------
 
 val uberValidData = uberData
-  .join(UberCountsFiltered, uberData("tripId") === UberCountsFiltered("validTripId")) // Only want trips with more than 2 data points
+  .join(uberCountsFiltered, uberData("tripId") === uberCountsFiltered("validTripId")) // Only want trips with more than 2 data points
   .drop("validTripId").cache 
 
 // COMMAND ----------
 
-val ubers = uberValidData.select($"tripId", $"latlon", $"time")
+// MAGIC %md Now seeing how many data points were dropped:
+
+// COMMAND ----------
+
+uberData.count - uberValidData.count
+
+// COMMAND ----------
+
+display(uberValidData)
+
+// COMMAND ----------
+
+// MAGIC %md Graphopper considers a trip to be a sequence of (latitude, longitude, time) tuples. First the relevant columns are selected from the DataFrame, and then the rows are mapped to key-value pairs with the tripId as the key. After this is done the `reduceByKey` step merges all the (lat, lon, time) arrays for each key (trip Id) so that there is one entry for each trip id containing all the relevant data points.
+
+// COMMAND ----------
+
+val ubers = uberValidData.select($"tripId", $"latlon", $"timeStamp")
   .map( row => {
     val id = row.get(0).asInstanceOf[Integer]
-    val time = row.get(2).asInstanceOf[Long]
+    val time = row.get(2).asInstanceOf[java.sql.Timestamp].getTime
     val latlon = row.get(1).asInstanceOf[scala.collection.mutable.WrappedArray[Double]] // Array(lat, lon)
     val entry = Array((latlon(0), latlon(1), time))
 
@@ -251,7 +296,7 @@ val ubers = uberValidData.select($"tripId", $"latlon", $"time")
 
 // COMMAND ----------
 
-ubers.take(2)
+display(ubers.toDF)
 
 // COMMAND ----------
 
@@ -259,11 +304,14 @@ ubers.take(2)
 
 // COMMAND ----------
 
-// MAGIC %md The following function takes a `MatchResult` from graphhopper and converts it into an Array of `LON,LAT` points.
+// MAGIC %md Now stepping into GraphHopper land we first define som utility functions for interfacing with the GraphHopper map matching library.
 
 // COMMAND ----------
 
-// Helper function to convert a MatchResult int a sequence of lon, lat points
+// MAGIC %md This function takes a `MatchResult` from graphhopper and converts it into an Array of `LON,LAT` points.
+
+// COMMAND ----------
+
 def extractLatLong(mr: MatchResult): Array[(Double, Double)] = {
   val pointsList = mr.getEdgeMatches.asScala.zipWithIndex
                     .map{ case  (e, i) =>
@@ -295,6 +343,10 @@ def extractLatLong(mr: MatchResult): Array[(Double, Double)] = {
 
 // COMMAND ----------
 
+// MAGIC %md This function returns a new GrapHopper object, with all settings defined and reading the graph from the location in dbfs. __Note__:  `setAllowWrites(false)` ensures that multiple GraphHopper objects can read from the same files simultaneously. 
+
+// COMMAND ----------
+
 def getHopper = {
     val enc = new CarFlagEncoder() // Vehicle type
     val hopp = new GraphHopper()
@@ -311,13 +363,14 @@ def getHopper = {
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Not create a MapMatching Object for each partition of the RDD. Then for each partition map match the trajectories stored on it, using this MapMathching
+// MAGIC The next step does the actual map matching. It begins by creating a new GraphHopper object for each partition, this is done as the GraphHopper objects themselves are not Serializable and so must be created on the partitions themselves to avoid this serialization step.
 // MAGIC 
-// MAGIC Prior to this a graphHopper object was created once for every trajectory.
+// MAGIC Then once the all the GraphHopper and MapMatching objects are created and initialised map matching is run for each trajectory on that partition. The actual map matching is done in the `mm.doWork()` call, this returns a MatchResult object (it is wrapped in a Try statment as an exception is raised when no match is found). With this MatchResult, Failed matches are filtered out being replaced by dummy data, when it successful the coordinates of the matched points are extracted into an array of (latitude, longitude)
+// MAGIC 
+// MAGIC The last (optional) step estimates the time taken to get from one matched point to another as currently there is no time information retained after the data has been map matched. This is a rather crude way of doing this and more sophisticated methods would be preferable. 
 
 // COMMAND ----------
 
-//TODO: Break up into smaller functions instead of one big blob
 val matchTrips = ubers.mapPartitions(partition => {
   // Create the map matching object only once for each partition
   val (hopp, enc) = getHopper
@@ -340,7 +393,7 @@ val matchTrips = ubers.mapPartitions(partition => {
     val sortedPoints = dataPoints.sortWith( (a, b) => a._3 < b._3) // Sort by time
     val gpxEntries = sortedPoints.map{ case (lat, lon, time) => new GPXEntry(lon, lat, time)}.toList.asJava
     
-    val mr = Try(mm.doWork(gpxEntries)) // mapMatch the trajectory, Try() wraps the exception when no matching can be found
+    val mr = Try(mm.doWork(gpxEntries)) // mapMatch the trajectory, Try() wraps the exception when no match can be found
     val points = mr match {
       case Success(result) => {
         val pointsList = result.getEdgeMatches.asScala.zipWithIndex // (edge, index tuple)
@@ -354,7 +407,7 @@ val matchTrips = ubers.mapPartitions(partition => {
         
         latLongs
       }
-      case Failure(_) => Array[(Double, Double)]() // When no match can be mde
+      case Failure(_) => Array[(Double, Double)]() // When no match can be made
     }
     
     // Use GraphHopper routing to get time estimates of the new matched trajcetory
@@ -382,7 +435,11 @@ val matchTrips = ubers.mapPartitions(partition => {
 
 // COMMAND ----------
 
-case class UberMatched(id: Int, lat: Double, lon: Double, time: Long)
+case class UberMatched(id: Int, lat: Double, lon: Double, time: Long) // Define the schema of the points in a map matched trip
+
+// COMMAND ----------
+
+// MAGIC %md Here we convert the map matched points into a dataframe and explore certain things about the matched points
 
 // COMMAND ----------
 
@@ -399,11 +456,23 @@ display(matchTripsDF.groupBy($"id").count.orderBy(-$"count"))
 
 // COMMAND ----------
 
-// MAGIC %md Explore some potentiall anomalous matched trajectories 
+// MAGIC %md Finally it useful to be able to visualise the results of the map matching.
+// MAGIC 
+// MAGIC These next few steps take the map matched trips and convert them into json using the Spray-Json library. See [here](https://github.com/spray/spray-json) for documentation on the library.
 
 // COMMAND ----------
 
-val filterTrips = matchTrips.filter{case (id, values) => id == 10193}.cache
+// MAGIC %md To make the visualisation less clutterd only one trip will be selected. Though little would have to be done to extend this to multiple/all of the trajectories.
+// MAGIC 
+// MAGIC Here we select only those points that belong to the trip with id `10193`, it is selected only because it contains the most points after map matching. 
+
+// COMMAND ----------
+
+val filterTrips = matchTrips.filter{case (id, values) => id == 10193 || id == 11973 }.cache
+
+// COMMAND ----------
+
+// MAGIC %md Next a schema for the json representation of a trajectory. Then the filtered trips are collected to the master and converted to strings of Json
 
 // COMMAND ----------
 
@@ -425,12 +494,12 @@ val mapMatchedTrajectories = filterTrips.collect.map{case (key, matchedPoints) =
 
 // COMMAND ----------
 
-val originalTraj = uberData.filter($"tripId" === 10193)
-    .select($"latlon").cache
+// MAGIC %md Now the same is done except using the original trajectory rather than the map matched one.
 
 // COMMAND ----------
 
-originalTraj.count
+val originalTraj = uberData.filter($"tripId" === 10193 || $"tripId" == 11973)
+    .select($"latlon").cache
 
 // COMMAND ----------
 
@@ -490,15 +559,11 @@ displayHTML(trajHTML)
 
 // COMMAND ----------
 
-dbutils.fs.mv("file:/databricks/driver/san-francisco-bay_california.osm.pbf", "dbfs:/datasets/graphhopper/osm/san-francisco-bay_california.osm.pbf")
-
-// COMMAND ----------
-
 dbutils.fs.mkdirs("dbfs:/datasets/graphhopper/osm/")
 
 // COMMAND ----------
 
-uberData.limit(10).show()
+dbutils.fs.mv("file:/databricks/driver/san-francisco-bay_california.osm.pbf", "dbfs:/datasets/graphhopper/osm/san-francisco-bay_california.osm.pbf")
 
 // COMMAND ----------
 
@@ -511,6 +576,11 @@ dbutils.fs.mkdirs("dbfs:/datasets/graphhopper/graphHopperData") // Where graphho
 // COMMAND ----------
 
 // MAGIC %md ## Step 2: Initialising GraphHopper  (_Only needs to be done once for each OSM file_)
+
+// COMMAND ----------
+
+// MAGIC %md Process an OSM file, creating from it a GraphHopper Graph. The contents of this graph are then stored in the distributed filesystem to be accessed for later use.
+// MAGIC This ensures that the processing step only takes place once, and subsequent GraphHopper objects can simply read these files to start map matching.
 
 // COMMAND ----------
 
@@ -529,6 +599,10 @@ val hopper = new GraphHopper()
       .setGraphHopperLocation("graphhopper/")
 
 hopper.importOrLoad()
+
+// COMMAND ----------
+
+// MAGIC %md Move the GraphHopper object to dbfs:
 
 // COMMAND ----------
 
