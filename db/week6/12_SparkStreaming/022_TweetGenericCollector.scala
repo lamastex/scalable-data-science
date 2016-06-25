@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 00:00:31 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 00:08:01 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -24,6 +24,13 @@
 // MAGIC 
 // MAGIC Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings.
 // MAGIC - **Read:** [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
+// MAGIC 
+// MAGIC 
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week6/12_SparkStreaming/022_TweetGenericCollector.html) of this databricks notebook and the recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji") of a closely related notebook:
+// MAGIC 
+// MAGIC [![sds/uji/week6/12_SparkStreaming/022_TweetCollector](http://img.youtube.com/vi/jqLcr2eS-Vs/0.jpg)](https://www.youtube.com/v/jqLcr2eS-Vs?rel=0&autoplay=1&modestbranding=1&start=2112&end=3535)
+// MAGIC 
+// MAGIC This notebook for collecting tweets is more robust than the notebook 022_TweetCollector.
 
 // COMMAND ----------
 
