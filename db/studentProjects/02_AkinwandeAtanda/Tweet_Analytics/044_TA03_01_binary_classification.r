@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Sat, 25 Jun 2016 03:06:34 UTC
+# Databricks notebook source exported at Sat, 25 Jun 2016 05:00:34 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 # MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 # MAGIC and 
 # MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #Tweet Analytics
+# MAGIC 
+# MAGIC [Presentation contents](https://github.com/aaa121/Spark-Tweet-Streaming-Presentation-May-2016).
 
 # COMMAND ----------
 
