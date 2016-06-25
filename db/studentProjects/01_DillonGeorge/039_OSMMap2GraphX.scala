@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 05:28:50 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 05:46:12 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -12,11 +12,13 @@
 
 // COMMAND ----------
 
-// MAGIC %md #Creating a graph from OpenStreetMap (OSM) data with GraphX
+// MAGIC %md 
+// MAGIC #Creating a graph from OpenStreetMap (OSM) data with GraphX
 
 // COMMAND ----------
 
-// MAGIC %md ###A brief overview on OpenStreetMap and its data model.
+// MAGIC %md 
+// MAGIC ###A brief overview on OpenStreetMap and its data model.
 
 // COMMAND ----------
 
@@ -40,7 +42,8 @@ displayHTML(frameIt("https://wiki.openstreetmap.org/wiki/About_OpenStreetMap",70
 
 // COMMAND ----------
 
-// MAGIC %md ### Ways and Nodes
+// MAGIC %md
+// MAGIC ### Ways and Nodes
 // MAGIC 
 // MAGIC Ways and nodes are core elements of how OSM defines its data. They also map nicely to the notion of Vertices and Edges in GraphX and will be the OSM entity types of concern in this example.
 
@@ -62,15 +65,18 @@ import org.apache.spark.graphx._
 
 // COMMAND ----------
 
-// MAGIC %md ## Part I: Creating the Graph
+// MAGIC %md 
+// MAGIC ## Part I: Creating the Graph
 
 // COMMAND ----------
 
-// MAGIC %md ### Part I(a): Ingest Data
+// MAGIC %md 
+// MAGIC ### Part I(a): Ingest Data
 
 // COMMAND ----------
 
-// MAGIC %md To begin with download and copy an metro-extract of Beijing into dbfs.
+// MAGIC %md 
+// MAGIC To begin with download and copy an metro-extract of Beijing into dbfs.
 
 // COMMAND ----------
 
@@ -90,7 +96,8 @@ dbutils.fs.mv("file:/databricks/driver/beijing_china.osm.pbf", "dbfs:/datasets/b
 
 // COMMAND ----------
 
-// MAGIC %md OSM data comes in various formats such as XML and PBF, in this example data is read from PBF files. The method used to read this PBF files is based off of an outstanding pull request on the Magellan Github page, see here for more information see the [relevant page.](https://github.com/harsha2010/magellan/pull/44). 
+// MAGIC %md 
+// MAGIC OSM data comes in various formats such as XML and PBF, in this example data is read from PBF files. The method used to read this PBF files is based off of an outstanding pull request on the Magellan Github page, see here for more information see the [relevant page.](https://github.com/harsha2010/magellan/pull/44). 
 // MAGIC 
 // MAGIC __Note__: As this may eventually be merged into Magellan, and so parts of this worksheet might better be implemented using Magellan instead.
 
@@ -111,7 +118,8 @@ import sqlContext.implicits._
 
 // COMMAND ----------
 
-// MAGIC %md The following set represents those tags which are of interest. They are meant to encompass those tags which are associated with driveable ways. If a way contains a tag from this set it is most likely driveable.
+// MAGIC %md 
+// MAGIC The following set represents those tags which are of interest. They are meant to encompass those tags which are associated with driveable ways. If a way contains a tag from this set it is most likely driveable.
 
 // COMMAND ----------
 
@@ -135,7 +143,8 @@ val allowableWays = Set(
 
 // COMMAND ----------
 
-// MAGIC %md Create an Input stream for our pbf file, this can then be read by the OsmosisReader
+// MAGIC %md 
+// MAGIC Create an Input stream for our pbf file, this can then be read by the OsmosisReader.
 
 // COMMAND ----------
 
@@ -145,7 +154,8 @@ val file = fs.open(path)
 
 // COMMAND ----------
 
-// MAGIC %md These containers will store the encountered nodes, ways and relations of interest and are appended to as the OsmosisReader processes the contents of the pbf file.
+// MAGIC %md 
+// MAGIC These containers will store the encountered nodes, ways and relations of interest and are appended to as the OsmosisReader processes the contents of the pbf file.
 
 // COMMAND ----------
 
@@ -155,7 +165,8 @@ var relations: ArrayBuffer[Relation] = ArrayBuffer()
 
 // COMMAND ----------
 
-// MAGIC %md We now create the osmosis reader object. This will process the pbf and call the process function on each OSM entity encountered.
+// MAGIC %md 
+// MAGIC We now create the osmosis reader object. This will process the pbf and call the process function on each OSM entity encountered.
 // MAGIC 
 // MAGIC Our process identifies the type of entity, and adds it to the relevant buffer. In the case of the ways only the ways containing a tag in the `allowableWays` set are added.
 
@@ -196,7 +207,8 @@ new Sink {
 
 // COMMAND ----------
 
-// MAGIC %md The follwing cell runs the reader, and it is only after this call that any work will be done. This will take a second or two to complete.
+// MAGIC %md 
+// MAGIC The follwing cell runs the reader, and it is only after this call that any work will be done. This will take a second or two to complete.
 // MAGIC 
 // MAGIC __Note:__ When running the the reader multiple times start from the cell where the `file` is defined as it is consumed by running the reader.
 
@@ -206,7 +218,8 @@ osmosisReader.run()
 
 // COMMAND ----------
 
-// MAGIC %md Now an example of how a way is represented:
+// MAGIC %md 
+// MAGIC Now an example of how a way is represented:
 
 // COMMAND ----------
 
@@ -214,7 +227,8 @@ ways.head
 
 // COMMAND ----------
 
-// MAGIC %md To see the full list of tags call the `getTags` method on the way:
+// MAGIC %md 
+// MAGIC To see the full list of tags call the `getTags` method on the way:
 
 // COMMAND ----------
 
@@ -222,7 +236,8 @@ ways.head.getTags.toList
 
 // COMMAND ----------
 
-// MAGIC %md And doing the same for the nodes:
+// MAGIC %md 
+// MAGIC And doing the same for the nodes:
 
 // COMMAND ----------
 
@@ -234,15 +249,18 @@ nodes.head.getTags.toList
 
 // COMMAND ----------
 
-// MAGIC %md ### Part I(b): Turn ingested data into datasets
+// MAGIC %md 
+// MAGIC ### Part I(b): Turn ingested data into datasets
 
 // COMMAND ----------
 
-// MAGIC %md We are now at the stage where we have arrays of Nodes and Ways (and also relations but these will not be used further in this example). 
+// MAGIC %md 
+// MAGIC We are now at the stage where we have arrays of Nodes and Ways (and also relations but these will not be used further in this example). 
 
 // COMMAND ----------
 
-// MAGIC %md To start constructing the graph case classes for ways and nodes are defined. These take the fields from the Osmosis `Node` and `Way` objects so that these objects can be turned into Datasets.
+// MAGIC %md 
+// MAGIC To start constructing the graph case classes for ways and nodes are defined. These take the fields from the Osmosis `Node` and `Way` objects so that these objects can be turned into Datasets.
 
 // COMMAND ----------
 
@@ -251,7 +269,8 @@ case class NodeEntry(nodeId: Long, latitude: Double, longitude: Double, tags: Ar
 
 // COMMAND ----------
 
-// MAGIC %md Converting the nodes array into a Dataset of of `Node` case classes.
+// MAGIC %md 
+// MAGIC Converting the nodes array into a Dataset of of `Node` case classes.
 
 // COMMAND ----------
 
@@ -264,7 +283,8 @@ val nodeDS = nodes.map{node =>
 
 // COMMAND ----------
 
-// MAGIC %md What the dataset looks like:
+// MAGIC %md 
+// MAGIC What the dataset looks like:
 
 // COMMAND ----------
 
@@ -272,11 +292,13 @@ display(nodeDS)
 
 // COMMAND ----------
 
-// MAGIC %md Note how many of the Nodes have no tags. These are nodes that are part of some way, any tags relevant to that node will be stored in the relevant way. The [OSM wiki.](http://wiki.openstreetmap.org/wiki/Node) covers this in more detail. 
+// MAGIC %md 
+// MAGIC Note how many of the Nodes have no tags. These are nodes that are part of some way, any tags relevant to that node will be stored in the relevant way. The [OSM wiki.](http://wiki.openstreetmap.org/wiki/Node) covers this in more detail. 
 
 // COMMAND ----------
 
-// MAGIC %md The next step is to convert the way array to a dataset.
+// MAGIC %md 
+// MAGIC The next step is to convert the way array to a dataset.
 
 // COMMAND ----------
 
@@ -288,7 +310,8 @@ val wayDS = ways.map(way =>
 
 // COMMAND ----------
 
-// MAGIC %md we can see that the Nodes contained in a way are stored as a list of node ids.
+// MAGIC %md 
+// MAGIC We can see that the Nodes contained in a way are stored as a list of node ids.
 
 // COMMAND ----------
 
@@ -296,25 +319,30 @@ display(wayDS)
 
 // COMMAND ----------
 
-// MAGIC %md ## Part II: Coarsen Graph
+// MAGIC %md 
+// MAGIC ## Part II: Coarsen Graph
 
 // COMMAND ----------
 
-// MAGIC %md An important consideration when constructing a road network graph is the granularity of the stored map. Is it important for the graph to contain all nodes and ways or can coarser representation of the network be used?
+// MAGIC %md 
+// MAGIC An important consideration when constructing a road network graph is the granularity of the stored map. Is it important for the graph to contain all nodes and ways or can coarser representation of the network be used?
 // MAGIC 
 // MAGIC One way to represent a coarse road graph is to have the vertices of the graph represent interesctions along the roads, and have the edges represent the way segment that connects two intersections. 
 
 // COMMAND ----------
 
-// MAGIC %md ### Part II(a): Find Intersections
+// MAGIC %md 
+// MAGIC ### Part II(a): Find Intersections
 
 // COMMAND ----------
 
-// MAGIC %md The first step in constructing such an intersection graph is to identify all the osm-nodes that are intersections. We can consider a node to be an intersection if it occurs in more than one way. Then the node of id of intersections will occur in multiple node list in our `wayDS`.
+// MAGIC %md 
+// MAGIC The first step in constructing such an intersection graph is to identify all the osm-nodes that are intersections. We can consider a node to be an intersection if it occurs in more than one way. Then the node of id of intersections will occur in multiple node list in our `wayDS`.
 
 // COMMAND ----------
 
-// MAGIC %md The next step does this counting. It first extracts the nodes column from `wayDS` and flatmapping those arrays so that we have a Dataset of all nodes in the ways. Then grouping by the node ids and counting gives the frequency of each node. 
+// MAGIC %md 
+// MAGIC The next step does this counting. It first extracts the nodes column from `wayDS` and flatmapping those arrays so that we have a Dataset of all nodes in the ways. Then grouping by the node ids and counting gives the frequency of each node. 
 
 // COMMAND ----------
 
@@ -337,7 +365,8 @@ display(nodeCounts)
 
 // COMMAND ----------
 
-// MAGIC %md Now intersection nodes are found by filtering out all ids with a count less than two. The last map step simply removes the count field from the Dataset.
+// MAGIC %md 
+// MAGIC Now intersection nodes are found by filtering out all ids with a count less than two. The last map step simply removes the count field from the Dataset.
 
 // COMMAND ----------
 
@@ -349,7 +378,8 @@ display(intersectionNodes)
 
 // COMMAND ----------
 
-// MAGIC %md In order to share this data amongst all partitions create a broadcast variable containing the set of intersection node IDs. 
+// MAGIC %md 
+// MAGIC In order to share this data amongst all partitions create a broadcast variable containing the set of intersection node IDs. 
 // MAGIC 
 // MAGIC For a larger map broadcasting this array may not be feasible but in this case the number of intersection nodes is small enough to not cause any problems of note.
 
@@ -363,7 +393,8 @@ intersectionSet.value.take(10).foreach(println)
 
 // COMMAND ----------
 
-// MAGIC %md Just a reminder what `nodeDS` looks like.
+// MAGIC %md 
+// MAGIC Just a reminder what `nodeDS` looks like.
 
 // COMMAND ----------
 
@@ -371,7 +402,8 @@ display(nodeDS)
 
 // COMMAND ----------
 
-// MAGIC %md The next cell creates a Dataset of all the unique node IDs in our ways. 
+// MAGIC %md 
+// MAGIC The next cell creates a Dataset of all the unique node IDs in our ways. 
 
 // COMMAND ----------
 
@@ -383,7 +415,8 @@ display(wayNodeIds)
 
 // COMMAND ----------
 
-// MAGIC %md Now join `nodeDS` with `wayNodeIds`, only retaining those nodes that occur in both. This gives a new Dataset containing only those nodes that are in a way, this includes all the information not just the ids as in `wayNodeIds`.
+// MAGIC %md 
+// MAGIC Now join `nodeDS` with `wayNodeIds`, only retaining those nodes that occur in both. This gives a new Dataset containing only those nodes that are in a way, this includes all the information not just the ids as in `wayNodeIds`.
 
 // COMMAND ----------
 
@@ -397,7 +430,8 @@ display(wayNodes)
 
 // COMMAND ----------
 
-// MAGIC %md Now identify and label any possible intersection vertices. Map `wayDS`, and for each node in each way tag each node as `true` if it is in the `intersectionSet` or `false` otherwise.
+// MAGIC %md 
+// MAGIC Now identify and label any possible intersection vertices. Map `wayDS`, and for each node in each way tag each node as `true` if it is in the `intersectionSet` or `false` otherwise.
 // MAGIC Then as an additional step the nodes at the start and end of the way list are set to be intersections to ensure that these perimeter ways are retained in the coarsening step.
 
 // COMMAND ----------
@@ -424,15 +458,18 @@ display(labeledWays.map{way =>
 
 // COMMAND ----------
 
-// MAGIC %md ### Part II(b): Segment Ways into Coarse Edges
+// MAGIC %md 
+// MAGIC ### Part II(b): Segment Ways into Coarse Edges
 
 // COMMAND ----------
 
-// MAGIC %md After identifying all intersection nodes that are to be in our graph the next step is to segment our ways so that each edge edge in the intersection graph will contain the list of nodes along that way that lie between two intersections.
+// MAGIC %md 
+// MAGIC After identifying all intersection nodes that are to be in our graph the next step is to segment our ways so that each edge edge in the intersection graph will contain the list of nodes along that way that lie between two intersections.
 
 // COMMAND ----------
 
-// MAGIC %md The Intersecton class contains the node ID of an intersection, as well as buffers storing ingoing and outgoing nodes. 
+// MAGIC %md 
+// MAGIC The Intersecton class contains the node ID of an intersection, as well as buffers storing ingoing and outgoing nodes. 
 
 // COMMAND ----------
 
@@ -440,7 +477,8 @@ case class Intersection(OSMId: Long , inBuf: ArrayBuffer[Long], outBuf: ArrayBuf
 
 // COMMAND ----------
 
-// MAGIC %md The following function is what actually does the work of segmenting the ways. As input it takes an array of 2-tuples, the first entry in the tuple is an node ID an the second is a Boolean which is `true` if that node is an intersection. As output it returns a tuple of the form `(OSMID, inBuf, outBuf)`.
+// MAGIC %md 
+// MAGIC The following function is what actually does the work of segmenting the ways. As input it takes an array of 2-tuples, the first entry in the tuple is an node ID an the second is a Boolean which is `true` if that node is an intersection. As output it returns a tuple of the form `(OSMID, inBuf, outBuf)`.
 // MAGIC 
 // MAGIC The segmenation works by maintaining a maintaining a buffer of non-intersection nodes (`currentBuffer`). While iterating through all the nodes if an intersection nodes is encountered a new intersection tuple is appended to the intersection buffer, the current contents of the `currentBuffer` is copied to the `inBuf` of that intersection tuple and then cleared; otherwise any non-intersection nodes are appened to the `currentBuffer`.
 
@@ -483,7 +521,8 @@ def segmentWay(way: Array[(Long, Boolean)]): Array[(Long, Array[Long], Array[Lon
 
 // COMMAND ----------
 
-// MAGIC %md Now applying the segmenting function for each array of nodes in the `labeledWays` Dataset.
+// MAGIC %md 
+// MAGIC Now applying the segmenting function for each array of nodes in the `labeledWays` Dataset.
 
 // COMMAND ----------
 
@@ -491,7 +530,8 @@ val segmentedWays = labeledWays.map(way => (way.wayId, segmentWay(way.labeledNod
 
 // COMMAND ----------
 
-// MAGIC %md Because the output from the display function is messy due the nested arrays and tuples it may helpful to examine the schema of the new Dataset.
+// MAGIC %md 
+// MAGIC Because the output from the display function is messy due the nested arrays and tuples it may helpful to examine the schema of the new Dataset.
 
 // COMMAND ----------
 
@@ -503,7 +543,8 @@ display(segmentedWays)
 
 // COMMAND ----------
 
-// MAGIC %md In this step the nested structure of the `segmentedWays` is unwrapped and each segment is not an entry in a new Dataset, of the form `(wayId, IntersectionNode)`
+// MAGIC %md 
+// MAGIC In this step the nested structure of the `segmentedWays` is unwrapped and each segment is not an entry in a new Dataset, of the form `(wayId, IntersectionNode)`
 
 // COMMAND ----------
 
@@ -523,7 +564,8 @@ import scala.collection.immutable.Map
 
 // COMMAND ----------
 
-// MAGIC %md Now having a sequence of way segments we extract the individual intersections from these segments and make tuples in the form of `(intersectionId, Map(WayId, (inBuffer, outBuffer)))`. These way ID maps store all the full information of the way segments. Reducing by key then merges all the way ID maps, so that for each intersection node there is one `Map` containing information about the way segments connected to that intersection.
+// MAGIC %md 
+// MAGIC Now having a sequence of way segments we extract the individual intersections from these segments and make tuples in the form of `(intersectionId, Map(WayId, (inBuffer, outBuffer)))`. These way ID maps store all the full information of the way segments. Reducing by key then merges all the way ID maps, so that for each intersection node there is one `Map` containing information about the way segments connected to that intersection.
 
 // COMMAND ----------
 
@@ -535,7 +577,8 @@ val intersectionVertices = waySegmentDS
 
 // COMMAND ----------
 
-// MAGIC %md Notice now that because of the reduceBy key each intersection vertex occurs only once in `intersectionVertices`, and that it is a `RDD[(VertexId, wayMap)]` which allows it to become a graphX vertexRDD
+// MAGIC %md 
+// MAGIC Notice now that because of the reduceBy key each intersection vertex occurs only once in `intersectionVertices`, and that it is a `RDD[(VertexId, wayMap)]` which allows it to become a graphX vertexRDD
 
 // COMMAND ----------
 
@@ -543,15 +586,18 @@ intersectionVertices.take(10).foreach(println)
 
 // COMMAND ----------
 
-// MAGIC %md ## Creating a graph from the processed data
+// MAGIC %md 
+// MAGIC ## Creating a graph from the processed data
 
 // COMMAND ----------
 
-// MAGIC %md Now that the we have proccessed the intersections to obtain the vertices of the intersection graph the next step is to process the data for the edges of the graph.
+// MAGIC %md 
+// MAGIC Now that the we have proccessed the intersections to obtain the vertices of the intersection graph the next step is to process the data for the edges of the graph.
 
 // COMMAND ----------
 
-// MAGIC %md An edge between two intersection nodes occurs when they follow eachother sequential along a way. The `segmentedWay` has any entry for the sequence of intersection nodes in that way. By taking a two element sliding window over this sequence, each of the two elements in the window connected and thus an edge exists between them. For this example oneway ways were ignored but could be filtered out by seeing of the way has a `oneway=*` tag, and only adding edges in the correct direction.
+// MAGIC %md 
+// MAGIC An edge between two intersection nodes occurs when they follow eachother sequential along a way. The `segmentedWay` has any entry for the sequence of intersection nodes in that way. By taking a two element sliding window over this sequence, each of the two elements in the window connected and thus an edge exists between them. For this example oneway ways were ignored but could be filtered out by seeing of the way has a `oneway=*` tag, and only adding edges in the correct direction.
 
 // COMMAND ----------
 
@@ -568,7 +614,8 @@ val edges = segmentedWays
 
 // COMMAND ----------
 
-// MAGIC %md Examining the edges, see that the edge attribute is the way Id for the way that edge belongs to. 
+// MAGIC %md 
+// MAGIC Examining the edges, see that the edge attribute is the way Id for the way that edge belongs to. 
 
 // COMMAND ----------
 
@@ -576,7 +623,8 @@ display(edges)
 
 // COMMAND ----------
 
-// MAGIC %md Now that both edge and vertex RDDs have been made a graphX `Graph` can be created.
+// MAGIC %md 
+// MAGIC Now that both edge and vertex RDDs have been made a graphX `Graph` can be created.
 
 // COMMAND ----------
 
@@ -584,7 +632,8 @@ val roadGraph = Graph(intersectionVertices, edges.rdd).cache
 
 // COMMAND ----------
 
-// MAGIC %md Examining the edges and vertices of the road graph see that they look the same as the edge and vertex rdds that were used to create the graph.
+// MAGIC %md 
+// MAGIC Examining the edges and vertices of the road graph see that they look the same as the edge and vertex rdds that were used to create the graph.
 
 // COMMAND ----------
 
@@ -596,7 +645,8 @@ roadGraph.vertices.take(10).foreach(println)
 
 // COMMAND ----------
 
-// MAGIC %md ####Adding Distance information to edges
+// MAGIC %md 
+// MAGIC ####Adding Distance information to edges
 
 // COMMAND ----------
 
@@ -605,11 +655,13 @@ import com.esri.core.geometry.Point
 
 // COMMAND ----------
 
-// MAGIC %md The graph in its current state can be enriched with further data. An obvious thing to add is the distance between two connected intersections, this is a vital step for more involved operations sucha as path routing on the graph.
+// MAGIC %md 
+// MAGIC The graph in its current state can be enriched with further data. An obvious thing to add is the distance between two connected intersections, this is a vital step for more involved operations sucha as path routing on the graph.
 
 // COMMAND ----------
 
-// MAGIC %md Recall our collection of way nodes:
+// MAGIC %md 
+// MAGIC Recall our collection of way nodes:
 
 // COMMAND ----------
 
@@ -617,7 +669,8 @@ display(wayNodes)
 
 // COMMAND ----------
 
-// MAGIC %md Here we use these way nodes to create a map from each node to its coordinates (latitude and longitude). This allows lookups of a nodes coordinates by other functions. 
+// MAGIC %md 
+// MAGIC Here we use these way nodes to create a map from each node to its coordinates (latitude and longitude). This allows lookups of a nodes coordinates by other functions. 
 
 // COMMAND ----------
 
@@ -627,7 +680,8 @@ val OSMNodes = wayNodes
 
 // COMMAND ----------
 
-// MAGIC %md The `dist` function takes two node ids, looks up their coordinates in the `OSMNodes` map converting them to ESRI points and finally returning the output of `geoDesicDistanceOnWGS84`, corresponding to the distance between the two points.
+// MAGIC %md 
+// MAGIC The `dist` function takes two node ids, looks up their coordinates in the `OSMNodes` map converting them to ESRI points and finally returning the output of `geoDesicDistanceOnWGS84`, corresponding to the distance between the two points.
 
 // COMMAND ----------
 
@@ -642,7 +696,8 @@ def dist(n1: Long, n2: Long): Double = {
 
 // COMMAND ----------
 
-// MAGIC %md To add the distance as an edge attribute use `mapTriplets` to modify each of the edge attributes. `mapTriplets` is needed so that the vertex attributes of both the `src` and `dst` vertices.
+// MAGIC %md 
+// MAGIC To add the distance as an edge attribute use `mapTriplets` to modify each of the edge attributes. `mapTriplets` is needed so that the vertex attributes of both the `src` and `dst` vertices.
 // MAGIC 
 // MAGIC To calculate the distance of the edge, take a sliding window (size 2) over the outgoing nodes of the destination vertex. Accumulate the distance between these sequential nodes, then add the distance from the destination vertex to the first vertex in the outgoing nodes as well as the distance from the source vertex to the destination vertex. 
 
