@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Sat, 25 Jun 2016 03:09:18 UTC
+# Databricks notebook source exported at Sat, 25 Jun 2016 05:01:24 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,7 +13,15 @@
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC #Tweet Analytics
+# MAGIC 
+# MAGIC [Presentation contents](https://github.com/aaa121/Spark-Tweet-Streaming-Presentation-May-2016).
+
+# COMMAND ----------
+
+# MAGIC %md
 # MAGIC ## Creating Machine Learning Pipeline without Loop
+# MAGIC 
 # MAGIC * The elasticNetParam coefficient is fixed at 1.0
 # MAGIC * Read the Spark ML documentation for Logistic Regression
 # MAGIC * The dataset "pos_neg_category" can be split into two or three categories as done in the next note. In this note, the dataset is randomly split into training and testing data
