@@ -13,6 +13,11 @@ rm -rf ./MDparsed
 
 # name of the root (without .scala extension) of the input scala file 
 # that needs to be parsed into markdown (.md file extension)
+
+###########-- prelude --#########################################################################
+FName=../db/sdsBlog
+###############################################################################################
+
 ###########-- Week1 --#########################################################################
 #FName=../db/week1/01_introduction/000_scalableDataScience # done Thu Jun 16 19:03:47 NZST 2016
 #FName=../db/week1/01_introduction/001_whySpark # done Thu Jun 16 20:00:33 NZST 2016
@@ -61,6 +66,12 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week6 --#########################################################################
+#FName=../db/sdsBlog
+#FName=../db/week6/12_SparkStreaming/021_SparkStreamingIntro
+#FName=../db/week6/12_SparkStreaming/022_TweetCollector
+#FName=../db/week6/12_SparkStreaming/022_TweetGenericCollector
+#FName=../db/week6/12_SparkStreaming/023_TweetHashtagCount
+#FName=../db/week6/13_StreamingMLlib_ModelTuneEvaluateDeploy/024_PowerPlantPipeline_03ModelTuneEvaluateDeploy
 ###############################################################################################
 
 ###########-- Week7 --#########################################################################
@@ -85,7 +96,7 @@ rm -rf ./MDparsed
 #FName=../db/xtraResources/awsEducate/sharing # done Thu Jun 16 21:00:53 NZST 2016
 #FName=../db/xtraResources/LinearAlgebra/LAlgCheatSheet
 ################ done Sun Jun 19 20:45:20 NZST 2016
-FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide
+#FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide
 #FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector
 #FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint
 #FName=../db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix
