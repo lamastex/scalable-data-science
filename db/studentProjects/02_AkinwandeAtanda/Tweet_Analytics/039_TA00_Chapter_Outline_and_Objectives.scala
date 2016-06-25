@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 01:50:11 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 04:54:40 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -38,6 +38,27 @@
 // MAGIC   * Pipeline with loop
 // MAGIC 5. Create job to continuously train the algorithm
 // MAGIC 6. Productionize the fitted algorithm for Sentiment Analysis
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Notebook Execution Order and Description
+// MAGIC The chronological order of executing the notebooks for this chapter are listed as follows with corresponidng title:
+// MAGIC 1. Start a Spark Streaming Job
+// MAGIC   * Execute either of the three collectors depending on the project objective:
+// MAGIC   * 040_TA01_01_Unfiltered_Tweets_Collector_Set-up
+// MAGIC   * 041_TA01_02_Filtered_Tweets_Collector_Set-up_by_Keywords_and_Hashtags
+// MAGIC   * 042_TA01_03_Filtered_Tweets_Collector_Set-up_by_Class
+// MAGIC 2. Process the collected Tweets using the ETL framework
+// MAGIC   * 043_TA02_ETL_Tweets
+// MAGIC 3. Download, Load and Explore the Features Dataset for the Machine Learning Job
+// MAGIC   * 044_TA03_01_binary_classification
+// MAGIC 4. Build a Machine Learning Classification Algorithm Pipeline
+// MAGIC  * Run either of the notebooks depending on the choice of Elastic Parameter values
+// MAGIC  * 045_TA03_02_binary_classification
+// MAGIC  * 046_TA03_03_binary_classification_with_Loop
+// MAGIC 5. Productionalize the trainned Algorithm with Historical Tweets
+// MAGIC   * 047_TA03_04_binary_classification_with_Loop_TweetDataSet
 
 // COMMAND ----------
 
