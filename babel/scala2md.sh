@@ -66,7 +66,7 @@ FName=../db/sdsBlog
 ###############################################################################################
 
 ###########-- Week6 --#########################################################################
-#FName=../db/sdsBlog
+#FName=../db/sdsBlog # TODO
 #FName=../db/week6/12_SparkStreaming/021_SparkStreamingIntro
 #FName=../db/week6/12_SparkStreaming/022_TweetCollector
 #FName=../db/week6/12_SparkStreaming/022_TweetGenericCollector
@@ -84,9 +84,44 @@ FName=../db/sdsBlog
 ###############################################################################################
 
 ###########-- Week10 --#########################################################################
+#FName=../db/studentProjects/00_studentPresentations
+#FName=../db/studentProjects/01_DillonGeorge/037_MSR_BeijingTaxiTrajectories_MagellanQueries
+#FName=../db/studentProjects/01_DillonGeorge/038_UberMapMatchingAndVisualization
+#FName=../db/studentProjects/01_DillonGeorge/039_OSMMap2GraphX
 ###############################################################################################
 
 ###########-- Week11 --#########################################################################
+
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/039_TA00_Chapter_Outline_and_Objectives
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/040_TA01_01_Unfiltered_Tweets_Collector_Set-up
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/041_TA01_02_Filtered_Tweets_Collector_Set-up_by_Keywords_and_Hashtags
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/042_TA01_03_Filtered_Tweets_Collector_Set-up_by_Class
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/043_TA02_ETL_Tweets
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/044_TA03_01_binary_classification #.r
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/045_TA03_02_binary_classification #.py
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/046_TA03_03_binary_classification_with_Loop #.py
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/047_TA03_04_binary_classification_with_Loop_TweetDataSet #.py
+
+#FName=../db/studentProjects/03_YinnonDolev/048_decipheringSpiderVision
+
+#FName=../db/studentProjects/04_XinZhao/049_Introduction_HighOrderSpectralClustering
+#FName=../db/studentProjects/04_XinZhao/050_CaseStudy_HighOrderSpectralClustering
+
+#FName=../db/studentProjects/05_ShanshanZhou/051_EEG_Explore #.py
+
+#FName=../db/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries
+
+#FName=../db/studentProjects/07_MatthewHendtlass/053_The_ATP_graph
+#FName=../db/studentProjects/07_MatthewHendtlass/054_Yuki_Katoh_GSW_Passing_Analysis #.py
+
+#FName=../db/studentProjects/08_AndreyKonstantinov/055_KeystrokeBiometric
+
+#FName=../db/studentProjects/09_DominicLee/056_RandomMatrices
+#FName=../db/studentProjects/09_DominicLee/057_QuickReferences
+
+#FName=../db/studentProjects/10_HarryWallace/058_MovieRecommender
+
+#FName=../db/studentProjects/11_IvanSadikov/059_SparkNetFlow
 ###############################################################################################
 
 ###########-- Week12 --#########################################################################
