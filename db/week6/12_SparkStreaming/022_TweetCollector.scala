@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 19 May 2016 22:46:37 UTC
+// Databricks notebook source exported at Fri, 24 Jun 2016 23:58:12 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,11 +13,18 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week6/12_SparkStreaming/022_TweetCollector.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week6/12_SparkStreaming/022_TweetCollector](http://img.youtube.com/vi/jqLcr2eS-Vs/0.jpg)](https://www.youtube.com/v/jqLcr2eS-Vs?rel=0&autoplay=1&modestbranding=1&start=2112&end=3535)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Tweet Collector - capture live tweets
 // MAGIC 
 // MAGIC ### First let's take the twitter stream and write to DBFS as json files
 // MAGIC 
-// MAGIC #### See the notebook 022_TweetGenericCollector (this notebook is not robust and it is only for demo)
+// MAGIC #### See the notebook 022_TweetGenericCollector (this notebook is not robust and it is only for demo)!!!
 
 // COMMAND ----------
 
