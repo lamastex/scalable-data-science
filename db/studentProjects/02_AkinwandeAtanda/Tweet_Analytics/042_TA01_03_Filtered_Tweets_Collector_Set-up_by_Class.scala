@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 04:58:46 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 06:23:30 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
