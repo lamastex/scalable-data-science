@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 05:55:00 UTC
+// Databricks notebook source exported at Sat, 25 Jun 2016 05:58:48 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -19,20 +19,14 @@
 
 // MAGIC 
 // MAGIC %md
-// MAGIC 1. Dillon George 
-// MAGIC * [Akinwande Atanda](https://nz.linkedin.com/in/akinwande-atanda) (**todo: ** copy notebook from research shard to here)
-// MAGIC * Yinnon Dolev
-// MAGIC * Xin Zhao 
-// MAGIC * Shansha Zhou 
-// MAGIC * Shakira Suwan 
-// MAGIC * Matthew Hendlass 
-// MAGIC * Andrey Konstantinov: Keystroke Biometric
-// MAGIC * Dominic Lee: Random Matrices
-// MAGIC * Harry Wallace: Movie Recommender 
-// MAGIC * Ivan Sadikov: reading Netflow Files in Apache Spark
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC some nice news for next project...
-// MAGIC * https://databricks.com/blog/2016/05/24/genome-sequencing-in-a-nutshell.html
+// MAGIC 1. Scalable Spatio-temporal Constraint Satisfaction, Map-matching and OpenStreetMap to GraphX, by Dillon George, undergradute computer science student, UC, Ilam.
+// MAGIC * Trump Twitter Analytics, by [Akinwande Atanda](https://nz.linkedin.com/in/akinwande-atanda), PhD Student, Department of Economics, UC, Ilam.
+// MAGIC * Deciphering Spider Vision, by Yinnon Dolev, PhD Student, School of Biological Sciences, UC, Ilam.
+// MAGIC * High Order Spectral Clustering, by Xin Zhao, Senior Data Scientist, Research and Development, Wynyard Group.
+// MAGIC * EEG Data Exploration, by Shansha Zhou, PhD Student, HITLab, UC, Ilam.
+// MAGIC * Change Detection in Degree Corrected Stochastic BlockModel Graphs, by Shakira Suwan, Data Scientist, Research and Development, Wynyard Group.
+// MAGIC * The Association of Tennis Professionals (ATP) graph, by Matthew Hendlass, Data Scientist, New Zealand Inland Revenue.
+// MAGIC * Keystroke Biometric, by Andrey Konstantinov, Senior Software Systems Engineer, Research and Development, Wynyard Group.
+// MAGIC * Random Matrices, by Dominic Lee, Principal Data Scientist, Research and Development, Wynyard Group.
+// MAGIC * Movie Recommender using Alternating Least Squares by Harry Wallace, Postgraduate student UC, Ilam.
+// MAGIC * Reading Netflow Files in Apache Spark, by Ivan Sadikov, Data Engineer, Research and Development, Wynyard Group.
