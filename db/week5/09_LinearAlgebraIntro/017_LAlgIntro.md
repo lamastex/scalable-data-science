@@ -89,22 +89,22 @@ We usually put commas between the row and column indexing sub-scripts, to make t
 
 $$
 \mathbf{A} = \begin{pmatrix}
-a\_{1,1} & a\_{1,2} & a\_{1,3} \\\\
-a\_{2,1} & a\_{2,2} & a\_{2,3} \\\\
-a\_{3,1} & a\_{3,2} & a\_{3,3}
+a_{1,1} & a_{1,2} & a_{1,3} \\
+a_{2,1} & a_{2,2} & a_{2,3} \\
+a_{3,1} & a_{3,2} & a_{3,3}
 \end{pmatrix}
 $$
 
-* \\( \mathbf{A}\_{i,j} \\) denotes the entry in \\(i\\)-th row and \\(j\\)-th column of the matrix \\(\mathbf{A}\\).
+* $$ \mathbf{A}_{i,j} $$ denotes the entry in $$i$$-th row and $$j$$-th column of the matrix $$\mathbf{A}$$.
 * So for instance, 
-  * the first entry, the top left entry, is denoted by \\( \mathbf{A}\_{1,1} \\).
-  * And the entry in the third row and second column is denoted by \\( \mathbf{A}\_{3,2} \\).
-  * We say that a matrix with n rows and m columns is an \\(n\\) by \\(m\\) matrix and written as \\(n \times m \\)
-    * The matrix \\(\mathbf{A}\\) shown above is a generic \\(3 \times 3\\) (pronounced 3-by-3) matrix.
+  * the first entry, the top left entry, is denoted by $$ \mathbf{A}_{1,1} $$.
+  * And the entry in the third row and second column is denoted by $$ \mathbf{A}_{3,2} $$.
+  * We say that a matrix with n rows and m columns is an $$n$$ by $$m$$ matrix and written as $$n \times m $$
+    * The matrix $$\mathbf{A}$$ shown above is a generic $$3 \times 3$$ (pronounced 3-by-3) matrix.
     * And the matrix in Ameet's example in the video above, having 4 rows and 3 columns, is a 4 by 3 matrix.
-  * If a matrix \\(\mathbf{A}\\) is \\(n \times m \\), we write:
-    * \\(\mathbf{A} \in \mathbb{R}^{n \times m}\\) and say that \\(\mathbf{A}\\) is an \\(\mathbb{R}\\) to the power of  the n times m, 
-        * where, \\(\mathbb{R}\\) here denotes the set of all real numbers in the line given by the open interval: \\( (-\infty,+\infty)\\).
+  * If a matrix $$\mathbf{A}$$ is $$n \times m $$, we write:
+    * $$\mathbf{A} \in \mathbb{R}^{n \times m}$$ and say that $$\mathbf{A}$$ is an $$\mathbb{R}$$ to the power of  the n times m, 
+        * where, $$\mathbb{R}$$ here denotes the set of all real numbers in the line given by the open interval: $$ (-\infty,+\infty)$$.
 
 
 
@@ -113,12 +113,12 @@ $$
 Let us created a matrix `A` as a `val` (that is immutable) in scala. The matrix we want to create is mathematically notated as follows:
 $$
 \mathbf{A} = \begin{pmatrix}
-a\_{1,1} & a\_{1,2} & a\_{1,3} \\\\
-a\_{2,1} & a\_{2,2} & a\_{2,3} 
+a_{1,1} & a_{1,2} & a_{1,3} \\
+a_{2,1} & a_{2,2} & a_{2,3} 
 \end{pmatrix}
  = 
 \begin{pmatrix}
-1 & 2 & 3 \\\\
+1 & 2 & 3 \\
 4 & 5 & 6 
 \end{pmatrix}
 $$
@@ -147,7 +147,7 @@ A.size / A.rows // num of columns
 
 
 
-Now, let's access the element \\(a_{1,1}\\), i.e., the element from the first row and first column of \\(\mathbf{A}\\), which in our `val A` matrix is the integer of type `Int` equalling `1`.
+Now, let's access the element $$a_{1,1}$$, i.e., the element from the first row and first column of $$\mathbf{A}$$, which in our `val A` matrix is the integer of type `Int` equalling `1`.
 
 
 ```scala
@@ -193,13 +193,13 @@ B
 
 * A vector is a matrix with many rows and one column.
 * We'll denote a vector by bold lowercase letters:
-  $$\mathbf{a} = \begin{pmatrix} 3.3 \\\\ 1.0 \\\\ 6.3 \\\\ 3.6 \end{pmatrix}$$
+  $$\mathbf{a} = \begin{pmatrix} 3.3 \\ 1.0 \\ 6.3 \\ 3.6 \end{pmatrix}$$
    
-   So, the vector above is denoted by \\(\mathbf{a}\\), the lowercase, bold a.
-* \\(a_i\\) denotes the i-th entry of a vector. So for instance:
-  * \\(a_2\\) denotes the second entry of the vector and it is 1.0 for our vector.
-* If a vector is m-dimensional, then we say that \\(\mathbf{a}\\) is in \\(\mathbb{R}^m\\) and write \\(\mathbf{a} \in  \mathbb{R}^m\\).
-    * So our \\(\mathbf{a} \in  \mathbb{R}^4\\).
+   So, the vector above is denoted by $$\mathbf{a}$$, the lowercase, bold a.
+* $$a_i$$ denotes the i-th entry of a vector. So for instance:
+  * $$a_2$$ denotes the second entry of the vector and it is 1.0 for our vector.
+* If a vector is m-dimensional, then we say that $$\mathbf{a}$$ is in $$\mathbb{R}^m$$ and write $$\mathbf{a} \in  \mathbb{R}^m$$.
+    * So our $$\mathbf{a} \in  \mathbb{R}^4$$.
 
 
 ```scala
