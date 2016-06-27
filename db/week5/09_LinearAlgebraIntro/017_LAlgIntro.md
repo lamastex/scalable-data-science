@@ -75,13 +75,13 @@ A **matrix** is a two-dimensional array.
 
 Let us denote matrices via bold uppercase letters as follows:
 
-For instance, the matrix below is denoted with \\(\mathbf{A}\\), a capital bold A.
+For instance, the matrix below is denoted with $$\mathbf{A}$$, a capital bold A.
 
 $$
 \mathbf{A} = \begin{pmatrix}
-a\_{11} & a\_{12} & a\_{13} \\\\
-a\_{21} & a\_{22} & a\_{23} \\\\
-a\_{31} & a\_{32} & a\_{33}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
 \end{pmatrix}
 $$
 
