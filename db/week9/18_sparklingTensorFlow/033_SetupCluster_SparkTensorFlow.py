@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Mon, 20 Jun 2016 03:55:12 UTC
+# Databricks notebook source exported at Tue, 28 Jun 2016 09:35:44 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -20,7 +20,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ## TensorFlow initialization scripts
+# MAGIC %md 
+# MAGIC ## TensorFlow initialization scripts
 # MAGIC 
 # MAGIC > This notebook explains how to install TensorFlow on a large cluster. It is __not__ required for the Databricks Community Edition.
 # MAGIC 
@@ -65,7 +66,8 @@ dbutils.fs.ls("dbfs:/databricks/init/%s/" % clusterName)
 
 # COMMAND ----------
 
-# MAGIC %md The following commands create init scripts that install the TensorFlow library on your cluster whenever it gets started or restarted. If you do not want to have TensorFlow installed on this cluster by default, you need to remove the scripts, by running the following command:
+# MAGIC %md 
+# MAGIC The following commands create init scripts that install the TensorFlow library on your cluster whenever it gets started or restarted. If you do not want to have TensorFlow installed on this cluster by default, you need to remove the scripts, by running the following command:
 # MAGIC 
 # MAGIC   ```python
 # MAGIC   dbutils.fs.rm("dbfs:/databricks/init/%s/tensorflow-install.sh" % clusterName)
@@ -74,7 +76,8 @@ dbutils.fs.ls("dbfs:/databricks/init/%s/" % clusterName)
 
 # COMMAND ----------
 
-# MAGIC %md The next cell creates the init scripts. You need to restart your cluster after running the following command.
+# MAGIC %md 
+# MAGIC The next cell creates the init scripts. You need to restart your cluster after running the following command.
 
 # COMMAND ----------
 
