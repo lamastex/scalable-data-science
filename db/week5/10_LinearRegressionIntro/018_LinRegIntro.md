@@ -48,7 +48,7 @@ Ridge regression has a Bayesian interpretation where the weights have a zero-mea
 
 Please take notes in mark-down if you want.
 
-For latex math within markdown you can do the following for in-line maths: \\( \mathbf{A}_{i,j} \in \mathbb{R}^1 \\). And to write maths in display mode do the following:
+For latex math within markdown you can do the following for in-line maths: $$ \mathbf{A}_{i,j} \in \mathbb{R}^1 $$. And to write maths in display mode do the following:
 
 $$\mathbf{A} \in \mathbb{R}^{m \times d} $$
 

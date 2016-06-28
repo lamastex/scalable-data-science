@@ -50,7 +50,9 @@ values, **stored on a single machine**. MLlib supports:
 * sparse matrices, whose non-zero entry values are stored in the Compressed Sparse Column (CSC) format in column-major order. 
 
 For example, the following dense matrix:
-\\[ \begin{pmatrix} 1.0 & 2.0 \\\ 3.0 & 4.0 \\\ 5.0 & 6.0 \end{pmatrix} \\]
+$$
+\begin{pmatrix} 1.0 & 2.0 \\ 3.0 & 4.0 \\ 5.0 & 6.0 \end{pmatrix} 
+$$
 is stored in a one-dimensional array `[1.0, 3.0, 5.0, 2.0, 4.0, 6.0]`
 with the matrix size `(3, 2)`.
 
@@ -87,7 +89,9 @@ val dm: Matrix = Matrices.dense(3, 2, Array(1.0, 3.0, 5.0, 2.0, 4.0, 6.0))
 
 
 Next, let us create the following sparse local matrix:
-\\[ \begin{pmatrix} 9.0 & 0.0 \\\ 0.0 & 8.0 \\\ 0.0 & 6.0 \end{pmatrix} \\]
+$$
+\begin{pmatrix} 9.0 & 0.0 \\ 0.0 & 8.0 \\ 0.0 & 6.0 \end{pmatrix} 
+$$
 
 
 ```scala
