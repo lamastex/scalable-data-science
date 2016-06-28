@@ -15,7 +15,7 @@ rm -rf ./MDparsed
 # that needs to be parsed into markdown (.md file extension)
 
 ###########-- prelude --#########################################################################
-FName=../db/sdsBlog
+#FName=../db/sdsBlog
 ###############################################################################################
 
 ###########-- Week1 --#########################################################################
@@ -66,7 +66,7 @@ FName=../db/sdsBlog
 ###############################################################################################
 
 ###########-- Week6 --#########################################################################
-#FName=../db/sdsBlog # TODO
+#FName=../db/sdsBlog # Tue Jun 28 17:44:48 NZST 2016
 #FName=../db/week6/12_SparkStreaming/021_SparkStreamingIntro
 #FName=../db/week6/12_SparkStreaming/022_TweetCollector
 #FName=../db/week6/12_SparkStreaming/022_TweetGenericCollector

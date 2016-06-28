@@ -27,7 +27,7 @@
 
 * [Week 4](db/week4/README.md)
     * [Introduction to Machine Learning](db/week4/06_MLIntro/011_IntroToML.md)
-    * Unsupervised Clustering of 1 Million Songs via K-Means in 3 Stages
+    * [Unsupervised Clustering of 1 Million Songs via K-Means in 3 Stages](07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro.md)
         * [Stage 1: Extract-Transform-Load](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL.md)
         * [Stage 2: Explore](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore.md)
         * [Stage 3: Model](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model.md)
@@ -38,7 +38,7 @@
         * [HOMEWORK: breeze linear algebra cheat sheet](db/xtraResources/LinearAlgebra/LAlgCheatSheet.md)
     * [Linear Regression Introduction](db/week5/10_LinearRegressionIntro/018_LinRegIntro.md)
     * [Distributed Linear Algebra for Linear Regression Introduction](db/week5/10_LinearRegressionIntro/019_DistLAlgForLinRegIntro.md)
-        * HOMEWORK: Spark Data Types for Distributed Linear Algebra
+        * [HOMEWORK: Spark Data Types for Distributed Linear Algebra](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide.md)
             * [Local Vector](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/001_LocalVector.md)
             * [Labeled Point](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/002_LabeledPoint.md)
             * [Local Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/003_LocalMatrix.md)
@@ -48,6 +48,14 @@
             * [Coordinate Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/007_CoordinateMatrix.md)
             * [Block Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix.md)
     * [Power Plant Pipeline: Model, Tune, Evaluate](db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate)
+
+* [Week 6 -- Introduction to Spark Streaming, Twitter Collector, Top Hashtag Counter and Streaming Model-Prediction Server](db/week6/README.md)
+    * [Introduction to Spark Streaming](db/week6/12_SparkStreaming/021_SparkStreamingIntro.md)
+    * [Tweet Collector - broken down](db/week6/12_SparkStreaming/022_TweetCollector.md)
+    * [Tweet Collector - Generic](db/week6/12_SparkStreaming/022_TweetGenericCollector.md)
+    * [Tweet Hashtag Counter](db/week6/12_SparkStreaming/023_TweetHashtagCount.md)
+    * [Streaming Model-Prediction Server, the Full Powerplant Pipeline](db/week6/13_StreamingMLlib_ModelTuneEvaluateDeploy/024_PowerPlantPipeline_03ModelTuneEvaluateDeploy.md)
+
 
 * [Extra Resources](db/xtraResources/README.md)
     * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
