@@ -27,7 +27,7 @@
 
 * [Week 4: Introduction to Machine Learning - Unsupervised Clustering and Supervised Classification](db/week4/README.md)
     * [Introduction to Machine Learning](db/week4/06_MLIntro/011_IntroToML.md)
-    * [Unsupervised Clustering of 1 Million Songs via K-Means in 3 Stages](07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro.md)
+    * [Unsupervised Clustering of 1 Million Songs via K-Means in 3 Stages](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro.md)
         * [Stage 1: Extract-Transform-Load](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL.md)
         * [Stage 2: Explore](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/014_1MSongsKMeans_Stage2Explore.md)
         * [Stage 3: Model](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model.md)
