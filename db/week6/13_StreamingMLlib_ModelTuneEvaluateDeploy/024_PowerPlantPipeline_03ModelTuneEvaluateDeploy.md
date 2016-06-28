@@ -309,9 +309,11 @@ val lrModel = lrPipeline.fit(trainingSet)
  
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
-$$ y = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 + \ldots + b_i x_i + \ldots + b_k x_k $$
+$$
+y = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 + \ldots + b_i x_i + \ldots + b_k x_k 
+$$
 
-where \\(b_0\\) is the intercept and \\(b_i\\)'s are coefficients.
+where $$b_0$$ is the intercept and $$b_i$$'s are coefficients.
 
 To express the coefficients of that line we can retrieve the Estimator stage from the fitted, linear-regression pipeline model named `lrModel` and express the weights and the intercept for the function.
 
