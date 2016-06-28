@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 27 Apr 2016 02:36:51 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 06:55:05 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # Old Bailey Online Data Analysis in Apache Spark
@@ -112,10 +112,6 @@ val raw = sc.wholeTextFiles("dbfs:/datasets/obo/tei/sessionsPapers/17930109.xml"
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 //val oboTest = sc.wholeTextFiles("dbfs:/datasets/obo/tei/ordinaryAccounts/OA1693072*.xml")
 val xml = raw.map( x => x._2 )
 val x = xml.take(1)(0) // getting content of xml file as a string
@@ -212,12 +208,8 @@ p.format(elem)
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 // MAGIC %md
-// MAGIC Better examples:
+// MAGIC ### Better examples:
 // MAGIC 
 // MAGIC http://alvinalexander.com/scala/how-to-extract-data-from-xml-nodes-in-scala
 // MAGIC 
@@ -235,17 +227,17 @@ p.format(elem)
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC 
 // MAGIC ## Dowloading and Loading Data
 // MAGIC 
 // MAGIC First we will be downloading data from [http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/OldBailey/index.html](http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/OldBailey/index.html).
 // MAGIC 
-// MAGIC The steps nelow need to be done once for a give shard!
+// MAGIC The steps below need to be done once for a give shard!
+// MAGIC 
+// MAGIC **Optional TODOs:** 
+// MAGIC * one could just read the zip files directly (see week 10 on Beijing taxi trajectories example).
+// MAGIC * one could just download from s3 directly
 
 // COMMAND ----------
 
