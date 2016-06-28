@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 9 May 2016 04:49:48 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 08:52:14 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -13,6 +13,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week8/15_GraphX/028_OnTimeFlightPerformance.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week8/15_GraphX/028_OnTimeFlightPerformance](http://img.youtube.com/vi/RbgXUf6KCxY/0.jpg)](https://www.youtube.com/v/RbgXUf6KCxY?rel=0&autoplay=1&modestbranding=1&start=4603)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC This is a scala version of the python notebook in the following talk:
 // MAGIC 
 // MAGIC **Homework:**
@@ -22,7 +29,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md # On-Time Flight Performance with GraphFrames for Apache Spark
+// MAGIC %md 
+// MAGIC # On-Time Flight Performance with GraphFrames for Apache Spark
 // MAGIC This notebook provides an analysis of On-Time Flight Performance and Departure Delays data using GraphFrames for Apache Spark.
 // MAGIC 
 // MAGIC Source Data: 
@@ -37,7 +45,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ### Preparation
+// MAGIC %md 
+// MAGIC ### Preparation
 // MAGIC Extract the Airports and Departure Delays information from S3 / DBFS
 
 // COMMAND ----------
@@ -101,7 +110,8 @@ display(departureDelays_geo)
 
 // COMMAND ----------
 
-// MAGIC %md **WARNING:** If the graphframes package, required in the cell below, is not installed, follow the instructions [here](http://cdn2.hubspot.net/hubfs/438089/notebooks/help/Setup_graphframes_package.html).
+// MAGIC %md 
+// MAGIC **WARNING:** If the graphframes package, required in the cell below, is not installed, follow the instructions [here](http://cdn2.hubspot.net/hubfs/438089/notebooks/help/Setup_graphframes_package.html).
 
 // COMMAND ----------
 
@@ -143,12 +153,14 @@ val tripGraphPrime = GraphFrame(tripVertices, tripEdgesPrime)
 
 // COMMAND ----------
 
-// MAGIC %md ## Simple Queries
+// MAGIC %md 
+// MAGIC ## Simple Queries
 // MAGIC Let's start with a set of simple graph queries to understand flight performance and departure delays
 
 // COMMAND ----------
 
-// MAGIC %md #### Determine the number of airports and trips
+// MAGIC %md 
+// MAGIC #### Determine the number of airports and trips
 
 // COMMAND ----------
 
@@ -157,7 +169,8 @@ println(s"Trips: ${tripGraph.edges.count()}")
 
 // COMMAND ----------
 
-// MAGIC %md #### Determining the longest delay in this dataset
+// MAGIC %md 
+// MAGIC #### Determining the longest delay in this dataset
 
 // COMMAND ----------
 
@@ -167,7 +180,8 @@ display(longestDelay)
 
 // COMMAND ----------
 
-// MAGIC %md #### Determining the number of delayed vs. on-time / early flights
+// MAGIC %md 
+// MAGIC #### Determining the number of delayed vs. on-time / early flights
 
 // COMMAND ----------
 
@@ -177,7 +191,8 @@ println(s"Delayed Flights: ${tripGraph.edges.filter("delay > 0").count()}")
 
 // COMMAND ----------
 
-// MAGIC %md #### What flights departing SFO are most likely to have significant delays
+// MAGIC %md 
+// MAGIC #### What flights departing SFO are most likely to have significant delays
 // MAGIC Note, delay can be <= 0 meaning the flight left on time or early
 
 // COMMAND ----------
@@ -194,7 +209,8 @@ display(sfoDelayedTrips)
 
 // COMMAND ----------
 
-// MAGIC %md #### What destinations tend to have delays
+// MAGIC %md 
+// MAGIC #### What destinations tend to have delays
 
 // COMMAND ----------
 
@@ -204,7 +220,8 @@ display(tripDelays)
 
 // COMMAND ----------
 
-// MAGIC %md #### What destinations tend to have significant delays departing from SEA
+// MAGIC %md 
+// MAGIC #### What destinations tend to have significant delays departing from SEA
 
 // COMMAND ----------
 
@@ -229,12 +246,14 @@ display(tripGraph.degrees.sort($"degree".desc).limit(20))
 
 // COMMAND ----------
 
-// MAGIC %md ## City / Flight Relationships through Motif Finding
+// MAGIC %md 
+// MAGIC ## City / Flight Relationships through Motif Finding
 // MAGIC To more easily understand the complex relationship of city airports and their flights with each other, we can use motifs to find patterns of airports (i.e. vertices) connected by flights (i.e. edges). The result is a DataFrame in which the column names are given by the motif keys.
 
 // COMMAND ----------
 
-// MAGIC %md #### What delays might we blame on SFO
+// MAGIC %md 
+// MAGIC #### What delays might we blame on SFO
 
 // COMMAND ----------
 
@@ -255,7 +274,8 @@ display(motifs)
 
 // COMMAND ----------
 
-// MAGIC %md ## Determining Airport Ranking using PageRank
+// MAGIC %md 
+// MAGIC ## Determining Airport Ranking using PageRank
 // MAGIC There are a large number of flights and connections through these various airports included in this Departure Delay Dataset.  Using the `pageRank` algorithm, Spark iteratively traverses the graph and determines a rough estimate of how important the airport is.
 
 // COMMAND ----------
@@ -269,7 +289,8 @@ display(ranks.vertices.orderBy($"pagerank".desc).limit(20))
 
 // COMMAND ----------
 
-// MAGIC %md ## Most popular flights (single city hops)
+// MAGIC %md 
+// MAGIC ## Most popular flights (single city hops)
 // MAGIC Using the `tripGraph`, we can quickly determine what are the most popular single city hop flights
 
 // COMMAND ----------
@@ -288,7 +309,8 @@ display(topTrips.orderBy($"trips".desc).limit(20))
 
 // COMMAND ----------
 
-// MAGIC %md ## Top Transfer Cities
+// MAGIC %md 
+// MAGIC ## Top Transfer Cities
 // MAGIC Many airports are used as transfer points instead of the final Destination.  An easy way to calculate this is by calculating the ratio of inDegree (the number of flights to the airport) / outDegree (the number of flights leaving the airport).  Values close to 1 may indicate many transfers, whereas values < 1 indicate many outgoing flights and > 1 indicate many incoming flights.  Note, this is a simple calculation that does not take into account of timing or scheduling of flights, just the overall aggregate number within the dataset.
 
 // COMMAND ----------
@@ -323,7 +345,8 @@ display(transferAirports.orderBy("degreeRatio").limit(10))
 
 // COMMAND ----------
 
-// MAGIC %md ## Breadth First Search 
+// MAGIC %md 
+// MAGIC ## Breadth First Search 
 // MAGIC Breadth-first search (BFS) is designed to traverse the graph to quickly find the desired vertices (i.e. airports) and edges (i.e flights).  Let's try to find the shortest number of connections between cities based on the dataset.  Note, these examples do not take into account of time or distance, just hops between cities.
 
 // COMMAND ----------
@@ -335,7 +358,8 @@ display(filteredPaths)
 
 // COMMAND ----------
 
-// MAGIC %md As you can see, there are a number of direct flights between Seattle and San Francisco.
+// MAGIC %md 
+// MAGIC As you can see, there are a number of direct flights between Seattle and San Francisco.
 
 // COMMAND ----------
 
@@ -353,7 +377,8 @@ display(filteredPaths)
 
 // COMMAND ----------
 
-// MAGIC %md But there are no direct flights between San Francisco and Buffalo.
+// MAGIC %md 
+// MAGIC But there are no direct flights between San Francisco and Buffalo.
 
 // COMMAND ----------
 
@@ -363,11 +388,13 @@ display(filteredPaths)
 
 // COMMAND ----------
 
-// MAGIC %md But there are flights from San Francisco to Buffalo with Minneapolis as the transfer point.
+// MAGIC %md 
+// MAGIC But there are flights from San Francisco to Buffalo with Minneapolis as the transfer point.
 
 // COMMAND ----------
 
-// MAGIC %md ## Loading the D3 Visualization
+// MAGIC %md 
+// MAGIC ## Loading the D3 Visualization
 // MAGIC Using the airports D3 visualization to visualize airports and flight paths
 
 // COMMAND ----------
@@ -577,7 +604,8 @@ d3a.graphs.help()
 
 // COMMAND ----------
 
-// MAGIC %md #### Visualize On-time and Early Arrivals
+// MAGIC %md 
+// MAGIC #### Visualize On-time and Early Arrivals
 
 // COMMAND ----------
 
@@ -591,7 +619,8 @@ graphs.force(
 
 // COMMAND ----------
 
-// MAGIC %md #### Visualize Delayed Trips Departing from the West Coast
+// MAGIC %md 
+// MAGIC #### Visualize Delayed Trips Departing from the West Coast
 // MAGIC 
 // MAGIC Notice that most of the delayed trips are with Western US cities
 
@@ -607,7 +636,8 @@ graphs.force(
 
 // COMMAND ----------
 
-// MAGIC %md #### Visualize All Flights (from this dataset)
+// MAGIC %md 
+// MAGIC #### Visualize All Flights (from this dataset)
 
 // COMMAND ----------
 
