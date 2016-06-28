@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 14 Jun 2016 03:16:47 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 09:59:03 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week10/036_IntroductionToMagellan.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week2/week10/036_IntroductionToMagellan](http://img.youtube.com/vi/0wKxVfeBQBc/0.jpg)](https://www.youtube.com/v/0wKxVfeBQBc?rel=0&autoplay=1&modestbranding=1&start=754&end=2056)
 
 // COMMAND ----------
 
@@ -74,7 +81,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md Let us first import what we will need for our geo-spatial analysis below.
+// MAGIC %md 
+// MAGIC Let us first import what we will need for our geo-spatial analysis below.
 
 // COMMAND ----------
 
@@ -92,7 +100,8 @@ import java.text.SimpleDateFormat
 
 // COMMAND ----------
 
-// MAGIC %md ### Data Structure: Point
+// MAGIC %md 
+// MAGIC ### Data Structure: Point
 
 // COMMAND ----------
 
@@ -106,7 +115,8 @@ points.show(false)
 
 // COMMAND ----------
 
-// MAGIC %md ### Data Structure: Polygon
+// MAGIC %md 
+// MAGIC ### Data Structure: Polygon
 
 // COMMAND ----------
 
@@ -134,7 +144,8 @@ polygons.show(false)
 
 // COMMAND ----------
 
-// MAGIC %md ### Predicate: within
+// MAGIC %md 
+// MAGIC ### Predicate: within
 
 // COMMAND ----------
 
@@ -142,7 +153,8 @@ polygons.select(point(0.5, 0.5) within $"polygon").show(false) //.count()
 
 // COMMAND ----------
 
-// MAGIC %md ### Predicate: intersects
+// MAGIC %md 
+// MAGIC ### Predicate: intersects
 
 // COMMAND ----------
 
@@ -185,7 +197,8 @@ morePoints.join(polygons).where($"point" intersects $"polygon").show(false) // (
 
 // COMMAND ----------
 
-// MAGIC %md After downloading the data, we expect to have the following files in distributed file system (dbfs):
+// MAGIC %md 
+// MAGIC After downloading the data, we expect to have the following files in distributed file system (dbfs):
 // MAGIC 
 // MAGIC * ```all.tsv``` is the file of all uber trajectories
 // MAGIC * ```SFNbhd``` is the directory containing SF neighborhood shape files.
@@ -196,7 +209,8 @@ display(dbutils.fs.ls("dbfs:/datasets/magellan/")) // display the contents of th
 
 // COMMAND ----------
 
-// MAGIC %md First five lines or rows of the uber data containing: tripID, timestamp, Lon, Lat
+// MAGIC %md 
+// MAGIC First five lines or rows of the uber data containing: tripID, timestamp, Lon, Lat
 
 // COMMAND ----------
 
@@ -243,7 +257,8 @@ val uberRecordCount = uber.count() // how many Uber records?
 
 // COMMAND ----------
 
-// MAGIC %md So there are over a million ```UberRecord```s.
+// MAGIC %md 
+// MAGIC So there are over a million ```UberRecord```s.
 
 // COMMAND ----------
 
@@ -345,10 +360,6 @@ joined
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC ## Spatio-temporal Queries 
 // MAGIC 
@@ -388,7 +399,8 @@ joined
 
 // COMMAND ----------
 
-// MAGIC %md # Downloading datasets and putting them in distributed file system
+// MAGIC %md 
+// MAGIC # Downloading datasets and putting them in distributed file system
 
 // COMMAND ----------
 
@@ -420,7 +432,8 @@ dbutils.fs.cp("file:/databricks/driver/all.tsv", "dbfs:/datasets/magellan/")
 
 // COMMAND ----------
 
-// MAGIC %md ## Getting SF Neighborhood Data
+// MAGIC %md 
+// MAGIC ## Getting SF Neighborhood Data
 
 // COMMAND ----------
 
@@ -463,7 +476,8 @@ display(dbutils.fs.ls("dbfs:/datasets/magellan/SFNbhd/"))
 
 // COMMAND ----------
 
-// MAGIC %md ### End of downloading and putting data in dbfs
+// MAGIC %md 
+// MAGIC ### End of downloading and putting data in dbfs
 
 // COMMAND ----------
 
