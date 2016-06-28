@@ -95,7 +95,7 @@
     * [Dominic Lee, Random Matrices](db/studentProjects/09_DominicLee/056_RandomMatrices.md)
         * [Dominic Lee, References](db/studentProjects/09_DominicLee/057_QuickReferences.md)
     * [Harry Wallace, Movie Recommender](db/studentProjects/10_HarryWallace/058_MovieRecommender.md)
-    * [Ivan Sadikov, Reading NetFlow Logs](db/studentProjects/11_IvanSadikov/059_SparkNetFlow.md
+    * [Ivan Sadikov, Reading NetFlow Logs](db/studentProjects/11_IvanSadikov/059_SparkNetFlow.md)
 
 
 
