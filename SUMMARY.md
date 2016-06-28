@@ -68,6 +68,9 @@
     * [Deep Learning, A Crash Introduction](db/week9/16_Deep_learning/030_Deep_learning.md)
     * [H2O Sparkling Water](db/week9/17_SparklingWater/031_H2O_sparkling_water.md)
     * [H2O Sparkling Water: Ham or Spam Example](db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam.md)
+    * [Setting up TensorFlow Spark Cluster](db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow.md)
+    * [Scalable Object Identification with Sparkling TensorFlow](db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow.md)
+
 
 * [Week 10: Scalable Geospatial Analytics with Magellan](db/week10/README.md)
     * [What is Scalable Geospatial Analytics](db/week10/035_ScalableGeoSpatialComputing.md)

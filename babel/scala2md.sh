@@ -89,8 +89,8 @@ rm -rf ./MDparsed
 #FName=../db/week9/17_SparklingWater/031_H2O_sparkling_water 
 #FName=../db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam 
 ###############################################################################################
-##FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow.py# TODO py -> md
-##FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow.py # TODO py -> md
+#FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow # py -> md
+FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow # py -> md
 ###############################################################################################
 
 ###########-- Week10 --#########################################################################
@@ -104,7 +104,7 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week11 --#########################################################################
-
+# done (but py/r) Wed Jun 29 07:05:32 NZST 2016
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/039_TA00_Chapter_Outline_and_Objectives
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/040_TA01_01_Unfiltered_Tweets_Collector_Set-up
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/041_TA01_02_Filtered_Tweets_Collector_Set-up_by_Keywords_and_Hashtags
@@ -114,31 +114,22 @@ rm -rf ./MDparsed
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/045_TA03_02_binary_classification #.py ## TODO py -> md
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/046_TA03_03_binary_classification_with_Loop #.py ## TODO py -> md
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/047_TA03_04_binary_classification_with_Loop_TweetDataSet #.py ## TODO py -> md
-
 #FName=../db/studentProjects/03_YinnonDolev/048_decipheringSpiderVision
-
 #FName=../db/studentProjects/04_XinZhao/049_Introduction_HighOrderSpectralClustering
 #FName=../db/studentProjects/04_XinZhao/050_CaseStudy_HighOrderSpectralClustering
-
 #FName=../db/studentProjects/05_ShanshanZhou/051_EEG_Explore #.py ## TODO py -> md
-
-#FName=../db/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries
-
-#FName=../db/studentProjects/07_MatthewHendtlass/053_The_ATP_graph
-#FName=../db/studentProjects/07_MatthewHendtlass/054_Yuki_Katoh_GSW_Passing_Analysis #.py ## TODO py -> md
-
-#FName=../db/studentProjects/08_AndreyKonstantinov/055_KeystrokeBiometric
-
-#FName=../db/studentProjects/09_DominicLee/056_RandomMatrices
-#FName=../db/studentProjects/09_DominicLee/057_QuickReferences
-
-#FName=../db/studentProjects/10_HarryWallace/058_MovieRecommender
-
-FName=../db/studentProjects/11_IvanSadikov/059_SparkNetFlow
-
 ###############################################################################################
 
 ###########-- Week12 --#########################################################################
+# done (but py/r) Wed Jun 29 07:05:32 NZST 2016
+#FName=../db/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries
+#FName=../db/studentProjects/07_MatthewHendtlass/053_The_ATP_graph
+#FName=../db/studentProjects/07_MatthewHendtlass/054_Yuki_Katoh_GSW_Passing_Analysis #.py ## TODO py -> md
+#FName=../db/studentProjects/08_AndreyKonstantinov/055_KeystrokeBiometric
+#FName=../db/studentProjects/09_DominicLee/056_RandomMatrices
+#FName=../db/studentProjects/09_DominicLee/057_QuickReferences
+#FName=../db/studentProjects/10_HarryWallace/058_MovieRecommender
+#FName=../db/studentProjects/11_IvanSadikov/059_SparkNetFlow
 ###############################################################################################
 
 ###########-- xtraResources --#########################################################################
@@ -160,7 +151,10 @@ echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
 
 
 # prepare the scala file nowparse.scala for loading into spark-shell
-cat parseMD.scala >> nowparse.scala
+# for .scala source use parseMD.scala
+#cat parseMD.scala >> nowparse.scala
+# for .py source use parsePyMD.scala
+cat parseMDPy.scala >> nowparse.scala
 
 # load it into spark-shell and finsih the job
 spark-shell -i nowparse.scala
