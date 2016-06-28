@@ -85,15 +85,16 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week9 --#########################################################################
-#FName=../db/week9/16_Deep_learning/030_Deep_learning #               
-#FName=../db/week9/17_SparklingWater/031_H2O_sparkling_water #          
-FName=../db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam #     
-##FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow.py 
-##FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow.py 
+#FName=../db/week9/16_Deep_learning/030_Deep_learning # done Tue Jun 28 22:21:30 NZST 2016
+#FName=../db/week9/17_SparklingWater/031_H2O_sparkling_water 
+#FName=../db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam 
+###############################################################################################
+##FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow.py# TODO py -> md
+##FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow.py # TODO py -> md
 ###############################################################################################
 
 ###########-- Week10 --#########################################################################
-#FName=../db/week10/035_ScalableGeoSpatialComputing 
+#FName=../db/week10/035_ScalableGeoSpatialComputing # done Tue Jun 28 22:25:31 NZST 2016
 #FName=../db/week10/036_IntroductionToMagellan                      
 ###############################################################################################
 #FName=../db/studentProjects/00_studentPresentations

@@ -69,6 +69,10 @@
     * [H2O Sparkling Water](db/week9/17_SparklingWater/031_H2O_sparkling_water.md)
     * [H2O Sparkling Water: Ham or Spam Example](db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam.md)
 
+* [Week 10: Scalable Geospatial Analytics with Magellan](db/week10/README.md)
+    * [What is Scalable Geospatial Analytics](db/week10/035_ScalableGeoSpatialComputing.md)
+    * [Introduction to Magellan for Scalable Geospatial Analytics](db/week10/036_IntroductionToMagellan.md)
+
 * [Extra Resources](db/xtraResources/README.md)
     * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
     * Databricksified Spark SQL Programming Guide 1.6
