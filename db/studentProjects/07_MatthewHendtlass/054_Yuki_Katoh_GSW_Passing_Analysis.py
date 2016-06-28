@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Sat, 25 Jun 2016 04:24:31 UTC
+# Databricks notebook source exported at Tue, 28 Jun 2016 11:17:28 UTC
 # MAGIC %md
 # MAGIC # Analyzing Golden State Warriors' passing network using GraphFrames
 # MAGIC 
@@ -12,6 +12,11 @@
 # MAGIC <img width="1000px" src="https://github.com/yukiegosapporo/gsw_passing_network/blob/master/network.png?raw=true"/>
 # MAGIC 
 # MAGIC <i>*This notebook requires Spark 1.6+</i>
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC View the [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/07_MatthewHendtlass/054_Yuki_Katoh_GSW_Passing_Analysis.html) of this databricks notebook
 
 # COMMAND ----------
 
