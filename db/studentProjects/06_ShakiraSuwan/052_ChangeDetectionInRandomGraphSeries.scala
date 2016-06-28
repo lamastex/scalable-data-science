@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 04:08:19 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 11:12:33 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -12,24 +12,31 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries](http://img.youtube.com/vi/rnpa6YsDXWY/0.jpg)](https://www.youtube.com/v/rnpa6YsDXWY?rel=0&autoplay=1&modestbranding=1&start=0&end=926)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC ## Network Analysis
 // MAGIC 
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15572427/a700c516-2394-11e6-9880-0d0b94669f88.png" width ="600">
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15572638/e05fd6ac-2395-11e6-971e-a54d295ab04a.png" width ="600">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/a700c516-2394-11e6-9880-0d0b94669f88.png" width ="600">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/e05fd6ac-2395-11e6-971e-a54d295ab04a.png" width ="600">
 
 // COMMAND ----------
 
 // MAGIC %md 
 // MAGIC 
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15693661/28704784-27eb-11e6-81cf-09e71af68bb3.png" width="700">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/28704784-27eb-11e6-81cf-09e71af68bb3.png" width="700">
 
 // COMMAND ----------
 
 // MAGIC %md 
 // MAGIC ## Stochastic Blockmodel
 // MAGIC 
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15626683/4e2b79ae-251f-11e6-90ec-7a2e8e0a6920.png" width="900">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/4e2b79ae-251f-11e6-90ec-7a2e8e0a6920.png" width="900">
 // MAGIC 
 // MAGIC  ####Limitations: 
 // MAGIC * SBM treats all nodes within a community as stochastically equivalent.
@@ -41,13 +48,13 @@
 // MAGIC %md 
 // MAGIC ## Degree Corrected Stochastic Blockmodel
 // MAGIC 
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15626890/5abba378-2525-11e6-871a-b96828a50dea.png" width="900">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/5abba378-2525-11e6-871a-b96828a50dea.png" width="900">
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC 
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15626572/a489c5e8-251b-11e6-95a9-8839b41ec6a4.png" width="800" >
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/a489c5e8-251b-11e6-95a9-8839b41ec6a4.png" width="800" >
 // MAGIC 
 // MAGIC ####Change Detection
 // MAGIC Ide and Kashima (2004) compare the current activity vector with the past average vector (profile vector) by computing the change score \\(s_t\\) for time instant, \\(t\\) as
@@ -63,7 +70,7 @@
 
 // MAGIC %md 
 // MAGIC 
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15702090/1676446a-2832-11e6-80bf-a709a6247e3e.png" width="1000">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/1676446a-2832-11e6-80bf-a709a6247e3e.png" width="1000">
 
 // COMMAND ----------
 
@@ -72,7 +79,7 @@
 // MAGIC ## Simulation Studies
 // MAGIC 
 // MAGIC ####Parameter Setting:
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15626381/b50edfd8-2517-11e6-94f3-06b4aae2860f.png" width="300">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/b50edfd8-2517-11e6-94f3-06b4aae2860f.png" width="300">
 // MAGIC * K =3, 
 // MAGIC * n= 900 
 // MAGIC * \\( B_{i,i} = 0.05\\), for \\( i= 1,...,K\\)
@@ -85,15 +92,15 @@
 // MAGIC ####Change scenarios:
 // MAGIC * ####Split
 // MAGIC 
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15626377/ab8f3dfe-2517-11e6-9a20-13bcf50b1617.png" width="300">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/ab8f3dfe-2517-11e6-9a20-13bcf50b1617.png" width="300">
 // MAGIC 
 // MAGIC * ####Form
 // MAGIC 
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15626375/a388654a-2517-11e6-8121-52e74e8b9875.png" width="300">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/a388654a-2517-11e6-8121-52e74e8b9875.png" width="300">
 // MAGIC 
 // MAGIC * ####Shift
 // MAGIC 
-// MAGIC <img src ="https://cloud.githubusercontent.com/assets/19589133/15626395/f0d5c306-2517-11e6-8ec5-7283333ab3a0.png" width="300">
+// MAGIC <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/f0d5c306-2517-11e6-8ec5-7283333ab3a0.png" width="300">
 
 // COMMAND ----------
 
@@ -546,8 +553,8 @@ plot(x,timeScore[,2:26], type="o", xlab="day",
 // MAGIC %md 
 // MAGIC * ### Split
 // MAGIC 
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15645730/52ead968-26ae-11e6-94d7-84b16613b584.png" width="500">
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15645731/52eb50be-26ae-11e6-9a9b-a00588cce699.png" width="500">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/52ead968-26ae-11e6-94d7-84b16613b584.png" width="500">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/52eb50be-26ae-11e6-9a9b-a00588cce699.png" width="500">
 // MAGIC 
 // MAGIC 
 // MAGIC NB: Changed day = 21, changed nodes are from 150-300
@@ -556,8 +563,8 @@ plot(x,timeScore[,2:26], type="o", xlab="day",
 
 // MAGIC %md
 // MAGIC * ###Form
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15645744/60de9852-26ae-11e6-89c3-11d401be9d25.png" width="500">
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15645743/60bd89f0-26ae-11e6-99a0-196089697114.png" width="500">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/60de9852-26ae-11e6-89c3-11d401be9d25.png" width="500">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/60bd89f0-26ae-11e6-99a0-196089697114.png" width="500">
 // MAGIC 
 // MAGIC NB: Changed day = 21, changed nodes are from 1-300
 
@@ -566,8 +573,8 @@ plot(x,timeScore[,2:26], type="o", xlab="day",
 // MAGIC %md
 // MAGIC * ###Shift
 // MAGIC 
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15645759/7552103e-26ae-11e6-9fe6-900079ee0770.png" width="500">
-// MAGIC <img src="https://cloud.githubusercontent.com/assets/19589133/15645758/7551f748-26ae-11e6-97f4-cb45e0b2b9e6.png" width="500">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/7552103e-26ae-11e6-9fe6-900079ee0770.png" width="500">
+// MAGIC <img src="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/7551f748-26ae-11e6-97f4-cb45e0b2b9e6.png" width="500">
 // MAGIC 
 // MAGIC NB: Changed day = 21, changed nodes are from 150-300
 
@@ -575,6 +582,6 @@ plot(x,timeScore[,2:26], type="o", xlab="day",
 
 // MAGIC %md
 // MAGIC ##References
-// MAGIC * [ide-2004.pdf](http://delivery.acm.org.ezproxy.canterbury.ac.nz/10.1145/1020000/1014102/p440-ide.pdf?ip=132.181.2.66&id=1014102&acc=ACTIVE%20SERVICE&key=65D80644F295BC0D%2E496E8270A8EC48AD%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&CFID=791647409&CFTOKEN=43781036&__acm__=1464435454_4de30a24ddc6d1739ebe31189fcabc05)
+// MAGIC * [Tsuyoshi IDE and Hisashi Kashima, Eigenspace-based anomaly detection in computer systems, In Proceedings of the tenth ACM SIGKDD international conference on Knowledge discovery and data mining, pp. 440-449. ACM, 2004. ](http://dl.acm.org/citation.cfm?id=1014102)
 // MAGIC 
 // MAGIC * [Brian Karrer and M. E. J. Newman, Stochastic blockmodels and community structure in networks, Phys. Rev. E 83, 016107 – Published 21 January 2011](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.83.016107).
