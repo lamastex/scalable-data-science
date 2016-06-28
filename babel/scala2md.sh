@@ -97,7 +97,7 @@ rm -rf ./MDparsed
 #FName=../db/week10/035_ScalableGeoSpatialComputing # done Tue Jun 28 22:25:31 NZST 2016
 #FName=../db/week10/036_IntroductionToMagellan                      
 ###############################################################################################
-#FName=../db/studentProjects/00_studentPresentations
+FName=../db/studentProjects/00_studentPresentations
 #FName=../db/studentProjects/01_DillonGeorge/037_MSR_BeijingTaxiTrajectories_MagellanQueries
 #FName=../db/studentProjects/01_DillonGeorge/038_UberMapMatchingAndVisualization
 #FName=../db/studentProjects/01_DillonGeorge/039_OSMMap2GraphX
