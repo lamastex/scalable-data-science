@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 12 May 2016 03:47:28 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 09:28:40 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week9/16_Deep_learning/030_Deep_learning.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week9/16_Deep_learning/030_Deep_learning](http://img.youtube.com/vi/iDyeK3GvFpo/0.jpg)](https://www.youtube.com/v/iDyeK3GvFpo?rel=0&autoplay=1&modestbranding=1&end=3092)
 
 // COMMAND ----------
 
