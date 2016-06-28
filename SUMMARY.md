@@ -64,6 +64,11 @@
     * [Introduction to GraphFrames](db/week8/15_GraphX/026_GraphFramesUserGuide.md)
     * [HOMEWORK: On-Time Flight Performance with GraphFrames](db/week8/15_GraphX/028_OnTimeFlightPerformance.md)
 
+* [Week 9: Deep Learning, Convolutional Neural Nets, Sparkling Water and Tensor Flow](db/week9/README.md)
+    * [Deep Learning, A Crash Introduction](db/week9/16_Deep_learning/030_Deep_learning.md)
+    * [H2O Sparkling Water](db/week9/17_SparklingWater/031_H2O_sparkling_water.md)
+    * [H2O Sparkling Water: Ham or Spam Example](db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam.md)
+
 * [Extra Resources](db/xtraResources/README.md)
     * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
     * Databricksified Spark SQL Programming Guide 1.6

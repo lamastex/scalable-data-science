@@ -75,19 +75,27 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week7 --#########################################################################
-#FName=../db/week7/14_ProbabilisticTopicModels/025_LDA_20NewsGroupsSmall
+#FName=../db/week7/14_ProbabilisticTopicModels/025_LDA_20NewsGroupsSmall # done Tue Jun 28 22:05:04 NZST 2016
 #FName=../db/xtraResources/OldBaileyOnline/OBO_LoadExtract
 ###############################################################################################
 
 ###########-- Week8 --#########################################################################
-#FName=../db/week8/15_GraphX/026_GraphFramesUserGuide
-FName=../db/week8/15_GraphX/028_OnTimeFlightPerformance
+#FName=../db/week8/15_GraphX/026_GraphFramesUserGuide # done Tue Jun 28 22:05:20 NZST 2016
+#FName=../db/week8/15_GraphX/028_OnTimeFlightPerformance
 ###############################################################################################
 
 ###########-- Week9 --#########################################################################
+#FName=../db/week9/16_Deep_learning/030_Deep_learning #               
+#FName=../db/week9/17_SparklingWater/031_H2O_sparkling_water #          
+FName=../db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam #     
+##FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow.py 
+##FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow.py 
 ###############################################################################################
 
 ###########-- Week10 --#########################################################################
+#FName=../db/week10/035_ScalableGeoSpatialComputing 
+#FName=../db/week10/036_IntroductionToMagellan                      
+###############################################################################################
 #FName=../db/studentProjects/00_studentPresentations
 #FName=../db/studentProjects/01_DillonGeorge/037_MSR_BeijingTaxiTrajectories_MagellanQueries
 #FName=../db/studentProjects/01_DillonGeorge/038_UberMapMatchingAndVisualization
