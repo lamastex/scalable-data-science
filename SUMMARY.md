@@ -73,6 +73,32 @@
     * [What is Scalable Geospatial Analytics](db/week10/035_ScalableGeoSpatialComputing.md)
     * [Introduction to Magellan for Scalable Geospatial Analytics](db/week10/036_IntroductionToMagellan.md)
 
+* [Week 11 and 12: Student Projects](db/studentProjects/README.md)
+    * [Student Projects](db/studentProjects/00_studentPresentations.md)
+    * [Dillon George, Scalable Geospatial Algorithms](db/studentProjects/01_DillonGeorge/README.md)
+        * [Scalable Spatio-temporal Constraint Satisfaction](db/studentProjects/01_DillonGeorge/037_MSR_BeijingTaxiTrajectories_MagellanQueries.md)
+        * [Map-matching](db/studentProjects/01_DillonGeorge/038_UberMapMatchingAndVisualization.md)
+        * [OpenStreetMap to GraphX](db/studentProjects/01_DillonGeorge/039_OSMMap2GraphX.md)
+    * [Akinwande Atanda, Twitter Analytics](db/studentProjects/02_AkinwandeAtanda/README.md) 
+        * [Chapter_Outline_and_Objectives](db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/039_TA00_Chapter_Outline_and_Objectives.md)
+	* [Unfiltered_Tweets_Collector_Set-up](db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/040_TA01_01_Unfiltered_Tweets_Collector_Set-up.md)
+	* [Filtered_Tweets_Collector_Set-up_by_Keywords_and_Hashtags](db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/041_TA01_02_Filtered_Tweets_Collector_Set-up_by_Keywords_and_Hashtags.md)
+	* [Filtered_Tweets_Collector_Set-up_by_Class](db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/042_TA01_03_Filtered_Tweets_Collector_Set-up_by_Class.md)
+	* [ETL_Tweets](db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/043_TA02_ETL_Tweets.md)
+	
+    * [Yinnon Dolev, Deciphering Spider Vision](db/studentProjects/03_YinnonDolev/048_decipheringSpiderVision.md)
+    * [Xin Zhao, Higher Order Spectral CLustering](db/studentProjects/04_XinZhao/049_Introduction_HighOrderSpectralClustering.md)
+        * [Xin Zhao, Case-study](db/studentProjects/04_XinZhao/050_CaseStudy_HighOrderSpectralClustering.md)
+    * [Shakira Suwan, Change Detection in Random Graph Series](db/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries.md)
+    * [Matthew Hendtlass, The ATP graph](db/studentProjects/07_MatthewHendtlass/053_The_ATP_graph.md)
+    * [Andrey Konstantinov, Keystroke Biometric](db/studentProjects/08_AndreyKonstantinov/055_KeystrokeBiometric.md)
+    * [Dominic Lee, Random Matrices](db/studentProjects/09_DominicLee/056_RandomMatrices.md)
+        * [Dominic Lee, References](db/studentProjects/09_DominicLee/057_QuickReferences.md)
+    * [Harry Wallace, Movie Recommender](db/studentProjects/10_HarryWallace/058_MovieRecommender.md)
+    * [Ivan Sadikov, Reading NetFlow Logs](db/studentProjects/11_IvanSadikov/059_SparkNetFlow.md
+
+
+
 * [Extra Resources](db/xtraResources/README.md)
     * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
     * Databricksified Spark SQL Programming Guide 1.6
