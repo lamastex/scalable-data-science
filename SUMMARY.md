@@ -60,6 +60,10 @@
     * [Probabilistic Topic Modelling](db/week7/14_ProbabilisticTopicModels/025_LDA_20NewsGroupsSmall.md)
     * [HOMEWORK: Introduction to XML-parsing of Old Bailey Online](db/xtraResources/OldBaileyOnline/OBO_LoadExtract.md)
 
+* [Week 8: Graph Querying in GraphFrames and Distributed Vertex Programming in GraphX](db/week8/README.md)
+    * [Introduction to GraphFrames](db/week8/15_GraphX/026_GraphFramesUserGuide.md)
+    * [HOMEWORK: On-Time Flight Performance with GraphFrames](db/week8/15_GraphX/028_OnTimeFlightPerformance.md)
+
 * [Extra Resources](db/xtraResources/README.md)
     * [AWS Educate](db/xtraResources/awsEducate/sharing.md)
     * Databricksified Spark SQL Programming Guide 1.6

@@ -76,10 +76,12 @@ rm -rf ./MDparsed
 
 ###########-- Week7 --#########################################################################
 #FName=../db/week7/14_ProbabilisticTopicModels/025_LDA_20NewsGroupsSmall
-FName=../db/xtraResources/OldBaileyOnline/OBO_LoadExtract
+#FName=../db/xtraResources/OldBaileyOnline/OBO_LoadExtract
 ###############################################################################################
 
 ###########-- Week8 --#########################################################################
+#FName=../db/week8/15_GraphX/026_GraphFramesUserGuide
+FName=../db/week8/15_GraphX/028_OnTimeFlightPerformance
 ###############################################################################################
 
 ###########-- Week9 --#########################################################################
