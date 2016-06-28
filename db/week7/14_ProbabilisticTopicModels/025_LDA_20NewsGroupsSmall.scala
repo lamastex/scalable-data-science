@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 24 May 2016 18:29:28 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 06:48:35 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -12,7 +12,15 @@
 
 // COMMAND ----------
 
-// MAGIC %md #Topic Modeling with Latent Dirichlet Allocation
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week7/14_ProbabilisticTopicModels/025_LDA_20NewsGroupsSmall.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week7/14_ProbabilisticTopicModels/025_LDA_20NewsGroupsSmall](http://img.youtube.com/vi/23bttDZbE2A/0.jpg)](https://www.youtube.com/v/23bttDZbE2A?rel=0&autoplay=1&modestbranding=1&start=0)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #Topic Modeling with Latent Dirichlet Allocation
 // MAGIC 
 // MAGIC This is an augmentation of a notebook from Databricks Guide.   
 // MAGIC This notebook will provide a brief algorithm summary, links for further reading, and an example of how to use LDA for Topic Modeling.
@@ -63,10 +71,22 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
-
-// COMMAND ----------
-
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 displayHTML(frameIt("http://journalofdigitalhumanities.org/2-1/topic-modeling-and-digital-humanities-by-david-m-blei/",900))
 
 // COMMAND ----------
@@ -83,7 +103,8 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#M
 
 // COMMAND ----------
 
-// MAGIC %md ## Probabilistic Topic Modeling Example
+// MAGIC %md 
+// MAGIC ## Probabilistic Topic Modeling Example
 // MAGIC 
 // MAGIC This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more.
 // MAGIC - Step 0. Dataset Review
@@ -280,7 +301,8 @@ corpus.count // there are 2000 documents in total - this action will take about 
 
 // COMMAND ----------
 
-// MAGIC %md Review first 5 documents to get a sense for the data format.
+// MAGIC %md
+// MAGIC Review first 5 documents to get a sense for the data format.
 
 // COMMAND ----------
 
@@ -288,7 +310,8 @@ corpus.take(5)
 
 // COMMAND ----------
 
-// MAGIC %md To review a random document in the corpus uncomment and evaluate the following cell.
+// MAGIC %md
+// MAGIC To review a random document in the corpus uncomment and evaluate the following cell.
 
 // COMMAND ----------
 
@@ -296,7 +319,8 @@ corpus.takeSample(false, 1)
 
 // COMMAND ----------
 
-// MAGIC %md Note that the document begins with a header containing some metadata that we don't need, and we are only interested in the body of the document. We can do a bit of simple data cleaning here by removing the metadata of each document, which reduces the noise in our dataset. This is an important step as the accuracy of our models depend greatly on the quality of data used.
+// MAGIC %md
+// MAGIC Note that the document begins with a header containing some metadata that we don't need, and we are only interested in the body of the document. We can do a bit of simple data cleaning here by removing the metadata of each document, which reduces the noise in our dataset. This is an important step as the accuracy of our models depend greatly on the quality of data used.
 
 // COMMAND ----------
 
@@ -309,7 +333,8 @@ corpus_body.count() // there should still be the same count, but now without met
 
 // COMMAND ----------
 
-// MAGIC %md Le's review first 5 documents with metadata removed.
+// MAGIC %md
+// MAGIC Let's review first 5 documents with metadata removed.
 
 // COMMAND ----------
 
@@ -317,7 +342,8 @@ corpus_body.take(5)
 
 // COMMAND ----------
 
-// MAGIC %md ## Feature extraction and transformation APIs
+// MAGIC %md 
+// MAGIC ## Feature extraction and transformation APIs
 
 // COMMAND ----------
 
@@ -325,7 +351,8 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/ml-features.html",800))
 
 // COMMAND ----------
 
-// MAGIC %md To use the convenient [Feature extraction and transformation APIs](http://spark.apache.org/docs/latest/ml-features.html), we will convert our RDD into a DataFrame.
+// MAGIC %md 
+// MAGIC To use the convenient [Feature extraction and transformation APIs](http://spark.apache.org/docs/latest/ml-features.html), we will convert our RDD into a DataFrame.
 // MAGIC 
 // MAGIC We will also create an ID for every document using `zipWithIndex` 
 // MAGIC   * for sytax and details search for `zipWithIndex` in [https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html](https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html)
@@ -491,7 +518,8 @@ countVectors.take(1)
 
 // COMMAND ----------
 
-// MAGIC %md To use the LDA algorithm in the MLlib library, we have to convert the DataFrame back into an RDD.
+// MAGIC %md 
+// MAGIC To use the LDA algorithm in the MLlib library, we have to convert the DataFrame back into an RDD.
 
 // COMMAND ----------
 
@@ -516,7 +544,8 @@ displayHTML(frameIt("http://spark.apache.org/docs/latest/mllib-clustering.html#l
 
 // COMMAND ----------
 
-// MAGIC %md ## Create LDA model with Online Variational Bayes
+// MAGIC %md 
+// MAGIC ## Create LDA model with Online Variational Bayes
 // MAGIC 
 // MAGIC We will now set the parameters for LDA. We will use the OnlineLDAOptimizer() here, which implements Online Variational Bayes.
 // MAGIC 
@@ -545,7 +574,8 @@ val lda = new LDA()
 
 // COMMAND ----------
 
-// MAGIC %md Create the LDA model with Online Variational Bayes.
+// MAGIC %md 
+// MAGIC Create the LDA model with Online Variational Bayes.
 
 // COMMAND ----------
 
@@ -562,11 +592,13 @@ val ldaModel = lda.run(lda_countVector)
 
 // COMMAND ----------
 
-// MAGIC %md Note that using the OnlineLDAOptimizer returns us a [LocalLDAModel](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LocalLDAModel), which stores the inferred topics of your corpus.
+// MAGIC %md 
+// MAGIC Note that using the OnlineLDAOptimizer returns us a [LocalLDAModel](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LocalLDAModel), which stores the inferred topics of your corpus.
 
 // COMMAND ----------
 
-// MAGIC %md ## Review Topics
+// MAGIC %md 
+// MAGIC ## Review Topics
 // MAGIC 
 // MAGIC We can now review the results of our LDA model. We will print out all 20 topics with their corresponding term probabilities.
 // MAGIC 
@@ -630,7 +662,8 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 
 // COMMAND ----------
 
-// MAGIC %md Going through the results, you may notice that some of the topic words returned are actually stopwords that are specific to our dataset (for eg: "writes", "article"...). Let's try improving our model.
+// MAGIC %md
+// MAGIC Going through the results, you may notice that some of the topic words returned are actually stopwords that are specific to our dataset (for eg: "writes", "article"...). Let's try improving our model.
 
 // COMMAND ----------
 
@@ -681,7 +714,8 @@ val new_lda_countVector = new_countVectors.map { case Row(id: Long, countVector:
 
 // COMMAND ----------
 
-// MAGIC %md We will also increase MaxIterations to 10 to see if we get better results.
+// MAGIC %md
+// MAGIC We will also increase MaxIterations to 10 to see if we get better results.
 
 // COMMAND ----------
 
@@ -763,7 +797,8 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 
 // COMMAND ----------
 
-// MAGIC %md We managed to get better results here. We can easily infer that topic 0 is about religion, topic 1 is about health, and topic 3 is about computers.
+// MAGIC %md 
+// MAGIC We managed to get better results here. We can easily infer that topic 0 is about religion, topic 1 is about health, and topic 3 is about computers.
 // MAGIC 
 // MAGIC ```
 // MAGIC TOPIC 0
@@ -863,7 +898,8 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 
 // COMMAND ----------
 
-// MAGIC %md We've managed to get some good results here. For example, we can easily infer that Topic 2 is about space, Topic 3 is about israel, etc. 
+// MAGIC %md 
+// MAGIC We've managed to get some good results here. For example, we can easily infer that Topic 2 is about space, Topic 3 is about israel, etc. 
 // MAGIC 
 // MAGIC 
 // MAGIC We still get some ambiguous results like Topic 0.
@@ -880,7 +916,8 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 
 // COMMAND ----------
 
-// MAGIC %md ## Visualize Results
+// MAGIC %md 
+// MAGIC ## Visualize Results
 // MAGIC 
 // MAGIC We will try visualizing the results obtained from the EM LDA model with a d3 bubble chart.
 
@@ -910,7 +947,8 @@ display(termDF)
 
 // COMMAND ----------
 
-// MAGIC %md We will convert the DataFrame into a JSON format, which will be passed into d3.
+// MAGIC %md 
+// MAGIC We will convert the DataFrame into a JSON format, which will be passed into d3.
 
 // COMMAND ----------
 
@@ -919,7 +957,8 @@ val rawJson = termDF.toJSON.collect().mkString(",\n")
 
 // COMMAND ----------
 
-// MAGIC %md We are now ready to use D3 on the rawJson data.
+// MAGIC %md 
+// MAGIC We are now ready to use D3 on the rawJson data.
 
 // COMMAND ----------
 
@@ -1041,11 +1080,14 @@ displayHTML(frameIt("https://www.oldbaileyonline.org/", 450))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This exciting dataset is here for a fun project:
+// MAGIC 
+// MAGIC #### This exciting dataset is here for a fun project:
+// MAGIC 
+// MAGIC * Try the xml-parsing of the dataset already started in [Workspace/scalable-data-science/xtraResources -> OldBaileyOnline -> OBO_LoadExtract](#workspace/scalable-data-science/xtraResources/OldBaileyOnline/OBO_LoadExtract)
 // MAGIC 
 // MAGIC * [http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/OldBailey/](http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/OldBailey/)
 // MAGIC 
-// MAGIC * First see [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://www.math.canterbury.ac.nz/~r.sainudiin/preprints/20150828_civilizingProcOBO.pdf)
+// MAGIC * First see [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://www.math.canterbury.ac.nz/~r.sainudiin/preprints/20150828_civilizingProcOBO.pdf) (the second revision is in prgress June 2016).
 // MAGIC 
 // MAGIC 
 // MAGIC ***
@@ -1064,7 +1106,8 @@ displayHTML(frameIt("https://www.oldbaileyonline.org/", 450))
 
 // COMMAND ----------
 
-// MAGIC %md Untar the file into the /tmp/ folder.
+// MAGIC %md 
+// MAGIC Untar the file into the /tmp/ folder.
 
 // COMMAND ----------
 
