@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 04:46:45 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 11:21:05 UTC
 // MAGIC %md
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
 // MAGIC 
@@ -13,6 +13,13 @@
 // MAGIC Most of the content below is from Module 5 of Anthony Joseph's edX course CS100-1x from the Community Edition of databricks that has been added to this databricks shard at [/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x) as extra resources for the project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/). Here we use scala instead of python.
 // MAGIC 
 // MAGIC (done with significant assistance from Raazesh Sainudiin to write all the code in scala here)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/10_HarryWallace/058_MovieRecommender.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/studentProjects/10_HarryWallace/058_MovieRecommender](http://img.youtube.com/vi/rnpa6YsDXWY/0.jpg)](https://www.youtube.com/v/rnpa6YsDXWY?rel=0&autoplay=1&modestbranding=1&start=5618)
 
 // COMMAND ----------
 
