@@ -1,5 +1,6 @@
 sizes of the .jar files in Dillon's Lib folder are in jars/ folder:
 
+```%sh
 409475 Jun 25 17:24 jars/commons-compress-1.10.jar
 83613 Jun 25 17:22 jars/commons-io-1.3.1.jar
 38015 Jun 25 17:23 jars/commons-logging-1.0.4.jar
@@ -21,4 +22,4 @@ sizes of the .jar files in Dillon's Lib folder are in jars/ folder:
 511587 Jun 25 17:23 jars/woodstox-core-5.0.1.jar
 1229125 Jun 25 17:23 jars/xercesImpl-2.9.1.jar
 639952 Jun 25 17:22 jars/xmlgraphics-commons-2.0.1.jar
-
+```
