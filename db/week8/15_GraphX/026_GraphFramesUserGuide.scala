@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 5 May 2016 04:05:05 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 08:44:47 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week8/15_GraphX/026_GraphFramesUserGuide.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week8/15_GraphX/026_GraphFramesUserGuide](http://img.youtube.com/vi/RbgXUf6KCxY/0.jpg)](https://www.youtube.com/v/RbgXUf6KCxY?rel=0&autoplay=1&modestbranding=1&start=0&end=4568)
 
 // COMMAND ----------
 
@@ -25,19 +32,22 @@
 
 // COMMAND ----------
 
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
 def frameIt( u:String, h:Int ) : String = {
       """<iframe 
  src=""""+ u+""""
  width="95%" height="""" + h + """"
  sandbox>
   <p>
-    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+    <a href="http://spark.apache.org/docs/latest/index.html">
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
 </iframe>"""
    }
-
 displayHTML(frameIt("https://amplab.github.io/graphx/",700))
 
 // COMMAND ----------
@@ -46,7 +56,8 @@ displayHTML(frameIt("https://spark.apache.org/docs/latest/graphx-programming-gui
 
 // COMMAND ----------
 
-// MAGIC %md #GraphFrames User Guide (Scala)
+// MAGIC %md 
+// MAGIC #GraphFrames User Guide (Scala)
 // MAGIC 
 // MAGIC GraphFrames is a package for Apache Spark which provides DataFrame-based Graphs. It provides high-level APIs in Scala, Java, and Python. It aims to provide both the functionality of GraphX and extended functionality taking advantage of Spark DataFrames. This extended functionality includes motif finding, DataFrame-based serialization, and highly expressive graph queries.
 // MAGIC 
@@ -67,7 +78,8 @@ import org.graphframes._
 
 // COMMAND ----------
 
-// MAGIC %md ##Creating GraphFrames
+// MAGIC %md
+// MAGIC ##Creating GraphFrames
 // MAGIC 
 // MAGIC Let us try to create an example social network from the blog: 
 // MAGIC * [https://databricks.com/blog/2016/03/03/introducing-graphframes.html](https://databricks.com/blog/2016/03/03/introducing-graphframes.html).
@@ -87,7 +99,8 @@ import org.graphframes._
 
 // COMMAND ----------
 
-// MAGIC %md Create the vertices and edges
+// MAGIC %md
+// MAGIC Create the vertices and edges
 
 // COMMAND ----------
 
@@ -115,7 +128,8 @@ val e = sqlContext.createDataFrame(List(
 
 // COMMAND ----------
 
-// MAGIC %md Let's create a graph from these vertices and these edges:
+// MAGIC %md 
+// MAGIC Let's create a graph from these vertices and these edges:
 
 // COMMAND ----------
 
@@ -314,10 +328,6 @@ display(gE)
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 d3.graphs.force(
   height = 500,
   width = 500,
@@ -448,12 +458,13 @@ display(filtered)
 
 //Search for all "directed triangles" or triplets of vertices: a,b,c with edges: a->b, b->c and c->a
 //uncomment the next 2 lines and replace the "..." below
-//val motifs3 = g.find("(a)-[e1]->(b); (b)-[e2]->(c); ... ")
-//display(motifs3)
+val motifs3 = g.find("(a)-[e1]->(b); (b)-[e2]->(c); (c)-[e3]->(a) ")
+display(motifs3)
 
 // COMMAND ----------
 
-// MAGIC %md **Stateful queries**
+// MAGIC %md
+// MAGIC **Stateful queries**
 // MAGIC 
 // MAGIC Many motif queries are stateless and simple to express, as in the examples above. The next examples demonstrate more complex queries which carry state along a path in the motif. These queries can be expressed by combining GraphFrame motif finding with filters on the result, where the filters use sequence operations to construct a series of DataFrame Columns.
 // MAGIC 
@@ -487,7 +498,8 @@ display(chainWith2Friends2)
 
 // COMMAND ----------
 
-// MAGIC %md ###Subgraphs
+// MAGIC %md
+// MAGIC ###Subgraphs
 // MAGIC 
 // MAGIC Subgraphs are built by filtering a subset of edges and vertices. For example, the following subgraph only contains people who are friends and who are more than 30 years old.
 
@@ -634,7 +646,8 @@ display(result.orderBy("component"))
 
 // COMMAND ----------
 
-// MAGIC %md ##Label propagation
+// MAGIC %md 
+// MAGIC ##Label propagation
 // MAGIC 
 // MAGIC Run static Label Propagation Algorithm for detecting communities in networks.
 // MAGIC 
@@ -655,7 +668,8 @@ display(result.orderBy("label"))
 
 // COMMAND ----------
 
-// MAGIC %md ##PageRank
+// MAGIC %md 
+// MAGIC ##PageRank
 // MAGIC 
 // MAGIC Identify important vertices in a graph based on connections.
 
@@ -687,7 +701,8 @@ display(results3.vertices)
 
 // COMMAND ----------
 
-// MAGIC %md ##Shortest paths
+// MAGIC %md 
+// MAGIC ##Shortest paths
 // MAGIC 
 // MAGIC Computes shortest paths to the given set of landmark vertices, where landmarks are specified by vertex ID.
 
@@ -702,7 +717,8 @@ display(paths)
 
 // COMMAND ----------
 
-// MAGIC %md ###Triangle count
+// MAGIC %md 
+// MAGIC ###Triangle count
 // MAGIC 
 // MAGIC Computes the number of triangles passing through each vertex.
 
