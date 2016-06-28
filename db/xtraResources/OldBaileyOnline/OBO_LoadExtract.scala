@@ -1,9 +1,11 @@
-// Databricks notebook source exported at Tue, 28 Jun 2016 06:55:05 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 06:58:47 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # Old Bailey Online Data Analysis in Apache Spark
 // MAGIC 
 // MAGIC 2016, by Raaz Sainudiin and James Smithies is licensed under [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+// MAGIC 
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/xtraResources/OldBaileyOnline/OBO_LoadExtract.html) of this databricks notebook.
 // MAGIC 
 // MAGIC This is a starting point for ETL of Old Bailey Online Data from [http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/OldBailey/index.html](http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/OldBailey/index.html).
 // MAGIC 
