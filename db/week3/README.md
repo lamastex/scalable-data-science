@@ -1,4 +1,3 @@
-
 Introduction to Spark SQL, ETL and EDA of Diamonds, Power Plant and Wiki CLick Streams Data
 =======
 

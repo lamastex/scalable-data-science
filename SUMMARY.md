@@ -2,19 +2,19 @@
 
 * [Prelude](db/sdsBlog.md)
 
-* [Week 1](db/week1/README.md)
+* [Week 1: Introduction to Scalable Data Science](db/week1/README.md)
     * [Scalable Data Science](db/week1/01_introduction/000_scalableDataScience.md)
     * [Why Spark?](db/week1/01_introduction/001_whySpark.md)
     * [Login to databricks](db/week1/01_introduction/002_loginToDatabricks.md)
     * [Scala Crash Course](db/week1/01_introduction/003_scalaCrashCourse.md)
 
-* [Week 2](db/week2/README.md)
+* [Week 2: Introduction to Spark RDDs, Transformations and Actions and Word Count of the US State of the Union Addresses](db/week2/README.md)
     * [RDDs, Transformations and Actions](db/week2/02_SparkEssentials/004_RDDsTransformationsActions.md)
     * [HOMEWORK: RDDs, Transformations and Actions](db/week2/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK.md)
     * [Word Count: US State of Union Addesses](db/week2/03_WordCount/006_WordCount.md)
     * [EXTRA_Word Count: ETL of US State of Union Addesses](db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses.md)
 
-* [Week 3](db/week3/README.md)
+* [Week 3: Introduction to Spark SQL, ETL and EDA of Diamonds, Power Plant and Wiki CLick Streams Data](db/week3/README.md)
     * [Spark SQL Introduction](db/week3/04_SparkSQLIntro/007_SparkSQLIntroBasics.md)
         * [HOMEWORK: overview](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide.md)
         * [HOMEWORK: getting started](db/xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide.md)
@@ -25,7 +25,7 @@
     * [ETL and EDA of Power Plant Data](db/week3/05_SparkSQLETLEDA/009_PowerPlantPipeline_01ETLEDA.md)
     * [ETL and EDA of Wiki Click Stream Data](db/week3/05_SparkSQLETLEDA/010_wikipediaClickStream_01ETLEDA.md)
 
-* [Week 4](db/week4/README.md)
+* [Week 4: Introduction to Machine Learning - Unsupervised Clustering and Supervised Classification](db/week4/README.md)
     * [Introduction to Machine Learning](db/week4/06_MLIntro/011_IntroToML.md)
     * [Unsupervised Clustering of 1 Million Songs via K-Means in 3 Stages](07_UnsupervisedClusteringKMeans_1MSongs/012_1MSongsKMeans_Intro.md)
         * [Stage 1: Extract-Transform-Load](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/013_1MSongsKMeans_Stage1ETL.md)
@@ -33,7 +33,7 @@
         * [Stage 3: Model](db/week4/07_UnsupervisedClusteringKMeans_1MSongs/015_1MSongsKMeans_Stage3Model.md)
     * [Supervised Classification of Hand-written Digits via Decision Trees](db/week4/08_SupervisedLearningDecisionTrees/016_DecisionTrees_HandWrittenDigitRecognition.md)
 
-* [Week 5](db/week5/README.md)
+* [Week 5: Introduction to Non-distributed and Distributed Linear Algebra and Applied Linear Regression](db/week5/README.md)
     * [Linear Algebra Introduction](db/week5/09_LinearAlgebraIntro/017_LAlgIntro.md)
         * [HOMEWORK: breeze linear algebra cheat sheet](db/xtraResources/LinearAlgebra/LAlgCheatSheet.md)
     * [Linear Regression Introduction](db/week5/10_LinearRegressionIntro/018_LinRegIntro.md)
@@ -49,7 +49,7 @@
             * [Block Matrix](db/xtraResources/ProgGuides1_6/MLlibProgrammingGuide/dataTypes/008_BlockMatrix.md)
     * [Power Plant Pipeline: Model, Tune, Evaluate](db/week5/11_MLlibModelTuneEvaluate/020_PowerPlantPipeline_02ModelTuneEvaluate)
 
-* [Week 6 -- Introduction to Spark Streaming, Twitter Collector, Top Hashtag Counter and Streaming Model-Prediction Server](db/week6/README.md)
+* [Week 6: Introduction to Spark Streaming, Twitter Collector, Top Hashtag Counter and Streaming Model-Prediction Server](db/week6/README.md)
     * [Introduction to Spark Streaming](db/week6/12_SparkStreaming/021_SparkStreamingIntro.md)
     * [Tweet Collector - broken down](db/week6/12_SparkStreaming/022_TweetCollector.md)
     * [Tweet Collector - Generic](db/week6/12_SparkStreaming/022_TweetGenericCollector.md)

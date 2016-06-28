@@ -1,4 +1,4 @@
-Introduction to Spark RDDs, Transformations and Actions, Word Count, ...
+Introduction to Spark RDDs, Transformations and Actions and Word Count of the US State of the Union Addresses
 =======
 
 * Sections
