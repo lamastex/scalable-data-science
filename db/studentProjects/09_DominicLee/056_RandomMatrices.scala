@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 25 Jun 2016 04:35:58 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 11:19:25 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/09_DominicLee/056_RandomMatrices.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/studentProjects/09_DominicLee/056_RandomMatrices](http://img.youtube.com/vi/rnpa6YsDXWY/0.jpg)](https://www.youtube.com/v/rnpa6YsDXWY?rel=0&autoplay=1&modestbranding=1&start=3957&end=5617)
 
 // COMMAND ----------
 
