@@ -1,4 +1,4 @@
-# Databricks notebook source exported at Thu, 19 May 2016 21:12:36 UTC
+# Databricks notebook source exported at Tue, 28 Jun 2016 09:51:56 UTC
 # MAGIC %md
 # MAGIC 
 # MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 # MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 # MAGIC and 
 # MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+# MAGIC 
+# MAGIC [![sds/uji/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow](http://img.youtube.com/vi/iDyeK3GvFpo/0.jpg)](https://www.youtube.com/v/iDyeK3GvFpo?rel=0&autoplay=1&modestbranding=1&start=4844)
 
 # COMMAND ----------
 
@@ -38,7 +45,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### Installing TensorFlow
+# MAGIC %md 
+# MAGIC ### Installing TensorFlow
 # MAGIC 
 # MAGIC The TensorFlow library needs to be installed directly on the nodes of the cluster. Running the next cell installs it on your cluster if it is not there already. Running this command may take one minute or more.
 
@@ -101,9 +109,9 @@ import matplotlib.pyplot as plt
 model_dir = '/tmp/imagenet'
 image_file = ""
 num_top_predictions = 5
-DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
+DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz' # ?modify this to 
 
-IMAGES_INDEX_URL = 'http://image-net.org/imagenet_data/urls/imagenet_fall11_urls.tgz'
+IMAGES_INDEX_URL = 'http://image-net.org/imagenet_data/urls/imagenet_fall11_urls.tgz' # ? modify this
 # The number of images to process.
 image_batch_size = 10
 max_content = 5000L
@@ -315,13 +323,47 @@ with tf.Graph().as_default() as g:
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Two Runs with just 8 nodes of size 6GB RAM per node.
+
+# COMMAND ----------
+
 urls = sc.parallelize(batched_data, numSlices=len(batched_data))
 labelled_images = urls.flatMap(apply_batch)
 local_labelled_images = labelled_images.collect()
 
 # COMMAND ----------
 
-# MAGIC %md Let us have a look at one of the images we just classified:
+urls = sc.parallelize(batched_data, numSlices=len(batched_data))
+labelled_images = urls.flatMap(apply_batch)
+local_labelled_images = labelled_images.collect()
+
+# COMMAND ----------
+
+# MAGIC %md 
+# MAGIC Now let us just change the cluster settings (`Clusters -> Configure ... ` and use dropdown menu and change number of nodes to 4).
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Run with just 4 nodes.
+
+# COMMAND ----------
+
+urls = sc.parallelize(batched_data, numSlices=len(batched_data))
+labelled_images = urls.flatMap(apply_batch)
+local_labelled_images = labelled_images.collect()
+
+# COMMAND ----------
+
+urls = sc.parallelize(batched_data, numSlices=len(batched_data))
+labelled_images = urls.flatMap(apply_batch)
+local_labelled_images = labelled_images.collect()
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Let us have a look at one of the images we just classified:
 
 # COMMAND ----------
 
@@ -352,7 +394,66 @@ tags
 
 # COMMAND ----------
 
-# MAGIC %md This is the end of this tutorial. You can clone this tutorial and modify it to suit your need. Enjoy!
+# MAGIC %md This is the end of this tutorial. You can clone this tutorial and modify it to suit your needs. Enjoy!
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ***
+# MAGIC ***
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC # Scalable Object Recognition in the Cloud for a Swarm of Robots 
+# MAGIC ### Date: 9:45 am - 5:00 pm, Tuesday June 21, 2016
+# MAGIC ### Co-organization: IEEE RAS NZ Chapter, CLAWAR, University of Canterbury, University of Lincoln
+# MAGIC ### Venue: Room KF7, Kirkwood Village, University of Canterbury, Kirkwood Avenue, Christchurch, New Zealand
+# MAGIC #### by Raazesh Sainudiin done as a student project (near live)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC * Google used GPUs to train the model we saw earlier
+# MAGIC * Use the best tool for the job but use Spark to integrate predictions from multiple images streaming in from a swarm of robots, for example.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### Can we load the  pre-trained model into flying drones to let them scout out which trees have fruits ready for picking?
+# MAGIC 
+# MAGIC Let's get some apple images (and try other fruits too) to test model identification capabilities from a google search on images for:
+# MAGIC   * "fruit trees", "unripe fruit trees", etc.
+# MAGIC   * finding the url of the image and feeding it to the pre-trained model,
+# MAGIC   * and seeing how well the pre-trained model does.
+
+# COMMAND ----------
+
+url = "http://static1.squarespace.com/static/548b6971e4b0af3bfe38cd6f/t/56a7d76c42f5526d030146c8/1462916503492/Fruit-Tree-Apple-Tree.jpg"
+display_image(url)
+
+# COMMAND ----------
+
+with tf.Graph().as_default() as g:
+  graph_def = tf.GraphDef()
+  graph_def.ParseFromString(model_data)
+  tf.import_graph_def(graph_def, name='')
+  with tf.Session() as sess:
+      res = run_image(sess, None, url, node_lookup)[-1]
+      for (keyword, weight) in res:
+        print '{:.8}: {}'.format(str(weight), keyword)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC The results don't look too great at identifying the apples.
+# MAGIC 
+# MAGIC You can train your own model with your own training data for a more specific machine vision / object-identification task. See for example:
+# MAGIC * [https://github.com/tensorflow/models/tree/master/inception](https://github.com/tensorflow/models/tree/master/inception).
+# MAGIC 
+# MAGIC One can even combine this with map-matching done in Week10 to make an atlas of indentified objects if these pre-trained models are inside a swarm of flying drones with GPS locations that are map-matched, for instance.
 
 # COMMAND ----------
 
