@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Tue, 17 May 2016 03:55:56 UTC
+// Databricks notebook source exported at Tue, 28 Jun 2016 09:33:28 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -9,6 +9,13 @@
 // MAGIC *supported by* [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/databricks_logoTM_200px.png)](https://databricks.com/)
 // MAGIC and 
 // MAGIC [![](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/AWS_logoTM_200px.png)](https://www.awseducate.com/microsite/CommunitiesEngageHome)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam.html) of this databricks notebook and its recorded Uji ![Image of Uji, Dogen's Time-Being](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/UjiTimeBeingDogen.png "uji"):
+// MAGIC 
+// MAGIC [![sds/uji/week9/17_SparklingWater/032_Deep_learning_ham_or_spam](http://img.youtube.com/vi/iDyeK3GvFpo/0.jpg)](https://www.youtube.com/v/iDyeK3GvFpo?rel=0&autoplay=1&modestbranding=1&start=3670&end=4843)
 
 // COMMAND ----------
 
@@ -174,7 +181,7 @@ display(hashed_df.select("hamOrSpam", "message", "hashed").take(10))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC TF-IDF - is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus.
+// MAGIC TF-IDF ([Term Frequency - Inverse Document Frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)) - is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus.
 
 // COMMAND ----------
 
