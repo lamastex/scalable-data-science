@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 29 Jun 2016 22:29:28 UTC
+// Databricks notebook source exported at Wed, 29 Jun 2016 22:42:11 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
