@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 26 Jun 2016 02:50:52 UTC
+// Databricks notebook source exported at Wed, 29 Jun 2016 22:29:28 UTC
 
 # Scalable Data Science from Middle Earth
 
@@ -43,7 +43,9 @@ During the second half of 2015 some of us started using the databricks shard for
 
 As the company's R&D team grew and the more experienced scientists left us to pursue other irresistabe career oportunities, Roger Jarquin, our CTO, envisioned that we needed to create a streaming model to not only train honours students from computer science, statistics and mathematics at the University of Canterbury but also retrain the Spark-inexperienced data scientists in Christchurch's data and IT industry.  Co-incidentally, this was in-sync with my decision to return back to academia in order to enjoy the freedom of being able to do any research I felt like communicating mathematically to a non-empty set of human beings besides myself!
 
-With the professional development arranged by Roger Jarquin (CTO, R&D Wynyard Group) for their data scientists and the partial academic scholarships arranged by Professor Jennifer Brown, Head of my School of Mathematics and Statistics, we finally had the minimum number of students needed to introduce our new honours course: [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) in southern fall of 2016 (starting February 2016).
+With the professional development arranged by Roger Jarquin (CTO, R&D Wynyard Group) for their data scientists and the partial academic scholarships arranged by Professor Jennifer Brown, Head of my School of Mathematics and Statistics, we finally had the minimum number of students needed from a financial perspective to introduce our new honours course: [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) in southern fall of 2016 (starting February 2016).
+
+Around the same time Sivanand Sivaram was hired as a Data Engineer in Wynyard Group's R&D and we started going through the Databricks training materials from his San Francisco Spark Summit 2015 during week nights and started discussing them in more detail during our weekend mountain-hikes in the Southern Alps around Arthur's Pass. It became quite apparent that the course needed a data engineer to understand the hotter pipes under the hood of our vision for an applied and technical course in scalable data sciences.
 
 
 

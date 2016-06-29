@@ -89,8 +89,8 @@ rm -rf ./MDparsed
 #FName=../db/week9/17_SparklingWater/031_H2O_sparkling_water 
 #FName=../db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam 
 ###############################################################################################
-FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow # py -> md
-#FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow # py -> md
+#FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow # py -> md # done Thu Jun 30 10:31:16 NZST 2016
+FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow # py -> md
 ###############################################################################################
 
 ###########-- Week10 --#########################################################################
