@@ -90,7 +90,7 @@ rm -rf ./MDparsed
 #FName=../db/week9/17_SparklingWater/032_Deep_learning_ham_or_spam 
 ###############################################################################################
 #FName=../db/week9/18_sparklingTensorFlow/033_SetupCluster_SparkTensorFlow # py -> md # done Thu Jun 30 10:31:16 NZST 2016
-FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow # py -> md
+#FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow # py -> md
 ###############################################################################################
 
 ###########-- Week10 --#########################################################################
@@ -111,20 +111,20 @@ FName=../db/week9/18_sparklingTensorFlow/034_SampleML_SparkTensorFlow # py -> md
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/042_TA01_03_Filtered_Tweets_Collector_Set-up_by_Class
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/043_TA02_ETL_Tweets
 #FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/044_TA03_01_binary_classification #.r ## TODO r -> md
-#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/045_TA03_02_binary_classification #.py ## TODO py -> md
-#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/046_TA03_03_binary_classification_with_Loop #.py ## TODO py -> md
-#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/047_TA03_04_binary_classification_with_Loop_TweetDataSet #.py ## TODO py -> md
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/045_TA03_02_binary_classification #.py ## py -> md
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/046_TA03_03_binary_classification_with_Loop #.py ## py -> md
+#FName=../db/studentProjects/02_AkinwandeAtanda/Tweet_Analytics/047_TA03_04_binary_classification_with_Loop_TweetDataSet #.py ## py -> md
 #FName=../db/studentProjects/03_YinnonDolev/048_decipheringSpiderVision
 #FName=../db/studentProjects/04_XinZhao/049_Introduction_HighOrderSpectralClustering
 #FName=../db/studentProjects/04_XinZhao/050_CaseStudy_HighOrderSpectralClustering
-#FName=../db/studentProjects/05_ShanshanZhou/051_EEG_Explore #.py ## TODO py -> md
+#FName=../db/studentProjects/05_ShanshanZhou/051_EEG_Explore #.py ## py -> md
 ###############################################################################################
 
 ###########-- Week12 --#########################################################################
 # done (but py/r) Wed Jun 29 07:05:32 NZST 2016
 #FName=../db/studentProjects/06_ShakiraSuwan/052_ChangeDetectionInRandomGraphSeries
 #FName=../db/studentProjects/07_MatthewHendtlass/053_The_ATP_graph
-#FName=../db/studentProjects/07_MatthewHendtlass/054_Yuki_Katoh_GSW_Passing_Analysis #.py ## TODO py -> md
+#FName=../db/studentProjects/07_MatthewHendtlass/054_Yuki_Katoh_GSW_Passing_Analysis #.py ## py -> md
 #FName=../db/studentProjects/08_AndreyKonstantinov/055_KeystrokeBiometric
 #FName=../db/studentProjects/09_DominicLee/056_RandomMatrices
 #FName=../db/studentProjects/09_DominicLee/057_QuickReferences
