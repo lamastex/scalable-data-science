@@ -14,6 +14,22 @@ decision problems from various scientific domains.
 This is being prepared by Raazesh Sainudiin and Sivanand Sivaram
 with assistance from Paul Brouwers, Dillon George and Ivan Sadikov.
 
+## How to self-learn this content?
+
+The 2016 instance of this scalable-data-science course:
+* [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) 
+finished on June 30 2016.
+
+
+To learn Apache Spark for free try **databricks Community edition** by starting from: 
+* [https://databricks.com/try-databricks](https://databricks.com/try-databricks).
+
+All course content can be uploaded for self-paced learning by copying the following  URL:
+* [https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/dbcArchives/2016/Spark1_6_to_1_3/scalable-data-science.dbc](URL 2016/Spark1_6_to_1_3/scalable-data-science.dbc archive) 
+and importing it from the URL to your [free Databricks Community Edition](https://community.cloud.databricks.com).
+
+<p>You may also read the <a href="https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details">scalable-data-science Gitbook</a> and fork your own keep the course contents up to date from <a href="https://github.com/raazesh-sainudiin/scalable-data-science">scalable-data-science github</a>.</p>
+
 See [http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) for content as cloud-uploadable and locally browsable notebooks. 
 
 The Gitbook version of this content is [https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details](https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details).
