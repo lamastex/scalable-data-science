@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 7 Jul 2016 05:33:38 UTC
+// Databricks notebook source exported at Thu, 7 Jul 2016 05:49:25 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -130,25 +130,39 @@
 // MAGIC   
 // MAGIC During lab/lecture times we launched two larger clusters (with 9 nodes) on-demand to ensure uninterrupted course intreactions. The on-demand clusters costed 10x more per hour but was easily manageable within our budget for the few hours during and after our weekly meetings in order to handle the load from up to 30 students.
 // MAGIC 
-// MAGIC For some of the student projects we needed to have nodes with upto 30GB of RAM per node and be able to scale up to several tens of nodes.  
-// MAGIC The databricks Educate team gave us a shard just for such research projects with cluster-creation capabilities that can be controlled by us. We had to be very careful when using this research shrad as some students who were initially given cluster-launching rights raked a larger bill and were not managing resources wisely. We finally, decided to administer the cluster launches ourselves.
-// MAGIC 
 // MAGIC AWS will charge to your credit-card if the AWS credits you have pooled does not cover the monthly costs. There is no way to retroactively recover the charge from AWS credits pooled later.
 // MAGIC It also paid to look at historical spot-pricing time series from various AWS availability zones to determine the currently cheapest places to launch our clusters on spot prices.
 // MAGIC 
 // MAGIC ### Databricks Academic Partners Program
 // MAGIC 
+// MAGIC This course would not have happened without the remarkable support by Allison Kunz of the Databricks Academic Partners Program!
+// MAGIC 
 // MAGIC #### Databricks Shard Settings
 // MAGIC 
-// MAGIC The shard had to be 'Access Control Enabled' so as to allow students to choose who they want to collaborate with.
+// MAGIC The databricks shard for the course had to be 'Access Control Enabled' so as to allow students to choose who they want to collaborate with.
 // MAGIC 
 // MAGIC We did not allow students the ability to launch their own clusters. This was done to allow a simpler management model. Sometimes students would email if the 24/7 cluster went down due to spot-price exceeding the threshold. Then we could simply restart it.
 // MAGIC 
-// MAGIC ## Community edition
+// MAGIC For some of the student projects we needed to have nodes with upto 30GB of RAM per node and be able to scale up to several tens of nodes.  
+// MAGIC The databricks team gave us a shard just for such research projects with cluster-creation capabilities that can be controlled by us. We had to be very careful when using this research shrad as some students who were initially given cluster-launching rights raked a larger bill and were not managing resources wisely. We finally, decided to administer the cluster launches ourselves.
 // MAGIC 
-// MAGIC With support from databricks we got community edition account for each student towards the second half of the course and encouraged student to work in CE. 
-// MAGIC This was the long-term (and possibly life-long) learning strategy so the student will have a central place to continue learning and keeping up with Spark's rapid evolutions.
-// MAGIC We will be releasing the contents of the course as a `.dbc` archive that can be uploaded into anyone's databricks CE to learn by taking advantage of our course contents and notebooks.
+// MAGIC 
+// MAGIC ## Community Edition
+// MAGIC 
+// MAGIC With support from Allison at databricks we got expedited community edition accounts for our students towards the second half of the course and encouraged them to work in CE. 
+// MAGIC The community edition was a timely resource to support a long-term (and possibly life-long) learning strategy and allow the student to have a central place to continue learning and keeping up with Spark's rapid evolutions.
+// MAGIC We have released the contents of the course as a `.dbc` archive that can be uploaded into anyone's databricks CE for self-learning as explained next.
+// MAGIC 
+// MAGIC ## How to self-learn this content?
+// MAGIC 
+// MAGIC The 2016 instance of this [scalable-data-science course](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/) finished on June 30 2016.
+// MAGIC 
+// MAGIC To learn Apache Spark for free try **databricks Community edition** by starting from [https://databricks.com/try-databricks](https://databricks.com/try-databricks).
+// MAGIC 
+// MAGIC All course content can be uploaded for self-paced learning by copying the following [URL for 2016/Spark1_6_to_1_3/scalable-data-science.dbc archive](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/dbcArchives/2016/Spark1_6_to_1_3/scalable-data-science.dbc)
+// MAGIC and importing it from the URL to your [free Databricks Community Edition](https://community.cloud.databricks.com).
+// MAGIC 
+// MAGIC The Gitbook version of this content is [https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details](https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details).
 
 // COMMAND ----------
 
