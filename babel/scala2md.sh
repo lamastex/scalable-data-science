@@ -66,7 +66,7 @@ rm -rf ./MDparsed
 ###############################################################################################
 
 ###########-- Week6 --#########################################################################
-#FName=../db/sdsBlog # Tue Jun 28 17:44:48 NZST 2016
+FName=../db/sdsBlog # Tue Jun 28 17:44:48 NZST 2016
 #FName=../db/week6/12_SparkStreaming/021_SparkStreamingIntro
 #FName=../db/week6/12_SparkStreaming/022_TweetCollector
 #FName=../db/week6/12_SparkStreaming/022_TweetGenericCollector
@@ -152,9 +152,9 @@ echo "val ioFilenameRoot = \"$FName\"" > nowparse.scala
 
 # prepare the scala file nowparse.scala for loading into spark-shell
 # for .scala source use parseMD.scala
-#cat parseMD.scala >> nowparse.scala
+cat parseMD.scala >> nowparse.scala
 # for .py source use parsePyMD.scala
-cat parseMDPy.scala >> nowparse.scala
+#cat parseMDPy.scala >> nowparse.scala
 
 # load it into spark-shell and finsih the job
 spark-shell -i nowparse.scala
