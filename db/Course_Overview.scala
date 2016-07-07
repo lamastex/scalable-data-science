@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 7 Jul 2016 05:00:23 UTC
+// Databricks notebook source exported at Thu, 7 Jul 2016 05:00:57 UTC
 // MAGIC %md
 // MAGIC Scalable Data Science - Course Overview
 // MAGIC =======
