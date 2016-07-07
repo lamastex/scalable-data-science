@@ -51,6 +51,10 @@ Please send any typos or suggestions to raazesh.sainudiin@gmail.com
 
 Please read a note on [babel](https://github.com/raazesh-sainudiin/scalable-data-science/blob/master/babel/README.md) to understand how the gitbook is generated from the `.scala` source of the databricks notebook.
 
+## How to cite this work?
+
+Scalable Data Science, Raazesh Sainudiin and Sivanand Sivaram, Published by GitBook [https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details](https://www.gitbook.com/book/raazesh-sainudiin/scalable-data-science/details), 787 pages, 30th June 2016.
+
 ## Supported By
 [Databricks Academic Partners Program](https://databricks.com/academic) and [Amazon Web Services Educate](https://www.awseducate.com/microsite/CommunitiesEngageHome).
 
