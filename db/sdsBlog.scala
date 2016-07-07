@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 29 Jun 2016 22:42:11 UTC
+// Databricks notebook source exported at Thu, 7 Jul 2016 05:33:38 UTC
 // MAGIC %md
 // MAGIC # Scalable Data Science from Middle Earth
 // MAGIC 
@@ -146,7 +146,7 @@
 // MAGIC 
 // MAGIC ## Community edition
 // MAGIC 
-// MAGIC With support from daatbricks we got community edition account for each student towards the second half of the course and encouraged student to work in CE. 
+// MAGIC With support from databricks we got community edition account for each student towards the second half of the course and encouraged student to work in CE. 
 // MAGIC This was the long-term (and possibly life-long) learning strategy so the student will have a central place to continue learning and keeping up with Spark's rapid evolutions.
 // MAGIC We will be releasing the contents of the course as a `.dbc` archive that can be uploaded into anyone's databricks CE to learn by taking advantage of our course contents and notebooks.
 
