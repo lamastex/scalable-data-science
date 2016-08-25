@@ -51,8 +51,14 @@ We can just grab the data as a tarball (gnuZipped tar archive) file ``sou.tar.gz
 
 ```%sh
 wget http://www.math.canterbury.ac.nz/~r.sainudiin/datasets/public/SOU/sou.tar.gz
+
+wget https://dl.dropboxusercontent.com/u/3531607/datasets/StateOfUnionAddressesUSPresidentsUntil2016/sou.tar.gz
+
+wget https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/datasets/sou/sou.tar.gz
 ```
 
 Raazesh Sainudiin
 
-Fri Feb 19 11:08:00 NZDT 2016
+Fri Feb 19 11:08:00 NZDT 2016, Christchurch, NZ
+
+Fri Aug 26 01:20:24 CEST 2016, London, UK
