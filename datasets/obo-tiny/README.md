@@ -15,9 +15,10 @@ Commercial exploitation of the transcribed text and the design and content of th
 # Old Bailey Online - TINY
 
 ### This dataset is made available here for digital humanities projects
-#### The `obo-tiny` dataset available from the following URL:
+#### The `obo-tiny` dataset available from one of the following URL:
 
 * [https://dl.dropboxusercontent.com/u/3531607/datasets/OldBailey/OB-tiny_tei_7-2_CC-BY-NC.zip](https://dl.dropboxusercontent.com/u/3531607/datasets/OldBailey/OB-tiny_tei_7-2_CC-BY-NC.zip)
+* [https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/datasets/obo-tiny/OB-tiny_tei_7-2_CC-BY-NC.zip](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/datasets/obo-tiny/OB-tiny_tei_7-2_CC-BY-NC.zip)
 
 is a tiny sample from the full dataset available from one of these URLs:
 
