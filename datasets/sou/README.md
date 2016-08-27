@@ -57,6 +57,20 @@ wget https://dl.dropboxusercontent.com/u/3531607/datasets/StateOfUnionAddressesU
 wget https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/datasets/sou/sou.tar.gz
 ```
 
+To get the fileneames in dir sou/ inorder to download and move each file one at a time as a hack around databricks Community Edition's limited space in local directories needed for transferring files from the internet into the distributed file system dbfs, do the following:
+
+To get filenames in GNU/Linux:
+```
+tar zxvf sou.tar.gz 
+ls sou/ |  sed -e "s/'/'\\\\''/g;s/\(.*\)/'\1'/" |  tr '\n' ', ' > fileNames
+```
+
+Open fileNames in vi for example and replace all `'` by `"` and delete the last ','.
+```
+vi fileNames
+:%s/'/"/g
+```
+
 Raazesh Sainudiin
 
 Fri Feb 19 11:08:00 NZDT 2016, Christchurch, NZ
