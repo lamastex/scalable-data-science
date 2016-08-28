@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 16 Jun 2016 08:21:33 UTC
+// Databricks notebook source exported at Sun, 28 Aug 2016 15:46:03 UTC
 // MAGIC %md
 // MAGIC 
 // MAGIC # [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
@@ -213,7 +213,23 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/xtraResources/support/sdsFunctions"
+//%run "/scalable-data-science/xtraResources/support/sdsFunctions"
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
 
 // COMMAND ----------
 
@@ -604,7 +620,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // COMMAND ----------
 
-// MAGIC %run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
+// just see the guide for the introductory notebooks
+//%run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
 
 // COMMAND ----------
 
