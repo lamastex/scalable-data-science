@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 06:42:48 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 07:10:53 UTC
 // MAGIC %md
 // MAGIC # Convert string date into TimestampType in Spark SQL
 // MAGIC This can be done by converting date as string into timestamp (including time zone) using `unix_timestamp` and casting it as `TimestampType`, see example below. Note that you might need to convert with some specific timezone.
