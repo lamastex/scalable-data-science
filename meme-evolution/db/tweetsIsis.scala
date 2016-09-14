@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 01:00:40 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 04:27:14 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -48,12 +48,53 @@
 
 // COMMAND ----------
 
-sqlContext.tables.show() // let us view the tables - the data was uploaded as csv file into databricks table
+// MAGIC %md
+// MAGIC The data has been written to parquet file. So let's just read it into a DataFrame (See **Writing Isis Tweets to a Parquet File** below to do this step in a new shard).
+
+// COMMAND ----------
+
+val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
+tweetsIsisRawDF.count()
+
+// COMMAND ----------
+
+display(tweetsIsisRawDF)
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC The data has been written to parquet file. So let's just read it into a DataFrame (See **Writing Isis Tweets to a Parquet File** below to do this step in a new shard).
+// MAGIC ## Mentions Network
+
+// COMMAND ----------
+
+import sqlContext.implicits._
+
+// COMMAND ----------
+
+//make a DataFrame of mentions ie a mentions network with edges given by {(username, mentioned_usernames)}
+val mentionsNetworkDF = tweetsIsisRawDF
+                          .select($"username",$"tweets")
+                          .filter($"tweets" rlike ".*@.*")
+                          .explode($"tweets")(
+                                                _.getAs[String](0).split(" ")
+                                                .filter(a => a.matches("^@.*"))
+                                                .map(a => a.replace("@",""))
+                                                .map(Tuple1(_)))
+                                                .select($"username",$"_1".as("mentions")
+                                                )
+
+// COMMAND ----------
+
+display(mentionsNetworkDF)
+
+// COMMAND ----------
+
+
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC TODO: See Dillon's notebooks for timestamp parsing
 
 // COMMAND ----------
 
@@ -63,12 +104,26 @@ tweetsIsisDF.count()
 
 // COMMAND ----------
 
+display(tweetsIsisDF)
 
+// COMMAND ----------
+
+tweets
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ***
+// MAGIC ***
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC ## Writing Isis Tweets to a Parquet File
+
+// COMMAND ----------
+
+sqlContext.tables.show() // let us view the tables - the data was uploaded as csv file into databricks table
 
 // COMMAND ----------
 
@@ -93,6 +148,14 @@ display(tweetIsisDF)
 // COMMAND ----------
 
 tweetIsisDF.printSchema()
+
+// COMMAND ----------
+
+// Convert the DatFrame to a more efficent format to speed up our analysis
+tweetIsisDF.
+  write.
+  mode(SaveMode.Overwrite).
+  parquet("/datasets/tweetsIsisRaw") // warnings are harmless
 
 // COMMAND ----------
 
