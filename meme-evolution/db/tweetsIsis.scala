@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 00:38:34 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 01:00:40 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -52,6 +52,26 @@ sqlContext.tables.show() // let us view the tables - the data was uploaded as cs
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC The data has been written to parquet file. So let's just read it into a DataFrame (See **Writing Isis Tweets to a Parquet File** below to do this step in a new shard).
+
+// COMMAND ----------
+
+val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweetsIsis")
+tweetsIsisDF.cache()
+tweetsIsisDF.count()
+
+// COMMAND ----------
+
+
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Writing Isis Tweets to a Parquet File
+
+// COMMAND ----------
+
 val tweetIsisDF = sqlContext.table("tweetisis") // converting table into DataFrame
 
 // COMMAND ----------
@@ -69,6 +89,40 @@ tweetIsisDF.count() // counting again after chache
 // COMMAND ----------
 
 display(tweetIsisDF)
+
+// COMMAND ----------
+
+tweetIsisDF.printSchema()
+
+// COMMAND ----------
+
+import org.apache.spark.sql.types.TimestampType
+import org.apache.spark.sql.types.LongType
+
+//we will convert price column from int to double later
+val tweetsIsisDF = tweetIsisDF.select($"name", $"username", $"description", $"location", $"followers".cast(LongType), $"numberstatuses".cast(LongType),$"time",$"time".cast(TimestampType).as("timestamp"), $"tweets")
+tweetsIsisDF.cache() // let's cache it for reuse
+tweetsIsisDF.printSchema // print schema
+
+// COMMAND ----------
+
+// Convert the DatFrame to a more efficent format to speed up our analysis
+tweetsIsisDF.
+  write.
+  mode(SaveMode.Overwrite).
+  parquet("/datasets/tweetsIsis") // warnings are harmless
+
+// COMMAND ----------
+
+display(dbutils.fs.ls("/datasets"))
+
+// COMMAND ----------
+
+val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweetsIsis")
+
+// COMMAND ----------
+
+tweetsIsisDF.printSchema
 
 // COMMAND ----------
 
