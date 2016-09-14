@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 07:56:40 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 08:21:10 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -339,13 +339,22 @@ d3.graphs.help()
 
 // COMMAND ----------
 
-d3.graphs.force(
-  height = 800,
-  width = 1000,
-  clicks = mentionsWeightedNetworkDF
+  val clicksDS = mentionsWeightedNetworkDF
                               .select($"username".as("src"), $"mentions".as("dest"), $"sum(weight)".as("count"))
+                              .orderBy($"count".desc)
                               .limit(20)
                               .as[d3.Edge]
+
+// COMMAND ----------
+
+clicksDS.show()
+
+// COMMAND ----------
+
+d3.graphs.force( // self-loops are ignored
+  height = 800,
+  width = 1000,
+  clicks = clicksDS
 )
 
 // COMMAND ----------
