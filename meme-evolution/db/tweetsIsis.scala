@@ -1,8 +1,11 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 08:21:10 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 08:56:58 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
 // MAGIC ### 2016, Raazesh Sainudiin and Rania Sahioun
+// MAGIC This is part of *Project MEP: Meme Evolution Programme* and supported by databricks academic partners program.
+// MAGIC For details on the mathematical model see:
+// MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology DOI: 10.1016/j.jtbi.2016.07.038 (In Press) [preprint PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
 
 // COMMAND ----------
 
@@ -67,7 +70,7 @@ display(tweetsIsisRawDF)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Mentions Network
+// MAGIC ## Isis Mentions Network
 
 // COMMAND ----------
 
@@ -366,6 +369,11 @@ d3.graphs.force( // self-loops are ignored
 
 // MAGIC %md
 // MAGIC Turn the DataFrame into GraphFrame for more exploration.
+
+// COMMAND ----------
+
+//need to attach graphframes library!
+import org.graphframes._
 
 // COMMAND ----------
 
