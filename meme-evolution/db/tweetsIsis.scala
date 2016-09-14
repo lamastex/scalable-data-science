@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 07:30:18 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 07:56:40 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -88,6 +88,7 @@ val mentionsNetworkDF = tweetsIsisRawDF
                                                  _.getAs[String](0).split(" ")
                                                 .filter(a => a.matches("^@.*"))
                                                 .map(a => a.replace("@",""))
+                                                .map(a => a.replace(":",""))
                                                 .map(Tuple1(_))
                                               )
                                               .select($"username",$"_1".as("mentions"),$"time",unix_timestamp($"time", "MM/dd/yyyy HH:mm").cast(TimestampType).as("timestamp"))
@@ -128,11 +129,234 @@ display(mentionsNetworkDF
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC GraphFrame of Mentions Network
+// MAGIC Full network of mentions with weights
 
 // COMMAND ----------
 
+val mentionsWeightedNetworkDF = mentionsNetworkDF
+  .select(mentionsNetworkDF("username"), mentionsNetworkDF("mentions"), mentionsNetworkDF("weight"))
+  .groupBy("username","mentions")
+  .sum()
+  .orderBy($"sum(weight)".desc)
+  .cache()
 
+// COMMAND ----------
+
+display(mentionsWeightedNetworkDF)
+
+// COMMAND ----------
+
+mentionsWeightedNetworkDF.count()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### Load a visualization library
+// MAGIC This code is copied after doing a live google search (by Michael Armbrust at Spark Summit East February 2016 
+// MAGIC shared from [https://twitter.com/michaelarmbrust/status/699969850475737088](https://twitter.com/michaelarmbrust/status/699969850475737088)).
+
+// COMMAND ----------
+
+package d3
+// We use a package object so that we can define top level classes like Edge that need to be used in other cells
+
+import org.apache.spark.sql._
+import com.databricks.backend.daemon.driver.EnhancedRDDFunctions.displayHTML
+
+case class Edge(src: String, dest: String, count: Long)
+
+case class Node(name: String)
+case class Link(source: Int, target: Int, value: Long)
+case class Graph(nodes: Seq[Node], links: Seq[Link])
+
+object graphs {
+val sqlContext = SQLContext.getOrCreate(org.apache.spark.SparkContext.getOrCreate())  
+import sqlContext.implicits._
+  
+def force(clicks: Dataset[Edge], height: Int = 100, width: Int = 960): Unit = {
+  val data = clicks.collect()
+  val nodes = (data.map(_.src) ++ data.map(_.dest)).map(_.replaceAll("_", " ")).toSet.toSeq.map(Node)
+  val links = data.map { t =>
+    Link(nodes.indexWhere(_.name == t.src.replaceAll("_", " ")), nodes.indexWhere(_.name == t.dest.replaceAll("_", " ")), t.count / 20 + 1)
+  }
+  showGraph(height, width, Seq(Graph(nodes, links)).toDF().toJSON.first())
+}
+
+/**
+ * Displays a force directed graph using d3
+ * input: {"nodes": [{"name": "..."}], "links": [{"source": 1, "target": 2, "value": 0}]}
+ */
+def showGraph(height: Int, width: Int, graph: String): Unit = {
+
+displayHTML(s"""
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Polish Books Themes - an Interactive Map</title>
+  <meta charset="utf-8">
+<style>
+
+.node_circle {
+  stroke: #777;
+  stroke-width: 1.3px;
+}
+
+.node_label {
+  pointer-events: none;
+}
+
+.link {
+  stroke: #777;
+  stroke-opacity: .2;
+}
+
+.node_count {
+  stroke: #777;
+  stroke-width: 1.0px;
+  fill: #999;
+}
+
+text.legend {
+  font-family: Verdana;
+  font-size: 13px;
+  fill: #000;
+}
+
+.node text {
+  font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+</style>
+</head>
+
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var graph = $graph;
+
+var width = $width,
+    height = $height;
+
+var color = d3.scale.category20();
+
+var force = d3.layout.force()
+    .charge(-700)
+    .linkDistance(180)
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+    
+force
+    .nodes(graph.nodes)
+    .links(graph.links)
+    .start();
+
+var link = svg.selectAll(".link")
+    .data(graph.links)
+    .enter().append("line")
+    .attr("class", "link")
+    .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+var node = svg.selectAll(".node")
+    .data(graph.nodes)
+    .enter().append("g")
+    .attr("class", "node")
+    .call(force.drag);
+
+node.append("circle")
+    .attr("r", 10)
+    .style("fill", function (d) {
+    if (d.name.startsWith("other")) { return color(1); } else { return color(2); };
+})
+
+node.append("text")
+      .attr("dx", 10)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name });
+      
+//Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
+force.on("tick", function () {
+    link.attr("x1", function (d) {
+        return d.source.x;
+    })
+        .attr("y1", function (d) {
+        return d.source.y;
+    })
+        .attr("x2", function (d) {
+        return d.target.x;
+    })
+        .attr("y2", function (d) {
+        return d.target.y;
+    });
+    d3.selectAll("circle").attr("cx", function (d) {
+        return d.x;
+    })
+        .attr("cy", function (d) {
+        return d.y;
+    });
+    d3.selectAll("text").attr("x", function (d) {
+        return d.x;
+    })
+        .attr("y", function (d) {
+        return d.y;
+    });
+});
+</script>
+</html>
+""")
+}
+  
+  def help() = {
+displayHTML("""
+<p>
+Produces a force-directed graph given a collection of edges of the following form:</br>
+<tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
+</p>
+<p>Usage:<br/>
+<tt><font color="#a71d5d">import</font> <font color="#ed6a43">d3._</font></tt><br/>
+<tt><font color="#795da3">graphs.force</font>(</br>
+&nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
+&nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
+&nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
+</p>""")
+  }
+}
+
+// COMMAND ----------
+
+d3.graphs.help()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### The weighted mentions network with top 20 most heavy directed edges
+
+// COMMAND ----------
+
+d3.graphs.force(
+  height = 800,
+  width = 1000,
+  clicks = mentionsWeightedNetworkDF
+                              .select($"username".as("src"), $"mentions".as("dest"), $"sum(weight)".as("count"))
+                              .limit(20)
+                              .as[d3.Edge]
+)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### GraphFrame of Mentions Network
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Turn the DataFrame into GraphFrame for more exploration.
 
 // COMMAND ----------
 
