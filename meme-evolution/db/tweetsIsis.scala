@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 07:01:00 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 07:30:18 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -91,10 +91,39 @@ val mentionsNetworkDF = tweetsIsisRawDF
                                                 .map(Tuple1(_))
                                               )
                                               .select($"username",$"_1".as("mentions"),$"time",unix_timestamp($"time", "MM/dd/yyyy HH:mm").cast(TimestampType).as("timestamp"))
+                                              .withColumn("weight", lit(1L))
 
 // COMMAND ----------
 
 display(mentionsNetworkDF)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Top 10 most active usernames
+
+// COMMAND ----------
+
+display(mentionsNetworkDF
+  .select(mentionsNetworkDF("username"), mentionsNetworkDF("weight"))
+  .groupBy("username")
+  .sum()
+  .orderBy($"sum(weight)".desc)
+  .limit(10))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Top 10 most active (usernames,mentions) directed-edge pairs
+
+// COMMAND ----------
+
+display(mentionsNetworkDF
+  .select(mentionsNetworkDF("username"), mentionsNetworkDF("mentions"), mentionsNetworkDF("weight"))
+  .groupBy("username","mentions")
+  .sum()
+  .orderBy($"sum(weight)".desc)
+  .limit(10))
 
 // COMMAND ----------
 
