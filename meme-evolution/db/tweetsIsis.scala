@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 08:56:58 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 21:31:20 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -56,7 +56,7 @@
 
 // COMMAND ----------
 
-1+1
+1+1 // sanity check!
 
 // COMMAND ----------
 
@@ -74,12 +74,10 @@ display(tweetsIsisRawDF)
 
 // COMMAND ----------
 
-import sqlContext.implicits._
-import org.apache.spark.sql.Row
+//import sqlContext.implicits._
+//import org.apache.spark.sql.Row
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.functions._
-
-//import java.sql.Timestamp
 
 // COMMAND ----------
 
@@ -374,6 +372,60 @@ d3.graphs.force( // self-loops are ignored
 
 //need to attach graphframes library!
 import org.graphframes._
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Obtain the distinct `id`s from each of the two columns: `username` and `mentions` in `mentionsWeightedNetworkDF` and take their distinct union to get the set of vertices as DataFrame `v`.
+
+// COMMAND ----------
+
+val v1 = mentionsWeightedNetworkDF.select($"username").distinct().toDF("id")
+val v2 = mentionsWeightedNetworkDF.select($"mentions").distinct().toDF("id")
+val v = v1.unionAll(v2).distinct().cache()
+v.count
+
+// COMMAND ----------
+
+v.show(false)
+
+// COMMAND ----------
+
+mentionsWeightedNetworkDF.show(5,false)
+
+// COMMAND ----------
+
+val e = mentionsWeightedNetworkDF.select($"username".as("src"), $"mentions".as("dst"), $"sum(weight)".as("Num_src2dst_mentions")).withColumn("relationship", lit("mentions"))
+
+// COMMAND ----------
+
+e.show(10,false)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Making a GraphFrame.
+
+// COMMAND ----------
+
+val g = GraphFrame(v, e)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC As is evident from the distribution of inDegrees and outDegrees, the dissemination or source of a transmission event via twitter is focussed on a few key usernames while reception of the transmission events as indicated by the distribution of indegrees is more concentrated on smaller numbers in {1,2,3,4,5}.
+
+// COMMAND ----------
+
+display(g.inDegrees)
+
+// COMMAND ----------
+
+display(g.inDegrees.select($"inDegree"))
+
+// COMMAND ----------
+
+display(g.outDegrees)
 
 // COMMAND ----------
 
