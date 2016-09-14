@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 04:27:14 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 07:01:00 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -53,6 +53,10 @@
 
 // COMMAND ----------
 
+1+1
+
+// COMMAND ----------
+
 val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
 tweetsIsisRawDF.count()
 
@@ -68,20 +72,25 @@ display(tweetsIsisRawDF)
 // COMMAND ----------
 
 import sqlContext.implicits._
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+
+//import java.sql.Timestamp
 
 // COMMAND ----------
 
 //make a DataFrame of mentions ie a mentions network with edges given by {(username, mentioned_usernames)}
 val mentionsNetworkDF = tweetsIsisRawDF
-                          .select($"username",$"tweets")
+                          .select($"username",$"tweets",$"time")
                           .filter($"tweets" rlike ".*@.*")
-                          .explode($"tweets")(
-                                                _.getAs[String](0).split(" ")
+                          .explode($"tweets")( 
+                                                 _.getAs[String](0).split(" ")
                                                 .filter(a => a.matches("^@.*"))
                                                 .map(a => a.replace("@",""))
-                                                .map(Tuple1(_)))
-                                                .select($"username",$"_1".as("mentions")
-                                                )
+                                                .map(Tuple1(_))
+                                              )
+                                              .select($"username",$"_1".as("mentions"),$"time",unix_timestamp($"time", "MM/dd/yyyy HH:mm").cast(TimestampType).as("timestamp"))
 
 // COMMAND ----------
 
@@ -89,26 +98,12 @@ display(mentionsNetworkDF)
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 // MAGIC %md
-// MAGIC TODO: See Dillon's notebooks for timestamp parsing
+// MAGIC GraphFrame of Mentions Network
 
 // COMMAND ----------
 
-val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweetsIsis")
-tweetsIsisDF.cache()
-tweetsIsisDF.count()
 
-// COMMAND ----------
-
-display(tweetsIsisDF)
-
-// COMMAND ----------
-
-tweets
 
 // COMMAND ----------
 
@@ -159,11 +154,10 @@ tweetIsisDF.
 
 // COMMAND ----------
 
-import org.apache.spark.sql.types.TimestampType
-import org.apache.spark.sql.types.LongType
-
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
 //we will convert price column from int to double later
-val tweetsIsisDF = tweetIsisDF.select($"name", $"username", $"description", $"location", $"followers".cast(LongType), $"numberstatuses".cast(LongType),$"time",$"time".cast(TimestampType).as("timestamp"), $"tweets")
+val tweetsIsisDF = tweetIsisDF.select($"name", $"username", $"description", $"location", $"followers".cast(LongType), $"numberstatuses".cast(LongType),$"time",unix_timestamp($"time", "MM/dd/yyyy HH:mm").cast(TimestampType).as("timestamp"), $"tweets")
 tweetsIsisDF.cache() // let's cache it for reuse
 tweetsIsisDF.printSchema // print schema
 
@@ -182,10 +176,12 @@ display(dbutils.fs.ls("/datasets"))
 // COMMAND ----------
 
 val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweetsIsis")
+tweetsIsisDF.printSchema
 
 // COMMAND ----------
 
-tweetsIsisDF.printSchema
+val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
+tweetsIsisRawDF.printSchema
 
 // COMMAND ----------
 
