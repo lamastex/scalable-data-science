@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 10:36:36 UTC
+// Databricks notebook source exported at Wed, 14 Sep 2016 10:43:58 UTC
 // MAGIC %md
 // MAGIC # Sentiments of Tweets from first GOP Debate 2015
 // MAGIC 
@@ -37,6 +37,14 @@
 // MAGIC 7,No candidate mentioned,1.0,yes,1.0,Negative,0.6761,FOX News or Moderators,1.0,,DebWilliams57,,17,,,RT @warriorwoman91: I liked her and was happy when I heard she was going to be the moderator. Not anymore. #GOPDebate @megynkelly  https://…,,2015-08-07 09:54:44 -0700,629697192383672320,North Georgia,Eastern Time (US & Canada)
 // MAGIC 8,No candidate mentioned,1.0,yes,1.0,Neutral,1.0,None of the above,1.0,,RaulAReyes,,0,,,Going on #MSNBC Live with @ThomasARoberts around 2 PM ET.  #GOPDebate,,2015-08-07 09:54:44 -0700,629697192169750528,New York NY,Eastern Time (US & Canada)
 // MAGIC 9,Ben Carson,1.0,yes,1.0,Negative,0.6889,None of the above,0.6444,,kengpdx,,0,,,"Deer in the headlights RT @lizzwinstead: Ben Carson, may be the only brain surgeon who has performed a lobotomy on himself. #GOPDebate",,2015-08-07 09:54:44 -0700,629697190219243524,,Pacific Time (US & Canada)
+// MAGIC ...
+// MAGIC ...
+// MAGIC ...
+// MAGIC 13868,Mike Huckabee,0.9611,yes,1.0,Positive,0.7302,None of the above,0.9229,Mike Huckabee,mhfa16hq,yes,1,,,"RT @georgehenryw: Who thought Huckabee exceeded their expectations  #gopdebate #imwithhuck #gop #ccot #teaparty #tcot @laura4fairtax http…",,2015-08-07 09:25:02 -0700,629689719056568320,USA,
+// MAGIC 13869,Ted Cruz,1.0,yes,1.0,Positive,0.8051,None of the above,0.9647,Ted Cruz,DrottM,yes,67,"Positive Neutral",,"RT @Lrihendry: #TedCruz As President, I will always tell the truth, and do what I said I would do.  #GOPDebates",,2015-08-07 07:19:18 -0700,629658075784282112,,
+// MAGIC 13870,Donald Trump,1.0,yes,1.0,Negative,1.0,Women's Issues (not abortion though),0.9202,Donald Trump,danijeantheq,yes,149,,Women's Issues (not abortion though),"RT @JRehling: #GOPDebate Donald Trump says that he doesn't have time for political correctness. How does calling women ""fat pigs"" save him …",,2015-08-07 09:54:04 -0700,629697023663546368,,
+// MAGIC 13871,Ted Cruz,0.9242,yes,0.9614,Positive,0.9614,None of the above,0.9242,Ted Cruz,MichaelHuff52,yes,65,Positive,,"RT @Lrihendry: #TedCruz headed into the Presidential Debates. GO TED!! #GOPDebates http://t.co/8S67pz8a4A",,2015-08-06 18:22:27 -0700,629462573641920512,"San Antonio, TX",Central Time (US & Canada)
+// MAGIC 
 // MAGIC ```
 
 // COMMAND ----------
