@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 21:31:20 UTC
+// Databricks notebook source exported at Fri, 16 Sep 2016 22:15:13 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -10,7 +10,8 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This data set is from Khuram of Fifth Tribe.
+// MAGIC This data set is from [Khuram](https://www.kaggle.com/kzaman) of [Fifth Tribe](http://www.fifthtribe.com/). The following description is from: 
+// MAGIC * [https://www.kaggle.com/kzaman/how-isis-uses-twitter](https://www.kaggle.com/kzaman/how-isis-uses-twitter).
 // MAGIC 
 // MAGIC # How ISIS Uses Twitter
 // MAGIC ## Analyze how ISIS fanboys have been using Twitter since 2015 Paris Attacks
@@ -18,7 +19,6 @@
 // MAGIC 
 // MAGIC [Released Under CC0: Public Domain License](https://creativecommons.org/publicdomain/zero/1.0/)
 // MAGIC 
-// MAGIC This is from: https://www.kaggle.com/kzaman/how-isis-uses-twitter
 // MAGIC 
 // MAGIC ### Description
 // MAGIC 
@@ -43,11 +43,13 @@
 // MAGIC     Sentiment Analysis: Which clergy do pro-ISIS fanboys quote the most and which ones do they hate the most? Search the tweets for names of prominent clergy and classify the tweet as positive, negative, or neutral and if negative, include the reasons why. Examples of clergy they like the most: "Anwar Awlaki", "Ahmad Jibril", "Ibn Taymiyyah", "Abdul Wahhab". Examples of clergy that they hate the most: "Hamza Yusuf", "Suhaib Webb", "Yaser Qadhi", "Nouman Ali Khan", "Yaqoubi".
 // MAGIC     Timeline View: Visualize all the tweets over a timeline and identify peak moments
 // MAGIC 
-// MAGIC Further Reading: "ISIS Has a Twitter Strategy and It is Terrifying [Infographic]"
+// MAGIC Further Reading: ["ISIS Has a Twitter Strategy and It is Terrifying [Infographic]"](https://medium.com/fifth-tribe-stories/isis-has-a-twitter-strategy-and-it-is-terrifying-7cc059ccf51b#.m3zeluykl).
+// MAGIC 
+// MAGIC ![image of isis from fifth tribe](https://cdn-images-1.medium.com/max/800/1*uvQTKOefNi8zMZz_kMBXTA.jpeg)
 // MAGIC 
 // MAGIC ### About Fifth Tribe
 // MAGIC 
-// MAGIC Fifth Tribe is a digital agency based out of DC that serves businesses, non-profits, and government agencies. We provide our clients with product development, branding, web/mobile development, and digital marketing services. Our client list includes Oxfam, Ernst and Young, Kaiser Permanente, Aetna Innovation Health, the U.S. Air Force, and the U.S. Peace Corps. Along with Goldman Sachs International and IBM, we serve on the Private Sector Committee of the Board of the Global Community Engagement and Resilience Fund (GCERF), the first global effort to support local, community-level initiatives aimed at strengthening resilience against violent extremism. In December 2014, we won the anti-ISIS "Hedaya Hack" organized by Affinis Labs and hosted at the "Global Countering Violent Extremism (CVE) Expo " in Abu Dhabi. Since then, we've been actively involved in working with the open-source community and community content producers in developing counter-messaging campaigns and tools.
+// MAGIC [Fifth Tribe](http://www.fifthtribe.com/) is a digital agency based out of DC that serves businesses, non-profits, and government agencies. We provide our clients with product development, branding, web/mobile development, and digital marketing services. Our client list includes Oxfam, Ernst and Young, Kaiser Permanente, Aetna Innovation Health, the U.S. Air Force, and the U.S. Peace Corps. Along with Goldman Sachs International and IBM, we serve on the Private Sector Committee of the Board of the Global Community Engagement and Resilience Fund (GCERF), the first global effort to support local, community-level initiatives aimed at strengthening resilience against violent extremism. In December 2014, we won the anti-ISIS "Hedaya Hack" organized by Affinis Labs and hosted at the "Global Countering Violent Extremism (CVE) Expo " in Abu Dhabi. Since then, we've been actively involved in working with the open-source community and community content producers in developing counter-messaging campaigns and tools.
 
 // COMMAND ----------
 
@@ -66,6 +68,29 @@ tweetsIsisRawDF.count()
 // COMMAND ----------
 
 display(tweetsIsisRawDF)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Unfortunately, the CSV file is not parsed cleanly.  For example line 24 has newlines in the middle of the tweet:
+// MAGIC 
+// MAGIC ```
+// MAGIC GunsandCoffee,GunsandCoffee70,ENGLISH TRANSLATIONS: http://t.co/QLdJ0ftews,,640,49,2/26/2015 20:36,"NEW links for #JN Video - ENG Subs: The Path of Salvation :
+// MAGIC WATCH:
+// MAGIC http://t.co/1hLwtP3XOd
+// MAGIC http://t.co/jcviGUdedv http://t.co/SzOgGMvPMI"
+// MAGIC GunsandCoffee,GunsandCoffee70,ENGLISH TRANSLATIONS: http://t.co/QLdJ0ftews,,640,49,2/26/2015 20:40,"DOWNLOAD #JN Video With English Subtitles: The Path of Salvation #ﺲﺒﻴﻟ_ﺎﻠﻨﺟﺍﺓ
+// MAGIC https://t.co/HGZPYIAsw0 http://t.co/50UpXYFTwO"
+// MAGIC GunsandCoffee,GunsandCoffee70,ENGLISH TRANSLATIONS: http://t.co/QLdJ0ftews,,640,49,2/28/2015 23:35,"Video by @ansardeenfront with Eng Subtitles: 'Save Aleppo'
+// MAGIC WATCH: http://t.co/RjuFazPf0S
+// MAGIC DOWNLOAD: http://t.co/5Q0Ye0njKR
+// MAGIC @a8531"
+// MAGIC ```
+// MAGIC 
+// MAGIC And this gets parsed with `WATCH` as a user-ID :(.
+// MAGIC This datset needs to be manually cleaned or a more sophisticated parsing needs to be done (no just getting rows from end-of-line characters).
+// MAGIC 
+// MAGIC But let's continue with the analysis anyway for now.
 
 // COMMAND ----------
 
