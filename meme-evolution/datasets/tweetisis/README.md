@@ -35,3 +35,9 @@ Further Reading: "ISIS Has a Twitter Strategy and It is Terrifying [Infographic]
 
 Fifth Tribe is a digital agency based out of DC that serves businesses, non-profits, and government agencies. We provide our clients with product development, branding, web/mobile development, and digital marketing services. Our client list includes Oxfam, Ernst and Young, Kaiser Permanente, Aetna Innovation Health, the U.S. Air Force, and the U.S. Peace Corps. Along with Goldman Sachs International and IBM, we serve on the Private Sector Committee of the Board of the Global Community Engagement and Resilience Fund (GCERF), the first global effort to support local, community-level initiatives aimed at strengthening resilience against violent extremism. In December 2014, we won the anti-ISIS "Hedaya Hack" organized by Affinis Labs and hosted at the "Global Countering Violent Extremism (CVE) Expo " in Abu Dhabi. Since then, we've been actively involved in working with the open-source community and community content producers in developing counter-messaging campaigns and tools. 
 
+### Download the csv file
+This csv file has been obtained from the tweets.xls.zip file with all strings encapsulated by `"` in order to make reading into Spark easier (due to the end of line characters in the 'tweet` field).
+
+```
+wget http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweets.csv.tgz
+```
