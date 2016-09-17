@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 16 Sep 2016 22:15:13 UTC
+// Databricks notebook source exported at Sat, 17 Sep 2016 01:40:20 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -62,35 +62,12 @@
 
 // COMMAND ----------
 
-val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
+val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweets/isis/kzaman/version4/raw/tweetsIsisRaw")
 tweetsIsisRawDF.count()
 
 // COMMAND ----------
 
 display(tweetsIsisRawDF)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC Unfortunately, the CSV file is not parsed cleanly.  For example line 24 has newlines in the middle of the tweet:
-// MAGIC 
-// MAGIC ```
-// MAGIC GunsandCoffee,GunsandCoffee70,ENGLISH TRANSLATIONS: http://t.co/QLdJ0ftews,,640,49,2/26/2015 20:36,"NEW links for #JN Video - ENG Subs: The Path of Salvation :
-// MAGIC WATCH:
-// MAGIC http://t.co/1hLwtP3XOd
-// MAGIC http://t.co/jcviGUdedv http://t.co/SzOgGMvPMI"
-// MAGIC GunsandCoffee,GunsandCoffee70,ENGLISH TRANSLATIONS: http://t.co/QLdJ0ftews,,640,49,2/26/2015 20:40,"DOWNLOAD #JN Video With English Subtitles: The Path of Salvation #ﺲﺒﻴﻟ_ﺎﻠﻨﺟﺍﺓ
-// MAGIC https://t.co/HGZPYIAsw0 http://t.co/50UpXYFTwO"
-// MAGIC GunsandCoffee,GunsandCoffee70,ENGLISH TRANSLATIONS: http://t.co/QLdJ0ftews,,640,49,2/28/2015 23:35,"Video by @ansardeenfront with Eng Subtitles: 'Save Aleppo'
-// MAGIC WATCH: http://t.co/RjuFazPf0S
-// MAGIC DOWNLOAD: http://t.co/5Q0Ye0njKR
-// MAGIC @a8531"
-// MAGIC ```
-// MAGIC 
-// MAGIC And this gets parsed with `WATCH` as a user-ID :(.
-// MAGIC This datset needs to be manually cleaned or a more sophisticated parsing needs to be done (no just getting rows from end-of-line characters).
-// MAGIC 
-// MAGIC But let's continue with the analysis anyway for now.
 
 // COMMAND ----------
 
@@ -373,7 +350,7 @@ d3.graphs.help()
 
 // COMMAND ----------
 
-clicksDS.show()
+clicksDS.show(false)
 
 // COMMAND ----------
 
@@ -446,11 +423,27 @@ display(g.inDegrees)
 
 // COMMAND ----------
 
-display(g.inDegrees.select($"inDegree"))
+display(g.inDegrees
+  .select($"inDegree")
+  .withColumn("count", lit(1L))
+  .groupBy("inDegree")
+  .sum("count")
+  .orderBy($"inDegree".asc)
+  )
 
 // COMMAND ----------
 
 display(g.outDegrees)
+
+// COMMAND ----------
+
+display(g.outDegrees
+  .select($"outDegree")
+  .withColumn("count", lit(1L))
+  .groupBy("outDegree")
+  .sum("count")
+  .orderBy($"outDegree".asc)
+  )
 
 // COMMAND ----------
 
@@ -465,27 +458,48 @@ display(g.outDegrees)
 
 // COMMAND ----------
 
-sqlContext.tables.show() // let us view the tables - the data was uploaded as csv file into databricks table
+// MAGIC %md
+// MAGIC ### Download the csv file
+// MAGIC This csv file has been obtained from the tweets.xls.zip file with all strings encapsulated by `"` in order to make reading into Spark easier (due to the end of line characters in the `tweet` field).
 
 // COMMAND ----------
 
-val tweetIsisDF = sqlContext.table("tweetisis") // converting table into DataFrame
+// MAGIC %sh
+// MAGIC wget http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweets.csv.tgz
 
 // COMMAND ----------
 
-tweetIsisDF.cache() // caching the DataFrame
+// MAGIC %sh
+// MAGIC tar zxvf tweets.csv.tgz
+
+// COMMAND ----------
+
+dbutils.fs.mkdirs("/datasets/tweets/isis/kzaman/version4/raw") // make a directory in dbfs
+
+// COMMAND ----------
+
+// MAGIC %sh 
+// MAGIC pwd # find working directory where the .tgz was downloaded
+
+// COMMAND ----------
+
+dbutils.fs.mv("file:///databricks/driver/tweets.csv","dbfs:///datasets/tweets/isis/kzaman/version4/raw/") // move it to dbfs
+
+// COMMAND ----------
+
+//dbutils.fs.rm("/datasets/tweets/isis/kzaman/version4/raw/tweets.csv.tgz",recurse=true)
+
+// COMMAND ----------
+
+display(dbutils.fs.ls("/datasets/tweets/isis/kzaman/version4/raw"))
+
+// COMMAND ----------
+
+val tweetIsisDF = sqlContext.read.format("com.databricks.spark.csv").options(Map("path" -> "dbfs:///datasets/tweets/isis/kzaman/version4/raw/tweets.csv", "header" -> "true", "inferSchema" -> "true", "delimiter" -> "," , "quote" -> "\"", "escape" -> "\\" ,"parserLib" -> "univocity" )).load()
 
 // COMMAND ----------
 
 tweetIsisDF.count() // couting the rows
-
-// COMMAND ----------
-
-tweetIsisDF.count() // counting again after chache
-
-// COMMAND ----------
-
-display(tweetIsisDF)
 
 // COMMAND ----------
 
@@ -497,7 +511,7 @@ tweetIsisDF.printSchema()
 tweetIsisDF.
   write.
   mode(SaveMode.Overwrite).
-  parquet("/datasets/tweetsIsisRaw") // warnings are harmless
+  parquet("/datasets/tweets/isis/kzaman/version4/raw/tweetsIsisRaw") // warnings are harmless
 
 // COMMAND ----------
 
@@ -514,21 +528,23 @@ tweetsIsisDF.printSchema // print schema
 tweetsIsisDF.
   write.
   mode(SaveMode.Overwrite).
-  parquet("/datasets/tweetsIsis") // warnings are harmless
+  parquet("/datasets/tweets/isis/kzaman/version4/tweetsIsis") // warnings are harmless
 
 // COMMAND ----------
 
-display(dbutils.fs.ls("/datasets"))
+display(dbutils.fs.ls("/datasets/tweets/isis/kzaman/version4/raw"))
 
 // COMMAND ----------
 
-val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweetsIsis")
+// MAGIC %md
+// MAGIC Now we can read directly from the parquet files into DataFrames.
+
+// COMMAND ----------
+
+val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweets/isis/kzaman/version4/tweetsIsis")
 tweetsIsisDF.printSchema
 
 // COMMAND ----------
 
-val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
+val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweets/isis/kzaman/version4/raw/tweetsIsisRaw")
 tweetsIsisRawDF.printSchema
-
-// COMMAND ----------
-
