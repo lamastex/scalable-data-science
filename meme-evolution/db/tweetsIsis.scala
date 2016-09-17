@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 17 Sep 2016 01:40:20 UTC
+// Databricks notebook source exported at Sat, 17 Sep 2016 02:43:49 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -367,6 +367,26 @@ d3.graphs.force( // self-loops are ignored
 
 // COMMAND ----------
 
+//This allows easy embedding of publicly available information into any other notebook
+//when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
+displayHTML(frameIt("https://amplab.github.io/graphx/",700))
+
+// COMMAND ----------
+
 // MAGIC %md
 // MAGIC Turn the DataFrame into GraphFrame for more exploration.
 
@@ -406,7 +426,7 @@ e.show(10,false)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Making a GraphFrame.
+// MAGIC ### Making a GraphFrame.
 
 // COMMAND ----------
 
@@ -415,6 +435,8 @@ val g = GraphFrame(v, e)
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ### Exploring the in/out-Degrees
+// MAGIC 
 // MAGIC As is evident from the distribution of inDegrees and outDegrees, the dissemination or source of a transmission event via twitter is focussed on a few key usernames while reception of the transmission events as indicated by the distribution of indegrees is more concentrated on smaller numbers in {1,2,3,4,5}.
 
 // COMMAND ----------
@@ -444,6 +466,134 @@ display(g.outDegrees
   .sum("count")
   .orderBy($"outDegree".asc)
   )
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC ##Motif finding
+// MAGIC 
+// MAGIC More complex relationships involving edges and vertices can be built using motifs. 
+// MAGIC 
+// MAGIC The following cell finds the pairs of vertices with edges in both directions between them. 
+// MAGIC 
+// MAGIC The result is a dataframe, in which the column names are given by the motif keys.
+// MAGIC 
+// MAGIC Check out the [GraphFrame User Guide](http://graphframes.github.io/user-guide.html#motif-finding) for more details on the API.
+
+// COMMAND ----------
+
+// Search for pairs of vertices with edges in both directions between them, i.e., find undirected or bidirected edges.
+val undirectedEdges = g.find("(a)-[e1]->(b); (b)-[e2]->(a)")
+display(undirectedEdges)
+
+// COMMAND ----------
+
+//Search for all "directed triangles" or triplets of vertices: a,b,c with edges: a->b, b->c and c->a
+//uncomment the next 2 lines and replace the "..." below
+val motifs3 = g.find("(a)-[e1]->(b); (b)-[e2]->(c); (c)-[e3]->(a) ")
+display(motifs3)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ###Subgraphs
+// MAGIC 
+// MAGIC Subgraphs are built by filtering a subset of edges and vertices. For example, the following subgraph only contains people who are friends and who are more than 30 years old.
+
+// COMMAND ----------
+
+display(g.edges.limit(10))
+
+// COMMAND ----------
+
+// Select subgraph of edges of type "mentions" with "Num_src2dst_mentions > 100"
+//val v2 = g.vertices.filter("followers > 30") // can be done in vertices have more properties
+
+val e2 = g.edges.filter("relationship = 'mentions'").filter("Num_src2dst_mentions > 30")
+val v2 = e2.select($"src").unionAll(e2.select($"dst")).distinct().toDF("id")
+val g2 = GraphFrame(v2, e2)
+
+// COMMAND ----------
+
+g2.edges.show
+
+// COMMAND ----------
+
+d3.graphs.force( // let us see g2 now in one cell
+  height = 600,
+  width = 800,
+  clicks = g2.edges.select($"src", $"dst".as("dest"), $"Num_src2dst_mentions".as("count")).as[d3.Edge])
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC ###Connected components
+// MAGIC 
+// MAGIC Compute the connected component membership of each vertex and return a graph with each vertex assigned a component ID.
+
+// COMMAND ----------
+
+val result = g.connectedComponents.run() // doesn't work on Spark 1.4
+display(result)
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC ##Strongly connected components
+// MAGIC 
+// MAGIC Compute the strongly connected component (SCC) of each vertex and return a graph with each vertex assigned to the SCC containing that vertex.
+
+// COMMAND ----------
+
+val result = g.stronglyConnectedComponents.maxIter(10).run()
+display(result.orderBy("component"))
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC ##Label propagation
+// MAGIC 
+// MAGIC Run static Label Propagation Algorithm for detecting communities in networks.
+// MAGIC 
+// MAGIC Each node in the network is initially assigned to its own community. At every superstep, nodes send their community affiliation to all neighbors and update their state to the mode community affiliation of incoming messages.
+// MAGIC 
+// MAGIC LPA is a standard community detection algorithm for graphs. It is very inexpensive computationally, although 
+// MAGIC * (1) convergence is not guaranteed and 
+// MAGIC * (2) one can end up with trivial solutions (all nodes are identified into a single community).
+
+// COMMAND ----------
+
+displayHTML(frameIt("http://graphframes.github.io/user-guide.html#label-propagation-algorithm-lpa",600))
+
+// COMMAND ----------
+
+val result = g.labelPropagation.maxIter(5).run()
+display(result.orderBy("label"))
+
+// COMMAND ----------
+
+// MAGIC %md 
+// MAGIC ##PageRank
+// MAGIC 
+// MAGIC Identify important vertices in a graph based on connections.
+
+// COMMAND ----------
+
+displayHTML(frameIt("http://graphframes.github.io/user-guide.html#pagerank",600))
+
+// COMMAND ----------
+
+// Run PageRank until convergence to tolerance "tol".
+val results = g.pageRank.resetProbability(0.15).tol(0.01).run()
+display(results.vertices)
+
+// COMMAND ----------
+
+display(results.vertices.orderBy($"pagerank".desc))
+
+// COMMAND ----------
+
+display(results.edges)
 
 // COMMAND ----------
 
