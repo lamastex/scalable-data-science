@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 08:56:58 UTC
+// Databricks notebook source exported at Sat, 17 Sep 2016 01:40:20 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -10,7 +10,8 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This data set is from Khuram of Fifth Tribe.
+// MAGIC This data set is from [Khuram](https://www.kaggle.com/kzaman) of [Fifth Tribe](http://www.fifthtribe.com/). The following description is from: 
+// MAGIC * [https://www.kaggle.com/kzaman/how-isis-uses-twitter](https://www.kaggle.com/kzaman/how-isis-uses-twitter).
 // MAGIC 
 // MAGIC # How ISIS Uses Twitter
 // MAGIC ## Analyze how ISIS fanboys have been using Twitter since 2015 Paris Attacks
@@ -18,7 +19,6 @@
 // MAGIC 
 // MAGIC [Released Under CC0: Public Domain License](https://creativecommons.org/publicdomain/zero/1.0/)
 // MAGIC 
-// MAGIC This is from: https://www.kaggle.com/kzaman/how-isis-uses-twitter
 // MAGIC 
 // MAGIC ### Description
 // MAGIC 
@@ -43,11 +43,13 @@
 // MAGIC     Sentiment Analysis: Which clergy do pro-ISIS fanboys quote the most and which ones do they hate the most? Search the tweets for names of prominent clergy and classify the tweet as positive, negative, or neutral and if negative, include the reasons why. Examples of clergy they like the most: "Anwar Awlaki", "Ahmad Jibril", "Ibn Taymiyyah", "Abdul Wahhab". Examples of clergy that they hate the most: "Hamza Yusuf", "Suhaib Webb", "Yaser Qadhi", "Nouman Ali Khan", "Yaqoubi".
 // MAGIC     Timeline View: Visualize all the tweets over a timeline and identify peak moments
 // MAGIC 
-// MAGIC Further Reading: "ISIS Has a Twitter Strategy and It is Terrifying [Infographic]"
+// MAGIC Further Reading: ["ISIS Has a Twitter Strategy and It is Terrifying [Infographic]"](https://medium.com/fifth-tribe-stories/isis-has-a-twitter-strategy-and-it-is-terrifying-7cc059ccf51b#.m3zeluykl).
+// MAGIC 
+// MAGIC ![image of isis from fifth tribe](https://cdn-images-1.medium.com/max/800/1*uvQTKOefNi8zMZz_kMBXTA.jpeg)
 // MAGIC 
 // MAGIC ### About Fifth Tribe
 // MAGIC 
-// MAGIC Fifth Tribe is a digital agency based out of DC that serves businesses, non-profits, and government agencies. We provide our clients with product development, branding, web/mobile development, and digital marketing services. Our client list includes Oxfam, Ernst and Young, Kaiser Permanente, Aetna Innovation Health, the U.S. Air Force, and the U.S. Peace Corps. Along with Goldman Sachs International and IBM, we serve on the Private Sector Committee of the Board of the Global Community Engagement and Resilience Fund (GCERF), the first global effort to support local, community-level initiatives aimed at strengthening resilience against violent extremism. In December 2014, we won the anti-ISIS "Hedaya Hack" organized by Affinis Labs and hosted at the "Global Countering Violent Extremism (CVE) Expo " in Abu Dhabi. Since then, we've been actively involved in working with the open-source community and community content producers in developing counter-messaging campaigns and tools.
+// MAGIC [Fifth Tribe](http://www.fifthtribe.com/) is a digital agency based out of DC that serves businesses, non-profits, and government agencies. We provide our clients with product development, branding, web/mobile development, and digital marketing services. Our client list includes Oxfam, Ernst and Young, Kaiser Permanente, Aetna Innovation Health, the U.S. Air Force, and the U.S. Peace Corps. Along with Goldman Sachs International and IBM, we serve on the Private Sector Committee of the Board of the Global Community Engagement and Resilience Fund (GCERF), the first global effort to support local, community-level initiatives aimed at strengthening resilience against violent extremism. In December 2014, we won the anti-ISIS "Hedaya Hack" organized by Affinis Labs and hosted at the "Global Countering Violent Extremism (CVE) Expo " in Abu Dhabi. Since then, we've been actively involved in working with the open-source community and community content producers in developing counter-messaging campaigns and tools.
 
 // COMMAND ----------
 
@@ -56,11 +58,11 @@
 
 // COMMAND ----------
 
-1+1
+1+1 // sanity check!
 
 // COMMAND ----------
 
-val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
+val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweets/isis/kzaman/version4/raw/tweetsIsisRaw")
 tweetsIsisRawDF.count()
 
 // COMMAND ----------
@@ -74,12 +76,10 @@ display(tweetsIsisRawDF)
 
 // COMMAND ----------
 
-import sqlContext.implicits._
-import org.apache.spark.sql.Row
+//import sqlContext.implicits._
+//import org.apache.spark.sql.Row
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.functions._
-
-//import java.sql.Timestamp
 
 // COMMAND ----------
 
@@ -350,7 +350,7 @@ d3.graphs.help()
 
 // COMMAND ----------
 
-clicksDS.show()
+clicksDS.show(false)
 
 // COMMAND ----------
 
@@ -378,6 +378,76 @@ import org.graphframes._
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Obtain the distinct `id`s from each of the two columns: `username` and `mentions` in `mentionsWeightedNetworkDF` and take their distinct union to get the set of vertices as DataFrame `v`.
+
+// COMMAND ----------
+
+val v1 = mentionsWeightedNetworkDF.select($"username").distinct().toDF("id")
+val v2 = mentionsWeightedNetworkDF.select($"mentions").distinct().toDF("id")
+val v = v1.unionAll(v2).distinct().cache()
+v.count
+
+// COMMAND ----------
+
+v.show(false)
+
+// COMMAND ----------
+
+mentionsWeightedNetworkDF.show(5,false)
+
+// COMMAND ----------
+
+val e = mentionsWeightedNetworkDF.select($"username".as("src"), $"mentions".as("dst"), $"sum(weight)".as("Num_src2dst_mentions")).withColumn("relationship", lit("mentions"))
+
+// COMMAND ----------
+
+e.show(10,false)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Making a GraphFrame.
+
+// COMMAND ----------
+
+val g = GraphFrame(v, e)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC As is evident from the distribution of inDegrees and outDegrees, the dissemination or source of a transmission event via twitter is focussed on a few key usernames while reception of the transmission events as indicated by the distribution of indegrees is more concentrated on smaller numbers in {1,2,3,4,5}.
+
+// COMMAND ----------
+
+display(g.inDegrees)
+
+// COMMAND ----------
+
+display(g.inDegrees
+  .select($"inDegree")
+  .withColumn("count", lit(1L))
+  .groupBy("inDegree")
+  .sum("count")
+  .orderBy($"inDegree".asc)
+  )
+
+// COMMAND ----------
+
+display(g.outDegrees)
+
+// COMMAND ----------
+
+display(g.outDegrees
+  .select($"outDegree")
+  .withColumn("count", lit(1L))
+  .groupBy("outDegree")
+  .sum("count")
+  .orderBy($"outDegree".asc)
+  )
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ***
 // MAGIC ***
 
@@ -388,27 +458,48 @@ import org.graphframes._
 
 // COMMAND ----------
 
-sqlContext.tables.show() // let us view the tables - the data was uploaded as csv file into databricks table
+// MAGIC %md
+// MAGIC ### Download the csv file
+// MAGIC This csv file has been obtained from the tweets.xls.zip file with all strings encapsulated by `"` in order to make reading into Spark easier (due to the end of line characters in the `tweet` field).
 
 // COMMAND ----------
 
-val tweetIsisDF = sqlContext.table("tweetisis") // converting table into DataFrame
+// MAGIC %sh
+// MAGIC wget http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweets.csv.tgz
 
 // COMMAND ----------
 
-tweetIsisDF.cache() // caching the DataFrame
+// MAGIC %sh
+// MAGIC tar zxvf tweets.csv.tgz
+
+// COMMAND ----------
+
+dbutils.fs.mkdirs("/datasets/tweets/isis/kzaman/version4/raw") // make a directory in dbfs
+
+// COMMAND ----------
+
+// MAGIC %sh 
+// MAGIC pwd # find working directory where the .tgz was downloaded
+
+// COMMAND ----------
+
+dbutils.fs.mv("file:///databricks/driver/tweets.csv","dbfs:///datasets/tweets/isis/kzaman/version4/raw/") // move it to dbfs
+
+// COMMAND ----------
+
+//dbutils.fs.rm("/datasets/tweets/isis/kzaman/version4/raw/tweets.csv.tgz",recurse=true)
+
+// COMMAND ----------
+
+display(dbutils.fs.ls("/datasets/tweets/isis/kzaman/version4/raw"))
+
+// COMMAND ----------
+
+val tweetIsisDF = sqlContext.read.format("com.databricks.spark.csv").options(Map("path" -> "dbfs:///datasets/tweets/isis/kzaman/version4/raw/tweets.csv", "header" -> "true", "inferSchema" -> "true", "delimiter" -> "," , "quote" -> "\"", "escape" -> "\\" ,"parserLib" -> "univocity" )).load()
 
 // COMMAND ----------
 
 tweetIsisDF.count() // couting the rows
-
-// COMMAND ----------
-
-tweetIsisDF.count() // counting again after chache
-
-// COMMAND ----------
-
-display(tweetIsisDF)
 
 // COMMAND ----------
 
@@ -420,7 +511,7 @@ tweetIsisDF.printSchema()
 tweetIsisDF.
   write.
   mode(SaveMode.Overwrite).
-  parquet("/datasets/tweetsIsisRaw") // warnings are harmless
+  parquet("/datasets/tweets/isis/kzaman/version4/raw/tweetsIsisRaw") // warnings are harmless
 
 // COMMAND ----------
 
@@ -437,21 +528,23 @@ tweetsIsisDF.printSchema // print schema
 tweetsIsisDF.
   write.
   mode(SaveMode.Overwrite).
-  parquet("/datasets/tweetsIsis") // warnings are harmless
+  parquet("/datasets/tweets/isis/kzaman/version4/tweetsIsis") // warnings are harmless
 
 // COMMAND ----------
 
-display(dbutils.fs.ls("/datasets"))
+display(dbutils.fs.ls("/datasets/tweets/isis/kzaman/version4/raw"))
 
 // COMMAND ----------
 
-val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweetsIsis")
+// MAGIC %md
+// MAGIC Now we can read directly from the parquet files into DataFrames.
+
+// COMMAND ----------
+
+val tweetsIsisDF = sqlContext.read.parquet("/datasets/tweets/isis/kzaman/version4/tweetsIsis")
 tweetsIsisDF.printSchema
 
 // COMMAND ----------
 
-val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweetsIsisRaw")
+val tweetsIsisRawDF = sqlContext.read.parquet("/datasets/tweets/isis/kzaman/version4/raw/tweetsIsisRaw")
 tweetsIsisRawDF.printSchema
-
-// COMMAND ----------
-
