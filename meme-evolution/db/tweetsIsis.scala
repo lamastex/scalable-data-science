@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sat, 17 Sep 2016 02:43:49 UTC
+// Databricks notebook source exported at Sat, 17 Sep 2016 02:57:42 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -593,7 +593,7 @@ display(results.vertices.orderBy($"pagerank".desc))
 
 // COMMAND ----------
 
-display(results.edges)
+display(results.edges.orderBy($"Num_src2dst_mentions".desc)) // note the page-rank is run on the adjacency graph with no initial weights from Num_src2dst_mentions
 
 // COMMAND ----------
 
