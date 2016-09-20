@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Sun, 18 Sep 2016 04:36:34 UTC
+// Databricks notebook source exported at Tue, 20 Sep 2016 20:56:10 UTC
 // MAGIC %md
 // MAGIC # Analysis of ISIS Tweets Data 
 // MAGIC 
@@ -409,11 +409,16 @@ v.count
 
 // COMMAND ----------
 
-v.show(false)
+v.show(5,false)
 
 // COMMAND ----------
 
 mentionsWeightedNetworkDF.show(5,false)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Now make the DataFrame of edges `e`.
 
 // COMMAND ----------
 
@@ -441,7 +446,7 @@ val g = GraphFrame(v, e)
 
 // COMMAND ----------
 
-display(g.inDegrees)
+display(g.inDegrees.orderBy($"inDegree".desc))
 
 // COMMAND ----------
 
@@ -455,7 +460,7 @@ display(g.inDegrees
 
 // COMMAND ----------
 
-display(g.outDegrees)
+display(g.outDegrees.orderBy($"outDegree".desc))
 
 // COMMAND ----------
 
@@ -464,7 +469,7 @@ display(g.outDegrees
   .withColumn("count", lit(1L))
   .groupBy("outDegree")
   .sum("count")
-  .orderBy($"outDegree".asc)
+  .orderBy($"outDegree".desc)
   )
 
 // COMMAND ----------
