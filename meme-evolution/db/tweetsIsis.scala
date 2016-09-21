@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 21 Sep 2016 18:51:58 UTC
+// Databricks notebook source exported at Wed, 21 Sep 2016 19:11:41 UTC
 // MAGIC %md
 // MAGIC # Exploratory Analysis of ISIS Tweets Data 
 // MAGIC ## Via Apache Spark DataFrames and GraphFrames
@@ -7,7 +7,7 @@
 // MAGIC 
 // MAGIC We explore the extracted *mentions network* using: 
 // MAGIC * connected components, strongly connected components
-// MAGIC * community detection via lable propagation
+// MAGIC * community detection via label propagation
 // MAGIC * page rank
 // MAGIC * and various SparkSQL queries in DataFrame
 // MAGIC 
