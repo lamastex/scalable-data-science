@@ -1,8 +1,16 @@
-// Databricks notebook source exported at Wed, 21 Sep 2016 18:31:43 UTC
+// Databricks notebook source exported at Wed, 21 Sep 2016 18:51:58 UTC
 // MAGIC %md
-// MAGIC # Analysis of ISIS Tweets Data using Apache Spark DataFrames and GraphFrames
+// MAGIC # Exploratory Analysis of ISIS Tweets Data 
+// MAGIC ## Via Apache Spark DataFrames and GraphFrames
 // MAGIC 
 // MAGIC ### 2016, Raazesh Sainudiin and Rania Sahioun
+// MAGIC 
+// MAGIC We explore the extracted *mentions network* using: 
+// MAGIC * connected components, strongly connected components
+// MAGIC * community detection via lable propagation
+// MAGIC * page rank
+// MAGIC * and various SparkSQL queries in DataFrame
+// MAGIC 
 // MAGIC This is part of *Project MEP: Meme Evolution Programme* and supported by databricks academic partners program.
 // MAGIC 
 // MAGIC The analysis is available in the following databricks notebook:
@@ -10,6 +18,22 @@
 // MAGIC 
 // MAGIC For details on the mathematical model motivating the exploratory data analysis in the above notebook see:
 // MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology DOI: 10.1016/j.jtbi.2016.07.038 (In Press) [preprint PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
+// MAGIC 
+// MAGIC ```
+// MAGIC Copyright 2016 Raazesh Sainudiin and Rania Sahioun
+// MAGIC 
+// MAGIC Licensed under the Apache License, Version 2.0 (the "License");
+// MAGIC you may not use this file except in compliance with the License.
+// MAGIC You may obtain a copy of the License at
+// MAGIC 
+// MAGIC     http://www.apache.org/licenses/LICENSE-2.0
+// MAGIC 
+// MAGIC Unless required by applicable law or agreed to in writing, software
+// MAGIC distributed under the License is distributed on an "AS IS" BASIS,
+// MAGIC WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// MAGIC See the License for the specific language governing permissions and
+// MAGIC limitations under the License.
+// MAGIC ```
 
 // COMMAND ----------
 
