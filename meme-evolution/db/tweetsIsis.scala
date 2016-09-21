@@ -1,10 +1,14 @@
-// Databricks notebook source exported at Tue, 20 Sep 2016 20:56:10 UTC
+// Databricks notebook source exported at Wed, 21 Sep 2016 18:31:43 UTC
 // MAGIC %md
-// MAGIC # Analysis of ISIS Tweets Data 
+// MAGIC # Analysis of ISIS Tweets Data using Apache Spark DataFrames and GraphFrames
 // MAGIC 
 // MAGIC ### 2016, Raazesh Sainudiin and Rania Sahioun
 // MAGIC This is part of *Project MEP: Meme Evolution Programme* and supported by databricks academic partners program.
-// MAGIC For details on the mathematical model see:
+// MAGIC 
+// MAGIC The analysis is available in the following databricks notebook:
+// MAGIC * [http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweetsIsis.html](http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweetsIsis.html)
+// MAGIC 
+// MAGIC For details on the mathematical model motivating the exploratory data analysis in the above notebook see:
 // MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology DOI: 10.1016/j.jtbi.2016.07.038 (In Press) [preprint PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
 
 // COMMAND ----------
@@ -446,7 +450,9 @@ val g = GraphFrame(v, e)
 
 // COMMAND ----------
 
-display(g.inDegrees.orderBy($"inDegree".desc))
+display(g.inDegrees
+         .orderBy($"inDegree".desc)
+       )
 
 // COMMAND ----------
 
