@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 22 Sep 2016 07:51:32 UTC
+// Databricks notebook source exported at Thu, 22 Sep 2016 08:19:55 UTC
 // MAGIC %md
 // MAGIC # An Analysis of Transmissions on Twitter Networks Characterized by Various Extremist Ideologies
 // MAGIC 
@@ -425,6 +425,23 @@ d3.graphs.force( // self-loops are ignored
   width = 1000,
   clicks = FollowersDS
 )
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### A randomly sampled subgraph of the followers graph shows ideological segregation
+
+// COMMAND ----------
+
+d3.graphs.force( // self-loops are ignored
+  height = 800,
+  width = 1000,
+  clicks = followersNetworkDF.sample(false,0.0001,1223L) // for adding seed
+                              .select($"twitterId".as("src"), $"following".as("dest"), $"weight".as("count"))
+                              .orderBy($"count".desc)
+                              .limit(30)
+                              .as[d3.Edge]
+  )
 
 // COMMAND ----------
 
