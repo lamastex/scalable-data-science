@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 22 Sep 2016 08:19:55 UTC
+// Databricks notebook source exported at Fri, 23 Sep 2016 19:21:52 UTC
 // MAGIC %md
 // MAGIC # An Analysis of Transmissions on Twitter Networks Characterized by Various Extremist Ideologies
 // MAGIC 
@@ -80,7 +80,13 @@ displayHTML(frameIt("https://www.splcenter.org/fighting-hate/extremist-files/ind
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This data analysis is live and in progress and our results and findigs will evolve as we collate more data and analyze it it more comprehensive ways.
+// MAGIC #### To gain more domain expertise for this preliminary data analytic and exploratory task from a historical/social/political perspective read:
+// MAGIC * [http://www.vox.com/2016/9/19/12933072/far-right-white-riot-trump-brexit](http://www.vox.com/2016/9/19/12933072/far-right-white-riot-trump-brexit).
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### This data analysis is live and in progress and our results and findigs will evolve as we collate more data and analyze it it more comprehensive ways.
 
 // COMMAND ----------
 
