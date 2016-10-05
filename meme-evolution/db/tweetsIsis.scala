@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 21 Sep 2016 19:11:41 UTC
+// Databricks notebook source exported at Wed, 5 Oct 2016 06:26:42 UTC
 // MAGIC %md
 // MAGIC # Exploratory Analysis of ISIS Tweets Data 
 // MAGIC ## Via Apache Spark DataFrames and GraphFrames
@@ -16,8 +16,9 @@
 // MAGIC The analysis is available in the following databricks notebook:
 // MAGIC * [http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweetsIsis.html](http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweetsIsis.html)
 // MAGIC 
-// MAGIC For details on the mathematical model motivating the exploratory data analysis in the above notebook see:
-// MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology DOI: 10.1016/j.jtbi.2016.07.038 (In Press) [preprint PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
+// MAGIC For details on the mathematical model motivating the exploratory data analysis in the notebook see:
+// MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology, Volume 410, Pages 137–170, [10.1016/j.jtbi.2016.07.038](http://dx.doi.org/10.1016/j.jtbi.2016.07.038), 2016 
+// MAGIC * [preprint of the above paper as PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
 // MAGIC 
 // MAGIC ```
 // MAGIC Copyright 2016 Raazesh Sainudiin and Rania Sahioun
