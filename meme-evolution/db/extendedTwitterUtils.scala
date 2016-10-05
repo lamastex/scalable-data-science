@@ -1,6 +1,6 @@
-// Databricks notebook source exported at Wed, 5 Oct 2016 06:38:07 UTC
+// Databricks notebook source exported at Wed, 5 Oct 2016 06:39:45 UTC
 // MAGIC %md
-// MAGIC # Extended twitter utils from Spark
+// MAGIC # Extended spark.streaming.twitter.TwitterUtils
 // MAGIC 
 // MAGIC ### 2016, Ivan Sadikov and Raazesh Sainudiin
 // MAGIC 
