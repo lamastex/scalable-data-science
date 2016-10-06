@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Thu, 6 Oct 2016 07:56:34 UTC
+// Databricks notebook source exported at Thu, 6 Oct 2016 19:29:09 UTC
 // MAGIC %md
 // MAGIC # Cheat Sheet for Basics of Twitter API.
 // MAGIC 
@@ -10,6 +10,7 @@
 // MAGIC ## MUST READs!
 // MAGIC ### Developer Policy
 // MAGIC * https://dev.twitter.com/overview/terms/policy
+// MAGIC * https://dev.twitter.com/overview/terms/agreement
 // MAGIC 
 // MAGIC ### Case Studies
 // MAGIC * https://dev.twitter.com/overview/case-studies
@@ -77,6 +78,7 @@
 // MAGIC * https://dev.twitter.com/rest/reference/get/statuses/show/%3Aid
 // MAGIC * https://dev.twitter.com/rest/reference/get/statuses/lookup
 // MAGIC * https://dev.twitter.com/rest/reference/get/friends/list
+// MAGIC * https://dev.twitter.com/rest/reference/get/statuses/user_timeline
 // MAGIC 
 // MAGIC ## Streaming API
 // MAGIC 
@@ -89,22 +91,55 @@
 // MAGIC 
 // MAGIC * https://dev.twitter.com/overview/api/twitter-libraries
 // MAGIC   * http://twitter4j.org/
+// MAGIC   * http://twitter4j.org/javadoc/index-all.html
 // MAGIC 
 // MAGIC ## Cost of buying tweets from gnip
+// MAGIC * https://gnip.com/academic/
+// MAGIC 
 // MAGIC * http://support.gnip.com/articles/translating-plain-language-to-powertrack-rules.html
 // MAGIC * http://support.gnip.com/sources/twitter/data_format.html#SamplePayloads
 // MAGIC * http://support.gnip.com/apis/powertrack/rules.html
 // MAGIC 
-// MAGIC ## Other Useful Links, Sentiment Analysis, chatbots, nlp
+// MAGIC ## Other Useful Links
 // MAGIC 
+// MAGIC ### twitter streams
 // MAGIC * http://dev.datasift.com/docs/platform/csdl/csdl-examples/filtering-twitter-spam
 // MAGIC * https://github.com/apache/bahir/tree/master/streaming-twitter/examples/src/main/scala/org/apache/spark/examples/streaming/twitter
 // MAGIC * http://ampcamp.berkeley.edu/3/exercises/realtime-processing-with-spark-streaming.html
+// MAGIC 
+// MAGIC ### Sentiment Analysis
 // MAGIC * https://developer.ibm.com/clouddataservices/sentiment-analysis-of-twitter-hashtags/
 // MAGIC * https://github.com/ibm-cds-labs/spark.samples/blob/master/streaming-twitter/src/main/scala/com/ibm/cds/spark/samples/StreamingTwitter.scala
 // MAGIC 
+// MAGIC ### Chatbots
 // MAGIC * https://www.codecourse.com/library/lessons/build-a-twitter-bot-laravel/introduction
 // MAGIC * https://blog.monkeylearn.com/building-twitter-bot-with-php-machine-learning/
+// MAGIC * Deep Learning with Tensorflow:
+// MAGIC   * https://www.udacity.com/course/deep-learning--ud730
+// MAGIC   * A chatbot based on seq2seq architecture done with tensorflow. https://github.com/inikdom/neural-chatbot
+// MAGIC 
+// MAGIC ### NLP
+// MAGIC * SyntaxNet: The World’s Most Accurate Parser Goes Open Source SyntaxNet: The World’s Most Accurate Parser Goes Open Source  
+// MAGIC   * https://research.googleblog.com/2016/05/announcing-syntaxnet-worlds-most.html
+// MAGIC * http://www.cs.cmu.edu/~ark/TweetNLP/
+// MAGIC ## Books
+// MAGIC * https://github.com/ptwobrussell/Mining-the-Social-Web-2nd-Edition
+// MAGIC 
+// MAGIC ## Twitter Insights
+// MAGIC * http://hedonometer.org/index.html
+// MAGIC 
+// MAGIC ## Visualization
+// MAGIC 
+// MAGIC ### D3 
+// MAGIC * http://techslides.com/over-2000-d3-js-examples-and-demos
+// MAGIC 
+// MAGIC ### Neo4j
+// MAGIC * http://network.graphdemos.com/ (you need to use this app to access yourtwitter account and then you can visualize your graph of twets!!!)
+// MAGIC * neo4j https://github.com/neo4j-contrib/twitter-neo4j
+// MAGIC   * This application creates a Neo4j instance for a user in a Docker container hosted on Amazon ECS. The startup process for the Docker container then loads the user's Twitter data into Neo4j.
+// MAGIC   
+// MAGIC ### R
+// MAGIC * https://cran.r-project.org/web/packages/graphTweets/index.html
 
 // COMMAND ----------
 
@@ -121,6 +156,7 @@
 // MAGIC ## Data 1 minute 1% sampled at random
 // MAGIC 
 // MAGIC * http://res.suroot.com/twitter/
+// MAGIC * above data is orgranized from this archive: https://archive.org/details/archiveteam-twitter-stream-2016-06
 
 // COMMAND ----------
 
