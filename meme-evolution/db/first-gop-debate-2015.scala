@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 14 Sep 2016 10:43:58 UTC
+// Databricks notebook source exported at Sat, 17 Sep 2016 21:30:41 UTC
 // MAGIC %md
 // MAGIC # Sentiments of Tweets from first GOP Debate 2015
 // MAGIC 
@@ -50,16 +50,63 @@
 // COMMAND ----------
 
 // Load the raw dataset stored as a CSV file
-val s = sqlContext.
-    read.
-    format("com.databricks.spark.csv").
-    options(Map("header" -> "true", "delimiter" -> ",", "mode" -> "PERMISSIVE", "inferSchema" -> "true")).
-    load("dbfs:////datasets/gop/2015/Sentiment.csv")
-  
+val s = sqlContext
+              .read
+              .format("com.databricks.spark.csv")
+              .options(Map("header" -> "true", "delimiter" -> ",", "mode" -> "PERMISSIVE", "inferSchema" -> "true"))
+              .load("dbfs:////datasets/gop/2015/Sentiment.csv")
+              .cache()
 
 // COMMAND ----------
 
 display(s)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ### Trump
+// MAGIC Let's grab all relevant tweets about Donald Trump with high confidence next.
+
+// COMMAND ----------
+
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+
+// COMMAND ----------
+
+val trump = s
+              .filter($"candidate_confidence".cast(DoubleType) > 0.5)
+              .filter($"candidate" rlike "Donald Trump")
+              .filter($"relevant_yn" rlike "yes")
+              .filter($"relevant_yn_confidence".cast(DoubleType) > 0.5)
+              .select($"candidate",$"sentiment",$"subject_matter",$"name",$"retweet_count",$"text",$"tweet_created",
+                      unix_timestamp($"tweet_created", "yyyy-mm-dd HH:mm:ss ZZZZZ").cast(TimestampType).as("timestamp"))
+              .cache()
+               
+             
+
+// COMMAND ----------
+
+trump.count()
+
+// COMMAND ----------
+
+display(trump)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Extract the text in Trump's positive and negative tweets and do a LDA or simply a word-bubble plot.
+
+// COMMAND ----------
+
+
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ***
+// MAGIC ***
 
 // COMMAND ----------
 

@@ -1,11 +1,40 @@
-// Databricks notebook source exported at Sat, 17 Sep 2016 02:57:42 UTC
+// Databricks notebook source exported at Wed, 5 Oct 2016 06:26:42 UTC
 // MAGIC %md
-// MAGIC # Analysis of ISIS Tweets Data 
+// MAGIC # Exploratory Analysis of ISIS Tweets Data 
+// MAGIC ## Via Apache Spark DataFrames and GraphFrames
 // MAGIC 
 // MAGIC ### 2016, Raazesh Sainudiin and Rania Sahioun
+// MAGIC 
+// MAGIC We explore the extracted *mentions network* using: 
+// MAGIC * connected components, strongly connected components
+// MAGIC * community detection via label propagation
+// MAGIC * page rank
+// MAGIC * and various SparkSQL queries in DataFrame
+// MAGIC 
 // MAGIC This is part of *Project MEP: Meme Evolution Programme* and supported by databricks academic partners program.
-// MAGIC For details on the mathematical model see:
-// MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology DOI: 10.1016/j.jtbi.2016.07.038 (In Press) [preprint PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
+// MAGIC 
+// MAGIC The analysis is available in the following databricks notebook:
+// MAGIC * [http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweetsIsis.html](http://lamastex.org/lmse/mep/fighting-hate/extremist-files/ideology/islamic-state/tweetsIsis.html)
+// MAGIC 
+// MAGIC For details on the mathematical model motivating the exploratory data analysis in the notebook see:
+// MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology, Volume 410, Pages 137–170, [10.1016/j.jtbi.2016.07.038](http://dx.doi.org/10.1016/j.jtbi.2016.07.038), 2016 
+// MAGIC * [preprint of the above paper as PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
+// MAGIC 
+// MAGIC ```
+// MAGIC Copyright 2016 Raazesh Sainudiin and Rania Sahioun
+// MAGIC 
+// MAGIC Licensed under the Apache License, Version 2.0 (the "License");
+// MAGIC you may not use this file except in compliance with the License.
+// MAGIC You may obtain a copy of the License at
+// MAGIC 
+// MAGIC     http://www.apache.org/licenses/LICENSE-2.0
+// MAGIC 
+// MAGIC Unless required by applicable law or agreed to in writing, software
+// MAGIC distributed under the License is distributed on an "AS IS" BASIS,
+// MAGIC WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// MAGIC See the License for the specific language governing permissions and
+// MAGIC limitations under the License.
+// MAGIC ```
 
 // COMMAND ----------
 
@@ -342,7 +371,7 @@ d3.graphs.help()
 
 // COMMAND ----------
 
-  val clicksDS = mentionsWeightedNetworkDF
+  val mentionsDS = mentionsWeightedNetworkDF
                               .select($"username".as("src"), $"mentions".as("dest"), $"sum(weight)".as("count"))
                               .orderBy($"count".desc)
                               .limit(20)
@@ -350,14 +379,14 @@ d3.graphs.help()
 
 // COMMAND ----------
 
-clicksDS.show(false)
+mentionsDS.show(false)
 
 // COMMAND ----------
 
 d3.graphs.force( // self-loops are ignored
   height = 800,
   width = 1000,
-  clicks = clicksDS
+  clicks = mentionsDS
 )
 
 // COMMAND ----------
@@ -409,11 +438,16 @@ v.count
 
 // COMMAND ----------
 
-v.show(false)
+v.show(5,false)
 
 // COMMAND ----------
 
 mentionsWeightedNetworkDF.show(5,false)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Now make the DataFrame of edges `e`.
 
 // COMMAND ----------
 
@@ -441,7 +475,9 @@ val g = GraphFrame(v, e)
 
 // COMMAND ----------
 
-display(g.inDegrees)
+display(g.inDegrees
+         .orderBy($"inDegree".desc)
+       )
 
 // COMMAND ----------
 
@@ -455,7 +491,7 @@ display(g.inDegrees
 
 // COMMAND ----------
 
-display(g.outDegrees)
+display(g.outDegrees.orderBy($"outDegree".desc))
 
 // COMMAND ----------
 
@@ -464,7 +500,7 @@ display(g.outDegrees
   .withColumn("count", lit(1L))
   .groupBy("outDegree")
   .sum("count")
-  .orderBy($"outDegree".asc)
+  .orderBy($"outDegree".desc)
   )
 
 // COMMAND ----------
@@ -533,8 +569,17 @@ d3.graphs.force( // let us see g2 now in one cell
 
 // COMMAND ----------
 
-val result = g.connectedComponents.run() // doesn't work on Spark 1.4
-display(result)
+val ccG = g.connectedComponents.run() // doesn't work on Spark 1.4
+
+// COMMAND ----------
+
+val top10CCDF = ccG.select("Id","component").withColumn("weight", lit(1L)).groupBy("component").sum("weight").orderBy($"sum(weight)".desc)//.limit(10)
+top10CCDF.show()
+
+// COMMAND ----------
+
+val largestCCIds = ccG.filter("component = 0").select($"Id")
+largestCCIds.show()
 
 // COMMAND ----------
 
@@ -545,8 +590,21 @@ display(result)
 
 // COMMAND ----------
 
-val result = g.stronglyConnectedComponents.maxIter(10).run()
-display(result.orderBy("component"))
+val sccG = g.stronglyConnectedComponents.maxIter(10).run()
+
+// COMMAND ----------
+
+display(sccG.orderBy("component"))
+
+// COMMAND ----------
+
+val top10SCCDF = sccG.select("Id","component").withColumn("weight", lit(1L)).groupBy("component").sum("weight").orderBy($"sum(weight)".desc)//.limit(10)
+top10SCCDF.show()
+
+// COMMAND ----------
+
+val largestSCCIds = sccG.filter("component = 4").select($"Id")
+largestSCCIds.show()
 
 // COMMAND ----------
 
@@ -568,7 +626,139 @@ displayHTML(frameIt("http://graphframes.github.io/user-guide.html#label-propagat
 // COMMAND ----------
 
 val result = g.labelPropagation.maxIter(5).run()
-display(result.orderBy("label"))
+
+// COMMAND ----------
+
+// Create DF with proper column names
+val top20communityDF = result.select("Id","label").withColumn("weight", lit(1L)).groupBy("label").sum("weight").orderBy($"sum(weight)".desc).limit(20)
+top20communityDF.show()
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### The community labels that the Ids in the largest strongly connected component belong to
+
+// COMMAND ----------
+
+display(largestSCCIds.join(result,largestSCCIds("id")===result("id"),"inner").select(result("id"),result("label")).orderBy(result("label").desc))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### The community lables that the top 50 most "influenceable" Ids (with top 50 indegrees in the mentions network) belong to
+
+// COMMAND ----------
+
+val gin=g.inDegrees
+val nameGroupDF = gin.orderBy($"inDegree".desc).limit(50).join(result,gin("id")===result("id"))
+
+// COMMAND ----------
+
+val top50InfluencableIdsIndegreesLabels = nameGroupDF.orderBy($"inDegree".desc).select(gin("id"),gin("indegree"),result("label"))
+
+// COMMAND ----------
+
+display(top50InfluencableIdsIndegreesLabels)
+
+// COMMAND ----------
+
+// Create JSON data
+val rawJson = top50InfluencableIdsIndegreesLabels.select($"Id".as("term"),$"Indegree".as("probability"),$"label".as("topicId")).toJSON.collect().mkString(",\n")
+
+// COMMAND ----------
+
+displayHTML(s"""
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+</style>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script>
+
+var json = {
+ "name": "data",
+ "children": [
+  {
+     "name": "topics",
+     "children": [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1500,
+    format = d3.format(",d"),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select("body").append("svg")
+    .attr("width", r)
+    .attr("height", r)
+    .attr("class", "bubble");
+
+  
+var node = vis.selectAll("g.node")
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append("g")
+    .attr("class", "node")
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    color = d3.scale.category20();
+  
+  node.append("title")
+      .text(function(d) { return d.className + ": " + format(d.value); });
+
+  node.append("circle")
+      .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) {return color(d.topicName);});
+
+var text = node.append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", ".3em")
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append("tspan")
+      .attr("dy", "1.2em")
+      .attr("x", 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+</script>
+""")
 
 // COMMAND ----------
 
