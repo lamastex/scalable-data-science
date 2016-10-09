@@ -14,3 +14,7 @@ This programme is partly supported by:
 Raazesh Sainudiin
 [Laboratory for Mathematical Statistical Experiments](http://lamastex.org)
 
+## CONTENTS
+### [Research Live](research/README.md)
+
+
