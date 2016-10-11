@@ -35,8 +35,16 @@ limitations under the License.
 
 This is the job to get the 'interconnected set of tweets' from the streaming jobs already done. This can be formalized as **ttt := tweet transmission tree** depending on what is extractable from it.
 
-See blackboard discussion notes at LMSE on 2016-10-10. 
+### Blackboard discussion notes at LaMaStEx on 2016-10-10. 
 We will eventually lua/la/ka-tex mathematically here..
+
+#### Tweet Transmission Trees (ttt) and Tweet Follows Network (tfn)
+
+![ttt-tfn-00](twTransmissionTreesOnSocialNetworks/notes/20161010_151334_ttttfn00.jpg)
+
+![ttt-tfn01](twTransmissionTreesOnSocialNetworks/notes/20161010_151345_ttttfn01.jpg)
+
+![ttttfn02](twTransmissionTreesOnSocialNetworks/notes/20161010_151351_ttttfn02.jpg)
 
 ### Tweet Transmission Tree (ttt)
 
