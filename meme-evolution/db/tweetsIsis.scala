@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 5 Oct 2016 06:26:42 UTC
+// Databricks notebook source exported at Fri, 14 Oct 2016 21:08:43 UTC
 // MAGIC %md
 // MAGIC # Exploratory Analysis of ISIS Tweets Data 
 // MAGIC ## Via Apache Spark DataFrames and GraphFrames
@@ -19,6 +19,11 @@
 // MAGIC For details on the mathematical model motivating the exploratory data analysis in the notebook see:
 // MAGIC * The Transmission Process: A Combinatorial Stochastic Process for the Evolution of Transmission Trees over Networks, Raazesh Sainudiin and David Welch, Journal of Theoretical Biology, Volume 410, Pages 137–170, [10.1016/j.jtbi.2016.07.038](http://dx.doi.org/10.1016/j.jtbi.2016.07.038), 2016 
 // MAGIC * [preprint of the above paper as PDF 900KB](http://lamastex.org/preprints/20160806_transmissionProcJTBFinal.pdf).
+// MAGIC 
+// MAGIC Other resources:
+// MAGIC * https://www.ctc.usma.edu/isil-resources
+// MAGIC * https://www.ctc.usma.edu/v2/wp-content/uploads/2014/12/CTC-The-Group-That-Calls-Itself-A-State-December20141.pdf
+// MAGIC * https://www.ctc.usma.edu/posts/communication-breakdown-unraveling-the-islamic-states-media-efforts
 // MAGIC 
 // MAGIC ```
 // MAGIC Copyright 2016 Raazesh Sainudiin and Rania Sahioun
