@@ -1,3 +1,12 @@
+Docs:
+ https://docs.docker.com/
+
+Understanding Docker:
+ https://docs.docker.com/engine/understanding-docker/
+
+Getting Started: 
+ https://docs.docker.com/engine/getstarted/
+ 
 Basics here:
  https://docs.docker.com/engine/installation/linux/ubuntulinux/
 
