@@ -79,3 +79,28 @@ root@9da40e135355:/# exit
 raazesh@raazesh-Inspiron-15-7579:~$ 
 
 --------------------------------------------
+Here is the full history of commands to install docker in hp-EliteBook running Ubuntu 16.04:
+
+```
+   11  sudo apt install git
+   12  git clone https://github.com/raazesh-sainudiin/scalable-data-science.git
+   13  sudo apt-get update
+   14  sudo apt-get upgrade
+   15  sudo apt-get install apt-transport-https ca-certificates
+   16  sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+   17  sudo apt-get install vim
+   18  sudo vim /etc/apt/sources.list.d/docker.list
+   19  sudo apt-get update
+   20  sudo apt-get purge lxc-docker
+   21  apt-cache policy docker-engine
+   22  sudo apt-get upgrade
+   23  sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+   24  sudo apt-get update
+   25  sudo apt-get upgrade
+   26  sudo apt-get install docker-engine
+   27  sudo service docker start
+   28  sudo docker run hello-world
+   29  sudo docker run -it ubuntu bash
+   30  sudo usermod -aG docker $USER
+   31  docker run hello-world
+```
