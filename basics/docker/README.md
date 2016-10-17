@@ -104,3 +104,33 @@ Here is the full history of commands to install docker in hp-EliteBook running U
    30  sudo usermod -aG docker $USER
    31  docker run hello-world
 ```
+
+## Build your own Docker image
+
+From:
+ * https://docs.docker.com/engine/getstarted/step_four/
+
+```
+  298  mkdir mydockerbuild
+  299  ls
+  300  cd mydockerbuild/
+  301  ls
+  302  pwd
+  303  touch Dockerfile
+  304  ls
+  305  cat Dockerfile
+```
+
+```
+$ cat Dockerfile 
+FROM docker/whalesay:latest
+RUN apt-get -y update && apt-get install -y fortunes
+CMD /usr/games/fortune -a | cowsay
+```
+
+``` 
+  306  docker build -t docker-whale .
+  307  docker images
+  308  docker run docker-whale
+
+```
