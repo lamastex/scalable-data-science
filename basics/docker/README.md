@@ -134,3 +134,19 @@ CMD /usr/games/fortune -a | cowsay
   308  docker run docker-whale
 
 ```
+## Create Docker Hub Account and Tag, Push and Pull your image
+From
+ * https://docs.docker.com/engine/getstarted/step_five/
+ * https://docs.docker.com/engine/getstarted/step_six/
+```
+  335  docker images
+  336  docker tag b4cc5ab92ae9 raazesh/docker-whale:latest
+  337  docker images
+  338  docker login
+  339  docker push raazesh/docker-whale
+  340  docker images
+  341  docker rmi -f b4cc5ab92ae9
+  342  docker rmi -f docker-whale
+  343  docker images
+  344  docker run raazesh/docker-whale
+```
