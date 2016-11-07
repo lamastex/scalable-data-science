@@ -125,8 +125,8 @@ From the decomposition of a matrix as a sum of rank-one matrices, the goal is to
 
 ## Wigner's Theorem
 
-[Wigner's theorem](http://www.jstor.org/stable/1970079), also known as the *semi-circle law*, states that for a real symmetric \\(n\times n\\) random matrix, \\(X\_{n}\\), whose entries are independent random variables with mean 0, variance 1 and have bounded moments, the distribution of the eigenvalues of \\(\frac{1}{\sqrt{n}}X\_{n}\\) approaches a semi-circle density on the support [-2,2] as \\(n\to\infty\\).  
-Denoting an eigenvalue of \\(\frac{1}{\sqrt{n}}X\_{n}\\) by \\(\lambda\\), the asymptotic semi-circle density is
+[Wigner's theorem](http://www.jstor.org/stable/1970079), also known as the *semi-circle law*, states that for a real symmetric $$n\times n$$ random matrix, $$X_{n}$$, whose entries are independent random variables with mean 0, variance 1 and have bounded moments, the distribution of the eigenvalues of $$\frac{1}{\sqrt{n}}X_{n}$$ approaches a semi-circle density on the support [-2,2] as $$n\to\infty$$.  
+Denoting an eigenvalue of $$\frac{1}{\sqrt{n}}X_{n}$$ by $$\lambda$$, the asymptotic semi-circle density is
 $$ f(\lambda)=\frac{1}{2\pi}\sqrt{4-\lambda^{2}}. $$
 
 
@@ -466,13 +466,13 @@ display(zEigvalDF.select("eigenvalue"))
 
 
 ### Separating "signal" from "noise"  
-Let \\(Y\\) be a real symmetric \\(n\times n\\) matrix with eigenvalues, \\(\lambda\_{1},...,\lambda\_{n}\\), and corresponding eigenvectors, \\(u\_{1},...,u\_{n}\\). A decomposition of \\(Y\\) into a sum of rank-one matrices is given by
-$$ Y = \displaystyle\sum\_{k=1}^{n} \lambda\_{k} u\_{k} u\_{k}^{T}. $$
+Let $$Y$$ be a real symmetric $$n\times n$$ matrix with eigenvalues, $$\lambda_{1},...,\lambda_{n}$$, and corresponding eigenvectors, $$u_{1},...,u_{n}$$. A decomposition of $$Y$$ into a sum of rank-one matrices is given by
+$$ Y = \displaystyle\sum_{k=1}^{n} \lambda_{k} u_{k} u_{k}^{T}. $$
 
-\\(Y\\) can decomposed into "signal" plus "noise" by partitioning its component rank-one matrices into signal components and noise components:
-$$ Y = Y\_{signal} + Y\_{noise} = \displaystyle\sum\_{i\in S} \lambda\_{i} u\_{i} u\_{i}^{T} + \displaystyle\sum\_{j\in N} \lambda\_{j} u\_{j} u\_{j}^{T}, $$
+$$Y$$ can decomposed into "signal" plus "noise" by partitioning its component rank-one matrices into signal components and noise components:
+$$ Y = Y_{signal} + Y_{noise} = \displaystyle\sum_{i\in S} \lambda_{i} u_{i} u_{i}^{T} + \displaystyle\sum_{j\in N} \lambda_{j} u_{j} u_{j}^{T}, $$
 
-where \\(S\\) is an index set of signal components and \\(N\\) is an index set of noise components (\\(S\cup N =\\) {\\(1,...,n\\)}, \\(S\cap N=\emptyset \\)).
+where $$S$$ is an index set of signal components and $$N$$ is an index set of noise components ($$S\cup N =$$ {$$1,...,n$$}, $$S\cap N=\emptyset $$).
 
 
 ```scala
@@ -487,7 +487,7 @@ display(yEigvalDF.select("eigenvalue"))
 
 
 
-#### \\(S\_{1}=\\) {1000} and \\(N\_{1}=\\) {1,...,999}
+#### $$S_{1}=$$ {1000} and $$N_{1}=$$ {1,...,999}
 
 
 ```scala
@@ -510,7 +510,7 @@ display(zEigvalDF.select("eigenvalue"))
 
 
 
-#### \\(S\_{2}=\\) {999,1000} and \\(N\_{2}=\\) {1,...,998}
+#### $$S_{2}=$$ {999,1000} and $$N_{2}=$$ {1,...,998}
 
 
 ```scala
@@ -644,8 +644,8 @@ val pValue2 = KolmogorovSmirnovTest(zcdf2)
 
 ## Extension to Singular Values: Quarter-Circle Law
 
-The *quarter-circle law* states that for a real \\(n\times n\\) random matrix, \\(X\_{n}\\), whose entries are independent random variables with mean 0, variance 1 and have bounded moments, the distribution of the singular values of \\(\frac{1}{\sqrt{n}}X\_{n}\\) approaches a quarter-circle density on the support [0,2] as \\(n\to\infty\\).  
-Denoting an eigenvalue of \\(\frac{1}{\sqrt{n}}X\_{n}\\) by \\(\sigma\\), the asymptotic quarter-circle density is
+The *quarter-circle law* states that for a real $$n\times n$$ random matrix, $$X_{n}$$, whose entries are independent random variables with mean 0, variance 1 and have bounded moments, the distribution of the singular values of $$\frac{1}{\sqrt{n}}X_{n}$$ approaches a quarter-circle density on the support [0,2] as $$n\to\infty$$.  
+Denoting an eigenvalue of $$\frac{1}{\sqrt{n}}X_{n}$$ by $$\sigma$$, the asymptotic quarter-circle density is
 $$f(\sigma)=\frac{1}{\pi}\sqrt{4-\sigma^{2}}.$$
 
 
@@ -654,10 +654,10 @@ $$f(\sigma)=\frac{1}{\pi}\sqrt{4-\sigma^{2}}.$$
 
 ## Extension to Rectangular Matrices: Marcenko-Pastur's Theorem
 
-[Marcenko-Pastur's theorem](http://iopscience.iop.org/article/10.1070/SM1967v001n04ABEH001994/meta) states that for a real \\(m\times n\\) random matrix, \\(X\_{n}\\), with \\(m\geq n\\) satisfying \\(\frac{n}{m}\to r\leq 1\\) as \\(n\to\infty\\), and whose entries are independent random variables with mean 0, variance 1 and have bounded moments, the asymptotic density, as \\(n\to\infty\\), of the singular values of \\(\frac{1}{\sqrt{m}}X\_{n}\\) is
+[Marcenko-Pastur's theorem](http://iopscience.iop.org/article/10.1070/SM1967v001n04ABEH001994/meta) states that for a real $$m\times n$$ random matrix, $$X_{n}$$, with $$m\geq n$$ satisfying $$\frac{n}{m}\to r\leq 1$$ as $$n\to\infty$$, and whose entries are independent random variables with mean 0, variance 1 and have bounded moments, the asymptotic density, as $$n\to\infty$$, of the singular values of $$\frac{1}{\sqrt{m}}X_{n}$$ is
 $$f(\sigma)=\frac{1}{\pi \sigma r}\sqrt{[\sigma^{2}-(1-\sqrt{r})^{2}][(1+\sqrt{r})^{2}-\sigma^{2}]},$$
-on the interval, \\([1-\sqrt{r},1+\sqrt{r}]\\).  
-Note that when \\(m=n\\), Marcenko-Pastur's theorem reduces to the quarter-circle law.
+on the interval, $$[1-\sqrt{r},1+\sqrt{r}]$$.  
+Note that when $$m=n$$, Marcenko-Pastur's theorem reduces to the quarter-circle law.
 
 
 
