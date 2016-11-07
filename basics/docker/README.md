@@ -31,8 +31,6 @@ Sun Oct  9 06:48:29 NZDT 2016
 
     This command downloads a test image and runs it in a container. When the container runs, it prints an informational message. Then, it exits.
 
-ALL GOOD!!!
-
 --------------------------------------------
 raazesh@raazesh-Inspiron-15-7579:~$ sudo docker run hello-world
 Unable to find image 'hello-world:latest' locally
@@ -132,12 +130,14 @@ CMD /usr/games/fortune -a | cowsay
   306  docker build -t docker-whale .
   307  docker images
   308  docker run docker-whale
-
 ```
+
 ## Create Docker Hub Account and Tag, Push and Pull your image
+
 From
  * https://docs.docker.com/engine/getstarted/step_five/
  * https://docs.docker.com/engine/getstarted/step_six/
+
 ```
   335  docker images
   336  docker tag b4cc5ab92ae9 raazesh/docker-whale:latest
@@ -149,4 +149,27 @@ From
   342  docker rmi -f docker-whale
   343  docker images
   344  docker run raazesh/docker-whale
+```
+
+ FOr more see:
+ * https://docs.docker.com/engine/getstarted/last_page/
+
+## Docker Compose
+
+See
+ * https://docker.github.io/compose/
+ * https://docker.github.io/compose/overview/
+
+To install docker-compose
+ * https://docker.github.io/compose/install/
+
+```
+  sudo curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  docker-compose --version
+```
+
+To check which docker processes are runing do
+```
+$ docker ps -a
 ```

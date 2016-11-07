@@ -1,6 +1,23 @@
 # zeppelin with spark 
 
-This is from:
+Building a docker image, pushing it to docker hub and running it:
+```
+  298  docker build -t zeppelin .
+  300  docker images
+  301  docker run zeppelin
+  302  docker run --rm -p 8080:8080 zeppelin
+  303  docker images
+  304  docker tag 67a628bc6685 raazesh/zeppelin:latest
+  305  docker images
+  306  docker login
+  307  docker push raazesh/zeppelin
+  308  docker images
+  309  docker rmi -f 67a628bc6685 
+  310  docker images
+  315  docker run -v $HOME/all/git/scalable-data-science:/sds --rm -p 8080:8080 raazesh/zeppelin
+```
+
+This is building on:
  * https://github.com/dylanmei/docker-zeppelin
 
 
