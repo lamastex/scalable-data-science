@@ -63,11 +63,11 @@ The [html source url](https://raw.githubusercontent.com/raazesh-sainudiin/scalab
 <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/a489c5e8-251b-11e6-95a9-8839b41ec6a4.png" width="800" >
 
 ####Change Detection
-Ide and Kashima (2004) compare the current activity vector with the past average vector (profile vector) by computing the change score \\(s_t\\) for time instant, \\(t\\) as
+Ide and Kashima (2004) compare the current activity vector with the past average vector (profile vector) by computing the change score $$s_t$$ for time instant, $$t$$ as
 
 $$s_{t} = 1 - \tilde{\mathbf{u}}(t-1) \cdot \mathbf{u}(t) $$
 
-The change scores of the nodes, \\(s^i_t\\) at time \\(t\\) is
+The change scores of the nodes, $$s^i_t$$ at time $$t$$ is
 
 
 $$s^i_{t} = \left |  \tilde{\mathbf{u}}(t-1) - \mathbf{u}(t) \right | $$
@@ -90,8 +90,8 @@ $$s^i_{t} = \left |  \tilde{\mathbf{u}}(t-1) - \mathbf{u}(t) \right | $$
 <img src ="https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/db/studentProjects/06_ShakiraSuwan/images/b50edfd8-2517-11e6-94f3-06b4aae2860f.png" width="300">
 * K =3, 
 * n= 900 
-* \\( B_{i,i} = 0.05\\), for \\( i= 1,...,K\\)
-* \\(B_{i,j} = 0.008 \\), for \\( i\neq j\\)
+* $$ B_{i,i} = 0.05$$, for $$ i= 1,...,K$$
+* $$B_{i,j} = 0.008 $$, for $$ i\neq j$$
 * 30 graph realizations 
 * G =21 is generated from one of the following change scenarios
 
@@ -135,7 +135,7 @@ import breeze.stats.distributions._
 
 ####Powerlaw Distribution 
 
-* This function returns \\(n\\) random numbers generated from a powerlaw distribution.
+* This function returns $$n$$ random numbers generated from a powerlaw distribution.
 
 
 ```scala
@@ -157,7 +157,7 @@ def powerlawRnd(n:Int,xmin:Double, alpha:Double ):DenseVector[Double]={
 
 
 #### DCSBM Graphs
-* This function returns an \\(n_1 \times n_2\\) degree corrected stochastic blockmodel graph
+* This function returns an $$n_1 \times n_2$$ degree corrected stochastic blockmodel graph
 
 
 ```scala
@@ -245,7 +245,7 @@ for(i<-0 to N1-1){
 
  
 #### Change Scenarios 
-* This function returns an \\(n_1 \times n_2\\) changed dcsbm graph.
+* This function returns an $$n_1 \times n_2$$ changed dcsbm graph.
 
 
 ```scala

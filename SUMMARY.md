@@ -1,6 +1,6 @@
 # Summary
 
-* [Prelude](db/sdsBlog.md)
+* [Prelude of 2016 Version](db/sdsBlog.md)
 
 * [Week 1: Introduction to Scalable Data Science](db/week1/README.md)
     * [Scalable Data Science](db/week1/01_introduction/000_scalableDataScience.md)
