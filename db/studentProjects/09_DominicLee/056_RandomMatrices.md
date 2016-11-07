@@ -467,12 +467,12 @@ display(zEigvalDF.select("eigenvalue"))
 
 ### Separating "signal" from "noise"  
 Let $$Y$$ be a real symmetric $$n\times n$$ matrix with eigenvalues, $$\lambda_{1},...,\lambda_{n}$$, and corresponding eigenvectors, $$u_{1},...,u_{n}$$. A decomposition of $$Y$$ into a sum of rank-one matrices is given by
-$$ Y = \displaystyle\sum_{k=1}^{n} \lambda_{k} u_{k} u_{k}^{T}. $$
+$$ Y = \sum_{k=1}^{n} \lambda_{k} u_{k} u_{k}^{T}. $$
 
 $$Y$$ can decomposed into "signal" plus "noise" by partitioning its component rank-one matrices into signal components and noise components:
-$$ Y = Y_{signal} + Y_{noise} = \displaystyle\sum_{i\in S} \lambda_{i} u_{i} u_{i}^{T} + \displaystyle\sum_{j\in N} \lambda_{j} u_{j} u_{j}^{T}, $$
+$$ Y = Y_{signal} + Y_{noise} = \sum_{i \in S} \lambda_{i} u_{i} u_{i}^{T} + \sum_{j\in N} \lambda_{j} u_{j} u_{j}^{T}, $$
 
-where $$S$$ is an index set of signal components and $$N$$ is an index set of noise components ($$S\cup N =$$ {$$1,...,n$$}, $$S\cap N=\emptyset $$).
+where $$S$$ is an index set of signal components and $$N$$ is an index set of noise components ($$S\cup N = \{1,\ldots,n\}$$, $$S\cap N=\emptyset$$).
 
 
 ```scala
@@ -487,7 +487,7 @@ display(yEigvalDF.select("eigenvalue"))
 
 
 
-#### $$S_{1}=$$ {1000} and $$N_{1}=$$ {1,...,999}
+#### $$S_{1}= \{1000\}$$ and $$N_{1}= \{1,\ldots,999\}$$
 
 
 ```scala
@@ -510,7 +510,7 @@ display(zEigvalDF.select("eigenvalue"))
 
 
 
-#### $$S_{2}=$$ {999,1000} and $$N_{2}=$$ {1,...,998}
+#### $$S_{2}=\{999,1000\}$$ and $$N_{2}= \{1,...,998\}$$
 
 
 ```scala
