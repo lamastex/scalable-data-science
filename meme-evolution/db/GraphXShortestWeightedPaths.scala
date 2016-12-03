@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Fri, 11 Nov 2016 03:20:18 UTC
+// Databricks notebook source exported at Sat, 3 Dec 2016 14:00:12 UTC
 // MAGIC %md
 // MAGIC # Extending spark.graphx.lib.ShortestPaths to GraphXShortestWeightedPaths
 // MAGIC 
@@ -118,7 +118,8 @@ val graph: Graph[Long, Double] = GraphGenerators.logNormalGraph(sc, numVertices 
 
 // COMMAND ----------
 
-val result = GraphXShortestWeightedPaths.run(graph, Seq(4L, 0L, 9L))
+val landMarkVertexIds = Seq(4L, 0L, 9L)
+val result = GraphXShortestWeightedPaths.run(graph, landMarkVertexIds)
 
 // COMMAND ----------
 
@@ -129,3 +130,137 @@ println(result.vertices.collect.mkString("\n"))
 
 // edges with weights, make sure to check couple of shortest paths from above
 display(result.edges.toDF)
+
+// COMMAND ----------
+
+display(graph.edges.toDF) // this is the directed weighted edge of the graph
+
+// COMMAND ----------
+
+// now let us collect the shortest distance between every vertex and every landmark vertex
+// to manipulate scala maps that are vertices of the result see: http://docs.scala-lang.org/overviews/collections/maps.html
+// a quick point: http://stackoverflow.com/questions/28769367/scala-map-a-map-to-list-of-tuples
+val shortestDistsVertex2Landmark = result.vertices.flatMap(GxSwpSPMap => {
+  GxSwpSPMap._2.toSeq.map(x => (GxSwpSPMap._1, x._1, x._2)) // to get triples: vertex, landmarkVertex, shortest_distance
+})
+
+// COMMAND ----------
+
+shortestDistsVertex2Landmark.collect.mkString("\n")
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### Let's make a DataFrame for visualizing pairwise matrix plots
+// MAGIC 
+// MAGIC We want to make 4 columns in this example as follows (note actual values change for each realisation of graph!):
+// MAGIC 
+// MAGIC ```
+// MAGIC landmark_Id1 ("0"),   landmarkID2 ("4"), landmarkId3 ("9"),  srcVertexId
+// MAGIC ------------------------------------------------------------------------
+// MAGIC 0.0,                  0.7425..,          0.8718,                0
+// MAGIC 0.924...,             1.2464..,          1.0472,                1
+// MAGIC ...
+// MAGIC ```
+
+// COMMAND ----------
+
+// http://alvinalexander.com/scala/how-to-sort-map-in-scala-key-value-sortby-sortwith
+// we need this to make sure that the maps are ordered by the keys for ensuring unique column values
+import scala.collection.immutable.ListMap
+import sqlContext.implicits._
+
+// COMMAND ----------
+
+ // recall our landmark vertices in landMarkVertexIds. let's use their Strings for names
+val unorderedNamedLandmarkVertices = landMarkVertexIds.map(id => (id, id.toString) )
+val orderedNamedLandmarkVertices = ListMap(unorderedNamedLandmarkVertices.sortBy(_._1):_*)
+val orderedLandmarkVertexNames = orderedNamedLandmarkVertices.toSeq.map(x => x._2)
+orderedLandmarkVertexNames.mkString(", ")
+
+// COMMAND ----------
+
+// this is going to be our column names
+val columnNames:Seq[String] = orderedLandmarkVertexNames :+ "srcVertexId"
+
+// COMMAND ----------
+
+// a case class to make a data-frame quickly from the result
+case class SeqOfDoublesAndsrcVertexId(shortestDistances: Seq[Double], srcVertexId: VertexId)
+
+// COMMAND ----------
+
+val shortestDistsSeqFromVertex2Landmark2DF = result.vertices.map(GxSwpSPMap => {
+  //GxSwpSPMap._2.toSeq.map(x => (GxSwpSPMap._1, x._1, x._2)) // from before to get triples: vertex, landmarkVertex, shortest_distance
+  val v = GxSwpSPMap._1
+  val a = ListMap(GxSwpSPMap._2.toSeq.sortBy(_._1):_*).toSeq.map(x => x._2)
+  val d = (a,v)
+  d
+}).map(x => SeqOfDoublesAndsrcVertexId(x._1, x._2)).toDF()
+
+// COMMAND ----------
+
+display(shortestDistsSeqFromVertex2Landmark2DF) // but this dataframe needs the first column exploded into 3 columns
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC Now we want to make separate columns for each distance in the Sequence in column 'shortestDistances'.
+// MAGIC 
+// MAGIC Let us use the following ideas for this:
+// MAGIC * https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/3741049972324885/2662535171379268/4413065072037724/latest.html
+
+// COMMAND ----------
+
+// this is from https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/3741049972324885/2662535171379268/4413065072037724/latest.html
+import org.apache.spark.sql.{Column, DataFrame}
+import org.apache.spark.sql.functions.{lit, udf}
+
+// UDF to extract i-th element from array column
+//val elem = udf((x: Seq[Int], y: Int) => x(y))
+val elem = udf((x: Seq[Double], y: Int) => x(y)) // modified for Sequence of Doubles
+
+// Method to apply 'elem' UDF on each element, requires knowing length of sequence in advance
+def split(col: Column, len: Int): Seq[Column] = {
+  for (i <- 0 until len) yield { elem(col, lit(i)).as(s"$col($i)") }
+}
+
+// Implicit conversion to make things nicer to use, e.g. 
+// select(Column, Seq[Column], Column) is converted into select(Column*) flattening sequences
+implicit class DataFrameSupport(df: DataFrame) {
+  def select(cols: Any*): DataFrame = {
+    var buffer: Seq[Column] = Seq.empty
+    for (col <- cols) {
+      if (col.isInstanceOf[Seq[_]]) {
+        buffer = buffer ++ col.asInstanceOf[Seq[Column]]
+      } else {
+        buffer = buffer :+ col.asInstanceOf[Column]
+      }
+    }
+    df.select(buffer:_*)
+  }
+}
+
+// COMMAND ----------
+
+val shortestDistsFromVertex2Landmark2DF = shortestDistsSeqFromVertex2Landmark2DF.select(split($"shortestDistances", 3), $"srcVertexId")
+
+// COMMAND ----------
+
+display(shortestDistsFromVertex2Landmark2DF)
+
+// COMMAND ----------
+
+// now let's give it our names based on the landmark vertex Ids
+val shortestDistsFromVertex2Landmark2DF = shortestDistsSeqFromVertex2Landmark2DF.select(split($"shortestDistances", 3), $"srcVertexId").toDF(columnNames:_*)
+
+// COMMAND ----------
+
+display(shortestDistsFromVertex2Landmark2DF)
+
+// COMMAND ----------
+
+display(shortestDistsFromVertex2Landmark2DF.select($"0",$"4",$"9"))
+
+// COMMAND ----------
+
