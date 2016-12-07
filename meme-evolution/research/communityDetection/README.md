@@ -30,3 +30,17 @@ Results of network visualization of the community structure from retweets by eve
 * Most members were not active during the debate and their tweets are missing in the streamed data set. 
 
 * Note: 100% of the retweet data were used for the visualization.
+
+### Images
+
+* ![figures/Nov_08_2016.png](figures/Nov_08_2016.png)
+
+* ![figures/Nov_1_2016.png](figures/Nov_1_2016.png)
+
+figures/Nov_15_2016.png
+figures/October_19_2016.png
+figures/October_24_2016.png
+figures/Top10_October_19_2016.png
+figures/Top6_October_24_2016.png
+figures/Top_Nov_1_2016.png
+figures/US3rdPersidentialDebate22KRetweetNetwork.png
