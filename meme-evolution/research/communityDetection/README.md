@@ -23,9 +23,9 @@ They are supposed to be distributed versions of the paper:
 * Most members were not active during the debate and their tweets are missing in the streamed data set. 
 * Note: 100% of the retweet data were used for the visualization.
 * Output of 'figures/US3rdPersidentialDebate22KRetweetNetwork.png'
-* ![figures/US3rdPersidentialDebate22KRetweetNetwork.png](figures/US3rdPersidentialDebate22KRetweetNetwork.png)
+  * ![figures/US3rdPersidentialDebate22KRetweetNetwork.png](figures/US3rdPersidentialDebate22KRetweetNetwork.png)
 
-### Community structure from retweets by event date. 
+### Community structure of the retweet network of various splc-defined extremist and selected populist ideaologies surrounding US Presidential candidates by event date. 
 
 * The attached png images in ./figures/ folder include the first output for Oct 19 2016 where 50 communities were identified. The top 8 communities are labelled.
   * Output of `figures/October_19_2016.png`
