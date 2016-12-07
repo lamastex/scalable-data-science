@@ -17,30 +17,39 @@ They are supposed to be distributed versions of the paper:
 
 ## Gephi outputs from community detection
 
-Results of network visualization of the community structure from retweets by event date. 
+### 3rd US Presidential Debate Retweet Netowrk's Community Structure
+
+* The network showing the community structure and interaction between the Republican and Democratic candidates during the 3rd US presidential debate of 2016. 
+* Most members were not active during the debate and their tweets are missing in the streamed data set. 
+* Note: 100% of the retweet data were used for the visualization.
+* Output of 'figures/US3rdPersidentialDebate22KRetweetNetwork.png'
+* ![figures/US3rdPersidentialDebate22KRetweetNetwork.png](figures/US3rdPersidentialDebate22KRetweetNetwork.png)
+
+### Community structure from retweets by event date. 
 
 * The attached png images in ./figures/ folder include the first output for Oct 19 2016 where 50 communities were identified. The top 8 communities are labelled.
+  * Output of `figures/October_19_2016.png`
+    * ![figures/October_19_2016.png](figures/October_19_2016.png)
+  * Output of `figures/Top10_October_19_2016.png`
+    * ![figures/Top10_October_19_2016.png](figures/Top10_October_19_2016.png)
 
-* All the data are 5% sample of the 24hours streamed tweets for each of the selected presidential election event.
 
-* The title format for the dataset is "event-DAY-MONTH-YEAR".
+* All the data are 5% sample of the 24hours streamed tweets for each of the selected presidential election event. The title format for the dataset is "event-DAY-MONTH-YEAR".
 
-* The network showing the interaction between Republican and Democratic lead members is attached in ./figures/ folder for the 3rd US presidential debate of 2016. 
+  * Output of `figures/October_24_2016.png`
+    * ![figures/October_24_2016.png](figures/October_24_2016.png)
 
-* Most members were not active during the debate and their tweets are missing in the streamed data set. 
+  * Output of `figures/Top6_October_24_2016.png`
+    * ![figures/Top6_October_24_2016.png](figures/Top6_October_24_2016.png)
 
-* Note: 100% of the retweet data were used for the visualization.
+  * Output of `figures/Nov_1_2016.png`
+    * ![figures/Nov_1_2016.png](figures/Nov_1_2016.png)
+  * Output of `figures/Top_Nov_1_2016.png`
+    * ![figures/Top_Nov_1_2016.png](figures/Top_Nov_1_2016.png)
 
-### Images
+  * Output of `figures/Nov_08_2016.png`
+    * ![figures/Nov_08_2016.png](figures/Nov_08_2016.png)
 
-* ![figures/Nov_08_2016.png](figures/Nov_08_2016.png)
+  * Output of `figures/Nov_15_2016.png`
+    * ![figures/Nov_15_2016.png](figures/Nov_15_2016.png)
 
-* ![figures/Nov_1_2016.png](figures/Nov_1_2016.png)
-
-figures/Nov_15_2016.png
-figures/October_19_2016.png
-figures/October_24_2016.png
-figures/Top10_October_19_2016.png
-figures/Top6_October_24_2016.png
-figures/Top_Nov_1_2016.png
-figures/US3rdPersidentialDebate22KRetweetNetwork.png
