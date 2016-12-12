@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Mon, 12 Dec 2016 15:06:09 UTC
+// Databricks notebook source exported at Mon, 12 Dec 2016 15:08:42 UTC
 // MAGIC %md
 // MAGIC # Tweet Anatomy & Transmission Tree
 // MAGIC 
@@ -514,61 +514,8 @@ display(TTTDF.select($"CurrentTweetDate",$"CurrentTwID",$"CurrentTweet",$"TweetT
 
 // COMMAND ----------
 
-//%run "Users/email@gmail.com/AWS_Credentials" 
-//--call quickly from another notebook
-//or fill your aws credentials here
-val AccessKey = "AKIAISZBAC5X4W3OYXFA"
-val SecretKey = "wAPHBsFJfUGqnQDqaDxPJYTWLTOGJ50dh1AmFxNJ"
-val EncodedSecretKey = SecretKey.replace("/", "%2F")
-val AwsBucketName = "twitter-us-west-2"
-val MountName = "s3ReadOnly"
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ##### Unmount existing S3 bucket if any and mount again.
-
-// COMMAND ----------
-
-dbutils.fs.unmount(s"/mnt/$MountName")
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC **Mount the selected S3 bucket**
-
-// COMMAND ----------
-
-dbutils.fs.mount(s"s3a://$AccessKey:$EncodedSecretKey@$AwsBucketName", s"/mnt/$MountName") //Mount
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC ##### View the directory content
-
-// COMMAND ----------
-
-display(dbutils.fs.ls(s"/mnt/s3ReadOnly/datasets/MEP/AllGroupsStreaming/2016/10/19/"))
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ** Step 2: Read the streamed tweets **
-// MAGIC 
-// MAGIC The debate tweets streamed by hour are stored in parquet format and the sub-folders in each hour are saved in Json format. The following Spark SQL context commands can be used to read each row as DataFrame as follows:
-
-// COMMAND ----------
-
-//Load the required libraries
-import org.apache.spark.sql.types.{StructType, StructField, StringType};
-import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types._
-import org.apache.spark.sql.ColumnName
-import org.apache.spark.sql.DataFrame
-
-// COMMAND ----------
-
-val StreamedTweetsPQ = sqlContext.read.parquet(s"/mnt/s3ReadOnly/datasets/MEP/AllGroupsStreaming/2016/10/19/*/*/*").cache()
 
 // COMMAND ----------
 
