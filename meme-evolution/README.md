@@ -1,6 +1,6 @@
 # Project MEP: Meme Evolution Programme
 
-This is the public research/learning/teaching repository for Project MEP: Meme Evolution Programme.
+This is the public research/learning/teaching repository for [Project MEP: Meme Evolution Programme](http://lamastex.org).
 
 This programme is partly supported by:
 
