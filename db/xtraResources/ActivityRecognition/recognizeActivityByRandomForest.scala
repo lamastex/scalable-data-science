@@ -15,6 +15,11 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC See Section below on **Download and Load Data** first.
+
+// COMMAND ----------
+
 val data = sc.textFile("dbfs:///datasets/sds/ActivityRecognition/dataTraining.csv")
 
 // COMMAND ----------
