@@ -61,6 +61,12 @@ display(dataDF.sample(false,0.1))
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC See the following for a crash introduction to windows:
+// MAGIC * [http://xinhstechblog.blogspot.co.nz/2016/04/spark-window-functions-for-dataframes.html](http://xinhstechblog.blogspot.co.nz/2016/04/spark-window-functions-for-dataframes.html)
+
+// COMMAND ----------
+
  // Import the window functions.
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
