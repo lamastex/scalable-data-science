@@ -12,6 +12,7 @@
 
 
 * [Intro to Statistics](https://www.udacity.com/course/intro-to-statistics--st101)
+* [Intro to Computer Science (with Python)](https://www.udacity.com/course/intro-to-computer-science--cs101)
 * [Intro to Descriptive Statistics](https://www.udacity.com/course/intro-to-descriptive-statistics--ud827)
 * [Intro to Inferential Statistics](https://www.udacity.com/course/intro-to-inferential-statistics--ud201)
 * [Intro to Python Programming](https://www.udacity.com/course/programming-foundations-with-python--ud036)
