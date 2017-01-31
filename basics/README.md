@@ -18,6 +18,7 @@
 * [Intro to Python Programming](https://www.udacity.com/course/programming-foundations-with-python--ud036)
 
 ## Intermediate to Advanced Courses (free)
+* [Mining Massive Datasets: Stanford Online](http://www.mmds.org/#ver21)
 * [Linear Algebra Refresher Course (with Python)](https://www.udacity.com/course/linear-algebra-refresher-course--ud953)
 * [Deploying a Hadoop Cluster](https://www.udacity.com/course/deploying-a-hadoop-cluster--ud1000)
 * [Intro to Algorithms](https://www.udacity.com/course/intro-to-algorithms--cs215)
