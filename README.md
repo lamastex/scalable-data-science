@@ -1,5 +1,5 @@
 Scalable Data Science
-=======
+========
 
 Scalable data science is a technical course in the area of Big Data, aimed at the needs of the
 data industry.  This course uses
