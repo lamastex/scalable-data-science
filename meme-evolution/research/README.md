@@ -63,6 +63,14 @@ We will eventually lua/la/ka-tex mathematically here..
 	* etc, etc...
 	* see databricks notebook: [http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html](http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html)
 
+#### To Be Released Soon
+
+* single-source shortest weighted path-ways as distributed vertex programs
+	* Aldous' 'directed' meeting process as Geomertic Random Variables on each directed edge between a pair of twitter-ID-nodes that is obtained from a Poisson with random mean drawn from Exponential Random Variables with rate given by the inverse of the observed number of 'meeting' events
+	* adaptation of the above to multiple sources for 'multi-extremal' ideological concurrence profiles
+
+* interactive and iterative populations-of-interest selective breadth-first network expansion designs for updating live stream filters
+ 
 #### Theory under Progress
 * theory being "tango-ed" with data in:
 	* [private github repos](https://github.com/raazesh-sainudiin/working-manuscript-MEPCMAPX)
