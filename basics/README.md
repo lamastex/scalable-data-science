@@ -6,6 +6,8 @@
 
 * [How to use Git and GitHub: Version control for code](https://www.udacity.com/course/how-to-use-git-and-github--ud775)
 
+* [scala basics](http://www.dhgarrette.com/nlpclass/scala/basics.html)
+
 # Other Courses for free!
 
 ## Beginner course (free)
