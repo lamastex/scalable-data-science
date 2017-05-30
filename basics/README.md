@@ -8,6 +8,8 @@
 
 * [scala basics](http://www.dhgarrette.com/nlpclass/scala/basics.html)
 
+* [kubernetes for container orchestration to create on-premise or public cloud clusters](http://blog.madhukaraphatak.com/categories/kubernetes-series)
+
 # Other Courses for free!
 
 ## Beginner course (free)
