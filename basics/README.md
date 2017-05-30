@@ -12,6 +12,7 @@
 		* [Scala School! build yourself from scratch](https://github.com/twitter/scala_school)
 
 * [kubernetes for container orchestration to create on-premise or public cloud clusters](http://blog.madhukaraphatak.com/categories/kubernetes-series)
+	* [kubernetes/standalone/spark/README.md](kubernetes/standalone/spark/README.md)
 
 # Other Courses for free!
 
