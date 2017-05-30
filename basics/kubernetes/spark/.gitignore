@@ -1,8 +1,0 @@
-*.iml
-.idea/
-*.iml
-target/
-project/target
-dependency-reduced-pom.xml
-*.pdf
-*.swp
