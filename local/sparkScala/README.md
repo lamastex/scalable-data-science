@@ -55,16 +55,16 @@ and move it into a 'C:\winutils\bin' folder that you just created.
 	* Enter 'brew install apache-spark' 
 	* Create a log4j.properties file via  
 	'''
-	cd /usr/local/Cellar/apache-spark/2.0.0/libexec/conf 
+	cd /usr/local/Cellar/apache-spark/2.2.0/libexec/conf 
 	cp log4j.properties.template log4j.properties
 	''' 
-	(substituted 2.0.0 for the version actually installed) 
+	(substituted 2.2.0 for the version actually installed) 
 	* Edit the log4j.properties file and change the log level from 'INFO' to 'ERROR' on 'log4j.rootCategory'
  
 2. Install the Scala IDE from http://scala-ide.org/download/sdk.html 
 
 3. Test it out! 
-	* 'cd' to the directory apache-spark was installed (such as '/usr/local/Cellar/apache-spark/2.0.0/libexec/')  and then 'ls' to get a directory listing. 
+	* 'cd' to the directory apache-spark was installed (such as '/usr/local/Cellar/apache-spark/2.2.0/libexec/')  and then 'ls' to get a directory listing. 
 	* Look for a text file we can play with, like 'README.md'
 	* Enter spark-shell 
 	* At this point you should have a 'scala>' prompt. 
