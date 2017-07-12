@@ -62,6 +62,8 @@ and move it into a 'C:\winutils\bin' folder that you just created.
 	* Edit the log4j.properties file and change the log level from 'INFO' to 'ERROR' on 'log4j.rootCategory'
  
 2. Install the Scala IDE from http://scala-ide.org/download/sdk.html 
+	* When importing spark jars in scala-ide type 'Shift-cmd-G' and put the path to the directory of spark jars: '/usr/local/Cellar/apache-spark/2.2.0/libexec/jars/'
+	* Make sure that the 'Scala Compiler' in 'Properties for sparkScalaEclipseIDE' project is set to the same version of scala in Spark 2.2.0 (this is scala 2.11 as opposed to scala 2.12 that comes with scala-IDE)
 
 3. Test it out! 
 	* 'cd' to the directory apache-spark was installed (such as '/usr/local/Cellar/apache-spark/2.2.0/libexec/')  and then 'ls' to get a directory listing. 
