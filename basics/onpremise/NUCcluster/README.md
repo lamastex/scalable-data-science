@@ -48,7 +48,7 @@ The full list of capabilities could be found at the official page:    http://cob
 The whole process could be divided into roughly  the following  stages:
 
 
- 1. [Connecting Macbook, switch and  NUC](configuring_switch.html)
+ 1. [Connecting Macbook, switch and  NUC](configuring_switch.md)
  2. [Configuring NUC gateway](Configuring_NUC_gateway.md)
  3. [Installing and configuring Cobbler on the NUC gateway](installing_cobbler.md)
  4. [Provisioning NUC-worker  hosts](provisioning_nuc.md)
