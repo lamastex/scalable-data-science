@@ -1,5 +1,6 @@
 # The Basics and Essentials
 
+## Rudiments of Operating Systems, Version Control and Language
 * Command-line Basics
 	* [Linux Commnad-line Basics](https://www.udacity.com/course/linux-command-line-basics--ud595)
 	* [Windows Command-line Bascis](https://www.lynda.com/-tutorials/Windows-command-line-basics/497312/513424-4.html)
@@ -11,7 +12,6 @@
 	* [Scala School! by twitter](http://twitter.github.io/scala_school/)
 		* [Scala School! build yourself from scratch](https://github.com/twitter/scala_school)
 
-* [kubernetes for container orchestration to create on-premise or public cloud clusters](http://blog.madhukaraphatak.com/categories/kubernetes-series)
 
 ## Distributed Computing Infrastructure
 
@@ -19,13 +19,19 @@
 
 * [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/README.md)
 * [Set up an Apache Spark cluster without requiring root access](rootless/README.md)
-* [kubernetes/standalone/spark/README.md](kubernetes/standalone/spark/README.md)
+
+#### Under Study/Work
+
+* [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/README.md)
 
 ### Public Cloud
 
 * Fully managed databricks cluster
 	* [databricks acdemic shard - databricks academc partners program](https://academics.cloud.databricks.com) 
 	* [datbricks community edition - Sign Up! It is FREE for all!](https://community.cloud.databricks.com/login.html)
+
+#### Under Study/Work
+
 * Self-managed clusters on
 	* AWS
 	* Google
