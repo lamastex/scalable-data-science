@@ -1,4 +1,4 @@
-# The basics and essentials
+# The Basics and Essentials
 
 * Command-line Basics
 	* [Linux Commnad-line Basics](https://www.udacity.com/course/linux-command-line-basics--ud595)
@@ -13,14 +13,15 @@
 
 * [kubernetes for container orchestration to create on-premise or public cloud clusters](http://blog.madhukaraphatak.com/categories/kubernetes-series)
 
-# Basics for Computing Infrastructure
+## Distributed Computing Infrastructure
 
-## Distributed Computing Cluster: On-premise or Local 
-	* [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/README.md)
-	* [Set up an Apache Spark cluster without requiring root access](rootless/README.md)
-	* [kubernetes/standalone/spark/README.md](kubernetes/standalone/spark/README.md)
+### On-premise or Local 
 
-## Distributed Computing Cluster: Public Cloud
+* [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/README.md)
+* [Set up an Apache Spark cluster without requiring root access](rootless/README.md)
+* [kubernetes/standalone/spark/README.md](kubernetes/standalone/spark/README.md)
+
+### Public Cloud
 
 * Fully managed databricks cluster
 	* [databricks acdemic shard - databricks academc partners program](https://academics.cloud.databricks.com) 
