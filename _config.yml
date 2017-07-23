@@ -2,3 +2,12 @@ theme: jekyll-theme-minimal
 
 sidebar:
   nav: "basics"
+
+defaults:
+  # _basics
+  - scope:
+      path: ""
+      type: basics
+    values:
+      sidebar:
+        nav: "basics"
