@@ -4,7 +4,7 @@ theme: jekyll-theme-minimal
 
 # List of links in the navigation bar
 navbar-links:
-  scalable data science: "/"
+  scalable data science: "README"
   Resources:
-    - basics: "/scalable-data-science/basics/"
+    - basics: "basics/"
   Author's home: "http://lamastex.org/"
