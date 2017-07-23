@@ -19,10 +19,7 @@
 
 * [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/README.md)
 * [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](onpremise/rootless/README.md)
-
-#### Under Study/Work
-
-* [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/README.md)
+* Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/README.md)
 
 ### Public Cloud
 
@@ -30,9 +27,7 @@
 	* [databricks acdemic shard - databricks academc partners program](https://academics.cloud.databricks.com) 
 	* [datbricks community edition - Sign Up! It is FREE for all!](https://community.cloud.databricks.com/login.html)
 
-#### Under Study/Work
-
-* Self-managed clusters on
+* Under Study/Work: Self-managed clusters on
 	* AWS
 	* Google
 	* Azure
