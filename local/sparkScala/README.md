@@ -12,8 +12,9 @@ Keep track of where you installed the JDK as you'll need this information later.
 4. Extract the Spark archive, and copy its contents into 'C:\spark' after creating that directory.  You should end up with directories like 'c:\spark\bin', 'c:\spark\conf', etc.
  
 5. Download 
-	* [64/winutils.exe](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/local/sparkScala/downloads/64/winutils.exe) OR
-	* [32/winutils.exe](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/local/sparkScala/downloads/32/winutils.exe) 
+	* [64/winutils.exe](http://lamastex.org/downloads/software/sparkScala/local/64/winutils.exe) OR
+	* [32/winutils.exe](http://lamastex.org/downloads/software/sparkScala/local/32/winutils.exe) 
+
 and move it into a 'C:\winutils\bin' folder that you just created. 
 
 6. Open the 'C:\spark\conf' folder and make sure 'FileNameExtensions' is checked in the 'view' tab of Windows Explorer. Then, 
