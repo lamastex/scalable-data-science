@@ -1,10 +1,2 @@
 theme: jekyll-theme-minimal
 
-# --- Navigation bar options --- #
-
-# List of links in the navigation bar
-navbar-links:
-  scalable data science: "README"
-  Resources:
-    - basics: "basics/"
-  Author's home: "http://lamastex.org/"
