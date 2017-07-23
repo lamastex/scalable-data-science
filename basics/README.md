@@ -12,6 +12,7 @@
 	* [Scala School! by twitter](http://twitter.github.io/scala_school/)
 		* [Scala School! build yourself from scratch](https://github.com/twitter/scala_school)
 
+* [Apache Spark in Scala on your Laptop](/local/sparkScala/README.md)
 
 ## Distributed Computing Infrastructure
 
