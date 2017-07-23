@@ -1,1 +1,10 @@
 theme: jekyll-theme-minimal
+
+defaults:
+  # _basics
+  - scope:
+      path: ""
+      type: basics
+    values:
+      sidebar:
+        nav: "basics"
