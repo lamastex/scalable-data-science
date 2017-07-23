@@ -2,6 +2,8 @@
 
 * [Prelude of 2016 Version](db/sdsBlog.md)
 
+* [Some Basics and Essentials](basics/README.md)
+
 * [Week 1: Introduction to Scalable Data Science](db/week1/README.md)
     * [Scalable Data Science](db/week1/01_introduction/000_scalableDataScience.md)
     * [Why Spark?](db/week1/01_introduction/001_whySpark.md)
