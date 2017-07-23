@@ -18,7 +18,7 @@
 ### On-premise or Local 
 
 * [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/README.md)
-* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](rootless/README.md)
+* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](onpremise/rootless/README.md)
 
 #### Under Study/Work
 
