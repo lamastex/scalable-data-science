@@ -1,6 +1,11 @@
 Configuring VLANs on NUC and switch
 ===================================
 
+## Step 2 of [Automating private bare-metal cluster setup with Cobbler](README.md)
+
+By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+
 The NUC node, `192.168.2.3`, is assumed to have CentOS installed and, after being connected to to `192.168.2.0` network, should have  Internet access enabled.
 The network structure we have already is depicted at the upper part of the figure. By the end of this part of tutorial  the  network setup should look like as shown at the lower part of the figure.
 

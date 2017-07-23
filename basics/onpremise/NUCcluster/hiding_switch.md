@@ -1,6 +1,11 @@
 Hiding switch behind the firewall
 ================================
 
+## Step 5 of [Automating private bare-metal cluster setup with Cobbler](README.md)
+
+By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+
 So far the setup looks nice -- we are able to PXE install and provision NUCS in  automatic manner. The whole cluster has Internet access via Macbook (for a moment).
 
 

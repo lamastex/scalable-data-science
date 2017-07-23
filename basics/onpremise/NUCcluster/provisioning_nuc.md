@@ -1,6 +1,11 @@
 Provisioning NUC node with OS, PXE booting
 ==========================================
 
+## Step 4 of [Automating private bare-metal cluster setup with Cobbler](README.md)
+
+By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+
 In order to be able to  install OS via network, the node's network interface card (NIC) must support PXE booting. This is so for the most modern NICs.
 
 The only setting might  be necessary to enable -- is the network booting in the BIOS settings.

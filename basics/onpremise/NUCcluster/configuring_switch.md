@@ -1,6 +1,11 @@
 Connecting MacBook, switch and NUC gateway
 ==========================================
 
+## Step 1 of [Automating private bare-metal cluster setup with Cobbler](README.md)
+
+By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+
 We will start our setup by connecting switch to the MacBook in order to  figure out switch's IP address, so  we able to configure it.
 After configuring the switch we will attach a  NUC to it. That NUC  will be used later as  a gateway (GW) to provision the rest of cluster nodes.
 
