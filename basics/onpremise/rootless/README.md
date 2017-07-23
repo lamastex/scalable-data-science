@@ -10,6 +10,10 @@ This guide will help you set up an Apache Spark cluster in standalone mode witho
 
 The master will be referred to as separate from the workers but the same machine that is running the master node could also run a worker process. 
 
+## Video of the Meetup
+
+[![Uppsala Big Data Meetup Video of the Event](https://img.youtube.com/vi/Z1vijINoV3k/0.jpg)](https://www.youtube.com/watch?v=Z1vijINoV3k)
+
 ## Requirements
 
 * OpenSSH (or alternative) installed on each machine with execution privileges,
