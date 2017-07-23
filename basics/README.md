@@ -1,6 +1,6 @@
 # The Basics and Essentials
 
-## Rudiments of Your Operating Systems, Version Control and Language
+## Learn to Work with Your Local Laptop
 * Command-line Basics
 	* [Linux Commnad-line Basics](https://www.udacity.com/course/linux-command-line-basics--ud595)
 	* [Windows Command-line Bascis](https://www.lynda.com/-tutorials/Windows-command-line-basics/497312/513424-4.html)
