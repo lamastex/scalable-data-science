@@ -1,5 +1,8 @@
 theme: jekyll-theme-minimal
 
+sidebar:
+  nav: "basics"
+
 defaults:
   # _basics
   - scope:
@@ -8,3 +11,5 @@ defaults:
     values:
       sidebar:
         nav: "basics"
+
+
