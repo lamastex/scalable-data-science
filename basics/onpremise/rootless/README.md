@@ -1,4 +1,8 @@
-# Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access
+---
+layout: single
+title: Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access
+permalink: /basics/onpremise/rootless/
+--- 
 
 By [Dan Strangberg](https://www.linkedin.com/in/dan-str%C3%A4ngberg-a2ab8096/) with assistance from [Tilo Wiklund](https://www.linkedin.com/in/tilo-wiklund-682aa496/) 
 
