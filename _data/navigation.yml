@@ -1,0 +1,16 @@
+# main links
+main:
+   - title: "Contact"
+     url: /contact/
+   - title: "About"
+     url: /about/
+  # - title: "Sitemap"
+  #   url: /sitemap/
+
+lMenu:
+  - title: "LaMaStEx"
+    url: https://lamastex.github.io/
+  - title: Scalable Data Science
+    children:
+      - title: "About"
+        url: /about/
