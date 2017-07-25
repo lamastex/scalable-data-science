@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Scalable Data Science 2.x"
+title                    : "Scalable Data Science 2.x from Atlantis"
 title_separator          : "-"
 name                     : "Raazesh Sainudiin"
-description              : "Scalable Data Science 2.x from Atlantis."
+description              : "Scalable Data Science 2.x from Atlantis is a Course in Apache Spark 2.2 at Uppsala University"
 url                      : "https://lamastex.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "lamastex/scalable-data-science" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"

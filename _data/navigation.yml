@@ -10,8 +10,8 @@ main:
 lMenu:
   - title: "LaMaStEx"
     url: https://lamastex.github.io/
-  - title: "Scalable Data Science 2.x"
-    url: "/home/"
+  - title: "Scalable Data Science 2.x from Atlantis"
+    url: /
     children:
       - title: "About"
         url: /about/
