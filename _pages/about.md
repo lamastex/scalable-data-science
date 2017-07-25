@@ -5,7 +5,7 @@ permalink: /about/
 author_profile: false
 ---
 
-This is the Bout Page...
+This is the About Page...
 
 
 
