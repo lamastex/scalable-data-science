@@ -1,17 +1,55 @@
 # main links
 main:
-   - title: "Contact"
-     url: /contact/
-   - title: "About"
-     url: /about/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "LaMaStEx"
+    url: https://lamastex.github.io/
+  - title: "Contact"
+    url: /contact/
+  - title: "About"
+    url: /about/
+  - title: "SDS2x"
+    url: /2x/overview/
+  - title: "SDS1x"
+    url: /1x/overview/
+ # - title: "Sitemap"
+ #   url: /sitemap/
 
 lMenu:
   - title: "LaMaStEx"
     url: https://lamastex.github.io/
-  - title: "Scalable Data Science 2.x from Atlantis"
+  - title: "Scalable Data Science"
     url: /
     children:
-      - title: "About"
-        url: /about/
+      - title: "SDS2x"
+        url: /2x/overview/
+      - title: "SDS1x"
+        url: /1x/overview/
+lMenu2x:
+  - title: "LaMaStEx"
+    url: https://lamastex.github.io/
+  - title: "Scalable Data Science"
+    url: /
+  - title: "SDS1x"
+    url: /1x/overview/
+  - title: "SDS2x"
+    url: /2x/overview/
+    children:
+      - title: "basics"
+        url: /2x/basics/
+      - title: "db"
+        url: /2x/db/
+      - title: "zp"
+        url: /2x/zp/
+      - title: "sbt"
+        url: /2x/sbt/
+lMenu1x:
+  - title: "LaMaStEx"
+    url: https://lamastex.github.io/
+  - title: "Scalable Data Science"
+    url: /
+  - title: "SDS2x"
+    url: /2x/overview/
+  - title: "SDS1x"
+    url: /1x/overview/
+    children:
+      - title: "basics"
+        url: /1x/basics/

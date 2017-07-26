@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Scalable Data Science 2.x from Atlantis"
+title                    : "Scalable Data Science"
 title_separator          : "-"
 name                     : "Raazesh Sainudiin"
-description              : "Scalable Data Science 2.x from Atlantis is a Course in Apache Spark 2.2 at Uppsala University"
+description              : "Scalable Data Science 2x from Atlantis is a Course in Apache Spark 2.2 at Uppsala University. It is a sequel to SDS 1x from Middle Earth."
 url                      : "https://lamastex.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "lamastex/scalable-data-science" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -175,8 +175,8 @@ sass:
 
 
 # Outputting
-permalink: none
-#permalink: /:categories/:title/
+#permalink: none
+permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -237,6 +237,14 @@ compress_html:
   ignore:
     envs: development
 
+# Collections
+collections:
+  1x:
+    output: true
+    permalink: /:collection/:path/
+  2x:
+    output: true
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:
@@ -261,9 +269,23 @@ defaults:
       share: true
       sidebar:
         nav: "lMenu"
-  # _foo 
+  # _1x
   - scope:
       path: ""
-      type: foo
+      type: 1x
     values:
       layout: single
+      author_profile: false
+      share: true
+      sidebar:
+        nav: "lMenu1x"
+  # _2x
+  - scope:
+      path: ""
+      type: 2x
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      sidebar:
+        nav: "lMenu2x"

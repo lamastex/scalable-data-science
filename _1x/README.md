@@ -1,5 +1,4 @@
-Scalable Data Science
-=========
+# SDS 1x: Scalable Data Science 1x from Middle Earth
 
 Scalable data science is a technical course in the area of Big Data, aimed at the needs of the
 data industry.  This course uses
