@@ -1,7 +1,13 @@
+---
+title: Week 01 - Why Spark?
+permalink: /sds/1/6/db/week01/01_introduction/001_whySpark/
+sidebar:
+  nav: "lMenu-SDS-1.6"
+---
 // Databricks notebook source exported at Thu, 16 Jun 2016 07:55:27 UTC
 
 
-# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+# [Scalable Data Science](/)
 
 
 ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)

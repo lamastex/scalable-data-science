@@ -1,5 +1,5 @@
 ---
-title: Week 01 
+title: Week 01 - What is Scalable Data Science?
 permalink: /sds/1/6/db/week01/01_introduction/000_scalableDataScience/
 sidebar:
   nav: "lMenu-SDS-1.6"

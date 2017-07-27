@@ -26,6 +26,7 @@ lMenu:
         url: /sds/2/2/
       - title: "SDS-1.6"
         url: /sds/1/6/
+
 lMenu-SDS-2.2:
   - title: "SDS-2.2"
     url: /sds/2/2/
@@ -41,14 +42,23 @@ lMenu-SDS-2.2:
         url: /sds/2/zp/
       - title: "sbt"
         url: /sds/2/sbt/
+
 lMenu-SDS-1.6:
-  - title: "SDS-1.6"
+  - title: "SDS-1.6 Course"
     url: /sds/1/6/
     children:
       - title: "basics"
         url: /sds/basics/
       - title: "db"
         url: /sds/1/6/db/
-        children:
-          - title: "week01"
-            url: /sds/1/6/db/week01/
+  - title: "Week 01"
+    url: /sds/1/6/db/week01/
+    children:
+      - title: "scalable data science"
+        url: /sds/1/6/db/week01/01_introduction/000_scalableDataScience/
+      - title: "Why Spark?"
+        url: /sds/1/6/db/week01/01_introduction/001_whySpark/
+      - title: "Login to databricks"
+        url: /sds/1/6/db/week01/01_introduction/002_loginToDatabricks/
+      - title: "Scala Crash Course"
+        url: /sds/1/6/db/week01/01_introduction/003_scalaCrashCourse/

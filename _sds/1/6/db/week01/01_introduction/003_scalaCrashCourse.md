@@ -1,7 +1,13 @@
+---
+title: Week 01 - Login to databricks?
+permalink: /sds/1/6/db/week01/01_introduction/003_scalaCrashCourse/
+sidebar:
+  nav: "lMenu-SDS-1.6"
+---
 // Databricks notebook source exported at Thu, 16 Jun 2016 08:21:33 UTC
 
 
-# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
+# [Scalable Data Science](/)
 
 
 ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
