@@ -1,6 +1,6 @@
 ---
 title: Network Setup
-permalink: /sds/basics/onpremise/setups/networking/
+permalink: /sds/basics/infrastructure/onpremise/setups/networking/
 sidebar:
   nav: "lMenu-SDS-2.2"
 ---

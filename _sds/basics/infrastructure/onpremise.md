@@ -19,5 +19,5 @@ Some main ways of doing this include:
 * [Some Setups for your On-Premise Cluster of Computers](setups/)
   * Setting up networking
   * Setting up a Ubuntu Server Master
-* Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/)
+* Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](/sds/basics/infrastructure/kubernetes/)
 

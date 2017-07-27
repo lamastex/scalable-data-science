@@ -1,6 +1,6 @@
 ---
 title: Network Boot Ubuntu Master
-permalink: /sds/basics/onpremise/setups/pxe/
+permalink: /sds/basics/infrastructure/onpremise/setups/pxe/
 sidebar:
   nav: "lMenu-SDS-2.2"
 ---

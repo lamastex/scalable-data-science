@@ -1,5 +1,5 @@
 ---
-title: NUC Cluster
+title: Step 5 of Building NUC Cluster
 permalink: /sds/basics/infrastructure/onpremise/NUCcluster/hiding_switch/
 sidebar:
   nav: "lMenu-SDS-2.2"
@@ -8,7 +8,6 @@ sidebar:
 Hiding switch behind the firewall
 ================================
 
-## Step 5 of [Automating private bare-metal cluster setup with Cobbler](README.md)
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 

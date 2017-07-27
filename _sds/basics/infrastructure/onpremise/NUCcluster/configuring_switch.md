@@ -1,5 +1,5 @@
 ---
-title: NUC Cluster
+title: Step 1 of Building NUC Cluster
 permalink: /sds/basics/infrastructure/onpremise/NUCcluster/configuring_switch/
 sidebar:
   nav: "lMenu-SDS-2.2"
@@ -8,7 +8,6 @@ sidebar:
 Connecting MacBook, switch and NUC gateway
 ==========================================
 
-## Step 1 of [Automating private bare-metal cluster setup with Cobbler](README.md)
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 

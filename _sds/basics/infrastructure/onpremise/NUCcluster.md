@@ -1,5 +1,5 @@
 ---
-title: NUC Cluster
+title: Building NUC Cluster
 permalink: /sds/basics/infrastructure/onpremise/NUCcluster/
 sidebar:
   nav: "lMenu-SDS-2.2"

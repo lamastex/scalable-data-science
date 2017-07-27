@@ -11,5 +11,5 @@ sidebar:
 
 Here are some resources for kubernetes:
 
-* [standalone/spark/README.md](kubernetes/standalone/spark/README.md)
-* http://kubernetesbyexample.com/
+* [standalone/spark/](standalone/spark/)
+* [http://kubernetesbyexample.com/](http://kubernetesbyexample.com/)

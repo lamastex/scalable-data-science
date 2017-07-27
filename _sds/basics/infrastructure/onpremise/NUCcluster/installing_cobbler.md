@@ -1,5 +1,5 @@
 ---
-title: NUC Cluster
+title: Step 3 of Building NUC Cluster
 permalink: /sds/basics/infrastructure/onpremise/NUCcluster/installing_cobbler/
 sidebar:
   nav: "lMenu-SDS-2.2"
@@ -8,7 +8,6 @@ sidebar:
 Installing and configuring Cobbler
 ==================================
 
-## Step 3 of [Automating private bare-metal cluster setup with Cobbler](README.md)
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 

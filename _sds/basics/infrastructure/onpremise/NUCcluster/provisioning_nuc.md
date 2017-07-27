@@ -1,5 +1,5 @@
 ---
-title: NUC Cluster
+title: Step 4 of Building NUC Cluster
 permalink: /sds/basics/infrastructure/onpremise/NUCcluster/provisioning_nuc/
 sidebar:
   nav: "lMenu-SDS-2.2"
@@ -8,7 +8,6 @@ sidebar:
 Provisioning NUC node with OS, PXE booting
 ==========================================
 
-## Step 4 of [Automating private bare-metal cluster setup with Cobbler](README.md)
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 
