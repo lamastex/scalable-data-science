@@ -33,7 +33,7 @@ lMenu-SDS-2.2:
     children:
       - title: "basics"
         url: /sds/basics/
-      - title: "db"
+      - title: "databricks"
         url: /sds/2/2/db/
         children:
           - title: "week01"
@@ -49,12 +49,12 @@ lMenu-SDS-1.6:
     children:
       - title: "basics"
         url: /sds/basics/
-      - title: "db"
+      - title: "databricks"
         url: /sds/1/6/db/
   - title: "Week 01"
     url: /sds/1/6/db/week01/
     children:
-      - title: "scalable data science"
+      - title: "What is data science?"
         url: /sds/1/6/db/week01/01_introduction/000_scalableDataScience/
       - title: "Why Spark?"
         url: /sds/1/6/db/week01/01_introduction/001_whySpark/
