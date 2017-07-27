@@ -1,3 +1,10 @@
+---
+title: The Basics and Essentials 
+permalink: /sds/basics/
+sidebar:
+  nav: "lMenu"
+---
+
 # The Basics and Essentials
 
 ## Learn to Work with Your Local Laptop
@@ -12,15 +19,15 @@
 	* [Scala School! by twitter](http://twitter.github.io/scala_school/)
 		* [Scala School! build yourself from scratch](https://github.com/twitter/scala_school)
 
-* [Apache Spark in Scala on your Laptop](local/sparkScala/README.md)
+* [Apache Spark in Scala on your Laptop](local/sparkScala/)
 
 ## Distributed Computing Infrastructure
 
 ### On-premise or Local 
 
-* [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/README.md)
-* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](onpremise/rootless/README.md)
-* Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/README.md)
+* [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/)
+* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](onpremise/rootless/)
+* Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/)
 
 ### Public Cloud
 

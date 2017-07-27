@@ -1,3 +1,10 @@
+---
+title: Installing Scala-IDE on a Laptop
+permalink: /sds/basics/local/sparkScala/install/scalaIDE/
+sidebar:
+  nav: "lMenu"
+---
+
 # Installing Apache Spark and Scala 
 ## in your Local Machine (PC or Laptop) 
 

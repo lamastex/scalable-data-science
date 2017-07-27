@@ -1,3 +1,10 @@
+---
+title: Kubernetes Orchestrated Standalone Spark Cluster
+permalink: /sds/basics/kubernetes/standalone/spark/
+sidebar:
+  nav: "lMenu"
+---
+
 Docker file and Kubernetes configuration files for deploying spark 2.0 on kubernetes.
 
 These codes are minor updates of those linked from [Madhukar's Blog](http://blog.madhukaraphatak.com) on 
