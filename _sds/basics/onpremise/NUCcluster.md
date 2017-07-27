@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Automating private bare-metal cluster setup with Cobbler
-permalink: /basics/onpremise/NUCcluster/
+permalink: /sds/basics/onpremise/NUCcluster/
 ---
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)

@@ -1,11 +1,11 @@
 ---
-title: The Basics and Essentials 
+title: Basics
 permalink: /sds/basics/
 sidebar:
   nav: "lMenu"
 ---
 
-# The Basics and Essentials
+## The Basics and Some Essentials
 
 ## Learn to Work with Your Local Laptop
 * Command-line Basics
