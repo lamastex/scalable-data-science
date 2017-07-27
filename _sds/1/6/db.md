@@ -1,6 +1,8 @@
 ---
-title: SDS-1.6 
-permalink: /sds-1/6/
+title: SDS-1.6 on databricks 
+permalink: /sds/1/6/db/
+sidebar:
+  nav: "lMenu-SDS-1.6"
 header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/ethernetCloud-1600x524.png
@@ -8,23 +10,9 @@ header:
 excerpt: 'Scalable Data Science from Middle Earth, A Big Data Course in Apache Spark 1.6 over databricks.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 ---
 
-# SDS-1.6
+# SDS-1.6 on databricks
 
 ## Scalable Data Science from Middle Earth, A Big Data Course in Apache Spark 1.6 over databricks
-
-Scalable data science is a technical course in the area of Big Data, aimed at the needs of the
-data industry.  This course uses
-Apache Spark, a fast and general engine for large-scale data processing via databricks to compute
-with datasets that won't fit in a single computer. The course will introduce Spark’s core concepts
-via hands-on coding, including resilient distributed datasets and map-reduce algorithms, DataFrame
-and Spark SQL on Catalyst, scalable machine-learning pipelines in MlLib and vertex programs using
-the distributed graph processing framework of GraphX. We will solve instances of real-world big data
-decision problems from various scientific domains.
-
-This was prepared by Raazesh Sainudiin and Sivanand Sivaram
-with assistance from Paul Brouwers, Dillon George and Ivan Sadikov.
-
-All course projects by seven enrolled and four observing students for Semester 1 of 2016 at University of Canterbury, Ilam Christchurch, New Zealand (UC, Ilam) are part of this content.
 
 ## How to self-learn this content?
 
