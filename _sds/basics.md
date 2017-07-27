@@ -2,7 +2,7 @@
 title: Basics
 permalink: /sds/basics/
 sidebar:
-  nav: "lMenu"
+  nav: "lMenu-SDS-2.2"
 ---
 
 ## The Basics and Some Essentials
@@ -19,27 +19,10 @@ sidebar:
 	* [Scala School! by twitter](http://twitter.github.io/scala_school/)
 		* [Scala School! build yourself from scratch](https://github.com/twitter/scala_school)
 
-* [Apache Spark in Scala on your Laptop](local/sparkScala/)
 
 ## Distributed Computing Infrastructure
 
-### On-premise or Local 
-
-* [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/)
-* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](onpremise/rootless/)
-* Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/)
-
-### Public Cloud
-
-* Fully managed databricks cluster
-	* [databricks acdemic shard - databricks academc partners program](https://academics.cloud.databricks.com) 
-	* [datbricks community edition - Sign Up! It is FREE for all!](https://community.cloud.databricks.com/login.html)
-
-* Under Study/Work: Self-managed clusters on
-	* AWS
-	* Google
-	* Azure
-	* Hybrid
+We need infrastructure for big data. See [Infrastructure](/basics/infrastructure/).
 
 # Other Courses for free!
 

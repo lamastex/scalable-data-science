@@ -1,10 +1,11 @@
 ---
-layout: single
-title: Automating private bare-metal cluster setup with Cobbler
+title: NUC Cluster
 permalink: /sds/basics/onpremise/NUCcluster/
 sidebar:
   nav: "lMenu-SDS-2.2"
 ---
+
+## Automating private bare-metal NUC cluster setup with Cobbler
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 
