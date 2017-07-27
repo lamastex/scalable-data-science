@@ -20,3 +20,11 @@ Some main ways of doing this include:
 * Downloading Apache Spark and working with `scala-shell`.
 * [Working with Scala-IDE](/sds/basics/local/sparkScala/).
 
+The following are **advanced** topics in self-managed cloud computing (it is optional for the SDS-2.2 course).
+
+* [On-premise Cluster of Computers](onpremise/)
+* In public commercially available clouds: 
+  * AWS
+  * Google
+  * Azure
+  * Hybrid

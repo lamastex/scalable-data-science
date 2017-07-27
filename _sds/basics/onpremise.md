@@ -16,5 +16,7 @@ Some main ways of doing this include:
 
 * [Automating private bare-metal NUC cluster setup with Cobbler](NUCcluster/)
 * [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](rootless/)
+* [Setting up networking](setups/networking/)
+* [Setting up a Ubuntu Server Master](setups/pxe/)
 * Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/)
 

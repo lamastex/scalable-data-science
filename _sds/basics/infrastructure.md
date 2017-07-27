@@ -22,11 +22,5 @@ It is important to be able to run Spark locally on your locally available comput
 
 * Learn [how to work with Spark on or from a laptop](/sds/basics/local/).
 
-The following are **Advanced** topics in self-managed cloud computing (it is optional for the SDS-2.2 course).
+We will see some more **advanced** topics on infrastructure and these can be skipped by most readers.
 
-* [On-premise Cluster of Computers](onpremise/)
-* In public commercially available clouds: 
-  * AWS
-  * Google
-  * Azure
-  * Hybrid
