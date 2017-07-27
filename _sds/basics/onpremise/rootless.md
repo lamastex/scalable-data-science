@@ -1,6 +1,6 @@
 ---
 title: Rootless Spark
-permalink: /basics/onpremise/rootless/
+permalink: /sds/basics/onpremise/rootless/
 sidebar:
   nav: "lMenu-SDS-2.2"
 --- 

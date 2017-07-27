@@ -14,11 +14,7 @@ Many real-world datasets cannot be analysed on your laptop or a single desktop c
  
 Some main ways of doing this include:
 
-* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](/sds/basics/onpremise/rootless/).
-* [Automating private bare-metal NUC cluster setup with Cobbler](/sds/basics/onpremise/NUCcluster/).
-* [??](/sds/basics/onpremise/).
-
-* [Automating private bare-metal NUC cluster setup with Cobbler](onpremise/NUCcluster/)
-* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](onpremise/rootless/)
+* [Automating private bare-metal NUC cluster setup with Cobbler](NUCcluster/)
+* [Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access](rootless/)
 * Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](kubernetes/standalone/spark/)
 
