@@ -47,7 +47,7 @@ lMenu-SDS-2.2:
       - title: "Local Computer"
         url: /sds/basics/local/
       - title: "On-Premise Cluster"
-        url: /sds/onpremise/
+        url: /sds/basics/onpremise/
 
 lMenu-SDS-1.6:
   - title: "SDS-1.6 Course"
