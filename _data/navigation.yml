@@ -33,21 +33,22 @@ lMenu-SDS-2.2:
     children:
       - title: "At Uppsala"
         url: /sds/2/2/uppsala/
-      - title: "databricks"
-        url: /sds/2/2/db/
-      - title: "zeppelin"
-        url: /sds/2/zp/
-      - title: "sbt"
-        url: /sds/2/sbt/
       - title: "Basics"
         url: /sds/basics/
   - title: "Infrastructure"
     url: /sds/basics/infrastructure/
     children:
       - title: "Local Computer"
-        url: /sds/basics/local/
+        url: /sds/basics/infrastructure/local/
       - title: "On-Premise Cluster"
-        url: /sds/basics/onpremise/
+        url: /sds/basics/infrastructure/onpremise/
+  - title: "Contents"
+  - title: "databricks"
+    url: /sds/2/2/db/
+  - title: "zeppelin"
+    url: /sds/2/zp/
+  - title: "sbt"
+    url: /sds/2/sbt/
 
 lMenu-SDS-1.6:
   - title: "SDS-1.6 Course"
