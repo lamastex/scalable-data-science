@@ -5,7 +5,7 @@ sidebar:
   nav: "lMenu-SDS-1.6"
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/ethernetCloud-1600x524.png
+  overlay_image: /assets/images/DISP-SDS-orange-1600x524.jpg
   caption: 
 excerpt: 'Scalable Data Science from Middle Earth, A Big Data Course in Apache Spark 1.6 over databricks.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 ---
