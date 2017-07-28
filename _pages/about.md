@@ -2,7 +2,7 @@
 layout: single
 title: About
 permalink: /about/
-author_profile: false
+author_profile: true
 ---
 
 SDS-2.2, *Scalable data science from Atlantis*, is a technical course in the area of Big Data, aimed at the needs of Stockholm's data industry.It is an updated of SDS-1.6, *Scalable Data Science from Middle Earth*, aimed at the needs of Christchurch's industry.
