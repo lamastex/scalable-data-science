@@ -7,5 +7,5 @@ sidebar:
 
 ## Working with Spark Using Scala-IDE on a Laptop
 
-See [Installing Apache Spark and Scala in your Local Machine (PC or Laptop)](sparkScala/install/scalaIDE). 
+See [Installing Apache Spark and Scala in your Local Machine (PC or Laptop)](install/scalaIDE). 
 

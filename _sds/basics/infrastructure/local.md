@@ -15,8 +15,8 @@ If you do not own a laptop, which is highly recommened for the course, then you 
 
 
 It is also important to be able to run Spark locally on your laptop. 
-Some main ways of doing this include:
+**Optionally** after some downloads and setups, you can
 
-* Downloading Apache Spark and working with `scala-shell`.
-* [Working with Scala-IDE](/sds/basics/infrastructure/local/sparkScala/).
+* work with `scala-shell` from command-line, or
+* [work with Scala-IDE](/sds/basics/infrastructure/local/sparkScala/).
 

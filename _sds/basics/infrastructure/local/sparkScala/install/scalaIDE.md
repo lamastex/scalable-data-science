@@ -2,11 +2,10 @@
 title: Installing Scala-IDE on a Laptop
 permalink: /sds/basics/infrastructure/local/sparkScala/install/scalaIDE/
 sidebar:
-  nav: "lMenu"
+  nav: "lMenu-SDS-2.2"
 ---
 
-# Installing Apache Spark and Scala 
-## in your Local Machine (PC or Laptop) 
+## Installing Apache Spark and Scala in your Local Machine (PC or Laptop) 
 
 # Windows 
 
