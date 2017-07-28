@@ -20,7 +20,7 @@ To work on the databricks community edition all you need is a laptop computer wi
  
 Thus, to work with big data we need to first:
 
-* Learn [how to work with Spark on or from a local laptop or desktop computer](/sds/basics/infrastructure/local/).
+* Learn [how to work with Spark on or from a local laptop or desktop computer](local/).
 
 We will see some more **advanced** topics on infrastructure in the sequel and these can be skipped by most readers.
 
