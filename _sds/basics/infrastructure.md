@@ -18,11 +18,11 @@ One of the easiest way of doing is through a fully managed Spark cluster databri
 * [datbricks community edition - Sign Up! It is FREE for all!](https://community.cloud.databricks.com/login.html)
 To work on the databricks community edition all you need is a laptop computer with a browser and internet connection.
  
-It is important to be able to run Spark locally on your locally available computer cluster.
+Thus, to work with big data we need to first:
 
-* Learn [how to work with Spark on or from a laptop](/sds/basics/local/).
+* Learn [how to work with Spark on or from a local laptop or desktop computer](/sds/basics/infrastructure/local/).
 
-We will see some more **advanced** topics on infrastructure and these can be skipped by most readers.
+We will see some more **advanced** topics on infrastructure in the sequel and these can be skipped by most readers.
 
 The following are **advanced** topics in self-managed cloud computing (it is optional for the SDS-2.2 course). One typically uses a powerful laptop to develop and deploy such insfrastructures in one of three environments: 
 
