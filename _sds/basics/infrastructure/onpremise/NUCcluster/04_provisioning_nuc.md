@@ -16,13 +16,13 @@ By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 
 ## Five Main Steps
 
-[Building a NUC cluster](/sds/basics/infrastructure/onpremise/NUCcluster/) has the following five steps:
+[Building a NUC cluster](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/NUCcluster/) has the following five steps:
 
-* Step 1. [Connecting Macbook, switch and  NUC](/sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/)
-* Step 2. [Configuring NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/02_Configuring_NUC_gateway/)
-* Step 3. [Installing and configuring Cobbler on the NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/03_installing_cobbler/)
-* Step 4. [Provisioning NUC-worker  hosts](/sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/)
-* Step 5. [Postconfigure -- hiding switch behind the firewall](/sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/)
+* Step 1. [Connecting Macbook, switch and  NUC](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/)
+* Step 2. [Configuring NUC gateway](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/NUCcluster/02_Configuring_NUC_gateway/)
+* Step 3. [Installing and configuring Cobbler on the NUC gateway](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/NUCcluster/03_installing_cobbler/)
+* Step 4. [Provisioning NUC-worker  hosts](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/)
+* Step 5. [Postconfigure -- hiding switch behind the firewall](https://lamastex.github.io/scalable-data-science//sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/)
 
 {% include toc %}
 
