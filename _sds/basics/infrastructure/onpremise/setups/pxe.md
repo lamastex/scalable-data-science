@@ -3,6 +3,8 @@ title: Network Boot Ubuntu Master
 permalink: /sds/basics/infrastructure/onpremise/setups/pxe/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Tilo Wiklund"
+author_profile: true
 ---
 
 **Advanced**

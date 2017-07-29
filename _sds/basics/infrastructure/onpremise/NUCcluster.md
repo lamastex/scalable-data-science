@@ -3,11 +3,15 @@ title: Building NUC Cluster
 permalink: /sds/basics/infrastructure/onpremise/NUCcluster/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Alexey Siretskiy"
+author_profile: true
 ---
 
 ## Automating private bare-metal NUC cluster setup with Cobbler
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+{% include toc %}
 
 ### Abstract
 
@@ -51,16 +55,15 @@ The full list of capabilities could be found at the official page:
 --------
 
 
-### Steps to go
+## Five Main Steps
 
-The whole process could be divided into roughly  the following steps:
+[Building a NUC cluster](/sds/basics/infrastructure/onpremise/NUCcluster/) has the following five steps:
 
-
- 1. [Connecting Macbook, switch and  NUC](configuring_switch/)
- 2. [Configuring NUC gateway](Configuring_NUC_gateway/)
- 3. [Installing and configuring Cobbler on the NUC gateway](installing_cobbler/)
- 4. [Provisioning NUC-worker  hosts](provisioning_nuc/)
- 5. [Postconfigure -- hiding switch behind the firewall](hiding_switch/)
+* Step 1. [Connecting Macbook, switch and  NUC](/sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/)
+* Step 2. [Configuring NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/02_Configuring_NUC_gateway/)
+* Step 3. [Installing and configuring Cobbler on the NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/03_installing_cobbler/)
+* Step 4. [Provisioning NUC-worker  hosts](/sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/)
+* Step 5. [Postconfigure -- hiding switch behind the firewall](/sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/)
 
 
 

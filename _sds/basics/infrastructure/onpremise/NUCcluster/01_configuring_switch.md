@@ -1,8 +1,10 @@
 ---
 title: Step 1 of Building NUC Cluster
-permalink: /sds/basics/infrastructure/onpremise/NUCcluster/configuring_switch/
+permalink: /sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Alexey Siretskiy"
+author_profile: true
 ---
 
 Connecting MacBook, switch and NUC gateway
@@ -11,6 +13,18 @@ Connecting MacBook, switch and NUC gateway
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 
+
+## Five Main Steps
+
+[Building a NUC cluster](/sds/basics/infrastructure/onpremise/NUCcluster/) has the following five steps:
+
+* Step 1. [Connecting Macbook, switch and  NUC](/sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/)
+* Step 2. [Configuring NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/02_Configuring_NUC_gateway/)
+* Step 3. [Installing and configuring Cobbler on the NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/03_installing_cobbler/)
+* Step 4. [Provisioning NUC-worker  hosts](/sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/)
+* Step 5. [Postconfigure -- hiding switch behind the firewall](/sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/)
+
+{% include toc %}
 
 We will start our setup by connecting switch to the MacBook in order to  figure out switch's IP address, so  we able to configure it.
 After configuring the switch we will attach a  NUC to it. That NUC  will be used later as  a gateway (GW) to provision the rest of cluster nodes.

@@ -1,8 +1,10 @@
 ---
 title: Step 5 of Building NUC Cluster
-permalink: /sds/basics/infrastructure/onpremise/NUCcluster/hiding_switch/
+permalink: /sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Alexey Siretskiy"
+author_profile: true
 ---
 
 Hiding switch behind the firewall
@@ -10,6 +12,19 @@ Hiding switch behind the firewall
 
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+
+## Five Main Steps
+
+[Building a NUC cluster](/sds/basics/infrastructure/onpremise/NUCcluster/) has the following five steps:
+
+* Step 1. [Connecting Macbook, switch and  NUC](/sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/)
+* Step 2. [Configuring NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/02_Configuring_NUC_gateway/)
+* Step 3. [Installing and configuring Cobbler on the NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/03_installing_cobbler/)
+* Step 4. [Provisioning NUC-worker  hosts](/sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/)
+* Step 5. [Postconfigure -- hiding switch behind the firewall](/sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/)
+
+{% include toc %}
 
 
 So far the setup looks nice -- we are able to PXE install and provision NUCS in  automatic manner. The whole cluster has Internet access via Macbook (for a moment).
@@ -29,7 +44,7 @@ Commonly used practice in the enterprises is to create a special "manage" VLAN, 
 The final thing to consider is to move the `vlan2` to *e.g* `vlan10`, since the `vlan2` on the given switch could not be set up as a *manage* VLAN:
 
 1. create on the NUC gateway new `vlan10`, assign IP, and delete the `vlan2`
-     1.  `[root@c2gw xadmin]# ip link add link eno1 name vlan10 type vlan  id 10`
+    1.  `[root@c2gw xadmin]# ip link add link eno1 name vlan10 type vlan  id 10`
     1. `[root@c2gw xadmin]# ip link set vlan10 up`
     1. `[root@c2gw xadmin]# ip addr add 10.200.1.1/16 brd 10.200.255.255 dev vlan10`
     1. `[root@c2gw xadmin]# ip link del vlan2`

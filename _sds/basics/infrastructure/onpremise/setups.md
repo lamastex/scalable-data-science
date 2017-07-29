@@ -3,6 +3,8 @@ title: Cluster Setups
 permalink: /sds/basics/infrastructure/onpremise/setups/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Tilo Wiklund"
+author_profile: true
 ---
 
 **Advanced**

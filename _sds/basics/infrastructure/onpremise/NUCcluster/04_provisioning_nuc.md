@@ -1,8 +1,10 @@
 ---
 title: Step 4 of Building NUC Cluster
-permalink: /sds/basics/infrastructure/onpremise/NUCcluster/provisioning_nuc/
+permalink: /sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Alexey Siretskiy"
+author_profile: true
 ---
 
 Provisioning NUC node with OS, PXE booting
@@ -10,6 +12,19 @@ Provisioning NUC node with OS, PXE booting
 
 
 By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
+
+
+## Five Main Steps
+
+[Building a NUC cluster](/sds/basics/infrastructure/onpremise/NUCcluster/) has the following five steps:
+
+* Step 1. [Connecting Macbook, switch and  NUC](/sds/basics/infrastructure/onpremise/NUCcluster/01_configuring_switch/)
+* Step 2. [Configuring NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/02_Configuring_NUC_gateway/)
+* Step 3. [Installing and configuring Cobbler on the NUC gateway](/sds/basics/infrastructure/onpremise/NUCcluster/03_installing_cobbler/)
+* Step 4. [Provisioning NUC-worker  hosts](/sds/basics/infrastructure/onpremise/NUCcluster/04_provisioning_nuc/)
+* Step 5. [Postconfigure -- hiding switch behind the firewall](/sds/basics/infrastructure/onpremise/NUCcluster/05_hiding_switch/)
+
+{% include toc %}
 
 
 In order to be able to  install OS via network, the node's network interface card (NIC) must support PXE booting. This is so for the most modern NICs.

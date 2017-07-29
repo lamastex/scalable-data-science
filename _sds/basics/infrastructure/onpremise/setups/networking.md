@@ -3,6 +3,8 @@ title: Network Setup
 permalink: /sds/basics/infrastructure/onpremise/setups/networking/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Tilo Wiklund"
+author_profile: true
 ---
 
 **Advanced**

@@ -3,6 +3,8 @@ title: Rootless Spark
 permalink: /sds/basics/infrastructure/onpremise/rootless/
 sidebar:
   nav: "lMenu-SDS-2.2"
+author: "Dan Strangberg"
+author_profile: true
 --- 
 
 ## Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access
