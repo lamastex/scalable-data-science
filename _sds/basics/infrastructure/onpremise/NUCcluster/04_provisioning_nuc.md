@@ -36,7 +36,7 @@ Lets attach empty NUC to port 2, which belongs to `vlan2` and press the start bu
 
 Most likely one will face a screen similar to:
 
-<img src="pics/no_dhcp.png" alt=" no dhcp offers were received" style="width:200px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/no_dhcp.png" alt=" no dhcp offers were received" style="width:200px;"/>
 
 Check `systmemctl status dnsmasq`. If the status is `alive` -- check the firewall:
 
@@ -49,7 +49,7 @@ Check `systmemctl status dnsmasq`. If the status is `alive` -- check the firewal
 
 Reboot the worker NUC. Now one should see that DHCP works, and the worker was assigned the local IP *e.g.* `10.200.1.103`. The trouble, however, is with the `TFTP`:
 
-<img src="pics/no_tftp.png" alt=" no dhcp offers were received" style="width:200px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/no_tftp.png" alt=" no dhcp offers were received" style="width:200px;"/>
 
 
 That is correct, the TFTP service on port 69 is not enabled on the firewall.
@@ -58,7 +58,7 @@ That is correct, the TFTP service on port 69 is not enabled on the firewall.
 
 Let's add `dns` and `http` as well. Reboot the worker NUC. The screen should display Cobbler greeting menu with a set of offers. Choose one to fire-up the PXE-install!
 
-<img src="pics/cobbler_welcome.png" alt=" no dhcp offers were received" style="width:200px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/cobbler_welcome.png" alt=" no dhcp offers were received" style="width:200px;"/>
 
 
 

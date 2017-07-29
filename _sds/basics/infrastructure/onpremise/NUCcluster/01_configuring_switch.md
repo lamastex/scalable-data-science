@@ -34,7 +34,7 @@ After configuring the switch we will attach a  NUC to it. That NUC  will be used
 
 On the MacOS the easiest way to proceed is to enable Internet Sharing via the Ethernet cable.
 
-<img src="pics/sharing.png" alt="OSX_internet_sharing" style="width:600px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/sharing.png" alt="OSX_internet_sharing" style="width:600px;"/>
 
 Just plug in the Ethernet cable from MacBook to the switch to any port.
 The factory default settings make all ports accessible for any connection.
@@ -71,7 +71,7 @@ The `192.168.2.1` is the IP of the MacBook in the `192.168.2.0` network, and the
 There are plenty of settings. The most important for us are those for VLAN and for  IP.
 Let's leave the settings for a while as they are.
 
-<img src="pics/switch_default.png" alt="default VLAN1 settings" style="width: 600px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/switch_default.png" alt="default VLAN1 settings" style="width: 600px;"/>
 
 
 [comment]: <> (Go to `Switching->VLAN->Advanced->VLAN membership`. There are three already preconfigured VLANs, 1, 2 and 3. Lets keep them.
@@ -114,7 +114,7 @@ Now we can `ssh xadmin@192.168.2.3`, where `xadmin` is the already existing user
 
 We have now  Internet-enabled network of 3 nodes, one of which is a OSx router (`192.168.2.1`), and the another one is the NUC (`192.168.2.3)`, which we will set up and configure as a GW for the whole cluster.
 
-<img src="pics/network_init.png" alt="initial network setup" style="width:600px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/network_init.png" alt="initial network setup" style="width:600px;"/>
 
 TIP
 ---

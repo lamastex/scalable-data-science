@@ -58,15 +58,15 @@ After that is done, you will loose connectivity to switch via `192.168.2.2`. Ins
 
 
 
-<img src="pics/switch_new_IP.png" alt="switch, IP behind the firewall setup" style="width:100px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/switch_new_IP.png" alt="switch, IP behind the firewall setup" style="width:100px;"/>
 
-<img src="pics/switch_new_vlan.png" alt="switch, new IP behind the firewall setup" style="width: 300px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/switch_new_vlan.png" alt="switch, new IP behind the firewall setup" style="width: 300px;"/>
 
-<img src="pics/switch_new_PVID.png" alt="default vlan for ports 2-7 setup" style="width: 300px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/switch_new_PVID.png" alt="default vlan for ports 2-7 setup" style="width: 300px;"/>
 
 
 
 The only step left is to remove the MacBook and connect the external Ethernet cable to the port 8, and plugout-plugin the Ethernet cable from port 1, so the DHCP from the external network will assign the IP to the NUC gateway for VLAN1.
 After that is done, the setup should look like as in the lower part of the Figure.
 
-<img src="pics/switch_behind_firewall.png" alt="Network setup" style="width: 200px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/switch_behind_firewall.png" alt="Network setup" style="width: 200px;"/>

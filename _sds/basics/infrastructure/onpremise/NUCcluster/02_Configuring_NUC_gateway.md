@@ -30,7 +30,7 @@ By [Alexey Siretskiy](https://www.linkedin.com/in/alexey-siretskiy-254992a7/)
 The NUC node, `192.168.2.3`, is assumed to have CentOS installed and, after being connected to to `192.168.2.0` network, should have  Internet access enabled.
 The network structure we have already is depicted at the upper part of the figure. By the end of this part of tutorial  the  network setup should look like as shown at the lower part of the figure.
 
-<img src="pics/network2.png" alt="Network setup" style="width:300px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/network2.png" alt="Network setup" style="width:300px;"/>
 
 The reason for using [VLANs](https://en.wikipedia.org/wiki/Virtual_LAN) is easy to grasp considering that the NUC gateway has just one network interface card (NIC), but has to participate in two networks: one being  the external and the another as internal LAN for the cluster.
 
@@ -79,7 +79,7 @@ The reason is the following: we have now 2 VLANs, but the port 1 on the switch `
 
 In order to resolve the issue, lets login to the switch and mark port 1 at tagged `T` for `vlan1`. And at the same time unmark ports 2-7. Apply changes.
 
-<img src="pics/router_vlan1.png" alt='router setting for VLAN1' style="width:100px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/router_vlan1.png" alt='router setting for VLAN1' style="width:100px;"/>
 
 
 Test  the networking, it should *still not* be fully working:
@@ -130,11 +130,11 @@ For VLAN2 (the one with `id 2`):
  1. mark port 1 as tagged
 
 
-<img src="pics/router_vlan2.png" alt='router setting for VLAN2' style="width:100px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/router_vlan2.png" alt='router setting for VLAN2' style="width:100px;"/>
 
 Also the `PVID` (the default VLAN for each port)  settings should be satisfied:
 
-<img src="pics/pvid.png" style="width:100px;"/>
+<img src="/sds/basics/infrastructure/onpremise/NUCcluster/pics/pvid.png" style="width:100px;"/>
 
 
 
