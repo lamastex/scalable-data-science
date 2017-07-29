@@ -12,7 +12,7 @@ title_separator          : "-"
 name                     : "Raazesh Sainudiin"
 description              : "SDS-2.2 - Scalable Data Science from Atlantis is a Course in Apache Spark 2.2 at Uppsala University. It is a sequel to SDS-1.6 from Middle Earth."
 url                      : "https://lamastex.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
+baseurl                  : "/scalable-data-science" # the subpath of your site, e.g. "/blog"
 repository               : "lamastex/scalable-data-science" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : "/assets/images/DISP-lamastex-500x300.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 breadcrumbs            : # true, false (default)
