@@ -3,6 +3,11 @@ layout: single
 title: Current Research - Project SAHDE
 permalink: /sds/research/densityEstimation/sahde/
 author_profile: true
+header:
+  overlay_color: "#5e616c"
+  overlay_image: /sds/research/densityEstimation/sahde/notes/MDE_20161010_141708_01.jpg
+  caption: 
+excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 ---
 
 ## Project SAHDE:<br /> Scalable Adaptive Histogram Density Estimation 
