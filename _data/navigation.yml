@@ -5,7 +5,7 @@ main:
   - title: "About"
     url: /about/
   - title: "Research"
-    url: /research/
+    url: /sds/research/
   - title: "SDS-1.6"
     url: /sds/1/6/
   - title: "LaMaStEx"
