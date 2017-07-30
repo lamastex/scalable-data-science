@@ -1,17 +1,17 @@
 # main links
 main:
+  - title: "SDS-2.2"
+    url: /sds/2/2/
+  - title: "About"
+    url: /about/
+  - title: "Research"
+    url: /research/
+  - title: "SDS-1.6"
+    url: /sds/1/6/
   - title: "LaMaStEx"
     url: https://lamastex.github.io/
   - title: "Contact"
     url: /contact/
-  - title: "About"
-    url: /about/
-  - title: "SDS"
-    url: /
-  - title: "SDS-2.2"
-    url: /sds/2/2/
-  - title: "SDS-1.6"
-    url: /sds/1/6/
  # - title: "Sitemap"
  #   url: /sitemap/
 
