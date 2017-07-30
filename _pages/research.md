@@ -12,7 +12,7 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 ## Current research projects in scalable data science
 
-* [Project MEP: Meme Evolution Programme](http://lamastex.org/lmse/mep/)
+* [Project MEP: Meme Evolution Programme](/sds/research/mep/)
 
 * [Project SAHDE: Scalable Adaptive Histogram Density Estimation](/sds/research/densityEstimation/sahde/)
 
