@@ -141,6 +141,24 @@ exclude:
   - tmp
 #  - /docs # ignore Minimal Mistakes /docs
 #  - /test # ignore Minimal Mistakes /test
+# files and directories from git to ignore for github.io pages
+  - book.json
+  - SUMMARY.md
+  - TODO
+  - UNLICENSE
+  - /bin
+  - /datasets
+  - /zp
+  - /db
+  - /dev
+  - /meme-evolution
+  - /babel
+  - /dbcArchives
+  - /MiddleEarth
+# not sure if these should be excluded...TODO
+#  - /images        
+#  - banner.js
+
 keep_files:
   - .git
   - .svn
@@ -240,12 +258,6 @@ compress_html:
 # Collections
 collections:
   sds:
-    output: true
-    permalink: /:collection/:path/
-  sds-1:
-    output: true
-    permalink: /:collection/:path/
-  sds-2:
     output: true
     permalink: /:collection/:path/
 
