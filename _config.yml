@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Scalable Data Science"
+title                    : "SDS"
 title_separator          : "-"
 name                     : "Raazesh Sainudiin"
-description              : "SDS-2.2 - Scalable Data Science from Atlantis is a Course in Apache Spark 2.2 at Uppsala University. It is a sequel to SDS-1.6 from Middle Earth."
+description              : "SDS - Scalable Data Science, a Course in Apache Spark."
 url                      : "https://lamastex.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "lamastex/scalable-data-science" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
