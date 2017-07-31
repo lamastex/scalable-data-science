@@ -17,6 +17,7 @@ repository               : "lamastex/scalable-data-science" # GitHub username/re
 teaser                   : "/assets/images/DISP-lamastex-500x300.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 breadcrumbs            : # true, false (default)
 words_per_minute         : 200
+logo                     : "/assets/images/site-logo01BallOnly.svg"
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:

@@ -1,8 +1,17 @@
+{% if site.logo contains '://' %}
+  {% assign site_logo = site.logo %}
+{% else %}
+  {% assign site_logo = site.logo | relative_url %}
+{% endif %}
+
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="{{ '/' | absolute_url }}">{{ site.title }}</a>
+        <a class="site-title" href="{{ '/' | absolute_url }}">
+          {% if site.logo %}<img src="{{ site_logo }}" alt="" class="site-logo">{% endif %}
+          <span>{{ site.title }}</span>
+        </a>
         <ul class="visible-links">
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
