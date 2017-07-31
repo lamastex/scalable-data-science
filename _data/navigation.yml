@@ -18,10 +18,9 @@ main:
 lMenu:
   - title: "LaMaStEx"
     url: https://lamastex.github.io/
-  - title: Scalable Data Science
+  - title: "SDS"
+    url: /
     children:
-      - title: "SDS"
-        url: /
       - title: "SDS-2.2"
         url: /sds/2/2/
       - title: "SDS-1.6"
@@ -49,8 +48,12 @@ lMenu-SDS-2.2:
     url: /sds/2/zp/
   - title: "sbt"
     url: /sds/2/sbt/
+  - title: "SDS-1.6 Course"
+    url: /sds/1/6/
 
 lMenu-SDS-1.6:
+  - title: "SDS-2.2"
+    url: /sds/2/2/
   - title: "SDS-1.6 Course"
     url: /sds/1/6/
     children:
