@@ -1,0 +1,20 @@
+name:                pinot
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/githubuser/pandoc-notebook#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Tilo Wiklund
+maintainer:          tilo@wiklund.co
+copyright:           2017 Tilo Wiklun
+category:            Other
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable pinot
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       aeson, base >= 4.7 && < 5, bytestring, data-default, pandoc, pandoc-types, text, unordered-containers, lens, optparse-applicative
