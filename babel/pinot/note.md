@@ -14,7 +14,7 @@ simply (in the source code folder) run:
 
 stack setup
 stack build
-stack exec pinot -- -t databricks -f zeppelin < input_notebook.json > output_notebook.json
+stack exec pinot -- -f databricks -t zeppelin < input_notebook.json > output_notebook.json
 
 where you get the input_notebook.json file(s) by running
 
