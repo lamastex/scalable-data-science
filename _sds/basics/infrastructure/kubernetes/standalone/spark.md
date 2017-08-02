@@ -2,7 +2,7 @@
 title: Kubernetes Orchestrated Standalone Spark Cluster
 permalink: /sds/basics/infrastructure/kubernetes/standalone/spark/
 sidebar:
-  nav: "lMenu"
+  nav: "lMenu-SDS-2.2"
 ---
 
 See [github dir](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/kubernetes/standalone/spark) for
