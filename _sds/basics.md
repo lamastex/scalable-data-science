@@ -22,7 +22,7 @@ sidebar:
 
 ## Distributed Computing Infrastructure
 
-We need infrastructure for big data. See [Infrastructure](/basics/infrastructure/).
+We need infrastructure for big data. See [Infrastructure](/sds/basics/infrastructure/).
 
 # Other Courses for free!
 
