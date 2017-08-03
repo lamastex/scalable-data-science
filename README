@@ -1,49 +1,8 @@
----
-layout: home
-permalink: /
-title: "SDS - Scalable Data Science"
-header:
-  overlay_color: "#5e616c"
-  overlay_image: /assets/images/DISP-SDS-1600x524.jpg
-  # overlay_filter: rgba(0, 106, 167, 0.5)
-  cta_label: "<i class='fa fa-download'></i> Overview Now"
-  cta_url: "/sds/2/2/"
-  caption: 
-excerpt: 'A Course in Big Data Using Apache Spark.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158" height="30"></iframe>{:/nomarkdown}'
-feature_row:
-  - image_path: /assets/images/DISP-SDS-blue-500x300.jpg
-    alt: "scalable-data-science-2.2"
-    title: "SDS-2.2"
-    excerpt: 'A Big Data Course in [Apache Spark](https://spark.apache.org/) 2.2 from Atlantis.'
-    url: /sds/2/2/
-    btn_label: "Learn More"
-  - image_path: /assets/images/DISP-SDS-orange-500x300.jpg
-    alt: "scalable-data-science-1.6"
-    title: "SDS-1.6"
-    excerpt: 'A Big Data Course in [Apache Spark](https://spark.apache.org/) 1.6 from Middle Earth.'
-    url: /sds/1/6/
-    btn_label: "Learn More"
-  - image_path: /assets/images/DISP-lamastex-500x300.jpg
-    alt: "lamastex"
-    title: "LaMaStEx"
-    excerpt: "[SDS](/) is from [LaMaStEx](https://lamastex.github.io/) with support from [databricks](https://databricks.com/) Academic Partners Program."
-    url: https://lamastex.github.io/
-    btn_label: "Learn More"
-github:
- - excerpt: '{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160" height="30"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158" height="30"></iframe>{:/nomarkdown}'
-intro:
-  - excerpt: '
-<img src="/assets/images/site-logo01BallOnly.svg" alt="" style="width:25px;height=25px">
-<img src="/assets/images/site-logo01BallOnly.svg" alt="" style="width:50px;height=50px">
-<img src="/assets/images/site-logo01BallOnly.svg" alt="" style="width:75px;height=75px">
-<br />
-<br />
-*SDS, Scalable Data Science*, a preparation for the data industry.'
----
+SDS - Scalable Data Science
+===========================
+A Course in Big Data Using Apache Spark.<br /><br /><br />
 
-{% include feature_row id="intro" type="center" %}
+[SDS](/) is from [LaMaStEx](https://lamastex.github.io/) with support from [databricks](https://databricks.com/) Academic Partners Program.
 
-{% include feature_row %}
- 
 
 
