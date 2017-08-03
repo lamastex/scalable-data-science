@@ -1,0 +1,18 @@
+assets/*
+CHANGELOG
+Gemfile
+LICENSE
+package.json
+Rakefile
+tmp/
+TODO
+UNLICENSE
+bin/*
+zp/*
+MiddleEarth/*
+#datasets/*
+# db/*
+# dbcArchives/*
+#dev/*
+#meme-evolution/*
+#babel/*
