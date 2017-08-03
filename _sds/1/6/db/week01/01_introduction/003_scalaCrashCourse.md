@@ -1,3 +1,10 @@
+---
+title: ""
+permalink: /sds/1/6/db/week01/01_introduction/003_scalaCrashCourse/
+sidebar:
+  nav: "lMenu-SDS-1.6"
+---
+
 // Databricks notebook source exported at Thu, 16 Jun 2016 08:21:33 UTC
 
 

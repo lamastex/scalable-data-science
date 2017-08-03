@@ -1,5 +1,5 @@
 ---
-title: Week 01 
+title: ""
 permalink: /sds/1/6/db/week01/
 sidebar:
   nav: "lMenu-SDS-1.6"
