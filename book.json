@@ -1,4 +1,4 @@
 {
         "root": "./_sds"
-	"plugins": ["katex"]
+        "plugins": ["katex"]
 }
