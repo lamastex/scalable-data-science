@@ -17,4 +17,4 @@ executable pinot
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
-  build-depends:       aeson, base >= 4.7 && < 5, bytestring, data-default, pandoc, pandoc-types, text, unordered-containers, lens, optparse-applicative
+  build-depends:       aeson, base >= 4.7 && < 5, bytestring, containers, data-default, directory, filepath, lens, optparse-applicative, pandoc, pandoc-types, path, path-io, text, unordered-containers, zip-archive

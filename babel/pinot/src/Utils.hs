@@ -16,6 +16,9 @@ import qualified Data.HashMap.Lazy as H
 import Control.Lens hiding ((.=))
 import qualified Notebook as N
 
+import System.FilePath ((</>), takeDirectory, dropExtension)
+import System.Directory (createDirectoryIfMissing, doesDirectoryExist)
+
 objectMaybe :: [Maybe Pair] -> Value
 objectMaybe = object . catMaybes
 
@@ -33,3 +36,13 @@ instance MaybeKeyValue (Maybe Pair) where
 
 instance KeyValue (Maybe Pair) where
   k .= v = Just (k .= v)
+
+concatMapM :: (Traversable t, Monad m) => (a -> m [b]) -> t a -> m [b]
+concatMapM f xs = concat <$> mapM f xs
+
+ensureCanBeCreated :: FilePath -> IO ()
+ensureCanBeCreated f =
+  createDirectoryIfMissing True (takeDirectory f)
+
+swapExtension :: String -> FilePath -> FilePath
+swapExtension to f = (dropExtension f) ++ to
