@@ -27,7 +27,7 @@ lMenu:
         url: /sds/1/6/
 
 lMenu-SDS-2.2:
-  - title: "SDS-2.2"
+  - title: "SDS-2.2 Course"
     url: /sds/2/2/
     children:
       - title: "At Uppsala"
@@ -52,15 +52,13 @@ lMenu-SDS-2.2:
     url: /sds/1/6/
 
 lMenu-SDS-1.6:
-  - title: "SDS-2.2"
+  - title: "SDS-2.2 Course"
     url: /sds/2/2/
   - title: "SDS-1.6 Course"
-    url: /sds/1/6/
+    url: /sds/1/6/db/
     children:
       - title: "basics"
         url: /sds/basics/
-      - title: "databricks"
-        url: /sds/1/6/db/
   - title: "Week 01"
     url: /sds/1/6/db/week01/
     children:
