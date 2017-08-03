@@ -1,4 +1,4 @@
 {
- "root": "./_sds"
+ "root": "./book"
  "plugins": ["katex"]
 }
