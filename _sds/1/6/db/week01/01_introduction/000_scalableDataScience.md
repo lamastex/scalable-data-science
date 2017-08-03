@@ -1,14 +1,7 @@
----
-title: Week 01 - What is Scalable Data Science?
-permalink: /sds/1/6/db/week01/01_introduction/000_scalableDataScience/
-sidebar:
-  nav: "lMenu-SDS-1.6"
----
-
 // Databricks notebook source exported at Thu, 16 Jun 2016 07:32:05 UTC
 
 
-# [Scalable Data Science](/)
+# [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/)
 
 
 ### prepared by [Raazesh Sainudiin](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) and [Sivanand Sivaram](https://www.linkedin.com/in/sivanand)
