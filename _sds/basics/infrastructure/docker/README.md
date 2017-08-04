@@ -29,9 +29,9 @@ Sun Oct  9 06:48:29 NZDT 2016
 
      $ sudo docker run hello-world
 
-    This command downloads a test image and runs it in a container. When the container runs, it prints an informational message. Then, it exits.
-
+This command downloads a test image and runs it in a container. When the container runs, it prints an informational message. Then, it exits.
 --------------------------------------------
+```
 raazesh@raazesh-Inspiron-15-7579:~$ sudo docker run hello-world
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
@@ -41,6 +41,7 @@ Status: Downloaded newer image for hello-world:latest
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
+```
 
 To generate this message, Docker took the following steps:
  1. The Docker client contacted the Docker daemon.
@@ -51,8 +52,9 @@ To generate this message, Docker took the following steps:
     to your terminal.
 
 To try something more ambitious, you can run an Ubuntu container with:
+```
  $ docker run -it ubuntu bash
-
+```
 Share images, automate workflows, and more with a free Docker Hub account:
  https://hub.docker.com
 
@@ -61,6 +63,7 @@ For more examples and ideas, visit:
 --------------------------------------------
 
 --------------------------------------------
+```
 raazesh@raazesh-Inspiron-15-7579:~$ sudo docker run -it ubuntu bash
 Unable to find image 'ubuntu:latest' locally
 latest: Pulling from library/ubuntu
@@ -75,6 +78,7 @@ root@9da40e135355:/# echo "hello world! from ubuntu image pulled by docer :)"
 hello world! from ubuntu image pulled by docer :)
 root@9da40e135355:/# exit
 raazesh@raazesh-Inspiron-15-7579:~$ 
+```
 
 --------------------------------------------
 Here is the full history of commands to install docker in hp-EliteBook running Ubuntu 16.04:

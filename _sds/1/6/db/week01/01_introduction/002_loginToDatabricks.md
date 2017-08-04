@@ -1,3 +1,10 @@
+---
+title: ""
+permalink: /sds/1/6/db/week01/01_introduction/002_loginToDatabricks/
+sidebar:
+  nav: "lMenu-SDS-1.6"
+---
+
 // Databricks notebook source exported at Fri, 17 Jun 2016 03:29:41 UTC
 
 

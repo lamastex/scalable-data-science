@@ -1,3 +1,10 @@
+---
+title: ""
+permalink: /sds/1/6/db/week01/01_introduction/000_scalableDataScience/
+sidebar:
+  nav: "lMenu-SDS-1.6"
+---
+
 // Databricks notebook source exported at Thu, 16 Jun 2016 07:32:05 UTC
 
 

@@ -27,7 +27,7 @@ lMenu:
         url: /sds/1/6/
 
 lMenu-SDS-2.2:
-  - title: "SDS-2.2"
+  - title: "SDS-2.2 Course"
     url: /sds/2/2/
     children:
       - title: "At Uppsala"
@@ -52,15 +52,13 @@ lMenu-SDS-2.2:
     url: /sds/1/6/
 
 lMenu-SDS-1.6:
-  - title: "SDS-2.2"
+  - title: "SDS-2.2 Course"
     url: /sds/2/2/
   - title: "SDS-1.6 Course"
-    url: /sds/1/6/
+    url: /sds/1/6/db/
     children:
       - title: "basics"
         url: /sds/basics/
-      - title: "databricks"
-        url: /sds/1/6/db/
   - title: "Week 01"
     url: /sds/1/6/db/week01/
     children:
@@ -72,3 +70,74 @@ lMenu-SDS-1.6:
         url: /sds/1/6/db/week01/01_introduction/002_loginToDatabricks/
       - title: "Scala Crash Course"
         url: /sds/1/6/db/week01/01_introduction/003_scalaCrashCourse/
+  - title: "Week 02"
+    url: /sds/1/6/db/week02/
+    children:
+      - title: "RDDS, Transformations, Actions"
+        url: /sds/1/6/db/week02/02_SparkEssentials/004_RDDsTransformationsActions/
+      - title: "HOMEWORK"
+        url: /sds/1/6/db/week02/02_SparkEssentials/005_RDDsTransformationsActionsHOMEWORK/
+      - title: "Word Count - US SOAs"
+        url: /sds/1/6/db/week02/03_WordCount/006_WordCount/
+      - title: "ETRA - US SOAs"
+        url: /sds/1/6/db/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses/
+
+  - title: "Week 03"
+    url: /sds/1/6/db/week03/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week04/
+
+  - title: "Week 04"
+    url: /sds/1/6/db/week04/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week04/
+
+  - title: "Week 05"
+    url: /sds/1/6/db/week05/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week05/
+
+  - title: "Week 06"
+    url: /sds/1/6/db/week06/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week06/
+
+  - title: "Week 07"
+    url: /sds/1/6/db/week07/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week07/
+
+  - title: "Week 08"
+    url: /sds/1/6/db/week08/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week08/
+
+  - title: "Week 09"
+    url: /sds/1/6/db/week09/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week09/
+
+  - title: "Week 10"
+    url: /sds/1/6/db/week10/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week10/
+
+  - title: "Week 11"
+    url: /sds/1/6/db/week02/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week02/
+
+  - title: "Week 12"
+    url: /sds/1/6/db/week02/
+    children:
+      - title: ""
+        url: /sds/1/6/db/week02/
