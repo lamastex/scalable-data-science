@@ -34,7 +34,7 @@ databricksDBCSource f x = concatMapM (uncurry databricksJSONSource) jsonFiles
         jsonPaths = filter isJSON (Zip.filesInArchive archive)
         isJSON :: FilePath -> Bool
         isJSON f = let f' = map C.toLower f
-                   in any (`isSuffixOf` f') [".scala", ".py", ".R"]
+                   in any (`isSuffixOf` f') [".scala", ".py", ".r", ".sql"]
         jsonFiles = map extract jsonPaths
         extract f = let Just e = Zip.findEntryByPath f archive
                     in (f, Zip.fromEntry e)

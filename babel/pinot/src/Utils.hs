@@ -1,7 +1,6 @@
 {-# LANGUAGE FlexibleInstances #-}
 module Utils where
-import Data.Default (def)
-import qualified Data.Default as D
+import Data.Default
 import Data.Text (Text, unpack)
 import qualified Data.Text as T
 import Data.Traversable (mapAccumL)
@@ -15,6 +14,9 @@ import qualified Data.HashMap.Lazy as H
 -- import qualified Text.Pandoc.Builder as P
 import Control.Lens hiding ((.=))
 import qualified Notebook as N
+
+import Data.UUID (UUID)
+import qualified Data.UUID as UUID
 
 import System.FilePath ((</>), takeDirectory, dropExtension)
 import System.Directory (createDirectoryIfMissing, doesDirectoryExist)
@@ -46,3 +48,13 @@ ensureCanBeCreated f =
 
 swapExtension :: String -> FilePath -> FilePath
 swapExtension to f = (dropExtension f) ++ to
+
+-- instance ToJSON UUID where
+--   toJSON uid = toJSON (UUID.toString uid)
+--   toEncoding uid = toEncoding (UUID.toString uid)
+
+-- instance FromJSON UUID where
+--   parseJSON js = UUID.fromString (parseJSON js)
+
+instance Default UUID where
+  def = UUID.nil

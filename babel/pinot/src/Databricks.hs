@@ -2,9 +2,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Databricks where
 
-import Data.Default (def)
-import qualified Data.Default as D
+import Data.Default
 import Data.Text (Text, unpack)
+import Data.UUID as UUID
 import qualified Data.Text as T
 import Data.Aeson
 import Data.Monoid ((<>))
@@ -33,15 +33,15 @@ data DBNotebook = DBN { _dbnCommands     :: [DBCommand]
                       , _dbnIPythonMeta  :: Maybe Value
                       , _dbnInputWidgets :: Maybe Value
                       , _dbnName         :: Text
-                      , _dbnGuid         :: Maybe Text
+                      , _dbnGuid         :: UUID
                       , _dbnVersion      :: Maybe Value -- some sort of enum
                       , _dbnLanguage     :: Text
                       , _dbnGlobalVars   :: Maybe Value
                       , _dbnOrigID       :: Maybe Value } -- Integer?
   deriving Show
 
-instance D.Default DBNotebook where
-  def = DBN [] Nothing Nothing Nothing "" Nothing Nothing "md" Nothing Nothing
+instance Default DBNotebook where
+  def = DBN [] Nothing Nothing Nothing "" def Nothing "md" Nothing Nothing
 
 data DBCommand = DBC { _dbcCustomPlotOptions :: Maybe Value
                      , _dbcErrorSummary      :: Maybe Value
@@ -64,7 +64,7 @@ data DBCommand = DBC { _dbcCustomPlotOptions :: Maybe Value
                      , _dbcSubtype           :: Maybe Value
                      , _dbcYColumns          :: Maybe Value
                      , _dbcShowCommandTitle  :: Maybe Value
-                     , _dbcGuid              :: Maybe Text
+                     , _dbcGuid              :: UUID
                      , _dbcCommandType       :: Maybe Value
                      , _dbcCollapsed         :: Maybe Value
                      , _dbcVersion           :: Maybe Value
@@ -82,14 +82,14 @@ data DBCommand = DBC { _dbcCustomPlotOptions :: Maybe Value
                      , _dbcOrigId            :: Maybe Value
                      , _dbcSubmitTime        :: Maybe Value
                      , _dbcDiffInserts       :: Maybe Value
-                     , _dbcPosition          :: Maybe Value }
+                     , _dbcPosition          :: Double }
   deriving Show
 
 makeLenses ''DBNotebook
 makeLenses ''DBCommand
 
-instance D.Default DBCommand where
-  def = DBC Nothing Nothing Nothing Nothing Nothing Nothing "" Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing
+instance Default DBCommand where
+  def = DBC Nothing Nothing Nothing Nothing Nothing Nothing "" Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing def Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing 0
 
 instance ToJSON DBCommand where
   toJSON dbc = objectMaybe [ "customPlotOptions" .=? (dbc^.dbcCustomPlotOptions)
@@ -113,7 +113,7 @@ instance ToJSON DBCommand where
                            , "subtype" .=? (dbc^.dbcSubtype)
                            , "yColumns" .=? (dbc^.dbcYColumns)
                            , "showCommandTitle" .=? (dbc^.dbcShowCommandTitle)
-                           , "guid" .=? (dbc^.dbcGuid)
+                           , "guid" .= (dbc^.dbcGuid)
                            , "commandType" .=? (dbc^.dbcCommandType)
                            , "collapsed" .=? (dbc^.dbcCollapsed)
                            , "version" .=? (dbc^.dbcVersion)
@@ -131,7 +131,7 @@ instance ToJSON DBCommand where
                            , "origId" .=? (dbc^.dbcOrigId)
                            , "submitTime" .=? (dbc^.dbcSubmitTime)
                            , "diffInserts" .=? (dbc^.dbcDiffInserts)
-                           , "position" .=? (dbc^.dbcPosition) ]
+                           , "position" .= (dbc^.dbcPosition) ]
 
   toEncoding dbc = pairs ( "customPlotOptions" .=? (dbc^.dbcCustomPlotOptions)
                            <> "errorSummary" .=? (dbc^.dbcErrorSummary)
@@ -154,7 +154,7 @@ instance ToJSON DBCommand where
                            <> "subtype" .=? (dbc^.dbcSubtype)
                            <> "yColumns" .=? (dbc^.dbcYColumns)
                            <> "showCommandTitle" .=? (dbc^.dbcShowCommandTitle)
-                           <> "guid" .=? (dbc^.dbcGuid)
+                           <> "guid" .= (dbc^.dbcGuid)
                            <> "commandType" .=? (dbc^.dbcCommandType)
                            <> "collapsed" .=? (dbc^.dbcCollapsed)
                            <> "version" .=? (dbc^.dbcVersion)
@@ -172,7 +172,7 @@ instance ToJSON DBCommand where
                            <> "origId" .=? (dbc^.dbcOrigId)
                            <> "submitTime" .=? (dbc^.dbcSubmitTime)
                            <> "diffInserts" .=? (dbc^.dbcDiffInserts)
-                           <> "position" .=? (dbc^.dbcPosition) )
+                           <> "position" .= (dbc^.dbcPosition) )
 
 instance FromJSON DBCommand where
   parseJSON = withObject "DBCommand" $ \v -> DBC
@@ -269,7 +269,7 @@ toNotebook db = N.N (db^.dbnName) (toCommands (db^.dbnCommands))
             Nothing   -> N.C (db^.dbnLanguage) rawCommand
             Just lang -> N.C lang rawCommand
         splitLangTag unparsedCommand =
-          if unparsedCommand `T.index` 0 == '%'
+          if (not $ T.null unparsedCommand) && unparsedCommand `T.index` 0 == '%'
           then let (x:xs) = T.lines unparsedCommand
                in (Just (T.stripEnd . T.tail $ x), T.unlines xs)
           else (Nothing, unparsedCommand)

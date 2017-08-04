@@ -16,6 +16,7 @@ import qualified Data.ByteString.Lazy as B
 import qualified Data.HashMap.Lazy as H
 -- import qualified Text.Pandoc.Builder as P
 import Control.Lens hiding ((.=))
+import Data.Default
 import Utils
 import qualified Notebook as N
 
@@ -184,7 +185,7 @@ toNotebook zn = N.N (zn^.znName) (toCommands (zn^.znParagraphs))
             Nothing   -> (prev, N.C prev rawCommand)
             Just lang -> (lang, N.C lang rawCommand)
         splitLangTag unparsedCommand =
-          if unparsedCommand `T.index` 0 == '%'
+          if (not $ T.null unparsedCommand) && unparsedCommand `T.index` 0 == '%'
           then let (x:xs) = T.lines unparsedCommand
                in (Just (T.stripEnd . T.tail $ x), T.unlines xs)
           else (Nothing, unparsedCommand)
