@@ -22,6 +22,7 @@ import qualified Notebook as N
 import Codec.Archive.Zip as Zip
 import qualified Data.Char as C (toLower)
 import qualified Text.Pandoc.Readers.HTML as P
+import qualified Data.Vector as V
 
 -- jsonType :: Value -> String
 -- jsonType (Object _) = "Object"
@@ -304,17 +305,36 @@ toNotebook db = N.N (db^.dbnName) (toCommands (db^.dbnCommands))
         toCommand :: DBCommand -> N.Command
         toCommand dbc =
           let (langTag, rawCommand) = splitLangTag (dbc^.dbcCommand)
-              result = do
-                dbr <- dbc^.dbcResults
-                tp  <- dbr^.dbrType
-                unless (tp == String "html") Nothing
-                d  <- dbc^.dbcResults
-                d' <- d^.dbrData
+              result = do r <- dbc^.dbcResults
+                          t <- r^.dbrType
+                          if (t `L.elem` [String "html", String "htmlSandbox"])
+                            then parseHTML r
+                            else if (t == String "table")
+                                 then parseTable r
+                                 else Nothing
+              parseHTML r = do
+                d' <- r^.dbrData
                 case d' of
                   String t ->
                     case P.readHtml def (T.unpack $ t) of
                       Right (P.Pandoc _ bs) -> return (N.RSuccess (blocks bs))
                       _ -> Nothing
+                  _ -> Nothing
+              parseTable r = do
+                d' <- r^.dbrData
+                case d' of
+                  Array arr -> do
+                    let trunc' (Array row) = mapM trunc'' (V.toList (V.take 12 row))
+                        trunc' _ = Nothing
+                        trunc'' (Number cell) = Just (P.plain (P.str (show cell)))
+                        trunc'' (String cell) = Just (P.plain (P.str (T.unpack cell)))
+                        trunc'' _ = Nothing
+                        wasRowTrunc = V.length arr > 30
+                        wasColTrunc = V.any (\(Array row) -> V.length row > 12) arr
+                    trunc <- mapM trunc' (V.toList (V.take 30 arr))
+                    case trunc of
+                      [] -> Nothing
+                      (x:xs) -> return (N.RSuccess (P.simpleTable x xs <> (if wasRowTrunc then P.para (P.str "Truncated to 30 rows") else mempty) <> (if wasColTrunc then P.para (P.str "Truncated to 12 cols") else mempty)))
                   _ -> Nothing
           in case langTag of
                Nothing   -> N.C (db^.dbnLanguage) rawCommand result

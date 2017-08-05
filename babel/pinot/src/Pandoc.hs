@@ -5,6 +5,7 @@ import qualified Data.ByteString.Lazy as B hiding (pack)
 import qualified Data.ByteString.Lazy.Char8 as B
 
 import qualified Text.Pandoc.Builder as P
+import qualified Text.Pandoc.Options as P
 import qualified Text.Pandoc.Readers.Markdown as P
 import qualified Text.Pandoc.Writers.Markdown as P
 
@@ -31,4 +32,4 @@ fromNotebook nb = P.setTitle title $ P.doc $ foldMap block (nb^.nCommands)
                   in P.codeBlock (T.unpack (c^.cCommand)) P.<> result
 
 toMarkdown :: P.Pandoc -> B.ByteString
-toMarkdown = B.pack . P.writeMarkdown def
+toMarkdown = B.pack . P.writeMarkdown (def { P.writerExtensions = P.githubMarkdownExtensions })
