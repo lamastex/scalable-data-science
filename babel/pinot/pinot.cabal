@@ -18,3 +18,5 @@ executable pinot
   main-is:             Main.hs
   default-language:    Haskell2010
   build-depends:       aeson, base >= 4.7 && < 5, bytestring, containers, data-default, directory, filepath, lens, optparse-applicative, pandoc, pandoc-types, path, path-io, text, unordered-containers, zip-archive, uuid
+  other-modules:       Databricks, Notebook, Pandoc, Utils, Zeppelin
+

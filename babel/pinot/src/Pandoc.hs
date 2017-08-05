@@ -15,6 +15,7 @@ import Control.Lens
 import qualified Data.Sequence as S
 
 import Notebook as N
+import Utils
 
 import Data.Text as T
 
@@ -24,8 +25,10 @@ fromNotebook nb = P.setTitle title $ P.doc $ foldMap block (nb^.nCommands)
         block c | c^.cLanguage == "md" =
                   let parsed = P.readMarkdown def (T.unpack (c^.cCommand))
                       P.Pandoc _ bs = either (error . show) id parsed
-                  in foldMap (P.Many . S.singleton) bs
-                | otherwise = P.codeBlock (T.unpack (c^.cCommand))
+                  in blocks bs
+                | otherwise =
+                  let result = maybe mempty P.blockQuote (N.success c)
+                  in P.codeBlock (T.unpack (c^.cCommand)) P.<> result
 
 toMarkdown :: P.Pandoc -> B.ByteString
 toMarkdown = B.pack . P.writeMarkdown def

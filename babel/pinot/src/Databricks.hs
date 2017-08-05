@@ -1,11 +1,14 @@
-{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TupleSections #-}
+{-# LANGUAGE TemplateHaskell #-}
 module Databricks where
 
 import Data.Default
 import Data.Text (Text, unpack)
-import Data.UUID as UUID
+import qualified Data.List as L
+import qualified Data.UUID as UUID
 import qualified Data.Text as T
+import Data.Maybe (fromJust)
 import Data.Aeson
 import Data.Monoid ((<>))
 import Data.Traversable (mapAccumL)
@@ -13,8 +16,12 @@ import qualified Data.ByteString.Lazy as B
 import qualified Data.HashMap.Lazy as H
 import qualified Text.Pandoc.Builder as P
 import Control.Lens hiding ((.=))
+import Control.Monad (when, unless)
 import Utils
 import qualified Notebook as N
+import Codec.Archive.Zip as Zip
+import qualified Data.Char as C (toLower)
+import qualified Text.Pandoc.Readers.HTML as P
 
 -- jsonType :: Value -> String
 -- jsonType (Object _) = "Object"
@@ -33,7 +40,7 @@ data DBNotebook = DBN { _dbnCommands     :: [DBCommand]
                       , _dbnIPythonMeta  :: Maybe Value
                       , _dbnInputWidgets :: Maybe Value
                       , _dbnName         :: Text
-                      , _dbnGuid         :: UUID
+                      , _dbnGuid         :: UUID.UUID
                       , _dbnVersion      :: Maybe Value -- some sort of enum
                       , _dbnLanguage     :: Text
                       , _dbnGlobalVars   :: Maybe Value
@@ -50,7 +57,7 @@ data DBCommand = DBC { _dbcCustomPlotOptions :: Maybe Value
                      , _dbcCommandTitle      :: Maybe Text
                      , _dbcState             :: Maybe Value
                      , _dbcCommand           :: Text
-                     , _dbcResults           :: Maybe Value
+                     , _dbcResults           :: Maybe DBResult
                      , _dbcCommandVersion    :: Maybe Value
                      , _dbcXColumns          :: Maybe Value
                      , _dbcStartTime         :: Maybe Value
@@ -64,7 +71,7 @@ data DBCommand = DBC { _dbcCustomPlotOptions :: Maybe Value
                      , _dbcSubtype           :: Maybe Value
                      , _dbcYColumns          :: Maybe Value
                      , _dbcShowCommandTitle  :: Maybe Value
-                     , _dbcGuid              :: UUID
+                     , _dbcGuid              :: UUID.UUID
                      , _dbcCommandType       :: Maybe Value
                      , _dbcCollapsed         :: Maybe Value
                      , _dbcVersion           :: Maybe Value
@@ -85,8 +92,40 @@ data DBCommand = DBC { _dbcCustomPlotOptions :: Maybe Value
                      , _dbcPosition          :: Double }
   deriving Show
 
+data DBResult = DBR { _dbrAddedWidgets   :: Maybe Value
+                    , _dbrData           :: Maybe Value
+                    , _dbrArguments      :: Maybe Value
+                    , _dbrRemovedWidgets :: Maybe Value
+                    , _dbrType           :: Maybe Value }
+  deriving Show
+
 makeLenses ''DBNotebook
 makeLenses ''DBCommand
+makeLenses ''DBResult
+
+instance Default DBResult where
+  def = DBR Nothing Nothing Nothing Nothing Nothing
+
+instance ToJSON DBResult where
+  toJSON dbr = objectMaybe [ "addedWidgets" .=? (dbr^.dbrAddedWidgets)
+                           , "data" .=? (dbr^.dbrData)
+                           , "arguments" .=? (dbr^.dbrArguments)
+                           , "removedWidgets" .=? (dbr^.dbrRemovedWidgets)
+                           , "type" .=? (dbr^.dbrType) ]
+
+  toEncoding dbr = pairs ( "addedWidgets" .=? (dbr^.dbrAddedWidgets)
+                           <> "data" .=? (dbr^.dbrData)
+                           <> "arguments" .=? (dbr^.dbrArguments)
+                           <> "removedWidgets" .=? (dbr^.dbrRemovedWidgets)
+                           <> "type" .=? (dbr^.dbrType) )
+
+instance FromJSON DBResult where
+  parseJSON = withObject "DBResult" $ \v -> DBR
+    <$> v .:? "addedWidgets"
+    <*> v .:? "data"
+    <*> v .:? "arguments"
+    <*> v .:? "removedWidgets"
+    <*> v .:? "type"
 
 instance Default DBCommand where
   def = DBC Nothing Nothing Nothing Nothing Nothing Nothing "" Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing def Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing 0
@@ -264,23 +303,45 @@ toNotebook db = N.N (db^.dbnName) (toCommands (db^.dbnCommands))
   where toCommands = map toCommand
         toCommand :: DBCommand -> N.Command
         toCommand dbc =
-          let (langTag, rawCommand) = splitLangTag (dbc^.dbcCommand) in
-          case langTag of
-            Nothing   -> N.C (db^.dbnLanguage) rawCommand
-            Just lang -> N.C lang rawCommand
+          let (langTag, rawCommand) = splitLangTag (dbc^.dbcCommand)
+              result = do
+                dbr <- dbc^.dbcResults
+                tp  <- dbr^.dbrType
+                unless (tp == String "html") Nothing
+                d  <- dbc^.dbcResults
+                d' <- d^.dbrData
+                case d' of
+                  String t ->
+                    case P.readHtml def (T.unpack $ t) of
+                      Right (P.Pandoc _ bs) -> return (N.RSuccess (blocks bs))
+                      _ -> Nothing
+                  _ -> Nothing
+          in case langTag of
+               Nothing   -> N.C (db^.dbnLanguage) rawCommand result
+               Just lang -> N.C lang rawCommand result
         splitLangTag unparsedCommand =
-          if (not $ T.null unparsedCommand) && unparsedCommand `T.index` 0 == '%'
+          if maybe False (== '%') (unparsedCommand `safeIndex` 0)
           then let (x:xs) = T.lines unparsedCommand
                in (Just (T.stripEnd . T.tail $ x), T.unlines xs)
           else (Nothing, unparsedCommand)
 
 fromNotebook :: N.Notebook -> DBNotebook
-fromNotebook nb = runMeN def
-  where runMeN = foldl1 (.) [ dbnName .~ (nb^.N.nName)
-                            , dbnCommands .~ map toNBCommand (nb^.N.nCommands) ]
-        toNBCommand nc = runMeC def
-          where runMeC = dbcCommand .~ addLang (nc^.N.cLanguage) (nc^.N.cCommand)
-                addLang l c = T.unlines [ T.cons '%' l, c ]
+fromNotebook nb = defWith [ dbnName .~ (nb^.N.nName)
+                          , dbnCommands .~ map toNBCommand (nb^.N.nCommands) ]
+  where toNBCommand nc =
+          defWith [ dbcCommand .~ addLang (nc^.N.cLanguage) (nc^.N.cCommand) ]
+        addLang l c = T.unlines [ T.cons '%' l, c ]
+
+fromByteStringArchive :: B.ByteString -> Either String [(FilePath, DBNotebook)]
+fromByteStringArchive x = mapM (\f -> (f,) <$> getNotebook f) jsonPaths
+  where archive = Zip.toArchive x
+        jsonPaths = filter isJSON (Zip.filesInArchive archive)
+        isJSON f = let f' = map C.toLower f
+                   in any (`L.isSuffixOf` f') [".scala", ".py", ".r", ".sql"]
+        getNotebook f = fromByteString $
+                        Zip.fromEntry $
+                        fromJust $
+                        Zip.findEntryByPath f archive
 
 -- main :: IO ()
 -- main = do

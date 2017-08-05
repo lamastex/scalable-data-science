@@ -11,9 +11,10 @@ import Data.Maybe (catMaybes)
 import Control.Applicative ((<|>))
 import qualified Data.ByteString.Lazy as B
 import qualified Data.HashMap.Lazy as H
--- import qualified Text.Pandoc.Builder as P
+import qualified Text.Pandoc.Builder as P
 import Control.Lens hiding ((.=))
 import qualified Notebook as N
+import qualified Data.Sequence as S
 
 import Data.UUID (UUID)
 import qualified Data.UUID as UUID
@@ -58,3 +59,12 @@ swapExtension to f = (dropExtension f) ++ to
 
 instance Default UUID where
   def = UUID.nil
+
+defWith :: (Default c, Foldable t) => t (c -> c) -> c
+defWith fs = foldl (.) id fs def
+
+safeIndex :: Text -> Int -> Maybe Char
+safeIndex t i = if T.length t > i then Just (t `T.index` i) else Nothing
+
+blocks :: [P.Block] -> P.Blocks
+blocks = foldMap (P.Many . S.singleton)

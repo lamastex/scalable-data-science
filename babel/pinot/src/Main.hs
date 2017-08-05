@@ -8,12 +8,9 @@ import qualified Data.ByteString.Lazy as B hiding (putStrLn)
 import qualified Data.ByteString.Lazy.Char8 as B (putStrLn)
 import qualified Data.Text.IO as T
 import Data.Monoid ((<>))
-import qualified Data.Char as C (toLower)
 import Data.List (isSuffixOf)
 import Control.Monad (when, forM_)
 import System.FilePath ((</>))
-
-import Codec.Archive.Zip as Zip
 
 import Control.Lens
 
@@ -29,15 +26,16 @@ type SourceFormat = String -> B.ByteString -> Either String [(String, N.Notebook
 type TargetFormat = [(String, N.Notebook)] -> [(String, B.ByteString)]
 
 databricksDBCSource :: SourceFormat
-databricksDBCSource f x = concatMapM (uncurry databricksJSONSource) jsonFiles
-  where archive = Zip.toArchive x
-        jsonPaths = filter isJSON (Zip.filesInArchive archive)
-        isJSON :: FilePath -> Bool
-        isJSON f = let f' = map C.toLower f
-                   in any (`isSuffixOf` f') [".scala", ".py", ".r", ".sql"]
-        jsonFiles = map extract jsonPaths
-        extract f = let Just e = Zip.findEntryByPath f archive
-                    in (f, Zip.fromEntry e)
+databricksDBCSource f x = over (each . _2) D.toNotebook <$> fromByteStringArchive x
+-- databricksDBCSource f x = concatMapM (uncurry databricksJSONSource) jsonFiles
+--   where archive = Zip.toArchive x
+--         jsonPaths = filter isJSON (Zip.filesInArchive archive)
+--         isJSON :: FilePath -> Bool
+--         isJSON f = let f' = map C.toLower f
+--                    in any (`isSuffixOf` f') [".scala", ".py", ".r", ".sql"]
+--         jsonFiles = map extract jsonPaths
+--         extract f = let Just e = Zip.findEntryByPath f archive
+--                     in (f, Zip.fromEntry e)
 
 databricksJSONSource :: SourceFormat
 databricksJSONSource f x = (singleton . D.toNotebook) <$> D.fromByteString x

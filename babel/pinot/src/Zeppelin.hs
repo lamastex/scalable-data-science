@@ -168,12 +168,10 @@ toByteString :: ZeppelinNotebook -> B.ByteString
 toByteString = encode
 
 fromNotebook :: N.Notebook -> ZeppelinNotebook
-fromNotebook nb = runMeN def
-  where runMeN = foldl1 (.) [ znName .~ (nb^.N.nName)
-                            , znParagraphs .~ map toZParagraph (nb^.N.nCommands) ]
-        toZParagraph nc = runMeP def
-          where runMeP = zpText .~ addLang (nc^.N.cLanguage) (nc^.N.cCommand)
-                addLang l c = T.unlines [ T.cons '%' l, c ]
+fromNotebook nb = defWith [ znName .~ (nb^.N.nName)
+                          , znParagraphs .~ map toZParagraph (nb^.N.nCommands) ]
+  where toZParagraph nc = defWith [zpText .~ addLang (nc^.N.cLanguage) (nc^.N.cCommand)]
+        addLang l c = T.unlines [ T.cons '%' l, c ]
 
 toNotebook :: ZeppelinNotebook -> N.Notebook
 toNotebook zn = N.N (zn^.znName) (toCommands (zn^.znParagraphs))
@@ -182,10 +180,10 @@ toNotebook zn = N.N (zn^.znName) (toCommands (zn^.znParagraphs))
         toCommand prev zp =
           let (langTag, rawCommand) = splitLangTag (zp^.zpText) in
           case langTag of
-            Nothing   -> (prev, N.C prev rawCommand)
-            Just lang -> (lang, N.C lang rawCommand)
+            Nothing   -> (prev, N.C prev rawCommand Nothing)
+            Just lang -> (lang, N.C lang rawCommand Nothing)
         splitLangTag unparsedCommand =
-          if (not $ T.null unparsedCommand) && unparsedCommand `T.index` 0 == '%'
+          if maybe False (== '%') (unparsedCommand `safeIndex` 0)
           then let (x:xs) = T.lines unparsedCommand
                in (Just (T.stripEnd . T.tail $ x), T.unlines xs)
           else (Nothing, unparsedCommand)
