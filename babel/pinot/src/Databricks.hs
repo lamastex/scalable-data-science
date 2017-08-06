@@ -15,6 +15,7 @@ import Data.Traversable (mapAccumL)
 import qualified Data.ByteString.Lazy as B
 import qualified Data.HashMap.Lazy as H
 import qualified Text.Pandoc.Builder as P
+import qualified Text.Pandoc.Options as P
 import Control.Lens hiding ((.=))
 import Control.Monad (when, unless)
 import Utils
@@ -307,17 +308,17 @@ toNotebook db = N.N (db^.dbnName) (toCommands (db^.dbnCommands))
           let (langTag, rawCommand) = splitLangTag (dbc^.dbcCommand)
               result = do r <- dbc^.dbcResults
                           t <- r^.dbrType
-                          if (t `L.elem` [String "html", String "htmlSandbox"])
-                            then parseHTML r
-                            else if (t == String "table")
-                                 then parseTable r
-                                 else Nothing
-              parseHTML r = do
+                          case t of
+                            String "html" -> parseHTML True r
+                            String "htmlSandbox" -> parseHTML False r
+                            String "table" -> parseTable r
+                            _ -> Nothing
+              parseHTML quote r = do
                 d' <- r^.dbrData
                 case d' of
                   String t ->
-                    case P.readHtml def (T.unpack $ t) of
-                      Right (P.Pandoc _ bs) -> return (N.RSuccess (blocks bs))
+                    case P.readHtml (def {P.readerParseRaw = True}) (T.unpack $ t) of
+                      Right (P.Pandoc _ bs) -> if quote then return (N.RSuccess (P.blockQuote (blocks bs))) else return (N.RSuccess (blocks bs))
                       _ -> Nothing
                   _ -> Nothing
               parseTable r = do

@@ -28,7 +28,7 @@ fromNotebook nb = P.setTitle title $ P.doc $ foldMap block (nb^.nCommands)
                       P.Pandoc _ bs = either (error . show) id parsed
                   in blocks bs
                 | otherwise =
-                  let result = maybe mempty P.blockQuote (N.success c)
+                  let result = maybe mempty id (N.success c)
                   in P.codeBlock (T.unpack (c^.cCommand)) P.<> result
 
 toMarkdown :: P.Pandoc -> B.ByteString
