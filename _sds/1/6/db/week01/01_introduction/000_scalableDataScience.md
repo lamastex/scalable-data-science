@@ -5,6 +5,6 @@ sidebar:
   nav: "lMenu-SDS-1.6"
 ---
 
-[databricks-notebook](/db/week1/01_introduction/000_scalableDataScience.html)
+[databricks-notebook](https://lamastex.github.io/scalable-data-science/db/week1/01_introduction/000_scalableDataScience.html)
 
-<iframe src="/db/week1/01_introduction/000_scalableDataScience.html" frameborder="0" id="mainPageBody" width="1080px" height="1080px"></iframe>
+<iframe src="https://lamastex.github.io/scalable-data-science/db/week1/01_introduction/000_scalableDataScience.html" frameborder="0" id="mainPageBody" width="1080px" height="1080px"></iframe>
