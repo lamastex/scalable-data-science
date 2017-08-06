@@ -116,6 +116,7 @@ author:
 include:
   - .htaccess
   - _pages
+  - db
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -150,7 +151,7 @@ exclude:
   - /bin
   - /datasets
   - /zp
-  - /db
+#  - /db
   - /dev
   - /meme-evolution
   - /babel
