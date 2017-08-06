@@ -309,17 +309,22 @@ toNotebook db = N.N (db^.dbnName) (toCommands (db^.dbnCommands))
               result = do r <- dbc^.dbcResults
                           t <- r^.dbrType
                           case t of
-                            String "html" -> parseHTML True r
-                            String "htmlSandbox" -> parseHTML False r
+                            String "html" -> parseHTML r
+                            String "htmlSandbox" -> parseRaw r
                             String "table" -> parseTable r
                             _ -> Nothing
-              parseHTML quote r = do
+              parseHTML r = do
                 d' <- r^.dbrData
                 case d' of
                   String t ->
                     case P.readHtml (def {P.readerParseRaw = True}) (T.unpack $ t) of
-                      Right (P.Pandoc _ bs) -> if quote then return (N.RSuccess (P.blockQuote (blocks bs))) else return (N.RSuccess (blocks bs))
+                      Right (P.Pandoc _ bs) -> return (N.RSuccess (P.blockQuote (blocks bs)))
                       _ -> Nothing
+                  _ -> Nothing
+              parseRaw r = do
+                d' <- r^.dbrData
+                case d' of
+                  String t -> return (N.RSuccess (P.rawBlock "HTML" (T.unpack t)))
                   _ -> Nothing
               parseTable r = do
                 d' <- r^.dbrData
