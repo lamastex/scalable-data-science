@@ -15,6 +15,7 @@ sidebar:
 * [How to use Git and GitHub: Version control for code](https://www.udacity.com/course/how-to-use-git-and-github--ud775)
 
 * Scala
+	* [scala cheat sheet](scala/CheatSheet/)
 	* [scala basics in a hurry](http://www.dhgarrette.com/nlpclass/scala/basics.html)
 	* [Scala School! by twitter](http://twitter.github.io/scala_school/)
 		* [Scala School! build yourself from scratch](https://github.com/twitter/scala_school)
