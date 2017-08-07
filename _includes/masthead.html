@@ -1,0 +1,30 @@
+{% if site.logo contains '://' %}
+  {% assign site_logo = site.logo %}
+{% else %}
+  {% assign site_logo = site.logo | relative_url %}
+{% endif %}
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="{{ '/' | absolute_url }}">
+          {% if site.logo %}<img src="{{ site_logo }}" alt="" class="site-logo">{% endif %}
+          <span>{{ site.title }}</span>
+        </a>
+        <ul class="visible-links">
+          {% for link in site.data.navigation.main %}
+            {% if link.url contains 'http' %}
+              {% assign domain = '' %}
+            {% else %}
+              {% assign domain = site.url | append: site.baseurl %}
+            {% endif %}
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

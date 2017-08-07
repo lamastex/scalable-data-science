@@ -1,3 +1,4 @@
 {
-	"plugins": ["katex"]
+ "root": "./book",
+ "plugins": ["katex"]
 }

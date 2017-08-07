@@ -1,0 +1,32 @@
+# Authors
+
+Dan Strangberg:
+  name        : "Dan Strangberg"
+  linkedin    : "dan-str%C3%A4ngberg-a2ab8096"
+  avatar      : "/assets/images/danStrangberg-bio-photo.jpg"
+
+Tilo Wiklund:
+  name        : "Tilo Wiklund"
+  linkedin    : "tilo-wiklund-682aa496"
+
+Alexey Siretskiy:
+  name        : "Alexey Siretskiy"
+  linkedin    : "alexey-siretskiy-254992a7"
+  avatar      : "/assets/images/AlexeySiretskiy-bio-photo.jpeg"
+
+Billy Rick:
+  name        : "Billy Rick"
+  uri         : "http://thewhip.com"
+  email       : "billy@rick.com"
+  bio         : "What do you want, jewels? I am a very extravagant man."
+  avatar      : "/assets/images/bio-photo-2.jpg"
+  twitter     : "extravagantman"
+  google_plus : "BillyRick"
+
+Cornelius Fiddlebone:
+  name        : "Cornelius Fiddlebone"
+  email       : "cornelius@thewhip.com"
+  bio         : "I ordered what?"
+  avatar      : "/assets/images/bio-photo.jpg"
+  twitter     : "rhymeswithsackit"
+  google_plus : "CorneliusFiddlebone"
