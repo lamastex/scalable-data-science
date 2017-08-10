@@ -41,11 +41,12 @@ lMenu-SDS-2.2:
         url: /sds/basics/infrastructure/local/
       - title: "On-Premise Cluster"
         url: /sds/basics/infrastructure/onpremise/
-  - title: "Contents"
-  - title: "databricks"
-    url: /sds/2/2/db/
-  - title: "zeppelin"
-    url: /sds/2/zp/
+  - title: "Contents-databricks"
+    children:
+      - title: "Introduction"
+        url: /sds/2/2/db/000_scalableDataScience/
+  - title: "Contents-zeppelin"
+    url: /sds/2/2/zp/
   - title: "sbt"
     url: /sds/2/sbt/
   - title: "SDS-1.6 Course"
