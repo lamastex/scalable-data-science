@@ -6,15 +6,47 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # The Berkeley Data Analytics Stack is BDAS
-// MAGIC ## Spark is a sub-stack of BDAS
+// MAGIC # Why Apache Spark?
+// MAGIC 
+// MAGIC * [Apache Spark: A Unified Engine for Big Data Processing](https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext) By Matei Zaharia, Reynold S. Xin, Patrick Wendell, Tathagata Das, Michael Armbrust, Ankur Dave, Xiangrui Meng, Josh Rosen, Shivaram Venkataraman, Michael J. Franklin, Ali Ghodsi, Joseph Gonzalez, Scott Shenker, Ion Stoica 
+// MAGIC Communications of the ACM, Vol. 59 No. 11, Pages 56-65
+// MAGIC 10.1145/2934664
+// MAGIC 
+// MAGIC [![Apache Spark ACM Video](https://i.vimeocdn.com/video/597494216_640.jpg)](https://player.vimeo.com/video/185645796)
+// MAGIC 
+// MAGIC Right-click the above image-link, open in a new tab and watch the video (4 minutes) or read about it in the Communications of the ACM in the frame below or from the link above.
+
+// COMMAND ----------
+
+//This allows easy embedding of publicly available information into any other notebook
+//Example usage:
+// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
+def frameIt( u:String, h:Int ) : String = {
+      """<iframe 
+ src=""""+ u+""""
+ width="95%" height="""" + h + """">
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>"""
+   }
+displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext",600))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Some BDAS History behind Apache Spark
+// MAGIC ## The Berkeley Data Analytics Stack is BDAS
+// MAGIC ### Spark is a sub-stack of BDAS
 // MAGIC **Source:** 
 // MAGIC * [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
 // MAGIC * [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
 // MAGIC 
 // MAGIC ### BDAS State of The Union Talk by Ion Stoica, AMP Camp 6, Nov 2015 
 // MAGIC The followign talk outlines the motivation and insights behind BDAS' research approach and how they address the cross-disciplinary nature of Big Data challenges and current work.
-// MAGIC * **watch now (5 mins.):** 
+// MAGIC * **watch later (5 mins.):** 
 // MAGIC 
 // MAGIC [![Ion Stoica on State of Spark Union AmpCamp6](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/v/s7kj9XzRBQk?rel=0&autoplay=1&modestbranding=1&start=91&end=386)
 // MAGIC  
