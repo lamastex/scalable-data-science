@@ -45,6 +45,12 @@ lMenu-SDS-2.2:
     children:
       - title: "Introduction"
         url: /sds/2/2/db/000_scalableDataScience/
+      - title: "Why Spark?"
+        url: /sds/2/2/db/001_whySpark/
+      - title: "Login to databricks"
+        url: /sds/2/2/db/002_loginToDatabricks/
+      - title: "Scala Crash Course"
+        url: /sds/2/2/db/003_scalaCrashCourse/
   - title: "Contents-zeppelin"
     url: /sds/2/2/zp/
   - title: "sbt"
