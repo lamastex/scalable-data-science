@@ -21,13 +21,16 @@ raazesh-Inspiron-15-7579
 Sun Oct  9 06:48:29 NZDT 2016
 
 
-    Start the docker daemon.
+Start the docker daemon (if not already running).
+------------------------
 
-     $ sudo service docker start
+```%sh
+$ sudo service docker start
+```
 
-    Verify docker is installed correctly.
+Verify docker is installed correctly.
+--------------------------------------------
 
-     $ sudo docker run hello-world
 
 This command downloads a test image and runs it in a container. When the container runs, it prints an informational message. Then, it exits.
 --------------------------------------------
@@ -138,9 +141,6 @@ CMD /usr/games/fortune -a | cowsay
 
 ## Create Docker Hub Account and Tag, Push and Pull your image
 
-From
- * https://docs.docker.com/engine/getstarted/step_five/
- * https://docs.docker.com/engine/getstarted/step_six/
 
 ```
   335  docker images
