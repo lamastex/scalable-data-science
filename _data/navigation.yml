@@ -52,9 +52,7 @@ lMenu-SDS-2.2:
       - title: "Scala Crash Course"
         url: /sds/2/2/db/003_scalaCrashCourse/
   - title: "Contents-zeppelin"
-    url: /sds/2/2/zp/
   - title: "sbt"
-    url: /sds/2/sbt/
   - title: "SDS-1.6 Course"
     url: /sds/1/6/
 
