@@ -14,7 +14,7 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 This programme is partly supported by:
 
-* [databricks academic partners program](https://academics.cloud.databricks.com) (for distributed cloud computing
+* [databricks academic partners program](https://academics.cloud.databricks.com) for distributed cloud computing
 * research time for this project was party due to:
 	* 2009-2015 by industrial consulting revenues of Raazesh Sainudiin
 	* 2015, 2016 by the project [CORCON: Correctness by Construction](http://corcon.net/about/), Seventh Framework Programme of the European Union, Marie Curie Actions-People, International Research Staff Exchange Scheme with counter-part funding by The Royal Society of New Zealand 
