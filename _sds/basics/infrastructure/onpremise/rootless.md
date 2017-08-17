@@ -235,6 +235,8 @@ First add the following to the file `[hadoop]/etc/hadoop/yarn-site.xml`:
 </property>
 ```
 
+Next add `export JAVA_HOME=[jre]` to the file `[hadoop]/etc/hadoop/yarn-env.sh` where `[jre]` is the JRE root folder.
+
 ### Starting YARN
 
 Start YARN by running `[hadoop]/sbin/start-yarn.sh` from the master. To check that YARN is running try to connect to the web interface at `[master]:8088`.
@@ -259,10 +261,10 @@ This guide assumes version 2.1.1. Download and extract the archive to a folder o
 
 Make a copy of the file `[hive]/conf/hive-env.sh.template` and name it `[hive]/conf/hive-env.sh`. Open it and add the following lines:
 ```
-export JAVA_HOME=[java]
+export JAVA_HOME=[jre]
 export HADOOP_HOME=[hadoop]
 ```
-where as before `[java]` is the JRE root folder and `[hadoop]` is the Hadoop root folder.
+where as before `[jre]` is the JRE root folder and `[hadoop]` is the Hadoop root folder.
 
 ### Starting Hive
 
@@ -302,12 +304,12 @@ We will assume version 0.7.1 for this guide. Download ad extract the archive to 
 
 Copy the file `[zeppelin]/conf/zeppelin-env.sh.template` to `[zeppelin]/conf/zeppelin-env.sh` and add the following lines:
 ```
-export JAVA_HOME=[java]
+export JAVA_HOME=[jre]
 export HADOOP_HOME=[hadoop]
 export SPARK_HOME=[spark]
 export HIVE_HOME=[hive]
 ```
-where `[java]` is the root folder of the JRE binaries, `[hadoop]` is the Hadoop root folder, `[spark]` is the Spark root folder and `[hive]` is the Hive root folder.
+where `[jre]` is the root folder of the JRE binaries, `[hadoop]` is the Hadoop root folder, `[spark]` is the Spark root folder and `[hive]` is the Hive root folder.
 
 Next run the command `[zeppelin]/bin/zeppelin-daemon.sh start`, open a web browser and go to the address `[master]:8080`. In the top right there is a drop down menu. Select the option "Interpreter" and find the Spark section. Change the value of the property `master` to `yarn-client` to use the YARN resource manager. Next find the jdbc section. To use Hive, change `default.driver` to `org.apache.hive.jdbc.HiveDriver`, change `default.url` to `jdbc:hive2:[master]:10000`, and change `default.user` to your user name. Lastly add the following dependencies:
 ```
