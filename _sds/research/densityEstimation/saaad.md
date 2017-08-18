@@ -277,4 +277,3 @@ limitations under the License.
 We will eventually lua/la/ka-tex mathematically from here...
 
 ![auto-encoder mapped regular pavings and naive probing](notes/MDE_20161010_141701_00.jpg)
-
