@@ -272,7 +272,7 @@ limitations under the License.
 
 
 
-### Whiteboard discussion notes at LaMaStEx on 2017-08-18.
+### Whiteboard discussion notes on 2017-08-18.
  
 We will eventually lua/la/ka-tex mathematically from here...
 
