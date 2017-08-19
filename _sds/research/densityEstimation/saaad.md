@@ -171,8 +171,7 @@ unsupervised neural network also known as an Auto encoder uses the
 training dataset and attempts to replicate the output dataset by
 restricting the hidden layers/nodes.
 
-![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc1.png){.media-element
-.file-default width="770" height="865"}
+![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc1.png)
 
 The focus on this model is to learn an identity function or an
 approximation of it that would allow it to predict an output that is
@@ -191,8 +190,7 @@ Each of the hidden units can be either active or inactive and an
 activation function such as ‘tanh’ or ‘Rectifier’ can be applied to the
 input at these hidden units to change their state.
 
-![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc2.png){.media-element
-.file-default width="907" height="275"}
+![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc2.png)
 
 Some forms of auto encoders are as follows –
 
