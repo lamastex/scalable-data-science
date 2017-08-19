@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Potential Research - Project SAAD
+title: Potential Research - Project SAAAD
 permalink: /sds/research/densityEstimation/saaad/
 author_profile: true
 header:
