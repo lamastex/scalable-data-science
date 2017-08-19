@@ -40,6 +40,14 @@ This programme is partly supported by:
 </ul>
 
 # Anomaly Detection with Autoencoders
+
+## Overview
+* Some quick mathematical, statistical, computational background readings:
+  * [http://www.deeplearningbook.org/contents/autoencoders.html](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
+  * ...
+* computing frameworks for scalable deep learning and auto-encoders in particular
+  * ...
+ 
 ## Some Background on Existing Industrial Solutions
 
 * Some interesting industrial solutions already exist, including:
