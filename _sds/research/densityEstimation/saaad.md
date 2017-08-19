@@ -241,9 +241,8 @@ distribution for details on how to use this template
 ...
 
 
-## Papers
+## Relevant Papers
 
-## Example Indistrial Solutions
 
 
 
