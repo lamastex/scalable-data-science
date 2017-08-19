@@ -232,22 +232,22 @@ distribution for details on how to use this template
 ---
 ---
 
-## Questions for AIM Day
+# Questions for AIM Day
 
-### Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
+## Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
 ...
 
-### Interactive Visualisation of the Autoencoder's Layers
+## Interactive Visualisation of the Autoencoder's Layers
 ...
 
 
-### Papers
+## Papers
 
-### Example Indistrial Solutions
+## Example Indistrial Solutions
 
 
 
-### Codes
+## Codes
 
 Some interesting random codes that need exploring and experimenting:
 
@@ -272,7 +272,7 @@ limitations under the License.
 
 
 
-### Whiteboard discussion notes on 2017-08-18.
+## Whiteboard discussion notes on 2017-08-18.
  
 We will eventually lua/la/ka-tex mathematically from here...
 
