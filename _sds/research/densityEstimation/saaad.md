@@ -52,7 +52,7 @@ This programme is partly supported by:
   * [H2O Deep learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
   * ...
  
-## Some Background on Existing Industrial Solutions
+# Some Background on Existing Industrial Solutions
 
 * Some interesting industrial solutions already exist, including:
   * [https://community.tibco.com/wiki/anomaly-detection-autoencoder-machine-learning-template-tibco-spotfirer](https://community.tibco.com/wiki/anomaly-detection-autoencoder-machine-learning-template-tibco-spotfirer)
