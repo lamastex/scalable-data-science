@@ -62,7 +62,7 @@ $ vim ex.md
 $ !date
 $ Fri Aug 18 18:33:05 CEST 2017
 ```
-It is meant to give a reasonablly standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
+It is meant to give a reasonably standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
 
 ## Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
 
@@ -246,6 +246,12 @@ learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources
 
 ## Questions for AIM Day
 
+### Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
+...
+
+### Interactive Visualisation of the Autoencoder's Layers
+...
+
 
 ### Papers
 
@@ -282,4 +288,4 @@ limitations under the License.
  
 We will eventually lua/la/ka-tex mathematically from here...
 
-![auto-encoder mapped regular pavings and naive probing](notes/MDE_20161010_141701_00.jpg)
+![auto-encoder mapped regular pavings and naive probing](notes/saaad0.jpg)
