@@ -41,11 +41,15 @@ This programme is partly supported by:
 
 # Anomaly Detection with Autoencoders
 
-## Overview
+## References
 * Some quick mathematical, statistical, computational background readings:
-  * [http://www.deeplearningbook.org/contents/autoencoders.html](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
+  * [Anomaly detection - Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
+  * [Auto Encoders Chapter - Deep Learning Book](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
+  * [Autoencoders - Stanford Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+  * [Digit recognition (Image Search)](http://elkews.com/preview/565650)
   * ...
-* computing frameworks for scalable deep learning and auto-encoders in particular
+* Computing frameworks for scalable deep learning and auto-encoders in particular
+  * [H2O Deep learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
   * ...
  
 ## Some Background on Existing Industrial Solutions
@@ -225,24 +229,8 @@ template](https://community.tibco.com/modules/anomaly-detection-template-tibco-s
 from the Component Exchange.  See documentation in the download
 distribution for details on how to use this template
 
-References:
------------
-
-[Anomaly detection definition -
-Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
-
-[Autoencoders](http://www.deeplearningbook.org/contents/autoencoders.html)
-– Deep Learning book
-
-[Autoencoders - Stanford
-publication](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
-
-[Digit recognition (Image Search)](http://elkews.com/preview/565650)
-
-[H2O Deep
-learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
-
-
+---
+---
 
 ## Questions for AIM Day
 
