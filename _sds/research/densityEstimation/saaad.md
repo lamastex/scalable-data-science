@@ -50,7 +50,10 @@ This programme is partly supported by:
   * ...
 * Computing frameworks for scalable deep learning and auto-encoders in particular
   * [H2O Deep learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
-  * ...
+  * Sparkling Water - H2O with Spark
+  * IBM's BigDL in Spark
+  * TensorFlow and Spark TensorFrames
+
  
 # Some Background on Existing Industrial Solutions
 
@@ -68,14 +71,17 @@ $ Fri Aug 18 18:33:05 CEST 2017
 ```
 It is meant to give a reasonably standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
 
+---
+---
+
 ## Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
 
 By Venkata Jagannath from [https://community.tibco.com/users/venkata-jagannath](https://community.tibco.com/users/venkata-jagannath)
 
 Anomaly detection is a way of detecting abnormal behavior. The technique
 first uses machine learning models to specify expected behavior and then
-monitors new data to match and highlight unexpected behavior (See
-citation
+monitors new data to match and highlight unexpected behavior.
+
 
 Use cases for Anomaly detection
 -------------------------------
