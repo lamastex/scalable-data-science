@@ -17,4 +17,3 @@ RUN mv /scala-2.12.2 $SCALA_HOME
 
 CMD ["/bin/bash"]
 
-
