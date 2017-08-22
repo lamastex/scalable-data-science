@@ -65,6 +65,5 @@ RUN set -ex \
  RUN ln -s /usr/bin/pip3 /usr/bin/pip \
   && ln -s /usr/bin/python3 /usr/bin/python
 
-#ADD about.json $ZEPPELIN_NOTEBOOK_DIR/2BTRWA9EV/note.json
 WORKDIR $ZEPPELIN_HOME
 CMD ["bin/zeppelin.sh"]
