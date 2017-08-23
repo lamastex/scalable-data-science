@@ -10,6 +10,8 @@ header:
 excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 ---
 
+{% include toc %}
+
 ## Project SAHDE:<br /> Scalable Adaptive Histogram Density Estimation 
 
 This programme is partly supported by:
@@ -24,6 +26,7 @@ Project SAHDE is an effort to create a scalable version of the adaptive histogra
 
 based on mathematical statistical notions in:
 * Data-adaptive histograms through statistical regular pavings, Raazesh Sainudiin, Gloria Teng, Jennifer Harlow and Warwick Tucker, 2016 ([PDF](http://lamastex.org/preprints/20161121optMAPMDE.pdf) 1.8MB)
+
 
 
 ## LICENSE

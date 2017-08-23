@@ -17,7 +17,7 @@
 // MAGIC * [https://nz.linkedin.com/in/raazesh-sainudiin-45955845](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) 
 // MAGIC * [Raaz's academic CV](https://lamastex.github.io/cv/) 
 // MAGIC 
-// MAGIC The course is being assisted by Tilo Wiklund and Dan Starngberg.
+// MAGIC The course is being assisted by Tilo Wiklund and Dan Strängberg.
 
 // COMMAND ----------
 
@@ -83,10 +83,6 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC ## Standing on shoulders of giants!
 // MAGIC 
@@ -121,10 +117,12 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 1:53):** A Brief History of Data Analysis
-// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/v/5fSSvYlDkag?rel=0&autoplay=1&modestbranding=1)
+// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/watch?v=5fSSvYlDkag)
+// MAGIC   
+// MAGIC   https://www.youtube.com/v/5fSSvYlDkag?rel=0&autoplay=1&modestbranding=1
 // MAGIC   
 // MAGIC * **(watch now 5:05)**: Where does Data Come From?
-// MAGIC   * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/v/eEJFlHE7Gt4?rel=0&autoplay=1&modestbranding=1)
+// MAGIC   * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/watch?v=eEJFlHE7Gt4?rel=0&autoplay=1&modestbranding=1)
 // MAGIC   * SUMMARY of Some of the sources of big data.
 // MAGIC      * online click-streams (a lot of it is recorded but a tiny amount is analyzed):
 // MAGIC        * record every click
@@ -163,13 +161,13 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 2:03)**: Data Science Defined
-// MAGIC   * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/v/g4ujW1m2QNc?rel=0&autoplay=1&modestbranding=1)
+// MAGIC   * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/watch?v=g4ujW1m2QNc?rel=0&modestbranding=1)
 // MAGIC *  **(watch now 1:11)**: Cloud Computing
-// MAGIC   * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/v/TAZvh0WmOHM?rel=0&autoplay=1&modestbranding=1)
+// MAGIC   * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/watch?v=TAZvh0WmOHM?rel=0&modestbranding=1)
 // MAGIC   * In fact, if you are logged into `https://*.databricks.com/*` you are computing in the cloud!
 // MAGIC   * The Scalable Data Science course is supported by Databricks Academic Partners Program and the AWS Educate Grant to University of Canterbury (applied by Raaz Sainudiin in 2015).
 // MAGIC * **(watch now 3:31)**: What's hard about data science
-// MAGIC   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/v/MIqbwJ6AbIY?rel=0&autoplay=1&modestbranding=1)
+// MAGIC   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/watch?v=MIqbwJ6AbIY?rel=0&modestbranding=1)
 
 // COMMAND ----------
 
@@ -200,7 +198,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC [![Databricks jump start](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/dataExploreWebLogsSQL.png)](https://vimeo.com/137874931)
 // MAGIC 
 // MAGIC #### (watch later) Exploring Wikipedia Click Streams (structured data) - topic of weeks 2/3
-// MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
+// MAGIC [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/watch?v=35Y-rqSMCCA)
 // MAGIC 
 // MAGIC 
 // MAGIC ### 2. Build Scalable Machine Learning Pipelines
@@ -220,7 +218,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC 
 // MAGIC 
 // MAGIC ####  (watch later) Spark Summit 2015 demo: Creating an end-to-end machine learning data pipeline with Databricks (Live Sentiment Analysis)
-// MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/v/NR1MYg_7oSg)
+// MAGIC [![Ali G's :ive Sentiment Analysist](http://img.youtube.com/vi/NR1MYg_7oSg/0.jpg)](https://www.youtube.com/watch?v=NR1MYg_7oSg)
 
 // COMMAND ----------
 
@@ -236,11 +234,11 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch later 2:31)**: Why all the excitement about *Big Data Analytics*? (using google search to now-cast google flu-trends)
-// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/16wqonWTAsI/0.jpg)](https://www.youtube.com/v/16wqonWTAsI)
+// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/16wqonWTAsI/0.jpg)](https://www.youtube.com/watch?v=16wqonWTAsI)
 // MAGIC * other interesting big data examples - recommender systems and netflix prize?
 // MAGIC 
 // MAGIC * **(watch later 10:41)**: Contrasting data science with traditional databases, ML, Scientific computing
-// MAGIC   * [![Data Science Database Contrast by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/c7KG0c3ADk0/0.jpg)](https://www.youtube.com/v/c7KG0c3ADk0)
+// MAGIC   * [![Data Science Database Contrast by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/c7KG0c3ADk0/0.jpg)](https://www.youtube.com/watch?v=c7KG0c3ADk0)
 // MAGIC   * SUMMARY:
 // MAGIC    * traditional databases versus data science
 // MAGIC      * preciousness versus cheapness of the data
@@ -254,11 +252,11 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC      * smaller amounts of clean data in traditional ML versus massive amounts of dirty data in data science
 // MAGIC      * traditional ML researchers try to publish academic papers versus data scientists try to produce actionable intelligent systems
 // MAGIC * **(watch later 1:49)**: Three Approaches to Data Science
-// MAGIC   * [![Approaches to Data Science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/yAOEyeDVn8s/0.jpg)](https://www.youtube.com/v/yAOEyeDVn8s)
+// MAGIC   * [![Approaches to Data Science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/yAOEyeDVn8s/0.jpg)](https://www.youtube.com/watch?v=yAOEyeDVn8s)
 // MAGIC * **(watch later 4:29)**:  Performing Data Science and Preparing Data, Data Acquisition and Preparation, ETL, ...
-// MAGIC   * [![Data Science Database Contrast by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/3V6ws_VEzaE/0.jpg)](https://www.youtube.com/v/3V6ws_VEzaE)
+// MAGIC   * [![Data Science Database Contrast by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/3V6ws_VEzaE/0.jpg)](https://www.youtube.com/watch?v=3V6ws_VEzaE)
 // MAGIC * **(watch later 2:01)**: Four Examples of Data Science Roles
-// MAGIC   * [![Data Science Roles by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/gB-9rdM6W1A/0.jpg)](https://www.youtube.com/v/gB-9rdM6W1A)
+// MAGIC   * [![Data Science Roles by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/gB-9rdM6W1A/0.jpg)](https://www.youtube.com/watch?v=gB-9rdM6W1A)
 // MAGIC   * SUMMARY of Data Science Roles.
 // MAGIC    * individual roles:
 // MAGIC      1. business person
