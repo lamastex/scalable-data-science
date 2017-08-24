@@ -1,5 +1,24 @@
 This guide will teach you how to install Docker and a Docker image containing everything you will need to run Zeppelin with all required interpreters.
 
+Dan:
+Students should not have to 'git clone https://github.com/lamastex/scalable-data-science`, etc.
+They just need to install docker and run zeppelin. I have already pushed the built docker image at `raazesh/sds` now.
+
+## Step 1
+Install docker
+```%sh
+
+```
+
+## Step 2
+To launch spark and zeppelin do:
+```%sh
+docker run -d -p 8080:8080 -p 7077:7077 -p 4040:4040 raazesh/sds
+```
+Then open a browser at `http://localhost:8080/`
+
+---
+---
 ## Install git
 * Use your repo.
 ## Install Docker
