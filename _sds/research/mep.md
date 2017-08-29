@@ -31,7 +31,7 @@ notions.
 
 MEP is partly supported by:
 -   [AWS Cloud Credits for Research](https://aws.amazon.com/research-credits/)
--   [databricks academic partners program](https://academics.cloud.databricks.com) (for distributed cloud computing
+-   [databricks academic partners program](https://academics.cloud.databricks.com) (for distributed cloud computing)
 -   Research Chair in Mathematical Models of Biodiversity (for
     mathematical theorizing) held jointly by:
     -   [Veolia
