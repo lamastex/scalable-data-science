@@ -30,8 +30,8 @@ lMenu-SDS-2.2:
   - title: "SDS-2.2 Course"
     url: /sds/2/2/
     children:
-      - title: "At Uppsala"
-        url: /sds/2/2/uppsala/
+      - title: "YouTube PlayList"
+        url: https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY
       - title: "Basics"
         url: /sds/basics/
   - title: "Infrastructure"
