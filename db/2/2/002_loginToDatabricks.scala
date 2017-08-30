@@ -15,7 +15,10 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Essentials of Databricks Cloud (DBC)
+// MAGIC ## Essentials of Databricks Cloud (DBC) in a Big Hurry
+// MAGIC 
+// MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
 
 // COMMAND ----------
 
@@ -37,6 +40,11 @@
 // MAGIC ## DBC Essentials: Team, State, Collaboration, Elastic Resources
 // MAGIC 
 // MAGIC ![DB workspace, spark, platform](https://raw.githubusercontent.com/raazesh-sainudiin/scalable-data-science/master/images/week1/dbTrImg_TeamStateCollaborationElasticResources700x.png)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # You Should All Have databricks community edition account by now!
 
 // COMMAND ----------
 
