@@ -111,6 +111,7 @@ Background Reading/Viewing
 
 
 -   Fake News:
+    -   <http://nordic.businessinsider.com/facebook-prevents-repeat-offenders-from-buying-ads-to-tackle-fake-news-2017-8>
     -   <https://www.bloomberg.com/news/articles/2017-04-27/france-is-facebook-s-fake-news-litmus-test-as-elections-near-end>
     -   <https://theintercept.com/2017/01/04/washpost-is-richly-rewarded-for-false-news-about-russia-threat-while-public-is-deceived/>
     -   <https://theintercept.com/2016/12/29/the-guardians-summary-of-julian-assanges-interview-went-viral-and-was-completely-false/>
