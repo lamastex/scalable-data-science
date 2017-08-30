@@ -142,6 +142,13 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 
 // MAGIC %md
 // MAGIC 
+// MAGIC # To Stay Connected to Changes in Spark
+// MAGIC 
+// MAGIC Subscribe to YouTube Channels:
+// MAGIC 
+// MAGIC * [https://www.youtube.com/user/TheApacheSpark](https://www.youtube.com/user/TheApacheSpark)
+// MAGIC * [databricks product-focused channel](https://www.youtube.com/channel/UC3q8O3Bh2Le8Rj1-Q-_UUbA)
+// MAGIC 
 // MAGIC ## EXTRA: For a historical insight see excerpts from an interview with Ion Stoica
 // MAGIC 
 // MAGIC #### Beginnings of Apache Spark and Databricks (academia-industry roots)
