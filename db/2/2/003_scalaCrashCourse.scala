@@ -17,7 +17,7 @@
 // MAGIC # **Notebooks**
 // MAGIC Write Spark code for processing your data in notebooks. 
 // MAGIC 
-// MAGIC **NOTE**: You should have already cloned this notebook and attached it to the ``studentsEnrolled`` or ``studentsObserving1`` clusters by now. If not seek help from Siva by raising your hand.
+// MAGIC **NOTE**: You should have already cloned this notebook and attached it to a cluster that you started in the Community Edition of databricks by now.
 
 // COMMAND ----------
 
