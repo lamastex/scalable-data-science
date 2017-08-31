@@ -307,6 +307,7 @@ Another related thought is that with the relabelling scheme described above, all
      * ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
      * ["Generative Adversarial Networks Explained", Kevin Frans](http://kvfrans.com/generative-adversial-networks-explained/)
 * *Ladder networks*
+
     Ladder networks is a class of networks specially developed for semi-supervised learning. It aims at combining supervised and unsupervised learning at every level of the network. The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
     * ["Introduction to Semi-Supervised Learning with Ladder Networks", Rinu Boney](http://rinuboney.github.io/2016/01/19/ladder-network.html)
     * ["Semi-Supervised Learning with Ladder Networks", Antti Rasmus et al.](https://arxiv.org/pdf/1507.02672.pdf)
