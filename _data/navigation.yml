@@ -55,6 +55,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/004_RDDsTransformationsActions/
       - title: "RDDs HOMEWORK"
         url: /sds/2/2/db/005_RDDsTransformationsActionsHOMEWORK/
+      - title: "Word Count - SOU"
+        url: /sds/2/2/db/006_WordCount/
   - title: "Contents-zeppelin"
   - title: "sbt"
   - title: "SDS-1.6 Course"
