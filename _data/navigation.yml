@@ -51,6 +51,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/002_loginToDatabricks/
       - title: "Scala Crash Course"
         url: /sds/2/2/db/003_scalaCrashCourse/
+      - title: "RDDs Transformations & Actions"
+        url: /sds/2/2/db/004_RDDsTransformationsActions/
   - title: "Contents-zeppelin"
   - title: "sbt"
   - title: "SDS-1.6 Course"
