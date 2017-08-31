@@ -327,5 +327,5 @@ The Loda method might be extra interesting for us, and it might be worthwhile fo
 * ["Incorporating Feedback into Tree-based Anomaly Detection", Das et al.](http://poloclub.gatech.edu/idea2017/papers/p25-das.pdf)
 
 ## Visualisation
-We should take a look at the following.
+We should take a look at the following:
 * http://projector.tensorflow.org
