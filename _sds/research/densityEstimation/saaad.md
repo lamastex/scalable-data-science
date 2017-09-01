@@ -254,14 +254,30 @@ The basic idea of anomaly detection is to establish a model for what is normal d
 
 * http://projector.tensorflow.org
 
+## Human-in-the-loop
+
+Question: *HiL-Loss*
+
+![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
+
+
+Is there a natural mathematical statistical argument for parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs for a set of human beings with different hourly wages  who are capable of tagging different types of events with distinct rare probabilities within a generic human-in-the-loop model for anomaly detection?
+
+## Background Information
+
+### NEWS:
+* [MIT shows how AI cybersecurity excels by keeping humans in the loop](http://www.techrepublic.com/article/mit-shows-how-ai-cybersecurity-excels-by-keeping-humans-in-the-loop/)
+
+### RESEARCH
+* [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
+* [Supervised Clustering]()
 
 ## Relevant Papers
+
 * ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
 * ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
 * ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
 * ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
-
-
 
 
 ## Codes
