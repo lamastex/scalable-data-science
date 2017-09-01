@@ -241,13 +241,25 @@ distribution for details on how to use this template
 # Questions for AIM Day
 
 ## Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
-...
+### Introduction
+Anomaly detection is a a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent acticity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
+
+The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates to much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and uncommon but natural data. This distinction is very dependent of the application at hand, and it is very unlikely that there is one single classification aslgorithm that is to make this distinction in all applications. However, it it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
+
+* What algorithms are there for incorporating active learning to anomaly detection? How can these be imnproved?
+* Can one develop active learning anomaly detection based on autoencoders?
+* How do you avoid overfitting to known types of anomalies?
 
 ## Interactive Visualisation of the Autoencoder's Layers
-...
+
+* http://projector.tensorflow.org
 
 
 ## Relevant Papers
+* ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
+* ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
+* ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
+* ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
 
 
 
@@ -302,6 +314,7 @@ Another related thought is that with the relabelling scheme described above, all
 
     Variational autoencoders are a varaiant of autoencoders (or is it the other way around?) where the network is trying to transform the data to a pior distribution (usually multivariate normal). That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original, authentic data. Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
     * ["Variational Autoencoders Explained", Kevin Frans](http://kvfrans.com/variational-autoencoders-explained/)
+    * ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
     * ["Tutorial on Variational Autoencoders", Carl Doersch](https://arxiv.org/abs/1606.05908)
 * *Adversional autoencoders*
 
