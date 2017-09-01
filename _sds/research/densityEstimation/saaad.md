@@ -309,7 +309,7 @@ limitations under the License.
  
 We will eventually lua/la/ka-tex mathematically from here...
 
-![auto-encoder mapped regular pavings and naive probing](notes/saaad0.jpg)
+![auto-encoder mapped regular pavings and naive probing](https://github.com/lamastex/scalable-data-science/raw/master/_sds/research/densityEstimation/saaad/notes/saaad0.jpg)
 
 ## Random thoughts regarding anomaly detection with emphasis on fraud detection
 
