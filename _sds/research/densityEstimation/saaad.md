@@ -240,7 +240,10 @@ distribution for details on how to use this template
 
 # Questions for AIM Day
 
-## Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
+## Q.1 Semi-supervised Anomaly Detection with Human-in-the-Loop
+
+![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
+
 ### Introduction
 Anomaly detection is a a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent acticity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
 
@@ -250,18 +253,17 @@ The basic idea of anomaly detection is to establish a model for what is normal d
 * Can one develop active learning anomaly detection based on autoencoders?
 * How do you avoid overfitting to known types of anomalies?
 
-## Interactive Visualisation of the Autoencoder's Layers
+### Q.1.1 Interactive Visualisation of the Autoencoder's Layers
+
+Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
 
 * http://projector.tensorflow.org
 
-## Human-in-the-loop
-
-Question: *HiL-Loss*
-
-![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
-
+### Q.1.2 Parametric families of *HiL-Loss*
 
 Is there a natural mathematical statistical argument for parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs for a set of human beings with different hourly wages  who are capable of tagging different types of events with distinct rare probabilities within a generic human-in-the-loop model for anomaly detection?
+
+For example, such a loss could be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
 
 ## Background Information
 
@@ -269,8 +271,9 @@ Is there a natural mathematical statistical argument for parametric families of 
 * [MIT shows how AI cybersecurity excels by keeping humans in the loop](http://www.techrepublic.com/article/mit-shows-how-ai-cybersecurity-excels-by-keeping-humans-in-the-loop/)
 
 ### RESEARCH
-* [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
-* [Supervised Clustering]()
+* [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li, 2016](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
+* [Supervised Clustering, Pranjal Awasthi and Reza Bosagh Zadeh, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)
+  * [Video Lecture 4 minutes](http://www.quizover.com/oer/course/supervised-clustering-by-reza-bosagh-zadeh-videolectures-net-oer)
 
 ## Relevant Papers
 
