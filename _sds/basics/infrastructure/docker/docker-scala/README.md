@@ -48,3 +48,5 @@ root@7c416127140a:/scala_example# scala hello
 Hello, world
 
 ```
+
+http://docs.scala-lang.org/getting-started-sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html

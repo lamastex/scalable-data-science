@@ -6,6 +6,14 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC This is *slightly* outdated, but good enough for our purposes as we will do it live on the latest databricks notebooks.
+// MAGIC 
+// MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # **Notebooks**
 // MAGIC Write Spark code for processing your data in notebooks. 
 // MAGIC 
@@ -522,7 +530,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC There are lots of methods in Scala Collections.  See for example [API_scala.collection.Seq](http://www.scala-lang.org/api/2.10.4/index.html#scala.collection.Seq).
+// MAGIC There are lots of methods in Scala Collections. And much more in this *scalable language*.
+// MAGIC See for example [http://docs.scala-lang.org/cheatsheets/index.html](http://docs.scala-lang.org/cheatsheets/index.html).
 
 // COMMAND ----------
 
@@ -578,24 +587,20 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Filesystem cells allow access to the [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala).
+// MAGIC ### Filesystem cells allow access to the Databricks File System.
 // MAGIC * Start a cell with `%fs` to run DBFS commands
 // MAGIC * Type `%fs help` for a list of commands
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Further Reference / Homework
+// MAGIC # Further Reference / Homework / Recurrrent Points of Reference
 // MAGIC 
-// MAGIC Go through the following notebooks (``File`` and ``Clone`` them into your ``Workspace/Users/...``) to play and familiarize yourself with databricks cloud:
-// MAGIC * [Welcome to Databricks](/#workspace/databricks_guide/00 Welcome to Databricks) and watch the *Getting Started* videos for more details. This worksheet can be loaded below using ``%run "/databricks_guide/00 Welcome to Databricks"``
-// MAGIC * [Intro Scala Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/2 Intro Scala Notebooks)
-// MAGIC * [Databricks File System](/#workspace/databricks_guide/02 Product Overview/09 DB File System - scala)
-// MAGIC * [FileStore](/#workspace/databricks_guide/02 Product Overview/12 FileStore) to organize files for access.
-// MAGIC 
-// MAGIC You may also like to check out:
-// MAGIC * [Intro Python Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/1 Intro Python Notebooks)
-// MAGIC * [Intro R Notebooks](/#workspace/databricks_guide/01 Intro Notebooks/4 Intro R Notebooks)
+// MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC * databricks
+// MAGIC   * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
+// MAGIC * scala
+// MAGIC   * [http://docs.scala-lang.org/](http://docs.scala-lang.org/)
 
 // COMMAND ----------
 

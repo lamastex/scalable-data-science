@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Potential Research - Project SAAD
+title: Potential Research - Project SAAAD
 permalink: /sds/research/densityEstimation/saaad/
 author_profile: true
 header:
@@ -40,7 +40,22 @@ This programme is partly supported by:
 </ul>
 
 # Anomaly Detection with Autoencoders
-## Some Background on Existing Industrial Solutions
+
+## References
+* Some quick mathematical, statistical, computational background readings:
+  * [Anomaly detection - Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
+  * [Auto Encoders Chapter - Deep Learning Book](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
+  * [Autoencoders - Stanford Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+  * [Digit recognition (Image Search)](http://elkews.com/preview/565650)
+  * ...
+* Computing frameworks for scalable deep learning and auto-encoders in particular
+  * [H2O Deep learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
+  * Sparkling Water - H2O with Spark
+  * IBM's BigDL in Spark
+  * TensorFlow and Spark TensorFrames
+
+ 
+# Some Background on Existing Industrial Solutions
 
 * Some interesting industrial solutions already exist, including:
   * [https://community.tibco.com/wiki/anomaly-detection-autoencoder-machine-learning-template-tibco-spotfirer](https://community.tibco.com/wiki/anomaly-detection-autoencoder-machine-learning-template-tibco-spotfirer)
@@ -54,7 +69,10 @@ $ vim ex.md
 $ !date
 $ Fri Aug 18 18:33:05 CEST 2017
 ```
-It is meant to give a reasonablly standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
+It is meant to give a reasonably standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
+
+---
+---
 
 ## Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
 
@@ -62,8 +80,8 @@ By Venkata Jagannath from [https://community.tibco.com/users/venkata-jagannath](
 
 Anomaly detection is a way of detecting abnormal behavior. The technique
 first uses machine learning models to specify expected behavior and then
-monitors new data to match and highlight unexpected behavior (See
-citation
+monitors new data to match and highlight unexpected behavior.
+
 
 Use cases for Anomaly detection
 -------------------------------
@@ -171,8 +189,7 @@ unsupervised neural network also known as an Auto encoder uses the
 training dataset and attempts to replicate the output dataset by
 restricting the hidden layers/nodes.
 
-![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc1.png){.media-element
-.file-default width="770" height="865"}
+![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc1.png)
 
 The focus on this model is to learn an identity function or an
 approximation of it that would allow it to predict an output that is
@@ -191,8 +208,7 @@ Each of the hidden units can be either active or inactive and an
 activation function such as ‘tanh’ or ‘Rectifier’ can be applied to the
 input at these hidden units to change their state.
 
-![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc2.png){.media-element
-.file-default width="907" height="275"}
+![](https://d2wh20haedxe3f.cloudfront.net/sites/default/files/autoencode_doc2.png)
 
 Some forms of auto encoders are as follows –
 
@@ -219,35 +235,24 @@ template](https://community.tibco.com/modules/anomaly-detection-template-tibco-s
 from the Component Exchange.  See documentation in the download
 distribution for details on how to use this template
 
-References:
------------
+---
+---
 
-[Anomaly detection definition -
-Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
+# Questions for AIM Day
 
-[Autoencoders](http://www.deeplearningbook.org/contents/autoencoders.html)
-– Deep Learning book
+## Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
+...
 
-[Autoencoders - Stanford
-publication](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+## Interactive Visualisation of the Autoencoder's Layers
+...
 
-[Digit recognition (Image Search)](http://elkews.com/preview/565650)
 
-[H2O Deep
-learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
+## Relevant Papers
 
 
 
-## Questions for AIM Day
 
-
-### Papers
-
-### Example Indistrial Solutions
-
-
-
-### Codes
+## Codes
 
 Some interesting random codes that need exploring and experimenting:
 
@@ -272,8 +277,55 @@ limitations under the License.
 
 
 
-### Whiteboard discussion notes at LaMaStEx on 2017-08-18.
+## Whiteboard discussion notes on 2017-08-18.
  
 We will eventually lua/la/ka-tex mathematically from here...
 
-![auto-encoder mapped regular pavings and naive probing](notes/MDE_20161010_141701_00.jpg)
+![auto-encoder mapped regular pavings and naive probing](notes/saaad0.jpg)
+
+## Random thoughts regarding anomaly detection with emphasis on fraud detection
+
+Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. Since an anomaly per definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. In the case of fraud detection, it is often the case that a small fraction (perhaps 1 ppm) of the data points represent known cases of fraud attempts. It would be wasteful to throw away this information when building the model. This would mean that we no longer have a unsupervised learning problem, but a **semi-supervised learning problem**. In a typical semi-supervised learning problem, the problem is to assign predefined labels to datapoints when the correct label is only known for a small fraction of the dataset. This is a very interesting idea, since it allows for using the power of big data, without having to pay the cost of correctly labeling the whole dataset. If we translate our fraud detection problem to this setting it means that we hava a big collection of datapoints which we want to label as either "fraud" or "non-fraud". However, in contrary to the standard setup for semi-supervised learning, we only have known examples from the "fraud" class. This (at least formally) puts us in another class of learning problems, namely **PU learning**, where the dateset is split into two classes, the positive class, *P*, and the unlabel class, *U*.
+
+After running the fraud detection model on our data, we are likely to be given suspected cases of fraud, which can be correctly labelled by an expert. This means that we can improve our dataset with more labelled points and retrain our model using the new information. At this point however, we probably have some confirmed examples of the non-fraud class, and from this point we no longer have a PU learning problem.
+
+One important note about running a semi-supervised learning for anomaly detection is that some people actually advise against training a model on known anomalies, since this will produce a model that is good at detecting anomalies of known kinds, but which probabliy is less able to detect new kind of anomalies. This is extra important in fraud detection, since fraudsters are likely to continually come up with new schemes to trick the model.
+
+Another related thought is that with the relabelling scheme described above, all datapoints labelled non-fraud will be such points which the model originally had problems distiguishing from fraud. This is likely to introduce instability to the model.   For this reason, it might be worthwile to put some effort into correctly classifying also some datapointcalls ts which are very unlikely to be fradulent. With respect to this, it might be interesting to read some of the literature on **active learning**. Active learning is an iterative type of semi-supervised learning where the learning algorithm is active and can purposefully queary a user for correct data labels. Ideally, the algorithm can determine which unlabelled points it would be most befefitial to learn the correct labels for.
+
+## Interesting deep learning algorithms
+* *Autoencoders*
+
+  Neural networks that are trained to reproduce the indata. Come in different flavours both with respect to depth and width, but also with respect to how overlearning is prevented. Can be used to detect anomalies as those datapoints that are poorly reconstructed by the network. Can also be used for dimennsion reduction in a data preprocession step. Subsequently other anomaly detection techniques can be applioed to the transformed data.
+    * ["Autoencoders, Unsupervised Learning, and Deep Architectures", Pierre Baldi.](http://proceedings.mlr.press/v27/baldi12a/baldi12a.pdf)
+* *Variational autoencoders*
+
+    Variational autoencoders are a varaiant of autoencoders (or is it the other way around?) where the network is trying to transform the data to a pior distribution (usually multivariate normal). That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original, authentic data. Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
+    * ["Variational Autoencoders Explained", Kevin Frans](http://kvfrans.com/variational-autoencoders-explained/)
+    * ["Tutorial on Variational Autoencoders", Carl Doersch](https://arxiv.org/abs/1606.05908)
+* *Adversional autoencoders*
+
+     Adversarial autoencoders  have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. In fact, from my superficial comparison of the two types of autoencoders, it seems like the biggest difference between them is not so much how they model the network, but how they are trained. Adersional autoencoders are based on the idea of GANs (Generative adversarial networks). This is how I understand the workings of a GAN. Two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). Then the outdata of the first network is fed as indata to the other network (the disciminator). Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. The job for the generator network is to as often as possible fool the discriminator. This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. Fidning such a equibrilium is of course far from trivial but it seems like good results can be achieved by training the networks iteratively side by side through backpropagation. I don't think this is really relevant for us, but I think it is a bit interesting on a meta level that this generator/discriminator rivalry is a bit reminiscent of the relationshop between the fraudster and the anomaly detector.
+     * ["Generative Adversarial Nets" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1406.2661.pdf)
+     * ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
+     * ["Generative Adversarial Networks Explained", Kevin Frans](http://kvfrans.com/generative-adversial-networks-explained/)
+* *Ladder networks*
+
+    Ladder networks is a class of networks specially developed for semi-supervised learning. It aims at combining supervised and unsupervised learning at every level of the network. The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
+    * ["Introduction to Semi-Supervised Learning with Ladder Networks", Rinu Boney](http://rinuboney.github.io/2016/01/19/ladder-network.html)
+    * ["Semi-Supervised Learning with Ladder Networks", Antti Rasmus et al.](https://arxiv.org/pdf/1507.02672.pdf)
+
+## Active Anomaly Discovery
+*Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been impelemnted on other ensemble methods, like tree-based methods.
+
+The Loda method might be extra interesting for us, and it might be worthwhile for us to take an extra look on it. The idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. Remembering our previous discussions on t-digest and adaptive histogram density estimation, there might be something for us to add to this method.
+
+* ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
+
+* ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
+
+* ["Incorporating Feedback into Tree-based Anomaly Detection", Das et al.](http://poloclub.gatech.edu/idea2017/papers/p25-das.pdf)
+
+## Visualisation
+We should take a look at the following:
+* http://projector.tensorflow.org

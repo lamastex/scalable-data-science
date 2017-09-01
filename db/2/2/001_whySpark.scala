@@ -48,7 +48,7 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 // MAGIC The followign talk outlines the motivation and insights behind BDAS' research approach and how they address the cross-disciplinary nature of Big Data challenges and current work.
 // MAGIC * **watch later (5 mins.):** 
 // MAGIC 
-// MAGIC [![Ion Stoica on State of Spark Union AmpCamp6](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/v/s7kj9XzRBQk?rel=0&autoplay=1&modestbranding=1&start=91&end=386)
+// MAGIC [![Ion Stoica on State of Spark Union AmpCamp6](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/watch?v=s7kj9XzRBQk&start=91&end=386)
 // MAGIC  
 // MAGIC ## key points
 // MAGIC * started in 2011 with strong public-private funding
@@ -75,13 +75,13 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 1:48)**: The Big Data Problem
-// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/v/0JdJe5iehhw?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/watch?v=0JdJe5iehhw&modestbranding=1&start=1)
 // MAGIC *  **(watch now 1:43)**: Hardware for Big Data
-// MAGIC   * [![Hardware for Big Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/KmIIMdsXGzc/0.jpg)](https://www.youtube.com/v/KmIIMdsXGzc?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![Hardware for Big Data by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/KmIIMdsXGzc/0.jpg)](https://www.youtube.com/watch?v=KmIIMdsXGzc&rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * **(watch now 1:17)**: How to distribute work across a cluster of commodity machines?
-// MAGIC   * [![How to distribute work across a cluster of commodity machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Euk1v3VtNcM/0.jpg)](https://www.youtube.com/v/Euk1v3VtNcM?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![How to distribute work across a cluster of commodity machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Euk1v3VtNcM/0.jpg)](https://www.youtube.com/watch?v=Euk1v3VtNcM&rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * **(watch now 0:36)**: How to deal with failures or slow machines?
-// MAGIC   * [![How to deal with failures or slow machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NaHNsPEK3KA/0.jpg)](https://www.youtube.com/v/NaHNsPEK3KA?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![How to deal with failures or slow machines? by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NaHNsPEK3KA/0.jpg)](https://www.youtube.com/watch?v=NaHNsPEK3KA&rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC   
 
 // COMMAND ----------
@@ -91,11 +91,11 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 // MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
 // MAGIC 
 // MAGIC * **(watch now 1:48)**: Map Reduce (is bounded by Disk I/O)
-// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/v/NqG_hYAKjYk?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/watch?v=NqG_hYAKjYk&rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC *  **(watch now 2:49)**: Apache Spark (uses Memory instead of Disk)
-// MAGIC   * [![Apache Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/vat5Jki1lbI/0.jpg)](https://www.youtube.com/v/vat5Jki1lbI?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![Apache Spark by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/vat5Jki1lbI/0.jpg)](https://www.youtube.com/watch?v=vat5Jki1lbI&rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * **(watch now 3:00)**: Spark Versus MapReduce
-// MAGIC   * [![Spark Versus MapReduce by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Ddq3Gua2QFg/0.jpg)](https://www.youtube.com/v/Ddq3Gua2QFg?rel=0&autoplay=1&modestbranding=1&start=1)
+// MAGIC   * [![Spark Versus MapReduce by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/Ddq3Gua2QFg/0.jpg)](https://www.youtube.com/watch?v=Ddq3Gua2QFg&rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC * SUMMARY
 // MAGIC     * uses memory instead of disk alone and is thus fater than Hadoop MapReduce
 // MAGIC     * resilience abstraction is by RDD (resilient distributed dataset)
@@ -142,16 +142,23 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 
 // MAGIC %md
 // MAGIC 
+// MAGIC # To Stay Connected to Changes in Spark
+// MAGIC 
+// MAGIC Subscribe to YouTube Channels:
+// MAGIC 
+// MAGIC * [https://www.youtube.com/user/TheApacheSpark](https://www.youtube.com/user/TheApacheSpark)
+// MAGIC * [databricks product-focused channel](https://www.youtube.com/channel/UC3q8O3Bh2Le8Rj1-Q-_UUbA)
+// MAGIC 
 // MAGIC ## EXTRA: For a historical insight see excerpts from an interview with Ion Stoica
 // MAGIC 
 // MAGIC #### Beginnings of Apache Spark and Databricks (academia-industry roots)
-// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=231&end=365)
+// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/watch?v=bHH8sG-F9tg&rel=0&autoplay=1&modestbranding=1&start=231&end=365)
 // MAGIC 
 // MAGIC #### Advantages of Apache Spark: A Unified System for Batch, Stream, Interactive / Ad Hoc or Graph Processing
-// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=458&end=726)
+// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/watch?v=bHH8sG-F9tg&rel=0&autoplay=1&modestbranding=1&start=458&end=726)
 // MAGIC 
 // MAGIC #### Main Goal of Databricks Cloud: To Make Big Data Easy
-// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/v/bHH8sG-F9tg?rel=0&autoplay=1&modestbranding=1&start=890&end=985)
+// MAGIC [![Ion Stoica on Starting Spark and DataBricks](http://img.youtube.com/vi/bHH8sG-F9tg/0.jpg)](https://www.youtube.com/watch?v=bHH8sG-F9tg&rel=0&autoplay=1&modestbranding=1&start=890&end=985)
 // MAGIC 
 // MAGIC ***
 // MAGIC ***
