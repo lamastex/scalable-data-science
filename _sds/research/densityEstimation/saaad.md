@@ -274,9 +274,6 @@ For example, such a loss could be justified using notions such as query-efficien
 * [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li, 2016](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
 * [Supervised Clustering, Pranjal Awasthi and Reza Bosagh Zadeh, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)
   * [Video Lecture 4 minutes](http://www.quizover.com/oer/course/supervised-clustering-by-reza-bosagh-zadeh-videolectures-net-oer)
-
-## Relevant Papers
-
 * ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
 * ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
 * ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
