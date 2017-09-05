@@ -266,15 +266,17 @@ Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-dat
 
 * What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders? 
 * How can the structure of the specific problem be exploited?
-* Can one develop active learning anomaly detection for time series of large networks (eg. network security logs data such as netflow logs)?
+* Can one incorporate active learning with anomaly detection for time series of large networks (eg. network logs data such as netflow logs)?
 * How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
 * How can you allow for new (yet unknown anomalies) to be discovered by the model, i.e. account for new types of anomalies over time?
 * Are there natural parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs of distinct set of humans with different hourly costs and tagging capabilities within a generic human-in-the-loop model for anomaly detection?
 
-For example, such a loss could be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). 
+Some ideas to start brain-storming:
+* For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). 
 Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
+* Do an SVD of the network data when dealing with time-series of large networks that are [tall and skinny](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/mllib/TallSkinnySVD.scala) and look at the distances between the dominant singular vectors, perhaps?
 
-## Question 2: Interactive Visualisation for the Human-in-the-Loop
+## Interactive Visualisation for the Human-in-the-Loop
 
 Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
 
