@@ -206,7 +206,7 @@ distribution for details on how to use this template
 
 # Overview of Adaptive Anomaly Detection with Autoencoders
 
-Prepared by Haakan Persson and Raazesh Sainudiin for Combinet AB
+Prepared by Hakan Persson and Raazesh Sainudiin for Combinet AB
 
 Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. 
 Since an anomaly by definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. 
@@ -215,22 +215,7 @@ It would be wasteful to throw away this information when building the model. Thi
 In a typical semi-supervised learning problem, the problem is to assign predefined labels to datapoints when the correct label is only known for a small fraction of the dataset. 
 This is a very useful idea, since it allows for leveraging the power of big data, without having to incur the cost of correctly labeling the whole dataset.  
 If we translate our fraud detection problem to this setting it means that we hava a big collection of datapoints which we want to label as either "fraud" or "non-fraud". 
-However, in contrast to the standard setup for semi-supervised learning, we only have known examples from the "fraud" class. 
-This (at least formally) puts us in another class of learning problems, namely **PU learning**, where the dataset is split into two classes, the positive class, *P*, and the unlabel class, *U*.
 
-After running the fraud detection model on our data, we are likely to be given suspected cases of fraud, which can be correctly labelled by an expert. 
-This means that we can improve our dataset with more labelled points and retrain our model using the new information. 
-At this point however, we probably have some confirmed examples of the non-fraud class, and from this point we no longer have a PU learning problem.
-
-One important note about running a semi-supervised learning for anomaly detection is that some people actually advise against training a model on known anomalies, 
-since this will produce a model that is good at detecting anomalies of known kinds, but which probably is less able to detect new kind of anomalies. 
-This is extra important in fraud detection, since fraudsters are likely to continually come up with new schemes to trick the model.
-
-Another related thought is that with the relabelling scheme described above, all datapoints labelled non-fraud will be such points which the model originally had problems distiguishing from fraud. 
-This is likely to introduce instability to the model.  
-For this reason, it might be worthwile to put some effort into correctly classifying also some datapoint calls ts which are very unlikely to be fradulent. With respect to this, it might be interesting to read some of the literature on **active learning**.  
-Active learning is an iterative type of semi-supervised learning where the learning algorithm is active and can purposefully query a user for correct data labels. 
-Ideally, the algorithm can determine which unlabelled points it would be most beneficial to learn the correct labels for.
 
 ## Summary of Deep Learning Algorithms
 
