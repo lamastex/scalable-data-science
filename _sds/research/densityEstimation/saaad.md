@@ -256,6 +256,15 @@ In the Loda method, the idea is to project the data to a random one-dimensional 
 
 ## Questions for AIM Day
 
+We aim to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
+Specifically, the problem has the following complexities:
+
+* data volumes are big and one needs distributed in-memory fault-tolerant computing frameworks such as [Apache Spark](http://spark.apache.org/)
+* learning is 
+  * semi-supervised (so a small fraction of the dataset is labelled) and
+  * interactive (with humans-in-the-loop)
+* the phenomena is time-varying
+
 These questions are addressed to experts in statistical/machine learning and visualisation or human-computer interactions. 
 The background information is given in the list of references below for concreteness.
 Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic background.
@@ -264,7 +273,7 @@ Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-dat
 
 ## Semi-supervised Anomaly Detection with Human-in-the-Loop
 
-* What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders? 
+* What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders, and what are their limitations when scaling to terabytes of data? 
 * How can the structure of the specific problem be exploited?
 * Can one incorporate active learning with anomaly detection for time series of large networks (eg. network logs data such as netflow logs)?
 * How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
@@ -272,7 +281,7 @@ Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-dat
 * Are there natural parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs of distinct set of humans with different hourly costs and tagging capabilities within a generic human-in-the-loop model for anomaly detection?
 
 Some ideas to start brain-storming:
-* For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). 
+* For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)). 
 Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
 * Do an SVD of the network data when dealing with time-series of large networks that are [tall and skinny](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/mllib/TallSkinnySVD.scala) and look at the distances between the dominant singular vectors, perhaps?
 
