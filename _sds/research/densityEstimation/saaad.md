@@ -331,7 +331,7 @@ Some such frameworks include:
 * [Direct-Manipulation Visualization of Deep Networks, Daniel Smilkov, Shan Carter, D. Sculley, Fernanda B. Viégas and Martin Wattenberg, 2017](https://arxiv.org/abs/1708.03788)
 
 
-## Sub-Project 2: Statistical Regular Pavings for Auto-encoded Anomaly Detection
+# Statistical Regular Pavings for Auto-encoded Anomaly Detection
 
 This sub-project aims to explore the use of statistical regular pavings in [Project SAHDE](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/sahde/), 
 including *auto-encoded statistical regular pavings* via appropriate tree arithmetics, for anomaly detection.
