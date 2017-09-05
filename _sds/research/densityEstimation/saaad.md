@@ -227,7 +227,10 @@ If we translate our fraud detection problem to this setting it means that we hav
 
 * *Autoencoders*
 
-  Neural networks that are trained to reproduce the indata. Come in different flavours both with respect to depth and width, but also with respect to how overlearning is prevented. Can be used to detect anomalies as those datapoints that are poorly reconstructed by the network. Can also be used for dimennsion reduction in a data preprocession step. Subsequently other anomaly detection techniques can be applioed to the transformed data.
+Autoencoders (AE) are neural networks that are trained to reproduce the indata. 
+They come in different flavours both with respect to depth and width, but also with respect to how overlearning is prevented. 
+They can be used to detect anomalies from those datapoints that are poorly reconstructed by the network, as quantified by the reconstruction error. 
+AEs can also be used for dimension reduction or compression in a data preprocession step. Subsequently other anomaly detection techniques can be applied to the transformed data.
 
 * *Variational autoencoders*
 
