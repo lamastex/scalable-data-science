@@ -14,9 +14,15 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 # Project SAAAD:<br /> Scalable Adaptive Auto-encoded Anomaly Detection
 
-Project SAAD aims to explore the use of autoencoders for anomaly detection in various 'big-data' problems.
+Project SAAD aims to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
+Specifically, the problem has these complexities:
 
- 
+* data volumes are big and one needs distributed in-memory fault-tolerant computing frameworks such as [Apache Spark](http://spark.apache.org/)
+* learning is 
+  * semi-supervised (so a small fraction of the dataset is labelled) and
+  * interactive (with humans-in-the-loop)
+* the phenomena is time-varying
+
 # Some Background on Existing Industrial Solutions
 
 * Some interesting industrial solutions already exist, including:
