@@ -72,7 +72,7 @@ like tree-based methods. It can also be incorporated into methods that use other
 In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. 
 Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. 
 
-## Questions for AIM Day
+# Questions for AIM Day
 
 We aim to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
 Specifically, the problem has the following complexities:
