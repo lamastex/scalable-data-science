@@ -266,17 +266,6 @@ Ideally, the algorithm can determine which unlabelled points it would be most be
     * ["Introduction to Semi-Supervised Learning with Ladder Networks", Rinu Boney](http://rinuboney.github.io/2016/01/19/ladder-network.html)
     * ["Semi-Supervised Learning with Ladder Networks", Antti Rasmus et al.](https://arxiv.org/pdf/1507.02672.pdf)
 
-## Active Anomaly Discovery
-*Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been impelemnted on other ensemble methods, like tree-based methods.
-
-The Loda method might be extra interesting for us, and it might be worthwhile for us to take an extra look on it. The idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. Remembering our previous discussions on t-digest and adaptive histogram density estimation, there might be something for us to add to this method.
-
-* ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
-
-* ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
-
-* ["Incorporating Feedback into Tree-based Anomaly Detection", Das et al.](http://poloclub.gatech.edu/idea2017/papers/p25-das.pdf)
-
 
 # Questions for AIM Day
 
@@ -285,50 +274,74 @@ The Loda method might be extra interesting for us, and it might be worthwhile fo
 ![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
 
 ### Introduction
-Anomaly detection is a a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent acticity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
+Anomaly detection is a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent acticity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
 
 The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates to much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and uncommon but natural data. This distinction is very dependent of the application at hand, and it is very unlikely that there is one single classification aslgorithm that is to make this distinction in all applications. However, it it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
 
-* What algorithms are there for incorporating active learning to anomaly detection? How can these be imnproved?
-* Can one develop active learning anomaly detection based on autoencoders?
+### Active Anomaly Discovery
+*Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. 
+The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. 
+The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been impelemnted on other ensemble methods, 
+like tree-based methods.
+
+In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. Remembering our previous discussions on t-digest and adaptive histogram density estimation, there might be something for us to add to this method.
+
+* What algorithms are there for incorporating active learning with anomaly detection? How can the structure of the specific problem be exploited?
+* Can one develop active learning anomaly detection for time series of large networks (eg. network security logs data such as netflow logs)?
 * How do you avoid overfitting to known types of anomalies?
-
-### Q.1.1 Interactive Visualisation of the Autoencoder's Layers
-
-Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
-
-* http://projector.tensorflow.org
-
-### Q.1.2 Parametric families of *HiL-Loss*
+* How can you allow for new (yet unknown anomalies) to be discovered by the model, i.e. account for new types of anomalies over time?
 
 Is there a natural mathematical statistical argument for parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs for a set of human beings with different hourly wages  who are capable of tagging different types of events with distinct rare probabilities within a generic human-in-the-loop model for anomaly detection?
 
 For example, such a loss could be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
 
-## Background Information
+## Q.2 Interactive Visualisation for the Human-in-the-Loop
 
-### NEWS:
+Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
+
+For example, how can the following open source tools be integrated into Active-Learning and other human-in-the-loop Anomaly Detectors? 
+* [https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html](https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html)
+  * [https://github.com/pair-code/facets](https://github.com/pair-code/facets)
+  * [https://pair-code.github.io/facets/](https://pair-code.github.io/facets/)
+* [http://projector.tensorflow.org](http://projector.tensorflow.org/)
+* [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
+* ...
+
+Beyond, visualising the ML algorithms, often the Human-in-the-Loop needs to see the details of the raw event that triggered the Anomaly. 
+And typically this event needs to be seen in the context of other related and relevant events, including it anomaly score with some some historical comparisons of similar events from a no-SQL query. 
+What are some natural frameworks for being able to click the event of interest (say those alerted by the algorithm) and visualise the raw event details (usually a JSON record or a row of a CSV file) in order to make an informed decision. 
+Some such frameworks include:
+* [https://d3js.org/](https://d3js.org/)
+* [https://vega.github.io/vega/](https://vega.github.io/vega/)
+* [https://processing.org/](https://processing.org/)
+* [https://gephi.org/](https://gephi.org/)
+* [http://dygraphs.com/](http://dygraphs.com/)
+* [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
+
+### Background Information
+
+#### NEWS:
 * [MIT shows how AI cybersecurity excels by keeping humans in the loop](http://www.techrepublic.com/article/mit-shows-how-ai-cybersecurity-excels-by-keeping-humans-in-the-loop/)
 
-### RESEARCH
+#### RESEARCH
 * [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li, 2016](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
 * [Supervised Clustering, Pranjal Awasthi and Reza Bosagh Zadeh, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)
   * [Video Lecture 4 minutes](http://www.quizover.com/oer/course/supervised-clustering-by-reza-bosagh-zadeh-videolectures-net-oer)
 * ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
 * ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
-* ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
 * ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
+* ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
+* ["Incorporating Feedback into Tree-based Anomaly Detection", Das et al.](http://poloclub.gatech.edu/idea2017/papers/p25-das.pdf)
 
 
-## Sub-Project: Visualisation
-We should take a look at the following:
-* http://projector.tensorflow.org
+
 
 ## Sub-Project: Statistical Regular Pavings for Auto-encoded Anomaly Detection
 
 This sub-project aims to explore the use of statistical regular pavings in [Project SAHDE](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/sahde/), 
 including *auto-encoded statistical regular pavings* via appropriate tree arithmetics, for anomaly detection.
 
+The Loda method might be extra interesting to this sub-project as we may be able to use histogram tree arithmetic for the multiple low-dimensional projections in the Loda method (see above). 
 
 ### Background Reading
 
