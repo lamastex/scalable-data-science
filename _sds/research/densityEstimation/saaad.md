@@ -37,7 +37,9 @@ $ vim ex.md
 $ !date
 $ Fri Aug 18 18:33:05 CEST 2017
 ```
-It is meant to give a reasonably standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
+It is meant to give a brief introduction to the problem and a reasonably standard industrial solution and thus help set the context for industrially beneficial research directions. 
+There are other competing solutions, but we will focus on this example for concreteness.  
+The following section by Haakan Persson and Raazesh Sainudiin builds on the material in the next section.
 
 ---
 ---
@@ -206,22 +208,9 @@ distribution for details on how to use this template
 ---
 ---
 
-# Overview of Anomaly Detection with Autoencoders
+# Overview of Adaptive Anomaly Detection with Autoencoders
 
-## General References
-* Some quick mathematical, statistical, computational background readings:
-  * [Anomaly detection - Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
-  * [Auto Encoders Chapter - Deep Learning Book](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
-  * [Autoencoders - Stanford Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
-  * [Digit recognition (Image Search)](http://elkews.com/preview/565650)
-  * ...
-* Computing frameworks for scalable deep learning and auto-encoders in particular
-  * [H2O Deep learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
-  * Sparkling Water - H2O with Spark
-  * IBM's BigDL in Spark
-  * TensorFlow and Spark TensorFrames
-  * [https://github.com/jramapuram/LSTM_Anomaly_Detector](https://github.com/jramapuram/LSTM_Anomaly_Detector)
-
+By Haakan Persson and Raazesh Sainudiin
 
 Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. 
 Since an anomaly by definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. 
@@ -274,6 +263,8 @@ Ideally, the algorithm can determine which unlabelled points it would be most be
 
 
 # Questions for AIM Day
+
+Prepared by Haakan Persson and Raazesh Sainudiin for Combinet AB
 
 ## Q.1 Semi-supervised Anomaly Detection with Human-in-the-Loop
 
@@ -340,7 +331,7 @@ Some such frameworks include:
 * [Direct-Manipulation Visualization of Deep Networks, Daniel Smilkov, Shan Carter, D. Sculley, Fernanda B. Viégas and Martin Wattenberg, 2017](https://arxiv.org/abs/1708.03788)
 
 
-## Sub-Project: Statistical Regular Pavings for Auto-encoded Anomaly Detection
+## Sub-Project 2: Statistical Regular Pavings for Auto-encoded Anomaly Detection
 
 This sub-project aims to explore the use of statistical regular pavings in [Project SAHDE](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/sahde/), 
 including *auto-encoded statistical regular pavings* via appropriate tree arithmetics, for anomaly detection.
@@ -362,6 +353,20 @@ The Loda method might be extra interesting to this sub-project as we may be able
 
 <li>Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, <a class="linkitem" href="http://arc.aiaa.org/doi/abs/10.2514/1.I010015">Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25</a>, doi: 10.2514/1.I010015, 2012 (<a class="linkitem" href="http://lamastex.org/preprints/AAIASubPavingATC.ps">PS</a> 31MB or lossy <a class="linkitem" href="http://lamastex.org/preprints/AAIASubPavingATC.pdf">PDF</a> 2.9MB or <a class="linkitem" href="http://lamastex.org/preprints/AAIASubPavingATC_PNG.zip">zipped 26 PNG pages</a>) </li>
 </ul>
+
+### General References
+* Some quick mathematical, statistical, computational background readings:
+  * [Anomaly detection - Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
+  * [Auto Encoders Chapter - Deep Learning Book](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
+  * [Autoencoders - Stanford Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+  * [Digit recognition (Image Search)](http://elkews.com/preview/565650)
+  * ...
+* Computing frameworks for scalable deep learning and auto-encoders in particular
+  * [H2O Deep learning](http://h2o2016.wpengine.com/wp-content/themes/h2o2016/images/resources/DeepLearningBooklet.pdf)
+  * Sparkling Water - H2O with Spark
+  * IBM's BigDL in Spark
+  * TensorFlow and Spark TensorFrames
+  * [https://github.com/jramapuram/LSTM_Anomaly_Detector](https://github.com/jramapuram/LSTM_Anomaly_Detector)
 
 ### Funding
 This programme is partly supported by:
