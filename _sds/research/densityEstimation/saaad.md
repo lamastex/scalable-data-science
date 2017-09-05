@@ -287,8 +287,8 @@ Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-dat
 
 ## Semi-supervised Anomaly Detection with Human-in-the-Loop
 
-* What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders, and what are their limitations when scaling to terabytes of data? 
-* Can one incorporate active learning with anomaly detection for time series of large networks (eg. network logs data such as netflow logs)?
+* What algorithms are there for incorporating [expert human feedback into anomaly detection](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf), especially with auto-encoders, and what are their limitations when scaling to terabytes of data? 
+* Can one incorporate [expert human feedback with anomaly detection](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf) for continuous time series data of large networks (eg. network logs data such as netflow logs)?
 * How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
 * How can you allow for new (yet unknown anomalies) to be discovered by the model, i.e. account for new types of anomalies over time?
 * Can [Ladder Networks](http://rinuboney.github.io/2016/01/19/ladder-network.html) which were specially developed for semi-supervised learning be adapted for generic anomaly detection (beyond standard datasets)?
