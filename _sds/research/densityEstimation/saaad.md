@@ -210,7 +210,7 @@ distribution for details on how to use this template
 
 # Overview of Adaptive Anomaly Detection with Autoencoders
 
-By Haakan Persson and Raazesh Sainudiin
+Prepared by Haakan Persson and Raazesh Sainudiin for Combinet AB
 
 Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. 
 Since an anomaly by definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. 
@@ -237,36 +237,38 @@ Active learning is an iterative type of semi-supervised learning where the learn
 Ideally, the algorithm can determine which unlabelled points it would be most beneficial to learn the correct labels for.
 
 ## Summary of Deep Learning Algorithms
+
 * *Autoencoders*
 
   Neural networks that are trained to reproduce the indata. Come in different flavours both with respect to depth and width, but also with respect to how overlearning is prevented. Can be used to detect anomalies as those datapoints that are poorly reconstructed by the network. Can also be used for dimennsion reduction in a data preprocession step. Subsequently other anomaly detection techniques can be applioed to the transformed data.
     * ["Autoencoders, Unsupervised Learning, and Deep Architectures", Pierre Baldi.](http://proceedings.mlr.press/v27/baldi12a/baldi12a.pdf)
+
 * *Variational autoencoders*
 
-    Variational autoencoders are a varaiant of autoencoders (or is it the other way around?) where the network is trying to transform the data to a pior distribution (usually multivariate normal). That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original, authentic data. Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
+Variational autoencoders are a variant of autoencoders where the network is trying to transform the data to a pior distribution (usually multivariate normal). 
+That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. 
+This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original, authentic data. 
+Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
     * ["Variational Autoencoders Explained", Kevin Frans](http://kvfrans.com/variational-autoencoders-explained/)
     * ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
     * ["Tutorial on Variational Autoencoders", Carl Doersch](https://arxiv.org/abs/1606.05908)
 
 * *Adversional autoencoders*
 
-     Adversarial autoencoders  have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. In fact, from my superficial comparison of the two types of autoencoders, it seems like the biggest difference between them is not so much how they model the network, but how they are trained. Adersional autoencoders are based on the idea of GANs (Generative adversarial networks). This is how I understand the workings of a GAN. Two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). Then the outdata of the first network is fed as indata to the other network (the disciminator). Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. The job for the generator network is to as often as possible fool the discriminator. This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. Fidning such a equibrilium is of course far from trivial but it seems like good results can be achieved by training the networks iteratively side by side through backpropagation. I don't think this is really relevant for us, but I think it is a bit interesting on a meta level that this generator/discriminator rivalry is a bit reminiscent of the relationshop between the fraudster and the anomaly detector.
-     * ["Generative Adversarial Nets" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1406.2661.pdf)
-     * ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
-     * ["Generative Adversarial Networks Explained", Kevin Frans](http://kvfrans.com/generative-adversial-networks-explained/)
+Adversarial autoencoders  have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. In fact, from my superficial comparison of the two types of autoencoders, it seems like the biggest difference between them is not so much how they model the network, but how they are trained. Adersional autoencoders are based on the idea of GANs (Generative adversarial networks). This is how I understand the workings of a GAN. Two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). Then the outdata of the first network is fed as indata to the other network (the disciminator). Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. The job for the generator network is to as often as possible fool the discriminator. This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. Fidning such a equibrilium is of course far from trivial but it seems like good results can be achieved by training the networks iteratively side by side through backpropagation. I don't think this is really relevant for us, but I think it is a bit interesting on a meta level that this generator/discriminator rivalry is a bit reminiscent of the relationshop between the fraudster and the anomaly detector.
+    * ["Generative Adversarial Nets", Ian J. Goodfellow et al.](https://arxiv.org/pdf/1406.2661.pdf)
+    * ["Adversarial Autoencoders", Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
+    * ["Generative Adversarial Networks Explained", Kevin Frans](http://kvfrans.com/generative-adversial-networks-explained/)
 
 * *Ladder networks*
 
-    Ladder networks is a class of networks specially developed for semi-supervised learning. It aims at combining supervised and unsupervised learning at every level of the network. The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
+Ladder networks is a class of networks specially developed for semi-supervised learning. It aims at combining supervised and unsupervised learning at every level of the network. The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
     * ["Introduction to Semi-Supervised Learning with Ladder Networks", Rinu Boney](http://rinuboney.github.io/2016/01/19/ladder-network.html)
     * ["Semi-Supervised Learning with Ladder Networks", Antti Rasmus et al.](https://arxiv.org/pdf/1507.02672.pdf)
 
 
-# Questions for AIM Day
+## Questions for AIM Day
 
-Prepared by Haakan Persson and Raazesh Sainudiin for Combinet AB
-
-## Q.1 Semi-supervised Anomaly Detection with Human-in-the-Loop
 
 ![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
 
@@ -278,21 +280,24 @@ The basic idea of anomaly detection is to establish a model for what is normal d
 ### Active Anomaly Discovery
 *Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. 
 The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. 
-The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been impelemnted on other ensemble methods, 
-like tree-based methods.
+The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been implemented on other ensemble methods, 
+like tree-based methods. It can also be incorporated into methods that use other autoencoders by replacing the reconstruction error.
 
 In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. Remembering our previous discussions on t-digest and adaptive histogram density estimation, there might be something for us to add to this method.
 
-* What algorithms are there for incorporating active learning with anomaly detection? How can the structure of the specific problem be exploited?
+## Question 1: Semi-supervised Anomaly Detection with Human-in-the-Loop
+
+* What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders (see an overview [here](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/))? 
+* How can the structure of the specific problem be exploited?
 * Can one develop active learning anomaly detection for time series of large networks (eg. network security logs data such as netflow logs)?
-* How do you avoid overfitting to known types of anomalies?
+* How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
 * How can you allow for new (yet unknown anomalies) to be discovered by the model, i.e. account for new types of anomalies over time?
+* Are there natural parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs of distinct set of humans with different hourly costs and tagging capabilities within a generic human-in-the-loop model for anomaly detection?
 
-Is there a natural mathematical statistical argument for parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs for a set of human beings with different hourly wages  who are capable of tagging different types of events with distinct rare probabilities within a generic human-in-the-loop model for anomaly detection?
+For example, such a loss could be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). 
+Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
 
-For example, such a loss could be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf). Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
-
-## Q.2 Interactive Visualisation for the Human-in-the-Loop
+## Question 2: Interactive Visualisation for the Human-in-the-Loop
 
 Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
 
@@ -316,7 +321,7 @@ Some such frameworks include:
 * [http://dygraphs.com/](http://dygraphs.com/)
 * [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
 
-### Background Information
+### Background Readings
 
 * [MIT shows how AI cybersecurity excels by keeping humans in the loop](http://www.techrepublic.com/article/mit-shows-how-ai-cybersecurity-excels-by-keeping-humans-in-the-loop/)
 * [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li, 2016](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
