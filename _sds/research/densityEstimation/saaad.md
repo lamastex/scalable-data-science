@@ -226,21 +226,18 @@ If we translate our fraud detection problem to this setting it means that we hav
 ### Summary of Deep Learning Algorithms
 
 * *Autoencoders*
-
 Autoencoders (AE) are neural networks that are trained to reproduce the indata. 
 They come in different flavours both with respect to depth and width, but also with respect to how overlearning is prevented. 
 They can be used to detect anomalies from those datapoints that are poorly reconstructed by the network, as quantified by the reconstruction error. 
 AEs can also be used for dimension reduction or compression in a data preprocession step. Subsequently other anomaly detection techniques can be applied to the transformed data.
 
 * *Variational autoencoders*
-
 Variational autoencoders are latent space models where the network is trying to transform the data to a pior distribution (usually multivariate normal). 
 That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. 
 This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original authentic data. 
 Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
 
 * *Adversarial autoencoders*
-
 Adversarial autoencoders have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. 
 One of the differences between them is not so much how they model the network, but how they are trained. 
 Adversarial autoencoders are based on the idea of GANs (Generative adversarial networks). 
@@ -253,18 +250,15 @@ Finding such an equilibrium is of course far from trivial but it seems like good
 The learning framework is interesting on a meta level because this generator/discriminator rivalry is a bit reminiscent of the relationship between the fraudster and the anomaly detector.
 
 * *Ladder networks*
-
 Ladder networks is a class of networks specially developed for semi-supervised learning. 
 It aims at combining supervised and unsupervised learning at every level of the network. 
 The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
 
-* *Active Anomaly Discovery*
-
+* *Active Anomaly Discovery* 
 *Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. 
 The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. 
 The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been implemented on other ensemble methods, 
-like tree-based methods. It can also be incorporated into methods that use other autoencoders by replacing the reconstruction error.
-
+like tree-based methods. It can also be incorporated into methods that use other autoencoders by replacing the reconstruction error. 
 In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. Remembering our previous discussions on t-digest and adaptive histogram density estimation, there might be something for us to add to this method.
 
 
