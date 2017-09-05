@@ -39,7 +39,7 @@ $ Fri Aug 18 18:33:05 CEST 2017
 ```
 It is meant to give a brief introduction to the problem and a reasonably standard industrial solution and thus help set the context for industrially beneficial research directions. 
 There are other competing solutions, but we will focus on this example for concreteness.  
-The following section by Haakan Persson and Raazesh Sainudiin builds on the material in the next section.
+The following section by Håkan Persson and Raazesh Sainudiin builds on the material in the next section.
 
 ---
 ---
@@ -206,18 +206,18 @@ distribution for details on how to use this template
 
 # Adaptive Anomaly Detection with Autoencoders
 
-Prepared by Hakan Persson and Raazesh Sainudiin for Combinet AB
+Prepared by Håkan Persson and Raazesh Sainudiin for Combient AB
 
 
 ### Introduction
-Anomaly detection is a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent acticity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
+Anomaly detection is a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent activity for example in credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
 
-The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates to much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and uncommon but natural data. This distinction is very dependent of the application at hand, and it is very unlikely that there is one single classification aslgorithm that is to make this distinction in all applications. However, it it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
+The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates to much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and data that is uncommon but natural. This distinction is very dependent of the application at hand, and it is very unlikely that there is one single classification algorithm that is able to make this distinction in all applications. However, it it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
 
 
 Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. 
 Since an anomaly by definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. 
-In the case of fraud detection, it is often the case that a small fraction (perhaps 1 out of a million) of the data points represent known cases of fraud attempts. 
+In the case of fraud detection, it is often the case that a small fraction (perhaps one out of a million) of the data points represent known cases of fraud attempts. 
 It would be wasteful to throw away this information when building the model. This would mean that we no longer have a unsupervised learning problem, but a **semi-supervised learning problem**. 
 In a typical semi-supervised learning problem, the problem is to assign predefined labels to datapoints when the correct label is only known for a small fraction of the dataset. 
 This is a very useful idea, since it allows for leveraging the power of big data, without having to incur the cost of correctly labeling the whole dataset.  
