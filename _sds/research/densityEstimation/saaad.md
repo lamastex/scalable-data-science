@@ -239,13 +239,24 @@ That is, the lower dimensional representation of the data that you get from stan
 This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original authentic data. 
 Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
 
-* *Adversional autoencoders*
+* *Adversarial autoencoders*
 
-Adversarial autoencoders  have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. In fact, from my superficial comparison of the two types of autoencoders, it seems like the biggest difference between them is not so much how they model the network, but how they are trained. Adersional autoencoders are based on the idea of GANs (Generative adversarial networks). This is how I understand the workings of a GAN. Two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). Then the outdata of the first network is fed as indata to the other network (the disciminator). Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. The job for the generator network is to as often as possible fool the discriminator. This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. Fidning such a equibrilium is of course far from trivial but it seems like good results can be achieved by training the networks iteratively side by side through backpropagation. I don't think this is really relevant for us, but I think it is a bit interesting on a meta level that this generator/discriminator rivalry is a bit reminiscent of the relationshop between the fraudster and the anomaly detector.
+Adversarial autoencoders have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. 
+One of the differences between them is not so much how they model the network, but how they are trained. 
+Adversarial autoencoders are based on the idea of GANs (Generative adversarial networks). 
+In a GAN, two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). 
+Then the outdata of the first network is fed as indata to the other network (the disciminator). 
+Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. 
+The job for the generator network is to, as often as possible, fool the discriminator. 
+This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. 
+Finding such an equilibrium is of course far from trivial but it seems like good results can be achieved by training the networks iteratively side by side through backpropagation. 
+The learning framework is interesting on a meta level because this generator/discriminator rivalry is a bit reminiscent of the relationship between the fraudster and the anomaly detector.
 
 * *Ladder networks*
 
-Ladder networks is a class of networks specially developed for semi-supervised learning. It aims at combining supervised and unsupervised learning at every level of the network. The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
+Ladder networks is a class of networks specially developed for semi-supervised learning. 
+It aims at combining supervised and unsupervised learning at every level of the network. 
+The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
 
 * *Active Anomaly Discovery*
 
@@ -277,15 +288,15 @@ Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-dat
 ## Semi-supervised Anomaly Detection with Human-in-the-Loop
 
 * What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders, and what are their limitations when scaling to terabytes of data? 
-* How can the structure of the specific problem be exploited?
 * Can one incorporate active learning with anomaly detection for time series of large networks (eg. network logs data such as netflow logs)?
 * How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
 * How can you allow for new (yet unknown anomalies) to be discovered by the model, i.e. account for new types of anomalies over time?
+* Can [Ladder Networks](http://rinuboney.github.io/2016/01/19/ladder-network.html) which were specially developed for semi-supervised learning be adapted for generic anomaly detection (beyond standard datasets)?
+* Can a loss function be specified for an auto-encoder with additional classifier node(s) for rare anomalous events of several types via interaction with the domain expert?    
 * Are there natural parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs of distinct set of humans with different hourly costs and tagging capabilities within a generic human-in-the-loop model for anomaly detection?
 
 Some ideas to start brain-storming:
 * For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)). 
-Ideally, this loss can be extended to auto-encoder networks with an additional node(s) for classifying rare anomalous events of several known types via interaction with the domain expert.    
 * Do an SVD of the network data when dealing with time-series of large networks that are [tall and skinny](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/mllib/TallSkinnySVD.scala) and look at the distances between the dominant singular vectors, perhaps?
 
 ## Interactive Visualisation for the Human-in-the-Loop
