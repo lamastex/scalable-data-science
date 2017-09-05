@@ -300,10 +300,11 @@ For example, such a loss could be justified using notions such as query-efficien
 Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
 
 For example, how can the following open source tools be integrated into Active-Learning and other human-in-the-loop Anomaly Detectors? 
-* [https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html](https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html)
+* [https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html](https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html) from [https://ai.google/pair](https://ai.google/pair)
   * [https://github.com/pair-code/facets](https://github.com/pair-code/facets)
   * [https://pair-code.github.io/facets/](https://pair-code.github.io/facets/)
 * [http://projector.tensorflow.org](http://projector.tensorflow.org/)
+* [https://distill.pub/2016/misread-tsne/](https://distill.pub/2016/misread-tsne/)
 * [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
 * ...
 
@@ -332,8 +333,8 @@ Some such frameworks include:
 * ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
 * ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
 * ["Incorporating Feedback into Tree-based Anomaly Detection", Das et al.](http://poloclub.gatech.edu/idea2017/papers/p25-das.pdf)
-
-
+* [Embedding Projector: Interactive Visualization and Interpretation of Embeddings, Daniel Smilkov, Nikhil Thorat, Charles Nicholson, Emily Reif, Fernanda B. Viégas, Martin Wattenberg, 2016](https://arxiv.org/abs/1611.05469)
+* [Direct-Manipulation Visualization of Deep Networks, Daniel Smilkov, Shan Carter, D. Sculley, Fernanda B. Viégas and Martin Wattenberg, 2017](https://arxiv.org/abs/1708.03788)
 
 
 ## Sub-Project: Statistical Regular Pavings for Auto-encoded Anomaly Detection
