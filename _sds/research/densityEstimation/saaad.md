@@ -44,7 +44,7 @@ The following section by Haakan Persson and Raazesh Sainudiin builds on the mate
 ---
 ---
 
-## Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
+### Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
 
 By Venkata Jagannath from [https://community.tibco.com/users/venkata-jagannath](https://community.tibco.com/users/venkata-jagannath)
 
@@ -53,7 +53,7 @@ first uses machine learning models to specify expected behavior and then
 monitors new data to match and highlight unexpected behavior.
 
 
-### Use cases for Anomaly detection
+#### Use cases for Anomaly detection
 
 **Fighting Financial Crime** – In the financial world, trillions of
 dollars’ worth of transactions happen every minute. Identifying
@@ -90,7 +90,7 @@ anomalies) are detected using the auto encoder model that scores the new
 data.
 [Example](http://webserv.lurpa.ens-cachan.fr/dcds_series/dcds11/fileadmin/user_upload/pdf/tilbury-dcds2011.pdf)
 
-### Techniques for Anomaly detection
+#### Techniques for Anomaly detection
 
 Companies around the world have used many different techniques to fight
 fraud in their markets. While the below list is not comprehensive, three
@@ -145,7 +145,7 @@ series analytics by building models that capture trend, seasonality and
 levels in time series data. These models are then used along with new
 data to find anomalies. [Industry example](http://nerds.airbnb.com/anomaly-detection/)
 
-### Auto encoders explained
+#### Auto encoders explained
 
 Autoencoders use unsupervised neural networks that are both similar to
 and different from a traditional feed forward neural network. It is
@@ -189,7 +189,7 @@ A detailed explanation of each of these types of auto encoders is
 available
 [here](http://www.deeplearningbook.org/contents/autoencoders.html).
 
-### Spotfire Template for Anomaly detection
+#### Spotfire Template for Anomaly detection
 
 TIBCO Spotfire’s Anomaly detection template uses an auto encoder trained
 in H2O for best in the market training performance. It can be configured
@@ -204,7 +204,7 @@ distribution for details on how to use this template
 ---
 ---
 
-# Overview of Adaptive Anomaly Detection with Autoencoders
+# Adaptive Anomaly Detection with Autoencoders
 
 Prepared by Hakan Persson and Raazesh Sainudiin for Combinet AB
 
@@ -223,7 +223,7 @@ In a typical semi-supervised learning problem, the problem is to assign predefin
 This is a very useful idea, since it allows for leveraging the power of big data, without having to incur the cost of correctly labeling the whole dataset.  
 If we translate our fraud detection problem to this setting it means that we hava a big collection of datapoints which we want to label as either "fraud" or "non-fraud". 
 
-## Summary of Deep Learning Algorithms
+### Summary of Deep Learning Algorithms
 
 * *Autoencoders*
 
