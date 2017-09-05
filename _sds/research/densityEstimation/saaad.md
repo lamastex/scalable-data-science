@@ -234,9 +234,9 @@ AEs can also be used for dimension reduction or compression in a data preprocess
 
 * *Variational autoencoders*
 
-Variational autoencoders are a variant of autoencoders where the network is trying to transform the data to a pior distribution (usually multivariate normal). 
+Variational autoencoders are latent space models where the network is trying to transform the data to a pior distribution (usually multivariate normal). 
 That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. 
-This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original, authentic data. 
+This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original authentic data. 
 Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
 
 * *Adversional autoencoders*
