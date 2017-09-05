@@ -256,12 +256,15 @@ In the Loda method, the idea is to project the data to a random one-dimensional 
 
 ## Questions for AIM Day
 
+These questions are addressed to experts in statistical/machine learning and visualisation or human-computer interactions. 
+The background information is given in the list of references below for concreteness.
+Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic background.
 
 ![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
 
-## Question 1: Semi-supervised Anomaly Detection with Human-in-the-Loop
+## Semi-supervised Anomaly Detection with Human-in-the-Loop
 
-* What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders (see an overview [here](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/))? 
+* What algorithms are there for incorporating active learning with anomaly detection, especially with auto-encoders? 
 * How can the structure of the specific problem be exploited?
 * Can one develop active learning anomaly detection for time series of large networks (eg. network security logs data such as netflow logs)?
 * How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
