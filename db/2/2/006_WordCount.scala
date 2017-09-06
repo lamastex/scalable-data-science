@@ -97,11 +97,11 @@ dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",673) // Cntrl+Enter to get the
 
 // MAGIC %md
 // MAGIC ##### You Try!
-// MAGIC Modify ``xxxx` in the cell below to read the first 1000 bytes from the file.
+// MAGIC Uncomment and modify `xxxx` in the cell below to read the first 1000 bytes from the file.
 
 // COMMAND ----------
 
-dbutils.fs.head("dbfs:/datasets/sou/17900108.txt", xxxx) // Cntrl+Enter to get the first 1000 bytes of the file
+//dbutils.fs.head("dbfs:/datasets/sou/17900108.txt", xxxx) // Cntrl+Enter to get the first 1000 bytes of the file
 
 // COMMAND ----------
 
