@@ -418,6 +418,15 @@ ds1.show()
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ## Go through the databricks Introductions Now
+// MAGIC 
+// MAGIC * [https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-dataframes-scala.html](https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-dataframes-scala.html)
+// MAGIC 
+// MAGIC * [https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-datasets.html](https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-datasets.html)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC ### Recommended Homework
 // MAGIC This week's recommended homework is a deep dive into the [SparkSQL programming guide](http://spark.apache.org/docs/latest/sql-programming-guide.html).
