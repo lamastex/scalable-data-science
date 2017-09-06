@@ -521,16 +521,32 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 
 val list = 1 to 10
 var sum = 0
-list.foreach(x => sum = sum + x)
+list.map(x => sum = sum + x)
 print(sum)
 
 // COMMAND ----------
 
 val rdd = sc.parallelize(1 to 10)
 var sum = 0
-rdd.foreach(x => sum = sum + x)
-rdd.collect
-print(sum)
+
+// COMMAND ----------
+
+val rdd1 = rdd.map(x => sum = sum + x)
+
+// COMMAND ----------
+
+rdd1.collect()
+
+// COMMAND ----------
+
+val rdd1 = rdd.map(x => {var sum = 0;
+                         sum = sum + x
+                         sum}
+                  )
+
+// COMMAND ----------
+
+rdd1.collect()
 
 // COMMAND ----------
 
