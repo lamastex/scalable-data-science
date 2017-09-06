@@ -289,6 +289,30 @@ df1.groupBy("once").count().show()
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Let's make a more interesting DataFrame for `groupBy` with repeated elements so that the `count` will be more than `1`.
+
+// COMMAND ----------
+
+df1.show()
+
+// COMMAND ----------
+
+val df11 = sc.parallelize(3 to 5).map(i => (i, i*2)).toDF("once", "twice") // just make a small one
+df11.show()
+
+// COMMAND ----------
+
+val df111 = df1.union(df11) // let's take the unionAll of df1 and df11 into df111
+df111.show() // df111 is obtained by simply appending the rows of df11 to df1
+
+// COMMAND ----------
+
+// Count the number of distinct singles -  a bit less boring
+df111.groupBy("once").count().show()
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC For a complete list of the types of operations that can be performed on a Dataset refer to the [API Documentation](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset).
 // MAGIC 
