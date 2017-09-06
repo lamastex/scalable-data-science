@@ -171,7 +171,7 @@ val emptyDF = spark.emptyDataFrame // Ctrl+Enter to make an empty DataFrame
 
 // COMMAND ----------
 
-val rangeDF = spark.range(0, 3) // Ctrl+Enter to make DataFrame with 0,1,2
+val rangeDF = spark.range(0, 3).toDF() // Ctrl+Enter to make DataFrame with 0,1,2
 
 // COMMAND ----------
 
@@ -358,6 +358,19 @@ spark.sql("SELECT * FROM SDTable WHERE once>2").show()
 // MAGIC %md
 // MAGIC ## 6. Creating Datasets
 // MAGIC Datasets are similar to RDDs, however, instead of using Java serialization or Kryo they use a specialized [Encoder](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Encoder) to serialize the objects for processing or transmitting over the network. While both encoders and standard serialization are responsible for turning an object into bytes, encoders are code generated dynamically and use a format that allows Spark to perform many operations like filtering, sorting and hashing without deserializing the bytes back into an object.
+
+// COMMAND ----------
+
+val rangeDS = spark.range(0, 3) // Ctrl+Enter to make DataSet with 0,1,2; Note we added '.toDF()' to this to create a DataFrame
+
+// COMMAND ----------
+
+rangeDS.show() // the column name 'id' is made by default here
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC We can have more complicated objects in a `DataSet` too.
 
 // COMMAND ----------
 
