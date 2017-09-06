@@ -14,7 +14,7 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 # Project SAAAD:<br /> Scalable Adaptive Auto-encoded Anomaly Detection
 
-Prepared by Hakan Persson and Raazesh Sainudiin for Combinet AB
+Prepared by Håkan Persson and Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
 Project SAAD aims to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
 Specifically, the problem has these complexities:
@@ -72,10 +72,12 @@ like tree-based methods. It can also be incorporated into methods that use other
 In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. 
 Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. 
 
+
 # Questions for AIM Day
 
-We aim to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
-Specifically, the problem has the following complexities:
+Prepared by Håkan Persson and Raazesh Sainudiin for [Combient AB](https://combient.com/).
+
+We aim to explore the use of autoencoders for anomaly detection in various 'big-data' problems that have the following complexities:
 
 * data volumes are big and one needs distributed in-memory fault-tolerant computing frameworks such as [Apache Spark](http://spark.apache.org/)
 * learning is 
@@ -85,7 +87,7 @@ Specifically, the problem has the following complexities:
 
 These questions are addressed to experts in statistical/machine learning and visualisation or human-computer interactions. 
 The background information is given in the list of references below for concreteness.
-Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic background.
+Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic context.
 
 ![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
 
@@ -100,6 +102,7 @@ Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-dat
 * Are there natural parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs of distinct set of humans with different hourly costs and tagging capabilities within a generic human-in-the-loop model for anomaly detection?
 
 Some ideas to start brain-storming:
+
 * For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)). 
 * Do an SVD of the network data when dealing with time-series of large networks that are [tall and skinny](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/mllib/TallSkinnySVD.scala) and look at the distances between the dominant singular vectors, perhaps?
 
@@ -107,10 +110,10 @@ Some ideas to start brain-storming:
 
 Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
 
-For example, how can the following open source tools be integrated into Active-Learning and other human-in-the-loop Anomaly Detectors? 
-* [https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html](https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html) from [https://ai.google/pair](https://ai.google/pair)
-  * [https://github.com/pair-code/facets](https://github.com/pair-code/facets)
-  * [https://pair-code.github.io/facets/](https://pair-code.github.io/facets/)
+For example, how can open source tools be integrated into Active-Learning and other human-in-the-loop Anomaly Detectors? 
+Some such tools include:
+
+* [facets](https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html) from [https://ai.google/pair](https://ai.google/pair)
 * [http://projector.tensorflow.org](http://projector.tensorflow.org/)
 * [https://distill.pub/2016/misread-tsne/](https://distill.pub/2016/misread-tsne/)
 * [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
@@ -120,6 +123,7 @@ Beyond, visualising the ML algorithms, often the Human-in-the-Loop needs to see 
 And typically this event needs to be seen in the context of other related and relevant events, including it anomaly score with some some historical comparisons of similar events from a no-SQL query. 
 What are some natural frameworks for being able to click the event of interest (say those alerted by the algorithm) and visualise the raw event details (usually a JSON record or a row of a CSV file) in order to make an informed decision. 
 Some such frameworks include:
+
 * [https://d3js.org/](https://d3js.org/)
 * [https://vega.github.io/vega/](https://vega.github.io/vega/)
 * [https://processing.org/](https://processing.org/)
