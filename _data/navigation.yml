@@ -61,6 +61,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/007_SparkSQLIntroBasics/
       - title: "ETL Diamonds Data"
         url: /sds/2/2/db/008_DiamondsPipeline_01ETLEDA/
+      - title: "ETL Power Plant"
+        url: /sds/2/2/db/009_PowerPlantPipeline_01ETLEDA/
   - title: "Contents-zeppelin"
   - title: "sbt"
   - title: "SDS-1.6 Course"
