@@ -10,13 +10,15 @@
 // MAGIC 
 // MAGIC This is the Spark SQL parts that are focussed on extract-transform-Load (ETL) and exploratory-data-analysis (EDA) parts of an end-to-end example of a Machine Learning (ML) workflow.
 // MAGIC 
-// MAGIC This is a scala*rific* break-down of the python*ic* 'Diamonds ML Pipeline Workflow' in Databricks Guide.
+// MAGIC **Why are we using DataFrames?** *This is because of the **Announcement** in the Spark MLlib Main Guide for Spark 2.2* [https://spark.apache.org/docs/latest/ml-guide.html](https://spark.apache.org/docs/latest/ml-guide.html) that *"DataFrame-based API is primary API"*.
 // MAGIC 
-// MAGIC **We will see this example gain in the sequel**
+// MAGIC This notebook is a scala*rific* break-down of the python*ic* 'Diamonds ML Pipeline Workflow' from the Databricks Guide.
+// MAGIC 
+// MAGIC **We will see this example again in the sequel**
 // MAGIC 
 // MAGIC For this example, we analyze the Diamonds dataset from the R Datasets hosted on DBC.  
 // MAGIC 
-// MAGIC Later on, we will use the [DecisionTree algorithm](http://spark.apache.org/docs/latest/ml-decision-tree.html) to predict the price of a diamond from its characteristics.
+// MAGIC Later on, we will use the [DecisionTree algorithm](http://spark.apache.org/docs/latest/ml-classification-regression.html#decision-trees) to predict the price of a diamond from its characteristics.
 // MAGIC 
 // MAGIC Here is an outline of our pipeline:
 // MAGIC * **Step 1. *Load data*: Load data as DataFrame**
@@ -38,7 +40,7 @@
 // MAGIC 
 // MAGIC This section loads a dataset as a DataFrame and examines a few rows of it to understand the schema.
 // MAGIC 
-// MAGIC For more info, see the DB guide on [Accessing data](#workspace/databricks_guide/03 Accessing Data/0 Accessing Data).
+// MAGIC For more info, see the DB guide on [importing data](https://docs.databricks.com/user-guide/importing-data.html).
 
 // COMMAND ----------
 
@@ -51,7 +53,7 @@ sc.textFile(diamondsFilePath).take(2) // looks like a csv file as it should
 
 // COMMAND ----------
 
-val diamondsRawDF = sqlContext.read    
+val diamondsRawDF = sqlContext.read    // we can use sqlContext instead of SparkSession for backwards compatibility to 1.x
     .format("com.databricks.spark.csv") // use spark.csv package
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
@@ -83,7 +85,7 @@ diamondsRawDF.count() // Ctrl+Enter
 
 // COMMAND ----------
 
-diamondsRawDF.show()
+diamondsRawDF.show(10)
 
 // COMMAND ----------
 
@@ -97,15 +99,21 @@ diamondsRawDF.show()
 // COMMAND ----------
 
 import org.apache.spark.sql.types.DoubleType
-//we will convert price column from int to double later
+//we will convert price column from int to double for being able to model, fit and predict in downstream ML task
 val diamondsDF = diamondsRawDF.select($"carat", $"cut", $"color", $"clarity", $"depth", $"table",$"price".cast(DoubleType).as("price"), $"x", $"y", $"z")
 diamondsDF.cache() // let's cache it for reuse
 diamondsDF.printSchema // print schema
 
 // COMMAND ----------
 
-//View DataFrame
-display(diamondsDF)
+diamondsDF.show(10,false) // notice that price column has Double values that end in '.0' now
+
+// COMMAND ----------
+
+//View DataFrame in databricks
+// note this 'display' is a databricks notebook specific command that is quite powerful for visual interaction with the data
+// other notebooks like zeppelin have similar commands for interactive visualisation
+display(diamondsDF) 
 
 // COMMAND ----------
 
@@ -114,7 +122,7 @@ display(diamondsDF)
 // MAGIC 
 // MAGIC Let's examine the data to get a better understanding of what is there.  We only examine a couple of features (columns), but it gives an idea of the type of exploration you might do to understand a new dataset.
 // MAGIC 
-// MAGIC For more examples of using Databricks's visualization to explore a dataset, see the [Visualizations Notebook](#workspace/databricks_guide/04 Visualizations/0 Visualizations Overview).
+// MAGIC For more examples of using Databricks's visualization (even across languages) see [https://docs.databricks.com/user-guide/visualizations/index.html](https://docs.databricks.com/user-guide/visualizations/index.html) NOW.
 
 // COMMAND ----------
 
@@ -138,12 +146,12 @@ val cutsDF = diamondsDF.select("cut") // Shift+Enter
 
 // COMMAND ----------
 
-display(cutsDF) // Ctrl+Enter
+cutsDF.show(10) // Ctrl+Enter
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Let us use `distinct` to find the distinct types of `cut`s in the dataset. 
+// MAGIC Let us use `distinct` to find the distinct types of `cut`'s in the dataset. 
 
 // COMMAND ----------
 
@@ -173,10 +181,6 @@ claritiesDistinctDF.show()
 
 // COMMAND ----------
 
-display(claritiesDistinctDF) // can use databricks' "magical visualizer"
-
-// COMMAND ----------
-
 // MAGIC %md
 // MAGIC We can examine the distribution of a particular feature by using display(), 
 // MAGIC 
@@ -202,12 +206,25 @@ display(diamondsDF.select("cut"))
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC ** You Try!**
+// MAGIC 
+// MAGIC Now play around with display of the entire DF and choosing what you want in the GUI as opposed to a `.select(...)` statement earlier.
+// MAGIC 
+// MAGIC For instance, the following `display(diamondsDF)` shows the counts of the colors by choosing in the `Plot Options` a `bar-chart` that is `grouped` with `Series Grouping` as `color`, `values` as `<id>` and `Aggregation` as `COUNT`. You can click on `Plot Options` to see these settings and can change them as you wish by dragging and dropping. 
+
+// COMMAND ----------
+
+ display(diamondsDF)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC Now let's examine one of the continuous features as an example.
 
 // COMMAND ----------
 
-//Select: "Plot Options..." --> "Display type" --> "histogram plot" and choose to "Plot over all results"
+//Select: "Plot Options..." --> "Display type" --> "histogram plot" and choose to "Plot over all results" OTHERWISE you get the image from first 1000 rows only
 display(diamondsDF.select("carat"))
 
 // COMMAND ----------
@@ -276,16 +293,20 @@ diamondsDF.printSchema // Ctrl+Enter
 
 // COMMAND ----------
 
-val diamondsDColoredDF = diamondsDF.select($"carat", $"color", $"price").filter($"color" === "D") // Shift+Enter
+val diamondsDColoredDF = diamondsDF.select("carat", "color", "price").filter($"color" === "D") // Shift+Enter
 
 // COMMAND ----------
 
-display(diamondsDColoredDF) // Ctrl+Enter
+diamondsDColoredDF.show(10) // Ctrl+Enter
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC As you can see all the colors are now 'D'.
+// MAGIC As you can see all the colors are now 'D'. But to really confirm this we can do the following for fun:
+
+// COMMAND ----------
+
+diamondsDColoredDF.select("color").distinct().show
 
 // COMMAND ----------
 
@@ -327,8 +348,13 @@ val diamondsDColoredDF_FromTable = sqlContext.sql("select carat, color, price fr
 
 // COMMAND ----------
 
+// or if you like use upper case for SQL then this is equivalent
+val diamondsDColoredDF_FromTable = sqlContext.sql("SELECT carat, color, price FROM diamonds WHERE color='D'") // Shift+Enter
+
+// COMMAND ----------
+
 // from version 2.x onwards you can call from SparkSession, the pre-made spark in spark-shell or databricks notebook
-val diamondsDColoredDF_FromTable = spark.sql("select carat, color, price from diamonds where color='D'") // Shift+Enter
+val diamondsDColoredDF_FromTable = spark.sql("SELECT carat, color, price FROM diamonds WHERE color='D'") // Shift+Enter
 
 // COMMAND ----------
 
@@ -337,36 +363,36 @@ display(diamondsDColoredDF_FromTable) // Ctrl+Enter to see the same DF!
 // COMMAND ----------
 
 // You can also use the familiar wildchard character '%' when matching Strings
-display(spark.sql("select * from diamonds where clarity LIKE 'V%'"))
+display(spark.sql("SELECT * FROM diamonds WHERE clarity LIKE 'V%'"))
 
 // COMMAND ----------
 
 // Combining conditions
-display(spark.sql("select * from diamonds where clarity LIKE 'V%' and price > 10000"))
+display(spark.sql("SELECT * FROM diamonds WHERE clarity LIKE 'V%' AND price > 10000"))
 
 // COMMAND ----------
 
 // selecting a subset of fields
-display(spark.sql("select carat, clarity, price from diamonds where color = 'D'"))
+display(spark.sql("SELECT carat, clarity, price FROM diamonds WHERE color = 'D'"))
 
 // COMMAND ----------
 
 //renaming a field using as
-display(spark.sql("select carat as carrot, clarity, price from diamonds"))
+display(spark.sql("SELECT carat AS carrot, clarity, price FROM diamonds"))
 
 // COMMAND ----------
 
 //sorting
-display(spark.sql("select carat, clarity, price from diamonds order by price desc"))
+display(spark.sql("SELECT carat, clarity, price FROM diamonds ORDER BY price DESC"))
 
 // COMMAND ----------
 
-diamondsDF.printSchema // since prince is integer in the DF turned into table we can rely on the descenting sort on integers
+diamondsDF.printSchema // since price is double in the DF that was turned into table we can rely on the descenting sort on doubles
 
 // COMMAND ----------
 
 // sort by multiple fields
-display(spark.sql("select carat, clarity, price from diamonds order by carat asc, price desc"))
+display(spark.sql("SELECT carat, clarity, price FROM diamonds ORDER BY carat ASC, price DESC"))
 
 // COMMAND ----------
 
@@ -376,6 +402,7 @@ display(spark.sql("select carat, clarity, price from diamonds order by carat asc
 // COMMAND ----------
 
 // sort by multiple fields and limit to first 5
+// I prefer lowercase for SQL - and you can use either in this course - but in the field do what your Boss or your colleagues prefer :)
 display(spark.sql("select carat, clarity, price from diamonds order by carat desc, price desc limit 5"))
 
 // COMMAND ----------
@@ -385,8 +412,8 @@ display(spark.sql("select avg(price) as avgprice from diamonds"))
 
 // COMMAND ----------
 
-//average operator seems to be doing an auto-type conversion from int to double
-display(spark.sql("select avg(cast(price as Double)) as avgprice from diamonds"))
+//average operator is doing an auto-type conversion from int to double
+display(spark.sql("select avg(cast(price as Integer)) as avgprice from diamonds"))
 
 // COMMAND ----------
 
@@ -401,7 +428,7 @@ display(spark.sql("select color, avg(price) as avgprice from diamonds group by c
 // MAGIC 
 // MAGIC Of course, if you don't know SQL then don't worry, we will be doing these things in scala using DataFrames.
 // MAGIC 
-// MAGIC Finally, those who are planning to take the Spark Develope Exams online, then you can't escape from SQL questions there...
+// MAGIC Finally, those who are planning to take the Spark Developer Exams online, then you can't escape from SQL questions there...
 
 // COMMAND ----------
 
@@ -409,3 +436,5 @@ display(spark.sql("select color, avg(price) as avgprice from diamonds group by c
 // MAGIC #### Further Preparation
 // MAGIC For more on SQL syntax, check the SQL tutorial on [W3Schools](http://www.w3schools.com/sql/default.asp)  
 // MAGIC Note that [HiveQL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) supports only a subset of operations supported by SQL
+// MAGIC 
+// MAGIC See databricks guide on [tables](https://docs.databricks.com/user-guide/tables.html) **NOW-ish**.
