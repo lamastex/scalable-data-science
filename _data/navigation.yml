@@ -63,6 +63,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/008_DiamondsPipeline_01ETLEDA/
       - title: "ETL Power Plant"
         url: /sds/2/2/db/009_PowerPlantPipeline_01ETLEDA/
+      - title: "Wiki Click streams"
+        url: /sds/2/2/db//
   - title: "Contents-zeppelin"
   - title: "sbt"
   - title: "SDS-1.6 Course"
