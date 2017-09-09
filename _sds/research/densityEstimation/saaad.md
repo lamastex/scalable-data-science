@@ -16,7 +16,7 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 Prepared by Håkan Persson and Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
-Project SAAD aims to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
+Project SAAAD aims to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
 Specifically, the problem has these complexities:
 
 * data volumes are big and one needs distributed in-memory fault-tolerant computing frameworks such as [Apache Spark](http://spark.apache.org/)
