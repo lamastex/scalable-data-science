@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Potential Research - Project SAAAD
+title: Research - Project SAAAD - Scalable Adaptive Auto-encoded Anomaly Detection
 permalink: /sds/research/densityEstimation/saaad/
 author_profile: true
 header:
