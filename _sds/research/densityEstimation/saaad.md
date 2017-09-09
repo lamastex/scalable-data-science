@@ -26,9 +26,9 @@ Specifically, the problem has these complexities:
 * the phenomena is time-varying
 
 ### Introduction
-Anomaly detection is a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent acticity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognising anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
+Anomaly detection is a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent activity for example in for example credit card transactions or insurance claims. Another important application is in predictive maintenance where recognizing anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
 
-The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates to much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and uncommon but natural data. This distinction is very dependent of the application at hand, and it is very unlikely that there is one single classification aslgorithm that is to make this distinction in all applications. However, it it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
+The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates to much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and uncommon but natural data. This distinction is very dependent of the application at hand, and it is very unlikely that there is one single classification algorithm that is to make this distinction in all applications. However, it it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
 
 Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. 
 Since an anomaly by definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. 
@@ -36,16 +36,16 @@ In the case of fraud detection, it is often the case that a small fraction (perh
 It would be wasteful to throw away this information when building the model. This would mean that we no longer have a unsupervised learning problem, but a **semi-supervised learning problem**. 
 In a typical semi-supervised learning problem, the problem is to assign predefined labels to datapoints when the correct label is only known for a small fraction of the dataset. 
 This is a very useful idea, since it allows for leveraging the power of big data, without having to incur the cost of correctly labeling the whole dataset.  
-If we translate our fraud detection problem to this setting it means that we hava a big collection of datapoints which we want to label as either "fraud" or "non-fraud". 
+If we translate our fraud detection problem to this setting it means that we have a big collection of datapoints which we want to label as either "fraud" or "non-fraud". 
 
 ### Summary of Deep Learning Algorithms
 
 * *Autoencoders* (AE) are neural networks that are trained to reproduce the indata. 
-They come in different flavours both with respect to depth and width, but also with respect to how overlearning is prevented. 
+They come in different flavours both with respect to depth and width, but also with respect to how over-learning is prevented. 
 They can be used to detect anomalies from those datapoints that are poorly reconstructed by the network, as quantified by the reconstruction error. 
 AEs can also be used for dimension reduction or compression in a data preprocession step. Subsequently other anomaly detection techniques can be applied to the transformed data.
 
-* *Variational autoencoders* are latent space models where the network is trying to transform the data to a pior distribution (usually multivariate normal). 
+* *Variational autoencoders* are latent space models where the network is trying to transform the data to a prior distribution (usually multivariate normal). 
 That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. 
 This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original authentic data. 
 Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
@@ -54,7 +54,7 @@ Of course you can also use the network to detect outliers in the dataset by comp
 One of the differences between them is not so much how they model the network, but how they are trained. 
 Adversarial autoencoders are based on the idea of GANs (Generative adversarial networks). 
 In a GAN, two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). 
-Then the outdata of the first network is fed as indata to the other network (the disciminator). 
+Then the outdata of the first network is fed as indata to the other network (the discriminator). 
 Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. 
 The job for the generator network is to, as often as possible, fool the discriminator. 
 This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. 
@@ -67,7 +67,7 @@ The method has made very impressive results on classifying the MNIST dataset, bu
 
 * *Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. 
 The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. 
-The original impementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-lin detector of anomalies), but it has also been implemented on other ensemble methods, 
+The original implementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-line detector of anomalies), but it has also been implemented on other ensemble methods, 
 like tree-based methods. It can also be incorporated into methods that use other autoencoders by replacing the reconstruction error. 
 In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. 
 Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. 
@@ -85,9 +85,9 @@ We aim to explore the use of autoencoders for anomaly detection in various 'big-
   * interactive (with humans-in-the-loop)
 * the phenomena is time-varying
 
-These questions are addressed to experts in statistical/machine learning and visualisation or human-computer interactions. 
+These questions are addressed to experts in statistical/machine learning and visualization or human-computer interactions. 
 The background information is given in the list of references below for concreteness.
-Plese see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic context.
+Please see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic context.
 
 ![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
 
@@ -106,7 +106,7 @@ Some ideas to start brain-storming:
 * For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)). 
 * Do an SVD of the network data when dealing with time-series of large networks that are [tall and skinny](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/mllib/TallSkinnySVD.scala) and look at the distances between the dominant singular vectors, perhaps?
 
-## Interactive Visualisation for the Human-in-the-Loop
+## Interactive Visualization for the Human-in-the-Loop
 
 Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
 
@@ -119,9 +119,9 @@ Some such tools include:
 * [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
 * ...
 
-Beyond, visualising the ML algorithms, often the Human-in-the-Loop needs to see the details of the raw event that triggered the Anomaly. 
+Beyond, visualizing the ML algorithms, often the Human-in-the-Loop needs to see the details of the raw event that triggered the Anomaly. 
 And typically this event needs to be seen in the context of other related and relevant events, including it anomaly score with some some historical comparisons of similar events from a no-SQL query. 
-What are some natural frameworks for being able to click the event of interest (say those alerted by the algorithm) and visualise the raw event details (usually a JSON record or a row of a CSV file) in order to make an informed decision. 
+What are some natural frameworks for being able to click the event of interest (say those alerted by the algorithm) and visualize the raw event details (usually a JSON record or a row of a CSV file) in order to make an informed decision. 
 Some such frameworks include:
 
 * [https://d3js.org/](https://d3js.org/)
