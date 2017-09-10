@@ -6,7 +6,7 @@
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC # <img width="300px" src="http://cdn.arstechnica.net/wp-content/uploads/2015/09/2000px-Wikipedia-logo-v2-en-640x735.jpg"/> Clickstream Analysis
+// MAGIC <h1><img width="300px" src="http://cdn.arstechnica.net/wp-content/uploads/2015/09/2000px-Wikipedia-logo-v2-en-640x735.jpg"/> Clickstream Analysis</h1>
 // MAGIC 
 // MAGIC ** Dataset: 3.2 billion requests collected during the month of February 2015 grouped by (src, dest) **
 // MAGIC 
