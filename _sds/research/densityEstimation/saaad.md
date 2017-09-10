@@ -120,7 +120,7 @@ Some such tools include:
 * ...
 
 Beyond, visualizing the ML algorithms, often the Human-in-the-Loop needs to see the details of the raw event that triggered the Anomaly. 
-And typically this event needs to be seen in the context of other related and relevant events, including it anomaly score with some some historical comparisons of similar events from a no-SQL query. 
+And typically this event needs to be seen in the context of other related and relevant events, including its anomaly score with some historical comparisons of similar events from a no-SQL query. 
 What are some natural frameworks for being able to click the event of interest (say those alerted by the algorithm) and visualize the raw event details (usually a JSON record or a row of a CSV file) in order to make an informed decision. 
 Some such frameworks include:
 
