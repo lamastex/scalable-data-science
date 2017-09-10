@@ -5,16 +5,17 @@
 
 // COMMAND ----------
 
-// MAGIC %md 
-// MAGIC <h1><img width="300px" src="http://cdn.arstechnica.net/wp-content/uploads/2015/09/2000px-Wikipedia-logo-v2-en-640x735.jpg"/> Clickstream Analysis</h1>
+// MAGIC %md
+// MAGIC 
+// MAGIC # Wiki Clickstream Analysis
 // MAGIC 
 // MAGIC ** Dataset: 3.2 billion requests collected during the month of February 2015 grouped by (src, dest) **
 // MAGIC 
 // MAGIC ** Source: https://datahub.io/dataset/wikipedia-clickstream/ **
 // MAGIC 
-// MAGIC <img width="700px" src="https://databricks-prod-cloudfront.s3.amazonaws.com/docs/images/ny.clickstream.png"/>
+// MAGIC ![NY clickstream image](https://databricks-prod-cloudfront.s3.amazonaws.com/docs/images/ny.clickstream.png "NY clickstream image")
 // MAGIC 
-// MAGIC <i>*This notebook requires Spark 1.6+</i>
+// MAGIC *This notebook requires Spark 1.6+.*
 
 // COMMAND ----------
 
