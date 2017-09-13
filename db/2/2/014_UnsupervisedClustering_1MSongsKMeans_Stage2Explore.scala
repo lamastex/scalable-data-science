@@ -22,12 +22,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## A first inspection
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC A first step to any data exploration is viewing sample data. For this purpose we can use a simple SQL query that returns first 10 rows.
+// MAGIC ## Let's Do all the main bits in Stage 1 now before doing Stage 2 in this Notebook.
 
 // COMMAND ----------
 
@@ -70,7 +65,13 @@ df.createOrReplaceTempView("songsTable")
 
 // COMMAND ----------
 
-spark.catalog.listTables.show(false)
+spark.catalog.listTables.show(false) // make sure the temp view of our table is there
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## A first inspection
+// MAGIC A first step to any data exploration is viewing sample data. For this purpose we can use a simple SQL query that returns first 10 rows.
 
 // COMMAND ----------
 
