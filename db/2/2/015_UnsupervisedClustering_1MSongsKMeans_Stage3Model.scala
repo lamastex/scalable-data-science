@@ -270,3 +270,5 @@ display(transformed2.sample(false, fraction = 0.1))
 
 // MAGIC %md
 // MAGIC The new clustering model makes much more sense. Songs with high tempo and loudness are put in one cluster and song duration does not affect song categories. 
+// MAGIC 
+// MAGIC The point of the above little example is that you need to be able to tell a sensible story with your data science process and not just blindly apply a heuristic, but highly scalable, algorithm which depends on the notion of nearest neighborhoods defined by the metric (Euclidean distances in 3-dimensional real-valued spaces in this example) induced by the features you have engineered or have the power to re/re/...-engineer to increase the meaningfullness of the problem at hand.
