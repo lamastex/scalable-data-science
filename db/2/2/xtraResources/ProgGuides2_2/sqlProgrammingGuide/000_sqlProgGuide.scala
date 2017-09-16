@@ -6,9 +6,11 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This is an elaboration of the [Apache Spark 2.2 sql-progamming-guide](http://spark.apache.org/docs/latest/sql-programming-guide.html) by Ivan Sadikov and Raazesh Sainudiin.
+// MAGIC This is an elaboration of the [http://spark.apache.org/docs/latest/sql-programming-guide.html](http://spark.apache.org/docs/latest/sql-programming-guide.html) by Ivan Sadikov and Raazesh Sainudiin.
 // MAGIC 
-// MAGIC Any contributions in this 'databricksification' of the programming guide are most welcome. Please feel free to send pull-requests or just fork and push yourself at [https://github.com/lamastex/scalable-data-science](https://github.com/lamastex/scalable-data-science).
+// MAGIC Any contributions in this 'databricksification' of the programming guide are most welcome. Please feel free to send pull-requests or just fork and push yourself at/from [https://github.com/lamastex/scalable-data-science](https://github.com/lamastex/scalable-data-science).
+// MAGIC 
+// MAGIC **NOTE:** The links that do not have standard URLs for hyper-text transfer protocol, qualified here by (http) or (https), are *in general* internal links and will/should work if you follow the instructions in the lectures (from the YouTube play list, watched sequential in chronological order that is linked from [https://lamastex.github.io/scalable-data-science/sds/2/2/](https://lamastex.github.io/scalable-data-science/sds/2/2/)) on how to download the `.dbc` archive for the course and upload it into your community edition with the correctly named expected directory structures.
 // MAGIC 
 // MAGIC # [Spark Sql Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides2_2/sqlProgrammingGuide/000_sqlProgGuide)
 // MAGIC 
