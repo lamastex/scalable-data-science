@@ -8,6 +8,8 @@
 // MAGIC ### Predict which songs a user will listen to.
 // MAGIC 
 // MAGIC **SOURCE:** This is just a *Scala*-rification of the *Python* notebook published in databricks community edition in 2016.
+// MAGIC 
+// MAGIC *CAUTION:* This notebook is expected to have an error in command 28 (`Cmd 28` in databricks notebook). You are meant to learn how to fix this error with simple exception-handling to become a better data scientist. So ignore this warning, if any.
 
 // COMMAND ----------
 
