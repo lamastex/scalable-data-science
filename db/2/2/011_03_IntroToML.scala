@@ -16,7 +16,7 @@
 // MAGIC   * free PDF of the 10th printing: [http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf](http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf)
 // MAGIC   * Solutions: [http://waxworksmath.com/Authors/G_M/Hastie/WriteUp/weatherwax_epstein_hastie_solutions_manual.pdf](http://waxworksmath.com/Authors/G_M/Hastie/WriteUp/weatherwax_epstein_hastie_solutions_manual.pdf)
 // MAGIC * 2015, UCLA Ass. Professor Ameet Talwalkar (from Spark team) in BerkeleyX: CS190.1x Scalable Machine Learning in edX Archive from 2015
-// MAGIC * My preferred book for statistical learning is by [Kevin P. Murphy, Machine Learning: A Probabilistic Perspective](https://www.cs.ubc.ca/~murphyk/MLbook/).
+// MAGIC * My preferred book for statistical learning is by [Kevin P. Murphy, Machine Learning: A Probabilistic Perspective](https://www.cs.ubc.ca/~murphyk/MLbook/). 
 // MAGIC 
 // MAGIC Deep Learning is a very popular method currently (2017) in Machine Learning and I recommend Andrew Ng's free course in Courseera for this.
 
