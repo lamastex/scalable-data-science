@@ -171,7 +171,7 @@ The Loda method might be extra interesting to this sub-project as we may be able
 <ul>
 <li>Data-adaptive histograms through statistical regular pavings, Raazesh Sainudiin, Gloria Teng, Jennifer Harlow and Warwick Tucker, 2016 (<a class="linkitem" href="http://lamastex.org/preprints/20161121optMAPMDE.pdf">PDF</a> 1.8MB)</li>
 
-<li>MRS 2.0: A C++ Class Library for Statistical Set Processing and Computer-Aided Proofs in Statistics (Version 2.0) [Software], Jennifer Harlow, Raazesh Sainudiin, Gloria Teng, Warwick Tucker and Thomas York, Available from <a class="linkitem" href="https://github.com/lamastex/mrs2">https://github.com/lamastex/mrs2</a>, 2017</li>
+<li>MRS 2.0, a C++ class library for statistical set processing and computer-aided proofs in statistics, Raazesh Sainudiin, Thomas York, Jennifer Harlow, Gloria Teng, Warwick Tucker and Dillon George, URL: <a class="linkitem" href="https://github.com/lamastex/mrs2">https://github.com/lamastex/mrs2</a>, 2017</li>
 
 <li>An auto-validating, trans-dimensional, universal rejection sampler for locally Lipschitz arithmetical expressions, Raazesh Sainudiin and Thomas York, <a class="linkitem" href="http://interval.louisiana.edu/reliable-computing-journal/volume-18/reliable-computing-18-pp-015-054.pdf">Reliable Computing, vol.18, pp.15-54</a>, 2013 (<a class="linkitem" href="http://lamastex.org/preprints/avs_rc_2013.pdf">PDF</a> 2612KB)</li>
 
