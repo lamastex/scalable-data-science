@@ -69,22 +69,19 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Decision_tree_learning",500))
 
 // COMMAND ----------
 
-val dataset = spark.read.format("libsvm")
-   .option("numFeatures", "780")
-   .load("data/mllib/sample_libsvm_data.txt")
-
-// COMMAND ----------
-
-import org.apache.spark.mllib.util.MLUtils
-
+//-----------------------------------------------------------------------------------------------------------------
 // using RDD-based MLlib - ok for Spark 1.x
 // MLUtils.loadLibSVMFile returns an RDD.
+//import org.apache.spark.mllib.util.MLUtils
 //val trainingRDD = MLUtils.loadLibSVMFile(sc, "/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt")
 //val testRDD = MLUtils.loadLibSVMFile(sc, "/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt")
 // We convert the RDDs to DataFrames to use with ML Pipelines.
 //val training = trainingRDD.toDF()
 //val test = testRDD.toDF()
-
+// Note: In Spark 1.6 and later versions, Spark SQL has a LibSVM data source.  The above lines can be simplified to:
+//// val training = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-train.txt")
+//// val test = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-test.txt")
+//-----------------------------------------------------------------------------------------------------------------
 val training = spark.read.format("libsvm")
                     .option("numFeatures", "780")
                     .load("/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt")
@@ -101,16 +98,11 @@ println(s"We have ${training.count} training images and ${test.count} test image
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC *Note*: In Spark 1.6 and later versions, Spark SQL has a LibSVM data source.  The above cell can be simplified to:
-// MAGIC ```
-// MAGIC val training = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-train.txt")
-// MAGIC val test = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-test.txt")
-// MAGIC ```
+// MAGIC Display our data.  Each image has the true label (the `label` column) and a vector of `features` which represent pixel intensities (see below for details of what is in `training`).
 
 // COMMAND ----------
 
-// MAGIC %md 
-// MAGIC Display our data.  Each image has the true label (the `label` column) and a vector of `features` which represent pixel intensities (see below for details of what is in `training`).
+training.printSchema()
 
 // COMMAND ----------
 
@@ -118,7 +110,7 @@ training.show(3,true) // replace 'true' by 'false' to see the whole row hidden b
 
 // COMMAND ----------
 
-display(training)
+display(training) // this is databricks-specific for interactive visual convenience
 
 // COMMAND ----------
 
@@ -262,35 +254,35 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/F1_score",400))
 
 // Define an evaluation metric.  In this case, we will use "accuracy".
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
-val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setMetricName("f1") // default
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setMetricName("f1") // default MetricName
 
 // COMMAND ----------
 
-// For each maxDepth setting, make predictions on the test data, and compute the accuracy metric.
-val f1Errors = (0 until 8).map { maxDepth =>
+// For each maxDepth setting, make predictions on the test data, and compute the classifier's f1 performance metric.
+val f1MetricPerformanceMeasures = (0 until 8).map { maxDepth =>
   val model = variedMaxDepthModels(maxDepth)
   // Calling transform() on the test set runs the fitted pipeline.
   // The learned model makes predictions on each test example.
   val predictions = model.transform(test)
-  // Calling evaluate() on the predictions DataFrame computes our accuracy metric.
+  // Calling evaluate() on the predictions DataFrame computes our performance metric.
   (maxDepth, evaluator.evaluate(predictions))
-}.toDF("maxDepth", "accuracy")
+}.toDF("maxDepth", "f1")
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC We can display our accuracy results and see immediately that deeper, larger trees are more powerful classifiers, achieving higher accuracies.
 // MAGIC 
-// MAGIC *Note:* When you run `f1Errors.show()`, you will get a table with f1 score getting better (approaching 1) with depth.
+// MAGIC *Note:* When you run `f1MetricPerformanceMeasures.show()`, you will get a table with f1 score getting better (i.e., approaching 1) with depth.
 
 // COMMAND ----------
 
-f1Errors.show()
+f1MetricPerformanceMeasures.show()
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Even though deeper trees are more powerful, they are not always better.  If we kept increasing the depth, training would take longer and longer.  We also might risk [overfitting](https://en.wikipedia.org/wiki/Overfitting) (fitting the training data so well that our predictions get worse on test data); it is important to tune parameters *based on [held-out data](https://en.wikipedia.org/wiki/Test_set)* to prevent overfitting. This will ensure that the fitted model generalizes well to yet unseen data, i.e. minimizes [generalization error](https://en.wikipedia.org/wiki/Generalization_error) in a mathematical statistical sense.
+// MAGIC Even though deeper trees are more powerful, they are not always better (recall from the SF/NYC city classification from house features at  [The visual description of ML and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)).  If we kept increasing the depth on a rich enough dataset, training would take longer and longer.  We also might risk [overfitting](https://en.wikipedia.org/wiki/Overfitting) (fitting the training data so well that our predictions get worse on test data); it is important to tune parameters *based on [held-out data](https://en.wikipedia.org/wiki/Test_set)* to prevent overfitting. This will ensure that the fitted model generalizes well to yet unseen data, i.e. minimizes [generalization error](https://en.wikipedia.org/wiki/Generalization_error) in a mathematical statistical sense.
 
 // COMMAND ----------
 
@@ -317,7 +309,11 @@ f1Errors.show()
 // COMMAND ----------
 
 dtc.setMaxDepth(6) // Set maxDepth to a reasonable value.
-val f1Errors = Seq(2, 4, 8, 16, 32).map { case maxBins =>
+// now try the maxBins "hyper-parameter" which actually acts as a "coarsener" 
+//     mathematical researchers should note that it is a sub-algebra of the finite 
+//     algebra of observable pixel images at the finest resolution available to us
+// giving a compression of the image to fewer coarsely represented pixels
+val f1MetricPerformanceMeasures = Seq(2, 4, 8, 16, 32).map { case maxBins =>
   // For this value of maxBins, learn a tree.
   dtc.setMaxBins(maxBins)
   val pipeline = new Pipeline().setStages(Array(indexer, dtc))
@@ -325,11 +321,11 @@ val f1Errors = Seq(2, 4, 8, 16, 32).map { case maxBins =>
   // Make predictions on test data, and compute accuracy.
   val predictions = model.transform(test)
   (maxBins, evaluator.evaluate(predictions))
-}.toDF("maxBins", "accuracy")
+}.toDF("maxBins", "f1")
 
 // COMMAND ----------
 
-f1Errors.show()
+f1MetricPerformanceMeasures.show()
 
 // COMMAND ----------
 
