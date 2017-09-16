@@ -131,6 +131,11 @@ Some such frameworks include:
 * [http://dygraphs.com/](http://dygraphs.com/)
 * [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
 
+for visualizations possibly powered by scalable fault-tolerant near-real-time SQL query engines such as:
+
+* [https://dgraph.io/](https://dgraph.io/)
+* [https://databricks.com/blog/2017/01/19/real-time-streaming-etl-structured-streaming-apache-spark-2-1.html](https://databricks.com/blog/2017/01/19/real-time-streaming-etl-structured-streaming-apache-spark-2-1.html)
+
 ### Background Readings
 
 * [MIT shows how AI cybersecurity excels by keeping humans in the loop](http://www.techrepublic.com/article/mit-shows-how-ai-cybersecurity-excels-by-keeping-humans-in-the-loop/)
