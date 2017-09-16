@@ -111,7 +111,8 @@ Background Reading/Viewing
 
 
 -   Fake News, Influence Networks, Botnets, Cyborgnets:
-    - <https://arcdigital.media/how-russian-alt-right-twitter-accounts-worked-together-to-skew-the-narrative-about-berkeley-f03a3d04ac5d>
+    -   <https://theintercept.com/2017/09/11/make-mark-zuckerberg-testify/>
+    -   <https://arcdigital.media/how-russian-alt-right-twitter-accounts-worked-together-to-skew-the-narrative-about-berkeley-f03a3d04ac5d>
     -   <http://nordic.businessinsider.com/facebook-prevents-repeat-offenders-from-buying-ads-to-tackle-fake-news-2017-8>
     -   <https://www.bloomberg.com/news/articles/2017-04-27/france-is-facebook-s-fake-news-litmus-test-as-elections-near-end>
     -   <https://theintercept.com/2017/01/04/washpost-is-richly-rewarded-for-false-news-about-russia-threat-while-public-is-deceived/>
@@ -152,7 +153,7 @@ Background Reading/Viewing
     -   <https://www.brookings.edu/blog/techtank/2016/12/01/addressing-racial-bias-in-the-online-economy/>
     -   <https://motherboard.vice.com/en_us/article/how-our-likes-helped-trump-win>
     -   <https://www.theguardian.com/politics/2017/jan/19/crisis-of-statistics-big-data-democracy>
--   Extremism Online (State/non-State) and its Effects:
+-   Extremism Off/On-line (State/non-State) and its Effects:
     -   [Worl-wide Terror List (not free and
         subscription based)](http://wtligi.athenainstitute.eu/)
     -   Dependent Co-origination of Pairs of Diametrically Opposed
@@ -160,6 +161,7 @@ Background Reading/Viewing
         Law:
         -   <https://theintercept.com/2017/05/24/reactions-to-manchester-bombing-show-how-anti-muslim-bigots-are-useful-idiots-for-isis/>
     -   Western Origin:
+        -   <https://theintercept.com/2017/09/13/sloppy-u-s-spies-misused-covert-network-for-personal-shopping-and-other-stories-from-internal-nsa-documents/>
         -   <https://www.splcenter.org/fighting-hate/extremist-files/ideology>
         -   <https://www.splcenter.org/fighting-hate/extremist-files/individual>
         -   <https://www.splcenter.org/fighting-hate/extremist-files/groups>
