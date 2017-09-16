@@ -224,7 +224,6 @@ $ Fri Aug 18 18:33:05 CEST 2017
 ```
 It is meant to give a brief introduction to the problem and a reasonably standard industrial solution and thus help set the context for industrially beneficial research directions. 
 There are other competing solutions, but we will focus on this example for concreteness.  
-The following section by Haakan Persson and Raazesh Sainudiin builds on the material in the next section.
 
 ---
 ---
