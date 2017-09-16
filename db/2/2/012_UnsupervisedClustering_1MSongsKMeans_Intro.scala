@@ -18,7 +18,7 @@
 // MAGIC 
 // MAGIC 1. ETL: Parses raw texts and creates a cached table
 // MAGIC 2. Explore: Explores different aspects of the songs table using graphs
-// MAGIC 3. Model: Uses SparkML to cluster songs based on some of their attributes
+// MAGIC 3. Model: Uses SparkML to cluster songs based on some of their attributes 
 // MAGIC 
 // MAGIC ![End to End Data Science](http://training.databricks.com/databricks_guide/end-to-end.png)
 // MAGIC 
