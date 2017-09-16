@@ -117,6 +117,9 @@ display(sqlContext.sql("SELECT duration, year FROM songsTable")) // Aggregation 
 
 // MAGIC %python
 // MAGIC # let's use ggplot from python
+// MAGIC # note that this is second natural way to 'babble' between languages - using the right tool for the job!
+// MAGIC #   recall: the first naive but solid way was to use parquet files to write and read from different languages 
+// MAGIC #           with parquet files you can tackle the babbling problem when the table is too large to be 'Viewed'
 // MAGIC from ggplot import *
 // MAGIC sampled = sqlContext.sql("select year, duration from songsTable where year > 1930 and year < 2012")\
 // MAGIC   .sample(withReplacement = False, fraction = 0.1).toPandas()
