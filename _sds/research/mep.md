@@ -127,6 +127,7 @@ Background Reading/Viewing
     -   <https://medium.com/swlh/ai-and-the-end-of-truth-9a42675de18#.skdrsex1o>
 -   'Content as Commodity' Market-Driven Algorithmic Information
     Engineering in Social/Mass Media:
+    -   <https://www.brookings.edu/blog/unpacked/2017/09/15/what-is-the-open-internet-rule/>
     -   <https://theintercept.com/2017/05/22/facebook-wont-say-if-theyll-use-your-brain-activity-for-advertisements/>
     -   <https://www.theguardian.com/technology/2017/may/07/the-great-british-brexit-robbery-hijacked-democracy>
     -   <https://bullshit.ist/i-left-facebook-not-social-media-a7c72057d645#.tg0qd95f6>
