@@ -79,6 +79,10 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
       - title: "sds-2-2.dbc till 20170917"
         url: /sds/2/2/db/dbcArchive/
+  - title: "Contents-CoCalc"
+    children:
+      - title: "1MSongs - 3D Space"
+        url: "https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews"
   - title: "Contents-zeppelin"
   - title: "sbt"
   - title: "SDS-1.6 Course"
