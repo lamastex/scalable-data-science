@@ -235,10 +235,14 @@ display(transformed.sample(false, fraction = 0.1)) // try fraction=1.0 as this d
 
 // COMMAND ----------
 
+displayHTML(frameIt("https://en.wikipedia.org/wiki/Euclidean_space",500))
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC Do you see the problem in our clusters based on the plot? 
 // MAGIC 
-// MAGIC As you can see there is very little correlation between loudness, and tempo and generated clusters. To see that, focus on the panels in the first and second columns of the scatter plot matrix. For varying values of loudness and tempo prediction does not change. Instead, duration of a song alone predicts what cluster it belongs to. Why is that?
+// MAGIC As you can see there is very little "separation" (*in the sense of being separable into two point clouds, that represent our two identifed clusters, such that they have minimal overlay of these two features, i.e. tempo and loudness. NOTE that this sense of "pairwise separation" is a **2D projection of all three features in 3D** [Euclidean Space](https://en.wikipedia.org/wiki/Euclidean_space), i.e. loudness, tempo and duration, that depends directly on their two-dimensional visually sense-making projection of perhaps two important song features, as depicted in the corresponding 2D-scatter-plot of tempo versus loudness within the **2D scatter plot matrix** that is helping us to **partially visualize in the 2D-plane all of the three features in the three dimensional real-valued feature space** that was the input to our K-Means algorithm*) between loudness, and tempo and generated clusters. To see that, focus on the panels in the first and second columns of the scatter plot matrix. For varying values of loudness and tempo prediction does not change. Instead, duration of a song alone predicts what cluster it belongs to. Why is that?
 // MAGIC 
 // MAGIC To see the reason, let's take a look at the marginal distribution of duration in the next cell.
 // MAGIC 
@@ -270,5 +274,10 @@ display(transformed2.sample(false, fraction = 0.1))
 
 // MAGIC %md
 // MAGIC The new clustering model makes much more sense. Songs with high tempo and loudness are put in one cluster and song duration does not affect song categories. 
+// MAGIC 
+// MAGIC To really understand how the points in 3D behave you need to see them in 3D interactively and understand the limits of its three 2D projections. For this let us spend some time and play in sageMath Worksheet in COCALC (it is free for light-weight use and perhaps worth the 7 USD a month if you need more serious computing).
+// MAGIC 
+// MAGIC Let us take a look at this sageMath Worksheet published here:
+// MAGIC   * [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews)
 // MAGIC 
 // MAGIC The point of the above little example is that you need to be able to tell a sensible story with your data science process and not just blindly apply a heuristic, but highly scalable, algorithm which depends on the notion of nearest neighborhoods defined by the metric (Euclidean distances in 3-dimensional real-valued spaces in this example) induced by the features you have engineered or have the power to re/re/...-engineer to increase the meaningfullness of the problem at hand.
