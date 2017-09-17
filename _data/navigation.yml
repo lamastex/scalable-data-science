@@ -77,7 +77,7 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
       - title: "Decision Trees for Digits "
         url: /sds/2/2/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
-      - title: "down/up-load archive 20170917"
+      - title: "sds-2-2.dbc till 20170917"
         url: /sds/2/2/db/dbcArchive/
   - title: "Contents-zeppelin"
   - title: "sbt"
