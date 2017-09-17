@@ -43,6 +43,8 @@ lMenu-SDS-2.2:
         url: /sds/basics/infrastructure/onpremise/
   - title: "Contents-databricks"
     children:
+      - title: "sds-2-2.dbc archive"
+        url: /sds/2/2/db/dbcArchive/
       - title: "Introduction"
         url: /sds/2/2/db/000_scalableDataScience/
       - title: "Why Spark?"
@@ -77,8 +79,6 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
       - title: "Decision Trees for Digits "
         url: /sds/2/2/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
-      - title: "sds-2-2.dbc archive"
-        url: /sds/2/2/db/dbcArchive/
   - title: "Contents-CoCalc"
     children:
       - title: "1MSongs - 3D Space"
