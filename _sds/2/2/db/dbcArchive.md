@@ -7,7 +7,7 @@ sidebar:
 
 # databricks archive files for the course
 
-Follow these steps to gwt all the course notebooks into your community edition at once.
+Follow these steps to get all the course notebooks into your community edition at once.
 
 This is very useful after the notes have been updated to your questions.
 
