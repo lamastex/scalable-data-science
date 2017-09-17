@@ -69,13 +69,13 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/011_03_IntroToML/
       - title: "K-Means 1MSongs Intro"
         url: /sds/2/2/db/012_UnsupervisedClustering_1MSongsKMeans_Intro/
-      - title: "K-Means 1MSongs 1. ETL"
+      - title: "1MSongs - 1 ETL"
         url: /sds/2/2/db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/
-      - title: "K-Means 1MSongs 2. Explore"
+      - title: "1MSongs - 2 Explore"
         url: /sds/2/2/db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/
-      - title: "K-Means 1MSongs 3. Model"
+      - title: "1MSongs - 3 Model"
         url: /sds/2/2/db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
-      - title: "Decision Trees for Digits"
+      - title: "Decision Trees for Digit Recogntion"
         url: /sds/2/2/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
       - title: "down/up-load archive 20170917"
         url: /sds/2/2/db/dbcArchive/
