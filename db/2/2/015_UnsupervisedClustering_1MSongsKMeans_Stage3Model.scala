@@ -275,7 +275,7 @@ display(transformed2.sample(false, fraction = 0.1))
 // MAGIC %md
 // MAGIC The new clustering model makes much more sense. Songs with high tempo and loudness are put in one cluster and song duration does not affect song categories. 
 // MAGIC 
-// MAGIC To really understand how the points in 3D behave you need to see them in 3D interactively and understand the limits of its three 2D projections. For this let us spend some time and play in sageMath Worksheet in CoCalc (it is free for light-weight use and perhaps worth the 7 USD a month if you need more serious computing).
+// MAGIC To really understand how the points in 3D behave you need to see them in 3D interactively and understand the limits of its three 2D projections. For this let us spend some time and play in sageMath Worksheet in [CoCalc](https://cocalc.com/) (it is free for light-weight use and perhaps worth the 7 USD a month if you need more serious computing in mathmeatics, statistics, etc. in multiple languages!).
 // MAGIC 
 // MAGIC Let us take a look at this sageMath Worksheet published here:
 // MAGIC   * [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews)
