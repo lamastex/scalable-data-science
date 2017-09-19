@@ -7,6 +7,8 @@
 
 // MAGIC %md
 // MAGIC 
+// MAGIC # Introduction to Machine Learning
+// MAGIC 
 // MAGIC **Some very useful resources we will weave around** for Statistical Learning, Data Mining, Machine Learning:
 // MAGIC 
 // MAGIC *  January 2014, Stanford University professors Trevor Hastie and Rob Tibshirani (authors of the legendary Elements of Statistical Learning textbook) taught an online course based on their newest textbook, An Introduction to Statistical Learning with Applications in R (ISLR).
