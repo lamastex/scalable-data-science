@@ -148,7 +148,7 @@ display(training) // this is databricks-specific for interactive visual convenie
 
 // COMMAND ----------
 
-// MAGIC %md
+// MAGIC %md 
 // MAGIC See [http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines](http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines).
 
 // COMMAND ----------
