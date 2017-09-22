@@ -75,11 +75,17 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/
       - title: "1MSongs - 3 Model"
         url: /sds/2/2/db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
-      - title: "Decision Trees for Digits "
+      - title: "Decision Trees for Digits"
         url: /sds/2/2/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
+      - title: "Linear Algebra Intro"
+        url: /sds/2/2/db/017_LAlgIntro/
+      - title: "Linear Regression Intro"
+        url: /sds/2/2/db/018_LinRegIntro/
+      - title: "Distributed Linear Algebra"
+        url: /sds/2/2/db/019_DistLAlgForLinRegIntro/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
-      - title: "sds-2-2.dbc archive"
+      - title: "2017 dbc ARCHIVES"
         url: /sds/2/2/db/dbcArchive/
   - title: "Contents-CoCalc"
     children:

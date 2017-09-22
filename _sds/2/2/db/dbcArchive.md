@@ -27,7 +27,8 @@ This is also depicted in the images below created on Sun Sep 17 16:03:09 CEST 20
 ## Step 2 - Upload
 
 * Got to your databricks community edition and 
-   * import the `sds-2-2.dbc` file into your `Workspace` Folder.
-   * first create a Folder called `scalable-data-science` in your `Workspace` and import `xtraResources.dbc` into `scalable-data-science`.
+   1. create a Folder called `scalable-data-science` in your `Workspace` 
+   * import the `sds-2-2.dbc` file  into your `scalable-data-science` Folder.
+   * import `xtraResources.dbc` into `scalable-data-science` Folder.
 
 **NOTE:** If you periodically update to the latest set of notes as they are being created interactively, you may want to delete or rename the previously uploaded versions that you may hae modified differently.
