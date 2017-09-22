@@ -81,7 +81,7 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/017_LAlgIntro/
       - title: "Linear Regression Intro"
         url: /sds/2/2/db/018_LinRegIntro/
-      - title: "Distributed Linear Algebra"
+      - title: "Distrib. Linear Algebra"
         url: /sds/2/2/db/019_DistLAlgForLinRegIntro/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
