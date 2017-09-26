@@ -16,8 +16,14 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
-Here are some basic background readings:
+## Basic Background Reading
 
+* [https://en.wikipedia.org/wiki/Packet_analyzer](https://en.wikipedia.org/wiki/Packet_analyzer)
 * [https://lifehacker.com/how-to-tap-your-network-and-see-everything-that-happens-1649292940](https://lifehacker.com/how-to-tap-your-network-and-see-everything-that-happens-1649292940)
+* [https://en.wikiversity.org/wiki/Internet_Protocol_Analysis](https://en.wikiversity.org/wiki/Internet_Protocol_Analysis)
 
+
+## Open Source Network Monitoring and Analysis Tools
+
+* [https://github.com/OpenNMS/opennms](https://github.com/OpenNMS/opennms)
 
