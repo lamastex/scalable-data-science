@@ -31,8 +31,19 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
 * [https://github.com/OpenNMS/opennms](https://github.com/OpenNMS/opennms)
 
+
+## Code
+
+* Structured Streaming of Network Logs
+  * [https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html](https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html)
+  * [https://docs.databricks.com/spark/latest/structured-streaming/examples.html](https://docs.databricks.com/spark/latest/structured-streaming/examples.html)
+* Writing logs to hdfs:
+  * [https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configuring-destinations-hdfs.html](https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configuring-destinations-hdfs.html)
+
+
 ## Literature
 
 * [https://en.wikipedia.org/wiki/Dorothy_E._Denning](https://en.wikipedia.org/wiki/Dorothy_E._Denning) and her ground-braking work:
     * [https://dl.acm.org/citation.cfm?id=22862](An Intrusion Detection Model)
+
 
