@@ -25,22 +25,27 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 * [https://en.wikipedia.org/wiki/Packet_analyzer](https://en.wikipedia.org/wiki/Packet_analyzer)
 * [https://lifehacker.com/how-to-tap-your-network-and-see-everything-that-happens-1649292940](https://lifehacker.com/how-to-tap-your-network-and-see-everything-that-happens-1649292940)
 * [https://en.wikiversity.org/wiki/Internet_Protocol_Analysis](https://en.wikiversity.org/wiki/Internet_Protocol_Analysis)
-
+* [http://resources.infosecinstitute.com/](http://resources.infosecinstitute.com/)
+  * [http://resources.infosecinstitute.com/detection-prevention-dns-anomalies/](http://resources.infosecinstitute.com/detection-prevention-dns-anomalies/)
 
 ## Open Source Network Monitoring and Analytics Tools
 
+### Network Monitoring Systems
 * [https://github.com/OpenNMS/opennms](https://github.com/OpenNMS/opennms)
+
+### Github showcases security
+
+* [https://github.com/showcases/security](https://github.com/showcases/security)
+  * [https://github.com/mozilla/MozDef](https://github.com/mozilla/MozDef)
+
+### Other Codes
+
 * [https://www.mlsecproject.org/](https://www.mlsecproject.org/)
-
-### Github showcase
-
-[https://github.com/mozilla/MozDef](https://github.com/mozilla/MozDef)
-
-## Code
 
 * Structured Streaming of Network Logs
   * [https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html](https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html)
   * [https://docs.databricks.com/spark/latest/structured-streaming/examples.html](https://docs.databricks.com/spark/latest/structured-streaming/examples.html)
+
 * Writing logs to hdfs:
   * [https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configuring-destinations-hdfs.html](https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configuring-destinations-hdfs.html)
 
