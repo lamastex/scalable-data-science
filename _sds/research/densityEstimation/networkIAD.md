@@ -16,6 +16,10 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
+## Basic Background Viewing
+
+* [PlayList](https://www.youtube.com/playlist?list=PL_I1mOIPmfpbkPn3IoPiY6oGbtBiJ4wLS)
+
 ## Basic Background Reading
 
 * [https://en.wikipedia.org/wiki/Packet_analyzer](https://en.wikipedia.org/wiki/Packet_analyzer)
@@ -26,4 +30,9 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 ## Open Source Network Monitoring and Analysis Tools
 
 * [https://github.com/OpenNMS/opennms](https://github.com/OpenNMS/opennms)
+
+## Literature
+
+* [https://en.wikipedia.org/wiki/Dorothy_E._Denning](https://en.wikipedia.org/wiki/Dorothy_E._Denning) and her ground-braking work:
+    * [https://dl.acm.org/citation.cfm?id=22862](An Intrusion Detection Model)
 
