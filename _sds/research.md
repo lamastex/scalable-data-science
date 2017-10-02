@@ -16,6 +16,8 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 * [Project SAHDE: Scalable Adaptive Histogram Density Estimation](densityEstimation/sahde/)
 
-* [Potential Project SAAAD: Scalable Adaptive Auto-encoded Anomaly Detection](densityEstimation/saaad/)
+* [Project SAAAD: Scalable Adaptive Auto-encoded Anomaly Detection](densityEstimation/saaad/)
+
+* [Project NetworkIAD: Network Integrative Anomaly Detector](densityEstimation/networkIAD/)
 
 See [research at LaMaStEx](https://lamastex.github.io/research/) for more information.
