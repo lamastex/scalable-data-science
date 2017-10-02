@@ -33,6 +33,9 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 ### Network Monitoring Systems
 * [https://github.com/OpenNMS/opennms](https://github.com/OpenNMS/opennms)
 
+### Automated Anomaly Detector
+* [https://cuckoosandbox.org/](https://cuckoosandbox.org/)
+
 ### Github showcases security
 
 * [https://github.com/showcases/security](https://github.com/showcases/security)
