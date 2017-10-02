@@ -27,10 +27,14 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 * [https://en.wikiversity.org/wiki/Internet_Protocol_Analysis](https://en.wikiversity.org/wiki/Internet_Protocol_Analysis)
 
 
-## Open Source Network Monitoring and Analysis Tools
+## Open Source Network Monitoring and Analytics Tools
 
 * [https://github.com/OpenNMS/opennms](https://github.com/OpenNMS/opennms)
+* [https://www.mlsecproject.org/](https://www.mlsecproject.org/)
 
+### Github showcase
+
+[https://github.com/mozilla/MozDef](https://github.com/mozilla/MozDef)
 
 ## Code
 
