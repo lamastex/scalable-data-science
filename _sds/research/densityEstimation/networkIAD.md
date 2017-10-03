@@ -66,7 +66,7 @@ log-queries=extra
 
 ## Literature
 
-* [https://en.wikipedia.org/wiki/Dorothy_E._Denning](https://en.wikipedia.org/wiki/Dorothy_E._Denning) and her ground-braking work:
+* [https://en.wikipedia.org/wiki/Dorothy_E._Denning](https://en.wikipedia.org/wiki/Dorothy_E._Denning) and her ground-breaking work:
     * [https://dl.acm.org/citation.cfm?id=22862](An Intrusion Detection Model)
 
 
