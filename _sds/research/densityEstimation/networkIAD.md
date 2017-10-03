@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Research - Integrative Anomaly Detection in Computer Netwroks
+title: Research - Integrative Anomaly Detection in Computer Networks
 permalink: /sds/research/densityEstimation/networkIAD/
 author_profile: true
 header:
@@ -52,6 +52,17 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 * Writing logs to hdfs:
   * [https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configuring-destinations-hdfs.html](https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configuring-destinations-hdfs.html)
 
+* [docker container for DNS logs](https://hub.docker.com/r/storytel/dnsmasq/)
+Some instructions on getting the DNS logs collection going:
+```%sh
+#Pull this docker down: storytel/dnsmasq
+
+# Then you will need these two lines to start logging queries to a file: 
+log-facility=/var/log/dnsmasq.log
+log-queries=extra
+
+# Once that is in place, you need a syslog-ng to pick up the file and send it off to hdfs.
+```
 
 ## Literature
 
