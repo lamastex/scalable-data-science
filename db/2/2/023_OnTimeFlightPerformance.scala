@@ -10,7 +10,7 @@
 // MAGIC 
 // MAGIC **Homework:**
 // MAGIC 
-// MAGIC See [https://www.brighttalk.com/webcast/12891/199003](https://www.brighttalk.com/webcast/12891/199003) (you need to subscript to Bright Talk).
+// MAGIC See [https://www.brighttalk.com/webcast/12891/199003](https://www.brighttalk.com/webcast/12891/199003) (you need to subscribe *freely* to Bright Talk).
 // MAGIC Then go through this scala version of the notebbok from the talk.
 
 // COMMAND ----------
