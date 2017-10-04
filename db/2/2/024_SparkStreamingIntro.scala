@@ -327,13 +327,18 @@ ssc.awaitTerminationOrTimeout(batchIntervalSeconds * 5 * 1000)
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC ### Go to Spark UI now and see Streaming job running
+
+// COMMAND ----------
+
 // MAGIC %md ### Finally, if you want stop the StreamingContext, you can uncomment and execute the following
 // MAGIC 
 // MAGIC `StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) }`
 
 // COMMAND ----------
 
-StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) }
+StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } // please do this if you are done!
 
 // COMMAND ----------
 
