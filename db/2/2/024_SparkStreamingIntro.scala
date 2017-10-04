@@ -217,6 +217,28 @@ class DummySource(ratePerSec: Int) extends Receiver[String](StorageLevel.MEMORY_
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ## Transforming and Acting on the DStream of lines
+// MAGIC 
+// MAGIC Any operation applied on a DStream translates to operations on the
+// MAGIC underlying RDDs. For converting
+// MAGIC a stream of lines to words, the `flatMap` operation is applied on each
+// MAGIC RDD in the `lines` DStream to generate the RDDs of the `wordStream` DStream.
+// MAGIC This is shown in the following figure.
+// MAGIC 
+// MAGIC ![Spark
+// MAGIC Streaming](http://spark.apache.org/docs/latest/img/streaming-dstream-ops.png "Spark Streaming data flow")
+// MAGIC 
+// MAGIC These underlying RDD transformations are computed by the Spark engine.
+// MAGIC The DStream operations hide most of these details and provide the
+// MAGIC developer with a higher-level API for convenience. 
+// MAGIC 
+// MAGIC Next `reduceByKey` is used to get `wordCountStream` that counts the words in `wordStream`.
+// MAGIC 
+// MAGIC Finally, this is registered as a temporary table for each RDD in the DStream.
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC Let's try to understand the following `creatingFunc` to create a new StreamingContext and setting it up for word count and registering it as temp table for each batch of 1000 lines per second in the stream.
 
 // COMMAND ----------
@@ -252,28 +274,6 @@ def creatingFunc(): StreamingContext = {
   newContextCreated = true  
   ssc
 }
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ## Transforming and Acting on the DStream of lines
-// MAGIC 
-// MAGIC Any operation applied on a DStream translates to operations on the
-// MAGIC underlying RDDs. For converting
-// MAGIC a stream of lines to words, the `flatMap` operation is applied on each
-// MAGIC RDD in the `lines` DStream to generate the RDDs of the `wordStream` DStream.
-// MAGIC This is shown in the following figure.
-// MAGIC 
-// MAGIC ![Spark
-// MAGIC Streaming](http://spark.apache.org/docs/latest/img/streaming-dstream-ops.png "Spark Streaming data flow")
-// MAGIC 
-// MAGIC These underlying RDD transformations are computed by the Spark engine.
-// MAGIC The DStream operations hide most of these details and provide the
-// MAGIC developer with a higher-level API for convenience. 
-// MAGIC 
-// MAGIC Next `reduceByKey` is used to get `wordCountStream` that counts the words in `wordStream`.
-// MAGIC 
-// MAGIC Finally, this is registered as a temporary table for each RDD in the DStream.
 
 // COMMAND ----------
 
