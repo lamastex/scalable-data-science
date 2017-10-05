@@ -101,7 +101,7 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/025_b_TTTDFfunctions/
       - title: "Tweet Collector"
         url: /sds/2/2/db/026_TweetCollector/
-      - title: "Tweet Collector - Filter & Follow"
+      - title: "Tweet Collector Track|Follow"
         url: /sds/2/2/db/027_TweetCollectorTrackAndFollow/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
