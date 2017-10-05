@@ -138,7 +138,7 @@ display(dbutils.fs.ls(outputDirectoryRoot))
 
 // COMMAND ----------
 
-display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/")) // keep adding sub-dirs and descent into time-tree'd directory hierarchy
+display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub-dirs and descent into time-tree'd directory hierarchy
 
 // COMMAND ----------
 
@@ -151,5 +151,22 @@ StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) }
 
 // COMMAND ----------
 
-//rawDF = fromParquetFile2DF(...) //.cache()
-//val TTTsDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(rawDF)).cache()
+val rawDF = fromParquetFile2DF(outputDirectoryRoot+"/2017/10/05/09/*/*") //.cache()
+val TTTsDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(rawDF)).cache()
+
+// COMMAND ----------
+
+display(TTTsDF)
+
+// COMMAND ----------
+
+// this will make sure all streaming job in the cluster are stopped - raaz
+StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } 
+
+// COMMAND ----------
+
+// this will delete what we collected to keep the disk usage tight and tidy
+dbutils.fs.rm(outputDirectoryRoot, true) 
+
+// COMMAND ----------
+
