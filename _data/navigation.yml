@@ -85,7 +85,7 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/018_LinRegIntro/
       - title: "Distrib. Linear Algebra"
         url: /sds/2/2/db/019_DistLAlgForLinRegIntro/
-      - title: "Power Plant - Model, Tune, Evaluate"
+      - title: "Power Plant - Model Tune Evaluate"
 	url: /sds/2/2/db/020_PowerPlantPipeline_02ModelTuneEvaluate/
       - title: "Activity Detection - Random Forest"
 	url: /sds/2/2/db/021_recognizeActivityByRandomForest/
