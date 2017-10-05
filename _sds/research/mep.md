@@ -10,7 +10,9 @@ header:
 excerpt: 'Meme Evolution Programme.<br /><br /><br />'
 ---
 
-## Project MEP:<br />Meme Evolution Programme 
+{% include toc %}
+
+## Project MEP: Meme Evolution Programme 
 
 MEP is concerned with mathematical communications of the following
 notions.
