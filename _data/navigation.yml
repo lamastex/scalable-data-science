@@ -95,9 +95,9 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/023_OnTimeFlightPerformance/
       - title: "Spark Streaming Intro"
         url: /sds/2/2/db/024_SparkStreamingIntro/
-      - title: "help - Extended twitter Utils"
+      - title: "Extended Twitter Utils"
         url: /sds/2/2/db/025_a_extendedTwitterUtils2run/
-      - title: "help - Tweet Transmission Trees"
+      - title: "Tweet Transmission Trees"
         url: /sds/2/2/db/025_b_TTTDFfunctions/
       - title: "Tweet Collector"
         url: /sds/2/2/db/026_TweetCollector/
