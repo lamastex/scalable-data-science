@@ -8,7 +8,11 @@
 // MAGIC %md
 // MAGIC # Tweet Collector - capture live tweets
 // MAGIC 
-// MAGIC First let's collect from the public twitter stream and write to DBFS as json strings.
+// MAGIC Here are the main steps in this notebook:
+// MAGIC 
+// MAGIC 1. let's collect from the public twitter stream and write to DBFS as json strings ina boiler-plate manner to understand the componets better.
+// MAGIC * Then we will turn the collector into a function and use it
+// MAGIC * Finally we will use some DataFrame-based pipelines to convert the raw tweets into other structured content.
 
 // COMMAND ----------
 
