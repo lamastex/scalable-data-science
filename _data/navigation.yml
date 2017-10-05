@@ -86,23 +86,23 @@ lMenu-SDS-2.2:
       - title: "Distrib. Linear Algebra"
         url: /sds/2/2/db/019_DistLAlgForLinRegIntro/
       - title: "Power Plant - Model Tune Evaluate"
-	url: /sds/2/2/db/020_PowerPlantPipeline_02ModelTuneEvaluate/
+        url: /sds/2/2/db/020_PowerPlantPipeline_02ModelTuneEvaluate/
       - title: "Activity Detection - Random Forest"
-	url: /sds/2/2/db/021_recognizeActivityByRandomForest/
+        url: /sds/2/2/db/021_recognizeActivityByRandomForest/
       - title: "Graph Frames Intro"
-	url: /sds/2/2/db/022_GraphFramesUserGuide/
+        url: /sds/2/2/db/022_GraphFramesUserGuide/
       - title: "Ontime Flight Performance"
-	url: /sds/2/2/db/023_OnTimeFlightPerformance/
+        url: /sds/2/2/db/023_OnTimeFlightPerformance/
       - title: "Spark Streaming Intro"
-	url: /sds/2/2/db/024_SparkStreamingIntro/
+        url: /sds/2/2/db/024_SparkStreamingIntro/
       - title: "help - Extended twitter Utils"
-	url: /sds/2/2/db/025_a_extendedTwitterUtils2run/
+        url: /sds/2/2/db/025_a_extendedTwitterUtils2run/
       - title: "help - Tweet Transmission Trees"
-	url: /sds/2/2/db/025_b_TTTDFfunctions/
+        url: /sds/2/2/db/025_b_TTTDFfunctions/
       - title: "Tweet Collector"
-	url: /sds/2/2/db/026_TweetCollector/
+        url: /sds/2/2/db/026_TweetCollector/
       - title: "Tweet Collector - Filter & Follow"
-	url: /sds/2/2/db/027_TweetCollectorTrackAndFollow/
+        url: /sds/2/2/db/027_TweetCollectorTrackAndFollow/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
       - title: "2017 dbc ARCHIVES"
