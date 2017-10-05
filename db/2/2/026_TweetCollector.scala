@@ -10,7 +10,7 @@
 // MAGIC 
 // MAGIC Here are the main steps in this notebook:
 // MAGIC 
-// MAGIC 1. let's collect from the public twitter stream and write to DBFS as json strings ina boiler-plate manner to understand the componets better.
+// MAGIC 1. let's collect from the public twitter stream and write to DBFS as json strings in a boiler-plate manner to understand the componets better.
 // MAGIC * Then we will turn the collector into a function and use it
 // MAGIC * Finally we will use some DataFrame-based pipelines to convert the raw tweets into other structured content.
 
@@ -384,7 +384,7 @@ display(dbutils.fs.ls(outputDirectoryRoot))
 
 // COMMAND ----------
 
-display(dbutils.fs.ls(outputDirectoryRoot+"/2017/")) // keep adding sub-dirs and descent into time-tree'd directory hierarchy
+display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub-dirs and descent into time-tree'd directory hierarchy
 
 // COMMAND ----------
 
