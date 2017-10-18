@@ -10,6 +10,9 @@ build-lightweight:
 build-spark-zeppelin:
 	@docker build -t sds-spark:zeppelin -f zeppelinSparkDockerfile .
 
+build-spark-zeppelin-getty:
+	@docker build -t sds-spark:zeppelin-getty -f zeppelinSparkFromGettyDockerfile .
+
 # these need to be modified
 run:
 	@docker run \

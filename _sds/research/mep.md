@@ -10,7 +10,9 @@ header:
 excerpt: 'Meme Evolution Programme.<br /><br /><br />'
 ---
 
-## Project MEP:<br />Meme Evolution Programme 
+{% include toc %}
+
+## Project MEP: Meme Evolution Programme 
 
 MEP is concerned with mathematical communications of the following
 notions.
@@ -30,7 +32,8 @@ notions.
 
 
 MEP is partly supported by:
--   [databricks academic partners program](https://academics.cloud.databricks.com) (for distributed cloud computing
+-   [AWS Cloud Credits for Research](https://aws.amazon.com/research-credits/)
+-   [databricks academic partners program](https://academics.cloud.databricks.com) (for distributed cloud computing)
 -   Research Chair in Mathematical Models of Biodiversity (for
     mathematical theorizing) held jointly by:
     -   [Veolia
@@ -109,7 +112,10 @@ Background Reading/Viewing
     -   <https://www.theguardian.com/technology/2016/may/31/facebook-youtube-twitter-microsoft-eu-hate-speech-code>
 
 
--   Fake News:
+-   Fake News, Influence Networks, Botnets, Cyborgnets:
+    -   <https://theintercept.com/2017/09/11/make-mark-zuckerberg-testify/>
+    -   <https://arcdigital.media/how-russian-alt-right-twitter-accounts-worked-together-to-skew-the-narrative-about-berkeley-f03a3d04ac5d>
+    -   <http://nordic.businessinsider.com/facebook-prevents-repeat-offenders-from-buying-ads-to-tackle-fake-news-2017-8>
     -   <https://www.bloomberg.com/news/articles/2017-04-27/france-is-facebook-s-fake-news-litmus-test-as-elections-near-end>
     -   <https://theintercept.com/2017/01/04/washpost-is-richly-rewarded-for-false-news-about-russia-threat-while-public-is-deceived/>
     -   <https://theintercept.com/2016/12/29/the-guardians-summary-of-julian-assanges-interview-went-viral-and-was-completely-false/>
@@ -123,6 +129,7 @@ Background Reading/Viewing
     -   <https://medium.com/swlh/ai-and-the-end-of-truth-9a42675de18#.skdrsex1o>
 -   'Content as Commodity' Market-Driven Algorithmic Information
     Engineering in Social/Mass Media:
+    -   <https://www.brookings.edu/blog/unpacked/2017/09/15/what-is-the-open-internet-rule/>
     -   <https://theintercept.com/2017/05/22/facebook-wont-say-if-theyll-use-your-brain-activity-for-advertisements/>
     -   <https://www.theguardian.com/technology/2017/may/07/the-great-british-brexit-robbery-hijacked-democracy>
     -   <https://bullshit.ist/i-left-facebook-not-social-media-a7c72057d645#.tg0qd95f6>
@@ -149,7 +156,7 @@ Background Reading/Viewing
     -   <https://www.brookings.edu/blog/techtank/2016/12/01/addressing-racial-bias-in-the-online-economy/>
     -   <https://motherboard.vice.com/en_us/article/how-our-likes-helped-trump-win>
     -   <https://www.theguardian.com/politics/2017/jan/19/crisis-of-statistics-big-data-democracy>
--   Extremism Online (State/non-State) and its Effects:
+-   Extremism Off/On-line (State/non-State) and its Effects:
     -   [Worl-wide Terror List (not free and
         subscription based)](http://wtligi.athenainstitute.eu/)
     -   Dependent Co-origination of Pairs of Diametrically Opposed
@@ -157,6 +164,7 @@ Background Reading/Viewing
         Law:
         -   <https://theintercept.com/2017/05/24/reactions-to-manchester-bombing-show-how-anti-muslim-bigots-are-useful-idiots-for-isis/>
     -   Western Origin:
+        -   <https://theintercept.com/2017/09/13/sloppy-u-s-spies-misused-covert-network-for-personal-shopping-and-other-stories-from-internal-nsa-documents/>
         -   <https://www.splcenter.org/fighting-hate/extremist-files/ideology>
         -   <https://www.splcenter.org/fighting-hate/extremist-files/individual>
         -   <https://www.splcenter.org/fighting-hate/extremist-files/groups>

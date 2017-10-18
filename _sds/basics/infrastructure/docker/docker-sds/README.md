@@ -1,151 +1,40 @@
 # How to use docker images
 
-To launch spark and zeppelin do:
-```%sh
-docker run -d -p 8080:8080 -p 7077:7077 -p 4040:4040 raazesh/sds
-```
-Then open a browser at `http://localhost:8080/`
-
----
----
-
-This image was built as follows:
-```%sh
-make build
-docker images
-docker tag sds-spark:latest raazesh/sds:latest
-docker images
-docker push raazesh/sds:latest
-```
-
-# Docker images built by raazesh
-
-Ideally this can be used to cook-up docker images from scratch for the sds course.
-
-
 ## sds-spark:zeppelin
+This will be our default docker image of spark (built from git) with zeppelin.
 
 To launch spark and zeppelin do:
 ```%sh
 $ docker run -d -p 8080:8080 -p 7077:7077 -p 4040:4040 raazesh/sds-spark:zeppelin
 ```
-
-
-
 ## sds-spark
 This is heavy-weight image over 2G in size
+```%sh
+$ docker run -it raazesh/sds-spark:spark_2.1_hadoop_2.7_sbt_0.13.11_scala_2.11.8 /bin/bash
+root@78775a48187e:/spark# sbt console
+[info] Loading project definition from /spark/project
+[info] Set current project to spark-parent (in build file:/spark/)
+[info] Starting scala interpreter...
+[info] 
+Welcome to Scala 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_144).
+Type in expressions for evaluation. Or try :help.
+
+```
 
 ### for spark-shell
 
 ```%sh
-$ docker run -it raazesh/sds-spark /spark/bin/spark-shell
-Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-17/08/24 16:28:59 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-17/08/24 16:29:04 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
-17/08/24 16:29:04 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
-17/08/24 16:29:05 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
-Spark context Web UI available at http://172.17.0.2:4040
-Spark context available as 'sc' (master = local[*], app id = local-1503592140184).
-Spark session available as 'spark'.
-Welcome to
-      ____              __
-     / __/__  ___ _____/ /__
-    _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.2.0
-      /_/
-         
-Using Scala version 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_144)
-Type in expressions to have them evaluated.
-Type :help for more information.
-
-scala> val output = sc.parallelize(Seq(1 to 5)).collect()
-output: Array[scala.collection.immutable.Range.Inclusive] = Array(Range(1, 2, 3, 4, 5))
-
-scala> :quit
+$ docker run -it raazesh/sds-spark:spark_2.1_hadoop_2.7 /spark/bin/spark-shell
 ```
 
 ### for pyspark 
 ```%sh
 $ docker run -it raazesh/sds-spark /spark/bin/pyspark
-Python 2.7.12 (default, Nov 19 2016, 06:48:10) 
-[GCC 5.4.0 20160609] on linux2
-Type "help", "copyright", "credits" or "license" for more information.
-Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-17/08/24 16:26:47 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-17/08/24 16:26:53 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
-17/08/24 16:26:53 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
-17/08/24 16:26:54 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
-Welcome to
-      ____              __
-     / __/__  ___ _____/ /__
-    _\ \/ _ \/ _ `/ __/  '_/
-   /__ / .__/\_,_/_/ /_/\_\   version 2.2.0
-      /_/
-
-Using Python version 2.7.12 (default, Nov 19 2016 06:48:10)
-SparkSession available as 'spark'.
-
->>> output = sc.parallelize([1,2,3,4,5]).collect()
-
->>> output
-[1, 2, 3, 4, 5]
-
->>> exit()
 ```
 
 ### for sparkR
 ```%sh
 $ docker run -it raazesh/sds-spark /spark/bin/sparkR
-
-R version 3.4.1 (2017-06-30) -- "Single Candle"
-Copyright (C) 2017 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-Launching java with spark-submit command /spark/bin/spark-submit   "sparkr-shell" /tmp/RtmpyE900x/backend_port17553d55a 
-Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-17/08/24 16:41:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-17/08/24 16:41:36 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
-17/08/24 16:41:36 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
-17/08/24 16:41:36 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
-
- Welcome to
-    ____              __ 
-   / __/__  ___ _____/ /__ 
-  _\ \/ _ \/ _ `/ __/  '_/ 
- /___/ .__/\_,_/_/ /_/\_\   version  2.2.0 
-    /_/ 
-
-
- SparkSession available as 'spark'.
-> df <- as.DataFrame(faithful)
-> head(df)
-  eruptions waiting
-1     3.600      79
-2     1.800      54
-3     3.333      74
-4     2.283      62
-5     4.533      85
-6     2.883      55
-> quit()
-Save workspace image? [y/n/c]: n
 ```
 
 ### using spark UI
@@ -246,17 +135,23 @@ $ docker push raazesh/sds-spark:lightweight
 ## How to build tag and push `raazesh/sds-spark:latest` to dockerhub
 To build, tag and push the heavy-weight Apache Spark by building from git:
 ```%sh
-$ make build-heavyweight # but with spark version 2.2
+$ make build-heavyweight # but with spark version 2.2 - NEED to change the Dockerfile
 $ docker tag sds-spark raazesh/sds-spark
 $ docker push raazesh/sds-spark
 ```
 
 ## How to build tag and push `raazesh/sds-spark:spark_2.1_hadoop_2.7` to dockerhub
-Zeppelin needs these versions. 
+Zeppelin needs these versions so we will stick to it for now. 
 ```%sh
-$ make build-heavyweight
+$ make build-heavyweight # comment sbt sbtVersion to build without sbt fully installed
 $ docker tag sds-spark:spark_2.1_hadoop_2.7 raazesh/sds-spark:spark_2.1_hadoop_2.7
 $ docker push raazesh/sds-spark:spark_2.1_hadoop_2.7
+```
+To build with sbt pre-installed.
+```%sh
+$ make build-heavyweight # uncomment sbt sbtVersion to build with sbt fully installed
+$ docker tag sds-spark:spark_2.1_hadoop_2.7 raazesh/sds-spark:spark_2.1_hadoop_2.7_sbt
+$ docker push raazesh/sds-spark:spark_2.1_hadoop_2.7_sbt
 ```
 
 ## How to build tag and push `raazesh/sds-spark:zeppelin:` to dockerhub
@@ -264,4 +159,22 @@ $ docker push raazesh/sds-spark:spark_2.1_hadoop_2.7
 $ make build-spark-zeppelin
 $ docker tag sds-spark:zeppelin raazesh/sds-spark:zeppelin
 $ docker push raazesh/sds-spark:zeppelin
+```
+
+To launch spark and zeppelin do:
+```%sh
+docker run -d -p 8080:8080 -p 7077:7077 -p 4040:4040 raazesh/sds
+```
+Then open a browser at `http://localhost:8080/`
+
+---
+---
+
+This image was built as follows:
+```%sh
+make build-spark-zeppelin-getty
+docker images
+docker tag sds-spark:zeppelin-getty raazesh/sds-spark:zeppelin-getty
+docker images
+docker push raazesh/sds-spark:zeppelin-getty
 ```

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Potential Research - Project SAAAD
+title: Research - Project SAAAD - Scalable Adaptive Auto-encoded Anomaly Detection
 permalink: /sds/research/densityEstimation/saaad/
 author_profile: true
 header:
@@ -14,21 +14,164 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 # Project SAAAD:<br /> Scalable Adaptive Auto-encoded Anomaly Detection
 
-Project SAAD is an effort to evaluate the possibilites for further extensions of [Project SAHDE](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/sahde/) via *auto-encoder mapped regular pavings* as *auto-encoded statistical regular pavings* that are ultimately capable of appropriate tree arithmetics formalised and explored in *Relevant Codes and Papers* section below.
+Prepared by Håkan Persson and Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
-This programme is partly supported by:
+Project SAAAD aims to explore the use of autoencoders for anomaly detection in various 'big-data' problems. 
+Specifically, these problems have the following complexities:
 
-* [databricks academic partners program](https://academics.cloud.databricks.com) for distributed cloud computing
-* research time for this project was party due to:
-	* 2015, 2016 by the project [CORCON: Correctness by Construction](http://corcon.net/about/), Seventh Framework Programme of the European Union, Marie Curie Actions-People, International Research Staff Exchange Scheme with counter-part funding by The Royal Society of New Zealand 
-	* 2017, Researcher Position, Department of Mathematics, Uppsala University, Uppsala, Sweden. 
+* data volumes are big and one needs distributed in-memory fault-tolerant computing frameworks such as [Apache Spark](http://spark.apache.org/)
+* learning is 
+  * semi-supervised (so a small fraction of the dataset is labelled) and
+  * interactive (with humans-in-the-loop)
+* the phenomena is time-varying
 
-## Relevant Codes and Papers
+### Introduction
+Anomaly detection is a subset of data mining where the task is to detect observations deviating from the expected pattern of the data. Important applications of this include fraud detection, where the task is to detect criminal or fraudulent activity for example in credit card transactions or insurance claims. Another important application is in predictive maintenance where recognizing anomalous observation could help predict the need for maintenance before the actual failure of the equipment.
+
+The basic idea of anomaly detection is to establish a model for what is normal data and then flag data as anomalous if it deviates too much from the model. The biggest challenge for an anomaly detection algorithm is to discriminate between anomalies and natural outliers, that is to tell the difference between uncommon and unnatural data and uncommon but natural data. This distinction is very dependent on the application at hand, and it is very unlikely that there is one single classification algorithm that can make this distinction in all applications. However, it is often the case that a human expert is able to tell this difference, and it would be of great value to develop methods to feed this information back to the algorithm in an interactive loop. This idea is sometimes called active learning.
+
+Normally, anomaly detection is treated as an **unsupervised learning problem**, where the machine tries to build a model of the training data. 
+Since an anomaly by definition is a data point that in some way is uncommon, it will not fit the machine's model, and the model can flag it as an anomaly. 
+In the case of fraud detection, it is often the case that a small fraction (perhaps 1 out of a million) of the data points represent known cases of fraud attempts. 
+It would be wasteful to throw away this information when building the model. This would mean that we no longer have an unsupervised learning problem, but a **semi-supervised learning problem**. 
+In a typical semi-supervised learning setting, the problem is to assign predefined labels to datapoints when the correct label is only known for a small fraction of the dataset. 
+This is a very useful idea, since it allows for leveraging the power of big data, without having to incur the cost of correctly labeling the whole dataset.  
+If we translate our fraud detection problem to this setting it means that we have a big collection of datapoints which we want to label as either "fraud" or "non-fraud". 
+
+### Summary of Deep Learning Algorithms for Anomaly Detection
+
+* *Autoencoders* (AE) are neural networks that are trained to reproduce the indata. 
+They come in different flavours both with respect to depth and width, but also with respect to how over-learning is prevented. 
+They can be used to detect anomalies from those datapoints that are poorly reconstructed by the network, as quantified by the reconstruction error. 
+AEs can also be used for dimension reduction or compression in a data preprocession step. Subsequently other anomaly detection techniques can be applied to the transformed data.
+
+* *Variational autoencoders* are latent space models where the network is trying to transform the data to a prior distribution (usually multivariate normal). 
+That is, the lower dimensional representation of the data that you get from standard autoencoder will be distributed according to the prior distribution in the case of a variational autoencoder. 
+This means that you can feed data from the prior distribution backwards through the network to generate new data from a distribution close to the one of the original authentic data. 
+Of course you can also use the network to detect outliers in the dataset by comparing the transformed dataset with the prior distribution.
+
+* *Adversarial autoencoders* have some conceptual similarities with variational autoencoders in that they also are capable of generating new (approximate) samples of the dataset. 
+One of the differences between them is not so much how they model the network, but how they are trained. 
+Adversarial autoencoders are based on the idea of GANs (Generative adversarial networks). 
+In a GAN, two neural networks are randomly initialized and random indata from a specified distribution is fed into the first network (the generator). 
+Then the outdata of the first network is fed as indata to the other network (the discriminator). 
+Now the job for the discriminator is to correctly discriminate forged data coming from the generator network from authentic data. 
+The job for the generator network is to, as often as possible, fool the discriminator. 
+This can be interpreted as a zero-sum game in the sense of game theory, and training a GAN is then seen to be equivalent to finding the Nash-equilibrium of this game. 
+Finding such an equilibrium is of course far from trivial but it seems like good results can be achieved by training the networks iteratively side by side through backpropagation. 
+The learning framework is interesting on a meta level because this generator/discriminator rivalry is a bit reminiscent of the relationship between the fraudster and the anomaly detector.
+
+* *Ladder networks* are a class of networks specially developed for semi-supervised learning. 
+It aims at combining supervised and unsupervised learning at every level of the network. 
+The method has made very impressive results on classifying the MNIST dataset, but it is still open how well it performs on other datasets.
+
+* *Active Anomaly Discovery* (AAD) is a method for incorporating expert feedback to the learning algorithm. 
+The basic idea is that the loss function is calculated based on how many non-interesting anomalies it presents to the expert instead of the usual loss functions, like the reconstruction error. 
+The original implementation of AAD is based on an anomaly detector called *Loda* (Lightweight on-line detector of anomalies), but it has also been implemented on other ensemble methods, 
+like tree-based methods. It can also be incorporated into methods that use other autoencoders by replacing the reconstruction error. 
+In the Loda method, the idea is to project the data to a random one-dimensional subspace, form a histogram and predict the log probability of an observed data point. 
+Of course this is a very poor anomaly detector, but by taking the mean of large number of these weak anomaly detectors, we end up with a good anomaly detector. 
+
+
+# Questions for AIM Day
+
+Prepared by Håkan Persson and Raazesh Sainudiin for [Combient AB](https://combient.com/).
+
+We aim to explore the use of autoencoders for anomaly detection in various 'big-data' problems that have the following complexities:
+
+* data volumes are big and one needs distributed in-memory fault-tolerant computing frameworks such as [Apache Spark](http://spark.apache.org/)
+* learning is 
+  * semi-supervised (so a small fraction of the dataset is labelled) and
+  * interactive (with humans-in-the-loop)
+* the phenomena is time-varying
+
+These questions are addressed to experts in statistical/machine learning and visualization or human-computer interactions. 
+The background information is given in the list of references below for concreteness.
+Please see [https://tinyurl.com/yaep8k2w](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/saaad/) for further industrial/academic context.
+
+![](https://tr3.cbsistatic.com/hub/i/r/2016/04/15/c326870e-5682-40f6-9085-6e95cea67e7e/resize/770x/166a5883e09792f95d22f3382b8c581b/ai2-visual-credit-mit-csail.jpg)
+
+## Semi-supervised Anomaly Detection with Human-in-the-Loop
+
+* What algorithms are there for incorporating [expert human feedback into anomaly detection](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf), especially with auto-encoders, and what are their limitations when scaling to terabytes of data? 
+* Can one incorporate [expert human feedback with anomaly detection](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf) for continuous time series data of large networks (eg. network logs data such as netflow logs)?
+* How do you avoid overfitting to known types of anomalies that make up only a small fraction of all events?
+* How can you allow for new (yet unknown anomalies) to be discovered by the model, i.e. account for new types of anomalies over time?
+* Can [Ladder Networks](http://rinuboney.github.io/2016/01/19/ladder-network.html) which were specially developed for semi-supervised learning be adapted for generic anomaly detection (beyond standard datasets)?
+* Can a loss function be specified for an auto-encoder with additional classifier node(s) for rare anomalous events of several types via interaction with the domain expert?    
+* Are there natural parametric families of loss functions for tuning hyper-parameters, where the loss functions can account for the budgeting costs of distinct set of humans with different hourly costs and tagging capabilities within a generic human-in-the-loop model for anomaly detection?
+
+Some ideas to start brain-storming:
+
+* For example, the loss function in the last question above could perhaps be justified using notions such as query-efficiency in the sense of involving only a small amount of interaction with the teacher/domain-expert ([Supervised Clustering, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)). 
+* Do an SVD of the network data when dealing with time-series of large networks that are [tall and skinny](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/mllib/TallSkinnySVD.scala) and look at the distances between the dominant singular vectors, perhaps?
+
+## Interactive Visualization for the Human-in-the-Loop
+
+Given the crucial requirement for rich visual interactions between the algorithm and the human-in-the-loop, what are natural open-source frameworks for programmatically enriching this human-algorithm interaction via visual inspection and interrogation (such as SVDs of activations of rare anomalous events for instance).
+
+For example, how can open source tools be integrated into Active-Learning and other human-in-the-loop Anomaly Detectors? 
+Some such tools include:
+
+* [facets](https://research.googleblog.com/2017/07/facets-open-source-visualization-tool.html) from [https://ai.google/pair](https://ai.google/pair)
+* [http://projector.tensorflow.org](http://projector.tensorflow.org/)
+* [https://distill.pub/2016/misread-tsne/](https://distill.pub/2016/misread-tsne/)
+* [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
+* ...
+
+Beyond, visualizing the ML algorithms, often the Human-in-the-Loop needs to see the details of the raw event that triggered the Anomaly. 
+And typically this event needs to be seen in the context of other related and relevant events, including its anomaly score with some historical comparisons of similar events from a no-SQL query. 
+What are some natural frameworks for being able to click the event of interest (say those alerted by the algorithm) and visualize the raw event details (usually a JSON record or a row of a CSV file) in order to make an informed decision. 
+Some such frameworks include:
+
+* [https://d3js.org/](https://d3js.org/)
+* [https://vega.github.io/vega/](https://vega.github.io/vega/)
+* [https://processing.org/](https://processing.org/)
+* [https://gephi.org/](https://gephi.org/)
+* [http://dygraphs.com/](http://dygraphs.com/)
+* [https://github.com/vegas-viz/Vegas](https://github.com/vegas-viz/Vegas)
+
+for visualizations possibly powered by scalable fault-tolerant near-real-time SQL query engines such as:
+
+* [https://dgraph.io/](https://dgraph.io/)
+* [https://databricks.com/blog/2017/01/19/real-time-streaming-etl-structured-streaming-apache-spark-2-1.html](https://databricks.com/blog/2017/01/19/real-time-streaming-etl-structured-streaming-apache-spark-2-1.html)
+
+### Background Readings
+
+* [MIT shows how AI cybersecurity excels by keeping humans in the loop](http://www.techrepublic.com/article/mit-shows-how-ai-cybersecurity-excels-by-keeping-humans-in-the-loop/)
+* [AI2: Training a big data machine to defend, Kalyan Veeramachaneni, Ignaciao Arnaldo, Alfredo Cuesta-Infante, Vamsi Korrapati, Costas Bassias and Ke Li, 2016](http://people.csail.mit.edu/kalyan/AI2_Paper.pdf)
+* [Supervised Clustering, Pranjal Awasthi and Reza Bosagh Zadeh, NIPS Proceedings, 2010](https://papers.nips.cc/paper/4115-supervised-clustering.pdf)
+  * [Video Lecture 4 minutes](http://www.quizover.com/oer/course/supervised-clustering-by-reza-bosagh-zadeh-videolectures-net-oer)
+* ["Adversarial Autoencoders" Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
+* ["Variational Autoencoder based Anomaly Detection using Reconstruction Probability", Jinwon An and Sungzoon Cho](http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf)
+* ["Loda: Lightweight on-line detector of anomalies", Tomáš Pevný](https://link.springer.com/content/pdf/10.1007%2Fs10994-015-5521-0.pdf)
+* ["Incorporating Expert Feedback into Active Anomaly Discovery", Das et al.](http://web.engr.oregonstate.edu/~tgd/publications/das-wong-dietterich-fern-emmott-incorporating-expert-feedback-into-active-anomaly-discovery-icdm2016.pdf)
+* ["Incorporating Feedback into Tree-based Anomaly Detection", Das et al.](http://poloclub.gatech.edu/idea2017/papers/p25-das.pdf)
+* [Embedding Projector: Interactive Visualization and Interpretation of Embeddings, Daniel Smilkov, Nikhil Thorat, Charles Nicholson, Emily Reif, Fernanda B. Viégas, Martin Wattenberg, 2016](https://arxiv.org/abs/1611.05469)
+* [Direct-Manipulation Visualization of Deep Networks, Daniel Smilkov, Shan Carter, D. Sculley, Fernanda B. Viégas and Martin Wattenberg, 2017](https://arxiv.org/abs/1708.03788)
+* ["Autoencoders, Unsupervised Learning, and Deep Architectures", Pierre Baldi.](http://proceedings.mlr.press/v27/baldi12a/baldi12a.pdf)
+* ["Variational Autoencoders Explained", Kevin Frans](http://kvfrans.com/variational-autoencoders-explained/)
+* ["Tutorial on Variational Autoencoders", Carl Doersch](https://arxiv.org/abs/1606.05908)
+* ["Generative Adversarial Nets", Ian J. Goodfellow et al.](https://arxiv.org/pdf/1406.2661.pdf)
+* ["Adversarial Autoencoders", Ian J. Goodfellow et al.](https://arxiv.org/pdf/1511.05644.pdf)
+* ["Generative Adversarial Networks Explained", Kevin Frans](http://kvfrans.com/generative-adversial-networks-explained/)
+* ["Introduction to Semi-Supervised Learning with Ladder Networks", Rinu Boney](http://rinuboney.github.io/2016/01/19/ladder-network.html)
+* ["Semi-Supervised Learning with Ladder Networks", Antti Rasmus et al.](https://arxiv.org/pdf/1507.02672.pdf)
+
+
+# Statistical Regular Pavings for Auto-encoded Anomaly Detection
+
+This sub-project aims to explore the use of statistical regular pavings in [Project SAHDE](https://lamastex.github.io/scalable-data-science/sds/research/densityEstimation/sahde/), 
+including *auto-encoded statistical regular pavings* via appropriate tree arithmetics, for anomaly detection.
+
+The Loda method might be extra interesting to this sub-project as we may be able to use histogram tree arithmetic for the multiple low-dimensional projections in the Loda method (see above). 
+
+### Background Reading
 
 <ul>
 <li>Data-adaptive histograms through statistical regular pavings, Raazesh Sainudiin, Gloria Teng, Jennifer Harlow and Warwick Tucker, 2016 (<a class="linkitem" href="http://lamastex.org/preprints/20161121optMAPMDE.pdf">PDF</a> 1.8MB)</li>
 
-<li>MRS 2.0: A C++ Class Library for Statistical Set Processing and Computer-Aided Proofs in Statistics (Version 2.0) [Software], Jennifer Harlow, Raazesh Sainudiin, Gloria Teng, Warwick Tucker and Thomas York, Available from <a class="linkitem" href="https://github.com/lamastex/mrs2">https://github.com/lamastex/mrs2</a>, 2017</li>
+<li>MRS 2.0, a C++ class library for statistical set processing and computer-aided proofs in statistics, Raazesh Sainudiin, Thomas York, Jennifer Harlow, Gloria Teng, Warwick Tucker and Dillon George, URL: <a class="linkitem" href="https://github.com/lamastex/mrs2">https://github.com/lamastex/mrs2</a>, 2017</li>
 
 <li>An auto-validating, trans-dimensional, universal rejection sampler for locally Lipschitz arithmetical expressions, Raazesh Sainudiin and Thomas York, <a class="linkitem" href="http://interval.louisiana.edu/reliable-computing-journal/volume-18/reliable-computing-18-pp-015-054.pdf">Reliable Computing, vol.18, pp.15-54</a>, 2013 (<a class="linkitem" href="http://lamastex.org/preprints/avs_rc_2013.pdf">PDF</a> 2612KB)</li>
 
@@ -39,9 +182,7 @@ This programme is partly supported by:
 <li>Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, <a class="linkitem" href="http://arc.aiaa.org/doi/abs/10.2514/1.I010015">Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25</a>, doi: 10.2514/1.I010015, 2012 (<a class="linkitem" href="http://lamastex.org/preprints/AAIASubPavingATC.ps">PS</a> 31MB or lossy <a class="linkitem" href="http://lamastex.org/preprints/AAIASubPavingATC.pdf">PDF</a> 2.9MB or <a class="linkitem" href="http://lamastex.org/preprints/AAIASubPavingATC_PNG.zip">zipped 26 PNG pages</a>) </li>
 </ul>
 
-# Anomaly Detection with Autoencoders
-
-## References
+### General References
 * Some quick mathematical, statistical, computational background readings:
   * [Anomaly detection - Wikipedia](https://en.wikipedia.org/wiki/Anomaly_detection)
   * [Auto Encoders Chapter - Deep Learning Book](http://www.deeplearningbook.org/contents/autoencoders.html) (see references therein)
@@ -53,8 +194,20 @@ This programme is partly supported by:
   * Sparkling Water - H2O with Spark
   * IBM's BigDL in Spark
   * TensorFlow and Spark TensorFrames
+  * [https://github.com/jramapuram/LSTM_Anomaly_Detector](https://github.com/jramapuram/LSTM_Anomaly_Detector)
 
+### Funding
+This programme is partly supported by:
+
+* [databricks academic partners program](https://academics.cloud.databricks.com) for distributed cloud computing
+* research time for this project was party due to:
+	* 2015, 2016 by the project [CORCON: Correctness by Construction](http://corcon.net/about/), Seventh Framework Programme of the European Union, Marie Curie Actions-People, International Research Staff Exchange Scheme with counter-part funding by The Royal Society of New Zealand 
+	* 2017, Researcher Position, Department of Mathematics, Uppsala University, Uppsala, Sweden. 
+
+## Whiteboard discussion notes on 2017-08-18.
  
+![auto-encoder mapped regular pavings and naive probing](https://github.com/lamastex/scalable-data-science/raw/master/_sds/research/densityEstimation/saaad/notes/saaad0.jpg)
+
 # Some Background on Existing Industrial Solutions
 
 * Some interesting industrial solutions already exist, including:
@@ -69,12 +222,13 @@ $ vim ex.md
 $ !date
 $ Fri Aug 18 18:33:05 CEST 2017
 ```
-It is meant to give a reasonably standard industrial solution to the problem and help set the context for industrially beneficial research directions. There are other competing solutions, but we will focus on this example for concreteness.
+It is meant to give a brief introduction to the problem and a reasonably standard industrial solution and thus help set the context for industrially beneficial research directions. 
+There are other competing solutions, but we will focus on this example for concreteness.  
 
 ---
 ---
 
-## Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
+### Anomaly Detection with Autoencoder Machine Learning - Template for TIBCO Spotfire®
 
 By Venkata Jagannath from [https://community.tibco.com/users/venkata-jagannath](https://community.tibco.com/users/venkata-jagannath)
 
@@ -83,8 +237,7 @@ first uses machine learning models to specify expected behavior and then
 monitors new data to match and highlight unexpected behavior.
 
 
-Use cases for Anomaly detection
--------------------------------
+### Use cases for Anomaly detection
 
 **Fighting Financial Crime** – In the financial world, trillions of
 dollars’ worth of transactions happen every minute. Identifying
@@ -121,8 +274,7 @@ anomalies) are detected using the auto encoder model that scores the new
 data.
 [Example](http://webserv.lurpa.ens-cachan.fr/dcds_series/dcds11/fileadmin/user_upload/pdf/tilbury-dcds2011.pdf)
 
-Techniques for Anomaly detection
---------------------------------
+### Techniques for Anomaly detection
 
 Companies around the world have used many different techniques to fight
 fraud in their markets. While the below list is not comprehensive, three
@@ -177,8 +329,7 @@ series analytics by building models that capture trend, seasonality and
 levels in time series data. These models are then used along with new
 data to find anomalies. [Industry example](http://nerds.airbnb.com/anomaly-detection/)
 
-Auto encoders explained
------------------------
+### Auto encoders explained
 
 Autoencoders use unsupervised neural networks that are both similar to
 and different from a traditional feed forward neural network. It is
@@ -222,8 +373,7 @@ A detailed explanation of each of these types of auto encoders is
 available
 [here](http://www.deeplearningbook.org/contents/autoencoders.html).
 
-Spotfire Template for Anomaly detection
----------------------------------------
+### Spotfire Template for Anomaly detection
 
 TIBCO Spotfire’s Anomaly detection template uses an auto encoder trained
 in H2O for best in the market training performance. It can be configured
@@ -238,47 +388,3 @@ distribution for details on how to use this template
 ---
 ---
 
-# Questions for AIM Day
-
-## Methods in Anomaly Detection for Semi-supervised Problems with Human in the Loop
-...
-
-## Interactive Visualisation of the Autoencoder's Layers
-...
-
-
-## Relevant Papers
-
-
-
-
-## Codes
-
-Some interesting random codes that need exploring and experimenting:
-
-* [https://github.com/jramapuram/LSTM_Anomaly_Detector](https://github.com/jramapuram/LSTM_Anomaly_Detector)
-* ...
-
-## LICENSE
-
-Copyright 2016, 2017 Raazesh Sainudiin
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
-
-## Whiteboard discussion notes on 2017-08-18.
- 
-We will eventually lua/la/ka-tex mathematically from here...
-
-![auto-encoder mapped regular pavings and naive probing](notes/saaad0.jpg)

@@ -1,8 +1,10 @@
-FROM raazesh/sds-spark:spark_2.1_hadoop_2.7
+#FROM raazesh/sds-spark:spark_2.1_hadoop_2.7
+FROM raazesh/sds-spark:spark_2.1_hadoop_2.7_sbt_0.13.11_scala_2.11.8
 
 MAINTAINER Raazesh Sainudiin <raazesh.sainudiin@gmail.com>
 
-LABEL version="zep_0.7_spark_2.1_hadoop_2.7"
+#LABEL version="zep_0.7_spark_2.1_hadoop_2.7"
+LABEL version="zep_0.7_spark_2.1_hadoop_2.7_sbt_0.13.11_scala_2.11.8"
 
 ARG ZEPPELIN_VERSION="v0.7.1"
 ARG SPARK_ZEPPELIN_VERSION="2.1"

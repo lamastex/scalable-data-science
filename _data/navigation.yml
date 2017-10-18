@@ -30,8 +30,8 @@ lMenu-SDS-2.2:
   - title: "SDS-2.2 Course"
     url: /sds/2/2/
     children:
-      - title: "At Uppsala"
-        url: /sds/2/2/uppsala/
+      - title: "YouTube PlayList"
+        url: https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY
       - title: "Basics"
         url: /sds/basics/
   - title: "Infrastructure"
@@ -51,6 +51,66 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/002_loginToDatabricks/
       - title: "Scala Crash Course"
         url: /sds/2/2/db/003_scalaCrashCourse/
+      - title: "RDDs"
+        url: /sds/2/2/db/004_RDDsTransformationsActions/
+      - title: "RDDs HOMEWORK"
+        url: /sds/2/2/db/005_RDDsTransformationsActionsHOMEWORK/
+      - title: "Word Count - SOU"
+        url: /sds/2/2/db/006_WordCount/
+      - title: "Spark SQL Basics"
+        url: /sds/2/2/db/007_SparkSQLIntroBasics/
+      - title: "ETL Diamonds Data"
+        url: /sds/2/2/db/008_DiamondsPipeline_01ETLEDA/
+      - title: "ETL Power Plant"
+        url: /sds/2/2/db/009_PowerPlantPipeline_01ETLEDA/
+      - title: "Wiki Click streams"
+        url: /sds/2/2/db/010_wikipediaClickStream_01ETLEDA/
+      - title: "Simulation Intro"
+        url: /sds/2/2/db/011_02_IntroToSimulation/
+      - title: "Machine Learning Intro"
+        url: /sds/2/2/db/011_03_IntroToML/
+      - title: "K-Means 1MSongs Intro"
+        url: /sds/2/2/db/012_UnsupervisedClustering_1MSongsKMeans_Intro/
+      - title: "1MSongs - 1 ETL"
+        url: /sds/2/2/db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/
+      - title: "1MSongs - 2 Explore"
+        url: /sds/2/2/db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/
+      - title: "1MSongs - 3 Model"
+        url: /sds/2/2/db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
+      - title: "Decision Trees for Digits"
+        url: /sds/2/2/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
+      - title: "Linear Algebra Intro"
+        url: /sds/2/2/db/017_LAlgIntro/
+      - title: "Linear Regression Intro"
+        url: /sds/2/2/db/018_LinRegIntro/
+      - title: "Distrib. Linear Algebra"
+        url: /sds/2/2/db/019_DistLAlgForLinRegIntro/
+      - title: "Power Plant - Model Tune Evaluate"
+        url: /sds/2/2/db/020_PowerPlantPipeline_02ModelTuneEvaluate/
+      - title: "Activity Detection - Random Forest"
+        url: /sds/2/2/db/021_recognizeActivityByRandomForest/
+      - title: "Graph Frames Intro"
+        url: /sds/2/2/db/022_GraphFramesUserGuide/
+      - title: "Ontime Flight Performance"
+        url: /sds/2/2/db/023_OnTimeFlightPerformance/
+      - title: "Spark Streaming Intro"
+        url: /sds/2/2/db/024_SparkStreamingIntro/
+      - title: "Extended Twitter Utils"
+        url: /sds/2/2/db/025_a_extendedTwitterUtils2run/
+      - title: "Tweet Transmission Trees"
+        url: /sds/2/2/db/025_b_TTTDFfunctions/
+      - title: "Tweet Collector"
+        url: /sds/2/2/db/026_TweetCollector/
+      - title: "Tweet Collector Track|Follow"
+        url: /sds/2/2/db/027_TweetCollectorTrackAndFollow/
+      - title: "Potential Projects"
+        url: /sds/2/2/db/998_01_PotentialProjectIdeas/
+      - title: "2017 dbc ARCHIVES"
+        url: /sds/2/2/db/dbcArchive/
+  - title: "Contents-CoCalc"
+    children:
+      - title: "1MSongs - 3D Space"
+        url: "https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews"
   - title: "Contents-zeppelin"
   - title: "sbt"
   - title: "SDS-1.6 Course"
