@@ -103,6 +103,20 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/026_TweetCollector/
       - title: "Tweet Collector Track|Follow"
         url: /sds/2/2/db/027_TweetCollectorTrackAndFollow/
+      - title: "Tweet Streaming Hastag Counter"
+        url: /sds/2/2/db/028_TweetHashtagCount/
+      - title: "REST Twitter API"
+        url: /sds/2/2/db/029_RESTTwitter/
+      - title: "Power Plant - Model Tune Evaluate Deploy"
+        url: /sds/2/2/db/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/ 
+      - title: "Geospatial Analytics in Magellan"
+        url: /sds/2/2/db/031_GeospatialAnalyticsInMagellan/
+      - title: "NY Taxi trips in Magellan"
+        url: /sds/2/2/db/032_NYtaxisInMagellan/
+      - title: "Old Bailey Online - ETL of XML" 
+        url: /sds/2/2/db/033_OBO_LoadExtract/ 
+      - title: "20 Newsgroups - Latent Dirichlet Allocation"
+        url: /sds/2/2/db/034_LDA_20NewsGroupsSmall/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
       - title: "2017 dbc ARCHIVES"
