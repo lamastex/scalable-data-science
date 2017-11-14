@@ -10,4 +10,8 @@
 // MAGIC %md
 // MAGIC 
 // MAGIC - REST API
-// MAGIC - 
+// MAGIC  - obtaining user information from screenname
+// MAGIC  - obtaining user-timelines from tweet-id
+// MAGIC  - precursor for breadth-first recursion on timelines of populations of interest for interactive experimental design.
+// MAGIC  
+// MAGIC  Tis notebook can be populated if students are interested in such experimental designs in Twitter.
