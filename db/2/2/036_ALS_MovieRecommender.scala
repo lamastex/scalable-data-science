@@ -46,7 +46,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Collaborative_filtering", 450
 // MAGIC 
 // MAGIC **(watch now 61 seconds - from 18 to 79 seconds)**:
 // MAGIC 
-// MAGIC [![Spark Summit East 2016 - What is Collaborative Filtering](http://img.youtube.com/vi/0HGELVQSHb8/0.jpg)](https://www.youtube.com/watch?v=0HGELVQSHb8)
+// MAGIC [![AJ's What is Collaborative Filtering](http://img.youtube.com/vi/0HGELVQSHb8/0.jpg)](https://www.youtube.com/watch?v=0HGELVQSHb8)
 // MAGIC 
 // MAGIC 
 // MAGIC Let us use MLlib to make personalized movie recommendations.
