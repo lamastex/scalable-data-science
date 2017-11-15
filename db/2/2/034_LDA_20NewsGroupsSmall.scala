@@ -24,8 +24,10 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ## Intro to LDA by David Blei
+// MAGIC Watch at least the first 25 or so minutes of this video by David Blei on a crash introduction to topic modeling via Latent Dirichlet Allocation (LDA).
 // MAGIC 
-// MAGIC https://youtu.be/FkckgwMHP2s
+// MAGIC [![AJ's What is Collaborative Filtering](http://img.youtube.com/vi/FkckgwMHP2s/0.jpg)](https://www.youtube.com/watch?v=FkckgwMHP2s)
 
 // COMMAND ----------
 
@@ -44,7 +46,7 @@
 // MAGIC ## Readings for LDA
 // MAGIC 
 // MAGIC * A high-level introduction to the topic from Communications of the ACM
-// MAGIC     * [https://www.cs.princeton.edu/~blei/papers/Blei2012.pdf](https://www.cs.princeton.edu/~blei/papers/Blei2012.pdf)
+// MAGIC     * [http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf](http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf)
 // MAGIC * A very good high-level humanities introduction to the topic (recommended by Chris Thomson in English Department at UC, Ilam): 
 // MAGIC     * [http://journalofdigitalhumanities.org/2-1/topic-modeling-and-digital-humanities-by-david-m-blei/](http://journalofdigitalhumanities.org/2-1/topic-modeling-and-digital-humanities-by-david-m-blei/)
 // MAGIC 
@@ -60,6 +62,7 @@
 // MAGIC * Algorithm of the generative model (this is unsupervised clustering)
 // MAGIC * For a careful introduction to the topic see Section 27.3 and 27.4 (pages 950-970) pf Murphy's *Machine Learning: A Probabilistic Perspective, MIT Press, 2012*. 
 // MAGIC * We will be quite application focussed or applied here!
+// MAGIC * Understand Expectation Maximization Algorithm read *Section 8.5 The EM Algorithm* in *The Elements of Statistical Learning* by Hastie, Tibshirani and Freidman (2001, Springer Series in Statistics). Read from free 21MB PDF of the book available from here [https://web.stanford.edu/~hastie/Papers/ESLII.pdf](https://web.stanford.edu/~hastie/Papers/ESLII.pdf) or from its backup here [http://lamastex.org/research_events/Readings/StatLearn/ESLII.pdf](http://lamastex.org/research_events/Readings/StatLearn/ESLII.pdf).
 
 // COMMAND ----------
 
@@ -260,10 +263,10 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#M
 
 // MAGIC %md
 // MAGIC 
-// MAGIC **NOTE:** A simpler version of the analysis is available in this notebook:
+// MAGIC **NOTE:** A simpler and slicker version of the analysis is available in this notebook:
 // MAGIC * [https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html](https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html)
 // MAGIC    
-// MAGIC    But, let's do it the hard way here.
+// MAGIC    But, let's do it the hard way here so that we can do it on other arbitrary datasets.
 
 // COMMAND ----------
 
@@ -383,7 +386,7 @@ import org.apache.spark.ml.feature.RegexTokenizer
 
 // Set params for RegexTokenizer
 val tokenizer = new RegexTokenizer()
-.setPattern("[\\W_]+") // break by white space character(s)
+.setPattern("[\\W_]+") // break by white space character(s)  - try to remove emails and other patterns
 .setMinTokenLength(4) // Filter away tokens with length < 4
 .setInputCol("corpus") // name of the input column
 .setOutputCol("tokens") // name of the output column
@@ -515,7 +518,7 @@ val countVectors = vectorizer.transform(filtered_df).select("id", "features")
 // COMMAND ----------
 
 // see the first countVectors
-countVectors.take(1)
+countVectors.take(2)
 
 // COMMAND ----------
 
@@ -729,7 +732,7 @@ val new_lda_countVector = new_countVectors.map { case Row(id: Long, countVector:
 val new_lda = new LDA()
 .setOptimizer(new OnlineLDAOptimizer().setMiniBatchFraction(0.8))
 .setK(numTopics)
-.setMaxIterations(10)
+.setMaxIterations(10) // more than 3 this time
 .setDocConcentration(-1) // use default values
 .setTopicConcentration(-1) // use default values
 
@@ -745,7 +748,7 @@ val new_lda = new LDA()
 // MAGIC * search for 'ml' in the search box on the top left (ml is for ml library)
 // MAGIC * Then find the `LDA` by scrolling below on the left to mllib's `clustering` methods and click on `LDA`
 // MAGIC * Then click on the source code link which should take you here:
-// MAGIC   * [https://github.com/apache/spark/blob/v1.6.1/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala](https://github.com/apache/spark/blob/v1.6.1/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala)
+// MAGIC   * [https://github.com/apache/spark/blob/v2.2.0/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala](https://github.com/apache/spark/blob/v2.2.0/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala)
 // MAGIC   * Now, simply go to the right function and see the following comment block:
 // MAGIC   
 // MAGIC   ```
@@ -1065,11 +1068,19 @@ function classes(root) {
 // MAGIC %md
 // MAGIC ### You try!
 // MAGIC 
-// MAGIC **NOW or Later as HOMEWORK** Try to do the same process for the State of the Union Addresses dataset from Week1.
+// MAGIC **NOW or Later as HOMEWORK** 
 // MAGIC 
-// MAGIC As a first step, first locate where that data is... Go to week1 and try to see if each SoU can be treated as a document for topic modeling and whether there is temporal clustering of SoU's within the same topic.
+// MAGIC 1. Try to do the same process for the State of the Union Addresses dataset from Week1. As a first step, first locate where that data is... Go to week1 and try to see if each SoU can be treated as a document for topic modeling and whether there is temporal clustering of SoU's within the same topic.
 // MAGIC 
-// MAGIC Try to improve the models (if you want to do a project based on this, perhaps).
+// MAGIC 2. Try to improve the tuning by elaborating the pipeline with stemming, lemmatization, etc in this news-group dataset (if you want to do a project based on this, perhaps). You can also parse the input to bring in the newsgroup id's from the directories (consider exploiting the file names in the `wholeTextFiles` method) as this will let you explore how well your unsupervised algorithm is doing relative to the known newsgroups each document falls in (note you generally won't have the luxury of knowing the topic labels for typical datasets in the unsupervised topic modeling domain).
+// MAGIC 
+// MAGIC 3. Try to parse the data closer to the clean dataset available in `/databricks-datasets/news20.binary/*` and walk through the following notebook (*but in Scala!*):
+// MAGIC     * [https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html](https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html)
+// MAGIC    
+
+// COMMAND ----------
+
+// MAGIC %fs ls /databricks-datasets/news20.binary/data-001
 
 // COMMAND ----------
 
@@ -1079,10 +1090,6 @@ function classes(root) {
 // MAGIC **you don't have to do the download in databricks if above cell has contents in `/databricks-datasets/news20.binary/data-001`**
 // MAGIC 
 // MAGIC Here are the steps taken for downloading and saving data to the distributed file system.  Uncomment them for repeating this process on your databricks cluster or for downloading a new source of data.
-
-// COMMAND ----------
-
-// MAGIC %fs ls /databricks-datasets/news20.binary/data-001
 
 // COMMAND ----------
 
