@@ -69,17 +69,25 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Collaborative_filtering", 450
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC For movie recommendations, we start with a matrix whose entries are movie ratings by users (shown in red in the diagram below).  Each column represents a user (shown in green) and each row represents a particular movie (shown in blue).
+// MAGIC For movie recommendations, we start with a matrix whose entries are movie ratings by users (shown in red in the diagram below).  Each row represents a user and each column represents a particular movie. Thus the entry \\(r_{ij}\\) represents the rating of user \\(i\\) for movie \\(j\\).
 // MAGIC  
-// MAGIC Since not all users have rated all movies, we do not know all of the entries in this matrix, which is precisely why we need collaborative filtering.  For each user, we have ratings for only a subset of the movies.  With collaborative filtering, the idea is to approximate the ratings matrix by factorizing it as the product of two matrices: one that describes properties of each user (shown in green), and one that describes properties of each movie (shown in blue).
+// MAGIC Since not all users have rated all movies, we do not know all of the entries in this matrix, which is precisely why we need collaborative filtering.  For each user, we have ratings for only a subset of the movies.  With collaborative filtering, *the idea is to approximate the ratings matrix by factorizing it as the product of two matrices*: one that describes properties of each user (shown in green), and one that describes properties of each movie (shown in blue).
 // MAGIC  
 // MAGIC ![factorization](http://spark-mooc.github.io/web-assets/images/matrix_factorization.png)
 // MAGIC 
-// MAGIC We want to select these two matrices such that the error for the users/movie pairs where we know the correct ratings is minimized. The [Alternating Least Squares][als] algorithm does this by first randomly filling the users matrix with values and then optimizing the value of the movies such that the error is minimized.  Then, it holds the movies matrix constrant and optimizes the value of the user's matrix.  This alternation between which matrix to optimize is the reason for the "alternating" in the name.
+// MAGIC We want to select these two matrices such that the error for the users/movie pairs where we know the correct ratings is minimized. 
+// MAGIC The [Alternating Least Squares](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/) algorithm expands on the [least squares method][als] by:
+// MAGIC 
+// MAGIC 1. first randomly filling the users matrix with values and then 
+// MAGIC 2. optimizing the value of the movies such that the error is minimized.  
+// MAGIC 3. Then, it holds the movies matrix constant and optimizes the value of the users matrix.  
+// MAGIC 
+// MAGIC This alternation between which matrix to optimize is the reason for the "alternating" in the name.
 // MAGIC  
 // MAGIC This optimization is what's being shown on the right in the image above.  Given a fixed set of user factors (i.e., values in the users matrix), we use the known ratings to find the best values for the movie factors using the optimization written at the bottom of the figure.  Then we "alternate" and pick the best user factors given fixed movie factors.
 // MAGIC  
-// MAGIC For a simple example of what the users and movies matrices might look like, check out the [videos from Lecture 8][videos] or the [slides from Lecture 8][slides]
+// MAGIC For a simple example of what the users and movies matrices might look like, check out the [videos from Lecture 8][videos] or the [slides from Lecture 8][slides] of AJ's Introduction to Data Science course.
+// MAGIC 
 // MAGIC [videos]: https://courses.edx.org/courses/BerkeleyX/CS100.1x/1T2015/courseware/00eb8b17939b4889a41a6d8d2f35db83/3bd3bba368be4102b40780550d3d8da6/
 // MAGIC [slides]: https://courses.edx.org/c4x/BerkeleyX/CS100.1x/asset/Week4Lec8.pdf
 // MAGIC [als]: https://en.wikiversity.org/wiki/Least-Squares_Method
@@ -122,6 +130,11 @@ import org.apache.spark.mllib.recommendation.Rating
 // MAGIC Parsing the two files yields two RDDS
 // MAGIC * For each line in the ratings dataset, we create a tuple of (UserID, MovieID, Rating). We drop the timestamp because we do not need it for this exercise.
 // MAGIC * For each line in the movies dataset, we create a tuple of (MovieID, Title). We drop the Genres because we do not need them for this exercise.
+
+// COMMAND ----------
+
+// take a peek at what's in the rating file
+sc.textFile("/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz").map { line => line.split("::") }.take(5)
 
 // COMMAND ----------
 
@@ -221,6 +234,7 @@ println("Got " + numRatings + " ratings from "
 // MAGIC * A training set (RDD), which we will use to train models
 // MAGIC * A validation set (RDD), which we will use to choose the best model
 // MAGIC * A test set (RDD), which we will use for our experiments
+// MAGIC 
 // MAGIC To randomly split the dataset into the multiple groups, we can use the `randomSplit()` transformation. `randomSplit()` takes a set of splits and seed and returns multiple RDDs.
 
 // COMMAND ----------
