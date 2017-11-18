@@ -8,12 +8,14 @@
 // MAGIC %md
 // MAGIC # Analysis of NY Taxi dataset in magellan
 // MAGIC ### Replicating Ram Sriharsha's analysis by Victor Ingman.
+// MAGIC 
+// MAGIC See [https://magellan.ghost.io/magellan-geospatial-processing-made-easy/](https://magellan.ghost.io/magellan-geospatial-processing-made-easy/) for Ram's blog on this data analysis and learn about the dataset at [http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml](http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml).
 
 // COMMAND ----------
 
 // MAGIC %sh
 // MAGIC # download data yall
-// MAGIC # wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2017-06.csv // SHITTY
+// MAGIC # wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2017-06.csv // the schema is different so this needs more work
 // MAGIC wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2015-07.csv
 
 // COMMAND ----------
