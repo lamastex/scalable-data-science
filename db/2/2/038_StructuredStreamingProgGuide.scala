@@ -67,6 +67,7 @@
 // MAGIC         Checkpointing](https://spark.apache.org/docs/2.2.0/structured-streaming-programming-guide.html#recovering-from-failures-with-checkpointing)
 // MAGIC -   [Where to go from
 // MAGIC     here](https://spark.apache.org/docs/2.2.0/structured-streaming-programming-guide.html#where-to-go-from-here)
+// MAGIC     - [https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html](https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html)
 
 // COMMAND ----------
 
@@ -1560,12 +1561,12 @@ query.awaitTermination()
 // MAGIC left off. This is done using checkpointing and write ahead logs. You can
 // MAGIC configure a query with a checkpoint location, and the query will save
 // MAGIC all the progress information (i.e. range of offsets processed in each
-// MAGIC trigger) and the running aggregates (e.g. word counts in the [quick
-// MAGIC example](structured-streaming-programming-guide.html#quick-example)) to
+// MAGIC trigger) and the running aggregates (e.g. word counts in the *quick
+// MAGIC example* to
 // MAGIC the checkpoint location. This checkpoint location has to be a path in an
 // MAGIC HDFS compatible file system, and can be set as an option in the
-// MAGIC DataStreamWriter when [starting a
-// MAGIC query](structured-streaming-programming-guide.html#starting-streaming-queries).
+// MAGIC DataStreamWriter when *starting a
+// MAGIC query*.
 // MAGIC 
 // MAGIC ```
 // MAGIC     aggDF
@@ -1583,3 +1584,4 @@ query.awaitTermination()
 // MAGIC     [Scala](https://github.com/apache/spark/tree/master/examples/src/main/scala/org/apache/spark/examples/sql/streaming)/[Java](https://github.com/apache/spark/tree/master/examples/src/main/java/org/apache/spark/examples/sql/streaming)/[Python](https://github.com/apache/spark/tree/master/examples/src/main/python/sql/streaming)/[R](https://github.com/apache/spark/tree/master/examples/src/main/r/streaming) examples.
 // MAGIC -   Spark Summit 2016 Talk - [A Deep Dive into Structured
 // MAGIC     Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)
+// MAGIC -   [https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html](https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html)
