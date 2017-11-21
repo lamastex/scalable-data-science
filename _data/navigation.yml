@@ -123,6 +123,12 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/035_LDA_CornellMovieDialogs/
       - title: "Movie Recommendation - Alternating Least Squares"
         url: /sds/2/2/db/036_ALS_MovieRecommender/
+      - title: "Animal Names Streaming Files"
+        url: /sds/2/2/db/037a_AnimalNamesStructStreamingFiles/
+      - title: "Normal Mixture Streaming Files"
+        url: /sds/2/2/db/037b_Mix2NormalsStructStreamingFiles/
+      - title: "Structured Streaming Prog Guide"
+        url: /sds/2/2/db/038_StructuredStreamingProgGuide/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
       - title: "2017 dbc ARCHIVES"
