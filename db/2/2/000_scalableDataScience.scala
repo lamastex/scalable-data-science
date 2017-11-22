@@ -21,7 +21,7 @@
 // MAGIC * [https://nz.linkedin.com/in/raazesh-sainudiin-45955845](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) 
 // MAGIC * [Raaz's academic CV](https://lamastex.github.io/cv/) 
 // MAGIC 
-// MAGIC The inter-faculty course in the [Disciplinary Domain of Science and Technology, Uppsala University](http://www.teknat.uu.se/) is being assisted by Tilo Wiklund and Dan Strängberg.
+// MAGIC The inter-faculty course in the [Disciplinary Domain of Science and Technology, Uppsala University](http://www.teknat.uu.se/) is being assisted by Tilo Wiklund and Dan Lilja.
 
 // COMMAND ----------
 
