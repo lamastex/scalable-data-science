@@ -68,6 +68,7 @@
 // MAGIC -   [Where to go from
 // MAGIC     here](https://spark.apache.org/docs/2.2.0/structured-streaming-programming-guide.html#where-to-go-from-here)
 // MAGIC     - [https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html](https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html)
+// MAGIC     - An authoritative resource: [https://www.gitbook.com/book/jaceklaskowski/spark-structured-streaming/details](https://www.gitbook.com/book/jaceklaskowski/spark-structured-streaming/details)
 
 // COMMAND ----------
 
@@ -225,7 +226,7 @@ val streamingLines = spark
 
 // COMMAND ----------
 
-//display(streamingLines)  // display will show you the contents of the DF
+display(streamingLines)  // display will show you the contents of the DF
 
 // COMMAND ----------
 
@@ -532,12 +533,12 @@ peekIn.count() // total count of all the samples in all the files
 
 // COMMAND ----------
 
-peekIn.show(5) // let's take a quick peek at what's in the CSV files
+peekIn.show(5, false) // let's take a quick peek at what's in the CSV files
 
 // COMMAND ----------
 
 // Read all the csv files written atomically from a directory
-//import org.apache.spark.sql.types._
+import org.apache.spark.sql.types._
 
 //make a user-specified schema - this is needed for structured streaming from files
 val userSchema = new StructType()
@@ -720,7 +721,7 @@ import org.apache.spark.sql.types._
 import org.apache.spark.sql.functions._
 import java.sql.Timestamp
 
-// a static DF is convenient to work with
+// a static DS is convenient to work with
 val csvStaticDS = spark
    .read
    .option("sep", ";") // delimiter is ';'
@@ -728,9 +729,11 @@ val csvStaticDS = spark
    .toDF("time","animals")
    .as[(Timestamp, String)]
    .flatMap(
-     line => line._2.split(" ").map(animal => (line._1, animal))
+     line => line._2.split(" ")
+                 .filter(_ != "") // Gustav's improvement
+                 .map(animal => (line._1, animal))
     )
-   .filter(_._2 != "") // remove empty strings from the leading whitespaces
+   //.filter(_._2 != "") // remove empty strings from the leading whitespaces
    .toDF("timestamp", "animal")
    .as[(Timestamp, String)]
 
@@ -1576,6 +1579,10 @@ query.awaitTermination()
 // MAGIC       .format("memory")
 // MAGIC       .start()
 // MAGIC ```
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC Where to go from here
 // MAGIC =====================
@@ -1585,3 +1592,15 @@ query.awaitTermination()
 // MAGIC -   Spark Summit 2016 Talk - [A Deep Dive into Structured
 // MAGIC     Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)
 // MAGIC -   [https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html](https://databricks.com/blog/2017/08/24/anthology-of-technical-assets-on-apache-sparks-structured-streaming.html)
+// MAGIC -  An authoritative resource: [https://www.gitbook.com/book/jaceklaskowski/spark-structured-streaming/details](https://www.gitbook.com/book/jaceklaskowski/spark-structured-streaming/details)
+// MAGIC 
+// MAGIC ## 2017 Updated Pointers
+// MAGIC 
+// MAGIC * [https://medium.com/@jaykreps/exactly-once-support-in-apache-kafka-55e1fdd0a35f](https://medium.com/@jaykreps/exactly-once-support-in-apache-kafka-55e1fdd0a35f)
+// MAGIC * [https://databricks.com/blog/2017/10/17/arbitrary-stateful-processing-in-apache-sparks-structured-streaming.html](https://databricks.com/blog/2017/10/17/arbitrary-stateful-processing-in-apache-sparks-structured-streaming.html).
+// MAGIC * Spark Summit EU Dublin 2017 Deep Dive: [https://databricks.com/session/deep-dive-stateful-stream-processing](https://databricks.com/session/deep-dive-stateful-stream-processing)
+// MAGIC * See [https://youtu.be/JAb4FIheP28](https://youtu.be/JAb4FIheP28)
+// MAGIC * Official [docs and examples of arbitrary stateful operations](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#arbitrary-stateful-operations)
+// MAGIC   * doc: [https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.streaming.GroupState](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.streaming.GroupState)
+// MAGIC   * example: [https://github.com/apache/spark/blob/v2.2.0/examples/src/main/scala/org/apache/spark/examples/sql/streaming/StructuredSessionization.scala](https://github.com/apache/spark/blob/v2.2.0/examples/src/main/scala/org/apache/spark/examples/sql/streaming/StructuredSessionization.scala)
+// MAGIC * See [Part 14](http://blog.madhukaraphatak.com/introduction-to-spark-structured-streaming-part-14/) of [the 14-part series on structured streaming series in Madhukar's blog](http://blog.madhukaraphatak.com/categories/introduction-structured-streaming/) 
