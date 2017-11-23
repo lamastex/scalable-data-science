@@ -129,6 +129,14 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/037b_Mix2NormalsStructStreamingFiles/
       - title: "Structured Streaming Prog Guide"
         url: /sds/2/2/db/038_StructuredStreamingProgGuide/
+      - title: "Graph Mixture Streaming Files"
+        url: /sds/2/2/db/037c_Mix2RandomGraphStructStreamingFiles/
+      - title: "Structured Streaming of JSONs"
+        url: /sds/2/2/db/039_StructuredStreamingFromJSONFileStream/
+      - title: "T-Digest Normal Mixture Streaming Files"
+        url: /sds/2/2/db/040a_TDigestInputStream/
+      - title: "Sketching with T-Digest"
+        url: /sds/2/2/db/041_SketchingWithTDigest/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
       - title: "2017 dbc ARCHIVES"
