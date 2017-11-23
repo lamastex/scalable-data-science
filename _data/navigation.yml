@@ -30,6 +30,8 @@ lMenu-SDS-2.2:
   - title: "SDS-2.2 Course"
     url: /sds/2/2/
     children:
+      - title: "A 2017 Uppsala Big Data Meetup"
+        url: https://www.meetup.com/Uppsala-Big-Data-Meetup/
       - title: "YouTube PlayList"
         url: https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY
       - title: "Basics"
