@@ -139,6 +139,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/040a_TDigestInputStream/
       - title: "Sketching with T-Digest"
         url: /sds/2/2/db/041_SketchingWithTDigest/
+      - title: "2017 Advise from Data Industry"
+        url: /sds/2/2/adviseFromIndustry/AndrewMorgan/
       - title: "Potential Projects"
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
       - title: "2017 dbc ARCHIVES"
