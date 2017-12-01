@@ -22,7 +22,12 @@ Most lectures are live via HangoutsOnAir in Youtube at [this channel](https://ww
 
 This is a markdown of some resources Andrew Morgan from London'd Data Industry shared with us in a live hangout on air to give us a view from the real furnaces of science engineering and enterprise architectures.
 
-Here are some follow-up questions by students that occured off-line for aothers to absorb.
+# Videos of the Hang-out with Andrew Morgan
+
+* [![Hangout with Andrew Morgan of ByteSumo from Lond's Big Data Industry - Part 1](http://img.youtube.com/vi/qZd-DKPKdeM/0.jpg)](https://www.youtube.com/watch?v=qZd-DKPKdeM&rel=0&autoplay=1&modestbranding=1&start=1)
+* [![Hangout with Andrew Morgan of ByteSumo from Lond's Big Data Industry - Part 1](http://img.youtube.com/vi/Bp4vtT4h5m8/0.jpg)](https://www.youtube.com/watch?v=Bp4vtT4h5m8&rel=0&autoplay=1&modestbranding=1&start=1)
+
+Here are some follow-up questions by students that occured off-line for others to absorb.
 
 # Question on PMML from Kasper Ramström:
 
