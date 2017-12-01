@@ -22,6 +22,10 @@ Most lectures are live via HangoutsOnAir in Youtube at [this channel](https://ww
 
 This is a markdown of some resources Andrew Morgan from London'd Data Industry shared with us in a live hangout on air to give us a view from the real furnaces of science engineering and enterprise architectures.
 
+Andrew is one of the co-authors of an excellent resource:
+* [https://github.com/PacktPublishing/Mastering-Spark-for-Data-Science](https://github.com/PacktPublishing/Mastering-Spark-for-Data-Science)
+* [https://www.amazon.com/Mastering-Spark-Science-Andrew-Morgan-ebook/dp/B01BWNXA82](https://www.amazon.com/Mastering-Spark-Science-Andrew-Morgan-ebook/dp/B01BWNXA82)
+
 # Videos of the Hang-out with Andrew Morgan
 
 * [![Hangout with Andrew Morgan of ByteSumo from Lond's Big Data Industry - Part 1](http://img.youtube.com/vi/qZd-DKPKdeM/0.jpg)](https://www.youtube.com/watch?v=qZd-DKPKdeM&rel=0&autoplay=1&modestbranding=1&start=1)
