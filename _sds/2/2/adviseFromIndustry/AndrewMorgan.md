@@ -20,7 +20,7 @@ Welcome! This is [a 2017 Uppsala Big Data Meetup](https://www.meetup.com/Uppsala
 
 Most lectures are live via HangoutsOnAir in Youtube at [this channel](https://www.youtube.com/channel/UCPJ5ALbDtuCA4DJmN3GvanA) and archived in [this playlist](https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY). We are not set up for live interactions online.
 
-This is a markdown of some resources Andrew Morgan from London'd Data Industry shared with us in a live hangout on air to give us a view from the real furnaces of science engineering and enterprise architectures.
+This is a markdown of some resources Andrew Morgan from London'd Data Industry shared with us in a live hangout on air to give us a view from the real furnaces of data science, engineering and enterprise architectures.
 
 Andrew is one of the co-authors of an excellent resource:
 * [https://github.com/PacktPublishing/Mastering-Spark-for-Data-Science](https://github.com/PacktPublishing/Mastering-Spark-for-Data-Science)
