@@ -26,19 +26,18 @@ Here are some follow-up questions by students that occured off-line for aothers 
 
 # Question on PMML from Kasper Ramström:
 
-```
-> ...you mentioned PMML and something about transfering models from a non-scalable python-ish environment to a scalable and production ready java/scala/similar environment. Did I understand that correctly? And if so, is there a point to learn spark or other scalable data science tools or frameworks if you can just use PMML’s instead? I get a feeling that I’m missing something here?
+
+Kasper: You mentioned PMML and something about transfering models from a non-scalable python-ish environment to a scalable and production ready java/scala/similar environment. Did I understand that correctly? And if so, is there a point to learn spark or other scalable data science tools or frameworks if you can just use PMML’s instead? I get a feeling that I’m missing something here?
 ```
 
 # Answer from Andrew Morgan
 
-```
-In short - PMML is effective but VERY limited. 
+
+Andres: In short - PMML is effective but VERY limited. 
 It is not a Spark Killer. Big Data Science is never going away. 
 Tools like Apache Spark are only becoming increasingly important.
 Keep learning Spark. 
 Look at the PDF below !! click the links!!
-```
 
 The long answer requires some background information. Apologies this is quite long.
 
@@ -100,7 +99,7 @@ Really this is happening.
     * As an example - check out this Apache Spark based simulation / modelling solution that is hot right now: [http://www.simudyne.com/](http://www.simudyne.com/). It's proprietary software, but it can integrate easily with all Apache Spark workloads.
   * As we start to fold GPU computing into Spark too, we will find it becomes a go to technology for many very different things.
 
-![](PDFs/MFD-AI-in-the-boardroom_Range.pdf)
+![](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/adviseFromIndustry/AndrewMorgan/PDFs/MFD-AI-in-the-boardroom_Range.pdf)
 
 I hope that explains things better.
 
@@ -109,13 +108,13 @@ Do ask me any questions on linkedin or email.
 Andrew
 
 
-Andrew J Morgan
-CEO, Bytesumo Limited
-Tel: +44 (0)7970130767
-E-mail: andrew@bytesumo.com
+Andrew J Morgan <br>
+CEO, Bytesumo Limited <br>
+Tel: +44 (0)7970130767 <br>
+E-mail: andrew@bytesumo.com <br>
 
 Bytesumo Limited - Registered Company in England and Wales 33 Brodrick Grove, London, SE2 0SR, UK. Company Number: 8505203 
 
-![Andrew Morgan's Diagram on Critical Data Exploitation Capabilities](PDFs/A3_ByteSumo_CriticalDataExploitationCapabilities_1_0_4_8.pdf)
+![Andrew Morgan's Diagram on Critical Data Exploitation Capabilities](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/adviseFromIndustry/AndrewMorgan/PDFs/A3_ByteSumo_CriticalDataExploitationCapabilities_1_0_4_8.pdf)
 
 *rescribed into markdown with minor edits by Raazesh Sainudiin, Fri Dec  1 08:30:58 CET 2017, Uppsala, Sweden.*
