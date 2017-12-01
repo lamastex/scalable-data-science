@@ -41,7 +41,6 @@ Here are some follow-up questions by students that occured off-line for others t
 
 
 Kasper: You mentioned PMML and something about transfering models from a non-scalable python-ish environment to a scalable and production ready java/scala/similar environment. Did I understand that correctly? And if so, is there a point to learn spark or other scalable data science tools or frameworks if you can just use PMML’s instead? I get a feeling that I’m missing something here?
-```
 
 # Answer from Andrew Morgan
 
