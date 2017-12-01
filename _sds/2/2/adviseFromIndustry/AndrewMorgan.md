@@ -1,5 +1,5 @@
 ---
-title: SDS-2.2-Advise-from-Indistry
+title: SDS-2.2 Advise to Students from London's Big Data Industry
 permalink: /sds/2/2/adviseFromIndustry/AndrewMorgan/
 sidebar:
   nav: "lMenu-SDS-2.2"
@@ -12,7 +12,7 @@ excerpt: 'Scalable Data Science from Atlantis, A Big Data Course in Apache Spark
 
 {% include toc %}
 
-# SDS-2.2 -- Advise from London's Data Industry -- by Andrew Morgan
+# SDS-2.2 -- Advise to Students from London's Big Data Industry -- by Andrew Morgan
 
 **Scalable Data Science from Atlantis**, *A Big Data Course in Apache Spark 2.2*
 
