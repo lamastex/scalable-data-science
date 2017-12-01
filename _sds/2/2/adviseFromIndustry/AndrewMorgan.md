@@ -1,5 +1,5 @@
 ---
-title: SDS-2.2 Advise to Students from London's Big Data Industry
+title: SDS-2.2 - Advise to Students from London's Big Data Industry
 permalink: /sds/2/2/adviseFromIndustry/AndrewMorgan/
 sidebar:
   nav: "lMenu-SDS-2.2"
