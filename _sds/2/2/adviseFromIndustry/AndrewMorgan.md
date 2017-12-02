@@ -28,7 +28,7 @@ Andrew is one of the co-authors of an excellent resource:
 
 ![Andrew Morgan's Diagram on Critical Data Exploitation Capabilities](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/adviseFromIndustry/AndrewMorgan/PNGs/shotOf_A3_ByteSumo_CriticalDataExploitationCapabilities_1_0_4_8.png)
 
-For details see an A3-sized PDF of [Andrew Morgan's Diagram on Critical Data Exploitation Capabilities](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/adviseFromIndustry/AndrewMorgan/PDFs/A3_ByteSumo_CriticalDataExploitationCapabilities_1_0_4_8.pdf) (the above image).
+For details see an A3-sized PDF of [Andrew Morgan's Diagram on Critical Data Exploitation Capabilities](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/adviseFromIndustry/AndrewMorgan/PDFs/A3_ByteSumo_CriticalDataExploitationCapabilities_1_0_4_8.pdf) (the above image). Here is the link to the other main image used in the video hangout: [Andrew Morgan's Data State Transitional Analysis](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/adviseFromIndustry/AndrewMorgan/PNGs/datastatetransitionanalysisexample.png).
 
 # Videos of the Hang-out with Andrew Morgan
 
