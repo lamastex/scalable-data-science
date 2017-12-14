@@ -163,6 +163,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/059_DLbyABr_05-RecurrentNetworks/
       - title: "LSTM solution"
         url: /sds/2/2/db/060_DLByABr_05a-LSTM-Solution/
+      - title: "LSTM spoke Zarathustra"
+        url: /sds/2/2/db/061_DLByABr_05b-LSTM-Language/
       - title: "2017 Advise from Data Industry"
         url: /sds/2/2/adviseFromIndustry/AndrewMorgan/
       - title: "Potential Projects"
