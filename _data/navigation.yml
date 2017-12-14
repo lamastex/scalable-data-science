@@ -105,7 +105,7 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/025_c_RESTTwitter/
       - title: "Tweet Collector"
         url: /sds/2/2/db/026_TweetCollector/
-      - title: "Tweet Track|Follow"
+      - title: "Tweet Track, Follow"
         url: /sds/2/2/db/027_TweetCollectorTrackAndFollow/
       - title: "Tweet Hashtag Counter"
         url: /sds/2/2/db/028_TweetHashtagCount/
