@@ -139,6 +139,30 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/040a_TDigestInputStream/
       - title: "Sketching with T-Digest"
         url: /sds/2/2/db/041_SketchingWithTDigest/
+      - title: "Intro to Deep Learning"
+        url: /sds/2/2/db/049_DeepLearningIntro/
+      - title: "Outline for DL"
+        url: /sds/2/2/db/050_DLbyABr_01-Intro/
+      - title: "Neural Networks"
+        url: /sds/2/2/db/051_DLbyABr_02-Neural-Networks/
+      - title: "Deep feed Forward NNs with Keras"
+        url: /sds/2/2/db/052_DLbyABr_02a-Keras-DFFN/
+      - title: "Hello Tensorflow"
+        url: /sds/2/2/db/053_DLbyABr_03-HelloTensorFlow/
+      - title: "Batch Tensorflow with Matrices"
+        url: /sds/2/2/db/054_DLbyABr_03a-BatchTensorFlowWithMatrices/
+      - title: "Convolutional Neural Nets"
+        url: /sds/2/2/db/055_DLbyABr_04-ConvolutionalNetworks/
+      - title: "MNIST: Multi-Layer-Perceptron"
+        url: /sds/2/2/db/056_DLbyABr_04a-Hands-On-MNIST-MLP/
+      - title: "MNIST: Convolutional Neural net"
+        url: /sds/2/2/db/057_DLbyABr_04b-Hands-On-MNIST-CNN/
+      - title: "CIFAR-10: CNNs"
+        url: /sds/2/2/db/058_DLbyABr_04c-CIFAR-10/
+      - title: "Recurrent Neural Nets and LSTMs"
+        url: /sds/2/2/db/059_DLbyABr_05-RecurrentNetworks/
+      - title: "LSTM solution"
+        url: /sds/2/2/db/060_DLByABr_05a-LSTM-Solution/
       - title: "2017 Advise from Data Industry"
         url: /sds/2/2/adviseFromIndustry/AndrewMorgan/
       - title: "Potential Projects"
