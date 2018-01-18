@@ -10,7 +10,7 @@
 
 4. Run `stack setup`
 
-5. Run `stack build`
+5. Run `stack build` (if this fails, run the command with the `-fast` flag)
 
 6. Run `stack exec dbcflatten <infile> <outfile>` where `<infile>` is the
    Databricks archive from which you want to remove all the `iframes` and
