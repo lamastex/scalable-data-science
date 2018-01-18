@@ -259,3 +259,360 @@ val truncData = sqlDF
 truncData.show(5)
 
 truncData.createOrReplaceTempView("anonymized_data")
+
+// COMMAND ----------
+
+import org.graphframes._
+
+val v = truncData.select($"Source".as("id"), $"Source".as("src")).where("count > 10")
+v.show()
+
+val e = truncData.select($"Source".as("src"), $"Destination".as("dst"), $"Protocol", $"count").where("count > 10")
+e.show()
+
+val g = GraphFrame(v, e)
+
+val gE= g.edges.select($"src", $"dst".as("dest"), $"count")
+display(gE)
+
+// COMMAND ----------
+
+package d3
+// We use a package object so that we can define top level classes like Edge that need to be used in other cells
+// This was modified by Ivan Sadikov to make sure it is compatible the latest databricks notebook
+
+import org.apache.spark.sql._
+import com.databricks.backend.daemon.driver.EnhancedRDDFunctions.displayHTML
+
+case class Edge(src: String, dest: String, count: Long)
+
+case class Node(name: String)
+case class Link(source: Int, target: Int, value: Long)
+case class Graph(nodes: Seq[Node], links: Seq[Link])
+
+object graphs {
+// val sqlContext = SQLContext.getOrCreate(org.apache.spark.SparkContext.getOrCreate())  /// fix
+val sqlContext = SparkSession.builder().getOrCreate().sqlContext
+import sqlContext.implicits._
+  
+def force(clicks: Dataset[Edge], height: Int = 100, width: Int = 960): Unit = {
+  val data = clicks.collect()
+  val nodes = (data.map(_.src) ++ data.map(_.dest)).map(_.replaceAll("_", " ")).toSet.toSeq.map(Node)
+  val links = data.map { t =>
+    Link(nodes.indexWhere(_.name == t.src.replaceAll("_", " ")), nodes.indexWhere(_.name == t.dest.replaceAll("_", " ")), t.count / 20 + 1)
+  }
+  showGraph(height, width, Seq(Graph(nodes, links)).toDF().toJSON.first())
+}
+
+/**
+ * Displays a force directed graph using d3
+ * input: {"nodes": [{"name": "..."}], "links": [{"source": 1, "target": 2, "value": 0}]}
+ */
+def showGraph(height: Int, width: Int, graph: String): Unit = {
+
+displayHTML(s"""
+<style>
+
+.node_circle {
+  stroke: #777;
+  stroke-width: 1.3px;
+}
+
+.node_label {
+  pointer-events: none;
+}
+
+.link {
+  stroke: #777;
+  stroke-opacity: .2;
+}
+
+.node_count {
+  stroke: #777;
+  stroke-width: 1.0px;
+  fill: #999;
+}
+
+text.legend {
+  font-family: Verdana;
+  font-size: 13px;
+  fill: #000;
+}
+
+.node text {
+  font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+</style>
+
+<div id="clicks-graph">
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var graph = $graph;
+
+var width = $width,
+    height = $height;
+
+var color = d3.scale.category20();
+
+var force = d3.layout.force()
+    .charge(-700)
+    .linkDistance(180)
+    .size([width, height]);
+
+var svg = d3.select("#clicks-graph").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+    
+force
+    .nodes(graph.nodes)
+    .links(graph.links)
+    .start();
+
+var link = svg.selectAll(".link")
+    .data(graph.links)
+    .enter().append("line")
+    .attr("class", "link")
+    .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+var node = svg.selectAll(".node")
+    .data(graph.nodes)
+    .enter().append("g")
+    .attr("class", "node")
+    .call(force.drag);
+
+node.append("circle")
+    .attr("r", 10)
+    .style("fill", function (d) {
+    if (d.name.startsWith("other")) { return color(1); } else { return color(2); };
+})
+
+node.append("text")
+      .attr("dx", 10)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name });
+      
+//Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
+force.on("tick", function () {
+    link.attr("x1", function (d) {
+        return d.source.x;
+    })
+        .attr("y1", function (d) {
+        return d.source.y;
+    })
+        .attr("x2", function (d) {
+        return d.target.x;
+    })
+        .attr("y2", function (d) {
+        return d.target.y;
+    });
+    d3.selectAll("circle").attr("cx", function (d) {
+        return d.x;
+    })
+        .attr("cy", function (d) {
+        return d.y;
+    });
+    d3.selectAll("text").attr("x", function (d) {
+        return d.x;
+    })
+        .attr("y", function (d) {
+        return d.y;
+    });
+});
+</script>
+</div>
+""")
+}
+  
+  def help() = {
+displayHTML("""
+<p>
+Produces a force-directed graph given a collection of edges of the following form:</br>
+<tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
+</p>
+<p>Usage:<br/>
+<tt><font color="#a71d5d">import</font> <font color="#ed6a43">d3._</font></tt><br/>
+<tt><font color="#795da3">graphs.force</font>(</br>
+&nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
+&nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
+&nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
+</p>""")
+  }
+}
+
+// COMMAND ----------
+
+d3.graphs.force(
+  height = 1680,
+  width = 1280,
+  clicks = gE.as[d3.Edge])
+
+// COMMAND ----------
+
+display(g.inDegrees.orderBy($"inDegree".desc))
+
+// COMMAND ----------
+
+display(g.outDegrees.orderBy($"outDegree".desc))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC # Clustering
+// MAGIC ## Pre-processing of data
+// MAGIC 
+// MAGIC We preprocessed the data logged from wireshark doing the following:
+// MAGIC - Rounding timestamps by milliseconds, that would be four significant decimals.
+// MAGIC - Group the data by (timestamp, source, destination, protocol) with a count of how many times these kind of packets was sent/received during a millisecond.
+// MAGIC - One-hot encoded the protocol values
+// MAGIC     - If you don't what that means, check this article out
+// MAGIC     https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f
+// MAGIC - Standardized features for count and length of packets
+// MAGIC 
+// MAGIC 
+// MAGIC ## Setting up k-means clustering
+// MAGIC - 23 features
+// MAGIC - Filtering out features that are not numeric, example is destination and source
+
+// COMMAND ----------
+
+displayHTML(frameIt("https://en.wikipedia.org/wiki/K-means_clustering",500))
+
+// COMMAND ----------
+
+// MAGIC %python
+// MAGIC import pandas as pd
+// MAGIC 
+// MAGIC sampled = sqlContext.sql("SELECT * FROM anonymized_data").toPandas()
+
+// COMMAND ----------
+
+// MAGIC %python
+// MAGIC # standardize features
+// MAGIC from sklearn.preprocessing import StandardScaler
+// MAGIC scaler = StandardScaler()
+
+// COMMAND ----------
+
+// MAGIC %python
+// MAGIC 
+// MAGIC sample = sampled['len']
+// MAGIC sample = sample.reshape(-1, 1) # one feature
+// MAGIC scaler.fit(sample)
+// MAGIC 
+// MAGIC sampled['len'] = scaler.transform(sample)
+
+// COMMAND ----------
+
+// MAGIC %python
+// MAGIC 
+// MAGIC sample = sampled['count']
+// MAGIC sample = sample.reshape(-1, 1) # one feature
+// MAGIC scaler.fit(sample)
+// MAGIC 
+// MAGIC sampled['count'] = scaler.transform(sample)
+
+// COMMAND ----------
+
+// MAGIC %python
+// MAGIC 
+// MAGIC df_count = sampled['count']
+// MAGIC df_length = sampled['len']
+// MAGIC df_proto = pd.get_dummies(sampled['Protocol'])
+// MAGIC df_source = sampled['Source']
+// MAGIC df_dest = sampled['Destination']
+// MAGIC df_ts = sampled['ts']
+// MAGIC 
+// MAGIC onehot = pd.concat([df_proto, df_source, df_length, df_dest, df_ts, df_count], axis=1)
+// MAGIC onehotDF = sqlContext.createDataFrame(onehot)
+// MAGIC 
+// MAGIC sqlContext.sql("DROP TABLE IF EXISTS anonymized_data_onehot")
+// MAGIC onehotDF.write.saveAsTable('anonymized_data_onehot')
+
+// COMMAND ----------
+
+case class Packet(AJP13: Double, ALLJOYN_NS: Double, ARP: Double, DHCP: Double, DNS: Double, HTTP: Double, HTTP_XML: Double, ICMP: Double, ICMPv6: Double, IGMPv1: Double, IGMPv2: Double, IGMPv3: Double, MDNS: Double, NBNS: Double, NTP: Double, OCSP: Double, QUIC: Double, RTCP: Double, SIP: Double, SNMP: Double, SSDP: Double, STP: Double, STUN: Double, TCP: Double, TFTP: Double, TLSv1: Double, TLSv1_2: Double, UDP: Double, XMPP_XML: Double, Source: String, len: Double, Destination: String, ts: Double,
+ count: Long)
+
+def parseRow(row: org.apache.spark.sql.Row): Packet = {
+  
+  def toDouble(value: Any): Double = {
+    try {
+       value.toString.toDouble
+    } catch {
+      case e: Exception => 0.0
+    }
+  }
+  def toLong(value: Any): Long = {
+    try {
+       value.toString.toLong
+    } catch {
+      case e: Exception => 0
+    }
+  }
+  
+  Packet(toDouble(row(0)), toDouble(row(1)), toDouble(row(2)), toDouble(row(3)), toDouble(row(4)), toDouble(row(5)), toDouble(row(6)), toDouble(row(7)), toDouble(row(8)), toDouble(row(9)), toDouble(row(10)), toDouble(row(11)), toDouble(row(12)), toDouble(row(13)), toDouble(row(14)), toDouble(row(15)), toDouble(row(16)), toDouble(row(17)), toDouble(row(18)), toDouble(row(19)), toDouble(row(20)), toDouble(row(21)), toDouble(row(22)), toDouble(row(23)), toDouble(row(24)), toDouble(row(25)), toDouble(row(26)), toDouble(row(27)), toDouble(row(28)), row(29).toString, toDouble(row(30)), row(31).toString, toDouble(row(32)), toLong(row(33)))
+}
+
+val df = table("anonymized_data_onehot").map(parseRow).toDF
+df.createOrReplaceTempView("packetsView")
+
+// COMMAND ----------
+
+import org.apache.spark.ml.feature.VectorAssembler
+
+val list = ("Source, Destination")
+val cols = df.columns
+
+val filtered = cols.filter { el =>
+  !list.contains(el)
+}
+
+val trainingData = new VectorAssembler()
+                      .setInputCols(filtered)
+                      .setOutputCol("features")
+                      .transform(table("packetsView"))
+
+// COMMAND ----------
+
+import org.apache.spark.ml.clustering.KMeans
+
+val model = new KMeans().setK(23).fit(trainingData)
+val modelTransformed = model.transform(trainingData)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Improvements and future work
+// MAGIC 
+// MAGIC In this section we present possible improvements that could have been done for our project and future work to further build on the project, increase its usability and value.
+// MAGIC ## Dimensionality improvements
+// MAGIC 
+// MAGIC 
+// MAGIC We used k-means for clustering our network data which uses euclidean distance. Models using euclidean distance are susceptible to the [Curse of Dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality). With the 23 features we got after using one-hot encoding for the protocol column in the original dataset we are likely suffering from this high dimensionality. To improve the clustering one could an algorithm that doesn't use euclidean distance (or other distance measures that don't work well for high dimensionality). Another possible solution could be to to use [dimensionality reduction](dimensionality reduction using autoencoder) and try to retain as much information as possible with fewer features. This could be done using techniques such as [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) or [LDA](https://en.wikipedia.org/wiki/Linear_discriminant_analysis).
+// MAGIC 
+// MAGIC ## Parse packet contents
+// MAGIC 
+// MAGIC We didn't parse the packet information other than IP addresses, packet lengths and protocol. To gain further insights one could parse the additional packet contents and look for sensitive items, including usernames, passwords etc.
+// MAGIC 
+// MAGIC ## Graph Analysis
+// MAGIC 
+// MAGIC One could continue analyze the graph representation of the data. Examples of this could include looking for comlpex relationships in the graph using GraphFrames motifs.
+// MAGIC 
+// MAGIC ## Real time network analysis using Spark streaming
+// MAGIC 
+// MAGIC To make the project even more useful in a real environment, one could use [Spark Streaming k-means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html) to cluster network traffic in real time and then perform anomaly detection in real time as well. An example approach of this can be seen in the following video: https://www.youtube.com/watch?v=i8___3GdxlQ
+// MAGIC 
+// MAGIC Additional continuations of this could include giving suggestions for actions to perform when deteching malicious activity.
+
+// COMMAND ----------
+
+displayHTML(frameIt("https://en.wikipedia.org/wiki/Dimensionality_reduction",500))
+
+// COMMAND ----------
+
+displayHTML(frameIt("https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html",500))
