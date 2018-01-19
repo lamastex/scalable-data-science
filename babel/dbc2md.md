@@ -20,3 +20,16 @@
 7. Run `stack exec -- pinot -f databricks -t markdown <infile> -o <outpath>`
    where `<infile>` is the Databricks archive you want to transform to markdown
    and `<outpath>` is the folder you wish to put the outputted markdown in.
+
+
+## To make gitbook
+
+After the 7 Steps above while you are in the pinot directory do:
+
+```%sh
+~/all/git/pinot$ stack exec dbcflatten ~/all/git/scalable-data-science/dbcArchives/2017/sds-2-2.dbc ~/all/git/scalable-data-science/gitbook/sds-2-2-flat.dbc 
+
+~/all/git/pinot$ stack exec -- pinot -f databricks -t markdown ~/all/git/scalable-data-science/gitbook/sds-2-2-flat.dbc -o ~/all/git/scalable-data-science/gitbook/
+
+~/all/git/pinot$ rm ~/all/git/scalable-data-science/gitbook/sds-2-2-flat.dbc
+```
