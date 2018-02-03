@@ -1,3 +1,4 @@
 {
+ "root": "./gb",
  "plugins": ["katex"]
 }
