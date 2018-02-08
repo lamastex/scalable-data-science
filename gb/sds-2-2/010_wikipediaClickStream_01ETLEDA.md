@@ -131,7 +131,7 @@ Display is a utility provided by Databricks. If you are programming directly in 
 
     clickstream.show(5)
 
-> +-------+-------+---+------------------+----------+-----+ |prev\_id|curr\_id| n| prev\_title|curr\_title| type| +-------+-------+---+------------------+----------+-----+ | null|3632887|121| other-google| !!|other| | null|3632887| 93| other-wikipedia| !!|other| | null|3632887| 46| other-empty| !!|other| | null|3632887| 10| other-other| !!|other| | 64486|3632887| 11|!\_(disambiguation)| !!|other| +-------+-------+---+------------------+----------+-----+ only showing top 5 rows
+> +-------|-------|---|------------------|----------|-----+ |prev\_id|curr\_id| n| prev\_title|curr\_title| type| +-------|-------|---|------------------|----------|-----+ | null|3632887|121| other-google| !!|other| | null|3632887| 93| other-wikipedia| !!|other| | null|3632887| 46| other-empty| !!|other| | null|3632887| 10| other-other| !!|other| | 64486|3632887| 11|!\_(disambiguation)| !!|other| +-------|-------|---|------------------|----------|-----+ only showing top 5 rows
 
 ### Reading from disk vs memory
 
@@ -278,7 +278,6 @@ This code is copied after doing a live google search (by Michael Armbrust at Spa
 
     d3ivan.graphs.help()
 
-<html>
 <p>
 Produces a force-directed graph given a collection of edges of the following form:</br>
 <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
@@ -304,7 +303,7 @@ Produces a force-directed graph given a collection of edges of the following for
           prev_id IS NOT NULL AND prev_title != 'Main_Page'
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
-
+<html>
 <style>
 
 .node_circle {
@@ -466,7 +465,7 @@ Also using parquet files to store DataFrames allows us to go between languages q
 
     clicksPy.show()
 
-> +--------+-------+---+--------------------+--------------------+-----+ | prev\_id|curr\_id| n| prev\_title| curr\_title| type| +--------+-------+---+--------------------+--------------------+-----+ | 7009881| 164003| 21| Mayall| John\_Mayall| link| | 476786| 164003| 86| Mick\_Taylor| John\_Mayall| link| |19735547| 164003| 10|Peter\_Green\_disco...| John\_Mayall| link| | 244136| 164003| 10| Macclesfield| John\_Mayall| link| |33105755| 164003| 13| The\_Yardbirds| John\_Mayall| link| | 8910430| 164003| 34|The\_Turning\_Point...| John\_Mayall| link| | 329878| 164003| 10| Steve\_Marriott| John\_Mayall| link| | null| 164003|652| other-empty| John\_Mayall|other| | null| 147396|134| other-bing|John\_Mayall\_&\_the...|other| |17865484| 147396| 13|Timeline\_of\_heavy...|John\_Mayall\_&\_the...|other| |15580374| 147396| 94| Main\_Page|John\_Mayall\_&\_the...|other| | 168254| 147396| 23| Paul\_Butterfield|John\_Mayall\_&\_the...| link| | 322138| 147396|283|Peter\_Green\_(musi...|John\_Mayall\_&\_the...| link| | null| 147396| 79| other-other|John\_Mayall\_&\_the...|other| |12154926| 147396| 13|Marshall\_Bluesbre...|John\_Mayall\_&\_the...| link| | 223910| 147396| 12| Robben\_Ford|John\_Mayall\_&\_the...|other| |14433637| 147396| 10|Parchman\_Farm\_(song)|John\_Mayall\_&\_the...| link| | 476786| 147396|213| Mick\_Taylor|John\_Mayall\_&\_the...| link| |18952282| 147396| 13| Ric\_Grech|John\_Mayall\_&\_the...|other| | 4113741| 147396| 50|Rolling\_Stone's\_5...|John\_Mayall\_&\_the...| link| +--------+-------+---+--------------------+--------------------+-----+ only showing top 20 rows
+> +--------|-------|---|--------------------|--------------------|-----+ | prev\_id|curr\_id| n| prev\_title| curr\_title| type| +--------|-------|---|--------------------|--------------------|-----+ | 7009881| 164003| 21| Mayall| John\_Mayall| link| | 476786| 164003| 86| Mick\_Taylor| John\_Mayall| link| |19735547| 164003| 10|Peter\_Green\_disco...| John\_Mayall| link| | 244136| 164003| 10| Macclesfield| John\_Mayall| link| |33105755| 164003| 13| The\_Yardbirds| John\_Mayall| link| | 8910430| 164003| 34|The\_Turning\_Point...| John\_Mayall| link| | 329878| 164003| 10| Steve\_Marriott| John\_Mayall| link| | null| 164003|652| other-empty| John\_Mayall|other| | null| 147396|134| other-bing|John\_Mayall\_&\_the...|other| |17865484| 147396| 13|Timeline\_of\_heavy...|John\_Mayall\_&\_the...|other| |15580374| 147396| 94| Main\_Page|John\_Mayall\_&\_the...|other| | 168254| 147396| 23| Paul\_Butterfield|John\_Mayall\_&\_the...| link| | 322138| 147396|283|Peter\_Green\_(musi...|John\_Mayall\_&\_the...| link| | null| 147396| 79| other-other|John\_Mayall\_&\_the...|other| |12154926| 147396| 13|Marshall\_Bluesbre...|John\_Mayall\_&\_the...| link| | 223910| 147396| 12| Robben\_Ford|John\_Mayall\_&\_the...|other| |14433637| 147396| 10|Parchman\_Farm\_(song)|John\_Mayall\_&\_the...| link| | 476786| 147396|213| Mick\_Taylor|John\_Mayall\_&\_the...| link| |18952282| 147396| 13| Ric\_Grech|John\_Mayall\_&\_the...|other| | 4113741| 147396| 50|Rolling\_Stone's\_5...|John\_Mayall\_&\_the...| link| +--------|-------|---|--------------------|--------------------|-----+ only showing top 20 rows
 
 Now you can continue from the original python notebook tweeted by Michael.
 
