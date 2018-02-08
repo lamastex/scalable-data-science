@@ -44,11 +44,38 @@ Let's get a bird's eye view of LDA from <http://www.cs.columbia.edu/~blei/papers
 -   We will be quite application focussed or applied here!
 -   Understand Expectation Maximization Algorithm read *Section 8.5 The EM Algorithm* in *The Elements of Statistical Learning* by Hastie, Tibshirani and Freidman (2001, Springer Series in Statistics). Read from free 21MB PDF of the book available from here <https://web.stanford.edu/~hastie/Papers/ESLII.pdf> or from its backup here <http://lamastex.org/research_events/Readings/StatLearn/ESLII.pdf>.
 
-<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA"
+ width="95%" height="200"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model"
+ width="95%" height="600"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition"
+ width="95%" height="910"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Probabilistic Topic Modeling Example
 ------------------------------------

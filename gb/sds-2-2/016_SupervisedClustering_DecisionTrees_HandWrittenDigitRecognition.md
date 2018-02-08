@@ -27,7 +27,16 @@ Let's Build Intuition for Learning with Decision Trees
 -   Right-click and open the following link in a new Tab:
 -   [The visual description of ML and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) which was nominated for a [NSF Vizzie award](http://review.wizehive.com/voting/view/nsfvizziesgallery/27428/3236649).
 
-<a href="https://en.wikipedia.org/wiki/Decision_tree_learning">https://en.wikipedia.org/wiki/Decision_tree_learning</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Decision_tree_learning"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Load MNIST training and test datasets
 -------------------------------------
@@ -159,7 +168,16 @@ Hyperparameter Tuning
 
 Run the next cell and come back into hyper-parameter tuning for a couple minutes.
 
-<a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization">https://en.wikipedia.org/wiki/Hyperparameter_optimization</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Hyperparameter_optimization"
+ width="95%" height="400"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Exploring "maxDepth": training trees of different sizes
 -------------------------------------------------------
@@ -256,7 +274,16 @@ If you are interested in learning more on these topics, these resources can get 
 
 We will use the default metric to evaluate the performance of our classifier: \* <https://en.wikipedia.org/wiki/F1_score>.
 
-<a href="https://en.wikipedia.org/wiki/F1_score">https://en.wikipedia.org/wiki/F1_score</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/F1_score"
+ width="95%" height="400"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     f1MetricPerformanceMeasures.show()
 

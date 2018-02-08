@@ -316,7 +316,15 @@ Now, let's be good at house-keeping and clean-up the unnecessary data in dbfs, o
 
 > res50: Boolean = false
 
-<a href="https://en.wikipedia.org/wiki/JSON">https://en.wikipedia.org/wiki/JSON</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/JSON"
+ width="95%" height="400">
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub-dirs and descent into time-tree'd directory hierarchy
 

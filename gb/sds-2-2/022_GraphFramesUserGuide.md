@@ -7,9 +7,27 @@ See: \* <https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf> \
 
 And of course the databricks guide: \* <https://docs.databricks.com/spark/latest/graph-analysis/index.html>
 
-<a href="https://amplab.github.io/graphx/">https://amplab.github.io/graphx/</a>
+<iframe 
+ src="https://amplab.github.io/graphx/"
+ width="95%" height="700"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://spark.apache.org/docs/latest/graphx-programming-guide.html#optimized-representation">https://spark.apache.org/docs/latest/graphx-programming-guide.html#optimized-representation</a>
+<iframe 
+ src="https://spark.apache.org/docs/latest/graphx-programming-guide.html#optimized-representation"
+ width="95%" height="800"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 GraphFrames User Guide (Scala)
 ==============================
@@ -20,7 +38,16 @@ The GraphFrames package is available from [Spark Packages](http://spark-packages
 
 This notebook demonstrates examples from the [GraphFrames User Guide](http://graphframes.github.io/user-guide.html).
 
-<a href="https://databricks.com/blog/2016/03/03/introducing-graphframes.html">https://databricks.com/blog/2016/03/03/introducing-graphframes.html</a>
+<iframe 
+ src="https://databricks.com/blog/2016/03/03/introducing-graphframes.html"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     // we first need to install the library - graphframes as a Spark package - and attach it to our cluster
     import org.apache.spark.sql._
@@ -726,7 +753,16 @@ GraphFrames comes with a number of standard graph algorithms built in:
 
 READ <http://graphframes.github.io/user-guide.html#breadth-first-search-bfs>.
 
-<a href="https://en.wikipedia.org/wiki/Breadth-first_search">https://en.wikipedia.org/wiki/Breadth-first_search</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Breadth-first_search"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Search from "Esther" for users of age &lt; 32.
 
@@ -751,7 +787,16 @@ Compute the connected component membership of each vertex and return a graph wit
 
 READ <http://graphframes.github.io/user-guide.html#connected-components>.
 
-<a href="https://en.wikipedia.org/wiki/Connected_component_(graph_theory)">https://en.wikipedia.org/wiki/Connected_component_(graph_theory)</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Connected_component_(graph_theory)"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 From <http://graphframes.github.io/user-guide.html#connected-components>:-
 
@@ -781,7 +826,16 @@ Compute the strongly connected component (SCC) of each vertex and return a graph
 
 READ <http://graphframes.github.io/user-guide.html#strongly-connected-components>.
 
-<a href="https://en.wikipedia.org/wiki/Strongly_connected_component">https://en.wikipedia.org/wiki/Strongly_connected_component</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Strongly_connected_component"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     val result = g.stronglyConnectedComponents.maxIter(10).run()
     display(result.orderBy("component"))
@@ -806,7 +860,16 @@ LPA is a standard community detection algorithm for graphs. It is very inexpensi
 
 READ: <http://graphframes.github.io/user-guide.html#label-propagation-algorithm-lpa>.
 
-<a href="https://en.wikipedia.org/wiki/Label_Propagation_Algorithm">https://en.wikipedia.org/wiki/Label_Propagation_Algorithm</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Label_Propagation_Algorithm"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     val result = g.labelPropagation.maxIter(5).run()
     display(result.orderBy("label"))
@@ -827,7 +890,16 @@ Identify important vertices in a graph based on connections.
 
 READ: <http://graphframes.github.io/user-guide.html#pagerank>.
 
-<a href="https://en.wikipedia.org/wiki/PageRank">https://en.wikipedia.org/wiki/PageRank</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/PageRank"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     // Run PageRank until convergence to tolerance "tol".
     val results = g.pageRank.resetProbability(0.15).tol(0.01).run()
@@ -887,7 +959,16 @@ Computes shortest paths to the given set of landmark vertices, where landmarks a
 
 READ <http://graphframes.github.io/user-guide.html#shortest-paths>.
 
-<a href="https://en.wikipedia.org/wiki/Shortest_path_problem">https://en.wikipedia.org/wiki/Shortest_path_problem</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Shortest_path_problem"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     val paths = g.shortestPaths.landmarks(Seq("a", "d")).run()
     display(paths)

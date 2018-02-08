@@ -8,11 +8,14 @@ sds_DIR=~/all/git/scalable-data-science
 
 cd $PINOT_DIR &&
 
-stack exec dbcflatten $sds_DIR/dbcArchives/2017/sds-2-2.dbc ~/all/git/scalable-data-science/gb/sds-2-2-flat.dbc &&
+#stack exec dbcflatten $sds_DIR/dbcArchives/2017/sds-2-2.dbc ~/all/git/scalable-data-science/gb/sds-2-2-flat.dbc &&
 
-stack exec -- pinot -f databricks -t markdown $sds_DIR/gb/sds-2-2-flat.dbc -o ~/all/git/scalable-data-science/gb/ &&
+#stack exec -- pinot -f databricks -t markdown $sds_DIR/gb/sds-2-2-flat.dbc -o ~/all/git/scalable-data-science/gb/ &&
 
-rm $sds_DIR/gb/sds-2-2-flat.dbc &&
+#rm $sds_DIR/gb/sds-2-2-flat.dbc &&
+
+stack exec -- pinot -f databricks -t markdown $sds_DIR/dbcArchives/2017/sds-2-2.dbc -o ~/all/git/scalable-data-science/gb/ &&
+
 
 rm -rf $sds_DIR/gb/db
 

@@ -242,7 +242,16 @@ EXTRA: Databases Versus Data Science
 -   Most Maths/Stats/Computing programs cater to the *programmer* role
     -   Numpy and Matplotlib, R, Matlab, and Octave.
 
-<a href="https://en.wikipedia.org/wiki/Data_science">https://en.wikipedia.org/wiki/Data_science</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Data_science"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 **(Watch later 0:52)**: What is Data Science? According to a Udacity Course.
 

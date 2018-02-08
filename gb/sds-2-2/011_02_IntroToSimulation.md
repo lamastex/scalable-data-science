@@ -65,7 +65,16 @@ The above result means that approximately 95% of the draws from an exponential d
 
 > res47: Double = 0.950212931632136
 
-<a href="https://en.wikipedia.org/wiki/Exponential_distribution">https://en.wikipedia.org/wiki/Exponential_distribution</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Exponential_distribution"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 NOTE: Below, there is a possibility of confusion for the term `rate` in the family of exponential distributions. Breeze parameterizes the distribution with the mean, but refers to it as the rate.
 
@@ -85,7 +94,16 @@ NOTE: Below, there is a possibility of confusion for the term `rate` in the fami
 
 > res50: (Double, Double) = (2.0,4.0)
 
-<a href="https://en.wikipedia.org/wiki/Poisson_distribution">https://en.wikipedia.org/wiki/Poisson_distribution</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Poisson_distribution"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Core ideas in Monte Carlo simulation
 ------------------------------------
@@ -100,14 +118,32 @@ Core ideas in Monte Carlo simulation
     -   random walks or (sensible perturbations of live traffic data on open street maps for hypothesis tests)
     -   models of interacting paticle systems in ecology / chemcal physics, etc...
 
-<a href="https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)">https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 -   <https://en.wikipedia.org/wiki/Inverse_transform_sampling>
 -   <https://en.wikipedia.org/wiki/Rejection_sampling> - will revisit below for Expoential RV
 
 ### Drawing samples from Exponential RV
 
-<a href="https://en.wikipedia.org/wiki/Inverse_transform_sampling#Examples">https://en.wikipedia.org/wiki/Inverse_transform_sampling#Examples</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Inverse_transform_sampling#Examples"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Pseudo Random Numbers in Spark
 ------------------------------

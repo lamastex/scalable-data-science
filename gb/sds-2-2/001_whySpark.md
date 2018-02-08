@@ -133,4 +133,12 @@ key points
 -   the Spark in-memory computation framework, a sub-stack of the BDAS stack,
 -   and more...
 
-<a href="https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext">https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext</a>
+<iframe 
+ src="https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext"
+ width="95%" height="600">
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>

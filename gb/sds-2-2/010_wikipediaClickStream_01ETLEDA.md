@@ -35,7 +35,16 @@ The data is approximately 1.2GB and it is hosted in the following Databricks fil
 
 Let's read the datahub-hosted link <https://datahub.io/dataset/wikipedia-clickstream> in the embedding below. Also click the [blog](http://ewulczyn.github.io/Wikipedia_Clickstream_Getting_Started/) by Ellery Wulczyn, Data Scientist at The Wikimedia Foundation, to better understand how the data was generated (remember to Right-Click and use -&gt; and &lt;- if navigating within the embedded html frame below).
 
-<a href="https://datahub.io/dataset/wikipedia-clickstream">https://datahub.io/dataset/wikipedia-clickstream</a>
+<iframe 
+ src="https://datahub.io/dataset/wikipedia-clickstream"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Run the next two cells for some housekeeping.
 
@@ -296,7 +305,7 @@ Produces a force-directed graph given a collection of edges of the following for
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
 
-<html>
+
 <style>
 
 .node_circle {
@@ -410,7 +419,6 @@ force.on("tick", function () {
 });
 </script>
 </div>
-</html>
 
 ### Convert raw data to parquet
 
@@ -419,7 +427,16 @@ force.on("tick", function () {
 -   To understand the ideas read [Dremel: Interactive Analysis of Web-Scale Datasets, Sergey Melnik, Andrey Gubarev, Jing Jing Long, Geoffrey Romer, Shiva Shivakumar, Matt Tolton and Theo Vassilakis,Proc. of the 36th Int'l Conf on Very Large Data Bases (2010), pp. 330-339](http://research.google.com/pubs/pub36632.html), whose Abstract is as follows:
     -   Dremel is a scalable, interactive ad-hoc query system for analysis of read-only nested data. By combining multi-level execution trees and columnar data layouts it is **capable of running aggregation queries over trillion-row tables in seconds**. The system **scales to thousands of CPUs and petabytes of data, and has thousands of users at Google**. In this paper, we describe the architecture and implementation of Dremel, and explain how it complements MapReduce-based computing. We present a novel columnar storage representation for nested records and discuss experiments on few-thousand node instances of the system.
 
-<a href="https://parquet.apache.org/documentation/latest/">https://parquet.apache.org/documentation/latest/</a>
+<iframe 
+ src="https://parquet.apache.org/documentation/latest/"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     // Convert the DatFrame to a more efficent format to speed up our analysis
     clickstream.

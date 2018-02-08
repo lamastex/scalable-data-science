@@ -351,7 +351,16 @@ Let's put the files in dbfs.
 
 > res5: String = version 2.11.8
 
-<a href="https://www.oldbaileyonline.org/">https://www.oldbaileyonline.org/</a>
+<iframe 
+ src="https://www.oldbaileyonline.org/"
+ width="95%" height="450"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 ### This exciting dataset is here for a course project in digital humanities
 
@@ -398,4 +407,13 @@ Quick Preparation
 
 Make sure you comment/uncomment the right files depending on wheter you have downloaded the tiny dataset or the big one.
 
-<a href="https://en.wikipedia.org/wiki/XML">https://en.wikipedia.org/wiki/XML</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/XML"
+ width="95%" height="450"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>

@@ -34,9 +34,27 @@ You can read the background on the UCI page, but in summary: \* we have collecte
 
 More information about Peaker or Peaking Power Plants can be found on Wikipedia <https://en.wikipedia.org/wiki/Peaking_power_plant>.
 
-<a href="https://en.wikipedia.org/wiki/Peaking_power_plant">https://en.wikipedia.org/wiki/Peaking_power_plant</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Peaking_power_plant"
+ width="95%" height="300"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant">https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant</a>
+<iframe 
+ src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     // a good habit to ensure the code is being run on the appropriate version of Spark - we are using Spark 2.2 actually if we use SparkSession object spark down the road...
     require(sc.version.replace(".", "").toInt >= 140, "Spark 1.4.0+ is required to run this notebook. Please attach it to a Spark 1.4.0+ cluster.")

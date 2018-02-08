@@ -46,11 +46,38 @@ Let's get a bird's eye view of LDA from <https://www.cs.princeton.edu/~blei/pape
 -   For a careful introduction to the topic see Section 27.3 and 27.4 (pages 950-970) pf Murphy's *Machine Learning: A Probabilistic Perspective, MIT Press, 2012*.
 -   We will be quite application focussed or applied here!
 
-<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA"
+ width="95%" height="250"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model"
+ width="95%" height="600"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition"
+ width="95%" height="910"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 Probabilistic Topic Modeling Example
 ------------------------------------

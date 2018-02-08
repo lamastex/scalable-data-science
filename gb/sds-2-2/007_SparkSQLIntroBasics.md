@@ -12,11 +12,38 @@ Some resources on SQL \* <https://en.wikipedia.org/wiki/SQL> \* <https://en.wiki
 
 Some of them are embedded below in-place for your convenience.
 
-<a href="https://en.wikipedia.org/wiki/SQL">https://en.wikipedia.org/wiki/SQL</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/SQL"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://en.wikipedia.org/wiki/Apache_Hive#HiveQL">https://en.wikipedia.org/wiki/Apache_Hive#HiveQL</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Apache_Hive#HiveQL"
+ width="95%" height="175"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/ml-features.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html">https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html</a>
+<iframe 
+ src="https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html"
+ width="95%" height="600"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 This is an elaboration of the [Apache Spark 2.2 sql-progamming-guide](http://spark.apache.org/docs/latest/sql-programming-guide.html).
 
@@ -182,7 +209,16 @@ This week's recommended homework is a deep dive into the [SparkSQL programming g
 
 Those who want to understand SparkSQL functionalities in more detail can see: \* [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](https://docs.databricks.com/spark/1.6/training/introduction-to-big-data-cs100x-2015/module-3.html).
 
-<a href="https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html">https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html</a>
+<iframe 
+ src="https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html"
+ width="95%" height="600"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     spark // ready-made Spark-Session
 

@@ -556,7 +556,16 @@ A visual explanation of gradient boosted trees: \* <http://arogozhnikov.github.i
 
 Let's see what a boosting algorithm, a type of ensemble method, is all about in more detail.
 
-<a href="https://en.wikipedia.org/wiki/Gradient_boosting">https://en.wikipedia.org/wiki/Gradient_boosting</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Gradient_boosting"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
     import org.apache.spark.ml.regression.GBTRegressionModel 
 
@@ -601,9 +610,27 @@ Let us explore other models to see if we can predict the power output better
 
 There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
-<a href="https://en.wikipedia.org/wiki/Peaking_power_plant">https://en.wikipedia.org/wiki/Peaking_power_plant</a>
+<iframe 
+ src="https://en.wikipedia.org/wiki/Peaking_power_plant"
+ width="95%" height="300"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
-<a href="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant">https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant</a>
+<iframe 
+ src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
 
 | dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
 |-------------------------------------------------------|------------|----------|
