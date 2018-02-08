@@ -127,7 +127,7 @@ Of course if you assign the same dense matrix to a mutable `var` `B` then its en
 -   We'll denote a vector by bold lowercase letters:
     $$\\mathbf{a} = \\begin{pmatrix} 3.3 \\\\\\\\ 1.0 \\\\\\\\ 6.3 \\\\\\\\ 3.6 \\end{pmatrix}$$
 
-So, the vector above is denoted by \\(\\), the lowercase, bold a. \* \\(a\_i\\) denotes the i-th entry of a vector. So for instance: \* \\(a\_2\\) denotes the second entry of the vector and it is 1.0 for our vector. \* If a vector is m-dimensional, then we say that \\(\\) is in \\(^m\\) and write \\(   ^m\\). \* So our \\(  ^4\\).
+So, the vector above is denoted by \\(\\), the lowercase, bold a. \* \\(a\_i\\) denotes the i-th entry of a vector. So for instance: \* \\(a\_2\\) denotes the second entry of the vector and it is 1.0 for our vector. \* If a vector is m-dimensional, then we say that \\(\\) is in \\(^m\\) and write \\( Â  ^m\\). \* So our \\( Â ^4\\).
 
     val a = DenseVector(3.3, 1.0, 6.3, 3.6) // these are row vectors
 
@@ -267,7 +267,7 @@ Some of the basic ones are reproduced here, to give you an idea.
 </tr>
 <tr class="even">
 <td>Vector dot product</td>
-<td><code>a dot b</code>,<code>a.t * b</code><sup> </sup></td>
+<td><code>a dot b</code>,<code>a.t * b</code><sup>â€ </sup></td>
 <td><code>dot(a,b)</code></td>
 <td><code>dot(a,b)</code></td>
 </tr>

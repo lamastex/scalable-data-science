@@ -168,7 +168,7 @@ The cell below is based on the Spark ML pipeline API. More information can be fo
 
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
-*y*=*b*<sub>0</sub>+*b*<sub>1</sub>*x*<sub>1</sub>+*b*<sub>2</sub>*x*<sub>2</sub>+*b*<sub>3</sub>*x*<sub>3</sub>+&+*b*<sub>*i*</sub>*x*<sub>*i*</sub>+&+*b*<sub>*k*</sub>*x*<sub>*k*</sub>
+*y* = *b*<sub>0</sub> + *b*<sub>1</sub>*x*<sub>1</sub> + *b*<sub>2</sub>*x*<sub>2</sub> + *b*<sub>3</sub>*x*<sub>3</sub> + … + *b*<sub>*i*</sub>*x*<sub>*i*</sub> + … + *b*<sub>*k*</sub>*x*<sub>*k*</sub>
 
 where \\(b\_0\\) is the intercept and \\(b\_i\\)'s are coefficients.
 
@@ -737,7 +737,7 @@ Make sure the streaming context is stopped when you are done, as there can be on
 
     ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
 
-Datasource References: \* Pinar T�fekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar T�fekci , Sadik Fikret G�rgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
+Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
 
 Let's take a few elements of the three DataFrames.
 

@@ -73,11 +73,11 @@ Resolving kdd.ics.uci.edu (kdd.ics.uci.edu)... 128.195.1.95
 Connecting to kdd.ics.uci.edu (kdd.ics.uci.edu)|128.195.1.95|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 4371 (4.3K) [text/html]
-Saving to: '20newsgroups.data.html
+Saving to: '20newsgroups.data.html’
 
 100%[======================================>] 4,371       --.-K/s   in 0s      
 
-2016-04-07 10:31:51 (195 MB/s) - '20newsgroups.data.html saved [4371/4371]
+2016-04-07 10:31:51 (195 MB/s) - '20newsgroups.data.html’ saved [4371/4371]
 
 Converting 20newsgroups.data.html... nothing to do.
 Converted 1 files in 0 seconds.
@@ -340,7 +340,7 @@ If the file `dbfs:/tmp/stopwords` already exists then skip the next two cells, o
 
     //%sh wget http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words -O /tmp/stopwords # uncomment '//' at the beginning and repeat only if needed again
 
-> --2017-11-07 19:44:24-- http://ir.dcs.gla.ac.uk/resources/linguistic\_utils/stop\_words Resolving ir.dcs.gla.ac.uk (ir.dcs.gla.ac.uk)... 130.209.240.253 Connecting to ir.dcs.gla.ac.uk (ir.dcs.gla.ac.uk)|130.209.240.253|:80... connected. HTTP request sent, awaiting response... 200 OK Length: 2237 (2.2K) \[text/plain\] Saving to: /tmp/stopwords 0K .. 100% 438M=0s 2017-11-07 19:44:24 (438 MB/s) - /tmp/stopwords saved \[2237/2237\]
+> --2017-11-07 19:44:24-- http://ir.dcs.gla.ac.uk/resources/linguistic\_utils/stop\_words Resolving ir.dcs.gla.ac.uk (ir.dcs.gla.ac.uk)... 130.209.240.253 Connecting to ir.dcs.gla.ac.uk (ir.dcs.gla.ac.uk)|130.209.240.253|:80... connected. HTTP request sent, awaiting response... 200 OK Length: 2237 (2.2K) \[text/plain\] Saving to: ‘/tmp/stopwords’ 0K .. 100% 438M=0s 2017-11-07 19:44:24 (438 MB/s) - ‘/tmp/stopwords’ saved \[2237/2237\]
 
     //%fs cp file:/tmp/stopwords dbfs:/tmp/stopwords # uncomment '//' at the beginning and repeat only if needed again
 

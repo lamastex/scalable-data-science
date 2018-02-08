@@ -133,20 +133,20 @@ See the following for a crash introduction to windows: \* <http://xinhstechblog.
           .withColumn( "meanX", mean($"x").over(wSpec1)  )
           .withColumn( "meanY", mean($"y").over(wSpec1)  )
           .withColumn( "meanZ", mean($"z").over(wSpec1)  ) 
-    //resultant = 1/n *  (x� + y� + z�)
+    //resultant = 1/n * ∑ √(x² + y² + z²)
           .withColumn( "SqX", pow($"x",2.0) )
           .withColumn( "SqY", pow($"y",2.0) )
           .withColumn( "SqZ", pow($"z",2.0) )
           .withColumn( "resultant", pow( $"SqX"+$"SqY"+$"SqZ",0.50 ) )
           .withColumn( "meanResultant", mean("resultant").over(wSpec1) )
-    // (1 / n ) *  |b - mean_b|, for b in {x,y,z} 
+    // (1 / n ) * ∑ |b - mean_b|, for b in {x,y,z} 
           .withColumn( "absDevFromMeanX", abs($"x" - $"meanX") )
           .withColumn( "absDevFromMeanY", abs($"y" - $"meanY") )
           .withColumn( "absDevFromMeanZ", abs($"z" - $"meanZ") )
           .withColumn( "meanAbsDevFromMeanX", mean("absDevFromMeanX").over(wSpec1) )
           .withColumn( "meanAbsDevFromMeanY", mean("absDevFromMeanY").over(wSpec1) )
           .withColumn( "meanAbsDevFromMeanZ", mean("absDevFromMeanZ").over(wSpec1) )
-    //standard deviation  =  variance =  1/n *  (x - u)� with u = mean x
+    //standard deviation  = √ variance = √ 1/n * ∑ (x - u)² with u = mean x
           .withColumn( "sqrDevFromMeanX", pow($"absDevFromMeanX",2.0) )
           .withColumn( "sqrDevFromMeanY", pow($"absDevFromMeanY",2.0) )
           .withColumn( "sqrDevFromMeanZ", pow($"absDevFromMeanZ",2.0) )
@@ -282,7 +282,7 @@ The following anonymized dataset is used with kind permission of Amira Lakhal.
 
     wget http://lamastex.org/datasets/public/ActivityRecognition/dataTraining.csv
 
-> --2017-01-09 23:39:33-- http://lamastex.org/datasets/public/ActivityRecognition/dataTraining.csv Resolving lamastex.org (lamastex.org)... 166.62.28.100 Connecting to lamastex.org (lamastex.org)|166.62.28.100|:80... connected. HTTP request sent, awaiting response... 200 OK Length: 931349 (910K) \[text/csv\] Saving to: dataTraining.csv 0K .......... .......... .......... .......... .......... 5% 131K 7s 50K .......... .......... .......... .......... .......... 10% 262K 5s 100K .......... .......... .......... .......... .......... 16% 263K 4s 150K .......... .......... .......... .......... .......... 21% 263K 3s 200K .......... .......... .......... .......... .......... 27% 57.5M 3s 250K .......... .......... .......... .......... .......... 32% 264K 2s 300K .......... .......... .......... .......... .......... 38% 65.2M 2s 350K .......... .......... .......... .......... .......... 43% 68.4M 1s 400K .......... .......... .......... .......... .......... 49% 264K 1s 450K .......... .......... .......... .......... .......... 54% 57.0M 1s 500K .......... .......... .......... .......... .......... 60% 54.2M 1s 550K .......... .......... .......... .......... .......... 65% 265K 1s 600K .......... .......... .......... .......... .......... 71% 55.4M 1s 650K .......... .......... .......... .......... .......... 76% 67.7M 0s 700K .......... .......... .......... .......... .......... 82% 49.9M 0s 750K .......... .......... .......... .......... .......... 87% 636K 0s 800K .......... .......... .......... .......... .......... 93% 455K 0s 850K .......... .......... .......... .......... .......... 98% 67.5M 0s 900K ......... 100% 57.1M=1.7s 2017-01-09 23:39:35 (530 KB/s) - dataTraining.csv saved \[931349/931349\]
+> --2017-01-09 23:39:33-- http://lamastex.org/datasets/public/ActivityRecognition/dataTraining.csv Resolving lamastex.org (lamastex.org)... 166.62.28.100 Connecting to lamastex.org (lamastex.org)|166.62.28.100|:80... connected. HTTP request sent, awaiting response... 200 OK Length: 931349 (910K) \[text/csv\] Saving to: ‘dataTraining.csv’ 0K .......... .......... .......... .......... .......... 5% 131K 7s 50K .......... .......... .......... .......... .......... 10% 262K 5s 100K .......... .......... .......... .......... .......... 16% 263K 4s 150K .......... .......... .......... .......... .......... 21% 263K 3s 200K .......... .......... .......... .......... .......... 27% 57.5M 3s 250K .......... .......... .......... .......... .......... 32% 264K 2s 300K .......... .......... .......... .......... .......... 38% 65.2M 2s 350K .......... .......... .......... .......... .......... 43% 68.4M 1s 400K .......... .......... .......... .......... .......... 49% 264K 1s 450K .......... .......... .......... .......... .......... 54% 57.0M 1s 500K .......... .......... .......... .......... .......... 60% 54.2M 1s 550K .......... .......... .......... .......... .......... 65% 265K 1s 600K .......... .......... .......... .......... .......... 71% 55.4M 1s 650K .......... .......... .......... .......... .......... 76% 67.7M 0s 700K .......... .......... .......... .......... .......... 82% 49.9M 0s 750K .......... .......... .......... .......... .......... 87% 636K 0s 800K .......... .......... .......... .......... .......... 93% 455K 0s 850K .......... .......... .......... .......... .......... 98% 67.5M 0s 900K ......... 100% 57.1M=1.7s 2017-01-09 23:39:35 (530 KB/s) - ‘dataTraining.csv’ saved \[931349/931349\]
 
     pwd && ls
 

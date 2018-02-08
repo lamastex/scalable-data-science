@@ -194,7 +194,7 @@ i.e., many of the same problems with early deep feed-forward networks having lot
 Long Short-Term Memory (LSTM)
 -----------------------------
 
-"Pure" RNNs were never very successful. Sepp Hochreiter and J�rgen Schmidhuber (1997) made a game-changing contribution with the publication of the Long Short-Term Memory unit. How game changing? It's effectively state of the art today.
+"Pure" RNNs were never very successful. Sepp Hochreiter and Jürgen Schmidhuber (1997) made a game-changing contribution with the publication of the Long Short-Term Memory unit. How game changing? It's effectively state of the art today.
 
 <sup>(Credit and much thanks to Chris Olah, http://colah.github.io/about.html, Research Scientist at Google Brain, for publishing the following excellent diagrams!)</sup>
 
@@ -251,7 +251,7 @@ Slow down ... exactly what's getting added to where? For a step-by-step walk thr
     X = X / float(len(alphabet))
     y = np_utils.to_categorical(dataY)
 
-    # Lets define an LSTM network with 32 units and an output layer with a softmax activation function for making predictions. 
+    # Let’s define an LSTM network with 32 units and an output layer with a softmax activation function for making predictions. 
     # a naive implementation of LSTM
     model = Sequential()
     model.add(LSTM(32, input_shape=(X.shape[1], X.shape[2]))) # <- LSTM layer...
@@ -619,9 +619,9 @@ Slow down ... exactly what's getting added to where? For a step-by-step walk thr
 
 Pay attention to biases in various media.
 
--   **Guardian**: *'He began to eat Hermione's family': bot tries to write Harry Potter book  and fails in magic ways After being fed all seven Potter tales, a predictive keyboard has produced a tale that veers from almost genuine to gloriously bonkers*
+-   **Guardian**: *'He began to eat Hermione's family': bot tries to write Harry Potter book – and fails in magic ways After being fed all seven Potter tales, a predictive keyboard has produced a tale that veers from almost genuine to gloriously bonkers*
 -   <https://www.theguardian.com/books/booksblog/2017/dec/13/harry-potter-botnik-jk-rowling>
--   **Business Insider**: *There is a new chapter in Harry Potter's story  and it was written by artificial intelligence ... The writing is mostly weird and borderline comical, but the machine managed to partly reproduce original writer J.K. Rowling's writing style.*
+-   **Business Insider**: *There is a new chapter in Harry Potter's story — and it was written by artificial intelligence ... The writing is mostly weird and borderline comical, but the machine managed to partly reproduce original writer J.K. Rowling's writing style.*
 -   <http://nordic.businessinsider.com/there-is-a-new-chapter-in-harry-potters-story-and-it-was-written-by-artificial-intelligence-2017-12>
 
 When your managers get "psyched" about how AI will solve all the problems and your sales teams are dreaming hard - keep it cool and manage their expectations as a practical data scientist who is humbled by the hard reality of additions, multiplications and conditionals under the hood.

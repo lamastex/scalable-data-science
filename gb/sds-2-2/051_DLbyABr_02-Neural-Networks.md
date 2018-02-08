@@ -268,7 +268,7 @@ After all this hard work we are closer to the MSE we got from linear regression,
 
     But SGD has some shortcomings, so we typically use a "smarter" version of SGD, which has rules for adjusting the learning rate and even direction in order to avoid common problems.
 
-    What about that "Adam" optimizer? Adam is short for "adaptive moment" and is a variant of SGD that includes momentum calculations that change over time. For more detail on optimizers, see the chapter "Training Deep Neural Nets" in Aurélien Géron's book: *Hands-On Machine Learning with Scikit-Learn and TensorFlow* (http://shop.oreilly.com/product/0636920052289.do)
+    What about that "Adam" optimizer? Adam is short for "adaptive moment" and is a variant of SGD that includes momentum calculations that change over time. For more detail on optimizers, see the chapter "Training Deep Neural Nets" in AurÃ©lien GÃ©ron's book: *Hands-On Machine Learning with Scikit-Learn and TensorFlow* (http://shop.oreilly.com/product/0636920052289.do)
 
 
     With a simple, flat model, we could use SGD or a related algorithm to derive the weights, since the error depends directly on those weights.

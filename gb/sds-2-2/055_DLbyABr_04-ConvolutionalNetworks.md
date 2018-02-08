@@ -453,7 +453,7 @@ Watch (1:54) \* [![Udacity: Deep Learning by Vincent Vanhoucke - Minimizing Cros
 
 Of course this world evolves fast - see the new kid in the CNN block -- **capsule networks**
 
-> Hinton: The pooling operation used in convolutional neural networks is a big mistake and the fact that it works so well is a disaster.
+> Hinton: “The pooling operation used in convolutional neural networks is a big mistake and the fact that it works so well is a disaster.”
 
 Well worth the 8 minute read: \* <https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b>
 

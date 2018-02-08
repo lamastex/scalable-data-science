@@ -17,7 +17,7 @@ Please take notes in mark-down if you want.
 
 For latex math within markdown you can do the following for in-line maths: \\( \_{i,j} ^1 \\). And to write maths in display mode do the following:
 
-**A**<sup>*m*�*d*</sup>
+**A** ∈ ℝ<sup>*m* × *d*</sup>
 
 You will need to write such notes for your final project presentation!
 

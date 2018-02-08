@@ -137,7 +137,7 @@ Watch now (1:13 seconds)
 
 ### Chain rule
 
-(*f**g*)2=(*f*2*g*)�*g*2
+(*f* ∘ *g*)′ = (*f*′∘*g*)⋅*g*′
  *** ***
 
 **Chain rule in neural networks**

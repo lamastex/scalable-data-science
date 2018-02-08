@@ -210,7 +210,7 @@ Also, note that Twitter sends 10x more requests to Wikipedia than Facebook.
 |---------------------------|----------|
 | Peter\_Woodcock           | 126259.0 |
 | 2002\_Tampa\_plane\_crash | 119906.0 |
-| S�n\_o�ng\_Cave          | 116012.0 |
+| Sơn\_Đoòng\_Cave          | 116012.0 |
 | The\_boy\_Jones           | 114401.0 |
 
 #### What percentage of page visits in Wikipedia are from other pages in Wikipedia itself?
@@ -471,13 +471,13 @@ And see the `R` example in the Programming Guide: \* <https://spark.apache.org/d
     head(df)
 
 > ```
-> Attaching package: SparkR
+> Attaching package: ‘SparkR’
 >
-> The following objects are masked from package:stats:
+> The following objects are masked from ‘package:stats’:
 >
 >     cov, filter, lag, na.omit, predict, sd, var, window
 >
-> The following objects are masked from package:base:
+> The following objects are masked from ‘package:base’:
 >
 >     as.data.frame, colnames, colnames<-, drop, intersect, rank, rbind,
 >     sample, subset, summary, transform, union
