@@ -20,12 +20,14 @@ Write Spark code for processing your data in notebooks.
 -   Select **Create &gt; Notebook**.
 -   Enter the name of the notebook, the language (Python, Scala, R or SQL) for the notebook, and a cluster to run it on.
 
-### \*\* Cloning a Notebook** \* You can clone a notebook to create a copy of it, for example if you want to edit or run an Example notebook like this one. \* Click **File &gt; Clone\*\* in the notebook context bar above.
+### Cloning a Notebook
 
+-   You can clone a notebook to create a copy of it, for example if you want to edit or run an Example notebook like this one.
+-   Click **File &gt; Clone** in the notebook context bar above.
 -   Enter a new name and location for your notebook. If Access Control is enabled, you can only clone to folders that you have Manage permissions on.
 
-**Introduction to Scala through Scala Notebook**
-================================================
+Introduction to Scala through Scala Notebook
+============================================
 
 -   This introduction notebook describes how to get started running Scala code in Notebooks.
 
@@ -418,7 +420,11 @@ To create a cell of another language, start the cell with: \* `%md` - Markdown \
 
 Examples:
 
+    print("For example, this is a scala notebook, but we can use %py to run python commands inline.")
+
 > For example, this is a scala notebook, but we can use %py to run python commands inline.
+
+    print("We can also access other languages such as R.")
 
 > ```
 > ```
