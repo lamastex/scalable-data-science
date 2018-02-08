@@ -278,6 +278,7 @@ This code is copied after doing a live google search (by Michael Armbrust at Spa
 
     d3ivan.graphs.help()
 
+<html>
 <p>
 Produces a force-directed graph given a collection of edges of the following form:</br>
 <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
@@ -288,7 +289,7 @@ Produces a force-directed graph given a collection of edges of the following for
 &nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
-</p>
+</p></html>
 
     d3ivan.graphs.force(
       height = 800,
@@ -303,6 +304,7 @@ Produces a force-directed graph given a collection of edges of the following for
           prev_id IS NOT NULL AND prev_title != 'Main_Page'
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
+
 <html>
 <style>
 
