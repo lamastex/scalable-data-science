@@ -40,7 +40,7 @@
 
 // MAGIC %md
 // MAGIC 
-// MAGIC ### ** Cloning a Notebook**
+// MAGIC ### Cloning a Notebook
 // MAGIC   * You can clone a notebook to create a copy of it, for example if you want to edit or run an Example notebook like this one.
 // MAGIC   * Click **File > Clone** in the notebook context bar above.
 // MAGIC   * Enter a new name and location for your notebook. If Access Control is enabled, you can only clone to folders that you have Manage permissions on.
@@ -48,7 +48,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # **Introduction to Scala through Scala Notebook** 
+// MAGIC # Introduction to Scala through Scala Notebook
 // MAGIC 
 // MAGIC * This introduction notebook describes how to get started running Scala code in Notebooks.
 
@@ -565,11 +565,13 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 // COMMAND ----------
 
-// MAGIC %py print("For example, this is a scala notebook, but we can use %py to run python commands inline.")
+// MAGIC %py 
+// MAGIC print("For example, this is a scala notebook, but we can use %py to run python commands inline.")
 
 // COMMAND ----------
 
-// MAGIC %r print("We can also access other languages such as R.")
+// MAGIC %r 
+// MAGIC print("We can also access other languages such as R.")
 
 // COMMAND ----------
 
