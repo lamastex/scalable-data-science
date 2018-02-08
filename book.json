@@ -1,3 +1,4 @@
 {
- "root": "./gb"
+ "root": "./gb",
+ "plugins": ["-search"]
 }
