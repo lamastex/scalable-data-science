@@ -289,7 +289,7 @@ Produces a force-directed graph given a collection of edges of the following for
 &nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
-</p></html>
+</p>
 
     d3ivan.graphs.force(
       height = 800,
@@ -305,7 +305,6 @@ Produces a force-directed graph given a collection of edges of the following for
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
 
-<html>
 <style>
 
 .node_circle {
