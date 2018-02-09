@@ -11,7 +11,8 @@ There are two parts to the course sequel:
 1. Introduction to Data Science
 2. Fundamentals of Data Science
 
-The couse gitbook, edited by Dan Lilja, Raazesh Sainudiin and Tilo Wiklund, is under construction at:
+## SDS-2.2 Book 
+The course gitbook, edited by Dan Lilja, Raazesh Sainudiin and Tilo Wiklund, is under construction at:
  * [https://www.gitbook.com/book/lamastex/sds-2-2/details](https://www.gitbook.com/book/lamastex/sds-2-2/details).
 
 ## Uppsala University Students
