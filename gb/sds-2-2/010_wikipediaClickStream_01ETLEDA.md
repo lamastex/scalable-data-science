@@ -305,8 +305,8 @@ Produces a force-directed graph given a collection of edges of the following for
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
 
-<iframe srcdoc="
-<html>
+<iframe 
+srcdoc="<html>
 <style>
 
 .node_circle {
@@ -421,7 +421,7 @@ force.on("tick", function () {
 </script>
 </div>
 </html>
-"></iframe>
+" sandbox></iframe>
 
 ### Convert raw data to parquet
 
