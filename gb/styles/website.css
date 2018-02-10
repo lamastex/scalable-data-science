@@ -1,15 +1,4 @@
-p.htmlSandbox {
-  background-color: red !important;
-  border-style: solid !important;
-  border-width: 10px !important;
-  border-color: red !important;
-  padding: 1em !important;
-}
-
-.page-inner {
-  border: 10px solid red !important;
-}
-
-.comments-section {
-  border: 10px solid red !important;
+blockquote {
+  max-height: 10em;
+  overflow: auto;
 }
