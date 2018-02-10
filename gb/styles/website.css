@@ -5,7 +5,7 @@ blockquote {
 }
 
 table {
-  display: block;
+  display: block !important;
   max-width: 100%;
   overflow: auto;
 }
