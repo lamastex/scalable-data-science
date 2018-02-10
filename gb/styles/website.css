@@ -11,3 +11,8 @@ table {
   overflow: auto;
 }
 
+body {
+  unicode-bidi: embed;
+  white-space: pre-wrap;
+}
+
