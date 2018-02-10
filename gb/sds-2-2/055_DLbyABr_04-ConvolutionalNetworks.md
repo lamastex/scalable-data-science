@@ -33,7 +33,7 @@ This is used in a non-profit educational setting with kind permission of [Adam B
 
 Let's hold pointers into wikipedia for these new concepts.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_error_function_and_logistic_regression"
  width="95%" height="500"
  sandbox>
@@ -42,9 +42,9 @@ Let's hold pointers into wikipedia for these new concepts.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Softmax_function"
  width="95%" height="380"
  sandbox>
@@ -53,7 +53,7 @@ Let's hold pointers into wikipedia for these new concepts.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 The following is from: <https://www.quora.com/How-does-Keras-calculate-accuracy>.
 

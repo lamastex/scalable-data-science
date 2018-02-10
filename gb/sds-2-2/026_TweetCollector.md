@@ -316,7 +316,7 @@ Now, let's be good at house-keeping and clean-up the unnecessary data in dbfs, o
 
 > res50: Boolean = false
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/JSON"
  width="95%" height="400">
   <p>
@@ -324,7 +324,7 @@ Now, let's be good at house-keeping and clean-up the unnecessary data in dbfs, o
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub-dirs and descent into time-tree'd directory hierarchy
 

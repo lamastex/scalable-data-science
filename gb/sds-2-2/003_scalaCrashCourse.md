@@ -156,7 +156,7 @@ Why Scala?
 -   Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
 -   See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/). It is embedded in-place below for your convenience.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/"
  width="95%" height="500"
  sandbox>
@@ -165,7 +165,7 @@ Why Scala?
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 Let's get our hands dirty in Scala
 ==================================

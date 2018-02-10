@@ -68,7 +68,7 @@ The "assignment" step 2 is also referred to as expectation step, the "update ste
 
 **Caveats: ** As k-means is a **heuristic algorithm**, there is **no guarantee that it will converge to the global optimum**, and the result may depend on the initial clusters. As the algorithm is usually very fast, it is common to run it multiple times with different starting conditions. However, in the worst case, k-means can be very slow to converge. For more details see <https://en.wikipedia.org/wiki/K-means_clustering> that is also embedded in-place below.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/K-means_clustering#Standard_algorithm"
  width="95%" height="500"
  sandbox>
@@ -77,7 +77,7 @@ The "assignment" step 2 is also referred to as expectation step, the "update ste
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 ### CAUTION!
 
@@ -349,7 +349,7 @@ The point of the above little example is that you need to be able to tell a sens
 
     displayHTML(frameIt("https://en.wikipedia.org/wiki/Euclidean_space",500))
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Euclidean_space"
  width="95%" height="500"
  sandbox>
@@ -358,4 +358,4 @@ The point of the above little example is that you need to be able to tell a sens
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>

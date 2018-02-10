@@ -351,7 +351,7 @@ Let's put the files in dbfs.
 
 > res5: String = version 2.11.8
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://www.oldbaileyonline.org/"
  width="95%" height="450"
  sandbox>
@@ -360,7 +360,7 @@ Let's put the files in dbfs.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 ### This exciting dataset is here for a course project in digital humanities
 
@@ -407,7 +407,7 @@ Quick Preparation
 
 Make sure you comment/uncomment the right files depending on wheter you have downloaded the tiny dataset or the big one.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/XML"
  width="95%" height="450"
  sandbox>
@@ -416,4 +416,4 @@ Make sure you comment/uncomment the right files depending on wheter you have dow
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>

@@ -29,7 +29,7 @@
       width = 500,
       clicks = gE.as[d3.Edge])
 
-
+<p class="htmlSandobx">
 <style>
 
 .node_circle {
@@ -143,6 +143,7 @@ force.on("tick", function () {
 });
 </script>
 </div>
+</p>
 
     val graphStar: Graph[Int, Int] = GraphGenerators.starGraph(sc, 10)
     val gS = GraphFrame.fromGraphX(graphStar)
@@ -152,7 +153,7 @@ force.on("tick", function () {
       width = 500,
       clicks = gSE.as[d3.Edge])
 
-
+<p class="htmlSandobx">
 <style>
 
 .node_circle {
@@ -266,6 +267,7 @@ force.on("tick", function () {
 });
 </script>
 </div>
+</p>
 
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================

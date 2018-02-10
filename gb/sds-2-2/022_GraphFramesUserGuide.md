@@ -7,7 +7,7 @@ See: \* <https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf> \
 
 And of course the databricks guide: \* <https://docs.databricks.com/spark/latest/graph-analysis/index.html>
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://amplab.github.io/graphx/"
  width="95%" height="700"
  sandbox>
@@ -16,9 +16,9 @@ And of course the databricks guide: \* <https://docs.databricks.com/spark/latest
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://spark.apache.org/docs/latest/graphx-programming-guide.html#optimized-representation"
  width="95%" height="800"
  sandbox>
@@ -27,7 +27,7 @@ And of course the databricks guide: \* <https://docs.databricks.com/spark/latest
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 GraphFrames User Guide (Scala)
 ==============================
@@ -38,7 +38,7 @@ The GraphFrames package is available from [Spark Packages](http://spark-packages
 
 This notebook demonstrates examples from the [GraphFrames User Guide](http://graphframes.github.io/user-guide.html).
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://databricks.com/blog/2016/03/03/introducing-graphframes.html"
  width="95%" height="500"
  sandbox>
@@ -47,7 +47,7 @@ This notebook demonstrates examples from the [GraphFrames User Guide](http://gra
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     // we first need to install the library - graphframes as a Spark package - and attach it to our cluster
     import org.apache.spark.sql._
@@ -113,7 +113,7 @@ Let's use the d3.graphs to visualise graphs (recall the D3 graphs in wiki-click 
 
     d3.graphs.help()
 
-
+<p class="htmlSandobx">
 <p>
 Produces a force-directed graph given a collection of edges of the following form:</br>
 <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
@@ -124,7 +124,7 @@ Produces a force-directed graph given a collection of edges of the following for
 &nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
-</p>
+</p></p>
 
     import org.apache.spark.sql.functions.lit // import the lit function in sql
     val gE= g.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
@@ -148,7 +148,7 @@ Produces a force-directed graph given a collection of edges of the following for
       width = 500,
       clicks = gE.as[d3.Edge])
 
-
+<p class="htmlSandobx">
 <style>
 
 .node_circle {
@@ -262,6 +262,7 @@ force.on("tick", function () {
 });
 </script>
 </div>
+</p>
 
     // This example graph also comes with the GraphFrames package.
     val g0 = examples.Graphs.friends
@@ -273,7 +274,7 @@ force.on("tick", function () {
       width = 500,
       clicks = g0.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")).as[d3.Edge])
 
-
+<p class="htmlSandobx">
 <style>
 
 .node_circle {
@@ -387,6 +388,7 @@ force.on("tick", function () {
 });
 </script>
 </div>
+</p>
 
 Basic graph and DataFrame queries
 ---------------------------------
@@ -583,7 +585,7 @@ Subgraphs are built by filtering a subset of edges and vertices. For example, th
       width = 500,
       clicks = g2.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")).as[d3.Edge])
 
-
+<p class="htmlSandobx">
 <style>
 
 .node_circle {
@@ -697,6 +699,7 @@ force.on("tick", function () {
 });
 </script>
 </div>
+</p>
 
 **Complex triplet filters**
 
@@ -753,7 +756,7 @@ GraphFrames comes with a number of standard graph algorithms built in:
 
 READ <http://graphframes.github.io/user-guide.html#breadth-first-search-bfs>.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Breadth-first_search"
  width="95%" height="500"
  sandbox>
@@ -762,7 +765,7 @@ READ <http://graphframes.github.io/user-guide.html#breadth-first-search-bfs>.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 Search from "Esther" for users of age &lt; 32.
 
@@ -787,7 +790,7 @@ Compute the connected component membership of each vertex and return a graph wit
 
 READ <http://graphframes.github.io/user-guide.html#connected-components>.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Connected_component_(graph_theory)"
  width="95%" height="500"
  sandbox>
@@ -796,7 +799,7 @@ READ <http://graphframes.github.io/user-guide.html#connected-components>.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 From <http://graphframes.github.io/user-guide.html#connected-components>:-
 
@@ -826,7 +829,7 @@ Compute the strongly connected component (SCC) of each vertex and return a graph
 
 READ <http://graphframes.github.io/user-guide.html#strongly-connected-components>.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Strongly_connected_component"
  width="95%" height="500"
  sandbox>
@@ -835,7 +838,7 @@ READ <http://graphframes.github.io/user-guide.html#strongly-connected-components
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     val result = g.stronglyConnectedComponents.maxIter(10).run()
     display(result.orderBy("component"))
@@ -860,7 +863,7 @@ LPA is a standard community detection algorithm for graphs. It is very inexpensi
 
 READ: <http://graphframes.github.io/user-guide.html#label-propagation-algorithm-lpa>.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Label_Propagation_Algorithm"
  width="95%" height="500"
  sandbox>
@@ -869,7 +872,7 @@ READ: <http://graphframes.github.io/user-guide.html#label-propagation-algorithm-
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     val result = g.labelPropagation.maxIter(5).run()
     display(result.orderBy("label"))
@@ -890,7 +893,7 @@ Identify important vertices in a graph based on connections.
 
 READ: <http://graphframes.github.io/user-guide.html#pagerank>.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/PageRank"
  width="95%" height="500"
  sandbox>
@@ -899,7 +902,7 @@ READ: <http://graphframes.github.io/user-guide.html#pagerank>.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     // Run PageRank until convergence to tolerance "tol".
     val results = g.pageRank.resetProbability(0.15).tol(0.01).run()
@@ -959,7 +962,7 @@ Computes shortest paths to the given set of landmark vertices, where landmarks a
 
 READ <http://graphframes.github.io/user-guide.html#shortest-paths>.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://en.wikipedia.org/wiki/Shortest_path_problem"
  width="95%" height="500"
  sandbox>
@@ -968,7 +971,7 @@ READ <http://graphframes.github.io/user-guide.html#shortest-paths>.
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     val paths = g.shortestPaths.landmarks(Seq("a", "d")).run()
     display(paths)

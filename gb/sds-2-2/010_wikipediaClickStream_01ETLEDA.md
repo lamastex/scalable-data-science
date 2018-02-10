@@ -35,7 +35,7 @@ The data is approximately 1.2GB and it is hosted in the following Databricks fil
 
 Let's read the datahub-hosted link <https://datahub.io/dataset/wikipedia-clickstream> in the embedding below. Also click the [blog](http://ewulczyn.github.io/Wikipedia_Clickstream_Getting_Started/) by Ellery Wulczyn, Data Scientist at The Wikimedia Foundation, to better understand how the data was generated (remember to Right-Click and use -&gt; and &lt;- if navigating within the embedded html frame below).
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://datahub.io/dataset/wikipedia-clickstream"
  width="95%" height="500"
  sandbox>
@@ -44,7 +44,7 @@ Let's read the datahub-hosted link <https://datahub.io/dataset/wikipedia-clickst
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 Run the next two cells for some housekeeping.
 
@@ -278,7 +278,7 @@ This code is copied after doing a live google search (by Michael Armbrust at Spa
 
     d3ivan.graphs.help()
 
-
+<p class="htmlSandobx">
 <p>
 Produces a force-directed graph given a collection of edges of the following form:</br>
 <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
@@ -289,7 +289,7 @@ Produces a force-directed graph given a collection of edges of the following for
 &nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
 &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
-</p>
+</p></p>
 
     d3ivan.graphs.force(
       height = 800,
@@ -305,7 +305,7 @@ Produces a force-directed graph given a collection of edges of the following for
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
 
-
+<p class="htmlSandobx">
 <style>
 
 .node_circle {
@@ -419,6 +419,7 @@ force.on("tick", function () {
 });
 </script>
 </div>
+</p>
 
 ### Convert raw data to parquet
 
@@ -427,7 +428,7 @@ force.on("tick", function () {
 -   To understand the ideas read [Dremel: Interactive Analysis of Web-Scale Datasets, Sergey Melnik, Andrey Gubarev, Jing Jing Long, Geoffrey Romer, Shiva Shivakumar, Matt Tolton and Theo Vassilakis,Proc. of the 36th Int'l Conf on Very Large Data Bases (2010), pp. 330-339](http://research.google.com/pubs/pub36632.html), whose Abstract is as follows:
     -   Dremel is a scalable, interactive ad-hoc query system for analysis of read-only nested data. By combining multi-level execution trees and columnar data layouts it is **capable of running aggregation queries over trillion-row tables in seconds**. The system **scales to thousands of CPUs and petabytes of data, and has thousands of users at Google**. In this paper, we describe the architecture and implementation of Dremel, and explain how it complements MapReduce-based computing. We present a novel columnar storage representation for nested records and discuss experiments on few-thousand node instances of the system.
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://parquet.apache.org/documentation/latest/"
  width="95%" height="350"
  sandbox>
@@ -436,7 +437,7 @@ force.on("tick", function () {
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
     // Convert the DatFrame to a more efficent format to speed up our analysis
     clickstream.

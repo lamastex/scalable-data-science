@@ -50,7 +50,7 @@ Let's follow the exposition in:
 
 You need to scroll down the fitst link embedded in iframe below to get to the section on **Analysis of quantitative data** with **Descriptive statistics** and **Linear regression** sub-sections (you can skip the earlier part that shows you how to run everything locally in `spark-shell` - try this on your own later).
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://darrenjw.wordpress.com/2017/06/21/scala-glm-regression-modelling-in-scala/"
  width="95%" height="500"
  sandbox>
@@ -59,9 +59,9 @@ You need to scroll down the fitst link embedded in iframe below to get to the se
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
-<iframe 
+<p class="htmlSandobx"><iframe 
  src="https://darrenjw.wordpress.com/2017/02/08/a-quick-introduction-to-apache-spark-for-statisticians/"
  width="95%" height="500"
  sandbox>
@@ -70,7 +70,7 @@ You need to scroll down the fitst link embedded in iframe below to get to the se
       Fallback link for browsers that, unlikely, don't support frames
     </a>
   </p>
-</iframe>
+</iframe></p>
 
 Let's do this live now...
 
