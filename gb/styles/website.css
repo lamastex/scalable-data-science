@@ -5,6 +5,8 @@ blockquote {
 }
 
 table {
-  max-width: 100px;
+  display: block;
+  max-width: 100%;
   overflow: auto;
 }
+
