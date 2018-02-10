@@ -2,7 +2,7 @@
   "root": "./gb",
   "plugins": ["-search","-lunr"],
   "styles": {
-    "swebsite": "./gb/styles/website.css",
-    "ebook": "./gb/styles/ebook.css"
+    "swebsite": "styles/website.css",
+    "ebook": "styles/ebook.css"
   }
 }
