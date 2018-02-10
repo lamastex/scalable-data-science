@@ -9,3 +9,7 @@ p.htmlSandbox {
 .page-inner {
   border: 10px solid red;
 }
+
+.comments-section {
+  border: 10px solid red;
+}
