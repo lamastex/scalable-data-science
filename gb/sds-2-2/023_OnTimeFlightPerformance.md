@@ -537,7 +537,7 @@ As you can see, there are a number of direct flights between Seattle and San Fra
 
     filteredPaths.show()
 
-> +---+----+-----+-------+ | id|City|State|Country| +---+----+-----+-------+ +---+----+-----+-------+
+> +---|----|-----|-------+ | id|City|State|Country| +---|----|-----|-------+ +---|----|-----|-------+
 
     display(filteredPaths)
 
@@ -582,11 +582,8 @@ Produces a force-directed graph given a collection of edges of the following for
       width = 1200,
       clicks = sql("select src, dst as dest, count(1) as count from departureDelays_geo where delay <= 0 group by src, dst").as[Edge])
 
-<p class="htmlSandbox"><!DOCTYPE html>
-<html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>
-    <style type="text/css">
+<p class="htmlSandbox">    
+<style type="text/css">
       #states path {
         fill: #ccc;
         stroke: #fff;
@@ -730,7 +727,7 @@ Produces a force-directed graph given a collection of edges of the following for
       });
     </script>
   </body>
-</html></p>
+</p>
 
 #### Visualize Delayed Trips Departing from the West Coast
 
@@ -744,11 +741,8 @@ Notice that most of the delayed trips are with Western US cities
       width = 1200,
       clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo where state_src in ('CA', 'OR', 'WA') and delay > 0 group by src, dst""").as[Edge])
 
-<p class="htmlSandbox"><!DOCTYPE html>
-<html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>
-    <style type="text/css">
+<p class="htmlSandbox">
+<style type="text/css">
       #states path {
         fill: #ccc;
         stroke: #fff;
@@ -892,7 +886,7 @@ Notice that most of the delayed trips are with Western US cities
       });
     </script>
   </body>
-</html></p>
+</p>
 
 #### Visualize All Flights (from this dataset)
 
@@ -904,11 +898,8 @@ Notice that most of the delayed trips are with Western US cities
       width = 1200,
       clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo group by src, dst""").as[Edge])
 
-<p class="htmlSandbox"><!DOCTYPE html>
-<html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>
-    <style type="text/css">
+<p class="htmlSandbox">
+<style type="text/css">
       #states path {
         fill: #ccc;
         stroke: #fff;
@@ -1052,4 +1043,4 @@ Notice that most of the delayed trips are with Western US cities
       });
     </script>
   </body>
-</html></p>
+></p>
