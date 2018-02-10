@@ -34,6 +34,7 @@
 > res19: Boolean = true
 
 Parse data
+----------
 
     import org.apache.spark.sql.SQLContext
     import org.apache.spark.sql.magellan.dsl.expressions._
@@ -46,29 +47,6 @@ Parse data
     sc.textFile(PATH + "/" + FILE).take(1)
 
 > res62: Array\[String\] = Array(VendorID,tpep\_pickup\_datetime,tpep\_dropoff\_datetime,passenger\_count,trip\_distance,pickup\_longitude,pickup\_latitude,RatecodeID,store\_and\_fwd\_flag,dropoff\_longitude,dropoff\_latitude,payment\_type,fare\_amount,extra,mta\_tax,tip\_amount,tolls\_amount,improvement\_surcharge,total\_amount)
-
-    /*val schema = StructType(Array(
-        StructField("VendorId", StringType, false),
-        StructField("tpep_pickup_datetime", StringType, false),
-        StructField("tpep_dropoff_datetime", StringType, false),
-        StructField("passenger_count", IntegerType, false),
-        StructField("trip_distance", DoubleType, false),
-        StructField("RatecodeID", StringType, false),
-        StructField("store_and_fwd_flag", StringType, false),
-        StructField("PULocationID", StringType, false),
-        StructField("DOLocationID", StringType, false),
-        StructField("payment_type", StringType, false),
-        StructField("fare_amount", StringType, false),
-        StructField("pickup_longitude", DoubleType, false),
-        StructField("pickup_latitude", DoubleType, false),
-        StructField("dropoff_longitude", DoubleType, false),
-        StructField("dropoff_latitude", DoubleType, false),
-        StructField("extra", StringType, false),
-        StructField("mta_tax", StringType, false),
-        StructField("tip_amount", StringType, false),
-        StructField("tolls_amount", StringType, false),
-        StructField("improvement_surcharge", StringType, false),
-        StructField("total_amount", DoubleType, false)))*/ // SHITTY
 
     val schema = StructType(Array(
         StructField("vendorId", StringType, false),
@@ -137,8 +115,6 @@ Parse data
     joined.printSchema
 
 > root |-- vendorId: string (nullable = true) |-- pickup\_datetime: string (nullable = true) |-- dropoff\_datetime: string (nullable = true) |-- passenger\_count: integer (nullable = true) |-- trip\_distance: double (nullable = true) |-- pickup\_longitude: double (nullable = true) |-- pickup\_latitude: double (nullable = true) |-- rateCodeId: string (nullable = true) |-- store\_fwd: string (nullable = true) |-- dropoff\_longitude: double (nullable = true) |-- dropoff\_latitude: double (nullable = true) |-- payment\_type: string (nullable = true) |-- fare\_amount: string (nullable = true) |-- extra: string (nullable = true) |-- mta\_tax: string (nullable = true) |-- tip\_amount: string (nullable = true) |-- tolls\_amount: string (nullable = true) |-- improvement\_surcharge: string (nullable = true) |-- total\_amount: double (nullable = true) |-- point: point (nullable = false) |-- polygon: polygon (nullable = true) |-- neighborhood: string (nullable = true)
-
-> res75: Array\[org.apache.spark.sql.Row\] = Array(\[1,2015-07-01 00:00:00,2015-07-01 00:15:26,1,3.5,-73.99415588378906,40.75112533569336,1,N,-73.97682189941406,40.78856658935547,2,14,0.5,0.5,0,0,0.3,15.3,Point(-73.99415588378906, 40.75112533569336),magellan.Polygon@1d6598aa,Chelsea\], \[1,2015-07-01 00:00:00,2015-07-01 00:22:22,1,3.9,-73.98465728759766,40.76848602294922,1,N,-74.00012969970703,40.73489761352539,2,17,0.5,0.5,0,0,0.3,18.3,Point(-73.98465728759766, 40.76848602294922),magellan.Polygon@c4d49d29,Upper West Side\], \[1,2015-07-01 00:00:00,2015-07-01 00:07:42,1,2.3,-73.97888946533203,40.76228713989258,1,N,-74.00421905517578,40.752532958984375,2,9,0.5,0.5,0,0,0.3,10.3,Point(-73.97888946533203, 40.76228713989258),magellan.Polygon@aee1071c,Midtown\], \[1,2015-07-01 00:00:00,2015-07-01 00:39:37,1,9.2,-73.99279022216797,40.742759704589844,1,N,-73.97151184082031,40.63715362548828,1,33,0.5,0.5,8.55,0,0.3,42.85,Point(-73.99279022216797, 40.742759704589844),magellan.Polygon@5ad9e769,Flatiron District\], \[1,2015-07-01 00:00:00,2015-07-01 00:05:34,1,1.1,-73.91242980957031,40.76980972290039,1,N,-73.92033386230469,40.757442474365234,1,6,0.5,0.5,2,0,0.3,9.3,Point(-73.91242980957031, 40.76980972290039),magellan.Polygon@c3bd6e04,Ditmars Steinway\])
 
     display(
       joined
