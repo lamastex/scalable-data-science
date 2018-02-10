@@ -3,3 +3,8 @@ blockquote {
   overflow: auto;
   overflow-x: hidden;
 }
+
+table {
+  max-width: 100%;
+  overflow: auto;
+}
