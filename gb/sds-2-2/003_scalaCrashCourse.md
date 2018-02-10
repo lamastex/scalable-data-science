@@ -156,7 +156,7 @@ Why Scala?
 -   Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
 -   See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/). It is embedded in-place below for your convenience.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/"
  width="95%" height="500"
  sandbox>
@@ -462,18 +462,20 @@ Examples:
 Further Reference / Homework / Recurrrent Points of Reference
 =============================================================
 
-Please go here for a relaxed and detailed-enough tour (later): \* databricks \* <https://docs.databricks.com/index.html> \* scala \* <http://docs.scala-lang.org/>
+Please go here for a relaxed and detailed-enough tour (later):
+
+-   databricks
+-   <https://docs.databricks.com/index.html>
+-   scala
+-   <http://docs.scala-lang.org/>
 
 ### Notebooks can be run from other notebooks using **%run**
 
 -   Syntax: `%run /full/path/to/notebook`
 -   This is commonly used to import functions you defined in other notebooks.
 
-<!-- -->
-
-    // just see the guide for the introductory notebooks
-    //%run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
-
 This is *slightly* outdated, but good enough for our purposes as we will do it live on the latest databricks notebooks.
 
-Please go here for a relaxed and detailed-enough tour (later): \* <https://docs.databricks.com/index.html>
+Please go here for a relaxed and detailed-enough tour (later):
+
+-   <https://docs.databricks.com/index.html>

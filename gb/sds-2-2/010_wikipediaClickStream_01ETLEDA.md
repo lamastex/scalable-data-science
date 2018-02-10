@@ -35,7 +35,7 @@ The data is approximately 1.2GB and it is hosted in the following Databricks fil
 
 Let's read the datahub-hosted link <https://datahub.io/dataset/wikipedia-clickstream> in the embedding below. Also click the [blog](http://ewulczyn.github.io/Wikipedia_Clickstream_Getting_Started/) by Ellery Wulczyn, Data Scientist at The Wikimedia Foundation, to better understand how the data was generated (remember to Right-Click and use -&gt; and &lt;- if navigating within the embedded html frame below).
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://datahub.io/dataset/wikipedia-clickstream"
  width="95%" height="500"
  sandbox>
@@ -274,11 +274,176 @@ Also, note that Twitter sends 10x more requests to Wikipedia than Facebook.
 
 This code is copied after doing a live google search (by Michael Armbrust at Spark Summit East February 2016 shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>). The `d3ivan` package is an updated version of the original package used by Michael Armbrust as it needed some TLC for Spark 2.2 on newer databricks notebook. These changes were kindly made by Ivan Sadikov from Middle Earth.
 
+    package d3ivan
+    // We use a package object so that we can define top level classes like Edge that need to be used in other cells
+
+    import org.apache.spark.sql._
+    import com.databricks.backend.daemon.driver.EnhancedRDDFunctions.displayHTML
+
+    case class Edge(src: String, dest: String, count: Long)
+
+    case class Node(name: String)
+    case class Link(source: Int, target: Int, value: Long)
+    case class Graph(nodes: Seq[Node], links: Seq[Link])
+
+    object graphs {
+    // val sqlContext = SQLContext.getOrCreate(org.apache.spark.SparkContext.getOrCreate())  /// fix
+    val sqlContext = SparkSession.builder().getOrCreate().sqlContext
+    import sqlContext.implicits._
+      
+    def force(clicks: Dataset[Edge], height: Int = 100, width: Int = 960): Unit = {
+      val data = clicks.collect()
+      val nodes = (data.map(_.src) ++ data.map(_.dest)).map(_.replaceAll("_", " ")).toSet.toSeq.map(Node)
+      val links = data.map { t =>
+        Link(nodes.indexWhere(_.name == t.src.replaceAll("_", " ")), nodes.indexWhere(_.name == t.dest.replaceAll("_", " ")), t.count / 20 + 1)
+      }
+      showGraph(height, width, Seq(Graph(nodes, links)).toDF().toJSON.first())
+    }
+
+    /**
+     * Displays a force directed graph using d3
+     * input: {"nodes": [{"name": "..."}], "links": [{"source": 1, "target": 2, "value": 0}]}
+     */
+    def showGraph(height: Int, width: Int, graph: String): Unit = {
+
+    displayHTML(s"""
+    <style>
+
+    .node_circle {
+      stroke: #777;
+      stroke-width: 1.3px;
+    }
+
+    .node_label {
+      pointer-events: none;
+    }
+
+    .link {
+      stroke: #777;
+      stroke-opacity: .2;
+    }
+
+    .node_count {
+      stroke: #777;
+      stroke-width: 1.0px;
+      fill: #999;
+    }
+
+    text.legend {
+      font-family: Verdana;
+      font-size: 13px;
+      fill: #000;
+    }
+
+    .node text {
+      font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+      font-size: 17px;
+      font-weight: 200;
+    }
+
+    </style>
+
+    <div id="clicks-graph">
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script>
+
+    var graph = $graph;
+
+    var width = $width,
+        height = $height;
+
+    var color = d3.scale.category20();
+
+    var force = d3.layout.force()
+        .charge(-700)
+        .linkDistance(180)
+        .size([width, height]);
+
+    var svg = d3.select("#clicks-graph").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+        
+    force
+        .nodes(graph.nodes)
+        .links(graph.links)
+        .start();
+
+    var link = svg.selectAll(".link")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", "link")
+        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+    var node = svg.selectAll(".node")
+        .data(graph.nodes)
+        .enter().append("g")
+        .attr("class", "node")
+        .call(force.drag);
+
+    node.append("circle")
+        .attr("r", 10)
+        .style("fill", function (d) {
+        if (d.name.startsWith("other")) { return color(1); } else { return color(2); };
+    })
+
+    node.append("text")
+          .attr("dx", 10)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.name });
+          
+    //Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
+    force.on("tick", function () {
+        link.attr("x1", function (d) {
+            return d.source.x;
+        })
+            .attr("y1", function (d) {
+            return d.source.y;
+        })
+            .attr("x2", function (d) {
+            return d.target.x;
+        })
+            .attr("y2", function (d) {
+            return d.target.y;
+        });
+        d3.selectAll("circle").attr("cx", function (d) {
+            return d.x;
+        })
+            .attr("cy", function (d) {
+            return d.y;
+        });
+        d3.selectAll("text").attr("x", function (d) {
+            return d.x;
+        })
+            .attr("y", function (d) {
+            return d.y;
+        });
+    });
+    </script>
+    </div>
+    """)
+    }
+      
+      def help() = {
+    displayHTML("""
+    <p>
+    Produces a force-directed graph given a collection of edges of the following form:</br>
+    <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
+    </p>
+    <p>Usage:<br/>
+    <tt><font color="#a71d5d">import</font> <font color="#ed6a43">d3._</font></tt><br/>
+    <tt><font color="#795da3">graphs.force</font>(</br>
+    &nbsp;&nbsp;<font color="#ed6a43">height</font> = <font color="#795da3">500</font>,<br/>
+    &nbsp;&nbsp;<font color="#ed6a43">width</font> = <font color="#795da3">500</font>,<br/>
+    &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
+    </p>""")
+      }
+    }
+
 > Warning: classes defined within packages cannot be redefined without a cluster restart. Compilation successful.
 
     d3ivan.graphs.help()
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <p>
 Produces a force-directed graph given a collection of edges of the following form:</br>
 <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
@@ -305,7 +470,7 @@ Produces a force-directed graph given a collection of edges of the following for
         ORDER BY n DESC
         LIMIT 20""").as[d3ivan.Edge])
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <style>
 
 .node_circle {
@@ -428,7 +593,7 @@ force.on("tick", function () {
 -   To understand the ideas read [Dremel: Interactive Analysis of Web-Scale Datasets, Sergey Melnik, Andrey Gubarev, Jing Jing Long, Geoffrey Romer, Shiva Shivakumar, Matt Tolton and Theo Vassilakis,Proc. of the 36th Int'l Conf on Very Large Data Bases (2010), pp. 330-339](http://research.google.com/pubs/pub36632.html), whose Abstract is as follows:
     -   Dremel is a scalable, interactive ad-hoc query system for analysis of read-only nested data. By combining multi-level execution trees and columnar data layouts it is **capable of running aggregation queries over trillion-row tables in seconds**. The system **scales to thousands of CPUs and petabytes of data, and has thousands of users at Google**. In this paper, we describe the architecture and implementation of Dremel, and explain how it complements MapReduce-based computing. We present a novel columnar storage representation for nested records and discuss experiments on few-thousand node instances of the system.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://parquet.apache.org/documentation/latest/"
  width="95%" height="350"
  sandbox>

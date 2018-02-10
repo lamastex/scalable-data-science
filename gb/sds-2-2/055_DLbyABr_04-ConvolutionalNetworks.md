@@ -33,7 +33,7 @@ This is used in a non-profit educational setting with kind permission of [Adam B
 
 Let's hold pointers into wikipedia for these new concepts.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_error_function_and_logistic_regression"
  width="95%" height="500"
  sandbox>
@@ -44,7 +44,7 @@ Let's hold pointers into wikipedia for these new concepts.
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Softmax_function"
  width="95%" height="380"
  sandbox>

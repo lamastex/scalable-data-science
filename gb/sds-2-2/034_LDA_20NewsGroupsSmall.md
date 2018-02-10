@@ -44,7 +44,7 @@ Let's get a bird's eye view of LDA from <http://www.cs.columbia.edu/~blei/papers
 -   We will be quite application focussed or applied here!
 -   Understand Expectation Maximization Algorithm read *Section 8.5 The EM Algorithm* in *The Elements of Statistical Learning* by Hastie, Tibshirani and Freidman (2001, Springer Series in Statistics). Read from free 21MB PDF of the book available from here <https://web.stanford.edu/~hastie/Papers/ESLII.pdf> or from its backup here <http://lamastex.org/research_events/Readings/StatLearn/ESLII.pdf>.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA"
  width="95%" height="200"
  sandbox>
@@ -55,7 +55,7 @@ Let's get a bird's eye view of LDA from <http://www.cs.columbia.edu/~blei/papers
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model"
  width="95%" height="600"
  sandbox>
@@ -66,7 +66,7 @@ Let's get a bird's eye view of LDA from <http://www.cs.columbia.edu/~blei/papers
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition"
  width="95%" height="910"
  sandbox>
@@ -802,7 +802,7 @@ We will convert the DataFrame into a JSON format, which will be passed into d3.
 
 We are now ready to use D3 on the rawJson data.
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
