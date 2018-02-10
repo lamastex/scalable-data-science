@@ -3,11 +3,20 @@
 
 ### A bit about your instructor:
 
-I, Raazesh Sainudiin or **Raaz**, will be your instructor for the course in data science. I have \* more than 12 years of academic research experience in applied mathematics and statistics and \* nearly 2 years of full-time experience in the data industry.
+I, Raazesh Sainudiin or **Raaz**, will be your instructor for the course in data science. I have
 
-I currently (2017) have an effective joint appointment as: \* [Researcher in Applied Mathematics and Statistics](http://katalog.uu.se/profile/?id=N17-214) at [Department of Mathematics](http://www.math.uu.se/), [Uppsala University](http://www.uu.se/), Uppsala, Sweden and \* Data Science Consultant at AI and Analytics Centre of Excellence, [Combient AB](https://combient.com/), Stockholm, Sweden
+-   more than 12 years of academic research experience in applied mathematics and statistics and
+-   nearly 2 years of full-time experience in the data industry.
 
-Quick links on Raaz's background: \* <https://nz.linkedin.com/in/raazesh-sainudiin-45955845> \* [Raaz's academic CV](https://lamastex.github.io/cv/)
+I currently (2017) have an effective joint appointment as:
+
+-   [Researcher in Applied Mathematics and Statistics](http://katalog.uu.se/profile/?id=N17-214) at [Department of Mathematics](http://www.math.uu.se/), [Uppsala University](http://www.uu.se/), Uppsala, Sweden and
+-   Data Science Consultant at AI and Analytics Centre of Excellence, [Combient AB](https://combient.com/), Stockholm, Sweden
+
+Quick links on Raaz's background:
+
+-   <https://nz.linkedin.com/in/raazesh-sainudiin-45955845>
+-   [Raaz's academic CV](https://lamastex.github.io/cv/)
 
 The inter-faculty course in the [Disciplinary Domain of Science and Technology, Uppsala University](http://www.teknat.uu.se/) is being assisted by Tilo Wiklund and Dan Lilja.
 
@@ -55,13 +64,22 @@ Standing on shoulders of giants!
 --------------------------------
 
 This course will build on two other edX courses where needed.
-\* [BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x) \* [BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x)
+
+-   [BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x)
+-   [BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x)
 
 We encourage you to take these courses if you have more time. For those of you (including the course coordinator) who have taken these courses formally in 2015, this course will be an *expanded scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills.
 
-We will also be borrowing more theoretical aspects from the following course: \* [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
+We will also be borrowing more theoretical aspects from the following course:
 
-The first two recommended readings below are (already somewhat outdated!), the third one is advanced but current now and the fourth one is in progress: \* Learning Spark : lightning-fast data analytics by Holden Karau, Andy Konwinski, Patrick Wendell, and Matei Zaharia, O'Reilly, 2015. \* Advanced analytics with Spark : patterns for learning from data at scale, Sandy Ryza, Uri Laserson, Sean Owen and Josh Wills, O'Reilly, 2015. \* High Performance Spark: Best Practices for Scaling and Optimizing Apache Spark, Holden Karau, Rachel Warren, O'Reilly, 2017. \* Spark: The Definitive Guide, Big Data Processing Made Simple By Matei Zaharia, Bill Chambers, O'Reilly Media (due October 2017)
+-   [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
+
+The first two recommended readings below are (already somewhat outdated!), the third one is advanced but current now and the fourth one is in progress:
+
+-   Learning Spark : lightning-fast data analytics by Holden Karau, Andy Konwinski, Patrick Wendell, and Matei Zaharia, O'Reilly, 2015.
+-   Advanced analytics with Spark : patterns for learning from data at scale, Sandy Ryza, Uri Laserson, Sean Owen and Josh Wills, O'Reilly, 2015.
+-   High Performance Spark: Best Practices for Scaling and Optimizing Apache Spark, Holden Karau, Rachel Warren, O'Reilly, 2017.
+-   Spark: The Definitive Guide, Big Data Processing Made Simple By Matei Zaharia, Bill Chambers, O'Reilly Media (due October 2017)
 
 ![LS](http://www.syndetics.com/index.aspx?type=xw12&isbn=9781449358624/LC.GIF&client=ucanterburyl&upc=&oclc=) ![aas](http://t3.gstatic.com/images?q=tbn:ANd9GcSQs35NvHVozz77dhXYc2Ce8lKyJkR3oVwaxyA5Ub4W7Kvtvf9i "aas") ![hps](http://t2.gstatic.com/images?q=tbn:ANd9GcS7XN41_u0B8XehDmtXLJeuEPgnuULz16oFMRoANYz2e1-Vog3D "hps") ![sdg](https://covers.oreillystatic.com/images/0636920034957/rc_lrg.jpg "sdg")
 
@@ -191,6 +209,7 @@ Let's Break-out and Introduce each other briefly - (15-20 1-minute pitches)
 ---------------------------------------------------------------------------
 
 -   **What is your name, area of research/interests, and what are you interested in getting from this course?** Some example answers:
+
 -   I am Erik Eriksson, I am into population genomics, want to learn distributed computing frameworks for analysing genomes of entire populations for certain rare diseases.
 -   I am Pippi Halgrimsdottir and am into analysisng outputs of massive simulations of
 -   embarassingly parallel parametric simulations of interacting agents in ecology
@@ -242,7 +261,7 @@ EXTRA: Databases Versus Data Science
 -   Most Maths/Stats/Computing programs cater to the *programmer* role
     -   Numpy and Matplotlib, R, Matlab, and Octave.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Data_science"
  width="95%" height="500"
  sandbox>

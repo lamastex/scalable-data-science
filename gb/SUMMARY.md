@@ -7,6 +7,7 @@
 *  [Scala Crash Course](sds-2-2/003_scalaCrashCourse.md)
 *  [RDDs](sds-2-2/004_RDDsTransformationsActions.md)
 *  [RDDs HOMEWORK](sds-2-2/005_RDDsTransformationsActionsHOMEWORK.md)
+*  [Word Count - SOU](sds-2-2/006_WordCount.md)
 *  [Spark SQL Basics](sds-2-2/007_SparkSQLIntroBasics.md)
 *  [ETL Diamonds Data](sds-2-2/008_DiamondsPipeline_01ETLEDA.md)
 *  [ETL Power Plant](sds-2-2/009_PowerPlantPipeline_01ETLEDA.md)

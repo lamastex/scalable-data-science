@@ -34,7 +34,7 @@ You can read the background on the UCI page, but in summary: \* we have collecte
 
 More information about Peaker or Peaking Power Plants can be found on Wikipedia <https://en.wikipedia.org/wiki/Peaking_power_plant>.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
  width="95%" height="300"
  sandbox>
@@ -45,7 +45,7 @@ More information about Peaker or Peaking Power Plants can be found on Wikipedia 
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
  width="95%" height="500"
  sandbox>

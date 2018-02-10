@@ -46,7 +46,7 @@ Let's get a bird's eye view of LDA from <https://www.cs.princeton.edu/~blei/pape
 -   For a careful introduction to the topic see Section 27.3 and 27.4 (pages 950-970) pf Murphy's *Machine Learning: A Probabilistic Perspective, MIT Press, 2012*.
 -   We will be quite application focussed or applied here!
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA"
  width="95%" height="250"
  sandbox>
@@ -57,7 +57,7 @@ Let's get a bird's eye view of LDA from <https://www.cs.princeton.edu/~blei/pape
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Model"
  width="95%" height="600"
  sandbox>
@@ -68,7 +68,7 @@ Let's get a bird's eye view of LDA from <https://www.cs.princeton.edu/~blei/pape
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Mathematical_definition"
  width="95%" height="910"
  sandbox>
@@ -1019,7 +1019,7 @@ We will convert the DataFrame into a JSON format, which will be passed into d3.
 
 We are now ready to use D3 on the rawJson data.
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>

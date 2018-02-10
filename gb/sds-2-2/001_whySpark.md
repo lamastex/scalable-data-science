@@ -105,7 +105,10 @@ The Berkeley Data Analytics Stack is BDAS
 
 ### Spark is a sub-stack of BDAS
 
-**Source:** \* [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl) \* [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science 17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
+**Source:**
+
+-   [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
+-   [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science 17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
 
 ### BDAS State of The Union Talk by Ion Stoica, AMP Camp 6, Nov 2015
 
@@ -133,7 +136,7 @@ key points
 -   the Spark in-memory computation framework, a sub-stack of the BDAS stack,
 -   and more...
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext"
  width="95%" height="600">
   <p>

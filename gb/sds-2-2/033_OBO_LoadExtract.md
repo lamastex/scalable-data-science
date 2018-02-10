@@ -351,7 +351,7 @@ Let's put the files in dbfs.
 
 > res5: String = version 2.11.8
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://www.oldbaileyonline.org/"
  width="95%" height="450"
  sandbox>
@@ -407,7 +407,7 @@ Quick Preparation
 
 Make sure you comment/uncomment the right files depending on wheter you have downloaded the tiny dataset or the big one.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/XML"
  width="95%" height="450"
  sandbox>

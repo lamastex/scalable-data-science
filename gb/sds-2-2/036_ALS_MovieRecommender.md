@@ -332,7 +332,7 @@ Now let us try to apply this to the test data and find the MSE for the best mode
 
 > res24: Array\[Array\[String\]\] = Array(Array(1, 1193, 5, 978300760), Array(1, 661, 3, 978302109), Array(1, 914, 3, 978301968), Array(1, 3408, 4, 978300275), Array(1, 2355, 5, 978824291))
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Collaborative_filtering"
  width="95%" height="450"
  sandbox>

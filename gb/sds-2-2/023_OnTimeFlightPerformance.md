@@ -558,7 +558,7 @@ Using the airports D3 visualization to visualize airports and flight paths
 
     d3a.graphs.help()
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <p>
 Produces a force-directed graph given a collection of edges of the following form:</br>
 <tt><font color="#a71d5d">case class</font> <font color="#795da3">Edge</font>(<font color="#ed6a43">src</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">dest</font>: <font color="#a71d5d">String</font>, <font color="#ed6a43">count</font>: <font color="#a71d5d">Long</font>)</tt>
@@ -582,7 +582,7 @@ Produces a force-directed graph given a collection of edges of the following for
       width = 1200,
       clicks = sql("select src, dst as dest, count(1) as count from departureDelays_geo where delay <= 0 group by src, dst").as[Edge])
 
-<p class="htmlSandobx"><!DOCTYPE html>
+<p class="htmlSandbox"><!DOCTYPE html>
 <html>
   <head>
     <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>
@@ -744,7 +744,7 @@ Notice that most of the delayed trips are with Western US cities
       width = 1200,
       clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo where state_src in ('CA', 'OR', 'WA') and delay > 0 group by src, dst""").as[Edge])
 
-<p class="htmlSandobx"><!DOCTYPE html>
+<p class="htmlSandbox"><!DOCTYPE html>
 <html>
   <head>
     <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>
@@ -904,7 +904,7 @@ Notice that most of the delayed trips are with Western US cities
       width = 1200,
       clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo group by src, dst""").as[Edge])
 
-<p class="htmlSandobx"><!DOCTYPE html>
+<p class="htmlSandbox"><!DOCTYPE html>
 <html>
   <head>
     <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>

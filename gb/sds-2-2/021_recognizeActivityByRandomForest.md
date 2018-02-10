@@ -303,7 +303,7 @@ Activity Recognition from Accelerometer using Random Forest
 
 This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition: \* <https://github.com/MiraLak/activityRecognitionV2>.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Random_forest"
  width="95%" height="500"
  sandbox>

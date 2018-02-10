@@ -65,7 +65,7 @@ The above result means that approximately 95% of the draws from an exponential d
 
 > res47: Double = 0.950212931632136
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Exponential_distribution"
  width="95%" height="500"
  sandbox>
@@ -94,7 +94,7 @@ NOTE: Below, there is a possibility of confusion for the term `rate` in the fami
 
 > res50: (Double, Double) = (2.0,4.0)
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Poisson_distribution"
  width="95%" height="500"
  sandbox>
@@ -118,7 +118,7 @@ Core ideas in Monte Carlo simulation
     -   random walks or (sensible perturbations of live traffic data on open street maps for hypothesis tests)
     -   models of interacting paticle systems in ecology / chemcal physics, etc...
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)"
  width="95%" height="500"
  sandbox>
@@ -134,7 +134,7 @@ Core ideas in Monte Carlo simulation
 
 ### Drawing samples from Exponential RV
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Inverse_transform_sampling#Examples"
  width="95%" height="500"
  sandbox>

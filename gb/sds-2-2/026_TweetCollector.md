@@ -316,7 +316,7 @@ Now, let's be good at house-keeping and clean-up the unnecessary data in dbfs, o
 
 > res50: Boolean = false
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/JSON"
  width="95%" height="400">
   <p>

@@ -27,7 +27,7 @@ Let's Build Intuition for Learning with Decision Trees
 -   Right-click and open the following link in a new Tab:
 -   [The visual description of ML and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) which was nominated for a [NSF Vizzie award](http://review.wizehive.com/voting/view/nsfvizziesgallery/27428/3236649).
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Decision_tree_learning"
  width="95%" height="500"
  sandbox>
@@ -168,7 +168,7 @@ Hyperparameter Tuning
 
 Run the next cell and come back into hyper-parameter tuning for a couple minutes.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Hyperparameter_optimization"
  width="95%" height="400"
  sandbox>
@@ -274,7 +274,7 @@ If you are interested in learning more on these topics, these resources can get 
 
 We will use the default metric to evaluate the performance of our classifier: \* <https://en.wikipedia.org/wiki/F1_score>.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/F1_score"
  width="95%" height="400"
  sandbox>

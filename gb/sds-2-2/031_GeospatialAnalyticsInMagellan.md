@@ -408,7 +408,7 @@ Read the following for more on catalyst optimizer and whole-stage code generatio
 
 Try bench-marks here: \* <https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6122906529858466/293651311471490/5382278320999420/latest.html>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html"
  width="95%" height="400"
  sandbox>

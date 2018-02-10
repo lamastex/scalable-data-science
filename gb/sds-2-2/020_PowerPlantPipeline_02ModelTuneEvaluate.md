@@ -556,7 +556,7 @@ A visual explanation of gradient boosted trees: \* <http://arogozhnikov.github.i
 
 Let's see what a boosting algorithm, a type of ensemble method, is all about in more detail.
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Gradient_boosting"
  width="95%" height="500"
  sandbox>
@@ -610,7 +610,7 @@ Let us explore other models to see if we can predict the power output better
 
 There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
  width="95%" height="300"
  sandbox>
@@ -621,7 +621,7 @@ There are several families of models in Spark's scalable machine learning librar
   </p>
 </iframe></p>
 
-<p class="htmlSandobx"><iframe 
+<p class="htmlSandbox"><iframe 
  src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
  width="95%" height="500"
  sandbox>

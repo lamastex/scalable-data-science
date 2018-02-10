@@ -29,7 +29,7 @@
       width = 500,
       clicks = gE.as[d3.Edge])
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <style>
 
 .node_circle {
@@ -153,7 +153,7 @@ force.on("tick", function () {
       width = 500,
       clicks = gSE.as[d3.Edge])
 
-<p class="htmlSandobx">
+<p class="htmlSandbox">
 <style>
 
 .node_circle {

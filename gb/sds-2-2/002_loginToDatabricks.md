@@ -4,7 +4,9 @@
 Essentials of Databricks Cloud (DBC) in a Big Hurry
 ---------------------------------------------------
 
-Please go here for a relaxed and detailed-enough tour (later): \* <https://docs.databricks.com/index.html>
+Please go here for a relaxed and detailed-enough tour (later):
+
+-   <https://docs.databricks.com/index.html>
 
 DBC Essentials: What is Databricks Cloud?
 -----------------------------------------
