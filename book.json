@@ -1,4 +1,8 @@
 {
- "root": "./gb",
- "plugins": ["-search","-lunr"]
+  "root": "./gb",
+  "plugins": ["-search","-lunr"],
+  "styles": {
+    "swebsite": ".gb/styles/website.css",
+    "ebook": ".gb/styles/ebook.css"
+  }
 }
