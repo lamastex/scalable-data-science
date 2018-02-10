@@ -1,5 +1,5 @@
 blockquote {
-  max-height: 20em;
-  overflow-x: auto;
-  overflow-y: visible;
+  max-height: 30em;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
