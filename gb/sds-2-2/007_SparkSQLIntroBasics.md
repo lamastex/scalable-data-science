@@ -8,7 +8,14 @@ Introduction to Spark SQL
 -   It introduces interactive SparkSQL queries and visualizations
 -   This notebook uses content from Databricks SparkSQL notebook and [SparkSQL programming guide](http://spark.apache.org/docs/latest/sql-programming-guide.html)
 
-Some resources on SQL \* <https://en.wikipedia.org/wiki/SQL> \* <https://en.wikipedia.org/wiki/Apache_Hive> \* <http://www.infoq.com/articles/apache-spark-sql> \* <https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html> \* <https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html> \* **READ**: <https://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf>
+### Some resources on SQL
+
+-   <https://en.wikipedia.org/wiki/SQL>
+-   <https://en.wikipedia.org/wiki/Apache_Hive>
+-   <http://www.infoq.com/articles/apache-spark-sql>
+-   <https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html>
+-   <https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html>
+-   **READ**: <https://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf>
 
 Some of them are embedded below in-place for your convenience.
 
@@ -66,7 +73,11 @@ Throughout this document, we will often refer to Scala/Java Datasets of `Rows` a
 Creating DataFrames
 -------------------
 
-With a [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession) or [`SQLContext`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SQLContext), applications can create [`DataFrame`](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame) \* from an existing `RDD`, \* from a Hive table, or \* from various other data sources.
+With a [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession) or [`SQLContext`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SQLContext), applications can create [`DataFrame`](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame)
+
+-   from an existing `RDD`,
+-   from a Hive table, or
+-   from various other data sources.
 
 #### Just to recap:
 
