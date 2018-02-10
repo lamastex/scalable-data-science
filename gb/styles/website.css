@@ -18,3 +18,9 @@ body {
   word-break: break-all;
 }
 
+blockquote {
+  unicode-bidi: embed !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
