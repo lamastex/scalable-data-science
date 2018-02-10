@@ -9,6 +9,7 @@
 // MAGIC This is *slightly* outdated, but good enough for our purposes as we will do it live on the latest databricks notebooks.
 // MAGIC 
 // MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC 
 // MAGIC * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
 
 // COMMAND ----------
@@ -23,6 +24,7 @@
 
 // MAGIC %md
 // MAGIC ### Notebooks can be written in **Python**, **Scala**, **R**, or **SQL**.
+// MAGIC 
 // MAGIC * This is a Scala notebook - which is indicated next to the title above by ``(Scala)``.
 
 // COMMAND ----------
@@ -599,6 +601,7 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // MAGIC # Further Reference / Homework / Recurrrent Points of Reference
 // MAGIC 
 // MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC 
 // MAGIC * databricks
 // MAGIC   * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
 // MAGIC * scala
@@ -610,8 +613,3 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // MAGIC ### Notebooks can be run from other notebooks using **%run**
 // MAGIC * Syntax: `%run /full/path/to/notebook`
 // MAGIC * This is commonly used to import functions you defined in other notebooks.
-
-// COMMAND ----------
-
-// just see the guide for the introductory notebooks
-//%run "/databricks_guide/00 Welcome to Databricks" // running this cell will load databricks_guide/00 Welcome to Databricks notebook here
