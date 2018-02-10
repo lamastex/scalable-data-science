@@ -2,7 +2,14 @@
   "root": "./gb",
   "plugins": ["-search","-lunr"],
   "styles": {
-    "swebsite": "styles/website.css",
+    "website": "styles/website.css",
     "ebook": "styles/ebook.css"
   }
 }
+
+// {
+//   "styles": {
+//     "website": "styles/website.css",
+//     "ebook": "styles/ebook.css"
+//   }
+// }
