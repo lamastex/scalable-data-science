@@ -3,4 +3,5 @@ p.htmlSandbox {
   border-style: solid;
   border-width: 10px;
   border-color: red;
+  padding: 1em;
 }
