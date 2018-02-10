@@ -5,3 +5,7 @@ p.htmlSandbox {
   border-color: red;
   padding: 1em;
 }
+
+.page-inner {
+  border: 10px solid red;
+}
