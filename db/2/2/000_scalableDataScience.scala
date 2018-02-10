@@ -10,14 +10,17 @@
 // MAGIC 
 // MAGIC I, Raazesh Sainudiin or **Raaz**, will be your instructor for the course in data science.
 // MAGIC I have 
+// MAGIC 
 // MAGIC * more than 12 years of academic research experience in applied mathematics and statistics and 
 // MAGIC * nearly 2 years of full-time experience in the data industry.
 // MAGIC 
 // MAGIC I currently (2017) have an effective joint appointment as:
+// MAGIC 
 // MAGIC * [Researcher in Applied Mathematics and Statistics](http://katalog.uu.se/profile/?id=N17-214) at [Department of Mathematics](http://www.math.uu.se/), [Uppsala University](http://www.uu.se/), Uppsala, Sweden and
 // MAGIC * Data Science Consultant at AI and Analytics Centre of Excellence, [Combient AB](https://combient.com/), Stockholm, Sweden
 // MAGIC 
 // MAGIC Quick links on Raaz's background:
+// MAGIC 
 // MAGIC * [https://nz.linkedin.com/in/raazesh-sainudiin-45955845](https://nz.linkedin.com/in/raazesh-sainudiin-45955845) 
 // MAGIC * [Raaz's academic CV](https://lamastex.github.io/cv/) 
 // MAGIC 
@@ -91,15 +94,18 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC ## Standing on shoulders of giants!
 // MAGIC 
 // MAGIC This course will build on two other edX courses where needed.  
+// MAGIC 
 // MAGIC * [BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x)
 // MAGIC * [BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x)
 // MAGIC 
 // MAGIC We encourage you to take these courses if you have more time.  For those of you (including the course coordinator) who have taken these courses formally in 2015, this course will be an *expanded scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills. 
 // MAGIC 
 // MAGIC We will also be borrowing more theoretical aspects from the following course:
+// MAGIC 
 // MAGIC * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
 // MAGIC 
 // MAGIC The first two recommended readings below are (already somewhat outdated!), the third one is advanced but current now and the fourth one is in progress:
+// MAGIC 
 // MAGIC * Learning Spark : lightning-fast data analytics by Holden Karau, Andy Konwinski, Patrick Wendell, and Matei Zaharia, O'Reilly, 2015.
 // MAGIC * Advanced analytics with Spark : patterns for learning from data at scale, Sandy Ryza, Uri Laserson, Sean Owen and Josh Wills, O'Reilly, 2015.
 // MAGIC * High Performance Spark: Best Practices for Scaling and Optimizing Apache Spark, Holden Karau, Rachel Warren, O'Reilly, 2017.
@@ -191,6 +197,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 
 // MAGIC %md
 // MAGIC # What should *you* be able to do at the end of this course?
+// MAGIC 
 // MAGIC * by following these sessions and doing some HOMEWORK assignments.
 // MAGIC 
 // MAGIC ## Understand the principles of fault-tolerant scalable computing in Spark
@@ -217,6 +224,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC ### Apply standard learning methods via scalably servable *end-to-end industrial ML pipelines*
 // MAGIC #### ETL, Model, Validate, Test, reETL (feature re-engineer), model validate, test,..., serve model to clients
 // MAGIC ##### (we will choose from this list)
+// MAGIC 
 // MAGIC * Supervised Learning Methods: Regression /Classification
 // MAGIC * Unsupervised Learning Methods: Clustering
 // MAGIC * Recommedation systems
@@ -237,8 +245,10 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC # What Do You Really Want to Do?
 // MAGIC 
 // MAGIC ## Let's Break-out and Introduce each other briefly - (15-20 1-minute pitches)
+// MAGIC 
 // MAGIC * **What is your name, area of research/interests, and what are you interested in getting from this course?**
 // MAGIC Some example answers:
+// MAGIC 
 // MAGIC * I am Erik Eriksson, I am into population genomics, want to learn distributed computing frameworks for analysing genomes of entire populations for certain rare diseases.
 // MAGIC * I am Pippi Halgrimsdottir and am into analysisng outputs of massive simulations of 
 // MAGIC   * embarassingly parallel parametric simulations of interacting agents in ecology 

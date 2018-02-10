@@ -40,7 +40,9 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 // MAGIC # Some BDAS History behind Apache Spark
 // MAGIC ## The Berkeley Data Analytics Stack is BDAS
 // MAGIC ### Spark is a sub-stack of BDAS
+// MAGIC 
 // MAGIC **Source:** 
+// MAGIC 
 // MAGIC * [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
 // MAGIC * [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
 // MAGIC 

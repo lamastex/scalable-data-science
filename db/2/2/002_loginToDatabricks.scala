@@ -18,6 +18,7 @@
 // MAGIC ## Essentials of Databricks Cloud (DBC) in a Big Hurry
 // MAGIC 
 // MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC 
 // MAGIC * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
 
 // COMMAND ----------
