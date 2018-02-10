@@ -54,7 +54,7 @@ dbutils.fs.cp("file:/" + NE_FILE_PATH, "dbfs:/" + PATH)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Parse data
+// MAGIC ## Parse data
 
 // COMMAND ----------
 
@@ -69,29 +69,6 @@ import magellan.{Point, Polygon}
 sc.textFile(PATH + "/" + FILE).take(1)
 
 // COMMAND ----------
-
-/*val schema = StructType(Array(
-    StructField("VendorId", StringType, false),
-    StructField("tpep_pickup_datetime", StringType, false),
-    StructField("tpep_dropoff_datetime", StringType, false),
-    StructField("passenger_count", IntegerType, false),
-    StructField("trip_distance", DoubleType, false),
-    StructField("RatecodeID", StringType, false),
-    StructField("store_and_fwd_flag", StringType, false),
-    StructField("PULocationID", StringType, false),
-    StructField("DOLocationID", StringType, false),
-    StructField("payment_type", StringType, false),
-    StructField("fare_amount", StringType, false),
-    StructField("pickup_longitude", DoubleType, false),
-    StructField("pickup_latitude", DoubleType, false),
-    StructField("dropoff_longitude", DoubleType, false),
-    StructField("dropoff_latitude", DoubleType, false),
-    StructField("extra", StringType, false),
-    StructField("mta_tax", StringType, false),
-    StructField("tip_amount", StringType, false),
-    StructField("tolls_amount", StringType, false),
-    StructField("improvement_surcharge", StringType, false),
-    StructField("total_amount", DoubleType, false)))*/ // SHITTY
 
 val schema = StructType(Array(
     StructField("vendorId", StringType, false),
@@ -158,10 +135,6 @@ val joined = trips
 // COMMAND ----------
 
 joined.printSchema
-
-// COMMAND ----------
-
-
 
 // COMMAND ----------
 
