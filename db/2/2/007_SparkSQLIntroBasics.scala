@@ -14,7 +14,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Some resources on SQL
+// MAGIC ### Some resources on SQL
 // MAGIC * [https://en.wikipedia.org/wiki/SQL](https://en.wikipedia.org/wiki/SQL)
 // MAGIC * [https://en.wikipedia.org/wiki/Apache_Hive](https://en.wikipedia.org/wiki/Apache_Hive)
 // MAGIC * [http://www.infoq.com/articles/apache-spark-sql](http://www.infoq.com/articles/apache-spark-sql)
