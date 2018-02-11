@@ -199,7 +199,7 @@ Let us look at what tables are already available, as follows:
 
     sqlContext.tables.show() // Ctrl+Enter to see available tables
 
-> +--------|--------------------|-----------+ |database| tableName|isTemporary| +--------|--------------------|-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| +--------|--------------------|-----------+
+> +--------+--------------------+-----------+ |database| tableName|isTemporary| +--------+--------------------+-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| +--------+--------------------+-----------+
 
 We need to create a temporary view of the DataFrame as a table before being able to access it via SQL.
 
@@ -533,36 +533,19 @@ It is a good idea to use this method when possible.
 
     powerPlantDF.show(10) // try putting 1000 here instead of 10
 
-+-----|-----|-------|-----|------+&#13;&#10;
-|   AT|    V|     AP|   RH|    PE|
-+-----|-----|-------|-----|------+
-|14.96|41.76|1024.07|73.17|463.26|
-|25.18|62.96|1020.04|59.08|444.37|
-| 5.11| 39.4|1012.16|92.14|488.56|
-|20.86|57.32|1010.24|76.64|446.48|
-|10.82| 37.5|1009.23|96.62| 473.9|
-|26.27|59.44|1012.23|58.77|443.67|
-|15.89|43.96|1014.02|75.24|467.35|
-| 9.48|44.71|1019.12|66.43|478.42|
-|14.64| 45.0|1021.78|41.25|475.98|
-|11.74|43.56|1015.14|70.72| 477.5|
-+-----|-----|-------|-----|------+
-only showing top 10 rows
-
-<div class=\"ansiout\">+-----|-----|-------|-----|------+&#13;&#10;|   AT|    V|     AP|   RH|    PE|\n+-----|-----|-------|-----|------+\n|14.96|41.76|1024.07|73.17|463.26|\n|25.18|62.96|1020.04|59.08|444.37|\n| 5.11| 39.4|1012.16|92.14|488.56|\n|20.86|57.32|1010.24|76.64|446.48|\n|10.82| 37.5|1009.23|96.62| 473.9|\n|26.27|59.44|1012.23|58.77|443.67|\n|15.89|43.96|1014.02|75.24|467.35|\n| 9.48|44.71|1019.12|66.43|478.42|\n|14.64| 45.0|1021.78|41.25|475.98|\n|11.74|43.56|1015.14|70.72| 477.5|\n+-----|-----|-------|-----|------+\nonly showing top 10 rows\n\n</div>
-
+> +-----+-----+-------+-----+------+ | AT| V| AP| RH| PE| +-----+-----+-------+-----+------+ |14.96|41.76|1024.07|73.17|463.26| |25.18|62.96|1020.04|59.08|444.37| | 5.11| 39.4|1012.16|92.14|488.56| |20.86|57.32|1010.24|76.64|446.48| |10.82| 37.5|1009.23|96.62| 473.9| |26.27|59.44|1012.23|58.77|443.67| |15.89|43.96|1014.02|75.24|467.35| | 9.48|44.71|1019.12|66.43|478.42| |14.64| 45.0|1021.78|41.25|475.98| |11.74|43.56|1015.14|70.72| 477.5| +-----+-----+-------+-----+------+ only showing top 10 rows
 
     spark.catalog.listDatabases.show(false)
 
-> +-------|---------------------|-------------------------+ |name |description |locationUri | +-------|---------------------|-------------------------+ |default|Default Hive database|dbfs:/user/hive/warehouse| +-------|---------------------|-------------------------+
+> +-------+---------------------+-------------------------+ |name |description |locationUri | +-------+---------------------+-------------------------+ |default|Default Hive database|dbfs:/user/hive/warehouse| +-------+---------------------+-------------------------+
 
     spark.catalog.listTables.show(false)
 
-> +--------------------------|--------|-----------|---------|-----------+ |name |database|description|tableType|isTemporary| +--------------------------|--------|-----------|---------|-----------+ |cities\_csv |default |null |EXTERNAL |false | |cleaned\_taxes |default |null |MANAGED |false | |commdettrumpclintonretweet|default |null |MANAGED |false | |donaldtrumptweets |default |null |EXTERNAL |false | |linkage |default |null |EXTERNAL |false | |nations |default |null |EXTERNAL |false | |newmplist |default |null |EXTERNAL |false | |ny\_baby\_names |default |null |MANAGED |false | |nzmpsandparty |default |null |EXTERNAL |false | |pos\_neg\_category |default |null |EXTERNAL |false | |rna |default |null |MANAGED |false | |samh |default |null |EXTERNAL |false | |table1 |default |null |EXTERNAL |false | |test\_table |default |null |EXTERNAL |false | |uscites |default |null |EXTERNAL |false | +--------------------------|--------|-----------|---------|-----------+
+> +--------------------------+--------+-----------+---------+-----------+ |name |database|description|tableType|isTemporary| +--------------------------+--------+-----------+---------+-----------+ |cities\_csv |default |null |EXTERNAL |false | |cleaned\_taxes |default |null |MANAGED |false | |commdettrumpclintonretweet|default |null |MANAGED |false | |donaldtrumptweets |default |null |EXTERNAL |false | |linkage |default |null |EXTERNAL |false | |nations |default |null |EXTERNAL |false | |newmplist |default |null |EXTERNAL |false | |ny\_baby\_names |default |null |MANAGED |false | |nzmpsandparty |default |null |EXTERNAL |false | |pos\_neg\_category |default |null |EXTERNAL |false | |rna |default |null |MANAGED |false | |samh |default |null |EXTERNAL |false | |table1 |default |null |EXTERNAL |false | |test\_table |default |null |EXTERNAL |false | |uscites |default |null |EXTERNAL |false | +--------------------------+--------+-----------+---------+-----------+
 
 We can also access the list of tables and databases using `spark.catalog` methods as explained here: \* <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
 
     sqlContext.tables.show() 
 
-> +--------|--------------------|-----------+ |database| tableName|isTemporary| +--------|--------------------|-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| | | power\_plant\_table| true| +--------|--------------------|-----------+
+> +--------+--------------------+-----------+ |database| tableName|isTemporary| +--------+--------------------+-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| | | power\_plant\_table| true| +--------+--------------------+-----------+
 
