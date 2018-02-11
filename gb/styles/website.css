@@ -11,16 +11,3 @@ table {
   overflow: auto;
 }
 
-body {
-  unicode-bidi: embed;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-all;
-}
-
-blockquote {
-  unicode-bidi: embed !important;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
-}
