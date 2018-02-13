@@ -1,33 +1,46 @@
-    import scala.util.Random
+``` scala
+import scala.util.Random
 
-    import org.apache.spark.graphx.{Graph, VertexId}
-    import org.apache.spark.graphx.util.GraphGenerators
-    import org.apache.spark.sql.functions.lit // import the lit function in sql
-    import org.graphframes._
+import org.apache.spark.graphx.{Graph, VertexId}
+import org.apache.spark.graphx.util.GraphGenerators
+import org.apache.spark.sql.functions.lit // import the lit function in sql
+import org.graphframes._
 
-    /*
-    // A graph with edge attributes containing distances
-    val graph: Graph[Long, Double] = GraphGenerators.logNormalGraph(sc, numVertices = 50, seed=12345L).mapEdges { e => 
-      // to make things nicer we assign 0 distance to itself
-      if (e.srcId == e.dstId) 0.0 else Random.nextDouble()
-    }
-    */
+/*
+// A graph with edge attributes containing distances
+val graph: Graph[Long, Double] = GraphGenerators.logNormalGraph(sc, numVertices = 50, seed=12345L).mapEdges { e => 
+  // to make things nicer we assign 0 distance to itself
+  if (e.srcId == e.dstId) 0.0 else Random.nextDouble()
+}
+*/
 
-    val graph: Graph[(Int,Int), Double] = GraphGenerators.gridGraph(sc, 5,5)
+val graph: Graph[(Int,Int), Double] = GraphGenerators.gridGraph(sc, 5,5)
+```
 
-> import scala.util.Random import org.apache.spark.graphx.{Graph, VertexId} import org.apache.spark.graphx.util.GraphGenerators import org.apache.spark.sql.functions.lit import org.graphframes.\_ graph: org.apache.spark.graphx.Graph\[(Int, Int),Double\] = org.apache.spark.graphx.impl.GraphImpl@2afd1b5c
+>     import scala.util.Random
+>     import org.apache.spark.graphx.{Graph, VertexId}
+>     import org.apache.spark.graphx.util.GraphGenerators
+>     import org.apache.spark.sql.functions.lit
+>     import org.graphframes._
+>     graph: org.apache.spark.graphx.Graph[(Int, Int),Double] = org.apache.spark.graphx.impl.GraphImpl@2afd1b5c
 
-    val g = GraphFrame.fromGraphX(graph)
-    val gE= g.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
+``` scala
+val g = GraphFrame.fromGraphX(graph)
+val gE= g.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
+```
 
-> g: org.graphframes.GraphFrame = GraphFrame(v:\[id: bigint, attr: struct&lt;\_1: int, \_2: int&gt;\], e:\[src: bigint, dst: bigint ... 1 more field\]) gE: org.apache.spark.sql.DataFrame = \[src: bigint, dest: bigint ... 1 more field\]
+>     g: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint, attr: struct<_1: int, _2: int>], e:[src: bigint, dst: bigint ... 1 more field])
+>     gE: org.apache.spark.sql.DataFrame = [src: bigint, dest: bigint ... 1 more field]
 
-> Warning: classes defined within packages cannot be redefined without a cluster restart. Compilation successful.
+>     Warning: classes defined within packages cannot be redefined without a cluster restart.
+>     Compilation successful.
 
-    d3.graphs.force(
-      height = 500,
-      width = 500,
-      clicks = gE.as[d3.Edge])
+``` scala
+d3.graphs.force(
+  height = 500,
+  width = 500,
+  clicks = gE.as[d3.Edge])
+```
 
 <p class="htmlSandbox">
 <style>
@@ -145,13 +158,15 @@ force.on("tick", function () {
 </div>
 </p>
 
-    val graphStar: Graph[Int, Int] = GraphGenerators.starGraph(sc, 10)
-    val gS = GraphFrame.fromGraphX(graphStar)
-    val gSE= gS.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
-    d3.graphs.force(
-      height = 500,
-      width = 500,
-      clicks = gSE.as[d3.Edge])
+``` scala
+val graphStar: Graph[Int, Int] = GraphGenerators.starGraph(sc, 10)
+val gS = GraphFrame.fromGraphX(graphStar)
+val gSE= gS.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
+d3.graphs.force(
+  height = 500,
+  width = 500,
+  clicks = gSE.as[d3.Edge])
+```
 
 <p class="htmlSandbox">
 <style>
@@ -294,24 +309,40 @@ Let's focus on the two of the simplest (deterministic) graphs.
 
 Read the code from github \* https://github.com/apache/spark/blob/master/graphx/src/main/scala/org/apache/spark/graphx/util/GraphGenerators.scala \* Also check out: https://github.com/graphframes/graphframes/blob/master/src/main/scala/org/graphframes/examples/Graphs.scala
 
-    val graphStar: Graph[Int, Int] = GraphGenerators.starGraph(sc, 101)
-    val gS = GraphFrame.fromGraphX(graphStar)
-    gS.edges.count
+``` scala
+val graphStar: Graph[Int, Int] = GraphGenerators.starGraph(sc, 101)
+val gS = GraphFrame.fromGraphX(graphStar)
+gS.edges.count
+```
 
-> graphStar: org.apache.spark.graphx.Graph\[Int,Int\] = org.apache.spark.graphx.impl.GraphImpl@4395a75 gS: org.graphframes.GraphFrame = GraphFrame(v:\[id: bigint, attr: int\], e:\[src: bigint, dst: bigint ... 1 more field\]) res13: Long = 100
+>     graphStar: org.apache.spark.graphx.Graph[Int,Int] = org.apache.spark.graphx.impl.GraphImpl@4395a75
+>     gS: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint, attr: int], e:[src: bigint, dst: bigint ... 1 more field])
+>     res13: Long = 100
 
-    val gAllEdges = gS.edges.union(gG.edges)
-    gAllEdges.count
+``` scala
+val gAllEdges = gS.edges.union(gG.edges)
+gAllEdges.count
+```
 
-> gAllEdges: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[src: bigint, dst: bigint ... 1 more field\] res16: Long = 5000
+>     gAllEdges: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [src: bigint, dst: bigint ... 1 more field]
+>     res16: Long = 5000
 
-    100.0/5000.0
+``` scala
+100.0/5000.0
+```
 
-> res20: Double = 0.02
+>     res20: Double = 0.02
 
-    val graphGrid: Graph[(Int,Int), Double] = GraphGenerators.gridGraph(sc, 50,50)
-    val gG = GraphFrame.fromGraphX(graphGrid)
-    gG.edges.count
+``` scala
+val graphGrid: Graph[(Int,Int), Double] = GraphGenerators.gridGraph(sc, 50,50)
+val gG = GraphFrame.fromGraphX(graphGrid)
+gG.edges.count
+```
 
-> graphGrid: org.apache.spark.graphx.Graph\[(Int, Int),Double\] = org.apache.spark.graphx.impl.GraphImpl@160a43de gG: org.graphframes.GraphFrame = GraphFrame(v:\[id: bigint, attr: struct&lt;\_1: int, \_2: int&gt;\], e:\[src: bigint, dst: bigint ... 1 more field\]) res10: Long = 4900
+>     graphGrid: org.apache.spark.graphx.Graph[(Int, Int),Double] = org.apache.spark.graphx.impl.GraphImpl@160a43de
+>     gG: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint, attr: struct<_1: int, _2: int>], e:[src: bigint, dst: bigint ... 1 more field])
+>     res10: Long = 4900
+
+``` scala
+```
 

@@ -3,107 +3,115 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
+``` md #### As we dive into more hands-on works, let's recap some basic guidelines:
 
-    0. Structure of your network is the first thing to work with, before worrying about the precise number of neurons, size of convolution filters etc.
+0. Structure of your network is the first thing to work with, before worrying about the precise number of neurons, size of convolution filters etc.
 
-    1. "Business records" or fairly (ideally?) uncorrelated predictors -- use Dense Perceptron Layer(s)
+1. "Business records" or fairly (ideally?) uncorrelated predictors -- use Dense Perceptron Layer(s)
 
-    2. Data that has 2-D patterns: 2D Convolution layer(s)
+2. Data that has 2-D patterns: 2D Convolution layer(s)
 
-    3. For activation of hidden layers, when in doubt, use ReLU
+3. For activation of hidden layers, when in doubt, use ReLU
 
-    4. Output: 
-      * Regression: 1 neuron with linear activation
-      * For k-way classification: k neurons with softmax activation 
+4. Output: 
+  * Regression: 1 neuron with linear activation
+  * For k-way classification: k neurons with softmax activation 
 
-    5. Deeper networks are "smarter" than wider networks (in terms of abstraction)
+5. Deeper networks are "smarter" than wider networks (in terms of abstraction)
 
-    6. More neurons & layers \\( \to \\) more capacity \\( \to \\)  more data \\( \to \\)  more regularization (to prevent overfitting)
+6. More neurons & layers \\( \to \\) more capacity \\( \to \\)  more data \\( \to \\)  more regularization (to prevent overfitting)
 
-    7. If you don't have any specific reason not to use the "adam" optimizer, use that one
+7. If you don't have any specific reason not to use the "adam" optimizer, use that one
 
-    8. Errors: 
-      * For regression or "wide" content matching (e.g., large image similarity), use mean-square-error; 
-      * For classification or narrow content matching, use cross-entropy
+8. Errors: 
+  * For regression or "wide" content matching (e.g., large image similarity), use mean-square-error; 
+  * For classification or narrow content matching, use cross-entropy
 
-    9. As you simplify and abstract from your raw data, you should need less features/parameters, so your layers probably become smaller and simpler.
+9. As you simplify and abstract from your raw data, you should need less features/parameters, so your layers probably become smaller and simpler.
+```
 
+```` md As a baseline, let's start a lab running with what we already know.
 
-    We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
+We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
 
-    The main part of the code looks like the following (full code you can run is in the next cell):
+The main part of the code looks like the following (full code you can run is in the next cell):
 
-    ```
-    # imports, setup, load data sets
+```
+# imports, setup, load data sets
 
-    model = Sequential()
-    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+model = Sequential()
+model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-    categorical_labels = to_categorical(y_train, num_classes=10)
+categorical_labels = to_categorical(y_train, num_classes=10)
 
-    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
+history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
 
-    # print metrics, plot errors
-    ```
+# print metrics, plot errors
+```
 
-    Note the changes, which are largely about building a classifier instead of a regression model:
-    * Output layer has one neuron per category, with softmax activation
-    * __Loss function is cross-entropy loss__
-    * Accuracy metric is categorical accuracy
+Note the changes, which are largely about building a classifier instead of a regression model:
+* Output layer has one neuron per category, with softmax activation
+* __Loss function is cross-entropy loss__
+* Accuracy metric is categorical accuracy
+````
 
-    from keras.models import Sequential
-    from keras.layers import Dense
-    from keras.utils import to_categorical
-    import sklearn.datasets
-    import datetime
-    import matplotlib.pyplot as plt
-    import numpy as np
+``` python
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.utils import to_categorical
+import sklearn.datasets
+import datetime
+import matplotlib.pyplot as plt
+import numpy as np
 
-    train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
-    test_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt"
+train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
+test_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt"
 
-    X_train, y_train = sklearn.datasets.load_svmlight_file(train_libsvm, n_features=784)
-    X_train = X_train.toarray()
+X_train, y_train = sklearn.datasets.load_svmlight_file(train_libsvm, n_features=784)
+X_train = X_train.toarray()
 
-    X_test, y_test = sklearn.datasets.load_svmlight_file(test_libsvm, n_features=784)
-    X_test = X_test.toarray()
+X_test, y_test = sklearn.datasets.load_svmlight_file(test_libsvm, n_features=784)
+X_test = X_test.toarray()
 
-    model = Sequential()
-    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+model = Sequential()
+model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-    categorical_labels = to_categorical(y_train, num_classes=10)
-    start = datetime.datetime.today()
+categorical_labels = to_categorical(y_train, num_classes=10)
+start = datetime.datetime.today()
 
-    history = model.fit(X_train, categorical_labels, epochs=40, batch_size=100, validation_split=0.1, verbose=2)
+history = model.fit(X_train, categorical_labels, epochs=40, batch_size=100, validation_split=0.1, verbose=2)
 
-    scores = model.evaluate(X_test, to_categorical(y_test, num_classes=10))
+scores = model.evaluate(X_test, to_categorical(y_test, num_classes=10))
 
-    print
-    for i in range(len(model.metrics_names)):
-    	print("%s: %f" % (model.metrics_names[i], scores[i]))
+print
+for i in range(len(model.metrics_names)):
+	print("%s: %f" % (model.metrics_names[i], scores[i]))
 
-    print ("Start: " + str(start))
-    end = datetime.datetime.today()
-    print ("End: " + str(end))
-    print ("Elapse: " + str(end-start))
+print ("Start: " + str(start))
+end = datetime.datetime.today()
+print ("End: " + str(end))
+print ("Elapse: " + str(end-start))
+```
 
-    import matplotlib.pyplot as plt
+``` python
+import matplotlib.pyplot as plt
 
-    fig, ax = plt.subplots()
-    fig.set_size_inches((5,5))
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    display(fig)
+fig, ax = plt.subplots()
+fig.set_size_inches((5,5))
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+display(fig)
+```
 
 What are the big takeaways from this experiment?
 

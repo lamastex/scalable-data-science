@@ -113,9 +113,11 @@ DataFrame Basics
 
 Spark has some of the pre-built methods to create simple DataFrames \* let us make an Empty DataFrame
 
-    val emptyDF = spark.emptyDataFrame // Ctrl+Enter to make an empty DataFrame
+``` scala
+val emptyDF = spark.emptyDataFrame // Ctrl+Enter to make an empty DataFrame
+```
 
-> emptyDF: org.apache.spark.sql.DataFrame = \[\]
+>     emptyDF: org.apache.spark.sql.DataFrame = []
 
 Not really interesting, or is it?
 
@@ -123,23 +125,35 @@ Not really interesting, or is it?
 
 Uncomment the following cell, put your cursor after `emptyDF.` below and hit Tab to see what can be done with `emptyDF`.
 
-    //emptyDF.
+``` scala
+//emptyDF.
+```
 
 ### 2. Making a DataFrame from a range
 
 Let us make a DataFrame next \* from a range of numbers, as follows:
 
-    val rangeDF = spark.range(0, 3).toDF() // Ctrl+Enter to make DataFrame with 0,1,2
+``` scala
+val rangeDF = spark.range(0, 3).toDF() // Ctrl+Enter to make DataFrame with 0,1,2
+```
 
-> rangeDF: org.apache.spark.sql.DataFrame = \[id: bigint\]
+>     rangeDF: org.apache.spark.sql.DataFrame = [id: bigint]
 
 Note that Spark automatically names column as `id` and casts integers to type `bigint` for big integer or Long.
 
 In order to get a preview of data in DataFrame use `show()` as follows:
 
-    rangeDF.show() // Ctrl+Enter
+``` scala
+rangeDF.show() // Ctrl+Enter
+```
 
-> +---+ | id| +---+ | 0| | 1| | 2| +---+
+>     +---+
+>     | id|
+>     +---+
+>     |  0|
+>     |  1|
+>     |  2|
+>     +---+
 
 ### 3. Making a DataFrame from an RDD
 
@@ -150,45 +164,86 @@ In order to get a preview of data in DataFrame use `show()` as follows:
 
 Let's first make an RDD using the `sc.parallelize` method, transform it by a `map` and perform the `collect` action to display it, as follows:
 
-    val rdd1 = sc.parallelize(1 to 5).map(i => (i, i*2))
-    rdd1.collect() // Ctrl+Enter
+``` scala
+val rdd1 = sc.parallelize(1 to 5).map(i => (i, i*2))
+rdd1.collect() // Ctrl+Enter
+```
 
-> rdd1: org.apache.spark.rdd.RDD\[(Int, Int)\] = MapPartitionsRDD\[358618\] at map at &lt;console&gt;:34 res8: Array\[(Int, Int)\] = Array((1,2), (2,4), (3,6), (4,8), (5,10))
+>     rdd1: org.apache.spark.rdd.RDD[(Int, Int)] = MapPartitionsRDD[358618] at map at <console>:34
+>     res8: Array[(Int, Int)] = Array((1,2), (2,4), (3,6), (4,8), (5,10))
 
 Next, let us convert the RDD into DataFrame using the `.toDF()` method, as follows:
 
-    val df1 = rdd1.toDF() // Ctrl+Enter 
+``` scala
+val df1 = rdd1.toDF() // Ctrl+Enter 
+```
 
-> df1: org.apache.spark.sql.DataFrame = \[\_1: int, \_2: int\]
+>     df1: org.apache.spark.sql.DataFrame = [_1: int, _2: int]
 
 As it is clear, the DataFrame has columns named `_1` and `_2`, each of type `int`. Let us see its content using the `.show()` method next.
 
-    df1.show() // Ctrl+Enter
+``` scala
+df1.show() // Ctrl+Enter
+```
 
-> +---+---+ | \_1| \_2| +---+---+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +---+---+
+>     +---+---+
+>     | _1| _2|
+>     +---+---+
+>     |  1|  2|
+>     |  2|  4|
+>     |  3|  6|
+>     |  4|  8|
+>     |  5| 10|
+>     +---+---+
 
 Note that by default, i.e. without specifying any options as in `toDF()`, the column names are given by `_1` and `_2`.
 
 We can easily specify column names as follows:
 
-    val df1 = rdd1.toDF("once", "twice") // Ctrl+Enter
-    df1.show()
+``` scala
+val df1 = rdd1.toDF("once", "twice") // Ctrl+Enter
+df1.show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +----+-----+ df1: org.apache.spark.sql.DataFrame = \[once: int, twice: int\]
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
+>
+>     df1: org.apache.spark.sql.DataFrame = [once: int, twice: int]
 
 Of course, we can do all of the above steps to make the DataFrame `df1` in one line and then show it, as follows:
 
-    val df1 = sc.parallelize(1 to 5).map(i => (i, i*2)).toDF("once", "twice") //Ctrl+enter
-    df1.show()
+``` scala
+val df1 = sc.parallelize(1 to 5).map(i => (i, i*2)).toDF("once", "twice") //Ctrl+enter
+df1.show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +----+-----+ df1: org.apache.spark.sql.DataFrame = \[once: int, twice: int\]
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
+>
+>     df1: org.apache.spark.sql.DataFrame = [once: int, twice: int]
 
 **You Try!**
 
 Uncomment the two lines in the next cell, and then fill in the `???` below to get a DataFrame `df2` whose first two columns are the same as `df1` and whose third column named triple has values that are three times the values in the first column.
 
-    //val df2 = sc.parallelize(1 to 5).map(i => (i, i*2, ???)).toDF("single", "double", "triple") // Ctrl+enter after editing ???
-    //df2.show()
+``` scala
+//val df2 = sc.parallelize(1 to 5).map(i => (i, i*2, ???)).toDF("single", "double", "triple") // Ctrl+enter after editing ???
+//df2.show()
+```
 
 6. Creating Datasets
 --------------------
@@ -231,9 +286,11 @@ Those who want to understand SparkSQL functionalities in more detail can see: \*
   </p>
 </iframe></p>
 
-    spark // ready-made Spark-Session
+``` scala
+spark // ready-made Spark-Session
+```
 
-> res6: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@70de6a8
+>     res6: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@70de6a8
 
 Getting Started in Spark 2.x
 ============================
@@ -266,31 +323,75 @@ As mentioned above, in Spark 2.0, DataFrames are just Dataset of Rows in Scala a
 
 Here we include some basic examples of structured data processing using Datasets:
 
-    // Count the number of distinct singles -  a bit boring
-    df1.groupBy("once").count().show()
+``` scala
+// Count the number of distinct singles -  a bit boring
+df1.groupBy("once").count().show()
+```
 
-> +----+-----+ |once|count| +----+-----+ | 1| 1| | 3| 1| | 5| 1| | 4| 1| | 2| 1| +----+-----+
+>     +----+-----+
+>     |once|count|
+>     +----+-----+
+>     |   1|    1|
+>     |   3|    1|
+>     |   5|    1|
+>     |   4|    1|
+>     |   2|    1|
+>     +----+-----+
 
-    // This import is needed to use the $-notation
-    import spark.implicits._
-    // Print the schema in a tree format
-    df1.printSchema()
+``` scala
+// This import is needed to use the $-notation
+import spark.implicits._
+// Print the schema in a tree format
+df1.printSchema()
+```
 
-> root |-- once: integer (nullable = false) |-- twice: integer (nullable = false) import spark.implicits.\_
+>     root
+>      |-- once: integer (nullable = false)
+>      |-- twice: integer (nullable = false)
+>
+>     import spark.implicits._
 
-    // Select only the "name" column
-    df1.select("once").show()
+``` scala
+// Select only the "name" column
+df1.select("once").show()
+```
 
-> +----+ |once| +----+ | 1| | 2| | 3| | 4| | 5| +----+
+>     +----+
+>     |once|
+>     +----+
+>     |   1|
+>     |   2|
+>     |   3|
+>     |   4|
+>     |   5|
+>     +----+
 
-    // Select both columns, but increment the double column by 1 and rename it as "oncemore"
-    df1.select($"once", ($"once" + 1).as("oncemore")).show()
+``` scala
+// Select both columns, but increment the double column by 1 and rename it as "oncemore"
+df1.select($"once", ($"once" + 1).as("oncemore")).show()
+```
 
-> +----+--------+ |once|oncemore| +----+--------+ | 1| 2| | 2| 3| | 3| 4| | 4| 5| | 5| 6| +----+--------+
+>     +----+--------+
+>     |once|oncemore|
+>     +----+--------+
+>     |   1|       2|
+>     |   2|       3|
+>     |   3|       4|
+>     |   4|       5|
+>     |   5|       6|
+>     +----+--------+
 
-    df1.filter($"once" > 2).show()
+``` scala
+df1.filter($"once" > 2).show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 3| 6| | 4| 8| | 5| 10| +----+-----+
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
 
 For a complete list of the types of operations that can be performed on a Dataset refer to the [API Documentation](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset).
 
@@ -300,63 +401,133 @@ In addition to simple column references and expressions, Datasets also have a ri
 
 The `sql` function on a `SparkSession` enables applications to run SQL queries programmatically and returns the result as a `DataFrame`.
 
-    // Register the DataFrame as a SQL temporary view
-    df1.createOrReplaceTempView("SDTable")
+``` scala
+// Register the DataFrame as a SQL temporary view
+df1.createOrReplaceTempView("SDTable")
 
-    val sqlDF = spark.sql("SELECT * FROM SDTable")
-    sqlDF.show()
+val sqlDF = spark.sql("SELECT * FROM SDTable")
+sqlDF.show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +----+-----+ sqlDF: org.apache.spark.sql.DataFrame = \[once: int, twice: int\]
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
+>
+>     sqlDF: org.apache.spark.sql.DataFrame = [once: int, twice: int]
 
 #### Global Temporary View
 
 Temporary views in Spark SQL are session-scoped and will disappear if the session that creates it terminates. If you want to have a temporary view that is shared among all sessions and keep alive until the Spark application terminates, you can create a global temporary view. Global temporary view is tied to a system preserved database `global_temp`, and we must use the qualified name to refer it, e.g. `SELECT * FROM global_temp.view1`. See <http://spark.apache.org/docs/latest/sql-programming-guide.html#global-temporary-view> for details.
 
-    spark.sql("SELECT * FROM SDTable WHERE once>2").show()
+``` scala
+spark.sql("SELECT * FROM SDTable WHERE once>2").show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 3| 6| | 4| 8| | 5| 10| +----+-----+
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
 
-    ds1.show()
+``` scala
+ds1.show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +----+-----+
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
 
-    // Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,
-    // you can use custom classes that implement the Product interface
-    case class Person(name: String, age: Long)
+``` scala
+// Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,
+// you can use custom classes that implement the Product interface
+case class Person(name: String, age: Long)
 
-    // Encoders are created for case classes
-    val caseClassDS = Seq(Person("Andy", 32), Person("Erik",44), Person("Anna", 15)).toDS()
-    caseClassDS.show()
+// Encoders are created for case classes
+val caseClassDS = Seq(Person("Andy", 32), Person("Erik",44), Person("Anna", 15)).toDS()
+caseClassDS.show()
+```
 
-> +----+---+ |name|age| +----+---+ |Andy| 32| |Erik| 44| |Anna| 15| +----+---+ defined class Person caseClassDS: org.apache.spark.sql.Dataset\[Person\] = \[name: string, age: bigint\]
+>     +----+---+
+>     |name|age|
+>     +----+---+
+>     |Andy| 32|
+>     |Erik| 44|
+>     |Anna| 15|
+>     +----+---+
+>
+>     defined class Person
+>     caseClassDS: org.apache.spark.sql.Dataset[Person] = [name: string, age: bigint]
 
-    // Encoders for most common types are automatically provided by importing spark.implicits._
-    val primitiveDS = Seq(1, 2, 3).toDS()
-    primitiveDS.map(_ + 1).collect() // Returns: Array(2, 3, 4)
+``` scala
+// Encoders for most common types are automatically provided by importing spark.implicits._
+val primitiveDS = Seq(1, 2, 3).toDS()
+primitiveDS.map(_ + 1).collect() // Returns: Array(2, 3, 4)
+```
 
-> primitiveDS: org.apache.spark.sql.Dataset\[Int\] = \[value: int\] res80: Array\[Int\] = Array(2, 3, 4)
+>     primitiveDS: org.apache.spark.sql.Dataset[Int] = [value: int]
+>     res80: Array[Int] = Array(2, 3, 4)
 
-    df1.show
+``` scala
+df1.show
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +----+-----+
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
 
-    df1
+``` scala
+df1
+```
 
-> res81: org.apache.spark.sql.DataFrame = \[once: int, twice: int\]
+>     res81: org.apache.spark.sql.DataFrame = [once: int, twice: int]
 
-    val ds1 = df1.as[singleAndDoubleIntegers]
+``` scala
+val ds1 = df1.as[singleAndDoubleIntegers]
+```
 
-> ds1: org.apache.spark.sql.Dataset\[singleAndDoubleIntegers\] = \[once: int, twice: int\]
+>     ds1: org.apache.spark.sql.Dataset[singleAndDoubleIntegers] = [once: int, twice: int]
 
-    // let's make a case class for our DF so we can convert it to Dataset
-    case class singleAndDoubleIntegers(once: Integer, twice: Integer)
+``` scala
+// let's make a case class for our DF so we can convert it to Dataset
+case class singleAndDoubleIntegers(once: Integer, twice: Integer)
+```
 
-> defined class singleAndDoubleIntegers
+>     defined class singleAndDoubleIntegers
 
-    // Select both columns, but increment the double column by 1
-    df1.select($"once", $"once" + 1).show()
+``` scala
+// Select both columns, but increment the double column by 1
+df1.select($"once", $"once" + 1).show()
+```
 
-> +----+----------+ |once|(once + 1)| +----+----------+ | 1| 2| | 2| 3| | 3| 4| | 4| 5| | 5| 6| +----+----------+
+>     +----+----------+
+>     |once|(once + 1)|
+>     +----+----------+
+>     |   1|         2|
+>     |   2|         3|
+>     |   3|         4|
+>     |   4|         5|
+>     |   5|         6|
+>     +----+----------+
 
 ### 5. Using SQL for interactively querying a table is very powerful!
 
@@ -365,28 +536,32 @@ Note `-- comments` are how you add `comments` in SQL cells beginning with `%sql`
 -   You can run SQL `select *` statement to see all columns of the table, as follows:
 -   This is equivalent to the above \`display(diamondsDF)' with the DataFrame
 
-<!-- -->
+``` sql
+-- Ctrl+Enter to select all columns of the table
+select * from SDTable
+```
 
-    -- Ctrl+Enter to select all columns of the table
-    select * from SDTable
+| once | twice |
+|------|-------|
+| 1.0  | 2.0   |
+| 2.0  | 4.0   |
+| 3.0  | 6.0   |
+| 4.0  | 8.0   |
+| 5.0  | 10.0  |
 
-| 1.0 | 2.0  |
-|-----|------|
-| 2.0 | 4.0  |
-| 3.0 | 6.0  |
-| 4.0 | 8.0  |
-| 5.0 | 10.0 |
+``` sql
+-- Ctrl+Enter to select all columns of the table
+-- note table names of registered tables are case-insensitive
+select * from sdtable
+```
 
-    -- Ctrl+Enter to select all columns of the table
-    -- note table names of registered tables are case-insensitive
-    select * from sdtable
-
-| 1.0 | 2.0  |
-|-----|------|
-| 2.0 | 4.0  |
-| 3.0 | 6.0  |
-| 4.0 | 8.0  |
-| 5.0 | 10.0 |
+| once | twice |
+|------|-------|
+| 1.0  | 2.0   |
+| 2.0  | 4.0   |
+| 3.0  | 6.0   |
+| 4.0  | 8.0   |
+| 5.0  | 10.0  |
 
 Go through the databricks Introductions Now
 -------------------------------------------
@@ -395,36 +570,89 @@ Go through the databricks Introductions Now
 
 -   <https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-datasets.html>
 
-<!-- -->
+``` scala
+val rangeDS = spark.range(0, 3) // Ctrl+Enter to make DataSet with 0,1,2; Note we added '.toDF()' to this to create a DataFrame
+```
 
-    val rangeDS = spark.range(0, 3) // Ctrl+Enter to make DataSet with 0,1,2; Note we added '.toDF()' to this to create a DataFrame
+>     rangeDS: org.apache.spark.sql.Dataset[Long] = [id: bigint]
 
-> rangeDS: org.apache.spark.sql.Dataset\[Long\] = \[id: bigint\]
+``` scala
+rangeDS.show() // the column name 'id' is made by default here
+```
 
-    rangeDS.show() // the column name 'id' is made by default here
-
-> +---+ | id| +---+ | 0| | 1| | 2| +---+
+>     +---+
+>     | id|
+>     +---+
+>     |  0|
+>     |  1|
+>     |  2|
+>     +---+
 
 We can have more complicated objects in a `DataSet` too.
 
 Let's make a more interesting DataFrame for `groupBy` with repeated elements so that the `count` will be more than `1`.
 
-    val df111 = df1.union(df11) // let's take the unionAll of df1 and df11 into df111
-    df111.show() // df111 is obtained by simply appending the rows of df11 to df1
+``` scala
+val df111 = df1.union(df11) // let's take the unionAll of df1 and df11 into df111
+df111.show() // df111 is obtained by simply appending the rows of df11 to df1
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| | 3| 6| | 4| 8| | 5| 10| +----+-----+ df111: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[once: int, twice: int\]
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
+>
+>     df111: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [once: int, twice: int]
 
-    df1.show()
+``` scala
+df1.show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 1| 2| | 2| 4| | 3| 6| | 4| 8| | 5| 10| +----+-----+
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   1|    2|
+>     |   2|    4|
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
 
-    val df11 = sc.parallelize(3 to 5).map(i => (i, i*2)).toDF("once", "twice") // just make a small one
-    df11.show()
+``` scala
+val df11 = sc.parallelize(3 to 5).map(i => (i, i*2)).toDF("once", "twice") // just make a small one
+df11.show()
+```
 
-> +----+-----+ |once|twice| +----+-----+ | 3| 6| | 4| 8| | 5| 10| +----+-----+ df11: org.apache.spark.sql.DataFrame = \[once: int, twice: int\]
+>     +----+-----+
+>     |once|twice|
+>     +----+-----+
+>     |   3|    6|
+>     |   4|    8|
+>     |   5|   10|
+>     +----+-----+
+>
+>     df11: org.apache.spark.sql.DataFrame = [once: int, twice: int]
 
-    // Count the number of distinct singles -  a bit less boring
-    df111.groupBy("once").count().show()
+``` scala
+// Count the number of distinct singles -  a bit less boring
+df111.groupBy("once").count().show()
+```
 
-> +----+-----+ |once|count| +----+-----+ | 1| 1| | 3| 2| | 5| 2| | 4| 2| | 2| 1| +----+-----+
+>     +----+-----+
+>     |once|count|
+>     +----+-----+
+>     |   1|    1|
+>     |   3|    2|
+>     |   5|    2|
+>     |   4|    2|
+>     |   2|    1|
+>     +----+-----+
 

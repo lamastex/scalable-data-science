@@ -20,84 +20,99 @@ References: \* [GraphFrames User Guide](http://graphframes.github.io/user-guide.
 
 Extract the Airports and Departure Delays information from S3 / DBFS
 
-    // Set File Paths
-    val tripdelaysFilePath = "/databricks-datasets/flights/departuredelays.csv"
-    val airportsnaFilePath = "/databricks-datasets/flights/airport-codes-na.txt"
+``` scala
+// Set File Paths
+val tripdelaysFilePath = "/databricks-datasets/flights/departuredelays.csv"
+val airportsnaFilePath = "/databricks-datasets/flights/airport-codes-na.txt"
+```
 
-> tripdelaysFilePath: String = /databricks-datasets/flights/departuredelays.csv airportsnaFilePath: String = /databricks-datasets/flights/airport-codes-na.txt
+>     tripdelaysFilePath: String = /databricks-datasets/flights/departuredelays.csv
+>     airportsnaFilePath: String = /databricks-datasets/flights/airport-codes-na.txt
 
-    // Obtain airports dataset
-    // Note that "spark-csv" package is built-in datasource in Spark 2.0
-    val airportsna = sqlContext.read.format("com.databricks.spark.csv").
-      option("header", "true").
-      option("inferschema", "true").
-      option("delimiter", "\t").
-      load(airportsnaFilePath)
+``` scala
+// Obtain airports dataset
+// Note that "spark-csv" package is built-in datasource in Spark 2.0
+val airportsna = sqlContext.read.format("com.databricks.spark.csv").
+  option("header", "true").
+  option("inferschema", "true").
+  option("delimiter", "\t").
+  load(airportsnaFilePath)
 
-    airportsna.createOrReplaceTempView("airports_na")
+airportsna.createOrReplaceTempView("airports_na")
 
-    // Obtain departure Delays data
-    val departureDelays = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").load(tripdelaysFilePath)
-    departureDelays.createOrReplaceTempView("departureDelays")
-    departureDelays.cache()
+// Obtain departure Delays data
+val departureDelays = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").load(tripdelaysFilePath)
+departureDelays.createOrReplaceTempView("departureDelays")
+departureDelays.cache()
 
-    // Available IATA (International Air Transport Association) codes from the departuredelays sample dataset
-    val tripIATA = sqlContext.sql("select distinct iata from (select distinct origin as iata from departureDelays union all select distinct destination as iata from departureDelays) a")
-    tripIATA.createOrReplaceTempView("tripIATA")
+// Available IATA (International Air Transport Association) codes from the departuredelays sample dataset
+val tripIATA = sqlContext.sql("select distinct iata from (select distinct origin as iata from departureDelays union all select distinct destination as iata from departureDelays) a")
+tripIATA.createOrReplaceTempView("tripIATA")
 
-    // Only include airports with atleast one trip from the departureDelays dataset
-    val airports = sqlContext.sql("select f.IATA, f.City, f.State, f.Country from airports_na f join tripIATA t on t.IATA = f.IATA")
-    airports.createOrReplaceTempView("airports")
-    airports.cache()
+// Only include airports with atleast one trip from the departureDelays dataset
+val airports = sqlContext.sql("select f.IATA, f.City, f.State, f.Country from airports_na f join tripIATA t on t.IATA = f.IATA")
+airports.createOrReplaceTempView("airports")
+airports.cache()
+```
 
-> airportsna: org.apache.spark.sql.DataFrame = \[City: string, State: string ... 2 more fields\] departureDelays: org.apache.spark.sql.DataFrame = \[date: string, delay: string ... 3 more fields\] tripIATA: org.apache.spark.sql.DataFrame = \[iata: string\] airports: org.apache.spark.sql.DataFrame = \[IATA: string, City: string ... 2 more fields\] res0: airports.type = \[IATA: string, City: string ... 2 more fields\]
+>     airportsna: org.apache.spark.sql.DataFrame = [City: string, State: string ... 2 more fields]
+>     departureDelays: org.apache.spark.sql.DataFrame = [date: string, delay: string ... 3 more fields]
+>     tripIATA: org.apache.spark.sql.DataFrame = [iata: string]
+>     airports: org.apache.spark.sql.DataFrame = [IATA: string, City: string ... 2 more fields]
+>     res0: airports.type = [IATA: string, City: string ... 2 more fields]
 
-    // Build `departureDelays_geo` DataFrame
-    // Obtain key attributes such as Date of flight, delays, distance, and airport information (Origin, Destination)  
-    val departureDelays_geo = sqlContext.sql("select cast(f.date as int) as tripid, cast(concat(concat(concat(concat(concat(concat('2014-', concat(concat(substr(cast(f.date as string), 1, 2), '-')), substr(cast(f.date as string), 3, 2)), ' '), substr(cast(f.date as string), 5, 2)), ':'), substr(cast(f.date as string), 7, 2)), ':00') as timestamp) as `localdate`, cast(f.delay as int), cast(f.distance as int), f.origin as src, f.destination as dst, o.city as city_src, d.city as city_dst, o.state as state_src, d.state as state_dst from departuredelays f join airports o on o.iata = f.origin join airports d on d.iata = f.destination") 
+``` scala
+// Build `departureDelays_geo` DataFrame
+// Obtain key attributes such as Date of flight, delays, distance, and airport information (Origin, Destination)  
+val departureDelays_geo = sqlContext.sql("select cast(f.date as int) as tripid, cast(concat(concat(concat(concat(concat(concat('2014-', concat(concat(substr(cast(f.date as string), 1, 2), '-')), substr(cast(f.date as string), 3, 2)), ' '), substr(cast(f.date as string), 5, 2)), ':'), substr(cast(f.date as string), 7, 2)), ':00') as timestamp) as `localdate`, cast(f.delay as int), cast(f.distance as int), f.origin as src, f.destination as dst, o.city as city_src, d.city as city_dst, o.state as state_src, d.state as state_dst from departuredelays f join airports o on o.iata = f.origin join airports d on d.iata = f.destination") 
 
-    // RegisterTempTable
-    departureDelays_geo.createOrReplaceTempView("departureDelays_geo")
+// RegisterTempTable
+departureDelays_geo.createOrReplaceTempView("departureDelays_geo")
 
-    // Cache and Count
-    departureDelays_geo.cache()
-    departureDelays_geo.count()
+// Cache and Count
+departureDelays_geo.cache()
+departureDelays_geo.count()
+```
 
-> departureDelays\_geo: org.apache.spark.sql.DataFrame = \[tripid: int, localdate: timestamp ... 8 more fields\] res3: Long = 1361141
+>     departureDelays_geo: org.apache.spark.sql.DataFrame = [tripid: int, localdate: timestamp ... 8 more fields]
+>     res3: Long = 1361141
 
-    display(departureDelays_geo)
+``` scala
+display(departureDelays_geo)
+```
 
-| 1011111.0 | 2014-01-01T11:11:00.000+0000 | -5.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-|-----------|------------------------------|-------|-------|-----|-----|-------------|---------------------|-----|-----|
-| 1021111.0 | 2014-01-02T11:11:00.000+0000 | 7.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1031111.0 | 2014-01-03T11:11:00.000+0000 | 0.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1041925.0 | 2014-01-04T19:25:00.000+0000 | 0.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1061115.0 | 2014-01-06T11:15:00.000+0000 | 33.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1071115.0 | 2014-01-07T11:15:00.000+0000 | 23.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1081115.0 | 2014-01-08T11:15:00.000+0000 | -9.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1091115.0 | 2014-01-09T11:15:00.000+0000 | 11.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1101115.0 | 2014-01-10T11:15:00.000+0000 | -3.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1112015.0 | 2014-01-11T20:15:00.000+0000 | -7.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1121925.0 | 2014-01-12T19:25:00.000+0000 | -5.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1131115.0 | 2014-01-13T11:15:00.000+0000 | -3.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1141115.0 | 2014-01-14T11:15:00.000+0000 | -6.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1151115.0 | 2014-01-15T11:15:00.000+0000 | -7.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1161115.0 | 2014-01-16T11:15:00.000+0000 | -3.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1171115.0 | 2014-01-17T11:15:00.000+0000 | 4.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1182015.0 | 2014-01-18T20:15:00.000+0000 | -5.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1191925.0 | 2014-01-19T19:25:00.000+0000 | -7.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1201115.0 | 2014-01-20T11:15:00.000+0000 | -6.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1211115.0 | 2014-01-21T11:15:00.000+0000 | 0.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1221115.0 | 2014-01-22T11:15:00.000+0000 | -4.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1231115.0 | 2014-01-23T11:15:00.000+0000 | -4.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1241115.0 | 2014-01-24T11:15:00.000+0000 | -3.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1252015.0 | 2014-01-25T20:15:00.000+0000 | -12.0 | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1261925.0 | 2014-01-26T19:25:00.000+0000 | -5.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1271115.0 | 2014-01-27T11:15:00.000+0000 | 0.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1281115.0 | 2014-01-28T11:15:00.000+0000 | -8.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1291115.0 | 2014-01-29T11:15:00.000+0000 | -2.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1301115.0 | 2014-01-30T11:15:00.000+0000 | 0.0   | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
-| 1311115.0 | 2014-01-31T11:15:00.000+0000 | -3.0  | 221.0 | MSP | INL | Minneapolis | International Falls | MN  | MN  |
+| tripid    | localdate                    | delay | distance | src | dst | city\_src   | city\_dst           | state\_src | state\_dst |
+|-----------|------------------------------|-------|----------|-----|-----|-------------|---------------------|------------|------------|
+| 1011111.0 | 2014-01-01T11:11:00.000+0000 | -5.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1021111.0 | 2014-01-02T11:11:00.000+0000 | 7.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1031111.0 | 2014-01-03T11:11:00.000+0000 | 0.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1041925.0 | 2014-01-04T19:25:00.000+0000 | 0.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1061115.0 | 2014-01-06T11:15:00.000+0000 | 33.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1071115.0 | 2014-01-07T11:15:00.000+0000 | 23.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1081115.0 | 2014-01-08T11:15:00.000+0000 | -9.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1091115.0 | 2014-01-09T11:15:00.000+0000 | 11.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1101115.0 | 2014-01-10T11:15:00.000+0000 | -3.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1112015.0 | 2014-01-11T20:15:00.000+0000 | -7.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1121925.0 | 2014-01-12T19:25:00.000+0000 | -5.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1131115.0 | 2014-01-13T11:15:00.000+0000 | -3.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1141115.0 | 2014-01-14T11:15:00.000+0000 | -6.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1151115.0 | 2014-01-15T11:15:00.000+0000 | -7.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1161115.0 | 2014-01-16T11:15:00.000+0000 | -3.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1171115.0 | 2014-01-17T11:15:00.000+0000 | 4.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1182015.0 | 2014-01-18T20:15:00.000+0000 | -5.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1191925.0 | 2014-01-19T19:25:00.000+0000 | -7.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1201115.0 | 2014-01-20T11:15:00.000+0000 | -6.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1211115.0 | 2014-01-21T11:15:00.000+0000 | 0.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1221115.0 | 2014-01-22T11:15:00.000+0000 | -4.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1231115.0 | 2014-01-23T11:15:00.000+0000 | -4.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1241115.0 | 2014-01-24T11:15:00.000+0000 | -3.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1252015.0 | 2014-01-25T20:15:00.000+0000 | -12.0 | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1261925.0 | 2014-01-26T19:25:00.000+0000 | -5.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1271115.0 | 2014-01-27T11:15:00.000+0000 | 0.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1281115.0 | 2014-01-28T11:15:00.000+0000 | -8.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1291115.0 | 2014-01-29T11:15:00.000+0000 | -2.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1301115.0 | 2014-01-30T11:15:00.000+0000 | 0.0   | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
+| 1311115.0 | 2014-01-31T11:15:00.000+0000 | -3.0  | 221.0    | MSP | INL | Minneapolis | International Falls | MN         | MN         |
 
 Truncated to 30 rows
 
@@ -110,107 +125,124 @@ These are required naming conventions for vertices and edges in GraphFrames as o
 
 **WARNING:** If the graphframes package, required in the cell below, is not installed, follow the instructions [here](http://cdn2.hubspot.net/hubfs/438089/notebooks/help/Setup_graphframes_package.html).
 
-    // Note, ensure you have already installed the GraphFrames spack-package
-    import org.apache.spark.sql.functions._
-    import org.graphframes._
+``` scala
+// Note, ensure you have already installed the GraphFrames spack-package
+import org.apache.spark.sql.functions._
+import org.graphframes._
 
-    // Create Vertices (airports) and Edges (flights)
-    val tripVertices = airports.withColumnRenamed("IATA", "id").distinct()
-    val tripEdges = departureDelays_geo.select("tripid", "delay", "src", "dst", "city_dst", "state_dst")
+// Create Vertices (airports) and Edges (flights)
+val tripVertices = airports.withColumnRenamed("IATA", "id").distinct()
+val tripEdges = departureDelays_geo.select("tripid", "delay", "src", "dst", "city_dst", "state_dst")
 
-    // Cache Vertices and Edges
-    tripEdges.cache()
-    tripVertices.cache()
+// Cache Vertices and Edges
+tripEdges.cache()
+tripVertices.cache()
+```
 
-> import org.apache.spark.sql.functions.\_ import org.graphframes.\_ tripVertices: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[id: string, City: string ... 2 more fields\] tripEdges: org.apache.spark.sql.DataFrame = \[tripid: int, delay: int ... 4 more fields\] res5: tripVertices.type = \[id: string, City: string ... 2 more fields\]
+>     import org.apache.spark.sql.functions._
+>     import org.graphframes._
+>     tripVertices: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [id: string, City: string ... 2 more fields]
+>     tripEdges: org.apache.spark.sql.DataFrame = [tripid: int, delay: int ... 4 more fields]
+>     res5: tripVertices.type = [id: string, City: string ... 2 more fields]
 
-    // Vertices
-    // The vertices of our graph are the airports
-    display(tripVertices)
+``` scala
+// Vertices
+// The vertices of our graph are the airports
+display(tripVertices)
+```
 
-| FAT | Fresno           | CA  | USA |
-|-----|------------------|-----|-----|
-| CMH | Columbus         | OH  | USA |
-| PHX | Phoenix          | AZ  | USA |
-| PAH | Paducah          | KY  | USA |
-| COS | Colorado Springs | CO  | USA |
-| MYR | Myrtle Beach     | SC  | USA |
-| RNO | Reno             | NV  | USA |
-| SRQ | Sarasota         | FL  | USA |
-| VLD | Valdosta         | GA  | USA |
-| PSC | Pasco            | WA  | USA |
-| BPT | Beaumont         | TX  | USA |
-| CAE | Columbia         | SC  | USA |
-| LAX | Los Angeles      | CA  | USA |
-| DAY | Dayton           | OH  | USA |
-| AVP | Wilkes-Barre     | PA  | USA |
-| MFR | Medford          | OR  | USA |
-| JFK | New York         | NY  | USA |
-| LAS | Las Vegas        | NV  | USA |
-| BNA | Nashville        | TN  | USA |
-| CLT | Charlotte        | NC  | USA |
-| BDL | Hartford         | CT  | USA |
-| ILG | Wilmington       | DE  | USA |
-| ACT | Waco             | TX  | USA |
-| ATW | Appleton         | WI  | USA |
-| RHI | Rhinelander      | WI  | USA |
-| PWM | Portland         | ME  | USA |
-| SJT | San Angelo       | TX  | USA |
-| GRB | Green Bay        | WI  | USA |
-| APN | Alpena           | MI  | USA |
-| MSY | New Orleans      | LA  | USA |
-
-Truncated to 30 rows
-
-    // Edges
-    // The edges of our graph are the flights between airports
-    display(tripEdges)
-
-| 1011111.0 | -5.0  | MSP | INL | International Falls | MN  |
-|-----------|-------|-----|-----|---------------------|-----|
-| 1021111.0 | 7.0   | MSP | INL | International Falls | MN  |
-| 1031111.0 | 0.0   | MSP | INL | International Falls | MN  |
-| 1041925.0 | 0.0   | MSP | INL | International Falls | MN  |
-| 1061115.0 | 33.0  | MSP | INL | International Falls | MN  |
-| 1071115.0 | 23.0  | MSP | INL | International Falls | MN  |
-| 1081115.0 | -9.0  | MSP | INL | International Falls | MN  |
-| 1091115.0 | 11.0  | MSP | INL | International Falls | MN  |
-| 1101115.0 | -3.0  | MSP | INL | International Falls | MN  |
-| 1112015.0 | -7.0  | MSP | INL | International Falls | MN  |
-| 1121925.0 | -5.0  | MSP | INL | International Falls | MN  |
-| 1131115.0 | -3.0  | MSP | INL | International Falls | MN  |
-| 1141115.0 | -6.0  | MSP | INL | International Falls | MN  |
-| 1151115.0 | -7.0  | MSP | INL | International Falls | MN  |
-| 1161115.0 | -3.0  | MSP | INL | International Falls | MN  |
-| 1171115.0 | 4.0   | MSP | INL | International Falls | MN  |
-| 1182015.0 | -5.0  | MSP | INL | International Falls | MN  |
-| 1191925.0 | -7.0  | MSP | INL | International Falls | MN  |
-| 1201115.0 | -6.0  | MSP | INL | International Falls | MN  |
-| 1211115.0 | 0.0   | MSP | INL | International Falls | MN  |
-| 1221115.0 | -4.0  | MSP | INL | International Falls | MN  |
-| 1231115.0 | -4.0  | MSP | INL | International Falls | MN  |
-| 1241115.0 | -3.0  | MSP | INL | International Falls | MN  |
-| 1252015.0 | -12.0 | MSP | INL | International Falls | MN  |
-| 1261925.0 | -5.0  | MSP | INL | International Falls | MN  |
-| 1271115.0 | 0.0   | MSP | INL | International Falls | MN  |
-| 1281115.0 | -8.0  | MSP | INL | International Falls | MN  |
-| 1291115.0 | -2.0  | MSP | INL | International Falls | MN  |
-| 1301115.0 | 0.0   | MSP | INL | International Falls | MN  |
-| 1311115.0 | -3.0  | MSP | INL | International Falls | MN  |
+| id  | City             | State | Country |
+|-----|------------------|-------|---------|
+| FAT | Fresno           | CA    | USA     |
+| CMH | Columbus         | OH    | USA     |
+| PHX | Phoenix          | AZ    | USA     |
+| PAH | Paducah          | KY    | USA     |
+| COS | Colorado Springs | CO    | USA     |
+| MYR | Myrtle Beach     | SC    | USA     |
+| RNO | Reno             | NV    | USA     |
+| SRQ | Sarasota         | FL    | USA     |
+| VLD | Valdosta         | GA    | USA     |
+| PSC | Pasco            | WA    | USA     |
+| BPT | Beaumont         | TX    | USA     |
+| CAE | Columbia         | SC    | USA     |
+| LAX | Los Angeles      | CA    | USA     |
+| DAY | Dayton           | OH    | USA     |
+| AVP | Wilkes-Barre     | PA    | USA     |
+| MFR | Medford          | OR    | USA     |
+| JFK | New York         | NY    | USA     |
+| LAS | Las Vegas        | NV    | USA     |
+| BNA | Nashville        | TN    | USA     |
+| CLT | Charlotte        | NC    | USA     |
+| BDL | Hartford         | CT    | USA     |
+| ILG | Wilmington       | DE    | USA     |
+| ACT | Waco             | TX    | USA     |
+| ATW | Appleton         | WI    | USA     |
+| RHI | Rhinelander      | WI    | USA     |
+| PWM | Portland         | ME    | USA     |
+| SJT | San Angelo       | TX    | USA     |
+| GRB | Green Bay        | WI    | USA     |
+| APN | Alpena           | MI    | USA     |
+| MSY | New Orleans      | LA    | USA     |
 
 Truncated to 30 rows
 
-    // Build `tripGraph` GraphFrame
-    // This GraphFrame builds up on the vertices and edges based on our trips (flights)
-    val tripGraph = GraphFrame(tripVertices, tripEdges)
-    println(tripGraph)
+``` scala
+// Edges
+// The edges of our graph are the flights between airports
+display(tripEdges)
+```
 
-    // Build `tripGraphPrime` GraphFrame
-    // This graphframe contains a smaller subset of data to make it easier to display motifs and subgraphs (below)
-    val tripEdgesPrime = departureDelays_geo.select("tripid", "delay", "src", "dst")
-    val tripGraphPrime = GraphFrame(tripVertices, tripEdgesPrime)
+| tripid    | delay | src | dst | city\_dst           | state\_dst |
+|-----------|-------|-----|-----|---------------------|------------|
+| 1011111.0 | -5.0  | MSP | INL | International Falls | MN         |
+| 1021111.0 | 7.0   | MSP | INL | International Falls | MN         |
+| 1031111.0 | 0.0   | MSP | INL | International Falls | MN         |
+| 1041925.0 | 0.0   | MSP | INL | International Falls | MN         |
+| 1061115.0 | 33.0  | MSP | INL | International Falls | MN         |
+| 1071115.0 | 23.0  | MSP | INL | International Falls | MN         |
+| 1081115.0 | -9.0  | MSP | INL | International Falls | MN         |
+| 1091115.0 | 11.0  | MSP | INL | International Falls | MN         |
+| 1101115.0 | -3.0  | MSP | INL | International Falls | MN         |
+| 1112015.0 | -7.0  | MSP | INL | International Falls | MN         |
+| 1121925.0 | -5.0  | MSP | INL | International Falls | MN         |
+| 1131115.0 | -3.0  | MSP | INL | International Falls | MN         |
+| 1141115.0 | -6.0  | MSP | INL | International Falls | MN         |
+| 1151115.0 | -7.0  | MSP | INL | International Falls | MN         |
+| 1161115.0 | -3.0  | MSP | INL | International Falls | MN         |
+| 1171115.0 | 4.0   | MSP | INL | International Falls | MN         |
+| 1182015.0 | -5.0  | MSP | INL | International Falls | MN         |
+| 1191925.0 | -7.0  | MSP | INL | International Falls | MN         |
+| 1201115.0 | -6.0  | MSP | INL | International Falls | MN         |
+| 1211115.0 | 0.0   | MSP | INL | International Falls | MN         |
+| 1221115.0 | -4.0  | MSP | INL | International Falls | MN         |
+| 1231115.0 | -4.0  | MSP | INL | International Falls | MN         |
+| 1241115.0 | -3.0  | MSP | INL | International Falls | MN         |
+| 1252015.0 | -12.0 | MSP | INL | International Falls | MN         |
+| 1261925.0 | -5.0  | MSP | INL | International Falls | MN         |
+| 1271115.0 | 0.0   | MSP | INL | International Falls | MN         |
+| 1281115.0 | -8.0  | MSP | INL | International Falls | MN         |
+| 1291115.0 | -2.0  | MSP | INL | International Falls | MN         |
+| 1301115.0 | 0.0   | MSP | INL | International Falls | MN         |
+| 1311115.0 | -3.0  | MSP | INL | International Falls | MN         |
 
-> GraphFrame(v:\[id: string, City: string ... 2 more fields\], e:\[src: string, dst: string ... 4 more fields\]) tripGraph: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, City: string ... 2 more fields\], e:\[src: string, dst: string ... 4 more fields\]) tripEdgesPrime: org.apache.spark.sql.DataFrame = \[tripid: int, delay: int ... 2 more fields\] tripGraphPrime: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, City: string ... 2 more fields\], e:\[src: string, dst: string ... 2 more fields\])
+Truncated to 30 rows
+
+``` scala
+// Build `tripGraph` GraphFrame
+// This GraphFrame builds up on the vertices and edges based on our trips (flights)
+val tripGraph = GraphFrame(tripVertices, tripEdges)
+println(tripGraph)
+
+// Build `tripGraphPrime` GraphFrame
+// This graphframe contains a smaller subset of data to make it easier to display motifs and subgraphs (below)
+val tripEdgesPrime = departureDelays_geo.select("tripid", "delay", "src", "dst")
+val tripGraphPrime = GraphFrame(tripVertices, tripEdgesPrime)
+```
+
+>     GraphFrame(v:[id: string, City: string ... 2 more fields], e:[src: string, dst: string ... 4 more fields])
+>     tripGraph: org.graphframes.GraphFrame = GraphFrame(v:[id: string, City: string ... 2 more fields], e:[src: string, dst: string ... 4 more fields])
+>     tripEdgesPrime: org.apache.spark.sql.DataFrame = [tripid: int, delay: int ... 2 more fields]
+>     tripGraphPrime: org.graphframes.GraphFrame = GraphFrame(v:[id: string, City: string ... 2 more fields], e:[src: string, dst: string ... 2 more fields])
 
 Simple Queries
 --------------
@@ -219,44 +251,58 @@ Let's start with a set of simple graph queries to understand flight performance 
 
 #### Determine the number of airports and trips
 
-    println(s"Airports: ${tripGraph.vertices.count()}")
-    println(s"Trips: ${tripGraph.edges.count()}")
+``` scala
+println(s"Airports: ${tripGraph.vertices.count()}")
+println(s"Trips: ${tripGraph.edges.count()}")
+```
 
-> Airports: 279 Trips: 1361141
+>     Airports: 279
+>     Trips: 1361141
 
 #### Determining the longest delay in this dataset
 
-    // Finding the longest Delay
-    val longestDelay = tripGraph.edges.groupBy().max("delay")
-    display(longestDelay)
+``` scala
+// Finding the longest Delay
+val longestDelay = tripGraph.edges.groupBy().max("delay")
+display(longestDelay)
+```
 
-| 1642.0 |
-|--------|
+| max(delay) |
+|------------|
+| 1642.0     |
 
 #### Determining the number of delayed vs. on-time / early flights
 
-    // Determining number of on-time / early flights vs. delayed flights
-    println(s"On-time / Early Flights: ${tripGraph.edges.filter("delay <= 0").count()}")
-    println(s"Delayed Flights: ${tripGraph.edges.filter("delay > 0").count()}")
+``` scala
+// Determining number of on-time / early flights vs. delayed flights
+println(s"On-time / Early Flights: ${tripGraph.edges.filter("delay <= 0").count()}")
+println(s"Delayed Flights: ${tripGraph.edges.filter("delay > 0").count()}")
+```
 
-> On-time / Early Flights: 780469 Delayed Flights: 580672
+>     On-time / Early Flights: 780469
+>     Delayed Flights: 580672
 
 #### What flights departing SFO are most likely to have significant delays
 
 Note, delay can be &lt;= 0 meaning the flight left on time or early
 
-    val sfoDelayedTrips = tripGraph.edges.
-      filter("src = 'SFO' and delay > 0").
-      groupBy("src", "dst").
-      avg("delay").
-      sort(desc("avg(delay)"))
+``` scala
+val sfoDelayedTrips = tripGraph.edges.
+  filter("src = 'SFO' and delay > 0").
+  groupBy("src", "dst").
+  avg("delay").
+  sort(desc("avg(delay)"))
+```
 
-> sfoDelayedTrips: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[src: string, dst: string ... 1 more field\]
+>     sfoDelayedTrips: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [src: string, dst: string ... 1 more field]
 
-    display(sfoDelayedTrips)
+``` scala
+display(sfoDelayedTrips)
+```
 
-| SFO | OKC | 59.073170731707314 |
+| src | dst | avg(delay)         |
 |-----|-----|--------------------|
+| SFO | OKC | 59.073170731707314 |
 | SFO | JAC | 57.13333333333333  |
 | SFO | COS | 53.976190476190474 |
 | SFO | OTH | 48.09090909090909  |
@@ -291,48 +337,88 @@ Truncated to 30 rows
 
 #### What destinations tend to have delays
 
-    // After displaying tripDelays, use Plot Options to set `state_dst` as a Key.
-    val tripDelays = tripGraph.edges.filter($"delay" > 0)
-    display(tripDelays)
+``` scala
+// After displaying tripDelays, use Plot Options to set `state_dst` as a Key.
+val tripDelays = tripGraph.edges.filter($"delay" > 0)
+display(tripDelays)
+```
 
-| 1021111.0 | 7.0   | MSP | INL | International Falls | MN  |
-|-----------|-------|-----|-----|---------------------|-----|
-| 1061115.0 | 33.0  | MSP | INL | International Falls | MN  |
-| 1071115.0 | 23.0  | MSP | INL | International Falls | MN  |
-| 1091115.0 | 11.0  | MSP | INL | International Falls | MN  |
-| 1171115.0 | 4.0   | MSP | INL | International Falls | MN  |
-| 2091925.0 | 1.0   | MSP | INL | International Falls | MN  |
-| 2152015.0 | 16.0  | MSP | INL | International Falls | MN  |
-| 2161925.0 | 169.0 | MSP | INL | International Falls | MN  |
-| 2171115.0 | 27.0  | MSP | INL | International Falls | MN  |
-| 2181115.0 | 96.0  | MSP | INL | International Falls | MN  |
-| 2281115.0 | 5.0   | MSP | INL | International Falls | MN  |
-| 3031115.0 | 17.0  | MSP | INL | International Falls | MN  |
-| 3171115.0 | 25.0  | MSP | INL | International Falls | MN  |
-| 3181115.0 | 2.0   | MSP | INL | International Falls | MN  |
-| 3271115.0 | 9.0   | MSP | INL | International Falls | MN  |
-| 1011646.0 | 71.0  | IAH | MSY | New Orleans         | LA  |
-| 1031519.0 | 136.0 | IAH | MSY | New Orleans         | LA  |
-| 1042123.0 | 37.0  | IAH | MSY | New Orleans         | LA  |
-| 1041529.0 | 52.0  | IAH | MSY | New Orleans         | LA  |
-| 1051341.0 | 79.0  | IAH | MSY | New Orleans         | LA  |
-| 1051521.0 | 144.0 | IAH | MSY | New Orleans         | LA  |
-| 1051646.0 | 140.0 | IAH | MSY | New Orleans         | LA  |
-| 1050714.0 | 13.0  | IAH | MSY | New Orleans         | LA  |
-| 1061519.0 | 65.0  | IAH | MSY | New Orleans         | LA  |
-| 1061650.0 | 79.0  | IAH | MSY | New Orleans         | LA  |
-| 1060714.0 | 111.0 | IAH | MSY | New Orleans         | LA  |
-| 1071628.0 | 186.0 | IAH | MSY | New Orleans         | LA  |
-| 1081628.0 | 171.0 | IAH | MSY | New Orleans         | LA  |
-| 1111633.0 | 21.0  | IAH | MSY | New Orleans         | LA  |
-| 1121254.0 | 6.0   | IAH | MSY | New Orleans         | LA  |
+| tripid    | delay | src | dst | city\_dst           | state\_dst |
+|-----------|-------|-----|-----|---------------------|------------|
+| 1021111.0 | 7.0   | MSP | INL | International Falls | MN         |
+| 1061115.0 | 33.0  | MSP | INL | International Falls | MN         |
+| 1071115.0 | 23.0  | MSP | INL | International Falls | MN         |
+| 1091115.0 | 11.0  | MSP | INL | International Falls | MN         |
+| 1171115.0 | 4.0   | MSP | INL | International Falls | MN         |
+| 2091925.0 | 1.0   | MSP | INL | International Falls | MN         |
+| 2152015.0 | 16.0  | MSP | INL | International Falls | MN         |
+| 2161925.0 | 169.0 | MSP | INL | International Falls | MN         |
+| 2171115.0 | 27.0  | MSP | INL | International Falls | MN         |
+| 2181115.0 | 96.0  | MSP | INL | International Falls | MN         |
+| 2281115.0 | 5.0   | MSP | INL | International Falls | MN         |
+| 3031115.0 | 17.0  | MSP | INL | International Falls | MN         |
+| 3171115.0 | 25.0  | MSP | INL | International Falls | MN         |
+| 3181115.0 | 2.0   | MSP | INL | International Falls | MN         |
+| 3271115.0 | 9.0   | MSP | INL | International Falls | MN         |
+| 1011646.0 | 71.0  | IAH | MSY | New Orleans         | LA         |
+| 1031519.0 | 136.0 | IAH | MSY | New Orleans         | LA         |
+| 1042123.0 | 37.0  | IAH | MSY | New Orleans         | LA         |
+| 1041529.0 | 52.0  | IAH | MSY | New Orleans         | LA         |
+| 1051341.0 | 79.0  | IAH | MSY | New Orleans         | LA         |
+| 1051521.0 | 144.0 | IAH | MSY | New Orleans         | LA         |
+| 1051646.0 | 140.0 | IAH | MSY | New Orleans         | LA         |
+| 1050714.0 | 13.0  | IAH | MSY | New Orleans         | LA         |
+| 1061519.0 | 65.0  | IAH | MSY | New Orleans         | LA         |
+| 1061650.0 | 79.0  | IAH | MSY | New Orleans         | LA         |
+| 1060714.0 | 111.0 | IAH | MSY | New Orleans         | LA         |
+| 1071628.0 | 186.0 | IAH | MSY | New Orleans         | LA         |
+| 1081628.0 | 171.0 | IAH | MSY | New Orleans         | LA         |
+| 1111633.0 | 21.0  | IAH | MSY | New Orleans         | LA         |
+| 1121254.0 | 6.0   | IAH | MSY | New Orleans         | LA         |
 
 Truncated to 30 rows
 
 #### What destinations tend to have significant delays departing from SEA
 
-    // States with the longest cumulative delays (with individual delays > 100 minutes) (origin: Seattle)
-    display(tripGraph.edges.filter($"src" === "SEA" && $"delay" > 100))
+``` scala
+// States with the longest cumulative delays (with individual delays > 100 minutes) (origin: Seattle)
+display(tripGraph.edges.filter($"src" === "SEA" && $"delay" > 100))
+```
+
+| tripid    | delay | src | dst | city\_dst     | state\_dst |
+|-----------|-------|-----|-----|---------------|------------|
+| 3201938.0 | 108.0 | SEA | BUR | Burbank       | CA         |
+| 3201655.0 | 107.0 | SEA | SNA | Orange County | CA         |
+| 1011950.0 | 123.0 | SEA | OAK | Oakland       | CA         |
+| 1021950.0 | 194.0 | SEA | OAK | Oakland       | CA         |
+| 1021615.0 | 317.0 | SEA | OAK | Oakland       | CA         |
+| 1021755.0 | 385.0 | SEA | OAK | Oakland       | CA         |
+| 1031950.0 | 283.0 | SEA | OAK | Oakland       | CA         |
+| 1031615.0 | 364.0 | SEA | OAK | Oakland       | CA         |
+| 1031325.0 | 130.0 | SEA | OAK | Oakland       | CA         |
+| 1061755.0 | 107.0 | SEA | OAK | Oakland       | CA         |
+| 1081330.0 | 118.0 | SEA | OAK | Oakland       | CA         |
+| 2282055.0 | 150.0 | SEA | OAK | Oakland       | CA         |
+| 3061600.0 | 130.0 | SEA | OAK | Oakland       | CA         |
+| 3170815.0 | 199.0 | SEA | DCA | Washington DC | null       |
+| 2151845.0 | 128.0 | SEA | KTN | Ketchikan     | AK         |
+| 2281845.0 | 104.0 | SEA | KTN | Ketchikan     | AK         |
+| 3130720.0 | 117.0 | SEA | KTN | Ketchikan     | AK         |
+| 1011411.0 | 177.0 | SEA | IAH | Houston       | TX         |
+| 1022347.0 | 158.0 | SEA | IAH | Houston       | TX         |
+| 1021411.0 | 170.0 | SEA | IAH | Houston       | TX         |
+| 1031201.0 | 116.0 | SEA | IAH | Houston       | TX         |
+| 1031900.0 | 178.0 | SEA | IAH | Houston       | TX         |
+| 1042347.0 | 114.0 | SEA | IAH | Houston       | TX         |
+| 1062347.0 | 136.0 | SEA | IAH | Houston       | TX         |
+| 1101203.0 | 173.0 | SEA | IAH | Houston       | TX         |
+| 1172300.0 | 125.0 | SEA | IAH | Houston       | TX         |
+| 1250605.0 | 227.0 | SEA | IAH | Houston       | TX         |
+| 1291203.0 | 106.0 | SEA | IAH | Houston       | TX         |
+| 2141157.0 | 127.0 | SEA | IAH | Houston       | TX         |
+| 2150740.0 | 466.0 | SEA | IAH | Houston       | TX         |
+
+Truncated to 30 rows
 
 Vertex Degrees
 --------------
@@ -343,12 +429,15 @@ Vertex Degrees
 
 Reviewing the various properties of the property graph to understand the incoming and outgoing connections between airports.
 
-    // Degrees
-    // The number of degrees - the number of incoming and outgoing connections - for various airports within this sample dataset
-    display(tripGraph.degrees.sort($"degree".desc).limit(20))
+``` scala
+// Degrees
+// The number of degrees - the number of incoming and outgoing connections - for various airports within this sample dataset
+display(tripGraph.degrees.sort($"degree".desc).limit(20))
+```
 
-| ATL | 179774.0 |
+| id  | degree   |
 |-----|----------|
+| ATL | 179774.0 |
 | DFW | 133966.0 |
 | ORD | 125405.0 |
 | LAX | 106853.0 |
@@ -376,54 +465,61 @@ To more easily understand the complex relationship of city airports and their fl
 
 #### What delays might we blame on SFO
 
-    /*
-    Using tripGraphPrime to more easily display 
-    - The associated edge (ab, bc) relationships 
-    - With the different the city / airports (a, b, c) where SFO is the connecting city (b)
-    - Ensuring that flight ab (i.e. the flight to SFO) occured before flight bc (i.e. flight leaving SFO)
-    - Note, TripID was generated based on time in the format of MMDDHHMM converted to int
-    - Therefore bc.tripid < ab.tripid + 10000 means the second flight (bc) occured within approx a day of the first flight (ab)
-    Note: In reality, we would need to be more careful to link trips ab and bc.
-    */
-    val motifs = tripGraphPrime.
-      find("(a)-[ab]->(b); (b)-[bc]->(c)").
-      filter("(b.id = 'SFO') and (ab.delay > 500 or bc.delay > 500) and bc.tripid > ab.tripid and bc.tripid < ab.tripid + 10000")
+``` scala
+/*
+Using tripGraphPrime to more easily display 
+- The associated edge (ab, bc) relationships 
+- With the different the city / airports (a, b, c) where SFO is the connecting city (b)
+- Ensuring that flight ab (i.e. the flight to SFO) occured before flight bc (i.e. flight leaving SFO)
+- Note, TripID was generated based on time in the format of MMDDHHMM converted to int
+- Therefore bc.tripid < ab.tripid + 10000 means the second flight (bc) occured within approx a day of the first flight (ab)
+Note: In reality, we would need to be more careful to link trips ab and bc.
+*/
+val motifs = tripGraphPrime.
+  find("(a)-[ab]->(b); (b)-[bc]->(c)").
+  filter("(b.id = 'SFO') and (ab.delay > 500 or bc.delay > 500) and bc.tripid > ab.tripid and bc.tripid < ab.tripid + 10000")
 
-    display(motifs)
+display(motifs)
+```
 
 Determining Airport Ranking using PageRank
 ------------------------------------------
 
 There are a large number of flights and connections through these various airports included in this Departure Delay Dataset. Using the `pageRank` algorithm, Spark iteratively traverses the graph and determines a rough estimate of how important the airport is.
 
-    // Determining Airport ranking of importance using `pageRank`
-    val ranks = tripGraph.pageRank.resetProbability(0.15).maxIter(5).run()
+``` scala
+// Determining Airport ranking of importance using `pageRank`
+val ranks = tripGraph.pageRank.resetProbability(0.15).maxIter(5).run()
+```
 
-> ranks: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, City: string ... 3 more fields\], e:\[src: string, dst: string ... 5 more fields\])
+>     ranks: org.graphframes.GraphFrame = GraphFrame(v:[id: string, City: string ... 3 more fields], e:[src: string, dst: string ... 5 more fields])
 
-    display(ranks.vertices.orderBy($"pagerank".desc).limit(20))
+``` scala
+display(ranks.vertices.orderBy($"pagerank".desc).limit(20))
+```
 
-| ATL | Atlanta        | GA  | USA | 10.102340247485012 |
-|-----|----------------|-----|-----|--------------------|
-| DFW | Dallas         | TX  | USA | 7.252067259651102  |
-| ORD | Chicago        | IL  | USA | 7.165214941662068  |
-| DEN | Denver         | CO  | USA | 5.041255573485869  |
-| LAX | Los Angeles    | CA  | USA | 4.178333397888139  |
-| IAH | Houston        | TX  | USA | 4.008169343175302  |
-| SFO | San Francisco  | CA  | USA | 3.518595203652925  |
-| SLC | Salt Lake City | UT  | USA | 3.3564822581626763 |
-| PHX | Phoenix        | AZ  | USA | 3.0896771274953343 |
-| LAS | Las Vegas      | NV  | USA | 2.437744837094217  |
-| SEA | Seattle        | WA  | USA | 2.372392233277875  |
-| DTW | Detroit        | MI  | USA | 2.1688712347162338 |
-| MSP | Minneapolis    | MN  | USA | 2.1574735230729862 |
-| MCO | Orlando        | FL  | USA | 2.10982981314059   |
-| EWR | Newark         | NJ  | USA | 2.0700271952450677 |
-| CLT | Charlotte      | NC  | USA | 2.0445115467872346 |
-| LGA | New York       | NY  | USA | 2.005137679218397  |
-| BOS | Boston         | MA  | USA | 1.7516230739068934 |
-| BWI | Baltimore      | MD  | USA | 1.703768581668634  |
-| MIA | Miami          | FL  | USA | 1.6479197970320616 |
+| id  | City           | State | Country | pagerank           |
+|-----|----------------|-------|---------|--------------------|
+| ATL | Atlanta        | GA    | USA     | 10.102340247485012 |
+| DFW | Dallas         | TX    | USA     | 7.252067259651102  |
+| ORD | Chicago        | IL    | USA     | 7.165214941662068  |
+| DEN | Denver         | CO    | USA     | 5.041255573485869  |
+| LAX | Los Angeles    | CA    | USA     | 4.178333397888139  |
+| IAH | Houston        | TX    | USA     | 4.008169343175302  |
+| SFO | San Francisco  | CA    | USA     | 3.518595203652925  |
+| SLC | Salt Lake City | UT    | USA     | 3.3564822581626763 |
+| PHX | Phoenix        | AZ    | USA     | 3.0896771274953343 |
+| LAS | Las Vegas      | NV    | USA     | 2.437744837094217  |
+| SEA | Seattle        | WA    | USA     | 2.372392233277875  |
+| DTW | Detroit        | MI    | USA     | 2.1688712347162338 |
+| MSP | Minneapolis    | MN    | USA     | 2.1574735230729862 |
+| MCO | Orlando        | FL    | USA     | 2.10982981314059   |
+| EWR | Newark         | NJ    | USA     | 2.0700271952450677 |
+| CLT | Charlotte      | NC    | USA     | 2.0445115467872346 |
+| LGA | New York       | NY    | USA     | 2.005137679218397  |
+| BOS | Boston         | MA    | USA     | 1.7516230739068934 |
+| BWI | Baltimore      | MD    | USA     | 1.703768581668634  |
+| MIA | Miami          | FL    | USA     | 1.6479197970320616 |
 
 BTW, A lot more delicate air-traffic arithmetic is possible for a full month of airplane co-trajectories over the radar range of Atlanta, Georgia!
 
@@ -434,20 +530,26 @@ Most popular flights (single city hops)
 
 Using the `tripGraph`, we can quickly determine what are the most popular single city hop flights
 
-    // Determine the most popular flights (single city hops)
-    import org.apache.spark.sql.functions._
+``` scala
+// Determine the most popular flights (single city hops)
+import org.apache.spark.sql.functions._
 
-    val topTrips = tripGraph.edges.
-      groupBy("src", "dst").
-      agg(count("delay").as("trips"))
+val topTrips = tripGraph.edges.
+  groupBy("src", "dst").
+  agg(count("delay").as("trips"))
+```
 
-> import org.apache.spark.sql.functions.\_ topTrips: org.apache.spark.sql.DataFrame = \[src: string, dst: string ... 1 more field\]
+>     import org.apache.spark.sql.functions._
+>     topTrips: org.apache.spark.sql.DataFrame = [src: string, dst: string ... 1 more field]
 
-    // Show the top 20 most popular flights (single city hops)
-    display(topTrips.orderBy($"trips".desc).limit(20))
+``` scala
+// Show the top 20 most popular flights (single city hops)
+display(topTrips.orderBy($"trips".desc).limit(20))
+```
 
-| SFO | LAX | 3232.0 |
+| src | dst | trips  |
 |-----|-----|--------|
+| SFO | LAX | 3232.0 |
 | LAX | SFO | 3198.0 |
 | LAS | LAX | 3016.0 |
 | LAX | LAS | 2964.0 |
@@ -473,40 +575,46 @@ Top Transfer Cities
 
 Many airports are used as transfer points instead of the final Destination. An easy way to calculate this is by calculating the ratio of inDegree (the number of flights to the airport) / outDegree (the number of flights leaving the airport). Values close to 1 may indicate many transfers, whereas values &lt; 1 indicate many outgoing flights and &gt; 1 indicate many incoming flights. Note, this is a simple calculation that does not take into account of timing or scheduling of flights, just the overall aggregate number within the dataset.
 
-    // Calculate the inDeg (flights into the airport) and outDeg (flights leaving the airport)
-    val inDeg = tripGraph.inDegrees
-    val outDeg = tripGraph.outDegrees
+``` scala
+// Calculate the inDeg (flights into the airport) and outDeg (flights leaving the airport)
+val inDeg = tripGraph.inDegrees
+val outDeg = tripGraph.outDegrees
 
-    // Calculate the degreeRatio (inDeg/outDeg), perform inner join on "id" column
-    val degreeRatio = inDeg.join(outDeg, inDeg("id") === outDeg("id")).
-      drop(outDeg("id")).
-      selectExpr("id", "double(inDegree)/double(outDegree) as degreeRatio").
-      cache()
+// Calculate the degreeRatio (inDeg/outDeg), perform inner join on "id" column
+val degreeRatio = inDeg.join(outDeg, inDeg("id") === outDeg("id")).
+  drop(outDeg("id")).
+  selectExpr("id", "double(inDegree)/double(outDegree) as degreeRatio").
+  cache()
 
-    // Join back to the `airports` DataFrame (instead of registering temp table as above)
-    val nonTransferAirports = degreeRatio.join(airports, degreeRatio("id") === airports("IATA")).
-      selectExpr("id", "city", "degreeRatio").
-      filter("degreeRatio < 0.9 or degreeRatio > 1.1")
+// Join back to the `airports` DataFrame (instead of registering temp table as above)
+val nonTransferAirports = degreeRatio.join(airports, degreeRatio("id") === airports("IATA")).
+  selectExpr("id", "city", "degreeRatio").
+  filter("degreeRatio < 0.9 or degreeRatio > 1.1")
 
-    // List out the city airports which have abnormal degree ratios
-    display(nonTransferAirports)
+// List out the city airports which have abnormal degree ratios
+display(nonTransferAirports)
+```
 
-| GFK | Grand Forks | 1.3333333333333333  |
+| id  | city        | degreeRatio         |
 |-----|-------------|---------------------|
+| GFK | Grand Forks | 1.3333333333333333  |
 | FAI | Fairbanks   | 1.1232686980609419  |
 | OME | Nome        | 0.5084745762711864  |
 | BRW | Barrow      | 0.28651685393258425 |
 
-    // Join back to the `airports` DataFrame (instead of registering temp table as above)
-    val transferAirports = degreeRatio.join(airports, degreeRatio("id") === airports("IATA")).
-      selectExpr("id", "city", "degreeRatio").
-      filter("degreeRatio between 0.9 and 1.1")
-      
-    // List out the top 10 transfer city airports
-    display(transferAirports.orderBy("degreeRatio").limit(10))
+``` scala
+// Join back to the `airports` DataFrame (instead of registering temp table as above)
+val transferAirports = degreeRatio.join(airports, degreeRatio("id") === airports("IATA")).
+  selectExpr("id", "city", "degreeRatio").
+  filter("degreeRatio between 0.9 and 1.1")
+  
+// List out the top 10 transfer city airports
+display(transferAirports.orderBy("degreeRatio").limit(10))
+```
 
-| MSP | Minneapolis    | 0.9375183338222353 |
+| id  | city           | degreeRatio        |
 |-----|----------------|--------------------|
+| MSP | Minneapolis    | 0.9375183338222353 |
 | DEN | Denver         | 0.958025717037065  |
 | DFW | Dallas         | 0.964339653074092  |
 | ORD | Chicago        | 0.9671063983310065 |
@@ -522,30 +630,43 @@ Breadth First Search
 
 Breadth-first search (BFS) is designed to traverse the graph to quickly find the desired vertices (i.e. airports) and edges (i.e flights). Let's try to find the shortest number of connections between cities based on the dataset. Note, these examples do not take into account of time or distance, just hops between cities.
 
-    // Example 1: Direct Seattle to San Francisco
-    // This method returns a DataFrame of valid shortest paths from vertices matching "fromExpr" to vertices matching "toExpr"
-    val filteredPaths = tripGraph.bfs.fromExpr((col("id") === "SEA")).toExpr(col("id") === "SFO").maxPathLength(1).run()
-    display(filteredPaths)
+``` scala
+// Example 1: Direct Seattle to San Francisco
+// This method returns a DataFrame of valid shortest paths from vertices matching "fromExpr" to vertices matching "toExpr"
+val filteredPaths = tripGraph.bfs.fromExpr((col("id") === "SEA")).toExpr(col("id") === "SFO").maxPathLength(1).run()
+display(filteredPaths)
+```
 
 As you can see, there are a number of direct flights between Seattle and San Francisco.
 
-    // Example 2: Direct San Francisco and Buffalo
-    // You can also specify expression as a String, instead of Column
-    val filteredPaths = tripGraph.bfs.fromExpr("id = 'SFO'").toExpr("id = 'BUF'").maxPathLength(1).run()
+``` scala
+// Example 2: Direct San Francisco and Buffalo
+// You can also specify expression as a String, instead of Column
+val filteredPaths = tripGraph.bfs.fromExpr("id = 'SFO'").toExpr("id = 'BUF'").maxPathLength(1).run()
+```
 
-> filteredPaths: org.apache.spark.sql.DataFrame = \[id: string, City: string ... 2 more fields\]
+>     filteredPaths: org.apache.spark.sql.DataFrame = [id: string, City: string ... 2 more fields]
 
-    filteredPaths.show()
+``` scala
+filteredPaths.show()
+```
 
-> +---+----+-----+-------+ | id|City|State|Country| +---+----+-----+-------+ +---+----+-----+-------+
+>     +---+----+-----+-------+
+>     | id|City|State|Country|
+>     +---+----+-----+-------+
+>     +---+----+-----+-------+
 
-    display(filteredPaths)
+``` scala
+display(filteredPaths)
+```
 
 But there are no direct flights between San Francisco and Buffalo.
 
-    // Example 2a: Flying from San Francisco to Buffalo
-    val filteredPaths = tripGraph.bfs.fromExpr("id = 'SFO'").toExpr("id = 'BUF'").maxPathLength(2).run()
-    display(filteredPaths)
+``` scala
+// Example 2a: Flying from San Francisco to Buffalo
+val filteredPaths = tripGraph.bfs.fromExpr("id = 'SFO'").toExpr("id = 'BUF'").maxPathLength(2).run()
+display(filteredPaths)
+```
 
 But there are flights from San Francisco to Buffalo with Minneapolis as the transfer point.
 
@@ -554,9 +675,12 @@ Loading the D3 Visualization
 
 Using the airports D3 visualization to visualize airports and flight paths
 
-> Warning: classes defined within packages cannot be redefined without a cluster restart. Compilation successful.
+>     Warning: classes defined within packages cannot be redefined without a cluster restart.
+>     Compilation successful.
 
-    d3a.graphs.help()
+``` scala
+d3a.graphs.help()
+```
 
 <p class="htmlSandbox">
 <p>
@@ -574,13 +698,15 @@ Produces a force-directed graph given a collection of edges of the following for
 
 #### Visualize On-time and Early Arrivals
 
-    // On-time and Early Arrivals
-    import d3a._
+``` scala
+// On-time and Early Arrivals
+import d3a._
 
-    graphs.force(
-      height = 800,
-      width = 1200,
-      clicks = sql("select src, dst as dest, count(1) as count from departureDelays_geo where delay <= 0 group by src, dst").as[Edge])
+graphs.force(
+  height = 800,
+  width = 1200,
+  clicks = sql("select src, dst as dest, count(1) as count from departureDelays_geo where delay <= 0 group by src, dst").as[Edge])
+```
 
 <p class="htmlSandbox"><!DOCTYPE html>
 <html>
@@ -736,13 +862,15 @@ Produces a force-directed graph given a collection of edges of the following for
 
 Notice that most of the delayed trips are with Western US cities
 
-    // Delayed Trips from CA, OR, and/or WA
-    import d3a._
+``` scala
+// Delayed Trips from CA, OR, and/or WA
+import d3a._
 
-    graphs.force(
-      height = 800,
-      width = 1200,
-      clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo where state_src in ('CA', 'OR', 'WA') and delay > 0 group by src, dst""").as[Edge])
+graphs.force(
+  height = 800,
+  width = 1200,
+  clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo where state_src in ('CA', 'OR', 'WA') and delay > 0 group by src, dst""").as[Edge])
+```
 
 <p class="htmlSandbox"><!DOCTYPE html>
 <html>
@@ -896,13 +1024,15 @@ Notice that most of the delayed trips are with Western US cities
 
 #### Visualize All Flights (from this dataset)
 
-    // Trips (from DepartureDelays Dataset)
-    import d3a._
+``` scala
+// Trips (from DepartureDelays Dataset)
+import d3a._
 
-    graphs.force(
-      height = 800,
-      width = 1200,
-      clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo group by src, dst""").as[Edge])
+graphs.force(
+  height = 800,
+  width = 1200,
+  clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo group by src, dst""").as[Edge])
+```
 
 <p class="htmlSandbox"><!DOCTYPE html>
 <html>

@@ -27,9 +27,11 @@ Let's get a quick visual geometric interpretation for vectors, matrices and matr
 
 Breeze is a linear algebra package in Scala. First, let us import it as follows:
 
-    import breeze.linalg._
+``` scala
+import breeze.linalg._
+```
 
-> import breeze.linalg.\_
+>     import breeze.linalg._
 
 #### 1. Matrix: creation and element-access
 
@@ -81,47 +83,69 @@ a\\\_{2,1} & a\\\_{2,2} & a\\\_{2,3}
 \\end{pmatrix}
 $$
 
-    val A = DenseMatrix((1, 2, 3), (4, 5, 6)) // let's create this 2 by 3 matrix
+``` scala
+val A = DenseMatrix((1, 2, 3), (4, 5, 6)) // let's create this 2 by 3 matrix
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 2 3 4 5 6
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  2  3
+>     4  5  6
 
-    A.size
+``` scala
+A.size
+```
 
-> res0: Int = 6
+>     res0: Int = 6
 
-    A.rows // number of rows
+``` scala
+A.rows // number of rows
+```
 
-> res1: Int = 2
+>     res1: Int = 2
 
-    A.size / A.rows // num of columns
+``` scala
+A.size / A.rows // num of columns
+```
 
-> res2: Int = 3
+>     res2: Int = 3
 
 Now, let's access the element \\(a\_{1,1}\\), i.e., the element from the first row and first column of \\(\\), which in our `val A` matrix is the integer of type `Int` equalling `1`.
 
-    A(0, 0) // Remember elements are indexed by zero in scala
+``` scala
+A(0, 0) // Remember elements are indexed by zero in scala
+```
 
-> res4: Int = 1
+>     res4: Int = 1
 
 **Gotcha:** indices in breeze matrices start at 0 as in numpy of python and not at 1 as in MATLAB!
 
 Of course if you assign the same dense matrix to a mutable `var` `B` then its entries can be modified as follows:
 
-    var B = DenseMatrix((1, 2, 3), (4, 5, 6))
+``` scala
+var B = DenseMatrix((1, 2, 3), (4, 5, 6))
+```
 
-> B: breeze.linalg.DenseMatrix\[Int\] = 1 2 3 4 5 6
+>     B: breeze.linalg.DenseMatrix[Int] =
+>     1  2  3
+>     4  5  6
 
-    B(0,0)=999; B(1,1)=969; B(0,2)=666
-    B
+``` scala
+B(0,0)=999; B(1,1)=969; B(0,2)=666
+B
+```
 
-> res5: breeze.linalg.DenseMatrix\[Int\] = 999 2 666 4 969 6
+>     res5: breeze.linalg.DenseMatrix[Int] =
+>     999  2    666
+>     4    969  6
 
+``` scala
 
-    %md
-    #### Vector
-    **(watch now 0:31 = 62-93 seconds)**:
+%md
+#### Vector
+**(watch now 0:31 = 62-93 seconds)**:
 
-    [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
+[![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
+```
 
 -   A vector is a matrix with many rows and one column.
 -   We'll denote a vector by bold lowercase letters:
@@ -129,29 +153,41 @@ Of course if you assign the same dense matrix to a mutable `var` `B` then its en
 
 So, the vector above is denoted by \\(\\), the lowercase, bold a. \* \\(a\_i\\) denotes the i-th entry of a vector. So for instance: \* \\(a\_2\\) denotes the second entry of the vector and it is 1.0 for our vector. \* If a vector is m-dimensional, then we say that \\(\\) is in \\(^m\\) and write \\(   ^m\\). \* So our \\(  ^4\\).
 
-    val a = DenseVector(3.3, 1.0, 6.3, 3.6) // these are row vectors
+``` scala
+val a = DenseVector(3.3, 1.0, 6.3, 3.6) // these are row vectors
+```
 
-> a: breeze.linalg.DenseVector\[Double\] = DenseVector(3.3, 1.0, 6.3, 3.6)
+>     a: breeze.linalg.DenseVector[Double] = DenseVector(3.3, 1.0, 6.3, 3.6)
 
-    a.size // a is a column vector of size 4
+``` scala
+a.size // a is a column vector of size 4
+```
 
-> res6: Int = 4
+>     res6: Int = 4
 
-    a(1) // the second element of a is indexed by 1 as the first element is indexed by 0
+``` scala
+a(1) // the second element of a is indexed by 1 as the first element is indexed by 0
+```
 
-> res7: Double = 1.0
+>     res7: Double = 1.0
 
-    val a = DenseVector[Double](5, 4, -1) // this makes a vector of Doubles from input Int
+``` scala
+val a = DenseVector[Double](5, 4, -1) // this makes a vector of Doubles from input Int
+```
 
-> a: breeze.linalg.DenseVector\[Double\] = DenseVector(5.0, 4.0, -1.0)
+>     a: breeze.linalg.DenseVector[Double] = DenseVector(5.0, 4.0, -1.0)
 
-    val a = DenseVector(5.0, 4.0, -1.0) // this makes a vector of Doubles from type inference . NOTE "5.0" is needed not just "5."
+``` scala
+val a = DenseVector(5.0, 4.0, -1.0) // this makes a vector of Doubles from type inference . NOTE "5.0" is needed not just "5."
+```
 
-> a: breeze.linalg.DenseVector\[Double\] = DenseVector(5.0, 4.0, -1.0)
+>     a: breeze.linalg.DenseVector[Double] = DenseVector(5.0, 4.0, -1.0)
 
-    val x = DenseVector.zeros[Double](5) // this will output x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
+``` scala
+val x = DenseVector.zeros[Double](5) // this will output x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
+```
 
-> x: breeze.linalg.DenseVector\[Double\] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
+>     x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
 
 #### Transpose
 
@@ -161,21 +197,34 @@ So, the vector above is denoted by \\(\\), the lowercase, bold a. \* \\(a\_i\\) 
 
 Suggested Home Work for the linear-algebraically rusty (LiAlRusty): watch again and take notes.
 
-    val A = DenseMatrix((1, 4), (6, 1), (3, 5)) // let's create this 2 by 3 matrix
+``` scala
+val A = DenseMatrix((1, 4), (6, 1), (3, 5)) // let's create this 2 by 3 matrix
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 4 6 1 3 5
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  4
+>     6  1
+>     3  5
 
-    A.t // transpose of A
+``` scala
+A.t // transpose of A
+```
 
-> res8: breeze.linalg.DenseMatrix\[Int\] = 1 6 3 4 1 5
+>     res8: breeze.linalg.DenseMatrix[Int] =
+>     1  6  3
+>     4  1  5
 
-    val a = DenseVector(3.0, 4.0, 1.0)
+``` scala
+val a = DenseVector(3.0, 4.0, 1.0)
+```
 
-> a: breeze.linalg.DenseVector\[Double\] = DenseVector(3.0, 4.0, 1.0)
+>     a: breeze.linalg.DenseVector[Double] = DenseVector(3.0, 4.0, 1.0)
 
-    a.t
+``` scala
+a.t
+```
 
-> res9: breeze.linalg.Transpose\[breeze.linalg.DenseVector\[Double\]\] = Transpose(DenseVector(3.0, 4.0, 1.0))
+>     res9: breeze.linalg.Transpose[breeze.linalg.DenseVector[Double]] = Transpose(DenseVector(3.0, 4.0, 1.0))
 
 #### Addition and Subtraction
 
@@ -189,27 +238,50 @@ Suggested Home Work for LiAlRusty: watch again and take notes.
 
 -   what is a natural geometric interpretation of vector addition, subtraction, matric addition and subtraction?
 
-<!-- -->
+``` scala
+val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
+```
 
-    val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  4
+>     6  1
+>     3  5
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 4 6 1 3 5
+``` scala
+val B = -A 
+```
 
-    val B = -A 
+>     B: breeze.linalg.DenseMatrix[Int] =
+>     -1  -4
+>     -6  -1
+>     -3  -5
 
-> B: breeze.linalg.DenseMatrix\[Int\] = -1 -4 -6 -1 -3 -5
+``` scala
+A + B // should be A-A=0
+```
 
-    A + B // should be A-A=0
+>     res10: breeze.linalg.DenseMatrix[Int] =
+>     0  0
+>     0  0
+>     0  0
 
-> res10: breeze.linalg.DenseMatrix\[Int\] = 0 0 0 0 0 0
+``` scala
+A - B // should be A+A=2A
+```
 
-    A - B // should be A+A=2A
+>     res11: breeze.linalg.DenseMatrix[Int] =
+>     2   8
+>     12  2
+>     6   10
 
-> res11: breeze.linalg.DenseMatrix\[Int\] = 2 8 12 2 6 10
+``` scala
+B - A // should be -A-A=-2A
+```
 
-    B - A // should be -A-A=-2A
-
-> res12: breeze.linalg.DenseMatrix\[Int\] = -2 -8 -12 -2 -6 -10
+>     res12: breeze.linalg.DenseMatrix[Int] =
+>     -2   -8
+>     -12  -2
+>     -6   -10
 
 ### Operators
 
@@ -318,49 +390,89 @@ Suggested Home Work for LiAlRusty: watch again and take notes.
 
 Let's get a quick visual geometric interpretation for vectors, matrices and matrix-vector multiplications from the first interactive visual-cognitive aid at: \* <http://setosa.io/ev/eigenvectors-and-eigenvalues/>
 
-    val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
+``` scala
+val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 4 6 1 3 5
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  4
+>     6  1
+>     3  5
 
-    5 * A
+``` scala
+5 * A
+```
 
-> res13: breeze.linalg.DenseMatrix\[Int\] = 5 20 30 5 15 25
+>     res13: breeze.linalg.DenseMatrix[Int] =
+>     5   20
+>     30  5
+>     15  25
 
-    A * 5
+``` scala
+A * 5
+```
 
-> res14: breeze.linalg.DenseMatrix\[Int\] = 5 20 30 5 15 25
+>     res14: breeze.linalg.DenseMatrix[Int] =
+>     5   20
+>     30  5
+>     15  25
 
 #### Dot product
 
-    val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
+``` scala
+val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 4 6 1 3 5
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  4
+>     6  1
+>     3  5
 
-    val B = DenseMatrix((3, 1), (2, 2), (1, 3)) 
+``` scala
+val B = DenseMatrix((3, 1), (2, 2), (1, 3)) 
+```
 
-> B: breeze.linalg.DenseMatrix\[Int\] = 3 1 2 2 1 3
+>     B: breeze.linalg.DenseMatrix[Int] =
+>     3  1
+>     2  2
+>     1  3
 
-    A *:* B // element-wise multiplication
+``` scala
+A *:* B // element-wise multiplication
+```
 
-> res15: breeze.linalg.DenseMatrix\[Int\] = 3 4 12 2 3 15
+>     res15: breeze.linalg.DenseMatrix[Int] =
+>     3   4
+>     12  2
+>     3   15
 
 #### Matrix Vector multiplication
 
-    val A = DenseMatrix((1, 4), (3, 1)) 
+``` scala
+val A = DenseMatrix((1, 4), (3, 1)) 
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 4 3 1
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  4
+>     3  1
 
-    val a = DenseVector(1, -1) // is a column vector
+``` scala
+val a = DenseVector(1, -1) // is a column vector
+```
 
-> a: breeze.linalg.DenseVector\[Int\] = DenseVector(1, -1)
+>     a: breeze.linalg.DenseVector[Int] = DenseVector(1, -1)
 
-    a.size // a is a column vector of size 2
+``` scala
+a.size // a is a column vector of size 2
+```
 
-> res16: Int = 2
+>     res16: Int = 2
 
-    A * a
+``` scala
+A * a
+```
 
-> res17: breeze.linalg.DenseVector\[Int\] = DenseVector(-3, 2)
+>     res17: breeze.linalg.DenseVector[Int] = DenseVector(-3, 2)
 
 #### Matrix-Matrix multiplication
 
@@ -368,21 +480,36 @@ Let's get a quick visual geometric interpretation for vectors, matrices and matr
 
 [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
 
-    val A = DenseMatrix((1,2,3),(1,1,1))
+``` scala
+val A = DenseMatrix((1,2,3),(1,1,1))
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 2 3 1 1 1
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  2  3
+>     1  1  1
 
-    val B = DenseMatrix((4, 1), (9, 2), (8, 9))
+``` scala
+val B = DenseMatrix((4, 1), (9, 2), (8, 9))
+```
 
-> B: breeze.linalg.DenseMatrix\[Int\] = 4 1 9 2 8 9
+>     B: breeze.linalg.DenseMatrix[Int] =
+>     4  1
+>     9  2
+>     8  9
 
-    A*B // 4+18+14
+``` scala
+A*B // 4+18+14
+```
 
-> res18: breeze.linalg.DenseMatrix\[Int\] = 46 32 21 12
+>     res18: breeze.linalg.DenseMatrix[Int] =
+>     46  32
+>     21  12
 
-    1*4 + 2*9 + 3*8 // checking first entry of A*B
+``` scala
+1*4 + 2*9 + 3*8 // checking first entry of A*B
+```
 
-> res20: Int = 46
+>     res20: Int = 46
 
 #### Identity Matrix
 
@@ -390,17 +517,29 @@ Let's get a quick visual geometric interpretation for vectors, matrices and matr
 
 [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
 
-    val A = DenseMatrix((1,2,3),(4,5,6))
+``` scala
+val A = DenseMatrix((1,2,3),(4,5,6))
+```
 
-> A: breeze.linalg.DenseMatrix\[Int\] = 1 2 3 4 5 6
+>     A: breeze.linalg.DenseMatrix[Int] =
+>     1  2  3
+>     4  5  6
 
-    A * DenseMatrix.eye[Int](3)
+``` scala
+A * DenseMatrix.eye[Int](3)
+```
 
-> res21: breeze.linalg.DenseMatrix\[Int\] = 1 2 3 4 5 6
+>     res21: breeze.linalg.DenseMatrix[Int] =
+>     1  2  3
+>     4  5  6
 
-    DenseMatrix.eye[Int](2) * A
+``` scala
+DenseMatrix.eye[Int](2) * A
+```
 
-> res23: breeze.linalg.DenseMatrix\[Int\] = 1 2 3 4 5 6
+>     res23: breeze.linalg.DenseMatrix[Int] =
+>     1  2  3
+>     4  5  6
 
 #### Inverse
 
@@ -408,18 +547,33 @@ Let's get a quick visual geometric interpretation for vectors, matrices and matr
 
 [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
 
-    val D = DenseMatrix((2.0, 3.0), (4.0, 5.0))
-    val Dinv = inv(D)
+``` scala
+val D = DenseMatrix((2.0, 3.0), (4.0, 5.0))
+val Dinv = inv(D)
+```
 
-> D: breeze.linalg.DenseMatrix\[Double\] = 2.0 3.0 4.0 5.0 Dinv: breeze.linalg.DenseMatrix\[Double\] = -2.5 1.5 2.0 -1.0
+>     D: breeze.linalg.DenseMatrix[Double] =
+>     2.0  3.0
+>     4.0  5.0
+>     Dinv: breeze.linalg.DenseMatrix[Double] =
+>     -2.5  1.5
+>     2.0   -1.0
 
-    D * Dinv
+``` scala
+D * Dinv
+```
 
-> res24: breeze.linalg.DenseMatrix\[Double\] = 1.0 0.0 0.0 1.0
+>     res24: breeze.linalg.DenseMatrix[Double] =
+>     1.0  0.0
+>     0.0  1.0
 
-    Dinv * D
+``` scala
+Dinv * D
+```
 
-> res25: breeze.linalg.DenseMatrix\[Double\] = 1.0 0.0 0.0 1.0
+>     res25: breeze.linalg.DenseMatrix[Double] =
+>     1.0  0.0
+>     0.0  1.0
 
 #### Eucledian distance / norm
 
@@ -427,14 +581,19 @@ Let's get a quick visual geometric interpretation for vectors, matrices and matr
 
 [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
 
-    val b = DenseVector(4, 3)
-    norm(b)
+``` scala
+val b = DenseVector(4, 3)
+norm(b)
+```
 
-> b: breeze.linalg.DenseVector\[Int\] = DenseVector(4, 3) res26: Double = 5.0
+>     b: breeze.linalg.DenseVector[Int] = DenseVector(4, 3)
+>     res26: Double = 5.0
 
-    Math.sqrt(4*4 + 3*3) // check
+``` scala
+Math.sqrt(4*4 + 3*3) // check
+```
 
-> res27: Double = 5.0
+>     res27: Double = 5.0
 
 **HOMEWORK:** read this! <https://github.com/scalanlp/breeze/wiki/Quickstart>
 
@@ -815,11 +974,18 @@ After reading this quickstart, you can go to other wiki pages, especially [Linea
 
 Watch this and take notes!
 
-    A.cols // also say
+``` scala
+A.cols // also say
+```
 
-> res3: Int = 3
+>     res3: Int = 3
 
-    DenseMatrix.eye[Int](3)
+``` scala
+DenseMatrix.eye[Int](3)
+```
 
-> res22: breeze.linalg.DenseMatrix\[Int\] = 1 0 0 0 1 0 0 0 1
+>     res22: breeze.linalg.DenseMatrix[Int] =
+>     1  0  0
+>     0  1  0
+>     0  0  1
 

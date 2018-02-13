@@ -9,36 +9,78 @@ It is a good idea to understand how to run executibles from the driver to set up
 
 The following *seven steps (Steps 0-6)* can be used in more complex situations like running a more complex simulator from an executible file.
 
-    pwd
+``` sh
+pwd
+```
 
-> /databricks/driver
+>     /databricks/driver
 
-    apt-get install -y psmisc
+``` sh
+apt-get install -y psmisc
+```
 
-> Reading package lists... Building dependency tree... Reading state information... psmisc is already the newest version (22.21-2.1build1). The following package was automatically installed and is no longer required: libgnutls-openssl27 Use 'sudo apt autoremove' to remove it. 0 upgraded, 0 newly installed, 0 to remove and 100 not upgraded.
+>     Reading package lists...
+>     Building dependency tree...
+>     Reading state information...
+>     psmisc is already the newest version (22.21-2.1build1).
+>     The following package was automatically installed and is no longer required:
+>       libgnutls-openssl27
+>     Use 'sudo apt autoremove' to remove it.
+>     0 upgraded, 0 newly installed, 0 to remove and 100 not upgraded.
 
-    chmod 744 every2SecsRndWordsInFiles.sh
+``` sh
+chmod 744 every2SecsRndWordsInFiles.sh
+```
 
-    nohup ./every2SecsRndWordsInFiles.sh & 
+``` sh
+nohup ./every2SecsRndWordsInFiles.sh & 
+```
 
-    killall every2SecsRndWordsInFiles.sh
+``` sh
+killall every2SecsRndWordsInFiles.sh
+```
 
-    pwd
-    ls -al logsEvery2Secs
+``` sh
+pwd
+ls -al logsEvery2Secs
+```
 
-> /databricks/driver total 72 drwxr-xr-x 2 root root 4096 Nov 22 09:26 . drwxr-xr-x 1 root root 4096 Nov 22 09:25 .. -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_44.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_46.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_48.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_50.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_52.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_54.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_56.log -rw-r--r-- 1 root root 35 Nov 22 09:25 25\_58.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_00.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_02.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_04.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_06.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_08.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_10.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_12.log -rw-r--r-- 1 root root 35 Nov 22 09:26 26\_14.log
+>     /databricks/driver
+>     total 72
+>     drwxr-xr-x 2 root root 4096 Nov 22 09:26 .
+>     drwxr-xr-x 1 root root 4096 Nov 22 09:25 ..
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_44.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_46.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_48.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_50.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_52.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_54.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_56.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:25 25_58.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_00.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_02.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_04.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_06.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_08.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_10.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_12.log
+>     -rw-r--r-- 1 root root   35 Nov 22 09:26 26_14.log
 
-    var a = 0;
-    // for loop execution to move files from local fs to distributed fs
-    for( a <- 1 to 60*60/5){ 
-      // you may need to replace 60*60/5 above by a smaller number like 10 or 20 in the CE depending on how many files of your quota you have used up already
-      dbutils.fs.cp("file:///databricks/driver/logsEvery2Secs/","/datasets/streamingFiles/",true)
-      Thread.sleep(5000L) // sleep 5 seconds
-    }
+``` scala
+var a = 0;
+// for loop execution to move files from local fs to distributed fs
+for( a <- 1 to 60*60/5){ 
+  // you may need to replace 60*60/5 above by a smaller number like 10 or 20 in the CE depending on how many files of your quota you have used up already
+  dbutils.fs.cp("file:///databricks/driver/logsEvery2Secs/","/datasets/streamingFiles/",true)
+  Thread.sleep(5000L) // sleep 5 seconds
+}
+```
 
-    dbutils.fs.rm("/datasets/streamingFiles/",true) // this is to delete the directory before staring a job
+``` scala
+dbutils.fs.rm("/datasets/streamingFiles/",true) // this is to delete the directory before staring a job
+```
 
-> res6: Boolean = true
+>     res6: Boolean = true
 
 Just find the working directory using `%sh`.
 
@@ -53,9 +95,11 @@ The next two cells in `%sh` do the following:
 
 After executing the above cell **hit the cancel button above** to get the notebook process back. The BASH shell will still be running in the background as you can verufy by evaluating the cell below to get the time-stamped file names inside the `logsEvery2Secs` directory.
 
-    cat logsEvery2Secs/25_46.log
+``` sh
+cat logsEvery2Secs/25_46.log
+```
 
-> 2017-11-22 09:25:46+00:00; bat pig
+>     2017-11-22 09:25:46+00:00; bat pig
 
 Step 5
 ------
@@ -71,25 +115,37 @@ When you are done with this streaming job it is important that you `cancel` the 
 
 In fact, you can execture the next cell before leaving this notebook so that the job gets killed once the above `for` loop finishes after an hour. You may need to remove the `//` in the next cell before killing the bash job.
 
-    rm -f animals.txt &&
-    echo "cat" >> animals.txt &&
-    echo "dog" >> animals.txt &&
-    echo "owl" >> animals.txt &&
-    echo "pig" >> animals.txt &&
-    echo "bat" >> animals.txt &&
-    echo "rat" >> animals.txt &&
-    cat animals.txt
+``` sh
+rm -f animals.txt &&
+echo "cat" >> animals.txt &&
+echo "dog" >> animals.txt &&
+echo "owl" >> animals.txt &&
+echo "pig" >> animals.txt &&
+echo "bat" >> animals.txt &&
+echo "rat" >> animals.txt &&
+cat animals.txt
+```
 
-> cat dog owl pig bat rat
+>     cat
+>     dog
+>     owl
+>     pig
+>     bat
+>     rat
 
-    rm -f every2SecsRndWordsInFiles.sh &&
-    echo "#!/bin/bash" >> every2SecsRndWordsInFiles.sh &&
-    echo "rm -rf logsEvery2Secs" >> every2SecsRndWordsInFiles.sh &&
-    echo "mkdir -p logsEvery2Secs" >> every2SecsRndWordsInFiles.sh &&
-    echo "while true; do echo \$( date --rfc-3339=second )\; | cat - <(shuf -n2 animals.txt) | sed '$!{:a;N;s/\n/ /;ta}' > logsEvery2Secs/\$( date '+%M_%S.log' ); sleep 2; done" >> every2SecsRndWordsInFiles.sh &&
-    cat every2SecsRndWordsInFiles.sh
+``` sh
+rm -f every2SecsRndWordsInFiles.sh &&
+echo "#!/bin/bash" >> every2SecsRndWordsInFiles.sh &&
+echo "rm -rf logsEvery2Secs" >> every2SecsRndWordsInFiles.sh &&
+echo "mkdir -p logsEvery2Secs" >> every2SecsRndWordsInFiles.sh &&
+echo "while true; do echo \$( date --rfc-3339=second )\; | cat - <(shuf -n2 animals.txt) | sed '$!{:a;N;s/\n/ /;ta}' > logsEvery2Secs/\$( date '+%M_%S.log' ); sleep 2; done" >> every2SecsRndWordsInFiles.sh &&
+cat every2SecsRndWordsInFiles.sh
+```
 
-> \#!/bin/bash rm -rf logsEvery2Secs mkdir -p logsEvery2Secs while true; do echo $( date --rfc-3339=second )\\; | cat - &lt;(shuf -n2 animals.txt) | sed '{:a;N;s/\\n/ /;ta}' &gt; logsEvery2Secs/$( date '+%M\_%S.log' ); sleep 2; done
+>     #!/bin/bash
+>     rm -rf logsEvery2Secs
+>     mkdir -p logsEvery2Secs
+>     while true; do echo $( date --rfc-3339=second )\; | cat - <(shuf -n2 animals.txt) | sed '{:a;N;s/\n/ /;ta}' > logsEvery2Secs/$( date '+%M_%S.log' ); sleep 2; done
 
 Step 1
 ------
@@ -124,4 +180,7 @@ let's get our bearings and prepare for setting up a structured streaming from fi
 
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
+
+``` scala
+```
 

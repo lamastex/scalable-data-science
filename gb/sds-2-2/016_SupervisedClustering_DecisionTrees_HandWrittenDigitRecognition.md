@@ -47,37 +47,43 @@ Our datasets are vectors of pixels representing images of handwritten digits. Fo
 
 These datasets are stored in the popular LibSVM dataset format. We will load them using MLlib's LibSVM dataset reader utility.
 
-    //-----------------------------------------------------------------------------------------------------------------
-    // using RDD-based MLlib - ok for Spark 1.x
-    // MLUtils.loadLibSVMFile returns an RDD.
-    //import org.apache.spark.mllib.util.MLUtils
-    //val trainingRDD = MLUtils.loadLibSVMFile(sc, "/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt")
-    //val testRDD = MLUtils.loadLibSVMFile(sc, "/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt")
-    // We convert the RDDs to DataFrames to use with ML Pipelines.
-    //val training = trainingRDD.toDF()
-    //val test = testRDD.toDF()
-    // Note: In Spark 1.6 and later versions, Spark SQL has a LibSVM data source.  The above lines can be simplified to:
-    //// val training = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-train.txt")
-    //// val test = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-test.txt")
-    //-----------------------------------------------------------------------------------------------------------------
-    val training = spark.read.format("libsvm")
-                        .option("numFeatures", "780")
-                        .load("/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt")
+``` scala
+//-----------------------------------------------------------------------------------------------------------------
+// using RDD-based MLlib - ok for Spark 1.x
+// MLUtils.loadLibSVMFile returns an RDD.
+//import org.apache.spark.mllib.util.MLUtils
+//val trainingRDD = MLUtils.loadLibSVMFile(sc, "/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt")
+//val testRDD = MLUtils.loadLibSVMFile(sc, "/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt")
+// We convert the RDDs to DataFrames to use with ML Pipelines.
+//val training = trainingRDD.toDF()
+//val test = testRDD.toDF()
+// Note: In Spark 1.6 and later versions, Spark SQL has a LibSVM data source.  The above lines can be simplified to:
+//// val training = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-train.txt")
+//// val test = sqlContext.read.format("libsvm").load("/mnt/mllib/mnist-digits-csv/mnist-digits-test.txt")
+//-----------------------------------------------------------------------------------------------------------------
+val training = spark.read.format("libsvm")
+                    .option("numFeatures", "780")
+                    .load("/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt")
 
-    val test = spark.read.format("libsvm")
-                        .option("numFeatures", "780")
-                        .load("/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt")
-    // Cache data for multiple uses.
-    training.cache()
-    test.cache()
+val test = spark.read.format("libsvm")
+                    .option("numFeatures", "780")
+                    .load("/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt")
+// Cache data for multiple uses.
+training.cache()
+test.cache()
 
-    println(s"We have ${training.count} training images and ${test.count} test images.")
+println(s"We have ${training.count} training images and ${test.count} test images.")
+```
 
-> We have 60000 training images and 10000 test images. training: org.apache.spark.sql.DataFrame = \[label: double, features: vector\] test: org.apache.spark.sql.DataFrame = \[label: double, features: vector\]
+>     We have 60000 training images and 10000 test images.
+>     training: org.apache.spark.sql.DataFrame = [label: double, features: vector]
+>     test: org.apache.spark.sql.DataFrame = [label: double, features: vector]
 
 Display our data. Each image has the true label (the `label` column) and a vector of `features` which represent pixel intensities (see below for details of what is in `training`).
 
-    display(training) // this is databricks-specific for interactive visual convenience
+``` scala
+display(training) // this is databricks-specific for interactive visual convenience
+```
 
 The pixel intensities are represented in `features` as a sparse vector, for example the first observation, as seen in row 1 of the output to `display(training)` or `training.show(2,false)` above, has `label` as `5`, i.e. the hand-written image is for the number 5. And this hand-written image is the following sparse vector (just click the triangle to the left of the feature in first row to see the following):
 
@@ -97,38 +103,51 @@ See <http://spark.apache.org/docs/latest/mllib-decision-tree.html#basic-algorith
 
 See <http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines>.
 
-    // Import the ML algorithms we will use.
-    import org.apache.spark.ml.classification.{DecisionTreeClassifier, DecisionTreeClassificationModel}
-    import org.apache.spark.ml.feature.StringIndexer
-    import org.apache.spark.ml.Pipeline
+``` scala
+// Import the ML algorithms we will use.
+import org.apache.spark.ml.classification.{DecisionTreeClassifier, DecisionTreeClassificationModel}
+import org.apache.spark.ml.feature.StringIndexer
+import org.apache.spark.ml.Pipeline
+```
 
-> import org.apache.spark.ml.classification.{DecisionTreeClassifier, DecisionTreeClassificationModel} import org.apache.spark.ml.feature.StringIndexer import org.apache.spark.ml.Pipeline
+>     import org.apache.spark.ml.classification.{DecisionTreeClassifier, DecisionTreeClassificationModel}
+>     import org.apache.spark.ml.feature.StringIndexer
+>     import org.apache.spark.ml.Pipeline
 
-    // StringIndexer: Read input column "label" (digits) and annotate them as categorical values.
-    val indexer = new StringIndexer().setInputCol("label").setOutputCol("indexedLabel")
+``` scala
+// StringIndexer: Read input column "label" (digits) and annotate them as categorical values.
+val indexer = new StringIndexer().setInputCol("label").setOutputCol("indexedLabel")
 
-    // DecisionTreeClassifier: Learn to predict column "indexedLabel" using the "features" column.
-    val dtc = new DecisionTreeClassifier().setLabelCol("indexedLabel")
+// DecisionTreeClassifier: Learn to predict column "indexedLabel" using the "features" column.
+val dtc = new DecisionTreeClassifier().setLabelCol("indexedLabel")
 
-    // Chain indexer + dtc together into a single ML Pipeline.
-    val pipeline = new Pipeline().setStages(Array(indexer, dtc))
+// Chain indexer + dtc together into a single ML Pipeline.
+val pipeline = new Pipeline().setStages(Array(indexer, dtc))
+```
 
-> indexer: org.apache.spark.ml.feature.StringIndexer = strIdx\_0610548abbdf dtc: org.apache.spark.ml.classification.DecisionTreeClassifier = dtc\_fc540a374780 pipeline: org.apache.spark.ml.Pipeline = pipeline\_6fafc07ce7b9
+>     indexer: org.apache.spark.ml.feature.StringIndexer = strIdx_0610548abbdf
+>     dtc: org.apache.spark.ml.classification.DecisionTreeClassifier = dtc_fc540a374780
+>     pipeline: org.apache.spark.ml.Pipeline = pipeline_6fafc07ce7b9
 
 Now, let's fit a model to our data.
 
-    val model = pipeline.fit(training)
+``` scala
+val model = pipeline.fit(training)
+```
 
-> model: org.apache.spark.ml.PipelineModel = pipeline\_6fafc07ce7b9
+>     model: org.apache.spark.ml.PipelineModel = pipeline_6fafc07ce7b9
 
 We can inspect the learned tree by displaying it using Databricks ML visualization. (Visualization is available for several but not all models.)
 
-    // The tree is the last stage of the Pipeline.  Display it!
-    val tree = model.stages.last.asInstanceOf[DecisionTreeClassificationModel]
-    display(tree)
+``` scala
+// The tree is the last stage of the Pipeline.  Display it!
+val tree = model.stages.last.asInstanceOf[DecisionTreeClassificationModel]
+display(tree)
+```
 
-| {"index":31,"featureType":"continuous","prediction":null,"threshold":128.0,"categories":null,"feature":350,"overflow":false} |
+| treeNode                                                                                                                     |
 |------------------------------------------------------------------------------------------------------------------------------|
+| {"index":31,"featureType":"continuous","prediction":null,"threshold":128.0,"categories":null,"feature":350,"overflow":false} |
 | {"index":15,"featureType":"continuous","prediction":null,"threshold":0.0,"categories":null,"feature":568,"overflow":false}   |
 | {"index":7,"featureType":"continuous","prediction":null,"threshold":0.0,"categories":null,"feature":430,"overflow":false}    |
 | {"index":3,"featureType":"continuous","prediction":null,"threshold":2.0,"categories":null,"feature":405,"overflow":false}    |
@@ -186,34 +205,41 @@ In this section, we test tuning a single hyperparameter `maxDepth`, which determ
 
 *Note: The next cell can take about 1 minute to run since it is training several trees which get deeper and deeper.*
 
-    val variedMaxDepthModels = (0 until 8).map { maxDepth =>
-      // For this setting of maxDepth, learn a decision tree.
-      dtc.setMaxDepth(maxDepth)
-      // Create a Pipeline with our feature processing stage (indexer) plus the tree algorithm
-      val pipeline = new Pipeline().setStages(Array(indexer, dtc))
-      // Run the ML Pipeline to learn a tree.
-      pipeline.fit(training)
-    }
+``` scala
+val variedMaxDepthModels = (0 until 8).map { maxDepth =>
+  // For this setting of maxDepth, learn a decision tree.
+  dtc.setMaxDepth(maxDepth)
+  // Create a Pipeline with our feature processing stage (indexer) plus the tree algorithm
+  val pipeline = new Pipeline().setStages(Array(indexer, dtc))
+  // Run the ML Pipeline to learn a tree.
+  pipeline.fit(training)
+}
+```
 
-> variedMaxDepthModels: scala.collection.immutable.IndexedSeq\[org.apache.spark.ml.PipelineModel\] = Vector(pipeline\_69ede46d1710, pipeline\_d266ac2104e8, pipeline\_56cd339e4e3b, pipeline\_537b78b25cae, pipeline\_78bbe3bd95e7, pipeline\_00b13cbae30c, pipeline\_26bb7880555e, pipeline\_805019a1d27f)
+>     variedMaxDepthModels: scala.collection.immutable.IndexedSeq[org.apache.spark.ml.PipelineModel] = Vector(pipeline_69ede46d1710, pipeline_d266ac2104e8, pipeline_56cd339e4e3b, pipeline_537b78b25cae, pipeline_78bbe3bd95e7, pipeline_00b13cbae30c, pipeline_26bb7880555e, pipeline_805019a1d27f)
 
-    // Define an evaluation metric.  In this case, we will use "accuracy".
-    import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
-    val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setMetricName("f1") // default MetricName
+``` scala
+// Define an evaluation metric.  In this case, we will use "accuracy".
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setMetricName("f1") // default MetricName
+```
 
-> import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator evaluator: org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator = mcEval\_589917d92896
+>     import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+>     evaluator: org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator = mcEval_589917d92896
 
-    // For each maxDepth setting, make predictions on the test data, and compute the classifier's f1 performance metric.
-    val f1MetricPerformanceMeasures = (0 until 8).map { maxDepth =>
-      val model = variedMaxDepthModels(maxDepth)
-      // Calling transform() on the test set runs the fitted pipeline.
-      // The learned model makes predictions on each test example.
-      val predictions = model.transform(test)
-      // Calling evaluate() on the predictions DataFrame computes our performance metric.
-      (maxDepth, evaluator.evaluate(predictions))
-    }.toDF("maxDepth", "f1")
+``` scala
+// For each maxDepth setting, make predictions on the test data, and compute the classifier's f1 performance metric.
+val f1MetricPerformanceMeasures = (0 until 8).map { maxDepth =>
+  val model = variedMaxDepthModels(maxDepth)
+  // Calling transform() on the test set runs the fitted pipeline.
+  // The learned model makes predictions on each test example.
+  val predictions = model.transform(test)
+  // Calling evaluate() on the predictions DataFrame computes our performance metric.
+  (maxDepth, evaluator.evaluate(predictions))
+}.toDF("maxDepth", "f1")
+```
 
-> f1MetricPerformanceMeasures: org.apache.spark.sql.DataFrame = \[maxDepth: int, f1: double\]
+>     f1MetricPerformanceMeasures: org.apache.spark.sql.DataFrame = [maxDepth: int, f1: double]
 
 We can display our accuracy results and see immediately that deeper, larger trees are more powerful classifiers, achieving higher accuracies.
 
@@ -236,22 +262,24 @@ It is grayscale. But if we set `maxBins = 2`, then we are effectively making it 
 
 See <http://spark.apache.org/docs/latest/mllib-decision-tree.html#split-candidates>.
 
-    dtc.setMaxDepth(6) // Set maxDepth to a reasonable value.
-    // now try the maxBins "hyper-parameter" which actually acts as a "coarsener" 
-    //     mathematical researchers should note that it is a sub-algebra of the finite 
-    //     algebra of observable pixel images at the finest resolution available to us
-    // giving a compression of the image to fewer coarsely represented pixels
-    val f1MetricPerformanceMeasures = Seq(2, 4, 8, 16, 32).map { case maxBins =>
-      // For this value of maxBins, learn a tree.
-      dtc.setMaxBins(maxBins)
-      val pipeline = new Pipeline().setStages(Array(indexer, dtc))
-      val model = pipeline.fit(training)
-      // Make predictions on test data, and compute accuracy.
-      val predictions = model.transform(test)
-      (maxBins, evaluator.evaluate(predictions))
-    }.toDF("maxBins", "f1")
+``` scala
+dtc.setMaxDepth(6) // Set maxDepth to a reasonable value.
+// now try the maxBins "hyper-parameter" which actually acts as a "coarsener" 
+//     mathematical researchers should note that it is a sub-algebra of the finite 
+//     algebra of observable pixel images at the finest resolution available to us
+// giving a compression of the image to fewer coarsely represented pixels
+val f1MetricPerformanceMeasures = Seq(2, 4, 8, 16, 32).map { case maxBins =>
+  // For this value of maxBins, learn a tree.
+  dtc.setMaxBins(maxBins)
+  val pipeline = new Pipeline().setStages(Array(indexer, dtc))
+  val model = pipeline.fit(training)
+  // Make predictions on test data, and compute accuracy.
+  val predictions = model.transform(test)
+  (maxBins, evaluator.evaluate(predictions))
+}.toDF("maxBins", "f1")
+```
 
-> f1MetricPerformanceMeasures: org.apache.spark.sql.DataFrame = \[maxBins: int, f1: double\]
+>     f1MetricPerformanceMeasures: org.apache.spark.sql.DataFrame = [maxBins: int, f1: double]
 
 We can see that extreme discretization (black and white) hurts performance as measured by F1-error, but only a bit. Using more bins increases the accuracy (but also makes learning more costly).
 
@@ -264,13 +292,35 @@ We can see that extreme discretization (black and white) hurts performance as me
 
 If you are interested in learning more on these topics, these resources can get you started: \* [Excellent visual description of Machine Learning and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) \* *This gives an intuitive visual explanation of ML, decision trees, overfitting, and more.* \* [Blog post on MLlib Random Forests and Gradient-Boosted Trees](https://databricks.com/blog/2015/01/21/random-forests-and-boosting-in-mllib.html) \* *Random Forests and Gradient-Boosted Trees combine many trees into more powerful ensemble models. This is the original post describing MLlib's forest and GBT implementations.* \* Wikipedia \* [Decision tree learning](https://en.wikipedia.org/wiki/Decision_tree_learning) \* [Overfitting](https://en.wikipedia.org/wiki/Overfitting) \* [Hyperparameter tuning](https://en.wikipedia.org/wiki/Hyperparameter_optimization)
 
-    training.show(3,true) // replace 'true' by 'false' to see the whole row hidden by '...'
+``` scala
+training.show(3,true) // replace 'true' by 'false' to see the whole row hidden by '...'
+```
 
-> +-----+--------------------+ |label| features| +-----+--------------------+ | 5.0|(780,\[152,153,154...| | 0.0|(780,\[127,128,129...| | 4.0|(780,\[160,161,162...| +-----+--------------------+ only showing top 3 rows
+>     +-----+--------------------+
+>     |label|            features|
+>     +-----+--------------------+
+>     |  5.0|(780,[152,153,154...|
+>     |  0.0|(780,[127,128,129...|
+>     |  4.0|(780,[160,161,162...|
+>     +-----+--------------------+
+>     only showing top 3 rows
 
-    f1MetricPerformanceMeasures.show()
+``` scala
+f1MetricPerformanceMeasures.show()
+```
 
-> +--------+-------------------+ |maxDepth| f1| +--------+-------------------+ | 0| 0.023138302649304| | 1|0.07684194241456495| | 2|0.21424979609445727| | 3|0.43288417913985733| | 4| 0.5918599114483921| | 5| 0.6799688659857508| | 6| 0.749398509702895| | 7| 0.789045306607664| +--------+-------------------+
+>     +--------+-------------------+
+>     |maxDepth|                 f1|
+>     +--------+-------------------+
+>     |       0|  0.023138302649304|
+>     |       1|0.07684194241456495|
+>     |       2|0.21424979609445727|
+>     |       3|0.43288417913985733|
+>     |       4| 0.5918599114483921|
+>     |       5| 0.6799688659857508|
+>     |       6|  0.749398509702895|
+>     |       7|  0.789045306607664|
+>     +--------+-------------------+
 
 We will use the default metric to evaluate the performance of our classifier: \* <https://en.wikipedia.org/wiki/F1_score>.
 
@@ -285,11 +335,25 @@ We will use the default metric to evaluate the performance of our classifier: \*
   </p>
 </iframe></p>
 
-    f1MetricPerformanceMeasures.show()
+``` scala
+f1MetricPerformanceMeasures.show()
+```
 
-> +-------+------------------+ |maxBins| f1| +-------+------------------+ | 2|0.7426994211960694| | 4|0.7387142919572773| | 8|0.7442687954544963| | 16|0.7444933838771777| | 32| 0.749398509702895| +-------+------------------+
+>     +-------+------------------+
+>     |maxBins|                f1|
+>     +-------+------------------+
+>     |      2|0.7426994211960694|
+>     |      4|0.7387142919572773|
+>     |      8|0.7442687954544963|
+>     |     16|0.7444933838771777|
+>     |     32| 0.749398509702895|
+>     +-------+------------------+
 
-    training.printSchema()
+``` scala
+training.printSchema()
+```
 
-> root |-- label: double (nullable = true) |-- features: vector (nullable = true)
+>     root
+>      |-- label: double (nullable = true)
+>      |-- features: vector (nullable = true)
 

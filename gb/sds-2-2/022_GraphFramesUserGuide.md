@@ -49,13 +49,17 @@ This notebook demonstrates examples from the [GraphFrames User Guide](http://gra
   </p>
 </iframe></p>
 
-    // we first need to install the library - graphframes as a Spark package - and attach it to our cluster
-    import org.apache.spark.sql._
-    import org.apache.spark.sql.functions._
+``` scala
+// we first need to install the library - graphframes as a Spark package - and attach it to our cluster
+import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
 
-    import org.graphframes._
+import org.graphframes._
+```
 
-> import org.apache.spark.sql.\_ import org.apache.spark.sql.functions.\_ import org.graphframes.\_
+>     import org.apache.spark.sql._
+>     import org.apache.spark.sql.functions._
+>     import org.graphframes._
 
 Creating GraphFrames
 --------------------
@@ -77,41 +81,49 @@ In our social network, each user might have an age and name, and each connection
 
 Create the vertices and edges
 
-    // Vertex DataFrame
-    val v = sqlContext.createDataFrame(List(
-      ("a", "Alice", 34),
-      ("b", "Bob", 36),
-      ("c", "Charlie", 30),
-      ("d", "David", 29),
-      ("e", "Esther", 32),
-      ("f", "Fanny", 36),
-      ("g", "Gabby", 60)
-    )).toDF("id", "name", "age")
-    // Edge DataFrame
-    val e = sqlContext.createDataFrame(List(
-      ("a", "b", "friend"),
-      ("b", "c", "follow"),
-      ("c", "b", "follow"),
-      ("f", "c", "follow"),
-      ("e", "f", "follow"),
-      ("e", "d", "friend"),
-      ("d", "a", "friend"),
-      ("a", "e", "friend")
-    )).toDF("src", "dst", "relationship")
+``` scala
+// Vertex DataFrame
+val v = sqlContext.createDataFrame(List(
+  ("a", "Alice", 34),
+  ("b", "Bob", 36),
+  ("c", "Charlie", 30),
+  ("d", "David", 29),
+  ("e", "Esther", 32),
+  ("f", "Fanny", 36),
+  ("g", "Gabby", 60)
+)).toDF("id", "name", "age")
+// Edge DataFrame
+val e = sqlContext.createDataFrame(List(
+  ("a", "b", "friend"),
+  ("b", "c", "follow"),
+  ("c", "b", "follow"),
+  ("f", "c", "follow"),
+  ("e", "f", "follow"),
+  ("e", "d", "friend"),
+  ("d", "a", "friend"),
+  ("a", "e", "friend")
+)).toDF("src", "dst", "relationship")
+```
 
-> v: org.apache.spark.sql.DataFrame = \[id: string, name: string ... 1 more field\] e: org.apache.spark.sql.DataFrame = \[src: string, dst: string ... 1 more field\]
+>     v: org.apache.spark.sql.DataFrame = [id: string, name: string ... 1 more field]
+>     e: org.apache.spark.sql.DataFrame = [src: string, dst: string ... 1 more field]
 
 Let's create a graph from these vertices and these edges:
 
-    val g = GraphFrame(v, e)
+``` scala
+val g = GraphFrame(v, e)
+```
 
-> g: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, name: string ... 1 more field\], e:\[src: string, dst: string ... 1 more field\])
+>     g: org.graphframes.GraphFrame = GraphFrame(v:[id: string, name: string ... 1 more field], e:[src: string, dst: string ... 1 more field])
 
 Let's use the d3.graphs to visualise graphs (recall the D3 graphs in wiki-click example).
 
-> Warning: classes defined within packages cannot be redefined without a cluster restart. Compilation successful.
+>     Warning: classes defined within packages cannot be redefined without a cluster restart.
+>     Compilation successful.
 
-    d3.graphs.help()
+``` scala
+d3.graphs.help()
+```
 
 <p class="htmlSandbox">
 <p>
@@ -126,27 +138,35 @@ Produces a force-directed graph given a collection of edges of the following for
 &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
 </p></p>
 
-    import org.apache.spark.sql.functions.lit // import the lit function in sql
-    val gE= g.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
+``` scala
+import org.apache.spark.sql.functions.lit // import the lit function in sql
+val gE= g.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")) // for us the column count is just an edge incidence
+```
 
-> import org.apache.spark.sql.functions.lit gE: org.apache.spark.sql.DataFrame = \[src: string, dest: string ... 1 more field\]
+>     import org.apache.spark.sql.functions.lit
+>     gE: org.apache.spark.sql.DataFrame = [src: string, dest: string ... 1 more field]
 
-    display(gE)
+``` scala
+display(gE)
+```
 
-| a   | b   | 1.0 |
-|-----|-----|-----|
-| b   | c   | 1.0 |
-| c   | b   | 1.0 |
-| f   | c   | 1.0 |
-| e   | f   | 1.0 |
-| e   | d   | 1.0 |
-| d   | a   | 1.0 |
-| a   | e   | 1.0 |
+| src | dest | count |
+|-----|------|-------|
+| a   | b    | 1.0   |
+| b   | c    | 1.0   |
+| c   | b    | 1.0   |
+| f   | c    | 1.0   |
+| e   | f    | 1.0   |
+| e   | d    | 1.0   |
+| d   | a    | 1.0   |
+| a   | e    | 1.0   |
 
-    d3.graphs.force(
-      height = 500,
-      width = 500,
-      clicks = gE.as[d3.Edge])
+``` scala
+d3.graphs.force(
+  height = 500,
+  width = 500,
+  clicks = gE.as[d3.Edge])
+```
 
 <p class="htmlSandbox">
 <style>
@@ -264,15 +284,19 @@ force.on("tick", function () {
 </div>
 </p>
 
-    // This example graph also comes with the GraphFrames package.
-    val g0 = examples.Graphs.friends
+``` scala
+// This example graph also comes with the GraphFrames package.
+val g0 = examples.Graphs.friends
+```
 
-> g0: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, name: string ... 1 more field\], e:\[src: string, dst: string ... 1 more field\])
+>     g0: org.graphframes.GraphFrame = GraphFrame(v:[id: string, name: string ... 1 more field], e:[src: string, dst: string ... 1 more field])
 
-    d3.graphs.force( // let us see g0 now in one cell
-      height = 500,
-      width = 500,
-      clicks = g0.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")).as[d3.Edge])
+``` scala
+d3.graphs.force( // let us see g0 now in one cell
+  height = 500,
+  width = 500,
+  clicks = g0.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")).as[d3.Edge])
+```
 
 <p class="htmlSandbox">
 <style>
@@ -401,10 +425,13 @@ Also, since GraphFrames represent graphs as pairs of vertex and edge DataFrames,
 
 GraphFrames make it easy to express queries over graphs. Since GraphFrame vertices and edges are stored as DataFrames, many queries are just DataFrame (or SQL) queries.
 
-    display(g.vertices)
+``` scala
+display(g.vertices)
+```
 
-| a   | Alice   | 34.0 |
+| id  | name    | age  |
 |-----|---------|------|
+| a   | Alice   | 34.0 |
 | b   | Bob     | 36.0 |
 | c   | Charlie | 30.0 |
 | d   | David   | 29.0 |
@@ -412,10 +439,13 @@ GraphFrames make it easy to express queries over graphs. Since GraphFrame vertic
 | f   | Fanny   | 36.0 |
 | g   | Gabby   | 60.0 |
 
-    display(g0.vertices) // this is the same query on the graph loaded as an example from GraphFrame package
+``` scala
+display(g0.vertices) // this is the same query on the graph loaded as an example from GraphFrame package
+```
 
-| a   | Alice   | 34.0 |
+| id  | name    | age  |
 |-----|---------|------|
+| a   | Alice   | 34.0 |
 | b   | Bob     | 36.0 |
 | c   | Charlie | 30.0 |
 | d   | David   | 29.0 |
@@ -423,69 +453,86 @@ GraphFrames make it easy to express queries over graphs. Since GraphFrame vertic
 | f   | Fanny   | 36.0 |
 | g   | Gabby   | 60.0 |
 
-    display(g.edges)
+``` scala
+display(g.edges)
+```
 
-| a   | b   | friend |
-|-----|-----|--------|
-| b   | c   | follow |
-| c   | b   | follow |
-| f   | c   | follow |
-| e   | f   | follow |
-| e   | d   | friend |
-| d   | a   | friend |
-| a   | e   | friend |
+| src | dst | relationship |
+|-----|-----|--------------|
+| a   | b   | friend       |
+| b   | c   | follow       |
+| c   | b   | follow       |
+| f   | c   | follow       |
+| e   | f   | follow       |
+| e   | d   | friend       |
+| d   | a   | friend       |
+| a   | e   | friend       |
 
 The incoming degree of the vertices:
 
-    display(g.inDegrees)
+``` scala
+display(g.inDegrees)
+```
 
-| f   | 1.0 |
-|-----|-----|
-| e   | 1.0 |
-| d   | 1.0 |
-| c   | 2.0 |
-| b   | 2.0 |
-| a   | 1.0 |
+| id  | inDegree |
+|-----|----------|
+| f   | 1.0      |
+| e   | 1.0      |
+| d   | 1.0      |
+| c   | 2.0      |
+| b   | 2.0      |
+| a   | 1.0      |
 
 The outgoing degree of the vertices:
 
-    display(g.outDegrees)
+``` scala
+display(g.outDegrees)
+```
 
-| f   | 1.0 |
-|-----|-----|
-| e   | 2.0 |
-| d   | 1.0 |
-| c   | 1.0 |
-| b   | 1.0 |
-| a   | 2.0 |
+| id  | outDegree |
+|-----|-----------|
+| f   | 1.0       |
+| e   | 2.0       |
+| d   | 1.0       |
+| c   | 1.0       |
+| b   | 1.0       |
+| a   | 2.0       |
 
 The degree of the vertices:
 
-    display(g.degrees)
+``` scala
+display(g.degrees)
+```
 
-| f   | 2.0 |
-|-----|-----|
-| e   | 3.0 |
-| d   | 2.0 |
-| c   | 3.0 |
-| b   | 3.0 |
-| a   | 3.0 |
+| id  | degree |
+|-----|--------|
+| f   | 2.0    |
+| e   | 3.0    |
+| d   | 2.0    |
+| c   | 3.0    |
+| b   | 3.0    |
+| a   | 3.0    |
 
 You can run queries directly on the vertices DataFrame. For example, we can find the age of the youngest person in the graph:
 
-    val youngest = g.vertices.groupBy().min("age")
-    display(youngest)
+``` scala
+val youngest = g.vertices.groupBy().min("age")
+display(youngest)
+```
 
-| 29.0 |
-|------|
+| min(age) |
+|----------|
+| 29.0     |
 
 Likewise, you can run queries on the edges DataFrame.
 
 For example, let us count the number of 'follow' relationships in the graph:
 
-    val numFollows = g.edges.filter("relationship = 'follow'").count()
+``` scala
+val numFollows = g.edges.filter("relationship = 'follow'").count()
+```
 
-> numFollows: Long = 4
+>     numFollows: Long = 4
 
 Motif finding
 -------------
@@ -498,23 +545,29 @@ The result is a dataframe, in which the column names are given by the motif keys
 
 Check out the [GraphFrame User Guide](http://graphframes.github.io/user-guide.html#motif-finding) for more details on the API.
 
-    // Search for pairs of vertices with edges in both directions between them, i.e., find undirected or bidirected edges.
-    val motifs = g.find("(a)-[e1]->(b); (b)-[e2]->(a)")
-    display(motifs)
+``` scala
+// Search for pairs of vertices with edges in both directions between them, i.e., find undirected or bidirected edges.
+val motifs = g.find("(a)-[e1]->(b); (b)-[e2]->(a)")
+display(motifs)
+```
 
 Since the result is a DataFrame, more complex queries can be built on top of the motif.
 
 Let us find all the reciprocal relationships in which one person is older than 30:
 
-    val filtered = motifs.filter("b.age > 30")
-    display(filtered)
+``` scala
+val filtered = motifs.filter("b.age > 30")
+display(filtered)
+```
 
 **You Try!**
 
-    //Search for all "directed triangles" or triplets of vertices: a,b,c with edges: a->b, b->c and c->a
-    //uncomment the next 2 lines and replace the "..." below
-    val motifs3 = g.find("(a)-[e1]->(b); (b)-[e2]->(c); (c)-[e3]->(a) ")
-    display(motifs3)
+``` scala
+//Search for all "directed triangles" or triplets of vertices: a,b,c with edges: a->b, b->c and c->a
+//uncomment the next 2 lines and replace the "..." below
+val motifs3 = g.find("(a)-[e1]->(b); (b)-[e2]->(c); (c)-[e3]->(a) ")
+display(motifs3)
+```
 
 **Stateful queries**
 
@@ -530,21 +583,23 @@ For example, suppose one wishes to identify a chain of 4 vertices with some prop
 
 The below code snippets demonstrate this process, where we identify chains of 4 vertices such that at least 2 of the 3 edges are `friend` relationships. In this example, the state is the current count of `friend` edges; in general, it could be any DataFrame Column.
 
-    // Find chains of 4 vertices.
-    val chain4 = g.find("(a)-[ab]->(b); (b)-[bc]->(c); (c)-[cd]->(d)")
+``` scala
+// Find chains of 4 vertices.
+val chain4 = g.find("(a)-[ab]->(b); (b)-[bc]->(c); (c)-[cd]->(d)")
 
-    // Query on sequence, with state (cnt)
-    //  (a) Define method for updating state given the next element of the motif.
-    def sumFriends(cnt: Column, relationship: Column): Column = {
-      when(relationship === "friend", cnt + 1).otherwise(cnt)
-    }
-    //  (b) Use sequence operation to apply method to sequence of elements in motif.
-    //      In this case, the elements are the 3 edges.
-    val condition = Seq("ab", "bc", "cd").
-      foldLeft(lit(0))((cnt, e) => sumFriends(cnt, col(e)("relationship")))
-    //  (c) Apply filter to DataFrame.
-    val chainWith2Friends2 = chain4.where(condition >= 2)
-    display(chainWith2Friends2)
+// Query on sequence, with state (cnt)
+//  (a) Define method for updating state given the next element of the motif.
+def sumFriends(cnt: Column, relationship: Column): Column = {
+  when(relationship === "friend", cnt + 1).otherwise(cnt)
+}
+//  (b) Use sequence operation to apply method to sequence of elements in motif.
+//      In this case, the elements are the 3 edges.
+val condition = Seq("ab", "bc", "cd").
+  foldLeft(lit(0))((cnt, e) => sumFriends(cnt, col(e)("relationship")))
+//  (c) Apply filter to DataFrame.
+val chainWith2Friends2 = chain4.where(condition >= 2)
+display(chainWith2Friends2)
+```
 
 ### Bold idea!
 
@@ -556,34 +611,46 @@ An idea for a product?
 
 Subgraphs are built by filtering a subset of edges and vertices. For example, the following subgraph only contains people who are friends and who are more than 30 years old.
 
-    // Select subgraph of users older than 30, and edges of type "friend"
-    val v2 = g.vertices.filter("age > 30")
-    val e2 = g.edges.filter("relationship = 'friend'")
-    val g2 = GraphFrame(v2, e2)
+``` scala
+// Select subgraph of users older than 30, and edges of type "friend"
+val v2 = g.vertices.filter("age > 30")
+val e2 = g.edges.filter("relationship = 'friend'")
+val g2 = GraphFrame(v2, e2)
+```
 
-> v2: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[id: string, name: string ... 1 more field\] e2: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[src: string, dst: string ... 1 more field\] g2: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, name: string ... 1 more field\], e:\[src: string, dst: string ... 1 more field\])
+>     v2: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [id: string, name: string ... 1 more field]
+>     e2: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [src: string, dst: string ... 1 more field]
+>     g2: org.graphframes.GraphFrame = GraphFrame(v:[id: string, name: string ... 1 more field], e:[src: string, dst: string ... 1 more field])
 
-    display(g2.vertices)
+``` scala
+display(g2.vertices)
+```
 
-| a   | Alice  | 34.0 |
+| id  | name   | age  |
 |-----|--------|------|
+| a   | Alice  | 34.0 |
 | b   | Bob    | 36.0 |
 | e   | Esther | 32.0 |
 | f   | Fanny  | 36.0 |
 | g   | Gabby  | 60.0 |
 
-    display(g2.edges)
+``` scala
+display(g2.edges)
+```
 
-| a   | b   | friend |
-|-----|-----|--------|
-| e   | d   | friend |
-| d   | a   | friend |
-| a   | e   | friend |
+| src | dst | relationship |
+|-----|-----|--------------|
+| a   | b   | friend       |
+| e   | d   | friend       |
+| d   | a   | friend       |
+| a   | e   | friend       |
 
-    d3.graphs.force( // let us see g2 now in one cell
-      height = 500,
-      width = 500,
-      clicks = g2.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")).as[d3.Edge])
+``` scala
+d3.graphs.force( // let us see g2 now in one cell
+  height = 500,
+  width = 500,
+  clicks = g2.edges.select($"src", $"dst".as("dest"), lit(1L).as("count")).as[d3.Edge])
+```
 
 <p class="htmlSandbox">
 <style>
@@ -707,25 +774,32 @@ The following example shows how to select a subgraph based upon triplet filters 
 
 This example could be extended to go beyond triplets by using more complex motifs.
 
-    // Select subgraph based on edges "e" of type "follow"
-    // pointing from a younger user "a" to an older user "b".
-    val paths = g.find("(a)-[e]->(b)")
-      .filter("e.relationship = 'follow'")
-      .filter("a.age < b.age")
-    // "paths" contains vertex info. Extract the edges.
-    val e2 = paths.select("e.src", "e.dst", "e.relationship")
-    // In Spark 1.5+, the user may simplify this call:
-    //  val e2 = paths.select("e.*")
+``` scala
+// Select subgraph based on edges "e" of type "follow"
+// pointing from a younger user "a" to an older user "b".
+val paths = g.find("(a)-[e]->(b)")
+  .filter("e.relationship = 'follow'")
+  .filter("a.age < b.age")
+// "paths" contains vertex info. Extract the edges.
+val e2 = paths.select("e.src", "e.dst", "e.relationship")
+// In Spark 1.5+, the user may simplify this call:
+//  val e2 = paths.select("e.*")
 
-    // Construct the subgraph
-    val g2 = GraphFrame(g.vertices, e2)
+// Construct the subgraph
+val g2 = GraphFrame(g.vertices, e2)
+```
 
-> paths: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[a: struct&lt;id: string, name: string ... 1 more field&gt;, e: struct&lt;src: string, dst: string ... 1 more field&gt; ... 1 more field\] e2: org.apache.spark.sql.DataFrame = \[src: string, dst: string ... 1 more field\] g2: org.graphframes.GraphFrame = GraphFrame(v:\[id: string, name: string ... 1 more field\], e:\[src: string, dst: string ... 1 more field\])
+>     paths: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [a: struct<id: string, name: string ... 1 more field>, e: struct<src: string, dst: string ... 1 more field> ... 1 more field]
+>     e2: org.apache.spark.sql.DataFrame = [src: string, dst: string ... 1 more field]
+>     g2: org.graphframes.GraphFrame = GraphFrame(v:[id: string, name: string ... 1 more field], e:[src: string, dst: string ... 1 more field])
 
-    display(g2.vertices)
+``` scala
+display(g2.vertices)
+```
 
-| a   | Alice   | 34.0 |
+| id  | name    | age  |
 |-----|---------|------|
+| a   | Alice   | 34.0 |
 | b   | Bob     | 36.0 |
 | c   | Charlie | 30.0 |
 | d   | David   | 29.0 |
@@ -733,11 +807,14 @@ This example could be extended to go beyond triplets by using more complex motif
 | f   | Fanny   | 36.0 |
 | g   | Gabby   | 60.0 |
 
-    display(g2.edges)
+``` scala
+display(g2.edges)
+```
 
-| c   | b   | follow |
-|-----|-----|--------|
-| e   | f   | follow |
+| src | dst | relationship |
+|-----|-----|--------------|
+| c   | b   | follow       |
+| e   | f   | follow       |
 
 Standard graph algorithms
 -------------------------
@@ -769,20 +846,26 @@ READ <http://graphframes.github.io/user-guide.html#breadth-first-search-bfs>.
 
 Search from "Esther" for users of age &lt; 32.
 
-    // Search from "Esther" for users of age <= 32.
-    val paths: DataFrame = g.bfs.fromExpr("name = 'Esther'").toExpr("age < 32").run()
-    display(paths)
+``` scala
+// Search from "Esther" for users of age <= 32.
+val paths: DataFrame = g.bfs.fromExpr("name = 'Esther'").toExpr("age < 32").run()
+display(paths)
+```
 
-    val paths: DataFrame = g.bfs.fromExpr("name = 'Esther' OR name = 'Bob'").toExpr("age < 32").run()
-    display(paths)
+``` scala
+val paths: DataFrame = g.bfs.fromExpr("name = 'Esther' OR name = 'Bob'").toExpr("age < 32").run()
+display(paths)
+```
 
 The search may also be limited by edge filters and maximum path lengths.
 
-    val filteredPaths = g.bfs.fromExpr("name = 'Esther'").toExpr("age < 32")
-      .edgeFilter("relationship != 'friend'")
-      .maxPathLength(3)
-      .run()
-    display(filteredPaths)
+``` scala
+val filteredPaths = g.bfs.fromExpr("name = 'Esther'").toExpr("age < 32")
+  .edgeFilter("relationship != 'friend'")
+  .maxPathLength(3)
+  .run()
+display(filteredPaths)
+```
 
 ### Connected components
 
@@ -807,12 +890,15 @@ NOTE: With GraphFrames 0.3.0 and later releases, the default Connected Component
 
 See <https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-rdd-checkpointing.html> to see why we need to check-point to keep the RDD lineage DAGs from growing out of control.
 
-    sc.setCheckpointDir("/_checkpoint") // just a directory in distributed file system
-    val result = g.connectedComponents.run() 
-    display(result)
+``` scala
+sc.setCheckpointDir("/_checkpoint") // just a directory in distributed file system
+val result = g.connectedComponents.run() 
+display(result)
+```
 
-| a   | Alice   | 34.0 | 4.12316860416e11 |
+| id  | name    | age  | component        |
 |-----|---------|------|------------------|
+| a   | Alice   | 34.0 | 4.12316860416e11 |
 | b   | Bob     | 36.0 | 4.12316860416e11 |
 | c   | Charlie | 30.0 | 4.12316860416e11 |
 | d   | David   | 29.0 | 4.12316860416e11 |
@@ -840,17 +926,20 @@ READ <http://graphframes.github.io/user-guide.html#strongly-connected-components
   </p>
 </iframe></p>
 
-    val result = g.stronglyConnectedComponents.maxIter(10).run()
-    display(result.orderBy("component"))
+``` scala
+val result = g.stronglyConnectedComponents.maxIter(10).run()
+display(result.orderBy("component"))
+```
 
-| e   | Esther  | 32.0 | 0.0 |
-|-----|---------|------|-----|
-| d   | David   | 29.0 | 0.0 |
-| a   | Alice   | 34.0 | 0.0 |
-| b   | Bob     | 36.0 | 2.0 |
-| c   | Charlie | 30.0 | 2.0 |
-| f   | Fanny   | 36.0 | 5.0 |
-| g   | Gabby   | 60.0 | 7.0 |
+| id  | name    | age  | component |
+|-----|---------|------|-----------|
+| e   | Esther  | 32.0 | 0.0       |
+| d   | David   | 29.0 | 0.0       |
+| a   | Alice   | 34.0 | 0.0       |
+| b   | Bob     | 36.0 | 2.0       |
+| c   | Charlie | 30.0 | 2.0       |
+| f   | Fanny   | 36.0 | 5.0       |
+| g   | Gabby   | 60.0 | 7.0       |
 
 Label propagation
 -----------------
@@ -874,11 +963,14 @@ READ: <http://graphframes.github.io/user-guide.html#label-propagation-algorithm-
   </p>
 </iframe></p>
 
-    val result = g.labelPropagation.maxIter(5).run()
-    display(result.orderBy("label"))
+``` scala
+val result = g.labelPropagation.maxIter(5).run()
+display(result.orderBy("label"))
+```
 
-| g   | Gabby   | 60.0 | 1.46028888064e11  |
+| id  | name    | age  | label             |
 |-----|---------|------|-------------------|
+| g   | Gabby   | 60.0 | 1.46028888064e11  |
 | b   | Bob     | 36.0 | 1.047972020224e12 |
 | d   | David   | 29.0 | 1.047972020224e12 |
 | f   | Fanny   | 36.0 | 1.047972020224e12 |
@@ -904,12 +996,15 @@ READ: <http://graphframes.github.io/user-guide.html#pagerank>.
   </p>
 </iframe></p>
 
-    // Run PageRank until convergence to tolerance "tol".
-    val results = g.pageRank.resetProbability(0.15).tol(0.01).run()
-    display(results.vertices)
+``` scala
+// Run PageRank until convergence to tolerance "tol".
+val results = g.pageRank.resetProbability(0.15).tol(0.01).run()
+display(results.vertices)
+```
 
-| b   | Bob     | 36.0 | 2.2131428039184433  |
+| id  | name    | age  | pagerank            |
 |-----|---------|------|---------------------|
+| b   | Bob     | 36.0 | 2.2131428039184433  |
 | e   | Esther  | 32.0 | 0.309074279296875   |
 | a   | Alice   | 34.0 | 0.37429242187499995 |
 | f   | Fanny   | 36.0 | 0.27366105468749996 |
@@ -917,24 +1012,30 @@ READ: <http://graphframes.github.io/user-guide.html#pagerank>.
 | d   | David   | 29.0 | 0.27366105468749996 |
 | c   | Charlie | 30.0 | 2.240080617201845   |
 
-    display(results.edges)
+``` scala
+display(results.edges)
+```
 
-| a   | b   | friend | 0.5 |
-|-----|-----|--------|-----|
-| b   | c   | follow | 1.0 |
-| e   | f   | follow | 0.5 |
-| e   | d   | friend | 0.5 |
-| c   | b   | follow | 1.0 |
-| a   | e   | friend | 0.5 |
-| f   | c   | follow | 1.0 |
-| d   | a   | friend | 1.0 |
+| src | dst | relationship | weight |
+|-----|-----|--------------|--------|
+| a   | b   | friend       | 0.5    |
+| b   | c   | follow       | 1.0    |
+| e   | f   | follow       | 0.5    |
+| e   | d   | friend       | 0.5    |
+| c   | b   | follow       | 1.0    |
+| a   | e   | friend       | 0.5    |
+| f   | c   | follow       | 1.0    |
+| d   | a   | friend       | 1.0    |
 
-    // Run PageRank for a fixed number of iterations.
-    val results2 = g.pageRank.resetProbability(0.15).maxIter(10).run()
-    display(results2.vertices)
+``` scala
+// Run PageRank for a fixed number of iterations.
+val results2 = g.pageRank.resetProbability(0.15).maxIter(10).run()
+display(results2.vertices)
+```
 
-| b   | Bob     | 36.0 | 1.842259190054981   |
+| id  | name    | age  | pagerank            |
 |-----|---------|------|---------------------|
+| b   | Bob     | 36.0 | 1.842259190054981   |
 | e   | Esther  | 32.0 | 0.31616362485373634 |
 | a   | Alice   | 34.0 | 0.39143465933514154 |
 | f   | Fanny   | 36.0 | 0.28427148788098855 |
@@ -942,12 +1043,15 @@ READ: <http://graphframes.github.io/user-guide.html#pagerank>.
 | d   | David   | 29.0 | 0.28427148788098855 |
 | c   | Charlie | 30.0 | 1.877540087856477   |
 
-    // Run PageRank personalized for vertex "a"
-    val results3 = g.pageRank.resetProbability(0.15).maxIter(10).sourceId("a").run()
-    display(results3.vertices)
+``` scala
+// Run PageRank personalized for vertex "a"
+val results3 = g.pageRank.resetProbability(0.15).maxIter(10).sourceId("a").run()
+display(results3.vertices)
+```
 
-| b   | Bob     | 36.0 | 0.2699384803126761   |
+| id  | name    | age  | pagerank             |
 |-----|---------|------|----------------------|
+| b   | Bob     | 36.0 | 0.2699384803126761   |
 | e   | Esther  | 32.0 | 7.527103448140514e-2 |
 | a   | Alice   | 34.0 | 0.1771083164268356   |
 | f   | Fanny   | 36.0 | 3.18921369727478e-2  |
@@ -973,8 +1077,10 @@ READ <http://graphframes.github.io/user-guide.html#shortest-paths>.
   </p>
 </iframe></p>
 
-    val paths = g.shortestPaths.landmarks(Seq("a", "d")).run()
-    display(paths)
+``` scala
+val paths = g.shortestPaths.landmarks(Seq("a", "d")).run()
+display(paths)
+```
 
 ### Triangle count
 
@@ -982,17 +1088,20 @@ Computes the number of triangles passing through each vertex.
 
 See <http://graphframes.github.io/user-guide.html#triangle-count>
 
-    val results = g.triangleCount.run()
-    display(results)
+``` scala
+val results = g.triangleCount.run()
+display(results)
+```
 
-| 0.0 | g   | Gabby   | 60.0 |
-|-----|-----|---------|------|
-| 0.0 | f   | Fanny   | 36.0 |
-| 1.0 | e   | Esther  | 32.0 |
-| 1.0 | d   | David   | 29.0 |
-| 0.0 | c   | Charlie | 30.0 |
-| 0.0 | b   | Bob     | 36.0 |
-| 1.0 | a   | Alice   | 34.0 |
+| count | id  | name    | age  |
+|-------|-----|---------|------|
+| 0.0   | g   | Gabby   | 60.0 |
+| 0.0   | f   | Fanny   | 36.0 |
+| 1.0   | e   | Esther  | 32.0 |
+| 1.0   | d   | David   | 29.0 |
+| 0.0   | c   | Charlie | 30.0 |
+| 0.0   | b   | Bob     | 36.0 |
+| 1.0   | a   | Alice   | 34.0 |
 
 There is a lot more... dig into the docs to find out about belief propogation algorithm now!
 

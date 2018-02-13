@@ -1,40 +1,42 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-    This is an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
+``` md #Power Plant ML Pipeline Application
+This is an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
 
-    ###Table of Contents
+###Table of Contents
 
-    - *Step 1: Business Understanding*
-    - *Step 2: Load Your Data*
-    - *Step 3: Explore Your Data*
-    - *Step 4: Visualize Your Data*
-    - *Step 5: Data Preparation*
-    - *Step 6: Data Modeling*
-    - *Step 7: Tuning and Evaluation*
-    - *Step 8: Deployment*
-
-
-
-    *We are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant.  Power generation is a complex process, and understanding and predicting power output is an important element in managing a plant and its connection to the power grid.*
-
-    More information about Peaker or Peaking Power Plants can be found on Wikipedia https://en.wikipedia.org/wiki/Peaking_power_plant
+- *Step 1: Business Understanding*
+- *Step 2: Load Your Data*
+- *Step 3: Explore Your Data*
+- *Step 4: Visualize Your Data*
+- *Step 5: Data Preparation*
+- *Step 6: Data Modeling*
+- *Step 7: Tuning and Evaluation*
+- *Step 8: Deployment*
 
 
-    Given this business problem, we need to translate it to a Machine Learning task.  The ML task is regression since the label (or target) we are trying to predict is numeric.
+
+*We are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant.  Power generation is a complex process, and understanding and predicting power output is an important element in managing a plant and its connection to the power grid.*
+
+More information about Peaker or Peaking Power Plants can be found on Wikipedia https://en.wikipedia.org/wiki/Peaking_power_plant
 
 
-    The example data is provided by UCI at [UCI Machine Learning Repository Combined Cycle Power Plant Data Set](https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant)
-
-    You can read the background on the UCI page, but in summary we have collected a number of readings from sensors at a Gas Fired Power Plant
-
-    (also called a Peaker Plant) and now we want to use those sensor readings to predict how much power the plant will generate.
+Given this business problem, we need to translate it to a Machine Learning task.  The ML task is regression since the label (or target) we are trying to predict is numeric.
 
 
-    More information about Machine Learning with Spark can be found in the [Spark MLLib Programming Guide](https://spark.apache.org/docs/latest/mllib-guide.html)
+The example data is provided by UCI at [UCI Machine Learning Repository Combined Cycle Power Plant Data Set](https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant)
+
+You can read the background on the UCI page, but in summary we have collected a number of readings from sensors at a Gas Fired Power Plant
+
+(also called a Peaker Plant) and now we want to use those sensor readings to predict how much power the plant will generate.
 
 
-    *Please note this example only works with Spark version 1.4 or higher*
+More information about Machine Learning with Spark can be found in the [Spark MLLib Programming Guide](https://spark.apache.org/docs/latest/mllib-guide.html)
+
+
+*Please note this example only works with Spark version 1.4 or higher*
+```
 
 ------------------------------------------------------------------------
 
@@ -69,38 +71,55 @@ Step 7: Tuning and Evaluation
 Step 8: Deployment
 ------------------
 
+``` md ##Step 5: Data Preparation
 
-    The next step is to prepare the data. Since all of this data is numeric and consistent, this is a simple task for us today.
+The next step is to prepare the data. Since all of this data is numeric and consistent, this is a simple task for us today.
 
-    We will need to convert the predictor features from columns to Feature Vectors using the org.apache.spark.ml.feature.VectorAssembler
+We will need to convert the predictor features from columns to Feature Vectors using the org.apache.spark.ml.feature.VectorAssembler
 
-    The VectorAssembler will be the first step in building our ML pipeline.
+The VectorAssembler will be the first step in building our ML pipeline.
+```
 
-    //Let's quickly recall the schema
-    // the table is available
-    table("power_plant_table").printSchema
+``` scala
+//Let's quickly recall the schema
+// the table is available
+table("power_plant_table").printSchema
+```
 
-> root |-- AT: double (nullable = true) |-- V: double (nullable = true) |-- AP: double (nullable = true) |-- RH: double (nullable = true) |-- PE: double (nullable = true)
+>     root
+>      |-- AT: double (nullable = true)
+>      |-- V: double (nullable = true)
+>      |-- AP: double (nullable = true)
+>      |-- RH: double (nullable = true)
+>      |-- PE: double (nullable = true)
 
-    //the DataFrame should also be available
-    powerPlantDF 
+``` scala
+//the DataFrame should also be available
+powerPlantDF 
+```
 
-> res22: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 3 more fields\]
+>     res22: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
 
-    import org.apache.spark.ml.feature.VectorAssembler
+``` scala
+import org.apache.spark.ml.feature.VectorAssembler
 
-    // make a DataFrame called dataset from the table
-    val dataset = sqlContext.table("power_plant_table") 
+// make a DataFrame called dataset from the table
+val dataset = sqlContext.table("power_plant_table") 
 
-    val vectorizer =  new VectorAssembler()
-                          .setInputCols(Array("AT", "V", "AP", "RH"))
-                          .setOutputCol("features")
+val vectorizer =  new VectorAssembler()
+                      .setInputCols(Array("AT", "V", "AP", "RH"))
+                      .setOutputCol("features")
+```
 
-> import org.apache.spark.ml.feature.VectorAssembler dataset: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 3 more fields\] vectorizer: org.apache.spark.ml.feature.VectorAssembler = vecAssembler\_00521eb9630e
+>     import org.apache.spark.ml.feature.VectorAssembler
+>     dataset: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+>     vectorizer: org.apache.spark.ml.feature.VectorAssembler = vecAssembler_00521eb9630e
 
-    Now let's model our data to predict what the power output will be given a set of sensor readings
+``` md ##Step 6: Data Modeling
+Now let's model our data to predict what the power output will be given a set of sensor readings
 
-    Our first model will be based on simple linear regression since we saw some linear patterns in our data based on the scatter plots during the exploration stage.
+Our first model will be based on simple linear regression since we saw some linear patterns in our data based on the scatter plots during the exploration stage.
+```
 
 ### Linear Regression Model
 
@@ -110,61 +129,101 @@ Step 8: Deployment
 
 Let's open <http://spark.apache.org/docs/latest/mllib-linear-methods.html#regression> for some details.
 
-    // First let's hold out 20% of our data for testing and leave 80% for training
-    var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L)
+``` scala
+// First let's hold out 20% of our data for testing and leave 80% for training
+var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L)
+```
 
-> split20: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\] split80: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\]
+>     split20: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
+>     split80: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
 
-    // Let's cache these datasets for performance
-    val testSet = split20.cache()
-    val trainingSet = split80.cache()
+``` scala
+```
 
-> testSet: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\] trainingSet: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\]
+``` scala
+// Let's cache these datasets for performance
+val testSet = split20.cache()
+val trainingSet = split80.cache()
+```
 
-    testSet.count() // action to actually cache
+>     testSet: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
+>     trainingSet: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
 
-> res24: Long = 1966
+``` scala
+testSet.count() // action to actually cache
+```
 
-    trainingSet.count() // action to actually cache
+>     res24: Long = 1966
 
-> res25: Long = 7602
+``` scala
+trainingSet.count() // action to actually cache
+```
 
-    trainingSet.take(3)
+>     res25: Long = 7602
 
-> res28: Array\[org.apache.spark.sql.Row\] = Array(\[2.34,39.42,1028.47,69.68,490.34\], \[2.58,39.42,1028.68,69.03,488.69\], \[2.64,39.64,1011.02,85.24,481.29\])
+``` scala
+trainingSet.take(3)
+```
 
-    // ***** LINEAR REGRESSION MODEL ****
+>     res28: Array[org.apache.spark.sql.Row] = Array([2.34,39.42,1028.47,69.68,490.34], [2.58,39.42,1028.68,69.03,488.69], [2.64,39.64,1011.02,85.24,481.29])
 
-    import org.apache.spark.ml.regression.LinearRegression
-    import org.apache.spark.ml.regression.LinearRegressionModel
-    import org.apache.spark.ml.Pipeline
+``` scala
+// ***** LINEAR REGRESSION MODEL ****
 
-    // Let's initialize our linear regression learner
-    val lr = new LinearRegression()
+import org.apache.spark.ml.regression.LinearRegression
+import org.apache.spark.ml.regression.LinearRegressionModel
+import org.apache.spark.ml.Pipeline
 
-> import org.apache.spark.ml.regression.LinearRegression import org.apache.spark.ml.regression.LinearRegressionModel import org.apache.spark.ml.Pipeline lr: org.apache.spark.ml.regression.LinearRegression = linReg\_955431dccb4f
+// Let's initialize our linear regression learner
+val lr = new LinearRegression()
+```
 
-> frameIt: (u: String, h: Int)String
+>     import org.apache.spark.ml.regression.LinearRegression
+>     import org.apache.spark.ml.regression.LinearRegressionModel
+>     import org.apache.spark.ml.Pipeline
+>     lr: org.apache.spark.ml.regression.LinearRegression = linReg_955431dccb4f
 
-    // We use explain params to dump the parameters we can use
-    lr.explainParams()
+``` scala
+```
 
-> res29: String = aggregationDepth: suggested depth for treeAggregate (&gt;= 2) (default: 2) elasticNetParam: the ElasticNet mixing parameter, in range \[0, 1\]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty (default: 0.0) featuresCol: features column name (default: features) fitIntercept: whether to fit an intercept term (default: true) labelCol: label column name (default: label) maxIter: maximum number of iterations (&gt;= 0) (default: 100) predictionCol: prediction column name (default: prediction) regParam: regularization parameter (&gt;= 0) (default: 0.0) solver: the solver algorithm for optimization. If this is not set or empty, default value is 'auto' (default: auto) standardization: whether to standardize the training features before fitting the model (default: true) tol: the convergence tolerance for iterative algorithms (&gt;= 0) (default: 1.0E-6) weightCol: weight column name. If this is not set or empty, we treat all instance weights as 1.0 (undefined)
+>     frameIt: (u: String, h: Int)String
+
+``` scala
+// We use explain params to dump the parameters we can use
+lr.explainParams()
+```
+
+>     res29: String =
+>     aggregationDepth: suggested depth for treeAggregate (>= 2) (default: 2)
+>     elasticNetParam: the ElasticNet mixing parameter, in range [0, 1]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty (default: 0.0)
+>     featuresCol: features column name (default: features)
+>     fitIntercept: whether to fit an intercept term (default: true)
+>     labelCol: label column name (default: label)
+>     maxIter: maximum number of iterations (>= 0) (default: 100)
+>     predictionCol: prediction column name (default: prediction)
+>     regParam: regularization parameter (>= 0) (default: 0.0)
+>     solver: the solver algorithm for optimization. If this is not set or empty, default value is 'auto' (default: auto)
+>     standardization: whether to standardize the training features before fitting the model (default: true)
+>     tol: the convergence tolerance for iterative algorithms (>= 0) (default: 1.0E-6)
+>     weightCol: weight column name. If this is not set or empty, we treat all instance weights as 1.0 (undefined)
 
 The cell below is based on the Spark ML pipeline API. More information can be found in the Spark ML Programming Guide at https://spark.apache.org/docs/latest/ml-guide.html
 
-    // Now we set the parameters for the method
-    lr.setPredictionCol("Predicted_PE")
-      .setLabelCol("PE")
-      .setMaxIter(100)
-      .setRegParam(0.1)
-    // We will use the new spark.ml pipeline API. If you have worked with scikit-learn this will be very familiar.
-    val lrPipeline = new Pipeline()
-    lrPipeline.setStages(Array(vectorizer, lr))
-    // Let's first train on the entire dataset to see what we get
-    val lrModel = lrPipeline.fit(trainingSet)
+``` scala
+// Now we set the parameters for the method
+lr.setPredictionCol("Predicted_PE")
+  .setLabelCol("PE")
+  .setMaxIter(100)
+  .setRegParam(0.1)
+// We will use the new spark.ml pipeline API. If you have worked with scikit-learn this will be very familiar.
+val lrPipeline = new Pipeline()
+lrPipeline.setStages(Array(vectorizer, lr))
+// Let's first train on the entire dataset to see what we get
+val lrModel = lrPipeline.fit(trainingSet)
+```
 
-> lrPipeline: org.apache.spark.ml.Pipeline = pipeline\_a16f729772ca lrModel: org.apache.spark.ml.PipelineModel = pipeline\_a16f729772ca
+>     lrPipeline: org.apache.spark.ml.Pipeline = pipeline_a16f729772ca
+>     lrModel: org.apache.spark.ml.PipelineModel = pipeline_a16f729772ca
 
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
@@ -174,53 +233,67 @@ where \\(b\_0\\) is the intercept and \\(b\_i\\)'s are coefficients.
 
 To express the coefficients of that line we can retrieve the Estimator stage from the fitted, linear-regression pipeline model named `lrModel` and express the weights and the intercept for the function.
 
-    // The intercept is as follows:
-    val intercept = lrModel.stages(1).asInstanceOf[LinearRegressionModel].intercept
+``` scala
+// The intercept is as follows:
+val intercept = lrModel.stages(1).asInstanceOf[LinearRegressionModel].intercept
+```
 
-> intercept: Double = 427.9139822165837
+>     intercept: Double = 427.9139822165837
 
-    // The coefficents (i.e. weights) are as follows:
+``` scala
+// The coefficents (i.e. weights) are as follows:
 
-    val weights = lrModel.stages(1).asInstanceOf[LinearRegressionModel].coefficients.toArray
+val weights = lrModel.stages(1).asInstanceOf[LinearRegressionModel].coefficients.toArray
+```
 
-> weights: Array\[Double\] = Array(-1.9083064919040942, -0.25381293007161654, 0.08739350304730673, -0.1474651301033126)
+>     weights: Array[Double] = Array(-1.9083064919040942, -0.25381293007161654, 0.08739350304730673, -0.1474651301033126)
 
 The model has been fit and the intercept and coefficients displayed above.
 
 Now, let us do some work to make a string of the model that is easy to understand for an applied data scientist or data analyst.
 
-    val featuresNoLabel = dataset.columns.filter(col => col != "PE")
+``` scala
+val featuresNoLabel = dataset.columns.filter(col => col != "PE")
+```
 
-> featuresNoLabel: Array\[String\] = Array(AT, V, AP, RH)
+>     featuresNoLabel: Array[String] = Array(AT, V, AP, RH)
 
-    val coefficentFeaturePairs = sc.parallelize(weights).zip(sc.parallelize(featuresNoLabel))
+``` scala
+val coefficentFeaturePairs = sc.parallelize(weights).zip(sc.parallelize(featuresNoLabel))
+```
 
-> coefficentFeaturePairs: org.apache.spark.rdd.RDD\[(Double, String)\] = ZippedPartitionsRDD2\[108\] at zip at &lt;console&gt;:42
+>     coefficentFeaturePairs: org.apache.spark.rdd.RDD[(Double, String)] = ZippedPartitionsRDD2[108] at zip at <console>:42
 
-    coefficentFeaturePairs.collect() // this just pairs each coefficient with the name of its corresponding feature
+``` scala
+coefficentFeaturePairs.collect() // this just pairs each coefficient with the name of its corresponding feature
+```
 
-> res30: Array\[(Double, String)\] = Array((-1.9083064919040942,AT), (-0.25381293007161654,V), (0.08739350304730673,AP), (-0.1474651301033126,RH))
+>     res30: Array[(Double, String)] = Array((-1.9083064919040942,AT), (-0.25381293007161654,V), (0.08739350304730673,AP), (-0.1474651301033126,RH))
 
-    // Now let's sort the coefficients from the largest to the smallest
+``` scala
+// Now let's sort the coefficients from the largest to the smallest
 
-    var equation = s"y = $intercept "
-    //var variables = Array
-    coefficentFeaturePairs.sortByKey().collect().foreach({
-      case (weight, feature) =>
-      { 
-            val symbol = if (weight > 0) "+" else "-"
-            val absWeight = Math.abs(weight)
-            equation += (s" $symbol (${absWeight} * ${feature})")
-      }
-    }
-    )
+var equation = s"y = $intercept "
+//var variables = Array
+coefficentFeaturePairs.sortByKey().collect().foreach({
+  case (weight, feature) =>
+  { 
+        val symbol = if (weight > 0) "+" else "-"
+        val absWeight = Math.abs(weight)
+        equation += (s" $symbol (${absWeight} * ${feature})")
+  }
+}
+)
+```
 
-> equation: String = y = 427.9139822165837 - (1.9083064919040942 \* AT) - (0.25381293007161654 \* V) - (0.1474651301033126 \* RH) + (0.08739350304730673 \* AP)
+>     equation: String = y = 427.9139822165837  - (1.9083064919040942 * AT) - (0.25381293007161654 * V) - (0.1474651301033126 * RH) + (0.08739350304730673 * AP)
 
-    // Finally here is our equation
-    println("Linear Regression Equation: " + equation)
+``` scala
+// Finally here is our equation
+println("Linear Regression Equation: " + equation)
+```
 
-> Linear Regression Equation: y = 427.9139822165837 - (1.9083064919040942 \* AT) - (0.25381293007161654 \* V) - (0.1474651301033126 \* RH) + (0.08739350304730673 \* AP)
+>     Linear Regression Equation: y = 427.9139822165837  - (1.9083064919040942 * AT) - (0.25381293007161654 * V) - (0.1474651301033126 * RH) + (0.08739350304730673 * AP)
 
 Based on examining the fitted Linear Regression Equation above: \* There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91. \* But our other dimenensions seem to have little to no correlation with Power Output.
 
@@ -228,12 +301,15 @@ Do you remember **Step 2: Explore Your Data**? When we visualized each predictor
 
 Now let's see what our predictions look like given this model.
 
-    val predictionsAndLabels = lrModel.transform(testSet)
+``` scala
+val predictionsAndLabels = lrModel.transform(testSet)
 
-    display(predictionsAndLabels.select("AT", "V", "AP", "RH", "PE", "Predicted_PE"))
+display(predictionsAndLabels.select("AT", "V", "AP", "RH", "PE", "Predicted_PE"))
+```
 
-| 1.81 | 39.42 | 1026.92 | 76.97 | 490.55 | 492.8503868481024  |
+| AT   | V     | AP      | RH    | PE     | Predicted\_PE      |
 |------|-------|---------|-------|--------|--------------------|
+| 1.81 | 39.42 | 1026.92 | 76.97 | 490.55 | 492.8503868481024  |
 | 3.2  | 41.31 | 997.67  | 98.84 | 489.86 | 483.9368120270272  |
 | 3.38 | 41.31 | 998.79  | 97.76 | 489.11 | 483.850459922409   |
 | 3.4  | 39.64 | 1011.1  | 83.43 | 459.86 | 487.4251507226833  |
@@ -268,39 +344,63 @@ Truncated to 30 rows
 
 Now that we have real predictions we can use an evaluation metric such as Root Mean Squared Error to validate our regression model. The lower the Root Mean Squared Error, the better our model.
 
-    //Now let's compute some evaluation metrics against our test dataset
+``` scala
+//Now let's compute some evaluation metrics against our test dataset
 
-    import org.apache.spark.mllib.evaluation.RegressionMetrics 
+import org.apache.spark.mllib.evaluation.RegressionMetrics 
 
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
+```
 
-> import org.apache.spark.mllib.evaluation.RegressionMetrics metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@78aa5b8c
+>     import org.apache.spark.mllib.evaluation.RegressionMetrics
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@78aa5b8c
 
-    val rmse = metrics.rootMeanSquaredError
+``` scala
+val rmse = metrics.rootMeanSquaredError
+```
 
-> rmse: Double = 4.609375859170583
+>     rmse: Double = 4.609375859170583
 
-    val explainedVariance = metrics.explainedVariance
+``` scala
+val explainedVariance = metrics.explainedVariance
+```
 
-> explainedVariance: Double = 274.54186073318266
+>     explainedVariance: Double = 274.54186073318266
 
-    val r2 = metrics.r2
+``` scala
+val r2 = metrics.r2
+```
 
-> r2: Double = 0.9308377700269259
+>     r2: Double = 0.9308377700269259
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+``` scala
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
-> Root Mean Squared Error: 4.609375859170583 Explained Variance: 274.54186073318266 R2: 0.9308377700269259
+>     Root Mean Squared Error: 4.609375859170583
+>     Explained Variance: 274.54186073318266
+>     R2: 0.9308377700269259
 
-    display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
+``` md Generally a good model will have 68% of predictions within 1 RMSE and 95% within 2 RMSE of the actual value. Let's calculate and see if our RMSE meets this criteria.
+```
 
-    // First we calculate the residual error and divide it by the RMSE from predictionsAndLabels DataFrame and make another DataFrame that is registered as a temporary table Power_Plant_RMSE_Evaluation
-    predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
+``` scala
+display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
+```
 
-| 490.55 | 492.8503868481024  | -2.3003868481023915  | -0.49906688419119855  |
+``` scala
+// First we calculate the residual error and divide it by the RMSE from predictionsAndLabels DataFrame and make another DataFrame that is registered as a temporary table Power_Plant_RMSE_Evaluation
+predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
+```
+
+``` sql SELECT * from Power_Plant_RMSE_Evaluation
+```
+
+| PE     | Predicted\_PE      | Residual\_Error      | Within\_RSME          |
 |--------|--------------------|----------------------|-----------------------|
+| 490.55 | 492.8503868481024  | -2.3003868481023915  | -0.49906688419119855  |
 | 489.86 | 483.9368120270272  | 5.923187972972812    | 1.2850303715606821    |
 | 489.11 | 483.850459922409   | 5.259540077590998    | 1.1410525499080058    |
 | 459.86 | 487.4251507226833  | -27.565150722683313  | -5.980234974295072    |
@@ -333,10 +433,13 @@ Now that we have real predictions we can use an evaluation metric such as Root M
 
 Truncated to 30 rows
 
-    SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
+``` sql -- Now we can display the RMSE as a Histogram. Clearly this shows that the RMSE is centered around 0 with the vast majority of the error within 2 RMSEs.
+SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
+```
 
-| -0.49906688419119855  |
+| Within\_RSME          |
 |-----------------------|
+| -0.49906688419119855  |
 | 1.2850303715606821    |
 | 1.1410525499080058    |
 | -5.980234974295072    |
@@ -369,25 +472,37 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-    SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
-    group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end
+``` md We can see this definitively if we count the number of predictions within + or - 1.0 and + or - 2.0 and display this as a pie chart:
+```
 
-| 1.0 | 1312.0 |
-|-----|--------|
-| 3.0 | 55.0   |
-| 2.0 | 599.0  |
+``` sql
+SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
+group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end
+```
+
+| RSME\_Multiple | count  |
+|----------------|--------|
+| 1.0            | 1312.0 |
+| 3.0            | 55.0   |
+| 2.0            | 599.0  |
 
 So we have about 70% of our training data within 1 RMSE and about 97% (70% + 27%) within 2 RMSE. So the model is pretty decent. Let's see if we can tune the model to improve it further.
 
 **NOTE:** these numbers will vary across runs due to the seed in random sampling of training and test set, number of iterations, and other stopping rules in optimization, for example.
 
+``` md #Step 7: Tuning and Evaluation
 
-    Now that we have a model with all of the data let's try to make a better model by tuning over several parameters.
+Now that we have a model with all of the data let's try to make a better model by tuning over several parameters.
 
-    import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
-    import org.apache.spark.ml.evaluation._
+```
 
-> import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator} import org.apache.spark.ml.evaluation.\_
+``` scala
+import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
+import org.apache.spark.ml.evaluation._
+```
+
+>     import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
+>     import org.apache.spark.ml.evaluation._
 
 We now treat the `lrPipeline` as an `Estimator`, wrapping it in a `CrossValidator` instance.
 
@@ -395,13 +510,16 @@ This will allow us to jointly choose parameters for all Pipeline stages.
 
 A `CrossValidator` requires an `Estimator`, an `Evaluator` (which we `set` next).
 
-    //Let's create our crossvalidator with 3 fold cross validation
-    val crossval = new CrossValidator()
-    crossval.setEstimator(lrPipeline)
-    crossval.setNumFolds(3)
-    crossval.setEvaluator(regEval)
+``` scala
+//Let's create our crossvalidator with 3 fold cross validation
+val crossval = new CrossValidator()
+crossval.setEstimator(lrPipeline)
+crossval.setNumFolds(3)
+crossval.setEvaluator(regEval)
+```
 
-> crossval: org.apache.spark.ml.tuning.CrossValidator = cv\_414cd3231d9a res38: crossval.type = cv\_414cd3231d9a
+>     crossval: org.apache.spark.ml.tuning.CrossValidator = cv_414cd3231d9a
+>     res38: crossval.type = cv_414cd3231d9a
 
 A `CrossValidator` also requires a set of `EstimatorParamMaps` which we `set` next.
 
@@ -409,96 +527,189 @@ For this we need a regularization parameter (more generally a hyper-parameter th
 
 Now, let's tune over our regularization parameter from 0.01 to 0.10.
 
-    val regParam = ((1 to 10) toArray).map(x => (x /100.0))
+``` scala
+val regParam = ((1 to 10) toArray).map(x => (x /100.0))
+```
 
-> warning: there was one feature warning; re-run with -feature for details regParam: Array\[Double\] = Array(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1)
+>     warning: there was one feature warning; re-run with -feature for details
+>     regParam: Array[Double] = Array(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1)
 
 Check out the scala docs for syntactic details on [org.apache.spark.ml.tuning.ParamGridBuilder](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.ml.tuning.ParamGridBuilder).
 
-    val paramGrid = new ParamGridBuilder()
-                        .addGrid(lr.regParam, regParam)
-                        .build()
-    crossval.setEstimatorParamMaps(paramGrid)
+``` scala
+val paramGrid = new ParamGridBuilder()
+                    .addGrid(lr.regParam, regParam)
+                    .build()
+crossval.setEstimatorParamMaps(paramGrid)
+```
 
-> paramGrid: Array\[org.apache.spark.ml.param.ParamMap\] = Array({ linReg\_955431dccb4f-regParam: 0.01 }, { linReg\_955431dccb4f-regParam: 0.02 }, { linReg\_955431dccb4f-regParam: 0.03 }, { linReg\_955431dccb4f-regParam: 0.04 }, { linReg\_955431dccb4f-regParam: 0.05 }, { linReg\_955431dccb4f-regParam: 0.06 }, { linReg\_955431dccb4f-regParam: 0.07 }, { linReg\_955431dccb4f-regParam: 0.08 }, { linReg\_955431dccb4f-regParam: 0.09 }, { linReg\_955431dccb4f-regParam: 0.1 }) res39: crossval.type = cv\_414cd3231d9a
+>     paramGrid: Array[org.apache.spark.ml.param.ParamMap] =
+>     Array({
+>     	linReg_955431dccb4f-regParam: 0.01
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.02
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.03
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.04
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.05
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.06
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.07
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.08
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.09
+>     }, {
+>     	linReg_955431dccb4f-regParam: 0.1
+>     })
+>     res39: crossval.type = cv_414cd3231d9a
 
-    //Now let's create our model
-    val cvModel = crossval.fit(trainingSet)
+``` scala
+//Now let's create our model
+val cvModel = crossval.fit(trainingSet)
+```
 
-> cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv\_414cd3231d9a
+>     cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_414cd3231d9a
 
 In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large. \* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
 
-    val predictionsAndLabels = cvModel.transform(testSet)
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
+``` md Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
+```
 
-    val rmse = metrics.rootMeanSquaredError
-    val explainedVariance = metrics.explainedVariance
-    val r2 = metrics.r2
+``` scala
+val predictionsAndLabels = cvModel.transform(testSet)
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
 
-> predictionsAndLabels: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 5 more fields\] metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@2b71aef4 rmse: Double = 4.599964072968395 explainedVariance: Double = 277.2272873387723 r2: Double = 0.9311199234339246
+val rmse = metrics.rootMeanSquaredError
+val explainedVariance = metrics.explainedVariance
+val r2 = metrics.r2
+```
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+>     predictionsAndLabels: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 5 more fields]
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@2b71aef4
+>     rmse: Double = 4.599964072968395
+>     explainedVariance: Double = 277.2272873387723
+>     r2: Double = 0.9311199234339246
 
-> Root Mean Squared Error: 4.599964072968395 Explained Variance: 277.2272873387723 R2: 0.9311199234339246
+``` scala
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
+>     Root Mean Squared Error: 4.599964072968395
+>     Explained Variance: 277.2272873387723
+>     R2: 0.9311199234339246
 
-    Given that the only linearly correlated variable is Temperature, it makes sense try another machine learning method such a Decision Tree to handle non-linear data and see if we can improve our model
+``` md So our initial untuned and tuned linear regression models are statistically identical.
 
-    A Decision Tree creates a model based on splitting variables using a tree structure. We will first start with a single decision tree model.
+Given that the only linearly correlated variable is Temperature, it makes sense try another machine learning method such a Decision Tree to handle non-linear data and see if we can improve our model
 
-    Reference Decision Trees: https://en.wikipedia.org/wiki/Decision_tree_learning
+A Decision Tree creates a model based on splitting variables using a tree structure. We will first start with a single decision tree model.
 
-    //Let's build a decision tree pipeline
-    import org.apache.spark.ml.regression.DecisionTreeRegressor
+Reference Decision Trees: https://en.wikipedia.org/wiki/Decision_tree_learning
+```
 
-    // we are using a Decision Tree Regressor as opposed to a classifier we used for the hand-written digit classification problem
-    val dt = new DecisionTreeRegressor()
-    dt.setLabelCol("PE")
-    dt.setPredictionCol("Predicted_PE")
-    dt.setFeaturesCol("features")
-    dt.setMaxBins(100)
+``` scala
+//Let's build a decision tree pipeline
+import org.apache.spark.ml.regression.DecisionTreeRegressor
 
-    val dtPipeline = new Pipeline()
-    dtPipeline.setStages(Array(vectorizer, dt))
+// we are using a Decision Tree Regressor as opposed to a classifier we used for the hand-written digit classification problem
+val dt = new DecisionTreeRegressor()
+dt.setLabelCol("PE")
+dt.setPredictionCol("Predicted_PE")
+dt.setFeaturesCol("features")
+dt.setMaxBins(100)
 
-> import org.apache.spark.ml.regression.DecisionTreeRegressor dt: org.apache.spark.ml.regression.DecisionTreeRegressor = dtr\_23e04c8c3476 dtPipeline: org.apache.spark.ml.Pipeline = pipeline\_382103e9e31e res41: dtPipeline.type = pipeline\_382103e9e31e
+val dtPipeline = new Pipeline()
+dtPipeline.setStages(Array(vectorizer, dt))
+```
 
-    //Let's just resuse our CrossValidator
-    crossval.setEstimator(dtPipeline)
+>     import org.apache.spark.ml.regression.DecisionTreeRegressor
+>     dt: org.apache.spark.ml.regression.DecisionTreeRegressor = dtr_23e04c8c3476
+>     dtPipeline: org.apache.spark.ml.Pipeline = pipeline_382103e9e31e
+>     res41: dtPipeline.type = pipeline_382103e9e31e
 
-> res42: crossval.type = cv\_414cd3231d9a
+``` scala
+//Let's just resuse our CrossValidator
+crossval.setEstimator(dtPipeline)
+```
 
-    val paramGrid = new ParamGridBuilder()
-                         .addGrid(dt.maxDepth, Array(2, 3))
-                         .build()
+>     res42: crossval.type = cv_414cd3231d9a
 
-> paramGrid: Array\[org.apache.spark.ml.param.ParamMap\] = Array({ dtr\_23e04c8c3476-maxDepth: 2 }, { dtr\_23e04c8c3476-maxDepth: 3 })
+``` scala
+val paramGrid = new ParamGridBuilder()
+                     .addGrid(dt.maxDepth, Array(2, 3))
+                     .build()
+```
 
-    crossval.setEstimatorParamMaps(paramGrid)
+>     paramGrid: Array[org.apache.spark.ml.param.ParamMap] =
+>     Array({
+>     	dtr_23e04c8c3476-maxDepth: 2
+>     }, {
+>     	dtr_23e04c8c3476-maxDepth: 3
+>     })
 
-> res43: crossval.type = cv\_414cd3231d9a
+``` scala
+crossval.setEstimatorParamMaps(paramGrid)
+```
 
-    val dtModel = crossval.fit(trainingSet) // fit decitionTree with cv
+>     res43: crossval.type = cv_414cd3231d9a
 
-> dtModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv\_414cd3231d9a
+``` scala
+val dtModel = crossval.fit(trainingSet) // fit decitionTree with cv
+```
 
-    import org.apache.spark.ml.regression.DecisionTreeRegressionModel
-    import org.apache.spark.ml.PipelineModel
-    dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
+>     dtModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_414cd3231d9a
 
-> import org.apache.spark.ml.regression.DecisionTreeRegressionModel import org.apache.spark.ml.PipelineModel res44: String = "DecisionTreeRegressionModel (uid=dtr\_23e04c8c3476) of depth 3 with 15 nodes If (feature 0 &lt;= 17.84) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 8.75) Predict: 483.5412151067323 Else (feature 0 &gt; 8.75) Predict: 475.6305502392345 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 15.33) Predict: 467.63141917293234 Else (feature 0 &gt; 15.33) Predict: 460.74754125412574 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 47.83) Predict: 457.1077966101695 Else (feature 1 &gt; 47.83) Predict: 448.74750213858016 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: 442.88544855967086 Else (feature 1 &gt; 66.25) Predict: 434.7293710691822 "
+``` scala
+import org.apache.spark.ml.regression.DecisionTreeRegressionModel
+import org.apache.spark.ml.PipelineModel
+dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
+```
+
+>     import org.apache.spark.ml.regression.DecisionTreeRegressionModel
+>     import org.apache.spark.ml.PipelineModel
+>     res44: String =
+>     "DecisionTreeRegressionModel (uid=dtr_23e04c8c3476) of depth 3 with 15 nodes
+>       If (feature 0 <= 17.84)
+>        If (feature 0 <= 11.95)
+>         If (feature 0 <= 8.75)
+>          Predict: 483.5412151067323
+>         Else (feature 0 > 8.75)
+>          Predict: 475.6305502392345
+>        Else (feature 0 > 11.95)
+>         If (feature 0 <= 15.33)
+>          Predict: 467.63141917293234
+>         Else (feature 0 > 15.33)
+>          Predict: 460.74754125412574
+>       Else (feature 0 > 17.84)
+>        If (feature 0 <= 23.02)
+>         If (feature 1 <= 47.83)
+>          Predict: 457.1077966101695
+>         Else (feature 1 > 47.83)
+>          Predict: 448.74750213858016
+>        Else (feature 0 > 23.02)
+>         If (feature 1 <= 66.25)
+>          Predict: 442.88544855967086
+>         Else (feature 1 > 66.25)
+>          Predict: 434.7293710691822
+>     "
 
 The line above will pull the Decision Tree model from the Pipeline and display it as an if-then-else string.
 
 Next let's visualize it as a decision tree for regression.
 
-    display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel])
+``` scala
+display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel])
+```
 
-| {"index":7,"featureType":"continuous","prediction":null,"threshold":17.84,"categories":null,"feature":0,"overflow":false}          |
+| treeNode                                                                                                                           |
 |------------------------------------------------------------------------------------------------------------------------------------|
+| {"index":7,"featureType":"continuous","prediction":null,"threshold":17.84,"categories":null,"feature":0,"overflow":false}          |
 | {"index":3,"featureType":"continuous","prediction":null,"threshold":11.95,"categories":null,"feature":0,"overflow":false}          |
 | {"index":1,"featureType":"continuous","prediction":null,"threshold":8.75,"categories":null,"feature":0,"overflow":false}           |
 | {"index":0,"featureType":null,"prediction":483.5412151067323,"threshold":null,"categories":null,"feature":null,"overflow":false}   |
@@ -516,18 +727,27 @@ Next let's visualize it as a decision tree for regression.
 
 Now let's see how our DecisionTree model compares to our LinearRegression model
 
-    val predictionsAndLabels = dtModel.bestModel.transform(testSet)
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
+``` scala
+val predictionsAndLabels = dtModel.bestModel.transform(testSet)
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
 
-    val rmse = metrics.rootMeanSquaredError
-    val explainedVariance = metrics.explainedVariance
-    val r2 = metrics.r2
+val rmse = metrics.rootMeanSquaredError
+val explainedVariance = metrics.explainedVariance
+val r2 = metrics.r2
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
-> Root Mean Squared Error: 5.221342219456633 Explained Variance: 269.66550072645475 R2: 0.9112539444165726 predictionsAndLabels: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 5 more fields\] metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@1b14107a rmse: Double = 5.221342219456633 explainedVariance: Double = 269.66550072645475 r2: Double = 0.9112539444165726
+>     Root Mean Squared Error: 5.221342219456633
+>     Explained Variance: 269.66550072645475
+>     R2: 0.9112539444165726
+>     predictionsAndLabels: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 5 more fields]
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@1b14107a
+>     rmse: Double = 5.221342219456633
+>     explainedVariance: Double = 269.66550072645475
+>     r2: Double = 0.9112539444165726
 
 So our DecisionTree was slightly worse than our LinearRegression model (LR: 4.6 vs DT: 5.2). Maybe we can try an Ensemble method such as Gradient-Boosted Decision Trees to see if we can strengthen our model by using an ensemble of weaker trees with weighting to reduce the error in our model.
 
@@ -541,84 +761,113 @@ Let's see what a boosting algorithm, a type of ensemble method, is all about in 
 
 This can take between 5 - 15 minutes in a shard with 6 workers depending on other workloads (may be longer in the Community Edition).
 
-    import org.apache.spark.ml.regression.GBTRegressor
+``` scala
+import org.apache.spark.ml.regression.GBTRegressor
 
-    val gbt = new GBTRegressor()
-    gbt.setLabelCol("PE")
-    gbt.setPredictionCol("Predicted_PE")
-    gbt.setFeaturesCol("features")
-    gbt.setSeed(100088121L)
-    gbt.setMaxBins(100)
-    gbt.setMaxIter(120)
+val gbt = new GBTRegressor()
+gbt.setLabelCol("PE")
+gbt.setPredictionCol("Predicted_PE")
+gbt.setFeaturesCol("features")
+gbt.setSeed(100088121L)
+gbt.setMaxBins(100)
+gbt.setMaxIter(120)
 
-    val gbtPipeline = new Pipeline()
-    gbtPipeline.setStages(Array(vectorizer, gbt))
-    //Let's just resuse our CrossValidator
+val gbtPipeline = new Pipeline()
+gbtPipeline.setStages(Array(vectorizer, gbt))
+//Let's just resuse our CrossValidator
 
-    crossval.setEstimator(gbtPipeline)
+crossval.setEstimator(gbtPipeline)
 
-    val paramGrid = new ParamGridBuilder()
-      .addGrid(gbt.maxDepth, Array(2, 3))
-      .build()
-    crossval.setEstimatorParamMaps(paramGrid)
+val paramGrid = new ParamGridBuilder()
+  .addGrid(gbt.maxDepth, Array(2, 3))
+  .build()
+crossval.setEstimatorParamMaps(paramGrid)
 
-    //gbt.explainParams
-    val gbtModel = crossval.fit(trainingSet)
+//gbt.explainParams
+val gbtModel = crossval.fit(trainingSet)
+```
 
-> import org.apache.spark.ml.regression.GBTRegressor gbt: org.apache.spark.ml.regression.GBTRegressor = gbtr\_9c5ab45fe584 gbtPipeline: org.apache.spark.ml.Pipeline = pipeline\_e6a84d2d75ba paramGrid: Array\[org.apache.spark.ml.param.ParamMap\] = Array({ gbtr\_9c5ab45fe584-maxDepth: 2 }, { gbtr\_9c5ab45fe584-maxDepth: 3 }) gbtModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv\_414cd3231d9a
+>     import org.apache.spark.ml.regression.GBTRegressor
+>     gbt: org.apache.spark.ml.regression.GBTRegressor = gbtr_9c5ab45fe584
+>     gbtPipeline: org.apache.spark.ml.Pipeline = pipeline_e6a84d2d75ba
+>     paramGrid: Array[org.apache.spark.ml.param.ParamMap] =
+>     Array({
+>     	gbtr_9c5ab45fe584-maxDepth: 2
+>     }, {
+>     	gbtr_9c5ab45fe584-maxDepth: 3
+>     })
+>     gbtModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_414cd3231d9a
 
-    import org.apache.spark.ml.regression.GBTRegressionModel 
+``` scala
+import org.apache.spark.ml.regression.GBTRegressionModel 
 
-    val predictionsAndLabels = gbtModel.bestModel.transform(testSet)
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
+val predictionsAndLabels = gbtModel.bestModel.transform(testSet)
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
 
-    val rmse = metrics.rootMeanSquaredError
-    val explainedVariance = metrics.explainedVariance
-    val r2 = metrics.r2
+val rmse = metrics.rootMeanSquaredError
+val explainedVariance = metrics.explainedVariance
+val r2 = metrics.r2
 
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
-> Root Mean Squared Error: 3.7616562931536803 Explained Variance: 282.4365553123402 R2: 0.9539379816689415 import org.apache.spark.ml.regression.GBTRegressionModel predictionsAndLabels: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 5 more fields\] metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@1f1d9c34 rmse: Double = 3.7616562931536803 explainedVariance: Double = 282.4365553123402 r2: Double = 0.9539379816689415
+>     Root Mean Squared Error: 3.7616562931536803
+>     Explained Variance: 282.4365553123402
+>     R2: 0.9539379816689415
+>     import org.apache.spark.ml.regression.GBTRegressionModel
+>     predictionsAndLabels: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 5 more fields]
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@1f1d9c34
+>     rmse: Double = 3.7616562931536803
+>     explainedVariance: Double = 282.4365553123402
+>     r2: Double = 0.9539379816689415
 
 Note that the root mean squared error is smaller now due to the ensemble of 120 trees from Gradient Boosting!
 
 We can use the toDebugString method to dump out what our trees and weighting look like:
 
+``` md ### Conclusion
 
-    Wow! So our best model is in fact our Gradient Boosted Decision tree model which uses an ensemble of 120 Trees with a depth of 3 to construct a better model than the single decision tree.
+Wow! So our best model is in fact our Gradient Boosted Decision tree model which uses an ensemble of 120 Trees with a depth of 3 to construct a better model than the single decision tree.
+```
 
+``` md #Step 8: Deployment
 
-    Now that we have a predictive model it is time to deploy the model into an operational environment. 
+Now that we have a predictive model it is time to deploy the model into an operational environment. 
 
-    In our example, let's say we have a series of sensors attached to the power plant and a monitoring station.
+In our example, let's say we have a series of sensors attached to the power plant and a monitoring station.
 
-    The monitoring station will need close to real-time information about how much power that their station will generate so they can relay that to the utility. 
+The monitoring station will need close to real-time information about how much power that their station will generate so they can relay that to the utility. 
 
-    So let's create a Spark Streaming utility that we can use for this purpose.
+So let's create a Spark Streaming utility that we can use for this purpose.
 
-    See [http://spark.apache.org/docs/latest/streaming-programming-guide.html](http://spark.apache.org/docs/latest/streaming-programming-guide.html) if you can't wait!
+See [http://spark.apache.org/docs/latest/streaming-programming-guide.html](http://spark.apache.org/docs/latest/streaming-programming-guide.html) if you can't wait!
+```
 
 After deployment you will be able to use the best predictions from gradient boosed regression trees to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver give current conditions.
 
-    // Let's set the variable finalModel to our best GBT Model
-    val finalModel = gbtModel.bestModel
+``` scala
+// Let's set the variable finalModel to our best GBT Model
+val finalModel = gbtModel.bestModel
+```
 
-> finalModel: org.apache.spark.ml.Model\[\_\] = pipeline\_e6a84d2d75ba
+>     finalModel: org.apache.spark.ml.Model[_] = pipeline_e6a84d2d75ba
 
 Let's create our table for predictions
 
-    DROP TABLE IF EXISTS power_plant_predictions ;
-    CREATE TABLE power_plant_predictions(
-      AT Double,
-      V Double,
-      AP Double,
-      RH Double,
-      PE Double,
-      Predicted_PE Double
-    );
+``` sql
+DROP TABLE IF EXISTS power_plant_predictions ;
+CREATE TABLE power_plant_predictions(
+  AT Double,
+  V Double,
+  AP Double,
+  RH Double,
+  PE Double,
+  Predicted_PE Double
+);
+```
 
 This should be updated to structured streaming - after the break.
 
@@ -626,106 +875,151 @@ Now let's create our streaming job to score new power plant readings in real-tim
 
 **CAUTION**: There can be only one spark streaming context per cluster!!! So please check if a streaming context is already alive first.
 
-    import java.nio.ByteBuffer
-    import java.net._
-    import java.io._
-    import concurrent._
-    import scala.io._
-    import sys.process._
-    //import org.apache.spark.Logging
-    import org.apache.spark.SparkConf
-    import org.apache.spark.storage.StorageLevel
-    import org.apache.spark.streaming.Seconds
-    import org.apache.spark.streaming.Minutes
-    import org.apache.spark.streaming.StreamingContext
-    //import org.apache.spark.streaming.StreamingContext.toPairDStreamFunctions
-    import org.apache.log4j.Logger
-    import org.apache.log4j.Level
-    import org.apache.spark.streaming.receiver.Receiver
-    import sqlContext._
-    import net.liftweb.json.DefaultFormats
-    import net.liftweb.json._
+``` scala
+import java.nio.ByteBuffer
+import java.net._
+import java.io._
+import concurrent._
+import scala.io._
+import sys.process._
+//import org.apache.spark.Logging
+import org.apache.spark.SparkConf
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.Seconds
+import org.apache.spark.streaming.Minutes
+import org.apache.spark.streaming.StreamingContext
+//import org.apache.spark.streaming.StreamingContext.toPairDStreamFunctions
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
+import org.apache.spark.streaming.receiver.Receiver
+import sqlContext._
+import net.liftweb.json.DefaultFormats
+import net.liftweb.json._
 
-    import scala.collection.mutable.SynchronizedQueue
+import scala.collection.mutable.SynchronizedQueue
 
 
-    val queue = new SynchronizedQueue[RDD[String]]()
+val queue = new SynchronizedQueue[RDD[String]]()
 
-    val batchIntervalSeconds = 2
+val batchIntervalSeconds = 2
 
-    var newContextCreated = false      // Flag to detect whether new context was created or not
+var newContextCreated = false      // Flag to detect whether new context was created or not
 
-    // Function to create a new StreamingContext and set it up
-    def creatingFunc(): StreamingContext = {
-        
-      // Create a StreamingContext
-      val ssc = new StreamingContext(sc, Seconds(batchIntervalSeconds))
-      val batchInterval = Seconds(1)
-      ssc.remember(Seconds(300))
-      val dstream = ssc.queueStream(queue)
-      dstream.foreachRDD { 
-        rdd =>
-          // if the RDD has data
-           if(!(rdd.isEmpty())) {
-              // Use the final model to transform a JSON message into a dataframe and pass the dataframe to our model's transform method
-               finalModel
-                 .transform(read.json(rdd.toDS).toDF())
-             // Select only columns we are interested in
-             .select("AT", "V", "AP", "RH", "PE", "Predicted_PE")
-             // Append the results to our power_plant_predictions table
-             .write.mode(SaveMode.Append).format("hive").saveAsTable("power_plant_predictions")
-           } 
-      }
-      println("Creating function called to create new StreamingContext for Power Plant Predictions")
-      newContextCreated = true  
-      ssc
-    }
+// Function to create a new StreamingContext and set it up
+def creatingFunc(): StreamingContext = {
+    
+  // Create a StreamingContext
+  val ssc = new StreamingContext(sc, Seconds(batchIntervalSeconds))
+  val batchInterval = Seconds(1)
+  ssc.remember(Seconds(300))
+  val dstream = ssc.queueStream(queue)
+  dstream.foreachRDD { 
+    rdd =>
+      // if the RDD has data
+       if(!(rdd.isEmpty())) {
+          // Use the final model to transform a JSON message into a dataframe and pass the dataframe to our model's transform method
+           finalModel
+             .transform(read.json(rdd.toDS).toDF())
+         // Select only columns we are interested in
+         .select("AT", "V", "AP", "RH", "PE", "Predicted_PE")
+         // Append the results to our power_plant_predictions table
+         .write.mode(SaveMode.Append).format("hive").saveAsTable("power_plant_predictions")
+       } 
+  }
+  println("Creating function called to create new StreamingContext for Power Plant Predictions")
+  newContextCreated = true  
+  ssc
+}
 
-    val ssc = StreamingContext.getActiveOrCreate(creatingFunc)
-    if (newContextCreated) {
-      println("New context created from currently defined creating function") 
-    } else {
-      println("Existing context running or recovered from checkpoint, may not be running currently defined creating function")
-    }
+val ssc = StreamingContext.getActiveOrCreate(creatingFunc)
+if (newContextCreated) {
+  println("New context created from currently defined creating function") 
+} else {
+  println("Existing context running or recovered from checkpoint, may not be running currently defined creating function")
+}
 
-    ssc.start()
+ssc.start()
+```
 
-> Creating function called to create new StreamingContext for Power Plant Predictions New context created from currently defined creating function &lt;console&gt;:303: warning: class SynchronizedQueue in package mutable is deprecated: Synchronization via selective overriding of methods is inherently unreliable. Consider java.util.concurrent.ConcurrentLinkedQueue as an alternative. val queue = new SynchronizedQueue\[RDD\[String\]\]() ^ import java.nio.ByteBuffer import java.net.\_ import java.io.\_ import concurrent.\_ import scala.io.\_ import sys.process.\_ import org.apache.spark.SparkConf import org.apache.spark.storage.StorageLevel import org.apache.spark.streaming.Seconds import org.apache.spark.streaming.Minutes import org.apache.spark.streaming.StreamingContext import org.apache.log4j.Logger import org.apache.log4j.Level import org.apache.spark.streaming.receiver.Receiver import sqlContext.\_ import net.liftweb.json.DefaultFormats import net.liftweb.json.\_ import scala.collection.mutable.SynchronizedQueue queue: scala.collection.mutable.SynchronizedQueue\[org.apache.spark.rdd.RDD\[String\]\] = SynchronizedQueue() batchIntervalSeconds: Int = 2 newContextCreated: Boolean = true creatingFunc: ()org.apache.spark.streaming.StreamingContext ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@4a48de26
+>     Creating function called to create new StreamingContext for Power Plant Predictions
+>     New context created from currently defined creating function
+>     <console>:303: warning: class SynchronizedQueue in package mutable is deprecated: Synchronization via selective overriding of methods is inherently unreliable.  Consider java.util.concurrent.ConcurrentLinkedQueue as an alternative.
+>            val queue = new SynchronizedQueue[RDD[String]]()
+>                            ^
+>     import java.nio.ByteBuffer
+>     import java.net._
+>     import java.io._
+>     import concurrent._
+>     import scala.io._
+>     import sys.process._
+>     import org.apache.spark.SparkConf
+>     import org.apache.spark.storage.StorageLevel
+>     import org.apache.spark.streaming.Seconds
+>     import org.apache.spark.streaming.Minutes
+>     import org.apache.spark.streaming.StreamingContext
+>     import org.apache.log4j.Logger
+>     import org.apache.log4j.Level
+>     import org.apache.spark.streaming.receiver.Receiver
+>     import sqlContext._
+>     import net.liftweb.json.DefaultFormats
+>     import net.liftweb.json._
+>     import scala.collection.mutable.SynchronizedQueue
+>     queue: scala.collection.mutable.SynchronizedQueue[org.apache.spark.rdd.RDD[String]] = SynchronizedQueue()
+>     batchIntervalSeconds: Int = 2
+>     newContextCreated: Boolean = true
+>     creatingFunc: ()org.apache.spark.streaming.StreamingContext
+>     ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@4a48de26
 
 Now that we have created and defined our streaming job, let's test it with some data. First we clear the predictions table.
 
+``` sql truncate table power_plant_predictions
+```
+
 Let's use data to see how much power output our model will predict.
 
-    // First we try it with a record from our test set and see what we get:
-    queue += sc.makeRDD(Seq(s"""{"AT":10.82,"V":37.5,"AP":1009.23,"RH":96.62,"PE":473.9}"""))
+``` scala
+// First we try it with a record from our test set and see what we get:
+queue += sc.makeRDD(Seq(s"""{"AT":10.82,"V":37.5,"AP":1009.23,"RH":96.62,"PE":473.9}"""))
 
-    // We may need to wait a few seconds for data to appear in the table
-    Thread.sleep(Seconds(5).milliseconds)
+// We may need to wait a few seconds for data to appear in the table
+Thread.sleep(Seconds(5).milliseconds)
+```
 
-    --and we can query our predictions table
-    select * from power_plant_predictions
+``` sql
+--and we can query our predictions table
+select * from power_plant_predictions
+```
 
-| 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668 |
+| AT    | V    | AP      | RH    | PE    | Predicted\_PE    |
 |-------|------|---------|-------|-------|------------------|
+| 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668 |
 
 Let's repeat with a different test measurement that our model has not seen before:
 
-    queue += sc.makeRDD(Seq(s"""{"AT":10.0,"V":40,"AP":1000,"RH":90.0,"PE":0.0}"""))
-    Thread.sleep(Seconds(5).milliseconds)
+``` scala
+queue += sc.makeRDD(Seq(s"""{"AT":10.0,"V":40,"AP":1000,"RH":90.0,"PE":0.0}"""))
+Thread.sleep(Seconds(5).milliseconds)
+```
 
-    --Note you may have to run this a couple of times to see the refreshed data...
-    select * from power_plant_predictions
+``` sql
+--Note you may have to run this a couple of times to see the refreshed data...
+select * from power_plant_predictions
+```
 
-| 10.0  | 40.0 | 1000.0  | 90.0  | 0.0   | 474.5912134899266 |
+| AT    | V    | AP      | RH    | PE    | Predicted\_PE     |
 |-------|------|---------|-------|-------|-------------------|
+| 10.0  | 40.0 | 1000.0  | 90.0  | 0.0   | 474.5912134899266 |
 | 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668  |
 
 As you can see the Predictions are very close to the real data points.
 
-    select * from power_plant_table where AT between 10 and 11 and AP between 1000 and 1010 and RH between 90 and 97 and v between 37 and 40 order by PE 
+``` sql
+select * from power_plant_table where AT between 10 and 11 and AP between 1000 and 1010 and RH between 90 and 97 and v between 37 and 40 order by PE 
+```
 
-| 10.37 | 37.83 | 1006.5  | 90.99 | 470.66 |
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 10.37 | 37.83 | 1006.5  | 90.99 | 470.66 |
 | 10.22 | 37.83 | 1005.94 | 93.53 | 471.79 |
 | 10.66 | 37.5  | 1009.42 | 95.86 | 472.86 |
 | 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
@@ -735,29 +1029,38 @@ Now you use the predictions table to feed a real-time dashboard or feed the util
 
 Make sure the streaming context is stopped when you are done, as there can be only one such context per cluster!
 
-    ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
+``` scala
+ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
+```
 
 Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
 
 Let's take a few elements of the three DataFrames.
 
-    dataset.take(3)
+``` scala
+dataset.take(3)
+```
 
-> res26: Array\[org.apache.spark.sql.Row\] = Array(\[14.96,41.76,1024.07,73.17,463.26\], \[25.18,62.96,1020.04,59.08,444.37\], \[5.11,39.4,1012.16,92.14,488.56\])
+>     res26: Array[org.apache.spark.sql.Row] = Array([14.96,41.76,1024.07,73.17,463.26], [25.18,62.96,1020.04,59.08,444.37], [5.11,39.4,1012.16,92.14,488.56])
 
-    testSet.take(3)
+``` scala
+testSet.take(3)
+```
 
-> res27: Array\[org.apache.spark.sql.Row\] = Array(\[1.81,39.42,1026.92,76.97,490.55\], \[3.2,41.31,997.67,98.84,489.86\], \[3.38,41.31,998.79,97.76,489.11\])
+>     res27: Array[org.apache.spark.sql.Row] = Array([1.81,39.42,1026.92,76.97,490.55], [3.2,41.31,997.67,98.84,489.86], [3.38,41.31,998.79,97.76,489.11])
 
 First let's use a cross validator to split the data into training and validation subsets. See <http://spark.apache.org/docs/latest/ml-tuning.html>.
 
-    //Let's set up our evaluator class to judge the model based on the best root mean squared error
-    val regEval = new RegressionEvaluator()
-    regEval.setLabelCol("PE")
-      .setPredictionCol("Predicted_PE")
-      .setMetricName("rmse")
+``` scala
+//Let's set up our evaluator class to judge the model based on the best root mean squared error
+val regEval = new RegressionEvaluator()
+regEval.setLabelCol("PE")
+  .setPredictionCol("Predicted_PE")
+  .setMetricName("rmse")
+```
 
-> regEval: org.apache.spark.ml.evaluation.RegressionEvaluator = regEval\_e2be8a782fd8 res37: regEval.type = regEval\_e2be8a782fd8
+>     regEval: org.apache.spark.ml.evaluation.RegressionEvaluator = regEval_e2be8a782fd8
+>     res37: regEval.type = regEval_e2be8a782fd8
 
 Let us explore other models to see if we can predict the power output better
 ----------------------------------------------------------------------------
@@ -775,9 +1078,1592 @@ There are several families of models in Spark's scalable machine learning librar
   </p>
 </iframe></p>
 
-    gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel].toDebugString
+``` scala
+gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel].toDebugString
+```
 
-> res49: String = "GBTRegressionModel (uid=gbtr\_9c5ab45fe584) with 120 trees Tree 0 (weight 1.0): If (feature 0 &lt;= 17.84) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 8.75) Predict: 483.5412151067323 Else (feature 0 &gt; 8.75) Predict: 475.6305502392345 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 15.33) Predict: 467.63141917293234 Else (feature 0 &gt; 15.33) Predict: 460.74754125412574 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 47.83) Predict: 457.1077966101695 Else (feature 1 &gt; 47.83) Predict: 448.74750213858016 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: 442.88544855967086 Else (feature 1 &gt; 66.25) Predict: 434.7293710691822 Tree 1 (weight 0.1): If (feature 2 &lt;= 1009.9) If (feature 1 &lt;= 43.13) If (feature 0 &lt;= 15.33) Predict: -0.31094207231231485 Else (feature 0 &gt; 15.33) Predict: 4.302958436537365 Else (feature 1 &gt; 43.13) If (feature 0 &lt;= 23.02) Predict: -8.38392506141353 Else (feature 0 &gt; 23.02) Predict: -2.399960976520273 Else (feature 2 &gt; 1009.9) If (feature 3 &lt;= 86.21) If (feature 0 &lt;= 26.35) Predict: 2.888623754019027 Else (feature 0 &gt; 26.35) Predict: -1.1489483044194229 Else (feature 3 &gt; 86.21) If (feature 1 &lt;= 39.72) Predict: 3.876324424163314 Else (feature 1 &gt; 39.72) Predict: -3.058952828112949 Tree 2 (weight 0.1): If (feature 2 &lt;= 1009.63) If (feature 1 &lt;= 43.13) If (feature 0 &lt;= 11.95) Predict: -1.4091086031845625 Else (feature 0 &gt; 11.95) Predict: 2.6329466235800942 Else (feature 1 &gt; 43.13) If (feature 0 &lt;= 23.02) Predict: -6.795414480322956 Else (feature 0 &gt; 23.02) Predict: -2.166560698742912 Else (feature 2 &gt; 1009.63) If (feature 3 &lt;= 80.44) If (feature 0 &lt;= 26.98) Predict: 2.878622882275939 Else (feature 0 &gt; 26.98) Predict: -1.146426969990865 Else (feature 3 &gt; 80.44) If (feature 3 &lt;= 94.55) Predict: -0.35885921725905906 Else (feature 3 &gt; 94.55) Predict: -5.75364586186002 Tree 3 (weight 0.1): If (feature 0 &lt;= 27.6) If (feature 3 &lt;= 70.2) If (feature 1 &lt;= 40.05) Predict: -0.9480831286616939 Else (feature 1 &gt; 40.05) Predict: 3.660397090904016 Else (feature 3 &gt; 70.2) If (feature 1 &lt;= 40.64) Predict: 2.1539405832035627 Else (feature 1 &gt; 40.64) Predict: -1.2281619807661366 Else (feature 0 &gt; 27.6) If (feature 1 &lt;= 65.27) If (feature 2 &lt;= 1005.99) Predict: -15.33433697033558 Else (feature 2 &gt; 1005.99) Predict: -5.866095468145647 Else (feature 1 &gt; 65.27) If (feature 2 &lt;= 1008.75) Predict: -4.03431044067007 Else (feature 2 &gt; 1008.75) Predict: -0.23440867445577207 Tree 4 (weight 0.1): If (feature 0 &lt;= 26.35) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 68.67) Predict: 0.12035773384797814 Else (feature 1 &gt; 68.67) Predict: -13.928523073642005 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 24.57) Predict: 5.5622340839882165 Else (feature 0 &gt; 24.57) Predict: 1.6938172370244715 Else (feature 0 &gt; 26.35) If (feature 1 &lt;= 66.25) If (feature 2 &lt;= 1008.4) Predict: -9.009916879825393 Else (feature 2 &gt; 1008.4) Predict: -3.059736394918022 Else (feature 1 &gt; 66.25) If (feature 0 &lt;= 30.2) Predict: 0.14704705100738577 Else (feature 0 &gt; 30.2) Predict: -3.2914123948921006 Tree 5 (weight 0.1): If (feature 2 &lt;= 1010.41) If (feature 1 &lt;= 43.41) If (feature 3 &lt;= 99.27) Predict: 1.2994444710077233 Else (feature 3 &gt; 99.27) Predict: -6.649548317319231 Else (feature 1 &gt; 43.41) If (feature 0 &lt;= 23.02) Predict: -4.9119452777748 Else (feature 0 &gt; 23.02) Predict: -0.9514185089440673 Else (feature 2 &gt; 1010.41) If (feature 3 &lt;= 89.83) If (feature 0 &lt;= 31.26) Predict: 1.2914123584761403 Else (feature 0 &gt; 31.26) Predict: -5.115001417285994 Else (feature 3 &gt; 89.83) If (feature 1 &lt;= 40.64) Predict: 1.5160976219176363 Else (feature 1 &gt; 40.64) Predict: -4.202813699523934 Tree 6 (weight 0.1): If (feature 2 &lt;= 1007.27) If (feature 0 &lt;= 27.94) If (feature 3 &lt;= 71.09) Predict: 1.616448005210527 Else (feature 3 &gt; 71.09) Predict: -2.1313527108274157 Else (feature 0 &gt; 27.94) If (feature 1 &lt;= 68.3) Predict: -8.579840063013142 Else (feature 1 &gt; 68.3) Predict: -1.915909819494233 Else (feature 2 &gt; 1007.27) If (feature 3 &lt;= 95.45) If (feature 0 &lt;= 6.52) Predict: 4.973465595410054 Else (feature 0 &gt; 6.52) Predict: 0.3837975458985242 Else (feature 3 &gt; 95.45) If (feature 2 &lt;= 1013.43) Predict: -0.8175453481344352 Else (feature 2 &gt; 1013.43) Predict: -7.264843604639278 Tree 7 (weight 0.1): If (feature 0 &lt;= 26.35) If (feature 3 &lt;= 71.09) If (feature 1 &lt;= 67.83) Predict: 1.9620965187817083 Else (feature 1 &gt; 67.83) Predict: 7.953863660960779 Else (feature 3 &gt; 71.09) If (feature 1 &lt;= 40.89) Predict: 1.2020440154192213 Else (feature 1 &gt; 40.89) Predict: -0.9989659748111419 Else (feature 0 &gt; 26.35) If (feature 1 &lt;= 66.25) If (feature 2 &lt;= 1008.4) Predict: -6.230272922553423 Else (feature 2 &gt; 1008.4) Predict: -2.654681371247991 Else (feature 1 &gt; 66.25) If (feature 2 &lt;= 1004.52) Predict: -3.9527797601131853 Else (feature 2 &gt; 1004.52) Predict: -0.21770148036273387 Tree 8 (weight 0.1): If (feature 0 &lt;= 29.56) If (feature 3 &lt;= 63.16) If (feature 1 &lt;= 72.24) Predict: 1.9612116105231265 Else (feature 1 &gt; 72.24) Predict: 8.756949826030025 Else (feature 3 &gt; 63.16) If (feature 0 &lt;= 5.95) Predict: 4.445363585074405 Else (feature 0 &gt; 5.95) Predict: -0.4097996897633835 Else (feature 0 &gt; 29.56) If (feature 1 &lt;= 68.3) If (feature 2 &lt;= 1009.9) Predict: -7.882200867406393 Else (feature 2 &gt; 1009.9) Predict: -1.7273221348184091 Else (feature 1 &gt; 68.3) If (feature 2 &lt;= 1013.77) Predict: -0.7219749804525829 Else (feature 2 &gt; 1013.77) Predict: -6.492100849806538 Tree 9 (weight 0.1): If (feature 3 &lt;= 89.83) If (feature 0 &lt;= 25.72) If (feature 0 &lt;= 23.02) Predict: 0.15450088997272685 Else (feature 0 &gt; 23.02) Predict: 3.010254802875794 Else (feature 0 &gt; 25.72) If (feature 1 &lt;= 66.25) Predict: -2.5821765284417615 Else (feature 1 &gt; 66.25) Predict: -0.3935112713804148 Else (feature 3 &gt; 89.83) If (feature 2 &lt;= 1019.52) If (feature 0 &lt;= 7.08) Predict: 3.264389020443774 Else (feature 0 &gt; 7.08) Predict: -1.6246048211383168 Else (feature 2 &gt; 1019.52) If (feature 0 &lt;= 8.75) Predict: -8.005340799169343 Else (feature 0 &gt; 8.75) Predict: -2.9832409167030063 Tree 10 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 45.87) Predict: 0.26309432916452813 Else (feature 1 &gt; 45.87) Predict: -5.716473785544373 Else (feature 0 &gt; 17.84) If (feature 2 &lt;= 1012.56) Predict: -0.15863259341493433 Else (feature 2 &gt; 1012.56) Predict: 7.899625065937478 Else (feature 1 &gt; 56.57) If (feature 0 &lt;= 17.84) If (feature 3 &lt;= 67.72) Predict: -27.101084325134025 Else (feature 3 &gt; 67.72) Predict: -12.755339130015875 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 20.6) Predict: 3.8741798886113408 Else (feature 0 &gt; 20.6) Predict: -0.8179571837367839 Tree 11 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 74.22) If (feature 1 &lt;= 59.14) Predict: -0.6678644068375302 Else (feature 1 &gt; 59.14) Predict: -5.0251736913870495 Else (feature 1 &gt; 74.22) If (feature 2 &lt;= 1000.68) Predict: -1.9453153753750236 Else (feature 2 &gt; 1000.68) Predict: 3.954565899065237 Else (feature 2 &gt; 1004.52) If (feature 3 &lt;= 60.81) If (feature 0 &lt;= 29.27) Predict: 2.256991118214201 Else (feature 0 &gt; 29.27) Predict: -0.8956432652281918 Else (feature 3 &gt; 60.81) If (feature 0 &lt;= 5.18) Predict: 5.30208686561611 Else (feature 0 &gt; 5.18) Predict: -0.2275806642044292 Tree 12 (weight 0.1): If (feature 3 &lt;= 93.63) If (feature 0 &lt;= 20.6) If (feature 0 &lt;= 17.84) Predict: -0.13650451477274114 Else (feature 0 &gt; 17.84) Predict: 4.26138638419226 Else (feature 0 &gt; 20.6) If (feature 0 &lt;= 23.02) Predict: -4.145788149131118 Else (feature 0 &gt; 23.02) Predict: 0.45010060784860767 Else (feature 3 &gt; 93.63) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 6.52) Predict: 1.9630864105825856 Else (feature 0 &gt; 6.52) Predict: -5.847103580294793 Else (feature 0 &gt; 11.95) If (feature 1 &lt;= 57.85) Predict: 1.6850763767018282 Else (feature 1 &gt; 57.85) Predict: -3.57522814358917 Tree 13 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 1 &lt;= 49.39) If (feature 0 &lt;= 13.56) Predict: 0.7497248523199469 Else (feature 0 &gt; 13.56) Predict: -0.8096048572768345 Else (feature 1 &gt; 49.39) If (feature 0 &lt;= 17.84) Predict: -4.9975868045736025 Else (feature 0 &gt; 17.84) Predict: 6.70181838603398 Else (feature 1 &gt; 56.57) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 58.62) Predict: -8.139327595464518 Else (feature 1 &gt; 58.62) Predict: -11.260696586956563 Else (feature 0 &gt; 17.84) If (feature 2 &lt;= 1020.32) Predict: -0.4173502593107514 Else (feature 2 &gt; 1020.32) Predict: 7.350524302545053 Tree 14 (weight 0.1): If (feature 2 &lt;= 1009.3) If (feature 1 &lt;= 73.67) If (feature 0 &lt;= 26.35) Predict: -0.2834715308768144 Else (feature 0 &gt; 26.35) Predict: -2.2855655986052446 Else (feature 1 &gt; 73.67) If (feature 0 &lt;= 21.42) Predict: -19.886551554013977 Else (feature 0 &gt; 21.42) Predict: 1.8345107899392203 Else (feature 2 &gt; 1009.3) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) Predict: 0.2012146645141011 Else (feature 1 &gt; 46.93) Predict: -5.331252849501989 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 20.6) Predict: 3.9009310043506518 Else (feature 0 &gt; 20.6) Predict: 0.05492627340134294 Tree 15 (weight 0.1): If (feature 3 &lt;= 80.44) If (feature 0 &lt;= 26.57) If (feature 0 &lt;= 23.02) Predict: 0.24935555983937532 Else (feature 0 &gt; 23.02) Predict: 1.9734839371689987 Else (feature 0 &gt; 26.57) If (feature 1 &lt;= 66.25) Predict: -2.652691255012269 Else (feature 1 &gt; 66.25) Predict: 0.10205623249441657 Else (feature 3 &gt; 80.44) If (feature 1 &lt;= 57.85) If (feature 2 &lt;= 1021.65) Predict: 0.3189331596273633 Else (feature 2 &gt; 1021.65) Predict: -2.493847422724499 Else (feature 1 &gt; 57.85) If (feature 0 &lt;= 23.02) Predict: -4.443277995263894 Else (feature 0 &gt; 23.02) Predict: 1.0414575062489446 Tree 16 (weight 0.1): If (feature 0 &lt;= 6.52) If (feature 3 &lt;= 67.72) If (feature 1 &lt;= 39.48) Predict: -0.021931809818089017 Else (feature 1 &gt; 39.48) Predict: 17.644618798102908 Else (feature 3 &gt; 67.72) If (feature 1 &lt;= 42.07) Predict: 2.6927240976688487 Else (feature 1 &gt; 42.07) Predict: -3.720328734281554 Else (feature 0 &gt; 6.52) If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.97) Predict: -1.1870026837027776 Else (feature 0 &gt; 7.97) Predict: -6.311604790035118 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.73) Predict: 5.036277690956247 Else (feature 0 &gt; 9.73) Predict: -0.07156864179175153 Tree 17 (weight 0.1): If (feature 2 &lt;= 1005.35) If (feature 1 &lt;= 70.8) If (feature 0 &lt;= 21.14) Predict: 0.2557898848412102 Else (feature 0 &gt; 21.14) Predict: -4.092246463553751 Else (feature 1 &gt; 70.8) If (feature 0 &lt;= 23.02) Predict: -17.7762740471523 Else (feature 0 &gt; 23.02) Predict: 1.4679036019616782 Else (feature 2 &gt; 1005.35) If (feature 3 &lt;= 60.81) If (feature 2 &lt;= 1021.17) Predict: 0.8109918761137652 Else (feature 2 &gt; 1021.17) Predict: 6.491756407811347 Else (feature 3 &gt; 60.81) If (feature 0 &lt;= 25.72) Predict: 0.06495066055048145 Else (feature 0 &gt; 25.72) Predict: -1.234843690619109 Tree 18 (weight 0.1): If (feature 3 &lt;= 93.63) If (feature 0 &lt;= 13.56) If (feature 0 &lt;= 11.95) Predict: -0.1389635939018028 Else (feature 0 &gt; 11.95) Predict: 4.085304226900187 Else (feature 0 &gt; 13.56) If (feature 0 &lt;= 15.33) Predict: -3.558076811842663 Else (feature 0 &gt; 15.33) Predict: 0.24840255719067195 Else (feature 3 &gt; 93.63) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 6.52) Predict: 1.1725211739721944 Else (feature 0 &gt; 6.52) Predict: -4.696815201291802 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 23.42) Predict: -0.1435586215485262 Else (feature 0 &gt; 23.42) Predict: 6.017267110381734 Tree 19 (weight 0.1): If (feature 0 &lt;= 29.89) If (feature 3 &lt;= 46.38) If (feature 2 &lt;= 1020.32) Predict: 2.734528637686715 Else (feature 2 &gt; 1020.32) Predict: 14.229272221061546 Else (feature 3 &gt; 46.38) If (feature 1 &lt;= 73.18) Predict: -0.09112932077559661 Else (feature 1 &gt; 73.18) Predict: 2.171636618202333 Else (feature 0 &gt; 29.89) If (feature 1 &lt;= 68.3) If (feature 2 &lt;= 1012.96) Predict: -4.842672386234583 Else (feature 2 &gt; 1012.96) Predict: 0.4656753436410731 Else (feature 1 &gt; 68.3) If (feature 1 &lt;= 69.88) Predict: 1.9998755414672877 Else (feature 1 &gt; 69.88) Predict: -1.377187598546301 Tree 20 (weight 0.1): If (feature 1 &lt;= 40.89) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 10.74) Predict: 0.3474341793041741 Else (feature 0 &gt; 10.74) Predict: -3.2174625433704844 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 13.56) Predict: 6.2521753652461385 Else (feature 0 &gt; 13.56) Predict: 0.7467107076401086 Else (feature 1 &gt; 40.89) If (feature 1 &lt;= 41.16) If (feature 2 &lt;= 1011.9) Predict: 1.6159428806525291 Else (feature 2 &gt; 1011.9) Predict: -5.525791920129847 Else (feature 1 &gt; 41.16) If (feature 1 &lt;= 41.48) Predict: 2.3655609293253264 Else (feature 1 &gt; 41.48) Predict: -0.18730957785387015 Tree 21 (weight 0.1): If (feature 0 &lt;= 7.08) If (feature 1 &lt;= 41.58) If (feature 1 &lt;= 41.16) Predict: 1.9153935195932974 Else (feature 1 &gt; 41.16) Predict: 7.0746807427814735 Else (feature 1 &gt; 41.58) If (feature 2 &lt;= 1020.77) Predict: -1.256554177586309 Else (feature 2 &gt; 1020.77) Predict: -26.29941855196938 Else (feature 0 &gt; 7.08) If (feature 0 &lt;= 8.75) If (feature 1 &lt;= 37.8) Predict: -8.544132394601597 Else (feature 1 &gt; 37.8) Predict: -2.6184141709801976 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.73) Predict: 4.069411815161333 Else (feature 0 &gt; 9.73) Predict: -0.06494039395966968 Tree 22 (weight 0.1): If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 21.69) If (feature 0 &lt;= 15.33) Predict: -0.48298234147973435 Else (feature 0 &gt; 15.33) Predict: 1.2747845905419344 Else (feature 0 &gt; 21.69) If (feature 1 &lt;= 66.25) Predict: -3.44223180465188 Else (feature 1 &gt; 66.25) Predict: -9.677838572965495 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 24.39) If (feature 1 &lt;= 66.25) Predict: 1.4289485230939327 Else (feature 1 &gt; 66.25) Predict: 7.493228657621072 Else (feature 0 &gt; 24.39) If (feature 1 &lt;= 66.25) Predict: -1.55164310941819 Else (feature 1 &gt; 66.25) Predict: 0.5159038364280375 Tree 23 (weight 0.1): If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 66.93) If (feature 1 &lt;= 43.41) Predict: 0.8366856528539243 Else (feature 1 &gt; 43.41) Predict: -2.146264827541657 Else (feature 1 &gt; 66.93) If (feature 0 &lt;= 23.02) Predict: -4.593173040738928 Else (feature 0 &gt; 23.02) Predict: 0.7595925761507126 Else (feature 2 &gt; 1010.89) If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.38) Predict: 0.19019050526253845 Else (feature 0 &gt; 14.38) Predict: -4.931089744789576 Else (feature 0 &gt; 15.33) If (feature 1 &lt;= 56.57) Predict: 2.893896440054576 Else (feature 1 &gt; 56.57) Predict: -0.2411893147021192 Tree 24 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 39.13) If (feature 0 &lt;= 16.56) Predict: 5.674347262101248 Else (feature 0 &gt; 16.56) Predict: -15.35003850200303 Else (feature 1 &gt; 39.13) If (feature 1 &lt;= 70.8) Predict: -2.2136597249782484 Else (feature 1 &gt; 70.8) Predict: 0.4854909471410394 Else (feature 2 &gt; 1004.52) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 21.14) Predict: 0.25072963079321764 Else (feature 0 &gt; 21.14) Predict: -3.1127381475029745 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 24.98) Predict: 2.513302584995404 Else (feature 0 &gt; 24.98) Predict: -0.17126775916442186 Tree 25 (weight 0.1): If (feature 3 &lt;= 76.79) If (feature 0 &lt;= 28.75) If (feature 1 &lt;= 66.25) Predict: 0.1271610430935476 Else (feature 1 &gt; 66.25) Predict: 2.4600009065275934 Else (feature 0 &gt; 28.75) If (feature 1 &lt;= 44.58) Predict: -10.925990145829292 Else (feature 1 &gt; 44.58) Predict: -0.7031644656131009 Else (feature 3 &gt; 76.79) If (feature 0 &lt;= 20.9) If (feature 0 &lt;= 17.84) Predict: -0.3807566877980857 Else (feature 0 &gt; 17.84) Predict: 2.329590528017136 Else (feature 0 &gt; 20.9) If (feature 0 &lt;= 23.02) Predict: -3.741947089345415 Else (feature 0 &gt; 23.02) Predict: -0.3619479813878585 Tree 26 (weight 0.1): If (feature 0 &lt;= 5.18) If (feature 1 &lt;= 42.07) If (feature 3 &lt;= 84.36) Predict: 5.869887042156764 Else (feature 3 &gt; 84.36) Predict: 2.3621425360574837 Else (feature 1 &gt; 42.07) If (feature 2 &lt;= 1007.82) Predict: -1.4185266335795177 Else (feature 2 &gt; 1007.82) Predict: -5.383717178467172 Else (feature 0 &gt; 5.18) If (feature 3 &lt;= 53.32) If (feature 2 &lt;= 1021.17) Predict: 0.6349729680247564 Else (feature 2 &gt; 1021.17) Predict: 9.504309080910616 Else (feature 3 &gt; 53.32) If (feature 0 &lt;= 25.95) Predict: 0.010243524812335326 Else (feature 0 &gt; 25.95) Predict: -0.8173343910336555 Tree 27 (weight 0.1): If (feature 2 &lt;= 1028.38) If (feature 1 &lt;= 74.87) If (feature 1 &lt;= 56.57) Predict: 0.28085003688072396 Else (feature 1 &gt; 56.57) Predict: -0.378551674966564 Else (feature 1 &gt; 74.87) If (feature 0 &lt;= 21.42) Predict: -12.321588273833015 Else (feature 0 &gt; 21.42) Predict: 1.8659669412137414 Else (feature 2 &gt; 1028.38) If (feature 3 &lt;= 89.83) If (feature 3 &lt;= 66.27) Predict: -8.252928408643971 Else (feature 3 &gt; 66.27) Predict: -2.023910717088332 Else (feature 3 &gt; 89.83) If (feature 0 &lt;= 8.39) Predict: -11.472893448110653 Else (feature 0 &gt; 8.39) Predict: -8.030312146910243 Tree 28 (weight 0.1): If (feature 3 &lt;= 85.4) If (feature 0 &lt;= 7.55) If (feature 1 &lt;= 40.05) Predict: 0.3456361310433187 Else (feature 1 &gt; 40.05) Predict: 4.958188742864418 Else (feature 0 &gt; 7.55) If (feature 0 &lt;= 8.75) Predict: -3.0608059226719657 Else (feature 0 &gt; 8.75) Predict: 0.16507864507530287 Else (feature 3 &gt; 85.4) If (feature 2 &lt;= 1015.63) If (feature 2 &lt;= 1014.19) Predict: -0.3593841710339432 Else (feature 2 &gt; 1014.19) Predict: 3.2531365191458024 Else (feature 2 &gt; 1015.63) If (feature 1 &lt;= 40.64) Predict: 1.0007657377910708 Else (feature 1 &gt; 40.64) Predict: -2.132339394694771 Tree 29 (weight 0.1): If (feature 0 &lt;= 30.56) If (feature 3 &lt;= 55.74) If (feature 1 &lt;= 72.24) Predict: 0.8569729911086951 Else (feature 1 &gt; 72.24) Predict: 6.358127096088517 Else (feature 3 &gt; 55.74) If (feature 1 &lt;= 41.48) Predict: 0.43148253820326676 Else (feature 1 &gt; 41.48) Predict: -0.24352278568573174 Else (feature 0 &gt; 30.56) If (feature 2 &lt;= 1014.35) If (feature 1 &lt;= 68.3) Predict: -2.5522103291398683 Else (feature 1 &gt; 68.3) Predict: -0.21266182300917044 Else (feature 2 &gt; 1014.35) If (feature 1 &lt;= 74.87) Predict: -6.498613011225412 Else (feature 1 &gt; 74.87) Predict: 0.9765776955731879 Tree 30 (weight 0.1): If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 45.08) If (feature 0 &lt;= 15.33) Predict: -0.14424299831222268 Else (feature 0 &gt; 15.33) Predict: 1.8754751416891788 Else (feature 1 &gt; 45.08) If (feature 2 &lt;= 1020.77) Predict: -3.097730832691005 Else (feature 2 &gt; 1020.77) Predict: -8.90070153022011 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 18.71) If (feature 1 &lt;= 49.02) Predict: 1.2726140970398088 Else (feature 1 &gt; 49.02) Predict: 6.649324687634596 Else (feature 0 &gt; 18.71) If (feature 1 &lt;= 46.93) Predict: -2.818245204603037 Else (feature 1 &gt; 46.93) Predict: 0.23586447368304939 Tree 31 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 59.14) If (feature 1 &lt;= 50.66) Predict: -0.8733348655196066 Else (feature 1 &gt; 50.66) Predict: 7.928862441716025 Else (feature 1 &gt; 59.14) If (feature 1 &lt;= 70.8) Predict: -3.8112988828197807 Else (feature 1 &gt; 70.8) Predict: 0.42812840935226704 Else (feature 2 &gt; 1004.52) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) Predict: 0.07282772802501089 Else (feature 1 &gt; 46.93) Predict: -3.3364389464988706 Else (feature 0 &gt; 17.84) If (feature 2 &lt;= 1020.32) Predict: 0.18419167853517965 Else (feature 2 &gt; 1020.32) Predict: 6.584432032190064 Tree 32 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 1 &lt;= 49.39) If (feature 0 &lt;= 13.56) Predict: 0.36741135502935035 Else (feature 0 &gt; 13.56) Predict: -0.7178818728654812 Else (feature 1 &gt; 49.39) If (feature 0 &lt;= 17.84) Predict: -1.7883686826457996 Else (feature 0 &gt; 17.84) Predict: 4.519745157967235 Else (feature 1 &gt; 56.57) If (feature 0 &lt;= 17.84) If (feature 0 &lt;= 17.5) Predict: -4.182857837547887 Else (feature 0 &gt; 17.5) Predict: -7.917768935292194 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 19.61) Predict: 2.6880627533068244 Else (feature 0 &gt; 19.61) Predict: -0.2998975340288976 Tree 33 (weight 0.1): If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 11.03) If (feature 3 &lt;= 93.63) Predict: 0.7278554646891878 Else (feature 3 &gt; 93.63) Predict: -2.2492543009893162 Else (feature 0 &gt; 11.03) If (feature 2 &lt;= 1024.3) Predict: -5.536706488618952 Else (feature 2 &gt; 1024.3) Predict: 4.479707018501001 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 13.08) If (feature 0 &lt;= 12.5) Predict: 5.173128471411881 Else (feature 0 &gt; 12.5) Predict: 2.3834255982190755 Else (feature 0 &gt; 13.08) If (feature 0 &lt;= 15.33) Predict: -1.5022006203890645 Else (feature 0 &gt; 15.33) Predict: 0.15423852245074754 Tree 34 (weight 0.1): If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.55) If (feature 3 &lt;= 77.56) Predict: 3.015852739381847 Else (feature 3 &gt; 77.56) Predict: -0.06103236076131486 Else (feature 0 &gt; 7.55) If (feature 3 &lt;= 62.1) Predict: -13.594573386743992 Else (feature 3 &gt; 62.1) Predict: -2.6914920546129273 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 10.03) If (feature 3 &lt;= 95.45) Predict: 3.213047453934116 Else (feature 3 &gt; 95.45) Predict: -2.3699077010186502 Else (feature 0 &gt; 10.03) If (feature 0 &lt;= 11.95) Predict: -1.841483689919706 Else (feature 0 &gt; 11.95) Predict: 0.1034719724734039 Tree 35 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 1 &lt;= 49.02) If (feature 1 &lt;= 44.88) Predict: 0.1854471597033813 Else (feature 1 &gt; 44.88) Predict: -1.537157071790549 Else (feature 1 &gt; 49.02) If (feature 2 &lt;= 1009.77) Predict: -0.7176011396833722 Else (feature 2 &gt; 1009.77) Predict: 3.4414962844541495 Else (feature 1 &gt; 56.57) If (feature 1 &lt;= 66.25) If (feature 0 &lt;= 21.92) Predict: 0.6042503983890641 Else (feature 0 &gt; 21.92) Predict: -1.6430682984491796 Else (feature 1 &gt; 66.25) If (feature 0 &lt;= 23.02) Predict: -3.919778656895867 Else (feature 0 &gt; 23.02) Predict: 0.8520833743461524 Tree 36 (weight 0.1): If (feature 0 &lt;= 27.6) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 22.1) Predict: 0.08610814822616036 Else (feature 0 &gt; 22.1) Predict: -3.39446668206219 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: -0.25067209339950686 Else (feature 1 &gt; 66.25) Predict: 2.1536703058787143 Else (feature 0 &gt; 27.6) If (feature 3 &lt;= 62.1) If (feature 1 &lt;= 74.87) Predict: -0.3912307208100507 Else (feature 1 &gt; 74.87) Predict: 2.6168301411252224 Else (feature 3 &gt; 62.1) If (feature 1 &lt;= 71.8) Predict: -0.1075335658351684 Else (feature 1 &gt; 71.8) Predict: -3.3756176659678685 Tree 37 (weight 0.1): If (feature 0 &lt;= 25.35) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 64.84) Predict: 0.07789630965601392 Else (feature 1 &gt; 64.84) Predict: -2.8928836560033093 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: 0.13731068060749954 Else (feature 1 &gt; 66.25) Predict: 4.15851454889221 Else (feature 0 &gt; 25.35) If (feature 1 &lt;= 43.65) If (feature 0 &lt;= 27.19) Predict: -16.475158304770883 Else (feature 0 &gt; 27.19) Predict: -7.947134756554647 Else (feature 1 &gt; 43.65) If (feature 3 &lt;= 62.7) Predict: 0.1725950049938879 Else (feature 3 &gt; 62.7) Predict: -1.0926147971432427 Tree 38 (weight 0.1): If (feature 2 &lt;= 1028.38) If (feature 0 &lt;= 30.56) If (feature 3 &lt;= 47.89) Predict: 1.6647926733523803 Else (feature 3 &gt; 47.89) Predict: 0.019004190066623235 Else (feature 0 &gt; 30.56) If (feature 2 &lt;= 1014.35) Predict: -0.6192794789083232 Else (feature 2 &gt; 1014.35) Predict: -4.385760311827676 Else (feature 2 &gt; 1028.38) If (feature 1 &lt;= 39.48) If (feature 0 &lt;= 6.52) Predict: 4.573467616169609 Else (feature 0 &gt; 6.52) Predict: -1.362091279334777 Else (feature 1 &gt; 39.48) If (feature 0 &lt;= 8.75) Predict: -7.0007999537928605 Else (feature 0 &gt; 8.75) Predict: -1.617908469279585 Tree 39 (weight 0.1): If (feature 2 &lt;= 1017.42) If (feature 2 &lt;= 1014.19) If (feature 1 &lt;= 43.13) Predict: 1.2098492492388833 Else (feature 1 &gt; 43.13) Predict: -0.4345828650352739 Else (feature 2 &gt; 1014.19) If (feature 3 &lt;= 96.38) Predict: 1.0830640036331665 Else (feature 3 &gt; 96.38) Predict: -6.6054777318343785 Else (feature 2 &gt; 1017.42) If (feature 2 &lt;= 1019.23) If (feature 1 &lt;= 57.85) Predict: -0.8212874032064794 Else (feature 1 &gt; 57.85) Predict: -2.6667829000634105 Else (feature 2 &gt; 1019.23) If (feature 0 &lt;= 17.84) Predict: -0.39094381687835245 Else (feature 0 &gt; 17.84) Predict: 3.336117383932137 Tree 40 (weight 0.1): If (feature 3 &lt;= 75.23) If (feature 1 &lt;= 40.05) If (feature 1 &lt;= 39.96) Predict: -1.2851367407493581 Else (feature 1 &gt; 39.96) Predict: -9.117459296991676 Else (feature 1 &gt; 40.05) If (feature 1 &lt;= 40.89) Predict: 4.461974679211411 Else (feature 1 &gt; 40.89) Predict: 0.25422282080546216 Else (feature 3 &gt; 75.23) If (feature 0 &lt;= 21.42) If (feature 0 &lt;= 17.84) Predict: -0.11457026696795661 Else (feature 0 &gt; 17.84) Predict: 0.9995406591682215 Else (feature 0 &gt; 21.42) If (feature 0 &lt;= 23.02) Predict: -2.664637163988949 Else (feature 0 &gt; 23.02) Predict: -0.5023743568762508 Tree 41 (weight 0.1): If (feature 2 &lt;= 1001.9) If (feature 1 &lt;= 39.13) If (feature 3 &lt;= 79.95) Predict: 9.0188365708008 Else (feature 3 &gt; 79.95) Predict: 2.9702965803786205 Else (feature 1 &gt; 39.13) If (feature 3 &lt;= 63.68) Predict: -4.052067945951171 Else (feature 3 &gt; 63.68) Predict: -1.0796516186664176 Else (feature 2 &gt; 1001.9) If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.38) Predict: 0.15316006561614587 Else (feature 0 &gt; 14.38) Predict: -3.487291240038168 Else (feature 0 &gt; 15.33) If (feature 1 &lt;= 43.13) Predict: 2.5605988792505605 Else (feature 1 &gt; 43.13) Predict: 0.03166127813460667 Tree 42 (weight 0.1): If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 11.42) If (feature 1 &lt;= 38.25) Predict: -2.0532785635493065 Else (feature 1 &gt; 38.25) Predict: 0.4665697970110133 Else (feature 0 &gt; 11.42) If (feature 1 &lt;= 44.2) Predict: -4.178641719198364 Else (feature 1 &gt; 44.2) Predict: -9.84024023297988 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 13.08) If (feature 1 &lt;= 40.89) Predict: 4.383821312183712 Else (feature 1 &gt; 40.89) Predict: 2.000819554066434 Else (feature 0 &gt; 13.08) If (feature 0 &lt;= 15.33) Predict: -1.0813581518144955 Else (feature 0 &gt; 15.33) Predict: 0.11492139312962121 Tree 43 (weight 0.1): If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.97) If (feature 3 &lt;= 86.54) Predict: 0.983392336251922 Else (feature 3 &gt; 86.54) Predict: -0.8690504742953818 Else (feature 0 &gt; 7.97) If (feature 3 &lt;= 62.1) Predict: -20.310342278835464 Else (feature 3 &gt; 62.1) Predict: -2.975869736741497 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.42) If (feature 2 &lt;= 1015.45) Predict: 5.74314556767472 Else (feature 2 &gt; 1015.45) Predict: 2.1033141679659995 Else (feature 0 &gt; 9.42) If (feature 1 &lt;= 40.89) Predict: 0.6933339562649613 Else (feature 1 &gt; 40.89) Predict: -0.10718368674776323 Tree 44 (weight 0.1): If (feature 1 &lt;= 74.87) If (feature 1 &lt;= 71.43) If (feature 1 &lt;= 68.3) Predict: -0.0751396787352361 Else (feature 1 &gt; 68.3) Predict: 1.0387569941322914 Else (feature 1 &gt; 71.43) If (feature 1 &lt;= 72.86) Predict: -2.5461711201599986 Else (feature 1 &gt; 72.86) Predict: -0.0018936704520639966 Else (feature 1 &gt; 74.87) If (feature 1 &lt;= 77.3) If (feature 3 &lt;= 73.33) Predict: 3.4362919081871732 Else (feature 3 &gt; 73.33) Predict: 0.022595797531833054 Else (feature 1 &gt; 77.3) If (feature 2 &lt;= 1012.39) Predict: -2.0026738842740444 Else (feature 2 &gt; 1012.39) Predict: 1.7553499174736846 Tree 45 (weight 0.1): If (feature 2 &lt;= 1005.35) If (feature 1 &lt;= 72.24) If (feature 1 &lt;= 59.14) Predict: 0.030127466104975898 Else (feature 1 &gt; 59.14) Predict: -2.2341894812350676 Else (feature 1 &gt; 72.24) If (feature 3 &lt;= 60.09) Predict: 4.41863108135717 Else (feature 3 &gt; 60.09) Predict: -0.11040726869235623 Else (feature 2 &gt; 1005.35) If (feature 0 &lt;= 31.8) If (feature 1 &lt;= 66.25) Predict: -0.06640264597455495 Else (feature 1 &gt; 66.25) Predict: 0.6711276381424462 Else (feature 0 &gt; 31.8) If (feature 1 &lt;= 62.44) Predict: 18.071299971628946 Else (feature 1 &gt; 62.44) Predict: -1.613111097205577 Tree 46 (weight 0.1): If (feature 0 &lt;= 25.95) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 22.6) Predict: 0.0037802976144726266 Else (feature 0 &gt; 22.6) Predict: -3.2702083989998565 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 47.83) Predict: 7.351532379664369 Else (feature 1 &gt; 47.83) Predict: 0.6617643737173495 Else (feature 0 &gt; 25.95) If (feature 3 &lt;= 62.1) If (feature 0 &lt;= 29.89) Predict: 0.7522949567047181 Else (feature 0 &gt; 29.89) Predict: -0.5659530686126862 Else (feature 3 &gt; 62.1) If (feature 1 &lt;= 43.41) Predict: -9.179671352130104 Else (feature 1 &gt; 43.41) Predict: -0.9646184420761758 Tree 47 (weight 0.1): If (feature 0 &lt;= 5.18) If (feature 1 &lt;= 38.62) If (feature 3 &lt;= 77.17) Predict: -4.215696425771664 Else (feature 3 &gt; 77.17) Predict: 5.655069692148392 Else (feature 1 &gt; 38.62) If (feature 1 &lt;= 39.13) Predict: -12.269101167501105 Else (feature 1 &gt; 39.13) Predict: 1.081763483601667 Else (feature 0 &gt; 5.18) If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.97) Predict: -0.19756946285599916 Else (feature 0 &gt; 7.97) Predict: -2.7184931590940438 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.42) Predict: 2.558566383813981 Else (feature 0 &gt; 9.42) Predict: -0.006722635545763743 Tree 48 (weight 0.1): If (feature 2 &lt;= 1028.38) If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 66.93) Predict: -0.7473456438858288 Else (feature 1 &gt; 66.93) Predict: 0.34762458916260297 Else (feature 2 &gt; 1010.89) If (feature 1 &lt;= 58.86) Predict: 0.4001213596367478 Else (feature 1 &gt; 58.86) Predict: -0.33373941983121597 Else (feature 2 &gt; 1028.38) If (feature 1 &lt;= 42.85) If (feature 1 &lt;= 39.48) Predict: 2.1904388134214514 Else (feature 1 &gt; 39.48) Predict: -3.2474441160938956 Else (feature 1 &gt; 42.85) If (feature 3 &lt;= 71.55) Predict: -1.061140549595708 Else (feature 3 &gt; 71.55) Predict: 6.934556118848832 Tree 49 (weight 0.1): If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 10.74) If (feature 0 &lt;= 8.75) Predict: -0.48190999213172564 Else (feature 0 &gt; 8.75) Predict: 1.0350335598803566 Else (feature 0 &gt; 10.74) If (feature 2 &lt;= 1024.3) Predict: -3.057989388513731 Else (feature 2 &gt; 1024.3) Predict: 2.162024696272738 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 12.5) If (feature 3 &lt;= 86.91) Predict: 4.627051067913808 Else (feature 3 &gt; 86.91) Predict: 0.9386052167341327 Else (feature 0 &gt; 12.5) If (feature 1 &lt;= 37.8) Predict: 4.0889321278523685 Else (feature 1 &gt; 37.8) Predict: -0.02245818963891235 Tree 50 (weight 0.1): If (feature 2 &lt;= 1017.42) If (feature 2 &lt;= 1014.19) If (feature 1 &lt;= 43.13) Predict: 0.9320375696962719 Else (feature 1 &gt; 43.13) Predict: -0.31844348507047093 Else (feature 2 &gt; 1014.19) If (feature 1 &lt;= 42.42) Predict: -0.5988031510673222 Else (feature 1 &gt; 42.42) Predict: 1.3187243855742212 Else (feature 2 &gt; 1017.42) If (feature 2 &lt;= 1019.23) If (feature 1 &lt;= 44.2) Predict: -2.0646082455368195 Else (feature 1 &gt; 44.2) Predict: -0.4969601265683861 Else (feature 2 &gt; 1019.23) If (feature 0 &lt;= 17.84) Predict: -0.2870181057370213 Else (feature 0 &gt; 17.84) Predict: 2.6148230736448608 Tree 51 (weight 0.1): If (feature 1 &lt;= 38.62) If (feature 0 &lt;= 18.4) If (feature 0 &lt;= 5.18) Predict: 3.850885339006515 Else (feature 0 &gt; 5.18) Predict: -0.940687510645146 Else (feature 0 &gt; 18.4) If (feature 0 &lt;= 18.98) Predict: -10.80330040562501 Else (feature 0 &gt; 18.98) Predict: -18.03404880535599 Else (feature 1 &gt; 38.62) If (feature 2 &lt;= 1026.23) If (feature 0 &lt;= 13.56) Predict: 0.5295719576334972 Else (feature 0 &gt; 13.56) Predict: -0.052812717813551166 Else (feature 2 &gt; 1026.23) If (feature 1 &lt;= 40.22) Predict: -4.371246083031292 Else (feature 1 &gt; 40.22) Predict: -1.3541229527292618 Tree 52 (weight 0.1): If (feature 1 &lt;= 66.25) If (feature 1 &lt;= 64.84) If (feature 3 &lt;= 41.26) Predict: 3.045631536773922 Else (feature 3 &gt; 41.26) Predict: -0.0337837562463145 Else (feature 1 &gt; 64.84) If (feature 1 &lt;= 65.27) Predict: -5.921444872611693 Else (feature 1 &gt; 65.27) Predict: -0.8270282146869598 Else (feature 1 &gt; 66.25) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 19.83) Predict: 1.5405239234096135 Else (feature 0 &gt; 19.83) Predict: -3.1288830506195398 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 25.35) Predict: 3.2672442442602656 Else (feature 0 &gt; 25.35) Predict: -0.007592990267182966 Tree 53 (weight 0.1): If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) If (feature 0 &lt;= 17.2) Predict: 0.1228349542857993 Else (feature 0 &gt; 17.2) Predict: -2.392588492043597 Else (feature 1 &gt; 46.93) If (feature 2 &lt;= 1020.77) Predict: -1.8240349072310669 Else (feature 2 &gt; 1020.77) Predict: -6.523289398433308 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 18.4) If (feature 1 &lt;= 47.83) Predict: 0.5318997435908227 Else (feature 1 &gt; 47.83) Predict: 4.907584149653537 Else (feature 0 &gt; 18.4) If (feature 1 &lt;= 46.93) Predict: -2.110133253015907 Else (feature 1 &gt; 46.93) Predict: 0.20708863671712482 Tree 54 (weight 0.1): If (feature 3 &lt;= 76.79) If (feature 1 &lt;= 40.05) If (feature 1 &lt;= 39.96) Predict: -0.7416033424896232 Else (feature 1 &gt; 39.96) Predict: -6.880323474190146 Else (feature 1 &gt; 40.05) If (feature 1 &lt;= 40.89) Predict: 2.887497917363201 Else (feature 1 &gt; 40.89) Predict: 0.17777582956662522 Else (feature 3 &gt; 76.79) If (feature 0 &lt;= 19.61) If (feature 0 &lt;= 17.84) Predict: -0.09172434324104897 Else (feature 0 &gt; 17.84) Predict: 1.9482862934683598 Else (feature 0 &gt; 19.61) If (feature 2 &lt;= 1010.6) Predict: -0.15262790703036064 Else (feature 2 &gt; 1010.6) Predict: -1.7280878096087295 Tree 55 (weight 0.1): If (feature 0 &lt;= 24.79) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 66.93) Predict: 0.02682576814507517 Else (feature 1 &gt; 66.93) Predict: -2.323863726560255 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 47.83) Predict: 6.909290893058579 Else (feature 1 &gt; 47.83) Predict: 0.9944889736997976 Else (feature 0 &gt; 24.79) If (feature 3 &lt;= 65.24) If (feature 0 &lt;= 28.5) Predict: 0.8432916332803679 Else (feature 0 &gt; 28.5) Predict: -0.3680864130080106 Else (feature 3 &gt; 65.24) If (feature 1 &lt;= 66.51) Predict: -2.1147474860288 Else (feature 1 &gt; 66.51) Predict: -0.3834883036951788 Tree 56 (weight 0.1): If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.38) If (feature 0 &lt;= 11.95) Predict: -0.3290262091199092 Else (feature 0 &gt; 11.95) Predict: 0.8543511625463592 Else (feature 0 &gt; 14.38) If (feature 2 &lt;= 1016.21) Predict: -0.7208476709379852 Else (feature 2 &gt; 1016.21) Predict: -4.40928839539672 Else (feature 0 &gt; 15.33) If (feature 0 &lt;= 16.22) If (feature 2 &lt;= 1013.19) Predict: 4.554268903891635 Else (feature 2 &gt; 1013.19) Predict: 1.538781048856137 Else (feature 0 &gt; 16.22) If (feature 1 &lt;= 46.93) Predict: -1.1488437756174756 Else (feature 1 &gt; 46.93) Predict: 0.1634274865006602 Tree 57 (weight 0.1): If (feature 2 &lt;= 1007.46) If (feature 1 &lt;= 73.67) If (feature 1 &lt;= 71.43) Predict: -0.28457458674767294 Else (feature 1 &gt; 71.43) Predict: -2.556284198496123 Else (feature 1 &gt; 73.67) If (feature 3 &lt;= 60.81) Predict: 4.31886476056719 Else (feature 3 &gt; 60.81) Predict: 0.3197495651743129 Else (feature 2 &gt; 1007.46) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) Predict: 0.04575453109929229 Else (feature 1 &gt; 46.93) Predict: -2.141138284310683 Else (feature 0 &gt; 17.84) If (feature 1 &lt;= 56.57) Predict: 1.3439965861050847 Else (feature 1 &gt; 56.57) Predict: -0.02904919315788331 Tree 58 (weight 0.1): If (feature 0 &lt;= 31.8) If (feature 1 &lt;= 66.25) If (feature 1 &lt;= 64.84) Predict: -0.006836636445003446 Else (feature 1 &gt; 64.84) Predict: -2.0890363043188134 Else (feature 1 &gt; 66.25) If (feature 1 &lt;= 69.05) Predict: 1.8596834938858298 Else (feature 1 &gt; 69.05) Predict: -0.2637818907162569 Else (feature 0 &gt; 31.8) If (feature 1 &lt;= 69.34) If (feature 2 &lt;= 1009.63) Predict: -4.53407923927751 Else (feature 2 &gt; 1009.63) Predict: 1.2479530412848983 Else (feature 1 &gt; 69.34) If (feature 1 &lt;= 69.88) Predict: 5.672382101944148 Else (feature 1 &gt; 69.88) Predict: -0.7728960613425813 Tree 59 (weight 0.1): If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 68.3) If (feature 1 &lt;= 43.41) Predict: 0.423961936091299 Else (feature 1 &gt; 43.41) Predict: -1.0411314850417004 Else (feature 1 &gt; 68.3) If (feature 1 &lt;= 68.67) Predict: 7.130757445704555 Else (feature 1 &gt; 68.67) Predict: 0.1160942217864609 Else (feature 2 &gt; 1010.89) If (feature 3 &lt;= 93.63) If (feature 1 &lt;= 58.86) Predict: 0.41091291246834866 Else (feature 1 &gt; 58.86) Predict: -0.2764637915143923 Else (feature 3 &gt; 93.63) If (feature 1 &lt;= 41.74) Predict: -3.564757715833512 Else (feature 1 &gt; 41.74) Predict: 1.1644353912440248 Tree 60 (weight 0.1): If (feature 1 &lt;= 48.6) If (feature 1 &lt;= 44.88) If (feature 2 &lt;= 1016.57) Predict: 0.4410572983039277 Else (feature 2 &gt; 1016.57) Predict: -0.44414793681792664 Else (feature 1 &gt; 44.88) If (feature 2 &lt;= 1014.35) Predict: -3.0626378082153085 Else (feature 2 &gt; 1014.35) Predict: 2.0328536525605063 Else (feature 1 &gt; 48.6) If (feature 1 &lt;= 52.05) If (feature 2 &lt;= 1009.9) Predict: 0.24004783900051171 Else (feature 2 &gt; 1009.9) Predict: 3.1645061792332916 Else (feature 1 &gt; 52.05) If (feature 0 &lt;= 17.84) Predict: -1.95074879327582 Else (feature 0 &gt; 17.84) Predict: 0.021106826304965107 Tree 61 (weight 0.1): If (feature 1 &lt;= 74.87) If (feature 1 &lt;= 71.43) If (feature 1 &lt;= 68.3) Predict: -0.06241270845694165 Else (feature 1 &gt; 68.3) Predict: 0.8051320337219834 Else (feature 1 &gt; 71.43) If (feature 0 &lt;= 24.57) Predict: 1.648459594873699 Else (feature 0 &gt; 24.57) Predict: -1.2314608832462137 Else (feature 1 &gt; 74.87) If (feature 1 &lt;= 77.3) If (feature 0 &lt;= 21.42) Predict: -7.482222216002697 Else (feature 0 &gt; 21.42) Predict: 1.8228183337802573 Else (feature 1 &gt; 77.3) If (feature 2 &lt;= 1012.39) Predict: -1.4326641812285505 Else (feature 2 &gt; 1012.39) Predict: 1.7079353624089986 Tree 62 (weight 0.1): If (feature 0 &lt;= 5.18) If (feature 1 &lt;= 42.07) If (feature 3 &lt;= 96.38) Predict: 1.4583097259406885 Else (feature 3 &gt; 96.38) Predict: 7.4053761713858615 Else (feature 1 &gt; 42.07) If (feature 2 &lt;= 1008.19) Predict: 0.311290850436914 Else (feature 2 &gt; 1008.19) Predict: -5.145119802972147 Else (feature 0 &gt; 5.18) If (feature 1 &lt;= 38.62) If (feature 0 &lt;= 18.4) Predict: -0.7259884411546618 Else (feature 0 &gt; 18.4) Predict: -12.427884135864616 Else (feature 1 &gt; 38.62) If (feature 1 &lt;= 39.48) Predict: 1.131291291234381 Else (feature 1 &gt; 39.48) Predict: -0.007004055574359982 Tree 63 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 70.8) If (feature 1 &lt;= 69.05) Predict: -0.45566718124370104 Else (feature 1 &gt; 69.05) Predict: -3.3633539333883373 Else (feature 1 &gt; 70.8) If (feature 3 &lt;= 70.63) Predict: 1.7061073842258219 Else (feature 3 &gt; 70.63) Predict: -0.35469491259927843 Else (feature 2 &gt; 1004.52) If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.13) Predict: 0.13165022513417465 Else (feature 0 &gt; 14.13) Predict: -1.8886218519887454 Else (feature 0 &gt; 15.33) If (feature 1 &lt;= 43.13) Predict: 2.0897911694212086 Else (feature 1 &gt; 43.13) Predict: 0.023571622513158218 Tree 64 (weight 0.1): If (feature 1 &lt;= 41.92) If (feature 1 &lt;= 41.58) If (feature 2 &lt;= 1015.45) Predict: 0.6420804366913081 Else (feature 2 &gt; 1015.45) Predict: -0.3393001000428116 Else (feature 1 &gt; 41.58) If (feature 3 &lt;= 91.38) Predict: -2.959889489145066 Else (feature 3 &gt; 91.38) Predict: -14.822621379271645 Else (feature 1 &gt; 41.92) If (feature 1 &lt;= 43.13) If (feature 0 &lt;= 15.33) Predict: 0.5584851317693598 Else (feature 0 &gt; 15.33) Predict: 5.35806974907062 Else (feature 1 &gt; 43.13) If (feature 1 &lt;= 43.65) Predict: -2.5734171913252673 Else (feature 1 &gt; 43.65) Predict: 0.06206747847844893 Tree 65 (weight 0.1): If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 66.93) If (feature 0 &lt;= 20.6) Predict: -0.0679333275254979 Else (feature 0 &gt; 20.6) Predict: -1.053808811058633 Else (feature 1 &gt; 66.93) If (feature 1 &lt;= 67.32) Predict: 7.372080266725638 Else (feature 1 &gt; 67.32) Predict: 0.09996335027123535 Else (feature 2 &gt; 1010.89) If (feature 3 &lt;= 75.61) If (feature 1 &lt;= 40.05) Predict: -0.9831581524231143 Else (feature 1 &gt; 40.05) Predict: 0.5486160789249349 Else (feature 3 &gt; 75.61) If (feature 1 &lt;= 58.86) Predict: 0.19399224442246701 Else (feature 1 &gt; 58.86) Predict: -1.5652059699408227 Tree 66 (weight 0.1): If (feature 0 &lt;= 28.75) If (feature 1 &lt;= 73.18) If (feature 1 &lt;= 71.43) Predict: 0.05143978594106816 Else (feature 1 &gt; 71.43) Predict: -1.436513600322334 Else (feature 1 &gt; 73.18) If (feature 3 &lt;= 73.33) Predict: 4.1459864582084975 Else (feature 3 &gt; 73.33) Predict: 0.34965185037807356 Else (feature 0 &gt; 28.75) If (feature 2 &lt;= 1014.54) If (feature 2 &lt;= 1013.43) Predict: -0.4008005884834272 Else (feature 2 &gt; 1013.43) Predict: 3.683818693727259 Else (feature 2 &gt; 1014.54) If (feature 1 &lt;= 67.83) Predict: -0.82614879352537 Else (feature 1 &gt; 67.83) Predict: -4.535981326886069 Tree 67 (weight 0.1): If (feature 1 &lt;= 47.83) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 18.71) Predict: -0.0010074123242523121 Else (feature 0 &gt; 18.71) Predict: -3.2926535011699234 Else (feature 0 &gt; 23.02) If (feature 2 &lt;= 1012.39) Predict: 1.3034696914565052 Else (feature 2 &gt; 1012.39) Predict: 11.235282784300427 Else (feature 1 &gt; 47.83) If (feature 1 &lt;= 56.57) If (feature 0 &lt;= 17.84) Predict: -1.039931035628621 Else (feature 0 &gt; 17.84) Predict: 1.9905896386111916 Else (feature 1 &gt; 56.57) If (feature 1 &lt;= 57.19) Predict: -2.3357601760278204 Else (feature 1 &gt; 57.19) Predict: -0.0355403353056693 Tree 68 (weight 0.1): If (feature 0 &lt;= 24.79) If (feature 3 &lt;= 41.26) If (feature 1 &lt;= 45.87) Predict: 2.4904273637383265 Else (feature 1 &gt; 45.87) Predict: 13.013875696314063 Else (feature 3 &gt; 41.26) If (feature 1 &lt;= 49.02) Predict: -0.18642415027276396 Else (feature 1 &gt; 49.02) Predict: 0.47121076166963227 Else (feature 0 &gt; 24.79) If (feature 1 &lt;= 65.27) If (feature 1 &lt;= 64.84) Predict: -0.5...
+>     res49: String =
+>     "GBTRegressionModel (uid=gbtr_9c5ab45fe584) with 120 trees
+>       Tree 0 (weight 1.0):
+>         If (feature 0 <= 17.84)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 8.75)
+>            Predict: 483.5412151067323
+>           Else (feature 0 > 8.75)
+>            Predict: 475.6305502392345
+>          Else (feature 0 > 11.95)
+>           If (feature 0 <= 15.33)
+>            Predict: 467.63141917293234
+>           Else (feature 0 > 15.33)
+>            Predict: 460.74754125412574
+>         Else (feature 0 > 17.84)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 47.83)
+>            Predict: 457.1077966101695
+>           Else (feature 1 > 47.83)
+>            Predict: 448.74750213858016
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 66.25)
+>            Predict: 442.88544855967086
+>           Else (feature 1 > 66.25)
+>            Predict: 434.7293710691822
+>       Tree 1 (weight 0.1):
+>         If (feature 2 <= 1009.9)
+>          If (feature 1 <= 43.13)
+>           If (feature 0 <= 15.33)
+>            Predict: -0.31094207231231485
+>           Else (feature 0 > 15.33)
+>            Predict: 4.302958436537365
+>          Else (feature 1 > 43.13)
+>           If (feature 0 <= 23.02)
+>            Predict: -8.38392506141353
+>           Else (feature 0 > 23.02)
+>            Predict: -2.399960976520273
+>         Else (feature 2 > 1009.9)
+>          If (feature 3 <= 86.21)
+>           If (feature 0 <= 26.35)
+>            Predict: 2.888623754019027
+>           Else (feature 0 > 26.35)
+>            Predict: -1.1489483044194229
+>          Else (feature 3 > 86.21)
+>           If (feature 1 <= 39.72)
+>            Predict: 3.876324424163314
+>           Else (feature 1 > 39.72)
+>            Predict: -3.058952828112949
+>       Tree 2 (weight 0.1):
+>         If (feature 2 <= 1009.63)
+>          If (feature 1 <= 43.13)
+>           If (feature 0 <= 11.95)
+>            Predict: -1.4091086031845625
+>           Else (feature 0 > 11.95)
+>            Predict: 2.6329466235800942
+>          Else (feature 1 > 43.13)
+>           If (feature 0 <= 23.02)
+>            Predict: -6.795414480322956
+>           Else (feature 0 > 23.02)
+>            Predict: -2.166560698742912
+>         Else (feature 2 > 1009.63)
+>          If (feature 3 <= 80.44)
+>           If (feature 0 <= 26.98)
+>            Predict: 2.878622882275939
+>           Else (feature 0 > 26.98)
+>            Predict: -1.146426969990865
+>          Else (feature 3 > 80.44)
+>           If (feature 3 <= 94.55)
+>            Predict: -0.35885921725905906
+>           Else (feature 3 > 94.55)
+>            Predict: -5.75364586186002
+>       Tree 3 (weight 0.1):
+>         If (feature 0 <= 27.6)
+>          If (feature 3 <= 70.2)
+>           If (feature 1 <= 40.05)
+>            Predict: -0.9480831286616939
+>           Else (feature 1 > 40.05)
+>            Predict: 3.660397090904016
+>          Else (feature 3 > 70.2)
+>           If (feature 1 <= 40.64)
+>            Predict: 2.1539405832035627
+>           Else (feature 1 > 40.64)
+>            Predict: -1.2281619807661366
+>         Else (feature 0 > 27.6)
+>          If (feature 1 <= 65.27)
+>           If (feature 2 <= 1005.99)
+>            Predict: -15.33433697033558
+>           Else (feature 2 > 1005.99)
+>            Predict: -5.866095468145647
+>          Else (feature 1 > 65.27)
+>           If (feature 2 <= 1008.75)
+>            Predict: -4.03431044067007
+>           Else (feature 2 > 1008.75)
+>            Predict: -0.23440867445577207
+>       Tree 4 (weight 0.1):
+>         If (feature 0 <= 26.35)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 68.67)
+>            Predict: 0.12035773384797814
+>           Else (feature 1 > 68.67)
+>            Predict: -13.928523073642005
+>          Else (feature 0 > 23.02)
+>           If (feature 0 <= 24.57)
+>            Predict: 5.5622340839882165
+>           Else (feature 0 > 24.57)
+>            Predict: 1.6938172370244715
+>         Else (feature 0 > 26.35)
+>          If (feature 1 <= 66.25)
+>           If (feature 2 <= 1008.4)
+>            Predict: -9.009916879825393
+>           Else (feature 2 > 1008.4)
+>            Predict: -3.059736394918022
+>          Else (feature 1 > 66.25)
+>           If (feature 0 <= 30.2)
+>            Predict: 0.14704705100738577
+>           Else (feature 0 > 30.2)
+>            Predict: -3.2914123948921006
+>       Tree 5 (weight 0.1):
+>         If (feature 2 <= 1010.41)
+>          If (feature 1 <= 43.41)
+>           If (feature 3 <= 99.27)
+>            Predict: 1.2994444710077233
+>           Else (feature 3 > 99.27)
+>            Predict: -6.649548317319231
+>          Else (feature 1 > 43.41)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.9119452777748
+>           Else (feature 0 > 23.02)
+>            Predict: -0.9514185089440673
+>         Else (feature 2 > 1010.41)
+>          If (feature 3 <= 89.83)
+>           If (feature 0 <= 31.26)
+>            Predict: 1.2914123584761403
+>           Else (feature 0 > 31.26)
+>            Predict: -5.115001417285994
+>          Else (feature 3 > 89.83)
+>           If (feature 1 <= 40.64)
+>            Predict: 1.5160976219176363
+>           Else (feature 1 > 40.64)
+>            Predict: -4.202813699523934
+>       Tree 6 (weight 0.1):
+>         If (feature 2 <= 1007.27)
+>          If (feature 0 <= 27.94)
+>           If (feature 3 <= 71.09)
+>            Predict: 1.616448005210527
+>           Else (feature 3 > 71.09)
+>            Predict: -2.1313527108274157
+>          Else (feature 0 > 27.94)
+>           If (feature 1 <= 68.3)
+>            Predict: -8.579840063013142
+>           Else (feature 1 > 68.3)
+>            Predict: -1.915909819494233
+>         Else (feature 2 > 1007.27)
+>          If (feature 3 <= 95.45)
+>           If (feature 0 <= 6.52)
+>            Predict: 4.973465595410054
+>           Else (feature 0 > 6.52)
+>            Predict: 0.3837975458985242
+>          Else (feature 3 > 95.45)
+>           If (feature 2 <= 1013.43)
+>            Predict: -0.8175453481344352
+>           Else (feature 2 > 1013.43)
+>            Predict: -7.264843604639278
+>       Tree 7 (weight 0.1):
+>         If (feature 0 <= 26.35)
+>          If (feature 3 <= 71.09)
+>           If (feature 1 <= 67.83)
+>            Predict: 1.9620965187817083
+>           Else (feature 1 > 67.83)
+>            Predict: 7.953863660960779
+>          Else (feature 3 > 71.09)
+>           If (feature 1 <= 40.89)
+>            Predict: 1.2020440154192213
+>           Else (feature 1 > 40.89)
+>            Predict: -0.9989659748111419
+>         Else (feature 0 > 26.35)
+>          If (feature 1 <= 66.25)
+>           If (feature 2 <= 1008.4)
+>            Predict: -6.230272922553423
+>           Else (feature 2 > 1008.4)
+>            Predict: -2.654681371247991
+>          Else (feature 1 > 66.25)
+>           If (feature 2 <= 1004.52)
+>            Predict: -3.9527797601131853
+>           Else (feature 2 > 1004.52)
+>            Predict: -0.21770148036273387
+>       Tree 8 (weight 0.1):
+>         If (feature 0 <= 29.56)
+>          If (feature 3 <= 63.16)
+>           If (feature 1 <= 72.24)
+>            Predict: 1.9612116105231265
+>           Else (feature 1 > 72.24)
+>            Predict: 8.756949826030025
+>          Else (feature 3 > 63.16)
+>           If (feature 0 <= 5.95)
+>            Predict: 4.445363585074405
+>           Else (feature 0 > 5.95)
+>            Predict: -0.4097996897633835
+>         Else (feature 0 > 29.56)
+>          If (feature 1 <= 68.3)
+>           If (feature 2 <= 1009.9)
+>            Predict: -7.882200867406393
+>           Else (feature 2 > 1009.9)
+>            Predict: -1.7273221348184091
+>          Else (feature 1 > 68.3)
+>           If (feature 2 <= 1013.77)
+>            Predict: -0.7219749804525829
+>           Else (feature 2 > 1013.77)
+>            Predict: -6.492100849806538
+>       Tree 9 (weight 0.1):
+>         If (feature 3 <= 89.83)
+>          If (feature 0 <= 25.72)
+>           If (feature 0 <= 23.02)
+>            Predict: 0.15450088997272685
+>           Else (feature 0 > 23.02)
+>            Predict: 3.010254802875794
+>          Else (feature 0 > 25.72)
+>           If (feature 1 <= 66.25)
+>            Predict: -2.5821765284417615
+>           Else (feature 1 > 66.25)
+>            Predict: -0.3935112713804148
+>         Else (feature 3 > 89.83)
+>          If (feature 2 <= 1019.52)
+>           If (feature 0 <= 7.08)
+>            Predict: 3.264389020443774
+>           Else (feature 0 > 7.08)
+>            Predict: -1.6246048211383168
+>          Else (feature 2 > 1019.52)
+>           If (feature 0 <= 8.75)
+>            Predict: -8.005340799169343
+>           Else (feature 0 > 8.75)
+>            Predict: -2.9832409167030063
+>       Tree 10 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 45.87)
+>            Predict: 0.26309432916452813
+>           Else (feature 1 > 45.87)
+>            Predict: -5.716473785544373
+>          Else (feature 0 > 17.84)
+>           If (feature 2 <= 1012.56)
+>            Predict: -0.15863259341493433
+>           Else (feature 2 > 1012.56)
+>            Predict: 7.899625065937478
+>         Else (feature 1 > 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 3 <= 67.72)
+>            Predict: -27.101084325134025
+>           Else (feature 3 > 67.72)
+>            Predict: -12.755339130015875
+>          Else (feature 0 > 17.84)
+>           If (feature 0 <= 20.6)
+>            Predict: 3.8741798886113408
+>           Else (feature 0 > 20.6)
+>            Predict: -0.8179571837367839
+>       Tree 11 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 74.22)
+>           If (feature 1 <= 59.14)
+>            Predict: -0.6678644068375302
+>           Else (feature 1 > 59.14)
+>            Predict: -5.0251736913870495
+>          Else (feature 1 > 74.22)
+>           If (feature 2 <= 1000.68)
+>            Predict: -1.9453153753750236
+>           Else (feature 2 > 1000.68)
+>            Predict: 3.954565899065237
+>         Else (feature 2 > 1004.52)
+>          If (feature 3 <= 60.81)
+>           If (feature 0 <= 29.27)
+>            Predict: 2.256991118214201
+>           Else (feature 0 > 29.27)
+>            Predict: -0.8956432652281918
+>          Else (feature 3 > 60.81)
+>           If (feature 0 <= 5.18)
+>            Predict: 5.30208686561611
+>           Else (feature 0 > 5.18)
+>            Predict: -0.2275806642044292
+>       Tree 12 (weight 0.1):
+>         If (feature 3 <= 93.63)
+>          If (feature 0 <= 20.6)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.13650451477274114
+>           Else (feature 0 > 17.84)
+>            Predict: 4.26138638419226
+>          Else (feature 0 > 20.6)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.145788149131118
+>           Else (feature 0 > 23.02)
+>            Predict: 0.45010060784860767
+>         Else (feature 3 > 93.63)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 6.52)
+>            Predict: 1.9630864105825856
+>           Else (feature 0 > 6.52)
+>            Predict: -5.847103580294793
+>          Else (feature 0 > 11.95)
+>           If (feature 1 <= 57.85)
+>            Predict: 1.6850763767018282
+>           Else (feature 1 > 57.85)
+>            Predict: -3.57522814358917
+>       Tree 13 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 1 <= 49.39)
+>           If (feature 0 <= 13.56)
+>            Predict: 0.7497248523199469
+>           Else (feature 0 > 13.56)
+>            Predict: -0.8096048572768345
+>          Else (feature 1 > 49.39)
+>           If (feature 0 <= 17.84)
+>            Predict: -4.9975868045736025
+>           Else (feature 0 > 17.84)
+>            Predict: 6.70181838603398
+>         Else (feature 1 > 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 58.62)
+>            Predict: -8.139327595464518
+>           Else (feature 1 > 58.62)
+>            Predict: -11.260696586956563
+>          Else (feature 0 > 17.84)
+>           If (feature 2 <= 1020.32)
+>            Predict: -0.4173502593107514
+>           Else (feature 2 > 1020.32)
+>            Predict: 7.350524302545053
+>       Tree 14 (weight 0.1):
+>         If (feature 2 <= 1009.3)
+>          If (feature 1 <= 73.67)
+>           If (feature 0 <= 26.35)
+>            Predict: -0.2834715308768144
+>           Else (feature 0 > 26.35)
+>            Predict: -2.2855655986052446
+>          Else (feature 1 > 73.67)
+>           If (feature 0 <= 21.42)
+>            Predict: -19.886551554013977
+>           Else (feature 0 > 21.42)
+>            Predict: 1.8345107899392203
+>         Else (feature 2 > 1009.3)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 46.93)
+>            Predict: 0.2012146645141011
+>           Else (feature 1 > 46.93)
+>            Predict: -5.331252849501989
+>          Else (feature 0 > 17.84)
+>           If (feature 0 <= 20.6)
+>            Predict: 3.9009310043506518
+>           Else (feature 0 > 20.6)
+>            Predict: 0.05492627340134294
+>       Tree 15 (weight 0.1):
+>         If (feature 3 <= 80.44)
+>          If (feature 0 <= 26.57)
+>           If (feature 0 <= 23.02)
+>            Predict: 0.24935555983937532
+>           Else (feature 0 > 23.02)
+>            Predict: 1.9734839371689987
+>          Else (feature 0 > 26.57)
+>           If (feature 1 <= 66.25)
+>            Predict: -2.652691255012269
+>           Else (feature 1 > 66.25)
+>            Predict: 0.10205623249441657
+>         Else (feature 3 > 80.44)
+>          If (feature 1 <= 57.85)
+>           If (feature 2 <= 1021.65)
+>            Predict: 0.3189331596273633
+>           Else (feature 2 > 1021.65)
+>            Predict: -2.493847422724499
+>          Else (feature 1 > 57.85)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.443277995263894
+>           Else (feature 0 > 23.02)
+>            Predict: 1.0414575062489446
+>       Tree 16 (weight 0.1):
+>         If (feature 0 <= 6.52)
+>          If (feature 3 <= 67.72)
+>           If (feature 1 <= 39.48)
+>            Predict: -0.021931809818089017
+>           Else (feature 1 > 39.48)
+>            Predict: 17.644618798102908
+>          Else (feature 3 > 67.72)
+>           If (feature 1 <= 42.07)
+>            Predict: 2.6927240976688487
+>           Else (feature 1 > 42.07)
+>            Predict: -3.720328734281554
+>         Else (feature 0 > 6.52)
+>          If (feature 0 <= 8.75)
+>           If (feature 0 <= 7.97)
+>            Predict: -1.1870026837027776
+>           Else (feature 0 > 7.97)
+>            Predict: -6.311604790035118
+>          Else (feature 0 > 8.75)
+>           If (feature 0 <= 9.73)
+>            Predict: 5.036277690956247
+>           Else (feature 0 > 9.73)
+>            Predict: -0.07156864179175153
+>       Tree 17 (weight 0.1):
+>         If (feature 2 <= 1005.35)
+>          If (feature 1 <= 70.8)
+>           If (feature 0 <= 21.14)
+>            Predict: 0.2557898848412102
+>           Else (feature 0 > 21.14)
+>            Predict: -4.092246463553751
+>          Else (feature 1 > 70.8)
+>           If (feature 0 <= 23.02)
+>            Predict: -17.7762740471523
+>           Else (feature 0 > 23.02)
+>            Predict: 1.4679036019616782
+>         Else (feature 2 > 1005.35)
+>          If (feature 3 <= 60.81)
+>           If (feature 2 <= 1021.17)
+>            Predict: 0.8109918761137652
+>           Else (feature 2 > 1021.17)
+>            Predict: 6.491756407811347
+>          Else (feature 3 > 60.81)
+>           If (feature 0 <= 25.72)
+>            Predict: 0.06495066055048145
+>           Else (feature 0 > 25.72)
+>            Predict: -1.234843690619109
+>       Tree 18 (weight 0.1):
+>         If (feature 3 <= 93.63)
+>          If (feature 0 <= 13.56)
+>           If (feature 0 <= 11.95)
+>            Predict: -0.1389635939018028
+>           Else (feature 0 > 11.95)
+>            Predict: 4.085304226900187
+>          Else (feature 0 > 13.56)
+>           If (feature 0 <= 15.33)
+>            Predict: -3.558076811842663
+>           Else (feature 0 > 15.33)
+>            Predict: 0.24840255719067195
+>         Else (feature 3 > 93.63)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 6.52)
+>            Predict: 1.1725211739721944
+>           Else (feature 0 > 6.52)
+>            Predict: -4.696815201291802
+>          Else (feature 0 > 11.95)
+>           If (feature 0 <= 23.42)
+>            Predict: -0.1435586215485262
+>           Else (feature 0 > 23.42)
+>            Predict: 6.017267110381734
+>       Tree 19 (weight 0.1):
+>         If (feature 0 <= 29.89)
+>          If (feature 3 <= 46.38)
+>           If (feature 2 <= 1020.32)
+>            Predict: 2.734528637686715
+>           Else (feature 2 > 1020.32)
+>            Predict: 14.229272221061546
+>          Else (feature 3 > 46.38)
+>           If (feature 1 <= 73.18)
+>            Predict: -0.09112932077559661
+>           Else (feature 1 > 73.18)
+>            Predict: 2.171636618202333
+>         Else (feature 0 > 29.89)
+>          If (feature 1 <= 68.3)
+>           If (feature 2 <= 1012.96)
+>            Predict: -4.842672386234583
+>           Else (feature 2 > 1012.96)
+>            Predict: 0.4656753436410731
+>          Else (feature 1 > 68.3)
+>           If (feature 1 <= 69.88)
+>            Predict: 1.9998755414672877
+>           Else (feature 1 > 69.88)
+>            Predict: -1.377187598546301
+>       Tree 20 (weight 0.1):
+>         If (feature 1 <= 40.89)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 10.74)
+>            Predict: 0.3474341793041741
+>           Else (feature 0 > 10.74)
+>            Predict: -3.2174625433704844
+>          Else (feature 0 > 11.95)
+>           If (feature 0 <= 13.56)
+>            Predict: 6.2521753652461385
+>           Else (feature 0 > 13.56)
+>            Predict: 0.7467107076401086
+>         Else (feature 1 > 40.89)
+>          If (feature 1 <= 41.16)
+>           If (feature 2 <= 1011.9)
+>            Predict: 1.6159428806525291
+>           Else (feature 2 > 1011.9)
+>            Predict: -5.525791920129847
+>          Else (feature 1 > 41.16)
+>           If (feature 1 <= 41.48)
+>            Predict: 2.3655609293253264
+>           Else (feature 1 > 41.48)
+>            Predict: -0.18730957785387015
+>       Tree 21 (weight 0.1):
+>         If (feature 0 <= 7.08)
+>          If (feature 1 <= 41.58)
+>           If (feature 1 <= 41.16)
+>            Predict: 1.9153935195932974
+>           Else (feature 1 > 41.16)
+>            Predict: 7.0746807427814735
+>          Else (feature 1 > 41.58)
+>           If (feature 2 <= 1020.77)
+>            Predict: -1.256554177586309
+>           Else (feature 2 > 1020.77)
+>            Predict: -26.29941855196938
+>         Else (feature 0 > 7.08)
+>          If (feature 0 <= 8.75)
+>           If (feature 1 <= 37.8)
+>            Predict: -8.544132394601597
+>           Else (feature 1 > 37.8)
+>            Predict: -2.6184141709801976
+>          Else (feature 0 > 8.75)
+>           If (feature 0 <= 9.73)
+>            Predict: 4.069411815161333
+>           Else (feature 0 > 9.73)
+>            Predict: -0.06494039395966968
+>       Tree 22 (weight 0.1):
+>         If (feature 0 <= 23.02)
+>          If (feature 0 <= 21.69)
+>           If (feature 0 <= 15.33)
+>            Predict: -0.48298234147973435
+>           Else (feature 0 > 15.33)
+>            Predict: 1.2747845905419344
+>          Else (feature 0 > 21.69)
+>           If (feature 1 <= 66.25)
+>            Predict: -3.44223180465188
+>           Else (feature 1 > 66.25)
+>            Predict: -9.677838572965495
+>         Else (feature 0 > 23.02)
+>          If (feature 0 <= 24.39)
+>           If (feature 1 <= 66.25)
+>            Predict: 1.4289485230939327
+>           Else (feature 1 > 66.25)
+>            Predict: 7.493228657621072
+>          Else (feature 0 > 24.39)
+>           If (feature 1 <= 66.25)
+>            Predict: -1.55164310941819
+>           Else (feature 1 > 66.25)
+>            Predict: 0.5159038364280375
+>       Tree 23 (weight 0.1):
+>         If (feature 2 <= 1010.89)
+>          If (feature 1 <= 66.93)
+>           If (feature 1 <= 43.41)
+>            Predict: 0.8366856528539243
+>           Else (feature 1 > 43.41)
+>            Predict: -2.146264827541657
+>          Else (feature 1 > 66.93)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.593173040738928
+>           Else (feature 0 > 23.02)
+>            Predict: 0.7595925761507126
+>         Else (feature 2 > 1010.89)
+>          If (feature 0 <= 15.33)
+>           If (feature 0 <= 14.38)
+>            Predict: 0.19019050526253845
+>           Else (feature 0 > 14.38)
+>            Predict: -4.931089744789576
+>          Else (feature 0 > 15.33)
+>           If (feature 1 <= 56.57)
+>            Predict: 2.893896440054576
+>           Else (feature 1 > 56.57)
+>            Predict: -0.2411893147021192
+>       Tree 24 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 39.13)
+>           If (feature 0 <= 16.56)
+>            Predict: 5.674347262101248
+>           Else (feature 0 > 16.56)
+>            Predict: -15.35003850200303
+>          Else (feature 1 > 39.13)
+>           If (feature 1 <= 70.8)
+>            Predict: -2.2136597249782484
+>           Else (feature 1 > 70.8)
+>            Predict: 0.4854909471410394
+>         Else (feature 2 > 1004.52)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 21.14)
+>            Predict: 0.25072963079321764
+>           Else (feature 0 > 21.14)
+>            Predict: -3.1127381475029745
+>          Else (feature 0 > 23.02)
+>           If (feature 0 <= 24.98)
+>            Predict: 2.513302584995404
+>           Else (feature 0 > 24.98)
+>            Predict: -0.17126775916442186
+>       Tree 25 (weight 0.1):
+>         If (feature 3 <= 76.79)
+>          If (feature 0 <= 28.75)
+>           If (feature 1 <= 66.25)
+>            Predict: 0.1271610430935476
+>           Else (feature 1 > 66.25)
+>            Predict: 2.4600009065275934
+>          Else (feature 0 > 28.75)
+>           If (feature 1 <= 44.58)
+>            Predict: -10.925990145829292
+>           Else (feature 1 > 44.58)
+>            Predict: -0.7031644656131009
+>         Else (feature 3 > 76.79)
+>          If (feature 0 <= 20.9)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.3807566877980857
+>           Else (feature 0 > 17.84)
+>            Predict: 2.329590528017136
+>          Else (feature 0 > 20.9)
+>           If (feature 0 <= 23.02)
+>            Predict: -3.741947089345415
+>           Else (feature 0 > 23.02)
+>            Predict: -0.3619479813878585
+>       Tree 26 (weight 0.1):
+>         If (feature 0 <= 5.18)
+>          If (feature 1 <= 42.07)
+>           If (feature 3 <= 84.36)
+>            Predict: 5.869887042156764
+>           Else (feature 3 > 84.36)
+>            Predict: 2.3621425360574837
+>          Else (feature 1 > 42.07)
+>           If (feature 2 <= 1007.82)
+>            Predict: -1.4185266335795177
+>           Else (feature 2 > 1007.82)
+>            Predict: -5.383717178467172
+>         Else (feature 0 > 5.18)
+>          If (feature 3 <= 53.32)
+>           If (feature 2 <= 1021.17)
+>            Predict: 0.6349729680247564
+>           Else (feature 2 > 1021.17)
+>            Predict: 9.504309080910616
+>          Else (feature 3 > 53.32)
+>           If (feature 0 <= 25.95)
+>            Predict: 0.010243524812335326
+>           Else (feature 0 > 25.95)
+>            Predict: -0.8173343910336555
+>       Tree 27 (weight 0.1):
+>         If (feature 2 <= 1028.38)
+>          If (feature 1 <= 74.87)
+>           If (feature 1 <= 56.57)
+>            Predict: 0.28085003688072396
+>           Else (feature 1 > 56.57)
+>            Predict: -0.378551674966564
+>          Else (feature 1 > 74.87)
+>           If (feature 0 <= 21.42)
+>            Predict: -12.321588273833015
+>           Else (feature 0 > 21.42)
+>            Predict: 1.8659669412137414
+>         Else (feature 2 > 1028.38)
+>          If (feature 3 <= 89.83)
+>           If (feature 3 <= 66.27)
+>            Predict: -8.252928408643971
+>           Else (feature 3 > 66.27)
+>            Predict: -2.023910717088332
+>          Else (feature 3 > 89.83)
+>           If (feature 0 <= 8.39)
+>            Predict: -11.472893448110653
+>           Else (feature 0 > 8.39)
+>            Predict: -8.030312146910243
+>       Tree 28 (weight 0.1):
+>         If (feature 3 <= 85.4)
+>          If (feature 0 <= 7.55)
+>           If (feature 1 <= 40.05)
+>            Predict: 0.3456361310433187
+>           Else (feature 1 > 40.05)
+>            Predict: 4.958188742864418
+>          Else (feature 0 > 7.55)
+>           If (feature 0 <= 8.75)
+>            Predict: -3.0608059226719657
+>           Else (feature 0 > 8.75)
+>            Predict: 0.16507864507530287
+>         Else (feature 3 > 85.4)
+>          If (feature 2 <= 1015.63)
+>           If (feature 2 <= 1014.19)
+>            Predict: -0.3593841710339432
+>           Else (feature 2 > 1014.19)
+>            Predict: 3.2531365191458024
+>          Else (feature 2 > 1015.63)
+>           If (feature 1 <= 40.64)
+>            Predict: 1.0007657377910708
+>           Else (feature 1 > 40.64)
+>            Predict: -2.132339394694771
+>       Tree 29 (weight 0.1):
+>         If (feature 0 <= 30.56)
+>          If (feature 3 <= 55.74)
+>           If (feature 1 <= 72.24)
+>            Predict: 0.8569729911086951
+>           Else (feature 1 > 72.24)
+>            Predict: 6.358127096088517
+>          Else (feature 3 > 55.74)
+>           If (feature 1 <= 41.48)
+>            Predict: 0.43148253820326676
+>           Else (feature 1 > 41.48)
+>            Predict: -0.24352278568573174
+>         Else (feature 0 > 30.56)
+>          If (feature 2 <= 1014.35)
+>           If (feature 1 <= 68.3)
+>            Predict: -2.5522103291398683
+>           Else (feature 1 > 68.3)
+>            Predict: -0.21266182300917044
+>          Else (feature 2 > 1014.35)
+>           If (feature 1 <= 74.87)
+>            Predict: -6.498613011225412
+>           Else (feature 1 > 74.87)
+>            Predict: 0.9765776955731879
+>       Tree 30 (weight 0.1):
+>         If (feature 0 <= 17.84)
+>          If (feature 1 <= 45.08)
+>           If (feature 0 <= 15.33)
+>            Predict: -0.14424299831222268
+>           Else (feature 0 > 15.33)
+>            Predict: 1.8754751416891788
+>          Else (feature 1 > 45.08)
+>           If (feature 2 <= 1020.77)
+>            Predict: -3.097730832691005
+>           Else (feature 2 > 1020.77)
+>            Predict: -8.90070153022011
+>         Else (feature 0 > 17.84)
+>          If (feature 0 <= 18.71)
+>           If (feature 1 <= 49.02)
+>            Predict: 1.2726140970398088
+>           Else (feature 1 > 49.02)
+>            Predict: 6.649324687634596
+>          Else (feature 0 > 18.71)
+>           If (feature 1 <= 46.93)
+>            Predict: -2.818245204603037
+>           Else (feature 1 > 46.93)
+>            Predict: 0.23586447368304939
+>       Tree 31 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 59.14)
+>           If (feature 1 <= 50.66)
+>            Predict: -0.8733348655196066
+>           Else (feature 1 > 50.66)
+>            Predict: 7.928862441716025
+>          Else (feature 1 > 59.14)
+>           If (feature 1 <= 70.8)
+>            Predict: -3.8112988828197807
+>           Else (feature 1 > 70.8)
+>            Predict: 0.42812840935226704
+>         Else (feature 2 > 1004.52)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 46.93)
+>            Predict: 0.07282772802501089
+>           Else (feature 1 > 46.93)
+>            Predict: -3.3364389464988706
+>          Else (feature 0 > 17.84)
+>           If (feature 2 <= 1020.32)
+>            Predict: 0.18419167853517965
+>           Else (feature 2 > 1020.32)
+>            Predict: 6.584432032190064
+>       Tree 32 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 1 <= 49.39)
+>           If (feature 0 <= 13.56)
+>            Predict: 0.36741135502935035
+>           Else (feature 0 > 13.56)
+>            Predict: -0.7178818728654812
+>          Else (feature 1 > 49.39)
+>           If (feature 0 <= 17.84)
+>            Predict: -1.7883686826457996
+>           Else (feature 0 > 17.84)
+>            Predict: 4.519745157967235
+>         Else (feature 1 > 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 0 <= 17.5)
+>            Predict: -4.182857837547887
+>           Else (feature 0 > 17.5)
+>            Predict: -7.917768935292194
+>          Else (feature 0 > 17.84)
+>           If (feature 0 <= 19.61)
+>            Predict: 2.6880627533068244
+>           Else (feature 0 > 19.61)
+>            Predict: -0.2998975340288976
+>       Tree 33 (weight 0.1):
+>         If (feature 0 <= 11.95)
+>          If (feature 0 <= 11.03)
+>           If (feature 3 <= 93.63)
+>            Predict: 0.7278554646891878
+>           Else (feature 3 > 93.63)
+>            Predict: -2.2492543009893162
+>          Else (feature 0 > 11.03)
+>           If (feature 2 <= 1024.3)
+>            Predict: -5.536706488618952
+>           Else (feature 2 > 1024.3)
+>            Predict: 4.479707018501001
+>         Else (feature 0 > 11.95)
+>          If (feature 0 <= 13.08)
+>           If (feature 0 <= 12.5)
+>            Predict: 5.173128471411881
+>           Else (feature 0 > 12.5)
+>            Predict: 2.3834255982190755
+>          Else (feature 0 > 13.08)
+>           If (feature 0 <= 15.33)
+>            Predict: -1.5022006203890645
+>           Else (feature 0 > 15.33)
+>            Predict: 0.15423852245074754
+>       Tree 34 (weight 0.1):
+>         If (feature 0 <= 8.75)
+>          If (feature 0 <= 7.55)
+>           If (feature 3 <= 77.56)
+>            Predict: 3.015852739381847
+>           Else (feature 3 > 77.56)
+>            Predict: -0.06103236076131486
+>          Else (feature 0 > 7.55)
+>           If (feature 3 <= 62.1)
+>            Predict: -13.594573386743992
+>           Else (feature 3 > 62.1)
+>            Predict: -2.6914920546129273
+>         Else (feature 0 > 8.75)
+>          If (feature 0 <= 10.03)
+>           If (feature 3 <= 95.45)
+>            Predict: 3.213047453934116
+>           Else (feature 3 > 95.45)
+>            Predict: -2.3699077010186502
+>          Else (feature 0 > 10.03)
+>           If (feature 0 <= 11.95)
+>            Predict: -1.841483689919706
+>           Else (feature 0 > 11.95)
+>            Predict: 0.1034719724734039
+>       Tree 35 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 1 <= 49.02)
+>           If (feature 1 <= 44.88)
+>            Predict: 0.1854471597033813
+>           Else (feature 1 > 44.88)
+>            Predict: -1.537157071790549
+>          Else (feature 1 > 49.02)
+>           If (feature 2 <= 1009.77)
+>            Predict: -0.7176011396833722
+>           Else (feature 2 > 1009.77)
+>            Predict: 3.4414962844541495
+>         Else (feature 1 > 56.57)
+>          If (feature 1 <= 66.25)
+>           If (feature 0 <= 21.92)
+>            Predict: 0.6042503983890641
+>           Else (feature 0 > 21.92)
+>            Predict: -1.6430682984491796
+>          Else (feature 1 > 66.25)
+>           If (feature 0 <= 23.02)
+>            Predict: -3.919778656895867
+>           Else (feature 0 > 23.02)
+>            Predict: 0.8520833743461524
+>       Tree 36 (weight 0.1):
+>         If (feature 0 <= 27.6)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 22.1)
+>            Predict: 0.08610814822616036
+>           Else (feature 0 > 22.1)
+>            Predict: -3.39446668206219
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 66.25)
+>            Predict: -0.25067209339950686
+>           Else (feature 1 > 66.25)
+>            Predict: 2.1536703058787143
+>         Else (feature 0 > 27.6)
+>          If (feature 3 <= 62.1)
+>           If (feature 1 <= 74.87)
+>            Predict: -0.3912307208100507
+>           Else (feature 1 > 74.87)
+>            Predict: 2.6168301411252224
+>          Else (feature 3 > 62.1)
+>           If (feature 1 <= 71.8)
+>            Predict: -0.1075335658351684
+>           Else (feature 1 > 71.8)
+>            Predict: -3.3756176659678685
+>       Tree 37 (weight 0.1):
+>         If (feature 0 <= 25.35)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 64.84)
+>            Predict: 0.07789630965601392
+>           Else (feature 1 > 64.84)
+>            Predict: -2.8928836560033093
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 66.25)
+>            Predict: 0.13731068060749954
+>           Else (feature 1 > 66.25)
+>            Predict: 4.15851454889221
+>         Else (feature 0 > 25.35)
+>          If (feature 1 <= 43.65)
+>           If (feature 0 <= 27.19)
+>            Predict: -16.475158304770883
+>           Else (feature 0 > 27.19)
+>            Predict: -7.947134756554647
+>          Else (feature 1 > 43.65)
+>           If (feature 3 <= 62.7)
+>            Predict: 0.1725950049938879
+>           Else (feature 3 > 62.7)
+>            Predict: -1.0926147971432427
+>       Tree 38 (weight 0.1):
+>         If (feature 2 <= 1028.38)
+>          If (feature 0 <= 30.56)
+>           If (feature 3 <= 47.89)
+>            Predict: 1.6647926733523803
+>           Else (feature 3 > 47.89)
+>            Predict: 0.019004190066623235
+>          Else (feature 0 > 30.56)
+>           If (feature 2 <= 1014.35)
+>            Predict: -0.6192794789083232
+>           Else (feature 2 > 1014.35)
+>            Predict: -4.385760311827676
+>         Else (feature 2 > 1028.38)
+>          If (feature 1 <= 39.48)
+>           If (feature 0 <= 6.52)
+>            Predict: 4.573467616169609
+>           Else (feature 0 > 6.52)
+>            Predict: -1.362091279334777
+>          Else (feature 1 > 39.48)
+>           If (feature 0 <= 8.75)
+>            Predict: -7.0007999537928605
+>           Else (feature 0 > 8.75)
+>            Predict: -1.617908469279585
+>       Tree 39 (weight 0.1):
+>         If (feature 2 <= 1017.42)
+>          If (feature 2 <= 1014.19)
+>           If (feature 1 <= 43.13)
+>            Predict: 1.2098492492388833
+>           Else (feature 1 > 43.13)
+>            Predict: -0.4345828650352739
+>          Else (feature 2 > 1014.19)
+>           If (feature 3 <= 96.38)
+>            Predict: 1.0830640036331665
+>           Else (feature 3 > 96.38)
+>            Predict: -6.6054777318343785
+>         Else (feature 2 > 1017.42)
+>          If (feature 2 <= 1019.23)
+>           If (feature 1 <= 57.85)
+>            Predict: -0.8212874032064794
+>           Else (feature 1 > 57.85)
+>            Predict: -2.6667829000634105
+>          Else (feature 2 > 1019.23)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.39094381687835245
+>           Else (feature 0 > 17.84)
+>            Predict: 3.336117383932137
+>       Tree 40 (weight 0.1):
+>         If (feature 3 <= 75.23)
+>          If (feature 1 <= 40.05)
+>           If (feature 1 <= 39.96)
+>            Predict: -1.2851367407493581
+>           Else (feature 1 > 39.96)
+>            Predict: -9.117459296991676
+>          Else (feature 1 > 40.05)
+>           If (feature 1 <= 40.89)
+>            Predict: 4.461974679211411
+>           Else (feature 1 > 40.89)
+>            Predict: 0.25422282080546216
+>         Else (feature 3 > 75.23)
+>          If (feature 0 <= 21.42)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.11457026696795661
+>           Else (feature 0 > 17.84)
+>            Predict: 0.9995406591682215
+>          Else (feature 0 > 21.42)
+>           If (feature 0 <= 23.02)
+>            Predict: -2.664637163988949
+>           Else (feature 0 > 23.02)
+>            Predict: -0.5023743568762508
+>       Tree 41 (weight 0.1):
+>         If (feature 2 <= 1001.9)
+>          If (feature 1 <= 39.13)
+>           If (feature 3 <= 79.95)
+>            Predict: 9.0188365708008
+>           Else (feature 3 > 79.95)
+>            Predict: 2.9702965803786205
+>          Else (feature 1 > 39.13)
+>           If (feature 3 <= 63.68)
+>            Predict: -4.052067945951171
+>           Else (feature 3 > 63.68)
+>            Predict: -1.0796516186664176
+>         Else (feature 2 > 1001.9)
+>          If (feature 0 <= 15.33)
+>           If (feature 0 <= 14.38)
+>            Predict: 0.15316006561614587
+>           Else (feature 0 > 14.38)
+>            Predict: -3.487291240038168
+>          Else (feature 0 > 15.33)
+>           If (feature 1 <= 43.13)
+>            Predict: 2.5605988792505605
+>           Else (feature 1 > 43.13)
+>            Predict: 0.03166127813460667
+>       Tree 42 (weight 0.1):
+>         If (feature 0 <= 11.95)
+>          If (feature 0 <= 11.42)
+>           If (feature 1 <= 38.25)
+>            Predict: -2.0532785635493065
+>           Else (feature 1 > 38.25)
+>            Predict: 0.4665697970110133
+>          Else (feature 0 > 11.42)
+>           If (feature 1 <= 44.2)
+>            Predict: -4.178641719198364
+>           Else (feature 1 > 44.2)
+>            Predict: -9.84024023297988
+>         Else (feature 0 > 11.95)
+>          If (feature 0 <= 13.08)
+>           If (feature 1 <= 40.89)
+>            Predict: 4.383821312183712
+>           Else (feature 1 > 40.89)
+>            Predict: 2.000819554066434
+>          Else (feature 0 > 13.08)
+>           If (feature 0 <= 15.33)
+>            Predict: -1.0813581518144955
+>           Else (feature 0 > 15.33)
+>            Predict: 0.11492139312962121
+>       Tree 43 (weight 0.1):
+>         If (feature 0 <= 8.75)
+>          If (feature 0 <= 7.97)
+>           If (feature 3 <= 86.54)
+>            Predict: 0.983392336251922
+>           Else (feature 3 > 86.54)
+>            Predict: -0.8690504742953818
+>          Else (feature 0 > 7.97)
+>           If (feature 3 <= 62.1)
+>            Predict: -20.310342278835464
+>           Else (feature 3 > 62.1)
+>            Predict: -2.975869736741497
+>         Else (feature 0 > 8.75)
+>          If (feature 0 <= 9.42)
+>           If (feature 2 <= 1015.45)
+>            Predict: 5.74314556767472
+>           Else (feature 2 > 1015.45)
+>            Predict: 2.1033141679659995
+>          Else (feature 0 > 9.42)
+>           If (feature 1 <= 40.89)
+>            Predict: 0.6933339562649613
+>           Else (feature 1 > 40.89)
+>            Predict: -0.10718368674776323
+>       Tree 44 (weight 0.1):
+>         If (feature 1 <= 74.87)
+>          If (feature 1 <= 71.43)
+>           If (feature 1 <= 68.3)
+>            Predict: -0.0751396787352361
+>           Else (feature 1 > 68.3)
+>            Predict: 1.0387569941322914
+>          Else (feature 1 > 71.43)
+>           If (feature 1 <= 72.86)
+>            Predict: -2.5461711201599986
+>           Else (feature 1 > 72.86)
+>            Predict: -0.0018936704520639966
+>         Else (feature 1 > 74.87)
+>          If (feature 1 <= 77.3)
+>           If (feature 3 <= 73.33)
+>            Predict: 3.4362919081871732
+>           Else (feature 3 > 73.33)
+>            Predict: 0.022595797531833054
+>          Else (feature 1 > 77.3)
+>           If (feature 2 <= 1012.39)
+>            Predict: -2.0026738842740444
+>           Else (feature 2 > 1012.39)
+>            Predict: 1.7553499174736846
+>       Tree 45 (weight 0.1):
+>         If (feature 2 <= 1005.35)
+>          If (feature 1 <= 72.24)
+>           If (feature 1 <= 59.14)
+>            Predict: 0.030127466104975898
+>           Else (feature 1 > 59.14)
+>            Predict: -2.2341894812350676
+>          Else (feature 1 > 72.24)
+>           If (feature 3 <= 60.09)
+>            Predict: 4.41863108135717
+>           Else (feature 3 > 60.09)
+>            Predict: -0.11040726869235623
+>         Else (feature 2 > 1005.35)
+>          If (feature 0 <= 31.8)
+>           If (feature 1 <= 66.25)
+>            Predict: -0.06640264597455495
+>           Else (feature 1 > 66.25)
+>            Predict: 0.6711276381424462
+>          Else (feature 0 > 31.8)
+>           If (feature 1 <= 62.44)
+>            Predict: 18.071299971628946
+>           Else (feature 1 > 62.44)
+>            Predict: -1.613111097205577
+>       Tree 46 (weight 0.1):
+>         If (feature 0 <= 25.95)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 22.6)
+>            Predict: 0.0037802976144726266
+>           Else (feature 0 > 22.6)
+>            Predict: -3.2702083989998565
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 47.83)
+>            Predict: 7.351532379664369
+>           Else (feature 1 > 47.83)
+>            Predict: 0.6617643737173495
+>         Else (feature 0 > 25.95)
+>          If (feature 3 <= 62.1)
+>           If (feature 0 <= 29.89)
+>            Predict: 0.7522949567047181
+>           Else (feature 0 > 29.89)
+>            Predict: -0.5659530686126862
+>          Else (feature 3 > 62.1)
+>           If (feature 1 <= 43.41)
+>            Predict: -9.179671352130104
+>           Else (feature 1 > 43.41)
+>            Predict: -0.9646184420761758
+>       Tree 47 (weight 0.1):
+>         If (feature 0 <= 5.18)
+>          If (feature 1 <= 38.62)
+>           If (feature 3 <= 77.17)
+>            Predict: -4.215696425771664
+>           Else (feature 3 > 77.17)
+>            Predict: 5.655069692148392
+>          Else (feature 1 > 38.62)
+>           If (feature 1 <= 39.13)
+>            Predict: -12.269101167501105
+>           Else (feature 1 > 39.13)
+>            Predict: 1.081763483601667
+>         Else (feature 0 > 5.18)
+>          If (feature 0 <= 8.75)
+>           If (feature 0 <= 7.97)
+>            Predict: -0.19756946285599916
+>           Else (feature 0 > 7.97)
+>            Predict: -2.7184931590940438
+>          Else (feature 0 > 8.75)
+>           If (feature 0 <= 9.42)
+>            Predict: 2.558566383813981
+>           Else (feature 0 > 9.42)
+>            Predict: -0.006722635545763743
+>       Tree 48 (weight 0.1):
+>         If (feature 2 <= 1028.38)
+>          If (feature 2 <= 1010.89)
+>           If (feature 1 <= 66.93)
+>            Predict: -0.7473456438858288
+>           Else (feature 1 > 66.93)
+>            Predict: 0.34762458916260297
+>          Else (feature 2 > 1010.89)
+>           If (feature 1 <= 58.86)
+>            Predict: 0.4001213596367478
+>           Else (feature 1 > 58.86)
+>            Predict: -0.33373941983121597
+>         Else (feature 2 > 1028.38)
+>          If (feature 1 <= 42.85)
+>           If (feature 1 <= 39.48)
+>            Predict: 2.1904388134214514
+>           Else (feature 1 > 39.48)
+>            Predict: -3.2474441160938956
+>          Else (feature 1 > 42.85)
+>           If (feature 3 <= 71.55)
+>            Predict: -1.061140549595708
+>           Else (feature 3 > 71.55)
+>            Predict: 6.934556118848832
+>       Tree 49 (weight 0.1):
+>         If (feature 0 <= 11.95)
+>          If (feature 0 <= 10.74)
+>           If (feature 0 <= 8.75)
+>            Predict: -0.48190999213172564
+>           Else (feature 0 > 8.75)
+>            Predict: 1.0350335598803566
+>          Else (feature 0 > 10.74)
+>           If (feature 2 <= 1024.3)
+>            Predict: -3.057989388513731
+>           Else (feature 2 > 1024.3)
+>            Predict: 2.162024696272738
+>         Else (feature 0 > 11.95)
+>          If (feature 0 <= 12.5)
+>           If (feature 3 <= 86.91)
+>            Predict: 4.627051067913808
+>           Else (feature 3 > 86.91)
+>            Predict: 0.9386052167341327
+>          Else (feature 0 > 12.5)
+>           If (feature 1 <= 37.8)
+>            Predict: 4.0889321278523685
+>           Else (feature 1 > 37.8)
+>            Predict: -0.02245818963891235
+>       Tree 50 (weight 0.1):
+>         If (feature 2 <= 1017.42)
+>          If (feature 2 <= 1014.19)
+>           If (feature 1 <= 43.13)
+>            Predict: 0.9320375696962719
+>           Else (feature 1 > 43.13)
+>            Predict: -0.31844348507047093
+>          Else (feature 2 > 1014.19)
+>           If (feature 1 <= 42.42)
+>            Predict: -0.5988031510673222
+>           Else (feature 1 > 42.42)
+>            Predict: 1.3187243855742212
+>         Else (feature 2 > 1017.42)
+>          If (feature 2 <= 1019.23)
+>           If (feature 1 <= 44.2)
+>            Predict: -2.0646082455368195
+>           Else (feature 1 > 44.2)
+>            Predict: -0.4969601265683861
+>          Else (feature 2 > 1019.23)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.2870181057370213
+>           Else (feature 0 > 17.84)
+>            Predict: 2.6148230736448608
+>       Tree 51 (weight 0.1):
+>         If (feature 1 <= 38.62)
+>          If (feature 0 <= 18.4)
+>           If (feature 0 <= 5.18)
+>            Predict: 3.850885339006515
+>           Else (feature 0 > 5.18)
+>            Predict: -0.940687510645146
+>          Else (feature 0 > 18.4)
+>           If (feature 0 <= 18.98)
+>            Predict: -10.80330040562501
+>           Else (feature 0 > 18.98)
+>            Predict: -18.03404880535599
+>         Else (feature 1 > 38.62)
+>          If (feature 2 <= 1026.23)
+>           If (feature 0 <= 13.56)
+>            Predict: 0.5295719576334972
+>           Else (feature 0 > 13.56)
+>            Predict: -0.052812717813551166
+>          Else (feature 2 > 1026.23)
+>           If (feature 1 <= 40.22)
+>            Predict: -4.371246083031292
+>           Else (feature 1 > 40.22)
+>            Predict: -1.3541229527292618
+>       Tree 52 (weight 0.1):
+>         If (feature 1 <= 66.25)
+>          If (feature 1 <= 64.84)
+>           If (feature 3 <= 41.26)
+>            Predict: 3.045631536773922
+>           Else (feature 3 > 41.26)
+>            Predict: -0.0337837562463145
+>          Else (feature 1 > 64.84)
+>           If (feature 1 <= 65.27)
+>            Predict: -5.921444872611693
+>           Else (feature 1 > 65.27)
+>            Predict: -0.8270282146869598
+>         Else (feature 1 > 66.25)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 19.83)
+>            Predict: 1.5405239234096135
+>           Else (feature 0 > 19.83)
+>            Predict: -3.1288830506195398
+>          Else (feature 0 > 23.02)
+>           If (feature 0 <= 25.35)
+>            Predict: 3.2672442442602656
+>           Else (feature 0 > 25.35)
+>            Predict: -0.007592990267182966
+>       Tree 53 (weight 0.1):
+>         If (feature 0 <= 17.84)
+>          If (feature 1 <= 46.93)
+>           If (feature 0 <= 17.2)
+>            Predict: 0.1228349542857993
+>           Else (feature 0 > 17.2)
+>            Predict: -2.392588492043597
+>          Else (feature 1 > 46.93)
+>           If (feature 2 <= 1020.77)
+>            Predict: -1.8240349072310669
+>           Else (feature 2 > 1020.77)
+>            Predict: -6.523289398433308
+>         Else (feature 0 > 17.84)
+>          If (feature 0 <= 18.4)
+>           If (feature 1 <= 47.83)
+>            Predict: 0.5318997435908227
+>           Else (feature 1 > 47.83)
+>            Predict: 4.907584149653537
+>          Else (feature 0 > 18.4)
+>           If (feature 1 <= 46.93)
+>            Predict: -2.110133253015907
+>           Else (feature 1 > 46.93)
+>            Predict: 0.20708863671712482
+>       Tree 54 (weight 0.1):
+>         If (feature 3 <= 76.79)
+>          If (feature 1 <= 40.05)
+>           If (feature 1 <= 39.96)
+>            Predict: -0.7416033424896232
+>           Else (feature 1 > 39.96)
+>            Predict: -6.880323474190146
+>          Else (feature 1 > 40.05)
+>           If (feature 1 <= 40.89)
+>            Predict: 2.887497917363201
+>           Else (feature 1 > 40.89)
+>            Predict: 0.17777582956662522
+>         Else (feature 3 > 76.79)
+>          If (feature 0 <= 19.61)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.09172434324104897
+>           Else (feature 0 > 17.84)
+>            Predict: 1.9482862934683598
+>          Else (feature 0 > 19.61)
+>           If (feature 2 <= 1010.6)
+>            Predict: -0.15262790703036064
+>           Else (feature 2 > 1010.6)
+>            Predict: -1.7280878096087295
+>       Tree 55 (weight 0.1):
+>         If (feature 0 <= 24.79)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 66.93)
+>            Predict: 0.02682576814507517
+>           Else (feature 1 > 66.93)
+>            Predict: -2.323863726560255
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 47.83)
+>            Predict: 6.909290893058579
+>           Else (feature 1 > 47.83)
+>            Predict: 0.9944889736997976
+>         Else (feature 0 > 24.79)
+>          If (feature 3 <= 65.24)
+>           If (feature 0 <= 28.5)
+>            Predict: 0.8432916332803679
+>           Else (feature 0 > 28.5)
+>            Predict: -0.3680864130080106
+>          Else (feature 3 > 65.24)
+>           If (feature 1 <= 66.51)
+>            Predict: -2.1147474860288
+>           Else (feature 1 > 66.51)
+>            Predict: -0.3834883036951788
+>       Tree 56 (weight 0.1):
+>         If (feature 0 <= 15.33)
+>          If (feature 0 <= 14.38)
+>           If (feature 0 <= 11.95)
+>            Predict: -0.3290262091199092
+>           Else (feature 0 > 11.95)
+>            Predict: 0.8543511625463592
+>          Else (feature 0 > 14.38)
+>           If (feature 2 <= 1016.21)
+>            Predict: -0.7208476709379852
+>           Else (feature 2 > 1016.21)
+>            Predict: -4.40928839539672
+>         Else (feature 0 > 15.33)
+>          If (feature 0 <= 16.22)
+>           If (feature 2 <= 1013.19)
+>            Predict: 4.554268903891635
+>           Else (feature 2 > 1013.19)
+>            Predict: 1.538781048856137
+>          Else (feature 0 > 16.22)
+>           If (feature 1 <= 46.93)
+>            Predict: -1.1488437756174756
+>           Else (feature 1 > 46.93)
+>            Predict: 0.1634274865006602
+>       Tree 57 (weight 0.1):
+>         If (feature 2 <= 1007.46)
+>          If (feature 1 <= 73.67)
+>           If (feature 1 <= 71.43)
+>            Predict: -0.28457458674767294
+>           Else (feature 1 > 71.43)
+>            Predict: -2.556284198496123
+>          Else (feature 1 > 73.67)
+>           If (feature 3 <= 60.81)
+>            Predict: 4.31886476056719
+>           Else (feature 3 > 60.81)
+>            Predict: 0.3197495651743129
+>         Else (feature 2 > 1007.46)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 46.93)
+>            Predict: 0.04575453109929229
+>           Else (feature 1 > 46.93)
+>            Predict: -2.141138284310683
+>          Else (feature 0 > 17.84)
+>           If (feature 1 <= 56.57)
+>            Predict: 1.3439965861050847
+>           Else (feature 1 > 56.57)
+>            Predict: -0.02904919315788331
+>       Tree 58 (weight 0.1):
+>         If (feature 0 <= 31.8)
+>          If (feature 1 <= 66.25)
+>           If (feature 1 <= 64.84)
+>            Predict: -0.006836636445003446
+>           Else (feature 1 > 64.84)
+>            Predict: -2.0890363043188134
+>          Else (feature 1 > 66.25)
+>           If (feature 1 <= 69.05)
+>            Predict: 1.8596834938858298
+>           Else (feature 1 > 69.05)
+>            Predict: -0.2637818907162569
+>         Else (feature 0 > 31.8)
+>          If (feature 1 <= 69.34)
+>           If (feature 2 <= 1009.63)
+>            Predict: -4.53407923927751
+>           Else (feature 2 > 1009.63)
+>            Predict: 1.2479530412848983
+>          Else (feature 1 > 69.34)
+>           If (feature 1 <= 69.88)
+>            Predict: 5.672382101944148
+>           Else (feature 1 > 69.88)
+>            Predict: -0.7728960613425813
+>       Tree 59 (weight 0.1):
+>         If (feature 2 <= 1010.89)
+>          If (feature 1 <= 68.3)
+>           If (feature 1 <= 43.41)
+>            Predict: 0.423961936091299
+>           Else (feature 1 > 43.41)
+>            Predict: -1.0411314850417004
+>          Else (feature 1 > 68.3)
+>           If (feature 1 <= 68.67)
+>            Predict: 7.130757445704555
+>           Else (feature 1 > 68.67)
+>            Predict: 0.1160942217864609
+>         Else (feature 2 > 1010.89)
+>          If (feature 3 <= 93.63)
+>           If (feature 1 <= 58.86)
+>            Predict: 0.41091291246834866
+>           Else (feature 1 > 58.86)
+>            Predict: -0.2764637915143923
+>          Else (feature 3 > 93.63)
+>           If (feature 1 <= 41.74)
+>            Predict: -3.564757715833512
+>           Else (feature 1 > 41.74)
+>            Predict: 1.1644353912440248
+>       Tree 60 (weight 0.1):
+>         If (feature 1 <= 48.6)
+>          If (feature 1 <= 44.88)
+>           If (feature 2 <= 1016.57)
+>            Predict: 0.4410572983039277
+>           Else (feature 2 > 1016.57)
+>            Predict: -0.44414793681792664
+>          Else (feature 1 > 44.88)
+>           If (feature 2 <= 1014.35)
+>            Predict: -3.0626378082153085
+>           Else (feature 2 > 1014.35)
+>            Predict: 2.0328536525605063
+>         Else (feature 1 > 48.6)
+>          If (feature 1 <= 52.05)
+>           If (feature 2 <= 1009.9)
+>            Predict: 0.24004783900051171
+>           Else (feature 2 > 1009.9)
+>            Predict: 3.1645061792332916
+>          Else (feature 1 > 52.05)
+>           If (feature 0 <= 17.84)
+>            Predict: -1.95074879327582
+>           Else (feature 0 > 17.84)
+>            Predict: 0.021106826304965107
+>       Tree 61 (weight 0.1):
+>         If (feature 1 <= 74.87)
+>          If (feature 1 <= 71.43)
+>           If (feature 1 <= 68.3)
+>            Predict: -0.06241270845694165
+>           Else (feature 1 > 68.3)
+>            Predict: 0.8051320337219834
+>          Else (feature 1 > 71.43)
+>           If (feature 0 <= 24.57)
+>            Predict: 1.648459594873699
+>           Else (feature 0 > 24.57)
+>            Predict: -1.2314608832462137
+>         Else (feature 1 > 74.87)
+>          If (feature 1 <= 77.3)
+>           If (feature 0 <= 21.42)
+>            Predict: -7.482222216002697
+>           Else (feature 0 > 21.42)
+>            Predict: 1.8228183337802573
+>          Else (feature 1 > 77.3)
+>           If (feature 2 <= 1012.39)
+>            Predict: -1.4326641812285505
+>           Else (feature 2 > 1012.39)
+>            Predict: 1.7079353624089986
+>       Tree 62 (weight 0.1):
+>         If (feature 0 <= 5.18)
+>          If (feature 1 <= 42.07)
+>           If (feature 3 <= 96.38)
+>            Predict: 1.4583097259406885
+>           Else (feature 3 > 96.38)
+>            Predict: 7.4053761713858615
+>          Else (feature 1 > 42.07)
+>           If (feature 2 <= 1008.19)
+>            Predict: 0.311290850436914
+>           Else (feature 2 > 1008.19)
+>            Predict: -5.145119802972147
+>         Else (feature 0 > 5.18)
+>          If (feature 1 <= 38.62)
+>           If (feature 0 <= 18.4)
+>            Predict: -0.7259884411546618
+>           Else (feature 0 > 18.4)
+>            Predict: -12.427884135864616
+>          Else (feature 1 > 38.62)
+>           If (feature 1 <= 39.48)
+>            Predict: 1.131291291234381
+>           Else (feature 1 > 39.48)
+>            Predict: -0.007004055574359982
+>       Tree 63 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 70.8)
+>           If (feature 1 <= 69.05)
+>            Predict: -0.45566718124370104
+>           Else (feature 1 > 69.05)
+>            Predict: -3.3633539333883373
+>          Else (feature 1 > 70.8)
+>           If (feature 3 <= 70.63)
+>            Predict: 1.7061073842258219
+>           Else (feature 3 > 70.63)
+>            Predict: -0.35469491259927843
+>         Else (feature 2 > 1004.52)
+>          If (feature 0 <= 15.33)
+>           If (feature 0 <= 14.13)
+>            Predict: 0.13165022513417465
+>           Else (feature 0 > 14.13)
+>            Predict: -1.8886218519887454
+>          Else (feature 0 > 15.33)
+>           If (feature 1 <= 43.13)
+>            Predict: 2.0897911694212086
+>           Else (feature 1 > 43.13)
+>            Predict: 0.023571622513158218
+>       Tree 64 (weight 0.1):
+>         If (feature 1 <= 41.92)
+>          If (feature 1 <= 41.58)
+>           If (feature 2 <= 1015.45)
+>            Predict: 0.6420804366913081
+>           Else (feature 2 > 1015.45)
+>            Predict: -0.3393001000428116
+>          Else (feature 1 > 41.58)
+>           If (feature 3 <= 91.38)
+>            Predict: -2.959889489145066
+>           Else (feature 3 > 91.38)
+>            Predict: -14.822621379271645
+>         Else (feature 1 > 41.92)
+>          If (feature 1 <= 43.13)
+>           If (feature 0 <= 15.33)
+>            Predict: 0.5584851317693598
+>           Else (feature 0 > 15.33)
+>            Predict: 5.35806974907062
+>          Else (feature 1 > 43.13)
+>           If (feature 1 <= 43.65)
+>            Predict: -2.5734171913252673
+>           Else (feature 1 > 43.65)
+>            Predict: 0.06206747847844893
+>       Tree 65 (weight 0.1):
+>         If (feature 2 <= 1010.89)
+>          If (feature 1 <= 66.93)
+>           If (feature 0 <= 20.6)
+>            Predict: -0.0679333275254979
+>           Else (feature 0 > 20.6)
+>            Predict: -1.053808811058633
+>          Else (feature 1 > 66.93)
+>           If (feature 1 <= 67.32)
+>            Predict: 7.372080266725638
+>           Else (feature 1 > 67.32)
+>            Predict: 0.09996335027123535
+>         Else (feature 2 > 1010.89)
+>          If (feature 3 <= 75.61)
+>           If (feature 1 <= 40.05)
+>            Predict: -0.9831581524231143
+>           Else (feature 1 > 40.05)
+>            Predict: 0.5486160789249349
+>          Else (feature 3 > 75.61)
+>           If (feature 1 <= 58.86)
+>            Predict: 0.19399224442246701
+>           Else (feature 1 > 58.86)
+>            Predict: -1.5652059699408227
+>       Tree 66 (weight 0.1):
+>         If (feature 0 <= 28.75)
+>          If (feature 1 <= 73.18)
+>           If (feature 1 <= 71.43)
+>            Predict: 0.05143978594106816
+>           Else (feature 1 > 71.43)
+>            Predict: -1.436513600322334
+>          Else (feature 1 > 73.18)
+>           If (feature 3 <= 73.33)
+>            Predict: 4.1459864582084975
+>           Else (feature 3 > 73.33)
+>            Predict: 0.34965185037807356
+>         Else (feature 0 > 28.75)
+>          If (feature 2 <= 1014.54)
+>           If (feature 2 <= 1013.43)
+>            Predict: -0.4008005884834272
+>           Else (feature 2 > 1013.43)
+>            Predict: 3.683818693727259
+>          Else (feature 2 > 1014.54)
+>           If (feature 1 <= 67.83)
+>            Predict: -0.82614879352537
+>           Else (feature 1 > 67.83)
+>            Predict: -4.535981326886069
+>       Tree 67 (weight 0.1):
+>         If (feature 1 <= 47.83)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 18.71)
+>            Predict: -0.0010074123242523121
+>           Else (feature 0 > 18.71)
+>            Predict: -3.2926535011699234
+>          Else (feature 0 > 23.02)
+>           If (feature 2 <= 1012.39)
+>            Predict: 1.3034696914565052
+>           Else (feature 2 > 1012.39)
+>            Predict: 11.235282784300427
+>         Else (feature 1 > 47.83)
+>          If (feature 1 <= 56.57)
+>           If (feature 0 <= 17.84)
+>            Predict: -1.039931035628621
+>           Else (feature 0 > 17.84)
+>            Predict: 1.9905896386111916
+>          Else (feature 1 > 56.57)
+>           If (feature 1 <= 57.19)
+>            Predict: -2.3357601760278204
+>           Else (feature 1 > 57.19)
+>            Predict: -0.0355403353056693
+>       Tree 68 (weight 0.1):
+>         If (feature 0 <= 24.79)
+>          If (feature 3 <= 41.26)
+>           If (feature 1 <= 45.87)
+>            Predict: 2.4904273637383265
+>           Else (feature 1 > 45.87)
+>            Predict: 13.013875696314063
+>          Else (feature 3 > 41.26)
+>           If (feature 1 <= 49.02)
+>            Predict: -0.18642415027276396
+>           Else (feature 1 > 49.02)
+>            Predict: 0.47121076166963227
+>         Else (feature 0 > 24.79)
+>          If (feature 1 <= 65.27)
+>           If (feature 1 <= 64.84)
+>            Predict: -0.5...
 
 <p class="htmlSandbox"><iframe 
  src="https://databricks.com/blog/2016/05/31/apache-spark-2-0-preview-machine-learning-model-persistence.html"
@@ -793,19 +2679,1615 @@ There are several families of models in Spark's scalable machine learning librar
 Persisting Statistical Machine Learning Models
 ----------------------------------------------
 
+``` run "/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
+```
+
 Let's save our best model so we can load it without having to rerun the validation and training again.
 
-    val sameModel = GBTRegressionModel.load("dbfs:///databricks/driver/MyTrainedGbtModel/")
+``` scala
+val sameModel = GBTRegressionModel.load("dbfs:///databricks/driver/MyTrainedGbtModel/")
+```
 
-> sameModel: org.apache.spark.ml.regression.GBTRegressionModel = GBTRegressionModel (uid=gbtr\_9c5ab45fe584) with 120 trees
+>     sameModel: org.apache.spark.ml.regression.GBTRegressionModel = GBTRegressionModel (uid=gbtr_9c5ab45fe584) with 120 trees
 
-    gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel]
-            .write.overwrite().save("dbfs:///databricks/driver/MyTrainedGbtModel")
+``` scala
+gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel]
+        .write.overwrite().save("dbfs:///databricks/driver/MyTrainedGbtModel")
+```
 
-    // making sure we have the same model loaded from the file
-    sameModel.toDebugString
+``` scala
+// making sure we have the same model loaded from the file
+sameModel.toDebugString
+```
 
-> res53: String = "GBTRegressionModel (uid=gbtr\_9c5ab45fe584) with 120 trees Tree 0 (weight 1.0): If (feature 0 &lt;= 17.84) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 8.75) Predict: 483.5412151067323 Else (feature 0 &gt; 8.75) Predict: 475.6305502392345 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 15.33) Predict: 467.63141917293234 Else (feature 0 &gt; 15.33) Predict: 460.74754125412574 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 47.83) Predict: 457.1077966101695 Else (feature 1 &gt; 47.83) Predict: 448.74750213858016 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: 442.88544855967086 Else (feature 1 &gt; 66.25) Predict: 434.7293710691822 Tree 1 (weight 0.1): If (feature 2 &lt;= 1009.9) If (feature 1 &lt;= 43.13) If (feature 0 &lt;= 15.33) Predict: -0.31094207231231485 Else (feature 0 &gt; 15.33) Predict: 4.302958436537365 Else (feature 1 &gt; 43.13) If (feature 0 &lt;= 23.02) Predict: -8.38392506141353 Else (feature 0 &gt; 23.02) Predict: -2.399960976520273 Else (feature 2 &gt; 1009.9) If (feature 3 &lt;= 86.21) If (feature 0 &lt;= 26.35) Predict: 2.888623754019027 Else (feature 0 &gt; 26.35) Predict: -1.1489483044194229 Else (feature 3 &gt; 86.21) If (feature 1 &lt;= 39.72) Predict: 3.876324424163314 Else (feature 1 &gt; 39.72) Predict: -3.058952828112949 Tree 2 (weight 0.1): If (feature 2 &lt;= 1009.63) If (feature 1 &lt;= 43.13) If (feature 0 &lt;= 11.95) Predict: -1.4091086031845625 Else (feature 0 &gt; 11.95) Predict: 2.6329466235800942 Else (feature 1 &gt; 43.13) If (feature 0 &lt;= 23.02) Predict: -6.795414480322956 Else (feature 0 &gt; 23.02) Predict: -2.166560698742912 Else (feature 2 &gt; 1009.63) If (feature 3 &lt;= 80.44) If (feature 0 &lt;= 26.98) Predict: 2.878622882275939 Else (feature 0 &gt; 26.98) Predict: -1.146426969990865 Else (feature 3 &gt; 80.44) If (feature 3 &lt;= 94.55) Predict: -0.35885921725905906 Else (feature 3 &gt; 94.55) Predict: -5.75364586186002 Tree 3 (weight 0.1): If (feature 0 &lt;= 27.6) If (feature 3 &lt;= 70.2) If (feature 1 &lt;= 40.05) Predict: -0.9480831286616939 Else (feature 1 &gt; 40.05) Predict: 3.660397090904016 Else (feature 3 &gt; 70.2) If (feature 1 &lt;= 40.64) Predict: 2.1539405832035627 Else (feature 1 &gt; 40.64) Predict: -1.2281619807661366 Else (feature 0 &gt; 27.6) If (feature 1 &lt;= 65.27) If (feature 2 &lt;= 1005.99) Predict: -15.33433697033558 Else (feature 2 &gt; 1005.99) Predict: -5.866095468145647 Else (feature 1 &gt; 65.27) If (feature 2 &lt;= 1008.75) Predict: -4.03431044067007 Else (feature 2 &gt; 1008.75) Predict: -0.23440867445577207 Tree 4 (weight 0.1): If (feature 0 &lt;= 26.35) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 68.67) Predict: 0.12035773384797814 Else (feature 1 &gt; 68.67) Predict: -13.928523073642005 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 24.57) Predict: 5.5622340839882165 Else (feature 0 &gt; 24.57) Predict: 1.6938172370244715 Else (feature 0 &gt; 26.35) If (feature 1 &lt;= 66.25) If (feature 2 &lt;= 1008.4) Predict: -9.009916879825393 Else (feature 2 &gt; 1008.4) Predict: -3.059736394918022 Else (feature 1 &gt; 66.25) If (feature 0 &lt;= 30.2) Predict: 0.14704705100738577 Else (feature 0 &gt; 30.2) Predict: -3.2914123948921006 Tree 5 (weight 0.1): If (feature 2 &lt;= 1010.41) If (feature 1 &lt;= 43.41) If (feature 3 &lt;= 99.27) Predict: 1.2994444710077233 Else (feature 3 &gt; 99.27) Predict: -6.649548317319231 Else (feature 1 &gt; 43.41) If (feature 0 &lt;= 23.02) Predict: -4.9119452777748 Else (feature 0 &gt; 23.02) Predict: -0.9514185089440673 Else (feature 2 &gt; 1010.41) If (feature 3 &lt;= 89.83) If (feature 0 &lt;= 31.26) Predict: 1.2914123584761403 Else (feature 0 &gt; 31.26) Predict: -5.115001417285994 Else (feature 3 &gt; 89.83) If (feature 1 &lt;= 40.64) Predict: 1.5160976219176363 Else (feature 1 &gt; 40.64) Predict: -4.202813699523934 Tree 6 (weight 0.1): If (feature 2 &lt;= 1007.27) If (feature 0 &lt;= 27.94) If (feature 3 &lt;= 71.09) Predict: 1.616448005210527 Else (feature 3 &gt; 71.09) Predict: -2.1313527108274157 Else (feature 0 &gt; 27.94) If (feature 1 &lt;= 68.3) Predict: -8.579840063013142 Else (feature 1 &gt; 68.3) Predict: -1.915909819494233 Else (feature 2 &gt; 1007.27) If (feature 3 &lt;= 95.45) If (feature 0 &lt;= 6.52) Predict: 4.973465595410054 Else (feature 0 &gt; 6.52) Predict: 0.3837975458985242 Else (feature 3 &gt; 95.45) If (feature 2 &lt;= 1013.43) Predict: -0.8175453481344352 Else (feature 2 &gt; 1013.43) Predict: -7.264843604639278 Tree 7 (weight 0.1): If (feature 0 &lt;= 26.35) If (feature 3 &lt;= 71.09) If (feature 1 &lt;= 67.83) Predict: 1.9620965187817083 Else (feature 1 &gt; 67.83) Predict: 7.953863660960779 Else (feature 3 &gt; 71.09) If (feature 1 &lt;= 40.89) Predict: 1.2020440154192213 Else (feature 1 &gt; 40.89) Predict: -0.9989659748111419 Else (feature 0 &gt; 26.35) If (feature 1 &lt;= 66.25) If (feature 2 &lt;= 1008.4) Predict: -6.230272922553423 Else (feature 2 &gt; 1008.4) Predict: -2.654681371247991 Else (feature 1 &gt; 66.25) If (feature 2 &lt;= 1004.52) Predict: -3.9527797601131853 Else (feature 2 &gt; 1004.52) Predict: -0.21770148036273387 Tree 8 (weight 0.1): If (feature 0 &lt;= 29.56) If (feature 3 &lt;= 63.16) If (feature 1 &lt;= 72.24) Predict: 1.9612116105231265 Else (feature 1 &gt; 72.24) Predict: 8.756949826030025 Else (feature 3 &gt; 63.16) If (feature 0 &lt;= 5.95) Predict: 4.445363585074405 Else (feature 0 &gt; 5.95) Predict: -0.4097996897633835 Else (feature 0 &gt; 29.56) If (feature 1 &lt;= 68.3) If (feature 2 &lt;= 1009.9) Predict: -7.882200867406393 Else (feature 2 &gt; 1009.9) Predict: -1.7273221348184091 Else (feature 1 &gt; 68.3) If (feature 2 &lt;= 1013.77) Predict: -0.7219749804525829 Else (feature 2 &gt; 1013.77) Predict: -6.492100849806538 Tree 9 (weight 0.1): If (feature 3 &lt;= 89.83) If (feature 0 &lt;= 25.72) If (feature 0 &lt;= 23.02) Predict: 0.15450088997272685 Else (feature 0 &gt; 23.02) Predict: 3.010254802875794 Else (feature 0 &gt; 25.72) If (feature 1 &lt;= 66.25) Predict: -2.5821765284417615 Else (feature 1 &gt; 66.25) Predict: -0.3935112713804148 Else (feature 3 &gt; 89.83) If (feature 2 &lt;= 1019.52) If (feature 0 &lt;= 7.08) Predict: 3.264389020443774 Else (feature 0 &gt; 7.08) Predict: -1.6246048211383168 Else (feature 2 &gt; 1019.52) If (feature 0 &lt;= 8.75) Predict: -8.005340799169343 Else (feature 0 &gt; 8.75) Predict: -2.9832409167030063 Tree 10 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 45.87) Predict: 0.26309432916452813 Else (feature 1 &gt; 45.87) Predict: -5.716473785544373 Else (feature 0 &gt; 17.84) If (feature 2 &lt;= 1012.56) Predict: -0.15863259341493433 Else (feature 2 &gt; 1012.56) Predict: 7.899625065937478 Else (feature 1 &gt; 56.57) If (feature 0 &lt;= 17.84) If (feature 3 &lt;= 67.72) Predict: -27.101084325134025 Else (feature 3 &gt; 67.72) Predict: -12.755339130015875 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 20.6) Predict: 3.8741798886113408 Else (feature 0 &gt; 20.6) Predict: -0.8179571837367839 Tree 11 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 74.22) If (feature 1 &lt;= 59.14) Predict: -0.6678644068375302 Else (feature 1 &gt; 59.14) Predict: -5.0251736913870495 Else (feature 1 &gt; 74.22) If (feature 2 &lt;= 1000.68) Predict: -1.9453153753750236 Else (feature 2 &gt; 1000.68) Predict: 3.954565899065237 Else (feature 2 &gt; 1004.52) If (feature 3 &lt;= 60.81) If (feature 0 &lt;= 29.27) Predict: 2.256991118214201 Else (feature 0 &gt; 29.27) Predict: -0.8956432652281918 Else (feature 3 &gt; 60.81) If (feature 0 &lt;= 5.18) Predict: 5.30208686561611 Else (feature 0 &gt; 5.18) Predict: -0.2275806642044292 Tree 12 (weight 0.1): If (feature 3 &lt;= 93.63) If (feature 0 &lt;= 20.6) If (feature 0 &lt;= 17.84) Predict: -0.13650451477274114 Else (feature 0 &gt; 17.84) Predict: 4.26138638419226 Else (feature 0 &gt; 20.6) If (feature 0 &lt;= 23.02) Predict: -4.145788149131118 Else (feature 0 &gt; 23.02) Predict: 0.45010060784860767 Else (feature 3 &gt; 93.63) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 6.52) Predict: 1.9630864105825856 Else (feature 0 &gt; 6.52) Predict: -5.847103580294793 Else (feature 0 &gt; 11.95) If (feature 1 &lt;= 57.85) Predict: 1.6850763767018282 Else (feature 1 &gt; 57.85) Predict: -3.57522814358917 Tree 13 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 1 &lt;= 49.39) If (feature 0 &lt;= 13.56) Predict: 0.7497248523199469 Else (feature 0 &gt; 13.56) Predict: -0.8096048572768345 Else (feature 1 &gt; 49.39) If (feature 0 &lt;= 17.84) Predict: -4.9975868045736025 Else (feature 0 &gt; 17.84) Predict: 6.70181838603398 Else (feature 1 &gt; 56.57) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 58.62) Predict: -8.139327595464518 Else (feature 1 &gt; 58.62) Predict: -11.260696586956563 Else (feature 0 &gt; 17.84) If (feature 2 &lt;= 1020.32) Predict: -0.4173502593107514 Else (feature 2 &gt; 1020.32) Predict: 7.350524302545053 Tree 14 (weight 0.1): If (feature 2 &lt;= 1009.3) If (feature 1 &lt;= 73.67) If (feature 0 &lt;= 26.35) Predict: -0.2834715308768144 Else (feature 0 &gt; 26.35) Predict: -2.2855655986052446 Else (feature 1 &gt; 73.67) If (feature 0 &lt;= 21.42) Predict: -19.886551554013977 Else (feature 0 &gt; 21.42) Predict: 1.8345107899392203 Else (feature 2 &gt; 1009.3) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) Predict: 0.2012146645141011 Else (feature 1 &gt; 46.93) Predict: -5.331252849501989 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 20.6) Predict: 3.9009310043506518 Else (feature 0 &gt; 20.6) Predict: 0.05492627340134294 Tree 15 (weight 0.1): If (feature 3 &lt;= 80.44) If (feature 0 &lt;= 26.57) If (feature 0 &lt;= 23.02) Predict: 0.24935555983937532 Else (feature 0 &gt; 23.02) Predict: 1.9734839371689987 Else (feature 0 &gt; 26.57) If (feature 1 &lt;= 66.25) Predict: -2.652691255012269 Else (feature 1 &gt; 66.25) Predict: 0.10205623249441657 Else (feature 3 &gt; 80.44) If (feature 1 &lt;= 57.85) If (feature 2 &lt;= 1021.65) Predict: 0.3189331596273633 Else (feature 2 &gt; 1021.65) Predict: -2.493847422724499 Else (feature 1 &gt; 57.85) If (feature 0 &lt;= 23.02) Predict: -4.443277995263894 Else (feature 0 &gt; 23.02) Predict: 1.0414575062489446 Tree 16 (weight 0.1): If (feature 0 &lt;= 6.52) If (feature 3 &lt;= 67.72) If (feature 1 &lt;= 39.48) Predict: -0.021931809818089017 Else (feature 1 &gt; 39.48) Predict: 17.644618798102908 Else (feature 3 &gt; 67.72) If (feature 1 &lt;= 42.07) Predict: 2.6927240976688487 Else (feature 1 &gt; 42.07) Predict: -3.720328734281554 Else (feature 0 &gt; 6.52) If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.97) Predict: -1.1870026837027776 Else (feature 0 &gt; 7.97) Predict: -6.311604790035118 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.73) Predict: 5.036277690956247 Else (feature 0 &gt; 9.73) Predict: -0.07156864179175153 Tree 17 (weight 0.1): If (feature 2 &lt;= 1005.35) If (feature 1 &lt;= 70.8) If (feature 0 &lt;= 21.14) Predict: 0.2557898848412102 Else (feature 0 &gt; 21.14) Predict: -4.092246463553751 Else (feature 1 &gt; 70.8) If (feature 0 &lt;= 23.02) Predict: -17.7762740471523 Else (feature 0 &gt; 23.02) Predict: 1.4679036019616782 Else (feature 2 &gt; 1005.35) If (feature 3 &lt;= 60.81) If (feature 2 &lt;= 1021.17) Predict: 0.8109918761137652 Else (feature 2 &gt; 1021.17) Predict: 6.491756407811347 Else (feature 3 &gt; 60.81) If (feature 0 &lt;= 25.72) Predict: 0.06495066055048145 Else (feature 0 &gt; 25.72) Predict: -1.234843690619109 Tree 18 (weight 0.1): If (feature 3 &lt;= 93.63) If (feature 0 &lt;= 13.56) If (feature 0 &lt;= 11.95) Predict: -0.1389635939018028 Else (feature 0 &gt; 11.95) Predict: 4.085304226900187 Else (feature 0 &gt; 13.56) If (feature 0 &lt;= 15.33) Predict: -3.558076811842663 Else (feature 0 &gt; 15.33) Predict: 0.24840255719067195 Else (feature 3 &gt; 93.63) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 6.52) Predict: 1.1725211739721944 Else (feature 0 &gt; 6.52) Predict: -4.696815201291802 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 23.42) Predict: -0.1435586215485262 Else (feature 0 &gt; 23.42) Predict: 6.017267110381734 Tree 19 (weight 0.1): If (feature 0 &lt;= 29.89) If (feature 3 &lt;= 46.38) If (feature 2 &lt;= 1020.32) Predict: 2.734528637686715 Else (feature 2 &gt; 1020.32) Predict: 14.229272221061546 Else (feature 3 &gt; 46.38) If (feature 1 &lt;= 73.18) Predict: -0.09112932077559661 Else (feature 1 &gt; 73.18) Predict: 2.171636618202333 Else (feature 0 &gt; 29.89) If (feature 1 &lt;= 68.3) If (feature 2 &lt;= 1012.96) Predict: -4.842672386234583 Else (feature 2 &gt; 1012.96) Predict: 0.4656753436410731 Else (feature 1 &gt; 68.3) If (feature 1 &lt;= 69.88) Predict: 1.9998755414672877 Else (feature 1 &gt; 69.88) Predict: -1.377187598546301 Tree 20 (weight 0.1): If (feature 1 &lt;= 40.89) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 10.74) Predict: 0.3474341793041741 Else (feature 0 &gt; 10.74) Predict: -3.2174625433704844 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 13.56) Predict: 6.2521753652461385 Else (feature 0 &gt; 13.56) Predict: 0.7467107076401086 Else (feature 1 &gt; 40.89) If (feature 1 &lt;= 41.16) If (feature 2 &lt;= 1011.9) Predict: 1.6159428806525291 Else (feature 2 &gt; 1011.9) Predict: -5.525791920129847 Else (feature 1 &gt; 41.16) If (feature 1 &lt;= 41.48) Predict: 2.3655609293253264 Else (feature 1 &gt; 41.48) Predict: -0.18730957785387015 Tree 21 (weight 0.1): If (feature 0 &lt;= 7.08) If (feature 1 &lt;= 41.58) If (feature 1 &lt;= 41.16) Predict: 1.9153935195932974 Else (feature 1 &gt; 41.16) Predict: 7.0746807427814735 Else (feature 1 &gt; 41.58) If (feature 2 &lt;= 1020.77) Predict: -1.256554177586309 Else (feature 2 &gt; 1020.77) Predict: -26.29941855196938 Else (feature 0 &gt; 7.08) If (feature 0 &lt;= 8.75) If (feature 1 &lt;= 37.8) Predict: -8.544132394601597 Else (feature 1 &gt; 37.8) Predict: -2.6184141709801976 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.73) Predict: 4.069411815161333 Else (feature 0 &gt; 9.73) Predict: -0.06494039395966968 Tree 22 (weight 0.1): If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 21.69) If (feature 0 &lt;= 15.33) Predict: -0.48298234147973435 Else (feature 0 &gt; 15.33) Predict: 1.2747845905419344 Else (feature 0 &gt; 21.69) If (feature 1 &lt;= 66.25) Predict: -3.44223180465188 Else (feature 1 &gt; 66.25) Predict: -9.677838572965495 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 24.39) If (feature 1 &lt;= 66.25) Predict: 1.4289485230939327 Else (feature 1 &gt; 66.25) Predict: 7.493228657621072 Else (feature 0 &gt; 24.39) If (feature 1 &lt;= 66.25) Predict: -1.55164310941819 Else (feature 1 &gt; 66.25) Predict: 0.5159038364280375 Tree 23 (weight 0.1): If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 66.93) If (feature 1 &lt;= 43.41) Predict: 0.8366856528539243 Else (feature 1 &gt; 43.41) Predict: -2.146264827541657 Else (feature 1 &gt; 66.93) If (feature 0 &lt;= 23.02) Predict: -4.593173040738928 Else (feature 0 &gt; 23.02) Predict: 0.7595925761507126 Else (feature 2 &gt; 1010.89) If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.38) Predict: 0.19019050526253845 Else (feature 0 &gt; 14.38) Predict: -4.931089744789576 Else (feature 0 &gt; 15.33) If (feature 1 &lt;= 56.57) Predict: 2.893896440054576 Else (feature 1 &gt; 56.57) Predict: -0.2411893147021192 Tree 24 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 39.13) If (feature 0 &lt;= 16.56) Predict: 5.674347262101248 Else (feature 0 &gt; 16.56) Predict: -15.35003850200303 Else (feature 1 &gt; 39.13) If (feature 1 &lt;= 70.8) Predict: -2.2136597249782484 Else (feature 1 &gt; 70.8) Predict: 0.4854909471410394 Else (feature 2 &gt; 1004.52) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 21.14) Predict: 0.25072963079321764 Else (feature 0 &gt; 21.14) Predict: -3.1127381475029745 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 24.98) Predict: 2.513302584995404 Else (feature 0 &gt; 24.98) Predict: -0.17126775916442186 Tree 25 (weight 0.1): If (feature 3 &lt;= 76.79) If (feature 0 &lt;= 28.75) If (feature 1 &lt;= 66.25) Predict: 0.1271610430935476 Else (feature 1 &gt; 66.25) Predict: 2.4600009065275934 Else (feature 0 &gt; 28.75) If (feature 1 &lt;= 44.58) Predict: -10.925990145829292 Else (feature 1 &gt; 44.58) Predict: -0.7031644656131009 Else (feature 3 &gt; 76.79) If (feature 0 &lt;= 20.9) If (feature 0 &lt;= 17.84) Predict: -0.3807566877980857 Else (feature 0 &gt; 17.84) Predict: 2.329590528017136 Else (feature 0 &gt; 20.9) If (feature 0 &lt;= 23.02) Predict: -3.741947089345415 Else (feature 0 &gt; 23.02) Predict: -0.3619479813878585 Tree 26 (weight 0.1): If (feature 0 &lt;= 5.18) If (feature 1 &lt;= 42.07) If (feature 3 &lt;= 84.36) Predict: 5.869887042156764 Else (feature 3 &gt; 84.36) Predict: 2.3621425360574837 Else (feature 1 &gt; 42.07) If (feature 2 &lt;= 1007.82) Predict: -1.4185266335795177 Else (feature 2 &gt; 1007.82) Predict: -5.383717178467172 Else (feature 0 &gt; 5.18) If (feature 3 &lt;= 53.32) If (feature 2 &lt;= 1021.17) Predict: 0.6349729680247564 Else (feature 2 &gt; 1021.17) Predict: 9.504309080910616 Else (feature 3 &gt; 53.32) If (feature 0 &lt;= 25.95) Predict: 0.010243524812335326 Else (feature 0 &gt; 25.95) Predict: -0.8173343910336555 Tree 27 (weight 0.1): If (feature 2 &lt;= 1028.38) If (feature 1 &lt;= 74.87) If (feature 1 &lt;= 56.57) Predict: 0.28085003688072396 Else (feature 1 &gt; 56.57) Predict: -0.378551674966564 Else (feature 1 &gt; 74.87) If (feature 0 &lt;= 21.42) Predict: -12.321588273833015 Else (feature 0 &gt; 21.42) Predict: 1.8659669412137414 Else (feature 2 &gt; 1028.38) If (feature 3 &lt;= 89.83) If (feature 3 &lt;= 66.27) Predict: -8.252928408643971 Else (feature 3 &gt; 66.27) Predict: -2.023910717088332 Else (feature 3 &gt; 89.83) If (feature 0 &lt;= 8.39) Predict: -11.472893448110653 Else (feature 0 &gt; 8.39) Predict: -8.030312146910243 Tree 28 (weight 0.1): If (feature 3 &lt;= 85.4) If (feature 0 &lt;= 7.55) If (feature 1 &lt;= 40.05) Predict: 0.3456361310433187 Else (feature 1 &gt; 40.05) Predict: 4.958188742864418 Else (feature 0 &gt; 7.55) If (feature 0 &lt;= 8.75) Predict: -3.0608059226719657 Else (feature 0 &gt; 8.75) Predict: 0.16507864507530287 Else (feature 3 &gt; 85.4) If (feature 2 &lt;= 1015.63) If (feature 2 &lt;= 1014.19) Predict: -0.3593841710339432 Else (feature 2 &gt; 1014.19) Predict: 3.2531365191458024 Else (feature 2 &gt; 1015.63) If (feature 1 &lt;= 40.64) Predict: 1.0007657377910708 Else (feature 1 &gt; 40.64) Predict: -2.132339394694771 Tree 29 (weight 0.1): If (feature 0 &lt;= 30.56) If (feature 3 &lt;= 55.74) If (feature 1 &lt;= 72.24) Predict: 0.8569729911086951 Else (feature 1 &gt; 72.24) Predict: 6.358127096088517 Else (feature 3 &gt; 55.74) If (feature 1 &lt;= 41.48) Predict: 0.43148253820326676 Else (feature 1 &gt; 41.48) Predict: -0.24352278568573174 Else (feature 0 &gt; 30.56) If (feature 2 &lt;= 1014.35) If (feature 1 &lt;= 68.3) Predict: -2.5522103291398683 Else (feature 1 &gt; 68.3) Predict: -0.21266182300917044 Else (feature 2 &gt; 1014.35) If (feature 1 &lt;= 74.87) Predict: -6.498613011225412 Else (feature 1 &gt; 74.87) Predict: 0.9765776955731879 Tree 30 (weight 0.1): If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 45.08) If (feature 0 &lt;= 15.33) Predict: -0.14424299831222268 Else (feature 0 &gt; 15.33) Predict: 1.8754751416891788 Else (feature 1 &gt; 45.08) If (feature 2 &lt;= 1020.77) Predict: -3.097730832691005 Else (feature 2 &gt; 1020.77) Predict: -8.90070153022011 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 18.71) If (feature 1 &lt;= 49.02) Predict: 1.2726140970398088 Else (feature 1 &gt; 49.02) Predict: 6.649324687634596 Else (feature 0 &gt; 18.71) If (feature 1 &lt;= 46.93) Predict: -2.818245204603037 Else (feature 1 &gt; 46.93) Predict: 0.23586447368304939 Tree 31 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 59.14) If (feature 1 &lt;= 50.66) Predict: -0.8733348655196066 Else (feature 1 &gt; 50.66) Predict: 7.928862441716025 Else (feature 1 &gt; 59.14) If (feature 1 &lt;= 70.8) Predict: -3.8112988828197807 Else (feature 1 &gt; 70.8) Predict: 0.42812840935226704 Else (feature 2 &gt; 1004.52) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) Predict: 0.07282772802501089 Else (feature 1 &gt; 46.93) Predict: -3.3364389464988706 Else (feature 0 &gt; 17.84) If (feature 2 &lt;= 1020.32) Predict: 0.18419167853517965 Else (feature 2 &gt; 1020.32) Predict: 6.584432032190064 Tree 32 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 1 &lt;= 49.39) If (feature 0 &lt;= 13.56) Predict: 0.36741135502935035 Else (feature 0 &gt; 13.56) Predict: -0.7178818728654812 Else (feature 1 &gt; 49.39) If (feature 0 &lt;= 17.84) Predict: -1.7883686826457996 Else (feature 0 &gt; 17.84) Predict: 4.519745157967235 Else (feature 1 &gt; 56.57) If (feature 0 &lt;= 17.84) If (feature 0 &lt;= 17.5) Predict: -4.182857837547887 Else (feature 0 &gt; 17.5) Predict: -7.917768935292194 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 19.61) Predict: 2.6880627533068244 Else (feature 0 &gt; 19.61) Predict: -0.2998975340288976 Tree 33 (weight 0.1): If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 11.03) If (feature 3 &lt;= 93.63) Predict: 0.7278554646891878 Else (feature 3 &gt; 93.63) Predict: -2.2492543009893162 Else (feature 0 &gt; 11.03) If (feature 2 &lt;= 1024.3) Predict: -5.536706488618952 Else (feature 2 &gt; 1024.3) Predict: 4.479707018501001 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 13.08) If (feature 0 &lt;= 12.5) Predict: 5.173128471411881 Else (feature 0 &gt; 12.5) Predict: 2.3834255982190755 Else (feature 0 &gt; 13.08) If (feature 0 &lt;= 15.33) Predict: -1.5022006203890645 Else (feature 0 &gt; 15.33) Predict: 0.15423852245074754 Tree 34 (weight 0.1): If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.55) If (feature 3 &lt;= 77.56) Predict: 3.015852739381847 Else (feature 3 &gt; 77.56) Predict: -0.06103236076131486 Else (feature 0 &gt; 7.55) If (feature 3 &lt;= 62.1) Predict: -13.594573386743992 Else (feature 3 &gt; 62.1) Predict: -2.6914920546129273 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 10.03) If (feature 3 &lt;= 95.45) Predict: 3.213047453934116 Else (feature 3 &gt; 95.45) Predict: -2.3699077010186502 Else (feature 0 &gt; 10.03) If (feature 0 &lt;= 11.95) Predict: -1.841483689919706 Else (feature 0 &gt; 11.95) Predict: 0.1034719724734039 Tree 35 (weight 0.1): If (feature 1 &lt;= 56.57) If (feature 1 &lt;= 49.02) If (feature 1 &lt;= 44.88) Predict: 0.1854471597033813 Else (feature 1 &gt; 44.88) Predict: -1.537157071790549 Else (feature 1 &gt; 49.02) If (feature 2 &lt;= 1009.77) Predict: -0.7176011396833722 Else (feature 2 &gt; 1009.77) Predict: 3.4414962844541495 Else (feature 1 &gt; 56.57) If (feature 1 &lt;= 66.25) If (feature 0 &lt;= 21.92) Predict: 0.6042503983890641 Else (feature 0 &gt; 21.92) Predict: -1.6430682984491796 Else (feature 1 &gt; 66.25) If (feature 0 &lt;= 23.02) Predict: -3.919778656895867 Else (feature 0 &gt; 23.02) Predict: 0.8520833743461524 Tree 36 (weight 0.1): If (feature 0 &lt;= 27.6) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 22.1) Predict: 0.08610814822616036 Else (feature 0 &gt; 22.1) Predict: -3.39446668206219 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: -0.25067209339950686 Else (feature 1 &gt; 66.25) Predict: 2.1536703058787143 Else (feature 0 &gt; 27.6) If (feature 3 &lt;= 62.1) If (feature 1 &lt;= 74.87) Predict: -0.3912307208100507 Else (feature 1 &gt; 74.87) Predict: 2.6168301411252224 Else (feature 3 &gt; 62.1) If (feature 1 &lt;= 71.8) Predict: -0.1075335658351684 Else (feature 1 &gt; 71.8) Predict: -3.3756176659678685 Tree 37 (weight 0.1): If (feature 0 &lt;= 25.35) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 64.84) Predict: 0.07789630965601392 Else (feature 1 &gt; 64.84) Predict: -2.8928836560033093 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: 0.13731068060749954 Else (feature 1 &gt; 66.25) Predict: 4.15851454889221 Else (feature 0 &gt; 25.35) If (feature 1 &lt;= 43.65) If (feature 0 &lt;= 27.19) Predict: -16.475158304770883 Else (feature 0 &gt; 27.19) Predict: -7.947134756554647 Else (feature 1 &gt; 43.65) If (feature 3 &lt;= 62.7) Predict: 0.1725950049938879 Else (feature 3 &gt; 62.7) Predict: -1.0926147971432427 Tree 38 (weight 0.1): If (feature 2 &lt;= 1028.38) If (feature 0 &lt;= 30.56) If (feature 3 &lt;= 47.89) Predict: 1.6647926733523803 Else (feature 3 &gt; 47.89) Predict: 0.019004190066623235 Else (feature 0 &gt; 30.56) If (feature 2 &lt;= 1014.35) Predict: -0.6192794789083232 Else (feature 2 &gt; 1014.35) Predict: -4.385760311827676 Else (feature 2 &gt; 1028.38) If (feature 1 &lt;= 39.48) If (feature 0 &lt;= 6.52) Predict: 4.573467616169609 Else (feature 0 &gt; 6.52) Predict: -1.362091279334777 Else (feature 1 &gt; 39.48) If (feature 0 &lt;= 8.75) Predict: -7.0007999537928605 Else (feature 0 &gt; 8.75) Predict: -1.617908469279585 Tree 39 (weight 0.1): If (feature 2 &lt;= 1017.42) If (feature 2 &lt;= 1014.19) If (feature 1 &lt;= 43.13) Predict: 1.2098492492388833 Else (feature 1 &gt; 43.13) Predict: -0.4345828650352739 Else (feature 2 &gt; 1014.19) If (feature 3 &lt;= 96.38) Predict: 1.0830640036331665 Else (feature 3 &gt; 96.38) Predict: -6.6054777318343785 Else (feature 2 &gt; 1017.42) If (feature 2 &lt;= 1019.23) If (feature 1 &lt;= 57.85) Predict: -0.8212874032064794 Else (feature 1 &gt; 57.85) Predict: -2.6667829000634105 Else (feature 2 &gt; 1019.23) If (feature 0 &lt;= 17.84) Predict: -0.39094381687835245 Else (feature 0 &gt; 17.84) Predict: 3.336117383932137 Tree 40 (weight 0.1): If (feature 3 &lt;= 75.23) If (feature 1 &lt;= 40.05) If (feature 1 &lt;= 39.96) Predict: -1.2851367407493581 Else (feature 1 &gt; 39.96) Predict: -9.117459296991676 Else (feature 1 &gt; 40.05) If (feature 1 &lt;= 40.89) Predict: 4.461974679211411 Else (feature 1 &gt; 40.89) Predict: 0.25422282080546216 Else (feature 3 &gt; 75.23) If (feature 0 &lt;= 21.42) If (feature 0 &lt;= 17.84) Predict: -0.11457026696795661 Else (feature 0 &gt; 17.84) Predict: 0.9995406591682215 Else (feature 0 &gt; 21.42) If (feature 0 &lt;= 23.02) Predict: -2.664637163988949 Else (feature 0 &gt; 23.02) Predict: -0.5023743568762508 Tree 41 (weight 0.1): If (feature 2 &lt;= 1001.9) If (feature 1 &lt;= 39.13) If (feature 3 &lt;= 79.95) Predict: 9.0188365708008 Else (feature 3 &gt; 79.95) Predict: 2.9702965803786205 Else (feature 1 &gt; 39.13) If (feature 3 &lt;= 63.68) Predict: -4.052067945951171 Else (feature 3 &gt; 63.68) Predict: -1.0796516186664176 Else (feature 2 &gt; 1001.9) If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.38) Predict: 0.15316006561614587 Else (feature 0 &gt; 14.38) Predict: -3.487291240038168 Else (feature 0 &gt; 15.33) If (feature 1 &lt;= 43.13) Predict: 2.5605988792505605 Else (feature 1 &gt; 43.13) Predict: 0.03166127813460667 Tree 42 (weight 0.1): If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 11.42) If (feature 1 &lt;= 38.25) Predict: -2.0532785635493065 Else (feature 1 &gt; 38.25) Predict: 0.4665697970110133 Else (feature 0 &gt; 11.42) If (feature 1 &lt;= 44.2) Predict: -4.178641719198364 Else (feature 1 &gt; 44.2) Predict: -9.84024023297988 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 13.08) If (feature 1 &lt;= 40.89) Predict: 4.383821312183712 Else (feature 1 &gt; 40.89) Predict: 2.000819554066434 Else (feature 0 &gt; 13.08) If (feature 0 &lt;= 15.33) Predict: -1.0813581518144955 Else (feature 0 &gt; 15.33) Predict: 0.11492139312962121 Tree 43 (weight 0.1): If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.97) If (feature 3 &lt;= 86.54) Predict: 0.983392336251922 Else (feature 3 &gt; 86.54) Predict: -0.8690504742953818 Else (feature 0 &gt; 7.97) If (feature 3 &lt;= 62.1) Predict: -20.310342278835464 Else (feature 3 &gt; 62.1) Predict: -2.975869736741497 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.42) If (feature 2 &lt;= 1015.45) Predict: 5.74314556767472 Else (feature 2 &gt; 1015.45) Predict: 2.1033141679659995 Else (feature 0 &gt; 9.42) If (feature 1 &lt;= 40.89) Predict: 0.6933339562649613 Else (feature 1 &gt; 40.89) Predict: -0.10718368674776323 Tree 44 (weight 0.1): If (feature 1 &lt;= 74.87) If (feature 1 &lt;= 71.43) If (feature 1 &lt;= 68.3) Predict: -0.0751396787352361 Else (feature 1 &gt; 68.3) Predict: 1.0387569941322914 Else (feature 1 &gt; 71.43) If (feature 1 &lt;= 72.86) Predict: -2.5461711201599986 Else (feature 1 &gt; 72.86) Predict: -0.0018936704520639966 Else (feature 1 &gt; 74.87) If (feature 1 &lt;= 77.3) If (feature 3 &lt;= 73.33) Predict: 3.4362919081871732 Else (feature 3 &gt; 73.33) Predict: 0.022595797531833054 Else (feature 1 &gt; 77.3) If (feature 2 &lt;= 1012.39) Predict: -2.0026738842740444 Else (feature 2 &gt; 1012.39) Predict: 1.7553499174736846 Tree 45 (weight 0.1): If (feature 2 &lt;= 1005.35) If (feature 1 &lt;= 72.24) If (feature 1 &lt;= 59.14) Predict: 0.030127466104975898 Else (feature 1 &gt; 59.14) Predict: -2.2341894812350676 Else (feature 1 &gt; 72.24) If (feature 3 &lt;= 60.09) Predict: 4.41863108135717 Else (feature 3 &gt; 60.09) Predict: -0.11040726869235623 Else (feature 2 &gt; 1005.35) If (feature 0 &lt;= 31.8) If (feature 1 &lt;= 66.25) Predict: -0.06640264597455495 Else (feature 1 &gt; 66.25) Predict: 0.6711276381424462 Else (feature 0 &gt; 31.8) If (feature 1 &lt;= 62.44) Predict: 18.071299971628946 Else (feature 1 &gt; 62.44) Predict: -1.613111097205577 Tree 46 (weight 0.1): If (feature 0 &lt;= 25.95) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 22.6) Predict: 0.0037802976144726266 Else (feature 0 &gt; 22.6) Predict: -3.2702083989998565 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 47.83) Predict: 7.351532379664369 Else (feature 1 &gt; 47.83) Predict: 0.6617643737173495 Else (feature 0 &gt; 25.95) If (feature 3 &lt;= 62.1) If (feature 0 &lt;= 29.89) Predict: 0.7522949567047181 Else (feature 0 &gt; 29.89) Predict: -0.5659530686126862 Else (feature 3 &gt; 62.1) If (feature 1 &lt;= 43.41) Predict: -9.179671352130104 Else (feature 1 &gt; 43.41) Predict: -0.9646184420761758 Tree 47 (weight 0.1): If (feature 0 &lt;= 5.18) If (feature 1 &lt;= 38.62) If (feature 3 &lt;= 77.17) Predict: -4.215696425771664 Else (feature 3 &gt; 77.17) Predict: 5.655069692148392 Else (feature 1 &gt; 38.62) If (feature 1 &lt;= 39.13) Predict: -12.269101167501105 Else (feature 1 &gt; 39.13) Predict: 1.081763483601667 Else (feature 0 &gt; 5.18) If (feature 0 &lt;= 8.75) If (feature 0 &lt;= 7.97) Predict: -0.19756946285599916 Else (feature 0 &gt; 7.97) Predict: -2.7184931590940438 Else (feature 0 &gt; 8.75) If (feature 0 &lt;= 9.42) Predict: 2.558566383813981 Else (feature 0 &gt; 9.42) Predict: -0.006722635545763743 Tree 48 (weight 0.1): If (feature 2 &lt;= 1028.38) If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 66.93) Predict: -0.7473456438858288 Else (feature 1 &gt; 66.93) Predict: 0.34762458916260297 Else (feature 2 &gt; 1010.89) If (feature 1 &lt;= 58.86) Predict: 0.4001213596367478 Else (feature 1 &gt; 58.86) Predict: -0.33373941983121597 Else (feature 2 &gt; 1028.38) If (feature 1 &lt;= 42.85) If (feature 1 &lt;= 39.48) Predict: 2.1904388134214514 Else (feature 1 &gt; 39.48) Predict: -3.2474441160938956 Else (feature 1 &gt; 42.85) If (feature 3 &lt;= 71.55) Predict: -1.061140549595708 Else (feature 3 &gt; 71.55) Predict: 6.934556118848832 Tree 49 (weight 0.1): If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 10.74) If (feature 0 &lt;= 8.75) Predict: -0.48190999213172564 Else (feature 0 &gt; 8.75) Predict: 1.0350335598803566 Else (feature 0 &gt; 10.74) If (feature 2 &lt;= 1024.3) Predict: -3.057989388513731 Else (feature 2 &gt; 1024.3) Predict: 2.162024696272738 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 12.5) If (feature 3 &lt;= 86.91) Predict: 4.627051067913808 Else (feature 3 &gt; 86.91) Predict: 0.9386052167341327 Else (feature 0 &gt; 12.5) If (feature 1 &lt;= 37.8) Predict: 4.0889321278523685 Else (feature 1 &gt; 37.8) Predict: -0.02245818963891235 Tree 50 (weight 0.1): If (feature 2 &lt;= 1017.42) If (feature 2 &lt;= 1014.19) If (feature 1 &lt;= 43.13) Predict: 0.9320375696962719 Else (feature 1 &gt; 43.13) Predict: -0.31844348507047093 Else (feature 2 &gt; 1014.19) If (feature 1 &lt;= 42.42) Predict: -0.5988031510673222 Else (feature 1 &gt; 42.42) Predict: 1.3187243855742212 Else (feature 2 &gt; 1017.42) If (feature 2 &lt;= 1019.23) If (feature 1 &lt;= 44.2) Predict: -2.0646082455368195 Else (feature 1 &gt; 44.2) Predict: -0.4969601265683861 Else (feature 2 &gt; 1019.23) If (feature 0 &lt;= 17.84) Predict: -0.2870181057370213 Else (feature 0 &gt; 17.84) Predict: 2.6148230736448608 Tree 51 (weight 0.1): If (feature 1 &lt;= 38.62) If (feature 0 &lt;= 18.4) If (feature 0 &lt;= 5.18) Predict: 3.850885339006515 Else (feature 0 &gt; 5.18) Predict: -0.940687510645146 Else (feature 0 &gt; 18.4) If (feature 0 &lt;= 18.98) Predict: -10.80330040562501 Else (feature 0 &gt; 18.98) Predict: -18.03404880535599 Else (feature 1 &gt; 38.62) If (feature 2 &lt;= 1026.23) If (feature 0 &lt;= 13.56) Predict: 0.5295719576334972 Else (feature 0 &gt; 13.56) Predict: -0.052812717813551166 Else (feature 2 &gt; 1026.23) If (feature 1 &lt;= 40.22) Predict: -4.371246083031292 Else (feature 1 &gt; 40.22) Predict: -1.3541229527292618 Tree 52 (weight 0.1): If (feature 1 &lt;= 66.25) If (feature 1 &lt;= 64.84) If (feature 3 &lt;= 41.26) Predict: 3.045631536773922 Else (feature 3 &gt; 41.26) Predict: -0.0337837562463145 Else (feature 1 &gt; 64.84) If (feature 1 &lt;= 65.27) Predict: -5.921444872611693 Else (feature 1 &gt; 65.27) Predict: -0.8270282146869598 Else (feature 1 &gt; 66.25) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 19.83) Predict: 1.5405239234096135 Else (feature 0 &gt; 19.83) Predict: -3.1288830506195398 Else (feature 0 &gt; 23.02) If (feature 0 &lt;= 25.35) Predict: 3.2672442442602656 Else (feature 0 &gt; 25.35) Predict: -0.007592990267182966 Tree 53 (weight 0.1): If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) If (feature 0 &lt;= 17.2) Predict: 0.1228349542857993 Else (feature 0 &gt; 17.2) Predict: -2.392588492043597 Else (feature 1 &gt; 46.93) If (feature 2 &lt;= 1020.77) Predict: -1.8240349072310669 Else (feature 2 &gt; 1020.77) Predict: -6.523289398433308 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 18.4) If (feature 1 &lt;= 47.83) Predict: 0.5318997435908227 Else (feature 1 &gt; 47.83) Predict: 4.907584149653537 Else (feature 0 &gt; 18.4) If (feature 1 &lt;= 46.93) Predict: -2.110133253015907 Else (feature 1 &gt; 46.93) Predict: 0.20708863671712482 Tree 54 (weight 0.1): If (feature 3 &lt;= 76.79) If (feature 1 &lt;= 40.05) If (feature 1 &lt;= 39.96) Predict: -0.7416033424896232 Else (feature 1 &gt; 39.96) Predict: -6.880323474190146 Else (feature 1 &gt; 40.05) If (feature 1 &lt;= 40.89) Predict: 2.887497917363201 Else (feature 1 &gt; 40.89) Predict: 0.17777582956662522 Else (feature 3 &gt; 76.79) If (feature 0 &lt;= 19.61) If (feature 0 &lt;= 17.84) Predict: -0.09172434324104897 Else (feature 0 &gt; 17.84) Predict: 1.9482862934683598 Else (feature 0 &gt; 19.61) If (feature 2 &lt;= 1010.6) Predict: -0.15262790703036064 Else (feature 2 &gt; 1010.6) Predict: -1.7280878096087295 Tree 55 (weight 0.1): If (feature 0 &lt;= 24.79) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 66.93) Predict: 0.02682576814507517 Else (feature 1 &gt; 66.93) Predict: -2.323863726560255 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 47.83) Predict: 6.909290893058579 Else (feature 1 &gt; 47.83) Predict: 0.9944889736997976 Else (feature 0 &gt; 24.79) If (feature 3 &lt;= 65.24) If (feature 0 &lt;= 28.5) Predict: 0.8432916332803679 Else (feature 0 &gt; 28.5) Predict: -0.3680864130080106 Else (feature 3 &gt; 65.24) If (feature 1 &lt;= 66.51) Predict: -2.1147474860288 Else (feature 1 &gt; 66.51) Predict: -0.3834883036951788 Tree 56 (weight 0.1): If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.38) If (feature 0 &lt;= 11.95) Predict: -0.3290262091199092 Else (feature 0 &gt; 11.95) Predict: 0.8543511625463592 Else (feature 0 &gt; 14.38) If (feature 2 &lt;= 1016.21) Predict: -0.7208476709379852 Else (feature 2 &gt; 1016.21) Predict: -4.40928839539672 Else (feature 0 &gt; 15.33) If (feature 0 &lt;= 16.22) If (feature 2 &lt;= 1013.19) Predict: 4.554268903891635 Else (feature 2 &gt; 1013.19) Predict: 1.538781048856137 Else (feature 0 &gt; 16.22) If (feature 1 &lt;= 46.93) Predict: -1.1488437756174756 Else (feature 1 &gt; 46.93) Predict: 0.1634274865006602 Tree 57 (weight 0.1): If (feature 2 &lt;= 1007.46) If (feature 1 &lt;= 73.67) If (feature 1 &lt;= 71.43) Predict: -0.28457458674767294 Else (feature 1 &gt; 71.43) Predict: -2.556284198496123 Else (feature 1 &gt; 73.67) If (feature 3 &lt;= 60.81) Predict: 4.31886476056719 Else (feature 3 &gt; 60.81) Predict: 0.3197495651743129 Else (feature 2 &gt; 1007.46) If (feature 0 &lt;= 17.84) If (feature 1 &lt;= 46.93) Predict: 0.04575453109929229 Else (feature 1 &gt; 46.93) Predict: -2.141138284310683 Else (feature 0 &gt; 17.84) If (feature 1 &lt;= 56.57) Predict: 1.3439965861050847 Else (feature 1 &gt; 56.57) Predict: -0.02904919315788331 Tree 58 (weight 0.1): If (feature 0 &lt;= 31.8) If (feature 1 &lt;= 66.25) If (feature 1 &lt;= 64.84) Predict: -0.006836636445003446 Else (feature 1 &gt; 64.84) Predict: -2.0890363043188134 Else (feature 1 &gt; 66.25) If (feature 1 &lt;= 69.05) Predict: 1.8596834938858298 Else (feature 1 &gt; 69.05) Predict: -0.2637818907162569 Else (feature 0 &gt; 31.8) If (feature 1 &lt;= 69.34) If (feature 2 &lt;= 1009.63) Predict: -4.53407923927751 Else (feature 2 &gt; 1009.63) Predict: 1.2479530412848983 Else (feature 1 &gt; 69.34) If (feature 1 &lt;= 69.88) Predict: 5.672382101944148 Else (feature 1 &gt; 69.88) Predict: -0.7728960613425813 Tree 59 (weight 0.1): If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 68.3) If (feature 1 &lt;= 43.41) Predict: 0.423961936091299 Else (feature 1 &gt; 43.41) Predict: -1.0411314850417004 Else (feature 1 &gt; 68.3) If (feature 1 &lt;= 68.67) Predict: 7.130757445704555 Else (feature 1 &gt; 68.67) Predict: 0.1160942217864609 Else (feature 2 &gt; 1010.89) If (feature 3 &lt;= 93.63) If (feature 1 &lt;= 58.86) Predict: 0.41091291246834866 Else (feature 1 &gt; 58.86) Predict: -0.2764637915143923 Else (feature 3 &gt; 93.63) If (feature 1 &lt;= 41.74) Predict: -3.564757715833512 Else (feature 1 &gt; 41.74) Predict: 1.1644353912440248 Tree 60 (weight 0.1): If (feature 1 &lt;= 48.6) If (feature 1 &lt;= 44.88) If (feature 2 &lt;= 1016.57) Predict: 0.4410572983039277 Else (feature 2 &gt; 1016.57) Predict: -0.44414793681792664 Else (feature 1 &gt; 44.88) If (feature 2 &lt;= 1014.35) Predict: -3.0626378082153085 Else (feature 2 &gt; 1014.35) Predict: 2.0328536525605063 Else (feature 1 &gt; 48.6) If (feature 1 &lt;= 52.05) If (feature 2 &lt;= 1009.9) Predict: 0.24004783900051171 Else (feature 2 &gt; 1009.9) Predict: 3.1645061792332916 Else (feature 1 &gt; 52.05) If (feature 0 &lt;= 17.84) Predict: -1.95074879327582 Else (feature 0 &gt; 17.84) Predict: 0.021106826304965107 Tree 61 (weight 0.1): If (feature 1 &lt;= 74.87) If (feature 1 &lt;= 71.43) If (feature 1 &lt;= 68.3) Predict: -0.06241270845694165 Else (feature 1 &gt; 68.3) Predict: 0.8051320337219834 Else (feature 1 &gt; 71.43) If (feature 0 &lt;= 24.57) Predict: 1.648459594873699 Else (feature 0 &gt; 24.57) Predict: -1.2314608832462137 Else (feature 1 &gt; 74.87) If (feature 1 &lt;= 77.3) If (feature 0 &lt;= 21.42) Predict: -7.482222216002697 Else (feature 0 &gt; 21.42) Predict: 1.8228183337802573 Else (feature 1 &gt; 77.3) If (feature 2 &lt;= 1012.39) Predict: -1.4326641812285505 Else (feature 2 &gt; 1012.39) Predict: 1.7079353624089986 Tree 62 (weight 0.1): If (feature 0 &lt;= 5.18) If (feature 1 &lt;= 42.07) If (feature 3 &lt;= 96.38) Predict: 1.4583097259406885 Else (feature 3 &gt; 96.38) Predict: 7.4053761713858615 Else (feature 1 &gt; 42.07) If (feature 2 &lt;= 1008.19) Predict: 0.311290850436914 Else (feature 2 &gt; 1008.19) Predict: -5.145119802972147 Else (feature 0 &gt; 5.18) If (feature 1 &lt;= 38.62) If (feature 0 &lt;= 18.4) Predict: -0.7259884411546618 Else (feature 0 &gt; 18.4) Predict: -12.427884135864616 Else (feature 1 &gt; 38.62) If (feature 1 &lt;= 39.48) Predict: 1.131291291234381 Else (feature 1 &gt; 39.48) Predict: -0.007004055574359982 Tree 63 (weight 0.1): If (feature 2 &lt;= 1004.52) If (feature 1 &lt;= 70.8) If (feature 1 &lt;= 69.05) Predict: -0.45566718124370104 Else (feature 1 &gt; 69.05) Predict: -3.3633539333883373 Else (feature 1 &gt; 70.8) If (feature 3 &lt;= 70.63) Predict: 1.7061073842258219 Else (feature 3 &gt; 70.63) Predict: -0.35469491259927843 Else (feature 2 &gt; 1004.52) If (feature 0 &lt;= 15.33) If (feature 0 &lt;= 14.13) Predict: 0.13165022513417465 Else (feature 0 &gt; 14.13) Predict: -1.8886218519887454 Else (feature 0 &gt; 15.33) If (feature 1 &lt;= 43.13) Predict: 2.0897911694212086 Else (feature 1 &gt; 43.13) Predict: 0.023571622513158218 Tree 64 (weight 0.1): If (feature 1 &lt;= 41.92) If (feature 1 &lt;= 41.58) If (feature 2 &lt;= 1015.45) Predict: 0.6420804366913081 Else (feature 2 &gt; 1015.45) Predict: -0.3393001000428116 Else (feature 1 &gt; 41.58) If (feature 3 &lt;= 91.38) Predict: -2.959889489145066 Else (feature 3 &gt; 91.38) Predict: -14.822621379271645 Else (feature 1 &gt; 41.92) If (feature 1 &lt;= 43.13) If (feature 0 &lt;= 15.33) Predict: 0.5584851317693598 Else (feature 0 &gt; 15.33) Predict: 5.35806974907062 Else (feature 1 &gt; 43.13) If (feature 1 &lt;= 43.65) Predict: -2.5734171913252673 Else (feature 1 &gt; 43.65) Predict: 0.06206747847844893 Tree 65 (weight 0.1): If (feature 2 &lt;= 1010.89) If (feature 1 &lt;= 66.93) If (feature 0 &lt;= 20.6) Predict: -0.0679333275254979 Else (feature 0 &gt; 20.6) Predict: -1.053808811058633 Else (feature 1 &gt; 66.93) If (feature 1 &lt;= 67.32) Predict: 7.372080266725638 Else (feature 1 &gt; 67.32) Predict: 0.09996335027123535 Else (feature 2 &gt; 1010.89) If (feature 3 &lt;= 75.61) If (feature 1 &lt;= 40.05) Predict: -0.9831581524231143 Else (feature 1 &gt; 40.05) Predict: 0.5486160789249349 Else (feature 3 &gt; 75.61) If (feature 1 &lt;= 58.86) Predict: 0.19399224442246701 Else (feature 1 &gt; 58.86) Predict: -1.5652059699408227 Tree 66 (weight 0.1): If (feature 0 &lt;= 28.75) If (feature 1 &lt;= 73.18) If (feature 1 &lt;= 71.43) Predict: 0.05143978594106816 Else (feature 1 &gt; 71.43) Predict: -1.436513600322334 Else (feature 1 &gt; 73.18) If (feature 3 &lt;= 73.33) Predict: 4.1459864582084975 Else (feature 3 &gt; 73.33) Predict: 0.34965185037807356 Else (feature 0 &gt; 28.75) If (feature 2 &lt;= 1014.54) If (feature 2 &lt;= 1013.43) Predict: -0.4008005884834272 Else (feature 2 &gt; 1013.43) Predict: 3.683818693727259 Else (feature 2 &gt; 1014.54) If (feature 1 &lt;= 67.83) Predict: -0.82614879352537 Else (feature 1 &gt; 67.83) Predict: -4.535981326886069 Tree 67 (weight 0.1): If (feature 1 &lt;= 47.83) If (feature 0 &lt;= 23.02) If (feature 0 &lt;= 18.71) Predict: -0.0010074123242523121 Else (feature 0 &gt; 18.71) Predict: -3.2926535011699234 Else (feature 0 &gt; 23.02) If (feature 2 &lt;= 1012.39) Predict: 1.3034696914565052 Else (feature 2 &gt; 1012.39) Predict: 11.235282784300427 Else (feature 1 &gt; 47.83) If (feature 1 &lt;= 56.57) If (feature 0 &lt;= 17.84) Predict: -1.039931035628621 Else (feature 0 &gt; 17.84) Predict: 1.9905896386111916 Else (feature 1 &gt; 56.57) If (feature 1 &lt;= 57.19) Predict: -2.3357601760278204 Else (feature 1 &gt; 57.19) Predict: -0.0355403353056693 Tree 68 (weight 0.1): If (feature 0 &lt;= 24.79) If (feature 3 &lt;= 41.26) If (feature 1 &lt;= 45.87) Predict: 2.4904273637383265 Else (feature 1 &gt; 45.87) Predict: 13.013875696314063 Else (feature 3 &gt; 41.26) If (feature 1 &lt;= 49.02) Predict: -0.18642415027276396 Else (feature 1 &gt; 49.02) Predict: 0.47121076166963227 Else (feature 0 &gt; 24.79) If (feature 1 &lt;= 65.27) If (feature 1 &lt;= 64.84) Predict: -0.5...
+>     res53: String =
+>     "GBTRegressionModel (uid=gbtr_9c5ab45fe584) with 120 trees
+>       Tree 0 (weight 1.0):
+>         If (feature 0 <= 17.84)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 8.75)
+>            Predict: 483.5412151067323
+>           Else (feature 0 > 8.75)
+>            Predict: 475.6305502392345
+>          Else (feature 0 > 11.95)
+>           If (feature 0 <= 15.33)
+>            Predict: 467.63141917293234
+>           Else (feature 0 > 15.33)
+>            Predict: 460.74754125412574
+>         Else (feature 0 > 17.84)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 47.83)
+>            Predict: 457.1077966101695
+>           Else (feature 1 > 47.83)
+>            Predict: 448.74750213858016
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 66.25)
+>            Predict: 442.88544855967086
+>           Else (feature 1 > 66.25)
+>            Predict: 434.7293710691822
+>       Tree 1 (weight 0.1):
+>         If (feature 2 <= 1009.9)
+>          If (feature 1 <= 43.13)
+>           If (feature 0 <= 15.33)
+>            Predict: -0.31094207231231485
+>           Else (feature 0 > 15.33)
+>            Predict: 4.302958436537365
+>          Else (feature 1 > 43.13)
+>           If (feature 0 <= 23.02)
+>            Predict: -8.38392506141353
+>           Else (feature 0 > 23.02)
+>            Predict: -2.399960976520273
+>         Else (feature 2 > 1009.9)
+>          If (feature 3 <= 86.21)
+>           If (feature 0 <= 26.35)
+>            Predict: 2.888623754019027
+>           Else (feature 0 > 26.35)
+>            Predict: -1.1489483044194229
+>          Else (feature 3 > 86.21)
+>           If (feature 1 <= 39.72)
+>            Predict: 3.876324424163314
+>           Else (feature 1 > 39.72)
+>            Predict: -3.058952828112949
+>       Tree 2 (weight 0.1):
+>         If (feature 2 <= 1009.63)
+>          If (feature 1 <= 43.13)
+>           If (feature 0 <= 11.95)
+>            Predict: -1.4091086031845625
+>           Else (feature 0 > 11.95)
+>            Predict: 2.6329466235800942
+>          Else (feature 1 > 43.13)
+>           If (feature 0 <= 23.02)
+>            Predict: -6.795414480322956
+>           Else (feature 0 > 23.02)
+>            Predict: -2.166560698742912
+>         Else (feature 2 > 1009.63)
+>          If (feature 3 <= 80.44)
+>           If (feature 0 <= 26.98)
+>            Predict: 2.878622882275939
+>           Else (feature 0 > 26.98)
+>            Predict: -1.146426969990865
+>          Else (feature 3 > 80.44)
+>           If (feature 3 <= 94.55)
+>            Predict: -0.35885921725905906
+>           Else (feature 3 > 94.55)
+>            Predict: -5.75364586186002
+>       Tree 3 (weight 0.1):
+>         If (feature 0 <= 27.6)
+>          If (feature 3 <= 70.2)
+>           If (feature 1 <= 40.05)
+>            Predict: -0.9480831286616939
+>           Else (feature 1 > 40.05)
+>            Predict: 3.660397090904016
+>          Else (feature 3 > 70.2)
+>           If (feature 1 <= 40.64)
+>            Predict: 2.1539405832035627
+>           Else (feature 1 > 40.64)
+>            Predict: -1.2281619807661366
+>         Else (feature 0 > 27.6)
+>          If (feature 1 <= 65.27)
+>           If (feature 2 <= 1005.99)
+>            Predict: -15.33433697033558
+>           Else (feature 2 > 1005.99)
+>            Predict: -5.866095468145647
+>          Else (feature 1 > 65.27)
+>           If (feature 2 <= 1008.75)
+>            Predict: -4.03431044067007
+>           Else (feature 2 > 1008.75)
+>            Predict: -0.23440867445577207
+>       Tree 4 (weight 0.1):
+>         If (feature 0 <= 26.35)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 68.67)
+>            Predict: 0.12035773384797814
+>           Else (feature 1 > 68.67)
+>            Predict: -13.928523073642005
+>          Else (feature 0 > 23.02)
+>           If (feature 0 <= 24.57)
+>            Predict: 5.5622340839882165
+>           Else (feature 0 > 24.57)
+>            Predict: 1.6938172370244715
+>         Else (feature 0 > 26.35)
+>          If (feature 1 <= 66.25)
+>           If (feature 2 <= 1008.4)
+>            Predict: -9.009916879825393
+>           Else (feature 2 > 1008.4)
+>            Predict: -3.059736394918022
+>          Else (feature 1 > 66.25)
+>           If (feature 0 <= 30.2)
+>            Predict: 0.14704705100738577
+>           Else (feature 0 > 30.2)
+>            Predict: -3.2914123948921006
+>       Tree 5 (weight 0.1):
+>         If (feature 2 <= 1010.41)
+>          If (feature 1 <= 43.41)
+>           If (feature 3 <= 99.27)
+>            Predict: 1.2994444710077233
+>           Else (feature 3 > 99.27)
+>            Predict: -6.649548317319231
+>          Else (feature 1 > 43.41)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.9119452777748
+>           Else (feature 0 > 23.02)
+>            Predict: -0.9514185089440673
+>         Else (feature 2 > 1010.41)
+>          If (feature 3 <= 89.83)
+>           If (feature 0 <= 31.26)
+>            Predict: 1.2914123584761403
+>           Else (feature 0 > 31.26)
+>            Predict: -5.115001417285994
+>          Else (feature 3 > 89.83)
+>           If (feature 1 <= 40.64)
+>            Predict: 1.5160976219176363
+>           Else (feature 1 > 40.64)
+>            Predict: -4.202813699523934
+>       Tree 6 (weight 0.1):
+>         If (feature 2 <= 1007.27)
+>          If (feature 0 <= 27.94)
+>           If (feature 3 <= 71.09)
+>            Predict: 1.616448005210527
+>           Else (feature 3 > 71.09)
+>            Predict: -2.1313527108274157
+>          Else (feature 0 > 27.94)
+>           If (feature 1 <= 68.3)
+>            Predict: -8.579840063013142
+>           Else (feature 1 > 68.3)
+>            Predict: -1.915909819494233
+>         Else (feature 2 > 1007.27)
+>          If (feature 3 <= 95.45)
+>           If (feature 0 <= 6.52)
+>            Predict: 4.973465595410054
+>           Else (feature 0 > 6.52)
+>            Predict: 0.3837975458985242
+>          Else (feature 3 > 95.45)
+>           If (feature 2 <= 1013.43)
+>            Predict: -0.8175453481344352
+>           Else (feature 2 > 1013.43)
+>            Predict: -7.264843604639278
+>       Tree 7 (weight 0.1):
+>         If (feature 0 <= 26.35)
+>          If (feature 3 <= 71.09)
+>           If (feature 1 <= 67.83)
+>            Predict: 1.9620965187817083
+>           Else (feature 1 > 67.83)
+>            Predict: 7.953863660960779
+>          Else (feature 3 > 71.09)
+>           If (feature 1 <= 40.89)
+>            Predict: 1.2020440154192213
+>           Else (feature 1 > 40.89)
+>            Predict: -0.9989659748111419
+>         Else (feature 0 > 26.35)
+>          If (feature 1 <= 66.25)
+>           If (feature 2 <= 1008.4)
+>            Predict: -6.230272922553423
+>           Else (feature 2 > 1008.4)
+>            Predict: -2.654681371247991
+>          Else (feature 1 > 66.25)
+>           If (feature 2 <= 1004.52)
+>            Predict: -3.9527797601131853
+>           Else (feature 2 > 1004.52)
+>            Predict: -0.21770148036273387
+>       Tree 8 (weight 0.1):
+>         If (feature 0 <= 29.56)
+>          If (feature 3 <= 63.16)
+>           If (feature 1 <= 72.24)
+>            Predict: 1.9612116105231265
+>           Else (feature 1 > 72.24)
+>            Predict: 8.756949826030025
+>          Else (feature 3 > 63.16)
+>           If (feature 0 <= 5.95)
+>            Predict: 4.445363585074405
+>           Else (feature 0 > 5.95)
+>            Predict: -0.4097996897633835
+>         Else (feature 0 > 29.56)
+>          If (feature 1 <= 68.3)
+>           If (feature 2 <= 1009.9)
+>            Predict: -7.882200867406393
+>           Else (feature 2 > 1009.9)
+>            Predict: -1.7273221348184091
+>          Else (feature 1 > 68.3)
+>           If (feature 2 <= 1013.77)
+>            Predict: -0.7219749804525829
+>           Else (feature 2 > 1013.77)
+>            Predict: -6.492100849806538
+>       Tree 9 (weight 0.1):
+>         If (feature 3 <= 89.83)
+>          If (feature 0 <= 25.72)
+>           If (feature 0 <= 23.02)
+>            Predict: 0.15450088997272685
+>           Else (feature 0 > 23.02)
+>            Predict: 3.010254802875794
+>          Else (feature 0 > 25.72)
+>           If (feature 1 <= 66.25)
+>            Predict: -2.5821765284417615
+>           Else (feature 1 > 66.25)
+>            Predict: -0.3935112713804148
+>         Else (feature 3 > 89.83)
+>          If (feature 2 <= 1019.52)
+>           If (feature 0 <= 7.08)
+>            Predict: 3.264389020443774
+>           Else (feature 0 > 7.08)
+>            Predict: -1.6246048211383168
+>          Else (feature 2 > 1019.52)
+>           If (feature 0 <= 8.75)
+>            Predict: -8.005340799169343
+>           Else (feature 0 > 8.75)
+>            Predict: -2.9832409167030063
+>       Tree 10 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 45.87)
+>            Predict: 0.26309432916452813
+>           Else (feature 1 > 45.87)
+>            Predict: -5.716473785544373
+>          Else (feature 0 > 17.84)
+>           If (feature 2 <= 1012.56)
+>            Predict: -0.15863259341493433
+>           Else (feature 2 > 1012.56)
+>            Predict: 7.899625065937478
+>         Else (feature 1 > 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 3 <= 67.72)
+>            Predict: -27.101084325134025
+>           Else (feature 3 > 67.72)
+>            Predict: -12.755339130015875
+>          Else (feature 0 > 17.84)
+>           If (feature 0 <= 20.6)
+>            Predict: 3.8741798886113408
+>           Else (feature 0 > 20.6)
+>            Predict: -0.8179571837367839
+>       Tree 11 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 74.22)
+>           If (feature 1 <= 59.14)
+>            Predict: -0.6678644068375302
+>           Else (feature 1 > 59.14)
+>            Predict: -5.0251736913870495
+>          Else (feature 1 > 74.22)
+>           If (feature 2 <= 1000.68)
+>            Predict: -1.9453153753750236
+>           Else (feature 2 > 1000.68)
+>            Predict: 3.954565899065237
+>         Else (feature 2 > 1004.52)
+>          If (feature 3 <= 60.81)
+>           If (feature 0 <= 29.27)
+>            Predict: 2.256991118214201
+>           Else (feature 0 > 29.27)
+>            Predict: -0.8956432652281918
+>          Else (feature 3 > 60.81)
+>           If (feature 0 <= 5.18)
+>            Predict: 5.30208686561611
+>           Else (feature 0 > 5.18)
+>            Predict: -0.2275806642044292
+>       Tree 12 (weight 0.1):
+>         If (feature 3 <= 93.63)
+>          If (feature 0 <= 20.6)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.13650451477274114
+>           Else (feature 0 > 17.84)
+>            Predict: 4.26138638419226
+>          Else (feature 0 > 20.6)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.145788149131118
+>           Else (feature 0 > 23.02)
+>            Predict: 0.45010060784860767
+>         Else (feature 3 > 93.63)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 6.52)
+>            Predict: 1.9630864105825856
+>           Else (feature 0 > 6.52)
+>            Predict: -5.847103580294793
+>          Else (feature 0 > 11.95)
+>           If (feature 1 <= 57.85)
+>            Predict: 1.6850763767018282
+>           Else (feature 1 > 57.85)
+>            Predict: -3.57522814358917
+>       Tree 13 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 1 <= 49.39)
+>           If (feature 0 <= 13.56)
+>            Predict: 0.7497248523199469
+>           Else (feature 0 > 13.56)
+>            Predict: -0.8096048572768345
+>          Else (feature 1 > 49.39)
+>           If (feature 0 <= 17.84)
+>            Predict: -4.9975868045736025
+>           Else (feature 0 > 17.84)
+>            Predict: 6.70181838603398
+>         Else (feature 1 > 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 58.62)
+>            Predict: -8.139327595464518
+>           Else (feature 1 > 58.62)
+>            Predict: -11.260696586956563
+>          Else (feature 0 > 17.84)
+>           If (feature 2 <= 1020.32)
+>            Predict: -0.4173502593107514
+>           Else (feature 2 > 1020.32)
+>            Predict: 7.350524302545053
+>       Tree 14 (weight 0.1):
+>         If (feature 2 <= 1009.3)
+>          If (feature 1 <= 73.67)
+>           If (feature 0 <= 26.35)
+>            Predict: -0.2834715308768144
+>           Else (feature 0 > 26.35)
+>            Predict: -2.2855655986052446
+>          Else (feature 1 > 73.67)
+>           If (feature 0 <= 21.42)
+>            Predict: -19.886551554013977
+>           Else (feature 0 > 21.42)
+>            Predict: 1.8345107899392203
+>         Else (feature 2 > 1009.3)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 46.93)
+>            Predict: 0.2012146645141011
+>           Else (feature 1 > 46.93)
+>            Predict: -5.331252849501989
+>          Else (feature 0 > 17.84)
+>           If (feature 0 <= 20.6)
+>            Predict: 3.9009310043506518
+>           Else (feature 0 > 20.6)
+>            Predict: 0.05492627340134294
+>       Tree 15 (weight 0.1):
+>         If (feature 3 <= 80.44)
+>          If (feature 0 <= 26.57)
+>           If (feature 0 <= 23.02)
+>            Predict: 0.24935555983937532
+>           Else (feature 0 > 23.02)
+>            Predict: 1.9734839371689987
+>          Else (feature 0 > 26.57)
+>           If (feature 1 <= 66.25)
+>            Predict: -2.652691255012269
+>           Else (feature 1 > 66.25)
+>            Predict: 0.10205623249441657
+>         Else (feature 3 > 80.44)
+>          If (feature 1 <= 57.85)
+>           If (feature 2 <= 1021.65)
+>            Predict: 0.3189331596273633
+>           Else (feature 2 > 1021.65)
+>            Predict: -2.493847422724499
+>          Else (feature 1 > 57.85)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.443277995263894
+>           Else (feature 0 > 23.02)
+>            Predict: 1.0414575062489446
+>       Tree 16 (weight 0.1):
+>         If (feature 0 <= 6.52)
+>          If (feature 3 <= 67.72)
+>           If (feature 1 <= 39.48)
+>            Predict: -0.021931809818089017
+>           Else (feature 1 > 39.48)
+>            Predict: 17.644618798102908
+>          Else (feature 3 > 67.72)
+>           If (feature 1 <= 42.07)
+>            Predict: 2.6927240976688487
+>           Else (feature 1 > 42.07)
+>            Predict: -3.720328734281554
+>         Else (feature 0 > 6.52)
+>          If (feature 0 <= 8.75)
+>           If (feature 0 <= 7.97)
+>            Predict: -1.1870026837027776
+>           Else (feature 0 > 7.97)
+>            Predict: -6.311604790035118
+>          Else (feature 0 > 8.75)
+>           If (feature 0 <= 9.73)
+>            Predict: 5.036277690956247
+>           Else (feature 0 > 9.73)
+>            Predict: -0.07156864179175153
+>       Tree 17 (weight 0.1):
+>         If (feature 2 <= 1005.35)
+>          If (feature 1 <= 70.8)
+>           If (feature 0 <= 21.14)
+>            Predict: 0.2557898848412102
+>           Else (feature 0 > 21.14)
+>            Predict: -4.092246463553751
+>          Else (feature 1 > 70.8)
+>           If (feature 0 <= 23.02)
+>            Predict: -17.7762740471523
+>           Else (feature 0 > 23.02)
+>            Predict: 1.4679036019616782
+>         Else (feature 2 > 1005.35)
+>          If (feature 3 <= 60.81)
+>           If (feature 2 <= 1021.17)
+>            Predict: 0.8109918761137652
+>           Else (feature 2 > 1021.17)
+>            Predict: 6.491756407811347
+>          Else (feature 3 > 60.81)
+>           If (feature 0 <= 25.72)
+>            Predict: 0.06495066055048145
+>           Else (feature 0 > 25.72)
+>            Predict: -1.234843690619109
+>       Tree 18 (weight 0.1):
+>         If (feature 3 <= 93.63)
+>          If (feature 0 <= 13.56)
+>           If (feature 0 <= 11.95)
+>            Predict: -0.1389635939018028
+>           Else (feature 0 > 11.95)
+>            Predict: 4.085304226900187
+>          Else (feature 0 > 13.56)
+>           If (feature 0 <= 15.33)
+>            Predict: -3.558076811842663
+>           Else (feature 0 > 15.33)
+>            Predict: 0.24840255719067195
+>         Else (feature 3 > 93.63)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 6.52)
+>            Predict: 1.1725211739721944
+>           Else (feature 0 > 6.52)
+>            Predict: -4.696815201291802
+>          Else (feature 0 > 11.95)
+>           If (feature 0 <= 23.42)
+>            Predict: -0.1435586215485262
+>           Else (feature 0 > 23.42)
+>            Predict: 6.017267110381734
+>       Tree 19 (weight 0.1):
+>         If (feature 0 <= 29.89)
+>          If (feature 3 <= 46.38)
+>           If (feature 2 <= 1020.32)
+>            Predict: 2.734528637686715
+>           Else (feature 2 > 1020.32)
+>            Predict: 14.229272221061546
+>          Else (feature 3 > 46.38)
+>           If (feature 1 <= 73.18)
+>            Predict: -0.09112932077559661
+>           Else (feature 1 > 73.18)
+>            Predict: 2.171636618202333
+>         Else (feature 0 > 29.89)
+>          If (feature 1 <= 68.3)
+>           If (feature 2 <= 1012.96)
+>            Predict: -4.842672386234583
+>           Else (feature 2 > 1012.96)
+>            Predict: 0.4656753436410731
+>          Else (feature 1 > 68.3)
+>           If (feature 1 <= 69.88)
+>            Predict: 1.9998755414672877
+>           Else (feature 1 > 69.88)
+>            Predict: -1.377187598546301
+>       Tree 20 (weight 0.1):
+>         If (feature 1 <= 40.89)
+>          If (feature 0 <= 11.95)
+>           If (feature 0 <= 10.74)
+>            Predict: 0.3474341793041741
+>           Else (feature 0 > 10.74)
+>            Predict: -3.2174625433704844
+>          Else (feature 0 > 11.95)
+>           If (feature 0 <= 13.56)
+>            Predict: 6.2521753652461385
+>           Else (feature 0 > 13.56)
+>            Predict: 0.7467107076401086
+>         Else (feature 1 > 40.89)
+>          If (feature 1 <= 41.16)
+>           If (feature 2 <= 1011.9)
+>            Predict: 1.6159428806525291
+>           Else (feature 2 > 1011.9)
+>            Predict: -5.525791920129847
+>          Else (feature 1 > 41.16)
+>           If (feature 1 <= 41.48)
+>            Predict: 2.3655609293253264
+>           Else (feature 1 > 41.48)
+>            Predict: -0.18730957785387015
+>       Tree 21 (weight 0.1):
+>         If (feature 0 <= 7.08)
+>          If (feature 1 <= 41.58)
+>           If (feature 1 <= 41.16)
+>            Predict: 1.9153935195932974
+>           Else (feature 1 > 41.16)
+>            Predict: 7.0746807427814735
+>          Else (feature 1 > 41.58)
+>           If (feature 2 <= 1020.77)
+>            Predict: -1.256554177586309
+>           Else (feature 2 > 1020.77)
+>            Predict: -26.29941855196938
+>         Else (feature 0 > 7.08)
+>          If (feature 0 <= 8.75)
+>           If (feature 1 <= 37.8)
+>            Predict: -8.544132394601597
+>           Else (feature 1 > 37.8)
+>            Predict: -2.6184141709801976
+>          Else (feature 0 > 8.75)
+>           If (feature 0 <= 9.73)
+>            Predict: 4.069411815161333
+>           Else (feature 0 > 9.73)
+>            Predict: -0.06494039395966968
+>       Tree 22 (weight 0.1):
+>         If (feature 0 <= 23.02)
+>          If (feature 0 <= 21.69)
+>           If (feature 0 <= 15.33)
+>            Predict: -0.48298234147973435
+>           Else (feature 0 > 15.33)
+>            Predict: 1.2747845905419344
+>          Else (feature 0 > 21.69)
+>           If (feature 1 <= 66.25)
+>            Predict: -3.44223180465188
+>           Else (feature 1 > 66.25)
+>            Predict: -9.677838572965495
+>         Else (feature 0 > 23.02)
+>          If (feature 0 <= 24.39)
+>           If (feature 1 <= 66.25)
+>            Predict: 1.4289485230939327
+>           Else (feature 1 > 66.25)
+>            Predict: 7.493228657621072
+>          Else (feature 0 > 24.39)
+>           If (feature 1 <= 66.25)
+>            Predict: -1.55164310941819
+>           Else (feature 1 > 66.25)
+>            Predict: 0.5159038364280375
+>       Tree 23 (weight 0.1):
+>         If (feature 2 <= 1010.89)
+>          If (feature 1 <= 66.93)
+>           If (feature 1 <= 43.41)
+>            Predict: 0.8366856528539243
+>           Else (feature 1 > 43.41)
+>            Predict: -2.146264827541657
+>          Else (feature 1 > 66.93)
+>           If (feature 0 <= 23.02)
+>            Predict: -4.593173040738928
+>           Else (feature 0 > 23.02)
+>            Predict: 0.7595925761507126
+>         Else (feature 2 > 1010.89)
+>          If (feature 0 <= 15.33)
+>           If (feature 0 <= 14.38)
+>            Predict: 0.19019050526253845
+>           Else (feature 0 > 14.38)
+>            Predict: -4.931089744789576
+>          Else (feature 0 > 15.33)
+>           If (feature 1 <= 56.57)
+>            Predict: 2.893896440054576
+>           Else (feature 1 > 56.57)
+>            Predict: -0.2411893147021192
+>       Tree 24 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 39.13)
+>           If (feature 0 <= 16.56)
+>            Predict: 5.674347262101248
+>           Else (feature 0 > 16.56)
+>            Predict: -15.35003850200303
+>          Else (feature 1 > 39.13)
+>           If (feature 1 <= 70.8)
+>            Predict: -2.2136597249782484
+>           Else (feature 1 > 70.8)
+>            Predict: 0.4854909471410394
+>         Else (feature 2 > 1004.52)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 21.14)
+>            Predict: 0.25072963079321764
+>           Else (feature 0 > 21.14)
+>            Predict: -3.1127381475029745
+>          Else (feature 0 > 23.02)
+>           If (feature 0 <= 24.98)
+>            Predict: 2.513302584995404
+>           Else (feature 0 > 24.98)
+>            Predict: -0.17126775916442186
+>       Tree 25 (weight 0.1):
+>         If (feature 3 <= 76.79)
+>          If (feature 0 <= 28.75)
+>           If (feature 1 <= 66.25)
+>            Predict: 0.1271610430935476
+>           Else (feature 1 > 66.25)
+>            Predict: 2.4600009065275934
+>          Else (feature 0 > 28.75)
+>           If (feature 1 <= 44.58)
+>            Predict: -10.925990145829292
+>           Else (feature 1 > 44.58)
+>            Predict: -0.7031644656131009
+>         Else (feature 3 > 76.79)
+>          If (feature 0 <= 20.9)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.3807566877980857
+>           Else (feature 0 > 17.84)
+>            Predict: 2.329590528017136
+>          Else (feature 0 > 20.9)
+>           If (feature 0 <= 23.02)
+>            Predict: -3.741947089345415
+>           Else (feature 0 > 23.02)
+>            Predict: -0.3619479813878585
+>       Tree 26 (weight 0.1):
+>         If (feature 0 <= 5.18)
+>          If (feature 1 <= 42.07)
+>           If (feature 3 <= 84.36)
+>            Predict: 5.869887042156764
+>           Else (feature 3 > 84.36)
+>            Predict: 2.3621425360574837
+>          Else (feature 1 > 42.07)
+>           If (feature 2 <= 1007.82)
+>            Predict: -1.4185266335795177
+>           Else (feature 2 > 1007.82)
+>            Predict: -5.383717178467172
+>         Else (feature 0 > 5.18)
+>          If (feature 3 <= 53.32)
+>           If (feature 2 <= 1021.17)
+>            Predict: 0.6349729680247564
+>           Else (feature 2 > 1021.17)
+>            Predict: 9.504309080910616
+>          Else (feature 3 > 53.32)
+>           If (feature 0 <= 25.95)
+>            Predict: 0.010243524812335326
+>           Else (feature 0 > 25.95)
+>            Predict: -0.8173343910336555
+>       Tree 27 (weight 0.1):
+>         If (feature 2 <= 1028.38)
+>          If (feature 1 <= 74.87)
+>           If (feature 1 <= 56.57)
+>            Predict: 0.28085003688072396
+>           Else (feature 1 > 56.57)
+>            Predict: -0.378551674966564
+>          Else (feature 1 > 74.87)
+>           If (feature 0 <= 21.42)
+>            Predict: -12.321588273833015
+>           Else (feature 0 > 21.42)
+>            Predict: 1.8659669412137414
+>         Else (feature 2 > 1028.38)
+>          If (feature 3 <= 89.83)
+>           If (feature 3 <= 66.27)
+>            Predict: -8.252928408643971
+>           Else (feature 3 > 66.27)
+>            Predict: -2.023910717088332
+>          Else (feature 3 > 89.83)
+>           If (feature 0 <= 8.39)
+>            Predict: -11.472893448110653
+>           Else (feature 0 > 8.39)
+>            Predict: -8.030312146910243
+>       Tree 28 (weight 0.1):
+>         If (feature 3 <= 85.4)
+>          If (feature 0 <= 7.55)
+>           If (feature 1 <= 40.05)
+>            Predict: 0.3456361310433187
+>           Else (feature 1 > 40.05)
+>            Predict: 4.958188742864418
+>          Else (feature 0 > 7.55)
+>           If (feature 0 <= 8.75)
+>            Predict: -3.0608059226719657
+>           Else (feature 0 > 8.75)
+>            Predict: 0.16507864507530287
+>         Else (feature 3 > 85.4)
+>          If (feature 2 <= 1015.63)
+>           If (feature 2 <= 1014.19)
+>            Predict: -0.3593841710339432
+>           Else (feature 2 > 1014.19)
+>            Predict: 3.2531365191458024
+>          Else (feature 2 > 1015.63)
+>           If (feature 1 <= 40.64)
+>            Predict: 1.0007657377910708
+>           Else (feature 1 > 40.64)
+>            Predict: -2.132339394694771
+>       Tree 29 (weight 0.1):
+>         If (feature 0 <= 30.56)
+>          If (feature 3 <= 55.74)
+>           If (feature 1 <= 72.24)
+>            Predict: 0.8569729911086951
+>           Else (feature 1 > 72.24)
+>            Predict: 6.358127096088517
+>          Else (feature 3 > 55.74)
+>           If (feature 1 <= 41.48)
+>            Predict: 0.43148253820326676
+>           Else (feature 1 > 41.48)
+>            Predict: -0.24352278568573174
+>         Else (feature 0 > 30.56)
+>          If (feature 2 <= 1014.35)
+>           If (feature 1 <= 68.3)
+>            Predict: -2.5522103291398683
+>           Else (feature 1 > 68.3)
+>            Predict: -0.21266182300917044
+>          Else (feature 2 > 1014.35)
+>           If (feature 1 <= 74.87)
+>            Predict: -6.498613011225412
+>           Else (feature 1 > 74.87)
+>            Predict: 0.9765776955731879
+>       Tree 30 (weight 0.1):
+>         If (feature 0 <= 17.84)
+>          If (feature 1 <= 45.08)
+>           If (feature 0 <= 15.33)
+>            Predict: -0.14424299831222268
+>           Else (feature 0 > 15.33)
+>            Predict: 1.8754751416891788
+>          Else (feature 1 > 45.08)
+>           If (feature 2 <= 1020.77)
+>            Predict: -3.097730832691005
+>           Else (feature 2 > 1020.77)
+>            Predict: -8.90070153022011
+>         Else (feature 0 > 17.84)
+>          If (feature 0 <= 18.71)
+>           If (feature 1 <= 49.02)
+>            Predict: 1.2726140970398088
+>           Else (feature 1 > 49.02)
+>            Predict: 6.649324687634596
+>          Else (feature 0 > 18.71)
+>           If (feature 1 <= 46.93)
+>            Predict: -2.818245204603037
+>           Else (feature 1 > 46.93)
+>            Predict: 0.23586447368304939
+>       Tree 31 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 59.14)
+>           If (feature 1 <= 50.66)
+>            Predict: -0.8733348655196066
+>           Else (feature 1 > 50.66)
+>            Predict: 7.928862441716025
+>          Else (feature 1 > 59.14)
+>           If (feature 1 <= 70.8)
+>            Predict: -3.8112988828197807
+>           Else (feature 1 > 70.8)
+>            Predict: 0.42812840935226704
+>         Else (feature 2 > 1004.52)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 46.93)
+>            Predict: 0.07282772802501089
+>           Else (feature 1 > 46.93)
+>            Predict: -3.3364389464988706
+>          Else (feature 0 > 17.84)
+>           If (feature 2 <= 1020.32)
+>            Predict: 0.18419167853517965
+>           Else (feature 2 > 1020.32)
+>            Predict: 6.584432032190064
+>       Tree 32 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 1 <= 49.39)
+>           If (feature 0 <= 13.56)
+>            Predict: 0.36741135502935035
+>           Else (feature 0 > 13.56)
+>            Predict: -0.7178818728654812
+>          Else (feature 1 > 49.39)
+>           If (feature 0 <= 17.84)
+>            Predict: -1.7883686826457996
+>           Else (feature 0 > 17.84)
+>            Predict: 4.519745157967235
+>         Else (feature 1 > 56.57)
+>          If (feature 0 <= 17.84)
+>           If (feature 0 <= 17.5)
+>            Predict: -4.182857837547887
+>           Else (feature 0 > 17.5)
+>            Predict: -7.917768935292194
+>          Else (feature 0 > 17.84)
+>           If (feature 0 <= 19.61)
+>            Predict: 2.6880627533068244
+>           Else (feature 0 > 19.61)
+>            Predict: -0.2998975340288976
+>       Tree 33 (weight 0.1):
+>         If (feature 0 <= 11.95)
+>          If (feature 0 <= 11.03)
+>           If (feature 3 <= 93.63)
+>            Predict: 0.7278554646891878
+>           Else (feature 3 > 93.63)
+>            Predict: -2.2492543009893162
+>          Else (feature 0 > 11.03)
+>           If (feature 2 <= 1024.3)
+>            Predict: -5.536706488618952
+>           Else (feature 2 > 1024.3)
+>            Predict: 4.479707018501001
+>         Else (feature 0 > 11.95)
+>          If (feature 0 <= 13.08)
+>           If (feature 0 <= 12.5)
+>            Predict: 5.173128471411881
+>           Else (feature 0 > 12.5)
+>            Predict: 2.3834255982190755
+>          Else (feature 0 > 13.08)
+>           If (feature 0 <= 15.33)
+>            Predict: -1.5022006203890645
+>           Else (feature 0 > 15.33)
+>            Predict: 0.15423852245074754
+>       Tree 34 (weight 0.1):
+>         If (feature 0 <= 8.75)
+>          If (feature 0 <= 7.55)
+>           If (feature 3 <= 77.56)
+>            Predict: 3.015852739381847
+>           Else (feature 3 > 77.56)
+>            Predict: -0.06103236076131486
+>          Else (feature 0 > 7.55)
+>           If (feature 3 <= 62.1)
+>            Predict: -13.594573386743992
+>           Else (feature 3 > 62.1)
+>            Predict: -2.6914920546129273
+>         Else (feature 0 > 8.75)
+>          If (feature 0 <= 10.03)
+>           If (feature 3 <= 95.45)
+>            Predict: 3.213047453934116
+>           Else (feature 3 > 95.45)
+>            Predict: -2.3699077010186502
+>          Else (feature 0 > 10.03)
+>           If (feature 0 <= 11.95)
+>            Predict: -1.841483689919706
+>           Else (feature 0 > 11.95)
+>            Predict: 0.1034719724734039
+>       Tree 35 (weight 0.1):
+>         If (feature 1 <= 56.57)
+>          If (feature 1 <= 49.02)
+>           If (feature 1 <= 44.88)
+>            Predict: 0.1854471597033813
+>           Else (feature 1 > 44.88)
+>            Predict: -1.537157071790549
+>          Else (feature 1 > 49.02)
+>           If (feature 2 <= 1009.77)
+>            Predict: -0.7176011396833722
+>           Else (feature 2 > 1009.77)
+>            Predict: 3.4414962844541495
+>         Else (feature 1 > 56.57)
+>          If (feature 1 <= 66.25)
+>           If (feature 0 <= 21.92)
+>            Predict: 0.6042503983890641
+>           Else (feature 0 > 21.92)
+>            Predict: -1.6430682984491796
+>          Else (feature 1 > 66.25)
+>           If (feature 0 <= 23.02)
+>            Predict: -3.919778656895867
+>           Else (feature 0 > 23.02)
+>            Predict: 0.8520833743461524
+>       Tree 36 (weight 0.1):
+>         If (feature 0 <= 27.6)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 22.1)
+>            Predict: 0.08610814822616036
+>           Else (feature 0 > 22.1)
+>            Predict: -3.39446668206219
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 66.25)
+>            Predict: -0.25067209339950686
+>           Else (feature 1 > 66.25)
+>            Predict: 2.1536703058787143
+>         Else (feature 0 > 27.6)
+>          If (feature 3 <= 62.1)
+>           If (feature 1 <= 74.87)
+>            Predict: -0.3912307208100507
+>           Else (feature 1 > 74.87)
+>            Predict: 2.6168301411252224
+>          Else (feature 3 > 62.1)
+>           If (feature 1 <= 71.8)
+>            Predict: -0.1075335658351684
+>           Else (feature 1 > 71.8)
+>            Predict: -3.3756176659678685
+>       Tree 37 (weight 0.1):
+>         If (feature 0 <= 25.35)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 64.84)
+>            Predict: 0.07789630965601392
+>           Else (feature 1 > 64.84)
+>            Predict: -2.8928836560033093
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 66.25)
+>            Predict: 0.13731068060749954
+>           Else (feature 1 > 66.25)
+>            Predict: 4.15851454889221
+>         Else (feature 0 > 25.35)
+>          If (feature 1 <= 43.65)
+>           If (feature 0 <= 27.19)
+>            Predict: -16.475158304770883
+>           Else (feature 0 > 27.19)
+>            Predict: -7.947134756554647
+>          Else (feature 1 > 43.65)
+>           If (feature 3 <= 62.7)
+>            Predict: 0.1725950049938879
+>           Else (feature 3 > 62.7)
+>            Predict: -1.0926147971432427
+>       Tree 38 (weight 0.1):
+>         If (feature 2 <= 1028.38)
+>          If (feature 0 <= 30.56)
+>           If (feature 3 <= 47.89)
+>            Predict: 1.6647926733523803
+>           Else (feature 3 > 47.89)
+>            Predict: 0.019004190066623235
+>          Else (feature 0 > 30.56)
+>           If (feature 2 <= 1014.35)
+>            Predict: -0.6192794789083232
+>           Else (feature 2 > 1014.35)
+>            Predict: -4.385760311827676
+>         Else (feature 2 > 1028.38)
+>          If (feature 1 <= 39.48)
+>           If (feature 0 <= 6.52)
+>            Predict: 4.573467616169609
+>           Else (feature 0 > 6.52)
+>            Predict: -1.362091279334777
+>          Else (feature 1 > 39.48)
+>           If (feature 0 <= 8.75)
+>            Predict: -7.0007999537928605
+>           Else (feature 0 > 8.75)
+>            Predict: -1.617908469279585
+>       Tree 39 (weight 0.1):
+>         If (feature 2 <= 1017.42)
+>          If (feature 2 <= 1014.19)
+>           If (feature 1 <= 43.13)
+>            Predict: 1.2098492492388833
+>           Else (feature 1 > 43.13)
+>            Predict: -0.4345828650352739
+>          Else (feature 2 > 1014.19)
+>           If (feature 3 <= 96.38)
+>            Predict: 1.0830640036331665
+>           Else (feature 3 > 96.38)
+>            Predict: -6.6054777318343785
+>         Else (feature 2 > 1017.42)
+>          If (feature 2 <= 1019.23)
+>           If (feature 1 <= 57.85)
+>            Predict: -0.8212874032064794
+>           Else (feature 1 > 57.85)
+>            Predict: -2.6667829000634105
+>          Else (feature 2 > 1019.23)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.39094381687835245
+>           Else (feature 0 > 17.84)
+>            Predict: 3.336117383932137
+>       Tree 40 (weight 0.1):
+>         If (feature 3 <= 75.23)
+>          If (feature 1 <= 40.05)
+>           If (feature 1 <= 39.96)
+>            Predict: -1.2851367407493581
+>           Else (feature 1 > 39.96)
+>            Predict: -9.117459296991676
+>          Else (feature 1 > 40.05)
+>           If (feature 1 <= 40.89)
+>            Predict: 4.461974679211411
+>           Else (feature 1 > 40.89)
+>            Predict: 0.25422282080546216
+>         Else (feature 3 > 75.23)
+>          If (feature 0 <= 21.42)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.11457026696795661
+>           Else (feature 0 > 17.84)
+>            Predict: 0.9995406591682215
+>          Else (feature 0 > 21.42)
+>           If (feature 0 <= 23.02)
+>            Predict: -2.664637163988949
+>           Else (feature 0 > 23.02)
+>            Predict: -0.5023743568762508
+>       Tree 41 (weight 0.1):
+>         If (feature 2 <= 1001.9)
+>          If (feature 1 <= 39.13)
+>           If (feature 3 <= 79.95)
+>            Predict: 9.0188365708008
+>           Else (feature 3 > 79.95)
+>            Predict: 2.9702965803786205
+>          Else (feature 1 > 39.13)
+>           If (feature 3 <= 63.68)
+>            Predict: -4.052067945951171
+>           Else (feature 3 > 63.68)
+>            Predict: -1.0796516186664176
+>         Else (feature 2 > 1001.9)
+>          If (feature 0 <= 15.33)
+>           If (feature 0 <= 14.38)
+>            Predict: 0.15316006561614587
+>           Else (feature 0 > 14.38)
+>            Predict: -3.487291240038168
+>          Else (feature 0 > 15.33)
+>           If (feature 1 <= 43.13)
+>            Predict: 2.5605988792505605
+>           Else (feature 1 > 43.13)
+>            Predict: 0.03166127813460667
+>       Tree 42 (weight 0.1):
+>         If (feature 0 <= 11.95)
+>          If (feature 0 <= 11.42)
+>           If (feature 1 <= 38.25)
+>            Predict: -2.0532785635493065
+>           Else (feature 1 > 38.25)
+>            Predict: 0.4665697970110133
+>          Else (feature 0 > 11.42)
+>           If (feature 1 <= 44.2)
+>            Predict: -4.178641719198364
+>           Else (feature 1 > 44.2)
+>            Predict: -9.84024023297988
+>         Else (feature 0 > 11.95)
+>          If (feature 0 <= 13.08)
+>           If (feature 1 <= 40.89)
+>            Predict: 4.383821312183712
+>           Else (feature 1 > 40.89)
+>            Predict: 2.000819554066434
+>          Else (feature 0 > 13.08)
+>           If (feature 0 <= 15.33)
+>            Predict: -1.0813581518144955
+>           Else (feature 0 > 15.33)
+>            Predict: 0.11492139312962121
+>       Tree 43 (weight 0.1):
+>         If (feature 0 <= 8.75)
+>          If (feature 0 <= 7.97)
+>           If (feature 3 <= 86.54)
+>            Predict: 0.983392336251922
+>           Else (feature 3 > 86.54)
+>            Predict: -0.8690504742953818
+>          Else (feature 0 > 7.97)
+>           If (feature 3 <= 62.1)
+>            Predict: -20.310342278835464
+>           Else (feature 3 > 62.1)
+>            Predict: -2.975869736741497
+>         Else (feature 0 > 8.75)
+>          If (feature 0 <= 9.42)
+>           If (feature 2 <= 1015.45)
+>            Predict: 5.74314556767472
+>           Else (feature 2 > 1015.45)
+>            Predict: 2.1033141679659995
+>          Else (feature 0 > 9.42)
+>           If (feature 1 <= 40.89)
+>            Predict: 0.6933339562649613
+>           Else (feature 1 > 40.89)
+>            Predict: -0.10718368674776323
+>       Tree 44 (weight 0.1):
+>         If (feature 1 <= 74.87)
+>          If (feature 1 <= 71.43)
+>           If (feature 1 <= 68.3)
+>            Predict: -0.0751396787352361
+>           Else (feature 1 > 68.3)
+>            Predict: 1.0387569941322914
+>          Else (feature 1 > 71.43)
+>           If (feature 1 <= 72.86)
+>            Predict: -2.5461711201599986
+>           Else (feature 1 > 72.86)
+>            Predict: -0.0018936704520639966
+>         Else (feature 1 > 74.87)
+>          If (feature 1 <= 77.3)
+>           If (feature 3 <= 73.33)
+>            Predict: 3.4362919081871732
+>           Else (feature 3 > 73.33)
+>            Predict: 0.022595797531833054
+>          Else (feature 1 > 77.3)
+>           If (feature 2 <= 1012.39)
+>            Predict: -2.0026738842740444
+>           Else (feature 2 > 1012.39)
+>            Predict: 1.7553499174736846
+>       Tree 45 (weight 0.1):
+>         If (feature 2 <= 1005.35)
+>          If (feature 1 <= 72.24)
+>           If (feature 1 <= 59.14)
+>            Predict: 0.030127466104975898
+>           Else (feature 1 > 59.14)
+>            Predict: -2.2341894812350676
+>          Else (feature 1 > 72.24)
+>           If (feature 3 <= 60.09)
+>            Predict: 4.41863108135717
+>           Else (feature 3 > 60.09)
+>            Predict: -0.11040726869235623
+>         Else (feature 2 > 1005.35)
+>          If (feature 0 <= 31.8)
+>           If (feature 1 <= 66.25)
+>            Predict: -0.06640264597455495
+>           Else (feature 1 > 66.25)
+>            Predict: 0.6711276381424462
+>          Else (feature 0 > 31.8)
+>           If (feature 1 <= 62.44)
+>            Predict: 18.071299971628946
+>           Else (feature 1 > 62.44)
+>            Predict: -1.613111097205577
+>       Tree 46 (weight 0.1):
+>         If (feature 0 <= 25.95)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 22.6)
+>            Predict: 0.0037802976144726266
+>           Else (feature 0 > 22.6)
+>            Predict: -3.2702083989998565
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 47.83)
+>            Predict: 7.351532379664369
+>           Else (feature 1 > 47.83)
+>            Predict: 0.6617643737173495
+>         Else (feature 0 > 25.95)
+>          If (feature 3 <= 62.1)
+>           If (feature 0 <= 29.89)
+>            Predict: 0.7522949567047181
+>           Else (feature 0 > 29.89)
+>            Predict: -0.5659530686126862
+>          Else (feature 3 > 62.1)
+>           If (feature 1 <= 43.41)
+>            Predict: -9.179671352130104
+>           Else (feature 1 > 43.41)
+>            Predict: -0.9646184420761758
+>       Tree 47 (weight 0.1):
+>         If (feature 0 <= 5.18)
+>          If (feature 1 <= 38.62)
+>           If (feature 3 <= 77.17)
+>            Predict: -4.215696425771664
+>           Else (feature 3 > 77.17)
+>            Predict: 5.655069692148392
+>          Else (feature 1 > 38.62)
+>           If (feature 1 <= 39.13)
+>            Predict: -12.269101167501105
+>           Else (feature 1 > 39.13)
+>            Predict: 1.081763483601667
+>         Else (feature 0 > 5.18)
+>          If (feature 0 <= 8.75)
+>           If (feature 0 <= 7.97)
+>            Predict: -0.19756946285599916
+>           Else (feature 0 > 7.97)
+>            Predict: -2.7184931590940438
+>          Else (feature 0 > 8.75)
+>           If (feature 0 <= 9.42)
+>            Predict: 2.558566383813981
+>           Else (feature 0 > 9.42)
+>            Predict: -0.006722635545763743
+>       Tree 48 (weight 0.1):
+>         If (feature 2 <= 1028.38)
+>          If (feature 2 <= 1010.89)
+>           If (feature 1 <= 66.93)
+>            Predict: -0.7473456438858288
+>           Else (feature 1 > 66.93)
+>            Predict: 0.34762458916260297
+>          Else (feature 2 > 1010.89)
+>           If (feature 1 <= 58.86)
+>            Predict: 0.4001213596367478
+>           Else (feature 1 > 58.86)
+>            Predict: -0.33373941983121597
+>         Else (feature 2 > 1028.38)
+>          If (feature 1 <= 42.85)
+>           If (feature 1 <= 39.48)
+>            Predict: 2.1904388134214514
+>           Else (feature 1 > 39.48)
+>            Predict: -3.2474441160938956
+>          Else (feature 1 > 42.85)
+>           If (feature 3 <= 71.55)
+>            Predict: -1.061140549595708
+>           Else (feature 3 > 71.55)
+>            Predict: 6.934556118848832
+>       Tree 49 (weight 0.1):
+>         If (feature 0 <= 11.95)
+>          If (feature 0 <= 10.74)
+>           If (feature 0 <= 8.75)
+>            Predict: -0.48190999213172564
+>           Else (feature 0 > 8.75)
+>            Predict: 1.0350335598803566
+>          Else (feature 0 > 10.74)
+>           If (feature 2 <= 1024.3)
+>            Predict: -3.057989388513731
+>           Else (feature 2 > 1024.3)
+>            Predict: 2.162024696272738
+>         Else (feature 0 > 11.95)
+>          If (feature 0 <= 12.5)
+>           If (feature 3 <= 86.91)
+>            Predict: 4.627051067913808
+>           Else (feature 3 > 86.91)
+>            Predict: 0.9386052167341327
+>          Else (feature 0 > 12.5)
+>           If (feature 1 <= 37.8)
+>            Predict: 4.0889321278523685
+>           Else (feature 1 > 37.8)
+>            Predict: -0.02245818963891235
+>       Tree 50 (weight 0.1):
+>         If (feature 2 <= 1017.42)
+>          If (feature 2 <= 1014.19)
+>           If (feature 1 <= 43.13)
+>            Predict: 0.9320375696962719
+>           Else (feature 1 > 43.13)
+>            Predict: -0.31844348507047093
+>          Else (feature 2 > 1014.19)
+>           If (feature 1 <= 42.42)
+>            Predict: -0.5988031510673222
+>           Else (feature 1 > 42.42)
+>            Predict: 1.3187243855742212
+>         Else (feature 2 > 1017.42)
+>          If (feature 2 <= 1019.23)
+>           If (feature 1 <= 44.2)
+>            Predict: -2.0646082455368195
+>           Else (feature 1 > 44.2)
+>            Predict: -0.4969601265683861
+>          Else (feature 2 > 1019.23)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.2870181057370213
+>           Else (feature 0 > 17.84)
+>            Predict: 2.6148230736448608
+>       Tree 51 (weight 0.1):
+>         If (feature 1 <= 38.62)
+>          If (feature 0 <= 18.4)
+>           If (feature 0 <= 5.18)
+>            Predict: 3.850885339006515
+>           Else (feature 0 > 5.18)
+>            Predict: -0.940687510645146
+>          Else (feature 0 > 18.4)
+>           If (feature 0 <= 18.98)
+>            Predict: -10.80330040562501
+>           Else (feature 0 > 18.98)
+>            Predict: -18.03404880535599
+>         Else (feature 1 > 38.62)
+>          If (feature 2 <= 1026.23)
+>           If (feature 0 <= 13.56)
+>            Predict: 0.5295719576334972
+>           Else (feature 0 > 13.56)
+>            Predict: -0.052812717813551166
+>          Else (feature 2 > 1026.23)
+>           If (feature 1 <= 40.22)
+>            Predict: -4.371246083031292
+>           Else (feature 1 > 40.22)
+>            Predict: -1.3541229527292618
+>       Tree 52 (weight 0.1):
+>         If (feature 1 <= 66.25)
+>          If (feature 1 <= 64.84)
+>           If (feature 3 <= 41.26)
+>            Predict: 3.045631536773922
+>           Else (feature 3 > 41.26)
+>            Predict: -0.0337837562463145
+>          Else (feature 1 > 64.84)
+>           If (feature 1 <= 65.27)
+>            Predict: -5.921444872611693
+>           Else (feature 1 > 65.27)
+>            Predict: -0.8270282146869598
+>         Else (feature 1 > 66.25)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 19.83)
+>            Predict: 1.5405239234096135
+>           Else (feature 0 > 19.83)
+>            Predict: -3.1288830506195398
+>          Else (feature 0 > 23.02)
+>           If (feature 0 <= 25.35)
+>            Predict: 3.2672442442602656
+>           Else (feature 0 > 25.35)
+>            Predict: -0.007592990267182966
+>       Tree 53 (weight 0.1):
+>         If (feature 0 <= 17.84)
+>          If (feature 1 <= 46.93)
+>           If (feature 0 <= 17.2)
+>            Predict: 0.1228349542857993
+>           Else (feature 0 > 17.2)
+>            Predict: -2.392588492043597
+>          Else (feature 1 > 46.93)
+>           If (feature 2 <= 1020.77)
+>            Predict: -1.8240349072310669
+>           Else (feature 2 > 1020.77)
+>            Predict: -6.523289398433308
+>         Else (feature 0 > 17.84)
+>          If (feature 0 <= 18.4)
+>           If (feature 1 <= 47.83)
+>            Predict: 0.5318997435908227
+>           Else (feature 1 > 47.83)
+>            Predict: 4.907584149653537
+>          Else (feature 0 > 18.4)
+>           If (feature 1 <= 46.93)
+>            Predict: -2.110133253015907
+>           Else (feature 1 > 46.93)
+>            Predict: 0.20708863671712482
+>       Tree 54 (weight 0.1):
+>         If (feature 3 <= 76.79)
+>          If (feature 1 <= 40.05)
+>           If (feature 1 <= 39.96)
+>            Predict: -0.7416033424896232
+>           Else (feature 1 > 39.96)
+>            Predict: -6.880323474190146
+>          Else (feature 1 > 40.05)
+>           If (feature 1 <= 40.89)
+>            Predict: 2.887497917363201
+>           Else (feature 1 > 40.89)
+>            Predict: 0.17777582956662522
+>         Else (feature 3 > 76.79)
+>          If (feature 0 <= 19.61)
+>           If (feature 0 <= 17.84)
+>            Predict: -0.09172434324104897
+>           Else (feature 0 > 17.84)
+>            Predict: 1.9482862934683598
+>          Else (feature 0 > 19.61)
+>           If (feature 2 <= 1010.6)
+>            Predict: -0.15262790703036064
+>           Else (feature 2 > 1010.6)
+>            Predict: -1.7280878096087295
+>       Tree 55 (weight 0.1):
+>         If (feature 0 <= 24.79)
+>          If (feature 0 <= 23.02)
+>           If (feature 1 <= 66.93)
+>            Predict: 0.02682576814507517
+>           Else (feature 1 > 66.93)
+>            Predict: -2.323863726560255
+>          Else (feature 0 > 23.02)
+>           If (feature 1 <= 47.83)
+>            Predict: 6.909290893058579
+>           Else (feature 1 > 47.83)
+>            Predict: 0.9944889736997976
+>         Else (feature 0 > 24.79)
+>          If (feature 3 <= 65.24)
+>           If (feature 0 <= 28.5)
+>            Predict: 0.8432916332803679
+>           Else (feature 0 > 28.5)
+>            Predict: -0.3680864130080106
+>          Else (feature 3 > 65.24)
+>           If (feature 1 <= 66.51)
+>            Predict: -2.1147474860288
+>           Else (feature 1 > 66.51)
+>            Predict: -0.3834883036951788
+>       Tree 56 (weight 0.1):
+>         If (feature 0 <= 15.33)
+>          If (feature 0 <= 14.38)
+>           If (feature 0 <= 11.95)
+>            Predict: -0.3290262091199092
+>           Else (feature 0 > 11.95)
+>            Predict: 0.8543511625463592
+>          Else (feature 0 > 14.38)
+>           If (feature 2 <= 1016.21)
+>            Predict: -0.7208476709379852
+>           Else (feature 2 > 1016.21)
+>            Predict: -4.40928839539672
+>         Else (feature 0 > 15.33)
+>          If (feature 0 <= 16.22)
+>           If (feature 2 <= 1013.19)
+>            Predict: 4.554268903891635
+>           Else (feature 2 > 1013.19)
+>            Predict: 1.538781048856137
+>          Else (feature 0 > 16.22)
+>           If (feature 1 <= 46.93)
+>            Predict: -1.1488437756174756
+>           Else (feature 1 > 46.93)
+>            Predict: 0.1634274865006602
+>       Tree 57 (weight 0.1):
+>         If (feature 2 <= 1007.46)
+>          If (feature 1 <= 73.67)
+>           If (feature 1 <= 71.43)
+>            Predict: -0.28457458674767294
+>           Else (feature 1 > 71.43)
+>            Predict: -2.556284198496123
+>          Else (feature 1 > 73.67)
+>           If (feature 3 <= 60.81)
+>            Predict: 4.31886476056719
+>           Else (feature 3 > 60.81)
+>            Predict: 0.3197495651743129
+>         Else (feature 2 > 1007.46)
+>          If (feature 0 <= 17.84)
+>           If (feature 1 <= 46.93)
+>            Predict: 0.04575453109929229
+>           Else (feature 1 > 46.93)
+>            Predict: -2.141138284310683
+>          Else (feature 0 > 17.84)
+>           If (feature 1 <= 56.57)
+>            Predict: 1.3439965861050847
+>           Else (feature 1 > 56.57)
+>            Predict: -0.02904919315788331
+>       Tree 58 (weight 0.1):
+>         If (feature 0 <= 31.8)
+>          If (feature 1 <= 66.25)
+>           If (feature 1 <= 64.84)
+>            Predict: -0.006836636445003446
+>           Else (feature 1 > 64.84)
+>            Predict: -2.0890363043188134
+>          Else (feature 1 > 66.25)
+>           If (feature 1 <= 69.05)
+>            Predict: 1.8596834938858298
+>           Else (feature 1 > 69.05)
+>            Predict: -0.2637818907162569
+>         Else (feature 0 > 31.8)
+>          If (feature 1 <= 69.34)
+>           If (feature 2 <= 1009.63)
+>            Predict: -4.53407923927751
+>           Else (feature 2 > 1009.63)
+>            Predict: 1.2479530412848983
+>          Else (feature 1 > 69.34)
+>           If (feature 1 <= 69.88)
+>            Predict: 5.672382101944148
+>           Else (feature 1 > 69.88)
+>            Predict: -0.7728960613425813
+>       Tree 59 (weight 0.1):
+>         If (feature 2 <= 1010.89)
+>          If (feature 1 <= 68.3)
+>           If (feature 1 <= 43.41)
+>            Predict: 0.423961936091299
+>           Else (feature 1 > 43.41)
+>            Predict: -1.0411314850417004
+>          Else (feature 1 > 68.3)
+>           If (feature 1 <= 68.67)
+>            Predict: 7.130757445704555
+>           Else (feature 1 > 68.67)
+>            Predict: 0.1160942217864609
+>         Else (feature 2 > 1010.89)
+>          If (feature 3 <= 93.63)
+>           If (feature 1 <= 58.86)
+>            Predict: 0.41091291246834866
+>           Else (feature 1 > 58.86)
+>            Predict: -0.2764637915143923
+>          Else (feature 3 > 93.63)
+>           If (feature 1 <= 41.74)
+>            Predict: -3.564757715833512
+>           Else (feature 1 > 41.74)
+>            Predict: 1.1644353912440248
+>       Tree 60 (weight 0.1):
+>         If (feature 1 <= 48.6)
+>          If (feature 1 <= 44.88)
+>           If (feature 2 <= 1016.57)
+>            Predict: 0.4410572983039277
+>           Else (feature 2 > 1016.57)
+>            Predict: -0.44414793681792664
+>          Else (feature 1 > 44.88)
+>           If (feature 2 <= 1014.35)
+>            Predict: -3.0626378082153085
+>           Else (feature 2 > 1014.35)
+>            Predict: 2.0328536525605063
+>         Else (feature 1 > 48.6)
+>          If (feature 1 <= 52.05)
+>           If (feature 2 <= 1009.9)
+>            Predict: 0.24004783900051171
+>           Else (feature 2 > 1009.9)
+>            Predict: 3.1645061792332916
+>          Else (feature 1 > 52.05)
+>           If (feature 0 <= 17.84)
+>            Predict: -1.95074879327582
+>           Else (feature 0 > 17.84)
+>            Predict: 0.021106826304965107
+>       Tree 61 (weight 0.1):
+>         If (feature 1 <= 74.87)
+>          If (feature 1 <= 71.43)
+>           If (feature 1 <= 68.3)
+>            Predict: -0.06241270845694165
+>           Else (feature 1 > 68.3)
+>            Predict: 0.8051320337219834
+>          Else (feature 1 > 71.43)
+>           If (feature 0 <= 24.57)
+>            Predict: 1.648459594873699
+>           Else (feature 0 > 24.57)
+>            Predict: -1.2314608832462137
+>         Else (feature 1 > 74.87)
+>          If (feature 1 <= 77.3)
+>           If (feature 0 <= 21.42)
+>            Predict: -7.482222216002697
+>           Else (feature 0 > 21.42)
+>            Predict: 1.8228183337802573
+>          Else (feature 1 > 77.3)
+>           If (feature 2 <= 1012.39)
+>            Predict: -1.4326641812285505
+>           Else (feature 2 > 1012.39)
+>            Predict: 1.7079353624089986
+>       Tree 62 (weight 0.1):
+>         If (feature 0 <= 5.18)
+>          If (feature 1 <= 42.07)
+>           If (feature 3 <= 96.38)
+>            Predict: 1.4583097259406885
+>           Else (feature 3 > 96.38)
+>            Predict: 7.4053761713858615
+>          Else (feature 1 > 42.07)
+>           If (feature 2 <= 1008.19)
+>            Predict: 0.311290850436914
+>           Else (feature 2 > 1008.19)
+>            Predict: -5.145119802972147
+>         Else (feature 0 > 5.18)
+>          If (feature 1 <= 38.62)
+>           If (feature 0 <= 18.4)
+>            Predict: -0.7259884411546618
+>           Else (feature 0 > 18.4)
+>            Predict: -12.427884135864616
+>          Else (feature 1 > 38.62)
+>           If (feature 1 <= 39.48)
+>            Predict: 1.131291291234381
+>           Else (feature 1 > 39.48)
+>            Predict: -0.007004055574359982
+>       Tree 63 (weight 0.1):
+>         If (feature 2 <= 1004.52)
+>          If (feature 1 <= 70.8)
+>           If (feature 1 <= 69.05)
+>            Predict: -0.45566718124370104
+>           Else (feature 1 > 69.05)
+>            Predict: -3.3633539333883373
+>          Else (feature 1 > 70.8)
+>           If (feature 3 <= 70.63)
+>            Predict: 1.7061073842258219
+>           Else (feature 3 > 70.63)
+>            Predict: -0.35469491259927843
+>         Else (feature 2 > 1004.52)
+>          If (feature 0 <= 15.33)
+>           If (feature 0 <= 14.13)
+>            Predict: 0.13165022513417465
+>           Else (feature 0 > 14.13)
+>            Predict: -1.8886218519887454
+>          Else (feature 0 > 15.33)
+>           If (feature 1 <= 43.13)
+>            Predict: 2.0897911694212086
+>           Else (feature 1 > 43.13)
+>            Predict: 0.023571622513158218
+>       Tree 64 (weight 0.1):
+>         If (feature 1 <= 41.92)
+>          If (feature 1 <= 41.58)
+>           If (feature 2 <= 1015.45)
+>            Predict: 0.6420804366913081
+>           Else (feature 2 > 1015.45)
+>            Predict: -0.3393001000428116
+>          Else (feature 1 > 41.58)
+>           If (feature 3 <= 91.38)
+>            Predict: -2.959889489145066
+>           Else (feature 3 > 91.38)
+>            Predict: -14.822621379271645
+>         Else (feature 1 > 41.92)
+>          If (feature 1 <= 43.13)
+>           If (feature 0 <= 15.33)
+>            Predict: 0.5584851317693598
+>           Else (feature 0 > 15.33)
+>            Predict: 5.35806974907062
+>          Else (feature 1 > 43.13)
+>           If (feature 1 <= 43.65)
+>            Predict: -2.5734171913252673
+>           Else (feature 1 > 43.65)
+>            Predict: 0.06206747847844893
+>       Tree 65 (weight 0.1):
+>         If (feature 2 <= 1010.89)
+>          If (feature 1 <= 66.93)
+>           If (feature 0 <= 20.6)
+>            Predict: -0.0679333275254979
+>           Else (feature 0 > 20.6)
+>            Predict: -1.053808811058633
+>          Else (feature 1 > 66.93)
+>           If (feature 1 <= 67.32)
+>            Predict: 7.372080266725638
+>           Else (feature 1 > 67.32)
+>            Predict: 0.09996335027123535
+>         Else (feature 2 > 1010.89)
+>          If (feature 3 <= 75.61)
+>           If (feature 1 <= 40.05)
+>            Predict: -0.9831581524231143
+>           Else (feature 1 > 40.05)
+>            Predict: 0.5486160789249349
+>          Else (feature 3 > 75.61)
+>           If (feature 1 <= 58.86)
+>            Predict: 0.19399224442246701
+>           Else (feature 1 > 58.86)
+>            Predict: -1.5652059699408227
+>       Tree 66 (weight 0.1):
+>         If (feature 0 <= 28.75)
+>          If (feature 1 <= 73.18)
+>           If (feature 1 <= 71.43)
+>            Predict: 0.05143978594106816
+>           Else (feature 1 > 71.43)
+>            Predict: -1.436513600322334
+>          Else (feature 1 > 73.18)
+>           If (feature 3 <= 73.33)
+>            Predict: 4.1459864582084975
+>           Else (feature 3 > 73.33)
+>            Predict: 0.34965185037807356
+>         Else (feature 0 > 28.75)
+>          If (feature 2 <= 1014.54)
+>           If (feature 2 <= 1013.43)
+>            Predict: -0.4008005884834272
+>           Else (feature 2 > 1013.43)
+>            Predict: 3.683818693727259
+>          Else (feature 2 > 1014.54)
+>           If (feature 1 <= 67.83)
+>            Predict: -0.82614879352537
+>           Else (feature 1 > 67.83)
+>            Predict: -4.535981326886069
+>       Tree 67 (weight 0.1):
+>         If (feature 1 <= 47.83)
+>          If (feature 0 <= 23.02)
+>           If (feature 0 <= 18.71)
+>            Predict: -0.0010074123242523121
+>           Else (feature 0 > 18.71)
+>            Predict: -3.2926535011699234
+>          Else (feature 0 > 23.02)
+>           If (feature 2 <= 1012.39)
+>            Predict: 1.3034696914565052
+>           Else (feature 2 > 1012.39)
+>            Predict: 11.235282784300427
+>         Else (feature 1 > 47.83)
+>          If (feature 1 <= 56.57)
+>           If (feature 0 <= 17.84)
+>            Predict: -1.039931035628621
+>           Else (feature 0 > 17.84)
+>            Predict: 1.9905896386111916
+>          Else (feature 1 > 56.57)
+>           If (feature 1 <= 57.19)
+>            Predict: -2.3357601760278204
+>           Else (feature 1 > 57.19)
+>            Predict: -0.0355403353056693
+>       Tree 68 (weight 0.1):
+>         If (feature 0 <= 24.79)
+>          If (feature 3 <= 41.26)
+>           If (feature 1 <= 45.87)
+>            Predict: 2.4904273637383265
+>           Else (feature 1 > 45.87)
+>            Predict: 13.013875696314063
+>          Else (feature 3 > 41.26)
+>           If (feature 1 <= 49.02)
+>            Predict: -0.18642415027276396
+>           Else (feature 1 > 49.02)
+>            Predict: 0.47121076166963227
+>         Else (feature 0 > 24.79)
+>          If (feature 1 <= 65.27)
+>           If (feature 1 <= 64.84)
+>            Predict: -0.5...
+
+``` scala
+```
+
+``` scala
+```
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
@@ -829,27 +4311,109 @@ Let's save our best model so we can load it without having to rerun the validati
   </p>
 </iframe></p>
 
-| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+| path                                                  | name       | size     |
 |-------------------------------------------------------|------------|----------|
+| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet2.tsv | Sheet2.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet3.tsv | Sheet3.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
 
-> powerPlantRDD: org.apache.spark.rdd.RDD\[String\] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD\[1\] at textFile at &lt;console&gt;:34
+``` scala
+```
 
-> AT V AP RH PE 14.96 41.76 1024.07 73.17 463.26 25.18 62.96 1020.04 59.08 444.37 5.11 39.4 1012.16 92.14 488.56 20.86 57.32 1010.24 76.64 446.48
+``` scala
+```
 
-> powerPlantDF: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 3 more fields\]
+>     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[1] at textFile at <console>:34
 
-> root |-- AT: double (nullable = true) |-- V: double (nullable = true) |-- AP: double (nullable = true) |-- RH: double (nullable = true) |-- PE: double (nullable = true)
+``` scala
+```
 
-> res7: Long = 9568
+>     AT	V	AP	RH	PE
+>     14.96	41.76	1024.07	73.17	463.26
+>     25.18	62.96	1020.04	59.08	444.37
+>     5.11	39.4	1012.16	92.14	488.56
+>     20.86	57.32	1010.24	76.64	446.48
 
-> +-----+-----+-------+-----+------+ | AT| V| AP| RH| PE| +-----+-----+-------+-----+------+ |14.96|41.76|1024.07|73.17|463.26| |25.18|62.96|1020.04|59.08|444.37| | 5.11| 39.4|1012.16|92.14|488.56| |20.86|57.32|1010.24|76.64|446.48| |10.82| 37.5|1009.23|96.62| 473.9| |26.27|59.44|1012.23|58.77|443.67| |15.89|43.96|1014.02|75.24|467.35| | 9.48|44.71|1019.12|66.43|478.42| |14.64| 45.0|1021.78|41.25|475.98| |11.74|43.56|1015.14|70.72| 477.5| +-----+-----+-------+-----+------+ only showing top 10 rows
+``` scala
+```
 
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+``` scala
+```
+
+>     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+
+``` scala
+```
+
+>     root
+>      |-- AT: double (nullable = true)
+>      |-- V: double (nullable = true)
+>      |-- AP: double (nullable = true)
+>      |-- RH: double (nullable = true)
+>      |-- PE: double (nullable = true)
+
+``` scala
+```
+
+>     res7: Long = 9568
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+>     +-----+-----+-------+-----+------+
+>     |   AT|    V|     AP|   RH|    PE|
+>     +-----+-----+-------+-----+------+
+>     |14.96|41.76|1024.07|73.17|463.26|
+>     |25.18|62.96|1020.04|59.08|444.37|
+>     | 5.11| 39.4|1012.16|92.14|488.56|
+>     |20.86|57.32|1010.24|76.64|446.48|
+>     |10.82| 37.5|1009.23|96.62| 473.9|
+>     |26.27|59.44|1012.23|58.77|443.67|
+>     |15.89|43.96|1014.02|75.24|467.35|
+>     | 9.48|44.71|1019.12|66.43|478.42|
+>     |14.64| 45.0|1021.78|41.25|475.98|
+>     |11.74|43.56|1015.14|70.72| 477.5|
+>     +-----+-----+-------+-----+------+
+>     only showing top 10 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
 | 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
 | 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
 | 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
@@ -882,18 +4446,129 @@ Let's save our best model so we can load it without having to rerun the validati
 
 Truncated to 30 rows
 
-> res10: Long = 9568
+``` scala
+```
 
-> +--------+--------------------+-----------+ |database| tableName|isTemporary| +--------+--------------------+-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| simple\_range| false| | default| social\_media\_usage| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| +--------+--------------------+-----------+
+>     res10: Long = 9568
 
-> +--------------------------+--------+-----------+---------+-----------+ |name |database|description|tableType|isTemporary| +--------------------------+--------+-----------+---------+-----------+ |cities\_csv |default |null |EXTERNAL |false | |cleaned\_taxes |default |null |MANAGED |false | |commdettrumpclintonretweet|default |null |MANAGED |false | |donaldtrumptweets |default |null |EXTERNAL |false | |linkage |default |null |EXTERNAL |false | |nations |default |null |EXTERNAL |false | |newmplist |default |null |EXTERNAL |false | |ny\_baby\_names |default |null |MANAGED |false | |nzmpsandparty |default |null |EXTERNAL |false | |pos\_neg\_category |default |null |EXTERNAL |false | |rna |default |null |MANAGED |false | |samh |default |null |EXTERNAL |false | |simple\_range |default |null |MANAGED |false | |social\_media\_usage |default |null |EXTERNAL |false | |table1 |default |null |EXTERNAL |false | |test\_table |default |null |EXTERNAL |false | |uscites |default |null |EXTERNAL |false | +--------------------------+--------+-----------+---------+-----------+
+``` scala
+```
 
-> +-------+---------------------+-------------------------+ |name |description |locationUri | +-------+---------------------+-------------------------+ |default|Default Hive database|dbfs:/user/hive/warehouse| +-------+---------------------+-------------------------+
+``` scala
+```
 
-> +--------+--------------------+-----------+ |database| tableName|isTemporary| +--------+--------------------+-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| simple\_range| false| | default| social\_media\_usage| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| | | power\_plant\_table| true| +--------+--------------------+-----------+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|        simple_range|      false|
+>     | default|  social_media_usage|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     +--------+--------------------+-----------+
 
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+``` scala
+```
+
+``` scala
+```
+
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |name                      |database|description|tableType|isTemporary|
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |cities_csv                |default |null       |EXTERNAL |false      |
+>     |cleaned_taxes             |default |null       |MANAGED  |false      |
+>     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
+>     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
+>     |linkage                   |default |null       |EXTERNAL |false      |
+>     |nations                   |default |null       |EXTERNAL |false      |
+>     |newmplist                 |default |null       |EXTERNAL |false      |
+>     |ny_baby_names             |default |null       |MANAGED  |false      |
+>     |nzmpsandparty             |default |null       |EXTERNAL |false      |
+>     |pos_neg_category          |default |null       |EXTERNAL |false      |
+>     |rna                       |default |null       |MANAGED  |false      |
+>     |samh                      |default |null       |EXTERNAL |false      |
+>     |simple_range              |default |null       |MANAGED  |false      |
+>     |social_media_usage        |default |null       |EXTERNAL |false      |
+>     |table1                    |default |null       |EXTERNAL |false      |
+>     |test_table                |default |null       |EXTERNAL |false      |
+>     |uscites                   |default |null       |EXTERNAL |false      |
+>     +--------------------------+--------+-----------+---------+-----------+
+
+``` scala
+```
+
+>     +-------+---------------------+-------------------------+
+>     |name   |description          |locationUri              |
+>     +-------+---------------------+-------------------------+
+>     |default|Default Hive database|dbfs:/user/hive/warehouse|
+>     +-------+---------------------+-------------------------+
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|        simple_range|      false|
+>     | default|  social_media_usage|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     |        |   power_plant_table|       true|
+>     +--------+--------------------+-----------+
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
 | 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
 | 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
 | 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
@@ -926,117 +4601,210 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-| count  | 9568               | 9568               | 9568               | 9568               | 9568               |
-|--------|--------------------|--------------------|--------------------|--------------------|--------------------|
-| mean   | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
-| stddev | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
-| min    | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
-| max    | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
+``` scala
+```
 
-| 14.96 | 463.26 |
+``` scala
+```
+
+``` scala
+```
+
+| col\_name | data\_type | comment |
+|-----------|------------|---------|
+| AT        | double     | null    |
+| V         | double     | null    |
+| AP        | double     | null    |
+| RH        | double     | null    |
+| PE        | double     | null    |
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+| summary | AT                 | V                  | AP                 | RH                 | PE                 |
+|---------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| count   | 9568               | 9568               | 9568               | 9568               | 9568               |
+| mean    | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
+| stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
+| min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
+| max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
+
+``` scala
+```
+
+``` scala
+```
+
+| Temperature | Power  |
+|-------------|--------|
+| 14.96       | 463.26 |
+| 25.18       | 444.37 |
+| 5.11        | 488.56 |
+| 20.86       | 446.48 |
+| 10.82       | 473.9  |
+| 26.27       | 443.67 |
+| 15.89       | 467.35 |
+| 9.48        | 478.42 |
+| 14.64       | 475.98 |
+| 11.74       | 477.5  |
+| 17.99       | 453.02 |
+| 20.14       | 453.99 |
+| 24.34       | 440.29 |
+| 25.71       | 451.28 |
+| 26.19       | 433.99 |
+| 21.42       | 462.19 |
+| 18.21       | 467.54 |
+| 11.04       | 477.2  |
+| 14.45       | 459.85 |
+| 13.97       | 464.3  |
+| 17.76       | 468.27 |
+| 5.41        | 495.24 |
+| 7.76        | 483.8  |
+| 27.23       | 443.61 |
+| 27.36       | 436.06 |
+| 27.47       | 443.25 |
+| 14.6        | 464.16 |
+| 7.91        | 475.52 |
+| 5.81        | 484.41 |
+| 30.53       | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| ExhaustVaccum | Power  |
+|---------------|--------|
+| 41.76         | 463.26 |
+| 62.96         | 444.37 |
+| 39.4          | 488.56 |
+| 57.32         | 446.48 |
+| 37.5          | 473.9  |
+| 59.44         | 443.67 |
+| 43.96         | 467.35 |
+| 44.71         | 478.42 |
+| 45.0          | 475.98 |
+| 43.56         | 477.5  |
+| 43.72         | 453.02 |
+| 46.93         | 453.99 |
+| 73.5          | 440.29 |
+| 58.59         | 451.28 |
+| 69.34         | 433.99 |
+| 43.79         | 462.19 |
+| 45.0          | 467.54 |
+| 41.74         | 477.2  |
+| 52.75         | 459.85 |
+| 38.47         | 464.3  |
+| 42.42         | 468.27 |
+| 40.07         | 495.24 |
+| 42.28         | 483.8  |
+| 63.9          | 443.61 |
+| 48.6          | 436.06 |
+| 70.72         | 443.25 |
+| 39.31         | 464.16 |
+| 39.96         | 475.52 |
+| 35.79         | 484.41 |
+| 65.18         | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| Pressure | Power  |
+|----------|--------|
+| 1024.07  | 463.26 |
+| 1020.04  | 444.37 |
+| 1012.16  | 488.56 |
+| 1010.24  | 446.48 |
+| 1009.23  | 473.9  |
+| 1012.23  | 443.67 |
+| 1014.02  | 467.35 |
+| 1019.12  | 478.42 |
+| 1021.78  | 475.98 |
+| 1015.14  | 477.5  |
+| 1008.64  | 453.02 |
+| 1014.66  | 453.99 |
+| 1011.31  | 440.29 |
+| 1012.77  | 451.28 |
+| 1009.48  | 433.99 |
+| 1015.76  | 462.19 |
+| 1022.86  | 467.54 |
+| 1022.6   | 477.2  |
+| 1023.97  | 459.85 |
+| 1015.15  | 464.3  |
+| 1009.09  | 468.27 |
+| 1019.16  | 495.24 |
+| 1008.52  | 483.8  |
+| 1014.3   | 443.61 |
+| 1003.18  | 436.06 |
+| 1009.97  | 443.25 |
+| 1011.11  | 464.16 |
+| 1023.57  | 475.52 |
+| 1012.14  | 484.41 |
+| 1012.69  | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+| Humidity | Power  |
+|----------|--------|
+| 73.17    | 463.26 |
+| 59.08    | 444.37 |
+| 92.14    | 488.56 |
+| 76.64    | 446.48 |
+| 96.62    | 473.9  |
+| 58.77    | 443.67 |
+| 75.24    | 467.35 |
+| 66.43    | 478.42 |
+| 41.25    | 475.98 |
+| 70.72    | 477.5  |
+| 75.04    | 453.02 |
+| 64.22    | 453.99 |
+| 84.15    | 440.29 |
+| 61.83    | 451.28 |
+| 87.59    | 433.99 |
+| 43.08    | 462.19 |
+| 48.84    | 467.54 |
+| 77.51    | 477.2  |
+| 63.59    | 459.85 |
+| 55.28    | 464.3  |
+| 66.26    | 468.27 |
+| 64.77    | 495.24 |
+| 83.31    | 483.8  |
+| 47.19    | 443.61 |
+| 54.93    | 436.06 |
+| 74.62    | 443.25 |
+| 72.52    | 464.16 |
+| 88.44    | 475.52 |
+| 92.28    | 484.41 |
+| 41.85    | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| RH    | PE     |
 |-------|--------|
-| 25.18 | 444.37 |
-| 5.11  | 488.56 |
-| 20.86 | 446.48 |
-| 10.82 | 473.9  |
-| 26.27 | 443.67 |
-| 15.89 | 467.35 |
-| 9.48  | 478.42 |
-| 14.64 | 475.98 |
-| 11.74 | 477.5  |
-| 17.99 | 453.02 |
-| 20.14 | 453.99 |
-| 24.34 | 440.29 |
-| 25.71 | 451.28 |
-| 26.19 | 433.99 |
-| 21.42 | 462.19 |
-| 18.21 | 467.54 |
-| 11.04 | 477.2  |
-| 14.45 | 459.85 |
-| 13.97 | 464.3  |
-| 17.76 | 468.27 |
-| 5.41  | 495.24 |
-| 7.76  | 483.8  |
-| 27.23 | 443.61 |
-| 27.36 | 436.06 |
-| 27.47 | 443.25 |
-| 14.6  | 464.16 |
-| 7.91  | 475.52 |
-| 5.81  | 484.41 |
-| 30.53 | 437.89 |
-
-Truncated to 30 rows
-
-| 41.76 | 463.26 |
-|-------|--------|
-| 62.96 | 444.37 |
-| 39.4  | 488.56 |
-| 57.32 | 446.48 |
-| 37.5  | 473.9  |
-| 59.44 | 443.67 |
-| 43.96 | 467.35 |
-| 44.71 | 478.42 |
-| 45.0  | 475.98 |
-| 43.56 | 477.5  |
-| 43.72 | 453.02 |
-| 46.93 | 453.99 |
-| 73.5  | 440.29 |
-| 58.59 | 451.28 |
-| 69.34 | 433.99 |
-| 43.79 | 462.19 |
-| 45.0  | 467.54 |
-| 41.74 | 477.2  |
-| 52.75 | 459.85 |
-| 38.47 | 464.3  |
-| 42.42 | 468.27 |
-| 40.07 | 495.24 |
-| 42.28 | 483.8  |
-| 63.9  | 443.61 |
-| 48.6  | 436.06 |
-| 70.72 | 443.25 |
-| 39.31 | 464.16 |
-| 39.96 | 475.52 |
-| 35.79 | 484.41 |
-| 65.18 | 437.89 |
-
-Truncated to 30 rows
-
-| 1024.07 | 463.26 |
-|---------|--------|
-| 1020.04 | 444.37 |
-| 1012.16 | 488.56 |
-| 1010.24 | 446.48 |
-| 1009.23 | 473.9  |
-| 1012.23 | 443.67 |
-| 1014.02 | 467.35 |
-| 1019.12 | 478.42 |
-| 1021.78 | 475.98 |
-| 1015.14 | 477.5  |
-| 1008.64 | 453.02 |
-| 1014.66 | 453.99 |
-| 1011.31 | 440.29 |
-| 1012.77 | 451.28 |
-| 1009.48 | 433.99 |
-| 1015.76 | 462.19 |
-| 1022.86 | 467.54 |
-| 1022.6  | 477.2  |
-| 1023.97 | 459.85 |
-| 1015.15 | 464.3  |
-| 1009.09 | 468.27 |
-| 1019.16 | 495.24 |
-| 1008.52 | 483.8  |
-| 1014.3  | 443.61 |
-| 1003.18 | 436.06 |
-| 1009.97 | 443.25 |
-| 1011.11 | 464.16 |
-| 1023.57 | 475.52 |
-| 1012.14 | 484.41 |
-| 1012.69 | 437.89 |
-
-Truncated to 30 rows
-
 | 73.17 | 463.26 |
-|-------|--------|
 | 59.08 | 444.37 |
 | 92.14 | 488.56 |
 | 76.64 | 446.48 |
@@ -1069,42 +4837,15 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-| 73.17 | 463.26 |
-|-------|--------|
-| 59.08 | 444.37 |
-| 92.14 | 488.56 |
-| 76.64 | 446.48 |
-| 96.62 | 473.9  |
-| 58.77 | 443.67 |
-| 75.24 | 467.35 |
-| 66.43 | 478.42 |
-| 41.25 | 475.98 |
-| 70.72 | 477.5  |
-| 75.04 | 453.02 |
-| 64.22 | 453.99 |
-| 84.15 | 440.29 |
-| 61.83 | 451.28 |
-| 87.59 | 433.99 |
-| 43.08 | 462.19 |
-| 48.84 | 467.54 |
-| 77.51 | 477.2  |
-| 63.59 | 459.85 |
-| 55.28 | 464.3  |
-| 66.26 | 468.27 |
-| 64.77 | 495.24 |
-| 83.31 | 483.8  |
-| 47.19 | 443.61 |
-| 54.93 | 436.06 |
-| 74.62 | 443.25 |
-| 72.52 | 464.16 |
-| 88.44 | 475.52 |
-| 92.28 | 484.41 |
-| 41.85 | 437.89 |
+``` scala
+```
 
-Truncated to 30 rows
+``` scala
+```
 
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
 | 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
 | 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
 | 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
@@ -1137,10 +4878,26 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-> frameIt: (u: String, h: Int)String
+``` scala
+```
 
-    //gbtModel.bestModel.asInstanceOf[PipelineModel]//.stages.last.asInstanceOf[GBTRegressionModel]
-    //        .write.overwrite().save("dbfs:///databricks/driver/MyTrainedGbtPipelineModel")
+``` scala
+```
 
-    //val finalModel = PipelineModel.load("dbfs:///databricks/driver/MyTrainedGbtPipelineModel/")
+``` scala
+```
+
+``` scala
+```
+
+>     frameIt: (u: String, h: Int)String
+
+``` scala
+//gbtModel.bestModel.asInstanceOf[PipelineModel]//.stages.last.asInstanceOf[GBTRegressionModel]
+//        .write.overwrite().save("dbfs:///databricks/driver/MyTrainedGbtPipelineModel")
+```
+
+``` scala
+//val finalModel = PipelineModel.load("dbfs:///databricks/driver/MyTrainedGbtPipelineModel/")
+```
 

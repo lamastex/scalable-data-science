@@ -3,33 +3,37 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-    ## aka CNN, ConvNet
+``` md # Convolutional Neural Networks
+## aka CNN, ConvNet
+```
 
+```` md As a baseline, let's start a lab running with what we already know.
 
-    We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
+We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
 
-    The main part of the code looks like the following (full code you can run is in the next cell):
+The main part of the code looks like the following (full code you can run is in the next cell):
 
-    ```
-    # imports, setup, load data sets
+```
+# imports, setup, load data sets
 
-    model = Sequential()
-    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+model = Sequential()
+model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-    categorical_labels = to_categorical(y_train, num_classes=10)
+categorical_labels = to_categorical(y_train, num_classes=10)
 
-    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
+history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
 
-    # print metrics, plot errors
-    ```
+# print metrics, plot errors
+```
 
-    Note the changes, which are largely about building a classifier instead of a regression model:
-    * Output layer has one neuron per category, with softmax activation
-    * __Loss function is cross-entropy loss__
-    * Accuracy metric is categorical accuracy
+Note the changes, which are largely about building a classifier instead of a regression model:
+* Output layer has one neuron per category, with softmax activation
+* __Loss function is cross-entropy loss__
+* Accuracy metric is categorical accuracy
+````
 
 Let's hold pointers into wikipedia for these new concepts.
 
@@ -67,389 +71,605 @@ Watch (1:39) \* [![Udacity: Deep Learning by Vincent Vanhoucke - Cross-entropy](
 
 Watch (1:54) \* [![Udacity: Deep Learning by Vincent Vanhoucke - Minimizing Cross-entropy](http://img.youtube.com/vi/x449QQDhMDE/0.jpg)](https://www.youtube.com/watch?v=x449QQDhMDE)
 
-    from keras.models import Sequential
-    from keras.layers import Dense
-    from keras.utils import to_categorical
-    import sklearn.datasets
-    import datetime
-    import matplotlib.pyplot as plt
-    import numpy as np
+``` python
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.utils import to_categorical
+import sklearn.datasets
+import datetime
+import matplotlib.pyplot as plt
+import numpy as np
+
+train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
+test_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt"
+
+X_train, y_train = sklearn.datasets.load_svmlight_file(train_libsvm, n_features=784)
+X_train = X_train.toarray()
+
+X_test, y_test = sklearn.datasets.load_svmlight_file(test_libsvm, n_features=784)
+X_test = X_test.toarray()
+
+model = Sequential()
+model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+
+categorical_labels = to_categorical(y_train, num_classes=10)
+start = datetime.datetime.today()
+
+history = model.fit(X_train, categorical_labels, epochs=40, batch_size=100, validation_split=0.1, verbose=2)
+
+scores = model.evaluate(X_test, to_categorical(y_test, num_classes=10))
+
+print
+for i in range(len(model.metrics_names)):
+	print("%s: %f" % (model.metrics_names[i], scores[i]))
+
+print ("Start: " + str(start))
+end = datetime.datetime.today()
+print ("End: " + str(end))
+print ("Elapse: " + str(end-start))
+```
+
+>     Using TensorFlow backend.
+>     Train on 54000 samples, validate on 6000 samples
+>     Epoch 1/40
+>     1s - loss: 0.4799 - categorical_accuracy: 0.8438 - val_loss: 0.1881 - val_categorical_accuracy: 0.9443
+>     Epoch 2/40
+>     1s - loss: 0.2151 - categorical_accuracy: 0.9355 - val_loss: 0.1650 - val_categorical_accuracy: 0.9503
+>     Epoch 3/40
+>     1s - loss: 0.1753 - categorical_accuracy: 0.9484 - val_loss: 0.1367 - val_categorical_accuracy: 0.9587
+>     Epoch 4/40
+>     1s - loss: 0.1533 - categorical_accuracy: 0.9543 - val_loss: 0.1321 - val_categorical_accuracy: 0.9627
+>     Epoch 5/40
+>     1s - loss: 0.1386 - categorical_accuracy: 0.9587 - val_loss: 0.1321 - val_categorical_accuracy: 0.9618
+>     Epoch 6/40
+>     1s - loss: 0.1287 - categorical_accuracy: 0.9612 - val_loss: 0.1332 - val_categorical_accuracy: 0.9613
+>     Epoch 7/40
+>     1s - loss: 0.1199 - categorical_accuracy: 0.9643 - val_loss: 0.1339 - val_categorical_accuracy: 0.9602
+>     Epoch 8/40
+>     1s - loss: 0.1158 - categorical_accuracy: 0.9642 - val_loss: 0.1220 - val_categorical_accuracy: 0.9658
+>     Epoch 9/40
+>     1s - loss: 0.1099 - categorical_accuracy: 0.9660 - val_loss: 0.1342 - val_categorical_accuracy: 0.9648
+>     Epoch 10/40
+>     1s - loss: 0.1056 - categorical_accuracy: 0.9675 - val_loss: 0.1344 - val_categorical_accuracy: 0.9622
+>     Epoch 11/40
+>     1s - loss: 0.0989 - categorical_accuracy: 0.9691 - val_loss: 0.1266 - val_categorical_accuracy: 0.9643
+>     Epoch 12/40
+>     1s - loss: 0.0982 - categorical_accuracy: 0.9699 - val_loss: 0.1226 - val_categorical_accuracy: 0.9650
+>     Epoch 13/40
+>     1s - loss: 0.0945 - categorical_accuracy: 0.9717 - val_loss: 0.1274 - val_categorical_accuracy: 0.9648
+>     Epoch 14/40
+>     1s - loss: 0.0915 - categorical_accuracy: 0.9711 - val_loss: 0.1374 - val_categorical_accuracy: 0.9637
+>     Epoch 15/40
+>     1s - loss: 0.0885 - categorical_accuracy: 0.9719 - val_loss: 0.1541 - val_categorical_accuracy: 0.9590
+>     Epoch 16/40
+>     1s - loss: 0.0845 - categorical_accuracy: 0.9736 - val_loss: 0.1307 - val_categorical_accuracy: 0.9658
+>     Epoch 17/40
+>     1s - loss: 0.0835 - categorical_accuracy: 0.9742 - val_loss: 0.1451 - val_categorical_accuracy: 0.9613
+>     Epoch 18/40
+>     1s - loss: 0.0801 - categorical_accuracy: 0.9749 - val_loss: 0.1352 - val_categorical_accuracy: 0.9647
+>     Epoch 19/40
+>     1s - loss: 0.0780 - categorical_accuracy: 0.9754 - val_loss: 0.1343 - val_categorical_accuracy: 0.9638
+>     Epoch 20/40
+>     1s - loss: 0.0800 - categorical_accuracy: 0.9746 - val_loss: 0.1306 - val_categorical_accuracy: 0.9682
+>     Epoch 21/40
+>     1s - loss: 0.0745 - categorical_accuracy: 0.9765 - val_loss: 0.1465 - val_categorical_accuracy: 0.9665
+>     Epoch 22/40
+>     1s - loss: 0.0722 - categorical_accuracy: 0.9769 - val_loss: 0.1390 - val_categorical_accuracy: 0.9657
+>     Epoch 23/40
+>     1s - loss: 0.0728 - categorical_accuracy: 0.9771 - val_loss: 0.1511 - val_categorical_accuracy: 0.9633
+>     Epoch 24/40
+>     1s - loss: 0.0717 - categorical_accuracy: 0.9772 - val_loss: 0.1515 - val_categorical_accuracy: 0.9638
+>     Epoch 25/40
+>     1s - loss: 0.0686 - categorical_accuracy: 0.9784 - val_loss: 0.1670 - val_categorical_accuracy: 0.9618
+>     Epoch 26/40
+>     1s - loss: 0.0666 - categorical_accuracy: 0.9789 - val_loss: 0.1446 - val_categorical_accuracy: 0.9655
+>     Epoch 27/40
+>     1s - loss: 0.0663 - categorical_accuracy: 0.9789 - val_loss: 0.1537 - val_categorical_accuracy: 0.9623
+>     Epoch 28/40
+>     1s - loss: 0.0671 - categorical_accuracy: 0.9792 - val_loss: 0.1541 - val_categorical_accuracy: 0.9677
+>     Epoch 29/40
+>     1s - loss: 0.0630 - categorical_accuracy: 0.9804 - val_loss: 0.1642 - val_categorical_accuracy: 0.9632
+>     Epoch 30/40
+>     1s - loss: 0.0660 - categorical_accuracy: 0.9797 - val_loss: 0.1585 - val_categorical_accuracy: 0.9648
+>     Epoch 31/40
+>     1s - loss: 0.0646 - categorical_accuracy: 0.9801 - val_loss: 0.1574 - val_categorical_accuracy: 0.9640
+>     Epoch 32/40
+>     1s - loss: 0.0640 - categorical_accuracy: 0.9789 - val_loss: 0.1506 - val_categorical_accuracy: 0.9657
+>     Epoch 33/40
+>     1s - loss: 0.0623 - categorical_accuracy: 0.9801 - val_loss: 0.1583 - val_categorical_accuracy: 0.9662
+>     Epoch 34/40
+>     1s - loss: 0.0630 - categorical_accuracy: 0.9803 - val_loss: 0.1626 - val_categorical_accuracy: 0.9630
+>     Epoch 35/40
+>     1s - loss: 0.0579 - categorical_accuracy: 0.9815 - val_loss: 0.1647 - val_categorical_accuracy: 0.9640
+>     Epoch 36/40
+>     1s - loss: 0.0605 - categorical_accuracy: 0.9815 - val_loss: 0.1693 - val_categorical_accuracy: 0.9635
+>     Epoch 37/40
+>     1s - loss: 0.0586 - categorical_accuracy: 0.9821 - val_loss: 0.1753 - val_categorical_accuracy: 0.9635
+>     Epoch 38/40
+>     1s - loss: 0.0583 - categorical_accuracy: 0.9812 - val_loss: 0.1703 - val_categorical_accuracy: 0.9653
+>     Epoch 39/40
+>     1s - loss: 0.0593 - categorical_accuracy: 0.9807 - val_loss: 0.1736 - val_categorical_accuracy: 0.9638
+>     Epoch 40/40
+>     1s - loss: 0.0538 - categorical_accuracy: 0.9826 - val_loss: 0.1817 - val_categorical_accuracy: 0.9635
+>        32/10000 [..............................] - ETA: 0s 1952/10000 [====>.........................] - ETA: 0s 3872/10000 [==========>...................] - ETA: 0s 5792/10000 [================>.............] - ETA: 0s 7712/10000 [======================>.......] - ETA: 0s 9632/10000 [===========================>..] - ETA: 0s
+>     loss: 0.205790
+>     categorical_accuracy: 0.959600
+>     Start: 2017-12-07 09:30:17.311756
+>     End: 2017-12-07 09:31:14.504506
+>     Elapse: 0:00:57.192750
 
-    train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
-    test_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt"
+```` md after about a minute we have:
 
-    X_train, y_train = sklearn.datasets.load_svmlight_file(train_libsvm, n_features=784)
-    X_train = X_train.toarray()
+```
+...
 
-    X_test, y_test = sklearn.datasets.load_svmlight_file(test_libsvm, n_features=784)
-    X_test = X_test.toarray()
+Epoch 40/40
+1s - loss: 0.0610 - categorical_accuracy: 0.9809 - val_loss: 0.1918 - val_categorical_accuracy: 0.9583
 
-    model = Sequential()
-    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+...
+ 
+loss: 0.216120
 
-    categorical_labels = to_categorical(y_train, num_classes=10)
-    start = datetime.datetime.today()
+categorical_accuracy: 0.955000
 
-    history = model.fit(X_train, categorical_labels, epochs=40, batch_size=100, validation_split=0.1, verbose=2)
+Start: 2017-12-06 07:35:33.948102
 
-    scores = model.evaluate(X_test, to_categorical(y_test, num_classes=10))
+End: 2017-12-06 07:36:27.046130
 
-    print
-    for i in range(len(model.metrics_names)):
-    	print("%s: %f" % (model.metrics_names[i], scores[i]))
+Elapse: 0:00:53.098028
+```
+````
 
-    print ("Start: " + str(start))
-    end = datetime.datetime.today()
-    print ("End: " + str(end))
-    print ("Elapse: " + str(end-start))
+``` python
+import matplotlib.pyplot as plt
 
-> Using TensorFlow backend. Train on 54000 samples, validate on 6000 samples Epoch 1/40 1s - loss: 0.4799 - categorical\_accuracy: 0.8438 - val\_loss: 0.1881 - val\_categorical\_accuracy: 0.9443 Epoch 2/40 1s - loss: 0.2151 - categorical\_accuracy: 0.9355 - val\_loss: 0.1650 - val\_categorical\_accuracy: 0.9503 Epoch 3/40 1s - loss: 0.1753 - categorical\_accuracy: 0.9484 - val\_loss: 0.1367 - val\_categorical\_accuracy: 0.9587 Epoch 4/40 1s - loss: 0.1533 - categorical\_accuracy: 0.9543 - val\_loss: 0.1321 - val\_categorical\_accuracy: 0.9627 Epoch 5/40 1s - loss: 0.1386 - categorical\_accuracy: 0.9587 - val\_loss: 0.1321 - val\_categorical\_accuracy: 0.9618 Epoch 6/40 1s - loss: 0.1287 - categorical\_accuracy: 0.9612 - val\_loss: 0.1332 - val\_categorical\_accuracy: 0.9613 Epoch 7/40 1s - loss: 0.1199 - categorical\_accuracy: 0.9643 - val\_loss: 0.1339 - val\_categorical\_accuracy: 0.9602 Epoch 8/40 1s - loss: 0.1158 - categorical\_accuracy: 0.9642 - val\_loss: 0.1220 - val\_categorical\_accuracy: 0.9658 Epoch 9/40 1s - loss: 0.1099 - categorical\_accuracy: 0.9660 - val\_loss: 0.1342 - val\_categorical\_accuracy: 0.9648 Epoch 10/40 1s - loss: 0.1056 - categorical\_accuracy: 0.9675 - val\_loss: 0.1344 - val\_categorical\_accuracy: 0.9622 Epoch 11/40 1s - loss: 0.0989 - categorical\_accuracy: 0.9691 - val\_loss: 0.1266 - val\_categorical\_accuracy: 0.9643 Epoch 12/40 1s - loss: 0.0982 - categorical\_accuracy: 0.9699 - val\_loss: 0.1226 - val\_categorical\_accuracy: 0.9650 Epoch 13/40 1s - loss: 0.0945 - categorical\_accuracy: 0.9717 - val\_loss: 0.1274 - val\_categorical\_accuracy: 0.9648 Epoch 14/40 1s - loss: 0.0915 - categorical\_accuracy: 0.9711 - val\_loss: 0.1374 - val\_categorical\_accuracy: 0.9637 Epoch 15/40 1s - loss: 0.0885 - categorical\_accuracy: 0.9719 - val\_loss: 0.1541 - val\_categorical\_accuracy: 0.9590 Epoch 16/40 1s - loss: 0.0845 - categorical\_accuracy: 0.9736 - val\_loss: 0.1307 - val\_categorical\_accuracy: 0.9658 Epoch 17/40 1s - loss: 0.0835 - categorical\_accuracy: 0.9742 - val\_loss: 0.1451 - val\_categorical\_accuracy: 0.9613 Epoch 18/40 1s - loss: 0.0801 - categorical\_accuracy: 0.9749 - val\_loss: 0.1352 - val\_categorical\_accuracy: 0.9647 Epoch 19/40 1s - loss: 0.0780 - categorical\_accuracy: 0.9754 - val\_loss: 0.1343 - val\_categorical\_accuracy: 0.9638 Epoch 20/40 1s - loss: 0.0800 - categorical\_accuracy: 0.9746 - val\_loss: 0.1306 - val\_categorical\_accuracy: 0.9682 Epoch 21/40 1s - loss: 0.0745 - categorical\_accuracy: 0.9765 - val\_loss: 0.1465 - val\_categorical\_accuracy: 0.9665 Epoch 22/40 1s - loss: 0.0722 - categorical\_accuracy: 0.9769 - val\_loss: 0.1390 - val\_categorical\_accuracy: 0.9657 Epoch 23/40 1s - loss: 0.0728 - categorical\_accuracy: 0.9771 - val\_loss: 0.1511 - val\_categorical\_accuracy: 0.9633 Epoch 24/40 1s - loss: 0.0717 - categorical\_accuracy: 0.9772 - val\_loss: 0.1515 - val\_categorical\_accuracy: 0.9638 Epoch 25/40 1s - loss: 0.0686 - categorical\_accuracy: 0.9784 - val\_loss: 0.1670 - val\_categorical\_accuracy: 0.9618 Epoch 26/40 1s - loss: 0.0666 - categorical\_accuracy: 0.9789 - val\_loss: 0.1446 - val\_categorical\_accuracy: 0.9655 Epoch 27/40 1s - loss: 0.0663 - categorical\_accuracy: 0.9789 - val\_loss: 0.1537 - val\_categorical\_accuracy: 0.9623 Epoch 28/40 1s - loss: 0.0671 - categorical\_accuracy: 0.9792 - val\_loss: 0.1541 - val\_categorical\_accuracy: 0.9677 Epoch 29/40 1s - loss: 0.0630 - categorical\_accuracy: 0.9804 - val\_loss: 0.1642 - val\_categorical\_accuracy: 0.9632 Epoch 30/40 1s - loss: 0.0660 - categorical\_accuracy: 0.9797 - val\_loss: 0.1585 - val\_categorical\_accuracy: 0.9648 Epoch 31/40 1s - loss: 0.0646 - categorical\_accuracy: 0.9801 - val\_loss: 0.1574 - val\_categorical\_accuracy: 0.9640 Epoch 32/40 1s - loss: 0.0640 - categorical\_accuracy: 0.9789 - val\_loss: 0.1506 - val\_categorical\_accuracy: 0.9657 Epoch 33/40 1s - loss: 0.0623 - categorical\_accuracy: 0.9801 - val\_loss: 0.1583 - val\_categorical\_accuracy: 0.9662 Epoch 34/40 1s - loss: 0.0630 - categorical\_accuracy: 0.9803 - val\_loss: 0.1626 - val\_categorical\_accuracy: 0.9630 Epoch 35/40 1s - loss: 0.0579 - categorical\_accuracy: 0.9815 - val\_loss: 0.1647 - val\_categorical\_accuracy: 0.9640 Epoch 36/40 1s - loss: 0.0605 - categorical\_accuracy: 0.9815 - val\_loss: 0.1693 - val\_categorical\_accuracy: 0.9635 Epoch 37/40 1s - loss: 0.0586 - categorical\_accuracy: 0.9821 - val\_loss: 0.1753 - val\_categorical\_accuracy: 0.9635 Epoch 38/40 1s - loss: 0.0583 - categorical\_accuracy: 0.9812 - val\_loss: 0.1703 - val\_categorical\_accuracy: 0.9653 Epoch 39/40 1s - loss: 0.0593 - categorical\_accuracy: 0.9807 - val\_loss: 0.1736 - val\_categorical\_accuracy: 0.9638 Epoch 40/40 1s - loss: 0.0538 - categorical\_accuracy: 0.9826 - val\_loss: 0.1817 - val\_categorical\_accuracy: 0.9635 32/10000 \[..............................\] - ETA: 0s 1952/10000 \[====&gt;.........................\] - ETA: 0s 3872/10000 \[==========&gt;...................\] - ETA: 0s 5792/10000 \[================&gt;.............\] - ETA: 0s 7712/10000 \[======================&gt;.......\] - ETA: 0s 9632/10000 \[===========================&gt;..\] - ETA: 0s loss: 0.205790 categorical\_accuracy: 0.959600 Start: 2017-12-07 09:30:17.311756 End: 2017-12-07 09:31:14.504506 Elapse: 0:00:57.192750
+fig, ax = plt.subplots()
+fig.set_size_inches((5,5))
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+display(fig)
+```
 
+``` md What are the big takeaways from this experiment?
 
-    ```
-    ...
+1. We get pretty impressive "apparent error" accuracy right from the start! A small network gets us to training accuracy 97% by epoch 20
+2. The model *appears* to continue to learn if we let it run, although it does slow down and oscillate a bit.
+3. Our test accuracy is about 95% after 5 epochs and never gets better ... it gets worse!
+4. Therefore, we are overfitting very quickly... most of the "training" turns out to be a waste.
+5. For what it's worth, we get 95% accuracy without much work.
 
-    Epoch 40/40
-    1s - loss: 0.0610 - categorical_accuracy: 0.9809 - val_loss: 0.1918 - val_categorical_accuracy: 0.9583
+This is not terrible compared to other, non-neural-network approaches to the problem. After all, we could probably tweak this a bit and do even better.
 
-    ...
-     
-    loss: 0.216120
+But we talked about using deep learning to solve "95%" problems or "98%" problems ... where one error in 20, or 50 simply won't work. If we can get to "multiple nines" of accuracy, then we can do things like automate mail sorting and translation, create cars that react properly (all the time) to street signs, and control systems for robots or drones that function autonomously.
 
-    categorical_accuracy: 0.955000
+Try two more experiments (try them separately):
+1. Add a third, hidden layer.
+2. Increase the size of the hidden layers.
 
-    Start: 2017-12-06 07:35:33.948102
+Adding another layer slows things down a little (why?) but doesn't seem to make a difference in accuracy.
 
-    End: 2017-12-06 07:36:27.046130
+Adding a lot more neurons into the first topology slows things down significantly -- 10x as many neurons, and only a marginal increase in accuracy. Notice also (in the plot) that the learning clearly degrades after epoch 50 or so.
 
-    Elapse: 0:00:53.098028
-    ```
+... We need a new approach!
 
-    import matplotlib.pyplot as plt
+---
 
-    fig, ax = plt.subplots()
-    fig.set_size_inches((5,5))
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    display(fig)
+... let's think about this:
 
+### What is layer 2 learning from layer 1? Combinations of pixels
 
-    1. We get pretty impressive "apparent error" accuracy right from the start! A small network gets us to training accuracy 97% by epoch 20
-    2. The model *appears* to continue to learn if we let it run, although it does slow down and oscillate a bit.
-    3. Our test accuracy is about 95% after 5 epochs and never gets better ... it gets worse!
-    4. Therefore, we are overfitting very quickly... most of the "training" turns out to be a waste.
-    5. For what it's worth, we get 95% accuracy without much work.
+#### Combinations of pixels contain information but...
 
-    This is not terrible compared to other, non-neural-network approaches to the problem. After all, we could probably tweak this a bit and do even better.
+There are a lot of them (combinations) and they are "fragile" 
 
-    But we talked about using deep learning to solve "95%" problems or "98%" problems ... where one error in 20, or 50 simply won't work. If we can get to "multiple nines" of accuracy, then we can do things like automate mail sorting and translation, create cars that react properly (all the time) to street signs, and control systems for robots or drones that function autonomously.
+In fact, in our last experiment, we basically built a model that memorizes a bunch of "magic" pixel combinations.
 
-    Try two more experiments (try them separately):
-    1. Add a third, hidden layer.
-    2. Increase the size of the hidden layers.
+What might be a better way to build features?
 
-    Adding another layer slows things down a little (why?) but doesn't seem to make a difference in accuracy.
+* When humans perform this task, we look not at arbitrary pixel combinations, but certain geometric patterns -- lines, curves, loops.
+* These features are made up of combinations of pixels, but they are far from arbitrary
+* We identify these features regardless of translation, rotation, etc.
 
-    Adding a lot more neurons into the first topology slows things down significantly -- 10x as many neurons, and only a marginal increase in accuracy. Notice also (in the plot) that the learning clearly degrades after epoch 50 or so.
+Is there a way to get the network to do the same thing?
 
-    ... We need a new approach!
+I.e., in layer one, identify pixels. Then in layer 2+, identify abstractions over pixels that are translation-invariant 2-D shapes?
 
-    ---
+We could look at where a "filter" that represents one of these features (e.g., and edge) matches the image.
 
-    ... let's think about this:
+How would this work?
 
-    ### What is layer 2 learning from layer 1? Combinations of pixels
+### Convolution
 
-    #### Combinations of pixels contain information but...
+Convolution in the general mathematical sense is define as follows:
 
-    There are a lot of them (combinations) and they are "fragile" 
+<img src="https://i.imgur.com/lurC2Cx.png" width=300>
 
-    In fact, in our last experiment, we basically built a model that memorizes a bunch of "magic" pixel combinations.
+The convolution we deal with in deep learning is a simplified case. We want to compare two signals. Here are two visualizations, courtesy of Wikipedia, that help communicate how convolution emphasizes features:
 
-    What might be a better way to build features?
+<img src="http://i.imgur.com/EDCaMl2.png" width=500>
 
-    * When humans perform this task, we look not at arbitrary pixel combinations, but certain geometric patterns -- lines, curves, loops.
-    * These features are made up of combinations of pixels, but they are far from arbitrary
-    * We identify these features regardless of translation, rotation, etc.
+---
 
-    Is there a way to get the network to do the same thing?
+#### Here's an animation (where we change \\({\tau}\\)) 
+<img src="http://i.imgur.com/0BFcnaw.gif">
 
-    I.e., in layer one, identify pixels. Then in layer 2+, identify abstractions over pixels that are translation-invariant 2-D shapes?
+__In one sense, the convolution captures and quantifies the pattern matching over space__
 
-    We could look at where a "filter" that represents one of these features (e.g., and edge) matches the image.
+If we perform this in two dimensions, we can achieve effects like highlighting edges:
 
-    How would this work?
+<img src="http://i.imgur.com/DKEXIII.png">
 
-    ### Convolution
+The matrix here, also called a convolution kernel, is one of the functions we are convolving. Other convolution kernels can blur, "sharpen," etc.
 
-    Convolution in the general mathematical sense is define as follows:
+### So we'll drop in a number of convolution kernels, and the network will learn where to use them? Nope. Better than that.
 
-    <img src="https://i.imgur.com/lurC2Cx.png" width=300>
+## We'll program in the *idea* of discrete convolution, and the network will learn what kernels extract meaningful features!
 
-    The convolution we deal with in deep learning is a simplified case. We want to compare two signals. Here are two visualizations, courtesy of Wikipedia, that help communicate how convolution emphasizes features:
+The values in a (fixed-size) convolution kernel matrix will be variables in our deep learning model. Although inuitively it seems like it would be hard to learn useful params, in fact, since those variables are used repeatedly across the image data, it "focuses" the error on a smallish number of parameters with a lot of influence -- so it should be vastly *less* expensive to train than just a huge fully connected layer like we discussed above.
 
-    <img src="http://i.imgur.com/EDCaMl2.png" width=500>
+This idea was developed in the late 1980s, and by 1989, Yann LeCun (at AT&T/Bell Labs) had built a practical high-accuracy system (used in the 1990s for processing handwritten checks and mail).
 
-    ---
+__How do we hook this into our neural networks?__
 
-    #### Here's an animation (where we change \\({\tau}\\)) 
-    <img src="http://i.imgur.com/0BFcnaw.gif">
+* First, we can preserve the geometric properties of our data by "shaping" the vectors as 2D instead of 1D.
 
-    __In one sense, the convolution captures and quantifies the pattern matching over space__
+* Then we'll create a layer whose value is not just activation applied to weighted sum of inputs, but instead it's the result of a dot-product (element-wise multiply and sum) between the kernel and a patch of the input vector (image).
+    * This value will be our "pre-activation" and optionally feed into an activation function (or "detector")
 
-    If we perform this in two dimensions, we can achieve effects like highlighting edges:
+<img src="http://i.imgur.com/ECyi9lL.png">
 
-    <img src="http://i.imgur.com/DKEXIII.png">
 
-    The matrix here, also called a convolution kernel, is one of the functions we are convolving. Other convolution kernels can blur, "sharpen," etc.
+If we perform this operation at lots of positions over the image, we'll get lots of outputs, as many as one for every input pixel. 
 
-    ### So we'll drop in a number of convolution kernels, and the network will learn where to use them? Nope. Better than that.
 
-    ## We'll program in the *idea* of discrete convolution, and the network will learn what kernels extract meaningful features!
+<img src="http://i.imgur.com/WhOrJ0Y.jpg">
 
-    The values in a (fixed-size) convolution kernel matrix will be variables in our deep learning model. Although inuitively it seems like it would be hard to learn useful params, in fact, since those variables are used repeatedly across the image data, it "focuses" the error on a smallish number of parameters with a lot of influence -- so it should be vastly *less* expensive to train than just a huge fully connected layer like we discussed above.
+* So we'll add another layer that "picks" the highest convolution pattern match from nearby pixels, which
+    * makes our pattern match a little bit translation invariant (a fuzzy location match)
+    * reduces the number of outputs significantly
+* This layer is commonly called a pooling layer, and if we pick the "maximum match" then it's a "max pooling" layer.
 
-    This idea was developed in the late 1980s, and by 1989, Yann LeCun (at AT&T/Bell Labs) had built a practical high-accuracy system (used in the 1990s for processing handwritten checks and mail).
+<img src="http://i.imgur.com/9iPpfpb.png">
 
-    __How do we hook this into our neural networks?__
+__The end result is that the kernel or filter together with max pooling creates a value in a subsequent layer which represents the appearance of a pattern in a local area in a prior layer.__
 
-    * First, we can preserve the geometric properties of our data by "shaping" the vectors as 2D instead of 1D.
+__Again, the network will be given a number of "slots" for these filters and will learn (by minimizing error) what filter values produce meaningful features. This is the key insight into how modern image-recognition networks are able to generalize -- i.e., learn to tell 6s from 7s or cats from dogs.__
 
-    * Then we'll create a layer whose value is not just activation applied to weighted sum of inputs, but instead it's the result of a dot-product (element-wise multiply and sum) between the kernel and a patch of the input vector (image).
-        * This value will be our "pre-activation" and optionally feed into an activation function (or "detector")
+<img src="http://i.imgur.com/F8eH3vj.png">
 
-    <img src="http://i.imgur.com/ECyi9lL.png">
+## Ok, let's build our first ConvNet:
 
+First, we want to explicity shape our data into a 2-D configuration. We'll end up with a 4-D tensor where the first dimension is the training examples, then each example is 28x28 pixels, and we'll explicitly say it's 1-layer deep. (Why? with color images, we typically process over 3 or 4 channels in this last dimension)
 
-    If we perform this operation at lots of positions over the image, we'll get lots of outputs, as many as one for every input pixel. 
+A step by step animation follows:
+* http://cs231n.github.io/assets/conv-demo/index.html
+```
 
+``` python
+train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
+test_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt"
 
-    <img src="http://i.imgur.com/WhOrJ0Y.jpg">
+X_train, y_train = sklearn.datasets.load_svmlight_file(train_libsvm, n_features=784)
+X_train = X_train.toarray()
 
-    * So we'll add another layer that "picks" the highest convolution pattern match from nearby pixels, which
-        * makes our pattern match a little bit translation invariant (a fuzzy location match)
-        * reduces the number of outputs significantly
-    * This layer is commonly called a pooling layer, and if we pick the "maximum match" then it's a "max pooling" layer.
+X_test, y_test = sklearn.datasets.load_svmlight_file(test_libsvm, n_features=784)
+X_test = X_test.toarray()
 
-    <img src="http://i.imgur.com/9iPpfpb.png">
+X_train = X_train.reshape( (X_train.shape[0], 28, 28, 1) )
+X_train = X_train.astype('float32')
+X_train /= 255
+y_train = to_categorical(y_train, num_classes=10)
 
-    __The end result is that the kernel or filter together with max pooling creates a value in a subsequent layer which represents the appearance of a pattern in a local area in a prior layer.__
+X_test = X_test.reshape( (X_test.shape[0], 28, 28, 1) )
+X_test = X_test.astype('float32')
+X_test /= 255
+y_test = to_categorical(y_test, num_classes=10)
+```
 
-    __Again, the network will be given a number of "slots" for these filters and will learn (by minimizing error) what filter values produce meaningful features. This is the key insight into how modern image-recognition networks are able to generalize -- i.e., learn to tell 6s from 7s or cats from dogs.__
+``` md Now the model:
+```
 
-    <img src="http://i.imgur.com/F8eH3vj.png">
+``` python
+from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 
-    ## Ok, let's build our first ConvNet:
+model = Sequential()
 
-    First, we want to explicity shape our data into a 2-D configuration. We'll end up with a 4-D tensor where the first dimension is the training examples, then each example is 28x28 pixels, and we'll explicitly say it's 1-layer deep. (Why? with color images, we typically process over 3 or 4 channels in this last dimension)
+model.add(Conv2D(8, # number of kernels 
+				(4, 4), # kernel size
+                padding='valid', # no padding; output will be smaller than input
+                input_shape=(28, 28, 1)))
 
-    A step by step animation follows:
-    * http://cs231n.github.io/assets/conv-demo/index.html
+model.add(Activation('relu'))
 
-    train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
-    test_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-test.txt"
+model.add(MaxPooling2D(pool_size=(2,2)))
 
-    X_train, y_train = sklearn.datasets.load_svmlight_file(train_libsvm, n_features=784)
-    X_train = X_train.toarray()
+model.add(Flatten())
+model.add(Dense(128))
+model.add(Activation('relu')) # alternative syntax for applying activation
 
-    X_test, y_test = sklearn.datasets.load_svmlight_file(test_libsvm, n_features=784)
-    X_test = X_test.toarray()
+model.add(Dense(10))
+model.add(Activation('softmax'))
 
-    X_train = X_train.reshape( (X_train.shape[0], 28, 28, 1) )
-    X_train = X_train.astype('float32')
-    X_train /= 255
-    y_train = to_categorical(y_train, num_classes=10)
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+```
 
-    X_test = X_test.reshape( (X_test.shape[0], 28, 28, 1) )
-    X_test = X_test.astype('float32')
-    X_test /= 255
-    y_test = to_categorical(y_test, num_classes=10)
+``` md ... and the training loop and output:
+```
 
-    from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
+``` python
+start = datetime.datetime.today()
 
-    model = Sequential()
+history = model.fit(X_train, y_train, batch_size=128, epochs=8, verbose=2, validation_split=0.1)
 
-    model.add(Conv2D(8, # number of kernels 
-    				(4, 4), # kernel size
-                    padding='valid', # no padding; output will be smaller than input
-                    input_shape=(28, 28, 1)))
+scores = model.evaluate(X_test, y_test, verbose=1)
 
-    model.add(Activation('relu'))
+print
+for i in range(len(model.metrics_names)):
+	print("%s: %f" % (model.metrics_names[i], scores[i]))
+```
 
-    model.add(MaxPooling2D(pool_size=(2,2)))
+>     Train on 54000 samples, validate on 6000 samples
+>     Epoch 1/8
+>     12s - loss: 0.3183 - acc: 0.9115 - val_loss: 0.1114 - val_acc: 0.9713
+>     Epoch 2/8
+>     13s - loss: 0.1021 - acc: 0.9700 - val_loss: 0.0714 - val_acc: 0.9803
+>     Epoch 3/8
+>     12s - loss: 0.0706 - acc: 0.9792 - val_loss: 0.0574 - val_acc: 0.9852
+>     Epoch 4/8
+>     15s - loss: 0.0518 - acc: 0.9851 - val_loss: 0.0538 - val_acc: 0.9857
+>     Epoch 5/8
+>     16s - loss: 0.0419 - acc: 0.9875 - val_loss: 0.0457 - val_acc: 0.9872
+>     Epoch 6/8
+>     16s - loss: 0.0348 - acc: 0.9896 - val_loss: 0.0473 - val_acc: 0.9867
+>     Epoch 7/8
+>     16s - loss: 0.0280 - acc: 0.9917 - val_loss: 0.0445 - val_acc: 0.9875
+>     Epoch 8/8
+>     14s - loss: 0.0225 - acc: 0.9934 - val_loss: 0.0485 - val_acc: 0.9868
+>        32/10000 [..............................] - ETA: 0s  672/10000 [=>............................] - ETA: 0s 1312/10000 [==>...........................] - ETA: 0s 1952/10000 [====>.........................] - ETA: 0s 2560/10000 [======>.......................] - ETA: 0s 3072/10000 [========>.....................] - ETA: 0s 3712/10000 [==========>...................] - ETA: 0s 4384/10000 [============>.................] - ETA: 0s 5024/10000 [==============>...............] - ETA: 0s 5632/10000 [===============>..............] - ETA: 0s 6304/10000 [=================>............] - ETA: 0s 6976/10000 [===================>..........] - ETA: 0s 7616/10000 [=====================>........] - ETA: 0s 8256/10000 [=======================>......] - ETA: 0s 8960/10000 [=========================>....] - ETA: 0s 9600/10000 [===========================>..] - ETA: 0s
+>     loss: 0.054931
+>     acc: 0.983000
 
-    model.add(Flatten())
-    model.add(Dense(128))
-    model.add(Activation('relu')) # alternative syntax for applying activation
+``` python
+fig, ax = plt.subplots()
+fig.set_size_inches((5,5))
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+display(fig)
+```
 
-    model.add(Dense(10))
-    model.add(Activation('softmax'))
+``` md ### Our MNIST ConvNet
 
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+In our first convolutional MNIST experiment, we get to almost 99% validation accuracy in just a few epochs (a minutes or so on CPU)!
 
-    start = datetime.datetime.today()
+The training accuracy is effectively 100%, though, so we've almost completely overfit (i.e., memorized the training data) by this point and need to do a little work if we want to keep learning.
 
-    history = model.fit(X_train, y_train, batch_size=128, epochs=8, verbose=2, validation_split=0.1)
+Let's add another convolutional layer:
+```
 
-    scores = model.evaluate(X_test, y_test, verbose=1)
+``` python
+model = Sequential()
 
-    print
-    for i in range(len(model.metrics_names)):
-    	print("%s: %f" % (model.metrics_names[i], scores[i]))
+model.add(Conv2D(8, # number of kernels 
+						(4, 4), # kernel size
+                        padding='valid',
+                        input_shape=(28, 28, 1)))
 
-> Train on 54000 samples, validate on 6000 samples Epoch 1/8 12s - loss: 0.3183 - acc: 0.9115 - val\_loss: 0.1114 - val\_acc: 0.9713 Epoch 2/8 13s - loss: 0.1021 - acc: 0.9700 - val\_loss: 0.0714 - val\_acc: 0.9803 Epoch 3/8 12s - loss: 0.0706 - acc: 0.9792 - val\_loss: 0.0574 - val\_acc: 0.9852 Epoch 4/8 15s - loss: 0.0518 - acc: 0.9851 - val\_loss: 0.0538 - val\_acc: 0.9857 Epoch 5/8 16s - loss: 0.0419 - acc: 0.9875 - val\_loss: 0.0457 - val\_acc: 0.9872 Epoch 6/8 16s - loss: 0.0348 - acc: 0.9896 - val\_loss: 0.0473 - val\_acc: 0.9867 Epoch 7/8 16s - loss: 0.0280 - acc: 0.9917 - val\_loss: 0.0445 - val\_acc: 0.9875 Epoch 8/8 14s - loss: 0.0225 - acc: 0.9934 - val\_loss: 0.0485 - val\_acc: 0.9868 32/10000 \[..............................\] - ETA: 0s 672/10000 \[=&gt;............................\] - ETA: 0s 1312/10000 \[==&gt;...........................\] - ETA: 0s 1952/10000 \[====&gt;.........................\] - ETA: 0s 2560/10000 \[======&gt;.......................\] - ETA: 0s 3072/10000 \[========&gt;.....................\] - ETA: 0s 3712/10000 \[==========&gt;...................\] - ETA: 0s 4384/10000 \[============&gt;.................\] - ETA: 0s 5024/10000 \[==============&gt;...............\] - ETA: 0s 5632/10000 \[===============&gt;..............\] - ETA: 0s 6304/10000 \[=================&gt;............\] - ETA: 0s 6976/10000 \[===================&gt;..........\] - ETA: 0s 7616/10000 \[=====================&gt;........\] - ETA: 0s 8256/10000 \[=======================&gt;......\] - ETA: 0s 8960/10000 \[=========================&gt;....\] - ETA: 0s 9600/10000 \[===========================&gt;..\] - ETA: 0s loss: 0.054931 acc: 0.983000
+model.add(Activation('relu'))
 
-    fig, ax = plt.subplots()
-    fig.set_size_inches((5,5))
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    display(fig)
+model.add(Conv2D(8, (4, 4)))
+model.add(Activation('relu'))
 
+model.add(MaxPooling2D(pool_size=(2,2)))
 
-    In our first convolutional MNIST experiment, we get to almost 99% validation accuracy in just a few epochs (a minutes or so on CPU)!
+model.add(Flatten())
+model.add(Dense(128))
+model.add(Activation('relu'))
 
-    The training accuracy is effectively 100%, though, so we've almost completely overfit (i.e., memorized the training data) by this point and need to do a little work if we want to keep learning.
+model.add(Dense(10))
+model.add(Activation('softmax'))
 
-    Let's add another convolutional layer:
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    model = Sequential()
+history = model.fit(X_train, y_train, batch_size=128, epochs=15, verbose=2, validation_split=0.1)
 
-    model.add(Conv2D(8, # number of kernels 
-    						(4, 4), # kernel size
-                            padding='valid',
-                            input_shape=(28, 28, 1)))
+scores = model.evaluate(X_test, y_test, verbose=1)
 
-    model.add(Activation('relu'))
+print
+for i in range(len(model.metrics_names)):
+	print("%s: %f" % (model.metrics_names[i], scores[i]))
+```
 
-    model.add(Conv2D(8, (4, 4)))
-    model.add(Activation('relu'))
+>     Train on 54000 samples, validate on 6000 samples
+>     Epoch 1/15
+>     21s - loss: 0.2698 - acc: 0.9242 - val_loss: 0.0763 - val_acc: 0.9790
+>     Epoch 2/15
+>     22s - loss: 0.0733 - acc: 0.9772 - val_loss: 0.0593 - val_acc: 0.9840
+>     Epoch 3/15
+>     21s - loss: 0.0522 - acc: 0.9838 - val_loss: 0.0479 - val_acc: 0.9867
+>     Epoch 4/15
+>     21s - loss: 0.0394 - acc: 0.9876 - val_loss: 0.0537 - val_acc: 0.9828
+>     Epoch 5/15
+>     21s - loss: 0.0301 - acc: 0.9907 - val_loss: 0.0434 - val_acc: 0.9885
+>     Epoch 6/15
+>     21s - loss: 0.0255 - acc: 0.9916 - val_loss: 0.0444 - val_acc: 0.9867
+>     Epoch 7/15
+>     21s - loss: 0.0192 - acc: 0.9941 - val_loss: 0.0416 - val_acc: 0.9892
+>     Epoch 8/15
+>     21s - loss: 0.0155 - acc: 0.9952 - val_loss: 0.0405 - val_acc: 0.9900
+>     Epoch 9/15
+>     21s - loss: 0.0143 - acc: 0.9953 - val_loss: 0.0490 - val_acc: 0.9860
+>     Epoch 10/15
+>     22s - loss: 0.0122 - acc: 0.9963 - val_loss: 0.0478 - val_acc: 0.9877
+>     Epoch 11/15
+>     21s - loss: 0.0087 - acc: 0.9972 - val_loss: 0.0508 - val_acc: 0.9877
+>     Epoch 12/15
+>     21s - loss: 0.0098 - acc: 0.9967 - val_loss: 0.0401 - val_acc: 0.9902
+>     Epoch 13/15
+>     21s - loss: 0.0060 - acc: 0.9984 - val_loss: 0.0450 - val_acc: 0.9897
+>     Epoch 14/15
+>     21s - loss: 0.0061 - acc: 0.9981 - val_loss: 0.0523 - val_acc: 0.9883
+>     Epoch 15/15
+>     21s - loss: 0.0069 - acc: 0.9977 - val_loss: 0.0534 - val_acc: 0.9885
+>        32/10000 [..............................] - ETA: 1s  448/10000 [>.............................] - ETA: 1s  864/10000 [=>............................] - ETA: 1s 1280/10000 [==>...........................] - ETA: 1s 1696/10000 [====>.........................] - ETA: 1s 2112/10000 [=====>........................] - ETA: 0s 2560/10000 [======>.......................] - ETA: 0s 2976/10000 [=======>......................] - ETA: 0s 3392/10000 [=========>....................] - ETA: 0s 3840/10000 [==========>...................] - ETA: 0s 4320/10000 [===========>..................] - ETA: 0s 4736/10000 [=============>................] - ETA: 0s 5152/10000 [==============>...............] - ETA: 0s 5568/10000 [===============>..............] - ETA: 0s 5952/10000 [================>.............] - ETA: 0s 6368/10000 [==================>...........] - ETA: 0s 6816/10000 [===================>..........] - ETA: 0s 7200/10000 [====================>.........] - ETA: 0s 7648/10000 [=====================>........] - ETA: 0s 8000/10000 [=======================>......] - ETA: 0s 8384/10000 [========================>.....] - ETA: 0s 8800/10000 [=========================>....] - ETA: 0s 9216/10000 [==========================>...] - ETA: 0s 9632/10000 [===========================>..] - ETA: 0s
+>     loss: 0.043144
+>     acc: 0.989100
 
-    model.add(MaxPooling2D(pool_size=(2,2)))
+``` md While that's running, let's look at a number of "famous" convolutional networks!
 
-    model.add(Flatten())
-    model.add(Dense(128))
-    model.add(Activation('relu'))
+### LeNet (Yann LeCun, 1998)
 
-    model.add(Dense(10))
-    model.add(Activation('softmax'))
+<img src="http://i.imgur.com/k5hMtMK.png">
 
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+<img src="http://i.imgur.com/ERV9pHW.gif">
+```
 
-    history = model.fit(X_train, y_train, batch_size=128, epochs=15, verbose=2, validation_split=0.1)
+``` md <img src="http://i.imgur.com/TCN9C4P.png">
+```
 
-    scores = model.evaluate(X_test, y_test, verbose=1)
+``` md ### AlexNet (2012)
 
-    print
-    for i in range(len(model.metrics_names)):
-    	print("%s: %f" % (model.metrics_names[i], scores[i]))
+<img src="http://i.imgur.com/CpokDKV.jpg">
 
-> Train on 54000 samples, validate on 6000 samples Epoch 1/15 21s - loss: 0.2698 - acc: 0.9242 - val\_loss: 0.0763 - val\_acc: 0.9790 Epoch 2/15 22s - loss: 0.0733 - acc: 0.9772 - val\_loss: 0.0593 - val\_acc: 0.9840 Epoch 3/15 21s - loss: 0.0522 - acc: 0.9838 - val\_loss: 0.0479 - val\_acc: 0.9867 Epoch 4/15 21s - loss: 0.0394 - acc: 0.9876 - val\_loss: 0.0537 - val\_acc: 0.9828 Epoch 5/15 21s - loss: 0.0301 - acc: 0.9907 - val\_loss: 0.0434 - val\_acc: 0.9885 Epoch 6/15 21s - loss: 0.0255 - acc: 0.9916 - val\_loss: 0.0444 - val\_acc: 0.9867 Epoch 7/15 21s - loss: 0.0192 - acc: 0.9941 - val\_loss: 0.0416 - val\_acc: 0.9892 Epoch 8/15 21s - loss: 0.0155 - acc: 0.9952 - val\_loss: 0.0405 - val\_acc: 0.9900 Epoch 9/15 21s - loss: 0.0143 - acc: 0.9953 - val\_loss: 0.0490 - val\_acc: 0.9860 Epoch 10/15 22s - loss: 0.0122 - acc: 0.9963 - val\_loss: 0.0478 - val\_acc: 0.9877 Epoch 11/15 21s - loss: 0.0087 - acc: 0.9972 - val\_loss: 0.0508 - val\_acc: 0.9877 Epoch 12/15 21s - loss: 0.0098 - acc: 0.9967 - val\_loss: 0.0401 - val\_acc: 0.9902 Epoch 13/15 21s - loss: 0.0060 - acc: 0.9984 - val\_loss: 0.0450 - val\_acc: 0.9897 Epoch 14/15 21s - loss: 0.0061 - acc: 0.9981 - val\_loss: 0.0523 - val\_acc: 0.9883 Epoch 15/15 21s - loss: 0.0069 - acc: 0.9977 - val\_loss: 0.0534 - val\_acc: 0.9885 32/10000 \[..............................\] - ETA: 1s 448/10000 \[&gt;.............................\] - ETA: 1s 864/10000 \[=&gt;............................\] - ETA: 1s 1280/10000 \[==&gt;...........................\] - ETA: 1s 1696/10000 \[====&gt;.........................\] - ETA: 1s 2112/10000 \[=====&gt;........................\] - ETA: 0s 2560/10000 \[======&gt;.......................\] - ETA: 0s 2976/10000 \[=======&gt;......................\] - ETA: 0s 3392/10000 \[=========&gt;....................\] - ETA: 0s 3840/10000 \[==========&gt;...................\] - ETA: 0s 4320/10000 \[===========&gt;..................\] - ETA: 0s 4736/10000 \[=============&gt;................\] - ETA: 0s 5152/10000 \[==============&gt;...............\] - ETA: 0s 5568/10000 \[===============&gt;..............\] - ETA: 0s 5952/10000 \[================&gt;.............\] - ETA: 0s 6368/10000 \[==================&gt;...........\] - ETA: 0s 6816/10000 \[===================&gt;..........\] - ETA: 0s 7200/10000 \[====================&gt;.........\] - ETA: 0s 7648/10000 \[=====================&gt;........\] - ETA: 0s 8000/10000 \[=======================&gt;......\] - ETA: 0s 8384/10000 \[========================&gt;.....\] - ETA: 0s 8800/10000 \[=========================&gt;....\] - ETA: 0s 9216/10000 \[==========================&gt;...\] - ETA: 0s 9632/10000 \[===========================&gt;..\] - ETA: 0s loss: 0.043144 acc: 0.989100
+<img src="http://i.imgur.com/Ld2QhXr.jpg">
+```
 
+``` md ### Back to our labs: Still Overfitting
 
-    ### LeNet (Yann LeCun, 1998)
+We're making progress on our test error -- about 99% -- but just a bit for all the additional time, due to the network overfitting the data.
 
-    <img src="http://i.imgur.com/k5hMtMK.png">
+There are a variety of techniques we can take to counter this -- forms of regularization. 
 
-    <img src="http://i.imgur.com/ERV9pHW.gif">
+Let's try a relatively simple solution solution that works surprisingly well: add a pair of `Dropout` filters, a layer that randomly omits a fraction of neurons from each training batch (thus exposing each neuron to only part of the training data).
 
+We'll add more convolution kernels but shrink them to 3x3 as well.
+```
 
-    <img src="http://i.imgur.com/CpokDKV.jpg">
+``` python
+model = Sequential()
 
-    <img src="http://i.imgur.com/Ld2QhXr.jpg">
+model.add(Conv2D(32, # number of kernels 
+						(3, 3), # kernel size
+                        padding='valid',
+                        input_shape=(28, 28, 1)))
 
+model.add(Activation('relu'))
 
-    We're making progress on our test error -- about 99% -- but just a bit for all the additional time, due to the network overfitting the data.
+model.add(Conv2D(32, (3, 3)))
+model.add(Activation('relu'))
 
-    There are a variety of techniques we can take to counter this -- forms of regularization. 
+model.add(MaxPooling2D(pool_size=(2,2)))
 
-    Let's try a relatively simple solution solution that works surprisingly well: add a pair of `Dropout` filters, a layer that randomly omits a fraction of neurons from each training batch (thus exposing each neuron to only part of the training data).
+model.add(Dropout(0.25)) # <- regularize
+model.add(Flatten())
+model.add(Dense(128))
+model.add(Activation('relu'))
 
-    We'll add more convolution kernels but shrink them to 3x3 as well.
+model.add(Dropout(0.5)) # <-regularize
+model.add(Dense(10))
+model.add(Activation('softmax'))
 
-    model = Sequential()
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+history = model.fit(X_train, y_train, batch_size=128, epochs=15, verbose=2)
 
-    model.add(Conv2D(32, # number of kernels 
-    						(3, 3), # kernel size
-                            padding='valid',
-                            input_shape=(28, 28, 1)))
+scores = model.evaluate(X_test, y_test, verbose=2)
 
-    model.add(Activation('relu'))
+print
+for i in range(len(model.metrics_names)):
+	print("%s: %f" % (model.metrics_names[i], scores[i]))
+```
 
-    model.add(Conv2D(32, (3, 3)))
-    model.add(Activation('relu'))
+>     Epoch 1/15
+>     122s - loss: 0.2673 - acc: 0.9186
+>     Epoch 2/15
+>     123s - loss: 0.0903 - acc: 0.9718
+>     Epoch 3/15
+>     124s - loss: 0.0696 - acc: 0.9787
+>     Epoch 4/15
+>     130s - loss: 0.0598 - acc: 0.9821
+>     Epoch 5/15
+>     140s - loss: 0.0507 - acc: 0.9842
+>     Epoch 6/15
+>     148s - loss: 0.0441 - acc: 0.9864
+>     Epoch 7/15
+>     152s - loss: 0.0390 - acc: 0.9878
+>     Epoch 8/15
+>     153s - loss: 0.0353 - acc: 0.9888
+>     Epoch 9/15
+>     161s - loss: 0.0329 - acc: 0.9894
+>     Epoch 10/15
+>     171s - loss: 0.0323 - acc: 0.9894
+>     Epoch 11/15
+>     172s - loss: 0.0288 - acc: 0.9906
+>     Epoch 12/15
+>     71s - loss: 0.0255 - acc: 0.9914
+>     Epoch 13/15
+>     86s - loss: 0.0245 - acc: 0.9916
+>     Epoch 14/15
+>     91s - loss: 0.0232 - acc: 0.9922
+>     Epoch 15/15
+>     86s - loss: 0.0218 - acc: 0.9931
+>
+>     loss: 0.029627
+>     acc: 0.991400
 
-    model.add(MaxPooling2D(pool_size=(2,2)))
+``` md While that's running, let's look at some more recent ConvNet architectures:
 
-    model.add(Dropout(0.25)) # <- regularize
-    model.add(Flatten())
-    model.add(Dense(128))
-    model.add(Activation('relu'))
+### VGG16 (2014)
 
-    model.add(Dropout(0.5)) # <-regularize
-    model.add(Dense(10))
-    model.add(Activation('softmax'))
+<img src="http://i.imgur.com/gl4kZDf.png">
+```
 
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    history = model.fit(X_train, y_train, batch_size=128, epochs=15, verbose=2)
+``` md ### GoogLeNet (2014)
 
-    scores = model.evaluate(X_test, y_test, verbose=2)
+<img src="http://i.imgur.com/hvmtDqN.png">
 
-    print
-    for i in range(len(model.metrics_names)):
-    	print("%s: %f" % (model.metrics_names[i], scores[i]))
+*"Inception" layer: parallel convolutions at different resolutions*
 
-> Epoch 1/15 122s - loss: 0.2673 - acc: 0.9186 Epoch 2/15 123s - loss: 0.0903 - acc: 0.9718 Epoch 3/15 124s - loss: 0.0696 - acc: 0.9787 Epoch 4/15 130s - loss: 0.0598 - acc: 0.9821 Epoch 5/15 140s - loss: 0.0507 - acc: 0.9842 Epoch 6/15 148s - loss: 0.0441 - acc: 0.9864 Epoch 7/15 152s - loss: 0.0390 - acc: 0.9878 Epoch 8/15 153s - loss: 0.0353 - acc: 0.9888 Epoch 9/15 161s - loss: 0.0329 - acc: 0.9894 Epoch 10/15 171s - loss: 0.0323 - acc: 0.9894 Epoch 11/15 172s - loss: 0.0288 - acc: 0.9906 Epoch 12/15 71s - loss: 0.0255 - acc: 0.9914 Epoch 13/15 86s - loss: 0.0245 - acc: 0.9916 Epoch 14/15 91s - loss: 0.0232 - acc: 0.9922 Epoch 15/15 86s - loss: 0.0218 - acc: 0.9931 loss: 0.029627 acc: 0.991400
+### Residual Networks (2015-)
 
+Skip layers to improve training (error propagation). Residual layers learn from details at multiple previous layers.
 
-    ### VGG16 (2014)
+<img src="http://i.imgur.com/32g8Ykl.png">
+```
 
-    <img src="http://i.imgur.com/gl4kZDf.png">
+``` md ---
 
+> __ASIDE: Atrous / Dilated Convolutions__
 
-    <img src="http://i.imgur.com/hvmtDqN.png">
+> An atrous or dilated convolution is a convolution filter with "holes" in it. Effectively, it is a way to enlarge the filter spatially while not adding as many parameters or attending to every element in the input.
 
-    *"Inception" layer: parallel convolutions at different resolutions*
+> Why? Covering a larger input volume allows recognizing coarser-grained patterns; restricting the number of parameters is a way of regularizing or constraining the capacity of the model, making training easier.
 
-    ### Residual Networks (2015-)
+---
+```
 
-    Skip layers to improve training (error propagation). Residual layers learn from details at multiple previous layers.
+``` md ## *Lab Wrapup*
 
-    <img src="http://i.imgur.com/32g8Ykl.png">
+From the last lab, you should have a test accuracy of over 99.1%
 
+For one more activity, try changing the optimizer to old-school "sgd" -- just to see how far we've come with these modern gradient descent techniques in the last few years.
 
-    > __ASIDE: Atrous / Dilated Convolutions__
+Accuracy will end up noticeably worse ... about 96-97% test accuracy. Two key takeaways:
 
-    > An atrous or dilated convolution is a convolution filter with "holes" in it. Effectively, it is a way to enlarge the filter spatially while not adding as many parameters or attending to every element in the input.
-
-    > Why? Covering a larger input volume allows recognizing coarser-grained patterns; restricting the number of parameters is a way of regularizing or constraining the capacity of the model, making training easier.
-
-    ---
-
-
-    From the last lab, you should have a test accuracy of over 99.1%
-
-    For one more activity, try changing the optimizer to old-school "sgd" -- just to see how far we've come with these modern gradient descent techniques in the last few years.
-
-    Accuracy will end up noticeably worse ... about 96-97% test accuracy. Two key takeaways:
-
-    * Without a good optimizer, even a very powerful network design may not achieve results
-    * In fact, we could replace the word "optimizer" there with
-        * initialization
-        * activation
-        * regularization
-        * (etc.)
-    * All of these elements we've been working with operate together in a complex way to determine final performance
+* Without a good optimizer, even a very powerful network design may not achieve results
+* In fact, we could replace the word "optimizer" there with
+    * initialization
+    * activation
+    * regularization
+    * (etc.)
+* All of these elements we've been working with operate together in a complex way to determine final performance
+```
 
 Of course this world evolves fast - see the new kid in the CNN block -- **capsule networks**
 

@@ -53,43 +53,199 @@ Let’s walk through the example step-by-step and understand how it works.
 
 Next, let’s create a streaming DataFrame that represents text data received from the directory, and transform the DataFrame to calculate word counts.
 
+``` scala
 
-    %md
-    Next, we will convert the DataFrame to a Dataset of String using
-    `.as[String]`, so that we can apply the `flatMap` operation to split
-    each line into multiple words. The resultant `words` Dataset contains
-    all the words. 
+%md
+Next, we will convert the DataFrame to a Dataset of String using
+`.as[String]`, so that we can apply the `flatMap` operation to split
+each line into multiple words. The resultant `words` Dataset contains
+all the words. 
+```
 
 We have now set up the query on the streaming data. All that is left is to actually start receiving data and computing the counts. To do this, we set it up to print the complete set of counts (specified by `outputMode("complete")`) to the console every time they are updated. And then start the streaming computation using `start()`.
 
-    // Start running the query that prints the running counts to the console
-    val query = wordCounts.writeStream
-          .outputMode("complete")
-          .format("console")
-          .start()
+``` scala
+// Start running the query that prints the running counts to the console
+val query = wordCounts.writeStream
+      .outputMode("complete")
+      .format("console")
+      .start()
 
-    query.awaitTermination() // hit cancel to terminate - killall the bash script in 037a_AnimalNamesStructStreamingFiles
+query.awaitTermination() // hit cancel to terminate - killall the bash script in 037a_AnimalNamesStructStreamingFiles
+```
 
-> ------------------------------------------- Batch: 0 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | dog| 1| | owl| 1| +-----+-----+ ------------------------------------------- Batch: 1 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | bat| 1| | dog| 1| | owl| 1| | cat| 1| +-----+-----+ ------------------------------------------- Batch: 2 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | bat| 2| | dog| 1| | owl| 1| | cat| 1| | pig| 1| +-----+-----+ ------------------------------------------- Batch: 3 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | cat| 2| | bat| 2| | dog| 2| | owl| 1| | pig| 1| +-----+-----+ ------------------------------------------- Batch: 4 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | dog| 3| | cat| 3| | bat| 2| | pig| 1| | owl| 1| +-----+-----+ ------------------------------------------- Batch: 5 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | cat| 3| | dog| 3| | owl| 2| | bat| 2| | pig| 2| +-----+-----+ ------------------------------------------- Batch: 6 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | dog| 3| | cat| 3| | pig| 3| | owl| 2| | bat| 2| | rat| 1| +-----+-----+ ------------------------------------------- Batch: 7 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | pig| 4| | dog| 3| | cat| 3| | owl| 2| | rat| 2| | bat| 2| +-----+-----+ ------------------------------------------- Batch: 8 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | dog| 4| | pig| 4| | cat| 3| | bat| 3| | rat| 2| | owl| 2| +-----+-----+ ------------------------------------------- Batch: 9 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | pig| 5| | dog| 4| | bat| 4| | cat| 3| | owl| 2| | rat| 2| +-----+-----+ ------------------------------------------- Batch: 10 ------------------------------------------- +-----+-----+ |value|count| +-----+-----+ | pig| 6| | dog| 5| | bat| 4| | cat| 3| | rat| 2| | owl| 2| +-----+-----+ ------------------------------------------- Batch: 11 -------------------------------------------
+>     -------------------------------------------
+>     Batch: 0
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  dog|    1|
+>     |  owl|    1|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 1
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  bat|    1|
+>     |  dog|    1|
+>     |  owl|    1|
+>     |  cat|    1|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 2
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  bat|    2|
+>     |  dog|    1|
+>     |  owl|    1|
+>     |  cat|    1|
+>     |  pig|    1|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 3
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  cat|    2|
+>     |  bat|    2|
+>     |  dog|    2|
+>     |  owl|    1|
+>     |  pig|    1|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 4
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  dog|    3|
+>     |  cat|    3|
+>     |  bat|    2|
+>     |  pig|    1|
+>     |  owl|    1|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 5
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  cat|    3|
+>     |  dog|    3|
+>     |  owl|    2|
+>     |  bat|    2|
+>     |  pig|    2|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 6
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  dog|    3|
+>     |  cat|    3|
+>     |  pig|    3|
+>     |  owl|    2|
+>     |  bat|    2|
+>     |  rat|    1|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 7
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  pig|    4|
+>     |  dog|    3|
+>     |  cat|    3|
+>     |  owl|    2|
+>     |  rat|    2|
+>     |  bat|    2|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 8
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  dog|    4|
+>     |  pig|    4|
+>     |  cat|    3|
+>     |  bat|    3|
+>     |  rat|    2|
+>     |  owl|    2|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 9
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  pig|    5|
+>     |  dog|    4|
+>     |  bat|    4|
+>     |  cat|    3|
+>     |  owl|    2|
+>     |  rat|    2|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 10
+>     -------------------------------------------
+>     +-----+-----+
+>     |value|count|
+>     +-----+-----+
+>     |  pig|    6|
+>     |  dog|    5|
+>     |  bat|    4|
+>     |  cat|    3|
+>     |  rat|    2|
+>     |  owl|    2|
+>     +-----+-----+
+>
+>     -------------------------------------------
+>     Batch: 11
+>     -------------------------------------------
 
-    import org.apache.spark.sql.types._
+``` scala
+import org.apache.spark.sql.types._
 
-    // Create DataFrame representing the stream of input lines from files in distributed file store
-    //val textFileSchema = new StructType().add("line", "string") // for a custom schema
+// Create DataFrame representing the stream of input lines from files in distributed file store
+//val textFileSchema = new StructType().add("line", "string") // for a custom schema
 
-    val streamingLines = spark
-      .readStream
-      //.schema(textFileSchema) // using default -> makes a column of String named value
-      .option("MaxFilesPerTrigger", 1) //  maximum number of new files to be considered in every trigger (default: no max) 
-      .format("text")
-      .load("/datasets/streamingFiles")
+val streamingLines = spark
+  .readStream
+  //.schema(textFileSchema) // using default -> makes a column of String named value
+  .option("MaxFilesPerTrigger", 1) //  maximum number of new files to be considered in every trigger (default: no max) 
+  .format("text")
+  .load("/datasets/streamingFiles")
+```
 
-> import org.apache.spark.sql.types.\_ streamingLines: org.apache.spark.sql.DataFrame = \[value: string\]
+>     import org.apache.spark.sql.types._
+>     streamingLines: org.apache.spark.sql.DataFrame = [value: string]
 
-    display(dbutils.fs.ls("/datasets/streamingFiles"))
+``` scala
+display(dbutils.fs.ls("/datasets/streamingFiles"))
+```
 
-| dbfs:/datasets/streamingFiles/25\_44.log | 25\_44.log | 35.0 |
+| path                                     | name       | size |
 |------------------------------------------|------------|------|
+| dbfs:/datasets/streamingFiles/25\_44.log | 25\_44.log | 35.0 |
 | dbfs:/datasets/streamingFiles/25\_46.log | 25\_46.log | 35.0 |
 | dbfs:/datasets/streamingFiles/25\_48.log | 25\_48.log | 35.0 |
 | dbfs:/datasets/streamingFiles/25\_50.log | 25\_50.log | 35.0 |
@@ -122,10 +278,13 @@ We have now set up the query on the streaming data. All that is left is to actua
 
 Truncated to 30 rows
 
-    display(streamingLines)  // display will show you the contents of the DF
+``` scala
+display(streamingLines)  // display will show you the contents of the DF
+```
 
-| 2017-11-22 09:28:45+00:00; pig cat |
+| value                              |
 |------------------------------------|
+| 2017-11-22 09:28:45+00:00; pig cat |
 | 2017-11-22 09:26:42+00:00; rat pig |
 | 2017-11-22 09:30:01+00:00; dog bat |
 | 2017-11-22 09:26:16+00:00; dog owl |
@@ -137,19 +296,23 @@ Truncated to 30 rows
 | 2017-11-22 09:30:13+00:00; cat dog |
 | 2017-11-22 09:32:04+00:00; owl dog |
 
-    val words = streamingLines.as[String]
-                              .map(line => line.split(";").drop(1)(0)) // this is to simply cut out the timestamp from this stream
-                              .flatMap(_.split(" ")) // flat map by splitting the animal words separated by whitespace
-                              .filter( _ != "") // remove empty words that may be artifacts of opening whitespace
+``` scala
+val words = streamingLines.as[String]
+                          .map(line => line.split(";").drop(1)(0)) // this is to simply cut out the timestamp from this stream
+                          .flatMap(_.split(" ")) // flat map by splitting the animal words separated by whitespace
+                          .filter( _ != "") // remove empty words that may be artifacts of opening whitespace
+```
 
-> words: org.apache.spark.sql.Dataset\[String\] = \[value: string\]
+>     words: org.apache.spark.sql.Dataset[String] = [value: string]
 
-    // Generate running word count
-    val wordCounts = words
-                      .groupBy("value").count() // this does the word count
-                      .orderBy($"count".desc) // we are simply sorting by the most frequent words
+``` scala
+// Generate running word count
+val wordCounts = words
+                  .groupBy("value").count() // this does the word count
+                  .orderBy($"count".desc) // we are simply sorting by the most frequent words
+```
 
-> wordCounts: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[value: string, count: bigint\]
+>     wordCounts: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [value: string, count: bigint]
 
 After this code is executed, the streaming computation will have started in the background. The `query` object is a handle to that active streaming query, and we have decided to wait for the termination of the query using `awaitTermination()` to prevent the process from exiting while the query is active.
 
@@ -292,73 +455,190 @@ The two file streams can be acieved by running the codes in the following two da
 -   `037a_AnimalNamesStructStreamingFiles`
 -   `037b_Mix2NormalsStructStreamingFiles`
 
-<!-- -->
+``` scala
+// Read all the csv files written atomically from a directory
+import org.apache.spark.sql.types._
 
-    // Read all the csv files written atomically from a directory
-    import org.apache.spark.sql.types._
+//make a user-specified schema - this is needed for structured streaming from files
+val userSchema = new StructType()
+                      .add("time", "timestamp")
+                      .add("score", "Double")
 
-    //make a user-specified schema - this is needed for structured streaming from files
-    val userSchema = new StructType()
-                          .add("time", "timestamp")
-                          .add("score", "Double")
+// a static DF is convenient 
+val csvStaticDF = spark
+  .read
+  .option("sep", ",") // delimiter is ','
+  .schema(userSchema) // Specify schema of the csv files as pre-defined by user
+  .csv("/datasets/streamingFilesNormalMixture/*/*.csv")    // Equivalent to format("csv").load("/path/to/directory")
 
-    // a static DF is convenient 
-    val csvStaticDF = spark
-      .read
-      .option("sep", ",") // delimiter is ','
-      .schema(userSchema) // Specify schema of the csv files as pre-defined by user
-      .csv("/datasets/streamingFilesNormalMixture/*/*.csv")    // Equivalent to format("csv").load("/path/to/directory")
+// streaming DF
+val csvStreamingDF = spark
+  .readStream
+  .option("sep", ",") // delimiter is ','
+  .schema(userSchema) // Specify schema of the csv files as pre-defined by user
+  .option("MaxFilesPerTrigger", 1) //  maximum number of new files to be considered in every trigger (default: no max) 
+  .csv("/datasets/streamingFilesNormalMixture/*/*.csv")    // Equivalent to format("csv").load("/path/to/directory")
+```
 
-    // streaming DF
-    val csvStreamingDF = spark
-      .readStream
-      .option("sep", ",") // delimiter is ','
-      .schema(userSchema) // Specify schema of the csv files as pre-defined by user
-      .option("MaxFilesPerTrigger", 1) //  maximum number of new files to be considered in every trigger (default: no max) 
-      .csv("/datasets/streamingFilesNormalMixture/*/*.csv")    // Equivalent to format("csv").load("/path/to/directory")
+>     import org.apache.spark.sql.types._
+>     userSchema: org.apache.spark.sql.types.StructType = StructType(StructField(time,TimestampType,true), StructField(score,DoubleType,true))
+>     csvStaticDF: org.apache.spark.sql.DataFrame = [time: timestamp, score: double]
+>     csvStreamingDF: org.apache.spark.sql.DataFrame = [time: timestamp, score: double]
 
-> import org.apache.spark.sql.types.\_ userSchema: org.apache.spark.sql.types.StructType = StructType(StructField(time,TimestampType,true), StructField(score,DoubleType,true)) csvStaticDF: org.apache.spark.sql.DataFrame = \[time: timestamp, score: double\] csvStreamingDF: org.apache.spark.sql.DataFrame = \[time: timestamp, score: double\]
+``` scala
+display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/"))
+```
 
-    display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/"))
+| path                                               | name    | size |
+|----------------------------------------------------|---------|------|
+| dbfs:/datasets/streamingFilesNormalMixture/29\_58/ | 29\_58/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_08/ | 30\_08/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_18/ | 30\_18/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_34/ | 30\_34/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_41/ | 30\_41/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_48/ | 57\_48/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_55/ | 57\_55/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/58\_02/ | 58\_02/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/58\_09/ | 58\_09/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/58\_16/ | 58\_16/ | 0.0  |
 
-| dbfs:/datasets/streamingFilesNormalMixture/29\_58/ | 29\_58/ | 0.0 |
-|----------------------------------------------------|---------|-----|
-| dbfs:/datasets/streamingFilesNormalMixture/30\_08/ | 30\_08/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_18/ | 30\_18/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_34/ | 30\_34/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_41/ | 30\_41/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_48/ | 57\_48/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_55/ | 57\_55/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/58\_02/ | 58\_02/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/58\_09/ | 58\_09/ | 0.0 |
-| dbfs:/datasets/streamingFilesNormalMixture/58\_16/ | 58\_16/ | 0.0 |
+``` scala
+val peekIn = spark.read.format("csv").load("/datasets/streamingFilesNormalMixture/*/*.csv")
+peekIn.count() // total count of all the samples in all the files
+```
 
-    val peekIn = spark.read.format("csv").load("/datasets/streamingFilesNormalMixture/*/*.csv")
-    peekIn.count() // total count of all the samples in all the files
-
-> peekIn: org.apache.spark.sql.DataFrame = \[\_c0: string, \_c1: string\] res72: Long = 500
+>     peekIn: org.apache.spark.sql.DataFrame = [_c0: string, _c1: string]
+>     res72: Long = 500
 
 You should have the following set of csv files (it won't be exactly the same names depending on when you start the stream of files).
 
-    import org.apache.spark.sql.functions._
+``` scala
+import org.apache.spark.sql.functions._
 
-    // Start running the query that prints the running counts to the console
-    val query = csvStreamingDF
-                     // bround simply rounds the double to the desired decimal place - 0 in our case here. 
-                       // see https://spark.apache.org/docs/latest/api/java/org/apache/spark/sql/functions.html#bround-org.apache.spark.sql.Column-
-                       // we are using bround to simply coarsen out data into bins for counts
-                     .select(bround($"score", 0).as("binnedScore")) 
-                     .groupBy($"binnedScore")
-                     .agg(count($"binnedScore") as "binnedScoreCounts")
-                     .orderBy($"binnedScore")
-                     .writeStream
-                     .outputMode("complete")
-                     .format("console")
-                     .start()
-                     
-    query.awaitTermination() // hit cancel to terminate
+// Start running the query that prints the running counts to the console
+val query = csvStreamingDF
+                 // bround simply rounds the double to the desired decimal place - 0 in our case here. 
+                   // see https://spark.apache.org/docs/latest/api/java/org/apache/spark/sql/functions.html#bround-org.apache.spark.sql.Column-
+                   // we are using bround to simply coarsen out data into bins for counts
+                 .select(bround($"score", 0).as("binnedScore")) 
+                 .groupBy($"binnedScore")
+                 .agg(count($"binnedScore") as "binnedScoreCounts")
+                 .orderBy($"binnedScore")
+                 .writeStream
+                 .outputMode("complete")
+                 .format("console")
+                 .start()
+                 
+query.awaitTermination() // hit cancel to terminate
+```
 
-> ------------------------------------------- Batch: 0 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -1.0| 9| | 0.0| 18| | 1.0| 41| | 2.0| 25| | 3.0| 5| | 4.0| 1| | 10.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 1 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 1| | -1.0| 13| | 0.0| 44| | 1.0| 83| | 2.0| 46| | 3.0| 10| | 4.0| 1| | 10.0| 1| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 2 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 2| | -1.0| 20| | 0.0| 74| | 1.0| 118| | 2.0| 70| | 3.0| 12| | 4.0| 1| | 9.0| 1| | 10.0| 1| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 3 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 4| | -1.0| 27| | 0.0| 104| | 1.0| 144| | 2.0| 96| | 3.0| 21| | 4.0| 1| | 9.0| 1| | 10.0| 1| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 4 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 4| | -1.0| 32| | 0.0| 125| | 1.0| 179| | 2.0| 125| | 3.0| 30| | 4.0| 2| | 9.0| 1| | 10.0| 1| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 5 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 4| | -1.0| 41| | 0.0| 143| | 1.0| 220| | 2.0| 150| | 3.0| 35| | 4.0| 3| | 9.0| 1| | 10.0| 2| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 6 -------------------------------------------
+>     -------------------------------------------
+>     Batch: 0
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -1.0|                9|
+>     |        0.0|               18|
+>     |        1.0|               41|
+>     |        2.0|               25|
+>     |        3.0|                5|
+>     |        4.0|                1|
+>     |       10.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 1
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                1|
+>     |       -1.0|               13|
+>     |        0.0|               44|
+>     |        1.0|               83|
+>     |        2.0|               46|
+>     |        3.0|               10|
+>     |        4.0|                1|
+>     |       10.0|                1|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 2
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                2|
+>     |       -1.0|               20|
+>     |        0.0|               74|
+>     |        1.0|              118|
+>     |        2.0|               70|
+>     |        3.0|               12|
+>     |        4.0|                1|
+>     |        9.0|                1|
+>     |       10.0|                1|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 3
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                4|
+>     |       -1.0|               27|
+>     |        0.0|              104|
+>     |        1.0|              144|
+>     |        2.0|               96|
+>     |        3.0|               21|
+>     |        4.0|                1|
+>     |        9.0|                1|
+>     |       10.0|                1|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 4
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                4|
+>     |       -1.0|               32|
+>     |        0.0|              125|
+>     |        1.0|              179|
+>     |        2.0|              125|
+>     |        3.0|               30|
+>     |        4.0|                2|
+>     |        9.0|                1|
+>     |       10.0|                1|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 5
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                4|
+>     |       -1.0|               41|
+>     |        0.0|              143|
+>     |        1.0|              220|
+>     |        2.0|              150|
+>     |        3.0|               35|
+>     |        4.0|                3|
+>     |        9.0|                1|
+>     |       10.0|                2|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 6
+>     -------------------------------------------
 
 Static and Streaming DataSets
 -----------------------------
@@ -369,62 +649,144 @@ Let us make a `dataset` version of the streaming dataframe.
 
 But first let us try it make the datset from the static dataframe and then apply it to the streming dataframe.
 
-    //display(csvStreamingDF) // if you want to see the stream coming at you as csvDF
+``` scala
+//display(csvStreamingDF) // if you want to see the stream coming at you as csvDF
+```
 
-    csvStaticDS.show(5,false) // looks like we got the dataset we want with strong typing
+``` scala
+csvStaticDS.show(5,false) // looks like we got the dataset we want with strong typing
+```
 
-> +-----------------------+--------------------+ |time |score | +-----------------------+--------------------+ |2017-11-22 10:30:17.463|0.21791376679544772 | |2017-11-22 10:30:17.468|0.011291967445604012| |2017-11-22 10:30:17.473|-0.30293144696154806| |2017-11-22 10:30:17.478|0.4303254534802833 | |2017-11-22 10:30:17.484|1.5521304466388752 | +-----------------------+--------------------+ only showing top 5 rows
+>     +-----------------------+--------------------+
+>     |time                   |score               |
+>     +-----------------------+--------------------+
+>     |2017-11-22 10:30:17.463|0.21791376679544772 |
+>     |2017-11-22 10:30:17.468|0.011291967445604012|
+>     |2017-11-22 10:30:17.473|-0.30293144696154806|
+>     |2017-11-22 10:30:17.478|0.4303254534802833  |
+>     |2017-11-22 10:30:17.484|1.5521304466388752  |
+>     +-----------------------+--------------------+
+>     only showing top 5 rows
 
-    csvStreamingDF.isStreaming    // Returns True for DataFrames that have streaming sources
+``` scala
+csvStreamingDF.isStreaming    // Returns True for DataFrames that have streaming sources
+```
 
-> res2: Boolean = true
+>     res2: Boolean = true
 
-    csvStreamingDF.printSchema
+``` scala
+csvStreamingDF.printSchema
+```
 
-> root |-- time: timestamp (nullable = true) |-- score: double (nullable = true)
+>     root
+>      |-- time: timestamp (nullable = true)
+>      |-- score: double (nullable = true)
 
-    csvStaticDF.printSchema // schema of the static DF
+``` scala
+csvStaticDF.printSchema // schema of the static DF
+```
 
-> root |-- time: timestamp (nullable = true) |-- score: double (nullable = true)
+>     root
+>      |-- time: timestamp (nullable = true)
+>      |-- score: double (nullable = true)
 
-    import org.apache.spark.sql.types._
-    import java.sql.Timestamp
+``` scala
+import org.apache.spark.sql.types._
+import java.sql.Timestamp
 
-    // create a case class to make the datset
-    case class timedScores(time: Timestamp, score: Double)
+// create a case class to make the datset
+case class timedScores(time: Timestamp, score: Double)
 
-    val csvStaticDS = csvStaticDF.as[timedScores] // create a dataset from the dataframe
+val csvStaticDS = csvStaticDF.as[timedScores] // create a dataset from the dataframe
+```
 
-> import org.apache.spark.sql.types.\_ import java.sql.Timestamp defined class timedScores csvStaticDS: org.apache.spark.sql.Dataset\[timedScores\] = \[time: timestamp, score: double\]
+>     import org.apache.spark.sql.types._
+>     import java.sql.Timestamp
+>     defined class timedScores
+>     csvStaticDS: org.apache.spark.sql.Dataset[timedScores] = [time: timestamp, score: double]
 
 Now let us use the same code for making a streaming dataset.
 
-    import org.apache.spark.sql.functions._
-    import org.apache.spark.sql.types._
-    import java.sql.Timestamp
+``` scala
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.types._
+import java.sql.Timestamp
 
-    // create a case class to make the datset
-    case class timedScores(time: Timestamp, score: Double)
+// create a case class to make the datset
+case class timedScores(time: Timestamp, score: Double)
 
-    val csvStreamingDS = csvStreamingDF.as[timedScores] // create a dataset from the dataframe
+val csvStreamingDS = csvStreamingDF.as[timedScores] // create a dataset from the dataframe
 
-    // Start running the query that prints the running counts to the console
-    val query = csvStreamingDS
-                      // bround simply rounds the double to the desired decimal place - 0 in our case here. 
-                       // see https://spark.apache.org/docs/latest/api/java/org/apache/spark/sql/functions.html#bround-org.apache.spark.sql.Column-
-                       // we are using bround to simply coarsen out data into bins for counts
-                     .select(bround($"score", 0).as("binnedScore")) 
-                     .groupBy($"binnedScore")
-                     .agg(count($"binnedScore") as "binnedScoreCounts")
-                     .orderBy($"binnedScore")
-                     .writeStream
-                     .outputMode("complete")
-                     .format("console")
-                     .start()
+// Start running the query that prints the running counts to the console
+val query = csvStreamingDS
+                  // bround simply rounds the double to the desired decimal place - 0 in our case here. 
+                   // see https://spark.apache.org/docs/latest/api/java/org/apache/spark/sql/functions.html#bround-org.apache.spark.sql.Column-
+                   // we are using bround to simply coarsen out data into bins for counts
+                 .select(bround($"score", 0).as("binnedScore")) 
+                 .groupBy($"binnedScore")
+                 .agg(count($"binnedScore") as "binnedScoreCounts")
+                 .orderBy($"binnedScore")
+                 .writeStream
+                 .outputMode("complete")
+                 .format("console")
+                 .start()
 
-    query.awaitTermination() // hit cancel to terminate
+query.awaitTermination() // hit cancel to terminate
+```
 
-> ------------------------------------------- Batch: 0 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -1.0| 9| | 0.0| 18| | 1.0| 41| | 2.0| 25| | 3.0| 5| | 4.0| 1| | 10.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 1 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 1| | -1.0| 13| | 0.0| 44| | 1.0| 83| | 2.0| 46| | 3.0| 10| | 4.0| 1| | 10.0| 1| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 2 ------------------------------------------- +-----------+-----------------+ |binnedScore|binnedScoreCounts| +-----------+-----------------+ | -2.0| 2| | -1.0| 20| | 0.0| 74| | 1.0| 118| | 2.0| 70| | 3.0| 12| | 4.0| 1| | 9.0| 1| | 10.0| 1| | 12.0| 1| +-----------+-----------------+ ------------------------------------------- Batch: 3 -------------------------------------------
+>     -------------------------------------------
+>     Batch: 0
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -1.0|                9|
+>     |        0.0|               18|
+>     |        1.0|               41|
+>     |        2.0|               25|
+>     |        3.0|                5|
+>     |        4.0|                1|
+>     |       10.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 1
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                1|
+>     |       -1.0|               13|
+>     |        0.0|               44|
+>     |        1.0|               83|
+>     |        2.0|               46|
+>     |        3.0|               10|
+>     |        4.0|                1|
+>     |       10.0|                1|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 2
+>     -------------------------------------------
+>     +-----------+-----------------+
+>     |binnedScore|binnedScoreCounts|
+>     +-----------+-----------------+
+>     |       -2.0|                2|
+>     |       -1.0|               20|
+>     |        0.0|               74|
+>     |        1.0|              118|
+>     |        2.0|               70|
+>     |        3.0|               12|
+>     |        4.0|                1|
+>     |        9.0|                1|
+>     |       10.0|                1|
+>     |       12.0|                1|
+>     +-----------+-----------------+
+>
+>     -------------------------------------------
+>     Batch: 3
+>     -------------------------------------------
 
 ### Window Operations on Event Time
 
@@ -440,10 +802,13 @@ Since this windowing is similar to grouping, in code, you can use `groupBy()` an
 
 Make sure the streaming job with animal names is running (or finished running) with files in `/datasets/streamingFiles` directory - this is the Quick Example in `037a_FilesForStructuredStreaming` notebook.
 
-    display(dbutils.fs.ls("/datasets/streamingFiles"))
+``` scala
+display(dbutils.fs.ls("/datasets/streamingFiles"))
+```
 
-| dbfs:/datasets/streamingFiles/00\_00.log | 00\_00.log | 35.0 |
+| path                                     | name       | size |
 |------------------------------------------|------------|------|
+| dbfs:/datasets/streamingFiles/00\_00.log | 00\_00.log | 35.0 |
 | dbfs:/datasets/streamingFiles/00\_02.log | 00\_02.log | 35.0 |
 | dbfs:/datasets/streamingFiles/00\_04.log | 00\_04.log | 35.0 |
 | dbfs:/datasets/streamingFiles/00\_06.log | 00\_06.log | 35.0 |
@@ -476,16 +841,31 @@ Make sure the streaming job with animal names is running (or finished running) w
 
 Truncated to 30 rows
 
-    spark.read.format("text").load("/datasets/streamingFiles").show(5,false) // let's just read five  entries
+``` scala
+spark.read.format("text").load("/datasets/streamingFiles").show(5,false) // let's just read five  entries
+```
 
-> +----------------------------------+ |value | +----------------------------------+ |2017-11-22 09:25:44+00:00; pig bat| |2017-11-22 09:25:46+00:00; bat pig| |2017-11-22 09:25:48+00:00; owl cat| |2017-11-22 09:25:50+00:00; rat owl| |2017-11-22 09:25:52+00:00; bat dog| +----------------------------------+ only showing top 5 rows
+>     +----------------------------------+
+>     |value                             |
+>     +----------------------------------+
+>     |2017-11-22 09:25:44+00:00; pig bat|
+>     |2017-11-22 09:25:46+00:00; bat pig|
+>     |2017-11-22 09:25:48+00:00; owl cat|
+>     |2017-11-22 09:25:50+00:00; rat owl|
+>     |2017-11-22 09:25:52+00:00; bat dog|
+>     +----------------------------------+
+>     only showing top 5 rows
 
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-    dbutils.fs.head("/datasets/streamingFiles/00_00.log")
+``` scala
+dbutils.fs.head("/datasets/streamingFiles/00_00.log")
+```
 
-> res43: String = "2017-11-21 18:00:00+00:00; pig owl "
+>     res43: String =
+>     "2017-11-21 18:00:00+00:00; pig owl
+>     "
 
 This `streamingLines` DataFrame represents an unbounded table containing the streaming text data. This table contains one column of strings named “value”, and each line in the streaming text data becomes a row in the table. Note, that this is not currently receiving any data as we are just setting up the transformation, and have not yet started it.
 
@@ -530,9 +910,20 @@ Let's check out the files and their contents both via static as well as streamin
 
 This will also cement the fact that structured streaming allows interoperability between static and streaming data and can be useful for debugging.
 
-    peekIn.show(5, false) // let's take a quick peek at what's in the CSV files
+``` scala
+peekIn.show(5, false) // let's take a quick peek at what's in the CSV files
+```
 
-> +-----------------------+--------------------+ |\_c0 |\_c1 | +-----------------------+--------------------+ |2017-11-22 09:58:01.659|0.21791376679544772 | |2017-11-22 09:58:01.664|0.011291967445604012| |2017-11-22 09:58:01.669|-0.30293144696154806| |2017-11-22 09:58:01.674|0.4303254534802833 | |2017-11-22 09:58:01.679|1.5521304466388752 | +-----------------------+--------------------+ only showing top 5 rows
+>     +-----------------------+--------------------+
+>     |_c0                    |_c1                 |
+>     +-----------------------+--------------------+
+>     |2017-11-22 09:58:01.659|0.21791376679544772 |
+>     |2017-11-22 09:58:01.664|0.011291967445604012|
+>     |2017-11-22 09:58:01.669|-0.30293144696154806|
+>     |2017-11-22 09:58:01.674|0.4303254534802833  |
+>     |2017-11-22 09:58:01.679|1.5521304466388752  |
+>     +-----------------------+--------------------+
+>     only showing top 5 rows
 
 Once the above streaming job has processed all the files in the directory, it will continue to "listen" in for new files in the directory. You could for example return to the other notebook `037b_Mix2NormalsStructStreamingFiles` and rerun the cell that writes another lot of newer files into the directory and return to this notebook to watch the above streaming job continue with additional batches.
 
@@ -544,109 +935,1123 @@ Now consider what happens if one of the events arrives late to the application. 
 
 However, to run this query for days, it’s necessary for the system to bound the amount of intermediate in-memory state it accumulates. This means the system needs to know when an old aggregate can be dropped from the in-memory state because the application is not going to receive late data for that aggregate any more. To enable this, in Spark 2.1, we have introduced **watermarking**, which lets the engine automatically track the current event time in the data and attempt to clean up old state accordingly. You can define the watermark of a query by specifying the event time column and the threshold on how late the data is expected to be in terms of event time. For a specific window starting at time `T`, the engine will maintain state and allow late data to update the state until `(max event time seen by the engine - late threshold > T)`. In other words, late data within the threshold will be aggregated, but data later than the threshold will be dropped. Let’s understand this with an example. We can easily define watermarking on the previous example using `withWatermark()` as shown below.
 
-    // Group the data by window and word and compute the count of each group
-    val windowDuration = "180 seconds"
-    val slideDuration = "90 seconds"
-    val windowedCounts = csvStreamingDS.groupBy(
-          window($"timestamp", windowDuration, slideDuration), $"animal"
-        ).count().orderBy("window")
+``` scala
+// Group the data by window and word and compute the count of each group
+val windowDuration = "180 seconds"
+val slideDuration = "90 seconds"
+val windowedCounts = csvStreamingDS.groupBy(
+      window($"timestamp", windowDuration, slideDuration), $"animal"
+    ).count().orderBy("window")
 
-    // Start running the query that prints the windowed word counts to the console
-    val query = windowedCounts.writeStream
-          .outputMode("complete")
-          .format("console")
-          .option("truncate", "false")
-          .start()
+// Start running the query that prints the windowed word counts to the console
+val query = windowedCounts.writeStream
+      .outputMode("complete")
+      .format("console")
+      .option("truncate", "false")
+      .start()
 
-    query.awaitTermination()
+query.awaitTermination()
+```
 
-> ------------------------------------------- Batch: 0 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 1 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 2 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 3 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 4 -------------------------------------------
+>     -------------------------------------------
+>     Batch: 0
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 1
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 2
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 3
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 4
+>     -------------------------------------------
 
-    //make a user-specified schema for structured streaming
-    val userSchema = new StructType()
-                          .add("time", "String") // we will read it as String and then convert into timestamp later
-                          .add("animals", "String")
+``` scala
+//make a user-specified schema for structured streaming
+val userSchema = new StructType()
+                      .add("time", "String") // we will read it as String and then convert into timestamp later
+                      .add("animals", "String")
 
-    // streaming DS
-    val csvStreamingDS = spark
-    // the next three lines are needed for structured streaming from file streams
-      .readStream // for streaming
-      .option("MaxFilesPerTrigger", 1) //  for streaming
-      .schema(userSchema) // for streaming
-      .option("sep", ";") // delimiter is ';'
-      .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
-      .toDF("time","animals")
-      .as[(Timestamp, String)]
-      .flatMap(
-         line => line._2.split(" ").map(animal => (line._1, animal))
-        )
-      .filter(_._2 != "")
-      .toDF("timestamp", "animal")
-      .as[(Timestamp, String)]
+// streaming DS
+val csvStreamingDS = spark
+// the next three lines are needed for structured streaming from file streams
+  .readStream // for streaming
+  .option("MaxFilesPerTrigger", 1) //  for streaming
+  .schema(userSchema) // for streaming
+  .option("sep", ";") // delimiter is ';'
+  .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
+  .toDF("time","animals")
+  .as[(Timestamp, String)]
+  .flatMap(
+     line => line._2.split(" ").map(animal => (line._1, animal))
+    )
+  .filter(_._2 != "")
+  .toDF("timestamp", "animal")
+  .as[(Timestamp, String)]
+```
 
-> userSchema: org.apache.spark.sql.types.StructType = StructType(StructField(time,StringType,true), StructField(animals,StringType,true)) csvStreamingDS: org.apache.spark.sql.Dataset\[(java.sql.Timestamp, String)\] = \[timestamp: timestamp, animal: string\]
+>     userSchema: org.apache.spark.sql.types.StructType = StructType(StructField(time,StringType,true), StructField(animals,StringType,true))
+>     csvStreamingDS: org.apache.spark.sql.Dataset[(java.sql.Timestamp, String)] = [timestamp: timestamp, animal: string]
 
-    import spark.implicits._
-    import org.apache.spark.sql.types._
-    import org.apache.spark.sql.functions._
-    import java.sql.Timestamp
+``` scala
+import spark.implicits._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+import java.sql.Timestamp
 
-    // a static DS is convenient to work with
-    val csvStaticDS = spark
-       .read
-       .option("sep", ";") // delimiter is ';'
-       .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
-       .toDF("time","animals")
-       .as[(Timestamp, String)]
-       .flatMap(
-         line => line._2.split(" ")
-                     .filter(_ != "") // Gustav's improvement
-                     .map(animal => (line._1, animal))
-        )
-       //.filter(_._2 != "") // remove empty strings from the leading whitespaces
-       .toDF("timestamp", "animal")
-       .as[(Timestamp, String)]
+// a static DS is convenient to work with
+val csvStaticDS = spark
+   .read
+   .option("sep", ";") // delimiter is ';'
+   .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
+   .toDF("time","animals")
+   .as[(Timestamp, String)]
+   .flatMap(
+     line => line._2.split(" ")
+                 .filter(_ != "") // Gustav's improvement
+                 .map(animal => (line._1, animal))
+    )
+   //.filter(_._2 != "") // remove empty strings from the leading whitespaces
+   .toDF("timestamp", "animal")
+   .as[(Timestamp, String)]
+```
 
-> import spark.implicits.\_ import org.apache.spark.sql.types.\_ import org.apache.spark.sql.functions.\_ import java.sql.Timestamp csvStaticDS: org.apache.spark.sql.Dataset\[(java.sql.Timestamp, String)\] = \[timestamp: timestamp, animal: string\]
+>     import spark.implicits._
+>     import org.apache.spark.sql.types._
+>     import org.apache.spark.sql.functions._
+>     import java.sql.Timestamp
+>     csvStaticDS: org.apache.spark.sql.Dataset[(java.sql.Timestamp, String)] = [timestamp: timestamp, animal: string]
 
-    csvStaticDS.show(5,false)
+``` scala
+csvStaticDS.show(5,false)
+```
 
-> +-------------------+------+ |timestamp |animal| +-------------------+------+ |2017-11-22 09:25:44|pig | |2017-11-22 09:25:44|bat | |2017-11-22 09:25:46|bat | |2017-11-22 09:25:46|pig | |2017-11-22 09:25:48|owl | +-------------------+------+ only showing top 5 rows
+>     +-------------------+------+
+>     |timestamp          |animal|
+>     +-------------------+------+
+>     |2017-11-22 09:25:44|pig   |
+>     |2017-11-22 09:25:44|bat   |
+>     |2017-11-22 09:25:46|bat   |
+>     |2017-11-22 09:25:46|pig   |
+>     |2017-11-22 09:25:48|owl   |
+>     +-------------------+------+
+>     only showing top 5 rows
 
-    display(csvStreamingDS) // evaluate to see the animal words with timestamps streaming in
+``` scala
+display(csvStreamingDS) // evaluate to see the animal words with timestamps streaming in
+```
 
-| 2017-11-22T09:36:44.000+0000 | bat |
-|------------------------------|-----|
-| 2017-11-22T09:36:44.000+0000 | dog |
-| 2017-11-22T09:39:15.000+0000 | pig |
-| 2017-11-22T09:39:15.000+0000 | rat |
-| 2017-11-22T09:32:46.000+0000 | dog |
-| 2017-11-22T09:32:46.000+0000 | cat |
-| 2017-11-22T09:37:40.000+0000 | dog |
-| 2017-11-22T09:37:40.000+0000 | rat |
-| 2017-11-22T09:40:59.000+0000 | bat |
-| 2017-11-22T09:40:59.000+0000 | cat |
+| timestamp                    | animal |
+|------------------------------|--------|
+| 2017-11-22T09:36:44.000+0000 | bat    |
+| 2017-11-22T09:36:44.000+0000 | dog    |
+| 2017-11-22T09:39:15.000+0000 | pig    |
+| 2017-11-22T09:39:15.000+0000 | rat    |
+| 2017-11-22T09:32:46.000+0000 | dog    |
+| 2017-11-22T09:32:46.000+0000 | cat    |
+| 2017-11-22T09:37:40.000+0000 | dog    |
+| 2017-11-22T09:37:40.000+0000 | rat    |
+| 2017-11-22T09:40:59.000+0000 | bat    |
+| 2017-11-22T09:40:59.000+0000 | cat    |
 
-    // Group the data by window and word and compute the count of each group
-    val windowDuration = "180 seconds"
-    val slideDuration = "90 seconds"
-    val watermarkDuration = "10 minutes"
-    val windowedCounts = csvStreamingDS
-         .withWatermark("timestamp", watermarkDuration)
-         .groupBy(
-          window($"timestamp", windowDuration, slideDuration), $"animal"
-        ).count().orderBy("window")
+``` scala
+// Group the data by window and word and compute the count of each group
+val windowDuration = "180 seconds"
+val slideDuration = "90 seconds"
+val watermarkDuration = "10 minutes"
+val windowedCounts = csvStreamingDS
+     .withWatermark("timestamp", watermarkDuration)
+     .groupBy(
+      window($"timestamp", windowDuration, slideDuration), $"animal"
+    ).count().orderBy("window")
 
-    // Start running the query that prints the windowed word counts to the console
-    val query = windowedCounts.writeStream
-          .outputMode("complete")
-          .format("console")
-          .option("truncate", "false")
-          .start()
+// Start running the query that prints the windowed word counts to the console
+val query = windowedCounts.writeStream
+      .outputMode("complete")
+      .format("console")
+      .option("truncate", "false")
+      .start()
 
-    query.awaitTermination()
+query.awaitTermination()
+```
 
-> ------------------------------------------- Batch: 0 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 1 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 2 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 3 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 4 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|bat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|cat |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|bat |1 | +---------------------------------------------+------+-----+ ------------------------------------------- Batch: 5 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|bat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|cat |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|bat |1 | |\[2017-11-22 09:45:00.0,2017-11-22 09:48:00.0\]|owl |1 | |\[2017-11-22 09:45:00.0,2017-11-22 09:48:00.0\]|bat |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 6 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |2 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|bat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|bat |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 7 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |2 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|bat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|bat |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 8 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |2 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|bat |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|dog |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 9 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|rat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|bat |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|pig |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | |\[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0\]|dog |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 10 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|pig |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|dog |1 | |\[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0\]|cat |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 11 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |2 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|owl |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |2 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|bat |1 | |\[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0\]|rat |2 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 12 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|owl |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |3 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|rat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|rat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 13 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |2 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|bat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|owl |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |3 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|rat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|rat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|bat |1 | |\[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0\]|dog |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|rat |1 | |\[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0\]|dog |2 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 14 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|owl |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|bat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |3 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|rat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|rat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 15 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |2 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |2 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |2 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |3 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |3 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|rat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|owl |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|bat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|rat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|bat |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 16 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |2 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |2 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |3 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|dog |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|cat |3 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|rat |2 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|bat |1 | |\[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0\]|owl |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|rat |2 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|owl |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|bat |1 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|dog |3 | |\[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0\]|cat |3 | |\[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0\]|dog |1 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 17 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |2 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |2 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |1 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |3 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |1 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |2 | \*\*\* WARNING: skipped 1078483 bytes of output \*\*\* |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |13 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |11 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |30 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 697 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |11 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |13 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |30 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 698 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |13 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |11 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |30 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 699 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |13 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |11 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |30 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 700 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 701 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 702 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 703 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |37 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 704 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |37 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 705 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 706 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|owl |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|rat |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 707 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 708 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |37 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 709 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|pig |29 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 710 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |37 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | +---------------------------------------------+------+-----+ only showing top 20 rows ------------------------------------------- Batch: 711 ------------------------------------------- +---------------------------------------------+------+-----+ |window |animal|count| +---------------------------------------------+------+-----+ |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|pig |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|bat |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|owl |10 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|cat |14 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|dog |12 | |\[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0\]|rat |14 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|owl |25 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|pig |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|dog |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|rat |31 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|cat |26 | |\[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0\]|bat |27 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|owl |29 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|cat |26 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|pig |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|dog |30 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|bat |32 | |\[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0\]|rat |31 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|bat |37 | |\[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0\]|dog |28 | +---------------------------------------------+------+-----+ only showing top 20 rows
+>     -------------------------------------------
+>     Batch: 0
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 1
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 2
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 3
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 4
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|bat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|cat   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>
+>     -------------------------------------------
+>     Batch: 5
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|bat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|cat   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|bat   |1    |
+>     |[2017-11-22 09:45:00.0,2017-11-22 09:48:00.0]|owl   |1    |
+>     |[2017-11-22 09:45:00.0,2017-11-22 09:48:00.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 6
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |2    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|bat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 7
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |2    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|bat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 8
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |2    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|bat   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|dog   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 9
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|rat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|bat   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|pig   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     |[2017-11-22 09:40:30.0,2017-11-22 09:43:30.0]|dog   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 10
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|pig   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|dog   |1    |
+>     |[2017-11-22 09:39:00.0,2017-11-22 09:42:00.0]|cat   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 11
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |2    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|owl   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |2    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|bat   |1    |
+>     |[2017-11-22 09:37:30.0,2017-11-22 09:40:30.0]|rat   |2    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 12
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|owl   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |3    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|rat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|rat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 13
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |2    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|bat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|owl   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |3    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|rat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|rat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|bat   |1    |
+>     |[2017-11-22 09:34:30.0,2017-11-22 09:37:30.0]|dog   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|rat   |1    |
+>     |[2017-11-22 09:36:00.0,2017-11-22 09:39:00.0]|dog   |2    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 14
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|owl   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|bat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |3    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|rat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|rat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 15
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |2    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |2    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |2    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |3    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |3    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|rat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|owl   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|bat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|rat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|bat   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 16
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |2    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |2    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |3    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|dog   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|cat   |3    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|rat   |2    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|bat   |1    |
+>     |[2017-11-22 09:30:00.0,2017-11-22 09:33:00.0]|owl   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|rat   |2    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|owl   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|bat   |1    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|dog   |3    |
+>     |[2017-11-22 09:31:30.0,2017-11-22 09:34:30.0]|cat   |3    |
+>     |[2017-11-22 09:33:00.0,2017-11-22 09:36:00.0]|dog   |1    |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 17
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |2    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |2    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |1    |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |3    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |1    |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |2    |
+>
+>     *** WARNING: skipped 1078483 bytes of output ***
+>
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |13   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |11   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |30   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 697
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |11   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |13   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |30   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 698
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |13   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |11   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |30   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 699
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |13   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |11   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |30   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 700
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 701
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 702
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 703
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |37   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 704
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |37   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 705
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 706
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|owl   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|rat   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 707
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 708
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |37   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 709
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|pig   |29   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 710
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |37   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
+>
+>     -------------------------------------------
+>     Batch: 711
+>     -------------------------------------------
+>     +---------------------------------------------+------+-----+
+>     |window                                       |animal|count|
+>     +---------------------------------------------+------+-----+
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|pig   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|bat   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|owl   |10   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|cat   |14   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|dog   |12   |
+>     |[2017-11-22 09:24:00.0,2017-11-22 09:27:00.0]|rat   |14   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|owl   |25   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|pig   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|dog   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|rat   |31   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|cat   |26   |
+>     |[2017-11-22 09:25:30.0,2017-11-22 09:28:30.0]|bat   |27   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|owl   |29   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|cat   |26   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|pig   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|dog   |30   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|bat   |32   |
+>     |[2017-11-22 09:27:00.0,2017-11-22 09:30:00.0]|rat   |31   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|bat   |37   |
+>     |[2017-11-22 09:28:30.0,2017-11-22 09:31:30.0]|dog   |28   |
+>     +---------------------------------------------+------+-----+
+>     only showing top 20 rows
 
 In this example, we are defining the watermark of the query on the value of the column “timestamp”, and also defining “10 minutes” as the threshold of how late is the data allowed to be. If this query is run in Update output mode (discussed later in [Output Modes](https://spark.apache.org/docs/2.2.0/structured-streaming-programming-guide.html#output-modes) section), the engine will keep updating counts of a window in the Result Table until the window is older than the watermark, which lags behind the current event time in column “timestamp” by 10 minutes. Here is an illustration.
 

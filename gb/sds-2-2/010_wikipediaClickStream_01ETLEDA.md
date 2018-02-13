@@ -48,23 +48,35 @@ Let's read the datahub-hosted link <https://datahub.io/dataset/wikipedia-clickst
 
 Run the next two cells for some housekeeping.
 
-    if (org.apache.spark.BuildInfo.sparkBranch < "1.6") sys.error("Attach this notebook to a cluster running Spark 1.6+")
+``` scala
+if (org.apache.spark.BuildInfo.sparkBranch < "1.6") sys.error("Attach this notebook to a cluster running Spark 1.6+")
+```
 
 ### Loading and Exploring the data
 
-    val data = sc.textFile("dbfs:///databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-uncompressed")
+``` scala
+val data = sc.textFile("dbfs:///databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-uncompressed")
+```
 
-> data: org.apache.spark.rdd.RDD\[String\] = dbfs:///databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-uncompressed MapPartitionsRDD\[1\] at textFile at &lt;console&gt;:34
+>     data: org.apache.spark.rdd.RDD[String] = dbfs:///databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-uncompressed MapPartitionsRDD[1] at textFile at <console>:34
 
 ##### Looking at the first few lines of the data
 
-    data.take(5).foreach(println) 
+``` scala
+data.take(5).foreach(println) 
+```
 
-> prev\_id curr\_id n prev\_title curr\_title type 3632887 121 other-google !! other 3632887 93 other-wikipedia !! other 3632887 46 other-empty !! other 3632887 10 other-other !! other
+>     prev_id	curr_id	n	prev_title	curr_title	type
+>     	3632887	121	other-google	!!	other
+>     	3632887	93	other-wikipedia	!!	other
+>     	3632887	46	other-empty	!!	other
+>     	3632887	10	other-other	!!	other
 
-    data.take(2)
+``` scala
+data.take(2)
+```
 
-> res3: Array\[String\] = Array(prev\_id curr\_id n prev\_title curr\_title type, " 3632887 121 other-google !! other")
+>     res3: Array[String] = Array(prev_id	curr_id	n	prev_title	curr_title	type, "	3632887	121	other-google	!!	other")
 
 -   The first line looks like a header
 -   The second line (separated from the first by ",") contains data organized according to the header, i.e., `prev_id` = 3632887, `curr_id` = 121", and so on.
@@ -105,50 +117,113 @@ In the second line of the file above, we can see there were 121 clicks from Goog
 
 -   From the next Spark release - 2.0, CSV as a datasource will be part of Spark's standard release. But, we are using Spark 1.6
 
-<!-- -->
+``` scala
+// Load the raw dataset stored as a CSV file
+val clickstream = sqlContext.
+    read.
+    format("com.databricks.spark.csv").
+    options(Map("header" -> "true", "delimiter" -> "\t", "mode" -> "PERMISSIVE", "inferSchema" -> "true")).
+    load("dbfs:///databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-uncompressed")
+  
+```
 
-    // Load the raw dataset stored as a CSV file
-    val clickstream = sqlContext.
-        read.
-        format("com.databricks.spark.csv").
-        options(Map("header" -> "true", "delimiter" -> "\t", "mode" -> "PERMISSIVE", "inferSchema" -> "true")).
-        load("dbfs:///databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-uncompressed")
-      
-
-> clickstream: org.apache.spark.sql.DataFrame = \[prev\_id: int, curr\_id: int ... 4 more fields\]
+>     clickstream: org.apache.spark.sql.DataFrame = [prev_id: int, curr_id: int ... 4 more fields]
 
 ##### Print the schema
 
-    clickstream.printSchema
+``` scala
+clickstream.printSchema
+```
 
-> root |-- prev\_id: integer (nullable = true) |-- curr\_id: integer (nullable = true) |-- n: integer (nullable = true) |-- prev\_title: string (nullable = true) |-- curr\_title: string (nullable = true) |-- type: string (nullable = true)
+>     root
+>      |-- prev_id: integer (nullable = true)
+>      |-- curr_id: integer (nullable = true)
+>      |-- n: integer (nullable = true)
+>      |-- prev_title: string (nullable = true)
+>      |-- curr_title: string (nullable = true)
+>      |-- type: string (nullable = true)
 
 #### Display some sample data
 
-    display(clickstream)
+``` scala
+display(clickstream)
+```
+
+| prev\_id    | curr\_id    | n     | prev\_title                             | curr\_title    | type  |
+|-------------|-------------|-------|-----------------------------------------|----------------|-------|
+| null        | 3632887.0   | 121.0 | other-google                            | !!             | other |
+| null        | 3632887.0   | 93.0  | other-wikipedia                         | !!             | other |
+| null        | 3632887.0   | 46.0  | other-empty                             | !!             | other |
+| null        | 3632887.0   | 10.0  | other-other                             | !!             | other |
+| 64486.0     | 3632887.0   | 11.0  | !\_(disambiguation)                     | !!             | other |
+| 2061699.0   | 2556962.0   | 19.0  | Louden\_Up\_Now                         | !!!\_(album)   | link  |
+| null        | 2556962.0   | 25.0  | other-empty                             | !!!\_(album)   | other |
+| null        | 2556962.0   | 16.0  | other-google                            | !!!\_(album)   | other |
+| null        | 2556962.0   | 44.0  | other-wikipedia                         | !!!\_(album)   | other |
+| 64486.0     | 2556962.0   | 15.0  | !\_(disambiguation)                     | !!!\_(album)   | link  |
+| 600744.0    | 2556962.0   | 297.0 | !!!                                     | !!!\_(album)   | link  |
+| null        | 6893310.0   | 11.0  | other-empty                             | !Hero\_(album) | other |
+| 1921683.0   | 6893310.0   | 26.0  | !Hero                                   | !Hero\_(album) | link  |
+| null        | 6893310.0   | 16.0  | other-wikipedia                         | !Hero\_(album) | other |
+| null        | 6893310.0   | 23.0  | other-google                            | !Hero\_(album) | other |
+| 8127304.0   | 2.2602473e7 | 16.0  | Jericho\_Rosales                        | !Oka\_Tokat    | link  |
+| 3.5978874e7 | 2.2602473e7 | 20.0  | List\_of\_telenovelas\_of\_ABS-CBN      | !Oka\_Tokat    | link  |
+| null        | 2.2602473e7 | 57.0  | other-google                            | !Oka\_Tokat    | other |
+| null        | 2.2602473e7 | 12.0  | other-wikipedia                         | !Oka\_Tokat    | other |
+| null        | 2.2602473e7 | 23.0  | other-empty                             | !Oka\_Tokat    | other |
+| 7360687.0   | 2.2602473e7 | 10.0  | Rica\_Peralejo                          | !Oka\_Tokat    | link  |
+| 3.7104582e7 | 2.2602473e7 | 11.0  | Jeepney\_TV                             | !Oka\_Tokat    | link  |
+| 3.437659e7  | 2.2602473e7 | 22.0  | Oka\_Tokat\_(2012\_TV\_series)          | !Oka\_Tokat    | link  |
+| null        | 6810768.0   | 20.0  | other-wikipedia                         | !T.O.O.H.!     | other |
+| null        | 6810768.0   | 81.0  | other-google                            | !T.O.O.H.!     | other |
+| 3.1976181e7 | 6810768.0   | 51.0  | List\_of\_death\_metal\_bands,\_!–K     | !T.O.O.H.!     | link  |
+| null        | 6810768.0   | 35.0  | other-empty                             | !T.O.O.H.!     | other |
+| null        | 3243047.0   | 21.0  | other-empty                             | !\_(album)     | other |
+| 1337475.0   | 3243047.0   | 208.0 | The\_Dismemberment\_Plan                | !\_(album)     | link  |
+| 3284285.0   | 3243047.0   | 78.0  | The\_Dismemberment\_Plan\_Is\_Terrified | !\_(album)     | link  |
+
+Truncated to 30 rows
 
 Display is a utility provided by Databricks. If you are programming directly in Spark, use the show(numRows: Int) function of DataFrame
 
-    clickstream.show(5)
+``` scala
+clickstream.show(5)
+```
 
-> +-------+-------+---+------------------+----------+-----+ |prev\_id|curr\_id| n| prev\_title|curr\_title| type| +-------+-------+---+------------------+----------+-----+ | null|3632887|121| other-google| !!|other| | null|3632887| 93| other-wikipedia| !!|other| | null|3632887| 46| other-empty| !!|other| | null|3632887| 10| other-other| !!|other| | 64486|3632887| 11|!\_(disambiguation)| !!|other| +-------+-------+---+------------------+----------+-----+ only showing top 5 rows
+>     +-------+-------+---+------------------+----------+-----+
+>     |prev_id|curr_id|  n|        prev_title|curr_title| type|
+>     +-------+-------+---+------------------+----------+-----+
+>     |   null|3632887|121|      other-google|        !!|other|
+>     |   null|3632887| 93|   other-wikipedia|        !!|other|
+>     |   null|3632887| 46|       other-empty|        !!|other|
+>     |   null|3632887| 10|       other-other|        !!|other|
+>     |  64486|3632887| 11|!_(disambiguation)|        !!|other|
+>     +-------+-------+---+------------------+----------+-----+
+>     only showing top 5 rows
 
 ### Reading from disk vs memory
 
 The 1.2 GB Clickstream file is currently on S3, which means each time you scan through it, your Spark cluster has to read the 1.2 GB of data remotely over the network.
 
-    clickstream.cache().count()
+``` md Call the `count()` action to check how many rows are in the DataFrame and to see how long it takes to read the DataFrame from S3.
+```
 
-> res7: Long = 22509897
+``` scala
+clickstream.cache().count()
+```
+
+>     res7: Long = 22509897
 
 -   It took about several minutes to read the 1.2 GB file into your Spark cluster. The file has 22.5 million rows/lines.
 -   Although we have called cache, remember that it is evaluated (cached) only when an action(count) is called
 
 Now call count again to see how much faster it is to read from memory
 
-    clickstream.count()
+``` scala
+clickstream.count()
+```
 
-> res8: Long = 22509897
+>     res8: Long = 22509897
 
 -   Orders of magnitude faster!
 -   If you are going to be using the same data source multiple times, it is better to cache it in memory
@@ -157,16 +232,19 @@ Now call count again to see how much faster it is to read from memory
 
 To do this we also need to order by the sum of column `n`, in descending order.
 
-    //Type in your answer here...
-    display(clickstream
-      .select(clickstream("curr_title"), clickstream("n"))
-      .groupBy("curr_title")
-      .sum()
-      .orderBy($"sum(n)".desc)
-      .limit(10))
+``` scala
+//Type in your answer here...
+display(clickstream
+  .select(clickstream("curr_title"), clickstream("n"))
+  .groupBy("curr_title")
+  .sum()
+  .orderBy($"sum(n)".desc)
+  .limit(10))
+```
 
-| Main\_Page                                 | 1.2750062e8 |
+| curr\_title                                | sum(n)      |
 |--------------------------------------------|-------------|
+| Main\_Page                                 | 1.2750062e8 |
 | 87th\_Academy\_Awards                      | 2559794.0   |
 | Fifty\_Shades\_of\_Grey                    | 2326175.0   |
 | Alive                                      | 2244781.0   |
@@ -181,15 +259,18 @@ To do this we also need to order by the sum of column `n`, in descending order.
 
 In other words, who were the top referers to Wikipedia?
 
-    display(clickstream
-      .select(clickstream("prev_title"), clickstream("n"))
-      .groupBy("prev_title")
-      .sum()
-      .orderBy($"sum(n)".desc)
-      .limit(10))
+``` scala
+display(clickstream
+  .select(clickstream("prev_title"), clickstream("n"))
+  .groupBy("prev_title")
+  .sum()
+  .orderBy($"sum(n)".desc)
+  .limit(10))
+```
 
-| other-google          | 1.496209976e9 |
+| prev\_title           | sum(n)        |
 |-----------------------|---------------|
+| other-google          | 1.496209976e9 |
 | other-empty           | 3.47693595e8  |
 | other-wikipedia       | 1.29772279e8  |
 | other-other           | 7.7569671e7   |
@@ -206,17 +287,20 @@ Also, note that Twitter sends 10x more requests to Wikipedia than Facebook.
 
 ### What were the top 5 trending articles people from Twitter were looking up in Wikipedia?
 
-    //Type in your answer here...
-    display(clickstream
-      .select(clickstream("curr_title"), clickstream("prev_title"), clickstream("n"))
-      .filter("prev_title = 'other-twitter'")
-      .groupBy("curr_title")
-      .sum()
-      .orderBy($"sum(n)".desc)
-      .limit(5))
+``` scala
+//Type in your answer here...
+display(clickstream
+  .select(clickstream("curr_title"), clickstream("prev_title"), clickstream("n"))
+  .filter("prev_title = 'other-twitter'")
+  .groupBy("curr_title")
+  .sum()
+  .orderBy($"sum(n)".desc)
+  .limit(5))
+```
 
-| Johnny\_Knoxville         | 198908.0 |
+| curr\_title               | sum(n)   |
 |---------------------------|----------|
+| Johnny\_Knoxville         | 198908.0 |
 | Peter\_Woodcock           | 126259.0 |
 | 2002\_Tampa\_plane\_crash | 119906.0 |
 | Sơn\_Đoòng\_Cave          | 116012.0 |
@@ -224,30 +308,39 @@ Also, note that Twitter sends 10x more requests to Wikipedia than Facebook.
 
 #### What percentage of page visits in Wikipedia are from other pages in Wikipedia itself?
 
-    val allClicks = clickstream.selectExpr("sum(n)").first.getLong(0)
-    val referals = clickstream.
-                    filter(clickstream("prev_id").isNotNull).
-                    selectExpr("sum(n)").first.getLong(0)
-    (referals * 100.0) / allClicks
+``` scala
+val allClicks = clickstream.selectExpr("sum(n)").first.getLong(0)
+val referals = clickstream.
+                filter(clickstream("prev_id").isNotNull).
+                selectExpr("sum(n)").first.getLong(0)
+(referals * 100.0) / allClicks
+```
 
-> allClicks: Long = 3283067885 referals: Long = 1095462001 res12: Double = 33.36702253416853
+>     allClicks: Long = 3283067885
+>     referals: Long = 1095462001
+>     res12: Double = 33.36702253416853
 
 #### Register the DataFrame to perform more complex queries
 
-    clickstream.createOrReplaceTempView("clicks")
+``` scala
+clickstream.createOrReplaceTempView("clicks")
+```
 
 #### Which Wikipedia pages have the most referrals to the Donald Trump page?
 
-    SELECT *
-    FROM clicks
-    WHERE 
-      curr_title = 'Donald_Trump' AND
-      prev_id IS NOT NULL AND prev_title != 'Main_Page'
-    ORDER BY n DESC
-    LIMIT 20
+``` sql
+SELECT *
+FROM clicks
+WHERE 
+  curr_title = 'Donald_Trump' AND
+  prev_id IS NOT NULL AND prev_title != 'Main_Page'
+ORDER BY n DESC
+LIMIT 20
+```
 
-| 1861441.0   | 4848272.0 | 4658.0 | Ivanka\_Trump                                      | Donald\_Trump | link |
+| prev\_id    | curr\_id  | n      | prev\_title                                        | curr\_title   | type |
 |-------------|-----------|--------|----------------------------------------------------|---------------|------|
+| 1861441.0   | 4848272.0 | 4658.0 | Ivanka\_Trump                                      | Donald\_Trump | link |
 | 4848272.0   | 4848272.0 | 2212.0 | Donald\_Trump                                      | Donald\_Trump | link |
 | 1209075.0   | 4848272.0 | 1855.0 | Melania\_Trump                                     | Donald\_Trump | link |
 | 1057887.0   | 4848272.0 | 1760.0 | Ivana\_Trump                                       | Donald\_Trump | link |
@@ -274,9 +367,12 @@ Also, note that Twitter sends 10x more requests to Wikipedia than Facebook.
 
 This code is copied after doing a live google search (by Michael Armbrust at Spark Summit East February 2016 shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>). The `d3ivan` package is an updated version of the original package used by Michael Armbrust as it needed some TLC for Spark 2.2 on newer databricks notebook. These changes were kindly made by Ivan Sadikov from Middle Earth.
 
-> Warning: classes defined within packages cannot be redefined without a cluster restart. Compilation successful.
+>     Warning: classes defined within packages cannot be redefined without a cluster restart.
+>     Compilation successful.
 
-    d3ivan.graphs.help()
+``` scala
+d3ivan.graphs.help()
+```
 
 <p class="htmlSandbox">
 <p>
@@ -291,19 +387,21 @@ Produces a force-directed graph given a collection of edges of the following for
 &nbsp;&nbsp;<font color="#ed6a43">clicks</font>: <font color="#795da3">Dataset</font>[<font color="#795da3">Edge</font>])</tt>
 </p></p>
 
-    d3ivan.graphs.force(
-      height = 800,
-      width = 1000,
-      clicks = sql("""
-        SELECT 
-          prev_title AS src,
-          curr_title AS dest,
-          n AS count FROM clicks
-        WHERE 
-          curr_title IN ('Donald_Trump', 'Bernie_Sanders', 'Hillary_Rodham_Clinton', 'Ted_Cruz') AND
-          prev_id IS NOT NULL AND prev_title != 'Main_Page'
-        ORDER BY n DESC
-        LIMIT 20""").as[d3ivan.Edge])
+``` scala
+d3ivan.graphs.force(
+  height = 800,
+  width = 1000,
+  clicks = sql("""
+    SELECT 
+      prev_title AS src,
+      curr_title AS dest,
+      n AS count FROM clicks
+    WHERE 
+      curr_title IN ('Donald_Trump', 'Bernie_Sanders', 'Hillary_Rodham_Clinton', 'Ted_Cruz') AND
+      prev_id IS NOT NULL AND prev_title != 'Main_Page'
+    ORDER BY n DESC
+    LIMIT 20""").as[d3ivan.Edge])
+```
 
 <p class="htmlSandbox">
 <style>
@@ -439,11 +537,13 @@ force.on("tick", function () {
   </p>
 </iframe></p>
 
-    // Convert the DatFrame to a more efficent format to speed up our analysis
-    clickstream.
-      write.
-      mode(SaveMode.Overwrite).
-      parquet("/datasets/wiki-clickstream") // warnings are harmless
+``` scala
+// Convert the DatFrame to a more efficent format to speed up our analysis
+clickstream.
+  write.
+  mode(SaveMode.Overwrite).
+  parquet("/datasets/wiki-clickstream") // warnings are harmless
+```
 
 #### Load parquet file efficiently and quickly into a DataFrame
 
@@ -451,23 +551,98 @@ Now we can simply load from this parquet file next time instead of creating the 
 
 Also using parquet files to store DataFrames allows us to go between languages quickly in a a scalable manner.
 
-    val clicks = sqlContext.read.parquet("/datasets/wiki-clickstream")
+``` scala
+val clicks = sqlContext.read.parquet("/datasets/wiki-clickstream")
+```
 
-> clicks: org.apache.spark.sql.DataFrame = \[prev\_id: int, curr\_id: int ... 4 more fields\]
+>     clicks: org.apache.spark.sql.DataFrame = [prev_id: int, curr_id: int ... 4 more fields]
 
-    clicks.printSchema
+``` scala
+clicks.printSchema
+```
 
-> root |-- prev\_id: integer (nullable = true) |-- curr\_id: integer (nullable = true) |-- n: integer (nullable = true) |-- prev\_title: string (nullable = true) |-- curr\_title: string (nullable = true) |-- type: string (nullable = true)
+>     root
+>      |-- prev_id: integer (nullable = true)
+>      |-- curr_id: integer (nullable = true)
+>      |-- n: integer (nullable = true)
+>      |-- prev_title: string (nullable = true)
+>      |-- curr_title: string (nullable = true)
+>      |-- type: string (nullable = true)
 
-    display(clicks)  // let's display this DataFrame
+``` scala
+display(clicks)  // let's display this DataFrame
+```
+
+| prev\_id    | curr\_id | n      | prev\_title                                            | curr\_title                         | type  |
+|-------------|----------|--------|--------------------------------------------------------|-------------------------------------|-------|
+| 7009881.0   | 164003.0 | 21.0   | Mayall                                                 | John\_Mayall                        | link  |
+| 476786.0    | 164003.0 | 86.0   | Mick\_Taylor                                           | John\_Mayall                        | link  |
+| 1.9735547e7 | 164003.0 | 10.0   | Peter\_Green\_discography                              | John\_Mayall                        | link  |
+| 244136.0    | 164003.0 | 10.0   | Macclesfield                                           | John\_Mayall                        | link  |
+| 3.3105755e7 | 164003.0 | 13.0   | The\_Yardbirds                                         | John\_Mayall                        | link  |
+| 8910430.0   | 164003.0 | 34.0   | The\_Turning\_Point\_(John\_Mayall\_album)             | John\_Mayall                        | link  |
+| 329878.0    | 164003.0 | 10.0   | Steve\_Marriott                                        | John\_Mayall                        | link  |
+| null        | 164003.0 | 652.0  | other-empty                                            | John\_Mayall                        | other |
+| null        | 147396.0 | 134.0  | other-bing                                             | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.7865484e7 | 147396.0 | 13.0   | Timeline\_of\_heavy\_metal\_and\_hard\_rock\_music     | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.5580374e7 | 147396.0 | 94.0   | Main\_Page                                             | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 168254.0    | 147396.0 | 23.0   | Paul\_Butterfield                                      | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 322138.0    | 147396.0 | 283.0  | Peter\_Green\_(musician)                               | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| null        | 147396.0 | 79.0   | other-other                                            | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.2154926e7 | 147396.0 | 13.0   | Marshall\_Bluesbreaker                                 | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 223910.0    | 147396.0 | 12.0   | Robben\_Ford                                           | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.4433637e7 | 147396.0 | 10.0   | Parchman\_Farm\_(song)                                 | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 476786.0    | 147396.0 | 213.0  | Mick\_Taylor                                           | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 1.8952282e7 | 147396.0 | 13.0   | Ric\_Grech                                             | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 4113741.0   | 147396.0 | 50.0   | Rolling\_Stone's\_500\_Greatest\_Albums\_of\_All\_Time | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 36668.0     | 147396.0 | 64.0   | Mick\_Fleetwood                                        | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| null        | 147396.0 | 328.0  | other-empty                                            | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 166705.0    | 147396.0 | 10.0   | Thin\_Lizzy                                            | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 3.3105755e7 | 147396.0 | 115.0  | The\_Yardbirds                                         | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 6071392.0   | 147396.0 | 45.0   | Walter\_Trout                                          | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 269.0  | other-wikipedia                                        | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 21.0   | other-twitter                                          | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 1632.0 | other-google                                           | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 84.0   | other-yahoo                                            | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 2771975.0   | 147396.0 | 17.0   | 70th\_Birthday\_Concert                                | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+
+Truncated to 30 rows
 
 ##### DataFrame in python
 
-    clicksPy = sqlContext.read.parquet("/datasets/wiki-clickstream")
+``` python
+clicksPy = sqlContext.read.parquet("/datasets/wiki-clickstream")
+```
 
-    clicksPy.show()
+``` python
+clicksPy.show()
+```
 
-> +--------+-------+---+--------------------+--------------------+-----+ | prev\_id|curr\_id| n| prev\_title| curr\_title| type| +--------+-------+---+--------------------+--------------------+-----+ | 7009881| 164003| 21| Mayall| John\_Mayall| link| | 476786| 164003| 86| Mick\_Taylor| John\_Mayall| link| |19735547| 164003| 10|Peter\_Green\_disco...| John\_Mayall| link| | 244136| 164003| 10| Macclesfield| John\_Mayall| link| |33105755| 164003| 13| The\_Yardbirds| John\_Mayall| link| | 8910430| 164003| 34|The\_Turning\_Point...| John\_Mayall| link| | 329878| 164003| 10| Steve\_Marriott| John\_Mayall| link| | null| 164003|652| other-empty| John\_Mayall|other| | null| 147396|134| other-bing|John\_Mayall\_&\_the...|other| |17865484| 147396| 13|Timeline\_of\_heavy...|John\_Mayall\_&\_the...|other| |15580374| 147396| 94| Main\_Page|John\_Mayall\_&\_the...|other| | 168254| 147396| 23| Paul\_Butterfield|John\_Mayall\_&\_the...| link| | 322138| 147396|283|Peter\_Green\_(musi...|John\_Mayall\_&\_the...| link| | null| 147396| 79| other-other|John\_Mayall\_&\_the...|other| |12154926| 147396| 13|Marshall\_Bluesbre...|John\_Mayall\_&\_the...| link| | 223910| 147396| 12| Robben\_Ford|John\_Mayall\_&\_the...|other| |14433637| 147396| 10|Parchman\_Farm\_(song)|John\_Mayall\_&\_the...| link| | 476786| 147396|213| Mick\_Taylor|John\_Mayall\_&\_the...| link| |18952282| 147396| 13| Ric\_Grech|John\_Mayall\_&\_the...|other| | 4113741| 147396| 50|Rolling\_Stone's\_5...|John\_Mayall\_&\_the...| link| +--------+-------+---+--------------------+--------------------+-----+ only showing top 20 rows
+>     +--------+-------+---+--------------------+--------------------+-----+
+>     | prev_id|curr_id|  n|          prev_title|          curr_title| type|
+>     +--------+-------+---+--------------------+--------------------+-----+
+>     | 7009881| 164003| 21|              Mayall|         John_Mayall| link|
+>     |  476786| 164003| 86|         Mick_Taylor|         John_Mayall| link|
+>     |19735547| 164003| 10|Peter_Green_disco...|         John_Mayall| link|
+>     |  244136| 164003| 10|        Macclesfield|         John_Mayall| link|
+>     |33105755| 164003| 13|       The_Yardbirds|         John_Mayall| link|
+>     | 8910430| 164003| 34|The_Turning_Point...|         John_Mayall| link|
+>     |  329878| 164003| 10|      Steve_Marriott|         John_Mayall| link|
+>     |    null| 164003|652|         other-empty|         John_Mayall|other|
+>     |    null| 147396|134|          other-bing|John_Mayall_&_the...|other|
+>     |17865484| 147396| 13|Timeline_of_heavy...|John_Mayall_&_the...|other|
+>     |15580374| 147396| 94|           Main_Page|John_Mayall_&_the...|other|
+>     |  168254| 147396| 23|    Paul_Butterfield|John_Mayall_&_the...| link|
+>     |  322138| 147396|283|Peter_Green_(musi...|John_Mayall_&_the...| link|
+>     |    null| 147396| 79|         other-other|John_Mayall_&_the...|other|
+>     |12154926| 147396| 13|Marshall_Bluesbre...|John_Mayall_&_the...| link|
+>     |  223910| 147396| 12|         Robben_Ford|John_Mayall_&_the...|other|
+>     |14433637| 147396| 10|Parchman_Farm_(song)|John_Mayall_&_the...| link|
+>     |  476786| 147396|213|         Mick_Taylor|John_Mayall_&_the...| link|
+>     |18952282| 147396| 13|           Ric_Grech|John_Mayall_&_the...|other|
+>     | 4113741| 147396| 50|Rolling_Stone's_5...|John_Mayall_&_the...| link|
+>     +--------+-------+---+--------------------+--------------------+-----+
+>     only showing top 20 rows
 
 Now you can continue from the original python notebook tweeted by Michael.
 
@@ -483,79 +658,87 @@ Try to laoad a DataFrame in R from the parquet file just as we did for python. R
 
 And see the `R` example in the Programming Guide: \* <https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files>.
 
-    library(SparkR)
+``` r
+library(SparkR)
 
-    # just a quick test
-    df <- createDataFrame(faithful)
-    head(df)
+# just a quick test
+df <- createDataFrame(faithful)
+head(df)
+```
 
-> ```
-> Attaching package: ‘SparkR’
->
-> The following objects are masked from ‘package:stats’:
->
->     cov, filter, lag, na.omit, predict, sd, var, window
->
-> The following objects are masked from ‘package:base’:
->
->     as.data.frame, colnames, colnames<-, drop, intersect, rank, rbind,
->     sample, subset, summary, transform, union
-> ```
->
-> ```
->   eruptions waiting
-> 1     3.600      79
-> 2     1.800      54
-> 3     3.333      74
-> 4     2.283      62
-> 5     4.533      85
-> 6     2.883      55
-> ```
+``` r
+# Read in the Parquet file created above. Parquet files are self-describing so the schema is preserved.
+# The result of loading a parquet file is also a DataFrame.
+clicksR <- read.df("/datasets/wiki-clickstream", source = "parquet")
+clicksR # in R you need to put the object int its own line like this to get the type information
+```
 
-    # Read in the Parquet file created above. Parquet files are self-describing so the schema is preserved.
-    # The result of loading a parquet file is also a DataFrame.
-    clicksR <- read.df("/datasets/wiki-clickstream", source = "parquet")
-    clicksR # in R you need to put the object int its own line like this to get the type information
+``` r
+display(clicksR)
+```
 
-> ```
-> ```
->
-> ```
-> SparkDataFrame[prev_id:int, curr_id:int, n:int, prev_title:string, curr_title:string, type:string]
-> ```
+| prev\_id    | curr\_id | n      | prev\_title                                            | curr\_title                         | type  |
+|-------------|----------|--------|--------------------------------------------------------|-------------------------------------|-------|
+| 7009881.0   | 164003.0 | 21.0   | Mayall                                                 | John\_Mayall                        | link  |
+| 476786.0    | 164003.0 | 86.0   | Mick\_Taylor                                           | John\_Mayall                        | link  |
+| 1.9735547e7 | 164003.0 | 10.0   | Peter\_Green\_discography                              | John\_Mayall                        | link  |
+| 244136.0    | 164003.0 | 10.0   | Macclesfield                                           | John\_Mayall                        | link  |
+| 3.3105755e7 | 164003.0 | 13.0   | The\_Yardbirds                                         | John\_Mayall                        | link  |
+| 8910430.0   | 164003.0 | 34.0   | The\_Turning\_Point\_(John\_Mayall\_album)             | John\_Mayall                        | link  |
+| 329878.0    | 164003.0 | 10.0   | Steve\_Marriott                                        | John\_Mayall                        | link  |
+| null        | 164003.0 | 652.0  | other-empty                                            | John\_Mayall                        | other |
+| null        | 147396.0 | 134.0  | other-bing                                             | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.7865484e7 | 147396.0 | 13.0   | Timeline\_of\_heavy\_metal\_and\_hard\_rock\_music     | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.5580374e7 | 147396.0 | 94.0   | Main\_Page                                             | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 168254.0    | 147396.0 | 23.0   | Paul\_Butterfield                                      | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 322138.0    | 147396.0 | 283.0  | Peter\_Green\_(musician)                               | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| null        | 147396.0 | 79.0   | other-other                                            | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.2154926e7 | 147396.0 | 13.0   | Marshall\_Bluesbreaker                                 | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 223910.0    | 147396.0 | 12.0   | Robben\_Ford                                           | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 1.4433637e7 | 147396.0 | 10.0   | Parchman\_Farm\_(song)                                 | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 476786.0    | 147396.0 | 213.0  | Mick\_Taylor                                           | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 1.8952282e7 | 147396.0 | 13.0   | Ric\_Grech                                             | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 4113741.0   | 147396.0 | 50.0   | Rolling\_Stone's\_500\_Greatest\_Albums\_of\_All\_Time | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 36668.0     | 147396.0 | 64.0   | Mick\_Fleetwood                                        | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| null        | 147396.0 | 328.0  | other-empty                                            | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 166705.0    | 147396.0 | 10.0   | Thin\_Lizzy                                            | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 3.3105755e7 | 147396.0 | 115.0  | The\_Yardbirds                                         | John\_Mayall\_&\_the\_Bluesbreakers | link  |
+| 6071392.0   | 147396.0 | 45.0   | Walter\_Trout                                          | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 269.0  | other-wikipedia                                        | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 21.0   | other-twitter                                          | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 1632.0 | other-google                                           | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| null        | 147396.0 | 84.0   | other-yahoo                                            | John\_Mayall\_&\_the\_Bluesbreakers | other |
+| 2771975.0   | 147396.0 | 17.0   | 70th\_Birthday\_Concert                                | John\_Mayall\_&\_the\_Bluesbreakers | link  |
 
-    display(clicksR)
+Truncated to 30 rows
 
-    # in Python you need to put the object int its own line like this to get the type information
-    clicksPy 
+``` scala
+```
 
-> <span class="ansired">Out\[</span><span class="ansired">2</span><span class="ansired">\]: </span>DataFrame\[prev\_id: int, curr\_id: int, n: int, prev\_title: string, curr\_title: string, type: string\]
+``` python
+# in Python you need to put the object int its own line like this to get the type information
+clicksPy 
+```
 
-    head(clicksR)
+>     Out[2]: DataFrame[prev_id: int, curr_id: int, n: int, prev_title: string, curr_title: string, type: string]
 
-> ```
-> ```
->
-> ```
->    prev_id curr_id  n                            prev_title  curr_title type
-> 1  7009881  164003 21                                Mayall John_Mayall link
-> 2   476786  164003 86                           Mick_Taylor John_Mayall link
-> 3 19735547  164003 10               Peter_Green_discography John_Mayall link
-> 4   244136  164003 10                          Macclesfield John_Mayall link
-> 5 33105755  164003 13                         The_Yardbirds John_Mayall link
-> 6  8910430  164003 34 The_Turning_Point_(John_Mayall_album) John_Mayall link
-> ```
+``` r
+head(clicksR)
+```
 
-    -- FIXME (broke query, will get back to it later)
-    SELECT *
-    FROM clicks
-    WHERE 
-      prev_id IS NOT NULL
-    ORDER BY n DESC
-    LIMIT 20
+``` sql
+-- FIXME (broke query, will get back to it later)
+SELECT *
+FROM clicks
+WHERE 
+  prev_id IS NOT NULL
+ORDER BY n DESC
+LIMIT 20
+```
 
-| 1.5580374e7 | 4.4789934e7 | 769616.0 | Main\_Page                       | Deaths\_in\_2015                           | link  |
+| prev\_id    | curr\_id    | n        | prev\_title                      | curr\_title                                | type  |
 |-------------|-------------|----------|----------------------------------|--------------------------------------------|-------|
+| 1.5580374e7 | 4.4789934e7 | 769616.0 | Main\_Page                       | Deaths\_in\_2015                           | link  |
 | 3.516685e7  | 4.0218034e7 | 368694.0 | Fifty\_Shades\_of\_Grey          | Fifty\_Shades\_of\_Grey\_(film)            | link  |
 | 4.0218034e7 | 7000810.0   | 284352.0 | Fifty\_Shades\_of\_Grey\_(film)  | Dakota\_Johnson                            | link  |
 | 3.5793706e7 | 3.7371793e7 | 253460.0 | Arrow\_(TV\_series)              | List\_of\_Arrow\_episodes                  | link  |

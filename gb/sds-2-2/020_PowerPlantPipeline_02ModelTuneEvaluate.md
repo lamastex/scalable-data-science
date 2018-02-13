@@ -74,25 +74,38 @@ We will need to convert the predictor features from columns to Feature Vectors u
 
 The VectorAssembler will be the first step in building our ML pipeline.
 
-    //Let's quickly recall the schema and make sure our table is here now
-    table("power_plant_table").printSchema
+``` scala
+//Let's quickly recall the schema and make sure our table is here now
+table("power_plant_table").printSchema
+```
 
-> root |-- AT: double (nullable = true) |-- V: double (nullable = true) |-- AP: double (nullable = true) |-- RH: double (nullable = true) |-- PE: double (nullable = true)
+>     root
+>      |-- AT: double (nullable = true)
+>      |-- V: double (nullable = true)
+>      |-- AP: double (nullable = true)
+>      |-- RH: double (nullable = true)
+>      |-- PE: double (nullable = true)
 
-    powerPlantDF // make sure we have the DataFrame too
+``` scala
+powerPlantDF // make sure we have the DataFrame too
+```
 
-> res23: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 3 more fields\]
+>     res23: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
 
-    import org.apache.spark.ml.feature.VectorAssembler
+``` scala
+import org.apache.spark.ml.feature.VectorAssembler
 
-    // make a DataFrame called dataset from the table
-    val dataset = sqlContext.table("power_plant_table") 
+// make a DataFrame called dataset from the table
+val dataset = sqlContext.table("power_plant_table") 
 
-    val vectorizer =  new VectorAssembler()
-                          .setInputCols(Array("AT", "V", "AP", "RH"))
-                          .setOutputCol("features")
+val vectorizer =  new VectorAssembler()
+                      .setInputCols(Array("AT", "V", "AP", "RH"))
+                      .setOutputCol("features")
+```
 
-> import org.apache.spark.ml.feature.VectorAssembler dataset: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 3 more fields\] vectorizer: org.apache.spark.ml.feature.VectorAssembler = vecAssembler\_bca323dc00ef
+>     import org.apache.spark.ml.feature.VectorAssembler
+>     dataset: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+>     vectorizer: org.apache.spark.ml.feature.VectorAssembler = vecAssembler_bca323dc00ef
 
 Step 6: Data Modeling
 ---------------------
@@ -109,59 +122,93 @@ Our first model will be based on simple linear regression since we saw some line
 
 Let's open <http://spark.apache.org/docs/latest/mllib-linear-methods.html#regression> for some details.
 
-    // First let's hold out 20% of our data for testing and leave 80% for training
-    var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L)
+``` scala
+// First let's hold out 20% of our data for testing and leave 80% for training
+var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L)
+```
 
-> split20: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\] split80: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\]
+>     split20: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
+>     split80: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
 
-    // Let's cache these datasets for performance
-    val testSet = split20.cache()
-    val trainingSet = split80.cache()
+``` scala
+// Let's cache these datasets for performance
+val testSet = split20.cache()
+val trainingSet = split80.cache()
+```
 
-> testSet: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\] trainingSet: org.apache.spark.sql.Dataset\[org.apache.spark.sql.Row\] = \[AT: double, V: double ... 3 more fields\]
+>     testSet: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
+>     trainingSet: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
 
-    dataset.take(3)
+``` scala
+dataset.take(3)
+```
 
-> res24: Array\[org.apache.spark.sql.Row\] = Array(\[14.96,41.76,1024.07,73.17,463.26\], \[25.18,62.96,1020.04,59.08,444.37\], \[5.11,39.4,1012.16,92.14,488.56\])
+>     res24: Array[org.apache.spark.sql.Row] = Array([14.96,41.76,1024.07,73.17,463.26], [25.18,62.96,1020.04,59.08,444.37], [5.11,39.4,1012.16,92.14,488.56])
 
-    testSet.take(3)
+``` scala
+testSet.take(3)
+```
 
-> res25: Array\[org.apache.spark.sql.Row\] = Array(\[1.81,39.42,1026.92,76.97,490.55\], \[3.2,41.31,997.67,98.84,489.86\], \[3.38,41.31,998.79,97.76,489.11\])
+>     res25: Array[org.apache.spark.sql.Row] = Array([1.81,39.42,1026.92,76.97,490.55], [3.2,41.31,997.67,98.84,489.86], [3.38,41.31,998.79,97.76,489.11])
 
-    trainingSet.take(3)
+``` scala
+trainingSet.take(3)
+```
 
-> res26: Array\[org.apache.spark.sql.Row\] = Array(\[2.34,39.42,1028.47,69.68,490.34\], \[2.58,39.42,1028.68,69.03,488.69\], \[2.64,39.64,1011.02,85.24,481.29\])
+>     res26: Array[org.apache.spark.sql.Row] = Array([2.34,39.42,1028.47,69.68,490.34], [2.58,39.42,1028.68,69.03,488.69], [2.64,39.64,1011.02,85.24,481.29])
 
-    // ***** LINEAR REGRESSION MODEL ****
+``` scala
+// ***** LINEAR REGRESSION MODEL ****
 
-    import org.apache.spark.ml.regression.LinearRegression
-    import org.apache.spark.ml.regression.LinearRegressionModel
-    import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.regression.LinearRegression
+import org.apache.spark.ml.regression.LinearRegressionModel
+import org.apache.spark.ml.Pipeline
 
-    // Let's initialize our linear regression learner
-    val lr = new LinearRegression()
+// Let's initialize our linear regression learner
+val lr = new LinearRegression()
+```
 
-> import org.apache.spark.ml.regression.LinearRegression import org.apache.spark.ml.regression.LinearRegressionModel import org.apache.spark.ml.Pipeline lr: org.apache.spark.ml.regression.LinearRegression = linReg\_161e726c1f38
+>     import org.apache.spark.ml.regression.LinearRegression
+>     import org.apache.spark.ml.regression.LinearRegressionModel
+>     import org.apache.spark.ml.Pipeline
+>     lr: org.apache.spark.ml.regression.LinearRegression = linReg_161e726c1f38
 
-    // We use explain params to dump the parameters we can use
-    lr.explainParams()
+``` scala
+// We use explain params to dump the parameters we can use
+lr.explainParams()
+```
 
-> res29: String = aggregationDepth: suggested depth for treeAggregate (&gt;= 2) (default: 2) elasticNetParam: the ElasticNet mixing parameter, in range \[0, 1\]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty (default: 0.0) featuresCol: features column name (default: features) fitIntercept: whether to fit an intercept term (default: true) labelCol: label column name (default: label) maxIter: maximum number of iterations (&gt;= 0) (default: 100) predictionCol: prediction column name (default: prediction) regParam: regularization parameter (&gt;= 0) (default: 0.0) solver: the solver algorithm for optimization. If this is not set or empty, default value is 'auto' (default: auto) standardization: whether to standardize the training features before fitting the model (default: true) tol: the convergence tolerance for iterative algorithms (&gt;= 0) (default: 1.0E-6) weightCol: weight column name. If this is not set or empty, we treat all instance weights as 1.0 (undefined)
+>     res29: String =
+>     aggregationDepth: suggested depth for treeAggregate (>= 2) (default: 2)
+>     elasticNetParam: the ElasticNet mixing parameter, in range [0, 1]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty (default: 0.0)
+>     featuresCol: features column name (default: features)
+>     fitIntercept: whether to fit an intercept term (default: true)
+>     labelCol: label column name (default: label)
+>     maxIter: maximum number of iterations (>= 0) (default: 100)
+>     predictionCol: prediction column name (default: prediction)
+>     regParam: regularization parameter (>= 0) (default: 0.0)
+>     solver: the solver algorithm for optimization. If this is not set or empty, default value is 'auto' (default: auto)
+>     standardization: whether to standardize the training features before fitting the model (default: true)
+>     tol: the convergence tolerance for iterative algorithms (>= 0) (default: 1.0E-6)
+>     weightCol: weight column name. If this is not set or empty, we treat all instance weights as 1.0 (undefined)
 
 The cell below is based on the Spark ML pipeline API. More information can be found in the Spark ML Programming Guide at https://spark.apache.org/docs/latest/ml-guide.html
 
-    // Now we set the parameters for the method
-    lr.setPredictionCol("Predicted_PE")
-      .setLabelCol("PE")
-      .setMaxIter(100)
-      .setRegParam(0.1)
-    // We will use the new spark.ml pipeline API. If you have worked with scikit-learn this will be very familiar.
-    val lrPipeline = new Pipeline()
-    lrPipeline.setStages(Array(vectorizer, lr))
-    // Let's first train on the entire dataset to see what we get
-    val lrModel = lrPipeline.fit(trainingSet)
+``` scala
+// Now we set the parameters for the method
+lr.setPredictionCol("Predicted_PE")
+  .setLabelCol("PE")
+  .setMaxIter(100)
+  .setRegParam(0.1)
+// We will use the new spark.ml pipeline API. If you have worked with scikit-learn this will be very familiar.
+val lrPipeline = new Pipeline()
+lrPipeline.setStages(Array(vectorizer, lr))
+// Let's first train on the entire dataset to see what we get
+val lrModel = lrPipeline.fit(trainingSet)
+```
 
-> lrPipeline: org.apache.spark.ml.Pipeline = pipeline\_8b0213f4b86e lrModel: org.apache.spark.ml.PipelineModel = pipeline\_8b0213f4b86e
+>     lrPipeline: org.apache.spark.ml.Pipeline = pipeline_8b0213f4b86e
+>     lrModel: org.apache.spark.ml.PipelineModel = pipeline_8b0213f4b86e
 
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
@@ -171,53 +218,67 @@ where \\(b\_0\\) is the intercept and \\(b\_i\\)'s are coefficients.
 
 To express the coefficients of that line we can retrieve the Estimator stage from the fitted, linear-regression pipeline model named `lrModel` and express the weights and the intercept for the function.
 
-    // The intercept is as follows:
-    val intercept = lrModel.stages(1).asInstanceOf[LinearRegressionModel].intercept
+``` scala
+// The intercept is as follows:
+val intercept = lrModel.stages(1).asInstanceOf[LinearRegressionModel].intercept
+```
 
-> intercept: Double = 427.9139822165837
+>     intercept: Double = 427.9139822165837
 
-    // The coefficents (i.e. weights) are as follows:
+``` scala
+// The coefficents (i.e. weights) are as follows:
 
-    val weights = lrModel.stages(1).asInstanceOf[LinearRegressionModel].coefficients.toArray
+val weights = lrModel.stages(1).asInstanceOf[LinearRegressionModel].coefficients.toArray
+```
 
-> weights: Array\[Double\] = Array(-1.9083064919040942, -0.25381293007161654, 0.08739350304730673, -0.1474651301033126)
+>     weights: Array[Double] = Array(-1.9083064919040942, -0.25381293007161654, 0.08739350304730673, -0.1474651301033126)
 
 The model has been fit and the intercept and coefficients displayed above.
 
 Now, let us do some work to make a string of the model that is easy to understand for an applied data scientist or data analyst.
 
-    val featuresNoLabel = dataset.columns.filter(col => col != "PE")
+``` scala
+val featuresNoLabel = dataset.columns.filter(col => col != "PE")
+```
 
-> featuresNoLabel: Array\[String\] = Array(AT, V, AP, RH)
+>     featuresNoLabel: Array[String] = Array(AT, V, AP, RH)
 
-    val coefficentFeaturePairs = sc.parallelize(weights).zip(sc.parallelize(featuresNoLabel))
+``` scala
+val coefficentFeaturePairs = sc.parallelize(weights).zip(sc.parallelize(featuresNoLabel))
+```
 
-> coefficentFeaturePairs: org.apache.spark.rdd.RDD\[(Double, String)\] = ZippedPartitionsRDD2\[35297\] at zip at &lt;console&gt;:42
+>     coefficentFeaturePairs: org.apache.spark.rdd.RDD[(Double, String)] = ZippedPartitionsRDD2[35297] at zip at <console>:42
 
-    coefficentFeaturePairs.collect() // this just pairs each coefficient with the name of its corresponding feature
+``` scala
+coefficentFeaturePairs.collect() // this just pairs each coefficient with the name of its corresponding feature
+```
 
-> res30: Array\[(Double, String)\] = Array((-1.9083064919040942,AT), (-0.25381293007161654,V), (0.08739350304730673,AP), (-0.1474651301033126,RH))
+>     res30: Array[(Double, String)] = Array((-1.9083064919040942,AT), (-0.25381293007161654,V), (0.08739350304730673,AP), (-0.1474651301033126,RH))
 
-    // Now let's sort the coefficients from the largest to the smallest
+``` scala
+// Now let's sort the coefficients from the largest to the smallest
 
-    var equation = s"y = $intercept "
-    //var variables = Array
-    coefficentFeaturePairs.sortByKey().collect().foreach({
-      case (weight, feature) =>
-      { 
-            val symbol = if (weight > 0) "+" else "-"
-            val absWeight = Math.abs(weight)
-            equation += (s" $symbol (${absWeight} * ${feature})")
-      }
-    }
-    )
+var equation = s"y = $intercept "
+//var variables = Array
+coefficentFeaturePairs.sortByKey().collect().foreach({
+  case (weight, feature) =>
+  { 
+        val symbol = if (weight > 0) "+" else "-"
+        val absWeight = Math.abs(weight)
+        equation += (s" $symbol (${absWeight} * ${feature})")
+  }
+}
+)
+```
 
-> equation: String = y = 427.9139822165837 - (1.9083064919040942 \* AT) - (0.25381293007161654 \* V) - (0.1474651301033126 \* RH) + (0.08739350304730673 \* AP)
+>     equation: String = y = 427.9139822165837  - (1.9083064919040942 * AT) - (0.25381293007161654 * V) - (0.1474651301033126 * RH) + (0.08739350304730673 * AP)
 
-    // Finally here is our equation
-    println("Linear Regression Equation: " + equation)
+``` scala
+// Finally here is our equation
+println("Linear Regression Equation: " + equation)
+```
 
-> Linear Regression Equation: y = 427.9139822165837 - (1.9083064919040942 \* AT) - (0.25381293007161654 \* V) - (0.1474651301033126 \* RH) + (0.08739350304730673 \* AP)
+>     Linear Regression Equation: y = 427.9139822165837  - (1.9083064919040942 * AT) - (0.25381293007161654 * V) - (0.1474651301033126 * RH) + (0.08739350304730673 * AP)
 
 Based on examining the fitted Linear Regression Equation above: \* There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91. \* But our other dimenensions seem to have little to no correlation with Power Output.
 
@@ -225,12 +286,15 @@ Do you remember **Step 2: Explore Your Data**? When we visualized each predictor
 
 Now let's see what our predictions look like given this model.
 
-    val predictionsAndLabels = lrModel.transform(testSet)
+``` scala
+val predictionsAndLabels = lrModel.transform(testSet)
 
-    display(predictionsAndLabels.select("AT", "V", "AP", "RH", "PE", "Predicted_PE"))
+display(predictionsAndLabels.select("AT", "V", "AP", "RH", "PE", "Predicted_PE"))
+```
 
-| 1.81 | 39.42 | 1026.92 | 76.97 | 490.55 | 492.8503868481024  |
+| AT   | V     | AP      | RH    | PE     | Predicted\_PE      |
 |------|-------|---------|-------|--------|--------------------|
+| 1.81 | 39.42 | 1026.92 | 76.97 | 490.55 | 492.8503868481024  |
 | 3.2  | 41.31 | 997.67  | 98.84 | 489.86 | 483.9368120270272  |
 | 3.38 | 41.31 | 998.79  | 97.76 | 489.11 | 483.850459922409   |
 | 3.4  | 39.64 | 1011.1  | 83.43 | 459.86 | 487.4251507226833  |
@@ -265,41 +329,62 @@ Truncated to 30 rows
 
 Now that we have real predictions we can use an evaluation metric such as Root Mean Squared Error to validate our regression model. The lower the Root Mean Squared Error, the better our model.
 
-    //Now let's compute some evaluation metrics against our test dataset
+``` scala
+//Now let's compute some evaluation metrics against our test dataset
 
-    import org.apache.spark.mllib.evaluation.RegressionMetrics 
+import org.apache.spark.mllib.evaluation.RegressionMetrics 
 
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
+```
 
-> import org.apache.spark.mllib.evaluation.RegressionMetrics metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@32433b70
+>     import org.apache.spark.mllib.evaluation.RegressionMetrics
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@32433b70
 
-    val rmse = metrics.rootMeanSquaredError
+``` scala
+val rmse = metrics.rootMeanSquaredError
+```
 
-> rmse: Double = 4.609375859170583
+>     rmse: Double = 4.609375859170583
 
-    val explainedVariance = metrics.explainedVariance
+``` scala
+val explainedVariance = metrics.explainedVariance
+```
 
-> explainedVariance: Double = 274.54186073318266
+>     explainedVariance: Double = 274.54186073318266
 
-    val r2 = metrics.r2
+``` scala
+val r2 = metrics.r2
+```
 
-> r2: Double = 0.9308377700269259
+>     r2: Double = 0.9308377700269259
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+``` scala
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
-> Root Mean Squared Error: 4.609375859170583 Explained Variance: 274.54186073318266 R2: 0.9308377700269259
+>     Root Mean Squared Error: 4.609375859170583
+>     Explained Variance: 274.54186073318266
+>     R2: 0.9308377700269259
 
 Generally a good model will have 68% of predictions within 1 RMSE and 95% within 2 RMSE of the actual value. Let's calculate and see if our RMSE meets this criteria.
 
-    display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
+``` scala
+display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
+```
 
-    // First we calculate the residual error and divide it by the RMSE from predictionsAndLabels DataFrame and make another DataFrame that is registered as a temporary table Power_Plant_RMSE_Evaluation
-    predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
+``` scala
+// First we calculate the residual error and divide it by the RMSE from predictionsAndLabels DataFrame and make another DataFrame that is registered as a temporary table Power_Plant_RMSE_Evaluation
+predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
+```
 
-| 490.55 | 492.8503868481024  | -2.3003868481023915  | -0.49906688419119855  |
+``` sql SELECT * from Power_Plant_RMSE_Evaluation
+```
+
+| PE     | Predicted\_PE      | Residual\_Error      | Within\_RSME          |
 |--------|--------------------|----------------------|-----------------------|
+| 490.55 | 492.8503868481024  | -2.3003868481023915  | -0.49906688419119855  |
 | 489.86 | 483.9368120270272  | 5.923187972972812    | 1.2850303715606821    |
 | 489.11 | 483.850459922409   | 5.259540077590998    | 1.1410525499080058    |
 | 459.86 | 487.4251507226833  | -27.565150722683313  | -5.980234974295072    |
@@ -332,10 +417,13 @@ Generally a good model will have 68% of predictions within 1 RMSE and 95% within
 
 Truncated to 30 rows
 
-    SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
+``` sql -- Now we can display the RMSE as a Histogram. Clearly this shows that the RMSE is centered around 0 with the vast majority of the error within 2 RMSEs.
+SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
+```
 
-| -0.49906688419119855  |
+| Within\_RSME          |
 |-----------------------|
+| -0.49906688419119855  |
 | 1.2850303715606821    |
 | 1.1410525499080058    |
 | -5.980234974295072    |
@@ -370,13 +458,16 @@ Truncated to 30 rows
 
 We can see this definitively if we count the number of predictions within + or - 1.0 and + or - 2.0 and display this as a pie chart:
 
-    SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
-    group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end
+``` sql
+SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
+group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end
+```
 
-| 1.0 | 1312.0 |
-|-----|--------|
-| 3.0 | 55.0   |
-| 2.0 | 599.0  |
+| RSME\_Multiple | count  |
+|----------------|--------|
+| 1.0            | 1312.0 |
+| 3.0            | 55.0   |
+| 2.0            | 599.0  |
 
 So we have about 70% of our training data within 1 RMSE and about 97% (70% + 27%) within 2 RMSE. So the model is pretty decent. Let's see if we can tune the model to improve it further.
 
@@ -387,20 +478,26 @@ Step 7: Tuning and Evaluation
 
 Now that we have a model with all of the data let's try to make a better model by tuning over several parameters.
 
-    import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
-    import org.apache.spark.ml.evaluation._
+``` scala
+import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
+import org.apache.spark.ml.evaluation._
+```
 
-> import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator} import org.apache.spark.ml.evaluation.\_
+>     import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
+>     import org.apache.spark.ml.evaluation._
 
 First let's use a cross validator to split the data into training and validation subsets. See <http://spark.apache.org/docs/latest/ml-tuning.html>.
 
-    //Let's set up our evaluator class to judge the model based on the best root mean squared error
-    val regEval = new RegressionEvaluator()
-    regEval.setLabelCol("PE")
-      .setPredictionCol("Predicted_PE")
-      .setMetricName("rmse")
+``` scala
+//Let's set up our evaluator class to judge the model based on the best root mean squared error
+val regEval = new RegressionEvaluator()
+regEval.setLabelCol("PE")
+  .setPredictionCol("Predicted_PE")
+  .setMetricName("rmse")
+```
 
-> regEval: org.apache.spark.ml.evaluation.RegressionEvaluator = regEval\_c6d2feda2ee0 res37: regEval.type = regEval\_c6d2feda2ee0
+>     regEval: org.apache.spark.ml.evaluation.RegressionEvaluator = regEval_c6d2feda2ee0
+>     res37: regEval.type = regEval_c6d2feda2ee0
 
 We now treat the `lrPipeline` as an `Estimator`, wrapping it in a `CrossValidator` instance.
 
@@ -408,13 +505,16 @@ This will allow us to jointly choose parameters for all Pipeline stages.
 
 A `CrossValidator` requires an `Estimator`, an `Evaluator` (which we `set` next).
 
-    //Let's create our crossvalidator with 3 fold cross validation
-    val crossval = new CrossValidator()
-    crossval.setEstimator(lrPipeline)
-    crossval.setNumFolds(3)
-    crossval.setEvaluator(regEval)
+``` scala
+//Let's create our crossvalidator with 3 fold cross validation
+val crossval = new CrossValidator()
+crossval.setEstimator(lrPipeline)
+crossval.setNumFolds(3)
+crossval.setEvaluator(regEval)
+```
 
-> crossval: org.apache.spark.ml.tuning.CrossValidator = cv\_c77b278496fa res38: crossval.type = cv\_c77b278496fa
+>     crossval: org.apache.spark.ml.tuning.CrossValidator = cv_c77b278496fa
+>     res38: crossval.type = cv_c77b278496fa
 
 A `CrossValidator` also requires a set of `EstimatorParamMaps` which we `set` next.
 
@@ -422,42 +522,81 @@ For this we need a regularization parameter (more generally a hyper-parameter th
 
 Now, let's tune over our regularization parameter from 0.01 to 0.10.
 
-    val regParam = ((1 to 10) toArray).map(x => (x /100.0))
+``` scala
+val regParam = ((1 to 10) toArray).map(x => (x /100.0))
+```
 
-> warning: there was one feature warning; re-run with -feature for details regParam: Array\[Double\] = Array(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1)
+>     warning: there was one feature warning; re-run with -feature for details
+>     regParam: Array[Double] = Array(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1)
 
 Check out the scala docs for syntactic details on [org.apache.spark.ml.tuning.ParamGridBuilder](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.ml.tuning.ParamGridBuilder).
 
-    val paramGrid = new ParamGridBuilder()
-                        .addGrid(lr.regParam, regParam)
-                        .build()
-    crossval.setEstimatorParamMaps(paramGrid)
+``` scala
+val paramGrid = new ParamGridBuilder()
+                    .addGrid(lr.regParam, regParam)
+                    .build()
+crossval.setEstimatorParamMaps(paramGrid)
+```
 
-> paramGrid: Array\[org.apache.spark.ml.param.ParamMap\] = Array({ linReg\_161e726c1f38-regParam: 0.01 }, { linReg\_161e726c1f38-regParam: 0.02 }, { linReg\_161e726c1f38-regParam: 0.03 }, { linReg\_161e726c1f38-regParam: 0.04 }, { linReg\_161e726c1f38-regParam: 0.05 }, { linReg\_161e726c1f38-regParam: 0.06 }, { linReg\_161e726c1f38-regParam: 0.07 }, { linReg\_161e726c1f38-regParam: 0.08 }, { linReg\_161e726c1f38-regParam: 0.09 }, { linReg\_161e726c1f38-regParam: 0.1 }) res39: crossval.type = cv\_c77b278496fa
+>     paramGrid: Array[org.apache.spark.ml.param.ParamMap] =
+>     Array({
+>     	linReg_161e726c1f38-regParam: 0.01
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.02
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.03
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.04
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.05
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.06
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.07
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.08
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.09
+>     }, {
+>     	linReg_161e726c1f38-regParam: 0.1
+>     })
+>     res39: crossval.type = cv_c77b278496fa
 
-    //Now let's create our model
-    val cvModel = crossval.fit(trainingSet)
+``` scala
+//Now let's create our model
+val cvModel = crossval.fit(trainingSet)
+```
 
-> cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv\_c77b278496fa
+>     cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_c77b278496fa
 
 In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large. \* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
 
 Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
 
-    val predictionsAndLabels = cvModel.transform(testSet)
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
+``` scala
+val predictionsAndLabels = cvModel.transform(testSet)
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
 
-    val rmse = metrics.rootMeanSquaredError
-    val explainedVariance = metrics.explainedVariance
-    val r2 = metrics.r2
+val rmse = metrics.rootMeanSquaredError
+val explainedVariance = metrics.explainedVariance
+val r2 = metrics.r2
+```
 
-> predictionsAndLabels: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 5 more fields\] metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@77606693 rmse: Double = 4.599964072968395 explainedVariance: Double = 277.2272873387723 r2: Double = 0.9311199234339246
+>     predictionsAndLabels: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 5 more fields]
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@77606693
+>     rmse: Double = 4.599964072968395
+>     explainedVariance: Double = 277.2272873387723
+>     r2: Double = 0.9311199234339246
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+``` scala
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
-> Root Mean Squared Error: 4.599964072968395 Explained Variance: 277.2272873387723 R2: 0.9311199234339246
+>     Root Mean Squared Error: 4.599964072968395
+>     Explained Variance: 277.2272873387723
+>     R2: 0.9311199234339246
 
 So our initial untuned and tuned linear regression models are statistically identical.
 
@@ -467,54 +606,103 @@ A Decision Tree creates a model based on splitting variables using a tree struct
 
 Reference Decision Trees: https://en.wikipedia.org/wiki/Decision\_tree\_learning
 
-    //Let's build a decision tree pipeline
-    import org.apache.spark.ml.regression.DecisionTreeRegressor
+``` scala
+//Let's build a decision tree pipeline
+import org.apache.spark.ml.regression.DecisionTreeRegressor
 
-    // we are using a Decision Tree Regressor as opposed to a classifier we used for the hand-written digit classification problem
-    val dt = new DecisionTreeRegressor()
-    dt.setLabelCol("PE")
-    dt.setPredictionCol("Predicted_PE")
-    dt.setFeaturesCol("features")
-    dt.setMaxBins(100)
+// we are using a Decision Tree Regressor as opposed to a classifier we used for the hand-written digit classification problem
+val dt = new DecisionTreeRegressor()
+dt.setLabelCol("PE")
+dt.setPredictionCol("Predicted_PE")
+dt.setFeaturesCol("features")
+dt.setMaxBins(100)
 
-    val dtPipeline = new Pipeline()
-    dtPipeline.setStages(Array(vectorizer, dt))
+val dtPipeline = new Pipeline()
+dtPipeline.setStages(Array(vectorizer, dt))
+```
 
-> import org.apache.spark.ml.regression.DecisionTreeRegressor dt: org.apache.spark.ml.regression.DecisionTreeRegressor = dtr\_532b2d8e3739 dtPipeline: org.apache.spark.ml.Pipeline = pipeline\_604afd9d7ee3 res41: dtPipeline.type = pipeline\_604afd9d7ee3
+>     import org.apache.spark.ml.regression.DecisionTreeRegressor
+>     dt: org.apache.spark.ml.regression.DecisionTreeRegressor = dtr_532b2d8e3739
+>     dtPipeline: org.apache.spark.ml.Pipeline = pipeline_604afd9d7ee3
+>     res41: dtPipeline.type = pipeline_604afd9d7ee3
 
-    //Let's just resuse our CrossValidator
-    crossval.setEstimator(dtPipeline)
+``` scala
+//Let's just resuse our CrossValidator
+crossval.setEstimator(dtPipeline)
+```
 
-> res42: crossval.type = cv\_c77b278496fa
+>     res42: crossval.type = cv_c77b278496fa
 
-    val paramGrid = new ParamGridBuilder()
-                         .addGrid(dt.maxDepth, Array(2, 3))
-                         .build()
+``` scala
+val paramGrid = new ParamGridBuilder()
+                     .addGrid(dt.maxDepth, Array(2, 3))
+                     .build()
+```
 
-> paramGrid: Array\[org.apache.spark.ml.param.ParamMap\] = Array({ dtr\_532b2d8e3739-maxDepth: 2 }, { dtr\_532b2d8e3739-maxDepth: 3 })
+>     paramGrid: Array[org.apache.spark.ml.param.ParamMap] =
+>     Array({
+>     	dtr_532b2d8e3739-maxDepth: 2
+>     }, {
+>     	dtr_532b2d8e3739-maxDepth: 3
+>     })
 
-    crossval.setEstimatorParamMaps(paramGrid)
+``` scala
+crossval.setEstimatorParamMaps(paramGrid)
+```
 
-> res43: crossval.type = cv\_c77b278496fa
+>     res43: crossval.type = cv_c77b278496fa
 
-    val dtModel = crossval.fit(trainingSet) // fit decitionTree with cv
+``` scala
+val dtModel = crossval.fit(trainingSet) // fit decitionTree with cv
+```
 
-> dtModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv\_c77b278496fa
+>     dtModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_c77b278496fa
 
-    import org.apache.spark.ml.regression.DecisionTreeRegressionModel
-    import org.apache.spark.ml.PipelineModel
-    dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
+``` scala
+import org.apache.spark.ml.regression.DecisionTreeRegressionModel
+import org.apache.spark.ml.PipelineModel
+dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel].toDebugString
+```
 
-> import org.apache.spark.ml.regression.DecisionTreeRegressionModel import org.apache.spark.ml.PipelineModel res45: String = "DecisionTreeRegressionModel (uid=dtr\_532b2d8e3739) of depth 3 with 15 nodes If (feature 0 &lt;= 17.84) If (feature 0 &lt;= 11.95) If (feature 0 &lt;= 8.75) Predict: 483.5412151067323 Else (feature 0 &gt; 8.75) Predict: 475.6305502392345 Else (feature 0 &gt; 11.95) If (feature 0 &lt;= 15.33) Predict: 467.63141917293234 Else (feature 0 &gt; 15.33) Predict: 460.74754125412574 Else (feature 0 &gt; 17.84) If (feature 0 &lt;= 23.02) If (feature 1 &lt;= 47.83) Predict: 457.1077966101695 Else (feature 1 &gt; 47.83) Predict: 448.74750213858016 Else (feature 0 &gt; 23.02) If (feature 1 &lt;= 66.25) Predict: 442.88544855967086 Else (feature 1 &gt; 66.25) Predict: 434.7293710691822 "
+>     import org.apache.spark.ml.regression.DecisionTreeRegressionModel
+>     import org.apache.spark.ml.PipelineModel
+>     res45: String =
+>     "DecisionTreeRegressionModel (uid=dtr_532b2d8e3739) of depth 3 with 15 nodes
+>       If (feature 0 <= 17.84)
+>        If (feature 0 <= 11.95)
+>         If (feature 0 <= 8.75)
+>          Predict: 483.5412151067323
+>         Else (feature 0 > 8.75)
+>          Predict: 475.6305502392345
+>        Else (feature 0 > 11.95)
+>         If (feature 0 <= 15.33)
+>          Predict: 467.63141917293234
+>         Else (feature 0 > 15.33)
+>          Predict: 460.74754125412574
+>       Else (feature 0 > 17.84)
+>        If (feature 0 <= 23.02)
+>         If (feature 1 <= 47.83)
+>          Predict: 457.1077966101695
+>         Else (feature 1 > 47.83)
+>          Predict: 448.74750213858016
+>        Else (feature 0 > 23.02)
+>         If (feature 1 <= 66.25)
+>          Predict: 442.88544855967086
+>         Else (feature 1 > 66.25)
+>          Predict: 434.7293710691822
+>     "
 
 The line above will pull the Decision Tree model from the Pipeline and display it as an if-then-else string.
 
 Next let's visualize it as a decision tree for regression.
 
-    display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel])
+``` scala
+display(dtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[DecisionTreeRegressionModel])
+```
 
-| {"index":7,"featureType":"continuous","prediction":null,"threshold":17.84,"categories":null,"feature":0,"overflow":false}          |
+| treeNode                                                                                                                           |
 |------------------------------------------------------------------------------------------------------------------------------------|
+| {"index":7,"featureType":"continuous","prediction":null,"threshold":17.84,"categories":null,"feature":0,"overflow":false}          |
 | {"index":3,"featureType":"continuous","prediction":null,"threshold":11.95,"categories":null,"feature":0,"overflow":false}          |
 | {"index":1,"featureType":"continuous","prediction":null,"threshold":8.75,"categories":null,"feature":0,"overflow":false}           |
 | {"index":0,"featureType":null,"prediction":483.5412151067323,"threshold":null,"categories":null,"feature":null,"overflow":false}   |
@@ -532,19 +720,28 @@ Next let's visualize it as a decision tree for regression.
 
 Now let's see how our DecisionTree model compares to our LinearRegression model
 
+``` scala
 
-    val predictionsAndLabels = dtModel.bestModel.transform(testSet)
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
+val predictionsAndLabels = dtModel.bestModel.transform(testSet)
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
 
-    val rmse = metrics.rootMeanSquaredError
-    val explainedVariance = metrics.explainedVariance
-    val r2 = metrics.r2
+val rmse = metrics.rootMeanSquaredError
+val explainedVariance = metrics.explainedVariance
+val r2 = metrics.r2
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
-> Root Mean Squared Error: 5.221342219456633 Explained Variance: 269.66550072645475 R2: 0.9112539444165726 predictionsAndLabels: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 5 more fields\] metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@2e492425 rmse: Double = 5.221342219456633 explainedVariance: Double = 269.66550072645475 r2: Double = 0.9112539444165726
+>     Root Mean Squared Error: 5.221342219456633
+>     Explained Variance: 269.66550072645475
+>     R2: 0.9112539444165726
+>     predictionsAndLabels: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 5 more fields]
+>     metrics: org.apache.spark.mllib.evaluation.RegressionMetrics = org.apache.spark.mllib.evaluation.RegressionMetrics@2e492425
+>     rmse: Double = 5.221342219456633
+>     explainedVariance: Double = 269.66550072645475
+>     r2: Double = 0.9112539444165726
 
 So our DecisionTree was slightly worse than our LinearRegression model (LR: 4.6 vs DT: 5.2). Maybe we can try an Ensemble method such as Gradient-Boosted Decision Trees to see if we can strengthen our model by using an ensemble of weaker trees with weighting to reduce the error in our model.
 
@@ -567,23 +764,27 @@ Let's see what a boosting algorithm, a type of ensemble method, is all about in 
   </p>
 </iframe></p>
 
-    import org.apache.spark.ml.regression.GBTRegressionModel 
+``` scala
+import org.apache.spark.ml.regression.GBTRegressionModel 
 
-    val predictionsAndLabels = gbtModel.bestModel.transform(testSet)
-    val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
+val predictionsAndLabels = gbtModel.bestModel.transform(testSet)
+val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])).rdd)
 
-    val rmse = metrics.rootMeanSquaredError
-    val explainedVariance = metrics.explainedVariance
-    val r2 = metrics.r2
+val rmse = metrics.rootMeanSquaredError
+val explainedVariance = metrics.explainedVariance
+val r2 = metrics.r2
 
 
-    println (f"Root Mean Squared Error: $rmse")
-    println (f"Explained Variance: $explainedVariance")  
-    println (f"R2: $r2")
+println (f"Root Mean Squared Error: $rmse")
+println (f"Explained Variance: $explainedVariance")  
+println (f"R2: $r2")
+```
 
 We can use the toDebugString method to dump out what our trees and weighting look like:
 
-    gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel].toDebugString
+``` scala
+gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel].toDebugString
+```
 
 ### Conclusion
 
@@ -610,6 +811,15 @@ Let us explore other models to see if we can predict the power output better
 
 There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
+``` run "/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
+```
+
+``` scala
+```
+
+``` scala
+```
+
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
  width="95%" height="300"
@@ -632,27 +842,109 @@ There are several families of models in Spark's scalable machine learning librar
   </p>
 </iframe></p>
 
-| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+| path                                                  | name       | size     |
 |-------------------------------------------------------|------------|----------|
+| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet2.tsv | Sheet2.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet3.tsv | Sheet3.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
 
-> powerPlantRDD: org.apache.spark.rdd.RDD\[String\] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD\[35186\] at textFile at &lt;console&gt;:34
+``` scala
+```
 
-> AT V AP RH PE 14.96 41.76 1024.07 73.17 463.26 25.18 62.96 1020.04 59.08 444.37 5.11 39.4 1012.16 92.14 488.56 20.86 57.32 1010.24 76.64 446.48
+``` scala
+```
 
-> powerPlantDF: org.apache.spark.sql.DataFrame = \[AT: double, V: double ... 3 more fields\]
+>     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[35186] at textFile at <console>:34
 
-> root |-- AT: double (nullable = true) |-- V: double (nullable = true) |-- AP: double (nullable = true) |-- RH: double (nullable = true) |-- PE: double (nullable = true)
+``` scala
+```
 
-> res8: Long = 9568
+>     AT	V	AP	RH	PE
+>     14.96	41.76	1024.07	73.17	463.26
+>     25.18	62.96	1020.04	59.08	444.37
+>     5.11	39.4	1012.16	92.14	488.56
+>     20.86	57.32	1010.24	76.64	446.48
 
-> +-----+-----+-------+-----+------+ | AT| V| AP| RH| PE| +-----+-----+-------+-----+------+ |14.96|41.76|1024.07|73.17|463.26| |25.18|62.96|1020.04|59.08|444.37| | 5.11| 39.4|1012.16|92.14|488.56| |20.86|57.32|1010.24|76.64|446.48| |10.82| 37.5|1009.23|96.62| 473.9| |26.27|59.44|1012.23|58.77|443.67| |15.89|43.96|1014.02|75.24|467.35| | 9.48|44.71|1019.12|66.43|478.42| |14.64| 45.0|1021.78|41.25|475.98| |11.74|43.56|1015.14|70.72| 477.5| +-----+-----+-------+-----+------+ only showing top 10 rows
+``` scala
+```
 
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+``` scala
+```
+
+>     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+
+``` scala
+```
+
+>     root
+>      |-- AT: double (nullable = true)
+>      |-- V: double (nullable = true)
+>      |-- AP: double (nullable = true)
+>      |-- RH: double (nullable = true)
+>      |-- PE: double (nullable = true)
+
+``` scala
+```
+
+>     res8: Long = 9568
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+>     +-----+-----+-------+-----+------+
+>     |   AT|    V|     AP|   RH|    PE|
+>     +-----+-----+-------+-----+------+
+>     |14.96|41.76|1024.07|73.17|463.26|
+>     |25.18|62.96|1020.04|59.08|444.37|
+>     | 5.11| 39.4|1012.16|92.14|488.56|
+>     |20.86|57.32|1010.24|76.64|446.48|
+>     |10.82| 37.5|1009.23|96.62| 473.9|
+>     |26.27|59.44|1012.23|58.77|443.67|
+>     |15.89|43.96|1014.02|75.24|467.35|
+>     | 9.48|44.71|1019.12|66.43|478.42|
+>     |14.64| 45.0|1021.78|41.25|475.98|
+>     |11.74|43.56|1015.14|70.72| 477.5|
+>     +-----+-----+-------+-----+------+
+>     only showing top 10 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
 | 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
 | 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
 | 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
@@ -685,18 +977,129 @@ There are several families of models in Spark's scalable machine learning librar
 
 Truncated to 30 rows
 
-> res11: Long = 9568
+``` scala
+```
 
-> +--------+--------------------+-----------+ |database| tableName|isTemporary| +--------+--------------------+-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| simple\_range| false| | default| social\_media\_usage| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| +--------+--------------------+-----------+
+>     res11: Long = 9568
 
-> +--------------------------+--------+-----------+---------+-----------+ |name |database|description|tableType|isTemporary| +--------------------------+--------+-----------+---------+-----------+ |cities\_csv |default |null |EXTERNAL |false | |cleaned\_taxes |default |null |MANAGED |false | |commdettrumpclintonretweet|default |null |MANAGED |false | |donaldtrumptweets |default |null |EXTERNAL |false | |linkage |default |null |EXTERNAL |false | |nations |default |null |EXTERNAL |false | |newmplist |default |null |EXTERNAL |false | |ny\_baby\_names |default |null |MANAGED |false | |nzmpsandparty |default |null |EXTERNAL |false | |pos\_neg\_category |default |null |EXTERNAL |false | |rna |default |null |MANAGED |false | |samh |default |null |EXTERNAL |false | |simple\_range |default |null |MANAGED |false | |social\_media\_usage |default |null |EXTERNAL |false | |table1 |default |null |EXTERNAL |false | |test\_table |default |null |EXTERNAL |false | |uscites |default |null |EXTERNAL |false | +--------------------------+--------+-----------+---------+-----------+
+``` scala
+```
 
-> +-------+---------------------+-------------------------+ |name |description |locationUri | +-------+---------------------+-------------------------+ |default|Default Hive database|dbfs:/user/hive/warehouse| +-------+---------------------+-------------------------+
+``` scala
+```
 
-> +--------+--------------------+-----------+ |database| tableName|isTemporary| +--------+--------------------+-----------+ | default| cities\_csv| false| | default| cleaned\_taxes| false| | default|commdettrumpclint...| false| | default| donaldtrumptweets| false| | default| linkage| false| | default| nations| false| | default| newmplist| false| | default| ny\_baby\_names| false| | default| nzmpsandparty| false| | default| pos\_neg\_category| false| | default| rna| false| | default| samh| false| | default| simple\_range| false| | default| social\_media\_usage| false| | default| table1| false| | default| test\_table| false| | default| uscites| false| | | power\_plant\_table| true| +--------+--------------------+-----------+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|        simple_range|      false|
+>     | default|  social_media_usage|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     +--------+--------------------+-----------+
 
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+``` scala
+```
+
+``` scala
+```
+
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |name                      |database|description|tableType|isTemporary|
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |cities_csv                |default |null       |EXTERNAL |false      |
+>     |cleaned_taxes             |default |null       |MANAGED  |false      |
+>     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
+>     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
+>     |linkage                   |default |null       |EXTERNAL |false      |
+>     |nations                   |default |null       |EXTERNAL |false      |
+>     |newmplist                 |default |null       |EXTERNAL |false      |
+>     |ny_baby_names             |default |null       |MANAGED  |false      |
+>     |nzmpsandparty             |default |null       |EXTERNAL |false      |
+>     |pos_neg_category          |default |null       |EXTERNAL |false      |
+>     |rna                       |default |null       |MANAGED  |false      |
+>     |samh                      |default |null       |EXTERNAL |false      |
+>     |simple_range              |default |null       |MANAGED  |false      |
+>     |social_media_usage        |default |null       |EXTERNAL |false      |
+>     |table1                    |default |null       |EXTERNAL |false      |
+>     |test_table                |default |null       |EXTERNAL |false      |
+>     |uscites                   |default |null       |EXTERNAL |false      |
+>     +--------------------------+--------+-----------+---------+-----------+
+
+``` scala
+```
+
+>     +-------+---------------------+-------------------------+
+>     |name   |description          |locationUri              |
+>     +-------+---------------------+-------------------------+
+>     |default|Default Hive database|dbfs:/user/hive/warehouse|
+>     +-------+---------------------+-------------------------+
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|        simple_range|      false|
+>     | default|  social_media_usage|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     |        |   power_plant_table|       true|
+>     +--------+--------------------+-----------+
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
 | 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
 | 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
 | 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
@@ -729,117 +1132,210 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-| count  | 9568               | 9568               | 9568               | 9568               | 9568               |
-|--------|--------------------|--------------------|--------------------|--------------------|--------------------|
-| mean   | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
-| stddev | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
-| min    | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
-| max    | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
+``` scala
+```
 
-| 14.96 | 463.26 |
+``` scala
+```
+
+``` scala
+```
+
+| col\_name | data\_type | comment |
+|-----------|------------|---------|
+| AT        | double     | null    |
+| V         | double     | null    |
+| AP        | double     | null    |
+| RH        | double     | null    |
+| PE        | double     | null    |
+
+``` scala
+```
+
+``` scala
+```
+
+``` scala
+```
+
+| summary | AT                 | V                  | AP                 | RH                 | PE                 |
+|---------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| count   | 9568               | 9568               | 9568               | 9568               | 9568               |
+| mean    | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
+| stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
+| min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
+| max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
+
+``` scala
+```
+
+``` scala
+```
+
+| Temperature | Power  |
+|-------------|--------|
+| 14.96       | 463.26 |
+| 25.18       | 444.37 |
+| 5.11        | 488.56 |
+| 20.86       | 446.48 |
+| 10.82       | 473.9  |
+| 26.27       | 443.67 |
+| 15.89       | 467.35 |
+| 9.48        | 478.42 |
+| 14.64       | 475.98 |
+| 11.74       | 477.5  |
+| 17.99       | 453.02 |
+| 20.14       | 453.99 |
+| 24.34       | 440.29 |
+| 25.71       | 451.28 |
+| 26.19       | 433.99 |
+| 21.42       | 462.19 |
+| 18.21       | 467.54 |
+| 11.04       | 477.2  |
+| 14.45       | 459.85 |
+| 13.97       | 464.3  |
+| 17.76       | 468.27 |
+| 5.41        | 495.24 |
+| 7.76        | 483.8  |
+| 27.23       | 443.61 |
+| 27.36       | 436.06 |
+| 27.47       | 443.25 |
+| 14.6        | 464.16 |
+| 7.91        | 475.52 |
+| 5.81        | 484.41 |
+| 30.53       | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| ExhaustVaccum | Power  |
+|---------------|--------|
+| 41.76         | 463.26 |
+| 62.96         | 444.37 |
+| 39.4          | 488.56 |
+| 57.32         | 446.48 |
+| 37.5          | 473.9  |
+| 59.44         | 443.67 |
+| 43.96         | 467.35 |
+| 44.71         | 478.42 |
+| 45.0          | 475.98 |
+| 43.56         | 477.5  |
+| 43.72         | 453.02 |
+| 46.93         | 453.99 |
+| 73.5          | 440.29 |
+| 58.59         | 451.28 |
+| 69.34         | 433.99 |
+| 43.79         | 462.19 |
+| 45.0          | 467.54 |
+| 41.74         | 477.2  |
+| 52.75         | 459.85 |
+| 38.47         | 464.3  |
+| 42.42         | 468.27 |
+| 40.07         | 495.24 |
+| 42.28         | 483.8  |
+| 63.9          | 443.61 |
+| 48.6          | 436.06 |
+| 70.72         | 443.25 |
+| 39.31         | 464.16 |
+| 39.96         | 475.52 |
+| 35.79         | 484.41 |
+| 65.18         | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| Pressure | Power  |
+|----------|--------|
+| 1024.07  | 463.26 |
+| 1020.04  | 444.37 |
+| 1012.16  | 488.56 |
+| 1010.24  | 446.48 |
+| 1009.23  | 473.9  |
+| 1012.23  | 443.67 |
+| 1014.02  | 467.35 |
+| 1019.12  | 478.42 |
+| 1021.78  | 475.98 |
+| 1015.14  | 477.5  |
+| 1008.64  | 453.02 |
+| 1014.66  | 453.99 |
+| 1011.31  | 440.29 |
+| 1012.77  | 451.28 |
+| 1009.48  | 433.99 |
+| 1015.76  | 462.19 |
+| 1022.86  | 467.54 |
+| 1022.6   | 477.2  |
+| 1023.97  | 459.85 |
+| 1015.15  | 464.3  |
+| 1009.09  | 468.27 |
+| 1019.16  | 495.24 |
+| 1008.52  | 483.8  |
+| 1014.3   | 443.61 |
+| 1003.18  | 436.06 |
+| 1009.97  | 443.25 |
+| 1011.11  | 464.16 |
+| 1023.57  | 475.52 |
+| 1012.14  | 484.41 |
+| 1012.69  | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+| Humidity | Power  |
+|----------|--------|
+| 73.17    | 463.26 |
+| 59.08    | 444.37 |
+| 92.14    | 488.56 |
+| 76.64    | 446.48 |
+| 96.62    | 473.9  |
+| 58.77    | 443.67 |
+| 75.24    | 467.35 |
+| 66.43    | 478.42 |
+| 41.25    | 475.98 |
+| 70.72    | 477.5  |
+| 75.04    | 453.02 |
+| 64.22    | 453.99 |
+| 84.15    | 440.29 |
+| 61.83    | 451.28 |
+| 87.59    | 433.99 |
+| 43.08    | 462.19 |
+| 48.84    | 467.54 |
+| 77.51    | 477.2  |
+| 63.59    | 459.85 |
+| 55.28    | 464.3  |
+| 66.26    | 468.27 |
+| 64.77    | 495.24 |
+| 83.31    | 483.8  |
+| 47.19    | 443.61 |
+| 54.93    | 436.06 |
+| 74.62    | 443.25 |
+| 72.52    | 464.16 |
+| 88.44    | 475.52 |
+| 92.28    | 484.41 |
+| 41.85    | 437.89 |
+
+Truncated to 30 rows
+
+``` scala
+```
+
+``` scala
+```
+
+| RH    | PE     |
 |-------|--------|
-| 25.18 | 444.37 |
-| 5.11  | 488.56 |
-| 20.86 | 446.48 |
-| 10.82 | 473.9  |
-| 26.27 | 443.67 |
-| 15.89 | 467.35 |
-| 9.48  | 478.42 |
-| 14.64 | 475.98 |
-| 11.74 | 477.5  |
-| 17.99 | 453.02 |
-| 20.14 | 453.99 |
-| 24.34 | 440.29 |
-| 25.71 | 451.28 |
-| 26.19 | 433.99 |
-| 21.42 | 462.19 |
-| 18.21 | 467.54 |
-| 11.04 | 477.2  |
-| 14.45 | 459.85 |
-| 13.97 | 464.3  |
-| 17.76 | 468.27 |
-| 5.41  | 495.24 |
-| 7.76  | 483.8  |
-| 27.23 | 443.61 |
-| 27.36 | 436.06 |
-| 27.47 | 443.25 |
-| 14.6  | 464.16 |
-| 7.91  | 475.52 |
-| 5.81  | 484.41 |
-| 30.53 | 437.89 |
-
-Truncated to 30 rows
-
-| 41.76 | 463.26 |
-|-------|--------|
-| 62.96 | 444.37 |
-| 39.4  | 488.56 |
-| 57.32 | 446.48 |
-| 37.5  | 473.9  |
-| 59.44 | 443.67 |
-| 43.96 | 467.35 |
-| 44.71 | 478.42 |
-| 45.0  | 475.98 |
-| 43.56 | 477.5  |
-| 43.72 | 453.02 |
-| 46.93 | 453.99 |
-| 73.5  | 440.29 |
-| 58.59 | 451.28 |
-| 69.34 | 433.99 |
-| 43.79 | 462.19 |
-| 45.0  | 467.54 |
-| 41.74 | 477.2  |
-| 52.75 | 459.85 |
-| 38.47 | 464.3  |
-| 42.42 | 468.27 |
-| 40.07 | 495.24 |
-| 42.28 | 483.8  |
-| 63.9  | 443.61 |
-| 48.6  | 436.06 |
-| 70.72 | 443.25 |
-| 39.31 | 464.16 |
-| 39.96 | 475.52 |
-| 35.79 | 484.41 |
-| 65.18 | 437.89 |
-
-Truncated to 30 rows
-
-| 1024.07 | 463.26 |
-|---------|--------|
-| 1020.04 | 444.37 |
-| 1012.16 | 488.56 |
-| 1010.24 | 446.48 |
-| 1009.23 | 473.9  |
-| 1012.23 | 443.67 |
-| 1014.02 | 467.35 |
-| 1019.12 | 478.42 |
-| 1021.78 | 475.98 |
-| 1015.14 | 477.5  |
-| 1008.64 | 453.02 |
-| 1014.66 | 453.99 |
-| 1011.31 | 440.29 |
-| 1012.77 | 451.28 |
-| 1009.48 | 433.99 |
-| 1015.76 | 462.19 |
-| 1022.86 | 467.54 |
-| 1022.6  | 477.2  |
-| 1023.97 | 459.85 |
-| 1015.15 | 464.3  |
-| 1009.09 | 468.27 |
-| 1019.16 | 495.24 |
-| 1008.52 | 483.8  |
-| 1014.3  | 443.61 |
-| 1003.18 | 436.06 |
-| 1009.97 | 443.25 |
-| 1011.11 | 464.16 |
-| 1023.57 | 475.52 |
-| 1012.14 | 484.41 |
-| 1012.69 | 437.89 |
-
-Truncated to 30 rows
-
 | 73.17 | 463.26 |
-|-------|--------|
 | 59.08 | 444.37 |
 | 92.14 | 488.56 |
 | 76.64 | 446.48 |
@@ -872,42 +1368,15 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-| 73.17 | 463.26 |
-|-------|--------|
-| 59.08 | 444.37 |
-| 92.14 | 488.56 |
-| 76.64 | 446.48 |
-| 96.62 | 473.9  |
-| 58.77 | 443.67 |
-| 75.24 | 467.35 |
-| 66.43 | 478.42 |
-| 41.25 | 475.98 |
-| 70.72 | 477.5  |
-| 75.04 | 453.02 |
-| 64.22 | 453.99 |
-| 84.15 | 440.29 |
-| 61.83 | 451.28 |
-| 87.59 | 433.99 |
-| 43.08 | 462.19 |
-| 48.84 | 467.54 |
-| 77.51 | 477.2  |
-| 63.59 | 459.85 |
-| 55.28 | 464.3  |
-| 66.26 | 468.27 |
-| 64.77 | 495.24 |
-| 83.31 | 483.8  |
-| 47.19 | 443.61 |
-| 54.93 | 436.06 |
-| 74.62 | 443.25 |
-| 72.52 | 464.16 |
-| 88.44 | 475.52 |
-| 92.28 | 484.41 |
-| 41.85 | 437.89 |
+``` scala
+```
 
-Truncated to 30 rows
+``` scala
+```
 
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+| AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
 | 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
 | 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
 | 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
@@ -940,37 +1409,49 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-    testSet.count() // action to actually cache
+``` scala
+```
 
-> res27: Long = 1966
+``` scala
+```
 
-    trainingSet.count() // action to actually cache
+``` scala
+testSet.count() // action to actually cache
+```
 
-> res28: Long = 7602
+>     res27: Long = 1966
+
+``` scala
+trainingSet.count() // action to actually cache
+```
+
+>     res28: Long = 7602
 
 Let's take a few elements of the three DataFrames.
 
-    import org.apache.spark.ml.regression.GBTRegressor
+``` scala
+import org.apache.spark.ml.regression.GBTRegressor
 
-    val gbt = new GBTRegressor()
-    gbt.setLabelCol("PE")
-    gbt.setPredictionCol("Predicted_PE")
-    gbt.setFeaturesCol("features")
-    gbt.setSeed(100088121L)
-    gbt.setMaxBins(100)
-    gbt.setMaxIter(120)
+val gbt = new GBTRegressor()
+gbt.setLabelCol("PE")
+gbt.setPredictionCol("Predicted_PE")
+gbt.setFeaturesCol("features")
+gbt.setSeed(100088121L)
+gbt.setMaxBins(100)
+gbt.setMaxIter(120)
 
-    val gbtPipeline = new Pipeline()
-    gbtPipeline.setStages(Array(vectorizer, gbt))
-    //Let's just resuse our CrossValidator
+val gbtPipeline = new Pipeline()
+gbtPipeline.setStages(Array(vectorizer, gbt))
+//Let's just resuse our CrossValidator
 
-    crossval.setEstimator(gbtPipeline)
+crossval.setEstimator(gbtPipeline)
 
-    val paramGrid = new ParamGridBuilder()
-      .addGrid(gbt.maxDepth, Array(2, 3))
-      .build()
-    crossval.setEstimatorParamMaps(paramGrid)
+val paramGrid = new ParamGridBuilder()
+  .addGrid(gbt.maxDepth, Array(2, 3))
+  .build()
+crossval.setEstimatorParamMaps(paramGrid)
 
-    //gbt.explainParams
-    val gbtModel = crossval.fit(trainingSet)
+//gbt.explainParams
+val gbtModel = crossval.fit(trainingSet)
+```
 
