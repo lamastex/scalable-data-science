@@ -1,8 +1,8 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-**Notebooks**
-=============
+Notebooks
+=========
 
 Write Spark code for processing your data in notebooks.
 
@@ -75,15 +75,11 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 -   Instead, Previous results from running a cell are saved and displayed.
 -   #### Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
 
-```` md **You Try Now!**
-Just double-click the cell below, modify the text following ``%md`` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
-```
-> %md Hello, world!
-```
-````
+**You Try Now!** Just double-click the cell below, modify the text following `%md` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
 
-``` md Hello, world!
-```
+    > %md Hello, world!
+
+Hello, world!
 
 ------------------------------------------------------------------------
 
@@ -214,7 +210,7 @@ val x :  Double = 5    // <Ctrl+Enter> to declare a value x as Double 5 (type au
 
 >     x: Double = 5.0
 
-Next note that labels need to be declared on first use. We have declared x to be a `val` which is short for *value*. This makes `x` immutable (cannot be changed).
+Next note that labels need to be declared on first use. We have declared `x` to be a `val` which is short for *value*. This makes `x` immutable (cannot be changed).
 
 Thus, `x` cannot be just re-assigned, as the following code illustrates in the resulting error: `... error: reassignment to val`.
 
