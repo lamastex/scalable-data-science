@@ -260,9 +260,6 @@ ssc.awaitTerminationOrTimeout(batchIntervalSeconds * 5 * 1000)
 
 Now let's try querying the table. You can run this command again and again, you will find the numbers changing.
 
-``` sql select * from batch_word_count
-```
-
 | word   | count |
 |--------|-------|
 | 0      | 82.0  |
@@ -282,9 +279,6 @@ Now let's try querying the table. You can run this command again and again, you 
 | am     | 893.0 |
 
 Try again for current table.
-
-``` sql select * from batch_word_count
-```
 
 | word   | count |
 |--------|-------|

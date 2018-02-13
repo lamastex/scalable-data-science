@@ -34,9 +34,6 @@ except:
 So the CIFAR data can be listed through following regular Linux shell command:
 ```
 
-``` sh ls -la /dbfs/mnt/cifar/batches
-```
-
 >     total 0
 >     drwxr-xr-x 1 root root        0 Jan  1  1970 .
 >     drwxr-xr-x 1 root root        0 Jan  1  1970 ..
@@ -70,9 +67,6 @@ dir = '/dbfs/mnt/cifar/batches/'
 batches = [unpickle(dir + 'data_batch_' + str(1+n)) for n in range(5)]
 ```
 
-``` md Now we need to reshape the data batches and concatenate the training batches into one big tensor.
-```
-
 ``` python
 import numpy as np
 
@@ -96,9 +90,6 @@ print(x_test.shape[0], 'test samples')
 >     ('x_train shape:', (50000, 32, 32, 3))
 >     (50000, 'train samples')
 >     (10000, 'test samples')
-
-``` md Let's visualize some of the images:
-```
 
 ``` python
 import matplotlib.pyplot as plt
@@ -175,9 +166,6 @@ history = model.fit(x_train, y_train_1hot,
 >     42s - loss: 1.0697 - acc: 0.6235 - val_loss: 1.2062 - val_acc: 0.5742
 >     Epoch 5/5
 >     42s - loss: 0.9984 - acc: 0.6496 - val_loss: 1.1442 - val_acc: 0.6008
-
-``` md In this session, you probably won't have time to run each experiment for too many epochs ... but you can use this code to plot the training and validation losses:
-```
 
 ``` python
 fig, ax = plt.subplots()

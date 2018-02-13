@@ -205,9 +205,6 @@ clickstream.show(5)
 
 The 1.2 GB Clickstream file is currently on S3, which means each time you scan through it, your Spark cluster has to read the 1.2 GB of data remotely over the network.
 
-``` md Call the `count()` action to check how many rows are in the DataFrame and to see how long it takes to read the DataFrame from S3.
-```
-
 ``` scala
 clickstream.cache().count()
 ```
@@ -711,9 +708,6 @@ display(clicksR)
 | 2771975.0   | 147396.0 | 17.0   | 70th\_Birthday\_Concert                                | John\_Mayall\_&\_the\_Bluesbreakers | link  |
 
 Truncated to 30 rows
-
-``` scala
-```
 
 ``` python
 # in Python you need to put the object int its own line like this to get the type information

@@ -285,6 +285,3 @@ rddfM.collect    // <Ctrl+Enter> to collect rddfM = (1, 6, 2, 7, 3, 8)
 
 >     res24: Array[Int] = Array(1, 6, 2, 7, 3, 8)
 
-``` scala
-```
-

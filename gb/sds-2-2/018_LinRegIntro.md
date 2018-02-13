@@ -61,9 +61,6 @@ You need to scroll down the fitst link embedded in iframe below to get to the se
   </p>
 </iframe></p>
 
-``` scala
-```
-
 <p class="htmlSandbox"><iframe 
  src="https://darrenjw.wordpress.com/2017/02/08/a-quick-introduction-to-apache-spark-for-statisticians/"
  width="95%" height="500"
@@ -177,9 +174,6 @@ val summ = fit.summary
 ```
 
 >     summ: org.apache.spark.ml.regression.LinearRegressionTrainingSummary = org.apache.spark.ml.regression.LinearRegressionTrainingSummary@3a691a44
-
-``` scala
-```
 
 ``` scala
 // importing for regression

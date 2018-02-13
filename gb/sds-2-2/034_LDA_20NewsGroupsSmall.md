@@ -3276,12 +3276,6 @@ display(dbutils.fs.ls("dbfs:/datasets/mini_newsgroups"))
 | dbfs:/datasets/mini\_newsgroups/talk.politics.misc/       | talk.politics.misc/       | 0.0  |
 | dbfs:/datasets/mini\_newsgroups/talk.religion.misc/       | talk.religion.misc/       | 0.0  |
 
-``` scala
-```
-
-``` fs ls /databricks-datasets/news20.binary/data-001
-```
-
 | path                                                       | name      | size |
 |------------------------------------------------------------|-----------|------|
 | dbfs:/databricks-datasets/news20.binary/data-001/test/     | test/     | 0.0  |

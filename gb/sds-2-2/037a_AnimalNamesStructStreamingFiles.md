@@ -180,7 +180,3 @@ let's get our bearings and prepare for setting up a structured streaming from fi
 
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
-
-``` scala
-```
-

@@ -138,9 +138,6 @@ var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L
 >     split80: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [AT: double, V: double ... 3 more fields]
 
 ``` scala
-```
-
-``` scala
 // Let's cache these datasets for performance
 val testSet = split20.cache()
 val trainingSet = split80.cache()
@@ -182,9 +179,6 @@ val lr = new LinearRegression()
 >     import org.apache.spark.ml.regression.LinearRegressionModel
 >     import org.apache.spark.ml.Pipeline
 >     lr: org.apache.spark.ml.regression.LinearRegression = linReg_955431dccb4f
-
-``` scala
-```
 
 >     frameIt: (u: String, h: Int)String
 
@@ -383,9 +377,6 @@ println (f"R2: $r2")
 >     Explained Variance: 274.54186073318266
 >     R2: 0.9308377700269259
 
-``` md Generally a good model will have 68% of predictions within 1 RMSE and 95% within 2 RMSE of the actual value. Let's calculate and see if our RMSE meets this criteria.
-```
-
 ``` scala
 display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
 ```
@@ -393,9 +384,6 @@ display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
 ``` scala
 // First we calculate the residual error and divide it by the RMSE from predictionsAndLabels DataFrame and make another DataFrame that is registered as a temporary table Power_Plant_RMSE_Evaluation
 predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
-```
-
-``` sql SELECT * from Power_Plant_RMSE_Evaluation
 ```
 
 | PE     | Predicted\_PE      | Residual\_Error      | Within\_RSME          |
@@ -471,9 +459,6 @@ SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
 | 0.26076253016955486   |
 
 Truncated to 30 rows
-
-``` md We can see this definitively if we count the number of predictions within + or - 1.0 and + or - 2.0 and display this as a pie chart:
-```
 
 ``` sql
 SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
@@ -575,9 +560,6 @@ val cvModel = crossval.fit(trainingSet)
 >     cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_414cd3231d9a
 
 In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large. \* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
-
-``` md Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
-```
 
 ``` scala
 val predictionsAndLabels = cvModel.transform(testSet)
@@ -971,9 +953,6 @@ ssc.start()
 >     ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@4a48de26
 
 Now that we have created and defined our streaming job, let's test it with some data. First we clear the predictions table.
-
-``` sql truncate table power_plant_predictions
-```
 
 Let's use data to see how much power output our model will predict.
 
@@ -2679,9 +2658,6 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
 Persisting Statistical Machine Learning Models
 ----------------------------------------------
 
-``` run "/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
-```
-
 Let's save our best model so we can load it without having to rerun the validation and training again.
 
 ``` scala
@@ -4283,12 +4259,6 @@ sameModel.toDebugString
 >           If (feature 1 <= 64.84)
 >            Predict: -0.5...
 
-``` scala
-```
-
-``` scala
-```
-
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
  width="95%" height="300"
@@ -4311,21 +4281,6 @@ sameModel.toDebugString
   </p>
 </iframe></p>
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | path                                                  | name       | size     |
 |-------------------------------------------------------|------------|----------|
 | dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
@@ -4334,16 +4289,7 @@ sameModel.toDebugString
 | dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
 
-``` scala
-```
-
-``` scala
-```
-
 >     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[1] at textFile at <console>:34
-
-``` scala
-```
 
 >     AT	V	AP	RH	PE
 >     14.96	41.76	1024.07	73.17	463.26
@@ -4351,16 +4297,7 @@ sameModel.toDebugString
 >     5.11	39.4	1012.16	92.14	488.56
 >     20.86	57.32	1010.24	76.64	446.48
 
-``` scala
-```
-
-``` scala
-```
-
 >     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
-
-``` scala
-```
 
 >     root
 >      |-- AT: double (nullable = true)
@@ -4369,25 +4306,7 @@ sameModel.toDebugString
 >      |-- RH: double (nullable = true)
 >      |-- PE: double (nullable = true)
 
-``` scala
-```
-
 >     res7: Long = 9568
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     +-----+-----+-------+-----+------+
 >     |   AT|    V|     AP|   RH|    PE|
@@ -4404,12 +4323,6 @@ sameModel.toDebugString
 >     |11.74|43.56|1015.14|70.72| 477.5|
 >     +-----+-----+-------+-----+------+
 >     only showing top 10 rows
-
-``` scala
-```
-
-``` scala
-```
 
 | AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
@@ -4446,16 +4359,7 @@ sameModel.toDebugString
 
 Truncated to 30 rows
 
-``` scala
-```
-
 >     res10: Long = 9568
-
-``` scala
-```
-
-``` scala
-```
 
 >     +--------+--------------------+-----------+
 >     |database|           tableName|isTemporary|
@@ -4479,12 +4383,6 @@ Truncated to 30 rows
 >     | default|             uscites|      false|
 >     +--------+--------------------+-----------+
 
-``` scala
-```
-
-``` scala
-```
-
 >     +--------------------------+--------+-----------+---------+-----------+
 >     |name                      |database|description|tableType|isTemporary|
 >     +--------------------------+--------+-----------+---------+-----------+
@@ -4507,23 +4405,11 @@ Truncated to 30 rows
 >     |uscites                   |default |null       |EXTERNAL |false      |
 >     +--------------------------+--------+-----------+---------+-----------+
 
-``` scala
-```
-
 >     +-------+---------------------+-------------------------+
 >     |name   |description          |locationUri              |
 >     +-------+---------------------+-------------------------+
 >     |default|Default Hive database|dbfs:/user/hive/warehouse|
 >     +-------+---------------------+-------------------------+
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     +--------+--------------------+-----------+
 >     |database|           tableName|isTemporary|
@@ -4548,24 +4434,6 @@ Truncated to 30 rows
 >     |        |   power_plant_table|       true|
 >     +--------+--------------------+-----------+
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
 | 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
@@ -4601,15 +4469,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | col\_name | data\_type | comment |
 |-----------|------------|---------|
 | AT        | double     | null    |
@@ -4618,15 +4477,6 @@ Truncated to 30 rows
 | RH        | double     | null    |
 | PE        | double     | null    |
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | summary | AT                 | V                  | AP                 | RH                 | PE                 |
 |---------|--------------------|--------------------|--------------------|--------------------|--------------------|
 | count   | 9568               | 9568               | 9568               | 9568               | 9568               |
@@ -4634,12 +4484,6 @@ Truncated to 30 rows
 | stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
 | min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
 | max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
-
-``` scala
-```
-
-``` scala
-```
 
 | Temperature | Power  |
 |-------------|--------|
@@ -4676,12 +4520,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
-``` scala
-```
-
 | ExhaustVaccum | Power  |
 |---------------|--------|
 | 41.76         | 463.26 |
@@ -4716,12 +4554,6 @@ Truncated to 30 rows
 | 65.18         | 437.89 |
 
 Truncated to 30 rows
-
-``` scala
-```
-
-``` scala
-```
 
 | Pressure | Power  |
 |----------|--------|
@@ -4758,9 +4590,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
 | Humidity | Power  |
 |----------|--------|
 | 73.17    | 463.26 |
@@ -4795,12 +4624,6 @@ Truncated to 30 rows
 | 41.85    | 437.89 |
 
 Truncated to 30 rows
-
-``` scala
-```
-
-``` scala
-```
 
 | RH    | PE     |
 |-------|--------|
@@ -4837,12 +4660,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
-``` scala
-```
-
 | AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
 | 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
@@ -4877,18 +4694,6 @@ Truncated to 30 rows
 | 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
 
 Truncated to 30 rows
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     frameIt: (u: String, h: Int)String
 

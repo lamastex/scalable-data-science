@@ -412,9 +412,6 @@ display(dbutils.fs.ls("dbfs:///datasets/sds/ActivityRecognition"))
 |---------------------------------------------------------|------------------|----------|
 | dbfs:/datasets/sds/ActivityRecognition/dataTraining.csv | dataTraining.csv | 931349.0 |
 
-``` scala
-```
-
 Activity Recognition from Accelerometer using Random Forest
 ===========================================================
 

@@ -35,9 +35,6 @@ display(dbutils.fs.ls(outputDirectoryRoot))
 |--------------------------------------|-------|------|
 | dbfs:/datasets/tweetsStreamTmp/2017/ | 2017/ | 0.0  |
 
-``` run "scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
-```
-
 ``` scala
 val rawDF = fromParquetFile2DF("/datasets/tweetsStreamTmp/2017/10/*/*/*/*") //.cache()
 val TTTsDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(rawDF)).cache()
@@ -195,9 +192,6 @@ Truncated to 30 rows
 
 Truncated to 12 cols
 
-``` run "scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
-```
-
 ``` scala
 // to remove a pre-existing directory and start from scratch uncomment next line and evaluate this cell
 dbutils.fs.rm(outputDirectoryRoot, true) 
@@ -270,9 +264,6 @@ Crucially, the use of the content from twitter by you (as done in this worksheet
 ### Ethical/Legal Aspects
 
 See Background Readings/Viewings in Project MEP: \* <https://lamastex.github.io/scalable-data-science/sds/research/mep/>
-
-``` run "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
-```
 
 ``` scala
 // put your own twitter developer credentials below instead of xxx
@@ -971,15 +962,6 @@ unmounting:
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -989,24 +971,9 @@ unmounting:
 >     import org.apache.spark.storage.StorageLevel
 >     import org.apache.spark.streaming.receiver.Receiver
 
-``` scala
-```
-
-``` scala
-```
-
 >     defined class ExtendedTwitterReceiver
 
-``` scala
-```
-
 >     defined class ExtendedTwitterInputDStream
-
-``` scala
-```
-
-``` scala
-```
 
 >     import twitter4j.Status
 >     import twitter4j.auth.Authorization
@@ -1015,13 +982,7 @@ unmounting:
 >     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
 >     defined object ExtendedTwitterUtils
 
-``` scala
-```
-
 >     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
-
-``` scala
-```
 
 >     twitter OAuth Credentials loaded
 >     MyconsumerKey: String
@@ -1030,15 +991,6 @@ unmounting:
 >     MytokenSecret: String
 >     import twitter4j.auth.OAuthAuthorization
 >     import twitter4j.conf.ConfigurationBuilder
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
 >                       val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF("parquetFileName")))

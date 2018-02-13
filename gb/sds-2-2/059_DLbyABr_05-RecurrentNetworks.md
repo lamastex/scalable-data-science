@@ -140,9 +140,6 @@ dataY # just a reindexing of the following alphabet after each consecutive tripl
 >      24,
 >      25]
 
-``` md Train a network on that data:
-```
-
 ``` python
 import numpy
 from keras.models import Sequential
@@ -3630,9 +3627,6 @@ to power: the passion sparabrated will. in his europers raris! what seems to the
 
 ```
 ````
-
-``` md ### Take alook at the anomalous behavior that started late in the training on one run ... What might have happened?
-```
 
 ```` md #### Iteration 38
 

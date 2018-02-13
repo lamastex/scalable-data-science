@@ -296,6 +296,3 @@ Some perspectives from current affairs
 
 -   share others you find illuminating with your mates at our Meetup discussion board on [Current Affairs of Interest](https://www.meetup.com/Uppsala-Big-Data-Meetup/messages/boards/forum/23906792/)
 
-``` scala
-```
-

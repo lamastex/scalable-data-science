@@ -3461,9 +3461,6 @@ Truncated to 30 rows
 
 Truncated to 12 cols
 
-``` scala
-```
-
 Step 0: Dowloading and Loading Data (The Full Dataset)
 ------------------------------------------------------
 

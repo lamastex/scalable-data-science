@@ -104,9 +104,6 @@ df_csv.show(10,false) // first 10
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-``` scala
-```
-
 Take a peek at what was written.
 
 ``` scala

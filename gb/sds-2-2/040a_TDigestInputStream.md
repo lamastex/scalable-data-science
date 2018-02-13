@@ -33,8 +33,5 @@ for( a <- 1 to 20){
 >     r: scala.util.Random = scala.util.Random@118e50a2
 >     a: Int = 0
 
-``` scala
-```
-
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================

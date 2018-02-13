@@ -379,9 +379,6 @@ display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
 predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
 ```
 
-``` sql SELECT * from Power_Plant_RMSE_Evaluation
-```
-
 | PE     | Predicted\_PE      | Residual\_Error      | Within\_RSME          |
 |--------|--------------------|----------------------|-----------------------|
 | 490.55 | 492.8503868481024  | -2.3003868481023915  | -0.49906688419119855  |
@@ -811,15 +808,6 @@ Let us explore other models to see if we can predict the power output better
 
 There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
-``` run "/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
-```
-
-``` scala
-```
-
-``` scala
-```
-
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
  width="95%" height="300"
@@ -842,21 +830,6 @@ There are several families of models in Spark's scalable machine learning librar
   </p>
 </iframe></p>
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | path                                                  | name       | size     |
 |-------------------------------------------------------|------------|----------|
 | dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
@@ -865,16 +838,7 @@ There are several families of models in Spark's scalable machine learning librar
 | dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
 | dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
 
-``` scala
-```
-
-``` scala
-```
-
 >     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[35186] at textFile at <console>:34
-
-``` scala
-```
 
 >     AT	V	AP	RH	PE
 >     14.96	41.76	1024.07	73.17	463.26
@@ -882,16 +846,7 @@ There are several families of models in Spark's scalable machine learning librar
 >     5.11	39.4	1012.16	92.14	488.56
 >     20.86	57.32	1010.24	76.64	446.48
 
-``` scala
-```
-
-``` scala
-```
-
 >     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
-
-``` scala
-```
 
 >     root
 >      |-- AT: double (nullable = true)
@@ -900,25 +855,7 @@ There are several families of models in Spark's scalable machine learning librar
 >      |-- RH: double (nullable = true)
 >      |-- PE: double (nullable = true)
 
-``` scala
-```
-
 >     res8: Long = 9568
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     +-----+-----+-------+-----+------+
 >     |   AT|    V|     AP|   RH|    PE|
@@ -935,12 +872,6 @@ There are several families of models in Spark's scalable machine learning librar
 >     |11.74|43.56|1015.14|70.72| 477.5|
 >     +-----+-----+-------+-----+------+
 >     only showing top 10 rows
-
-``` scala
-```
-
-``` scala
-```
 
 | AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
@@ -977,16 +908,7 @@ There are several families of models in Spark's scalable machine learning librar
 
 Truncated to 30 rows
 
-``` scala
-```
-
 >     res11: Long = 9568
-
-``` scala
-```
-
-``` scala
-```
 
 >     +--------+--------------------+-----------+
 >     |database|           tableName|isTemporary|
@@ -1010,12 +932,6 @@ Truncated to 30 rows
 >     | default|             uscites|      false|
 >     +--------+--------------------+-----------+
 
-``` scala
-```
-
-``` scala
-```
-
 >     +--------------------------+--------+-----------+---------+-----------+
 >     |name                      |database|description|tableType|isTemporary|
 >     +--------------------------+--------+-----------+---------+-----------+
@@ -1038,23 +954,11 @@ Truncated to 30 rows
 >     |uscites                   |default |null       |EXTERNAL |false      |
 >     +--------------------------+--------+-----------+---------+-----------+
 
-``` scala
-```
-
 >     +-------+---------------------+-------------------------+
 >     |name   |description          |locationUri              |
 >     +-------+---------------------+-------------------------+
 >     |default|Default Hive database|dbfs:/user/hive/warehouse|
 >     +-------+---------------------+-------------------------+
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     +--------+--------------------+-----------+
 >     |database|           tableName|isTemporary|
@@ -1079,24 +983,6 @@ Truncated to 30 rows
 >     |        |   power_plant_table|       true|
 >     +--------+--------------------+-----------+
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
 | 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
@@ -1132,15 +1018,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | col\_name | data\_type | comment |
 |-----------|------------|---------|
 | AT        | double     | null    |
@@ -1149,15 +1026,6 @@ Truncated to 30 rows
 | RH        | double     | null    |
 | PE        | double     | null    |
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 | summary | AT                 | V                  | AP                 | RH                 | PE                 |
 |---------|--------------------|--------------------|--------------------|--------------------|--------------------|
 | count   | 9568               | 9568               | 9568               | 9568               | 9568               |
@@ -1165,12 +1033,6 @@ Truncated to 30 rows
 | stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
 | min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
 | max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
-
-``` scala
-```
-
-``` scala
-```
 
 | Temperature | Power  |
 |-------------|--------|
@@ -1207,12 +1069,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
-``` scala
-```
-
 | ExhaustVaccum | Power  |
 |---------------|--------|
 | 41.76         | 463.26 |
@@ -1247,12 +1103,6 @@ Truncated to 30 rows
 | 65.18         | 437.89 |
 
 Truncated to 30 rows
-
-``` scala
-```
-
-``` scala
-```
 
 | Pressure | Power  |
 |----------|--------|
@@ -1289,9 +1139,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
 | Humidity | Power  |
 |----------|--------|
 | 73.17    | 463.26 |
@@ -1326,12 +1173,6 @@ Truncated to 30 rows
 | 41.85    | 437.89 |
 
 Truncated to 30 rows
-
-``` scala
-```
-
-``` scala
-```
 
 | RH    | PE     |
 |-------|--------|
@@ -1368,12 +1209,6 @@ Truncated to 30 rows
 
 Truncated to 30 rows
 
-``` scala
-```
-
-``` scala
-```
-
 | AT    | V     | AP      | RH    | PE     |
 |-------|-------|---------|-------|--------|
 | 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
@@ -1408,12 +1243,6 @@ Truncated to 30 rows
 | 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
 
 Truncated to 30 rows
-
-``` scala
-```
-
-``` scala
-```
 
 ``` scala
 testSet.count() // action to actually cache

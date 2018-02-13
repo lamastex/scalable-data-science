@@ -215,9 +215,6 @@ Next note that labels need to be declared on first use. We have declared `x` to 
 Thus, `x` cannot be just re-assigned, as the following code illustrates in the resulting error: `... error: reassignment to val`.
 
 ``` scala
-```
-
-``` scala
 //x = 10    //  uncomment and <Ctrl+Enter> to try to reassign val x to 10
 ```
 
@@ -283,9 +280,6 @@ s.contains("i")    // <Ctrl+Enter> returns Boolean true since s contains the str
 
 Functions
 ---------
-
-``` scala
-```
 
 >     frameIt: (u: String, h: Int)String
 

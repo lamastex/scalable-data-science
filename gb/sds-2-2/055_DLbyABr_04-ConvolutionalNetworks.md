@@ -373,9 +373,6 @@ X_test /= 255
 y_test = to_categorical(y_test, num_classes=10)
 ```
 
-``` md Now the model:
-```
-
 ``` python
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 
@@ -398,9 +395,6 @@ model.add(Dense(10))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-```
-
-``` md ... and the training loop and output:
 ```
 
 ``` python
@@ -532,9 +526,6 @@ for i in range(len(model.metrics_names)):
 <img src="http://i.imgur.com/k5hMtMK.png">
 
 <img src="http://i.imgur.com/ERV9pHW.gif">
-```
-
-``` md <img src="http://i.imgur.com/TCN9C4P.png">
 ```
 
 ``` md ### AlexNet (2012)

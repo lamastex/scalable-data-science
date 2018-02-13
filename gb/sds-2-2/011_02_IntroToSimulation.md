@@ -136,9 +136,6 @@ breeze.stats.meanAndVariance(expo.samples.take(10000)); // mean and variance of 
   </p>
 </iframe></p>
 
-``` scala
-```
-
 Core ideas in Monte Carlo simulation
 ------------------------------------
 
@@ -261,9 +258,6 @@ dfExpRand.describe().show() // look sensible
 >     |    min|                0|6.881987320686012E-4| 1.0| 0.5|0.001376871299039548|
 >     |    max|              999|  0.9999092082356841| 1.0| 0.5|  18.613883955674265|
 >     +-------+-----------------+--------------------+----+----+--------------------+
-
-``` scala
-```
 
 ``` scala
 expo.probability(math.log(2) * expo.rate, 10000.0)

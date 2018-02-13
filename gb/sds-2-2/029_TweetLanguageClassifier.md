@@ -8,18 +8,6 @@ This is a databricksification of <https://databricks.gitbooks.io/databricks-spar
 
 Note that you need to change the fields in background notebooks like `025_a_extendedTwitterUtils2run` as explained in the corresponding videos by Amendra.
 
-``` run "scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -28,9 +16,6 @@ Note that you need to change the fields in background notebooks like `025_a_exte
 >     import org.apache.spark.streaming.dstream._
 >     import org.apache.spark.storage.StorageLevel
 >     import org.apache.spark.streaming.receiver.Receiver
-
-``` scala
-```
 
 ``` scala
 import org.apache.spark._
@@ -50,21 +35,9 @@ import twitter4j.conf.ConfigurationBuilder
 >     import twitter4j.auth.OAuthAuthorization
 >     import twitter4j.conf.ConfigurationBuilder
 
-``` scala
-```
-
 >     defined class ExtendedTwitterReceiver
 
-``` scala
-```
-
 >     defined class ExtendedTwitterInputDStream
-
-``` scala
-```
-
-``` scala
-```
 
 >     import twitter4j.Status
 >     import twitter4j.auth.Authorization
@@ -72,9 +45,6 @@ import twitter4j.conf.ConfigurationBuilder
 >     import org.apache.spark.streaming.StreamingContext
 >     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
 >     defined object ExtendedTwitterUtils
-
-``` scala
-```
 
 >     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
 
@@ -210,9 +180,6 @@ numTweetsCollected
 // #  let's stop the streaming job next.
 ssc.stop(stopSparkContext = false) 
 StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } 
-```
-
-``` run "scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
 ```
 
 ``` scala
@@ -726,12 +693,6 @@ sc.makeRDD(model.clusterCenters).saveAsObjectFile("/datasets/model")
 ```
 
 ``` scala
-```
-
-``` scala
-```
-
-``` scala
 import org.apache.spark.mllib.clustering.KMeans
 import org.apache.spark.mllib.linalg.{Vector, Vectors}
 import org.apache.spark.mllib.clustering.KMeansModel
@@ -755,9 +716,6 @@ model.predict(featurize("واحد صاحبى لو حد يعرف اكونت وز�
 >     modelFile: String = /datasets/model
 >     model: org.apache.spark.mllib.clustering.KMeansModel = org.apache.spark.mllib.clustering.KMeansModel@4b53f956
 >     res26: Boolean = false
-
-``` scala
-```
 
 >     USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
 >                       val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF("parquetFileName")))

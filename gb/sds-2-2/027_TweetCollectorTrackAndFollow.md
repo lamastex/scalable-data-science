@@ -10,9 +10,6 @@ StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) }
 
 Load your twitter credentials (secretly!).
 
-``` run "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
-```
-
 ``` scala
 val ssc = StreamingContext.getActiveOrCreate(streamFunc)
 ```
@@ -45,9 +42,6 @@ val TTTsDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(rawDF)).cache()
 >     rawDF: org.apache.spark.sql.DataFrame = [tweetAsJsonString: string]
 >     TTTsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [CurrentTweetDate: timestamp, CurrentTwID: bigint ... 32 more fields]
 
-``` run "scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
-```
-
 Tweet Collector - capture live tweets
 =====================================
 
@@ -58,9 +52,6 @@ In the previous notebook we were capturing tweets from the public streams (globa
 In this notebook, we can modify the collector to focus on specific communications of interest to us. Specifically, by including a list of strings to track and a list of twitter user-IDs to follow.
 
 For this we will first `%run` the `ExtendedTwitterUtils` and `TTTDFfunctions` notebooks.
-
-``` run "scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
-```
 
 Now, let's extend our function.
 
@@ -157,18 +148,6 @@ display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub
 |-------------------------------------------------------------|----------------|------|
 | dbfs:/datasets/tweetsStreamTmp/2017/10/05/09/1507197540000/ | 1507197540000/ | 0.0  |
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -178,24 +157,9 @@ display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub
 >     import org.apache.spark.storage.StorageLevel
 >     import org.apache.spark.streaming.receiver.Receiver
 
-``` scala
-```
-
-``` scala
-```
-
 >     defined class ExtendedTwitterReceiver
 
-``` scala
-```
-
 >     defined class ExtendedTwitterInputDStream
-
-``` scala
-```
-
-``` scala
-```
 
 >     import twitter4j.Status
 >     import twitter4j.auth.Authorization
@@ -204,19 +168,7 @@ display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub
 >     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
 >     defined object ExtendedTwitterUtils
 
-``` scala
-```
-
 >     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
-
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
 
 >     USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
 >                       val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
@@ -231,9 +183,6 @@ display(dbutils.fs.ls(outputDirectoryRoot+"/2017/10/05/09/")) // keep adding sub
 >     tweetsIDLong_JsonStringPairDF2TweetsDF: (tweetsAsIDLong_JsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
 >     tweetsDF2TTTDF: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
 >     tweetsDF2TTTDFWithURLsAndHastags: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
-
-``` scala
-```
 
 >     twitter OAuth Credentials loaded
 >     MyconsumerKey: String
@@ -295,7 +244,4 @@ dbutils.fs.rm(outputDirectoryRoot, true)
 ```
 
 >     res26: Boolean = true
-
-``` scala
-```
 

@@ -19,9 +19,6 @@ spark
 We have some sample action data as files in `/databricks-datasets/structured-streaming/events/` which we are going to use to build this appication. Let's take a look at the contents of this directory.
 ```
 
-``` fs ls /databricks-datasets/structured-streaming/events/
-```
-
 | path                                                               | name         | size    |
 |--------------------------------------------------------------------|--------------|---------|
 | dbfs:/databricks-datasets/structured-streaming/events/file-0.json  | file-0.json  | 72530.0 |
@@ -56,12 +53,6 @@ We have some sample action data as files in `/databricks-datasets/structured-str
 | dbfs:/databricks-datasets/structured-streaming/events/file-35.json | file-35.json | 72974.0 |
 
 Truncated to 30 rows
-
-``` md There are about 50 JSON files in the directory. Let's see what each JSON file contains.
-```
-
-``` fs head /databricks-datasets/structured-streaming/events/file-0.json
-```
 
 >     [Truncated to first 65536 bytes]
 >     {"time":1469501107,"action":"Open"}
@@ -1503,9 +1494,6 @@ display(staticInputDF)
 
 Truncated to 30 rows
 
-``` md Now we can compute the number of "open" and "close" actions with one hour windows. To do this, we will group by the `action` column and 1 hour windows over the `time` column.
-```
-
 ``` scala
 import org.apache.spark.sql.functions._
 
@@ -1521,22 +1509,10 @@ staticCountsDF.createOrReplaceTempView("static_counts")
 >     import org.apache.spark.sql.functions._
 >     staticCountsDF: org.apache.spark.sql.DataFrame = [action: string, window: struct<start: timestamp, end: timestamp> ... 1 more field]
 
-``` md Now we can directly use SQL to query the table. For example, here are the total counts across all the hours.
-```
-
-``` sql select action, sum(count) as total_count from static_counts group by action
-```
-
 | action | total\_count |
 |--------|--------------|
 | Close  | 50000.0      |
 | Open   | 50000.0      |
-
-``` md How about a timeline of windowed counts?
-```
-
-``` sql select action, date_format(window.end, "MMM-dd HH:mm") as time, count from static_counts order by time, action
-```
 
 | action | time         | count  |
 |--------|--------------|--------|
@@ -1572,9 +1548,6 @@ staticCountsDF.createOrReplaceTempView("static_counts")
 | Open   | Jul-26 17:00 | 992.0  |
 
 Truncated to 30 rows
-
-``` md Note the two ends of the graph. The close actions are generated such that they are after the corresponding open actions, so there are more "opens" in the beginning and more "closes" in the end.
-```
 
 ``` md ## Stream Processing
 Now that we have analyzed the data interactively, let's convert this to a streaming query that continuously updates as data comes. Since we just have a static set of files, we are going to emulate a stream from them by reading one file at a time, in the chronological order they were created. The query we have to write is pretty much the same as the interactive query above.
@@ -1634,9 +1607,6 @@ Let's wait a bit for a few files to be processed and then query the in-memory `c
 Thread.sleep(5000) // wait a bit for computation to start
 ```
 
-``` sql select action, date_format(window.end, "MMM-dd HH:mm") as time, count from counts order by time, action
-```
-
 | action | time         | count  |
 |--------|--------------|--------|
 | Close  | Jul-26 03:00 | 11.0   |
@@ -1646,14 +1616,8 @@ Thread.sleep(5000) // wait a bit for computation to start
 | Close  | Jul-26 05:00 | 176.0  |
 | Open   | Jul-26 05:00 | 289.0  |
 
-``` md We see the timeline of windowed counts (similar to the static one ealrier) building up. If we keep running this interactive query repeatedly, we will see the latest updated counts which the streaming query is updating in the background.
-```
-
 ``` scala
 Thread.sleep(5000)  // wait a bit more for more data to be computed
-```
-
-``` sql select action, date_format(window.end, "MMM-dd HH:mm") as time, count from counts order by time, action
 ```
 
 | action | time         | count  |
@@ -1671,9 +1635,6 @@ Thread.sleep(5000)  // wait a bit more for more data to be computed
 Thread.sleep(5000)  // wait a bit more for more data to be computed
 ```
 
-``` sql select action, date_format(window.end, "MMM-dd HH:mm") as time, count from counts order by time, action
-```
-
 | action | time         | count  |
 |--------|--------------|--------|
 | Close  | Jul-26 03:00 | 11.0   |
@@ -1688,12 +1649,6 @@ Thread.sleep(5000)  // wait a bit more for more data to be computed
 | Open   | Jul-26 07:00 | 993.0  |
 | Close  | Jul-26 08:00 | 314.0  |
 | Open   | Jul-26 08:00 | 330.0  |
-
-``` md Also, let's see the total number of "opens" and "closes".
-```
-
-``` sql select action, sum(count) as total_count from counts group by action order by action
-```
 
 | action | total\_count |
 |--------|--------------|

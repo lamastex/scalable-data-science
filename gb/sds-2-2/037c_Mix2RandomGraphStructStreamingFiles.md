@@ -343,6 +343,3 @@ gG.edges.count
 >     gG: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint, attr: struct<_1: int, _2: int>], e:[src: bigint, dst: bigint ... 1 more field])
 >     res10: Long = 4900
 
-``` scala
-```
-

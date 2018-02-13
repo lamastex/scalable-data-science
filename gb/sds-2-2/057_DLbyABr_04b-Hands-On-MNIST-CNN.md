@@ -79,9 +79,6 @@ plt.legend(['train', 'val'], loc='upper left')
 display(fig)
 ```
 
-``` md Next, let's try adding another convolutional layer:
-```
-
 ``` python
 model = Sequential()
 

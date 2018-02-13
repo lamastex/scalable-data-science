@@ -317,9 +317,6 @@ Note that the output of the above command is the same as `display(powerPlantDF)`
 
 We can use the SQL `desc` command to describe the schema. This is the SQL equivalent of `powerPlantDF.printSchema` we saw earlier.
 
-``` sql desc power_plant_table
-```
-
 | col\_name | data\_type | comment |
 |-----------|------------|---------|
 | AT        | double     | null    |
@@ -363,9 +360,6 @@ Step 4: Visualize Your Data
 
 To understand our data, we will look for correlations between features and the label. This can be important when choosing a model. E.g., if features and a label are linearly correlated, a linear model like Linear Regression can do well; if the relationship is very non-linear, more complex models such as Decision Trees or neural networks can be better. We use the Databricks built in visualization to view each of our predictors in relation to the label column as a scatter plot to see the correlation between the predictors and the label.
 
-``` sql select AT as Temperature, PE as Power from power_plant_table
-```
-
 | Temperature | Power  |
 |-------------|--------|
 | 14.96       | 463.26 |
@@ -402,9 +396,6 @@ To understand our data, we will look for correlations between features and the l
 Truncated to 30 rows
 
 From the above plot, it looks like there is strong linear correlation between temperature and Power Output!
-
-``` sql select V as ExhaustVaccum, PE as Power from power_plant_table;
-```
 
 | ExhaustVaccum | Power  |
 |---------------|--------|
@@ -443,9 +434,6 @@ Truncated to 30 rows
 
 The linear correlation is not as strong between Exhaust Vacuum Speed and Power Output but there is some semblance of a pattern.
 
-``` sql select AP as Pressure, PE as Power from power_plant_table;
-```
-
 | Pressure | Power  |
 |----------|--------|
 | 1024.07  | 463.26 |
@@ -480,9 +468,6 @@ The linear correlation is not as strong between Exhaust Vacuum Speed and Power O
 | 1012.69  | 437.89 |
 
 Truncated to 30 rows
-
-``` sql select RH as Humidity, PE as Power from power_plant_table;
-```
 
 | Humidity | Power  |
 |----------|--------|

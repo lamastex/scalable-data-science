@@ -299,17 +299,11 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 >     (#WeeklyIdol,1)
 >     (#SAMURAIBLUE,1)
 
-``` run "scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
-```
-
 Go to SparkUI and see if a streaming job is already running. If so you need to terminate it before starting a new streaming job. Only one streaming job can be run on the DB CE.
 
 ``` scala
 // this will make sure all streaming job in the cluster are stopped
 StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) } 
-```
-
-``` run "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
 ```
 
 ### Let's brainstorm a bit now
@@ -327,15 +321,6 @@ Student Project or Volunteer for next Meetup - let's check it out now:
 
 HOME-WORK: \* [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)
 
-``` scala
-```
-
-``` scala
-```
-
-``` scala
-```
-
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -345,24 +330,9 @@ HOME-WORK: \* [Twitter Streaming Language Classifier](https://databricks.gitbook
 >     import org.apache.spark.storage.StorageLevel
 >     import org.apache.spark.streaming.receiver.Receiver
 
-``` scala
-```
-
-``` scala
-```
-
 >     defined class ExtendedTwitterReceiver
 
-``` scala
-```
-
 >     defined class ExtendedTwitterInputDStream
-
-``` scala
-```
-
-``` scala
-```
 
 >     import twitter4j.Status
 >     import twitter4j.auth.Authorization
@@ -371,13 +341,7 @@ HOME-WORK: \* [Twitter Streaming Language Classifier](https://databricks.gitbook
 >     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
 >     defined object ExtendedTwitterUtils
 
-``` scala
-```
-
 >     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
-
-``` scala
-```
 
 >     twitter OAuth Credentials loaded
 >     MyconsumerKey: String

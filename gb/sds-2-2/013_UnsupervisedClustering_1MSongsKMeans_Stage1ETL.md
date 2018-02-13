@@ -25,9 +25,6 @@ We first explore different files in our distributed file system. We use a header
 
 You can conveniently list files on distributed file system (DBFS, S3 or HDFS) using `%fs` commands.
 
-``` fs ls /databricks-datasets/songs/data-001/
-```
-
 | path                                                | name       | size    |
 |-----------------------------------------------------|------------|---------|
 | dbfs:/databricks-datasets/songs/data-001/header.txt | header.txt | 377.0   |
@@ -156,9 +153,6 @@ We can now cache our table. So far all operations have been lazy. This is the fi
 
 **If you are running Spark 1.6+ the next command will throw a parsing error.**
 
-``` sql cache table songsTable
-```
-
 The error means that we are trying to convert a missing value to a Double. Here is an updated version of the parseLine function to deal with missing values
 
 ``` scala
@@ -198,13 +192,7 @@ df.createOrReplaceTempView("songsTable")
 
 And let's try caching the table. We are going to access this data multiple times in following notebooks, therefore it is a good idea to cache it in memory for faster subsequent access.
 
-``` sql cache table songsTable
-```
-
 From now on we can easily query our data using the temporary table we just created and cached in memory. Since it is registered as a table we can conveniently use SQL as well as Spark API to access it.
-
-``` sql select * from songsTable limit 10
-```
 
 | artist\_id         | artist\_latitude | artist\_longitude | artist\_location           | artist\_name      | duration  | end\_of\_fade\_in | key  | key\_confidence | loudness | release                                      | song\_hotness  |
 |--------------------|------------------|-------------------|----------------------------|-------------------|-----------|-------------------|------|-----------------|----------|----------------------------------------------|----------------|

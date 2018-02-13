@@ -151,9 +151,6 @@ print("RMSE %f" % np.sqrt(mean_squared_error(y_test, y_pred)) )
 
 >     RMSE 1124.105695
 
-``` md Now that we have a baseline, let's build a neural network -- linear at first -- and go further.
-```
-
 ``` md ## Neural Network with Keras
 
 ### Keras is a High-Level API for Neural Networks and Deep Learning
@@ -268,9 +265,6 @@ y.std()
 ```
 
 >     Out[9]: 3989.4027576288736
-
-``` md Let's look at the error ...
-```
 
 ``` python
 import matplotlib.pyplot as plt
@@ -888,9 +882,6 @@ __The insight is to iteratively calculate errors, one layer at a time, starting 
 ### Watch closely now because this is where the magic happens...
 
 <img src="https://media.giphy.com/media/Hw5LkPYy9yfVS/giphy.gif">
-```
-
-``` md # Non-Linearity + Perceptron = Universal Approximation
 ```
 
 ``` md ### Where does the non-linearity fit in?
@@ -2536,8 +2527,5 @@ So does that mean we can just keep adding more layers and solve anything?
 Well, theoretically maybe ... try reconfiguring your network, watch the training, and see what happens.
 
 <img src="http://i.imgur.com/BumsXgL.jpg" width=500>
-```
-
-``` python
 ```
 
