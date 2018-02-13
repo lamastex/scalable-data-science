@@ -102,7 +102,7 @@ Hello, world!
 -   Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
 -   characters following `//` are comments in scala. \*\*\*
 
-``` scala
+```scala
 println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that prints its argument as a line
 ```
 
