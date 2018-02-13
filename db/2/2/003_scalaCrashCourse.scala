@@ -15,7 +15,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # **Notebooks**
+// MAGIC # Notebooks
 // MAGIC Write Spark code for processing your data in notebooks. 
 // MAGIC 
 // MAGIC **NOTE**: You should have already cloned this notebook and attached it to a cluster that you started in the Community Edition of databricks by now.
@@ -118,7 +118,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md **You Try Now!** 
+// MAGIC %md
+// MAGIC **You Try Now!** 
 // MAGIC Just double-click the cell below, modify the text following ``%md`` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
 // MAGIC ```
 // MAGIC > %md Hello, world!
@@ -126,7 +127,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md Hello, world!
+// MAGIC %md 
+// MAGIC Hello, world!
 
 // COMMAND ----------
 
@@ -288,9 +290,9 @@ val x :  Double = 5    // <Ctrl+Enter> to declare a value x as Double 5 (type au
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Next note that labels need to be declared on first use. We have declared x to be a ``val`` which is short for *value*. This makes ``x`` immutable (cannot be changed).
+// MAGIC Next note that labels need to be declared on first use. We have declared `x` to be a `val` which is short for *value*. This makes `x` immutable (cannot be changed).
 // MAGIC 
-// MAGIC Thus, ``x`` cannot be just re-assigned, as the following code illustrates in the resulting error: ``... error: reassignment to val``.
+// MAGIC Thus, `x` cannot be just re-assigned, as the following code illustrates in the resulting error: `... error: reassignment to val`.
 
 // COMMAND ----------
 
@@ -478,7 +480,7 @@ val seq = Seq(1,2,3)    // <Shift-Enter> to declare a Seq
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Now, let's apply closures for functional programming over scala collection (``List``) using ``foreach``, ``map``, ``filter`` and ``reduce``. In the end we will write out first mapReduce program!
+// MAGIC Now, let's apply closures for functional programming over scala collection (`List`) using `foreach`, `map`, `filter` and `reduce`. In the end we will write out first mapReduce program!
 
 // COMMAND ----------
 
@@ -523,7 +525,7 @@ lst.reduce( _ + _ )
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Let's combine ``map`` and ``reduce`` programs above to find the sum of after 10 has been added to every element of the original List ``lst`` as follows:
+// MAGIC Let's combine `map` and `reduce` programs above to find the sum of after 10 has been added to every element of the original List `lst` as follows:
 
 // COMMAND ----------
 
