@@ -17,3 +17,9 @@ blockquote {
   word-wrap: break-word !important;
   word-break: break-all !important;
 }
+
+p.htmlSandbox {
+  overflow-y: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
