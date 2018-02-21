@@ -35,8 +35,6 @@
 *  [Tweet Classifier](sds-2-2/029_TweetLanguageClassifier.md)
 *  [Power Plant - Model Tune Evaluate Deploy](sds-2-2/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy.md) 
 *  [Geospatial Analytics in Magellan](sds-2-2/031_GeospatialAnalyticsInMagellan.md)
-*  [NY Taxi trips in Magellan](sds-2-2/032_NYtaxisInMagellan.md)
-*  [Old Bailey Online - ETL of XML](sds-2-2/033_OBO_LoadExtract.md)
 *  [20 Newsgroups - Latent Dirichlet Allocation](sds-2-2/034_LDA_20NewsGroupsSmall.md)
 *  [Cornell Movie Dialogs - Latent Dirichlet Allocation](sds-2-2/035_LDA_CornellMovieDialogs.md)
 *  [Movie Recommendation - Alternating Least Squares](sds-2-2/036_ALS_MovieRecommender.md)
