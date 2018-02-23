@@ -1,6 +1,6 @@
 {
   "root": "./gb",
-  "plugins": ["-search","-lunr","katex"],
+  "plugins": ["-search","-lunr"],
   "styles": {
     "website": "styles/website.css",
     "ebook": "styles/ebook.css"
