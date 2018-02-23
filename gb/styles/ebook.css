@@ -13,7 +13,10 @@ img {
 }
 
 table {
-  display: none !important;
+  display: block !important;
+  max-width: 100%;
+  max-height: 15em;
+  overflow: auto;
 }
 
 iframe {
