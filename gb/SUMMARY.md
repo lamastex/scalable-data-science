@@ -33,7 +33,6 @@
 *  [Tweet Track, Follow](sds-2-2/027_TweetCollectorTrackAndFollow.md)
 *  [Tweet Hashtag Counter](sds-2-2/028_TweetHashtagCount.md)
 *  [Tweet Classifier](sds-2-2/029_TweetLanguageClassifier.md)
-*  [Geospatial Analytics in Magellan](sds-2-2/031_GeospatialAnalyticsInMagellan.md)
 *  [NY Taxi trips in Magellan](sds-2-2/032_NYtaxisInMagellan.md)
 *  [Movie Recommendation - Alternating Least Squares](sds-2-2/036_ALS_MovieRecommender.md)
 *  [Animal Names Streaming Files](sds-2-2/037a_AnimalNamesStructStreamingFiles.md)
