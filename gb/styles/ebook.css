@@ -4,7 +4,7 @@ body {
 
 blockquote {
   max-height: 30em;
-  overflow: auto;
+  overflow: hidden;
   overflow-x: hidden;
 }
 
@@ -16,7 +16,7 @@ table {
   display: block !important;
   max-width: 100%;
   max-height: 5em;
-  overflow: auto;
+  overflow: hidden;
 }
 
 blockquote {
@@ -27,7 +27,6 @@ blockquote {
 }
 
 p.htmlSandbox {
-  overflow-y: auto;
+  overflow-y: hidden;
   max-width: 100%;
-  -webkit-overflow-scrolling: touch;
 }
