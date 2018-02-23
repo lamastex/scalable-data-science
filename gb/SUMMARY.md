@@ -48,4 +48,5 @@
 *  [Neural Networks](sds-2-2/051_DLbyABr_02-Neural-Networks.md)
 *  [Deep feed Forward NNs with Keras](sds-2-2/052_DLbyABr_02a-Keras-DFFN.md)
 *  [Hello Tensorflow](sds-2-2/053_DLbyABr_03-HelloTensorFlow.md)
-
+*  [Batch Tensorflow with Matrices](sds-2-2/054_DLbyABr_03a-BatchTensorFlowWithMatrices.md)
+*  [Convolutional Neural Nets](sds-2-2/055_DLbyABr_04-ConvolutionalNetworks.md)
