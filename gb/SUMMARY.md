@@ -25,4 +25,13 @@
 *  [Power Plant - Model Tune Evaluate](sds-2-2/020_PowerPlantPipeline_02ModelTuneEvaluate.md)
 *  [Activity Detection - Random Forest](sds-2-2/021_recognizeActivityByRandomForest.md)
 *  [Graph Frames Intro](sds-2-2/022_GraphFramesUserGuide.md)
+*  [Spark Streaming Intro](sds-2-2/024_SparkStreamingIntro.md)
+*  [Extended Twitter Utils](sds-2-2/025_a_extendedTwitterUtils2run.md)
+*  [Tweet Transmission Trees](sds-2-2/025_b_TTTDFfunctions.md)
+*  [REST Twitter API](sds-2-2/025_c_RESTTwitter.md)
+*  [Tweet Collector](sds-2-2/026_TweetCollector.md)
+*  [Tweet Track, Follow](sds-2-2/027_TweetCollectorTrackAndFollow.md)
+*  [Tweet Hashtag Counter](sds-2-2/028_TweetHashtagCount.md)
+*  [Tweet Classifier](sds-2-2/029_TweetLanguageClassifier.md)
+*  [Power Plant - Model Tune Evaluate Deploy](sds-2-2/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy.md) 
 
