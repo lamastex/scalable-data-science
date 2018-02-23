@@ -16,6 +16,10 @@ table {
   display: none !important;
 }
 
+iframe {
+  display: none !important;
+}
+
 blockquote {
   unicode-bidi: embed !important;
   white-space: pre-wrap !important;
