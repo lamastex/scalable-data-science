@@ -8,7 +8,11 @@ blockquote {
   overflow-x: hidden;
 }
 
-img, iframe {
+img {
+  display: none !important;
+}
+
+iframe {
   display: none !important;
 }
 
