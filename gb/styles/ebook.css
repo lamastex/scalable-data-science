@@ -8,9 +8,9 @@ blockquote {
   overflow-x: hidden;
 }
 
-img {
+/*img {
   display: none !important;
-}
+}*/
 
 table {
   display: block !important;
