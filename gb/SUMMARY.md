@@ -50,13 +50,4 @@
 *  [Hello Tensorflow](sds-2-2/053_DLbyABr_03-HelloTensorFlow.md)
 *  [Batch Tensorflow with Matrices](sds-2-2/054_DLbyABr_03a-BatchTensorFlowWithMatrices.md)
 *  [Convolutional Neural Nets](sds-2-2/055_DLbyABr_04-ConvolutionalNetworks.md)
-*  [MNIST: Multi-Layer-Perceptron](sds-2-2/056_DLbyABr_04a-Hands-On-MNIST-MLP.md)
-*  [MNIST: Convolutional Neural net](sds-2-2/057_DLbyABr_04b-Hands-On-MNIST-CNN.md)
-*  [CIFAR-10: CNNs](sds-2-2/058_DLbyABr_04c-CIFAR-10.md)
-*  [Recurrent Neural Nets and LSTMs](sds-2-2/059_DLbyABr_05-RecurrentNetworks.md)
-*  [LSTM solution](sds-2-2/060_DLByABr_05a-LSTM-Solution.md)
-*  [LSTM spoke Zarathustra](sds-2-2/061_DLByABr_05b-LSTM-Language.md)
-*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
-*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
-*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
 
