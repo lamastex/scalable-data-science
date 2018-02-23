@@ -1,3 +1,29 @@
 body {
   background-color: transparent;
 }
+
+blockquote {
+  max-height: 30em;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+table {
+  display: block !important;
+  max-width: 100%;
+  max-height: 15em;
+  overflow: auto;
+}
+
+blockquote {
+  unicode-bidi: embed !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+p.htmlSandbox {
+  overflow-y: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
