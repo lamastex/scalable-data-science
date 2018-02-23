@@ -8,9 +8,9 @@ blockquote {
   overflow-x: hidden;
 }
 
-/*img {
+img {
   display: none !important;
-}*/
+}
 
 table {
   display: block !important;
@@ -19,9 +19,9 @@ table {
   overflow: auto;
 }
 
-iframe {
+/*iframe {
   display: none !important;
-}
+}*/
 
 blockquote {
   unicode-bidi: embed !important;
