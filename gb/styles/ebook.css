@@ -8,20 +8,16 @@ blockquote {
   overflow-x: hidden;
 }
 
-img {
+img, iframe {
   display: none !important;
 }
 
 table {
   display: block !important;
   max-width: 100%;
-  max-height: 15em;
+  max-height: 5em;
   overflow: auto;
 }
-
-/*iframe {
-  display: none !important;
-}*/
 
 blockquote {
   unicode-bidi: embed !important;
