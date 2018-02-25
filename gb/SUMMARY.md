@@ -48,6 +48,7 @@
 *  [Structured Streaming of JSONs](sds-2-2/039_StructuredStreamingFromJSONFileStream.md)
 *  [T-Digest Normal Mixture Streaming Files](sds-2-2/040a_TDigestInputStream.md)
 *  [Sketching with T-Digest](sds-2-2/041_SketchingWithTDigest.md)
+*  [Streaming with T-Digest](sds-2-2/042_streamingWithTDigest.md)
 *  [Intro to Deep Learning](sds-2-2/049_DeepLearningIntro.md)
 *  [Outline for DL](sds-2-2/050_DLbyABr_01_Intro.md)
 *  [Neural Networks](sds-2-2/051_DLbyABr_02-Neural-Networks.md)

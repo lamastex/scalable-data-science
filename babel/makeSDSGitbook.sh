@@ -20,4 +20,5 @@ rm $sds_DIR/gb/sds-2-2-flat.dbc
 
 #mv ~/all/git/scalable-data-science/gb/sds-2-2/ ~/all/git/scalable-data-science/gb/db 
 
-
+# student projects
+#stack exec -- pinot -f databricks -t markdown $sds_DIR/dbcArchives/2017/parts/studentProjects/AvelinBPerssonH/042_streamingWithTDigest.dbc $sds_DIR/gb/

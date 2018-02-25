@@ -157,6 +157,7 @@ Assignments, on the other hand, are to be completed individually.
 20. Sketching for Anomaly Detection in Streams
 	*  [T-Digest Normal Mixture Streaming Files](sds-2-2/040a_TDigestInputStream.md)
 	*  [Sketching with T-Digest](sds-2-2/041_SketchingWithTDigest.md)
+	*  [Streaming with T-Digest](sds-2-2/042_streamingWithTDigest.md)
 21. Neural networks and Deep Learning
 	- Linear and logistic regression as neural networks
 	- Back propagation for gradient descent
@@ -179,8 +180,10 @@ Assignments, on the other hand, are to be completed individually.
 	-  Case studies from the field
 23. Advise from Industry
 	*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
-13. Project Presentations
+24. Student Project Presentations
 	*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
+	* [Network Anomaly Detection by Vicotr Ingman and Kasper Ramstrom](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
+25. Databricks Archive of the Course
 	*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
 
 # Supplements
