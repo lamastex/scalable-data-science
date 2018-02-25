@@ -64,4 +64,5 @@
 *  [LSTM spoke Zarathustra](sds-2-2/061_DLByABr_05b-LSTM-Language.md)
 *  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
 *  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
+*  [Network Anomaly Detection by Victor Ingman and Kasper Ramstrom](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
 *  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
