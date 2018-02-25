@@ -79,127 +79,109 @@ Assignments, on the other hand, are to be completed individually.
 **The exact set of topics may change slightly from the *tentative* outline below in order to cater better to the registered students at Uppsala University.**
 {: .notice--danger}
 
-1.  Introduction:  What is Data Science?
-	-  Big Data and Data Science - beyond buzz-words
-		- fault tolerance and distributed file-stores
-		- distributed in-memory processing in Apache Spark
-	-  History and latest landscape of research and practice
-	-  Skill sets of a data scientist (maths, stats, computer science and software engineering)
-	-  The Data Science Process
-2. Basics of Probability, Statistics, Linear Algebra, Calculus and Programming
-	-  Populations and samples - basic concepts (random variables, density and distribution functions)
-	-  Simulate from basic discrete and continuous distributions (python/scala/R)
-	-  Refresher in Linear Algebra (numpy, scala-breeze, R)
-	-  concepts in model selection and tuning via cross-validation and testing
-	-  Statistical modeling and fitting a model (linear regression, least squares/maximum likelihood, gradient descent)
-	-  Shell command-line and crash-course/refresher in basic programming (python/scala/R)
-3. Introduction to Map-Reduce and Distributed Computing
-	-  Resilient Distributed datasets
-	-  Transformations and Actions in Apache Spark (Introduction)
-	-  Basics of Functional programming (python lambda functions and scala closures)
-	-  Case Study 0: Word-count of US State of the Union Addresses
+1. Introduction:  What is Data Science and the Data Science Process?
+	*  [Introduction](sds-2-2/000_scalableDataScience.md)
+2. Apache Spark and Big Data
+	*  [Why Spark?](sds-2-2/001_whySpark.md)
+	*  [Login to databricks](sds-2-2/002_loginToDatabricks.md)
+	*  [Scala Crash Course](sds-2-2/003_scalaCrashCourse.md)
+3. Map-Reduce, Transformations and Actions with Resilient Distributed datasets
+	*  [RDDs](sds-2-2/004_RDDsTransformationsActions.md)
+	*  [RDDs HOMEWORK](sds-2-2/005_RDDsTransformationsActionsHOMEWORK.md)
+	*  [Word Count - SOU](sds-2-2/006_WordCount.md)
 4. Ingest, Extract, Transform, Load and Explore with noSQL
-	-  Case Study 0: US State of the Union Addresses
-	-  Case Study 1: Power-plant data 
-	-  Case Study 2: 1 Million Songs
-	-  SQL basics - select, filter, join, group by, aggregate, etc. using SparkSQL
-5. Two Basic Supervised Machine Learning Algorithms
-	-  Linear Regression (power-plant data)
-	-  Decision Trees for Classification (hand-written digit recognition)
-6. Two Basic Unsupervised Machine Learning Algorithms 
+	*  [Spark SQL Basics](sds-2-2/007_SparkSQLIntroBasics.md)
+	*  [ETL Diamonds Data](sds-2-2/008_DiamondsPipeline_01ETLEDA.md)
+	*  [ETL Power Plant](sds-2-2/009_PowerPlantPipeline_01ETLEDA.md)
+	*  [Wiki Click streams](sds-2-2/010_wikipediaClickStream_01ETLEDA.md)
+5. Introduction to Machine Learning
+	*  [Simulation Intro](sds-2-2/011_02_IntroToSimulation.md)
+	*  [Machine Learning Intro](sds-2-2/011_03_IntroToML.md)
+6. Unsupervised Learning - Clustering 
 	-  k-means (1 million songs dataset)
 	-  Gaussian Mixture Models and EM Algorithm
-7. Unstructured to Semi-structured text data
-	-  Supervised: Sentiment analysis with Support vector Machine (twitter dataset)
+	*  [K-Means 1MSongs Intro](sds-2-2/012_UnsupervisedClustering_1MSongsKMeans_Intro.md)
+	*  [1MSongs - 1 ETL](sds-2-2/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL.md)
+	*  [1MSongs - 2 Explore](sds-2-2/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore.md)
+	*  [1MSongs - 3 Model](sds-2-2/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model.md)
+7. Supervised Learning - Decision Trees
 	-  Unsupervised: Latent Dirichlet Allocation (news groups dataset)
 	- Assignment: Build your own sentiment detector
-8. Dimensionality Reduction
-	- Distributed Linear Algebra -- basic concepts
-	- Singular value Decomposition
-	- Principal Component Analysis 
-9. Collaborative Filtering for Recommendation Systems
-	-  Matrix completion via Alternative Least Squares
-	-  Assignment:  build your own recommendation system
-10. Neural networks
-	- Linear and logistic regression as neural networks
-	- Back propagation for gradient descent
-	- Use of pre-trained neural networks from google/Baidu/facebook in your machine learning pipeline
-11. Mining Networks and Graphs
-	-  Social networks as graphs (twitter data)
+	-  Linear Regression (power-plant data)
+	-  Decision Trees for Classification (hand-written digit recognition)
+	*  [Decision Trees for Digits](sds-2-2/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition.md)
+8. Linear Algebra for Distributed Machine Learning
+	*  [Linear Algebra Intro](sds-2-2/017_LAlgIntro.md)
+	*  [Linear Regression Intro](sds-2-2/018_LinRegIntro.md)
+	*  [Distrib. Linear Algebra](sds-2-2/019_DistLAlgForLinRegIntro.md)
+9. Supervised Learning - Regression
+	*  [Power Plant - Model Tune Evaluate](sds-2-2/020_PowerPlantPipeline_02ModelTuneEvaluate.md)
+10. Supervised Learning - Random Forests
+	*  [Activity Detection - Random Forest](sds-2-2/021_recognizeActivityByRandomForest.md)
+11. Mining Networks and Graphs with Spark's GraphX
 	-  Extract, transform and loading of network data
 	-  Discovery of communities in graphs (wikipedia click streams)
 	-  label and belief propagation
 	-  querying sub-structures in graphs (US Airport network)
-12. Data Science and Ethical Issues
+	*  [Graph Frames Intro](sds-2-2/022_GraphFramesUserGuide.md)
+	*  [Ontime Flight Performance](sds-2-2/023_OnTimeFlightPerformance.md)
+12. Spark Streaming with Discrete Resilient Distributed Datasets
+	*  [Spark Streaming Intro](sds-2-2/024_SparkStreamingIntro.md)
+13. Social networks as distributed graphs (twitter data)
+	*  [Extended Twitter Utils](sds-2-2/025_a_extendedTwitterUtils2run.md)
+	*  [Tweet Transmission Trees](sds-2-2/025_b_TTTDFfunctions.md)
+	*  [REST Twitter API](sds-2-2/025_c_RESTTwitter.md)
+	*  [Tweet Collector](sds-2-2/026_TweetCollector.md)
+	*  [Tweet Track, Follow](sds-2-2/027_TweetCollectorTrackAndFollow.md)
+	*  [Tweet Hashtag Counter](sds-2-2/028_TweetHashtagCount.md)
+	*  [Tweet Classifier](sds-2-2/029_TweetLanguageClassifier.md)
+14. Supervised Learning - Regression as a Complete Data Science Process
+	*  [Power Plant - Model Tune Evaluate Deploy](sds-2-2/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy.md) 
+15. Scalabe Geospatial Analytics
+	*  [Geospatial Analytics in Magellan](sds-2-2/031_GeospatialAnalyticsInMagellan.md)
+	*  [NY Taxi trips in Magellan](sds-2-2/032_NYtaxisInMagellan.md)
+16. ETL of XML-structured Dataset
+	*  [Old Bailey Online - ETL of XML](sds-2-2/033_OBO_LoadExtract.md)
+17. Unsupervised Learning - Latent Dirichlet Allocation
+	*  [20 Newsgroups - Latent Dirichlet Allocation](sds-2-2/034_LDA_20NewsGroupsSmall.md)
+	*  [Cornell Movie Dialogs - Latent Dirichlet Allocation](sds-2-2/035_LDA_CornellMovieDialogs.md)
+18. Collaborative Filtering for Recommendation Systems
+	-  Matrix completion via Alternative Least Squares
+	*  [Movie Recommendation - Alternating Least Squares](sds-2-2/036_ALS_MovieRecommender.md)
+19. Spark Structured Streaming
+	*  [Animal Names Streaming Files](sds-2-2/037a_AnimalNamesStructStreamingFiles.md)
+	*  [Normal Mixture Streaming Files](sds-2-2/037b_Mix2NormalsStructStreamingFiles.md)
+	*  [Structured Streaming Prog Guide](sds-2-2/038_StructuredStreamingProgGuide.md)
+	*  [Graph Mixture Streaming Files](sds-2-2/037c_Mix2RandomGraphStructStreamingFiles.md)
+	*  [Structured Streaming of JSONs](sds-2-2/039_StructuredStreamingFromJSONFileStream.md)
+20. Sketching for Anomaly Detection in Streams
+	*  [T-Digest Normal Mixture Streaming Files](sds-2-2/040a_TDigestInputStream.md)
+	*  [Sketching with T-Digest](sds-2-2/041_SketchingWithTDigest.md)
+21. Neural networks and Deep Learning
+	- Linear and logistic regression as neural networks
+	- Back propagation for gradient descent
+	- Use of pre-trained neural networks from google/Baidu/facebook in your machine learning pipeline
+	*  [Intro to Deep Learning](sds-2-2/049_DeepLearningIntro.md)
+	*  [Outline for DL](sds-2-2/050_DLbyABr_01-Intro.md)
+	*  [Neural Networks](sds-2-2/051_DLbyABr_02-Neural-Networks.md)
+	*  [Deep feed Forward NNs with Keras](sds-2-2/052_DLbyABr_02a-Keras-DFFN.md)
+	*  [Hello Tensorflow](sds-2-2/053_DLbyABr_03-HelloTensorFlow.md)
+	*  [Batch Tensorflow with Matrices](sds-2-2/054_DLbyABr_03a-BatchTensorFlowWithMatrices.md)
+	*  [Convolutional Neural Nets](sds-2-2/055_DLbyABr_04-ConvolutionalNetworks.md)
+	*  [MNIST: Multi-Layer-Perceptron](sds-2-2/056_DLbyABr_04a-Hands-On-MNIST-MLP.md)
+	*  [MNIST: Convolutional Neural net](sds-2-2/057_DLbyABr_04b-Hands-On-MNIST-CNN.md)
+	*  [CIFAR-10: CNNs](sds-2-2/058_DLbyABr_04c-CIFAR-10.md)
+	*  [Recurrent Neural Nets and LSTMs](sds-2-2/059_DLbyABr_05-RecurrentNetworks.md)
+	*  [LSTM solution](sds-2-2/060_DLByABr_05a-LSTM-Solution.md)
+	*  [LSTM spoke Zarathustra](sds-2-2/061_DLByABr_05b-LSTM-Language.md)
+22. Data Science and Ethical Issues
 	-  Discussions on ethics, privacy and security
 	-  Case studies from the field
+23. Advise from Industry
+	*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
 13. Project Presentations
-
-# What was actually covered
-
-*  [Introduction](sds-2-2/000_scalableDataScience.md)
-*  [Why Spark?](sds-2-2/001_whySpark.md)
-*  [Login to databricks](sds-2-2/002_loginToDatabricks.md)
-*  [Scala Crash Course](sds-2-2/003_scalaCrashCourse.md)
-*  [RDDs](sds-2-2/004_RDDsTransformationsActions.md)
-*  [RDDs HOMEWORK](sds-2-2/005_RDDsTransformationsActionsHOMEWORK.md)
-*  [Word Count - SOU](sds-2-2/006_WordCount.md)
-*  [Spark SQL Basics](sds-2-2/007_SparkSQLIntroBasics.md)
-*  [ETL Diamonds Data](sds-2-2/008_DiamondsPipeline_01ETLEDA.md)
-*  [ETL Power Plant](sds-2-2/009_PowerPlantPipeline_01ETLEDA.md)
-*  [Wiki Click streams](sds-2-2/010_wikipediaClickStream_01ETLEDA.md)
-*  [Simulation Intro](sds-2-2/011_02_IntroToSimulation.md)
-*  [Machine Learning Intro](sds-2-2/011_03_IntroToML.md)
-*  [K-Means 1MSongs Intro](sds-2-2/012_UnsupervisedClustering_1MSongsKMeans_Intro.md)
-*  [1MSongs - 1 ETL](sds-2-2/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL.md)
-*  [1MSongs - 2 Explore](sds-2-2/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore.md)
-*  [1MSongs - 3 Model](sds-2-2/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model.md)
-*  [Decision Trees for Digits](sds-2-2/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition.md)
-*  [Linear Algebra Intro](sds-2-2/017_LAlgIntro.md)
-*  [Linear Regression Intro](sds-2-2/018_LinRegIntro.md)
-*  [Distrib. Linear Algebra](sds-2-2/019_DistLAlgForLinRegIntro.md)
-*  [Power Plant - Model Tune Evaluate](sds-2-2/020_PowerPlantPipeline_02ModelTuneEvaluate.md)
-*  [Activity Detection - Random Forest](sds-2-2/021_recognizeActivityByRandomForest.md)
-*  [Graph Frames Intro](sds-2-2/022_GraphFramesUserGuide.md)
-*  [Ontime Flight Performance](sds-2-2/023_OnTimeFlightPerformance.md)
-*  [Spark Streaming Intro](sds-2-2/024_SparkStreamingIntro.md)
-*  [Extended Twitter Utils](sds-2-2/025_a_extendedTwitterUtils2run.md)
-*  [Tweet Transmission Trees](sds-2-2/025_b_TTTDFfunctions.md)
-*  [REST Twitter API](sds-2-2/025_c_RESTTwitter.md)
-*  [Tweet Collector](sds-2-2/026_TweetCollector.md)
-*  [Tweet Track, Follow](sds-2-2/027_TweetCollectorTrackAndFollow.md)
-*  [Tweet Hashtag Counter](sds-2-2/028_TweetHashtagCount.md)
-*  [Tweet Classifier](sds-2-2/029_TweetLanguageClassifier.md)
-*  [Power Plant - Model Tune Evaluate Deploy](sds-2-2/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy.md) 
-*  [Geospatial Analytics in Magellan](sds-2-2/031_GeospatialAnalyticsInMagellan.md)
-*  [NY Taxi trips in Magellan](sds-2-2/032_NYtaxisInMagellan.md)
-*  [Old Bailey Online - ETL of XML](sds-2-2/033_OBO_LoadExtract.md)
-*  [20 Newsgroups - Latent Dirichlet Allocation](sds-2-2/034_LDA_20NewsGroupsSmall.md)
-*  [Cornell Movie Dialogs - Latent Dirichlet Allocation](sds-2-2/035_LDA_CornellMovieDialogs.md)
-*  [Movie Recommendation - Alternating Least Squares](sds-2-2/036_ALS_MovieRecommender.md)
-*  [Animal Names Streaming Files](sds-2-2/037a_AnimalNamesStructStreamingFiles.md)
-*  [Normal Mixture Streaming Files](sds-2-2/037b_Mix2NormalsStructStreamingFiles.md)
-*  [Structured Streaming Prog Guide](sds-2-2/038_StructuredStreamingProgGuide.md)
-*  [Graph Mixture Streaming Files](sds-2-2/037c_Mix2RandomGraphStructStreamingFiles.md)
-*  [Structured Streaming of JSONs](sds-2-2/039_StructuredStreamingFromJSONFileStream.md)
-*  [T-Digest Normal Mixture Streaming Files](sds-2-2/040a_TDigestInputStream.md)
-*  [Sketching with T-Digest](sds-2-2/041_SketchingWithTDigest.md)
-*  [Intro to Deep Learning](sds-2-2/049_DeepLearningIntro.md)
-*  [Outline for DL](sds-2-2/050_DLbyABr_01-Intro.md)
-*  [Neural Networks](sds-2-2/051_DLbyABr_02-Neural-Networks.md)
-*  [Deep feed Forward NNs with Keras](sds-2-2/052_DLbyABr_02a-Keras-DFFN.md)
-*  [Hello Tensorflow](sds-2-2/053_DLbyABr_03-HelloTensorFlow.md)
-*  [Batch Tensorflow with Matrices](sds-2-2/054_DLbyABr_03a-BatchTensorFlowWithMatrices.md)
-*  [Convolutional Neural Nets](sds-2-2/055_DLbyABr_04-ConvolutionalNetworks.md)
-*  [MNIST: Multi-Layer-Perceptron](sds-2-2/056_DLbyABr_04a-Hands-On-MNIST-MLP.md)
-*  [MNIST: Convolutional Neural net](sds-2-2/057_DLbyABr_04b-Hands-On-MNIST-CNN.md)
-*  [CIFAR-10: CNNs](sds-2-2/058_DLbyABr_04c-CIFAR-10.md)
-*  [Recurrent Neural Nets and LSTMs](sds-2-2/059_DLbyABr_05-RecurrentNetworks.md)
-*  [LSTM solution](sds-2-2/060_DLByABr_05a-LSTM-Solution.md)
-*  [LSTM spoke Zarathustra](sds-2-2/061_DLByABr_05b-LSTM-Language.md)
-*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
-*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
-*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
+	*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
+	*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
 
 # Supplements
 
