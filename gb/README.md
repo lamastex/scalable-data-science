@@ -182,7 +182,7 @@ Assignments, on the other hand, are to be completed individually.
 	*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
 24. Student Project Presentations
 	*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
-	* [Network Anomaly Detection by Vicotr Ingman and Kasper Ramstrom](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
+	* [Network Anomaly Detection by Victor Ingman and Kasper Ramstrom](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
 25. Databricks Archive of the Course
 	*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
 
