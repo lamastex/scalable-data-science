@@ -22,24 +22,6 @@ In the book, the authors cluster different kinds of network events with the hope
 
 Below, we present the code for our project alongside with explanations for what we've done and how we've done it. This includes data collection, data visualization, clustering of data and possible improvements and future work.
 
-``` scala
-//This allows easy embedding of publicly available information into any other notebook
-//Example usage:
-// displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
-def frameIt( u:String, h:Int ) : String = {
-      """<iframe 
- src=""""+ u+""""
- width="95%" height="""" + h + """"
- sandbox>
-  <p>
-    <a href="https://en.wikipedia.org/wiki/Anomaly_detection">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe>"""
-   }
-```
-
 >     frameIt: (u: String, h: Int)String
 
 ``` scala
@@ -1171,13 +1153,27 @@ To make the project even more useful in a real environment, one could use [Spark
 
 Additional continuations of this could include giving suggestions for actions to perform when deteching malicious activity.
 
-``` scala
-displayHTML(frameIt("https://en.wikipedia.org/wiki/Dimensionality_reduction",500))
-```
-
-``` scala
-displayHTML(frameIt("https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html",500))
-```
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Dimensionality_reduction"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="https://en.wikipedia.org/wiki/Anomaly_detection">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
 
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
+
+<p class="htmlSandbox"><iframe 
+ src="https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="https://en.wikipedia.org/wiki/Anomaly_detection">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
