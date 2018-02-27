@@ -627,10 +627,7 @@ train(10, 128)
 
 ### Sample generated digits: epoch 10
 
-``` md ### Generator/Discriminator Loss
-
-<img src="/files/gan_loss_epoch_10.png" width=800>
-```
+### Generator/Discriminator Loss
 
 ``` md ## Which Strategy to Use?
 

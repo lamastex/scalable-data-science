@@ -13,10 +13,9 @@ Scalable web scrapper
 
 This cleaned up notebook contains code to perform web scraping, which should then be called from another notebook
 
-``` md Need to install the goose web scraper library, available with maven coordinate:
+Need to install the goose web scraper library, available with maven coordinate:
 
-com.syncthemall:goose:2.1.25
-```
+`com.syncthemall:goose:2.1.25`
 
 ``` scala
 //import the web scraper
@@ -24,6 +23,8 @@ import com.gravity.goose._
 ```
 
 >     import com.gravity.goose._
+
+The functions for expanding the urls
 
 ``` scala
 import org.apache.commons.lang3.StringUtils 
@@ -72,11 +73,7 @@ def expandUrluntilsame(url:String) : String ={
 >     expandUrl: (url: String)String
 >     expandUrluntilsame: (url: String)String
 
-``` md To get the articles from the web, use a dataframe of urls and return a dataframe with body, domain,title
-* First we make a case class Articles containing body, domain, title and meta description (from the HTML)
-* Use a function getArticles takes a string as input and return an Articles (filled with "null" string if any exception occured)
-* Then make UserDefinedFunction that takes a column name and returns Articles from stuff in that column (to be able to use directly on the DF)
-```
+To get the articles from the web, use a dataframe of urls and return a dataframe with body, domain,title \* First we make a case class Articles containing body, domain, title and meta description (from the HTML) \* Use a function getArticles takes a string as input and return an Articles (filled with "null" string if any exception occured) \* Then make UserDefinedFunction that takes a column name and returns Articles from stuff in that column (to be able to use directly on the DF)
 
 ``` scala
 //the class for the web article
@@ -119,6 +116,8 @@ val ArticleUserDefined = udf((s:String) => getArticles(expandUrluntilsame(s))) /
 >     getArticles: (url_article: String)Articles
 >     ArticleUserDefined: org.apache.spark.sql.expressions.UserDefinedFunction = UserDefinedFunction(<function1>,StructType(StructField(title,StringType,true), StructField(body,StringType,true), StructField(domain,StringType,true), StructField(description,StringType,true), StructField(status,StringType,true)),Some(List(StringType)))
 
+Flattening the dataframe that does not need information on the number of new columns we want (copied with modification from notebook 007 of the course):
+
 ``` scala
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
@@ -141,6 +140,8 @@ implicit class DataFrameFlattener(df: DataFrame) {
 >     import org.apache.spark.sql.functions._
 >     import org.apache.spark.sql.types._
 >     defined class DataFrameFlattener
+
+Finally a function to do all the above:
 
 ``` scala
 //just one function to be called on the URL dataframe
