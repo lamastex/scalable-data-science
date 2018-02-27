@@ -14,7 +14,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md # Entering the 4th Dimension
+# MAGIC %md 
+# MAGIC # Entering the 4th Dimension
 # MAGIC ## Networks for Understanding Time-Oriented Patterns in Data
 # MAGIC 
 # MAGIC Common time-based problems include
@@ -27,7 +28,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### Simplified Approaches
+# MAGIC %md 
+# MAGIC ### Simplified Approaches
 # MAGIC 
 # MAGIC * If we know all of the sequence states and the probabilities of state transition...
 # MAGIC     * ... then we have a simple Markov Chain model.
@@ -77,7 +79,8 @@ dataY # just a reindexing of the following alphabet after each consecutive tripl
 
 # COMMAND ----------
 
-# MAGIC %md Train a network on that data:
+# MAGIC %md 
+# MAGIC Train a network on that data:
 
 # COMMAND ----------
 
@@ -136,7 +139,8 @@ X.shape[1], y.shape[1] # get a sense of the shapes to understand the network arc
 
 # COMMAND ----------
 
-# MAGIC %md The network does learn, and could be trained to get a good accuracy. But what's really going on here?
+# MAGIC %md 
+# MAGIC The network does learn, and could be trained to get a good accuracy. But what's really going on here?
 # MAGIC 
 # MAGIC Let's leave aside for a moment the simplistic training data (one fun experiment would be to create corrupted sequences and augment the data with those, forcing the network to pay attention to the whole sequence).
 # MAGIC 
@@ -313,7 +317,8 @@ X.shape[0], y.shape[1] # number of examples and number of categorical outputs
 
 # COMMAND ----------
 
-# MAGIC %md __Memory and context__
+# MAGIC %md 
+# MAGIC __Memory and context__
 # MAGIC 
 # MAGIC If this network is learning the way we would like, it should be robust to noise and also understand the relative context (in this case, where a prior letter occurs in the sequence).
 # MAGIC 
@@ -454,7 +459,8 @@ for iteration in range(1, 60):
 
 # COMMAND ----------
 
-# MAGIC %md ## Gated Recurrent Unit (GRU)
+# MAGIC %md 
+# MAGIC ## Gated Recurrent Unit (GRU)
 # MAGIC 
 # MAGIC In 2014, a new, promising design for RNN units called Gated Recurrent Unit was published (https://arxiv.org/abs/1412.3555)
 # MAGIC 
@@ -536,7 +542,8 @@ X
 
 # COMMAND ----------
 
-# MAGIC %md ### What Does Our Nietzsche Generator Produce?
+# MAGIC %md 
+# MAGIC ### What Does Our Nietzsche Generator Produce?
 # MAGIC 
 # MAGIC Here are snapshots from middle and late in a training run.
 # MAGIC 
@@ -578,7 +585,8 @@ X
 
 # COMMAND ----------
 
-# MAGIC %md #### Iteration 32
+# MAGIC %md 
+# MAGIC #### Iteration 32
 # MAGIC 
 # MAGIC ```
 # MAGIC Iteration 32
@@ -625,11 +633,13 @@ X
 
 # COMMAND ----------
 
-# MAGIC %md ### Take alook at the anomalous behavior that started late in the training on one run ... What might have happened?
+# MAGIC %md 
+# MAGIC ### Take alook at the anomalous behavior that started late in the training on one run ... What might have happened?
 
 # COMMAND ----------
 
-# MAGIC %md #### Iteration 38
+# MAGIC %md 
+# MAGIC #### Iteration 38
 # MAGIC 
 # MAGIC ```
 # MAGIC Iteration 38
@@ -669,6 +679,7 @@ X
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC 
 # MAGIC (raaz)
 # MAGIC ## 'Mind the Hype' around AI 
 # MAGIC 
