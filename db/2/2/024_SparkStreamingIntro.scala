@@ -12,6 +12,7 @@
 // MAGIC Spark Streaming is an extension of the core Spark API that enables scalable, high-throughput, fault-tolerant stream processing of live data streams. 
 // MAGIC 
 // MAGIC This is a walk-through of excerpts from the following resources:
+// MAGIC 
 // MAGIC * the Databricks Guide:
 // MAGIC   * [Spark Streaming - RDD-based](https://docs.databricks.com/spark/latest/rdd-streaming/index.html) and 
 // MAGIC   * [Structured Streaming - DatFrame/Dataset-Based](https://docs.databricks.com/spark/latest/structured-streaming/index.html#structured-streaming)
@@ -46,6 +47,7 @@
 // MAGIC   
 // MAGIC Finally, processed data can be pushed out
 // MAGIC to filesystems, databases, and live dashboards. In fact, you can apply Spark's 
+// MAGIC 
 // MAGIC * [machine learning](http://spark.apache.org/docs/latest/mllib-guide.html) and
 // MAGIC * [graph processing](http://spark.apache.org/docs/latest/graphx-programming-guide.html) algorithms 
 // MAGIC on data streams.
@@ -53,6 +55,7 @@
 // MAGIC ![Spark Streaming architecture](http://spark.apache.org/docs/latest/img/streaming-arch.png)
 // MAGIC 
 // MAGIC #### Internally, it works as follows: 
+// MAGIC 
 // MAGIC * Spark Streaming receives live input data streams and 
 // MAGIC * divides the data into batches, 
 // MAGIC * which are then processed by the Spark engine 
