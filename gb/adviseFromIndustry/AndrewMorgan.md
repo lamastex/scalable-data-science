@@ -1,17 +1,3 @@
----
-title: SDS-2.2 - Advise to Students from London's Big Data Industry
-permalink: /sds/2/2/adviseFromIndustry/AndrewMorgan/
-sidebar:
-  nav: "lMenu-SDS-2.2"
-header:
-  overlay_color: "#5e616c"
-  overlay_image: /assets/images/DISP-SDS-blue-1600x524.jpg
-  caption: 
-excerpt: 'Scalable Data Science from Atlantis, A Big Data Course in Apache Spark 2.2.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
----
-
-{% include toc %}
-
 # SDS-2.2 -- Advise to Students from London's Big Data Industry -- by Andrew Morgan
 
 **Scalable Data Science from Atlantis**, *A Big Data Course in Apache Spark 2.2*
