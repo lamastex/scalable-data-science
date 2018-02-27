@@ -9,12 +9,14 @@
 
 # COMMAND ----------
 
-# MAGIC %md # Convolutional Neural Networks
+# MAGIC %md 
+# MAGIC # Convolutional Neural Networks
 # MAGIC ## aka CNN, ConvNet
 
 # COMMAND ----------
 
-# MAGIC %md As a baseline, let's start a lab running with what we already know.
+# MAGIC %md 
+# MAGIC As a baseline, let's start a lab running with what we already know.
 # MAGIC 
 # MAGIC We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
 # MAGIC 
@@ -139,7 +141,8 @@ print ("Elapse: " + str(end-start))
 
 # COMMAND ----------
 
-# MAGIC %md after about a minute we have:
+# MAGIC %md 
+# MAGIC after about a minute we have:
 # MAGIC 
 # MAGIC ```
 # MAGIC ...
@@ -176,7 +179,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md What are the big takeaways from this experiment?
+# MAGIC %md 
+# MAGIC What are the big takeaways from this experiment?
 # MAGIC 
 # MAGIC 1. We get pretty impressive "apparent error" accuracy right from the start! A small network gets us to training accuracy 97% by epoch 20
 # MAGIC 2. The model *appears* to continue to learn if we let it run, although it does slow down and oscillate a bit.
@@ -313,7 +317,8 @@ y_test = to_categorical(y_test, num_classes=10)
 
 # COMMAND ----------
 
-# MAGIC %md Now the model:
+# MAGIC %md 
+# MAGIC Now the model:
 
 # COMMAND ----------
 
@@ -341,7 +346,8 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 # COMMAND ----------
 
-# MAGIC %md ... and the training loop and output:
+# MAGIC %md 
+# MAGIC ... and the training loop and output:
 
 # COMMAND ----------
 
@@ -369,7 +375,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md ### Our MNIST ConvNet
+# MAGIC %md 
+# MAGIC ### Our MNIST ConvNet
 # MAGIC 
 # MAGIC In our first convolutional MNIST experiment, we get to almost 99% validation accuracy in just a few epochs (a minutes or so on CPU)!
 # MAGIC 
@@ -412,7 +419,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md While that's running, let's look at a number of "famous" convolutional networks!
+# MAGIC %md 
+# MAGIC While that's running, let's look at a number of "famous" convolutional networks!
 # MAGIC 
 # MAGIC ### LeNet (Yann LeCun, 1998)
 # MAGIC 
@@ -426,7 +434,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ### AlexNet (2012)
+# MAGIC %md 
+# MAGIC ### AlexNet (2012)
 # MAGIC 
 # MAGIC <img src="http://i.imgur.com/CpokDKV.jpg">
 # MAGIC 
@@ -434,7 +443,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ### Back to our labs: Still Overfitting
+# MAGIC %md 
+# MAGIC ### Back to our labs: Still Overfitting
 # MAGIC 
 # MAGIC We're making progress on our test error -- about 99% -- but just a bit for all the additional time, due to the network overfitting the data.
 # MAGIC 
@@ -480,7 +490,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md While that's running, let's look at some more recent ConvNet architectures:
+# MAGIC %md 
+# MAGIC While that's running, let's look at some more recent ConvNet architectures:
 # MAGIC 
 # MAGIC ### VGG16 (2014)
 # MAGIC 
@@ -488,7 +499,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ### GoogLeNet (2014)
+# MAGIC %md 
+# MAGIC ### GoogLeNet (2014)
 # MAGIC 
 # MAGIC <img src="http://i.imgur.com/hvmtDqN.png">
 # MAGIC 
@@ -502,7 +514,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ---
+# MAGIC %md 
+# MAGIC ---
 # MAGIC 
 # MAGIC > __ASIDE: Atrous / Dilated Convolutions__
 # MAGIC 
@@ -514,7 +527,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ## *Lab Wrapup*
+# MAGIC %md 
+# MAGIC ## *Lab Wrapup*
 # MAGIC 
 # MAGIC From the last lab, you should have a test accuracy of over 99.1%
 # MAGIC 
