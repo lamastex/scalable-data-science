@@ -1,10 +1,3 @@
----
-title: ""
-permalink: /sds/2/2/db/dbcArchive/
-sidebar:
-  nav: "lMenu-SDS-2.2"
----
-
 # databricks archive files for the course
 
 Follow these steps to get all the course notebooks into your community edition at once.
