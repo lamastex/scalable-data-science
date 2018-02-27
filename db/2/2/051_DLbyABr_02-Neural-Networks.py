@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md # Artificial Neural Network - Perceptron
+# MAGIC %md 
+# MAGIC # Artificial Neural Network - Perceptron
 # MAGIC 
 # MAGIC The field of artificial neural networks started out with an electromechanical binary unit called a perceptron.
 # MAGIC 
@@ -59,7 +60,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md If the output isn't right, we can adjust the weights, threshold, or bias (\\(x_0\\) above)
+# MAGIC %md 
+# MAGIC If the output isn't right, we can adjust the weights, threshold, or bias (\\(x_0\\) above)
 # MAGIC 
 # MAGIC The model was inspired by discoveries about the neurons of animals, so hopes were quite high that it could lead to a sophisticated machine. This model can be extended by adding multiple neurons in parallel. And we can use linear output instead of a threshold if we like for the output.
 # MAGIC 
@@ -71,7 +73,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### Linear Perceptron
+# MAGIC %md 
+# MAGIC ### Linear Perceptron
 # MAGIC 
 # MAGIC We'll get to the non-linear part, but the linear perceptron model is a great way to warm up and bridge the gap from traditional linear regression to the neural-net flavor.
 # MAGIC 
@@ -145,11 +148,13 @@ print("RMSE %f" % np.sqrt(mean_squared_error(y_test, y_pred)) )
 
 # COMMAND ----------
 
-# MAGIC %md Now that we have a baseline, let's build a neural network -- linear at first -- and go further.
+# MAGIC %md 
+# MAGIC Now that we have a baseline, let's build a neural network -- linear at first -- and go further.
 
 # COMMAND ----------
 
-# MAGIC %md ## Neural Network with Keras
+# MAGIC %md 
+# MAGIC ## Neural Network with Keras
 # MAGIC 
 # MAGIC ### Keras is a High-Level API for Neural Networks and Deep Learning
 # MAGIC 
@@ -178,7 +183,8 @@ print("RMSE %f" % np.sqrt(mean_squared_error(y_test, y_pred)) )
 
 # COMMAND ----------
 
-# MAGIC %md ### We'll build a "Dense Feed-Forward Shallow" Network:
+# MAGIC %md 
+# MAGIC ### We'll build a "Dense Feed-Forward Shallow" Network:
 # MAGIC (the number of units in the following diagram does not exactly match ours)
 # MAGIC <img src="https://i.imgur.com/84fxFKa.png">
 # MAGIC 
@@ -213,7 +219,8 @@ model.summary() # do you understand why the number of parameters in layer 1 is 8
 
 # COMMAND ----------
 
-# MAGIC %md Notes:
+# MAGIC %md 
+# MAGIC Notes:
 # MAGIC 
 # MAGIC * We didn't have to explicitly write the "input" layer, courtesy of the Keras API. We just said `input_dim=26` on the first (and only) hidden layer.
 # MAGIC * `kernel_initializer='normal'` is a simple (though not always optimal) *weight initialization*
@@ -228,7 +235,8 @@ y.std()
 
 # COMMAND ----------
 
-# MAGIC %md Let's look at the error ...
+# MAGIC %md 
+# MAGIC Let's look at the error ...
 
 # COMMAND ----------
 
@@ -246,7 +254,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md Let's set up a "long-running" training. This will take a few minutes to converge to the same performance we got more or less instantly with our sklearn linear regression :)
+# MAGIC %md 
+# MAGIC Let's set up a "long-running" training. This will take a few minutes to converge to the same performance we got more or less instantly with our sklearn linear regression :)
 # MAGIC 
 # MAGIC While it's running, we can talk about the training.
 
@@ -290,7 +299,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md ### Training: Gradient Descent
+# MAGIC %md 
+# MAGIC ### Training: Gradient Descent
 # MAGIC 
 # MAGIC A family of numeric optimization techniques, where we solve a problem with the following pattern:
 # MAGIC 
@@ -326,7 +336,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md ### Training: Backpropagation
+# MAGIC %md 
+# MAGIC ### Training: Backpropagation
 # MAGIC 
 # MAGIC With a simple, flat model, we could use SGD or a related algorithm to derive the weights, since the error depends directly on those weights.
 # MAGIC 
@@ -341,7 +352,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md ## Ok so we've come up with a very slow way to perform a linear regression. 
+# MAGIC %md 
+# MAGIC ## Ok so we've come up with a very slow way to perform a linear regression. 
 # MAGIC 
 # MAGIC ### *Welcome to Neural Networks in the 1960s!*
 # MAGIC 
@@ -353,11 +365,13 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md # Non-Linearity + Perceptron = Universal Approximation
+# MAGIC %md 
+# MAGIC # Non-Linearity + Perceptron = Universal Approximation
 
 # COMMAND ----------
 
-# MAGIC %md ### Where does the non-linearity fit in?
+# MAGIC %md 
+# MAGIC ### Where does the non-linearity fit in?
 # MAGIC 
 # MAGIC * We start with the inputs to a perceptron -- these could be from source data, for example.
 # MAGIC * We multiply each input by its respective weight, which gets us the \\(x \cdot w\\)
@@ -420,7 +434,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md ##### What is different here?
+# MAGIC %md 
+# MAGIC ##### What is different here?
 # MAGIC 
 # MAGIC * We've changed the activation in the hidden layer to "sigmoid" per our discussion.
 # MAGIC * Next, notice that we're running 2000 training epochs!
@@ -444,7 +459,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md ### Go change your hidden-layer activation from 'sigmoid' to 'relu'
+# MAGIC %md 
+# MAGIC ### Go change your hidden-layer activation from 'sigmoid' to 'relu'
 # MAGIC 
 # MAGIC Start your script and watch the error for a bit!
 
@@ -483,7 +499,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md Would you look at that?! 
+# MAGIC %md 
+# MAGIC Would you look at that?! 
 # MAGIC 
 # MAGIC * We break $1000 RMSE around epoch 112
 # MAGIC * $900 around epoch 220
@@ -497,7 +514,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md # Multilayer Networks
+# MAGIC %md 
+# MAGIC # Multilayer Networks
 # MAGIC 
 # MAGIC If a single-layer perceptron network learns the importance of different combinations of features in the data...
 # MAGIC 
@@ -539,7 +557,8 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 # COMMAND ----------
 
-# MAGIC %md ### Our network has "gone meta"
+# MAGIC %md 
+# MAGIC ### Our network has "gone meta"
 # MAGIC 
 # MAGIC It's now able to exceed where a simple decision tree can go, because it can create new features and then split on those
 # MAGIC 
