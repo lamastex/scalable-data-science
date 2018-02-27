@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md # Playing Games and Driving Cars: Reinforcement Learning
+# MAGIC %md
+# MAGIC # Playing Games and Driving Cars: Reinforcement Learning
 # MAGIC 
 # MAGIC <img src="https://i.imgur.com/VKEJsy6.jpg" width=900>
 # MAGIC 
@@ -38,7 +39,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md # Principal Approaches: Deep Q-Learning and Policy Gradient Learning
+# MAGIC %md 
+# MAGIC # Principal Approaches: Deep Q-Learning and Policy Gradient Learning
 # MAGIC 
 # MAGIC * Policy Gradient is straightforward and shows a lot of research promise, but can be quite difficult to use. The challenge is less in the math, code, or concepts, and more in terms of effective training. We'll look very briefly at PG.
 # MAGIC 
@@ -49,7 +51,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ## Policy Gradient Learning
+# MAGIC %md 
+# MAGIC ## Policy Gradient Learning
 # MAGIC 
 # MAGIC With Policy Gradient Learning, we directly try to learn a "policy" function that selects a (possibly continuous-valued) move for an agent to make given the current state of the "world."
 # MAGIC 
@@ -89,7 +92,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ## Deep Q-Learning
+# MAGIC %md 
+# MAGIC ## Deep Q-Learning
 # MAGIC 
 # MAGIC Deep Q-Learning is deep learning applied to "Q-Learning." 
 # MAGIC 
@@ -240,7 +244,8 @@ class Catch(object):
 
 # COMMAND ----------
 
-# MAGIC %md Next, let's look at the network itself -- it's super simple, so we can get that out of the way too:
+# MAGIC %md 
+# MAGIC Next, let's look at the network itself -- it's super simple, so we can get that out of the way too:
 # MAGIC 
 # MAGIC ```
 # MAGIC model = Sequential()
@@ -252,7 +257,8 @@ class Catch(object):
 
 # COMMAND ----------
 
-# MAGIC %md Note that the output layer has `num_actions` neurons. 
+# MAGIC %md 
+# MAGIC Note that the output layer has `num_actions` neurons. 
 # MAGIC 
 # MAGIC We are going to implement the training target as 
 # MAGIC * the estimated reward for the one action taken when the game doesn't conclude, or 
@@ -297,7 +303,8 @@ class Catch(object):
 
 # COMMAND ----------
 
-# MAGIC %md The key bits are:
+# MAGIC %md 
+# MAGIC The key bits are:
 # MAGIC * Choose an action
 # MAGIC * Act and collect the reward and new state
 # MAGIC * Cache previous state, action, reward, and new state in "Experience Replay" buffer
@@ -345,7 +352,8 @@ class ExperienceReplay(object):
 
 # COMMAND ----------
 
-# MAGIC %md The key bits here are:
+# MAGIC %md 
+# MAGIC The key bits here are:
 # MAGIC * Set up "blank" buffers for a set of items of the requested batch size, or all memory, whichever is less (in case we don't have much data yet)
 # MAGIC     * one buffer is `inputs` -- it will contain the game state or screen before the agent acted
 # MAGIC     * the other buffer is `targets` -- it will contain a vector of rewards-per-action (with just one non-zero entry, for the action the agent actually took)
@@ -371,7 +379,8 @@ mkdir /dbfs/keras_rl/images
 
 # COMMAND ----------
 
-# MAGIC %md Ok, now let's run the main training script and teach Keras to play Catch:
+# MAGIC %md 
+# MAGIC Ok, now let's run the main training script and teach Keras to play Catch:
 
 # COMMAND ----------
 
@@ -516,7 +525,8 @@ imageio.mimsave('/dbfs/FileStore/movie.gif', images)
 
 # COMMAND ----------
 
-# MAGIC %md ### Where to Go Next?
+# MAGIC %md 
+# MAGIC ### Where to Go Next?
 # MAGIC 
 # MAGIC The following articles are great next steps:
 # MAGIC 
