@@ -3,60 +3,55 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-``` md #### As we dive into more hands-on works, let's recap some basic guidelines:
+#### As we dive into more hands-on works, let's recap some basic guidelines:
 
-0. Structure of your network is the first thing to work with, before worrying about the precise number of neurons, size of convolution filters etc.
+1.  Structure of your network is the first thing to work with, before worrying about the precise number of neurons, size of convolution filters etc.
 
-1. "Business records" or fairly (ideally?) uncorrelated predictors -- use Dense Perceptron Layer(s)
+2.  "Business records" or fairly (ideally?) uncorrelated predictors -- use Dense Perceptron Layer(s)
 
-2. Data that has 2-D patterns: 2D Convolution layer(s)
+3.  Data that has 2-D patterns: 2D Convolution layer(s)
 
-3. For activation of hidden layers, when in doubt, use ReLU
+4.  For activation of hidden layers, when in doubt, use ReLU
 
-4. Output: 
-  * Regression: 1 neuron with linear activation
-  * For k-way classification: k neurons with softmax activation 
+5.  Output:
 
-5. Deeper networks are "smarter" than wider networks (in terms of abstraction)
+-   Regression: 1 neuron with linear activation
+-   For k-way classification: k neurons with softmax activation
 
-6. More neurons & layers \\( \to \\) more capacity \\( \to \\)  more data \\( \to \\)  more regularization (to prevent overfitting)
+1.  Deeper networks are "smarter" than wider networks (in terms of abstraction)
 
-7. If you don't have any specific reason not to use the "adam" optimizer, use that one
+2.  More neurons & layers \\( \\) more capacity \\( \\) more data \\( \\) more regularization (to prevent overfitting)
 
-8. Errors: 
-  * For regression or "wide" content matching (e.g., large image similarity), use mean-square-error; 
-  * For classification or narrow content matching, use cross-entropy
+3.  If you don't have any specific reason not to use the "adam" optimizer, use that one
 
-9. As you simplify and abstract from your raw data, you should need less features/parameters, so your layers probably become smaller and simpler.
-```
+4.  Errors:
 
-```` md As a baseline, let's start a lab running with what we already know.
+-   For regression or "wide" content matching (e.g., large image similarity), use mean-square-error;
+-   For classification or narrow content matching, use cross-entropy
+
+1.  As you simplify and abstract from your raw data, you should need less features/parameters, so your layers probably become smaller and simpler.
+
+As a baseline, let's start a lab running with what we already know.
 
 We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
 
 The main part of the code looks like the following (full code you can run is in the next cell):
 
-```
-# imports, setup, load data sets
+    # imports, setup, load data sets
 
-model = Sequential()
-model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+    model = Sequential()
+    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-categorical_labels = to_categorical(y_train, num_classes=10)
+    categorical_labels = to_categorical(y_train, num_classes=10)
 
-history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
+    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
 
-# print metrics, plot errors
-```
+    # print metrics, plot errors
 
-Note the changes, which are largely about building a classifier instead of a regression model:
-* Output layer has one neuron per category, with softmax activation
-* __Loss function is cross-entropy loss__
-* Accuracy metric is categorical accuracy
-````
+Note the changes, which are largely about building a classifier instead of a regression model: \* Output layer has one neuron per category, with softmax activation \* **Loss function is cross-entropy loss** \* Accuracy metric is categorical accuracy
 
 ``` python
 from keras.models import Sequential

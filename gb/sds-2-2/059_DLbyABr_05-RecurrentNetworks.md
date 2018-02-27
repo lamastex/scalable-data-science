@@ -8,36 +8,30 @@ Please feel free to refer to basic concepts here:
 -   Udacity's course on Deep Learning <https://www.udacity.com/course/deep-learning--ud730> by Google engineers: Arpan Chakraborty and Vincent Vanhoucke and their full video playlist:
     -   <https://www.youtube.com/watch?v=X_B9NADf2wk&index=2&list=PLAwxTw4SYaPn_OWPFT9ulXLuQrImzHfOV>
 
-``` md # Entering the 4th Dimension
-## Networks for Understanding Time-Oriented Patterns in Data
+Entering the 4th Dimension
+==========================
 
-Common time-based problems include
-* Sequence modeling: "What comes next?" 
-    * Likely next letter, word, phrase, category, cound, action, value
-* Sequence-to-Sequence modeling: "What alternative sequence is a pattern match?" (i.e., similar probability distribution)
-    * Machine translation, text-to-speech/speech-to-text, connected handwriting (specific scripts)
-    
+Networks for Understanding Time-Oriented Patterns in Data
+---------------------------------------------------------
+
+Common time-based problems include \* Sequence modeling: "What comes next?" \* Likely next letter, word, phrase, category, cound, action, value \* Sequence-to-Sequence modeling: "What alternative sequence is a pattern match?" (i.e., similar probability distribution) \* Machine translation, text-to-speech/speech-to-text, connected handwriting (specific scripts)
+
 <img src="http://i.imgur.com/tnxf9gV.jpg">
-```
 
-``` md ### Simplified Approaches
+### Simplified Approaches
 
-* If we know all of the sequence states and the probabilities of state transition...
-    * ... then we have a simple Markov Chain model.
+-   If we know all of the sequence states and the probabilities of state transition...
+    -   ... then we have a simple Markov Chain model.
+-   If we *don't* know all of the states or probabilities (yet) but can make constraining assumptions and acquire solid information from observing (sampling) them...
+    -   ... we can use a Hidden Markov Model approach.
 
-* If we *don't* know all of the states or probabilities (yet) but can make constraining assumptions and acquire solid information from observing (sampling) them...
-    * ... we can use a Hidden Markov Model approach.
-    
 These approached have only limited capacity because they are effectively stateless and so have some degree of "extreme retrograde amnesia."
 
 ### Can we use a neural network to learn the "next" record in a sequence?
 
-First approach, using what we already know, might look like
-* Clamp input sequence to a vector of neurons in a feed-forward network
-* Learn a model on the class of the next input record
+First approach, using what we already know, might look like \* Clamp input sequence to a vector of neurons in a feed-forward network \* Learn a model on the class of the next input record
 
 Let's try it! This can work in some situations, although it's more of a setup and starting point for our next development.
-```
 
 We will make up a simple example of the English alphabet sequence wehere we try to predict the next alphabet from a sequence of length 3.
 
@@ -139,6 +133,8 @@ dataY # just a reindexing of the following alphabet after each consecutive tripl
 >      23,
 >      24,
 >      25]
+
+Train a network on that data:
 
 ``` python
 import numpy
@@ -2246,7 +2242,7 @@ X.shape[1], y.shape[1] # get a sense of the shapes to understand the network arc
 
 >     Out[3]: (3, 26)
 
-``` md The network does learn, and could be trained to get a good accuracy. But what's really going on here?
+The network does learn, and could be trained to get a good accuracy. But what's really going on here?
 
 Let's leave aside for a moment the simplistic training data (one fun experiment would be to create corrupted sequences and augment the data with those, forcing the network to pay attention to the whole sequence).
 
@@ -2255,7 +2251,6 @@ Because the model is fundamentally symmetric and stateless (in terms of the sequ
 Maybe we could add layers, neurons, and extra connections to mitigate parts of the problem. We could also do things like a 1D convolution to pick up frequencies and some patterns.
 
 But instead, it might make more sense to explicitly model the sequential nature of the data (a bit like how we explictly modeled the 2D nature of image data with CNNs).
-```
 
 Recurrent Neural Network Concept
 --------------------------------
@@ -3263,7 +3258,7 @@ X.shape[0], y.shape[1] # number of examples and number of categorical outputs
 
 >     Out[7]: (23, 26)
 
-``` md __Memory and context__
+**Memory and context**
 
 If this network is learning the way we would like, it should be robust to noise and also understand the relative context (in this case, where a prior letter occurs in the sequence).
 
@@ -3271,28 +3266,27 @@ I.e., we should be able to give it corrupted sequences, and it should produce re
 
 Make the following change to the code to test this out:
 
-## You Try!
-* We'll use "W" for our erroneous/corrupted data element
-* Add code at the end to predict on the following sequences:
-    * 'WBC', 'WKL', 'WTU', 'DWF', 'MWO', 'VWW', 'GHW', 'JKW', 'PQW'
-* Notice any pattern? Hard to tell from a small sample, but if you play with it (trying sequences from different places in the alphabet, or different "corruption" letters, you'll notice patterns that give a hint at what the network is learning
+You Try!
+--------
+
+-   We'll use "W" for our erroneous/corrupted data element
+-   Add code at the end to predict on the following sequences:
+    -   'WBC', 'WKL', 'WTU', 'DWF', 'MWO', 'VWW', 'GHW', 'JKW', 'PQW'
+-   Notice any pattern? Hard to tell from a small sample, but if you play with it (trying sequences from different places in the alphabet, or different "corruption" letters, you'll notice patterns that give a hint at what the network is learning
 
 The solution is in `060_DLByABr_05a-LSTM-Solution` if you are lazy right now or get stuck.
 
-__Pretty cool... BUT__
+**Pretty cool... BUT**
 
 This alphabet example does seem a bit like "tennis without the net" since the original goal was to develop networks that could extract patterns from complex, ambiguous content like natural language or music, and we've been playing with a sequence (Roman alphabet) that is 100% deterministic and tiny in size.
 
 First, go ahead and start `061_DLByABr_05b-LSTM-Language` since it will take several minutes to produce its first output.
 
-This latter script is taken 100% exactly as-is from the Keras library examples folder (https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py) and uses precisely the logic we just learned, in order to learn and synthesize English language text from a single-author corpuse. The amazing thing is that the text is learned and generated one letter at a time, just like we did with the alphabet.
+This latter script is taken 100% exactly as-is from the Keras library examples folder (https://github.com/fchollet/keras/blob/master/examples/lstm\_text\_generation.py) and uses precisely the logic we just learned, in order to learn and synthesize English language text from a single-author corpuse. The amazing thing is that the text is learned and generated one letter at a time, just like we did with the alphabet.
 
-Compared to our earlier examples...
-* there is a minor difference in the way the inputs are encoded, using 1-hot vectors
-* and there is a *significant* difference in the way the outputs (predictions) are generated: instead of taking just the most likely output class (character) via argmax as we did before, this time we are treating the output as a distribution and sampling from the distribution.
+Compared to our earlier examples... \* there is a minor difference in the way the inputs are encoded, using 1-hot vectors \* and there is a *significant* difference in the way the outputs (predictions) are generated: instead of taking just the most likely output class (character) via argmax as we did before, this time we are treating the output as a distribution and sampling from the distribution.
 
 Let's take a look at the code ... but even so, this will probably be something to come back to after fika or a long break, as the training takes about 5 minutes per epoch (late 2013 MBP CPU) and we need around 20 epochs (80 minutes!) to get good output.
-```
 
 ``` python
 import sys
@@ -3403,16 +3397,17 @@ for iteration in range(1, 60):
         print()
 ```
 
-``` md ## Gated Recurrent Unit (GRU)
+Gated Recurrent Unit (GRU)
+--------------------------
 
 In 2014, a new, promising design for RNN units called Gated Recurrent Unit was published (https://arxiv.org/abs/1412.3555)
 
 GRUs have performed similarly to LSTMs, but are slightly simpler in design:
 
-* GRU has just two gates: "update" and "reset" (instead of the input, output, and forget in LSTM)
-* __update__ controls how to modify (weight and keep) cell state
-* __reset__ controls how new input is mixed (weighted) with/against memorized state
-* there is no output gate, so the cell state is propagated out -- i.e., there is __no "hidden" state__ that is separate from the generated output state
+-   GRU has just two gates: "update" and "reset" (instead of the input, output, and forget in LSTM)
+-   **update** controls how to modify (weight and keep) cell state
+-   **reset** controls how new input is mixed (weighted) with/against memorized state
+-   there is no output gate, so the cell state is propagated out -- i.e., there is **no "hidden" state** that is separate from the generated output state
 
 <img src="http://i.imgur.com/nnATBmC.png" width=700>
 
@@ -3423,7 +3418,6 @@ Which one should you use for which applications? The jury is still out -- this i
 ... is as simple as using the built-in GRU class (https://keras.io/layers/recurrent/)
 
 If you are working with RNNs, spend some time with docs to go deeper, as we have just barely scratched the surface here, and there are many "knobs" to turn that will help things go right (or wrong).
-```
 
 ``` python
 '''Example script to generate text from Nietzsche's writings.
@@ -3541,130 +3535,122 @@ X
 >             [False, False, False, ..., False, False, False],
 >             [False, False, False, ..., False, False, False]]], dtype=bool)
 
-```` md ### What Does Our Nietzsche Generator Produce?
+### What Does Our Nietzsche Generator Produce?
 
 Here are snapshots from middle and late in a training run.
 
 #### Iteration 19
 
-```
-Iteration 19
-Epoch 1/1
-200287/200287 [==============================] - 262s - loss: 1.3908     
+    Iteration 19
+    Epoch 1/1
+    200287/200287 [==============================] - 262s - loss: 1.3908     
 
------ diversity: 0.2
------ Generating with seed: " apart from the value of such assertions"
- apart from the value of such assertions of the present of the supersially and the soul. the spirituality of the same of the soul. the protect and in the states to the supersially and the soul, in the supersially the supersially and the concerning and in the most conscience of the soul. the soul. the concerning and the substances, and the philosophers in the sing"--that is the most supersiall and the philosophers of the supersially of t
+    ----- diversity: 0.2
+    ----- Generating with seed: " apart from the value of such assertions"
+     apart from the value of such assertions of the present of the supersially and the soul. the spirituality of the same of the soul. the protect and in the states to the supersially and the soul, in the supersially the supersially and the concerning and in the most conscience of the soul. the soul. the concerning and the substances, and the philosophers in the sing"--that is the most supersiall and the philosophers of the supersially of t
 
------ diversity: 0.5
------ Generating with seed: " apart from the value of such assertions"
- apart from the value of such assertions are more there is the scientific modern to the head in the concerning in the same old will of the excited of science. many all the possible concerning such laugher according to when the philosophers sense of men of univerself, the most lacked same depresse in the point, which is desires of a "good (who has senses on that one experiencess which use the concerning and in the respect of the same ori
+    ----- diversity: 0.5
+    ----- Generating with seed: " apart from the value of such assertions"
+     apart from the value of such assertions are more there is the scientific modern to the head in the concerning in the same old will of the excited of science. many all the possible concerning such laugher according to when the philosophers sense of men of univerself, the most lacked same depresse in the point, which is desires of a "good (who has senses on that one experiencess which use the concerning and in the respect of the same ori
 
------ diversity: 1.0
------ Generating with seed: " apart from the value of such assertions"
- apart from the value of such assertions expressions--are interest person from indeed to ordinapoon as or one of
-the uphamy, state is rivel stimromannes are lot man of soul"--modile what he woulds hope in a riligiation, is conscience, and you amy, surposit to advanced torturily
-and whorlon and perressing for accurcted with a lot us in view, of its own vanity of their natest"--learns, and dis predeceared from and leade, for oted those wi
+    ----- diversity: 1.0
+    ----- Generating with seed: " apart from the value of such assertions"
+     apart from the value of such assertions expressions--are interest person from indeed to ordinapoon as or one of
+    the uphamy, state is rivel stimromannes are lot man of soul"--modile what he woulds hope in a riligiation, is conscience, and you amy, surposit to advanced torturily
+    and whorlon and perressing for accurcted with a lot us in view, of its own vanity of their natest"--learns, and dis predeceared from and leade, for oted those wi
 
------ diversity: 1.2
------ Generating with seed: " apart from the value of such assertions"
- apart from the value of such assertions of
-rutould chinates
-rested exceteds to more saarkgs testure carevan, accordy owing before fatherly rifiny,
-thrurgins of novelts "frous inventive earth as dire!ition he
-shate out of itst sacrifice, in this
-mectalical
-inworle, you
-adome enqueres to its ighter. he often. once even with ded threaten"! an eebirelesifist.
+    ----- diversity: 1.2
+    ----- Generating with seed: " apart from the value of such assertions"
+     apart from the value of such assertions of
+    rutould chinates
+    rested exceteds to more saarkgs testure carevan, accordy owing before fatherly rifiny,
+    thrurgins of novelts "frous inventive earth as dire!ition he
+    shate out of itst sacrifice, in this
+    mectalical
+    inworle, you
+    adome enqueres to its ighter. he often. once even with ded threaten"! an eebirelesifist.
 
-lran innoting
-with we canone acquire at them crarulents who had prote will out t
-```
-````
+    lran innoting
+    with we canone acquire at them crarulents who had prote will out t
 
-```` md #### Iteration 32
+#### Iteration 32
 
-```
-Iteration 32
-Epoch 1/1
-200287/200287 [==============================] - 255s - loss: 1.3830     
+    Iteration 32
+    Epoch 1/1
+    200287/200287 [==============================] - 255s - loss: 1.3830     
 
------ diversity: 0.2
------ Generating with seed: " body, as a part of this external
-world,"
- body, as a part of this external
-world, and in the great present of the sort of the strangern that is and in the sologies and the experiences and the present of the present and science of the probably a subject of the subject of the morality and morality of the soul the experiences the morality of the experiences of the conscience in the soul and more the experiences the strangere and present the rest the strangere and individual of th
+    ----- diversity: 0.2
+    ----- Generating with seed: " body, as a part of this external
+    world,"
+     body, as a part of this external
+    world, and in the great present of the sort of the strangern that is and in the sologies and the experiences and the present of the present and science of the probably a subject of the subject of the morality and morality of the soul the experiences the morality of the experiences of the conscience in the soul and more the experiences the strangere and present the rest the strangere and individual of th
 
------ diversity: 0.5
------ Generating with seed: " body, as a part of this external
-world,"
- body, as a part of this external
-world, and in the morality of which we knows upon the english and insigning things be exception of
-consequences of the man and explained its more in the senses for the same ordinary and the sortarians and subjects and simily in a some longing the destiny ordinary. man easily that has been the some subject and say, and and and and does not to power as all the reasonable and distinction of this one betray
+    ----- diversity: 0.5
+    ----- Generating with seed: " body, as a part of this external
+    world,"
+     body, as a part of this external
+    world, and in the morality of which we knows upon the english and insigning things be exception of
+    consequences of the man and explained its more in the senses for the same ordinary and the sortarians and subjects and simily in a some longing the destiny ordinary. man easily that has been the some subject and say, and and and and does not to power as all the reasonable and distinction of this one betray
 
------ diversity: 1.0
------ Generating with seed: " body, as a part of this external
-world,"
- body, as a part of this external
-world, surrespossifilice view and life fundamental worthing more sirer. holestly
-and whan to be
-dream. in whom hand that one downgk edplenius will almost eyes brocky that we wills stupid dor
-oborbbill to be dimorable
-great excet of ifysabless. the good take the historical yet right by guntend, and which fuens the irrelias in literals in finally to the same flild, conditioned when where prom. it has behi
+    ----- diversity: 1.0
+    ----- Generating with seed: " body, as a part of this external
+    world,"
+     body, as a part of this external
+    world, surrespossifilice view and life fundamental worthing more sirer. holestly
+    and whan to be
+    dream. in whom hand that one downgk edplenius will almost eyes brocky that we wills stupid dor
+    oborbbill to be dimorable
+    great excet of ifysabless. the good take the historical yet right by guntend, and which fuens the irrelias in literals in finally to the same flild, conditioned when where prom. it has behi
 
------ diversity: 1.2
------ Generating with seed: " body, as a part of this external
-world,"
- body, as a part of this external
-world, easily achosed time mantur makeches on this
-vanity, obcame-scompleises. but inquire-calr ever powerfully smorais: too-wantse; when thoue
-conducting
-unconstularly without least gainstyfyerfulled to wo
-has upos
-among uaxqunct what is mell "loves and
-lamacity what mattery of upon the a. and which oasis seour schol
-to power: the passion sparabrated will. in his europers raris! what seems to these her
+    ----- diversity: 1.2
+    ----- Generating with seed: " body, as a part of this external
+    world,"
+     body, as a part of this external
+    world, easily achosed time mantur makeches on this
+    vanity, obcame-scompleises. but inquire-calr ever powerfully smorais: too-wantse; when thoue
+    conducting
+    unconstularly without least gainstyfyerfulled to wo
+    has upos
+    among uaxqunct what is mell "loves and
+    lamacity what mattery of upon the a. and which oasis seour schol
+    to power: the passion sparabrated will. in his europers raris! what seems to these her
 
-```
-````
+### Take alook at the anomalous behavior that started late in the training on one run ... What might have happened?
 
-```` md #### Iteration 38
+#### Iteration 38
 
-```
-Iteration 38
-Epoch 1/1
-200287/200287 [==============================] - 256s - loss: 7.6662     
+    Iteration 38
+    Epoch 1/1
+    200287/200287 [==============================] - 256s - loss: 7.6662     
 
------ diversity: 0.2
------ Generating with seed: "erable? for there is no
-longer any ought"
-erable? for there is no
-longer any oughteesen a a  a= at ae i is es4 iei aatee he a a ac  oyte  in ioie  aan a atoe aie ion a atias a ooe o e tin exanat moe ao is aon e a ntiere t i in ate an on a  e as the a ion aisn ost  aed i  i ioiesn les?ane i ee to i o ate   o igice thi io an a xen an ae an teane one ee e alouieis asno oie on i a a ae s as n io a an e a ofe e  oe ehe it aiol  s a aeio st ior ooe an io e  ot io  o i  aa9em aan ev a
+    ----- diversity: 0.2
+    ----- Generating with seed: "erable? for there is no
+    longer any ought"
+    erable? for there is no
+    longer any oughteesen a a  a= at ae i is es4 iei aatee he a a ac  oyte  in ioie  aan a atoe aie ion a atias a ooe o e tin exanat moe ao is aon e a ntiere t i in ate an on a  e as the a ion aisn ost  aed i  i ioiesn les?ane i ee to i o ate   o igice thi io an a xen an ae an teane one ee e alouieis asno oie on i a a ae s as n io a an e a ofe e  oe ehe it aiol  s a aeio st ior ooe an io e  ot io  o i  aa9em aan ev a
 
------ diversity: 0.5
------ Generating with seed: "erable? for there is no
-longer any ought"
-erable? for there is no
-longer any oughteese a on eionea] aooooi ate uo e9l hoe atae s in eaae an  on io]e nd ast aais  ta e  od iia ng ac ee er ber  in ==st a se is ao  o e as aeian iesee tee otiane o oeean a ieatqe o  asnone anc 
- oo a t
-tee sefiois to an at in ol asnse an o e e oo  ie oae asne at a ait iati oese se a e p ie peen iei ien   o oot inees engied evone t oen oou atipeem a sthen ion assise ti a a s itos io ae an  eees as oi
+    ----- diversity: 0.5
+    ----- Generating with seed: "erable? for there is no
+    longer any ought"
+    erable? for there is no
+    longer any oughteese a on eionea] aooooi ate uo e9l hoe atae s in eaae an  on io]e nd ast aais  ta e  od iia ng ac ee er ber  in ==st a se is ao  o e as aeian iesee tee otiane o oeean a ieatqe o  asnone anc 
+     oo a t
+    tee sefiois to an at in ol asnse an o e e oo  ie oae asne at a ait iati oese se a e p ie peen iei ien   o oot inees engied evone t oen oou atipeem a sthen ion assise ti a a s itos io ae an  eees as oi
 
------ diversity: 1.0
------ Generating with seed: "erable? for there is no
-longer any ought"
-erable? for there is no
-longer any oughteena te e ore te beosespeehsha ieno atit e ewge ou ino oo oee coatian aon ie ac aalle e a o  die eionae oa att uec a acae ao a  an eess as
- o  i a io  a   oe a  e is as oo in ene xof o  oooreeg ta m eon al iii n p daesaoe n ite o ane tio oe anoo t ane
-s i e tioo ise s a asi e ana ooe ote soueeon io on atieaneyc ei it he se it is ao e an ime  ane on eronaa ee itouman io e ato an ale  a mae taoa ien
+    ----- diversity: 1.0
+    ----- Generating with seed: "erable? for there is no
+    longer any ought"
+    erable? for there is no
+    longer any oughteena te e ore te beosespeehsha ieno atit e ewge ou ino oo oee coatian aon ie ac aalle e a o  die eionae oa att uec a acae ao a  an eess as
+     o  i a io  a   oe a  e is as oo in ene xof o  oooreeg ta m eon al iii n p daesaoe n ite o ane tio oe anoo t ane
+    s i e tioo ise s a asi e ana ooe ote soueeon io on atieaneyc ei it he se it is ao e an ime  ane on eronaa ee itouman io e ato an ale  a mae taoa ien
 
------ diversity: 1.2
------ Generating with seed: "erable? for there is no
-longer any ought"
-erable? for there is no
-longer any oughti o aa e2senoees yi i e datssateal toeieie e a o zanato aal arn aseatli oeene aoni le eoeod t aes a isoee tap  e o . is  oi astee an ea titoe e a exeeee thui itoan ain eas a e bu inen ao ofa ie e e7n anae ait ie a ve  er inen  ite
-as oe of  heangi eestioe orasb e fie o o o  a  eean o ot odeerean io io oae ooe ne " e  istee esoonae e terasfioees asa ehainoet at e ea ai esoon   ano a p eesas e aitie
-```
-````
+    ----- diversity: 1.2
+    ----- Generating with seed: "erable? for there is no
+    longer any ought"
+    erable? for there is no
+    longer any oughti o aa e2senoees yi i e datssateal toeieie e a o zanato aal arn aseatli oeene aoni le eoeod t aes a isoee tap  e o . is  oi astee an ea titoe e a exeeee thui itoan ain eas a e bu inen ao ofa ie e e7n anae ait ie a ve  er inen  ite
+    as oe of  heangi eestioe orasb e fie o o o  a  eean o ot odeerean io io oae ooe ne " e  istee esoonae e terasfioees asa ehainoet at e ea ai esoon   ano a p eesas e aitie
 
 (raaz) \#\# 'Mind the Hype' around AI
 

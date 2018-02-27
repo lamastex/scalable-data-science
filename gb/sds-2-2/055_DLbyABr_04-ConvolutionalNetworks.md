@@ -3,37 +3,33 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-``` md # Convolutional Neural Networks
-## aka CNN, ConvNet
-```
+Convolutional Neural Networks
+=============================
 
-```` md As a baseline, let's start a lab running with what we already know.
+aka CNN, ConvNet
+----------------
+
+As a baseline, let's start a lab running with what we already know.
 
 We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
 
 The main part of the code looks like the following (full code you can run is in the next cell):
 
-```
-# imports, setup, load data sets
+    # imports, setup, load data sets
 
-model = Sequential()
-model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+    model = Sequential()
+    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-categorical_labels = to_categorical(y_train, num_classes=10)
+    categorical_labels = to_categorical(y_train, num_classes=10)
 
-history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
+    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
 
-# print metrics, plot errors
-```
+    # print metrics, plot errors
 
-Note the changes, which are largely about building a classifier instead of a regression model:
-* Output layer has one neuron per category, with softmax activation
-* __Loss function is cross-entropy loss__
-* Accuracy metric is categorical accuracy
-````
+Note the changes, which are largely about building a classifier instead of a regression model: \* Output layer has one neuron per category, with softmax activation \* **Loss function is cross-entropy loss** \* Accuracy metric is categorical accuracy
 
 Let's hold pointers into wikipedia for these new concepts.
 
@@ -201,27 +197,24 @@ print ("Elapse: " + str(end-start))
 >     End: 2017-12-07 09:31:14.504506
 >     Elapse: 0:00:57.192750
 
-```` md after about a minute we have:
+after about a minute we have:
 
-```
-...
+    ...
 
-Epoch 40/40
-1s - loss: 0.0610 - categorical_accuracy: 0.9809 - val_loss: 0.1918 - val_categorical_accuracy: 0.9583
+    Epoch 40/40
+    1s - loss: 0.0610 - categorical_accuracy: 0.9809 - val_loss: 0.1918 - val_categorical_accuracy: 0.9583
 
-...
- 
-loss: 0.216120
+    ...
+     
+    loss: 0.216120
 
-categorical_accuracy: 0.955000
+    categorical_accuracy: 0.955000
 
-Start: 2017-12-06 07:35:33.948102
+    Start: 2017-12-06 07:35:33.948102
 
-End: 2017-12-06 07:36:27.046130
+    End: 2017-12-06 07:36:27.046130
 
-Elapse: 0:00:53.098028
-```
-````
+    Elapse: 0:00:53.098028
 
 ``` python
 import matplotlib.pyplot as plt
@@ -237,21 +230,19 @@ plt.legend(['train', 'val'], loc='upper left')
 display(fig)
 ```
 
-``` md What are the big takeaways from this experiment?
+What are the big takeaways from this experiment?
 
-1. We get pretty impressive "apparent error" accuracy right from the start! A small network gets us to training accuracy 97% by epoch 20
-2. The model *appears* to continue to learn if we let it run, although it does slow down and oscillate a bit.
-3. Our test accuracy is about 95% after 5 epochs and never gets better ... it gets worse!
-4. Therefore, we are overfitting very quickly... most of the "training" turns out to be a waste.
-5. For what it's worth, we get 95% accuracy without much work.
+1.  We get pretty impressive "apparent error" accuracy right from the start! A small network gets us to training accuracy 97% by epoch 20
+2.  The model *appears* to continue to learn if we let it run, although it does slow down and oscillate a bit.
+3.  Our test accuracy is about 95% after 5 epochs and never gets better ... it gets worse!
+4.  Therefore, we are overfitting very quickly... most of the "training" turns out to be a waste.
+5.  For what it's worth, we get 95% accuracy without much work.
 
 This is not terrible compared to other, non-neural-network approaches to the problem. After all, we could probably tweak this a bit and do even better.
 
 But we talked about using deep learning to solve "95%" problems or "98%" problems ... where one error in 20, or 50 simply won't work. If we can get to "multiple nines" of accuracy, then we can do things like automate mail sorting and translation, create cars that react properly (all the time) to street signs, and control systems for robots or drones that function autonomously.
 
-Try two more experiments (try them separately):
-1. Add a third, hidden layer.
-2. Increase the size of the hidden layers.
+Try two more experiments (try them separately): 1. Add a third, hidden layer. 2. Increase the size of the hidden layers.
 
 Adding another layer slows things down a little (why?) but doesn't seem to make a difference in accuracy.
 
@@ -259,7 +250,7 @@ Adding a lot more neurons into the first topology slows things down significantl
 
 ... We need a new approach!
 
----
+------------------------------------------------------------------------
 
 ... let's think about this:
 
@@ -267,15 +258,15 @@ Adding a lot more neurons into the first topology slows things down significantl
 
 #### Combinations of pixels contain information but...
 
-There are a lot of them (combinations) and they are "fragile" 
+There are a lot of them (combinations) and they are "fragile"
 
 In fact, in our last experiment, we basically built a model that memorizes a bunch of "magic" pixel combinations.
 
 What might be a better way to build features?
 
-* When humans perform this task, we look not at arbitrary pixel combinations, but certain geometric patterns -- lines, curves, loops.
-* These features are made up of combinations of pixels, but they are far from arbitrary
-* We identify these features regardless of translation, rotation, etc.
+-   When humans perform this task, we look not at arbitrary pixel combinations, but certain geometric patterns -- lines, curves, loops.
+-   These features are made up of combinations of pixels, but they are far from arbitrary
+-   We identify these features regardless of translation, rotation, etc.
 
 Is there a way to get the network to do the same thing?
 
@@ -295,12 +286,13 @@ The convolution we deal with in deep learning is a simplified case. We want to c
 
 <img src="http://i.imgur.com/EDCaMl2.png" width=500>
 
----
+------------------------------------------------------------------------
 
-#### Here's an animation (where we change \\({\tau}\\)) 
+#### Here's an animation (where we change \\({}\\))
+
 <img src="http://i.imgur.com/0BFcnaw.gif">
 
-__In one sense, the convolution captures and quantifies the pattern matching over space__
+**In one sense, the convolution captures and quantifies the pattern matching over space**
 
 If we perform this in two dimensions, we can achieve effects like highlighting edges:
 
@@ -310,47 +302,45 @@ The matrix here, also called a convolution kernel, is one of the functions we ar
 
 ### So we'll drop in a number of convolution kernels, and the network will learn where to use them? Nope. Better than that.
 
-## We'll program in the *idea* of discrete convolution, and the network will learn what kernels extract meaningful features!
+We'll program in the *idea* of discrete convolution, and the network will learn what kernels extract meaningful features!
+-------------------------------------------------------------------------------------------------------------------------
 
 The values in a (fixed-size) convolution kernel matrix will be variables in our deep learning model. Although inuitively it seems like it would be hard to learn useful params, in fact, since those variables are used repeatedly across the image data, it "focuses" the error on a smallish number of parameters with a lot of influence -- so it should be vastly *less* expensive to train than just a huge fully connected layer like we discussed above.
 
 This idea was developed in the late 1980s, and by 1989, Yann LeCun (at AT&T/Bell Labs) had built a practical high-accuracy system (used in the 1990s for processing handwritten checks and mail).
 
-__How do we hook this into our neural networks?__
+**How do we hook this into our neural networks?**
 
-* First, we can preserve the geometric properties of our data by "shaping" the vectors as 2D instead of 1D.
+-   First, we can preserve the geometric properties of our data by "shaping" the vectors as 2D instead of 1D.
 
-* Then we'll create a layer whose value is not just activation applied to weighted sum of inputs, but instead it's the result of a dot-product (element-wise multiply and sum) between the kernel and a patch of the input vector (image).
-    * This value will be our "pre-activation" and optionally feed into an activation function (or "detector")
+-   Then we'll create a layer whose value is not just activation applied to weighted sum of inputs, but instead it's the result of a dot-product (element-wise multiply and sum) between the kernel and a patch of the input vector (image).
+    -   This value will be our "pre-activation" and optionally feed into an activation function (or "detector")
 
 <img src="http://i.imgur.com/ECyi9lL.png">
 
-
-If we perform this operation at lots of positions over the image, we'll get lots of outputs, as many as one for every input pixel. 
-
+If we perform this operation at lots of positions over the image, we'll get lots of outputs, as many as one for every input pixel.
 
 <img src="http://i.imgur.com/WhOrJ0Y.jpg">
 
-* So we'll add another layer that "picks" the highest convolution pattern match from nearby pixels, which
-    * makes our pattern match a little bit translation invariant (a fuzzy location match)
-    * reduces the number of outputs significantly
-* This layer is commonly called a pooling layer, and if we pick the "maximum match" then it's a "max pooling" layer.
+-   So we'll add another layer that "picks" the highest convolution pattern match from nearby pixels, which
+    -   makes our pattern match a little bit translation invariant (a fuzzy location match)
+    -   reduces the number of outputs significantly
+-   This layer is commonly called a pooling layer, and if we pick the "maximum match" then it's a "max pooling" layer.
 
 <img src="http://i.imgur.com/9iPpfpb.png">
 
-__The end result is that the kernel or filter together with max pooling creates a value in a subsequent layer which represents the appearance of a pattern in a local area in a prior layer.__
+**The end result is that the kernel or filter together with max pooling creates a value in a subsequent layer which represents the appearance of a pattern in a local area in a prior layer.**
 
-__Again, the network will be given a number of "slots" for these filters and will learn (by minimizing error) what filter values produce meaningful features. This is the key insight into how modern image-recognition networks are able to generalize -- i.e., learn to tell 6s from 7s or cats from dogs.__
+**Again, the network will be given a number of "slots" for these filters and will learn (by minimizing error) what filter values produce meaningful features. This is the key insight into how modern image-recognition networks are able to generalize -- i.e., learn to tell 6s from 7s or cats from dogs.**
 
 <img src="http://i.imgur.com/F8eH3vj.png">
 
-## Ok, let's build our first ConvNet:
+Ok, let's build our first ConvNet:
+----------------------------------
 
 First, we want to explicity shape our data into a 2-D configuration. We'll end up with a 4-D tensor where the first dimension is the training examples, then each example is 28x28 pixels, and we'll explicitly say it's 1-layer deep. (Why? with color images, we typically process over 3 or 4 channels in this last dimension)
 
-A step by step animation follows:
-* http://cs231n.github.io/assets/conv-demo/index.html
-```
+A step by step animation follows: \* http://cs231n.github.io/assets/conv-demo/index.html
 
 ``` python
 train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
@@ -372,6 +362,8 @@ X_test = X_test.astype('float32')
 X_test /= 255
 y_test = to_categorical(y_test, num_classes=10)
 ```
+
+Now the model:
 
 ``` python
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
@@ -396,6 +388,8 @@ model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 ```
+
+... and the training loop and output:
 
 ``` python
 start = datetime.datetime.today()
@@ -442,14 +436,13 @@ plt.legend(['train', 'val'], loc='upper left')
 display(fig)
 ```
 
-``` md ### Our MNIST ConvNet
+### Our MNIST ConvNet
 
 In our first convolutional MNIST experiment, we get to almost 99% validation accuracy in just a few epochs (a minutes or so on CPU)!
 
 The training accuracy is effectively 100%, though, so we've almost completely overfit (i.e., memorized the training data) by this point and need to do a little work if we want to keep learning.
 
 Let's add another convolutional layer:
-```
 
 ``` python
 model = Sequential()
@@ -519,32 +512,29 @@ for i in range(len(model.metrics_names)):
 >     loss: 0.043144
 >     acc: 0.989100
 
-``` md While that's running, let's look at a number of "famous" convolutional networks!
+While that's running, let's look at a number of "famous" convolutional networks!
 
 ### LeNet (Yann LeCun, 1998)
 
 <img src="http://i.imgur.com/k5hMtMK.png">
 
 <img src="http://i.imgur.com/ERV9pHW.gif">
-```
 
-``` md ### AlexNet (2012)
+### AlexNet (2012)
 
 <img src="http://i.imgur.com/CpokDKV.jpg">
 
 <img src="http://i.imgur.com/Ld2QhXr.jpg">
-```
 
-``` md ### Back to our labs: Still Overfitting
+### Back to our labs: Still Overfitting
 
 We're making progress on our test error -- about 99% -- but just a bit for all the additional time, due to the network overfitting the data.
 
-There are a variety of techniques we can take to counter this -- forms of regularization. 
+There are a variety of techniques we can take to counter this -- forms of regularization.
 
 Let's try a relatively simple solution solution that works surprisingly well: add a pair of `Dropout` filters, a layer that randomly omits a fraction of neurons from each training batch (thus exposing each neuron to only part of the training data).
 
 We'll add more convolution kernels but shrink them to 3x3 as well.
-```
 
 ``` python
 model = Sequential()
@@ -614,14 +604,13 @@ for i in range(len(model.metrics_names)):
 >     loss: 0.029627
 >     acc: 0.991400
 
-``` md While that's running, let's look at some more recent ConvNet architectures:
+While that's running, let's look at some more recent ConvNet architectures:
 
 ### VGG16 (2014)
 
 <img src="http://i.imgur.com/gl4kZDf.png">
-```
 
-``` md ### GoogLeNet (2014)
+### GoogLeNet (2014)
 
 <img src="http://i.imgur.com/hvmtDqN.png">
 
@@ -632,20 +621,19 @@ for i in range(len(model.metrics_names)):
 Skip layers to improve training (error propagation). Residual layers learn from details at multiple previous layers.
 
 <img src="http://i.imgur.com/32g8Ykl.png">
-```
 
-``` md ---
+------------------------------------------------------------------------
 
-> __ASIDE: Atrous / Dilated Convolutions__
+> **ASIDE: Atrous / Dilated Convolutions**
 
 > An atrous or dilated convolution is a convolution filter with "holes" in it. Effectively, it is a way to enlarge the filter spatially while not adding as many parameters or attending to every element in the input.
 
 > Why? Covering a larger input volume allows recognizing coarser-grained patterns; restricting the number of parameters is a way of regularizing or constraining the capacity of the model, making training easier.
 
----
-```
+------------------------------------------------------------------------
 
-``` md ## *Lab Wrapup*
+*Lab Wrapup*
+------------
 
 From the last lab, you should have a test accuracy of over 99.1%
 
@@ -653,14 +641,13 @@ For one more activity, try changing the optimizer to old-school "sgd" -- just to
 
 Accuracy will end up noticeably worse ... about 96-97% test accuracy. Two key takeaways:
 
-* Without a good optimizer, even a very powerful network design may not achieve results
-* In fact, we could replace the word "optimizer" there with
-    * initialization
-    * activation
-    * regularization
-    * (etc.)
-* All of these elements we've been working with operate together in a complex way to determine final performance
-```
+-   Without a good optimizer, even a very powerful network design may not achieve results
+-   In fact, we could replace the word "optimizer" there with
+    -   initialization
+    -   activation
+    -   regularization
+    -   (etc.)
+-   All of these elements we've been working with operate together in a complex way to determine final performance
 
 Of course this world evolves fast - see the new kid in the CNN block -- **capsule networks**
 

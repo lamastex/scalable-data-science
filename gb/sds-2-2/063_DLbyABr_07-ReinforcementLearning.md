@@ -950,7 +950,7 @@ for filename in filenames:
 imageio.mimsave('/dbfs/FileStore/movie.gif', images)
 ```
 
-<img src="/files/movie.gif">
+`<img src="/files/movie.gif">`
 
 ### Where to Go Next?
 

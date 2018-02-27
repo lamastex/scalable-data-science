@@ -41,7 +41,8 @@ To be concrete, if we trained a model on just a few dozen MNIST images using pix
 
 On the other hand, if we trained on a very large number of MNIST images -- say we use the convnet this time -- the model's weights should represent general filters of masks for features that distinguish an 8. And if we try to reverse the process by amplifying just those filters, we should get a blurry statistical distribution of those very features. The approximate shape of the Platonic "8"!
 
-``` md ## Mechanically, How Could This Work?
+Mechanically, How Could This Work?
+----------------------------------
 
 Let's start with a simpler model called an auto-encoder.
 
@@ -54,7 +55,6 @@ A bit like training a JPEG encoder to compress images by scoring it with the los
 One nice aspect of this is that it is *unsupervised* -- i.e., we do not need any ground-truth or human-generated labels in order to find the error and train. The error is always the difference between the output and the input, and the goal is to minimize this over many examples, thus minimize in the general case.
 
 We can do this with a simple multilayer perceptron network. Or, we can get fancier and do this with a convolutional network. In reverse, the convolution (typically called "transposed convolution" or "deconvolution") is an upsampling operation across space (in images) or space & time (in audio/video).
-```
 
 ``` python
 from keras.models import Sequential
@@ -119,7 +119,9 @@ ax.imshow(np.reshape(encode_decode, (28,28)), cmap='gray')
 display(fig)
 ```
 
-``` md ### Pretty cool. So we're all done now, right? Now quite...
+Any ideas about those black dots in the upper right?
+
+### Pretty cool. So we're all done now, right? Now quite...
 
 The problem with the autoencoder is it's "too good" at its task.
 
@@ -128,7 +130,6 @@ It is optimized to compress exactly the input record set, so it is trained only 
 So any value in the middle layer decodes to exactly one already-seen exemplar.
 
 In our example, and most autoencoders, there is more space in the middle layer but the coded values are not distributed in any sensible way. So we can decode a random vector and we'll probably just get garbage.
-```
 
 ``` python
 v = np.random.randn(30)
@@ -154,58 +155,48 @@ with K.get_session().as_default():
     
 ```
 
-``` md ### The Goal is to Generate a Variety of New Output From a Variety of New Inputs
+### The Goal is to Generate a Variety of New Output From a Variety of New Inputs
+
 ... Where the Class/Category is Common (i.e., all 8s or Cats)
 
 Some considerations:
 
-* Is "generative content" something new? Or something true?
-    * In a Platonic sense, maybe, but in reality it's literally a probabilistic guess based on the training data!
-    * E.g., law enforcement photo enhancment
-    
-* How do we train?
-    * If we score directly against the training data (like in the autoencoder), the network will be very conservative, generating only examples that it has seen.
-    * In extreme cases, it will always generate a single (or small number) of examples, since those score well. This is known as __mode collapse__, since the network learns to locate the modes in the input distribution.
-    
-### Two principal approaches / architectures (2015-)
-    
-__Generative Adversarial Networks (GAN)__ and __Variational Autoencoders (VAE)__
-```
+-   Is "generative content" something new? Or something true?
+    -   In a Platonic sense, maybe, but in reality it's literally a probabilistic guess based on the training data!
+    -   E.g., law enforcement photo enhancment
+-   How do we train?
+    -   If we score directly against the training data (like in the autoencoder), the network will be very conservative, generating only examples that it has seen.
+    -   In extreme cases, it will always generate a single (or small number) of examples, since those score well. This is known as **mode collapse**, since the network learns to locate the modes in the input distribution.
 
-``` md ## Variational Autoencoder (VAE)
+### Two principal approaches / architectures (2015-)
+
+**Generative Adversarial Networks (GAN)** and **Variational Autoencoders (VAE)**
+
+Variational Autoencoder (VAE)
+-----------------------------
 
 Our autoencoder was able to generate images, but the problem was that arbitrary input vectors don't map to anything meaningful. As discussed, this is partly by design -- the training of the VAE is for effectively for compressing a specific input dataset.
 
 What we would like, is that if we start with a valid input vector and move a bit on some direction, we get a plausible output that is also changed in some way.
 
----
-> __ASIDE: Manifold Hypothesis__
-
-> The manifold hypothesis is that the interesting, relevant, or critical subspaces in the space of all vector inputs are actually low(er) dimensional manifolds. A manifold is a space where each point has a neighborhood that behaves like (is homeomorphic to) \\({\Bbb R^n}\\). So we would like to be able to move a small amount and have only a small amount of change, not a sudden discontinuous change.
-
----
-
-The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters (\\({\mu}\\) and \\({\sigma}\\)) for each value of k.
+The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters (\\({}\\) and \\({}\\)) for each value of k.
 
 <img src="http://i.imgur.com/OFLDweH.jpg" width=600>
-<div style="text-align: right"><sup>(credit to Miram Shiffman, http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html)</sup></div>
+<sup>(credit to Miram Shiffman, http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html)</sup>
 
 <img src="http://i.imgur.com/LbvJI5q.jpg">
-<div style="text-align: right"><sup>(credit to Kevin Franz, http://kvfrans.com/variational-autoencoders-explained/)</sup></div>
+<sup>(credit to Kevin Franz, http://kvfrans.com/variational-autoencoders-explained/)</sup>
 
-One challenge is how to balance accurate reproduction of the input (traditional autoencoder loss) with the requirement that we match a Gaussian distribution. We can force the network to optimize both of these goals by creating a custom error function that sums up two components:
-* How well we match the input, calculated as binary crossentropy or MSE loss
-* How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
+One challenge is how to balance accurate reproduction of the input (traditional autoencoder loss) with the requirement that we match a Gaussian distribution. We can force the network to optimize both of these goals by creating a custom error function that sums up two components: \* How well we match the input, calculated as binary crossentropy or MSE loss \* How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
 
 We can easily implement a custom loss function and pass it as a parameter to the optimizer in Keras.
 
 The Keras source examples folder contains an elegant simple implementation, which we'll discuss below. It's a little more complex than the code we've seen so far, but we'll clarify the innovations:
 
-* Custom loss functions that combined KL divergence and cross-entropy loss
-* Custom "Lambda" layer that provides the sampling from the encoded distribution
+-   Custom loss functions that combined KL divergence and cross-entropy loss
+-   Custom "Lambda" layer that provides the sampling from the encoded distribution
 
 Overall it's probably simpler than you might expect. Let's start it (since it takes a few minutes to train) and discuss the code:
-```
 
 ``` python
 import numpy as np
@@ -419,37 +410,31 @@ ax.imshow(figure, cmap='Greys_r')
 display(fig)
 ```
 
-``` md Note that it is blurry, and "manipulable" by moving through the latent space!
+Note that it is blurry, and "manipulable" by moving through the latent space!
 
----
-> It is *not* intuitively obvious where the calculation of the KL divergence comes from, and in general there is not a simple analytic way to derive KL divergence for arbitrary distributions. Because we have assumptions about Gaussians here, this is a special case -- the derivation is included in the Auto-Encoding Variational Bayes paper (2014; https://arxiv.org/pdf/1312.6114.pdf)
+Generative Adversarial Network (GAN)
+------------------------------------
 
----
-```
+The GAN, popularized recently by Ian Goodfellow's work, consists of **two networks**:
 
-``` md ## Generative Adversarial Network (GAN)
+1.  Generator network (that initially generates output from noise)
+2.  Discriminator network (trained with real data, to simply distinguish 2 class: real and fake)
+    -   The discriminator is also sometimes called the "A" or adversarial network
 
-The GAN, popularized recently by Ian Goodfellow's work, consists of __two networks__:
-
-1. Generator network (that initially generates output from noise)
-2. Discriminator network (trained with real data, to simply distinguish 2 class: real and fake)
-    * The discriminator is also sometimes called the "A" or adversarial network
-    
 The basic procedure for building a GAN is to train both neworks in tandem according to the following simple procedure:
 
-1. Generate bogus output from "G"
-2. Train "D" with real and bogus data, labeled properly
-3. Train "G" to target the "real/true/1" label by 
-    * taking the "stacked" G + D model
-    * feeding noise in at the start (G) end
-    * and backpropagating from the real/true/1 distribution at the output (D) end
-    
+1.  Generate bogus output from "G"
+2.  Train "D" with real and bogus data, labeled properly
+3.  Train "G" to target the "real/true/1" label by
+    -   taking the "stacked" G + D model
+    -   feeding noise in at the start (G) end
+    -   and backpropagating from the real/true/1 distribution at the output (D) end
+
 As always, there are lots of variants! But this is the core idea, as illustrated in the following code.
 
 Zackory Erickson's example is so elegant and clear, I've used included it from https://github.com/Zackory/Keras-MNIST-GAN
 
 Once again, we'll start it running first, since it takes a while to train.
-```
 
 ``` python
 import os
@@ -620,23 +605,22 @@ train(10, 128)
 >     ('---------------', 'Epoch 9', '---------------')
 >     ('---------------', 'Epoch 10', '---------------')
 
-``` md ### Sample generated digits: epoch 1
+### Sample generated digits: epoch 1
 
-<img src="/files/gan_generated_image_epoch_1.png" width=800>
-```
+`<img src="/files/gan_generated_image_epoch_1.png" width=800>`
 
 ### Sample generated digits: epoch 10
 
 ### Generator/Discriminator Loss
 
-``` md ## Which Strategy to Use?
+Which Strategy to Use?
+----------------------
 
 This is definitely an area of active research, so you'll want to experiment with both of these approaches.
 
 GANs typically produce "sharper pictures" -- the adversarial loss is better than the combined MSE/XE + KL loss used in VAEs, but then again, that's partly by design.
 
 VAEs are -- as seen above -- blurrier but more manipulable. One way of thinking about the multivariate Gaussian representation is that VAEs are trained to find some "meaning" in variation along each dimensin. And, in fact, with specific training it is possible to get them to associate specific meanings like color, translation, rotation, etc. to those dimensions.
-```
 
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================

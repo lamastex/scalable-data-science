@@ -3,10 +3,9 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-``` md Try out the first ConvNet -- the one we looked at earlier.
+Try out the first ConvNet -- the one we looked at earlier.
 
 This code is the same, but we'll run to 20 epochs so we can get a better feel for fitting/validation/overfitting trend.
-```
 
 ``` python
 from keras.utils import to_categorical
@@ -79,6 +78,8 @@ plt.legend(['train', 'val'], loc='upper left')
 display(fig)
 ```
 
+Next, let's try adding another convolutional layer:
+
 ``` python
 model = Sequential()
 
@@ -112,16 +113,15 @@ for i in range(len(model.metrics_names)):
 	print("%s: %f" % (model.metrics_names[i], scores[i]))
 ```
 
-``` md ### Still Overfitting
+### Still Overfitting
 
 We're making progress on our test error -- about 99% -- but just a bit for all the additional time, due to the network overfitting the data.
 
-There are a variety of techniques we can take to counter this -- forms of regularization. 
+There are a variety of techniques we can take to counter this -- forms of regularization.
 
 Let's try a relatively simple solution solution that works surprisingly well: add a pair of `Dropout` filters, a layer that randomly omits a fraction of neurons from each training batch (thus exposing each neuron to only part of the training data).
 
 We'll add more convolution kernels but shrink them to 3x3 as well.
-```
 
 ``` python
 model = Sequential()
@@ -157,7 +157,8 @@ for i in range(len(model.metrics_names)):
 	print("%s: %f" % (model.metrics_names[i], scores[i]))
 ```
 
-``` md ## *Lab Wrapup*
+*Lab Wrapup*
+------------
 
 From the last lab, you should have a test accuracy of over 99.1%
 
@@ -165,12 +166,10 @@ For one more activity, try changing the optimizer to old-school "sgd" -- just to
 
 Accuracy will end up noticeably worse ... about 96-97% test accuracy. Two key takeaways:
 
-* Without a good optimizer, even a very powerful network design may not achieve results
-* In fact, we could replace the word "optimizer" there with
-    * initialization
-    * activation
-    * regularization
-    * (etc.)
-* All of these elements we've been working with operate together in a complex way to determine final performance
-```
-
+-   Without a good optimizer, even a very powerful network design may not achieve results
+-   In fact, we could replace the word "optimizer" there with
+    -   initialization
+    -   activation
+    -   regularization
+    -   (etc.)
+-   All of these elements we've been working with operate together in a complex way to determine final performance

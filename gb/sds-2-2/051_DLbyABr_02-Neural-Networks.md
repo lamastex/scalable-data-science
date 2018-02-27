@@ -3,14 +3,14 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-``` md # Artificial Neural Network - Perceptron
+Artificial Neural Network - Perceptron
+======================================
 
 The field of artificial neural networks started out with an electromechanical binary unit called a perceptron.
 
 The perceptron took a weighted set of input signals and chose an ouput state (on/off or high/low) based on a threshold.
 
 <img src="http://i.imgur.com/c4pBaaU.jpg">
-```
 
 (raaz) Thus, the perceptron is defined by:
 
@@ -41,23 +41,21 @@ We can use this `transformer` for *prediction* of *unlabelled data* where we onl
 
 Of course we want to be able to generalize so we don't overfit to the training data using some *empirical risk minisation rule* such as cross-validation. Again, we have seen these in Apache Spark for other ML methods like linear regression and decision trees.
 
-``` md If the output isn't right, we can adjust the weights, threshold, or bias (\\(x_0\\) above)
+If the output isn't right, we can adjust the weights, threshold, or bias (\\(x\_0\\) above)
 
 The model was inspired by discoveries about the neurons of animals, so hopes were quite high that it could lead to a sophisticated machine. This model can be extended by adding multiple neurons in parallel. And we can use linear output instead of a threshold if we like for the output.
 
-If we were to do so, the output would look like \\({x \cdot w} + w_0\\) (this is where the vector multiplication and, eventually, matrix multiplication, comes in)
+If we were to do so, the output would look like \\({x w} + w\_0\\) (this is where the vector multiplication and, eventually, matrix multiplication, comes in)
 
 When we look at the math this way, we see that despite this being an interesting model, it's really just a fancy linear calculation.
 
 And, in fact, the proof that this model -- being linear -- could not solve any problems whose solution was nonlinear ... led to the first of several "AI / neural net winters" when the excitement was quickly replaced by disappointment, and most research was abandoned.
-```
 
-``` md ### Linear Perceptron
+### Linear Perceptron
 
 We'll get to the non-linear part, but the linear perceptron model is a great way to warm up and bridge the gap from traditional linear regression to the neural-net flavor.
 
 Let's look at a problem -- the diamonds dataset from R -- and analyze it using two traditional methods in Scikit-Learn, and then we'll start attacking it with neural networks!
-```
 
 ``` python
 import pandas as pd
@@ -151,40 +149,47 @@ print("RMSE %f" % np.sqrt(mean_squared_error(y_test, y_pred)) )
 
 >     RMSE 1124.105695
 
-``` md ## Neural Network with Keras
+Now that we have a baseline, let's build a neural network -- linear at first -- and go further.
+
+Neural Network with Keras
+-------------------------
 
 ### Keras is a High-Level API for Neural Networks and Deep Learning
 
 #### "*Being able to go from idea to result with the least possible delay is key to doing good research.*"
+
 Maintained by Francois Chollet at Google, it provides
 
-* High level APIs
-* Pluggable backends for Theano, TensorFlow, CNTK, MXNet
-* CPU/GPU support
-* The now-officially-endorsed high-level wrapper for TensorFlow; a version ships in TF
-* Model persistence and other niceties
-* JavaScript, iOS, etc. deployment
-* Interop with further frameworks, like DeepLearning4J, Spark DL Pipelines ...
+-   High level APIs
+-   Pluggable backends for Theano, TensorFlow, CNTK, MXNet
+-   CPU/GPU support
+-   The now-officially-endorsed high-level wrapper for TensorFlow; a version ships in TF
+-   Model persistence and other niceties
+-   JavaScript, iOS, etc. deployment
+-   Interop with further frameworks, like DeepLearning4J, Spark DL Pipelines ...
 
-Well, with all this, why would you ever *not* use Keras? 
+Well, with all this, why would you ever *not* use Keras?
 
 As an API/Facade, Keras doesn't directly expose all of the internals you might need for something custom and low-level ... so you might need to implement at a lower level first, and then perhaps wrap it to make it easily usable in Keras.
 
-Mr. Chollet compiles stats (roughly quarterly) on "[t]he state of the deep learning landscape: GitHub activity of major libraries over the past quarter (tickets, forks, and contributors)."
+Mr. Chollet compiles stats (roughly quarterly) on "\[t\]he state of the deep learning landscape: GitHub activity of major libraries over the past quarter (tickets, forks, and contributors)."
 
 (October 2017: https://twitter.com/fchollet/status/915366704401719296; https://twitter.com/fchollet/status/915626952408436736)
-<table><tr><td>__GitHub__<br>
-<img src="https://i.imgur.com/Dru8N9K.jpg" width=600>
-  </td><td>__Research__<br>
-  <img src="https://i.imgur.com/i23TAwf.png" width=600></td></tr></table>
-```
+<table>
+<tr>
+<td>
+**GitHub**<br> <img src="https://i.imgur.com/Dru8N9K.jpg" width=600>
+</td>
+<td>
+**Research**<br> <img src="https://i.imgur.com/i23TAwf.png" width=600>
+</td>
+</tr>
+</table>
+### We'll build a "Dense Feed-Forward Shallow" Network:
 
-``` md ### We'll build a "Dense Feed-Forward Shallow" Network:
-(the number of units in the following diagram does not exactly match ours)
-<img src="https://i.imgur.com/84fxFKa.png">
+(the number of units in the following diagram does not exactly match ours) <img src="https://i.imgur.com/84fxFKa.png">
 
-Grab a Keras API cheat sheet from https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Keras_Cheat_Sheet_Python.pdf
-```
+Grab a Keras API cheat sheet from https://s3.amazonaws.com/assets.datacamp.com/blog\_assets/Keras\_Cheat\_Sheet\_Python.pdf
 
 ``` python
 from keras.models import Sequential
@@ -250,21 +255,22 @@ model.summary() # do you understand why the number of parameters in layer 1 is 8
 >     Non-trainable params: 0
 >     _________________________________________________________________
 
-``` md Notes:
+Notes:
 
-* We didn't have to explicitly write the "input" layer, courtesy of the Keras API. We just said `input_dim=26` on the first (and only) hidden layer.
-* `kernel_initializer='normal'` is a simple (though not always optimal) *weight initialization*
-* Epoch: 1 pass over all of the training data
-* Batch: Records processes together in a single training pass
+-   We didn't have to explicitly write the "input" layer, courtesy of the Keras API. We just said `input_dim=26` on the first (and only) hidden layer.
+-   `kernel_initializer='normal'` is a simple (though not always optimal) *weight initialization*
+-   Epoch: 1 pass over all of the training data
+-   Batch: Records processes together in a single training pass
 
 How is our RMSE vs. the std dev of the response?
-```
 
 ``` python
 y.std()
 ```
 
 >     Out[9]: 3989.4027576288736
+
+Let's look at the error ...
 
 ``` python
 import matplotlib.pyplot as plt
@@ -280,10 +286,9 @@ plt.legend(['train', 'val'], loc='upper left')
 display(fig)
 ```
 
-``` md Let's set up a "long-running" training. This will take a few minutes to converge to the same performance we got more or less instantly with our sklearn linear regression :)
+Let's set up a "long-running" training. This will take a few minutes to converge to the same performance we got more or less instantly with our sklearn linear regression :)
 
 While it's running, we can talk about the training.
-```
 
 ``` python
 from keras.models import Sequential
@@ -824,29 +829,29 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 After all this hard work we are closer to the MSE we got from linear regression, but purely using a shallow feed-forward neural network.
 
-``` md ### Training: Gradient Descent
+### Training: Gradient Descent
 
 A family of numeric optimization techniques, where we solve a problem with the following pattern:
 
-1. Describe the error in the model output: this is usually some difference between the the true values and the model's predicted values, as a function of the model parameters (weights)
+1.  Describe the error in the model output: this is usually some difference between the the true values and the model's predicted values, as a function of the model parameters (weights)
 
-2. Compute the gradient, or directional derivative, of the error -- the "slope toward lower error"
+2.  Compute the gradient, or directional derivative, of the error -- the "slope toward lower error"
 
-4. Adjust the parameters of the model variables in the indicated direction
+3.  Adjust the parameters of the model variables in the indicated direction
 
-5. Repeat
+4.  Repeat
 
 <img src="https://i.imgur.com/HOYViqN.png" width=500>
 
 #### Some ideas to help build your intuition
 
-* What happens if the variables (imagine just 2, to keep the mental picture simple) are on wildly different scales ... like one ranges from -1 to 1 while another from -1e6 to +1e6?
+-   What happens if the variables (imagine just 2, to keep the mental picture simple) are on wildly different scales ... like one ranges from -1 to 1 while another from -1e6 to +1e6?
 
-* What if some of the variables are correlated? I.e., a change in one corresponds to, say, a linear change in another?
+-   What if some of the variables are correlated? I.e., a change in one corresponds to, say, a linear change in another?
 
-* Other things being equal, an approximate solution with fewer variables is easier to work with than one with more -- how could we get rid of some less valuable parameters? (e.g., L1 penalty)
+-   Other things being equal, an approximate solution with fewer variables is easier to work with than one with more -- how could we get rid of some less valuable parameters? (e.g., L1 penalty)
 
-* How do we know how far to "adjust" our parameters with each step?
+-   How do we know how far to "adjust" our parameters with each step?
 
 <img src="http://i.imgur.com/AvM2TN6.png" width=600>
 
@@ -857,61 +862,61 @@ Yes: *Stochastic Gradient Descent*
 But SGD has some shortcomings, so we typically use a "smarter" version of SGD, which has rules for adjusting the learning rate and even direction in order to avoid common problems.
 
 What about that "Adam" optimizer? Adam is short for "adaptive moment" and is a variant of SGD that includes momentum calculations that change over time. For more detail on optimizers, see the chapter "Training Deep Neural Nets" in Aurélien Géron's book: *Hands-On Machine Learning with Scikit-Learn and TensorFlow* (http://shop.oreilly.com/product/0636920052289.do)
-```
 
-``` md ### Training: Backpropagation
+### Training: Backpropagation
 
 With a simple, flat model, we could use SGD or a related algorithm to derive the weights, since the error depends directly on those weights.
 
 With a deeper network, we have a couple of challenges:
 
-* The error is computed from the final layer, so the gradient of the error doesn't tell us immediately about problems in other-layer weights
-* Our tiny diamonds model has almost a thousand weights. Bigger models can easily have millions of weights. Each of those weights may need to move a little at a time, and we have to watch out for underflow or undersignificance situations.
+-   The error is computed from the final layer, so the gradient of the error doesn't tell us immediately about problems in other-layer weights
+-   Our tiny diamonds model has almost a thousand weights. Bigger models can easily have millions of weights. Each of those weights may need to move a little at a time, and we have to watch out for underflow or undersignificance situations.
 
-__The insight is to iteratively calculate errors, one layer at a time, starting at the output. This is called backpropagation. It is neither magical nor surprising. The challenge is just doing it fast and not losing information.__
+**The insight is to iteratively calculate errors, one layer at a time, starting at the output. This is called backpropagation. It is neither magical nor surprising. The challenge is just doing it fast and not losing information.**
 
 <img src="http://i.imgur.com/bjlYwjM.jpg" width=800>
-```
 
-``` md ## Ok so we've come up with a very slow way to perform a linear regression.
+Ok so we've come up with a very slow way to perform a linear regression.
+------------------------------------------------------------------------
 
 ### *Welcome to Neural Networks in the 1960s!*
 
----
+------------------------------------------------------------------------
 
 ### Watch closely now because this is where the magic happens...
 
 <img src="https://media.giphy.com/media/Hw5LkPYy9yfVS/giphy.gif">
-```
 
-``` md ### Where does the non-linearity fit in?
+Non-Linearity + Perceptron = Universal Approximation
+====================================================
 
-* We start with the inputs to a perceptron -- these could be from source data, for example.
-* We multiply each input by its respective weight, which gets us the \\(x \cdot w\\)
-* Then add the "bias" -- an extra learnable parameter, to get \\({x \cdot w} + b\\)
-    * This value (so far) is sometimes called the "pre-activation"
-* Now, apply a non-linear "activation function" to this value, such as the logistic sigmoid
+### Where does the non-linearity fit in?
+
+-   We start with the inputs to a perceptron -- these could be from source data, for example.
+-   We multiply each input by its respective weight, which gets us the \\(x w\\)
+-   Then add the "bias" -- an extra learnable parameter, to get \\({x w} + b\\)
+    -   This value (so far) is sometimes called the "pre-activation"
+-   Now, apply a non-linear "activation function" to this value, such as the logistic sigmoid
 
 <img src="https://i.imgur.com/MhokAmo.gif">
 
 ### Now the network can "learn" non-linear functions
 
-To gain some intuition, consider that where the sigmoid is close to 1, we can think of that neuron as being "on" or activated, giving a specific output. When close to zero, it is "off." 
+To gain some intuition, consider that where the sigmoid is close to 1, we can think of that neuron as being "on" or activated, giving a specific output. When close to zero, it is "off."
 
-So each neuron is a bit like a switch. If we have enough of them, we can theoretically express arbitrarily many different signals. 
+So each neuron is a bit like a switch. If we have enough of them, we can theoretically express arbitrarily many different signals.
 
-In some ways this is like the original artificial neuron, with the thresholding output -- the main difference is that the sigmoid gives us a smooth (arbitrarily differentiable) output that we can optimize over using gradient descent to learn the weights. 
+In some ways this is like the original artificial neuron, with the thresholding output -- the main difference is that the sigmoid gives us a smooth (arbitrarily differentiable) output that we can optimize over using gradient descent to learn the weights.
 
 ### Where does the signal "go" from these neurons?
 
-* In a regression problem, like the diamonds dataset, the activations from the hidden layer can feed into a single output neuron, with a simple linear activation representing the final output of the calculation.
+-   In a regression problem, like the diamonds dataset, the activations from the hidden layer can feed into a single output neuron, with a simple linear activation representing the final output of the calculation.
 
-* Frequently we want a classification output instead -- e.g., with MNIST digits, where we need to choose from 10 classes. In that case, we can feed the outputs from these hidden neurons forward into a final layer of 10 neurons, and compare those final neurons' activation levels.
+-   Frequently we want a classification output instead -- e.g., with MNIST digits, where we need to choose from 10 classes. In that case, we can feed the outputs from these hidden neurons forward into a final layer of 10 neurons, and compare those final neurons' activation levels.
 
 Ok, before we talk any more theory, let's run it and see if we can do better on our diamonds dataset adding this "sigmoid activation."
 
 While that's running, let's look at the code:
-```
 
 ``` python
 from keras.models import Sequential
@@ -1656,10 +1661,10 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 >     0s - loss: 15919842.1316 - mean_squared_error: 15919842.1316 - val_loss: 16556797.5007 - val_mean_squared_error: 16556797.5007
 >     Epoch 1077/2000
 
-``` md ##### What is different here?
+##### What is different here?
 
-* We've changed the activation in the hidden layer to "sigmoid" per our discussion.
-* Next, notice that we're running 2000 training epochs!
+-   We've changed the activation in the hidden layer to "sigmoid" per our discussion.
+-   Next, notice that we're running 2000 training epochs!
 
 Even so, it takes a looooong time to converge. If you experiment a lot, you'll find that ... it still takes a long time to converge. Around the early part of the most recent deep learning renaissance, researchers started experimenting with other non-linearities.
 
@@ -1667,22 +1672,17 @@ Even so, it takes a looooong time to converge. If you experiment a lot, you'll f
 
 In theory, any non-linearity should allow learning, and maybe we can use one that "works better"
 
-By "works better" we mean
-* Simpler gradient - faster to compute
-* Less prone to "saturation" -- where the neuron ends up way off in the 0 or 1 territory of the sigmoid and can't easily learn anything
-* Keeps gradients "big" -- avoiding the large, flat, near-zero gradient areas of the sigmoid
+By "works better" we mean \* Simpler gradient - faster to compute \* Less prone to "saturation" -- where the neuron ends up way off in the 0 or 1 territory of the sigmoid and can't easily learn anything \* Keeps gradients "big" -- avoiding the large, flat, near-zero gradient areas of the sigmoid
 
 Turns out that a big breakthrough and popular solution is a very simple hack:
 
 ### Rectified Linear Unit (ReLU)
 
 <img src="http://i.imgur.com/oAYh9DN.png" width=1000>
-```
 
-``` md ### Go change your hidden-layer activation from 'sigmoid' to 'relu'
+### Go change your hidden-layer activation from 'sigmoid' to 'relu'
 
 Start your script and watch the error for a bit!
-```
 
 ``` python
 from keras.models import Sequential
@@ -2462,36 +2462,35 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 >     1s - loss: 429423.9087 - mean_squared_error: 429423.9087 - val_loss: 381089.3098 - val_mean_squared_error: 381089.3098
 >     Epoch 1232/2000
 
-``` md Would you look at that?!
+Would you look at that?!
 
-* We break $1000 RMSE around epoch 112
-* $900 around epoch 220
-* $800 around epoch 450
-* By around epoch 2000, my RMSE is < $600
+-   We break $1000 RMSE around epoch 112
+-   $900 around epoch 220
+-   $800 around epoch 450
+-   By around epoch 2000, my RMSE is &lt; $600
 
 ...
 
+**Same theory; different activation function. Huge difference**
 
-__Same theory; different activation function. Huge difference__
-```
-
-``` md # Multilayer Networks
+Multilayer Networks
+===================
 
 If a single-layer perceptron network learns the importance of different combinations of features in the data...
 
 What would another network learn if it had a second (hidden) layer of neurons?
 
-It depends on how we train the network. We'll talk in the next section about how this training works, but the general idea is that we still work backward from the error gradient. 
+It depends on how we train the network. We'll talk in the next section about how this training works, but the general idea is that we still work backward from the error gradient.
 
 That is, the last layer learns from error in the output; the second-to-last layer learns from error transmitted through that last layer, etc. It's a touch hand-wavy for now, but we'll make it more concrete later.
 
 Given this approach, we can say that:
 
-1. The second (hidden) layer is learning features composed of activations in the first (hidden) layer
-2. The first (hidden) layer is learning feature weights that enable the second layer to perform best 
-    * Why? Earlier, the first hidden layer just learned feature weights because that's how it was judged
-    * Now, the first hidden layer is judged on the error in the second layer, so it learns to contribute to that second layer
-3. The second layer is learning new features that aren't explicit in the data, and is teaching the first layer to supply it with the necessary information to compose these new features
+1.  The second (hidden) layer is learning features composed of activations in the first (hidden) layer
+2.  The first (hidden) layer is learning feature weights that enable the second layer to perform best
+    -   Why? Earlier, the first hidden layer just learned feature weights because that's how it was judged
+    -   Now, the first hidden layer is judged on the error in the second layer, so it learns to contribute to that second layer
+3.  The second layer is learning new features that aren't explicit in the data, and is teaching the first layer to supply it with the necessary information to compose these new features
 
 ### So instead of just feature weighting and combining, we have new feature learning!
 
@@ -2499,33 +2498,31 @@ This concept is the foundation of the "Deep Feed-Forward Network"
 
 <img src="http://i.imgur.com/fHGrs4X.png">
 
----
+------------------------------------------------------------------------
 
 ### Let's try it!
 
-__Add a layer to your Keras network, perhaps another 20 neurons, and see how the training goes.__
+**Add a layer to your Keras network, perhaps another 20 neurons, and see how the training goes.**
 
 if you get stuck, there is a solution in the Keras-DFFN notebook
 
----
+------------------------------------------------------------------------
 
-I'm getting RMSE < $1000 by epoch 35 or so
+I'm getting RMSE &lt; $1000 by epoch 35 or so
 
-< $800 by epoch 90
+&lt; $800 by epoch 90
 
 In this configuration, mine makes progress to around 700 epochs or so and then stalls with RMSE around $560
-```
 
-``` md ### Our network has "gone meta"
+### Our network has "gone meta"
 
 It's now able to exceed where a simple decision tree can go, because it can create new features and then split on those
 
-## Congrats! You have built your first deep-learning model!
+Congrats! You have built your first deep-learning model!
+--------------------------------------------------------
 
 So does that mean we can just keep adding more layers and solve anything?
 
 Well, theoretically maybe ... try reconfiguring your network, watch the training, and see what happens.
 
 <img src="http://i.imgur.com/BumsXgL.jpg" width=500>
-```
-

@@ -3,18 +3,18 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-``` md #CIFAR 10
+CIFAR 10
+========
 
 Details at: https://www.cs.toronto.edu/~kriz/cifar.html
 
-Summary (taken from that page): 
+Summary (taken from that page):
 
-The CIFAR-10 and CIFAR-100 are labeled subsets of the 80 million tiny images dataset. They were collected by Alex Krizhevsky, Vinod Nair, and Geoffrey Hinton. The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images. 
+The CIFAR-10 and CIFAR-100 are labeled subsets of the 80 million tiny images dataset. They were collected by Alex Krizhevsky, Vinod Nair, and Geoffrey Hinton. The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.
 
 The dataset is divided into five training batches and one test batch, each with 10000 images. The test batch contains exactly 1000 randomly-selected images from each class. The training batches contain the remaining images in random order, but some training batches may contain more images from one class than another. Between them, the training batches contain exactly 5000 images from each class.
 
 First, we'll mount the S3 bucket where I'm hosting the data:
-```
 
 ``` python
 # you may have to host the data yourself! - this should not work unless you can descramble
@@ -29,10 +29,9 @@ except:
   print("Error mounting ... possibly already mounted")
 ```
 
-``` md This is in DBFS, which is available (via FUSE) at /dbfs ...
+This is in DBFS, which is available (via FUSE) at /dbfs ...
 
 So the CIFAR data can be listed through following regular Linux shell command:
-```
 
 >     total 0
 >     drwxr-xr-x 1 root root        0 Jan  1  1970 .
@@ -46,14 +45,11 @@ So the CIFAR data can be listed through following regular Linux shell command:
 >     -rw-r--r-- 1 root root       88 Jan  1  1970 readme.html
 >     -rw-r--r-- 1 root root 31035526 Jan  1  1970 test_batch
 
-``` md Recall the classes are: __airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck__
+Recall the classes are: **airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck**
 
-Here is the code to unpickle the batches. 
+Here is the code to unpickle the batches.
 
-Loaded in this way, each of the batch files contains a dictionary with the following elements:
-* data - a 10000x3072 numpy array of uint8s. Each row of the array stores a 32x32 colour image. The first 1024 entries contain the red channel values, the next 1024 the green, and the final 1024 the blue. The image is stored in row-major order, so that the first 32 entries of the array are the red channel values of the first row of the image.
-* labels - a list of 10000 numbers in the range 0-9. The number at index i indicates the label of the ith image in the array data.
-```
+Loaded in this way, each of the batch files contains a dictionary with the following elements: \* data - a 10000x3072 numpy array of uint8s. Each row of the array stores a 32x32 colour image. The first 1024 entries contain the red channel values, the next 1024 the green, and the final 1024 the blue. The image is stored in row-major order, so that the first 32 entries of the array are the red channel values of the first row of the image. \* labels - a list of 10000 numbers in the range 0-9. The number at index i indicates the label of the ith image in the array data.
 
 ``` python
 def unpickle(file):
@@ -66,6 +62,8 @@ dir = '/dbfs/mnt/cifar/batches/'
 
 batches = [unpickle(dir + 'data_batch_' + str(1+n)) for n in range(5)]
 ```
+
+Now we need to reshape the data batches and concatenate the training batches into one big tensor.
 
 ``` python
 import numpy as np
@@ -91,6 +89,8 @@ print(x_test.shape[0], 'test samples')
 >     (50000, 'train samples')
 >     (10000, 'test samples')
 
+Let's visualize some of the images:
+
 ``` python
 import matplotlib.pyplot as plt
 
@@ -102,10 +102,9 @@ for i in range(36):
 display(fig)
 ```
 
-``` md Recall that we are getting a categorical output via softmax across 10 neurons, corresponding to the output categories.
+Recall that we are getting a categorical output via softmax across 10 neurons, corresponding to the output categories.
 
 So we want to reshape our target values (training labels) to be 1-hot encoded, and Keras can calculate categorical crossentropy between its output layer and the target:
-```
 
 ``` python
 import keras
@@ -122,12 +121,11 @@ y_test_1hot = keras.utils.to_categorical(y_test, num_classes)
 
 >     Using TensorFlow backend.
 
-``` md Here's a simple convolutional net to get you started. It will get you to over 57% accuracy in 5 epochs.
+Here's a simple convolutional net to get you started. It will get you to over 57% accuracy in 5 epochs.
 
 As inspiration, with a suitable network and parameters, it's possible to get over 99% test accuracy, although you won't have time to get there in today's session on this hardware.
 
 *note: if your network is not learning anything at all -- meaning regardless of settings, you're seeing a loss that doesn't decrease and a validation accuracy that is 10% (i.e., random chance) -- then restart your cluster*
-```
 
 ``` python
 model = Sequential()
@@ -166,6 +164,8 @@ history = model.fit(x_train, y_train_1hot,
 >     42s - loss: 1.0697 - acc: 0.6235 - val_loss: 1.2062 - val_acc: 0.5742
 >     Epoch 5/5
 >     42s - loss: 0.9984 - acc: 0.6496 - val_loss: 1.1442 - val_acc: 0.6008
+
+In this session, you probably won't have time to run each experiment for too many epochs ... but you can use this code to plot the training and validation losses:
 
 ``` python
 fig, ax = plt.subplots()

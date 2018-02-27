@@ -3,10 +3,9 @@
 
 This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
-``` md #### We can also implement the model with mini-batches -- this will let us see matrix ops in action:
+#### We can also implement the model with mini-batches -- this will let us see matrix ops in action:
 
-(N.b., feed_dict is intended for small data / experimentation. For more info on ingesting data at scale, see https://www.tensorflow.org/api_guides/python/reading_data)
-```
+(N.b., feed\_dict is intended for small data / experimentation. For more info on ingesting data at scale, see https://www.tensorflow.org/api\_guides/python/reading\_data)
 
 ``` python
 # we know these params, but we're making TF learn them
