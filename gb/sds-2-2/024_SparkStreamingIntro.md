@@ -1,8 +1,8 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-**Introduction to Spark Streaming**
-===================================
+Introduction to Spark Streaming
+===============================
 
 Spark Streaming is an extension of the core Spark API that enables scalable, high-throughput, fault-tolerant stream processing of live data streams.
 
@@ -56,27 +56,28 @@ Before we go into the details of how to write your own Spark Streaming program, 
 
 We will choose the first two examples in Databricks notebooks below.
 
-``` md #### Spark Streaming Hello World Examples
+#### Spark Streaming Hello World Examples
 
 These are adapted from several publicly available Databricks Notebooks
 
-1. Streaming Word Count (Scala)
-* Tweet Collector for Capturing Live Tweets
-* Twitter Hashtag Count (Scala)
+1.  Streaming Word Count (Scala)
+
+-   Tweet Collector for Capturing Live Tweets
+-   Twitter Hashtag Count (Scala)
 
 Other examples we won't try here:
-* Kinesis Word Count (Scala)
-* Kafka Word Count (Scala)
-* FileStream Word Count (Python)
-* etc.
-```
 
-``` md ## 1. Streaming Word Count
+-   Kinesis Word Count (Scala)
+-   Kafka Word Count (Scala)
+-   FileStream Word Count (Python)
+-   etc.
 
-This is a *hello world* example of Spark Streaming which counts words on 1 second batches of streaming data. 
+1. Streaming Word Count
+-----------------------
+
+This is a *hello world* example of Spark Streaming which counts words on 1 second batches of streaming data.
 
 It uses an in-memory string generator as a dummy source for streaming data.
-```
 
 Configurations
 --------------
@@ -124,7 +125,10 @@ Discretized Streams (DStreams)
 
 ### Setup: Define the function that sets up the StreamingContext
 
-In this we will do two things. \* Define a custom receiver as the dummy source (no need to understand this) \* this custom receiver will have lines that end with a random number between 0 and 9 and read: `I am a dummy source 2    I am a dummy source 8    ...`
+In this we will do two things.
+
+-   Define a custom receiver as the dummy source (no need to understand this)
+-   this custom receiver will have lines that end with a random number between 0 and 9 and read: `I am a dummy source 2    I am a dummy source 8    ...`
 
 This is the dummy source implemented as a custom receiver. **No need to understand this now.**
 
@@ -259,6 +263,10 @@ ssc.awaitTerminationOrTimeout(batchIntervalSeconds * 5 * 1000)
 ### Interactive Querying
 
 Now let's try querying the table. You can run this command again and again, you will find the numbers changing.
+
+``` sql
+select * from batch_word_count
+```
 
 | word   | count |
 |--------|-------|
