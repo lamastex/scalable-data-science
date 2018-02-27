@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md #CIFAR 10
+# MAGIC %md 
+# MAGIC #CIFAR 10
 # MAGIC 
 # MAGIC Details at: https://www.cs.toronto.edu/~kriz/cifar.html
 # MAGIC 
@@ -36,7 +37,8 @@ except:
 
 # COMMAND ----------
 
-# MAGIC %md This is in DBFS, which is available (via FUSE) at /dbfs ... 
+# MAGIC %md 
+# MAGIC This is in DBFS, which is available (via FUSE) at /dbfs ... 
 # MAGIC 
 # MAGIC So the CIFAR data can be listed through following regular Linux shell command:
 
@@ -46,7 +48,8 @@ except:
 
 # COMMAND ----------
 
-# MAGIC %md Recall the classes are: __airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck__
+# MAGIC %md 
+# MAGIC Recall the classes are: __airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck__
 # MAGIC 
 # MAGIC Here is the code to unpickle the batches. 
 # MAGIC 
@@ -68,7 +71,8 @@ batches = [unpickle(dir + 'data_batch_' + str(1+n)) for n in range(5)]
 
 # COMMAND ----------
 
-# MAGIC %md Now we need to reshape the data batches and concatenate the training batches into one big tensor.
+# MAGIC %md 
+# MAGIC Now we need to reshape the data batches and concatenate the training batches into one big tensor.
 
 # COMMAND ----------
 
@@ -92,7 +96,8 @@ print(x_test.shape[0], 'test samples')
 
 # COMMAND ----------
 
-# MAGIC %md Let's visualize some of the images:
+# MAGIC %md 
+# MAGIC Let's visualize some of the images:
 
 # COMMAND ----------
 
@@ -107,7 +112,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md Recall that we are getting a categorical output via softmax across 10 neurons, corresponding to the output categories.
+# MAGIC %md 
+# MAGIC Recall that we are getting a categorical output via softmax across 10 neurons, corresponding to the output categories.
 # MAGIC 
 # MAGIC So we want to reshape our target values (training labels) to be 1-hot encoded, and Keras can calculate categorical crossentropy between its output layer and the target:
 
@@ -126,7 +132,8 @@ y_test_1hot = keras.utils.to_categorical(y_test, num_classes)
 
 # COMMAND ----------
 
-# MAGIC %md Here's a simple convolutional net to get you started. It will get you to over 57% accuracy in 5 epochs.
+# MAGIC %md 
+# MAGIC Here's a simple convolutional net to get you started. It will get you to over 57% accuracy in 5 epochs.
 # MAGIC 
 # MAGIC As inspiration, with a suitable network and parameters, it's possible to get over 99% test accuracy, although you won't have time to get there in today's session on this hardware.
 # MAGIC 
@@ -160,7 +167,8 @@ history = model.fit(x_train, y_train_1hot,
 
 # COMMAND ----------
 
-# MAGIC %md In this session, you probably won't have time to run each experiment for too many epochs ... but you can use this code to plot the training and validation losses:
+# MAGIC %md 
+# MAGIC In this session, you probably won't have time to run each experiment for too many epochs ... but you can use this code to plot the training and validation losses:
 
 # COMMAND ----------
 
