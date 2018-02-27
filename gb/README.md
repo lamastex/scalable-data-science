@@ -79,6 +79,8 @@ Assignments, on the other hand, are to be completed individually.
 **The exact set of topics may change slightly from the *tentative* outline below in order to cater better to the registered students at Uppsala University.**
 {: .notice--danger}
 
+0. Uploading Course Content into Databricks
+	*  [2017 dbc ARCHIVES](dbcArchive.md)
 1. Introduction:  What is Data Science and the Data Science Process?
 	*  [Introduction](sds-2-2/000_scalableDataScience.md)
 2. Apache Spark and Big Data
@@ -157,6 +159,7 @@ Assignments, on the other hand, are to be completed individually.
 20. Sketching for Anomaly Detection in Streams
 	*  [T-Digest Normal Mixture Streaming Files](sds-2-2/040a_TDigestInputStream.md)
 	*  [Sketching with T-Digest](sds-2-2/041_SketchingWithTDigest.md)
+	*  [Streaming with T-Digest](sds-2-2/042_streamingWithTDigest.md)
 21. Neural networks and Deep Learning
 	- Linear and logistic regression as neural networks
 	- Back propagation for gradient descent
@@ -174,14 +177,25 @@ Assignments, on the other hand, are to be completed individually.
 	*  [Recurrent Neural Nets and LSTMs](sds-2-2/059_DLbyABr_05-RecurrentNetworks.md)
 	*  [LSTM solution](sds-2-2/060_DLByABr_05a-LSTM-Solution.md)
 	*  [LSTM spoke Zarathustra](sds-2-2/061_DLByABr_05b-LSTM-Language.md)
+	*  [Generative Networks](sds-2-2/062_DLbyABr_06-GenerativeNetworks.md)
+	*  [Reinforcement Learning](sds-2-2/063_DLbyABr_07-ReinforcementLearning.md)
+	*  [DL Operations](sds-2-2/064_DLbyABr_08-Operations.md)
 22. Data Science and Ethical Issues
 	-  Discussions on ethics, privacy and security
 	-  Case studies from the field
 23. Advise from Industry
 	*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
-13. Project Presentations
+24. Project Ideas
 	*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
-	*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
+25. Student Projects
+	*  [Student Project 01 on Network Anomaly Detection](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
+	*  [Student Project 02 on Article Topics in Retweet Networks](sds-2-2/999_03_StudentProject_ArticleTopicInRTNetwork.md)
+	*  [Student Project 02 on Article Topics in Retweet Networks - scalable web scraper](sds-2-2/999_03_StudentProject_ArticleTopicInRTNetwork_webScraping.md)
+	*  [Student Project 03 on Power Forecasting - Part 0](sds-2-2/999_04_StudentProject_PowerForecasting_0_Introduction.md)
+	*  [Student Project 03 on Power Forecasting - Part 1](sds-2-2/999_04_StudentProject_PowerForecasting_1_LoadDataFromJSON.md)
+	*  [Student Project 03 on Power Forecasting - Part 2](sds-2-2/999_04_StudentProject_PowerForecasting_2_CreateTrainingData.md)
+	*  [Student Project 03 on Power Forecasting - Part 3](sds-2-2/999_04_StudentProject_PowerForecasting_3_TrainAndValidate.md)
+	*  [Student Project 04 on Hail Scala for Population Genomics ETL](sds-2-2/999_05_StudentProject_HailScalaGenomicsETLTutorial.md)
 
 # Supplements
 
