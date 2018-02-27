@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md Try out the first ConvNet -- the one we looked at earlier.
+# MAGIC %md 
+# MAGIC Try out the first ConvNet -- the one we looked at earlier.
 # MAGIC 
 # MAGIC This code is the same, but we'll run to 20 epochs so we can get a better feel for fitting/validation/overfitting trend.
 
@@ -86,7 +87,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md Next, let's try adding another convolutional layer:
+# MAGIC %md 
+# MAGIC Next, let's try adding another convolutional layer:
 
 # COMMAND ----------
 
@@ -123,7 +125,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ### Still Overfitting
+# MAGIC %md 
+# MAGIC ### Still Overfitting
 # MAGIC 
 # MAGIC We're making progress on our test error -- about 99% -- but just a bit for all the additional time, due to the network overfitting the data.
 # MAGIC 
@@ -169,7 +172,8 @@ for i in range(len(model.metrics_names)):
 
 # COMMAND ----------
 
-# MAGIC %md ## *Lab Wrapup*
+# MAGIC %md 
+# MAGIC ## *Lab Wrapup*
 # MAGIC 
 # MAGIC From the last lab, you should have a test accuracy of over 99.1%
 # MAGIC 
