@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ##Keras Deep Feed-Forward Network
+# MAGIC %md 
+# MAGIC ##Keras Deep Feed-Forward Network
 # MAGIC ### (solution)
 
 # COMMAND ----------
