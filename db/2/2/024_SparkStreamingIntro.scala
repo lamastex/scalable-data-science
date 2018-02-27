@@ -7,7 +7,8 @@
 
 // MAGIC %md
 // MAGIC 
-// MAGIC # **Introduction to Spark Streaming**
+// MAGIC # Introduction to Spark Streaming
+// MAGIC 
 // MAGIC Spark Streaming is an extension of the core Spark API that enables scalable, high-throughput, fault-tolerant stream processing of live data streams. 
 // MAGIC 
 // MAGIC This is a walk-through of excerpts from the following resources:
@@ -80,6 +81,7 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC Three Quick Examples
 // MAGIC ===============
 // MAGIC 
@@ -89,7 +91,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md #### Spark Streaming Hello World Examples 
+// MAGIC %md 
+// MAGIC #### Spark Streaming Hello World Examples 
 // MAGIC 
 // MAGIC These are adapted from several publicly available Databricks Notebooks
 // MAGIC 
@@ -105,7 +108,8 @@
 
 // COMMAND ----------
 
-// MAGIC %md ## 1. Streaming Word Count
+// MAGIC %md 
+// MAGIC ## 1. Streaming Word Count
 // MAGIC 
 // MAGIC This is a *hello world* example of Spark Streaming which counts words on 1 second batches of streaming data. 
 // MAGIC 
@@ -225,8 +229,7 @@ class DummySource(ratePerSec: Int) extends Receiver[String](StorageLevel.MEMORY_
 // MAGIC RDD in the `lines` DStream to generate the RDDs of the `wordStream` DStream.
 // MAGIC This is shown in the following figure.
 // MAGIC 
-// MAGIC ![Spark
-// MAGIC Streaming](http://spark.apache.org/docs/latest/img/streaming-dstream-ops.png "Spark Streaming data flow")
+// MAGIC ![Spark Streaming](http://spark.apache.org/docs/latest/img/streaming-dstream-ops.png "Spark Streaming data flow")
 // MAGIC 
 // MAGIC These underlying RDD transformations are computed by the Spark engine.
 // MAGIC The DStream operations hide most of these details and provide the
@@ -314,7 +317,8 @@ ssc.awaitTerminationOrTimeout(batchIntervalSeconds * 5 * 1000)
 
 // COMMAND ----------
 
-// MAGIC %sql select * from batch_word_count
+// MAGIC %sql 
+// MAGIC select * from batch_word_count
 
 // COMMAND ----------
 
