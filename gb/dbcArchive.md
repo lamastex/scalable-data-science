@@ -13,9 +13,9 @@ Download the archive files to your local machine by downloading from the followi
 This is also depicted in the images below created on Sun Sep 17 16:03:09 CEST 2017.
 
 
-![sds](images/dbcArchive-sds-2-2_Download.png)
+![sds](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/db/dbcArchive/images/dbcArchive-sds-2-2_Download.png)
 
-![sds](images/dbcArchive-sds-2-2-xtraResources.png)
+![sds](https://github.com/lamastex/scalable-data-science/raw/master/_sds/2/2/db/dbcArchive/images/dbcArchive-sds-2-2-xtraResources.png)
 
 ## Step 2 - Upload
 
