@@ -521,7 +521,7 @@ imageio.mimsave('/dbfs/FileStore/movie.gif', images)
 
 # MAGIC %md
 # MAGIC 
-# MAGIC <img src="/files/movie.gif">
+# MAGIC ```<img src="/files/movie.gif">```
 
 # COMMAND ----------
 
