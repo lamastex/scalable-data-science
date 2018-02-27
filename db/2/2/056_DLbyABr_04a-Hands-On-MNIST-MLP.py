@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md #### As we dive into more hands-on works, let's recap some basic guidelines:
+# MAGIC %md 
+# MAGIC #### As we dive into more hands-on works, let's recap some basic guidelines:
 # MAGIC 
 # MAGIC 0. Structure of your network is the first thing to work with, before worrying about the precise number of neurons, size of convolution filters etc.
 # MAGIC 
@@ -37,7 +38,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md As a baseline, let's start a lab running with what we already know.
+# MAGIC %md 
+# MAGIC As a baseline, let's start a lab running with what we already know.
 # MAGIC 
 # MAGIC We'll take our deep feed-forward multilayer perceptron network, with ReLU activations and reasonable initializations, and apply it to learning the MNIST digits.
 # MAGIC 
