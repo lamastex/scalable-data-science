@@ -1,6 +1,6 @@
 # databricks archive files for the course
 
-Follow these steps to get all the course notebooks into your community edition at once.
+Follow these steps to get all the course notebooks into your free [databricks community edition](https://community.cloud.databricks.com/login.html) at once ([FAQ on databricks community edition](https://databricks.com/product/faq/community-edition)). 
 
 This is very useful after the notes have been updated to your questions.
 
