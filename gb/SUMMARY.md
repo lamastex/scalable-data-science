@@ -25,7 +25,6 @@
 *  [Power Plant - Model Tune Evaluate](sds-2-2/020_PowerPlantPipeline_02ModelTuneEvaluate.md)
 *  [Activity Detection - Random Forest](sds-2-2/021_recognizeActivityByRandomForest.md)
 *  [Graph Frames Intro](sds-2-2/022_GraphFramesUserGuide.md)
-*  [Ontime Flight Performance](sds-2-2/023_OnTimeFlightPerformance.md) 
 *  [Spark Streaming Intro](sds-2-2/024_SparkStreamingIntro.md)
 *  [Extended Twitter Utils](sds-2-2/025_a_extendedTwitterUtils2run.md)
 *  [Tweet Transmission Trees](sds-2-2/025_b_TTTDFfunctions.md)
