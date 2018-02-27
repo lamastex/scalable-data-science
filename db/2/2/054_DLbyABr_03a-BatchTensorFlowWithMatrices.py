@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md #### We can also implement the model with mini-batches -- this will let us see matrix ops in action:
+# MAGIC %md 
+# MAGIC #### We can also implement the model with mini-batches -- this will let us see matrix ops in action:
 # MAGIC 
 # MAGIC (N.b., feed_dict is intended for small data / experimentation. For more info on ingesting data at scale, see https://www.tensorflow.org/api_guides/python/reading_data)
 
