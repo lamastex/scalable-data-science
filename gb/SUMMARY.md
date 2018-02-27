@@ -65,6 +65,7 @@
 *  [Generative Networks](sds-2-2/062_DLbyABr_06-GenerativeNetworks.md)
 *  [Reinforcement Learning](sds-2-2/063_DLbyABr_07-ReinforcementLearning.md)
 *  [DL Operations](sds-2-2/064_DLbyABr_08-Operations.md)
+*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
 *  [Student Project 01 on Network Anomaly Detection](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
 *  [Student Project 02 on Article Topics in Retweet Networks](sds-2-2/999_03_StudentProject_ArticleTopicInRTNetwork.md)
 *  [Student Project 02 on Article Topics in Retweet Networks - scalable web scraper](sds-2-2/999_03_StudentProject_ArticleTopicInRTNetwork_webScraping.md)
@@ -74,7 +75,5 @@
 *  [Student Project 03 on Power Forecasting - Part 3](sds-2-2/999_04_StudentProject_PowerForecasting_3_TrainAndValidate.md)
 *  [Student Project 04 on Hail Scala for Population Genomics ETL](sds-2-2/999_05_StudentProject_HailScalaGenomicsETLTutorial.md)
 *  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan.md)
-*  [Potential Projects](sds-2-2/998_01_PotentialProjectIdeas.md)
-*  [Network Anomaly Detection by Victor Ingman and Kasper Ramstrom](sds-2-2/999_01_StudentProject_NetworkAnomalyDetection.md)
-*  [2017 dbc ARCHIVES](sds-2-2/dbcArchive.md)
+*  [How to upload all course content](dbcArchive.md)
 
