@@ -101,6 +101,7 @@
 // MAGIC * Twitter Hashtag Count (Scala)
 // MAGIC 
 // MAGIC Other examples we won't try here:
+// MAGIC 
 // MAGIC * Kinesis Word Count (Scala)
 // MAGIC * Kafka Word Count (Scala)
 // MAGIC * FileStream Word Count (Python)
@@ -175,6 +176,7 @@ import org.apache.spark.streaming._
 // MAGIC ### Setup: Define the function that sets up the StreamingContext
 // MAGIC 
 // MAGIC In this we will do two things. 
+// MAGIC 
 // MAGIC * Define a custom receiver as the dummy source (no need to understand this)
 // MAGIC   * this custom receiver will have lines that end with a random number between 0 and 9 and read: 
 // MAGIC    ```
