@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md # Introduction to Deep Learning
+# MAGIC %md 
+# MAGIC # Introduction to Deep Learning
 # MAGIC ## Theory and Practice with TensorFlow and Keras
 # MAGIC <img src="http://i.imgur.com/Gk8rv2Z.jpg" width=700>
 # MAGIC 
@@ -18,7 +19,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### Schedule
+# MAGIC %md 
+# MAGIC ### Schedule
 # MAGIC 
 # MAGIC * Intro
 # MAGIC * TensorFlow Basics
@@ -53,7 +55,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### Class Goals
+# MAGIC %md 
+# MAGIC ### Class Goals
 # MAGIC * Understand deep learning!
 # MAGIC     * Acquire an intiution and feeling for how and why and when it works, so you can use it!
 # MAGIC     * No magic! (or at least very little magic)
@@ -68,13 +71,15 @@
 
 # COMMAND ----------
 
-# MAGIC %md ## Deep Learning is About Machines Finding Patterns and Solving Problems
+# MAGIC %md 
+# MAGIC ## Deep Learning is About Machines Finding Patterns and Solving Problems
 # MAGIC 
 # MAGIC So let's start by diving right in and discussing an interesing problem:
 
 # COMMAND ----------
 
-# MAGIC %md %md ## MNIST Digits Dataset
+# MAGIC %md 
+# MAGIC ## MNIST Digits Dataset
 # MAGIC ### Mixed National Institute of Standards and Technology
 # MAGIC #### Called the "Drosophila" of Machine Learning
 # MAGIC 
@@ -86,7 +91,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### What is the goal?
+# MAGIC %md 
+# MAGIC ### What is the goal?
 # MAGIC 
 # MAGIC Convert an image of a handwritten character into the correct classification (i.e., which character is it?)
 # MAGIC 
@@ -96,7 +102,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md #### Let's describe the specific problem in a little more detail
+# MAGIC %md 
+# MAGIC #### Let's describe the specific problem in a little more detail
 # MAGIC 
 # MAGIC * Each image is a 28x28 pixel image
 # MAGIC   * originally monochrome; smoothed to gray; typically inverted, so that "blank" pixels are black (zeros)
@@ -125,7 +132,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md #### What might be characteristics of a good solution?
+# MAGIC %md 
+# MAGIC #### What might be characteristics of a good solution?
 # MAGIC 
 # MAGIC * As always, we need to balance __variance__ (malleability of the model in the face of variation in the sample training data) and __bias__ (strength/inflexibility of assumptions built in to the modeling method)
 # MAGIC * We a model with a good amount of __capacity__ to represent different patterns in the training data (e.g., different handwriting styles) while not __overfitting__ and learning too much about specific training instances
@@ -140,8 +148,8 @@
 
 # COMMAND ----------
 
-# MAGIC 
-# MAGIC %md #### Let's compare some modeling techniques...
+# MAGIC %md 
+# MAGIC #### Let's compare some modeling techniques...
 # MAGIC 
 # MAGIC ##### Decision Tree
 # MAGIC 
@@ -186,5 +194,14 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC (*raaz*) **Mathematical statistical caveat**: Note that ML algorithmic performance measures such as 99% or 99.99% as well as their justification by comparisons to "typical" human performance measures from a randomised surveyable population actually often make significant mathematical assumptions that may be violated *under the carpet*. Some concrete examples include, the size and nature of the training data and their generalizability to live decision problems based on empirical risk minisation principles like cross-validation. 
+# MAGIC **Mathematical statistical caveat**: Note that ML algorithmic performance measures such as 99% or 99.99% as well as their justification by comparisons to "typical" human performance measures from a randomised surveyable population actually often make significant mathematical assumptions that may be violated *under the carpet*. Some concrete examples include, the size and nature of the training data and their generalizability to live decision problems based on empirical risk minisation principles like cross-validation. 
 # MAGIC These assumpitons are usually harmless and can be time-saving for most problems like recommending songs in Spotify or shoes in Amazon. It is important to bear in mind that there are problems that should guarantee *worst case scenario avoidance*, like accidents with self-driving cars or global extinction event cause by mathematically ambiguous assumptions in the learning algorithms of say near-Earth-Asteroid mining artificially intelligent robots!
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Installations
+# MAGIC   * tensorflow==1.3.0
+# MAGIC   * keras==2.0.8
+# MAGIC   * dist-keras==0.2.0
+# MAGIC   
