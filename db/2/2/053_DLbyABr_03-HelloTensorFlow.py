@@ -9,7 +9,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md # TensorFlow
+# MAGIC %md 
+# MAGIC # TensorFlow
 # MAGIC 
 # MAGIC ### ... is a general math framework
 # MAGIC 
@@ -33,7 +34,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ### We'll get familiar with TensorFlow so that it is not a "magic black box"
+# MAGIC %md 
+# MAGIC ### We'll get familiar with TensorFlow so that it is not a "magic black box"
 # MAGIC 
 # MAGIC But for most of our work, it will be more productive to work with the higher-level wrappers. At the end of this notebook, we'll make the connection between the Keras API we've used and the TensorFlow code underneath.  
 
@@ -48,7 +50,8 @@ print(y)
 
 # COMMAND ----------
 
-# MAGIC %md ### There's a bit of "ceremony" there...
+# MAGIC %md 
+# MAGIC ### There's a bit of "ceremony" there...
 # MAGIC 
 # MAGIC ... and ... where's the actual output?
 # MAGIC 
@@ -68,7 +71,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md ### TensorFlow integrates tightly with NumPy
+# MAGIC %md 
+# MAGIC ### TensorFlow integrates tightly with NumPy
 # MAGIC 
 # MAGIC and we typically use NumPy to create and manage the tensors (vectors, matrices, etc.) that will "flow" through our graph
 # MAGIC 
@@ -101,7 +105,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md ### We will often iterate on a calculation ... 
+# MAGIC %md 
+# MAGIC ### We will often iterate on a calculation ... 
 # MAGIC 
 # MAGIC Calling `session.run` runs just one step, so we can iterate using Python as a control:
 
@@ -115,7 +120,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md ### Optimizers
+# MAGIC %md 
+# MAGIC ### Optimizers
 # MAGIC 
 # MAGIC TF includes a set of built-in algorithm implementations (though you could certainly write them yourself) for performing optimization.
 # MAGIC 
@@ -123,7 +129,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md #### Using TF optimizer to solve problems
+# MAGIC %md 
+# MAGIC #### Using TF optimizer to solve problems
 # MAGIC 
 # MAGIC We can use the optimizers to solve anything (not just neural networks) so let's start with a simple equation.
 # MAGIC 
@@ -168,7 +175,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md #### That's pretty terrible :)
+# MAGIC %md 
+# MAGIC #### That's pretty terrible :)
 # MAGIC 
 # MAGIC Try two experiments. Change the number of iterations the optimizer runs, and -- independently -- try changing the learning rate (that's the number we passed to `GradientDescentOptimizer`)
 # MAGIC 
@@ -176,7 +184,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md #### These are scalars. Where do the tensors come in?
+# MAGIC %md 
+# MAGIC #### These are scalars. Where do the tensors come in?
 # MAGIC 
 # MAGIC Using matrices allows us to represent (and, with the right hardware, compute) the data-weight dot products for lots of data vectors (a mini batch) and lots of weight vectors (neurons) at the same time. 
 # MAGIC 
@@ -184,7 +193,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md ### Let's also make the connection from Keras down to Tensorflow.
+# MAGIC %md 
+# MAGIC ### Let's also make the connection from Keras down to Tensorflow.
 # MAGIC 
 # MAGIC We used a Keras class called `Dense`, which represents a "fully-connected" layer of -- in this case -- linear perceptrons. Let's look at the source code to that, just to see that there's no mystery.
 # MAGIC 
@@ -200,7 +210,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md #### What else helps Tensorflow (and other frameworks) run fast?
+# MAGIC %md 
+# MAGIC #### What else helps Tensorflow (and other frameworks) run fast?
 # MAGIC 
 # MAGIC * A fast, simple mechanism for calculating all of the partial derivatives we need, called *reverse-mode autodifferentiation*
 # MAGIC * Implementations of low-level operations in optimized CPU code (e.g., C++, MKL) and GPU code (CUDA/CuDNN/HLSL)
@@ -208,7 +219,8 @@ with tf.Session() as session:
 
 # COMMAND ----------
 
-# MAGIC %md ### That is the essence of TensorFlow!
+# MAGIC %md 
+# MAGIC ### That is the essence of TensorFlow!
 # MAGIC 
 # MAGIC There are three principal directions to explore further:
 # MAGIC 
