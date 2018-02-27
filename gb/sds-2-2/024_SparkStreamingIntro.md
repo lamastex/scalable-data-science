@@ -6,8 +6,14 @@ Introduction to Spark Streaming
 
 Spark Streaming is an extension of the core Spark API that enables scalable, high-throughput, fault-tolerant stream processing of live data streams.
 
-This is a walk-through of excerpts from the following resources: \* the Databricks Guide: \* [Spark Streaming - RDD-based](https://docs.databricks.com/spark/latest/rdd-streaming/index.html) and \* [Structured Streaming - DatFrame/Dataset-Based](https://docs.databricks.com/spark/latest/structured-streaming/index.html#structured-streaming) \* Spark programming guide:
-\* <http://spark.apache.org/docs/latest/streaming-programming-guide.html> \* <http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html>
+This is a walk-through of excerpts from the following resources:
+
+-   the Databricks Guide:
+-   [Spark Streaming - RDD-based](https://docs.databricks.com/spark/latest/rdd-streaming/index.html) and
+-   [Structured Streaming - DatFrame/Dataset-Based](https://docs.databricks.com/spark/latest/structured-streaming/index.html#structured-streaming)
+-   Spark programming guide:
+-   <http://spark.apache.org/docs/latest/streaming-programming-guide.html>
+-   <http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html>
 
 Overview
 ========
@@ -26,7 +32,10 @@ Data can be ingested from many sources like
 
 and can be processed using complex algorithms expressed with high-level functions like `map`, `reduce`, `join` and `window`.
 
-Finally, processed data can be pushed out to filesystems, databases, and live dashboards. In fact, you can apply Spark's \* [machine learning](http://spark.apache.org/docs/latest/mllib-guide.html) and \* [graph processing](http://spark.apache.org/docs/latest/graphx-programming-guide.html) algorithms on data streams.
+Finally, processed data can be pushed out to filesystems, databases, and live dashboards. In fact, you can apply Spark's
+
+-   [machine learning](http://spark.apache.org/docs/latest/mllib-guide.html) and
+-   [graph processing](http://spark.apache.org/docs/latest/graphx-programming-guide.html) algorithms on data streams.
 
 ![Spark Streaming architecture](http://spark.apache.org/docs/latest/img/streaming-arch.png)
 
