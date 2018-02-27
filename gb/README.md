@@ -76,9 +76,6 @@ Assignments, on the other hand, are to be completed individually.
 
 ## Outline of Topics 
 
-**The exact set of topics may change slightly from the *tentative* outline below in order to cater better to the registered students at Uppsala University.**
-{: .notice--danger}
-
 0. Uploading Course Content into Databricks
 	*  [2017 dbc ARCHIVES](dbcArchive.md)
 1. Introduction:  What is Data Science and the Data Science Process?
