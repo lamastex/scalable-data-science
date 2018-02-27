@@ -20,4 +20,3 @@ rm $sds_DIR/gb/sds-2-2-flat.dbc
 
 #mv ~/all/git/scalable-data-science/gb/sds-2-2/ ~/all/git/scalable-data-science/gb/db 
 
-
