@@ -58,7 +58,8 @@
 
 # COMMAND ----------
 
-# MAGIC %md ## Mechanically, How Could This Work?
+# MAGIC %md 
+# MAGIC ## Mechanically, How Could This Work?
 # MAGIC 
 # MAGIC Let's start with a simpler model called an auto-encoder.
 # MAGIC 
@@ -137,11 +138,13 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md Any ideas about those black dots in the upper right?
+# MAGIC %md 
+# MAGIC Any ideas about those black dots in the upper right?
 
 # COMMAND ----------
 
-# MAGIC %md ### Pretty cool. So we're all done now, right? Now quite...
+# MAGIC %md 
+# MAGIC ### Pretty cool. So we're all done now, right? Now quite...
 # MAGIC 
 # MAGIC The problem with the autoencoder is it's "too good" at its task.
 # MAGIC 
@@ -177,7 +180,8 @@ with K.get_session().as_default():
 
 # COMMAND ----------
 
-# MAGIC %md ### The Goal is to Generate a Variety of New Output From a Variety of New Inputs
+# MAGIC %md 
+# MAGIC ### The Goal is to Generate a Variety of New Output From a Variety of New Inputs
 # MAGIC ... Where the Class/Category is Common (i.e., all 8s or Cats)
 # MAGIC 
 # MAGIC Some considerations:
@@ -196,7 +200,8 @@ with K.get_session().as_default():
 
 # COMMAND ----------
 
-# MAGIC %md ## Variational Autoencoder (VAE)
+# MAGIC %md 
+# MAGIC ## Variational Autoencoder (VAE)
 # MAGIC 
 # MAGIC Our autoencoder was able to generate images, but the problem was that arbitrary input vectors don't map to anything meaningful. As discussed, this is partly by design -- the training of the VAE is for effectively for compressing a specific input dataset.
 # MAGIC 
@@ -342,7 +347,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md Note that it is blurry, and "manipulable" by moving through the latent space!
+# MAGIC %md 
+# MAGIC Note that it is blurry, and "manipulable" by moving through the latent space!
 # MAGIC 
 # MAGIC ---
 # MAGIC > It is *not* intuitively obvious where the calculation of the KL divergence comes from, and in general there is not a simple analytic way to derive KL divergence for arbitrary distributions. Because we have assumptions about Gaussians here, this is a special case -- the derivation is included in the Auto-Encoding Variational Bayes paper (2014; https://arxiv.org/pdf/1312.6114.pdf)
@@ -351,7 +357,8 @@ display(fig)
 
 # COMMAND ----------
 
-# MAGIC %md ## Generative Adversarial Network (GAN)
+# MAGIC %md 
+# MAGIC ## Generative Adversarial Network (GAN)
 # MAGIC 
 # MAGIC The GAN, popularized recently by Ian Goodfellow's work, consists of __two networks__:
 # MAGIC 
@@ -531,9 +538,10 @@ train(10, 128)
 
 # COMMAND ----------
 
-# MAGIC %md ### Sample generated digits: epoch 1
+# MAGIC %md 
+# MAGIC ### Sample generated digits: epoch 1
 # MAGIC 
-# MAGIC <img src="/files/gan_generated_image_epoch_1.png" width=800>
+# MAGIC ```<img src="/files/gan_generated_image_epoch_1.png" width=800>```
 
 # COMMAND ----------
 
@@ -547,7 +555,8 @@ train(10, 128)
 
 # COMMAND ----------
 
-# MAGIC %md ## Which Strategy to Use?
+# MAGIC %md 
+# MAGIC ## Which Strategy to Use?
 # MAGIC 
 # MAGIC This is definitely an area of active research, so you'll want to experiment with both of these approaches.
 # MAGIC 
