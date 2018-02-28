@@ -121,10 +121,10 @@
 // MAGIC 
 // MAGIC In your databricks community edition:
 // MAGIC 
-// MAGIC 1. In your `WorkSpace' create a Folder named 'scalable-data-science'
-// MAGIC 2. 'Import' the databricks archive file at the following URL:
+// MAGIC 1. In your `WorkSpace` create a Folder named `scalable-data-science`
+// MAGIC 2. *Import* the databricks archive file at the following URL:
 // MAGIC     * [https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc](https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc)
-// MAGIC 3. This should open a structure of directories in with path: `/Workspace/scalable-data-science/xtraResources/'
+// MAGIC 3. This should open a structure of directories in with path: `/Workspace/scalable-data-science/xtraResources/`
 
 // COMMAND ----------
 
