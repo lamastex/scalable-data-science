@@ -360,6 +360,39 @@ LIMIT 20
 
 #### Top referrers to all presidential candidate pages
 
+``` sql
+-- FIXME (broke query, will get back to it later)
+SELECT *
+FROM clicks
+WHERE 
+  prev_id IS NOT NULL
+ORDER BY n DESC
+LIMIT 20
+```
+
+| prev\_id    | curr\_id    | n        | prev\_title                      | curr\_title                                | type  |
+|-------------|-------------|----------|----------------------------------|--------------------------------------------|-------|
+| 1.5580374e7 | 4.4789934e7 | 769616.0 | Main\_Page                       | Deaths\_in\_2015                           | link  |
+| 3.516685e7  | 4.0218034e7 | 368694.0 | Fifty\_Shades\_of\_Grey          | Fifty\_Shades\_of\_Grey\_(film)            | link  |
+| 4.0218034e7 | 7000810.0   | 284352.0 | Fifty\_Shades\_of\_Grey\_(film)  | Dakota\_Johnson                            | link  |
+| 3.5793706e7 | 3.7371793e7 | 253460.0 | Arrow\_(TV\_series)              | List\_of\_Arrow\_episodes                  | link  |
+| 3.516685e7  | 4.3180929e7 | 249155.0 | Fifty\_Shades\_of\_Grey          | Fifty\_Shades\_Darker                      | link  |
+| 4.0218034e7 | 6138391.0   | 228742.0 | Fifty\_Shades\_of\_Grey\_(film)  | Jamie\_Dornan                              | link  |
+| 4.3180929e7 | 3.5910161e7 | 220788.0 | Fifty\_Shades\_Darker            | Fifty\_Shades\_Freed                       | link  |
+| 2.7676616e7 | 4.0265175e7 | 192321.0 | The\_Walking\_Dead\_(TV\_series) | The\_Walking\_Dead\_(season\_5)            | link  |
+| 6138391.0   | 1076962.0   | 185700.0 | Jamie\_Dornan                    | Amelia\_Warner                             | link  |
+| 1.9376148e7 | 4.4375105e7 | 185449.0 | Stephen\_Hawking                 | Jane\_Wilde\_Hawking                       | link  |
+| 2.7676616e7 | 2.8074027e7 | 161407.0 | The\_Walking\_Dead\_(TV\_series) | List\_of\_The\_Walking\_Dead\_episodes     | link  |
+| 3.4149123e7 | 4.1844524e7 | 161081.0 | List\_of\_The\_Flash\_episodes   | The\_Flash\_(2014\_TV\_series)             | other |
+| 1.1269605e7 | 1.3542396e7 | 156313.0 | The\_Big\_Bang\_Theory           | List\_of\_The\_Big\_Bang\_Theory\_episodes | link  |
+| 3.9462431e7 | 3.4271398e7 | 152892.0 | American\_Sniper\_(film)         | Chris\_Kyle                                | link  |
+| 1.5580374e7 | 1738148.0   | 148820.0 | Main\_Page                       | Limpet                                     | other |
+| 1.5580374e7 | 4.5298077e7 | 140335.0 | Main\_Page                       | TransAsia\_Airways\_Flight\_235            | other |
+| 7000810.0   | 484101.0    | 139682.0 | Dakota\_Johnson                  | Melanie\_Griffith                          | link  |
+| 4.511931e7  | 4.256734e7  | 138179.0 | Take\_Me\_to\_Church             | Take\_Me\_to\_Church\_(Hozier\_song)       | link  |
+| 3.8962787e7 | 4.1126542e7 | 136236.0 | The\_Blacklist\_(TV\_series)     | List\_of\_The\_Blacklist\_episodes         | link  |
+| 3.2262767e7 | 4.5305174e7 | 135900.0 | Better\_Call\_Saul               | Uno\_(Better\_Call\_Saul)                  | link  |
+
 #### Load a visualization library
 
 This code is copied after doing a live google search (by Michael Armbrust at Spark Summit East February 2016 shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>). The `d3ivan` package is an updated version of the original package used by Michael Armbrust as it needed some TLC for Spark 2.2 on newer databricks notebook. These changes were kindly made by Ivan Sadikov from Middle Earth.
@@ -612,6 +645,13 @@ clicksPy = sqlContext.read.parquet("/datasets/wiki-clickstream")
 ```
 
 ``` python
+# in Python you need to put the object int its own line like this to get the type information
+clicksPy 
+```
+
+>     Out[2]: DataFrame[prev_id: int, curr_id: int, n: int, prev_title: string, curr_title: string, type: string]
+
+``` python
 clicksPy.show()
 ```
 
@@ -671,6 +711,10 @@ clicksR # in R you need to put the object int its own line like this to get the 
 ```
 
 ``` r
+head(clicksR)
+```
+
+``` r
 display(clicksR)
 ```
 
@@ -708,48 +752,4 @@ display(clicksR)
 | 2771975.0   | 147396.0 | 17.0   | 70th\_Birthday\_Concert                                | John\_Mayall\_&\_the\_Bluesbreakers | link  |
 
 Truncated to 30 rows
-
-``` python
-# in Python you need to put the object int its own line like this to get the type information
-clicksPy 
-```
-
->     Out[2]: DataFrame[prev_id: int, curr_id: int, n: int, prev_title: string, curr_title: string, type: string]
-
-``` r
-head(clicksR)
-```
-
-``` sql
--- FIXME (broke query, will get back to it later)
-SELECT *
-FROM clicks
-WHERE 
-  prev_id IS NOT NULL
-ORDER BY n DESC
-LIMIT 20
-```
-
-| prev\_id    | curr\_id    | n        | prev\_title                      | curr\_title                                | type  |
-|-------------|-------------|----------|----------------------------------|--------------------------------------------|-------|
-| 1.5580374e7 | 4.4789934e7 | 769616.0 | Main\_Page                       | Deaths\_in\_2015                           | link  |
-| 3.516685e7  | 4.0218034e7 | 368694.0 | Fifty\_Shades\_of\_Grey          | Fifty\_Shades\_of\_Grey\_(film)            | link  |
-| 4.0218034e7 | 7000810.0   | 284352.0 | Fifty\_Shades\_of\_Grey\_(film)  | Dakota\_Johnson                            | link  |
-| 3.5793706e7 | 3.7371793e7 | 253460.0 | Arrow\_(TV\_series)              | List\_of\_Arrow\_episodes                  | link  |
-| 3.516685e7  | 4.3180929e7 | 249155.0 | Fifty\_Shades\_of\_Grey          | Fifty\_Shades\_Darker                      | link  |
-| 4.0218034e7 | 6138391.0   | 228742.0 | Fifty\_Shades\_of\_Grey\_(film)  | Jamie\_Dornan                              | link  |
-| 4.3180929e7 | 3.5910161e7 | 220788.0 | Fifty\_Shades\_Darker            | Fifty\_Shades\_Freed                       | link  |
-| 2.7676616e7 | 4.0265175e7 | 192321.0 | The\_Walking\_Dead\_(TV\_series) | The\_Walking\_Dead\_(season\_5)            | link  |
-| 6138391.0   | 1076962.0   | 185700.0 | Jamie\_Dornan                    | Amelia\_Warner                             | link  |
-| 1.9376148e7 | 4.4375105e7 | 185449.0 | Stephen\_Hawking                 | Jane\_Wilde\_Hawking                       | link  |
-| 2.7676616e7 | 2.8074027e7 | 161407.0 | The\_Walking\_Dead\_(TV\_series) | List\_of\_The\_Walking\_Dead\_episodes     | link  |
-| 3.4149123e7 | 4.1844524e7 | 161081.0 | List\_of\_The\_Flash\_episodes   | The\_Flash\_(2014\_TV\_series)             | other |
-| 1.1269605e7 | 1.3542396e7 | 156313.0 | The\_Big\_Bang\_Theory           | List\_of\_The\_Big\_Bang\_Theory\_episodes | link  |
-| 3.9462431e7 | 3.4271398e7 | 152892.0 | American\_Sniper\_(film)         | Chris\_Kyle                                | link  |
-| 1.5580374e7 | 1738148.0   | 148820.0 | Main\_Page                       | Limpet                                     | other |
-| 1.5580374e7 | 4.5298077e7 | 140335.0 | Main\_Page                       | TransAsia\_Airways\_Flight\_235            | other |
-| 7000810.0   | 484101.0    | 139682.0 | Dakota\_Johnson                  | Melanie\_Griffith                          | link  |
-| 4.511931e7  | 4.256734e7  | 138179.0 | Take\_Me\_to\_Church             | Take\_Me\_to\_Church\_(Hozier\_song)       | link  |
-| 3.8962787e7 | 4.1126542e7 | 136236.0 | The\_Blacklist\_(TV\_series)     | List\_of\_The\_Blacklist\_episodes         | link  |
-| 3.2262767e7 | 4.5305174e7 | 135900.0 | Better\_Call\_Saul               | Uno\_(Better\_Call\_Saul)                  | link  |
 

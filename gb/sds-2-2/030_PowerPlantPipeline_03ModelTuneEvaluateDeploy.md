@@ -80,6 +80,36 @@ We will need to convert the predictor features from columns to Feature Vectors u
 The VectorAssembler will be the first step in building our ML pipeline.
 ```
 
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Peaking_power_plant"
+ width="95%" height="300"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
+<p class="htmlSandbox"><iframe 
+ src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
+| path                                                  | name       | size     |
+|-------------------------------------------------------|------------|----------|
+| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
+| dbfs:/databricks-datasets/power-plant/data/Sheet2.tsv | Sheet2.tsv | 308693.0 |
+| dbfs:/databricks-datasets/power-plant/data/Sheet3.tsv | Sheet3.tsv | 308693.0 |
+| dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
+| dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
+
 ``` scala
 //Let's quickly recall the schema
 // the table is available
@@ -93,12 +123,31 @@ table("power_plant_table").printSchema
 >      |-- RH: double (nullable = true)
 >      |-- PE: double (nullable = true)
 
+>     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[1] at textFile at <console>:34
+
+>     AT	V	AP	RH	PE
+>     14.96	41.76	1024.07	73.17	463.26
+>     25.18	62.96	1020.04	59.08	444.37
+>     5.11	39.4	1012.16	92.14	488.56
+>     20.86	57.32	1010.24	76.64	446.48
+
 ``` scala
 //the DataFrame should also be available
 powerPlantDF 
 ```
 
 >     res22: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+
+>     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+
+>     root
+>      |-- AT: double (nullable = true)
+>      |-- V: double (nullable = true)
+>      |-- AP: double (nullable = true)
+>      |-- RH: double (nullable = true)
+>      |-- PE: double (nullable = true)
+
+>     res7: Long = 9568
 
 ``` scala
 import org.apache.spark.ml.feature.VectorAssembler
@@ -115,11 +164,398 @@ val vectorizer =  new VectorAssembler()
 >     dataset: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
 >     vectorizer: org.apache.spark.ml.feature.VectorAssembler = vecAssembler_00521eb9630e
 
+>     +-----+-----+-------+-----+------+
+>     |   AT|    V|     AP|   RH|    PE|
+>     +-----+-----+-------+-----+------+
+>     |14.96|41.76|1024.07|73.17|463.26|
+>     |25.18|62.96|1020.04|59.08|444.37|
+>     | 5.11| 39.4|1012.16|92.14|488.56|
+>     |20.86|57.32|1010.24|76.64|446.48|
+>     |10.82| 37.5|1009.23|96.62| 473.9|
+>     |26.27|59.44|1012.23|58.77|443.67|
+>     |15.89|43.96|1014.02|75.24|467.35|
+>     | 9.48|44.71|1019.12|66.43|478.42|
+>     |14.64| 45.0|1021.78|41.25|475.98|
+>     |11.74|43.56|1015.14|70.72| 477.5|
+>     +-----+-----+-------+-----+------+
+>     only showing top 10 rows
+
+| AT    | V     | AP      | RH    | PE     |
+|-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
+| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
+| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
+| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
+| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
+| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
+| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
+| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
+| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
+| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
+| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
+| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
+| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
+| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
+| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
+| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
+| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
+| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
+| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
+| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
+| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
+| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
+| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
+| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
+| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
+| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
+| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
+| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
+| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
+
+Truncated to 30 rows
+
+>     res10: Long = 9568
+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|        simple_range|      false|
+>     | default|  social_media_usage|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     +--------+--------------------+-----------+
+
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |name                      |database|description|tableType|isTemporary|
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |cities_csv                |default |null       |EXTERNAL |false      |
+>     |cleaned_taxes             |default |null       |MANAGED  |false      |
+>     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
+>     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
+>     |linkage                   |default |null       |EXTERNAL |false      |
+>     |nations                   |default |null       |EXTERNAL |false      |
+>     |newmplist                 |default |null       |EXTERNAL |false      |
+>     |ny_baby_names             |default |null       |MANAGED  |false      |
+>     |nzmpsandparty             |default |null       |EXTERNAL |false      |
+>     |pos_neg_category          |default |null       |EXTERNAL |false      |
+>     |rna                       |default |null       |MANAGED  |false      |
+>     |samh                      |default |null       |EXTERNAL |false      |
+>     |simple_range              |default |null       |MANAGED  |false      |
+>     |social_media_usage        |default |null       |EXTERNAL |false      |
+>     |table1                    |default |null       |EXTERNAL |false      |
+>     |test_table                |default |null       |EXTERNAL |false      |
+>     |uscites                   |default |null       |EXTERNAL |false      |
+>     +--------------------------+--------+-----------+---------+-----------+
+
+>     +-------+---------------------+-------------------------+
+>     |name   |description          |locationUri              |
+>     +-------+---------------------+-------------------------+
+>     |default|Default Hive database|dbfs:/user/hive/warehouse|
+>     +-------+---------------------+-------------------------+
+
 ``` md ##Step 6: Data Modeling
 Now let's model our data to predict what the power output will be given a set of sensor readings
 
 Our first model will be based on simple linear regression since we saw some linear patterns in our data based on the scatter plots during the exploration stage.
 ```
+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|        simple_range|      false|
+>     | default|  social_media_usage|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     |        |   power_plant_table|       true|
+>     +--------+--------------------+-----------+
+
+| AT    | V     | AP      | RH    | PE     |
+|-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
+| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
+| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
+| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
+| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
+| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
+| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
+| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
+| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
+| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
+| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
+| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
+| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
+| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
+| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
+| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
+| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
+| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
+| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
+| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
+| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
+| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
+| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
+| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
+| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
+| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
+| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
+| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
+| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
+
+Truncated to 30 rows
+
+| col\_name | data\_type | comment |
+|-----------|------------|---------|
+| AT        | double     | null    |
+| V         | double     | null    |
+| AP        | double     | null    |
+| RH        | double     | null    |
+| PE        | double     | null    |
+
+| summary | AT                 | V                  | AP                 | RH                 | PE                 |
+|---------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| count   | 9568               | 9568               | 9568               | 9568               | 9568               |
+| mean    | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
+| stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
+| min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
+| max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
+
+| Temperature | Power  |
+|-------------|--------|
+| 14.96       | 463.26 |
+| 25.18       | 444.37 |
+| 5.11        | 488.56 |
+| 20.86       | 446.48 |
+| 10.82       | 473.9  |
+| 26.27       | 443.67 |
+| 15.89       | 467.35 |
+| 9.48        | 478.42 |
+| 14.64       | 475.98 |
+| 11.74       | 477.5  |
+| 17.99       | 453.02 |
+| 20.14       | 453.99 |
+| 24.34       | 440.29 |
+| 25.71       | 451.28 |
+| 26.19       | 433.99 |
+| 21.42       | 462.19 |
+| 18.21       | 467.54 |
+| 11.04       | 477.2  |
+| 14.45       | 459.85 |
+| 13.97       | 464.3  |
+| 17.76       | 468.27 |
+| 5.41        | 495.24 |
+| 7.76        | 483.8  |
+| 27.23       | 443.61 |
+| 27.36       | 436.06 |
+| 27.47       | 443.25 |
+| 14.6        | 464.16 |
+| 7.91        | 475.52 |
+| 5.81        | 484.41 |
+| 30.53       | 437.89 |
+
+Truncated to 30 rows
+
+| ExhaustVaccum | Power  |
+|---------------|--------|
+| 41.76         | 463.26 |
+| 62.96         | 444.37 |
+| 39.4          | 488.56 |
+| 57.32         | 446.48 |
+| 37.5          | 473.9  |
+| 59.44         | 443.67 |
+| 43.96         | 467.35 |
+| 44.71         | 478.42 |
+| 45.0          | 475.98 |
+| 43.56         | 477.5  |
+| 43.72         | 453.02 |
+| 46.93         | 453.99 |
+| 73.5          | 440.29 |
+| 58.59         | 451.28 |
+| 69.34         | 433.99 |
+| 43.79         | 462.19 |
+| 45.0          | 467.54 |
+| 41.74         | 477.2  |
+| 52.75         | 459.85 |
+| 38.47         | 464.3  |
+| 42.42         | 468.27 |
+| 40.07         | 495.24 |
+| 42.28         | 483.8  |
+| 63.9          | 443.61 |
+| 48.6          | 436.06 |
+| 70.72         | 443.25 |
+| 39.31         | 464.16 |
+| 39.96         | 475.52 |
+| 35.79         | 484.41 |
+| 65.18         | 437.89 |
+
+Truncated to 30 rows
+
+| Pressure | Power  |
+|----------|--------|
+| 1024.07  | 463.26 |
+| 1020.04  | 444.37 |
+| 1012.16  | 488.56 |
+| 1010.24  | 446.48 |
+| 1009.23  | 473.9  |
+| 1012.23  | 443.67 |
+| 1014.02  | 467.35 |
+| 1019.12  | 478.42 |
+| 1021.78  | 475.98 |
+| 1015.14  | 477.5  |
+| 1008.64  | 453.02 |
+| 1014.66  | 453.99 |
+| 1011.31  | 440.29 |
+| 1012.77  | 451.28 |
+| 1009.48  | 433.99 |
+| 1015.76  | 462.19 |
+| 1022.86  | 467.54 |
+| 1022.6   | 477.2  |
+| 1023.97  | 459.85 |
+| 1015.15  | 464.3  |
+| 1009.09  | 468.27 |
+| 1019.16  | 495.24 |
+| 1008.52  | 483.8  |
+| 1014.3   | 443.61 |
+| 1003.18  | 436.06 |
+| 1009.97  | 443.25 |
+| 1011.11  | 464.16 |
+| 1023.57  | 475.52 |
+| 1012.14  | 484.41 |
+| 1012.69  | 437.89 |
+
+Truncated to 30 rows
+
+| Humidity | Power  |
+|----------|--------|
+| 73.17    | 463.26 |
+| 59.08    | 444.37 |
+| 92.14    | 488.56 |
+| 76.64    | 446.48 |
+| 96.62    | 473.9  |
+| 58.77    | 443.67 |
+| 75.24    | 467.35 |
+| 66.43    | 478.42 |
+| 41.25    | 475.98 |
+| 70.72    | 477.5  |
+| 75.04    | 453.02 |
+| 64.22    | 453.99 |
+| 84.15    | 440.29 |
+| 61.83    | 451.28 |
+| 87.59    | 433.99 |
+| 43.08    | 462.19 |
+| 48.84    | 467.54 |
+| 77.51    | 477.2  |
+| 63.59    | 459.85 |
+| 55.28    | 464.3  |
+| 66.26    | 468.27 |
+| 64.77    | 495.24 |
+| 83.31    | 483.8  |
+| 47.19    | 443.61 |
+| 54.93    | 436.06 |
+| 74.62    | 443.25 |
+| 72.52    | 464.16 |
+| 88.44    | 475.52 |
+| 92.28    | 484.41 |
+| 41.85    | 437.89 |
+
+Truncated to 30 rows
+
+| RH    | PE     |
+|-------|--------|
+| 73.17 | 463.26 |
+| 59.08 | 444.37 |
+| 92.14 | 488.56 |
+| 76.64 | 446.48 |
+| 96.62 | 473.9  |
+| 58.77 | 443.67 |
+| 75.24 | 467.35 |
+| 66.43 | 478.42 |
+| 41.25 | 475.98 |
+| 70.72 | 477.5  |
+| 75.04 | 453.02 |
+| 64.22 | 453.99 |
+| 84.15 | 440.29 |
+| 61.83 | 451.28 |
+| 87.59 | 433.99 |
+| 43.08 | 462.19 |
+| 48.84 | 467.54 |
+| 77.51 | 477.2  |
+| 63.59 | 459.85 |
+| 55.28 | 464.3  |
+| 66.26 | 468.27 |
+| 64.77 | 495.24 |
+| 83.31 | 483.8  |
+| 47.19 | 443.61 |
+| 54.93 | 436.06 |
+| 74.62 | 443.25 |
+| 72.52 | 464.16 |
+| 88.44 | 475.52 |
+| 92.28 | 484.41 |
+| 41.85 | 437.89 |
+
+Truncated to 30 rows
+
+| AT    | V     | AP      | RH    | PE     |
+|-------|-------|---------|-------|--------|
+| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
+| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
+| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
+| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
+| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
+| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
+| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
+| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
+| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
+| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
+| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
+| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
+| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
+| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
+| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
+| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
+| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
+| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
+| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
+| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
+| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
+| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
+| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
+| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
+| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
+| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
+| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
+| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
+| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
+| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
+
+Truncated to 30 rows
 
 ### Linear Regression Model
 
@@ -158,6 +594,20 @@ trainingSet.count() // action to actually cache
 
 >     res25: Long = 7602
 
+Let's take a few elements of the three DataFrames.
+
+``` scala
+dataset.take(3)
+```
+
+>     res26: Array[org.apache.spark.sql.Row] = Array([14.96,41.76,1024.07,73.17,463.26], [25.18,62.96,1020.04,59.08,444.37], [5.11,39.4,1012.16,92.14,488.56])
+
+``` scala
+testSet.take(3)
+```
+
+>     res27: Array[org.apache.spark.sql.Row] = Array([1.81,39.42,1026.92,76.97,490.55], [3.2,41.31,997.67,98.84,489.86], [3.38,41.31,998.79,97.76,489.11])
+
 ``` scala
 trainingSet.take(3)
 ```
@@ -179,6 +629,8 @@ val lr = new LinearRegression()
 >     import org.apache.spark.ml.regression.LinearRegressionModel
 >     import org.apache.spark.ml.Pipeline
 >     lr: org.apache.spark.ml.regression.LinearRegression = linReg_955431dccb4f
+
+>     frameIt: (u: String, h: Int)String
 
 >     frameIt: (u: String, h: Int)String
 
@@ -489,6 +941,19 @@ import org.apache.spark.ml.evaluation._
 >     import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
 >     import org.apache.spark.ml.evaluation._
 
+First let's use a cross validator to split the data into training and validation subsets. See <http://spark.apache.org/docs/latest/ml-tuning.html>.
+
+``` scala
+//Let's set up our evaluator class to judge the model based on the best root mean squared error
+val regEval = new RegressionEvaluator()
+regEval.setLabelCol("PE")
+  .setPredictionCol("Predicted_PE")
+  .setMetricName("rmse")
+```
+
+>     regEval: org.apache.spark.ml.evaluation.RegressionEvaluator = regEval_e2be8a782fd8
+>     res37: regEval.type = regEval_e2be8a782fd8
+
 We now treat the `lrPipeline` as an `Estimator`, wrapping it in a `CrossValidator` instance.
 
 This will allow us to jointly choose parameters for all Pipeline stages.
@@ -585,6 +1050,11 @@ println (f"R2: $r2")
 >     Root Mean Squared Error: 4.599964072968395
 >     Explained Variance: 277.2272873387723
 >     R2: 0.9311199234339246
+
+Let us explore other models to see if we can predict the power output better
+----------------------------------------------------------------------------
+
+There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
 ``` md So our initial untuned and tuned linear regression models are statistically identical.
 
@@ -741,6 +1211,17 @@ A visual explanation of gradient boosted trees: \* <http://arogozhnikov.github.i
 
 Let's see what a boosting algorithm, a type of ensemble method, is all about in more detail.
 
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Gradient_boosting"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
 This can take between 5 - 15 minutes in a shard with 6 workers depending on other workloads (may be longer in the Community Edition).
 
 ``` scala
@@ -809,253 +1290,6 @@ println (f"R2: $r2")
 Note that the root mean squared error is smaller now due to the ensemble of 120 trees from Gradient Boosting!
 
 We can use the toDebugString method to dump out what our trees and weighting look like:
-
-``` md ### Conclusion
-
-Wow! So our best model is in fact our Gradient Boosted Decision tree model which uses an ensemble of 120 Trees with a depth of 3 to construct a better model than the single decision tree.
-```
-
-``` md #Step 8: Deployment
-
-Now that we have a predictive model it is time to deploy the model into an operational environment. 
-
-In our example, let's say we have a series of sensors attached to the power plant and a monitoring station.
-
-The monitoring station will need close to real-time information about how much power that their station will generate so they can relay that to the utility. 
-
-So let's create a Spark Streaming utility that we can use for this purpose.
-
-See [http://spark.apache.org/docs/latest/streaming-programming-guide.html](http://spark.apache.org/docs/latest/streaming-programming-guide.html) if you can't wait!
-```
-
-After deployment you will be able to use the best predictions from gradient boosed regression trees to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver give current conditions.
-
-``` scala
-// Let's set the variable finalModel to our best GBT Model
-val finalModel = gbtModel.bestModel
-```
-
->     finalModel: org.apache.spark.ml.Model[_] = pipeline_e6a84d2d75ba
-
-Let's create our table for predictions
-
-``` sql
-DROP TABLE IF EXISTS power_plant_predictions ;
-CREATE TABLE power_plant_predictions(
-  AT Double,
-  V Double,
-  AP Double,
-  RH Double,
-  PE Double,
-  Predicted_PE Double
-);
-```
-
-This should be updated to structured streaming - after the break.
-
-Now let's create our streaming job to score new power plant readings in real-time.
-
-**CAUTION**: There can be only one spark streaming context per cluster!!! So please check if a streaming context is already alive first.
-
-``` scala
-import java.nio.ByteBuffer
-import java.net._
-import java.io._
-import concurrent._
-import scala.io._
-import sys.process._
-//import org.apache.spark.Logging
-import org.apache.spark.SparkConf
-import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.Seconds
-import org.apache.spark.streaming.Minutes
-import org.apache.spark.streaming.StreamingContext
-//import org.apache.spark.streaming.StreamingContext.toPairDStreamFunctions
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import org.apache.spark.streaming.receiver.Receiver
-import sqlContext._
-import net.liftweb.json.DefaultFormats
-import net.liftweb.json._
-
-import scala.collection.mutable.SynchronizedQueue
-
-
-val queue = new SynchronizedQueue[RDD[String]]()
-
-val batchIntervalSeconds = 2
-
-var newContextCreated = false      // Flag to detect whether new context was created or not
-
-// Function to create a new StreamingContext and set it up
-def creatingFunc(): StreamingContext = {
-    
-  // Create a StreamingContext
-  val ssc = new StreamingContext(sc, Seconds(batchIntervalSeconds))
-  val batchInterval = Seconds(1)
-  ssc.remember(Seconds(300))
-  val dstream = ssc.queueStream(queue)
-  dstream.foreachRDD { 
-    rdd =>
-      // if the RDD has data
-       if(!(rdd.isEmpty())) {
-          // Use the final model to transform a JSON message into a dataframe and pass the dataframe to our model's transform method
-           finalModel
-             .transform(read.json(rdd.toDS).toDF())
-         // Select only columns we are interested in
-         .select("AT", "V", "AP", "RH", "PE", "Predicted_PE")
-         // Append the results to our power_plant_predictions table
-         .write.mode(SaveMode.Append).format("hive").saveAsTable("power_plant_predictions")
-       } 
-  }
-  println("Creating function called to create new StreamingContext for Power Plant Predictions")
-  newContextCreated = true  
-  ssc
-}
-
-val ssc = StreamingContext.getActiveOrCreate(creatingFunc)
-if (newContextCreated) {
-  println("New context created from currently defined creating function") 
-} else {
-  println("Existing context running or recovered from checkpoint, may not be running currently defined creating function")
-}
-
-ssc.start()
-```
-
->     Creating function called to create new StreamingContext for Power Plant Predictions
->     New context created from currently defined creating function
->     <console>:303: warning: class SynchronizedQueue in package mutable is deprecated: Synchronization via selective overriding of methods is inherently unreliable.  Consider java.util.concurrent.ConcurrentLinkedQueue as an alternative.
->            val queue = new SynchronizedQueue[RDD[String]]()
->                            ^
->     import java.nio.ByteBuffer
->     import java.net._
->     import java.io._
->     import concurrent._
->     import scala.io._
->     import sys.process._
->     import org.apache.spark.SparkConf
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.Seconds
->     import org.apache.spark.streaming.Minutes
->     import org.apache.spark.streaming.StreamingContext
->     import org.apache.log4j.Logger
->     import org.apache.log4j.Level
->     import org.apache.spark.streaming.receiver.Receiver
->     import sqlContext._
->     import net.liftweb.json.DefaultFormats
->     import net.liftweb.json._
->     import scala.collection.mutable.SynchronizedQueue
->     queue: scala.collection.mutable.SynchronizedQueue[org.apache.spark.rdd.RDD[String]] = SynchronizedQueue()
->     batchIntervalSeconds: Int = 2
->     newContextCreated: Boolean = true
->     creatingFunc: ()org.apache.spark.streaming.StreamingContext
->     ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@4a48de26
-
-Now that we have created and defined our streaming job, let's test it with some data. First we clear the predictions table.
-
-Let's use data to see how much power output our model will predict.
-
-``` scala
-// First we try it with a record from our test set and see what we get:
-queue += sc.makeRDD(Seq(s"""{"AT":10.82,"V":37.5,"AP":1009.23,"RH":96.62,"PE":473.9}"""))
-
-// We may need to wait a few seconds for data to appear in the table
-Thread.sleep(Seconds(5).milliseconds)
-```
-
-``` sql
---and we can query our predictions table
-select * from power_plant_predictions
-```
-
-| AT    | V    | AP      | RH    | PE    | Predicted\_PE    |
-|-------|------|---------|-------|-------|------------------|
-| 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668 |
-
-Let's repeat with a different test measurement that our model has not seen before:
-
-``` scala
-queue += sc.makeRDD(Seq(s"""{"AT":10.0,"V":40,"AP":1000,"RH":90.0,"PE":0.0}"""))
-Thread.sleep(Seconds(5).milliseconds)
-```
-
-``` sql
---Note you may have to run this a couple of times to see the refreshed data...
-select * from power_plant_predictions
-```
-
-| AT    | V    | AP      | RH    | PE    | Predicted\_PE     |
-|-------|------|---------|-------|-------|-------------------|
-| 10.0  | 40.0 | 1000.0  | 90.0  | 0.0   | 474.5912134899266 |
-| 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668  |
-
-As you can see the Predictions are very close to the real data points.
-
-``` sql
-select * from power_plant_table where AT between 10 and 11 and AP between 1000 and 1010 and RH between 90 and 97 and v between 37 and 40 order by PE 
-```
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 10.37 | 37.83 | 1006.5  | 90.99 | 470.66 |
-| 10.22 | 37.83 | 1005.94 | 93.53 | 471.79 |
-| 10.66 | 37.5  | 1009.42 | 95.86 | 472.86 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 10.48 | 37.5  | 1009.81 | 95.26 | 474.57 |
-
-Now you use the predictions table to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver.
-
-Make sure the streaming context is stopped when you are done, as there can be only one such context per cluster!
-
-``` scala
-ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
-```
-
-Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
-
-Let's take a few elements of the three DataFrames.
-
-``` scala
-dataset.take(3)
-```
-
->     res26: Array[org.apache.spark.sql.Row] = Array([14.96,41.76,1024.07,73.17,463.26], [25.18,62.96,1020.04,59.08,444.37], [5.11,39.4,1012.16,92.14,488.56])
-
-``` scala
-testSet.take(3)
-```
-
->     res27: Array[org.apache.spark.sql.Row] = Array([1.81,39.42,1026.92,76.97,490.55], [3.2,41.31,997.67,98.84,489.86], [3.38,41.31,998.79,97.76,489.11])
-
-First let's use a cross validator to split the data into training and validation subsets. See <http://spark.apache.org/docs/latest/ml-tuning.html>.
-
-``` scala
-//Let's set up our evaluator class to judge the model based on the best root mean squared error
-val regEval = new RegressionEvaluator()
-regEval.setLabelCol("PE")
-  .setPredictionCol("Predicted_PE")
-  .setMetricName("rmse")
-```
-
->     regEval: org.apache.spark.ml.evaluation.RegressionEvaluator = regEval_e2be8a782fd8
->     res37: regEval.type = regEval_e2be8a782fd8
-
-Let us explore other models to see if we can predict the power output better
-----------------------------------------------------------------------------
-
-There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Gradient_boosting"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
 
 ``` scala
 gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel].toDebugString
@@ -2644,6 +2878,14 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
 >           If (feature 1 <= 64.84)
 >            Predict: -0.5...
 
+``` md ### Conclusion
+
+Wow! So our best model is in fact our Gradient Boosted Decision tree model which uses an ensemble of 120 Trees with a depth of 3 to construct a better model than the single decision tree.
+```
+
+Persisting Statistical Machine Learning Models
+----------------------------------------------
+
 <p class="htmlSandbox"><iframe 
  src="https://databricks.com/blog/2016/05/31/apache-spark-2-0-preview-machine-learning-model-persistence.html"
  width="95%" height="500"
@@ -2655,21 +2897,18 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
   </p>
 </iframe></p>
 
-Persisting Statistical Machine Learning Models
-----------------------------------------------
-
 Let's save our best model so we can load it without having to rerun the validation and training again.
+
+``` scala
+gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel]
+        .write.overwrite().save("dbfs:///databricks/driver/MyTrainedGbtModel")
+```
 
 ``` scala
 val sameModel = GBTRegressionModel.load("dbfs:///databricks/driver/MyTrainedGbtModel/")
 ```
 
 >     sameModel: org.apache.spark.ml.regression.GBTRegressionModel = GBTRegressionModel (uid=gbtr_9c5ab45fe584) with 120 trees
-
-``` scala
-gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegressionModel]
-        .write.overwrite().save("dbfs:///databricks/driver/MyTrainedGbtModel")
-```
 
 ``` scala
 // making sure we have the same model loaded from the file
@@ -4259,443 +4498,27 @@ sameModel.toDebugString
 >           If (feature 1 <= 64.84)
 >            Predict: -0.5...
 
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Peaking_power_plant"
- width="95%" height="300"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
+``` md #Step 8: Deployment
 
-<p class="htmlSandbox"><iframe 
- src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
+Now that we have a predictive model it is time to deploy the model into an operational environment. 
 
-| path                                                  | name       | size     |
-|-------------------------------------------------------|------------|----------|
-| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet2.tsv | Sheet2.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet3.tsv | Sheet3.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
+In our example, let's say we have a series of sensors attached to the power plant and a monitoring station.
 
->     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[1] at textFile at <console>:34
+The monitoring station will need close to real-time information about how much power that their station will generate so they can relay that to the utility. 
 
->     AT	V	AP	RH	PE
->     14.96	41.76	1024.07	73.17	463.26
->     25.18	62.96	1020.04	59.08	444.37
->     5.11	39.4	1012.16	92.14	488.56
->     20.86	57.32	1010.24	76.64	446.48
+So let's create a Spark Streaming utility that we can use for this purpose.
 
->     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
+See [http://spark.apache.org/docs/latest/streaming-programming-guide.html](http://spark.apache.org/docs/latest/streaming-programming-guide.html) if you can't wait!
+```
 
->     root
->      |-- AT: double (nullable = true)
->      |-- V: double (nullable = true)
->      |-- AP: double (nullable = true)
->      |-- RH: double (nullable = true)
->      |-- PE: double (nullable = true)
+After deployment you will be able to use the best predictions from gradient boosed regression trees to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver give current conditions.
 
->     res7: Long = 9568
+``` scala
+// Let's set the variable finalModel to our best GBT Model
+val finalModel = gbtModel.bestModel
+```
 
->     +-----+-----+-------+-----+------+
->     |   AT|    V|     AP|   RH|    PE|
->     +-----+-----+-------+-----+------+
->     |14.96|41.76|1024.07|73.17|463.26|
->     |25.18|62.96|1020.04|59.08|444.37|
->     | 5.11| 39.4|1012.16|92.14|488.56|
->     |20.86|57.32|1010.24|76.64|446.48|
->     |10.82| 37.5|1009.23|96.62| 473.9|
->     |26.27|59.44|1012.23|58.77|443.67|
->     |15.89|43.96|1014.02|75.24|467.35|
->     | 9.48|44.71|1019.12|66.43|478.42|
->     |14.64| 45.0|1021.78|41.25|475.98|
->     |11.74|43.56|1015.14|70.72| 477.5|
->     +-----+-----+-------+-----+------+
->     only showing top 10 rows
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
-| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
-| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
-| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
-| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
-| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
-| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
-| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
-| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
-| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
-| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
-| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
-| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
-| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
-| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
-| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
-| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
-| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
-| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
-| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
-| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
-| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
-| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
-| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
-| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
-| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
-| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
-| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
-
-Truncated to 30 rows
-
->     res10: Long = 9568
-
->     +--------+--------------------+-----------+
->     |database|           tableName|isTemporary|
->     +--------+--------------------+-----------+
->     | default|          cities_csv|      false|
->     | default|       cleaned_taxes|      false|
->     | default|commdettrumpclint...|      false|
->     | default|   donaldtrumptweets|      false|
->     | default|             linkage|      false|
->     | default|             nations|      false|
->     | default|           newmplist|      false|
->     | default|       ny_baby_names|      false|
->     | default|       nzmpsandparty|      false|
->     | default|    pos_neg_category|      false|
->     | default|                 rna|      false|
->     | default|                samh|      false|
->     | default|        simple_range|      false|
->     | default|  social_media_usage|      false|
->     | default|              table1|      false|
->     | default|          test_table|      false|
->     | default|             uscites|      false|
->     +--------+--------------------+-----------+
-
->     +--------------------------+--------+-----------+---------+-----------+
->     |name                      |database|description|tableType|isTemporary|
->     +--------------------------+--------+-----------+---------+-----------+
->     |cities_csv                |default |null       |EXTERNAL |false      |
->     |cleaned_taxes             |default |null       |MANAGED  |false      |
->     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
->     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
->     |linkage                   |default |null       |EXTERNAL |false      |
->     |nations                   |default |null       |EXTERNAL |false      |
->     |newmplist                 |default |null       |EXTERNAL |false      |
->     |ny_baby_names             |default |null       |MANAGED  |false      |
->     |nzmpsandparty             |default |null       |EXTERNAL |false      |
->     |pos_neg_category          |default |null       |EXTERNAL |false      |
->     |rna                       |default |null       |MANAGED  |false      |
->     |samh                      |default |null       |EXTERNAL |false      |
->     |simple_range              |default |null       |MANAGED  |false      |
->     |social_media_usage        |default |null       |EXTERNAL |false      |
->     |table1                    |default |null       |EXTERNAL |false      |
->     |test_table                |default |null       |EXTERNAL |false      |
->     |uscites                   |default |null       |EXTERNAL |false      |
->     +--------------------------+--------+-----------+---------+-----------+
-
->     +-------+---------------------+-------------------------+
->     |name   |description          |locationUri              |
->     +-------+---------------------+-------------------------+
->     |default|Default Hive database|dbfs:/user/hive/warehouse|
->     +-------+---------------------+-------------------------+
-
->     +--------+--------------------+-----------+
->     |database|           tableName|isTemporary|
->     +--------+--------------------+-----------+
->     | default|          cities_csv|      false|
->     | default|       cleaned_taxes|      false|
->     | default|commdettrumpclint...|      false|
->     | default|   donaldtrumptweets|      false|
->     | default|             linkage|      false|
->     | default|             nations|      false|
->     | default|           newmplist|      false|
->     | default|       ny_baby_names|      false|
->     | default|       nzmpsandparty|      false|
->     | default|    pos_neg_category|      false|
->     | default|                 rna|      false|
->     | default|                samh|      false|
->     | default|        simple_range|      false|
->     | default|  social_media_usage|      false|
->     | default|              table1|      false|
->     | default|          test_table|      false|
->     | default|             uscites|      false|
->     |        |   power_plant_table|       true|
->     +--------+--------------------+-----------+
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
-| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
-| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
-| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
-| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
-| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
-| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
-| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
-| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
-| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
-| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
-| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
-| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
-| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
-| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
-| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
-| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
-| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
-| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
-| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
-| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
-| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
-| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
-| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
-| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
-| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
-| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
-| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
-
-Truncated to 30 rows
-
-| col\_name | data\_type | comment |
-|-----------|------------|---------|
-| AT        | double     | null    |
-| V         | double     | null    |
-| AP        | double     | null    |
-| RH        | double     | null    |
-| PE        | double     | null    |
-
-| summary | AT                 | V                  | AP                 | RH                 | PE                 |
-|---------|--------------------|--------------------|--------------------|--------------------|--------------------|
-| count   | 9568               | 9568               | 9568               | 9568               | 9568               |
-| mean    | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
-| stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
-| min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
-| max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
-
-| Temperature | Power  |
-|-------------|--------|
-| 14.96       | 463.26 |
-| 25.18       | 444.37 |
-| 5.11        | 488.56 |
-| 20.86       | 446.48 |
-| 10.82       | 473.9  |
-| 26.27       | 443.67 |
-| 15.89       | 467.35 |
-| 9.48        | 478.42 |
-| 14.64       | 475.98 |
-| 11.74       | 477.5  |
-| 17.99       | 453.02 |
-| 20.14       | 453.99 |
-| 24.34       | 440.29 |
-| 25.71       | 451.28 |
-| 26.19       | 433.99 |
-| 21.42       | 462.19 |
-| 18.21       | 467.54 |
-| 11.04       | 477.2  |
-| 14.45       | 459.85 |
-| 13.97       | 464.3  |
-| 17.76       | 468.27 |
-| 5.41        | 495.24 |
-| 7.76        | 483.8  |
-| 27.23       | 443.61 |
-| 27.36       | 436.06 |
-| 27.47       | 443.25 |
-| 14.6        | 464.16 |
-| 7.91        | 475.52 |
-| 5.81        | 484.41 |
-| 30.53       | 437.89 |
-
-Truncated to 30 rows
-
-| ExhaustVaccum | Power  |
-|---------------|--------|
-| 41.76         | 463.26 |
-| 62.96         | 444.37 |
-| 39.4          | 488.56 |
-| 57.32         | 446.48 |
-| 37.5          | 473.9  |
-| 59.44         | 443.67 |
-| 43.96         | 467.35 |
-| 44.71         | 478.42 |
-| 45.0          | 475.98 |
-| 43.56         | 477.5  |
-| 43.72         | 453.02 |
-| 46.93         | 453.99 |
-| 73.5          | 440.29 |
-| 58.59         | 451.28 |
-| 69.34         | 433.99 |
-| 43.79         | 462.19 |
-| 45.0          | 467.54 |
-| 41.74         | 477.2  |
-| 52.75         | 459.85 |
-| 38.47         | 464.3  |
-| 42.42         | 468.27 |
-| 40.07         | 495.24 |
-| 42.28         | 483.8  |
-| 63.9          | 443.61 |
-| 48.6          | 436.06 |
-| 70.72         | 443.25 |
-| 39.31         | 464.16 |
-| 39.96         | 475.52 |
-| 35.79         | 484.41 |
-| 65.18         | 437.89 |
-
-Truncated to 30 rows
-
-| Pressure | Power  |
-|----------|--------|
-| 1024.07  | 463.26 |
-| 1020.04  | 444.37 |
-| 1012.16  | 488.56 |
-| 1010.24  | 446.48 |
-| 1009.23  | 473.9  |
-| 1012.23  | 443.67 |
-| 1014.02  | 467.35 |
-| 1019.12  | 478.42 |
-| 1021.78  | 475.98 |
-| 1015.14  | 477.5  |
-| 1008.64  | 453.02 |
-| 1014.66  | 453.99 |
-| 1011.31  | 440.29 |
-| 1012.77  | 451.28 |
-| 1009.48  | 433.99 |
-| 1015.76  | 462.19 |
-| 1022.86  | 467.54 |
-| 1022.6   | 477.2  |
-| 1023.97  | 459.85 |
-| 1015.15  | 464.3  |
-| 1009.09  | 468.27 |
-| 1019.16  | 495.24 |
-| 1008.52  | 483.8  |
-| 1014.3   | 443.61 |
-| 1003.18  | 436.06 |
-| 1009.97  | 443.25 |
-| 1011.11  | 464.16 |
-| 1023.57  | 475.52 |
-| 1012.14  | 484.41 |
-| 1012.69  | 437.89 |
-
-Truncated to 30 rows
-
-| Humidity | Power  |
-|----------|--------|
-| 73.17    | 463.26 |
-| 59.08    | 444.37 |
-| 92.14    | 488.56 |
-| 76.64    | 446.48 |
-| 96.62    | 473.9  |
-| 58.77    | 443.67 |
-| 75.24    | 467.35 |
-| 66.43    | 478.42 |
-| 41.25    | 475.98 |
-| 70.72    | 477.5  |
-| 75.04    | 453.02 |
-| 64.22    | 453.99 |
-| 84.15    | 440.29 |
-| 61.83    | 451.28 |
-| 87.59    | 433.99 |
-| 43.08    | 462.19 |
-| 48.84    | 467.54 |
-| 77.51    | 477.2  |
-| 63.59    | 459.85 |
-| 55.28    | 464.3  |
-| 66.26    | 468.27 |
-| 64.77    | 495.24 |
-| 83.31    | 483.8  |
-| 47.19    | 443.61 |
-| 54.93    | 436.06 |
-| 74.62    | 443.25 |
-| 72.52    | 464.16 |
-| 88.44    | 475.52 |
-| 92.28    | 484.41 |
-| 41.85    | 437.89 |
-
-Truncated to 30 rows
-
-| RH    | PE     |
-|-------|--------|
-| 73.17 | 463.26 |
-| 59.08 | 444.37 |
-| 92.14 | 488.56 |
-| 76.64 | 446.48 |
-| 96.62 | 473.9  |
-| 58.77 | 443.67 |
-| 75.24 | 467.35 |
-| 66.43 | 478.42 |
-| 41.25 | 475.98 |
-| 70.72 | 477.5  |
-| 75.04 | 453.02 |
-| 64.22 | 453.99 |
-| 84.15 | 440.29 |
-| 61.83 | 451.28 |
-| 87.59 | 433.99 |
-| 43.08 | 462.19 |
-| 48.84 | 467.54 |
-| 77.51 | 477.2  |
-| 63.59 | 459.85 |
-| 55.28 | 464.3  |
-| 66.26 | 468.27 |
-| 64.77 | 495.24 |
-| 83.31 | 483.8  |
-| 47.19 | 443.61 |
-| 54.93 | 436.06 |
-| 74.62 | 443.25 |
-| 72.52 | 464.16 |
-| 88.44 | 475.52 |
-| 92.28 | 484.41 |
-| 41.85 | 437.89 |
-
-Truncated to 30 rows
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
-| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
-| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
-| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
-| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
-| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
-| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
-| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
-| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
-| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
-| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
-| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
-| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
-| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
-| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
-| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
-| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
-| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
-| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
-| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
-| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
-| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
-| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
-| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
-| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
-| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
-| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
-| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
-
-Truncated to 30 rows
-
->     frameIt: (u: String, h: Int)String
+>     finalModel: org.apache.spark.ml.Model[_] = pipeline_e6a84d2d75ba
 
 ``` scala
 //gbtModel.bestModel.asInstanceOf[PipelineModel]//.stages.last.asInstanceOf[GBTRegressionModel]
@@ -4706,3 +4529,179 @@ Truncated to 30 rows
 //val finalModel = PipelineModel.load("dbfs:///databricks/driver/MyTrainedGbtPipelineModel/")
 ```
 
+Let's create our table for predictions
+
+``` sql
+DROP TABLE IF EXISTS power_plant_predictions ;
+CREATE TABLE power_plant_predictions(
+  AT Double,
+  V Double,
+  AP Double,
+  RH Double,
+  PE Double,
+  Predicted_PE Double
+);
+```
+
+This should be updated to structured streaming - after the break.
+
+Now let's create our streaming job to score new power plant readings in real-time.
+
+**CAUTION**: There can be only one spark streaming context per cluster!!! So please check if a streaming context is already alive first.
+
+``` scala
+import java.nio.ByteBuffer
+import java.net._
+import java.io._
+import concurrent._
+import scala.io._
+import sys.process._
+//import org.apache.spark.Logging
+import org.apache.spark.SparkConf
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.Seconds
+import org.apache.spark.streaming.Minutes
+import org.apache.spark.streaming.StreamingContext
+//import org.apache.spark.streaming.StreamingContext.toPairDStreamFunctions
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
+import org.apache.spark.streaming.receiver.Receiver
+import sqlContext._
+import net.liftweb.json.DefaultFormats
+import net.liftweb.json._
+
+import scala.collection.mutable.SynchronizedQueue
+
+
+val queue = new SynchronizedQueue[RDD[String]]()
+
+val batchIntervalSeconds = 2
+
+var newContextCreated = false      // Flag to detect whether new context was created or not
+
+// Function to create a new StreamingContext and set it up
+def creatingFunc(): StreamingContext = {
+    
+  // Create a StreamingContext
+  val ssc = new StreamingContext(sc, Seconds(batchIntervalSeconds))
+  val batchInterval = Seconds(1)
+  ssc.remember(Seconds(300))
+  val dstream = ssc.queueStream(queue)
+  dstream.foreachRDD { 
+    rdd =>
+      // if the RDD has data
+       if(!(rdd.isEmpty())) {
+          // Use the final model to transform a JSON message into a dataframe and pass the dataframe to our model's transform method
+           finalModel
+             .transform(read.json(rdd.toDS).toDF())
+         // Select only columns we are interested in
+         .select("AT", "V", "AP", "RH", "PE", "Predicted_PE")
+         // Append the results to our power_plant_predictions table
+         .write.mode(SaveMode.Append).format("hive").saveAsTable("power_plant_predictions")
+       } 
+  }
+  println("Creating function called to create new StreamingContext for Power Plant Predictions")
+  newContextCreated = true  
+  ssc
+}
+
+val ssc = StreamingContext.getActiveOrCreate(creatingFunc)
+if (newContextCreated) {
+  println("New context created from currently defined creating function") 
+} else {
+  println("Existing context running or recovered from checkpoint, may not be running currently defined creating function")
+}
+
+ssc.start()
+```
+
+>     Creating function called to create new StreamingContext for Power Plant Predictions
+>     New context created from currently defined creating function
+>     <console>:303: warning: class SynchronizedQueue in package mutable is deprecated: Synchronization via selective overriding of methods is inherently unreliable.  Consider java.util.concurrent.ConcurrentLinkedQueue as an alternative.
+>            val queue = new SynchronizedQueue[RDD[String]]()
+>                            ^
+>     import java.nio.ByteBuffer
+>     import java.net._
+>     import java.io._
+>     import concurrent._
+>     import scala.io._
+>     import sys.process._
+>     import org.apache.spark.SparkConf
+>     import org.apache.spark.storage.StorageLevel
+>     import org.apache.spark.streaming.Seconds
+>     import org.apache.spark.streaming.Minutes
+>     import org.apache.spark.streaming.StreamingContext
+>     import org.apache.log4j.Logger
+>     import org.apache.log4j.Level
+>     import org.apache.spark.streaming.receiver.Receiver
+>     import sqlContext._
+>     import net.liftweb.json.DefaultFormats
+>     import net.liftweb.json._
+>     import scala.collection.mutable.SynchronizedQueue
+>     queue: scala.collection.mutable.SynchronizedQueue[org.apache.spark.rdd.RDD[String]] = SynchronizedQueue()
+>     batchIntervalSeconds: Int = 2
+>     newContextCreated: Boolean = true
+>     creatingFunc: ()org.apache.spark.streaming.StreamingContext
+>     ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@4a48de26
+
+Now that we have created and defined our streaming job, let's test it with some data. First we clear the predictions table.
+
+Let's use data to see how much power output our model will predict.
+
+``` scala
+// First we try it with a record from our test set and see what we get:
+queue += sc.makeRDD(Seq(s"""{"AT":10.82,"V":37.5,"AP":1009.23,"RH":96.62,"PE":473.9}"""))
+
+// We may need to wait a few seconds for data to appear in the table
+Thread.sleep(Seconds(5).milliseconds)
+```
+
+``` sql
+--and we can query our predictions table
+select * from power_plant_predictions
+```
+
+| AT    | V    | AP      | RH    | PE    | Predicted\_PE    |
+|-------|------|---------|-------|-------|------------------|
+| 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668 |
+
+Let's repeat with a different test measurement that our model has not seen before:
+
+``` scala
+queue += sc.makeRDD(Seq(s"""{"AT":10.0,"V":40,"AP":1000,"RH":90.0,"PE":0.0}"""))
+Thread.sleep(Seconds(5).milliseconds)
+```
+
+``` sql
+--Note you may have to run this a couple of times to see the refreshed data...
+select * from power_plant_predictions
+```
+
+| AT    | V    | AP      | RH    | PE    | Predicted\_PE     |
+|-------|------|---------|-------|-------|-------------------|
+| 10.0  | 40.0 | 1000.0  | 90.0  | 0.0   | 474.5912134899266 |
+| 10.82 | 37.5 | 1009.23 | 96.62 | 473.9 | 472.659932584668  |
+
+As you can see the Predictions are very close to the real data points.
+
+``` sql
+select * from power_plant_table where AT between 10 and 11 and AP between 1000 and 1010 and RH between 90 and 97 and v between 37 and 40 order by PE 
+```
+
+| AT    | V     | AP      | RH    | PE     |
+|-------|-------|---------|-------|--------|
+| 10.37 | 37.83 | 1006.5  | 90.99 | 470.66 |
+| 10.22 | 37.83 | 1005.94 | 93.53 | 471.79 |
+| 10.66 | 37.5  | 1009.42 | 95.86 | 472.86 |
+| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
+| 10.48 | 37.5  | 1009.81 | 95.26 | 474.57 |
+
+Now you use the predictions table to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver.
+
+Make sure the streaming context is stopped when you are done, as there can be only one such context per cluster!
+
+``` scala
+ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
+```
+
+Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)

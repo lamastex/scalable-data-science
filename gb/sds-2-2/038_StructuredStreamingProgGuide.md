@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Structured Streaming - A Programming Guide Walkthrough
 ======================================================
 
@@ -42,6 +45,38 @@ Structured Streaming is a scalable and fault-tolerant stream processing engine b
 
 In this guide, we are going to walk you through the programming model and the APIs. First, let’s start with a simple example - a streaming word count.
 
+Programming Model
+=================
+
+The key idea in Structured Streaming is to treat a live data stream as a table that is being continuously appended. This leads to a new stream processing model that is very similar to a batch processing model. You will express your streaming computation as standard batch-like query as on a static table, and Spark runs it as an *incremental* query on the *unbounded* input table. Let’s understand this model in more detail.
+
+Basic Concepts
+--------------
+
+Consider the input data stream as the “Input Table”. Every data item that is arriving on the stream is like a new row being appended to the Input Table.
+
+![Stream as a Table](https://spark.apache.org/docs/2.2.0/img/structured-streaming-stream-as-a-table.png "Stream as a Table")
+
+A query on the input will generate the “Result Table”. Every trigger interval (say, every 1 second), new rows get appended to the Input Table, which eventually updates the Result Table. Whenever the result table gets updated, we would want to write the changed result rows to an external sink.
+
+![Model](https://spark.apache.org/docs/2.2.0/img/structured-streaming-model.png)
+
+The “Output” is defined as what gets written out to the external storage. The output can be defined in a different mode:
+
+-   *Complete Mode* - The entire updated Result Table will be written to the external storage. It is up to the storage connector to decide how to handle writing of the entire table.
+
+-   *Append Mode* - Only the new rows appended in the Result Table since the last trigger will be written to the external storage. This is applicable only on the queries where existing rows in the Result Table are not expected to change.
+
+-   *Update Mode* - Only the rows that were updated in the Result Table since the last trigger will be written to the external storage (available since Spark 2.1.1). Note that this is different from the Complete Mode in that this mode only outputs the rows that have changed since the last trigger. If the query doesn’t contain aggregations, it will be equivalent to Append mode.
+
+Note that each mode is applicable on certain types of queries. This is discussed in detail later on *output-modes*. To illustrate the use of this model, let’s understand the model in context of the **Quick Example** above.
+
+The first `streamingLines` DataFrame is the input table, and the final `wordCounts` DataFrame is the result table. Note that the query on `streamingLines` DataFrame to generate `wordCounts` is *exactly the same* as it would be a static DataFrame. However, when this query is started, Spark will continuously check for new data from the directory. If there is new data, Spark will run an “incremental” query that combines the previous running counts with the new data to compute updated counts, as shown below.
+
+![Model](https://spark.apache.org/docs/2.2.0/img/structured-streaming-example-model.png)
+
+This model is significantly different from many other stream processing engines. Many streaming systems require the user to maintain running aggregations themselves, thus having to reason about fault-tolerance, and data consistency (at-least-once, or at-most-once, or exactly-once). In this model, Spark is responsible for updating the Result Table when there is new data, thus relieving the users from reasoning about it. As an example, let’s see how this model handles event-time based processing and late arriving data.
+
 Quick Example
 =============
 
@@ -51,7 +86,91 @@ Let’s walk through the example step-by-step and understand how it works.
 
 **First** we need to start a file writing job in the companion notebook `037a_AnimalNamesStructStreamingFiles` and then return here.
 
+``` scala
+display(dbutils.fs.ls("/datasets/streamingFiles"))
+```
+
+| path                                     | name       | size |
+|------------------------------------------|------------|------|
+| dbfs:/datasets/streamingFiles/25\_44.log | 25\_44.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_46.log | 25\_46.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_48.log | 25\_48.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_50.log | 25\_50.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_52.log | 25\_52.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_54.log | 25\_54.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_56.log | 25\_56.log | 35.0 |
+| dbfs:/datasets/streamingFiles/25\_58.log | 25\_58.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_00.log | 26\_00.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_02.log | 26\_02.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_04.log | 26\_04.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_06.log | 26\_06.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_08.log | 26\_08.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_10.log | 26\_10.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_12.log | 26\_12.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_14.log | 26\_14.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_16.log | 26\_16.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_18.log | 26\_18.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_20.log | 26\_20.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_22.log | 26\_22.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_24.log | 26\_24.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_26.log | 26\_26.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_28.log | 26\_28.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_30.log | 26\_30.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_32.log | 26\_32.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_34.log | 26\_34.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_36.log | 26\_36.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_38.log | 26\_38.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_40.log | 26\_40.log | 35.0 |
+| dbfs:/datasets/streamingFiles/26\_42.log | 26\_42.log | 35.0 |
+
+Truncated to 30 rows
+
+``` scala
+dbutils.fs.head("/datasets/streamingFiles/00_00.log")
+```
+
+>     res43: String =
+>     "2017-11-21 18:00:00+00:00; pig owl
+>     "
+
 Next, let’s create a streaming DataFrame that represents text data received from the directory, and transform the DataFrame to calculate word counts.
+
+``` scala
+import org.apache.spark.sql.types._
+
+// Create DataFrame representing the stream of input lines from files in distributed file store
+//val textFileSchema = new StructType().add("line", "string") // for a custom schema
+
+val streamingLines = spark
+  .readStream
+  //.schema(textFileSchema) // using default -> makes a column of String named value
+  .option("MaxFilesPerTrigger", 1) //  maximum number of new files to be considered in every trigger (default: no max) 
+  .format("text")
+  .load("/datasets/streamingFiles")
+```
+
+>     import org.apache.spark.sql.types._
+>     streamingLines: org.apache.spark.sql.DataFrame = [value: string]
+
+This `streamingLines` DataFrame represents an unbounded table containing the streaming text data. This table contains one column of strings named “value”, and each line in the streaming text data becomes a row in the table. Note, that this is not currently receiving any data as we are just setting up the transformation, and have not yet started it.
+
+``` scala
+display(streamingLines)  // display will show you the contents of the DF
+```
+
+| value                              |
+|------------------------------------|
+| 2017-11-22 09:28:45+00:00; pig cat |
+| 2017-11-22 09:26:42+00:00; rat pig |
+| 2017-11-22 09:30:01+00:00; dog bat |
+| 2017-11-22 09:26:16+00:00; dog owl |
+| 2017-11-22 09:29:19+00:00; bat dog |
+| 2017-11-22 09:26:22+00:00; dog pig |
+| 2017-11-22 09:27:48+00:00; pig dog |
+| 2017-11-22 09:27:46+00:00; dog bat |
+| 2017-11-22 09:31:16+00:00; dog cat |
+| 2017-11-22 09:30:13+00:00; cat dog |
+| 2017-11-22 09:32:04+00:00; owl dog |
 
 ``` scala
 
@@ -61,6 +180,26 @@ Next, we will convert the DataFrame to a Dataset of String using
 each line into multiple words. The resultant `words` Dataset contains
 all the words. 
 ```
+
+``` scala
+val words = streamingLines.as[String]
+                          .map(line => line.split(";").drop(1)(0)) // this is to simply cut out the timestamp from this stream
+                          .flatMap(_.split(" ")) // flat map by splitting the animal words separated by whitespace
+                          .filter( _ != "") // remove empty words that may be artifacts of opening whitespace
+```
+
+>     words: org.apache.spark.sql.Dataset[String] = [value: string]
+
+Finally, we define the `wordCounts` DataFrame by grouping by the unique values in the Dataset and counting them. Note that this is a streaming DataFrame which represents the **running word counts of the stream**.
+
+``` scala
+// Generate running word count
+val wordCounts = words
+                  .groupBy("value").count() // this does the word count
+                  .orderBy($"count".desc) // we are simply sorting by the most frequent words
+```
+
+>     wordCounts: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [value: string, count: bigint]
 
 We have now set up the query on the streaming data. All that is left is to actually start receiving data and computing the counts. To do this, we set it up to print the complete set of counts (specified by `outputMode("complete")`) to the console every time they are updated. And then start the streaming computation using `start()`.
 
@@ -222,98 +361,6 @@ query.awaitTermination() // hit cancel to terminate - killall the bash script in
 >     Batch: 11
 >     -------------------------------------------
 
-``` scala
-import org.apache.spark.sql.types._
-
-// Create DataFrame representing the stream of input lines from files in distributed file store
-//val textFileSchema = new StructType().add("line", "string") // for a custom schema
-
-val streamingLines = spark
-  .readStream
-  //.schema(textFileSchema) // using default -> makes a column of String named value
-  .option("MaxFilesPerTrigger", 1) //  maximum number of new files to be considered in every trigger (default: no max) 
-  .format("text")
-  .load("/datasets/streamingFiles")
-```
-
->     import org.apache.spark.sql.types._
->     streamingLines: org.apache.spark.sql.DataFrame = [value: string]
-
-``` scala
-display(dbutils.fs.ls("/datasets/streamingFiles"))
-```
-
-| path                                     | name       | size |
-|------------------------------------------|------------|------|
-| dbfs:/datasets/streamingFiles/25\_44.log | 25\_44.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_46.log | 25\_46.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_48.log | 25\_48.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_50.log | 25\_50.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_52.log | 25\_52.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_54.log | 25\_54.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_56.log | 25\_56.log | 35.0 |
-| dbfs:/datasets/streamingFiles/25\_58.log | 25\_58.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_00.log | 26\_00.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_02.log | 26\_02.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_04.log | 26\_04.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_06.log | 26\_06.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_08.log | 26\_08.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_10.log | 26\_10.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_12.log | 26\_12.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_14.log | 26\_14.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_16.log | 26\_16.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_18.log | 26\_18.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_20.log | 26\_20.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_22.log | 26\_22.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_24.log | 26\_24.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_26.log | 26\_26.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_28.log | 26\_28.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_30.log | 26\_30.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_32.log | 26\_32.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_34.log | 26\_34.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_36.log | 26\_36.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_38.log | 26\_38.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_40.log | 26\_40.log | 35.0 |
-| dbfs:/datasets/streamingFiles/26\_42.log | 26\_42.log | 35.0 |
-
-Truncated to 30 rows
-
-``` scala
-display(streamingLines)  // display will show you the contents of the DF
-```
-
-| value                              |
-|------------------------------------|
-| 2017-11-22 09:28:45+00:00; pig cat |
-| 2017-11-22 09:26:42+00:00; rat pig |
-| 2017-11-22 09:30:01+00:00; dog bat |
-| 2017-11-22 09:26:16+00:00; dog owl |
-| 2017-11-22 09:29:19+00:00; bat dog |
-| 2017-11-22 09:26:22+00:00; dog pig |
-| 2017-11-22 09:27:48+00:00; pig dog |
-| 2017-11-22 09:27:46+00:00; dog bat |
-| 2017-11-22 09:31:16+00:00; dog cat |
-| 2017-11-22 09:30:13+00:00; cat dog |
-| 2017-11-22 09:32:04+00:00; owl dog |
-
-``` scala
-val words = streamingLines.as[String]
-                          .map(line => line.split(";").drop(1)(0)) // this is to simply cut out the timestamp from this stream
-                          .flatMap(_.split(" ")) // flat map by splitting the animal words separated by whitespace
-                          .filter( _ != "") // remove empty words that may be artifacts of opening whitespace
-```
-
->     words: org.apache.spark.sql.Dataset[String] = [value: string]
-
-``` scala
-// Generate running word count
-val wordCounts = words
-                  .groupBy("value").count() // this does the word count
-                  .orderBy($"count".desc) // we are simply sorting by the most frequent words
-```
-
->     wordCounts: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [value: string, count: bigint]
-
 After this code is executed, the streaming computation will have started in the background. The `query` object is a handle to that active streaming query, and we have decided to wait for the termination of the query using `awaitTermination()` to prevent the process from exiting while the query is active.
 
 Handling Event-time and Late Data
@@ -455,6 +502,55 @@ The two file streams can be acieved by running the codes in the following two da
 -   `037a_AnimalNamesStructStreamingFiles`
 -   `037b_Mix2NormalsStructStreamingFiles`
 
+You should have the following set of csv files (it won't be exactly the same names depending on when you start the stream of files).
+
+``` scala
+display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/"))
+```
+
+| path                                               | name    | size |
+|----------------------------------------------------|---------|------|
+| dbfs:/datasets/streamingFilesNormalMixture/29\_58/ | 29\_58/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_08/ | 30\_08/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_18/ | 30\_18/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_34/ | 30\_34/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/30\_41/ | 30\_41/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_48/ | 57\_48/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_55/ | 57\_55/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/58\_02/ | 58\_02/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/58\_09/ | 58\_09/ | 0.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/58\_16/ | 58\_16/ | 0.0  |
+
+Static and Streaming DataFrames
+-------------------------------
+
+Let's check out the files and their contents both via static as well as streaming DataFrames.
+
+This will also cement the fact that structured streaming allows interoperability between static and streaming data and can be useful for debugging.
+
+``` scala
+val peekIn = spark.read.format("csv").load("/datasets/streamingFilesNormalMixture/*/*.csv")
+peekIn.count() // total count of all the samples in all the files
+```
+
+>     peekIn: org.apache.spark.sql.DataFrame = [_c0: string, _c1: string]
+>     res72: Long = 500
+
+``` scala
+peekIn.show(5, false) // let's take a quick peek at what's in the CSV files
+```
+
+>     +-----------------------+--------------------+
+>     |_c0                    |_c1                 |
+>     +-----------------------+--------------------+
+>     |2017-11-22 09:58:01.659|0.21791376679544772 |
+>     |2017-11-22 09:58:01.664|0.011291967445604012|
+>     |2017-11-22 09:58:01.669|-0.30293144696154806|
+>     |2017-11-22 09:58:01.674|0.4303254534802833  |
+>     |2017-11-22 09:58:01.679|1.5521304466388752  |
+>     +-----------------------+--------------------+
+>     only showing top 5 rows
+
 ``` scala
 // Read all the csv files written atomically from a directory
 import org.apache.spark.sql.types._
@@ -486,31 +582,22 @@ val csvStreamingDF = spark
 >     csvStreamingDF: org.apache.spark.sql.DataFrame = [time: timestamp, score: double]
 
 ``` scala
-display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/"))
+csvStreamingDF.isStreaming    // Returns True for DataFrames that have streaming sources
 ```
 
-| path                                               | name    | size |
-|----------------------------------------------------|---------|------|
-| dbfs:/datasets/streamingFilesNormalMixture/29\_58/ | 29\_58/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_08/ | 30\_08/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_18/ | 30\_18/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_34/ | 30\_34/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/30\_41/ | 30\_41/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_48/ | 57\_48/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_55/ | 57\_55/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/58\_02/ | 58\_02/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/58\_09/ | 58\_09/ | 0.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/58\_16/ | 58\_16/ | 0.0  |
+>     res2: Boolean = true
 
 ``` scala
-val peekIn = spark.read.format("csv").load("/datasets/streamingFilesNormalMixture/*/*.csv")
-peekIn.count() // total count of all the samples in all the files
+csvStreamingDF.printSchema
 ```
 
->     peekIn: org.apache.spark.sql.DataFrame = [_c0: string, _c1: string]
->     res72: Long = 500
+>     root
+>      |-- time: timestamp (nullable = true)
+>      |-- score: double (nullable = true)
 
-You should have the following set of csv files (it won't be exactly the same names depending on when you start the stream of files).
+``` scala
+//display(csvStreamingDF) // if you want to see the stream coming at you as csvDF
+```
 
 ``` scala
 import org.apache.spark.sql.functions._
@@ -640,6 +727,8 @@ query.awaitTermination() // hit cancel to terminate
 >     Batch: 6
 >     -------------------------------------------
 
+Once the above streaming job has processed all the files in the directory, it will continue to "listen" in for new files in the directory. You could for example return to the other notebook `037b_Mix2NormalsStructStreamingFiles` and rerun the cell that writes another lot of newer files into the directory and return to this notebook to watch the above streaming job continue with additional batches.
+
 Static and Streaming DataSets
 -----------------------------
 
@@ -648,39 +737,6 @@ These examples generate streaming DataFrames that are untyped, meaning that the 
 Let us make a `dataset` version of the streaming dataframe.
 
 But first let us try it make the datset from the static dataframe and then apply it to the streming dataframe.
-
-``` scala
-//display(csvStreamingDF) // if you want to see the stream coming at you as csvDF
-```
-
-``` scala
-csvStaticDS.show(5,false) // looks like we got the dataset we want with strong typing
-```
-
->     +-----------------------+--------------------+
->     |time                   |score               |
->     +-----------------------+--------------------+
->     |2017-11-22 10:30:17.463|0.21791376679544772 |
->     |2017-11-22 10:30:17.468|0.011291967445604012|
->     |2017-11-22 10:30:17.473|-0.30293144696154806|
->     |2017-11-22 10:30:17.478|0.4303254534802833  |
->     |2017-11-22 10:30:17.484|1.5521304466388752  |
->     +-----------------------+--------------------+
->     only showing top 5 rows
-
-``` scala
-csvStreamingDF.isStreaming    // Returns True for DataFrames that have streaming sources
-```
-
->     res2: Boolean = true
-
-``` scala
-csvStreamingDF.printSchema
-```
-
->     root
->      |-- time: timestamp (nullable = true)
->      |-- score: double (nullable = true)
 
 ``` scala
 csvStaticDF.printSchema // schema of the static DF
@@ -704,6 +760,21 @@ val csvStaticDS = csvStaticDF.as[timedScores] // create a dataset from the dataf
 >     import java.sql.Timestamp
 >     defined class timedScores
 >     csvStaticDS: org.apache.spark.sql.Dataset[timedScores] = [time: timestamp, score: double]
+
+``` scala
+csvStaticDS.show(5,false) // looks like we got the dataset we want with strong typing
+```
+
+>     +-----------------------+--------------------+
+>     |time                   |score               |
+>     +-----------------------+--------------------+
+>     |2017-11-22 10:30:17.463|0.21791376679544772 |
+>     |2017-11-22 10:30:17.468|0.011291967445604012|
+>     |2017-11-22 10:30:17.473|-0.30293144696154806|
+>     |2017-11-22 10:30:17.478|0.4303254534802833  |
+>     |2017-11-22 10:30:17.484|1.5521304466388752  |
+>     +-----------------------+--------------------+
+>     only showing top 5 rows
 
 Now let us use the same code for making a streaming dataset.
 
@@ -856,84 +927,93 @@ spark.read.format("text").load("/datasets/streamingFiles").show(5,false) // let'
 >     +----------------------------------+
 >     only showing top 5 rows
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
 ``` scala
-dbutils.fs.head("/datasets/streamingFiles/00_00.log")
+import spark.implicits._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.functions._
+import java.sql.Timestamp
+
+// a static DS is convenient to work with
+val csvStaticDS = spark
+   .read
+   .option("sep", ";") // delimiter is ';'
+   .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
+   .toDF("time","animals")
+   .as[(Timestamp, String)]
+   .flatMap(
+     line => line._2.split(" ")
+                 .filter(_ != "") // Gustav's improvement
+                 .map(animal => (line._1, animal))
+    )
+   //.filter(_._2 != "") // remove empty strings from the leading whitespaces
+   .toDF("timestamp", "animal")
+   .as[(Timestamp, String)]
 ```
 
->     res43: String =
->     "2017-11-21 18:00:00+00:00; pig owl
->     "
-
-This `streamingLines` DataFrame represents an unbounded table containing the streaming text data. This table contains one column of strings named “value”, and each line in the streaming text data becomes a row in the table. Note, that this is not currently receiving any data as we are just setting up the transformation, and have not yet started it.
-
-Finally, we define the `wordCounts` DataFrame by grouping by the unique values in the Dataset and counting them. Note that this is a streaming DataFrame which represents the **running word counts of the stream**.
-
-Programming Model
-=================
-
-The key idea in Structured Streaming is to treat a live data stream as a table that is being continuously appended. This leads to a new stream processing model that is very similar to a batch processing model. You will express your streaming computation as standard batch-like query as on a static table, and Spark runs it as an *incremental* query on the *unbounded* input table. Let’s understand this model in more detail.
-
-Basic Concepts
---------------
-
-Consider the input data stream as the “Input Table”. Every data item that is arriving on the stream is like a new row being appended to the Input Table.
-
-![Stream as a Table](https://spark.apache.org/docs/2.2.0/img/structured-streaming-stream-as-a-table.png "Stream as a Table")
-
-A query on the input will generate the “Result Table”. Every trigger interval (say, every 1 second), new rows get appended to the Input Table, which eventually updates the Result Table. Whenever the result table gets updated, we would want to write the changed result rows to an external sink.
-
-![Model](https://spark.apache.org/docs/2.2.0/img/structured-streaming-model.png)
-
-The “Output” is defined as what gets written out to the external storage. The output can be defined in a different mode:
-
--   *Complete Mode* - The entire updated Result Table will be written to the external storage. It is up to the storage connector to decide how to handle writing of the entire table.
-
--   *Append Mode* - Only the new rows appended in the Result Table since the last trigger will be written to the external storage. This is applicable only on the queries where existing rows in the Result Table are not expected to change.
-
--   *Update Mode* - Only the rows that were updated in the Result Table since the last trigger will be written to the external storage (available since Spark 2.1.1). Note that this is different from the Complete Mode in that this mode only outputs the rows that have changed since the last trigger. If the query doesn’t contain aggregations, it will be equivalent to Append mode.
-
-Note that each mode is applicable on certain types of queries. This is discussed in detail later on *output-modes*. To illustrate the use of this model, let’s understand the model in context of the **Quick Example** above.
-
-The first `streamingLines` DataFrame is the input table, and the final `wordCounts` DataFrame is the result table. Note that the query on `streamingLines` DataFrame to generate `wordCounts` is *exactly the same* as it would be a static DataFrame. However, when this query is started, Spark will continuously check for new data from the directory. If there is new data, Spark will run an “incremental” query that combines the previous running counts with the new data to compute updated counts, as shown below.
-
-![Model](https://spark.apache.org/docs/2.2.0/img/structured-streaming-example-model.png)
-
-This model is significantly different from many other stream processing engines. Many streaming systems require the user to maintain running aggregations themselves, thus having to reason about fault-tolerance, and data consistency (at-least-once, or at-most-once, or exactly-once). In this model, Spark is responsible for updating the Result Table when there is new data, thus relieving the users from reasoning about it. As an example, let’s see how this model handles event-time based processing and late arriving data.
-
-Static and Streaming DataFrames
--------------------------------
-
-Let's check out the files and their contents both via static as well as streaming DataFrames.
-
-This will also cement the fact that structured streaming allows interoperability between static and streaming data and can be useful for debugging.
+>     import spark.implicits._
+>     import org.apache.spark.sql.types._
+>     import org.apache.spark.sql.functions._
+>     import java.sql.Timestamp
+>     csvStaticDS: org.apache.spark.sql.Dataset[(java.sql.Timestamp, String)] = [timestamp: timestamp, animal: string]
 
 ``` scala
-peekIn.show(5, false) // let's take a quick peek at what's in the CSV files
+csvStaticDS.show(5,false)
 ```
 
->     +-----------------------+--------------------+
->     |_c0                    |_c1                 |
->     +-----------------------+--------------------+
->     |2017-11-22 09:58:01.659|0.21791376679544772 |
->     |2017-11-22 09:58:01.664|0.011291967445604012|
->     |2017-11-22 09:58:01.669|-0.30293144696154806|
->     |2017-11-22 09:58:01.674|0.4303254534802833  |
->     |2017-11-22 09:58:01.679|1.5521304466388752  |
->     +-----------------------+--------------------+
+>     +-------------------+------+
+>     |timestamp          |animal|
+>     +-------------------+------+
+>     |2017-11-22 09:25:44|pig   |
+>     |2017-11-22 09:25:44|bat   |
+>     |2017-11-22 09:25:46|bat   |
+>     |2017-11-22 09:25:46|pig   |
+>     |2017-11-22 09:25:48|owl   |
+>     +-------------------+------+
 >     only showing top 5 rows
 
-Once the above streaming job has processed all the files in the directory, it will continue to "listen" in for new files in the directory. You could for example return to the other notebook `037b_Mix2NormalsStructStreamingFiles` and rerun the cell that writes another lot of newer files into the directory and return to this notebook to watch the above streaming job continue with additional batches.
+``` scala
+//make a user-specified schema for structured streaming
+val userSchema = new StructType()
+                      .add("time", "String") // we will read it as String and then convert into timestamp later
+                      .add("animals", "String")
 
-### Handling Late Data and Watermarking
+// streaming DS
+val csvStreamingDS = spark
+// the next three lines are needed for structured streaming from file streams
+  .readStream // for streaming
+  .option("MaxFilesPerTrigger", 1) //  for streaming
+  .schema(userSchema) // for streaming
+  .option("sep", ";") // delimiter is ';'
+  .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
+  .toDF("time","animals")
+  .as[(Timestamp, String)]
+  .flatMap(
+     line => line._2.split(" ").map(animal => (line._1, animal))
+    )
+  .filter(_._2 != "")
+  .toDF("timestamp", "animal")
+  .as[(Timestamp, String)]
+```
 
-Now consider what happens if one of the events arrives late to the application. For example, say, a word generated at 12:04 (i.e. event time) could be received by the application at 12:11. The application should use the time 12:04 instead of 12:11 to update the older counts for the window `12:00 - 12:10`. This occurs naturally in our window-based grouping – Structured Streaming can maintain the intermediate state for partial aggregates for a long period of time such that late data can update aggregates of old windows correctly, as illustrated below.
+>     userSchema: org.apache.spark.sql.types.StructType = StructType(StructField(time,StringType,true), StructField(animals,StringType,true))
+>     csvStreamingDS: org.apache.spark.sql.Dataset[(java.sql.Timestamp, String)] = [timestamp: timestamp, animal: string]
 
-![Handling Late Data](https://spark.apache.org/docs/2.2.0/img/structured-streaming-late-data.png)
+``` scala
+display(csvStreamingDS) // evaluate to see the animal words with timestamps streaming in
+```
 
-However, to run this query for days, it’s necessary for the system to bound the amount of intermediate in-memory state it accumulates. This means the system needs to know when an old aggregate can be dropped from the in-memory state because the application is not going to receive late data for that aggregate any more. To enable this, in Spark 2.1, we have introduced **watermarking**, which lets the engine automatically track the current event time in the data and attempt to clean up old state accordingly. You can define the watermark of a query by specifying the event time column and the threshold on how late the data is expected to be in terms of event time. For a specific window starting at time `T`, the engine will maintain state and allow late data to update the state until `(max event time seen by the engine - late threshold > T)`. In other words, late data within the threshold will be aggregated, but data later than the threshold will be dropped. Let’s understand this with an example. We can easily define watermarking on the previous example using `withWatermark()` as shown below.
+| timestamp                    | animal |
+|------------------------------|--------|
+| 2017-11-22T09:36:44.000+0000 | bat    |
+| 2017-11-22T09:36:44.000+0000 | dog    |
+| 2017-11-22T09:39:15.000+0000 | pig    |
+| 2017-11-22T09:39:15.000+0000 | rat    |
+| 2017-11-22T09:32:46.000+0000 | dog    |
+| 2017-11-22T09:32:46.000+0000 | cat    |
+| 2017-11-22T09:37:40.000+0000 | dog    |
+| 2017-11-22T09:37:40.000+0000 | rat    |
+| 2017-11-22T09:40:59.000+0000 | bat    |
+| 2017-11-22T09:40:59.000+0000 | cat    |
 
 ``` scala
 // Group the data by window and word and compute the count of each group
@@ -1027,93 +1107,13 @@ query.awaitTermination()
 >     Batch: 4
 >     -------------------------------------------
 
-``` scala
-//make a user-specified schema for structured streaming
-val userSchema = new StructType()
-                      .add("time", "String") // we will read it as String and then convert into timestamp later
-                      .add("animals", "String")
+### Handling Late Data and Watermarking
 
-// streaming DS
-val csvStreamingDS = spark
-// the next three lines are needed for structured streaming from file streams
-  .readStream // for streaming
-  .option("MaxFilesPerTrigger", 1) //  for streaming
-  .schema(userSchema) // for streaming
-  .option("sep", ";") // delimiter is ';'
-  .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
-  .toDF("time","animals")
-  .as[(Timestamp, String)]
-  .flatMap(
-     line => line._2.split(" ").map(animal => (line._1, animal))
-    )
-  .filter(_._2 != "")
-  .toDF("timestamp", "animal")
-  .as[(Timestamp, String)]
-```
+Now consider what happens if one of the events arrives late to the application. For example, say, a word generated at 12:04 (i.e. event time) could be received by the application at 12:11. The application should use the time 12:04 instead of 12:11 to update the older counts for the window `12:00 - 12:10`. This occurs naturally in our window-based grouping – Structured Streaming can maintain the intermediate state for partial aggregates for a long period of time such that late data can update aggregates of old windows correctly, as illustrated below.
 
->     userSchema: org.apache.spark.sql.types.StructType = StructType(StructField(time,StringType,true), StructField(animals,StringType,true))
->     csvStreamingDS: org.apache.spark.sql.Dataset[(java.sql.Timestamp, String)] = [timestamp: timestamp, animal: string]
+![Handling Late Data](https://spark.apache.org/docs/2.2.0/img/structured-streaming-late-data.png)
 
-``` scala
-import spark.implicits._
-import org.apache.spark.sql.types._
-import org.apache.spark.sql.functions._
-import java.sql.Timestamp
-
-// a static DS is convenient to work with
-val csvStaticDS = spark
-   .read
-   .option("sep", ";") // delimiter is ';'
-   .csv("/datasets/streamingFiles/*.log")    // Equivalent to format("csv").load("/path/to/directory")
-   .toDF("time","animals")
-   .as[(Timestamp, String)]
-   .flatMap(
-     line => line._2.split(" ")
-                 .filter(_ != "") // Gustav's improvement
-                 .map(animal => (line._1, animal))
-    )
-   //.filter(_._2 != "") // remove empty strings from the leading whitespaces
-   .toDF("timestamp", "animal")
-   .as[(Timestamp, String)]
-```
-
->     import spark.implicits._
->     import org.apache.spark.sql.types._
->     import org.apache.spark.sql.functions._
->     import java.sql.Timestamp
->     csvStaticDS: org.apache.spark.sql.Dataset[(java.sql.Timestamp, String)] = [timestamp: timestamp, animal: string]
-
-``` scala
-csvStaticDS.show(5,false)
-```
-
->     +-------------------+------+
->     |timestamp          |animal|
->     +-------------------+------+
->     |2017-11-22 09:25:44|pig   |
->     |2017-11-22 09:25:44|bat   |
->     |2017-11-22 09:25:46|bat   |
->     |2017-11-22 09:25:46|pig   |
->     |2017-11-22 09:25:48|owl   |
->     +-------------------+------+
->     only showing top 5 rows
-
-``` scala
-display(csvStreamingDS) // evaluate to see the animal words with timestamps streaming in
-```
-
-| timestamp                    | animal |
-|------------------------------|--------|
-| 2017-11-22T09:36:44.000+0000 | bat    |
-| 2017-11-22T09:36:44.000+0000 | dog    |
-| 2017-11-22T09:39:15.000+0000 | pig    |
-| 2017-11-22T09:39:15.000+0000 | rat    |
-| 2017-11-22T09:32:46.000+0000 | dog    |
-| 2017-11-22T09:32:46.000+0000 | cat    |
-| 2017-11-22T09:37:40.000+0000 | dog    |
-| 2017-11-22T09:37:40.000+0000 | rat    |
-| 2017-11-22T09:40:59.000+0000 | bat    |
-| 2017-11-22T09:40:59.000+0000 | cat    |
+However, to run this query for days, it’s necessary for the system to bound the amount of intermediate in-memory state it accumulates. This means the system needs to know when an old aggregate can be dropped from the in-memory state because the application is not going to receive late data for that aggregate any more. To enable this, in Spark 2.1, we have introduced **watermarking**, which lets the engine automatically track the current event time in the data and attempt to clean up old state accordingly. You can define the watermark of a query by specifying the event time column and the threshold on how late the data is expected to be in terms of event time. For a specific window starting at time `T`, the engine will maintain state and allow late data to update the state until `(max event time seen by the engine - late threshold > T)`. In other words, late data within the threshold will be aggregated, but data later than the threshold will be dropped. Let’s understand this with an example. We can easily define watermarking on the previous example using `withWatermark()` as shown below.
 
 ``` scala
 // Group the data by window and word and compute the count of each group

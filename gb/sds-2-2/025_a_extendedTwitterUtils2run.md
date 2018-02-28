@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Extended spark.streaming.twitter.TwitterUtils
 =============================================
 
@@ -173,5 +176,3 @@ object ExtendedTwitterUtils {
 println("done running the extendedTwitterUtils2run notebook - ready to stream from twitter")
 ```
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================

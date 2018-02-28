@@ -68,6 +68,20 @@ sc.textFile("databricks-datasets/songs/data-001/header.txt").collect()
 
 >     res1: Array[String] = Array(artist_id:string, artist_latitude:double, artist_longitude:double, artist_location:string, artist_name:string, duration:double, end_of_fade_in:double, key:int, key_confidence:double, loudness:double, release:string, song_hotnes:double, song_id:string, start_of_fade_out:double, tempo:double, time_signature:double, time_signature_confidence:double, title:string, year:double, partial_sequence:int)
 
+Remember you can `collect()` a huge RDD and crash the driver program - so it is a good practise to take a couple lines and count the number of lines, especially if you have no idea what file you are trying to read.
+
+``` scala
+sc.textFile("databricks-datasets/songs/data-001/header.txt").take(2)
+```
+
+>     res3: Array[String] = Array(artist_id:string, artist_latitude:double)
+
+``` scala
+sc.textFile("databricks-datasets/songs/data-001/header.txt").count()
+```
+
+>     res4: Long = 20
+
 ``` scala
 //sc.textFile("databricks-datasets/songs/data-001/header.txt").collect.map(println) // uncomment to see line-by-line
 ```
@@ -210,17 +224,3 @@ From now on we can easily query our data using the temporary table we just creat
 Truncated to 12 cols
 
 Next up is exploring this data. Click on the Exploration notebook to continue the tutorial.
-
-``` scala
-sc.textFile("databricks-datasets/songs/data-001/header.txt").take(2)
-```
-
->     res3: Array[String] = Array(artist_id:string, artist_latitude:double)
-
-``` scala
-sc.textFile("databricks-datasets/songs/data-001/header.txt").count()
-```
-
->     res4: Long = 20
-
-Remember you can `collect()` a huge RDD and crash the driver program - so it is a good practise to take a couple lines and count the number of lines, especially if you have no idea what file you are trying to read.

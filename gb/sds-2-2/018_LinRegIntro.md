@@ -51,17 +51,6 @@ Let's follow the exposition in:
 You need to scroll down the fitst link embedded in iframe below to get to the section on **Analysis of quantitative data** with **Descriptive statistics** and **Linear regression** sub-sections (you can skip the earlier part that shows you how to run everything locally in `spark-shell` - try this on your own later).
 
 <p class="htmlSandbox"><iframe 
- src="https://darrenjw.wordpress.com/2017/06/21/scala-glm-regression-modelling-in-scala/"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-<p class="htmlSandbox"><iframe 
  src="https://darrenjw.wordpress.com/2017/02/08/a-quick-introduction-to-apache-spark-for-statisticians/"
  width="95%" height="500"
  sandbox>
@@ -73,8 +62,6 @@ You need to scroll down the fitst link embedded in iframe below to get to the se
 </iframe></p>
 
 Let's do this live now...
-
-This gives you more on doing generalised linear modelling in Scala. But let's go back to out pipeline using the power-plant data.
 
 ``` scala
 import breeze.stats.distributions._
@@ -170,12 +157,6 @@ dfLR.show(5)
 >     dfLR: org.apache.spark.sql.DataFrame = [y: double, x1: double ... 1 more field]
 
 ``` scala
-val summ = fit.summary
-```
-
->     summ: org.apache.spark.ml.regression.LinearRegressionTrainingSummary = org.apache.spark.ml.regression.LinearRegressionTrainingSummary@3a691a44
-
-``` scala
 // importing for regression
 import org.apache.spark.ml.regression.LinearRegression
 import org.apache.spark.ml.linalg._
@@ -242,6 +223,12 @@ fit.coefficients
 >     res16: org.apache.spark.ml.linalg.Vector = [2.000334475296524,0.9990998828588862]
 
 ``` scala
+val summ = fit.summary
+```
+
+>     summ: org.apache.spark.ml.regression.LinearRegressionTrainingSummary = org.apache.spark.ml.regression.LinearRegressionTrainingSummary@3a691a44
+
+``` scala
 summ.r2
 ```
 
@@ -256,3 +243,15 @@ summ.predictions
 summ.residuals
 ```
 
+This gives you more on doing generalised linear modelling in Scala. But let's go back to out pipeline using the power-plant data.
+
+<p class="htmlSandbox"><iframe 
+ src="https://darrenjw.wordpress.com/2017/06/21/scala-glm-regression-modelling-in-scala/"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>

@@ -82,6 +82,27 @@ println(s"We have ${training.count} training images and ${test.count} test image
 Display our data. Each image has the true label (the `label` column) and a vector of `features` which represent pixel intensities (see below for details of what is in `training`).
 
 ``` scala
+training.printSchema()
+```
+
+>     root
+>      |-- label: double (nullable = true)
+>      |-- features: vector (nullable = true)
+
+``` scala
+training.show(3,true) // replace 'true' by 'false' to see the whole row hidden by '...'
+```
+
+>     +-----+--------------------+
+>     |label|            features|
+>     +-----+--------------------+
+>     |  5.0|(780,[152,153,154...|
+>     |  0.0|(780,[127,128,129...|
+>     |  4.0|(780,[160,161,162...|
+>     +-----+--------------------+
+>     only showing top 3 rows
+
+``` scala
 display(training) // this is databricks-specific for interactive visual convenience
 ```
 
@@ -218,6 +239,19 @@ val variedMaxDepthModels = (0 until 8).map { maxDepth =>
 
 >     variedMaxDepthModels: scala.collection.immutable.IndexedSeq[org.apache.spark.ml.PipelineModel] = Vector(pipeline_69ede46d1710, pipeline_d266ac2104e8, pipeline_56cd339e4e3b, pipeline_537b78b25cae, pipeline_78bbe3bd95e7, pipeline_00b13cbae30c, pipeline_26bb7880555e, pipeline_805019a1d27f)
 
+We will use the default metric to evaluate the performance of our classifier: \* <https://en.wikipedia.org/wiki/F1_score>.
+
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/F1_score"
+ width="95%" height="400"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
 ``` scala
 // Define an evaluation metric.  In this case, we will use "accuracy".
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
@@ -244,6 +278,23 @@ val f1MetricPerformanceMeasures = (0 until 8).map { maxDepth =>
 We can display our accuracy results and see immediately that deeper, larger trees are more powerful classifiers, achieving higher accuracies.
 
 *Note:* When you run `f1MetricPerformanceMeasures.show()`, you will get a table with f1 score getting better (i.e., approaching 1) with depth.
+
+``` scala
+f1MetricPerformanceMeasures.show()
+```
+
+>     +--------+-------------------+
+>     |maxDepth|                 f1|
+>     +--------+-------------------+
+>     |       0|  0.023138302649304|
+>     |       1|0.07684194241456495|
+>     |       2|0.21424979609445727|
+>     |       3|0.43288417913985733|
+>     |       4| 0.5918599114483921|
+>     |       5| 0.6799688659857508|
+>     |       6|  0.749398509702895|
+>     |       7|  0.789045306607664|
+>     +--------+-------------------+
 
 Even though deeper trees are more powerful, they are not always better (recall from the SF/NYC city classification from house features at [The visual description of ML and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)). If we kept increasing the depth on a rich enough dataset, training would take longer and longer. We also might risk [overfitting](https://en.wikipedia.org/wiki/Overfitting) (fitting the training data so well that our predictions get worse on test data); it is important to tune parameters *based on [held-out data](https://en.wikipedia.org/wiki/Test_set)* to prevent overfitting. This will ensure that the fitted model generalizes well to yet unseen data, i.e. minimizes [generalization error](https://en.wikipedia.org/wiki/Generalization_error) in a mathematical statistical sense.
 
@@ -281,60 +332,6 @@ val f1MetricPerformanceMeasures = Seq(2, 4, 8, 16, 32).map { case maxBins =>
 
 >     f1MetricPerformanceMeasures: org.apache.spark.sql.DataFrame = [maxBins: int, f1: double]
 
-We can see that extreme discretization (black and white) hurts performance as measured by F1-error, but only a bit. Using more bins increases the accuracy (but also makes learning more costly).
-
-#### What's next?
-
--   **Explore**: Try out tuning other parameters of trees---or even ensembles like [Random Forests or Gradient-Boosted Trees](http://spark.apache.org/docs/latest/ml-classification-regression.html#tree-ensembles).
--   **Automated tuning**: This type of tuning does not have to be done by hand. (We did it by hand here to show the effects of tuning in detail.) MLlib provides automated tuning functionality via `CrossValidator`. Check out the other Databricks ML Pipeline guides or the [Spark ML user guide](http://spark.apache.org/docs/latest/ml-guide.html) for details.
-
-**Resources**
-
-If you are interested in learning more on these topics, these resources can get you started: \* [Excellent visual description of Machine Learning and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) \* *This gives an intuitive visual explanation of ML, decision trees, overfitting, and more.* \* [Blog post on MLlib Random Forests and Gradient-Boosted Trees](https://databricks.com/blog/2015/01/21/random-forests-and-boosting-in-mllib.html) \* *Random Forests and Gradient-Boosted Trees combine many trees into more powerful ensemble models. This is the original post describing MLlib's forest and GBT implementations.* \* Wikipedia \* [Decision tree learning](https://en.wikipedia.org/wiki/Decision_tree_learning) \* [Overfitting](https://en.wikipedia.org/wiki/Overfitting) \* [Hyperparameter tuning](https://en.wikipedia.org/wiki/Hyperparameter_optimization)
-
-``` scala
-training.show(3,true) // replace 'true' by 'false' to see the whole row hidden by '...'
-```
-
->     +-----+--------------------+
->     |label|            features|
->     +-----+--------------------+
->     |  5.0|(780,[152,153,154...|
->     |  0.0|(780,[127,128,129...|
->     |  4.0|(780,[160,161,162...|
->     +-----+--------------------+
->     only showing top 3 rows
-
-``` scala
-f1MetricPerformanceMeasures.show()
-```
-
->     +--------+-------------------+
->     |maxDepth|                 f1|
->     +--------+-------------------+
->     |       0|  0.023138302649304|
->     |       1|0.07684194241456495|
->     |       2|0.21424979609445727|
->     |       3|0.43288417913985733|
->     |       4| 0.5918599114483921|
->     |       5| 0.6799688659857508|
->     |       6|  0.749398509702895|
->     |       7|  0.789045306607664|
->     +--------+-------------------+
-
-We will use the default metric to evaluate the performance of our classifier: \* <https://en.wikipedia.org/wiki/F1_score>.
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/F1_score"
- width="95%" height="400"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
 ``` scala
 f1MetricPerformanceMeasures.show()
 ```
@@ -349,11 +346,13 @@ f1MetricPerformanceMeasures.show()
 >     |     32| 0.749398509702895|
 >     +-------+------------------+
 
-``` scala
-training.printSchema()
-```
+We can see that extreme discretization (black and white) hurts performance as measured by F1-error, but only a bit. Using more bins increases the accuracy (but also makes learning more costly).
 
->     root
->      |-- label: double (nullable = true)
->      |-- features: vector (nullable = true)
+#### What's next?
 
+-   **Explore**: Try out tuning other parameters of trees---or even ensembles like [Random Forests or Gradient-Boosted Trees](http://spark.apache.org/docs/latest/ml-classification-regression.html#tree-ensembles).
+-   **Automated tuning**: This type of tuning does not have to be done by hand. (We did it by hand here to show the effects of tuning in detail.) MLlib provides automated tuning functionality via `CrossValidator`. Check out the other Databricks ML Pipeline guides or the [Spark ML user guide](http://spark.apache.org/docs/latest/ml-guide.html) for details.
+
+**Resources**
+
+If you are interested in learning more on these topics, these resources can get you started: \* [Excellent visual description of Machine Learning and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) \* *This gives an intuitive visual explanation of ML, decision trees, overfitting, and more.* \* [Blog post on MLlib Random Forests and Gradient-Boosted Trees](https://databricks.com/blog/2015/01/21/random-forests-and-boosting-in-mllib.html) \* *Random Forests and Gradient-Boosted Trees combine many trees into more powerful ensemble models. This is the original post describing MLlib's forest and GBT implementations.* \* Wikipedia \* [Decision tree learning](https://en.wikipedia.org/wiki/Decision_tree_learning) \* [Overfitting](https://en.wikipedia.org/wiki/Overfitting) \* [Hyperparameter tuning](https://en.wikipedia.org/wiki/Hyperparameter_optimization)

@@ -1,3 +1,20 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+Task - do now
+=============
+
+Write a mixture of two random graph models for file streaming later
+-------------------------------------------------------------------
+
+We will use it as a basic simulator for timeseries of network data. This can be extended for specific domains like network security where extra fields can be added for protocols, ports, etc.
+
+The raw ingredients are here... more or less.
+
+Read the code from github \* https://github.com/apache/spark/blob/master/graphx/src/main/scala/org/apache/spark/graphx/util/GraphGenerators.scala \* Also check out: https://github.com/graphframes/graphframes/blob/master/src/main/scala/org/graphframes/examples/Graphs.scala
+
+Let's focus on the two of the simplest (deterministic) graphs.
+
 ``` scala
 import scala.util.Random
 
@@ -284,19 +301,6 @@ force.on("tick", function () {
 </div>
 </p>
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Task - do now
-=============
-
-Write a mixture of two random graph models for file streaming later
--------------------------------------------------------------------
-
-We will use it as a basic simulator for timeseries of network data. This can be extended for specific domains like network security where extra fields can be added for protocols, ports, etc.
-
-The raw ingredients are here... more or less.
-
 Now, write code to simulate from a mixture of graphs models
 ===========================================================
 
@@ -305,9 +309,15 @@ Now, write code to simulate from a mixture of graphs models
 -   Second, try a truly random graph like lognormal degree distributed random graph and star
 -   Try to make a simulation of random networks that is closer to your domain of application (you can always drop in to python and R for this part - even using non-distributed algorithms for simulating large enough networks per burst).
 
-Let's focus on the two of the simplest (deterministic) graphs.
+``` scala
+val graphGrid: Graph[(Int,Int), Double] = GraphGenerators.gridGraph(sc, 50,50)
+val gG = GraphFrame.fromGraphX(graphGrid)
+gG.edges.count
+```
 
-Read the code from github \* https://github.com/apache/spark/blob/master/graphx/src/main/scala/org/apache/spark/graphx/util/GraphGenerators.scala \* Also check out: https://github.com/graphframes/graphframes/blob/master/src/main/scala/org/graphframes/examples/Graphs.scala
+>     graphGrid: org.apache.spark.graphx.Graph[(Int, Int),Double] = org.apache.spark.graphx.impl.GraphImpl@160a43de
+>     gG: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint, attr: struct<_1: int, _2: int>], e:[src: bigint, dst: bigint ... 1 more field])
+>     res10: Long = 4900
 
 ``` scala
 val graphStar: Graph[Int, Int] = GraphGenerators.starGraph(sc, 101)
@@ -332,14 +342,4 @@ gAllEdges.count
 ```
 
 >     res20: Double = 0.02
-
-``` scala
-val graphGrid: Graph[(Int,Int), Double] = GraphGenerators.gridGraph(sc, 50,50)
-val gG = GraphFrame.fromGraphX(graphGrid)
-gG.edges.count
-```
-
->     graphGrid: org.apache.spark.graphx.Graph[(Int, Int),Double] = org.apache.spark.graphx.impl.GraphImpl@160a43de
->     gG: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint, attr: struct<_1: int, _2: int>], e:[src: bigint, dst: bigint ... 1 more field])
->     res10: Long = 4900
 

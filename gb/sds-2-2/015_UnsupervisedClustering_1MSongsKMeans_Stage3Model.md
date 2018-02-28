@@ -18,6 +18,52 @@ This is the third step into our project. In the first step we parsed raw text fi
 We pick the most commonly used and simplest clustering algorithm (KMeans) for our job. The SparkML KMeans implementation expects input in a vector column. Fortunately, there are already utilities in SparkML that can help us convert existing columns in our table to a vector field. It is called `VectorAssembler`. Here we import that functionality and use it to create a new DataFrame
 
 ``` scala
+// Let's quickly do everything to register the tempView of the table here
+
+// this is a case class for our row objects
+case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Double, artist_location: String, artist_name: String, duration: Double, end_of_fade_in: Double, key: Int, key_confidence: Double, loudness: Double, release: String, song_hotness: Double, song_id: String, start_of_fade_out: Double, tempo: Double, time_signature: Double, time_signature_confidence: Double, title: String, year: Double, partial_sequence: Int)
+
+def parseLine(line: String): Song = {
+  // this is robust parsing by try-catching type exceptions
+  
+  def toDouble(value: String, defaultVal: Double): Double = {
+    try {
+       value.toDouble
+    } catch {
+      case e: Exception => defaultVal
+    }
+  }
+
+  def toInt(value: String, defaultVal: Int): Int = {
+    try {
+       value.toInt
+      } catch {
+      case e: Exception => defaultVal
+    }
+  }
+  // splitting the sting of each line by the delimiter TAB character '\t'
+  val tokens = line.split("\t")
+  
+  // making song objects
+  Song(tokens(0), toDouble(tokens(1), 0.0), toDouble(tokens(2), 0.0), tokens(3), tokens(4), toDouble(tokens(5), 0.0), toDouble(tokens(6), 0.0), toInt(tokens(7), -1), toDouble(tokens(8), 0.0), toDouble(tokens(9), 0.0), tokens(10), toDouble(tokens(11), 0.0), tokens(12), toDouble(tokens(13), 0.0), toDouble(tokens(14), 0.0), toDouble(tokens(15), 0.0), toDouble(tokens(16), 0.0), tokens(17), toDouble(tokens(18), 0.0), toInt(tokens(19), -1))
+}
+
+// this is loads all the data - a subset of the 1M songs dataset
+val dataRDD = sc.textFile("/databricks-datasets/songs/data-001/part-*") 
+
+// .. fill in comment
+val df = dataRDD.map(parseLine).toDF
+
+// .. fill in comment
+df.createOrReplaceTempView("songsTable")
+```
+
+>     defined class Song
+>     parseLine: (line: String)Song
+>     dataRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/songs/data-001/part-* MapPartitionsRDD[14103] at textFile at <console>:65
+>     df: org.apache.spark.sql.DataFrame = [artist_id: string, artist_latitude: double ... 18 more fields]
+
+``` scala
 import org.apache.spark.ml.feature.VectorAssembler
 
 val trainingData = new VectorAssembler()
@@ -276,6 +322,21 @@ display(transformed.sample(false, fraction = 0.1)) // try fraction=1.0 as this d
 
 Truncated to 30 rows
 
+``` scala
+displayHTML(frameIt("https://en.wikipedia.org/wiki/Euclidean_space",500))
+```
+
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Euclidean_space"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
 Do you see the problem in our clusters based on the plot?
 
 As you can see there is very little "separation" (*in the sense of being separable into two point clouds, that represent our two identifed clusters, such that they have minimal overlay of these two features, i.e. tempo and loudness. NOTE that this sense of "pairwise separation" is a **2D projection of all three features in 3D** [Euclidean Space](https://en.wikipedia.org/wiki/Euclidean_space), i.e. loudness, tempo and duration, that depends directly on their two-dimensional visually sense-making projection of perhaps two important song features, as depicted in the corresponding 2D-scatter-plot of tempo versus loudness within the **2D scatter plot matrix** that is helping us to **partially visualize in the 2D-plane all of the three features in the three dimensional real-valued feature space** that was the input to our K-Means algorithm*) between loudness, and tempo and generated clusters. To see that, focus on the panels in the first and second columns of the scatter plot matrix. For varying values of loudness and tempo prediction does not change. Instead, duration of a song alone predicts what cluster it belongs to. Why is that?
@@ -380,64 +441,3 @@ To really understand how the points in 3D behave you need to see them in 3D inte
 Let us take a look at this sageMath Worksheet published here: \* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews> \* and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files): \* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv> \* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv>
 
 The point of the above little example is that you need to be able to tell a sensible story with your data science process and not just blindly apply a heuristic, but highly scalable, algorithm which depends on the notion of nearest neighborhoods defined by the metric (Euclidean distances in 3-dimensional real-valued spaces in this example) induced by the features you have engineered or have the power to re/re/...-engineer to increase the meaningfullness of the problem at hand.
-
-``` scala
-// Let's quickly do everything to register the tempView of the table here
-
-// this is a case class for our row objects
-case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Double, artist_location: String, artist_name: String, duration: Double, end_of_fade_in: Double, key: Int, key_confidence: Double, loudness: Double, release: String, song_hotness: Double, song_id: String, start_of_fade_out: Double, tempo: Double, time_signature: Double, time_signature_confidence: Double, title: String, year: Double, partial_sequence: Int)
-
-def parseLine(line: String): Song = {
-  // this is robust parsing by try-catching type exceptions
-  
-  def toDouble(value: String, defaultVal: Double): Double = {
-    try {
-       value.toDouble
-    } catch {
-      case e: Exception => defaultVal
-    }
-  }
-
-  def toInt(value: String, defaultVal: Int): Int = {
-    try {
-       value.toInt
-      } catch {
-      case e: Exception => defaultVal
-    }
-  }
-  // splitting the sting of each line by the delimiter TAB character '\t'
-  val tokens = line.split("\t")
-  
-  // making song objects
-  Song(tokens(0), toDouble(tokens(1), 0.0), toDouble(tokens(2), 0.0), tokens(3), tokens(4), toDouble(tokens(5), 0.0), toDouble(tokens(6), 0.0), toInt(tokens(7), -1), toDouble(tokens(8), 0.0), toDouble(tokens(9), 0.0), tokens(10), toDouble(tokens(11), 0.0), tokens(12), toDouble(tokens(13), 0.0), toDouble(tokens(14), 0.0), toDouble(tokens(15), 0.0), toDouble(tokens(16), 0.0), tokens(17), toDouble(tokens(18), 0.0), toInt(tokens(19), -1))
-}
-
-// this is loads all the data - a subset of the 1M songs dataset
-val dataRDD = sc.textFile("/databricks-datasets/songs/data-001/part-*") 
-
-// .. fill in comment
-val df = dataRDD.map(parseLine).toDF
-
-// .. fill in comment
-df.createOrReplaceTempView("songsTable")
-```
-
->     defined class Song
->     parseLine: (line: String)Song
->     dataRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/songs/data-001/part-* MapPartitionsRDD[14103] at textFile at <console>:65
->     df: org.apache.spark.sql.DataFrame = [artist_id: string, artist_latitude: double ... 18 more fields]
-
-``` scala
-displayHTML(frameIt("https://en.wikipedia.org/wiki/Euclidean_space",500))
-```
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Euclidean_space"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>

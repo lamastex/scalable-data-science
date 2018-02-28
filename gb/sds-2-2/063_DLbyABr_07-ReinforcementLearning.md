@@ -1,3 +1,8 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+
 Playing Games and Driving Cars: Reinforcement Learning
 ======================================================
 
@@ -965,8 +970,3 @@ This project offers Keras add-on classes for simple experimentation with DQL: \*
 Try it at home: \* Hack the "Keras Plays Catch" demo to allow the ball to drift horizontally as it falls. Does it work? \* Try training the network on "delta frames" instead of static frames. This gives the network information about motion (implicitly). \* What if the screen is high-resolution? what happens? how could you handle it better?
 
 And if you have the sneaking suspicion that there is a connection between PG and DQL, you'd be right: https://arxiv.org/abs/1704.06440
-
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.

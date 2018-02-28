@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Streaming TDigest with flatMapGroupsWithState
 =============================================
 
@@ -277,5 +280,3 @@ query.awaitTermination()
 Arbitrary stateful aggregations are very powerful and you can really do a lot, especially if you are allowed to perform aggregations afterwards (flatmapGroupsWithState with Append mode). This is some really cool stuff!
 ```
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================

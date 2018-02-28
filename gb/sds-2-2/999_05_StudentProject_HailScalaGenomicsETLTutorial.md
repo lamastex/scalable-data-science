@@ -1,3 +1,20 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+Hail Tutorial in Scala for Population Genomics ETL
+==================================================
+
+Student Project
+---------------
+
+by [Dmytro Kryvokhyzha](https://github.com/evodify) and [Yevgen Ryeznik](https://github.com/yevgenryeznik)
+
+In this tutorial, we will analyze data from the [1000 Genomes Project](http://www.internationalgenome.org/about) as described in [Analyzing 1000 Genomes with Spark and Hail](https://docs.databricks.com/spark/latest/training/1000-genomes.html) except that we will use [Scala](https://www.scala-lang.org/) instead of [Python](https://www.python.org/).
+
+[Hail](https://hail.is) uses Python wrapper on top of [Apache Spark](https://spark.apache.org/docs/latest/index.html). We re-wrote the [Analyzing 1000 Genomes with Spark and Hail](https://docs.databricks.com/spark/latest/training/1000-genomes.html) tutorial in Scala with some modification and more up-to-date code as our course project for the [Scalable Data Science 2.2](https://lamastex.github.io/scalable-data-science/sds/2/2/) course.
+
+We believe this tutorial will help to understand the code of Hail better and it will be helpful for those who plan to develop genomic analyses in Scala and contribute to the Hail project.
+
 Introduction
 ------------
 
@@ -824,19 +841,3 @@ Data filtering:
 Such genetic data can be analyzed in various ways. A PCA is just one simple example.
 ```
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Hail Tutorial in Scala for Population Genomics ETL
-==================================================
-
-Student Project
----------------
-
-by [Dmytro Kryvokhyzha](https://github.com/evodify) and [Yevgen Ryeznik](https://github.com/yevgenryeznik)
-
-In this tutorial, we will analyze data from the [1000 Genomes Project](http://www.internationalgenome.org/about) as described in [Analyzing 1000 Genomes with Spark and Hail](https://docs.databricks.com/spark/latest/training/1000-genomes.html) except that we will use [Scala](https://www.scala-lang.org/) instead of [Python](https://www.python.org/).
-
-[Hail](https://hail.is) uses Python wrapper on top of [Apache Spark](https://spark.apache.org/docs/latest/index.html). We re-wrote the [Analyzing 1000 Genomes with Spark and Hail](https://docs.databricks.com/spark/latest/training/1000-genomes.html) tutorial in Scala with some modification and more up-to-date code as our course project for the [Scalable Data Science 2.2](https://lamastex.github.io/scalable-data-science/sds/2/2/) course.
-
-We believe this tutorial will help to understand the code of Hail better and it will be helpful for those who plan to develop genomic analyses in Scala and contribute to the Hail project.

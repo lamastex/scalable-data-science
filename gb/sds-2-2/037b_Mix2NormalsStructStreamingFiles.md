@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Write files periodically with normal mixture samples for structured streaming
 =============================================================================
 
@@ -38,6 +41,45 @@ println(myMixtureOf2Normals(1.0, 10.0, 0.99, r), myMixtureOf2Normals(1.0, 10.0, 
 >     r: scala.util.Random = scala.util.Random@44ccefc6
 
 ``` scala
+display(sc.parallelize(Vector.fill(1000){myMixtureOf2Normals(1.0, 10.0, 0.99, r)}).toDF.select("_2")) // histogram of 1000 samples
+```
+
+| \_2                    |
+|------------------------|
+| 1.63847575097573       |
+| 0.8497955378433464     |
+| 1.0173381805959432     |
+| -2.6960935205721848e-2 |
+| -6.096818465288045e-2  |
+| 0.6235321652739503     |
+| 1.1594225593708558     |
+| 2.6812781205628102     |
+| 2.3144624015522943     |
+| 3.2746230371718874     |
+| 0.6239556140200029     |
+| 0.6428284914761508     |
+| -0.42618967795971496   |
+| 0.4090774320731605     |
+| 0.731226227370048      |
+| 1.392728206581036      |
+| 1.3354355936933495     |
+| 0.17821385872329187    |
+| -0.23317608061362294   |
+| 0.47289802886431465    |
+| -1.9401934414671596    |
+| 10.214120281108658     |
+| 1.892684662207417      |
+| 1.0166947170672929     |
+| 2.2709372842290798e-2  |
+| 2.1067186310892803     |
+| -0.2704224394550252    |
+| 1.1899806078296409     |
+| 1.9798405611441416     |
+| 1.674277523545705      |
+
+Truncated to 30 rows
+
+``` scala
 dbutils.fs.rm("/datasets/streamingFilesNormalMixture/",true) // this is to delete the directory before staring a job
 ```
 
@@ -76,10 +118,29 @@ display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/"))
 | dbfs:/datasets/streamingFilesNormalMixture/58\_16/ | 58\_16/ | 0.0  |
 
 ``` scala
+display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/57_48/"))
+```
+
+| path                                                                                                                                 | name                                                                               | size   |
+|--------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------|
+| dbfs:/datasets/streamingFilesNormalMixture/57\_48/\_SUCCESS                                                                          | \_SUCCESS                                                                          | 0.0    |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_48/\_committed\_3065630503555994154                                                   | \_committed\_3065630503555994154                                                   | 109.0  |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_48/\_started\_3065630503555994154                                                     | \_started\_3065630503555994154                                                     | 0.0    |
+| dbfs:/datasets/streamingFilesNormalMixture/57\_48/part-00000-tid-3065630503555994154-a76cadd5-380e-4fe5-a4bf-962ca479c8de-0-c000.csv | part-00000-tid-3065630503555994154-a76cadd5-380e-4fe5-a4bf-962ca479c8de-0-c000.csv | 4313.0 |
+
+Take a peek at what was written.
+
+``` scala
 val df_csv = spark.read.option("inferSchema", "true").csv("/datasets/streamingFilesNormalMixture/57_48/*.csv")
 ```
 
 >     df_csv: org.apache.spark.sql.DataFrame = [_c0: timestamp, _c1: double]
+
+``` scala
+df_csv.count() // 100 samples per file
+```
+
+>     res28: Long = 100
 
 ``` scala
 df_csv.show(10,false) // first 10
@@ -100,65 +161,4 @@ df_csv.show(10,false) // first 10
 >     |2017-11-22 09:57:48.085|1.8464307210258604   |
 >     +-----------------------+---------------------+
 >     only showing top 10 rows
-
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Take a peek at what was written.
-
-``` scala
-display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/57_48/"))
-```
-
-| path                                                                                                                                 | name                                                                               | size   |
-|--------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------|
-| dbfs:/datasets/streamingFilesNormalMixture/57\_48/\_SUCCESS                                                                          | \_SUCCESS                                                                          | 0.0    |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_48/\_committed\_3065630503555994154                                                   | \_committed\_3065630503555994154                                                   | 109.0  |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_48/\_started\_3065630503555994154                                                     | \_started\_3065630503555994154                                                     | 0.0    |
-| dbfs:/datasets/streamingFilesNormalMixture/57\_48/part-00000-tid-3065630503555994154-a76cadd5-380e-4fe5-a4bf-962ca479c8de-0-c000.csv | part-00000-tid-3065630503555994154-a76cadd5-380e-4fe5-a4bf-962ca479c8de-0-c000.csv | 4313.0 |
-
-``` scala
-df_csv.count() // 100 samples per file
-```
-
->     res28: Long = 100
-
-``` scala
-display(sc.parallelize(Vector.fill(1000){myMixtureOf2Normals(1.0, 10.0, 0.99, r)}).toDF.select("_2")) // histogram of 1000 samples
-```
-
-| \_2                    |
-|------------------------|
-| 1.63847575097573       |
-| 0.8497955378433464     |
-| 1.0173381805959432     |
-| -2.6960935205721848e-2 |
-| -6.096818465288045e-2  |
-| 0.6235321652739503     |
-| 1.1594225593708558     |
-| 2.6812781205628102     |
-| 2.3144624015522943     |
-| 3.2746230371718874     |
-| 0.6239556140200029     |
-| 0.6428284914761508     |
-| -0.42618967795971496   |
-| 0.4090774320731605     |
-| 0.731226227370048      |
-| 1.392728206581036      |
-| 1.3354355936933495     |
-| 0.17821385872329187    |
-| -0.23317608061362294   |
-| 0.47289802886431465    |
-| -1.9401934414671596    |
-| 10.214120281108658     |
-| 1.892684662207417      |
-| 1.0166947170672929     |
-| 2.2709372842290798e-2  |
-| 2.1067186310892803     |
-| -0.2704224394550252    |
-| 1.1899806078296409     |
-| 1.9798405611441416     |
-| 1.674277523545705      |
-
-Truncated to 30 rows
 

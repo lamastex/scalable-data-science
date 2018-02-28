@@ -10,6 +10,55 @@ Why Apache Spark?
 
 Right-click the above image-link, open in a new tab and watch the video (4 minutes) or read about it in the Communications of the ACM in the frame below or from the link above.
 
+<p class="htmlSandbox"><iframe 
+ src="https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext"
+ width="95%" height="600">
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
+Some BDAS History behind Apache Spark
+=====================================
+
+The Berkeley Data Analytics Stack is BDAS
+-----------------------------------------
+
+### Spark is a sub-stack of BDAS
+
+**Source:**
+
+-   [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
+-   [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science 17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
+
+### BDAS State of The Union Talk by Ion Stoica, AMP Camp 6, Nov 2015
+
+The followign talk outlines the motivation and insights behind BDAS' research approach and how they address the cross-disciplinary nature of Big Data challenges and current work. \* **watch later (5 mins.):**
+
+[![Ion Stoica on State of Spark Union AmpCamp6](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/watch?v=s7kj9XzRBQk&start=91&end=386)
+
+key points
+----------
+
+-   started in 2011 with strong public-private funding
+-   Defense Advanced Research Projects Agency
+-   Lawrance Berkeley Laboratory
+-   National Science Foundation
+-   Amazon Web Services
+-   Google
+-   SAP
+-   The Berkeley AMPLab is creating a new approach to data analytics to seamlessly integrate the three main resources available for making sense of data at scale:
+-   Algorithms (machine learning and statistical techniques),
+-   Machines (in the form of scalable clusters and elastic cloud computing), and
+-   People (both individually as analysts and in crowds).
+-   The lab is realizing its ideas through the development of a freely-available Open Source software stack called BDAS: the Berkeley Data Analytics Stack.
+-   Several components of BDAS have gained significant traction in industry and elsewhere, including:
+-   the Mesos cluster resource manager,
+-   the Spark in-memory computation framework, a sub-stack of the BDAS stack,
+-   and more...
+
 ### The big data problem, Hardware, distributing work, handling failed and slow machines
 
 #### by Anthony Joseph in BerkeleyX/CS100.1x
@@ -96,52 +145,3 @@ EXTRA: For a historical insight see excerpts from an interview with Ion Stoica
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
-
-Some BDAS History behind Apache Spark
-=====================================
-
-The Berkeley Data Analytics Stack is BDAS
------------------------------------------
-
-### Spark is a sub-stack of BDAS
-
-**Source:**
-
--   [Ion Stoica's State of Spark Union AmpCamp 6, Nov 2015](https://www.slideshare.net/secret/9ON8EEAlVKP3Sl)
--   [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science 17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
-
-### BDAS State of The Union Talk by Ion Stoica, AMP Camp 6, Nov 2015
-
-The followign talk outlines the motivation and insights behind BDAS' research approach and how they address the cross-disciplinary nature of Big Data challenges and current work. \* **watch later (5 mins.):**
-
-[![Ion Stoica on State of Spark Union AmpCamp6](https://github.com/raazesh-sainudiin/scalable-data-science/raw/master/images/week1/stateofthebdasunionAmpCamp6Stoica-5_YTCover.png)](https://www.youtube.com/watch?v=s7kj9XzRBQk&start=91&end=386)
-
-key points
-----------
-
--   started in 2011 with strong public-private funding
--   Defense Advanced Research Projects Agency
--   Lawrance Berkeley Laboratory
--   National Science Foundation
--   Amazon Web Services
--   Google
--   SAP
--   The Berkeley AMPLab is creating a new approach to data analytics to seamlessly integrate the three main resources available for making sense of data at scale:
--   Algorithms (machine learning and statistical techniques),
--   Machines (in the form of scalable clusters and elastic cloud computing), and
--   People (both individually as analysts and in crowds).
--   The lab is realizing its ideas through the development of a freely-available Open Source software stack called BDAS: the Berkeley Data Analytics Stack.
--   Several components of BDAS have gained significant traction in industry and elsewhere, including:
--   the Mesos cluster resource manager,
--   the Spark in-memory computation framework, a sub-stack of the BDAS stack,
--   and more...
-
-<p class="htmlSandbox"><iframe 
- src="https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext"
- width="95%" height="600">
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>

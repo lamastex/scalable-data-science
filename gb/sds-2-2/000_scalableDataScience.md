@@ -60,6 +60,17 @@ Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T.
 -   policing
 -   marketing
 
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Data_science"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
 Standing on shoulders of giants!
 --------------------------------
 
@@ -148,6 +159,10 @@ Data Science Defined, Cloud Computing and What's Hard About Data Science?
 -   **(watch now 3:31)**: What's hard about data science
 -   [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/watch?v=MIqbwJ6AbIY?rel=0&modestbranding=1)
 
+**(Watch later 0:52)**: What is Data Science? According to a Udacity Course.
+
+[![What is Data Science? Udacity Course](https://img.youtube.com/vi/9PIqjaXJo7M/0.jpg)](https://www.youtube.com/watch?v=9PIqjaXJo7M)
+
 What should *you* be able to do at the end of this course?
 ==========================================================
 
@@ -216,6 +231,10 @@ Let's Break-out and Introduce each other briefly - (15-20 1-minute pitches)
 -   or chemical physics super-computer outputs?
 -   ...?
 
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
 20 minutes of 90+10 minutes are up!
 
 EXTRA: Databases Versus Data Science
@@ -260,25 +279,6 @@ EXTRA: Databases Versus Data Science
     -   business intelligence and analytics tools
 -   Most Maths/Stats/Computing programs cater to the *programmer* role
     -   Numpy and Matplotlib, R, Matlab, and Octave.
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Data_science"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-**(Watch later 0:52)**: What is Data Science? According to a Udacity Course.
-
-[![What is Data Science? Udacity Course](https://img.youtube.com/vi/9PIqjaXJo7M/0.jpg)](https://www.youtube.com/watch?v=9PIqjaXJo7M)
-
-------------------------------------------------------------------------
-
-------------------------------------------------------------------------
 
 What does a Data Scientist do today and how to prepare your mind for a career in data science?
 ----------------------------------------------------------------------------------------------

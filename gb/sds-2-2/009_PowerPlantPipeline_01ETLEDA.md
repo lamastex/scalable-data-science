@@ -108,6 +108,11 @@ powerPlantRDD.take(5).foreach(println) // Ctrl+Enter to print first 5 lines
 >     20.86	57.32	1010.24	76.64	446.48
 
 ``` scala
+// let us make sure we are using Spark version greater than 2.2 - we need a version closer to 2.0 if we want to use SparkSession and SQLContext 
+require(sc.version.replace(".", "").toInt >= 220, "Spark 2.2.0+ is required to run this notebook. Please attach it to a Spark 2.2.0+ cluster.")
+```
+
+``` scala
 // this reads the tsv file and turns it into a dataframe
 val powerPlantDF = spark.read // use 'sqlContext.read' instead if you want to use older Spark version > 1.3  see 008_ notebook
     .format("csv") // use spark.csv package
@@ -129,6 +134,12 @@ powerPlantDF.printSchema // print the schema of the DataFrame that was inferred
 >      |-- AP: double (nullable = true)
 >      |-- RH: double (nullable = true)
 >      |-- PE: double (nullable = true)
+
+``` scala
+powerPlantDF.count
+```
+
+>     res8: Long = 9568
 
 ### 2.1. Alternatively, load data via the upload GUI feature in databricks
 
@@ -173,6 +184,34 @@ Step 3: Explore Your Data
 -------------------------
 
 Now that we understand what we are trying to do, we need to load our data and describe it, explore it and verify it.
+
+#### Viewing the table as text
+
+By uisng `.show` method we can see some of the contents of the table in plain text.
+
+This works in pure Apache Spark, say in `Spark-Shell` without any notebook layer on top of Spark like databricks, zeppelin or jupyter.
+
+It is a good idea to use this method when possible.
+
+``` scala
+powerPlantDF.show(10) // try putting 1000 here instead of 10
+```
+
+>     +-----+-----+-------+-----+------+
+>     |   AT|    V|     AP|   RH|    PE|
+>     +-----+-----+-------+-----+------+
+>     |14.96|41.76|1024.07|73.17|463.26|
+>     |25.18|62.96|1020.04|59.08|444.37|
+>     | 5.11| 39.4|1012.16|92.14|488.56|
+>     |20.86|57.32|1010.24|76.64|446.48|
+>     |10.82| 37.5|1009.23|96.62| 473.9|
+>     |26.27|59.44|1012.23|58.77|443.67|
+>     |15.89|43.96|1014.02|75.24|467.35|
+>     | 9.48|44.71|1019.12|66.43|478.42|
+>     |14.64| 45.0|1021.78|41.25|475.98|
+>     |11.74|43.56|1015.14|70.72| 477.5|
+>     +-----+-----+-------+-----+------+
+>     only showing top 10 rows
 
 #### Viewing as DataFrame
 
@@ -251,11 +290,72 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 >     | default|             uscites|      false|
 >     +--------+--------------------+-----------+
 
+We can also access the list of tables and databases using `spark.catalog` methods as explained here: \* <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
+
+``` scala
+spark.catalog.listTables.show(false)
+```
+
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |name                      |database|description|tableType|isTemporary|
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |cities_csv                |default |null       |EXTERNAL |false      |
+>     |cleaned_taxes             |default |null       |MANAGED  |false      |
+>     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
+>     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
+>     |linkage                   |default |null       |EXTERNAL |false      |
+>     |nations                   |default |null       |EXTERNAL |false      |
+>     |newmplist                 |default |null       |EXTERNAL |false      |
+>     |ny_baby_names             |default |null       |MANAGED  |false      |
+>     |nzmpsandparty             |default |null       |EXTERNAL |false      |
+>     |pos_neg_category          |default |null       |EXTERNAL |false      |
+>     |rna                       |default |null       |MANAGED  |false      |
+>     |samh                      |default |null       |EXTERNAL |false      |
+>     |table1                    |default |null       |EXTERNAL |false      |
+>     |test_table                |default |null       |EXTERNAL |false      |
+>     |uscites                   |default |null       |EXTERNAL |false      |
+>     +--------------------------+--------+-----------+---------+-----------+
+
+``` scala
+spark.catalog.listDatabases.show(false)
+```
+
+>     +-------+---------------------+-------------------------+
+>     |name   |description          |locationUri              |
+>     +-------+---------------------+-------------------------+
+>     |default|Default Hive database|dbfs:/user/hive/warehouse|
+>     +-------+---------------------+-------------------------+
+
 We need to create a temporary view of the DataFrame as a table before being able to access it via SQL.
 
 ``` scala
 powerPlantDF.createOrReplaceTempView("power_plant_table") // Shift+Enter
 ```
+
+``` scala
+sqlContext.tables.show() 
+```
+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     |        |   power_plant_table|       true|
+>     +--------+--------------------+-----------+
 
 Note that table names are in lower-case only!
 
@@ -595,104 +695,3 @@ Truncated to 30 rows
 We will do the following steps in the sequel. - *Step 5: Data Preparation* - *Step 6: Data Modeling* - *Step 7: Tuning and Evaluation* - *Step 8: Deployment*
 
 Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
-
-``` scala
-// let us make sure we are using Spark version greater than 2.2 - we need a version closer to 2.0 if we want to use SparkSession and SQLContext 
-require(sc.version.replace(".", "").toInt >= 220, "Spark 2.2.0+ is required to run this notebook. Please attach it to a Spark 2.2.0+ cluster.")
-```
-
-``` scala
-powerPlantDF.count
-```
-
->     res8: Long = 9568
-
-#### Viewing the table as text
-
-By uisng `.show` method we can see some of the contents of the table in plain text.
-
-This works in pure Apache Spark, say in `Spark-Shell` without any notebook layer on top of Spark like databricks, zeppelin or jupyter.
-
-It is a good idea to use this method when possible.
-
-``` scala
-powerPlantDF.show(10) // try putting 1000 here instead of 10
-```
-
->     +-----+-----+-------+-----+------+
->     |   AT|    V|     AP|   RH|    PE|
->     +-----+-----+-------+-----+------+
->     |14.96|41.76|1024.07|73.17|463.26|
->     |25.18|62.96|1020.04|59.08|444.37|
->     | 5.11| 39.4|1012.16|92.14|488.56|
->     |20.86|57.32|1010.24|76.64|446.48|
->     |10.82| 37.5|1009.23|96.62| 473.9|
->     |26.27|59.44|1012.23|58.77|443.67|
->     |15.89|43.96|1014.02|75.24|467.35|
->     | 9.48|44.71|1019.12|66.43|478.42|
->     |14.64| 45.0|1021.78|41.25|475.98|
->     |11.74|43.56|1015.14|70.72| 477.5|
->     +-----+-----+-------+-----+------+
->     only showing top 10 rows
-
-``` scala
-spark.catalog.listDatabases.show(false)
-```
-
->     +-------+---------------------+-------------------------+
->     |name   |description          |locationUri              |
->     +-------+---------------------+-------------------------+
->     |default|Default Hive database|dbfs:/user/hive/warehouse|
->     +-------+---------------------+-------------------------+
-
-``` scala
-spark.catalog.listTables.show(false)
-```
-
->     +--------------------------+--------+-----------+---------+-----------+
->     |name                      |database|description|tableType|isTemporary|
->     +--------------------------+--------+-----------+---------+-----------+
->     |cities_csv                |default |null       |EXTERNAL |false      |
->     |cleaned_taxes             |default |null       |MANAGED  |false      |
->     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
->     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
->     |linkage                   |default |null       |EXTERNAL |false      |
->     |nations                   |default |null       |EXTERNAL |false      |
->     |newmplist                 |default |null       |EXTERNAL |false      |
->     |ny_baby_names             |default |null       |MANAGED  |false      |
->     |nzmpsandparty             |default |null       |EXTERNAL |false      |
->     |pos_neg_category          |default |null       |EXTERNAL |false      |
->     |rna                       |default |null       |MANAGED  |false      |
->     |samh                      |default |null       |EXTERNAL |false      |
->     |table1                    |default |null       |EXTERNAL |false      |
->     |test_table                |default |null       |EXTERNAL |false      |
->     |uscites                   |default |null       |EXTERNAL |false      |
->     +--------------------------+--------+-----------+---------+-----------+
-
-We can also access the list of tables and databases using `spark.catalog` methods as explained here: \* <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
-
-``` scala
-sqlContext.tables.show() 
-```
-
->     +--------+--------------------+-----------+
->     |database|           tableName|isTemporary|
->     +--------+--------------------+-----------+
->     | default|          cities_csv|      false|
->     | default|       cleaned_taxes|      false|
->     | default|commdettrumpclint...|      false|
->     | default|   donaldtrumptweets|      false|
->     | default|             linkage|      false|
->     | default|             nations|      false|
->     | default|           newmplist|      false|
->     | default|       ny_baby_names|      false|
->     | default|       nzmpsandparty|      false|
->     | default|    pos_neg_category|      false|
->     | default|                 rna|      false|
->     | default|                samh|      false|
->     | default|              table1|      false|
->     | default|          test_table|      false|
->     | default|             uscites|      false|
->     |        |   power_plant_table|       true|
->     +--------+--------------------+-----------+
-

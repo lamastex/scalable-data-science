@@ -12,6 +12,23 @@ Old Bailey Online Data Analysis in Apache Spark
 
 This work merely builds on [Old Bailey Online by Clive Emsley, Tim Hitchcock and Robert Shoemaker](https://www.oldbaileyonline.org/) that is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. Permissions beyond the scope of this license may be available at https://www.oldbaileyonline.org/static/Legal-info.jsp.
 
+<p class="htmlSandbox"><iframe 
+ src="https://www.oldbaileyonline.org/"
+ width="95%" height="450"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
+### This exciting dataset is here for a course project in digital humanities
+
+#### To understand the extraction job we are about to do here:
+
+-   see [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf).
+
 The data is already loaded in dbfs (see dowloading and loading section below for these details).
 
 Analysing the Full Old Bailey Online Sessions Papers Dataset
@@ -108,6 +125,17 @@ display(dbutils.fs.ls("dbfs:/datasets/obo/tei/sessionsPapers"))
 | dbfs:/datasets/obo/tei/sessionsPapers/16780116.xml  | 16780116.xml  | 36628.0 |
 
 Truncated to 30 rows
+
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/XML"
+ width="95%" height="450"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
 
 Step 1: Exploring data first: xml parsing in scala
 --------------------------------------------------
@@ -2428,6 +2456,942 @@ elem
 >                  , of <placeName id="t17280717-8-defloc32">Edmonton</placeName>
 >                       <interp value="Edmont...
 
+Quick Preparation
+-----------------
+
+#### Some examples to learn xml and scala in a hurry
+
+``` scala
+val p = new scala.xml.PrettyPrinter(80, 2)
+
+p.format(elem)
+```
+
+>     p: scala.xml.PrettyPrinter = scala.xml.PrettyPrinter@38ac7373
+>     res2: String =
+>     <TEI.2>
+>       <text>
+>         <body>
+>           <div0 id="17280717" type="sessionsPaper">
+>             <interp value="BAILEY" type="collection" inst="17280717"/>
+>             <interp value="1728" type="year" inst="17280717"/>
+>             <interp value="sessionsPapers/17280717" type="uri" inst="17280717"/>
+>             <interp value="17280717" type="date" inst="17280717"/>
+>             <xptr doc="17280717" type="transcription"/>
+>             <div1 id="f17280717-1" type="frontMatter">
+>               <interp value="BAILEY" type="collection" inst="f17280717-1"/>
+>               <interp value="1728" type="year" inst="f17280717-1"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="f17280717-1"/>
+>               <interp value="17280717" type="date" inst="f17280717-1"/>
+>               <xptr doc="172807170001" type="pageFacsimile"/>
+>               THE PROCEEDINGS AT THE Sessions of the Peace, and Oyer and Terminer for the City of LONDON: AND
+>               <p>
+>                 On the King's Commission of Goal-Delivery of Newgate, held at Justice-Hall in the Old Baily, for the CITY of LONDON and COUNTY of MIDDLESEX.
+>               </p>
+>               <p>
+>                 On Wednesday, Thursday, and Friday, being the 17th, 18th, and 19th of July, 1728, in the Second Year of His MAJESTY's Reign.
+>               </p>
+>               <p>(Price Six Pence)</p>
+>               <p>
+>                 BEFORE the Right Honourable Sir
+>                 <persName type="judiciaryName" id="f17280717-1-person1">
+>                   EDWARD
+>                          BECHER
+>                   <interp value="BECHER" type="surname" inst="f17280717-1-person1"/>
+>                   <interp value="EDWARD" type="given" inst="f17280717-1-person1"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person1"/>
+>                 </persName>
+>                 , Lord Mayor of the City of London; the Right Honourable the Lord Chief
+>                 <persName type="judiciaryName" id="f17280717-1-person2">
+>                   Baron
+>                          Pengelly
+>                   <interp value="Pengelly" type="surname" inst="f17280717-1-person2"/>
+>                   <interp value="Baron" type="given" inst="f17280717-1-person2"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person2"/>
+>                 </persName>
+>                 ; Mr. Justice Reynolds; Mr.
+>                 <persName type="judiciaryName" id="f17280717-1-person3">
+>                   Baron
+>                          Thompson
+>                   <interp value="Thompson" type="surname" inst="f17280717-1-person3"/>
+>                   <interp value="Baron" type="given" inst="f17280717-1-person3"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person3"/>
+>                 </persName>
+>                 , Recorder of the City of London; and
+>                 <persName type="judiciaryName" id="f17280717-1-person4">
+>                   John
+>                          Raby
+>                   <interp value="Raby" type="surname" inst="f17280717-1-person4"/>
+>                   <interp value="John" type="given" inst="f17280717-1-person4"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person4"/>
+>                 </persName>
+>                 , Esq; Serjeant at Law; and other His Majesty's Justices of Goal-Delivery, and Oyer and Terminer aforesaid; Together with several of His Majesty's Justices of the Peace for the said City of London.
+>               </p>
+>               <p>London Jury.</p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person5">
+>                   John
+>                          Land
+>                   <interp value="Land" type="surname" inst="f17280717-1-person5"/>
+>                   <interp value="John" type="given" inst="f17280717-1-person5"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person5"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person6">
+>                   Nathaniel
+>                          Mason
+>                   <interp value="Mason" type="surname" inst="f17280717-1-person6"/>
+>                   <interp value="Nathaniel" type="given" inst="f17280717-1-person6"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person6"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person7">
+>                   Benjamin
+>                          Allibone
+>                   <interp value="Allibone" type="surname" inst="f17280717-1-person7"/>
+>                   <interp value="Benjamin" type="given" inst="f17280717-1-person7"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person7"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person8">
+>                   Joseph
+>                          Westwood
+>                   <interp value="Westwood" type="surname" inst="f17280717-1-person8"/>
+>                   <interp value="Joseph" type="given" inst="f17280717-1-person8"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person8"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person9">
+>                   Gabriel
+>                          Wittacre
+>                   <interp value="Wittacre" type="surname" inst="f17280717-1-person9"/>
+>                   <interp value="Gabriel" type="given" inst="f17280717-1-person9"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person9"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person10">
+>                   Samuel
+>                          Tilley
+>                   <interp value="Tilley" type="surname" inst="f17280717-1-person10"/>
+>                   <interp value="Samuel" type="given" inst="f17280717-1-person10"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person10"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person11">
+>                   Robert
+>                          Lathwell
+>                   <interp value="Lathwell" type="surname" inst="f17280717-1-person11"/>
+>                   <interp value="Robert" type="given" inst="f17280717-1-person11"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person11"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person12">
+>                   Edward
+>                          Newman
+>                   <interp value="Newman" type="surname" inst="f17280717-1-person12"/>
+>                   <interp value="Edward" type="given" inst="f17280717-1-person12"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person12"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person13">
+>                   Nathaniel
+>                          Pickering
+>                   <interp value="Pickering" type="surname" inst="f17280717-1-person13"/>
+>                   <interp value="Nathaniel" type="given" inst="f17280717-1-person13"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person13"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person14">
+>                   Simon
+>                          Tunks
+>                   <interp value="Tunks" type="surname" inst="f17280717-1-person14"/>
+>                   <interp value="Simon" type="given" inst="f17280717-1-person14"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person14"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person15">
+>                   Thomas
+>                          Maud
+>                   <interp value="Maud" type="surname" inst="f17280717-1-person15"/>
+>                   <interp value="Thomas" type="given" inst="f17280717-1-person15"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person15"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person16">
+>                   John
+>                          Bond
+>                   <interp value="Bond" type="surname" inst="f17280717-1-person16"/>
+>                   <interp value="John" type="given" inst="f17280717-1-person16"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person16"/>
+>                 </persName>
+>                 .
+>               </p>
+>               <p>Middlesex Jury.</p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person17">
+>                   Elisha
+>                          Impey
+>                   <interp value="Impey" type="surname" inst="f17280717-1-person17"/>
+>                   <interp value="Elisha" type="given" inst="f17280717-1-person17"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person17"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person18">
+>                   Christopher
+>                          Harris
+>                   <interp value="Harris" type="surname" inst="f17280717-1-person18"/>
+>                   <interp value="Christopher" type="given" inst="f17280717-1-person18"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person18"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person19">
+>                   William
+>                          Perkins
+>                   <interp value="Perkins" type="surname" inst="f17280717-1-person19"/>
+>                   <interp value="William" type="given" inst="f17280717-1-person19"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person19"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person20">
+>                   Gilbert
+>                          Watson
+>                   <interp value="Watson" type="surname" inst="f17280717-1-person20"/>
+>                   <interp value="Gilbert" type="given" inst="f17280717-1-person20"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person20"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person21">
+>                   John
+>                          Wells
+>                   <interp value="Wells" type="surname" inst="f17280717-1-person21"/>
+>                   <interp value="John" type="given" inst="f17280717-1-person21"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person21"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person22">
+>                   William
+>                          Carpenter
+>                   <interp value="Carpenter" type="surname" inst="f17280717-1-person22"/>
+>                   <interp value="William" type="given" inst="f17280717-1-person22"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person22"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person23">
+>                   Allen
+>                          Evans
+>                   <interp value="Evans" type="surname" inst="f17280717-1-person23"/>
+>                   <interp value="Allen" type="given" inst="f17280717-1-person23"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person23"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person24">
+>                   Henry
+>                          Cowmbe
+>                   <interp value="Cowmbe" type="surname" inst="f17280717-1-person24"/>
+>                   <interp value="Henry" type="given" inst="f17280717-1-person24"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person24"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person25">
+>                   Simon
+>                          Parsons
+>                   <interp value="Parsons" type="surname" inst="f17280717-1-person25"/>
+>                   <interp value="Simon" type="given" inst="f17280717-1-person25"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person25"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person26">
+>                   George
+>                          Gilbert
+>                   <interp value="Gilbert" type="surname" inst="f17280717-1-person26"/>
+>                   <interp value="George" type="given" inst="f17280717-1-person26"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person26"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person27">
+>                   Nicholas
+>                          Gardner
+>                   <interp value="Gardner" type="surname" inst="f17280717-1-person27"/>
+>                   <interp value="Nicholas" type="given" inst="f17280717-1-person27"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person27"/>
+>                 </persName>
+>                 ,
+>               </p>
+>               <p>
+>                 <persName type="jurorName" id="f17280717-1-person28">
+>                   Thomas
+>                          Ireland
+>                   <interp value="Ireland" type="surname" inst="f17280717-1-person28"/>
+>                   <interp value="Thomas" type="given" inst="f17280717-1-person28"/>
+>                   <interp value="male" type="gender" inst="f17280717-1-person28"/>
+>                 </persName>
+>                 .
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-1" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-1"/>
+>               <interp value="1728" type="year" inst="t17280717-1"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-1"/>
+>               <interp value="17280717" type="date" inst="t17280717-1"/>
+>               <join
+>               targets="t17280717-1-defend29 t17280717-1-off2 t17280717-1-verdict5" targOrder="Y" id="t17280717-1-off2-c29" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-1-defend29">
+>                   James
+>                       Haddock
+>                   <interp value="Haddock" type="surname" inst="t17280717-1-defend29"/>
+>                   <interp value="James" type="given" inst="t17280717-1-defend29"/>
+>                   <interp value="male" type="gender" inst="t17280717-1-defend29"/>
+>                 </persName>
+>                 , of
+>                 <placeName id="t17280717-1-defloc1">St. Bennet's Paul's Wharf</placeName>
+>                 <interp
+>                 value="St. Bennet's Paul's Wharf" type="placeName" inst="t17280717-1-defloc1">
+>     </interp>
+>                 <interp value="defendantHome" type="type" inst="t17280717-1-defloc1"/>
+>                 <join
+>                 targets="t17280717-1-defend29 t17280717-1-defloc1" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 , was indicted for
+>                 <rs type="offenceDescription" id="t17280717-1-off2">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-1-off2"/>
+>                   <interp
+>                   value="theftFromPlace" type="offenceSubcategory" inst="t17280717-1-off2">
+>     </interp>
+>                   feloniously stealing 2 Guineas, and 5 l. 16 s. in Silver, a Silver Cup, a Silver Cork Screw, 2 Silver Spoons, and a Nutmeg-grater, in the Dwelling-House of
+>                   <persName type="victimName" id="t17280717-1-victim31">
+>                     James
+>                                Reeves
+>                     <interp value="Reeves" type="surname" inst="t17280717-1-victim31"/>
+>                     <interp value="James" type="given" inst="t17280717-1-victim31"/>
+>                     <interp value="male" type="gender" inst="t17280717-1-victim31"/>
+>                     <join
+>                     targets="t17280717-1-off2 t17280717-1-victim31" targOrder="Y" result="offenceVictim">
+>     </join>
+>                   </persName>
+>                 </rs>
+>                 , on the
+>                 <rs type="crimeDate" id="t17280717-1-cd3">
+>                   9th of April, and in the 13th Year of his late Majesty King George the First
+>                 </rs>
+>                 <join
+>                 targets="t17280717-1-off2 t17280717-1-cd3" targOrder="Y" result="offenceCrimeDate">
+>     </join>
+>                 , the Property of
+>                 <persName id="t17280717-1-person32">
+>                   James
+>                       Reeves
+>                   <interp value="Reeves" type="surname" inst="t17280717-1-person32"/>
+>                   <interp value="James" type="given" inst="t17280717-1-person32"/>
+>                   <interp value="male" type="gender" inst="t17280717-1-person32"/>
+>                 </persName>
+>                 aforesaid.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-1-person33">
+>                   Elizabeth
+>                       Reeves
+>                   <interp value="Reeves" type="surname" inst="t17280717-1-person33"/>
+>                   <interp value="Elizabeth" type="given" inst="t17280717-1-person33"/>
+>                   <interp value="female" type="gender" inst="t17280717-1-person33"/>
+>                 </persName>
+>                 depos'd, That the Prisoner was a Lodger at her House on
+>                 <placeName id="t17280717-1-crimeloc4">Addle-Hill</placeName>
+>                 <interp value="Addle-Hill" type="placeName" inst="t17280717-1-crimeloc4"/>
+>                 <interp value="crimeLocation" type="type" inst="t17280717-1-crimeloc4"/>
+>                 <join
+>                 targets="t17280717-1-off2 t17280717-1-crimeloc4" targOrder="Y" result="offencePlace">
+>     </join>
+>                 , near Doctors Commons, when this Robbery was committed, and that it being on the Sabbath Day, she desired the Prisoner, if he did not go abroad, to have an Eye to her Room, which she locked up, and which, he promised to have an Eye to; but when she came home, the Chamber Door and the Corner-Cupboard had been forced open, which appeared by the Mark of an Instrument, the Hinges tore off and the Money gone, the Drawers rifled, and the Plate taken out, though some of the Drawers, out of which the Plate was taken, she left lock'd when she went from Home; upon which she cried out, saying, she was robb'd, and the Prisoner's Wife being above Stairs, came down, and said, her Husband was gone out, that he had been guilty of Failings, and desired her to be easy and she would Work early and late to make Satisfaction, though she did not know he had taken the Things, but his not coming home again confirmed them the more in this Suspicion; and there were other Witnesses, who depos'd, That the Prosecutor left the Prisoner in Care of her Door, and that he promised to look after it.
+>               </p>
+>               <p>
+>                 The Prisoner said in his Defence, That Mrs. Reeves had lost a pair of Silver Buckles out of her Drawers a Fortnight before this Robbery, and she said, she did believe it was done by a Char-woman that she employ'd, which Mrs. Reeves acknowledging, and the Prisoner telling a plausible Story of his being in bad Circumstances, and that Day the Robbery was committed, one Diston pittying his Case, lent him Money to go down to Bristol, to Trade there, if possible to retrieve himself, and he not daring to go out of Doors in the Week Days, went out of the House unfortunately on that Afternoon: There being no positive Evidence against him, the Jury
+>                 <rs type="verdictDescription" id="t17280717-1-verdict5">
+>                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-1-verdict5"/>
+>                   acquitted
+>                 </rs>
+>                 him.
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-2" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-2"/>
+>               <interp value="1728" type="year" inst="t17280717-2"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-2"/>
+>               <interp value="17280717" type="date" inst="t17280717-2"/>
+>               <join
+>               targets="t17280717-2-defend35 t17280717-2-off6 t17280717-2-verdict7" targOrder="Y" id="t17280717-2-off6-c33" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-2-defend35">
+>                   David
+>                          Ball
+>                   <interp value="Ball" type="surname" inst="t17280717-2-defend35"/>
+>                   <interp value="David" type="given" inst="t17280717-2-defend35"/>
+>                   <interp value="male" type="gender" inst="t17280717-2-defend35"/>
+>                 </persName>
+>                 was indicted for
+>                 <rs type="offenceDescription" id="t17280717-2-off6">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-2-off6"/>
+>                   <interp value="pettyLarceny" type="offenceSubcategory" inst="t17280717-2-off6">
+>                   </interp>
+>                   a Petty Larceny, in stealing a Yard and a Quarter of Linnen Cloth, value 11 d.
+>                 </rs>
+>                 the Goods of
+>                 <persName type="victimName" id="t17280717-2-victim37">
+>                   John
+>                          Williams
+>                   <interp value="Williams" type="surname" inst="t17280717-2-victim37"/>
+>                   <interp value="John" type="given" inst="t17280717-2-victim37"/>
+>                   <interp value="male" type="gender" inst="t17280717-2-victim37"/>
+>                 </persName>
+>                 and
+>                 <persName type="victimName" id="t17280717-2-victim39">
+>                   William
+>                          Williams
+>                   <interp value="Williams" type="surname" inst="t17280717-2-victim39"/>
+>                   <interp value="William" type="given" inst="t17280717-2-victim39"/>
+>                   <interp value="male" type="gender" inst="t17280717-2-victim39"/>
+>                 </persName>
+>                 ; to which Indictment he
+>                 <rs type="verdictDescription" id="t17280717-2-verdict7">
+>                   <interp value="guilty" type="verdictCategory" inst="t17280717-2-verdict7"/>
+>                   <interp
+>                   value="pleadedGuilty" type="verdictSubcategory" inst="t17280717-2-verdict7">
+>     </interp>
+>                   pleaded Guilty
+>                 </rs>
+>                 .
+>               </p>
+>               <p>
+>                 <rs type="punishmentDescription" id="t17280717-2-punish8">
+>                   <interp value="transport" type="punishmentCategory" inst="t17280717-2-punish8">
+>                   </interp>
+>                   <join
+>                   targets="t17280717-2-defend35 t17280717-2-punish8" targOrder="Y" result="defendantPunishment">
+>     </join>
+>                   <note>[Transportation. See summary.]</note>
+>                 </rs>
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-3" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-3"/>
+>               <interp value="1728" type="year" inst="t17280717-3"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-3"/>
+>               <interp value="17280717" type="date" inst="t17280717-3"/>
+>               <join
+>               targets="t17280717-3-defend40 t17280717-3-off10 t17280717-3-verdict11" targOrder="Y" id="t17280717-3-off10-c36" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <xptr doc="172807170002" type="pageFacsimile"/>
+>                 <persName type="defendantName" id="t17280717-3-defend40">
+>                   Nathaniel
+>                       Mercy
+>                   <interp value="Mercy" type="surname" inst="t17280717-3-defend40"/>
+>                   <interp value="Nathaniel" type="given" inst="t17280717-3-defend40"/>
+>                   <interp value="male" type="gender" inst="t17280717-3-defend40"/>
+>                 </persName>
+>                 , of
+>                 <placeName id="t17280717-3-defloc9">St. James's Westminster</placeName>
+>                 <interp
+>                 value="St. James's Westminster" type="placeName" inst="t17280717-3-defloc9">
+>     </interp>
+>                 <interp value="defendantHome" type="type" inst="t17280717-3-defloc9"/>
+>                 <join
+>                 targets="t17280717-3-defend40 t17280717-3-defloc9" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 , was indicted for
+>                 <rs type="offenceDescription" id="t17280717-3-off10">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-3-off10"/>
+>                   <interp
+>                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-3-off10">
+>     </interp>
+>                   stealing a Coach Wheel, value 12 Shillings
+>                 </rs>
+>                 , the Goods of
+>                 <persName type="victimName" id="t17280717-3-victim41">
+>                   Thomas
+>                       West
+>                   <interp value="West" type="surname" inst="t17280717-3-victim41"/>
+>                   <interp value="Thomas" type="given" inst="t17280717-3-victim41"/>
+>                   <interp value="male" type="gender" inst="t17280717-3-victim41"/>
+>                   <join
+>                   targets="t17280717-3-off10 t17280717-3-victim41" targOrder="Y" result="offenceVictim">
+>     </join>
+>                 </persName>
+>                 , on the 9th of this Instant, to which Indictment he
+>                 <rs type="verdictDescription" id="t17280717-3-verdict11">
+>                   <interp value="guilty" type="verdictCategory" inst="t17280717-3-verdict11"/>
+>                   <interp
+>                   value="pleadedGuilty" type="verdictSubcategory" inst="t17280717-3-verdict11">
+>     </interp>
+>                   pleaded guilty
+>                 </rs>
+>                 .
+>               </p>
+>               <p>
+>                 <rs type="punishmentDescription" id="t17280717-3-punish12">
+>                   <interp
+>                   value="transport" type="punishmentCategory" inst="t17280717-3-punish12">
+>     </interp>
+>                   <join
+>                   targets="t17280717-3-defend40 t17280717-3-punish12" targOrder="Y" result="defendantPunishment">
+>     </join>
+>                   <note>[Transportation. See summary.]</note>
+>                 </rs>
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-4" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-4"/>
+>               <interp value="1728" type="year" inst="t17280717-4"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-4"/>
+>               <interp value="17280717" type="date" inst="t17280717-4"/>
+>               <join
+>               targets="t17280717-4-defend42 t17280717-4-off14 t17280717-4-verdict17" targOrder="Y" id="t17280717-4-off14-c38" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-4-defend42">
+>                   Margaret
+>                       King
+>                   <interp value="King" type="surname" inst="t17280717-4-defend42"/>
+>                   <interp value="Margaret" type="given" inst="t17280717-4-defend42"/>
+>                   <interp value="female" type="gender" inst="t17280717-4-defend42"/>
+>                 </persName>
+>                 , of
+>                 <placeName id="t17280717-4-defloc13">St. Ann's Westminster</placeName>
+>                 <interp
+>                 value="St. Ann's Westminster" type="placeName" inst="t17280717-4-defloc13">
+>     </interp>
+>                 <interp value="defendantHome" type="type" inst="t17280717-4-defloc13"/>
+>                 <join
+>                 targets="t17280717-4-defend42 t17280717-4-defloc13" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 , was indicted for
+>                 <rs type="offenceDescription" id="t17280717-4-off14">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-4-off14"/>
+>                   <interp
+>                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-4-off14">
+>     </interp>
+>                   privately stealing a Gold Watch, value 16 l.
+>                 </rs>
+>                 on the
+>                 <rs type="crimeDate" id="t17280717-4-cd15">first of May</rs>
+>                 <join
+>                 targets="t17280717-4-off14 t17280717-4-cd15" targOrder="Y" result="offenceCrimeDate">
+>     </join>
+>                 last, the Property of
+>                 <persName type="victimName" id="t17280717-4-victim43">
+>                   Timothy
+>                       Conner
+>                   <interp value="Conner" type="surname" inst="t17280717-4-victim43"/>
+>                   <interp value="Timothy" type="given" inst="t17280717-4-victim43"/>
+>                   <interp value="male" type="gender" inst="t17280717-4-victim43"/>
+>                   <join
+>                   targets="t17280717-4-off14 t17280717-4-victim43" targOrder="Y" result="offenceVictim">
+>     </join>
+>                 </persName>
+>                 .
+>               </p>
+>               <p>
+>                 The Prosecutor depos'd, That he met the Prisoner in the Street, and ask'd her to drink a Glass of Wine, to which she consented, and they went to the
+>                 <placeName id="t17280717-4-crimeloc16">
+>                   Swan Tavern in Newport Market
+>                 </placeName>
+>                 <interp
+>                 value="Swan Tavern in Newport Market" type="placeName" inst="t17280717-4-crimeloc16">
+>     </interp>
+>                 <interp value="crimeLocation" type="type" inst="t17280717-4-crimeloc16"/>
+>                 <join
+>                 targets="t17280717-4-off14 t17280717-4-crimeloc16" targOrder="Y" result="offencePlace">
+>     </join>
+>                 , and lovingly drank 4 Pints, the Prisoner asking him what it was a Clock, he pulled out his Gold Watch, and bid her look; that she took it in her Hand, but could not remember that she returned it again, neither could she say positively, that she had it, but as he mis'd it as soon as he parted with her he thought he had occasion of Suspicion; yet, said he, I had been drinking before, (tho' it was but Nine in the Morning)and can't tell directly how the Matter stood; which being all the Evidence he could give against her, she was
+>                 <rs type="verdictDescription" id="t17280717-4-verdict17">
+>                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-4-verdict17"/>
+>                   acquitted
+>                 </rs>
+>                 .
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-5" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-5"/>
+>               <interp value="1728" type="year" inst="t17280717-5"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-5"/>
+>               <interp value="17280717" type="date" inst="t17280717-5"/>
+>               <join
+>               targets="t17280717-5-defend44 t17280717-5-off19 t17280717-5-verdict22" targOrder="Y" id="t17280717-5-off19-c40" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-5-defend44">
+>                   Elizabeth
+>                       Mould
+>                   <interp value="Mould" type="surname" inst="t17280717-5-defend44"/>
+>                   <interp value="Elizabeth" type="given" inst="t17280717-5-defend44"/>
+>                   <interp value="female" type="gender" inst="t17280717-5-defend44"/>
+>                 </persName>
+>                 , of
+>                 <placeName id="t17280717-5-defloc18">St. Martins in the Fields</placeName>
+>                 <interp
+>                 value="St. Martins in the Fields" type="placeName" inst="t17280717-5-defloc18">
+>     </interp>
+>                 <interp value="defendantHome" type="type" inst="t17280717-5-defloc18"/>
+>                 <join
+>                 targets="t17280717-5-defend44 t17280717-5-defloc18" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 , was indicted for
+>                 <rs type="offenceDescription" id="t17280717-5-off19">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-5-off19"/>
+>                   <interp
+>                   value="pocketpicking" type="offenceSubcategory" inst="t17280717-5-off19">
+>     </interp>
+>                   privately stealing Fifty Pounds and eight Shillings, from the Person of
+>                   <persName type="victimName" id="t17280717-5-victim45">
+>                     John
+>                             Coxall
+>                     <interp value="Coxall" type="surname" inst="t17280717-5-victim45"/>
+>                     <interp value="John" type="given" inst="t17280717-5-victim45"/>
+>                     <interp value="male" type="gender" inst="t17280717-5-victim45"/>
+>                     <join
+>                     targets="t17280717-5-off19 t17280717-5-victim45" targOrder="Y" result="offenceVictim">
+>     </join>
+>                   </persName>
+>                 </rs>
+>                 , on the
+>                 <rs type="crimeDate" id="t17280717-5-cd20">24th of June</rs>
+>                 <join
+>                 targets="t17280717-5-off19 t17280717-5-cd20" targOrder="Y" result="offenceCrimeDate">
+>     </join>
+>                 last
+>               </p>
+>               <p>
+>                 The Prosecutor depos'd, That he being a
+>                 <rs type="occupation" id="t17280717-5-viclabel21">Bricklayer</rs>
+>                 <join
+>                 targets="t17280717-5-victim45 t17280717-5-viclabel21" targOrder="Y" result="persNameOccupation">
+>     </join>
+>                 , was endeavouring to get some Business to do, at the House where the Prisoner lived, and it being a Chandler's Shop, to obtain the Good-Will of the People, he call'd for several Drams, and treated the Mistress of the House and one Mrs. Greaves, who was his Customer, with Cyder, Brandy, &amp;c. that whilst they were drinking the Prisoner came into the Room, and he likewise treated her, and she, in return, wip'd him over the Face, and seem'd very fond of him, saying, she would give him a fine Nosegay, and something to cheer his Heart, if he would go with her to Covent-Garden Market, and then (as his Expression was) she weagled him down into the Cellar, and there kept him lock'd up in a back Passage, that he was very much in Liquor, and scarce sensible of what he did, but he found what she had done to his Sorrow, for she had taken all his Money, which he missing, made a Noise, and the People of the House hearing him, let him out of his Place of Confinement, by conducting him up the Back Stairs; that he got Officers and search'd the Cellar, but could not find the Prisoner. The Prisoner desiring he might be ask'd if they did not drink together in the Cellar, the Prosecutor answer'd, No, she would fetch no Drink, saying, she did not care to be seen by the Publicans; that she was all for dry Money, and she, and None but she, had his Fifty Pounds, for save only him and her, there were neither Man, Woman, nor Child, nor Dog nor Cat in the Cellar.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-5-person46">
+>                   Elizabeth
+>                       Harper
+>                   <interp value="Harper" type="surname" inst="t17280717-5-person46"/>
+>                   <interp value="Elizabeth" type="given" inst="t17280717-5-person46"/>
+>                   <interp value="female" type="gender" inst="t17280717-5-person46"/>
+>                 </persName>
+>                 depos'd, That the Prosecutor came into her Shop, and drank Cyder, Usquebaugh and Brandy, and being disguis'd in Liquor he pull'd out eight or ten Guineas and said, he was no Scoundrel; that she and Mrs. Greaves, whom he brought in to treat, begg'd he would put up his Money and take Care of it, and about that Time the Prisoner came into the Room, and familiarly stroaking his cheeks, persuaded him to go into the Cellar, saying, he should pay his Footing, that they staid half an Hour below, and this Deponent looking down, saw the Prisoner's Mother there, that he came up with her again, and treated her with Usquebaugh, and at 11 o' Clock, which was several Hours after, they heard him in a back Passage, where the House was supplied with Water, and letting him into their House, he said he was robb'd, at which this Deponent's Husband thrust him out of doors.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-5-person47">
+>                   Isabella
+>                       Greaves
+>                   <interp value="Greaves" type="surname" inst="t17280717-5-person47"/>
+>                   <interp value="Isabella" type="given" inst="t17280717-5-person47"/>
+>                   <interp value="female" type="gender" inst="t17280717-5-person47"/>
+>                 </persName>
+>                 likewise confirm'd every Part of this Deposition, adding, That the Prisoner was not to be seen that Night after the Robbery.
+>               </p>
+>               <p>
+>                 The Prisoner said in her Defence, That the Prosecutor went down into her Cellar, and behaved himself so rudely, that she was forced to threaten to send for an Officer, that she knew nothing of his Money, and had not gone away that Night, but as she was oblig'd by her Husband, and that she came next Morning and set her Greens out.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-5-person48">
+>                   Anthony
+>                       Dyer
+>                   <interp value="Dyer" type="surname" inst="t17280717-5-person48"/>
+>                   <interp value="Anthony" type="given" inst="t17280717-5-person48"/>
+>                   <interp value="male" type="gender" inst="t17280717-5-person48"/>
+>                 </persName>
+>                 depos'd, That the Prosecutor told him he had lost his Money being Drunk, that he had been in a Cellar and in a Vault, where he fell asleep, and gave a very odd account of the Adventure.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-5-person49">
+>                   George
+>                       Smith
+>                   <interp value="Smith" type="surname" inst="t17280717-5-person49"/>
+>                   <interp value="George" type="given" inst="t17280717-5-person49"/>
+>                   <interp value="male" type="gender" inst="t17280717-5-person49"/>
+>                 </persName>
+>                 depos'd, That the Prosecutor said he fell asleep upon a Vault, and could charge no Body.
+>               </p>
+>               <p>
+>                 The Constable, the Watchman, and others severally depos'd, That the Morning after this happened, he said he could charge no particular person, but he would indict the House. The Prisoner having a very good Character from several reputable Witnesses, the Jury
+>                 <rs type="verdictDescription" id="t17280717-5-verdict22">
+>                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-5-verdict22"/>
+>                   acquitted
+>                 </rs>
+>                 her.
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-6" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-6"/>
+>               <interp value="1728" type="year" inst="t17280717-6"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-6"/>
+>               <interp value="17280717" type="date" inst="t17280717-6"/>
+>               <join
+>               targets="t17280717-6-defend50 t17280717-6-off24 t17280717-6-verdict26" targOrder="Y" id="t17280717-6-off24-c46" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-6-defend50">
+>                   Phillip
+>                       Hilliard
+>                   <interp value="Hilliard" type="surname" inst="t17280717-6-defend50"/>
+>                   <interp value="Phillip" type="given" inst="t17280717-6-defend50"/>
+>                   <interp value="male" type="gender" inst="t17280717-6-defend50"/>
+>                 </persName>
+>                 , of
+>                 <placeName id="t17280717-6-defloc23">St. James's Westminster</placeName>
+>                 <interp
+>                 value="St. James's Westminster" type="placeName" inst="t17280717-6-defloc23">
+>     </interp>
+>                 <interp value="defendantHome" type="type" inst="t17280717-6-defloc23"/>
+>                 <join
+>                 targets="t17280717-6-defend50 t17280717-6-defloc23" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 , was indicted for
+>                 <rs type="offenceDescription" id="t17280717-6-off24">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-6-off24"/>
+>                   <interp
+>                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-6-off24">
+>     </interp>
+>                   feloniously stealing a Silver Spoon, value eleven Shillings, the Property of
+>                   <persName type="victimName" id="t17280717-6-victim51">
+>                     Abraham
+>                             Mannio
+>                     <interp value="Mannio" type="surname" inst="t17280717-6-victim51"/>
+>                     <interp value="Abraham" type="given" inst="t17280717-6-victim51"/>
+>                     <interp value="male" type="gender" inst="t17280717-6-victim51"/>
+>                     <join
+>                     targets="t17280717-6-off24 t17280717-6-victim51" targOrder="Y" result="offenceVictim">
+>     </join>
+>                   </persName>
+>                   , on the
+>                   <rs type="crimeDate" id="t17280717-6-cd25">27th of June</rs>
+>                   <join
+>                   targets="t17280717-6-off24 t17280717-6-cd25" targOrder="Y" result="offenceCrimeDate">
+>     </join>
+>                   last.
+>                 </rs>
+>               </p>
+>               <p>
+>                 Mr. Hayden depos'd, That the Prisoner brought the Spoon to him to pawn, and he suspecting it to be stolen, stopp'd him and carried him to the Round-House, where he confess'd he stole it at the Prosecutor's, he being invited there to Dinner with some Gentlemans Servants.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-6-person52">
+>                   Robert
+>                       Amey
+>                   <interp value="Amey" type="surname" inst="t17280717-6-person52"/>
+>                   <interp value="Robert" type="given" inst="t17280717-6-person52"/>
+>                   <interp value="male" type="gender" inst="t17280717-6-person52"/>
+>                 </persName>
+>                 depos'd, That he attended the Gentlemens Servants at Dinner, and afterwards they miss'd a Spoon, that Mr. Haydon sent them word of the Spoon brought to him by the Prisoner, and he going to match it by the others, found it to be the same which they had lost, it being of the same Make and Mark: The Fact being thus plainly proved upon him, the Jury found him
+>                 <rs type="verdictDescription" id="t17280717-6-verdict26">
+>                   <interp value="guilty" type="verdictCategory" inst="t17280717-6-verdict26"/>
+>                   <interp
+>                   value="theftunder1s" type="verdictSubcategory" inst="t17280717-6-verdict26">
+>     </interp>
+>                   guilty to the value of 10d.
+>                 </rs>
+>               </p>
+>               <p>
+>                 <rs type="punishmentDescription" id="t17280717-6-punish27">
+>                   <interp
+>                   value="transport" type="punishmentCategory" inst="t17280717-6-punish27">
+>     </interp>
+>                   <join
+>                   targets="t17280717-6-defend50 t17280717-6-punish27" targOrder="Y" result="defendantPunishment">
+>     </join>
+>                   <note>[Transportation. See summary.]</note>
+>                 </rs>
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-7" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-7"/>
+>               <interp value="1728" type="year" inst="t17280717-7"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-7"/>
+>               <interp value="17280717" type="date" inst="t17280717-7"/>
+>               <join
+>               targets="t17280717-7-defend53 t17280717-7-off29 t17280717-7-verdict31" targOrder="Y" id="t17280717-7-off29-c49" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-7-defend53">
+>                   Robert
+>                       Ashby
+>                   <interp value="Ashby" type="surname" inst="t17280717-7-defend53"/>
+>                   <interp value="Robert" type="given" inst="t17280717-7-defend53"/>
+>                   <interp value="male" type="gender" inst="t17280717-7-defend53"/>
+>                 </persName>
+>                 , of
+>                 <rs type="occupation" id="t17280717-7-deflabel28">St. Andrew's Holborn</rs>
+>                 <join
+>                 targets="t17280717-7-defend53 t17280717-7-deflabel28" targOrder="Y" result="persNameOccupation">
+>     </join>
+>                 , was indicted for
+>                 <rs type="offenceDescription" id="t17280717-7-off29">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-7-off29"/>
+>                   <interp
+>                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-7-off29">
+>     </interp>
+>                   stealing a Gold Watch, value 16 l. a Chain, value 4 l. a Cornelian Seal set in Gold, value 10s. the Property of
+>                   <persName type="victimName" id="t17280717-7-victim54">
+>                     Nicholas
+>                             Roper
+>                     <interp value="Roper" type="surname" inst="t17280717-7-victim54"/>
+>                     <interp value="Nicholas" type="given" inst="t17280717-7-victim54"/>
+>                     <interp value="male" type="gender" inst="t17280717-7-victim54"/>
+>                   </persName>
+>                   from the Person of
+>                   <persName type="victimName" id="t17280717-7-victim55">
+>                     Phoebe
+>                             Thickpenny
+>                     <interp value="Thickpenny" type="surname" inst="t17280717-7-victim55"/>
+>                     <interp value="Phoebe" type="given" inst="t17280717-7-victim55"/>
+>                     <interp value="female" type="gender" inst="t17280717-7-victim55"/>
+>                   </persName>
+>                 </rs>
+>                 , who depos'd, That her Mistress being at Little Chelsea, sent her to their House in Lad-lane, for the Watch and other Things she had occasion for, that she call'd at the Prisoner's in Castle Yard, Chick-Lane, as she was going towards Chelsea with the Watch and the Bundle, where she drank part of a Pint of Beer, some Tea 2 Quarterns of Brandy, and a Bottle of Cyder; that the Prisoner would go part of the Way home with her, and in
+>                 <placeName id="t17280717-7-crimeloc30">Leather-Lane</placeName>
+>                 <interp value="Leather-Lane" type="placeName" inst="t17280717-7-crimeloc30"/>
+>                 <interp value="crimeLocation" type="type" inst="t17280717-7-crimeloc30"/>
+>                 <join
+>                 targets="t17280717-7-off29 t17280717-7-crimeloc30" targOrder="Y" result="offencePlace">
+>     </join>
+>                 , he said, faith they would not part Dry lips, and accordingly they went into a publick House and drank a Pint of Twopenny, and two Quarterns of Brandy, that she had the Watch then, and at the Door the Prisoner kiss'd her, and gave her a shilling for a Coach, she having out-staid her Time; that when he kiss'd her, he put one Hand around her Waist, but what he did with the other she could not tell, that she then cross'd the Way to another House, and immediately miss'd the Watch, and she was sure she had pinn'd it so to her Side, that she could not drop it.
+>               </p>
+>               <p>
+>                 <persName id="t17280717-7-person56">
+>                   Margaret
+>                       Nelson
+>                   <interp value="Nelson" type="surname" inst="t17280717-7-person56"/>
+>                   <interp value="Margaret" type="given" inst="t17280717-7-person56"/>
+>                   <interp value="female" type="gender" inst="t17280717-7-person56"/>
+>                 </persName>
+>                 depos'd, That the Prisoner and Phoebe Thickpenny, came to her House in Leather-Lane, and he call'd for a private Room, to which the Girl would not consent, that the Girl wanted to go to, &amp;c. and she went with her, when the Girl said, she had her Mistress's Gold Watch, and seeming to look on it, told her it was 7 o' Clock, but this Deponent did not see the Watch, yet she said, she did verily believe she heard it beat, that they soon parted, and in a Quarter of an Hour the maid returned, and said she had lost the Watch.
+>               </p>
+>               <p>
+>                 The Prisoner said in his Defence, That he knew nothing of it, any further than she said it was her Mistress's, that they parted very good Friends, and she having been an old Sweetheart of his, laid her Head upon his Shoulder, and said, She could live and die there, which would have been no little Aggravation to his Crime, had he wrong'd so good Natur'd a Creature: But the Evidence against him being weak, and several appearing to his Character, the Jury
+>                 <rs type="verdictDescription" id="t17280717-7-verdict31">
+>                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-7-verdict31"/>
+>                   acquitted
+>                 </rs>
+>                 him.
+>               </p>
+>             </div1>
+>             <div1 id="t17280717-8" type="trialAccount">
+>               <interp value="BAILEY" type="collection" inst="t17280717-8"/>
+>               <interp value="1728" type="year" inst="t17280717-8"/>
+>               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-8"/>
+>               <interp value="17280717" type="date" inst="t17280717-8"/>
+>               <join
+>               targets="t17280717-8-defend57 t17280717-8-off33 t17280717-8-verdict35" targOrder="Y" id="t17280717-8-off33-c53" result="criminalCharge">
+>     </join>
+>               <join
+>               targets="t17280717-8-defend58 t17280717-8-off33 t17280717-8-verdict35" targOrder="Y" id="t17280717-8-off33-c54" result="criminalCharge">
+>     </join>
+>               <p>
+>                 <persName type="defendantName" id="t17280717-8-defend57">
+>                   Joseph
+>                       Plummer
+>                   <interp value="Plummer" type="surname" inst="t17280717-8-defend57"/>
+>                   <interp value="Joseph" type="given" inst="t17280717-8-defend57"/>
+>                   <interp value="male" type="gender" inst="t17280717-8-defend57"/>
+>                 </persName>
+>                 , and
+>                 <persName type="defendantName" id="t17280717-8-defend58">
+>                   Henry
+>                       Coleman
+>                   <interp value="Coleman" type="surname" inst="t17280717-8-defend58"/>
+>                   <interp value="Henry" type="given" inst="t17280717-8-defend58"/>
+>                   <interp value="male" type="gender" inst="t17280717-8-defend58"/>
+>                 </persName>
+>                 , of
+>                 <placeName id="t17280717-8-defloc32">Edmonton</placeName>
+>                 <interp value="Edmonton" type="placeName" inst="t17280717-8-defloc32"/>
+>                 <interp value="defendantHome" type="type" inst="t17280717-8-defloc32"/>
+>                 <join
+>                 targets="t17280717-8-defend57 t17280717-8-defloc32" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 <join
+>                 targets="t17280717-8-defend58 t17280717-8-defloc32" targOrder="Y" result="persNamePlace">
+>     </join>
+>                 , were indicted for
+>                 <rs type="offenceDescription" id="t17280717-8-off33">
+>                   <interp value="theft" type="offenceCategory" inst="t17280717-8-off33"/>
+>                   <interp
+>                   value="pettyLarceny" type="offenceSubcategory" inst="t17280717-8-off33">
+>     </interp>
+>                   stealing 2 Shirts, value 8d. a Silk Handkerchief, value 1d. and a Pair of Stockings, value 1d.
+>       ...
+
+``` scala
+
+
+%md
+### Better examples:
+
+http://alvinalexander.com/scala/how-to-extract-data-from-xml-nodes-in-scala
+
+http://alvinalexander.com/scala/scala-xml-xpath-example
+
+#### More advanced topics:
+
+https://alvinalexander.com/scala/serializing-deserializing-xml-scala-classes
+
+ 
+
+#### XML to JSON, if you want to go this route:
+
+https://stackoverflow.com/questions/9516973/xml-to-json-with-scala
+```
+
+Our Parsing Problem
+-------------------
+
+Let's dive deep on this data right away. See links above to learn xml more systematically to be able to parse other subsets of the data for your own project.
+
+For now, we will jump in to parse the input data of counts used in [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf).
+
 ``` scala
 (elem \\ "div0").map(Node => (Node \ "@type").text) // types of div0 node, the singleton root node for the file
 ```
@@ -4189,6 +5153,8 @@ pwd && ls -al
 >     -rw-r--r-- 1 root root 324723900 Sep  2  2016 OB_tei_7-2_CC-BY-NC.zip
 >     -rw-r--r-- 1 root root   1209487 Nov  7 21:20 OB-tiny_tei_7-2_CC-BY-NC.zip
 
+Make sure you comment/uncomment the right files depending on wheter you have downloaded the tiny dataset or the big one.
+
 ``` sh
 # unzip OB-tiny_tei_7-2_CC-BY-NC.zip
 unzip OB_tei_7-2_CC-BY-NC.zip
@@ -5276,968 +6242,3 @@ util.Properties.versionString // check scala version
 
 >     res5: String = version 2.11.8
 
-<p class="htmlSandbox"><iframe 
- src="https://www.oldbaileyonline.org/"
- width="95%" height="450"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-### This exciting dataset is here for a course project in digital humanities
-
-#### To understand the extraction job we are about to do here:
-
--   see [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf).
-
-Our Parsing Problem
--------------------
-
-Let's dive deep on this data right away. See links above to learn xml more systematically to be able to parse other subsets of the data for your own project.
-
-For now, we will jump in to parse the input data of counts used in [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf).
-
-``` scala
-
-
-%md
-### Better examples:
-
-http://alvinalexander.com/scala/how-to-extract-data-from-xml-nodes-in-scala
-
-http://alvinalexander.com/scala/scala-xml-xpath-example
-
-#### More advanced topics:
-
-https://alvinalexander.com/scala/serializing-deserializing-xml-scala-classes
-
- 
-
-#### XML to JSON, if you want to go this route:
-
-https://stackoverflow.com/questions/9516973/xml-to-json-with-scala
-```
-
-Quick Preparation
------------------
-
-#### Some examples to learn xml and scala in a hurry
-
-``` scala
-val p = new scala.xml.PrettyPrinter(80, 2)
-
-p.format(elem)
-```
-
->     p: scala.xml.PrettyPrinter = scala.xml.PrettyPrinter@38ac7373
->     res2: String =
->     <TEI.2>
->       <text>
->         <body>
->           <div0 id="17280717" type="sessionsPaper">
->             <interp value="BAILEY" type="collection" inst="17280717"/>
->             <interp value="1728" type="year" inst="17280717"/>
->             <interp value="sessionsPapers/17280717" type="uri" inst="17280717"/>
->             <interp value="17280717" type="date" inst="17280717"/>
->             <xptr doc="17280717" type="transcription"/>
->             <div1 id="f17280717-1" type="frontMatter">
->               <interp value="BAILEY" type="collection" inst="f17280717-1"/>
->               <interp value="1728" type="year" inst="f17280717-1"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="f17280717-1"/>
->               <interp value="17280717" type="date" inst="f17280717-1"/>
->               <xptr doc="172807170001" type="pageFacsimile"/>
->               THE PROCEEDINGS AT THE Sessions of the Peace, and Oyer and Terminer for the City of LONDON: AND
->               <p>
->                 On the King's Commission of Goal-Delivery of Newgate, held at Justice-Hall in the Old Baily, for the CITY of LONDON and COUNTY of MIDDLESEX.
->               </p>
->               <p>
->                 On Wednesday, Thursday, and Friday, being the 17th, 18th, and 19th of July, 1728, in the Second Year of His MAJESTY's Reign.
->               </p>
->               <p>(Price Six Pence)</p>
->               <p>
->                 BEFORE the Right Honourable Sir
->                 <persName type="judiciaryName" id="f17280717-1-person1">
->                   EDWARD
->                          BECHER
->                   <interp value="BECHER" type="surname" inst="f17280717-1-person1"/>
->                   <interp value="EDWARD" type="given" inst="f17280717-1-person1"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person1"/>
->                 </persName>
->                 , Lord Mayor of the City of London; the Right Honourable the Lord Chief
->                 <persName type="judiciaryName" id="f17280717-1-person2">
->                   Baron
->                          Pengelly
->                   <interp value="Pengelly" type="surname" inst="f17280717-1-person2"/>
->                   <interp value="Baron" type="given" inst="f17280717-1-person2"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person2"/>
->                 </persName>
->                 ; Mr. Justice Reynolds; Mr.
->                 <persName type="judiciaryName" id="f17280717-1-person3">
->                   Baron
->                          Thompson
->                   <interp value="Thompson" type="surname" inst="f17280717-1-person3"/>
->                   <interp value="Baron" type="given" inst="f17280717-1-person3"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person3"/>
->                 </persName>
->                 , Recorder of the City of London; and
->                 <persName type="judiciaryName" id="f17280717-1-person4">
->                   John
->                          Raby
->                   <interp value="Raby" type="surname" inst="f17280717-1-person4"/>
->                   <interp value="John" type="given" inst="f17280717-1-person4"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person4"/>
->                 </persName>
->                 , Esq; Serjeant at Law; and other His Majesty's Justices of Goal-Delivery, and Oyer and Terminer aforesaid; Together with several of His Majesty's Justices of the Peace for the said City of London.
->               </p>
->               <p>London Jury.</p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person5">
->                   John
->                          Land
->                   <interp value="Land" type="surname" inst="f17280717-1-person5"/>
->                   <interp value="John" type="given" inst="f17280717-1-person5"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person5"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person6">
->                   Nathaniel
->                          Mason
->                   <interp value="Mason" type="surname" inst="f17280717-1-person6"/>
->                   <interp value="Nathaniel" type="given" inst="f17280717-1-person6"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person6"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person7">
->                   Benjamin
->                          Allibone
->                   <interp value="Allibone" type="surname" inst="f17280717-1-person7"/>
->                   <interp value="Benjamin" type="given" inst="f17280717-1-person7"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person7"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person8">
->                   Joseph
->                          Westwood
->                   <interp value="Westwood" type="surname" inst="f17280717-1-person8"/>
->                   <interp value="Joseph" type="given" inst="f17280717-1-person8"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person8"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person9">
->                   Gabriel
->                          Wittacre
->                   <interp value="Wittacre" type="surname" inst="f17280717-1-person9"/>
->                   <interp value="Gabriel" type="given" inst="f17280717-1-person9"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person9"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person10">
->                   Samuel
->                          Tilley
->                   <interp value="Tilley" type="surname" inst="f17280717-1-person10"/>
->                   <interp value="Samuel" type="given" inst="f17280717-1-person10"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person10"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person11">
->                   Robert
->                          Lathwell
->                   <interp value="Lathwell" type="surname" inst="f17280717-1-person11"/>
->                   <interp value="Robert" type="given" inst="f17280717-1-person11"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person11"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person12">
->                   Edward
->                          Newman
->                   <interp value="Newman" type="surname" inst="f17280717-1-person12"/>
->                   <interp value="Edward" type="given" inst="f17280717-1-person12"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person12"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person13">
->                   Nathaniel
->                          Pickering
->                   <interp value="Pickering" type="surname" inst="f17280717-1-person13"/>
->                   <interp value="Nathaniel" type="given" inst="f17280717-1-person13"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person13"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person14">
->                   Simon
->                          Tunks
->                   <interp value="Tunks" type="surname" inst="f17280717-1-person14"/>
->                   <interp value="Simon" type="given" inst="f17280717-1-person14"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person14"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person15">
->                   Thomas
->                          Maud
->                   <interp value="Maud" type="surname" inst="f17280717-1-person15"/>
->                   <interp value="Thomas" type="given" inst="f17280717-1-person15"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person15"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person16">
->                   John
->                          Bond
->                   <interp value="Bond" type="surname" inst="f17280717-1-person16"/>
->                   <interp value="John" type="given" inst="f17280717-1-person16"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person16"/>
->                 </persName>
->                 .
->               </p>
->               <p>Middlesex Jury.</p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person17">
->                   Elisha
->                          Impey
->                   <interp value="Impey" type="surname" inst="f17280717-1-person17"/>
->                   <interp value="Elisha" type="given" inst="f17280717-1-person17"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person17"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person18">
->                   Christopher
->                          Harris
->                   <interp value="Harris" type="surname" inst="f17280717-1-person18"/>
->                   <interp value="Christopher" type="given" inst="f17280717-1-person18"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person18"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person19">
->                   William
->                          Perkins
->                   <interp value="Perkins" type="surname" inst="f17280717-1-person19"/>
->                   <interp value="William" type="given" inst="f17280717-1-person19"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person19"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person20">
->                   Gilbert
->                          Watson
->                   <interp value="Watson" type="surname" inst="f17280717-1-person20"/>
->                   <interp value="Gilbert" type="given" inst="f17280717-1-person20"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person20"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person21">
->                   John
->                          Wells
->                   <interp value="Wells" type="surname" inst="f17280717-1-person21"/>
->                   <interp value="John" type="given" inst="f17280717-1-person21"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person21"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person22">
->                   William
->                          Carpenter
->                   <interp value="Carpenter" type="surname" inst="f17280717-1-person22"/>
->                   <interp value="William" type="given" inst="f17280717-1-person22"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person22"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person23">
->                   Allen
->                          Evans
->                   <interp value="Evans" type="surname" inst="f17280717-1-person23"/>
->                   <interp value="Allen" type="given" inst="f17280717-1-person23"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person23"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person24">
->                   Henry
->                          Cowmbe
->                   <interp value="Cowmbe" type="surname" inst="f17280717-1-person24"/>
->                   <interp value="Henry" type="given" inst="f17280717-1-person24"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person24"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person25">
->                   Simon
->                          Parsons
->                   <interp value="Parsons" type="surname" inst="f17280717-1-person25"/>
->                   <interp value="Simon" type="given" inst="f17280717-1-person25"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person25"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person26">
->                   George
->                          Gilbert
->                   <interp value="Gilbert" type="surname" inst="f17280717-1-person26"/>
->                   <interp value="George" type="given" inst="f17280717-1-person26"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person26"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person27">
->                   Nicholas
->                          Gardner
->                   <interp value="Gardner" type="surname" inst="f17280717-1-person27"/>
->                   <interp value="Nicholas" type="given" inst="f17280717-1-person27"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person27"/>
->                 </persName>
->                 ,
->               </p>
->               <p>
->                 <persName type="jurorName" id="f17280717-1-person28">
->                   Thomas
->                          Ireland
->                   <interp value="Ireland" type="surname" inst="f17280717-1-person28"/>
->                   <interp value="Thomas" type="given" inst="f17280717-1-person28"/>
->                   <interp value="male" type="gender" inst="f17280717-1-person28"/>
->                 </persName>
->                 .
->               </p>
->             </div1>
->             <div1 id="t17280717-1" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-1"/>
->               <interp value="1728" type="year" inst="t17280717-1"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-1"/>
->               <interp value="17280717" type="date" inst="t17280717-1"/>
->               <join
->               targets="t17280717-1-defend29 t17280717-1-off2 t17280717-1-verdict5" targOrder="Y" id="t17280717-1-off2-c29" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-1-defend29">
->                   James
->                       Haddock
->                   <interp value="Haddock" type="surname" inst="t17280717-1-defend29"/>
->                   <interp value="James" type="given" inst="t17280717-1-defend29"/>
->                   <interp value="male" type="gender" inst="t17280717-1-defend29"/>
->                 </persName>
->                 , of
->                 <placeName id="t17280717-1-defloc1">St. Bennet's Paul's Wharf</placeName>
->                 <interp
->                 value="St. Bennet's Paul's Wharf" type="placeName" inst="t17280717-1-defloc1">
->     </interp>
->                 <interp value="defendantHome" type="type" inst="t17280717-1-defloc1"/>
->                 <join
->                 targets="t17280717-1-defend29 t17280717-1-defloc1" targOrder="Y" result="persNamePlace">
->     </join>
->                 , was indicted for
->                 <rs type="offenceDescription" id="t17280717-1-off2">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-1-off2"/>
->                   <interp
->                   value="theftFromPlace" type="offenceSubcategory" inst="t17280717-1-off2">
->     </interp>
->                   feloniously stealing 2 Guineas, and 5 l. 16 s. in Silver, a Silver Cup, a Silver Cork Screw, 2 Silver Spoons, and a Nutmeg-grater, in the Dwelling-House of
->                   <persName type="victimName" id="t17280717-1-victim31">
->                     James
->                                Reeves
->                     <interp value="Reeves" type="surname" inst="t17280717-1-victim31"/>
->                     <interp value="James" type="given" inst="t17280717-1-victim31"/>
->                     <interp value="male" type="gender" inst="t17280717-1-victim31"/>
->                     <join
->                     targets="t17280717-1-off2 t17280717-1-victim31" targOrder="Y" result="offenceVictim">
->     </join>
->                   </persName>
->                 </rs>
->                 , on the
->                 <rs type="crimeDate" id="t17280717-1-cd3">
->                   9th of April, and in the 13th Year of his late Majesty King George the First
->                 </rs>
->                 <join
->                 targets="t17280717-1-off2 t17280717-1-cd3" targOrder="Y" result="offenceCrimeDate">
->     </join>
->                 , the Property of
->                 <persName id="t17280717-1-person32">
->                   James
->                       Reeves
->                   <interp value="Reeves" type="surname" inst="t17280717-1-person32"/>
->                   <interp value="James" type="given" inst="t17280717-1-person32"/>
->                   <interp value="male" type="gender" inst="t17280717-1-person32"/>
->                 </persName>
->                 aforesaid.
->               </p>
->               <p>
->                 <persName id="t17280717-1-person33">
->                   Elizabeth
->                       Reeves
->                   <interp value="Reeves" type="surname" inst="t17280717-1-person33"/>
->                   <interp value="Elizabeth" type="given" inst="t17280717-1-person33"/>
->                   <interp value="female" type="gender" inst="t17280717-1-person33"/>
->                 </persName>
->                 depos'd, That the Prisoner was a Lodger at her House on
->                 <placeName id="t17280717-1-crimeloc4">Addle-Hill</placeName>
->                 <interp value="Addle-Hill" type="placeName" inst="t17280717-1-crimeloc4"/>
->                 <interp value="crimeLocation" type="type" inst="t17280717-1-crimeloc4"/>
->                 <join
->                 targets="t17280717-1-off2 t17280717-1-crimeloc4" targOrder="Y" result="offencePlace">
->     </join>
->                 , near Doctors Commons, when this Robbery was committed, and that it being on the Sabbath Day, she desired the Prisoner, if he did not go abroad, to have an Eye to her Room, which she locked up, and which, he promised to have an Eye to; but when she came home, the Chamber Door and the Corner-Cupboard had been forced open, which appeared by the Mark of an Instrument, the Hinges tore off and the Money gone, the Drawers rifled, and the Plate taken out, though some of the Drawers, out of which the Plate was taken, she left lock'd when she went from Home; upon which she cried out, saying, she was robb'd, and the Prisoner's Wife being above Stairs, came down, and said, her Husband was gone out, that he had been guilty of Failings, and desired her to be easy and she would Work early and late to make Satisfaction, though she did not know he had taken the Things, but his not coming home again confirmed them the more in this Suspicion; and there were other Witnesses, who depos'd, That the Prosecutor left the Prisoner in Care of her Door, and that he promised to look after it.
->               </p>
->               <p>
->                 The Prisoner said in his Defence, That Mrs. Reeves had lost a pair of Silver Buckles out of her Drawers a Fortnight before this Robbery, and she said, she did believe it was done by a Char-woman that she employ'd, which Mrs. Reeves acknowledging, and the Prisoner telling a plausible Story of his being in bad Circumstances, and that Day the Robbery was committed, one Diston pittying his Case, lent him Money to go down to Bristol, to Trade there, if possible to retrieve himself, and he not daring to go out of Doors in the Week Days, went out of the House unfortunately on that Afternoon: There being no positive Evidence against him, the Jury
->                 <rs type="verdictDescription" id="t17280717-1-verdict5">
->                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-1-verdict5"/>
->                   acquitted
->                 </rs>
->                 him.
->               </p>
->             </div1>
->             <div1 id="t17280717-2" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-2"/>
->               <interp value="1728" type="year" inst="t17280717-2"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-2"/>
->               <interp value="17280717" type="date" inst="t17280717-2"/>
->               <join
->               targets="t17280717-2-defend35 t17280717-2-off6 t17280717-2-verdict7" targOrder="Y" id="t17280717-2-off6-c33" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-2-defend35">
->                   David
->                          Ball
->                   <interp value="Ball" type="surname" inst="t17280717-2-defend35"/>
->                   <interp value="David" type="given" inst="t17280717-2-defend35"/>
->                   <interp value="male" type="gender" inst="t17280717-2-defend35"/>
->                 </persName>
->                 was indicted for
->                 <rs type="offenceDescription" id="t17280717-2-off6">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-2-off6"/>
->                   <interp value="pettyLarceny" type="offenceSubcategory" inst="t17280717-2-off6">
->                   </interp>
->                   a Petty Larceny, in stealing a Yard and a Quarter of Linnen Cloth, value 11 d.
->                 </rs>
->                 the Goods of
->                 <persName type="victimName" id="t17280717-2-victim37">
->                   John
->                          Williams
->                   <interp value="Williams" type="surname" inst="t17280717-2-victim37"/>
->                   <interp value="John" type="given" inst="t17280717-2-victim37"/>
->                   <interp value="male" type="gender" inst="t17280717-2-victim37"/>
->                 </persName>
->                 and
->                 <persName type="victimName" id="t17280717-2-victim39">
->                   William
->                          Williams
->                   <interp value="Williams" type="surname" inst="t17280717-2-victim39"/>
->                   <interp value="William" type="given" inst="t17280717-2-victim39"/>
->                   <interp value="male" type="gender" inst="t17280717-2-victim39"/>
->                 </persName>
->                 ; to which Indictment he
->                 <rs type="verdictDescription" id="t17280717-2-verdict7">
->                   <interp value="guilty" type="verdictCategory" inst="t17280717-2-verdict7"/>
->                   <interp
->                   value="pleadedGuilty" type="verdictSubcategory" inst="t17280717-2-verdict7">
->     </interp>
->                   pleaded Guilty
->                 </rs>
->                 .
->               </p>
->               <p>
->                 <rs type="punishmentDescription" id="t17280717-2-punish8">
->                   <interp value="transport" type="punishmentCategory" inst="t17280717-2-punish8">
->                   </interp>
->                   <join
->                   targets="t17280717-2-defend35 t17280717-2-punish8" targOrder="Y" result="defendantPunishment">
->     </join>
->                   <note>[Transportation. See summary.]</note>
->                 </rs>
->               </p>
->             </div1>
->             <div1 id="t17280717-3" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-3"/>
->               <interp value="1728" type="year" inst="t17280717-3"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-3"/>
->               <interp value="17280717" type="date" inst="t17280717-3"/>
->               <join
->               targets="t17280717-3-defend40 t17280717-3-off10 t17280717-3-verdict11" targOrder="Y" id="t17280717-3-off10-c36" result="criminalCharge">
->     </join>
->               <p>
->                 <xptr doc="172807170002" type="pageFacsimile"/>
->                 <persName type="defendantName" id="t17280717-3-defend40">
->                   Nathaniel
->                       Mercy
->                   <interp value="Mercy" type="surname" inst="t17280717-3-defend40"/>
->                   <interp value="Nathaniel" type="given" inst="t17280717-3-defend40"/>
->                   <interp value="male" type="gender" inst="t17280717-3-defend40"/>
->                 </persName>
->                 , of
->                 <placeName id="t17280717-3-defloc9">St. James's Westminster</placeName>
->                 <interp
->                 value="St. James's Westminster" type="placeName" inst="t17280717-3-defloc9">
->     </interp>
->                 <interp value="defendantHome" type="type" inst="t17280717-3-defloc9"/>
->                 <join
->                 targets="t17280717-3-defend40 t17280717-3-defloc9" targOrder="Y" result="persNamePlace">
->     </join>
->                 , was indicted for
->                 <rs type="offenceDescription" id="t17280717-3-off10">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-3-off10"/>
->                   <interp
->                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-3-off10">
->     </interp>
->                   stealing a Coach Wheel, value 12 Shillings
->                 </rs>
->                 , the Goods of
->                 <persName type="victimName" id="t17280717-3-victim41">
->                   Thomas
->                       West
->                   <interp value="West" type="surname" inst="t17280717-3-victim41"/>
->                   <interp value="Thomas" type="given" inst="t17280717-3-victim41"/>
->                   <interp value="male" type="gender" inst="t17280717-3-victim41"/>
->                   <join
->                   targets="t17280717-3-off10 t17280717-3-victim41" targOrder="Y" result="offenceVictim">
->     </join>
->                 </persName>
->                 , on the 9th of this Instant, to which Indictment he
->                 <rs type="verdictDescription" id="t17280717-3-verdict11">
->                   <interp value="guilty" type="verdictCategory" inst="t17280717-3-verdict11"/>
->                   <interp
->                   value="pleadedGuilty" type="verdictSubcategory" inst="t17280717-3-verdict11">
->     </interp>
->                   pleaded guilty
->                 </rs>
->                 .
->               </p>
->               <p>
->                 <rs type="punishmentDescription" id="t17280717-3-punish12">
->                   <interp
->                   value="transport" type="punishmentCategory" inst="t17280717-3-punish12">
->     </interp>
->                   <join
->                   targets="t17280717-3-defend40 t17280717-3-punish12" targOrder="Y" result="defendantPunishment">
->     </join>
->                   <note>[Transportation. See summary.]</note>
->                 </rs>
->               </p>
->             </div1>
->             <div1 id="t17280717-4" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-4"/>
->               <interp value="1728" type="year" inst="t17280717-4"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-4"/>
->               <interp value="17280717" type="date" inst="t17280717-4"/>
->               <join
->               targets="t17280717-4-defend42 t17280717-4-off14 t17280717-4-verdict17" targOrder="Y" id="t17280717-4-off14-c38" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-4-defend42">
->                   Margaret
->                       King
->                   <interp value="King" type="surname" inst="t17280717-4-defend42"/>
->                   <interp value="Margaret" type="given" inst="t17280717-4-defend42"/>
->                   <interp value="female" type="gender" inst="t17280717-4-defend42"/>
->                 </persName>
->                 , of
->                 <placeName id="t17280717-4-defloc13">St. Ann's Westminster</placeName>
->                 <interp
->                 value="St. Ann's Westminster" type="placeName" inst="t17280717-4-defloc13">
->     </interp>
->                 <interp value="defendantHome" type="type" inst="t17280717-4-defloc13"/>
->                 <join
->                 targets="t17280717-4-defend42 t17280717-4-defloc13" targOrder="Y" result="persNamePlace">
->     </join>
->                 , was indicted for
->                 <rs type="offenceDescription" id="t17280717-4-off14">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-4-off14"/>
->                   <interp
->                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-4-off14">
->     </interp>
->                   privately stealing a Gold Watch, value 16 l.
->                 </rs>
->                 on the
->                 <rs type="crimeDate" id="t17280717-4-cd15">first of May</rs>
->                 <join
->                 targets="t17280717-4-off14 t17280717-4-cd15" targOrder="Y" result="offenceCrimeDate">
->     </join>
->                 last, the Property of
->                 <persName type="victimName" id="t17280717-4-victim43">
->                   Timothy
->                       Conner
->                   <interp value="Conner" type="surname" inst="t17280717-4-victim43"/>
->                   <interp value="Timothy" type="given" inst="t17280717-4-victim43"/>
->                   <interp value="male" type="gender" inst="t17280717-4-victim43"/>
->                   <join
->                   targets="t17280717-4-off14 t17280717-4-victim43" targOrder="Y" result="offenceVictim">
->     </join>
->                 </persName>
->                 .
->               </p>
->               <p>
->                 The Prosecutor depos'd, That he met the Prisoner in the Street, and ask'd her to drink a Glass of Wine, to which she consented, and they went to the
->                 <placeName id="t17280717-4-crimeloc16">
->                   Swan Tavern in Newport Market
->                 </placeName>
->                 <interp
->                 value="Swan Tavern in Newport Market" type="placeName" inst="t17280717-4-crimeloc16">
->     </interp>
->                 <interp value="crimeLocation" type="type" inst="t17280717-4-crimeloc16"/>
->                 <join
->                 targets="t17280717-4-off14 t17280717-4-crimeloc16" targOrder="Y" result="offencePlace">
->     </join>
->                 , and lovingly drank 4 Pints, the Prisoner asking him what it was a Clock, he pulled out his Gold Watch, and bid her look; that she took it in her Hand, but could not remember that she returned it again, neither could she say positively, that she had it, but as he mis'd it as soon as he parted with her he thought he had occasion of Suspicion; yet, said he, I had been drinking before, (tho' it was but Nine in the Morning)and can't tell directly how the Matter stood; which being all the Evidence he could give against her, she was
->                 <rs type="verdictDescription" id="t17280717-4-verdict17">
->                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-4-verdict17"/>
->                   acquitted
->                 </rs>
->                 .
->               </p>
->             </div1>
->             <div1 id="t17280717-5" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-5"/>
->               <interp value="1728" type="year" inst="t17280717-5"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-5"/>
->               <interp value="17280717" type="date" inst="t17280717-5"/>
->               <join
->               targets="t17280717-5-defend44 t17280717-5-off19 t17280717-5-verdict22" targOrder="Y" id="t17280717-5-off19-c40" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-5-defend44">
->                   Elizabeth
->                       Mould
->                   <interp value="Mould" type="surname" inst="t17280717-5-defend44"/>
->                   <interp value="Elizabeth" type="given" inst="t17280717-5-defend44"/>
->                   <interp value="female" type="gender" inst="t17280717-5-defend44"/>
->                 </persName>
->                 , of
->                 <placeName id="t17280717-5-defloc18">St. Martins in the Fields</placeName>
->                 <interp
->                 value="St. Martins in the Fields" type="placeName" inst="t17280717-5-defloc18">
->     </interp>
->                 <interp value="defendantHome" type="type" inst="t17280717-5-defloc18"/>
->                 <join
->                 targets="t17280717-5-defend44 t17280717-5-defloc18" targOrder="Y" result="persNamePlace">
->     </join>
->                 , was indicted for
->                 <rs type="offenceDescription" id="t17280717-5-off19">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-5-off19"/>
->                   <interp
->                   value="pocketpicking" type="offenceSubcategory" inst="t17280717-5-off19">
->     </interp>
->                   privately stealing Fifty Pounds and eight Shillings, from the Person of
->                   <persName type="victimName" id="t17280717-5-victim45">
->                     John
->                             Coxall
->                     <interp value="Coxall" type="surname" inst="t17280717-5-victim45"/>
->                     <interp value="John" type="given" inst="t17280717-5-victim45"/>
->                     <interp value="male" type="gender" inst="t17280717-5-victim45"/>
->                     <join
->                     targets="t17280717-5-off19 t17280717-5-victim45" targOrder="Y" result="offenceVictim">
->     </join>
->                   </persName>
->                 </rs>
->                 , on the
->                 <rs type="crimeDate" id="t17280717-5-cd20">24th of June</rs>
->                 <join
->                 targets="t17280717-5-off19 t17280717-5-cd20" targOrder="Y" result="offenceCrimeDate">
->     </join>
->                 last
->               </p>
->               <p>
->                 The Prosecutor depos'd, That he being a
->                 <rs type="occupation" id="t17280717-5-viclabel21">Bricklayer</rs>
->                 <join
->                 targets="t17280717-5-victim45 t17280717-5-viclabel21" targOrder="Y" result="persNameOccupation">
->     </join>
->                 , was endeavouring to get some Business to do, at the House where the Prisoner lived, and it being a Chandler's Shop, to obtain the Good-Will of the People, he call'd for several Drams, and treated the Mistress of the House and one Mrs. Greaves, who was his Customer, with Cyder, Brandy, &amp;c. that whilst they were drinking the Prisoner came into the Room, and he likewise treated her, and she, in return, wip'd him over the Face, and seem'd very fond of him, saying, she would give him a fine Nosegay, and something to cheer his Heart, if he would go with her to Covent-Garden Market, and then (as his Expression was) she weagled him down into the Cellar, and there kept him lock'd up in a back Passage, that he was very much in Liquor, and scarce sensible of what he did, but he found what she had done to his Sorrow, for she had taken all his Money, which he missing, made a Noise, and the People of the House hearing him, let him out of his Place of Confinement, by conducting him up the Back Stairs; that he got Officers and search'd the Cellar, but could not find the Prisoner. The Prisoner desiring he might be ask'd if they did not drink together in the Cellar, the Prosecutor answer'd, No, she would fetch no Drink, saying, she did not care to be seen by the Publicans; that she was all for dry Money, and she, and None but she, had his Fifty Pounds, for save only him and her, there were neither Man, Woman, nor Child, nor Dog nor Cat in the Cellar.
->               </p>
->               <p>
->                 <persName id="t17280717-5-person46">
->                   Elizabeth
->                       Harper
->                   <interp value="Harper" type="surname" inst="t17280717-5-person46"/>
->                   <interp value="Elizabeth" type="given" inst="t17280717-5-person46"/>
->                   <interp value="female" type="gender" inst="t17280717-5-person46"/>
->                 </persName>
->                 depos'd, That the Prosecutor came into her Shop, and drank Cyder, Usquebaugh and Brandy, and being disguis'd in Liquor he pull'd out eight or ten Guineas and said, he was no Scoundrel; that she and Mrs. Greaves, whom he brought in to treat, begg'd he would put up his Money and take Care of it, and about that Time the Prisoner came into the Room, and familiarly stroaking his cheeks, persuaded him to go into the Cellar, saying, he should pay his Footing, that they staid half an Hour below, and this Deponent looking down, saw the Prisoner's Mother there, that he came up with her again, and treated her with Usquebaugh, and at 11 o' Clock, which was several Hours after, they heard him in a back Passage, where the House was supplied with Water, and letting him into their House, he said he was robb'd, at which this Deponent's Husband thrust him out of doors.
->               </p>
->               <p>
->                 <persName id="t17280717-5-person47">
->                   Isabella
->                       Greaves
->                   <interp value="Greaves" type="surname" inst="t17280717-5-person47"/>
->                   <interp value="Isabella" type="given" inst="t17280717-5-person47"/>
->                   <interp value="female" type="gender" inst="t17280717-5-person47"/>
->                 </persName>
->                 likewise confirm'd every Part of this Deposition, adding, That the Prisoner was not to be seen that Night after the Robbery.
->               </p>
->               <p>
->                 The Prisoner said in her Defence, That the Prosecutor went down into her Cellar, and behaved himself so rudely, that she was forced to threaten to send for an Officer, that she knew nothing of his Money, and had not gone away that Night, but as she was oblig'd by her Husband, and that she came next Morning and set her Greens out.
->               </p>
->               <p>
->                 <persName id="t17280717-5-person48">
->                   Anthony
->                       Dyer
->                   <interp value="Dyer" type="surname" inst="t17280717-5-person48"/>
->                   <interp value="Anthony" type="given" inst="t17280717-5-person48"/>
->                   <interp value="male" type="gender" inst="t17280717-5-person48"/>
->                 </persName>
->                 depos'd, That the Prosecutor told him he had lost his Money being Drunk, that he had been in a Cellar and in a Vault, where he fell asleep, and gave a very odd account of the Adventure.
->               </p>
->               <p>
->                 <persName id="t17280717-5-person49">
->                   George
->                       Smith
->                   <interp value="Smith" type="surname" inst="t17280717-5-person49"/>
->                   <interp value="George" type="given" inst="t17280717-5-person49"/>
->                   <interp value="male" type="gender" inst="t17280717-5-person49"/>
->                 </persName>
->                 depos'd, That the Prosecutor said he fell asleep upon a Vault, and could charge no Body.
->               </p>
->               <p>
->                 The Constable, the Watchman, and others severally depos'd, That the Morning after this happened, he said he could charge no particular person, but he would indict the House. The Prisoner having a very good Character from several reputable Witnesses, the Jury
->                 <rs type="verdictDescription" id="t17280717-5-verdict22">
->                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-5-verdict22"/>
->                   acquitted
->                 </rs>
->                 her.
->               </p>
->             </div1>
->             <div1 id="t17280717-6" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-6"/>
->               <interp value="1728" type="year" inst="t17280717-6"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-6"/>
->               <interp value="17280717" type="date" inst="t17280717-6"/>
->               <join
->               targets="t17280717-6-defend50 t17280717-6-off24 t17280717-6-verdict26" targOrder="Y" id="t17280717-6-off24-c46" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-6-defend50">
->                   Phillip
->                       Hilliard
->                   <interp value="Hilliard" type="surname" inst="t17280717-6-defend50"/>
->                   <interp value="Phillip" type="given" inst="t17280717-6-defend50"/>
->                   <interp value="male" type="gender" inst="t17280717-6-defend50"/>
->                 </persName>
->                 , of
->                 <placeName id="t17280717-6-defloc23">St. James's Westminster</placeName>
->                 <interp
->                 value="St. James's Westminster" type="placeName" inst="t17280717-6-defloc23">
->     </interp>
->                 <interp value="defendantHome" type="type" inst="t17280717-6-defloc23"/>
->                 <join
->                 targets="t17280717-6-defend50 t17280717-6-defloc23" targOrder="Y" result="persNamePlace">
->     </join>
->                 , was indicted for
->                 <rs type="offenceDescription" id="t17280717-6-off24">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-6-off24"/>
->                   <interp
->                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-6-off24">
->     </interp>
->                   feloniously stealing a Silver Spoon, value eleven Shillings, the Property of
->                   <persName type="victimName" id="t17280717-6-victim51">
->                     Abraham
->                             Mannio
->                     <interp value="Mannio" type="surname" inst="t17280717-6-victim51"/>
->                     <interp value="Abraham" type="given" inst="t17280717-6-victim51"/>
->                     <interp value="male" type="gender" inst="t17280717-6-victim51"/>
->                     <join
->                     targets="t17280717-6-off24 t17280717-6-victim51" targOrder="Y" result="offenceVictim">
->     </join>
->                   </persName>
->                   , on the
->                   <rs type="crimeDate" id="t17280717-6-cd25">27th of June</rs>
->                   <join
->                   targets="t17280717-6-off24 t17280717-6-cd25" targOrder="Y" result="offenceCrimeDate">
->     </join>
->                   last.
->                 </rs>
->               </p>
->               <p>
->                 Mr. Hayden depos'd, That the Prisoner brought the Spoon to him to pawn, and he suspecting it to be stolen, stopp'd him and carried him to the Round-House, where he confess'd he stole it at the Prosecutor's, he being invited there to Dinner with some Gentlemans Servants.
->               </p>
->               <p>
->                 <persName id="t17280717-6-person52">
->                   Robert
->                       Amey
->                   <interp value="Amey" type="surname" inst="t17280717-6-person52"/>
->                   <interp value="Robert" type="given" inst="t17280717-6-person52"/>
->                   <interp value="male" type="gender" inst="t17280717-6-person52"/>
->                 </persName>
->                 depos'd, That he attended the Gentlemens Servants at Dinner, and afterwards they miss'd a Spoon, that Mr. Haydon sent them word of the Spoon brought to him by the Prisoner, and he going to match it by the others, found it to be the same which they had lost, it being of the same Make and Mark: The Fact being thus plainly proved upon him, the Jury found him
->                 <rs type="verdictDescription" id="t17280717-6-verdict26">
->                   <interp value="guilty" type="verdictCategory" inst="t17280717-6-verdict26"/>
->                   <interp
->                   value="theftunder1s" type="verdictSubcategory" inst="t17280717-6-verdict26">
->     </interp>
->                   guilty to the value of 10d.
->                 </rs>
->               </p>
->               <p>
->                 <rs type="punishmentDescription" id="t17280717-6-punish27">
->                   <interp
->                   value="transport" type="punishmentCategory" inst="t17280717-6-punish27">
->     </interp>
->                   <join
->                   targets="t17280717-6-defend50 t17280717-6-punish27" targOrder="Y" result="defendantPunishment">
->     </join>
->                   <note>[Transportation. See summary.]</note>
->                 </rs>
->               </p>
->             </div1>
->             <div1 id="t17280717-7" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-7"/>
->               <interp value="1728" type="year" inst="t17280717-7"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-7"/>
->               <interp value="17280717" type="date" inst="t17280717-7"/>
->               <join
->               targets="t17280717-7-defend53 t17280717-7-off29 t17280717-7-verdict31" targOrder="Y" id="t17280717-7-off29-c49" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-7-defend53">
->                   Robert
->                       Ashby
->                   <interp value="Ashby" type="surname" inst="t17280717-7-defend53"/>
->                   <interp value="Robert" type="given" inst="t17280717-7-defend53"/>
->                   <interp value="male" type="gender" inst="t17280717-7-defend53"/>
->                 </persName>
->                 , of
->                 <rs type="occupation" id="t17280717-7-deflabel28">St. Andrew's Holborn</rs>
->                 <join
->                 targets="t17280717-7-defend53 t17280717-7-deflabel28" targOrder="Y" result="persNameOccupation">
->     </join>
->                 , was indicted for
->                 <rs type="offenceDescription" id="t17280717-7-off29">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-7-off29"/>
->                   <interp
->                   value="grandLarceny" type="offenceSubcategory" inst="t17280717-7-off29">
->     </interp>
->                   stealing a Gold Watch, value 16 l. a Chain, value 4 l. a Cornelian Seal set in Gold, value 10s. the Property of
->                   <persName type="victimName" id="t17280717-7-victim54">
->                     Nicholas
->                             Roper
->                     <interp value="Roper" type="surname" inst="t17280717-7-victim54"/>
->                     <interp value="Nicholas" type="given" inst="t17280717-7-victim54"/>
->                     <interp value="male" type="gender" inst="t17280717-7-victim54"/>
->                   </persName>
->                   from the Person of
->                   <persName type="victimName" id="t17280717-7-victim55">
->                     Phoebe
->                             Thickpenny
->                     <interp value="Thickpenny" type="surname" inst="t17280717-7-victim55"/>
->                     <interp value="Phoebe" type="given" inst="t17280717-7-victim55"/>
->                     <interp value="female" type="gender" inst="t17280717-7-victim55"/>
->                   </persName>
->                 </rs>
->                 , who depos'd, That her Mistress being at Little Chelsea, sent her to their House in Lad-lane, for the Watch and other Things she had occasion for, that she call'd at the Prisoner's in Castle Yard, Chick-Lane, as she was going towards Chelsea with the Watch and the Bundle, where she drank part of a Pint of Beer, some Tea 2 Quarterns of Brandy, and a Bottle of Cyder; that the Prisoner would go part of the Way home with her, and in
->                 <placeName id="t17280717-7-crimeloc30">Leather-Lane</placeName>
->                 <interp value="Leather-Lane" type="placeName" inst="t17280717-7-crimeloc30"/>
->                 <interp value="crimeLocation" type="type" inst="t17280717-7-crimeloc30"/>
->                 <join
->                 targets="t17280717-7-off29 t17280717-7-crimeloc30" targOrder="Y" result="offencePlace">
->     </join>
->                 , he said, faith they would not part Dry lips, and accordingly they went into a publick House and drank a Pint of Twopenny, and two Quarterns of Brandy, that she had the Watch then, and at the Door the Prisoner kiss'd her, and gave her a shilling for a Coach, she having out-staid her Time; that when he kiss'd her, he put one Hand around her Waist, but what he did with the other she could not tell, that she then cross'd the Way to another House, and immediately miss'd the Watch, and she was sure she had pinn'd it so to her Side, that she could not drop it.
->               </p>
->               <p>
->                 <persName id="t17280717-7-person56">
->                   Margaret
->                       Nelson
->                   <interp value="Nelson" type="surname" inst="t17280717-7-person56"/>
->                   <interp value="Margaret" type="given" inst="t17280717-7-person56"/>
->                   <interp value="female" type="gender" inst="t17280717-7-person56"/>
->                 </persName>
->                 depos'd, That the Prisoner and Phoebe Thickpenny, came to her House in Leather-Lane, and he call'd for a private Room, to which the Girl would not consent, that the Girl wanted to go to, &amp;c. and she went with her, when the Girl said, she had her Mistress's Gold Watch, and seeming to look on it, told her it was 7 o' Clock, but this Deponent did not see the Watch, yet she said, she did verily believe she heard it beat, that they soon parted, and in a Quarter of an Hour the maid returned, and said she had lost the Watch.
->               </p>
->               <p>
->                 The Prisoner said in his Defence, That he knew nothing of it, any further than she said it was her Mistress's, that they parted very good Friends, and she having been an old Sweetheart of his, laid her Head upon his Shoulder, and said, She could live and die there, which would have been no little Aggravation to his Crime, had he wrong'd so good Natur'd a Creature: But the Evidence against him being weak, and several appearing to his Character, the Jury
->                 <rs type="verdictDescription" id="t17280717-7-verdict31">
->                   <interp value="notGuilty" type="verdictCategory" inst="t17280717-7-verdict31"/>
->                   acquitted
->                 </rs>
->                 him.
->               </p>
->             </div1>
->             <div1 id="t17280717-8" type="trialAccount">
->               <interp value="BAILEY" type="collection" inst="t17280717-8"/>
->               <interp value="1728" type="year" inst="t17280717-8"/>
->               <interp value="sessionsPapers/17280717" type="uri" inst="t17280717-8"/>
->               <interp value="17280717" type="date" inst="t17280717-8"/>
->               <join
->               targets="t17280717-8-defend57 t17280717-8-off33 t17280717-8-verdict35" targOrder="Y" id="t17280717-8-off33-c53" result="criminalCharge">
->     </join>
->               <join
->               targets="t17280717-8-defend58 t17280717-8-off33 t17280717-8-verdict35" targOrder="Y" id="t17280717-8-off33-c54" result="criminalCharge">
->     </join>
->               <p>
->                 <persName type="defendantName" id="t17280717-8-defend57">
->                   Joseph
->                       Plummer
->                   <interp value="Plummer" type="surname" inst="t17280717-8-defend57"/>
->                   <interp value="Joseph" type="given" inst="t17280717-8-defend57"/>
->                   <interp value="male" type="gender" inst="t17280717-8-defend57"/>
->                 </persName>
->                 , and
->                 <persName type="defendantName" id="t17280717-8-defend58">
->                   Henry
->                       Coleman
->                   <interp value="Coleman" type="surname" inst="t17280717-8-defend58"/>
->                   <interp value="Henry" type="given" inst="t17280717-8-defend58"/>
->                   <interp value="male" type="gender" inst="t17280717-8-defend58"/>
->                 </persName>
->                 , of
->                 <placeName id="t17280717-8-defloc32">Edmonton</placeName>
->                 <interp value="Edmonton" type="placeName" inst="t17280717-8-defloc32"/>
->                 <interp value="defendantHome" type="type" inst="t17280717-8-defloc32"/>
->                 <join
->                 targets="t17280717-8-defend57 t17280717-8-defloc32" targOrder="Y" result="persNamePlace">
->     </join>
->                 <join
->                 targets="t17280717-8-defend58 t17280717-8-defloc32" targOrder="Y" result="persNamePlace">
->     </join>
->                 , were indicted for
->                 <rs type="offenceDescription" id="t17280717-8-off33">
->                   <interp value="theft" type="offenceCategory" inst="t17280717-8-off33"/>
->                   <interp
->                   value="pettyLarceny" type="offenceSubcategory" inst="t17280717-8-off33">
->     </interp>
->                   stealing 2 Shirts, value 8d. a Silk Handkerchief, value 1d. and a Pair of Stockings, value 1d.
->       ...
-
-Make sure you comment/uncomment the right files depending on wheter you have downloaded the tiny dataset or the big one.
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/XML"
- width="95%" height="450"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>

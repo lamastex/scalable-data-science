@@ -109,6 +109,12 @@ A.size / A.rows // num of columns
 
 >     res2: Int = 3
 
+``` scala
+A.cols // also say
+```
+
+>     res3: Int = 3
+
 Now, let's access the element \\(a\_{1,1}\\), i.e., the element from the first row and first column of \\(\\), which in our `val A` matrix is the integer of type `Int` equalling `1`.
 
 ``` scala
@@ -524,6 +530,15 @@ val A = DenseMatrix((1,2,3),(4,5,6))
 >     A: breeze.linalg.DenseMatrix[Int] =
 >     1  2  3
 >     4  5  6
+
+``` scala
+DenseMatrix.eye[Int](3)
+```
+
+>     res22: breeze.linalg.DenseMatrix[Int] =
+>     1  0  0
+>     0  1  0
+>     0  0  1
 
 ``` scala
 A * DenseMatrix.eye[Int](3)
@@ -973,19 +988,3 @@ After reading this quickstart, you can go to other wiki pages, especially [Linea
 [![Big O Notation for Space and Time Complexity by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/SmsEzDXb3c0/0.jpg)](https://www.youtube.com/watch?v=SmsEzDXb3c0)
 
 Watch this and take notes!
-
-``` scala
-A.cols // also say
-```
-
->     res3: Int = 3
-
-``` scala
-DenseMatrix.eye[Int](3)
-```
-
->     res22: breeze.linalg.DenseMatrix[Int] =
->     1  0  0
->     0  1  0
->     0  0  1
-

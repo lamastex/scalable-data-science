@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Network anomaly detection
 =========================
 
@@ -1163,9 +1166,6 @@ Additional continuations of this could include giving suggestions for actions to
     </a>
   </p>
 </iframe></p>
-
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
 
 <p class="htmlSandbox"><iframe 
  src="https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html"

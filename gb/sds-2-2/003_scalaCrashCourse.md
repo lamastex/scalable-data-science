@@ -1,6 +1,12 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+This is *slightly* outdated, but good enough for our purposes as we will do it live on the latest databricks notebooks.
+
+Please go here for a relaxed and detailed-enough tour (later):
+
+-   <https://docs.databricks.com/index.html>
+
 Notebooks
 =========
 
@@ -1445,9 +1451,3 @@ Please go here for a relaxed and detailed-enough tour (later):
 
 -   Syntax: `%run /full/path/to/notebook`
 -   This is commonly used to import functions you defined in other notebooks.
-
-This is *slightly* outdated, but good enough for our purposes as we will do it live on the latest databricks notebooks.
-
-Please go here for a relaxed and detailed-enough tour (later):
-
--   <https://docs.databricks.com/index.html>

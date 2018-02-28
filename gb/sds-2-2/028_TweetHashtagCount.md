@@ -62,6 +62,15 @@ System.setProperty("twitter4j.oauth.accessTokenSecret", MytokenSecret)
 
 The cell-below is hidden to not expose my Twitter API Credentials: `consumerKey`, `consumerSecret`, `accessToken` and `accessTokenSecret`. Use the code above to enter your own credentials!
 
+>     import twitter4j._
+>     import twitter4j.auth.Authorization
+>     import twitter4j.conf.ConfigurationBuilder
+>     import twitter4j.auth.OAuthAuthorization
+>     import org.apache.spark.streaming._
+>     import org.apache.spark.streaming.dstream._
+>     import org.apache.spark.storage.StorageLevel
+>     import org.apache.spark.streaming.receiver.Receiver
+
 If you see warnings then ignore for now: <https://forums.databricks.com/questions/6941/change-in-getargument-for-notebook-input.html>.
 
 ### Step 2: Configure where to output the top hashtags and how often to compute them.
@@ -89,6 +98,13 @@ val timeoutJobLength = 20 * 1000
 >     timeoutJobLength: Int = 20000
 
 ### Step 3: Run the Twitter Streaming job.
+
+Go to SparkUI and see if a streaming job is already running. If so you need to terminate it before starting a new streaming job. Only one streaming job can be run on the DB CE.
+
+``` scala
+// this will make sure all streaming job in the cluster are stopped
+StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) } 
+```
 
 Clean up any old files.
 
@@ -299,12 +315,26 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 >     (#WeeklyIdol,1)
 >     (#SAMURAIBLUE,1)
 
-Go to SparkUI and see if a streaming job is already running. If so you need to terminate it before starting a new streaming job. Only one streaming job can be run on the DB CE.
+>     defined class ExtendedTwitterReceiver
 
-``` scala
-// this will make sure all streaming job in the cluster are stopped
-StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) } 
-```
+>     defined class ExtendedTwitterInputDStream
+
+>     import twitter4j.Status
+>     import twitter4j.auth.Authorization
+>     import org.apache.spark.storage.StorageLevel
+>     import org.apache.spark.streaming.StreamingContext
+>     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
+>     defined object ExtendedTwitterUtils
+
+>     twitter OAuth Credentials loaded
+>     MyconsumerKey: String
+>     MyconsumerSecret: String
+>     Mytoken: String
+>     MytokenSecret: String
+>     import twitter4j.auth.OAuthAuthorization
+>     import twitter4j.conf.ConfigurationBuilder
+
+>     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
 
 ### Let's brainstorm a bit now
 
@@ -320,34 +350,3 @@ Note that there are various Spark Streaming ML algorithms that one could easily 
 Student Project or Volunteer for next Meetup - let's check it out now:
 
 HOME-WORK: \* [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)
-
->     import twitter4j._
->     import twitter4j.auth.Authorization
->     import twitter4j.conf.ConfigurationBuilder
->     import twitter4j.auth.OAuthAuthorization
->     import org.apache.spark.streaming._
->     import org.apache.spark.streaming.dstream._
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.receiver.Receiver
-
->     defined class ExtendedTwitterReceiver
-
->     defined class ExtendedTwitterInputDStream
-
->     import twitter4j.Status
->     import twitter4j.auth.Authorization
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.StreamingContext
->     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
->     defined object ExtendedTwitterUtils
-
->     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
-
->     twitter OAuth Credentials loaded
->     MyconsumerKey: String
->     MyconsumerSecret: String
->     Mytoken: String
->     MytokenSecret: String
->     import twitter4j.auth.OAuthAuthorization
->     import twitter4j.conf.ConfigurationBuilder
-

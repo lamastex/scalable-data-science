@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Article Topics in Retweet Network
 =================================
 
@@ -153,5 +156,3 @@ def getContent(urlDF:DataFrame): DataFrame = {
 
 >     getContent: (urlDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================

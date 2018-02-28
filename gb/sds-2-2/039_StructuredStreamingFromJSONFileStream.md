@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Structured Streaming using Scala DataFrames API - Exercise
 ==========================================================
 
@@ -1675,5 +1678,3 @@ If you want to learn more about Structured Streaming, here are a few pointers.
   - [A Deep Dive Into Structured Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)
 ```
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================

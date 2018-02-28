@@ -4,138 +4,6 @@
 Introduction to Simulation
 ==========================
 
-### breeze.stats.distributions
-
-Breeze also provides a fairly large number of probability distributions. These come with access to probability density function for either discrete or continuous distributions. Many distributions also have methods for giving the mean and the variance.
-
-``` scala
-import breeze.stats.distributions._
-
-val poi = new Poisson(3.0);
-```
-
->     import breeze.stats.distributions._
->     poi: breeze.stats.distributions.Poisson = Poisson(3.0)
-
-``` scala
-val s = poi.sample(5); // let's draw five samples - black-box
-```
-
->     s: IndexedSeq[Int] = Vector(1, 4, 8, 0, 6)
-
-``` scala
-s.map( x => poi.probabilityOf(x) ) // PMF
-```
-
->     res36: IndexedSeq[Double] = Vector(0.14936120510359185, 0.16803135574154085, 0.008101511794681432, 0.049787068367863944, 0.05040940672246224)
-
-Getting probabilities of the Poisson samples
-
-``` scala
-val doublePoi = for(x <- poi) yield x.toDouble // meanAndVariance requires doubles, but Poisson samples over Ints
-```
-
->     doublePoi: breeze.stats.distributions.Rand[Double] = MappedRand(Poisson(3.0),<function1>)
-
-``` scala
-breeze.stats.meanAndVariance(doublePoi.samples.take(1000));
-```
-
->     res40: breeze.stats.MeanAndVariance = MeanAndVariance(3.013999999999998,2.9787827827827824,1000)
-
-``` scala
-(poi.mean, poi.variance) // population mean and variance
-```
-
->     res41: (Double, Double) = (3.0,3.0)
-
-Exponential random Variable
----------------------------
-
-Let's focus on getting our hands direty with a common random variable.
-
-``` scala
-val expo = new Exponential(0.5);
-```
-
->     expo: breeze.stats.distributions.Exponential = Exponential(0.5)
-
-``` scala
-expo.rate // what is the rate parameter
-```
-
->     res42: Double = 0.5
-
-A characteristic of exponential distributions is its half-life, but we can compute the probability a value falls between any two numbers.
-
-``` scala
-expo.probability(0, math.log(2) * expo.rate)
-```
-
->     res43: Double = 0.5
-
-``` scala
-expo.probability(0.0, 1.5)
-```
-
->     res45: Double = 0.950212931632136
-
-The above result means that approximately 95% of the draws from an exponential distribution fall between 0 and thrice the mean. We could have easily computed this with the cumulative distribution as well.
-
-``` scala
-1 - math.exp(-3.0) // the CDF of the Exponential RV with rate parameter 3
-```
-
->     res47: Double = 0.950212931632136
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Exponential_distribution"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-NOTE: Below, there is a possibility of confusion for the term `rate` in the family of exponential distributions. Breeze parameterizes the distribution with the mean, but refers to it as the rate.
-
-``` scala
-val samples = expo.sample(2).sorted; // built-in black box - we will roll our own shortly in Spark
-```
-
->     samples: IndexedSeq[Double] = Vector(0.5392432880681155, 2.0560411023149476)
-
-``` scala
-expo.probability(samples(0), samples(1));
-```
-
->     res48: Double = 0.32373622100122956
-
-``` scala
-breeze.stats.meanAndVariance(expo.samples.take(10000)); // mean and variance of the sample
-```
-
->     res49: breeze.stats.MeanAndVariance = MeanAndVariance(1.987723329390203,4.095923857112381,10000)
-
-``` scala
-(1 / expo.rate, 1 / (expo.rate * expo.rate)) // mean and variance of the population
-```
-
->     res50: (Double, Double) = (2.0,4.0)
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Poisson_distribution"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
 Core ideas in Monte Carlo simulation
 ------------------------------------
 
@@ -163,6 +31,120 @@ Core ideas in Monte Carlo simulation
 -   <https://en.wikipedia.org/wiki/Inverse_transform_sampling>
 -   <https://en.wikipedia.org/wiki/Rejection_sampling> - will revisit below for Expoential RV
 
+### breeze.stats.distributions
+
+Breeze also provides a fairly large number of probability distributions. These come with access to probability density function for either discrete or continuous distributions. Many distributions also have methods for giving the mean and the variance.
+
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Poisson_distribution"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
+``` scala
+import breeze.stats.distributions._
+
+val poi = new Poisson(3.0);
+```
+
+>     import breeze.stats.distributions._
+>     poi: breeze.stats.distributions.Poisson = Poisson(3.0)
+
+``` scala
+val s = poi.sample(5); // let's draw five samples - black-box
+```
+
+>     s: IndexedSeq[Int] = Vector(1, 4, 8, 0, 6)
+
+Getting probabilities of the Poisson samples
+
+``` scala
+s.map( x => poi.probabilityOf(x) ) // PMF
+```
+
+>     res36: IndexedSeq[Double] = Vector(0.14936120510359185, 0.16803135574154085, 0.008101511794681432, 0.049787068367863944, 0.05040940672246224)
+
+``` scala
+val doublePoi = for(x <- poi) yield x.toDouble // meanAndVariance requires doubles, but Poisson samples over Ints
+```
+
+>     doublePoi: breeze.stats.distributions.Rand[Double] = MappedRand(Poisson(3.0),<function1>)
+
+``` scala
+breeze.stats.meanAndVariance(doublePoi.samples.take(1000));
+```
+
+>     res40: breeze.stats.MeanAndVariance = MeanAndVariance(3.013999999999998,2.9787827827827824,1000)
+
+``` scala
+(poi.mean, poi.variance) // population mean and variance
+```
+
+>     res41: (Double, Double) = (3.0,3.0)
+
+Exponential random Variable
+---------------------------
+
+Let's focus on getting our hands direty with a common random variable.
+
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Exponential_distribution"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
+NOTE: Below, there is a possibility of confusion for the term `rate` in the family of exponential distributions. Breeze parameterizes the distribution with the mean, but refers to it as the rate.
+
+``` scala
+val expo = new Exponential(0.5);
+```
+
+>     expo: breeze.stats.distributions.Exponential = Exponential(0.5)
+
+``` scala
+expo.rate // what is the rate parameter
+```
+
+>     res42: Double = 0.5
+
+A characteristic of exponential distributions is its half-life, but we can compute the probability a value falls between any two numbers.
+
+``` scala
+expo.probability(0, math.log(2) * expo.rate)
+```
+
+>     res43: Double = 0.5
+
+``` scala
+expo.probability(math.log(2) * expo.rate, 10000.0)
+```
+
+>     res44: Double = 0.5
+
+``` scala
+expo.probability(0.0, 1.5)
+```
+
+>     res45: Double = 0.950212931632136
+
+The above result means that approximately 95% of the draws from an exponential distribution fall between 0 and thrice the mean. We could have easily computed this with the cumulative distribution as well.
+
+``` scala
+1 - math.exp(-3.0) // the CDF of the Exponential RV with rate parameter 3
+```
+
+>     res47: Double = 0.950212931632136
+
 ### Drawing samples from Exponential RV
 
 <p class="htmlSandbox"><iframe 
@@ -176,20 +158,32 @@ Core ideas in Monte Carlo simulation
   </p>
 </iframe></p>
 
+``` scala
+val samples = expo.sample(2).sorted; // built-in black box - we will roll our own shortly in Spark
+```
+
+>     samples: IndexedSeq[Double] = Vector(0.5392432880681155, 2.0560411023149476)
+
+``` scala
+expo.probability(samples(0), samples(1));
+```
+
+>     res48: Double = 0.32373622100122956
+
+``` scala
+breeze.stats.meanAndVariance(expo.samples.take(10000)); // mean and variance of the sample
+```
+
+>     res49: breeze.stats.MeanAndVariance = MeanAndVariance(1.987723329390203,4.095923857112381,10000)
+
+``` scala
+(1 / expo.rate, 1 / (expo.rate * expo.rate)) // mean and variance of the population
+```
+
+>     res50: (Double, Double) = (2.0,4.0)
+
 Pseudo Random Numbers in Spark
 ------------------------------
-
-``` scala
-val dfRand = df.select($"Id", rand(seed=1234567) as "rand") // add a column of random numbers in (0,1)
-```
-
->     dfRand: org.apache.spark.sql.DataFrame = [Id: bigint, rand: double]
-
-``` scala
-val df = spark.range(1000).toDF("Id") // just make a DF of 100 row indices
-```
-
->     df: org.apache.spark.sql.DataFrame = [Id: bigint]
 
 ``` scala
 import spark.implicits._
@@ -198,6 +192,58 @@ import org.apache.spark.sql.functions._
 
 >     import spark.implicits._
 >     import org.apache.spark.sql.functions._
+
+``` scala
+val df = spark.range(1000).toDF("Id") // just make a DF of 100 row indices
+```
+
+>     df: org.apache.spark.sql.DataFrame = [Id: bigint]
+
+``` scala
+df.show(5)
+```
+
+>     +---+
+>     | Id|
+>     +---+
+>     |  0|
+>     |  1|
+>     |  2|
+>     |  3|
+>     |  4|
+>     +---+
+>     only showing top 5 rows
+
+``` scala
+val dfRand = df.select($"Id", rand(seed=1234567) as "rand") // add a column of random numbers in (0,1)
+```
+
+>     dfRand: org.apache.spark.sql.DataFrame = [Id: bigint, rand: double]
+
+``` scala
+dfRand.show(5) // these are first 5 of the 1000 samples from the Uniform(0,1) RV
+```
+
+>     +---+------------------+
+>     | Id|              rand|
+>     +---+------------------+
+>     |  0|0.2289181799234461|
+>     |  1|0.9756456161051732|
+>     |  2|0.7781702473664945|
+>     |  3|0.5585984240683788|
+>     |  4|0.8305446150005453|
+>     +---+------------------+
+>     only showing top 5 rows
+
+Let's use the inverse CDF of the Exponential RV to transform these samples from the Uniform(0,1) RV into those from the Exponential RV.
+
+``` scala
+val dfRand = df.select($"Id", rand(seed=1234567) as "rand") // add a column of random numbers in (0,1)
+               .withColumn("one",lit(1.0))
+               .withColumn("rate",lit(0.5))
+```
+
+>     dfRand: org.apache.spark.sql.DataFrame = [Id: bigint, rand: double ... 2 more fields]
 
 ``` scala
 dfRand.show(5) 
@@ -233,66 +279,6 @@ dfExpRand.show(5)
 >     |  3|0.5585984240683788|1.0| 0.5|1.6356004297263063|
 >     |  4|0.8305446150005453|1.0| 0.5|3.5503312043026414|
 >     +---+------------------+---+----+------------------+
->     only showing top 5 rows
-
-``` scala
-val dfRand = df.select($"Id", rand(seed=1234567) as "rand") // add a column of random numbers in (0,1)
-               .withColumn("one",lit(1.0))
-               .withColumn("rate",lit(0.5))
-```
-
->     dfRand: org.apache.spark.sql.DataFrame = [Id: bigint, rand: double ... 2 more fields]
-
-Let's use the inverse CDF of the Exponential RV to transform these samples from the Uniform(0,1) RV into those from the Exponential RV.
-
-``` scala
-dfExpRand.describe().show() // look sensible
-```
-
->     +-------+-----------------+--------------------+----+----+--------------------+
->     |summary|               Id|                rand| one|rate|         expo_sample|
->     +-------+-----------------+--------------------+----+----+--------------------+
->     |  count|             1000|                1000|1000|1000|                1000|
->     |   mean|            499.5| 0.49368134205225334| 1.0| 0.5|    1.98855225198386|
->     | stddev|288.8194360957494|  0.2925326105055967| 0.0| 0.0|   2.077189631386989|
->     |    min|                0|6.881987320686012E-4| 1.0| 0.5|0.001376871299039548|
->     |    max|              999|  0.9999092082356841| 1.0| 0.5|  18.613883955674265|
->     +-------+-----------------+--------------------+----+----+--------------------+
-
-``` scala
-expo.probability(math.log(2) * expo.rate, 10000.0)
-```
-
->     res44: Double = 0.5
-
-``` scala
-df.show(5)
-```
-
->     +---+
->     | Id|
->     +---+
->     |  0|
->     |  1|
->     |  2|
->     |  3|
->     |  4|
->     +---+
->     only showing top 5 rows
-
-``` scala
-dfRand.show(5) // these are first 5 of the 1000 samples from the Uniform(0,1) RV
-```
-
->     +---+------------------+
->     | Id|              rand|
->     +---+------------------+
->     |  0|0.2289181799234461|
->     |  1|0.9756456161051732|
->     |  2|0.7781702473664945|
->     |  3|0.5585984240683788|
->     |  4|0.8305446150005453|
->     +---+------------------+
 >     only showing top 5 rows
 
 ``` scala
@@ -333,4 +319,18 @@ display(dfExpRand)
 | 29.0 | 0.1876358076401241    | 1.0 | 0.5  | 0.4156130532275476    |
 
 Truncated to 30 rows
+
+``` scala
+dfExpRand.describe().show() // look sensible
+```
+
+>     +-------+-----------------+--------------------+----+----+--------------------+
+>     |summary|               Id|                rand| one|rate|         expo_sample|
+>     +-------+-----------------+--------------------+----+----+--------------------+
+>     |  count|             1000|                1000|1000|1000|                1000|
+>     |   mean|            499.5| 0.49368134205225334| 1.0| 0.5|    1.98855225198386|
+>     | stddev|288.8194360957494|  0.2925326105055967| 0.0| 0.0|   2.077189631386989|
+>     |    min|                0|6.881987320686012E-4| 1.0| 0.5|0.001376871299039548|
+>     |    max|              999|  0.9999092082356841| 1.0| 0.5|  18.613883955674265|
+>     +-------+-----------------+--------------------+----+----+--------------------+
 

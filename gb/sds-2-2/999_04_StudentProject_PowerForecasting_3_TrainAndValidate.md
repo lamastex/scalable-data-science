@@ -1,3 +1,14 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+Power Forecasting
+=================
+
+Student Project
+---------------
+
+by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/), [Mahmoud Shepero](https://www.linkedin.com/in/mahmoudshepero/) and Dennis van der Meer
+
 ### Run the create-training-data-21 notebook to create all the data
 
 | path                                                | name             | size        |
@@ -297,13 +308,3 @@ Note that the predicted power is 30 minutes into the future and you need to "vis
 display(predictionsAndLabels)
 ```
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Power Forecasting
-=================
-
-Student Project
----------------
-
-by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/), [Mahmoud Shepero](https://www.linkedin.com/in/mahmoudshepero/) and Dennis van der Meer

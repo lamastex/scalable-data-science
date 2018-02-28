@@ -1,3 +1,14 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+Power Forecasting
+=================
+
+Student Project
+---------------
+
+by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/), [Mahmoud Shepero](https://www.linkedin.com/in/mahmoudshepero/) and Dennis van der Meer
+
 Loading data som JSON file
 ==========================
 
@@ -88,14 +99,3 @@ val FinalDF =      DF.select($"DataList.MX41".getItem("P").alias("Power").cast(D
 
 -   `FinalDF` - Dataset
 -   `leadDF` - Dataset with a one-step lag
-
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Power Forecasting
-=================
-
-Student Project
----------------
-
-by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/), [Mahmoud Shepero](https://www.linkedin.com/in/mahmoudshepero/) and Dennis van der Meer

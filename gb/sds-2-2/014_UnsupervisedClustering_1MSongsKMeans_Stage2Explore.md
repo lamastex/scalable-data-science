@@ -15,13 +15,82 @@ Stage 2: Exploring songs data
 
 This is the second notebook in this tutorial. In this notebook we do what any data scientist does with their data right after parsing it: exploring and understanding different aspect of data. Make sure you understand how we get the `songsTable` by reading and running the ETL notebook. In the ETL notebook we created and cached a temporary table named `songsTable`
 
+Let's Do all the main bits in Stage 1 now before doing Stage 2 in this Notebook.
+--------------------------------------------------------------------------------
+
+``` scala
+// Let's quickly do everything to register the tempView of the table here
+
+// fill in comment ... EXERCISE!
+case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Double, artist_location: String, artist_name: String, duration: Double, end_of_fade_in: Double, key: Int, key_confidence: Double, loudness: Double, release: String, song_hotness: Double, song_id: String, start_of_fade_out: Double, tempo: Double, time_signature: Double, time_signature_confidence: Double, title: String, year: Double, partial_sequence: Int)
+
+def parseLine(line: String): Song = {
+  // fill in comment ...
+  
+  def toDouble(value: String, defaultVal: Double): Double = {
+    try {
+       value.toDouble
+    } catch {
+      case e: Exception => defaultVal
+    }
+  }
+
+  def toInt(value: String, defaultVal: Int): Int = {
+    try {
+       value.toInt
+      } catch {
+      case e: Exception => defaultVal
+    }
+  }
+  // fill in comment ...
+  val tokens = line.split("\t")
+  Song(tokens(0), toDouble(tokens(1), 0.0), toDouble(tokens(2), 0.0), tokens(3), tokens(4), toDouble(tokens(5), 0.0), toDouble(tokens(6), 0.0), toInt(tokens(7), -1), toDouble(tokens(8), 0.0), toDouble(tokens(9), 0.0), tokens(10), toDouble(tokens(11), 0.0), tokens(12), toDouble(tokens(13), 0.0), toDouble(tokens(14), 0.0), toDouble(tokens(15), 0.0), toDouble(tokens(16), 0.0), tokens(17), toDouble(tokens(18), 0.0), toInt(tokens(19), -1))
+}
+
+// this is loads all the data - a subset of the 1M songs dataset
+val dataRDD = sc.textFile("/databricks-datasets/songs/data-001/part-*") 
+
+// .. fill in comment
+val df = dataRDD.map(parseLine).toDF
+
+// .. fill in comment
+df.createOrReplaceTempView("songsTable")
+```
+
+>     defined class Song
+>     parseLine: (line: String)Song
+>     dataRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/songs/data-001/part-* MapPartitionsRDD[14036] at textFile at <console>:63
+>     df: org.apache.spark.sql.DataFrame = [artist_id: string, artist_latitude: double ... 18 more fields]
+
+``` scala
+spark.catalog.listTables.show(false) // make sure the temp view of our table is there
+```
+
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |name                      |database|description|tableType|isTemporary|
+>     +--------------------------+--------+-----------+---------+-----------+
+>     |cities_csv                |default |null       |EXTERNAL |false      |
+>     |cleaned_taxes             |default |null       |MANAGED  |false      |
+>     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
+>     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
+>     |linkage                   |default |null       |EXTERNAL |false      |
+>     |nations                   |default |null       |EXTERNAL |false      |
+>     |newmplist                 |default |null       |EXTERNAL |false      |
+>     |ny_baby_names             |default |null       |MANAGED  |false      |
+>     |nzmpsandparty             |default |null       |EXTERNAL |false      |
+>     |pos_neg_category          |default |null       |EXTERNAL |false      |
+>     |rna                       |default |null       |MANAGED  |false      |
+>     |samh                      |default |null       |EXTERNAL |false      |
+>     |table1                    |default |null       |EXTERNAL |false      |
+>     |test_table                |default |null       |EXTERNAL |false      |
+>     |uscites                   |default |null       |EXTERNAL |false      |
+>     |songstable                |null    |null       |TEMPORARY|true       |
+>     +--------------------------+--------+-----------+---------+-----------+
+
 A first inspection
 ------------------
 
 A first step to any data exploration is viewing sample data. For this purpose we can use a simple SQL query that returns first 10 rows.
-
-Let's Do all the main bits in Stage 1 now before doing Stage 2 in this Notebook.
---------------------------------------------------------------------------------
 
 | artist\_id         | artist\_latitude | artist\_longitude | artist\_location           | artist\_name      | duration  | end\_of\_fade\_in | key  | key\_confidence | loudness | release                                      | song\_hotness  |
 |--------------------|------------------|-------------------|----------------------------|-------------------|-----------|-------------------|------|-----------------|----------|----------------------------------------------|----------------|
@@ -148,73 +217,3 @@ Exercises
 2.  Plot sampled points for other parameters in the data.
 
 Next step is clustering the data. Click on the next notebook (Model) to follow the tutorial.
-
-``` scala
-spark.catalog.listTables.show(false) // make sure the temp view of our table is there
-```
-
->     +--------------------------+--------+-----------+---------+-----------+
->     |name                      |database|description|tableType|isTemporary|
->     +--------------------------+--------+-----------+---------+-----------+
->     |cities_csv                |default |null       |EXTERNAL |false      |
->     |cleaned_taxes             |default |null       |MANAGED  |false      |
->     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
->     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
->     |linkage                   |default |null       |EXTERNAL |false      |
->     |nations                   |default |null       |EXTERNAL |false      |
->     |newmplist                 |default |null       |EXTERNAL |false      |
->     |ny_baby_names             |default |null       |MANAGED  |false      |
->     |nzmpsandparty             |default |null       |EXTERNAL |false      |
->     |pos_neg_category          |default |null       |EXTERNAL |false      |
->     |rna                       |default |null       |MANAGED  |false      |
->     |samh                      |default |null       |EXTERNAL |false      |
->     |table1                    |default |null       |EXTERNAL |false      |
->     |test_table                |default |null       |EXTERNAL |false      |
->     |uscites                   |default |null       |EXTERNAL |false      |
->     |songstable                |null    |null       |TEMPORARY|true       |
->     +--------------------------+--------+-----------+---------+-----------+
-
-``` scala
-// Let's quickly do everything to register the tempView of the table here
-
-// fill in comment ... EXERCISE!
-case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Double, artist_location: String, artist_name: String, duration: Double, end_of_fade_in: Double, key: Int, key_confidence: Double, loudness: Double, release: String, song_hotness: Double, song_id: String, start_of_fade_out: Double, tempo: Double, time_signature: Double, time_signature_confidence: Double, title: String, year: Double, partial_sequence: Int)
-
-def parseLine(line: String): Song = {
-  // fill in comment ...
-  
-  def toDouble(value: String, defaultVal: Double): Double = {
-    try {
-       value.toDouble
-    } catch {
-      case e: Exception => defaultVal
-    }
-  }
-
-  def toInt(value: String, defaultVal: Int): Int = {
-    try {
-       value.toInt
-      } catch {
-      case e: Exception => defaultVal
-    }
-  }
-  // fill in comment ...
-  val tokens = line.split("\t")
-  Song(tokens(0), toDouble(tokens(1), 0.0), toDouble(tokens(2), 0.0), tokens(3), tokens(4), toDouble(tokens(5), 0.0), toDouble(tokens(6), 0.0), toInt(tokens(7), -1), toDouble(tokens(8), 0.0), toDouble(tokens(9), 0.0), tokens(10), toDouble(tokens(11), 0.0), tokens(12), toDouble(tokens(13), 0.0), toDouble(tokens(14), 0.0), toDouble(tokens(15), 0.0), toDouble(tokens(16), 0.0), tokens(17), toDouble(tokens(18), 0.0), toInt(tokens(19), -1))
-}
-
-// this is loads all the data - a subset of the 1M songs dataset
-val dataRDD = sc.textFile("/databricks-datasets/songs/data-001/part-*") 
-
-// .. fill in comment
-val df = dataRDD.map(parseLine).toDF
-
-// .. fill in comment
-df.createOrReplaceTempView("songsTable")
-```
-
->     defined class Song
->     parseLine: (line: String)Song
->     dataRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/songs/data-001/part-* MapPartitionsRDD[14036] at textFile at <console>:63
->     df: org.apache.spark.sql.DataFrame = [artist_id: string, artist_latitude: double ... 18 more fields]
-

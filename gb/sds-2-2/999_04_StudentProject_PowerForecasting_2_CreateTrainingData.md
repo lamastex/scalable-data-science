@@ -1,3 +1,14 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+Power Forecasting
+=================
+
+Student Project
+---------------
+
+by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/), [Mahmoud Shepero](https://www.linkedin.com/in/mahmoudshepero/) and Dennis van der Meer
+
 Create labeled training data from timeseries dataset
 ====================================================
 
@@ -227,14 +238,3 @@ val trainingSet = split80.cache()
 
 -   `testSet`
 -   `trainingSet`
-
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Power Forecasting
-=================
-
-Student Project
----------------
-
-by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/), [Mahmoud Shepero](https://www.linkedin.com/in/mahmoudshepero/) and Dennis van der Meer

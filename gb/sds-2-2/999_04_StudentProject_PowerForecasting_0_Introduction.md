@@ -1,3 +1,6 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
 Power Forecasting
 =================
 
@@ -219,6 +222,3 @@ Assuming we have the following filestructure:
     ...
 
 Use the following command while in the `datafiles` directory to clean generate one clean output file with all the data: `bash  cat */*.json | json -ga -e 'delete this.IoTHub;  delete this.PartitionId;  delete this.EventEnqueuedUtcTime;  delete this.EventProcessedUtcTime;  delete this.DataList.ClusterControl;  delete this.DataList.IO;  delete this.DataList.Alarm;  this.tmp = this.DataList.MX41.P;  delete this.DataList.MX41;  this.DataList.MX41 = {};  this.DataList.MX41.P = this.tmp;  delete this.tmp;  delete this.DataList.WXT530.DM;  delete this.DataList.WXT530.DX;  delete this.DataList.WXT530.SM;  delete this.DataList.WXT530.SX;  delete this.DataList.WXT530.GT41;  delete this.DataList.WXT530.HC;  delete this.DataList.WXT530.HD;  delete this.DataList.WXT530.HI;  delete this.DataList.WXT530.RP;  delete this.DataList.WXT530.HP;  delete this.ID' -0 > clean_data.json`
-
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================

@@ -32,6 +32,11 @@ Let us investigate this dataset ourselves!
 -   This data is already made available in DBFS, our distributed file system.
 -   We only do the simplest word count with this data in this notebook and will do more sophisticated analyses in the sequel (including topic modeling, etc).
 
+Project Suggestion
+------------------
+
+**Streaming/NLP/Vertex-Programs, etc**: \* [project: MEP - meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/) - just won AWS Cloud Computing Credits for research grant. \* if interested please come to a group meeting next Monday 1500-1600 September 25th in [Professor Matteo Magnani](http://katalog.uu.se/empinfo/?languageId=1&id=N13-1077)'s Networks Group meeting in IT Department.
+
 Key Data Management Concepts
 ----------------------------
 
@@ -510,8 +515,3 @@ In notebooks, you can also use the %fs shorthand to access DBFS. The %fs shortha
 straightforwardly onto dbutils calls. For example, "%fs head --maxBytes=10000 /file/path"
 translates into "dbutils.fs.head("/file/path", maxBytes = 10000)".
       <h3>fsutils</h3><b>cp(from: String, to: String, recurse: boolean = false): boolean</b> -> Copies a file or directory, possibly across FileSystems<br /><b>head(file: String, maxBytes: int = 65536): String</b> -> Returns up to the first 'maxBytes' bytes of the given file as a String encoded in UTF-8<br /><b>ls(dir: String): SchemaSeq</b> -> Lists the contents of a directory<br /><b>mkdirs(dir: String): boolean</b> -> Creates the given directory if it does not exist, also creating any necessary parent directories<br /><b>mv(from: String, to: String, recurse: boolean = false): boolean</b> -> Moves a file or directory, possibly across FileSystems<br /><b>put(file: String, contents: String, overwrite: boolean = false): boolean</b> -> Writes the given String out to a file, encoded in UTF-8<br /><b>rm(dir: String, recurse: boolean = false): boolean</b> -> Removes a file or directory<br /><br /><h3>cache</h3><b>cacheFiles(files: Seq): boolean</b> -> Caches a set of files on the local SSDs of this cluster<br /><b>cacheTable(tableName: String): boolean</b> -> Caches the contents of the given table on the local SSDs of this cluster<br /><b>uncacheFiles(files: Seq): boolean</b> -> Removes the cached version of the files<br /><b>uncacheTable(tableName: String): boolean</b> -> Removes the cached version of the given table from SSDs<br /><br /><h3>mount</h3><b>chmod(path: String, user: String, permission: String): void</b> -> Modifies the permissions of a mount point<br /><b>grants(path: String): SchemaSeq</b> -> Lists the permissions associated with a mount point<br /><b>mount(source: String, mountPoint: String, encryptionType: String = "", owner: String = null): boolean</b> -> Mounts the given source directory into DBFS at the given mount point<br /><b>mounts(): SchemaSeq</b> -> Displays information about what is mounted within DBFS<br /><b>refreshMounts(): boolean</b> -> Forces all machines in this cluster to refresh their mount cache, ensuring they receive the most recent information<br /><b>unmount(mountPoint: String): boolean</b> -> Deletes a DBFS mount point<br /><br /></div></p>
-
-Project Suggestion
-------------------
-
-**Streaming/NLP/Vertex-Programs, etc**: \* [project: MEP - meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/) - just won AWS Cloud Computing Credits for research grant. \* if interested please come to a group meeting next Monday 1500-1600 September 25th in [Professor Matteo Magnani](http://katalog.uu.se/empinfo/?languageId=1&id=N13-1077)'s Networks Group meeting in IT Department.

@@ -129,6 +129,26 @@ diamondsDF.printSchema // print schema
 >     diamondsDF: org.apache.spark.sql.DataFrame = [carat: double, cut: string ... 8 more fields]
 
 ``` scala
+diamondsDF.show(10,false) // notice that price column has Double values that end in '.0' now
+```
+
+>     +-----+---------+-----+-------+-----+-----+-----+----+----+----+
+>     |carat|cut      |color|clarity|depth|table|price|x   |y   |z   |
+>     +-----+---------+-----+-------+-----+-----+-----+----+----+----+
+>     |0.23 |Ideal    |E    |SI2    |61.5 |55.0 |326.0|3.95|3.98|2.43|
+>     |0.21 |Premium  |E    |SI1    |59.8 |61.0 |326.0|3.89|3.84|2.31|
+>     |0.23 |Good     |E    |VS1    |56.9 |65.0 |327.0|4.05|4.07|2.31|
+>     |0.29 |Premium  |I    |VS2    |62.4 |58.0 |334.0|4.2 |4.23|2.63|
+>     |0.31 |Good     |J    |SI2    |63.3 |58.0 |335.0|4.34|4.35|2.75|
+>     |0.24 |Very Good|J    |VVS2   |62.8 |57.0 |336.0|3.94|3.96|2.48|
+>     |0.24 |Very Good|I    |VVS1   |62.3 |57.0 |336.0|3.95|3.98|2.47|
+>     |0.26 |Very Good|H    |SI1    |61.9 |55.0 |337.0|4.07|4.11|2.53|
+>     |0.22 |Fair     |E    |VS2    |65.1 |61.0 |337.0|3.87|3.78|2.49|
+>     |0.23 |Very Good|H    |VS1    |59.4 |61.0 |338.0|4.0 |4.05|2.39|
+>     +-----+---------+-----+-------+-----+-----+-----+----+----+----+
+>     only showing top 10 rows
+
+``` scala
 //View DataFrame in databricks
 // note this 'display' is a databricks notebook specific command that is quite powerful for visual interaction with the data
 // other notebooks like zeppelin have similar commands for interactive visualisation
@@ -335,6 +355,51 @@ Truncated to 30 rows
 // and clarity too...
 ```
 
+\*\* You Try!\*\*
+
+Now play around with display of the entire DF and choosing what you want in the GUI as opposed to a `.select(...)` statement earlier.
+
+For instance, the following `display(diamondsDF)` shows the counts of the colors by choosing in the `Plot Options` a `bar-chart` that is `grouped` with `Series Grouping` as `color`, `values` as `<id>` and `Aggregation` as `COUNT`. You can click on `Plot Options` to see these settings and can change them as you wish by dragging and dropping.
+
+``` scala
+ display(diamondsDF)
+```
+
+| carat | cut       | color | clarity | depth | table | price | x    | y    | z    |
+|-------|-----------|-------|---------|-------|-------|-------|------|------|------|
+| 0.23  | Ideal     | E     | SI2     | 61.5  | 55.0  | 326.0 | 3.95 | 3.98 | 2.43 |
+| 0.21  | Premium   | E     | SI1     | 59.8  | 61.0  | 326.0 | 3.89 | 3.84 | 2.31 |
+| 0.23  | Good      | E     | VS1     | 56.9  | 65.0  | 327.0 | 4.05 | 4.07 | 2.31 |
+| 0.29  | Premium   | I     | VS2     | 62.4  | 58.0  | 334.0 | 4.2  | 4.23 | 2.63 |
+| 0.31  | Good      | J     | SI2     | 63.3  | 58.0  | 335.0 | 4.34 | 4.35 | 2.75 |
+| 0.24  | Very Good | J     | VVS2    | 62.8  | 57.0  | 336.0 | 3.94 | 3.96 | 2.48 |
+| 0.24  | Very Good | I     | VVS1    | 62.3  | 57.0  | 336.0 | 3.95 | 3.98 | 2.47 |
+| 0.26  | Very Good | H     | SI1     | 61.9  | 55.0  | 337.0 | 4.07 | 4.11 | 2.53 |
+| 0.22  | Fair      | E     | VS2     | 65.1  | 61.0  | 337.0 | 3.87 | 3.78 | 2.49 |
+| 0.23  | Very Good | H     | VS1     | 59.4  | 61.0  | 338.0 | 4.0  | 4.05 | 2.39 |
+| 0.3   | Good      | J     | SI1     | 64.0  | 55.0  | 339.0 | 4.25 | 4.28 | 2.73 |
+| 0.23  | Ideal     | J     | VS1     | 62.8  | 56.0  | 340.0 | 3.93 | 3.9  | 2.46 |
+| 0.22  | Premium   | F     | SI1     | 60.4  | 61.0  | 342.0 | 3.88 | 3.84 | 2.33 |
+| 0.31  | Ideal     | J     | SI2     | 62.2  | 54.0  | 344.0 | 4.35 | 4.37 | 2.71 |
+| 0.2   | Premium   | E     | SI2     | 60.2  | 62.0  | 345.0 | 3.79 | 3.75 | 2.27 |
+| 0.32  | Premium   | E     | I1      | 60.9  | 58.0  | 345.0 | 4.38 | 4.42 | 2.68 |
+| 0.3   | Ideal     | I     | SI2     | 62.0  | 54.0  | 348.0 | 4.31 | 4.34 | 2.68 |
+| 0.3   | Good      | J     | SI1     | 63.4  | 54.0  | 351.0 | 4.23 | 4.29 | 2.7  |
+| 0.3   | Good      | J     | SI1     | 63.8  | 56.0  | 351.0 | 4.23 | 4.26 | 2.71 |
+| 0.3   | Very Good | J     | SI1     | 62.7  | 59.0  | 351.0 | 4.21 | 4.27 | 2.66 |
+| 0.3   | Good      | I     | SI2     | 63.3  | 56.0  | 351.0 | 4.26 | 4.3  | 2.71 |
+| 0.23  | Very Good | E     | VS2     | 63.8  | 55.0  | 352.0 | 3.85 | 3.92 | 2.48 |
+| 0.23  | Very Good | H     | VS1     | 61.0  | 57.0  | 353.0 | 3.94 | 3.96 | 2.41 |
+| 0.31  | Very Good | J     | SI1     | 59.4  | 62.0  | 353.0 | 4.39 | 4.43 | 2.62 |
+| 0.31  | Very Good | J     | SI1     | 58.1  | 62.0  | 353.0 | 4.44 | 4.47 | 2.59 |
+| 0.23  | Very Good | G     | VVS2    | 60.4  | 58.0  | 354.0 | 3.97 | 4.01 | 2.41 |
+| 0.24  | Premium   | I     | VS1     | 62.5  | 57.0  | 355.0 | 3.97 | 3.94 | 2.47 |
+| 0.3   | Very Good | J     | VS2     | 62.2  | 57.0  | 357.0 | 4.28 | 4.3  | 2.67 |
+| 0.23  | Very Good | D     | VS2     | 60.5  | 61.0  | 357.0 | 3.96 | 3.97 | 2.4  |
+| 0.23  | Very Good | F     | VS1     | 60.9  | 57.0  | 357.0 | 3.96 | 3.99 | 2.42 |
+
+Truncated to 30 rows
+
 Now let's examine one of the continuous features as an example.
 
 ``` scala
@@ -533,6 +598,16 @@ diamondsDColoredDF.show(10) // Ctrl+Enter
 
 As you can see all the colors are now 'D'. But to really confirm this we can do the following for fun:
 
+``` scala
+diamondsDColoredDF.select("color").distinct().show
+```
+
+>     +-----+
+>     |color|
+>     +-----+
+>     |    D|
+>     +-----+
+
 Let's try to do the same in SQL for those who know SQL from before.
 
 First we need to see if the table is registerd (not just the DataFrame), and if not we ened to register our DataFrame as a temporary table.
@@ -566,6 +641,31 @@ Looks like diamonds is already there (if not just execute the following cell).
 ``` scala
 diamondsDF.createOrReplaceTempView("diamonds")
 ```
+
+``` scala
+sqlContext.tables.show() // Ctrl+Enter to see available tables
+```
+
+>     +--------+--------------------+-----------+
+>     |database|           tableName|isTemporary|
+>     +--------+--------------------+-----------+
+>     | default|          cities_csv|      false|
+>     | default|       cleaned_taxes|      false|
+>     | default|commdettrumpclint...|      false|
+>     | default|   donaldtrumptweets|      false|
+>     | default|             linkage|      false|
+>     | default|             nations|      false|
+>     | default|           newmplist|      false|
+>     | default|       ny_baby_names|      false|
+>     | default|       nzmpsandparty|      false|
+>     | default|    pos_neg_category|      false|
+>     | default|                 rna|      false|
+>     | default|                samh|      false|
+>     | default|              table1|      false|
+>     | default|          test_table|      false|
+>     | default|             uscites|      false|
+>     |        |            diamonds|       true|
+>     +--------+--------------------+-----------+
 
 ``` sql -- Shift+Enter to do the same in SQL
 select carat, color, price from diamonds where color='D'
@@ -610,6 +710,20 @@ Alternatively, one could just write the SQL statement in scala to create a new D
 
 ``` scala
 val diamondsDColoredDF_FromTable = sqlContext.sql("select carat, color, price from diamonds where color='D'") // Shift+Enter
+```
+
+>     diamondsDColoredDF_FromTable: org.apache.spark.sql.DataFrame = [carat: double, color: string ... 1 more field]
+
+``` scala
+// or if you like use upper case for SQL then this is equivalent
+val diamondsDColoredDF_FromTable = sqlContext.sql("SELECT carat, color, price FROM diamonds WHERE color='D'") // Shift+Enter
+```
+
+>     diamondsDColoredDF_FromTable: org.apache.spark.sql.DataFrame = [carat: double, color: string ... 1 more field]
+
+``` scala
+// from version 2.x onwards you can call from SparkSession, the pre-made spark in spark-shell or databricks notebook
+val diamondsDColoredDF_FromTable = spark.sql("SELECT carat, color, price FROM diamonds WHERE color='D'") // Shift+Enter
 ```
 
 >     diamondsDColoredDF_FromTable: org.apache.spark.sql.DataFrame = [carat: double, color: string ... 1 more field]
@@ -975,118 +1089,3 @@ For more on SQL syntax, check the SQL tutorial on [W3Schools](http://www.w3schoo
 Note that [HiveQL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) supports only a subset of operations supported by SQL
 
 See databricks guide on [tables](https://docs.databricks.com/user-guide/tables.html) **NOW-ish**.
-
-``` scala
-sqlContext.tables.show() // Ctrl+Enter to see available tables
-```
-
->     +--------+--------------------+-----------+
->     |database|           tableName|isTemporary|
->     +--------+--------------------+-----------+
->     | default|          cities_csv|      false|
->     | default|       cleaned_taxes|      false|
->     | default|commdettrumpclint...|      false|
->     | default|   donaldtrumptweets|      false|
->     | default|             linkage|      false|
->     | default|             nations|      false|
->     | default|           newmplist|      false|
->     | default|       ny_baby_names|      false|
->     | default|       nzmpsandparty|      false|
->     | default|    pos_neg_category|      false|
->     | default|                 rna|      false|
->     | default|                samh|      false|
->     | default|              table1|      false|
->     | default|          test_table|      false|
->     | default|             uscites|      false|
->     |        |            diamonds|       true|
->     +--------+--------------------+-----------+
-
-``` scala
-// from version 2.x onwards you can call from SparkSession, the pre-made spark in spark-shell or databricks notebook
-val diamondsDColoredDF_FromTable = spark.sql("SELECT carat, color, price FROM diamonds WHERE color='D'") // Shift+Enter
-```
-
->     diamondsDColoredDF_FromTable: org.apache.spark.sql.DataFrame = [carat: double, color: string ... 1 more field]
-
-``` scala
-diamondsDF.show(10,false) // notice that price column has Double values that end in '.0' now
-```
-
->     +-----+---------+-----+-------+-----+-----+-----+----+----+----+
->     |carat|cut      |color|clarity|depth|table|price|x   |y   |z   |
->     +-----+---------+-----+-------+-----+-----+-----+----+----+----+
->     |0.23 |Ideal    |E    |SI2    |61.5 |55.0 |326.0|3.95|3.98|2.43|
->     |0.21 |Premium  |E    |SI1    |59.8 |61.0 |326.0|3.89|3.84|2.31|
->     |0.23 |Good     |E    |VS1    |56.9 |65.0 |327.0|4.05|4.07|2.31|
->     |0.29 |Premium  |I    |VS2    |62.4 |58.0 |334.0|4.2 |4.23|2.63|
->     |0.31 |Good     |J    |SI2    |63.3 |58.0 |335.0|4.34|4.35|2.75|
->     |0.24 |Very Good|J    |VVS2   |62.8 |57.0 |336.0|3.94|3.96|2.48|
->     |0.24 |Very Good|I    |VVS1   |62.3 |57.0 |336.0|3.95|3.98|2.47|
->     |0.26 |Very Good|H    |SI1    |61.9 |55.0 |337.0|4.07|4.11|2.53|
->     |0.22 |Fair     |E    |VS2    |65.1 |61.0 |337.0|3.87|3.78|2.49|
->     |0.23 |Very Good|H    |VS1    |59.4 |61.0 |338.0|4.0 |4.05|2.39|
->     +-----+---------+-----+-------+-----+-----+-----+----+----+----+
->     only showing top 10 rows
-
-``` scala
- display(diamondsDF)
-```
-
-| carat | cut       | color | clarity | depth | table | price | x    | y    | z    |
-|-------|-----------|-------|---------|-------|-------|-------|------|------|------|
-| 0.23  | Ideal     | E     | SI2     | 61.5  | 55.0  | 326.0 | 3.95 | 3.98 | 2.43 |
-| 0.21  | Premium   | E     | SI1     | 59.8  | 61.0  | 326.0 | 3.89 | 3.84 | 2.31 |
-| 0.23  | Good      | E     | VS1     | 56.9  | 65.0  | 327.0 | 4.05 | 4.07 | 2.31 |
-| 0.29  | Premium   | I     | VS2     | 62.4  | 58.0  | 334.0 | 4.2  | 4.23 | 2.63 |
-| 0.31  | Good      | J     | SI2     | 63.3  | 58.0  | 335.0 | 4.34 | 4.35 | 2.75 |
-| 0.24  | Very Good | J     | VVS2    | 62.8  | 57.0  | 336.0 | 3.94 | 3.96 | 2.48 |
-| 0.24  | Very Good | I     | VVS1    | 62.3  | 57.0  | 336.0 | 3.95 | 3.98 | 2.47 |
-| 0.26  | Very Good | H     | SI1     | 61.9  | 55.0  | 337.0 | 4.07 | 4.11 | 2.53 |
-| 0.22  | Fair      | E     | VS2     | 65.1  | 61.0  | 337.0 | 3.87 | 3.78 | 2.49 |
-| 0.23  | Very Good | H     | VS1     | 59.4  | 61.0  | 338.0 | 4.0  | 4.05 | 2.39 |
-| 0.3   | Good      | J     | SI1     | 64.0  | 55.0  | 339.0 | 4.25 | 4.28 | 2.73 |
-| 0.23  | Ideal     | J     | VS1     | 62.8  | 56.0  | 340.0 | 3.93 | 3.9  | 2.46 |
-| 0.22  | Premium   | F     | SI1     | 60.4  | 61.0  | 342.0 | 3.88 | 3.84 | 2.33 |
-| 0.31  | Ideal     | J     | SI2     | 62.2  | 54.0  | 344.0 | 4.35 | 4.37 | 2.71 |
-| 0.2   | Premium   | E     | SI2     | 60.2  | 62.0  | 345.0 | 3.79 | 3.75 | 2.27 |
-| 0.32  | Premium   | E     | I1      | 60.9  | 58.0  | 345.0 | 4.38 | 4.42 | 2.68 |
-| 0.3   | Ideal     | I     | SI2     | 62.0  | 54.0  | 348.0 | 4.31 | 4.34 | 2.68 |
-| 0.3   | Good      | J     | SI1     | 63.4  | 54.0  | 351.0 | 4.23 | 4.29 | 2.7  |
-| 0.3   | Good      | J     | SI1     | 63.8  | 56.0  | 351.0 | 4.23 | 4.26 | 2.71 |
-| 0.3   | Very Good | J     | SI1     | 62.7  | 59.0  | 351.0 | 4.21 | 4.27 | 2.66 |
-| 0.3   | Good      | I     | SI2     | 63.3  | 56.0  | 351.0 | 4.26 | 4.3  | 2.71 |
-| 0.23  | Very Good | E     | VS2     | 63.8  | 55.0  | 352.0 | 3.85 | 3.92 | 2.48 |
-| 0.23  | Very Good | H     | VS1     | 61.0  | 57.0  | 353.0 | 3.94 | 3.96 | 2.41 |
-| 0.31  | Very Good | J     | SI1     | 59.4  | 62.0  | 353.0 | 4.39 | 4.43 | 2.62 |
-| 0.31  | Very Good | J     | SI1     | 58.1  | 62.0  | 353.0 | 4.44 | 4.47 | 2.59 |
-| 0.23  | Very Good | G     | VVS2    | 60.4  | 58.0  | 354.0 | 3.97 | 4.01 | 2.41 |
-| 0.24  | Premium   | I     | VS1     | 62.5  | 57.0  | 355.0 | 3.97 | 3.94 | 2.47 |
-| 0.3   | Very Good | J     | VS2     | 62.2  | 57.0  | 357.0 | 4.28 | 4.3  | 2.67 |
-| 0.23  | Very Good | D     | VS2     | 60.5  | 61.0  | 357.0 | 3.96 | 3.97 | 2.4  |
-| 0.23  | Very Good | F     | VS1     | 60.9  | 57.0  | 357.0 | 3.96 | 3.99 | 2.42 |
-
-Truncated to 30 rows
-
-\*\* You Try!\*\*
-
-Now play around with display of the entire DF and choosing what you want in the GUI as opposed to a `.select(...)` statement earlier.
-
-For instance, the following `display(diamondsDF)` shows the counts of the colors by choosing in the `Plot Options` a `bar-chart` that is `grouped` with `Series Grouping` as `color`, `values` as `<id>` and `Aggregation` as `COUNT`. You can click on `Plot Options` to see these settings and can change them as you wish by dragging and dropping.
-
-``` scala
-diamondsDColoredDF.select("color").distinct().show
-```
-
->     +-----+
->     |color|
->     +-----+
->     |    D|
->     +-----+
-
-``` scala
-// or if you like use upper case for SQL then this is equivalent
-val diamondsDColoredDF_FromTable = sqlContext.sql("SELECT carat, color, price FROM diamonds WHERE color='D'") // Shift+Enter
-```
-
->     diamondsDColoredDF_FromTable: org.apache.spark.sql.DataFrame = [carat: double, color: string ... 1 more field]
-

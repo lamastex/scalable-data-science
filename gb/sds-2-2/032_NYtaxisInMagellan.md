@@ -1,3 +1,13 @@
+[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+===========================================================================================
+
+Analysis of NY Taxi dataset in magellan
+=======================================
+
+### Replicating Ram Sriharsha's analysis by Victor Ingman.
+
+See <https://magellan.ghost.io/magellan-geospatial-processing-made-easy/> for Ram's blog on this data analysis and learn about the dataset at <http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml>.
+
 ``` sh
 # download data yall
 # wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2017-06.csv // the schema is different so this needs more work
@@ -915,12 +925,3 @@ display(
 
 Truncated to 30 rows
 
-[SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
-===========================================================================================
-
-Analysis of NY Taxi dataset in magellan
-=======================================
-
-### Replicating Ram Sriharsha's analysis by Victor Ingman.
-
-See <https://magellan.ghost.io/magellan-geospatial-processing-made-easy/> for Ram's blog on this data analysis and learn about the dataset at <http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml>.

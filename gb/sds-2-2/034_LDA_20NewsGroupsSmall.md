@@ -16,6 +16,13 @@ Algorithm Summary
     -   EMLDAOptimizer using [Expectation Maximization](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm)
     -   OnlineLDAOptimizer using Iterative Mini-Batch Sampling for [Online Variational Bayes](https://www.cs.princeton.edu/~blei/papers/HoffmanBleiBach2010b.pdf)
 
+Intro to LDA by David Blei
+--------------------------
+
+Watch at least the first 25 or so minutes of this video by David Blei on a crash introduction to topic modeling via Latent Dirichlet Allocation (LDA).
+
+[![AJ's What is Collaborative Filtering](http://img.youtube.com/vi/FkckgwMHP2s/0.jpg)](https://www.youtube.com/watch?v=FkckgwMHP2s)
+
 Links
 -----
 
@@ -214,6 +221,10 @@ Last modified: September 9, 1999
     talk.religion.misc
 
 Some of the newsgroups seem pretty similar on first glance, such as *comp.sys.ibm.pc.hardware* and *comp.sys.mac.hardware*, which may affect our results.
+
+**NOTE:** A simpler and slicker version of the analysis is available in this notebook: \* <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
+
+But, let's do it the hard way here so that we can do it on other arbitrary datasets.
 
 Step 2. Loading the Data and Data Cleaning
 ------------------------------------------
@@ -1939,6 +1950,11 @@ function classes(root) {
 3.  Try to parse the data closer to the clean dataset available in `/databricks-datasets/news20.binary/*` and walk through the following notebook (*but in Scala!*):
     -   <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
 
+| path                                                       | name      | size |
+|------------------------------------------------------------|-----------|------|
+| dbfs:/databricks-datasets/news20.binary/data-001/test/     | test/     | 0.0  |
+| dbfs:/databricks-datasets/news20.binary/data-001/training/ | training/ | 0.0  |
+
 Step 1. Downloading and Loading Data into DBFS
 ----------------------------------------------
 
@@ -3276,18 +3292,3 @@ display(dbutils.fs.ls("dbfs:/datasets/mini_newsgroups"))
 | dbfs:/datasets/mini\_newsgroups/talk.politics.misc/       | talk.politics.misc/       | 0.0  |
 | dbfs:/datasets/mini\_newsgroups/talk.religion.misc/       | talk.religion.misc/       | 0.0  |
 
-| path                                                       | name      | size |
-|------------------------------------------------------------|-----------|------|
-| dbfs:/databricks-datasets/news20.binary/data-001/test/     | test/     | 0.0  |
-| dbfs:/databricks-datasets/news20.binary/data-001/training/ | training/ | 0.0  |
-
-**NOTE:** A simpler and slicker version of the analysis is available in this notebook: \* <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
-
-But, let's do it the hard way here so that we can do it on other arbitrary datasets.
-
-Intro to LDA by David Blei
---------------------------
-
-Watch at least the first 25 or so minutes of this video by David Blei on a crash introduction to topic modeling via Latent Dirichlet Allocation (LDA).
-
-[![AJ's What is Collaborative Filtering](http://img.youtube.com/vi/FkckgwMHP2s/0.jpg)](https://www.youtube.com/watch?v=FkckgwMHP2s)

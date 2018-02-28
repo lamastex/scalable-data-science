@@ -75,6 +75,15 @@ In your databricks community edition:
     -   <https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc>
 3.  This should open a structure of directories in with path: \`/Workspace/scalable-data-science/xtraResources/'
 
+``` scala
+
+      %md
+### Let us look at the legend and overview of the visual RDD Api by doing the following first:
+
+
+![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
+```
+
 ### Running **Spark**
 
 The variable **sc** allows you to access a Spark Context to run your Spark programs. Recall `SparkContext` is in the Driver Program.
@@ -422,6 +431,33 @@ var sum = 0
 >     rdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[358776] at parallelize at <console>:34
 >     sum: Int = 0
 
+``` scala
+val rdd1 = rdd.map(x => sum = sum + x)
+```
+
+>     rdd1: org.apache.spark.rdd.RDD[Unit] = MapPartitionsRDD[358778] at map at <console>:38
+
+``` scala
+rdd1.collect()
+```
+
+>     res24: Array[Unit] = Array((), (), (), (), (), (), (), (), (), ())
+
+``` scala
+val rdd1 = rdd.map(x => {var sum = 0;
+                         sum = sum + x
+                         sum}
+                  )
+```
+
+>     rdd1: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[358779] at map at <console>:38
+
+``` scala
+rdd1.collect()
+```
+
+>     res25: Array[Int] = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
 ### 11. Shipping Closures, Broadcast Variables and Accumulator Variables
 
 #### Closures, Broadcast and Accumulator Variables
@@ -483,40 +519,4 @@ map.put("e", 5)
 >     import java.util.HashMap
 >     map: java.util.HashMap[String,Int] = {a=1, b=2, c=3, d=4, e=5}
 >     res9: Int = 0
-
-``` scala
-
-      %md
-### Let us look at the legend and overview of the visual RDD Api by doing the following first:
-
-
-![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
-```
-
-``` scala
-val rdd1 = rdd.map(x => sum = sum + x)
-```
-
->     rdd1: org.apache.spark.rdd.RDD[Unit] = MapPartitionsRDD[358778] at map at <console>:38
-
-``` scala
-rdd1.collect()
-```
-
->     res24: Array[Unit] = Array((), (), (), (), (), (), (), (), (), ())
-
-``` scala
-val rdd1 = rdd.map(x => {var sum = 0;
-                         sum = sum + x
-                         sum}
-                  )
-```
-
->     rdd1: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[358779] at map at <console>:38
-
-``` scala
-rdd1.collect()
-```
-
->     res25: Array[Int] = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 

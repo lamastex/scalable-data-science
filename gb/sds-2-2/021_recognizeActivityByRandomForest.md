@@ -1,6 +1,13 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Activity Recognition from Accelerometer using Random Forest
+===========================================================
+
+This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition: \* <https://github.com/MiraLak/activityRecognitionV2>.
+
+[![Amira's video](http://img.youtube.com/vi/1DV9Kdec0-A/0.jpg)](https://www.youtube.com/watch?v=1DV9Kdec0-A)
+
 See Section below on **Download and Load Data** first.
 
 ``` scala
@@ -266,6 +273,17 @@ val (trainingData, testData) = (splits(0), splits(1))
 
 See \* <http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier> \* <http://blog.citizennet.com/blog/2012/11/10/random-forests-ensembles-and-performance-metrics>
 
+<p class="htmlSandbox"><iframe 
+ src="https://en.wikipedia.org/wiki/Random_forest"
+ width="95%" height="500"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe></p>
+
 ``` scala
 import org.apache.spark.ml.feature.{StringIndexer,VectorAssembler}
 import org.apache.spark.ml.Pipeline
@@ -412,20 +430,3 @@ display(dbutils.fs.ls("dbfs:///datasets/sds/ActivityRecognition"))
 |---------------------------------------------------------|------------------|----------|
 | dbfs:/datasets/sds/ActivityRecognition/dataTraining.csv | dataTraining.csv | 931349.0 |
 
-Activity Recognition from Accelerometer using Random Forest
-===========================================================
-
-This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition: \* <https://github.com/MiraLak/activityRecognitionV2>.
-
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Random_forest"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-[![Amira's video](http://img.youtube.com/vi/1DV9Kdec0-A/0.jpg)](https://www.youtube.com/watch?v=1DV9Kdec0-A)

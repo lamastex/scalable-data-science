@@ -175,6 +175,19 @@ class DummySource(ratePerSec: Int) extends Receiver[String](StorageLevel.MEMORY_
 >     import org.apache.spark.streaming.receiver._
 >     defined class DummySource
 
+Transforming and Acting on the DStream of lines
+-----------------------------------------------
+
+Any operation applied on a DStream translates to operations on the underlying RDDs. For converting a stream of lines to words, the `flatMap` operation is applied on each RDD in the `lines` DStream to generate the RDDs of the `wordStream` DStream. This is shown in the following figure.
+
+![Spark Streaming](http://spark.apache.org/docs/latest/img/streaming-dstream-ops.png "Spark Streaming data flow")
+
+These underlying RDD transformations are computed by the Spark engine. The DStream operations hide most of these details and provide the developer with a higher-level API for convenience.
+
+Next `reduceByKey` is used to get `wordCountStream` that counts the words in `wordStream`.
+
+Finally, this is registered as a temporary table for each RDD in the DStream.
+
 Let's try to understand the following `creatingFunc` to create a new StreamingContext and setting it up for word count and registering it as temp table for each batch of 1000 lines per second in the stream.
 
 ``` scala
@@ -213,19 +226,6 @@ def creatingFunc(): StreamingContext = {
 
 >     newContextCreated: Boolean = false
 >     creatingFunc: ()org.apache.spark.streaming.StreamingContext
-
-Transforming and Acting on the DStream of lines
------------------------------------------------
-
-Any operation applied on a DStream translates to operations on the underlying RDDs. For converting a stream of lines to words, the `flatMap` operation is applied on each RDD in the `lines` DStream to generate the RDDs of the `wordStream` DStream. This is shown in the following figure.
-
-![Spark Streaming](http://spark.apache.org/docs/latest/img/streaming-dstream-ops.png "Spark Streaming data flow")
-
-These underlying RDD transformations are computed by the Spark engine. The DStream operations hide most of these details and provide the developer with a higher-level API for convenience.
-
-Next `reduceByKey` is used to get `wordCountStream` that counts the words in `wordStream`.
-
-Finally, this is registered as a temporary table for each RDD in the DStream.
 
 Start Streaming Job: Stop existing StreamingContext if any and start/restart the new one
 ----------------------------------------------------------------------------------------
@@ -315,6 +315,8 @@ Try again for current table.
 | I      | 892.0 |
 | am     | 892.0 |
 
+### Go to Spark UI now and see Streaming job running
+
 ``` md ### Finally, if you want stop the StreamingContext, you can uncomment and execute the following
 
 `StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) }`
@@ -328,5 +330,3 @@ Next - Spark Streaming of live tweets.
 ======================================
 
 Let's do two more example applications of streaming involving live tweets.
-
-### Go to Spark UI now and see Streaming job running
