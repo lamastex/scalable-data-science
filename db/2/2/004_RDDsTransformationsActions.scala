@@ -68,7 +68,8 @@
 // MAGIC 
 // MAGIC ***
 // MAGIC 
-// MAGIC **Key Points**
+// MAGIC ## Key Points
+// MAGIC 
 // MAGIC * Resilient distributed datasets (RDDs) are the primary abstraction in Spark.
 // MAGIC * RDDs are immutable once created:
 // MAGIC     * can transform it.
@@ -127,8 +128,7 @@
 
 // COMMAND ----------
 
-// MAGIC 
-// MAGIC       %md
+// MAGIC %md
 // MAGIC ### Let us look at the legend and overview of the visual RDD Api by doing the following first:
 // MAGIC 
 // MAGIC 
