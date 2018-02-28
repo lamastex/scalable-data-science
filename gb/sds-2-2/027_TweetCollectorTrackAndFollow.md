@@ -12,6 +12,14 @@ In this notebook, we can modify the collector to focus on specific communication
 
 For this we will first `%run` the `ExtendedTwitterUtils` and `TTTDFfunctions` notebooks.
 
+``` run
+"scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
+```
+
+``` run
+"scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
+```
+
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -56,6 +64,10 @@ StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) }
 >     tweetsDF2TTTDFWithURLsAndHastags: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
 
 Load your twitter credentials (secretly!).
+
+``` run
+"scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
+```
 
 Let's import a list of twitterIDS of political interest in the UK.
 

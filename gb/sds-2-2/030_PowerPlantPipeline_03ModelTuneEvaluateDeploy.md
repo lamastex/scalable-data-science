@@ -1,29 +1,27 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-``` md #Power Plant ML Pipeline Application
+Power Plant ML Pipeline Application
+===================================
+
 This is an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
 
-###Table of Contents
+### Table of Contents
 
-- *Step 1: Business Understanding*
-- *Step 2: Load Your Data*
-- *Step 3: Explore Your Data*
-- *Step 4: Visualize Your Data*
-- *Step 5: Data Preparation*
-- *Step 6: Data Modeling*
-- *Step 7: Tuning and Evaluation*
-- *Step 8: Deployment*
+-   *Step 1: Business Understanding*
+-   *Step 2: Load Your Data*
+-   *Step 3: Explore Your Data*
+-   *Step 4: Visualize Your Data*
+-   *Step 5: Data Preparation*
+-   *Step 6: Data Modeling*
+-   *Step 7: Tuning and Evaluation*
+-   *Step 8: Deployment*
 
+*We are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant. Power generation is a complex process, and understanding and predicting power output is an important element in managing a plant and its connection to the power grid.*
 
+More information about Peaker or Peaking Power Plants can be found on Wikipedia https://en.wikipedia.org/wiki/Peaking\_power\_plant
 
-*We are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant.  Power generation is a complex process, and understanding and predicting power output is an important element in managing a plant and its connection to the power grid.*
-
-More information about Peaker or Peaking Power Plants can be found on Wikipedia https://en.wikipedia.org/wiki/Peaking_power_plant
-
-
-Given this business problem, we need to translate it to a Machine Learning task.  The ML task is regression since the label (or target) we are trying to predict is numeric.
-
+Given this business problem, we need to translate it to a Machine Learning task. The ML task is regression since the label (or target) we are trying to predict is numeric.
 
 The example data is provided by UCI at [UCI Machine Learning Repository Combined Cycle Power Plant Data Set](https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant)
 
@@ -31,12 +29,9 @@ You can read the background on the UCI page, but in summary we have collected a 
 
 (also called a Peaker Plant) and now we want to use those sensor readings to predict how much power the plant will generate.
 
-
 More information about Machine Learning with Spark can be found in the [Spark MLLib Programming Guide](https://spark.apache.org/docs/latest/mllib-guide.html)
 
-
 *Please note this example only works with Spark version 1.4 or higher*
-```
 
 ------------------------------------------------------------------------
 
@@ -51,6 +46,10 @@ just `run` the following command as shown in the cell below:
 -   *Note:* If you already evaluated the `%run ...` command above then:
     -   first delete the cell by pressing on `x` on the top-right corner of the cell and
     -   revaluate the `run` command above.
+
+``` run
+"/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
+```
 
 ------------------------------------------------------------------------
 
@@ -71,14 +70,14 @@ Step 7: Tuning and Evaluation
 Step 8: Deployment
 ------------------
 
-``` md ##Step 5: Data Preparation
+Step 5: Data Preparation
+------------------------
 
 The next step is to prepare the data. Since all of this data is numeric and consistent, this is a simple task for us today.
 
 We will need to convert the predictor features from columns to Feature Vectors using the org.apache.spark.ml.feature.VectorAssembler
 
 The VectorAssembler will be the first step in building our ML pipeline.
-```
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
@@ -267,11 +266,12 @@ Truncated to 30 rows
 >     |default|Default Hive database|dbfs:/user/hive/warehouse|
 >     +-------+---------------------+-------------------------+
 
-``` md ##Step 6: Data Modeling
+Step 6: Data Modeling
+---------------------
+
 Now let's model our data to predict what the power output will be given a set of sensor readings
 
 Our first model will be based on simple linear regression since we saw some linear patterns in our data based on the scatter plots during the exploration stage.
-```
 
 >     +--------+--------------------+-----------+
 >     |database|           tableName|isTemporary|
@@ -829,6 +829,8 @@ println (f"R2: $r2")
 >     Explained Variance: 274.54186073318266
 >     R2: 0.9308377700269259
 
+Generally a good model will have 68% of predictions within 1 RMSE and 95% within 2 RMSE of the actual value. Let's calculate and see if our RMSE meets this criteria.
+
 ``` scala
 display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
 ```
@@ -836,6 +838,10 @@ display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
 ``` scala
 // First we calculate the residual error and divide it by the RMSE from predictionsAndLabels DataFrame and make another DataFrame that is registered as a temporary table Power_Plant_RMSE_Evaluation
 predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
+```
+
+``` sql
+SELECT * from Power_Plant_RMSE_Evaluation
 ```
 
 | PE     | Predicted\_PE      | Residual\_Error      | Within\_RSME          |
@@ -873,7 +879,8 @@ predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Resi
 
 Truncated to 30 rows
 
-``` sql -- Now we can display the RMSE as a Histogram. Clearly this shows that the RMSE is centered around 0 with the vast majority of the error within 2 RMSEs.
+``` sql
+-- Now we can display the RMSE as a Histogram. Clearly this shows that the RMSE is centered around 0 with the vast majority of the error within 2 RMSEs.
 SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
 ```
 
@@ -912,6 +919,8 @@ SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
 
 Truncated to 30 rows
 
+We can see this definitively if we count the number of predictions within + or - 1.0 and + or - 2.0 and display this as a pie chart:
+
 ``` sql
 SELECT case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end RSME_Multiple, COUNT(*) count  from Power_Plant_RMSE_Evaluation
 group by case when Within_RSME <= 1.0 and Within_RSME >= -1.0 then 1  when  Within_RSME <= 2.0 and Within_RSME >= -2.0 then 2 else 3 end
@@ -927,11 +936,10 @@ So we have about 70% of our training data within 1 RMSE and about 97% (70% + 27%
 
 **NOTE:** these numbers will vary across runs due to the seed in random sampling of training and test set, number of iterations, and other stopping rules in optimization, for example.
 
-``` md #Step 7: Tuning and Evaluation
+Step 7: Tuning and Evaluation
+=============================
 
 Now that we have a model with all of the data let's try to make a better model by tuning over several parameters.
-
-```
 
 ``` scala
 import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator}
@@ -1026,6 +1034,8 @@ val cvModel = crossval.fit(trainingSet)
 
 In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large. \* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
 
+Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
+
 ``` scala
 val predictionsAndLabels = cvModel.transform(testSet)
 val metrics = new RegressionMetrics(predictionsAndLabels.select("Predicted_PE", "PE").rdd.map(r => (r(0).asInstanceOf[Double], r(1).asInstanceOf[Double])))
@@ -1056,14 +1066,13 @@ Let us explore other models to see if we can predict the power output better
 
 There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
-``` md So our initial untuned and tuned linear regression models are statistically identical.
+So our initial untuned and tuned linear regression models are statistically identical.
 
 Given that the only linearly correlated variable is Temperature, it makes sense try another machine learning method such a Decision Tree to handle non-linear data and see if we can improve our model
 
 A Decision Tree creates a model based on splitting variables using a tree structure. We will first start with a single decision tree model.
 
-Reference Decision Trees: https://en.wikipedia.org/wiki/Decision_tree_learning
-```
+Reference Decision Trees: https://en.wikipedia.org/wiki/Decision\_tree\_learning
 
 ``` scala
 //Let's build a decision tree pipeline
@@ -2878,10 +2887,9 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
 >           If (feature 1 <= 64.84)
 >            Predict: -0.5...
 
-``` md ### Conclusion
+### Conclusion
 
 Wow! So our best model is in fact our Gradient Boosted Decision tree model which uses an ensemble of 120 Trees with a depth of 3 to construct a better model than the single decision tree.
-```
 
 Persisting Statistical Machine Learning Models
 ----------------------------------------------
@@ -4498,18 +4506,18 @@ sameModel.toDebugString
 >           If (feature 1 <= 64.84)
 >            Predict: -0.5...
 
-``` md #Step 8: Deployment
+Step 8: Deployment
+==================
 
-Now that we have a predictive model it is time to deploy the model into an operational environment. 
+Now that we have a predictive model it is time to deploy the model into an operational environment.
 
 In our example, let's say we have a series of sensors attached to the power plant and a monitoring station.
 
-The monitoring station will need close to real-time information about how much power that their station will generate so they can relay that to the utility. 
+The monitoring station will need close to real-time information about how much power that their station will generate so they can relay that to the utility.
 
 So let's create a Spark Streaming utility that we can use for this purpose.
 
-See [http://spark.apache.org/docs/latest/streaming-programming-guide.html](http://spark.apache.org/docs/latest/streaming-programming-guide.html) if you can't wait!
-```
+See <http://spark.apache.org/docs/latest/streaming-programming-guide.html> if you can't wait!
 
 After deployment you will be able to use the best predictions from gradient boosed regression trees to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver give current conditions.
 
@@ -4645,6 +4653,10 @@ ssc.start()
 >     ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@4a48de26
 
 Now that we have created and defined our streaming job, let's test it with some data. First we clear the predictions table.
+
+``` sql
+truncate table power_plant_predictions
+```
 
 Let's use data to see how much power output our model will predict.
 

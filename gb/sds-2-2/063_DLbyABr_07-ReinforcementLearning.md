@@ -788,6 +788,10 @@ with open("/dbfs/keras_rl/model.json", "w") as outfile:
 >     Epoch 398/399 | Loss 0.0011 | Win count 302 | Last 10 win rate 1.0
 >     Epoch 399/399 | Loss 0.0007 | Win count 303 | Last 10 win rate 1.0
 
+``` sh
+ls -la /dbfs/keras_rl*
+```
+
 >     total 0
 >     drwxr-xr-x 1 root root     0 Jan  1  1970 .
 >     drwxrwxrwx 1 root root  4096 Jan  1  1970 ..
@@ -836,6 +840,10 @@ for e in range(10):
                    interpolation='none', cmap='gray')
         plt.savefig("/dbfs/keras_rl/images/%03d.png" % c)
         c += 1
+```
+
+``` sh
+ls -la /dbfs/keras_rl/images
 ```
 
 >     total 0

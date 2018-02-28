@@ -12,6 +12,10 @@ by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/)
 Create labeled training data from timeseries dataset
 ====================================================
 
+``` run
+/scalable-data-science/streaming-forecast/01-load-data-from-JSON
+```
+
 | path                                                | name             | size        |
 |-----------------------------------------------------|------------------|-------------|
 | dbfs:/FileStore/tables/forecasting/clean\_data.json | clean\_data.json | 7.1327975e7 |

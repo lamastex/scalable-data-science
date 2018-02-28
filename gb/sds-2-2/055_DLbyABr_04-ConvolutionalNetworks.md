@@ -520,6 +520,8 @@ While that's running, let's look at a number of "famous" convolutional networks!
 
 <img src="http://i.imgur.com/ERV9pHW.gif">
 
+<img src="http://i.imgur.com/TCN9C4P.png">
+
 ### AlexNet (2012)
 
 <img src="http://i.imgur.com/CpokDKV.jpg">

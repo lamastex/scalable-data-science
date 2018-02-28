@@ -1950,6 +1950,10 @@ function classes(root) {
 3.  Try to parse the data closer to the clean dataset available in `/databricks-datasets/news20.binary/*` and walk through the following notebook (*but in Scala!*):
     -   <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
 
+``` fs
+ls /databricks-datasets/news20.binary/data-001
+```
+
 | path                                                       | name      | size |
 |------------------------------------------------------------|-----------|------|
 | dbfs:/databricks-datasets/news20.binary/data-001/test/     | test/     | 0.0  |

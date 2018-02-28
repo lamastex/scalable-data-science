@@ -8,6 +8,10 @@ This is a databricksification of <https://databricks.gitbooks.io/databricks-spar
 
 Note that you need to change the fields in background notebooks like `025_a_extendedTwitterUtils2run` as explained in the corresponding videos by Amendra.
 
+``` run
+"scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
+```
+
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -180,6 +184,10 @@ numTweetsCollected
 // #  let's stop the streaming job next.
 ssc.stop(stopSparkContext = false) 
 StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } 
+```
+
+``` run
+"scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
 ```
 
 ``` scala

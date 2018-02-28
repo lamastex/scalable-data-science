@@ -15,6 +15,10 @@ We will call extendedTwitterUtils notebook from here.
 
 But **first install** the following libraries: \* gson \* twitter4j-examples
 
+``` run
+"scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
+```
+
 >     import twitter4j._
 >     import twitter4j.auth.Authorization
 >     import twitter4j.conf.ConfigurationBuilder
@@ -107,6 +111,10 @@ Crucially, the use of the content from twitter by you (as done in this worksheet
 ### Ethical/Legal Aspects
 
 See Background Readings/Viewings in Project MEP: \* <https://lamastex.github.io/scalable-data-science/sds/research/mep/>
+
+``` run
+"scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
+```
 
 ``` scala
 // put your own twitter developer credentials below instead of xxx
@@ -869,6 +877,10 @@ Next, let us take a quick peek at the notebook `scalable-data-science/sds-2-2/02
 
 Please see <http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html> to understand more deeply.
 
+``` run
+"scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
+```
+
 >     USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
 >                       val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
 >                       
@@ -963,7 +975,8 @@ dbutils.fs.rm(outputDirectoryRoot, true)
 
 >     res67: Boolean = true
 
-%md \#\# Next, let's write the tweets into a scalable commercial cloud storage system
+Next, let's write the tweets into a scalable commercial cloud storage system
+----------------------------------------------------------------------------
 
 We will make sure to write the tweets to AWS's simple storage service or S3, a scalable storage system in the cloud. See <https://aws.amazon.com/s3/>.
 

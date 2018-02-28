@@ -841,6 +841,10 @@ getting uber data
 
 ### (This only needs to be done once per shard!)
 
+``` sh
+ls
+```
+
 >     conf
 >     derby.log
 >     eventlogs

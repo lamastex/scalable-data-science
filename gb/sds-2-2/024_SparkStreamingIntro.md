@@ -297,6 +297,10 @@ select * from batch_word_count
 
 Try again for current table.
 
+``` sql
+select * from batch_word_count 
+```
+
 | word   | count |
 |--------|-------|
 | 0      | 92.0  |
@@ -317,10 +321,9 @@ Try again for current table.
 
 ### Go to Spark UI now and see Streaming job running
 
-``` md ### Finally, if you want stop the StreamingContext, you can uncomment and execute the following
+### Finally, if you want stop the StreamingContext, you can uncomment and execute the following
 
 `StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) }`
-```
 
 ``` scala
 StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } // please do this if you are done!

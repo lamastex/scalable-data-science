@@ -33,6 +33,10 @@ This is in DBFS, which is available (via FUSE) at /dbfs ...
 
 So the CIFAR data can be listed through following regular Linux shell command:
 
+``` sh
+ls -la /dbfs/mnt/cifar/batches
+```
+
 >     total 0
 >     drwxr-xr-x 1 root root        0 Jan  1  1970 .
 >     drwxr-xr-x 1 root root        0 Jan  1  1970 ..

@@ -11,6 +11,10 @@ by [Gustav Björdal](https://www.linkedin.com/in/gustav-bj%C3%B6rdal-180461155/)
 
 ### Run the create-training-data-21 notebook to create all the data
 
+``` run
+/scalable-data-science/streaming-forecast/02-create-training-data
+```
+
 | path                                                | name             | size        |
 |-----------------------------------------------------|------------------|-------------|
 | dbfs:/FileStore/tables/forecasting/clean\_data.json | clean\_data.json | 7.1327975e7 |

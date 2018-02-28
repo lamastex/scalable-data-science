@@ -65,7 +65,6 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_anonymization",500))
 ```
 
 ``` sh
-
 pip install unicodecsv Faker
 ```
 
@@ -94,7 +93,6 @@ pip install unicodecsv Faker
 >     You should consider upgrading via the 'pip install --upgrade pip' command.
 
 ``` python
-
 import unicodecsv as csv
 from collections import defaultdict
 from faker import Factory
@@ -192,7 +190,6 @@ The data dump we collected is available for download at the following url
 http://sunlabs.se/assets/sds/anon\_data.csv
 
 ``` sh
-
 wget "http://sunlabs.se/assets/sds/anon_data.csv"
 ```
 
@@ -601,7 +598,6 @@ wget "http://sunlabs.se/assets/sds/anon_data.csv"
 >     2018-01-04 20:19:23 (3.81 MB/s) - ‘anon_data.csv’ saved [20156753/20156753]
 
 ``` sh
-
 pwd
 ls
 ```
@@ -1031,7 +1027,6 @@ scaler = StandardScaler()
 ```
 
 ``` python
-
 sample = sampled['len']
 sample = sample.reshape(-1, 1) # one feature
 scaler.fit(sample)
@@ -1040,7 +1035,6 @@ sampled['len'] = scaler.transform(sample)
 ```
 
 ``` python
-
 sample = sampled['count']
 sample = sample.reshape(-1, 1) # one feature
 scaler.fit(sample)
@@ -1052,7 +1046,6 @@ sampled['count'] = scaler.transform(sample)
 >       warnings.warn(msg, _DataConversionWarning)
 
 ``` python
-
 df_count = sampled['count']
 df_length = sampled['len']
 df_proto = pd.get_dummies(sampled['Protocol'])

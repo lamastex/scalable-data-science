@@ -92,6 +92,10 @@ A first inspection
 
 A first step to any data exploration is viewing sample data. For this purpose we can use a simple SQL query that returns first 10 rows.
 
+``` sql
+select * from songsTable limit 10
+```
+
 | artist\_id         | artist\_latitude | artist\_longitude | artist\_location           | artist\_name      | duration  | end\_of\_fade\_in | key  | key\_confidence | loudness | release                                      | song\_hotness  |
 |--------------------|------------------|-------------------|----------------------------|-------------------|-----------|-------------------|------|-----------------|----------|----------------------------------------------|----------------|
 | AR81V6H1187FB48872 | 0.0              | 0.0               |                            | Earl Sixteen      | 213.7073  | 0.0               | 11.0 | 0.419           | -12.106  | Soldier of Jah Army                          | 0.0            |
@@ -132,6 +136,10 @@ table("songsTable").printSchema()
 >      |-- title: string (nullable = true)
 >      |-- year: double (nullable = false)
 >      |-- partial_sequence: integer (nullable = false)
+
+``` sql
+select count(*) from songsTable
+```
 
 | count(1) |
 |----------|

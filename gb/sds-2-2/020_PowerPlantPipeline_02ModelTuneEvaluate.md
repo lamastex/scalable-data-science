@@ -47,6 +47,10 @@ just `run` the following command as shown in the cell below:
     -   first delete the cell by pressing on `x` on the top-right corner of the cell and
     -   revaluate the `run` command above.
 
+``` run
+"/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
+```
+
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
@@ -829,6 +833,10 @@ display(predictionsAndLabels) // recall the DataFrame predictionsAndLabels
 predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Residual_Error", s""" (PE - Predicted_PE) / $rmse AS Within_RSME""").createOrReplaceTempView("Power_Plant_RMSE_Evaluation")
 ```
 
+``` sql
+SELECT * from Power_Plant_RMSE_Evaluation
+```
+
 | PE     | Predicted\_PE      | Residual\_Error      | Within\_RSME          |
 |--------|--------------------|----------------------|-----------------------|
 | 490.55 | 492.8503868481024  | -2.3003868481023915  | -0.49906688419119855  |
@@ -864,7 +872,8 @@ predictionsAndLabels.selectExpr("PE", "Predicted_PE", "PE - Predicted_PE AS Resi
 
 Truncated to 30 rows
 
-``` sql -- Now we can display the RMSE as a Histogram. Clearly this shows that the RMSE is centered around 0 with the vast majority of the error within 2 RMSEs.
+``` sql
+-- Now we can display the RMSE as a Histogram. Clearly this shows that the RMSE is centered around 0 with the vast majority of the error within 2 RMSEs.
 SELECT Within_RSME  from Power_Plant_RMSE_Evaluation
 ```
 

@@ -18,8 +18,13 @@ spark
 
 >     res0: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@43f8a1be
 
-``` md ## Sample Data
+Sample Data
+-----------
+
 We have some sample action data as files in `/databricks-datasets/structured-streaming/events/` which we are going to use to build this appication. Let's take a look at the contents of this directory.
+
+``` fs
+ls /databricks-datasets/structured-streaming/events/
 ```
 
 | path                                                               | name         | size    |
@@ -56,6 +61,12 @@ We have some sample action data as files in `/databricks-datasets/structured-str
 | dbfs:/databricks-datasets/structured-streaming/events/file-35.json | file-35.json | 72974.0 |
 
 Truncated to 30 rows
+
+There are about 50 JSON files in the directory. Let's see what each JSON file contains.
+
+``` fs
+head /databricks-datasets/structured-streaming/events/file-0.json
+```
 
 >     [Truncated to first 65536 bytes]
 >     {"time":1469501107,"action":"Open"}
@@ -1441,9 +1452,10 @@ Truncated to 30 rows
 
 Each line in the files contain a JSON record with two fields - `time` and `action`. Let's try to analyze these files interactively.
 
-``` md ## Batch/Interactive Processing
+Batch/Interactive Processing
+----------------------------
+
 The usual first step in attempting to process the data is to interactively query the data. Let's define a static DataFrame on the files, and give it a table name.
-```
 
 ``` scala
 import org.apache.spark.sql.types._
@@ -1497,6 +1509,8 @@ display(staticInputDF)
 
 Truncated to 30 rows
 
+Now we can compute the number of "open" and "close" actions with one hour windows. To do this, we will group by the `action` column and 1 hour windows over the `time` column.
+
 ``` scala
 import org.apache.spark.sql.functions._
 
@@ -1512,10 +1526,22 @@ staticCountsDF.createOrReplaceTempView("static_counts")
 >     import org.apache.spark.sql.functions._
 >     staticCountsDF: org.apache.spark.sql.DataFrame = [action: string, window: struct<start: timestamp, end: timestamp> ... 1 more field]
 
+Now we can directly use SQL to query the table. For example, here are the total counts across all the hours.
+
+``` sql
+select action, sum(count) as total_count from static_counts group by action
+```
+
 | action | total\_count |
 |--------|--------------|
 | Close  | 50000.0      |
 | Open   | 50000.0      |
+
+How about a timeline of windowed counts?
+
+``` sql
+select action, date_format(window.end, "MMM-dd HH:mm") as time, count from static_counts order by time, action
+```
 
 | action | time         | count  |
 |--------|--------------|--------|
@@ -1552,9 +1578,12 @@ staticCountsDF.createOrReplaceTempView("static_counts")
 
 Truncated to 30 rows
 
-``` md ## Stream Processing
+Note the two ends of the graph. The close actions are generated such that they are after the corresponding open actions, so there are more "opens" in the beginning and more "closes" in the end.
+
+Stream Processing
+-----------------
+
 Now that we have analyzed the data interactively, let's convert this to a streaming query that continuously updates as data comes. Since we just have a static set of files, we are going to emulate a stream from them by reading one file at a time, in the chronological order they were created. The query we have to write is pretty much the same as the interactive query above.
-```
 
 ``` scala
 import org.apache.spark.sql.functions._
@@ -1582,9 +1611,7 @@ streamingCountsDF.isStreaming
 >     streamingCountsDF: org.apache.spark.sql.DataFrame = [action: string, window: struct<start: timestamp, end: timestamp> ... 1 more field]
 >     res5: Boolean = true
 
-``` md As you can see, `streamingCountsDF` is a streaming Dataframe (`streamingCountsDF.isStreaming` was `true`). You can start streaming computation, by defining the sink and starting it.
-In our case, we want to interactively query the counts (same queries as above), so we will set the complete set of 1 hour counts to be a in a in-memory table (note that this for testing purpose only in Spark 2.0).
-```
+As you can see, `streamingCountsDF` is a streaming Dataframe (`streamingCountsDF.isStreaming` was `true`). You can start streaming computation, by defining the sink and starting it. In our case, we want to interactively query the counts (same queries as above), so we will set the complete set of 1 hour counts to be a in a in-memory table (note that this for testing purpose only in Spark 2.0).
 
 ``` scala
 spark.conf.set("spark.sql.shuffle.partitions", "1")  // keep the size of shuffles small
@@ -1610,6 +1637,10 @@ Let's wait a bit for a few files to be processed and then query the in-memory `c
 Thread.sleep(5000) // wait a bit for computation to start
 ```
 
+``` sql
+select action, date_format(window.end, "MMM-dd HH:mm") as time, count from counts order by time, action
+```
+
 | action | time         | count  |
 |--------|--------------|--------|
 | Close  | Jul-26 03:00 | 11.0   |
@@ -1619,8 +1650,14 @@ Thread.sleep(5000) // wait a bit for computation to start
 | Close  | Jul-26 05:00 | 176.0  |
 | Open   | Jul-26 05:00 | 289.0  |
 
+We see the timeline of windowed counts (similar to the static one ealrier) building up. If we keep running this interactive query repeatedly, we will see the latest updated counts which the streaming query is updating in the background.
+
 ``` scala
 Thread.sleep(5000)  // wait a bit more for more data to be computed
+```
+
+``` sql
+select action, date_format(window.end, "MMM-dd HH:mm") as time, count from counts order by time, action
 ```
 
 | action | time         | count  |
@@ -1638,6 +1675,10 @@ Thread.sleep(5000)  // wait a bit more for more data to be computed
 Thread.sleep(5000)  // wait a bit more for more data to be computed
 ```
 
+``` sql
+select action, date_format(window.end, "MMM-dd HH:mm") as time, count from counts order by time, action
+```
+
 | action | time         | count  |
 |--------|--------------|--------|
 | Close  | Jul-26 03:00 | 11.0   |
@@ -1653,6 +1694,12 @@ Thread.sleep(5000)  // wait a bit more for more data to be computed
 | Close  | Jul-26 08:00 | 314.0  |
 | Open   | Jul-26 08:00 | 330.0  |
 
+Also, let's see the total number of "opens" and "closes".
+
+``` sql
+select action, sum(count) as total_count from counts group by action order by action
+```
+
 | action | total\_count |
 |--------|--------------|
 | Close  | 3498.0       |
@@ -1664,17 +1711,18 @@ Note that there are only a few files, so consuming all of them there will be no 
 
 Finally, you can stop the query running in the background, either by clicking on the 'Cancel' link in the cell of the query, or by executing `query.stop()`. Either way, when the query is stopped, the status of the corresponding cell above will automatically update to `TERMINATED`.
 
-``` md ##What's next?
+What's next?
+------------
+
 If you want to learn more about Structured Streaming, here are a few pointers.
 
-- Databricks blog posts on Structured Streaming and Continuous Applications
-  - Blog post 1: [Continuous Applications: Evolving Streaming in Apache Spark 2.0](https://databricks.com/blog/2016/07/28/continuous-applications-evolving-streaming-in-apache-spark-2-0.html)
-  - Blog post 2: [Structured Streaming in Apache Spark]( https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html)
+-   Databricks blog posts on Structured Streaming and Continuous Applications
+-   Blog post 1: [Continuous Applications: Evolving Streaming in Apache Spark 2.0](https://databricks.com/blog/2016/07/28/continuous-applications-evolving-streaming-in-apache-spark-2-0.html)
+-   Blog post 2: [Structured Streaming in Apache Spark](https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html)
 
-- [Structured Streaming Programming Guide](http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
+-   [Structured Streaming Programming Guide](http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
 
-- Spark Summit 2016 Talks
-  - [Structuring Spark: Dataframes, Datasets And Streaming](https://spark-summit.org/2016/events/structuring-spark-dataframes-datasets-and-streaming/)
-  - [A Deep Dive Into Structured Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)
-```
+-   Spark Summit 2016 Talks
+-   [Structuring Spark: Dataframes, Datasets And Streaming](https://spark-summit.org/2016/events/structuring-spark-dataframes-datasets-and-streaming/)
+-   [A Deep Dive Into Structured Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)
 

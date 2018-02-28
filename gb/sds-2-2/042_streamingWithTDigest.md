@@ -42,9 +42,10 @@ The simple difference between these two can be infered from the name, but let us
 
 </tr>
 </table>
-``` md # Some streaming input
+Some streaming input
+====================
+
 We need to have a streaming source for our example, this can be done in a number of ways. Probably there is some nice way to do this simply but the few methods I know to generate test-samples is to get a running loop that writes files with data, so that each time a new file arrives Spark will consider it as an update and load it as a batch. We have provided some code to generate points sampled from a normal distribution with anomalies added as another normal distribution.
-```
 
 ``` scala
 import scala.util.Random
@@ -66,11 +67,12 @@ def myMixtureOf2NormalsReg( normalLocation: Double, abnormalLocation: Double, no
 >     import scala.util.{Success, Failure}
 >     myMixtureOf2NormalsReg: (normalLocation: Double, abnormalLocation: Double, normalWeight: Double, r: scala.util.Random)(String, Double)
 
-``` md # The /tmp folder
+The /tmp folder
+===============
+
 Databricks community edition has a file-number limit to 10000 and after running databricks for a while one will start to notice that things fail, and skimming the stacktrace of the failure we realize that we have reached said limit. Deleting files that one has created does not seem to solve the issue, well... this is because the /tmp folder counts into the limit and this is not cleared nearly as often as would be good for our work. Therefore we just clear it before starting our job...
 
 ps. If you have not cleared the tmp folder before this might take some time actually. ds.
-```
 
 ``` scala
 dbutils.fs.rm("/datasets/streamingFiles/",true) 
@@ -107,9 +109,10 @@ display(dbutils.fs.ls("/datasets/streamingFiles"))
 |-------------------------------------------|-------------|------|
 | dbfs:/datasets/streamingFiles/18\_44.csv/ | 18\_44.csv/ | 0.0  |
 
-``` md # AWS eventually consistent
-The AWS distributed filesystem is eventually consistent, this can mean for instance that a file just created will not be possible to read and if we are unlucky the following code will fail to run. 
-```
+AWS eventually consistent
+=========================
+
+The AWS distributed filesystem is eventually consistent, this can mean for instance that a file just created will not be possible to read and if we are unlucky the following code will fail to run.
 
 ``` scala
 import org.apache.spark.sql.types._
@@ -136,21 +139,21 @@ val streamingLinesDS = spark
 >     defined class timedScoreCC
 >     streamingLinesDS: org.apache.spark.sql.Dataset[timedScoreCC] = [time: timestamp, score: double]
 
-``` md # States and rows
+States and rows
+===============
+
 To begin describing the code below, let us first look at what will be our running State. The `isarnproject` sketches packs the TDigest class into a TDigestSQL case class and provides encoders for this to be allowed in a Dataframe, therefore we can capitalize on this and use TDigestSQL as our running state (to be precise it is the TDigest wrapped by TDigestSQL that is the state but whatever.). The next thing to worry about is how should we output and what should we output? This example shows how to embed in a single row, the TDigest, the threshold value that comes from `cdfInverse(0.99)` and the actual data that is above the threshold. To do this we create a case class which will be the template for our row, in the code below it is called `TdigAndAnomaly`.
 
-## updateAcrossBatch
-This is our main update-function that we send as a parameter to flatmapGroupsWithState. 
-* It takes as first input the key-value, which we will not care about in this example and is just a dummy for us. 
-* The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types. 
-* The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`.
-* Lastly we have the output, which is an iterator of the case class chosen as outputrow, in our case this is `Iterator[TdigAndAnomaly]`
+updateAcrossBatch
+-----------------
+
+This is our main update-function that we send as a parameter to flatmapGroupsWithState. \* It takes as first input the key-value, which we will not care about in this example and is just a dummy for us. \* The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types. \* The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`. \* Lastly we have the output, which is an iterator of the case class chosen as outputrow, in our case this is `Iterator[TdigAndAnomaly]`
 
 Each time a batch gets processed, the batch data is in the `inputs` variable. We first make sure that the state is either the previous state (if it exists) or we set it to a zero state. Then we simply process the batch one datapoint at the time, and each time calling updateTDIG, which simply updates the state with the new data point (tDigest add point). Once we have added all the points to the t-Digest, we can compute the updated value of `threshold` using `cdfInverse(0.99)`, after that we simply filter the batch to obtain an iterator of the anomalies.
 
 ### GroupStateTimeout
+
 This is an interesting variable that you really should look into if you wish to understand structured streaming. Essentially it is the whole point of messing around with the structured streaming framework, see the programming guide.
-```
 
 ``` scala
 import org.isarnproject.sketches._
@@ -276,7 +279,7 @@ query.awaitTermination()
 >     Batch: 4
 >     -------------------------------------------
 
-``` md # Have fun
-Arbitrary stateful aggregations are very powerful and you can really do a lot, especially if you are allowed to perform aggregations afterwards (flatmapGroupsWithState with Append mode). This is some really cool stuff!
-```
+Have fun
+========
 
+Arbitrary stateful aggregations are very powerful and you can really do a lot, especially if you are allowed to perform aggregations afterwards (flatmapGroupsWithState with Append mode). This is some really cool stuff!

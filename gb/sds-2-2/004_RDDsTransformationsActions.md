@@ -61,7 +61,45 @@ Actions
 
 ------------------------------------------------------------------------
 
-**Key Points** \* Resilient distributed datasets (RDDs) are the primary abstraction in Spark. \* RDDs are immutable once created: \* can transform it. \* can perform actions on it. \* but cannot change an RDD once you construct it. \* Spark tracks each RDD's lineage information or recipe to enable its efficient recomputation if a machine fails. \* RDDs enable operations on collections of elements in parallel. \* We can construct RDDs by: \* parallelizing Scala collections such as lists or arrays \* by transforming an existing RDD, \* from files in distributed file systems such as (HDFS, S3, etc.). \* We can specify the number of partitions for an RDD \* The more partitions in an RDD, the more opportunities for parallelism \* There are **two types of operations** you can perform on an RDD: \* **transformations** (are lazily evaluated) \* map \* flatMap \* filter \* distinct \* ... \* **actions** (actual evaluation happens) \* count \* reduce \* take \* collect \* takeOrdered \* ... \* Spark transformations enable us to create new RDDs from an existing RDD. \* RDD transformations are lazy evaluations (results are not computed right away) \* Spark remembers the set of transformations that are applied to a base data set (this is the lineage graph of RDD) \* The allows Spark to automatically recover RDDs from failures and slow workers. \* The lineage graph is a recipe for creating a result and it can be optimized before execution. \* A transformed RDD is executed only when an action runs on it. \* You can also persist, or cache, RDDs in memory or on disk (this speeds up iterative ML algorithms that transforms the initial RDD iteratively). \* Here is a great reference URL for working with Spark. \* [The latest Spark programming guide](http://spark.apache.org/docs/latest/programming-guide.html).
+Key Points
+----------
+
+-   Resilient distributed datasets (RDDs) are the primary abstraction in Spark.
+-   RDDs are immutable once created:
+    -   can transform it.
+    -   can perform actions on it.
+    -   but cannot change an RDD once you construct it.
+-   Spark tracks each RDD's lineage information or recipe to enable its efficient recomputation if a machine fails.
+-   RDDs enable operations on collections of elements in parallel.
+-   We can construct RDDs by:
+    -   parallelizing Scala collections such as lists or arrays
+    -   by transforming an existing RDD,
+    -   from files in distributed file systems such as (HDFS, S3, etc.).
+-   We can specify the number of partitions for an RDD
+-   The more partitions in an RDD, the more opportunities for parallelism
+-   There are **two types of operations** you can perform on an RDD:
+    -   **transformations** (are lazily evaluated)
+    -   map
+    -   flatMap
+    -   filter
+    -   distinct
+    -   ...
+    -   **actions** (actual evaluation happens)
+    -   count
+    -   reduce
+    -   take
+    -   collect
+    -   takeOrdered
+    -   ...
+-   Spark transformations enable us to create new RDDs from an existing RDD.
+-   RDD transformations are lazy evaluations (results are not computed right away)
+-   Spark remembers the set of transformations that are applied to a base data set (this is the lineage graph of RDD)
+-   The allows Spark to automatically recover RDDs from failures and slow workers.
+-   The lineage graph is a recipe for creating a result and it can be optimized before execution.
+-   A transformed RDD is executed only when an action runs on it.
+-   You can also persist, or cache, RDDs in memory or on disk (this speeds up iterative ML algorithms that transforms the initial RDD iteratively).
+-   Here is a great reference URL for working with Spark.
+    -   [The latest Spark programming guide](http://spark.apache.org/docs/latest/programming-guide.html).
 
 Let us get our hands dirty in Spark implementing these ideas!
 -------------------------------------------------------------
@@ -70,19 +108,14 @@ Let us get our hands dirty in Spark implementing these ideas!
 
 In your databricks community edition:
 
-1.  In your \`WorkSpace' create a Folder named 'scalable-data-science'
-2.  'Import' the databricks archive file at the following URL:
+1.  In your `WorkSpace` create a Folder named `scalable-data-science`
+2.  *Import* the databricks archive file at the following URL:
     -   <https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc>
-3.  This should open a structure of directories in with path: \`/Workspace/scalable-data-science/xtraResources/'
+3.  This should open a structure of directories in with path: `/Workspace/scalable-data-science/xtraResources/`
 
-``` scala
-
-      %md
 ### Let us look at the legend and overview of the visual RDD Api by doing the following first:
 
-
 ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
-```
 
 ### Running **Spark**
 

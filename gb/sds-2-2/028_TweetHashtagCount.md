@@ -16,6 +16,10 @@ Remeber that the use of twitter itself comes with various strings attached. Read
 
 Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings. Read: - [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
 
+``` run
+"scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
+```
+
 ``` scala
 import org.apache.spark._
 import org.apache.spark.storage._
@@ -70,6 +74,10 @@ The cell-below is hidden to not expose my Twitter API Credentials: `consumerKey`
 >     import org.apache.spark.streaming.dstream._
 >     import org.apache.spark.storage.StorageLevel
 >     import org.apache.spark.streaming.receiver.Receiver
+
+``` run
+"scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
+```
 
 If you see warnings then ignore for now: <https://forums.databricks.com/questions/6941/change-in-getargument-for-notebook-input.html>.
 

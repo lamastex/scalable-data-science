@@ -667,7 +667,8 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 >     |        |            diamonds|       true|
 >     +--------+--------------------+-----------+
 
-``` sql -- Shift+Enter to do the same in SQL
+``` sql
+-- Shift+Enter to do the same in SQL
 select carat, color, price from diamonds where color='D'
 ```
 
