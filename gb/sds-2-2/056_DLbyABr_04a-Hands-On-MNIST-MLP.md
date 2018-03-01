@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 #### As we dive into more hands-on works, let's recap some basic guidelines:
 
@@ -37,21 +39,30 @@ We'll take our deep feed-forward multilayer perceptron network, with ReLU activa
 
 The main part of the code looks like the following (full code you can run is in the next cell):
 
-    # imports, setup, load data sets
+\`\`\`
 
-    model = Sequential()
-    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+imports, setup, load data sets
+==============================
 
-    categorical_labels = to_categorical(y_train, num_classes=10)
+model = Sequential()
+model.add(Dense(20, input*dim=784, kernel*initializer='normal', activation='relu'))
+model.add(Dense(15, kernel*initializer='normal', activation='relu'))
+model.add(Dense(10, kernel*initializer='normal', activation='softmax'))
+model.compile(loss='categorical*crossentropy', optimizer='adam', metrics=\['categorical*accuracy'\])
 
-    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
+categorical*labels = to*categorical(y*train, num*classes=10)
 
-    # print metrics, plot errors
+history = model.fit(X*train, categorical*labels, epochs=100, batch\_size=100)
 
-Note the changes, which are largely about building a classifier instead of a regression model: \* Output layer has one neuron per category, with softmax activation \* **Loss function is cross-entropy loss** \* Accuracy metric is categorical accuracy
+print metrics, plot errors
+==========================
+
+\`\`\`
+
+Note the changes, which are largely about building a classifier instead of a regression model:
+\* Output layer has one neuron per category, with softmax activation
+\* **Loss function is cross-entropy loss**
+\* Accuracy metric is categorical accuracy
 
 ``` python
 from keras.models import Sequential
@@ -123,7 +134,9 @@ But we talked about using deep learning to solve "95%" problems or "98%" problem
 You Try Now!
 ------------
 
-Try two more experiments (try them separately): 1. Add a third, hidden layer. 2. Increase the size of the hidden layers.
+Try two more experiments (try them separately):
+1. Add a third, hidden layer.
+2. Increase the size of the hidden layers.
 
 Adding another layer slows things down a little (why?) but doesn't seem to make a difference in accuracy.
 

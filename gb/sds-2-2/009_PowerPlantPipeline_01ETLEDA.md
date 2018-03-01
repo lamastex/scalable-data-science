@@ -24,15 +24,18 @@ This is a break-down of *Power Plant ML Pipeline Application* from databricks.
 
 -   Given this business problem, we need to translate it to a Machine Learning task (actually a *Statistical* Machine Learning task).
 -   The ML task here is *regression* since the label (or target) we will be trying to predict takes a *continuous numeric* value
--   Note: if the labels took values from a finite discrete set, such as, `Spam`/`Not-Spam` or `Good`/`Bad`/`Ugly`, then the ML task would be *classification*.
+    -   Note: if the labels took values from a finite discrete set, such as, `Spam`/`Not-Spam` or `Good`/`Bad`/`Ugly`, then the ML task would be *classification*.
 
 **Today, we will only cover Steps 1, 2, 3 and 4 above**. You need introductions to linear algebra, stochastic gradient descent and decision trees before we can accomplish the **applied ML task** with some intuitive understanding. If you can't wait for ML then **check out [Spark MLLib Programming Guide](https://spark.apache.org/docs/latest/mllib-guide.html) for comming attractions!**
 
 The example data is provided by UCI at [UCI Machine Learning Repository Combined Cycle Power Plant Data Set](https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant)
 
-You can read the background on the UCI page, but in summary: \* we have collected a number of readings from sensors at a Gas Fired Power Plant (also called a Peaker Plant) and \* want to use those sensor readings to predict how much power the plant will generate in a couple weeks from now. \* Again, today we will just focus on Steps 1-4 above that pertain to DataFrames.
+You can read the background on the UCI page, but in summary:
+\* we have collected a number of readings from sensors at a Gas Fired Power Plant (also called a Peaker Plant) and
+\* want to use those sensor readings to predict how much power the plant will generate in a couple weeks from now.
+\* Again, today we will just focus on Steps 1-4 above that pertain to DataFrames.
 
-More information about Peaker or Peaking Power Plants can be found on Wikipedia <https://en.wikipedia.org/wiki/Peaking_power_plant>.
+More information about Peaker or Peaking Power Plants can be found on Wikipedia [https://en.wikipedia.org/wiki/Peaking*power*plant](https://en.wikipedia.org/wiki/Peaking_power_plant).
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Peaking_power_plant"
@@ -154,7 +157,7 @@ The file is a multi-tab Excel document so you will need to save each tab as a Te
 
 I prefer exporting as a Tab-Separated-Values (TSV) since it is more consistent than CSV.
 
-Call each file Folds5x2\_pp<Sheet 1..5>.tsv and save to your machine.
+Call each file Folds5x2\_pp&lt;Sheet 1..5&gt;.tsv and save to your machine.
 
 Go to the Databricks Menu &gt; Tables &gt; Create Table
 
@@ -164,13 +167,15 @@ Upload *ALL* 5 files at once.
 
 See screenshots below (but refer <https://docs.databricks.com/user-guide/importing-data.html> for latest methods to import data):
 
-**2.1.1. Create Table** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+**2.1.1. Create Table**
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 When you import your data, name your table `power_plant`, specify all of the columns with the datatype `Double` and make sure you check the `First row is header` box.
 
 ![alt text](http://training.databricks.com/databricks_guide/1_4_ML_Power_Plant_Import_Table.png)
 
-**2.1.2. Review Schema** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+**2.1.2. Review Schema**
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Your table schema and preview should look like this after you click `Create Table`:
 
@@ -288,7 +293,8 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 >     | default|             uscites|      false|
 >     +--------+--------------------+-----------+
 
-We can also access the list of tables and databases using `spark.catalog` methods as explained here: \* <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
+We can also access the list of tables and databases using `spark.catalog` methods as explained here:
+\* <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
 
 ``` scala
 spark.catalog.listTables.show(false)
@@ -710,6 +716,12 @@ display(powerPlantDF) // just as we did for the diamonds dataset
 
 Truncated to 30 rows
 
-We will do the following steps in the sequel. - *Step 5: Data Preparation* - *Step 6: Data Modeling* - *Step 7: Tuning and Evaluation* - *Step 8: Deployment*
+We will do the following steps in the sequel.
+- *Step 5: Data Preparation*
+- *Step 6: Data Modeling*
+- *Step 7: Tuning and Evaluation*
+- *Step 8: Deployment*
 
-Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
+Datasource References:
+\* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
+\* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)

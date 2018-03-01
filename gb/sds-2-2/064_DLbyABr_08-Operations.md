@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 Operations in the Real World
 ============================
@@ -17,7 +19,10 @@ There are various ways to use deep learning in an enterprise setting that may no
 
 \[1\] Load and use a pretrained model
 
-Many of the existing toolkit projects offer models pretrained on datasets, including \* natural language corpus models \* image datasets like ImageNet (http://www.image-net.org/) or Google's Open Image Dataset (https://research.googleblog.com/2016/09/introducing-open-images-dataset.html) \* video datasets like the YouTube 8 million video dataset (https://research.googleblog.com/2016/09/announcing-youtube-8m-large-and-diverse.html)
+Many of the existing toolkit projects offer models pretrained on datasets, including
+\* natural language corpus models
+\* image datasets like ImageNet (http://www.image-net.org/) or Google's Open Image Dataset (https://research.googleblog.com/2016/09/introducing-open-images-dataset.html)
+\* video datasets like the YouTube 8 million video dataset (https://research.googleblog.com/2016/09/announcing-youtube-8m-large-and-diverse.html)
 
 \[2\] Augmenting a pretrained model with new training data, or using it in a related context (see Transfer Learning)
 
@@ -29,7 +34,8 @@ Many of the existing toolkit projects offer models pretrained on datasets, inclu
 
 **Just because Google DeepMind, Facebook, and Microsoft are getting press for doing a lot of new research doesn't mean you have to do it too.**
 
-<img src="http://i.imgur.com/XczCfNR.png" width=500> <img src="http://i.imgur.com/vcaj99I.jpg" width=500>
+<img src="http://i.imgur.com/XczCfNR.png" width=500>
+<img src="http://i.imgur.com/vcaj99I.jpg" width=500>
 
 Data science and machine learning is challenging in general for enterprises (though some industries, such as pharma, have been doing it for a long time). Deep learning takes that even further, since deep learning experiments may require new kinds of hardware ... in some ways, it's more like chemistry than the average IT project!
 
@@ -71,7 +77,16 @@ Once you want to scale beyond your laptop, there are few options...
 
 We've focused on TensorFlow and Keras, because that's where the "center of mass" is at the moment.
 
-But there are lots of others. Major ones include: \* Caffe \* PaddlePaddle \* Theano \* CNTK \* MXNet \* DeepLearning4J \* BigDL \* Torch/PyTorch \* NVIDIA Digits
+But there are lots of others. Major ones include:
+\* Caffe
+\* PaddlePaddle
+\* Theano
+\* CNTK
+\* MXNet
+\* DeepLearning4J
+\* BigDL
+\* Torch/PyTorch
+\* NVIDIA Digits
 
 and there are at least a dozen more minor ones.
 
@@ -87,7 +102,7 @@ See Keras.js for code and demos: https://github.com/transcranial/keras-js
 
 TensorFlow has an Android example at https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android
 
-and Apple CoreML supports Keras models: https://developer.apple.com/documentation/coreml/converting\_trained\_models\_to\_core\_ml
+and Apple CoreML supports Keras models: https://developer.apple.com/documentation/coreml/converting*trained*models*to*core\_ml
 
 (remember, the model is already trained, we're just predicting here)
 
@@ -97,7 +112,7 @@ and Apple CoreML supports Keras models: https://developer.apple.com/documentatio
 
 -   TensorFlow has a project called TensorFlow Serving: https://tensorflow.github.io/serving/
 -   Spark Deep Learning Pipelines (bulk/SQL inference) https://github.com/databricks/spark-deep-learning
--   Apache Spark + (DL4J | BigDL | TensorFlowOnSpark)
+-   Apache Spark + (DL4J \| BigDL \| TensorFlowOnSpark)
 
 -   DeepLearning4J can import your Keras model: https://deeplearning4j.org/model-import-keras
     -   (which is a really nice contribution, but not magic -- remember the model is just a pile of weights, convolution kernels, etc. ... in the worst case, many thousands of floats)
@@ -112,7 +127,9 @@ Deep learning models are subject to a variety of unexpected perturbations and ad
 
 <img src="http://i.imgur.com/3LjF9xl.png">
 
-Ian Goodfellow has distilled and referenced some of the research here: https://openai.com/blog/adversarial-example-research/ \* He is also maintainer of an open-source project to measure robustness to adversarial examples, Clever Hans: https://github.com/tensorflow/cleverhans \* Another good project in that space is Foolbox: https://github.com/bethgelab/foolbox
+Ian Goodfellow has distilled and referenced some of the research here: https://openai.com/blog/adversarial-example-research/
+\* He is also maintainer of an open-source project to measure robustness to adversarial examples, Clever Hans: https://github.com/tensorflow/cleverhans
+\* Another good project in that space is Foolbox: https://github.com/bethgelab/foolbox
 
 ##### It's all fun and games until a few tiny stickers that a human won't even notice ... turn a stop sign into a "go" sign for your self-driving car ... **and that's exactly what this team of researchers has done** in *Robust Physical-World Attacks on Machine Learning Models*: https://arxiv.org/pdf/1707.08945v1.pdf
 
@@ -135,7 +152,11 @@ Interested in a slightly different approach to APIs, featuring interactive (impe
 
 **XLA**, an experimental compiler to make TensorFlow even faster: https://www.tensorflow.org/versions/master/experimental/xla/
 
-...and in addition to refinements of what we've already talked about, there is bleeding-edge work in \* Neural Turing Machines \* Code-generating Networks \* Network-designing Networks \* Evolution Strategies (ES) as an alternative to DQL / PG: https://arxiv.org/abs/1703.03864
+...and in addition to refinements of what we've already talked about, there is bleeding-edge work in
+\* Neural Turing Machines
+\* Code-generating Networks
+\* Network-designing Networks
+\* Evolution Strategies (ES) as an alternative to DQL / PG: https://arxiv.org/abs/1703.03864
 
 Books
 =====

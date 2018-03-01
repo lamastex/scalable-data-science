@@ -35,4 +35,3 @@ for( a <- 1 to 20){
 >     myMixtureOf2Normals: (normalLocation: Double, abnormalLocation: Double, normalWeight: Double, r: scala.util.Random)(String, Double)
 >     r: scala.util.Random = scala.util.Random@118e50a2
 >     a: Int = 0
-

@@ -14,7 +14,9 @@ Wiki Clickstream Analysis
 
 This notebook was originally a data analysis workflow developed with [Databricks Community Edition](https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html), a free version of Databricks designed for learning [Apache Spark](https://spark.apache.org/).
 
-Here we elucidate the original python notebook ([also linked here](/#workspace/scalable-data-science/xtraResources/sparkSummitEast2016/Wikipedia%20Clickstream%20Data)) used in the talk by Michael Armbrust at Spark Summit East February 2016 shared from <https://twitter.com/michaelarmbrust/status/699969850475737088> (watch later)
+Here we elucidate the original python notebook ([also linked here](/#workspace/scalable-data-science/xtraResources/sparkSummitEast2016/Wikipedia%20Clickstream%20Data)) used in the talk by Michael Armbrust at Spark Summit East February 2016
+shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>
+(watch later)
 
 [![Michael Armbrust Spark Summit East](http://img.youtube.com/vi/35Y-rqSMCCA/0.jpg)](https://www.youtube.com/v/35Y-rqSMCCA)
 
@@ -94,9 +96,9 @@ Actually, here is the meaning of each column:
 -   `n`: the number of occurrences of the (referer, resource) pair
 
 -   `type`
--   "link" if the referer and request are both articles and the referer links to the request
--   "redlink" if the referer is an article and links to the request, but the request is not in the production enwiki.page table
--   "other" if the *referer* and request are both articles but the referer does not link to the request. This can happen when clients search or spoof their refer
+    -   "link" if the referer and request are both articles and the referer links to the request
+    -   "redlink" if the referer is an article and links to the request, but the request is not in the production enwiki.page table
+    -   "other" if the *referer* and request are both articles but the referer does not link to the request. This can happen when clients search or spoof their refer
 
 Referers were mapped to a fixed set of values corresponding to internal traffic or external traffic from one of the top 5 global traffic sources to English Wikipedia, based on this scheme:
 
@@ -111,7 +113,13 @@ Referers were mapped to a fixed set of values corresponding to internal traffic 
 > -   Twitter -&gt; `other-twitter`
 > -   anything else -&gt; `other-other`
 
-In the second line of the file above, we can see there were 121 clicks from Google to the Wikipedia page on "!!" (double exclamation marks). People search for everything! \* prev\_id = *(nothing)* \* curr\_id = 3632887 *--&gt; (Wikipedia page ID)* \* n = 121 *(People clicked from Google to this page 121 times in this month.)* \* prev\_title = other-google *(This data record is for referals from Google.)* \* curr\_title = !! *(This Wikipedia page is about a double exclamation mark.)* \* type = other
+In the second line of the file above, we can see there were 121 clicks from Google to the Wikipedia page on "!!" (double exclamation marks). People search for everything!
+\* prev*id = *(nothing)*
+\* curr*id = 3632887 *--&gt; (Wikipedia page ID)*
+\* n = 121 *(People clicked from Google to this page 121 times in this month.)*
+\* prev*title = other-google *(This data record is for referals from Google.)*
+\* curr*title = !! *(This Wikipedia page is about a double exclamation mark.)*
+\* type = other
 
 ### Create a DataFrame from this CSV
 
@@ -280,7 +288,8 @@ display(clickstream
 | other-facebook        | 2314026.0     |
 | 87th\_Academy\_Awards | 1680675.0     |
 
-As expected, the top referer by a large margin is Google. Next comes refererless traffic (usually clients using HTTPS). The third largest sender of traffic to English Wikipedia are Wikipedia pages that are not in the main namespace (ns = 0) of English Wikipedia. Learn about the Wikipedia namespaces here: https://en.wikipedia.org/wiki/Wikipedia:Project\_namespace
+As expected, the top referer by a large margin is Google. Next comes refererless traffic (usually clients using HTTPS). The third largest sender of traffic to English Wikipedia are Wikipedia pages that are not in the main namespace (ns = 0) of English Wikipedia. Learn about the Wikipedia namespaces here:
+https://en.wikipedia.org/wiki/Wikipedia:Project\_namespace
 
 Also, note that Twitter sends 10x more requests to Wikipedia than Facebook.
 
@@ -397,7 +406,8 @@ LIMIT 20
 
 #### Load a visualization library
 
-This code is copied after doing a live google search (by Michael Armbrust at Spark Summit East February 2016 shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>). The `d3ivan` package is an updated version of the original package used by Michael Armbrust as it needed some TLC for Spark 2.2 on newer databricks notebook. These changes were kindly made by Ivan Sadikov from Middle Earth.
+This code is copied after doing a live google search (by Michael Armbrust at Spark Summit East February 2016
+shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>). The `d3ivan` package is an updated version of the original package used by Michael Armbrust as it needed some TLC for Spark 2.2 on newer databricks notebook. These changes were kindly made by Ivan Sadikov from Middle Earth.
 
 >     Warning: classes defined within packages cannot be redefined without a cluster restart.
 >     Compilation successful.
@@ -685,7 +695,8 @@ clicksPy.show()
 
 Now you can continue from the original python notebook tweeted by Michael.
 
-Recall from the beginning of this notebook that this python databricks notebook was used in the talk by Michael Armbrust at Spark Summit East February 2016 shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>
+Recall from the beginning of this notebook that this python databricks notebook was used in the talk by Michael Armbrust at Spark Summit East February 2016
+shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>
 
 (watch now, if you haven't already!)
 
@@ -693,9 +704,12 @@ Recall from the beginning of this notebook that this python databricks notebook 
 
 **You Try!**
 
-Try to laoad a DataFrame in R from the parquet file just as we did for python. Read the docs in databricks guide first: \* <https://docs.databricks.com/spark/latest/sparkr/overview.html>
+Try to laoad a DataFrame in R from the parquet file just as we did for python.
+Read the docs in databricks guide first:
+\* <https://docs.databricks.com/spark/latest/sparkr/overview.html>
 
-And see the `R` example in the Programming Guide: \* <https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files>.
+And see the `R` example in the Programming Guide:
+\* <https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files>.
 
 ``` r
 library(SparkR)
@@ -754,4 +768,3 @@ display(clicksR)
 | 2771975.0   | 147396.0 | 17.0   | 70th\_Birthday\_Concert                                | John\_Mayall\_&\_the\_Bluesbreakers | link  |
 
 Truncated to 30 rows
-

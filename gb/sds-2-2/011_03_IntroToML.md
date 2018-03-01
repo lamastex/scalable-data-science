@@ -10,8 +10,8 @@ Introduction to Machine Learning
 -   <http://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/>
 -   free PDF of the ISLR book: <http://www-bcf.usc.edu/~gareth/ISL/>
 -   A more theoretically sound book with interesting aplications is *Elements of Statistical Learning* by the Stanford Gang of 3 (Hastie, Tibshirani and Friedman):
--   free PDF of the 10th printing: <http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf>
--   Solutions: <http://waxworksmath.com/Authors/G_M/Hastie/WriteUp/weatherwax_epstein_hastie_solutions_manual.pdf>
+    -   free PDF of the 10th printing: <http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf>
+    -   Solutions: [http://waxworksmath.com/Authors/G*M/Hastie/WriteUp/weatherwax*epstein*hastie*solutions\_manual.pdf](http://waxworksmath.com/Authors/G_M/Hastie/WriteUp/weatherwax_epstein_hastie_solutions_manual.pdf)
 -   2015, UCLA Ass. Professor Ameet Talwalkar (from Spark team) in BerkeleyX: CS190.1x Scalable Machine Learning in edX Archive from 2015
 -   My preferred book for statistical learning is by [Kevin P. Murphy, Machine Learning: A Probabilistic Perspective](https://www.cs.ubc.ca/~murphyk/MLbook/).
 
@@ -21,9 +21,16 @@ Deep Learning is a very popular method currently (2017) in Machine Learning and 
 
 *I am assuming several of you have or are taking ML courses from experts in IT Department at Uppsala (if not, you might want to consider this seriously). In this course we will focus on getting our hads dirty quickly with some level of common understanding across all the disciplines represented here. Please dive deep at your own time to desired depths and tangents based on your background.*
 
-I may consider teaching a short theoretical course in statistical learning if there is enough interest for those with background in: \* Real Analysis, \* Geometry, \* Combinatorics and \* Probability, in the future.
+I may consider teaching a short theoretical course in statistical learning if there is enough interest for those with background in:
+\* Real Analysis,
+\* Geometry,
+\* Combinatorics and
+\* Probability,
+in the future.
 
-Such a course could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning: \* Short course on Non-parametric Density Estimation at Centre for Mathematics and its Applications, Ecole Polytechnique, Palaiseau, France \* <http://lamastex.org/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf>
+Such a course could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning:
+\* Short course on Non-parametric Density Estimation at Centre for Mathematics and its Applications, Ecole Polytechnique, Palaiseau, France
+\* [http://lamastex.org/courses/Short*Courses/EcolePolytechnique*MDE\_2013.pdf](http://lamastex.org/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf)
 
 ### Machine Learning Introduction
 
@@ -42,18 +49,17 @@ Ameet's course is in databricks guide for your convenience:
 -   rough definition of machine learning.
     -   constructing and studying methods that learn from and make predictions on data.
 -   This broad area involves tools and ideas from various domains, including:
--   computer science,
--   probability and statistics,
--   optimization, and
--   linear algebra.
-
+    -   computer science,
+    -   probability and statistics,
+    -   optimization, and
+    -   linear algebra.
 -   Common examples of ML, include:
     -   face recognition,
     -   link prediction,
     -   text or document classification, eg.::
-    -   spam detection,
-    -   protein structure prediction
-    -   teaching computers to play games (go!)
+        -   spam detection,
+        -   protein structure prediction
+        -   teaching computers to play games (go!)
 
 #### Some common terminology
 
@@ -61,23 +67,24 @@ Ameet's course is in databricks guide for your convenience:
 
 -   the data points we learn from are call observations:
     -   they are items or entities used for::
-    -   learning or
-    -   evaluation.
+        -   learning or
+        -   evaluation.
 -   in the context of spam detection,
     -   emails are our observations.
     -   Features are attributes used to represent an observation.
     -   Features are typically numeric,
-    -   and in spam detection, they can be:
+        -   and in spam detection, they can be:
         -   the length,
         -   the date, or
         -   the presence or absence of keywords in emails.
     -   Labels are values or categories assigned to observations.
-    -   and in spam detection, they can be:
+        -   and in spam detection, they can be:
         -   an email being defined as spam or not spam.
--   Training and test data sets are the observations that we use to train and evaluate a learning algorithm. ...
+-   Training and test data sets are the observations that we use to train and evaluate a learning algorithm.
+    ...
 
 -   **Pop-Quiz**
--   What is the difference between supervised and unsupervised learning?
+    -   What is the difference between supervised and unsupervised learning?
 
 ##### For a Stats@Stanford Hastie-Tibshirani Perspective on Supervised and Unsupervised Learning:
 

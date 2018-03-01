@@ -75,7 +75,12 @@ val trainingData = new VectorAssembler()
 >     import org.apache.spark.ml.feature.VectorAssembler
 >     trainingData: org.apache.spark.sql.DataFrame = [artist_id: string, artist_latitude: double ... 19 more fields]
 
-All we have done above with the `VectorAssembler` method is: \* created a DataFrame called `trainingData` \* that `transform`ed our `table` called `songsTable` \* by adding an output column named `features` using `setOutputCol("features")` \* that was obtained from an `Array` of the `songsTable`'s columns named `duration`, `tempo` and `loudness` using \* `setInputCols(Array("duration", "tempo", "loudness"))`.
+All we have done above with the `VectorAssembler` method is:
+\* created a DataFrame called `trainingData`
+\* that `transform`ed our `table` called `songsTable`
+\* by adding an output column named `features` using `setOutputCol("features")`
+\* that was obtained from an `Array` of the `songsTable`'s columns named `duration`, `tempo` and `loudness` using
+\* `setInputCols(Array("duration", "tempo", "loudness"))`.
 
 ``` scala
 trainingData.take(3) // see first 3 rows of trainingData DataFrame, notice the vectors in the last column
@@ -104,12 +109,10 @@ display(trainingData.select("duration", "tempo", "loudness", "features").limit(5
 
 #### [Demonstration of the standard algorithm](https://en.wikipedia.org/wiki/K-means_clustering#Initialization_methods)
 
-1.  ![](https://upload.wikimedia.org/wikipedia/commons/5/5e/K_Means_Example_Step_1.svg)
-2.  ![](https://upload.wikimedia.org/wikipedia/commons/a/a5/K_Means_Example_Step_2.svg)
-3.  ![](https://upload.wikimedia.org/wikipedia/commons/3/3e/K_Means_Example_Step_3.svg)
-4.  ![](https://upload.wikimedia.org/wikipedia/commons/d/d2/K_Means_Example_Step_4.svg "fig:")
-
-<!-- -->
+(1) ![](https://upload.wikimedia.org/wikipedia/commons/5/5e/K_Means_Example_Step_1.svg)
+(2) ![](https://upload.wikimedia.org/wikipedia/commons/a/a5/K_Means_Example_Step_2.svg)
+(3) ![](https://upload.wikimedia.org/wikipedia/commons/3/3e/K_Means_Example_Step_3.svg)
+(4) ![](https://upload.wikimedia.org/wikipedia/commons/d/d2/K_Means_Example_Step_4.svg)
 
 1.  k initial "means" (in this case k=3) are randomly generated within the data domain (shown in color).
 
@@ -119,7 +122,8 @@ display(trainingData.select("duration", "tempo", "loudness", "features").limit(5
 
 The "assignment" step 2 is also referred to as expectation step, the "update step" 3 as maximization step, making this algorithm a variant of the *generalized* [expectation-maximization algorithm](https://en.wikipedia.org/wiki/Expectation-maximization_algorithm).
 
-**Caveats: ** As k-means is a **heuristic algorithm**, there is **no guarantee that it will converge to the global optimum**, and the result may depend on the initial clusters. As the algorithm is usually very fast, it is common to run it multiple times with different starting conditions. However, in the worst case, k-means can be very slow to converge. For more details see <https://en.wikipedia.org/wiki/K-means_clustering> that is also embedded in-place below.
+**Caveats: **
+As k-means is a **heuristic algorithm**, there is **no guarantee that it will converge to the global optimum**, and the result may depend on the initial clusters. As the algorithm is usually very fast, it is common to run it multiple times with different starting conditions. However, in the worst case, k-means can be very slow to converge. For more details see <https://en.wikipedia.org/wiki/K-means_clustering> that is also embedded in-place below.
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/K-means_clustering#Standard_algorithm"
@@ -134,7 +138,9 @@ The "assignment" step 2 is also referred to as expectation step, the "update ste
 
 ### CAUTION!
 
-[Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set), clustered using \* k-means (left) and \* true species in the data set (right).
+[Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set), clustered using
+\* k-means (left) and
+\* true species in the data set (right).
 
 ![](https://upload.wikimedia.org/wikipedia/commons/1/10/Iris_Flowers_Clustering_kMeans.svg)
 
@@ -238,7 +244,8 @@ val transformed = modelTransformed.select("duration", "tempo", "loudness", "pred
 
 >     transformed: org.apache.spark.sql.DataFrame = [duration: double, tempo: double ... 2 more fields]
 
-To comfortably visualize the data we produce a random sample. Remember the `display()` function? We can use it to produce a nicely rendered table of transformed DataFrame.
+To comfortably visualize the data we produce a random sample.
+Remember the `display()` function? We can use it to produce a nicely rendered table of transformed DataFrame.
 
 ``` scala
 // just sampling the fraction 0.005 of all the rows at random, 
@@ -438,6 +445,10 @@ The new clustering model makes much more sense. Songs with high tempo and loudne
 
 To really understand how the points in 3D behave you need to see them in 3D interactively and understand the limits of its three 2D projections. For this let us spend some time and play in sageMath Worksheet in [CoCalc](https://cocalc.com/) (it is free for light-weight use and perhaps worth the 7 USD a month if you need more serious computing in mathmeatics, statistics, etc. in multiple languages!).
 
-Let us take a look at this sageMath Worksheet published here: \* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews> \* and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files): \* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv> \* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv>
+Let us take a look at this sageMath Worksheet published here:
+\* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews>
+\* and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files):
+\* [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures*loudness-tempologDuration*Of1MSongsKMeansfor*015*sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
+\* [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures*loudness-tempoDuration*Of1MSongsKMeansfor*015*sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
 
 The point of the above little example is that you need to be able to tell a sensible story with your data science process and not just blindly apply a heuristic, but highly scalable, algorithm which depends on the notion of nearest neighborhoods defined by the metric (Euclidean distances in 3-dimensional real-valued spaces in this example) induced by the features you have engineered or have the power to re/re/...-engineer to increase the meaningfullness of the problem at hand.

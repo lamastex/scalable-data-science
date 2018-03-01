@@ -22,12 +22,27 @@ The goal of this tutorial is to prepare you for real world data science projects
 
 ### 1. ETL
 
-The first step of most data science projects is extracting, transforming and loading data into well formated tables. Our example starts with ETL as well. By following the ETL noteboook you can expect to learn about following Spark concepts: \* RDD: Resilient Distributed Dataset \* Reading and transforming RDDs \* Schema in Spark \* Spark DataFrame \* Temp tables \* Caching tables
+The first step of most data science projects is extracting, transforming and loading data into well formated tables. Our example starts with ETL as well. By following the ETL noteboook you can expect to learn about following Spark concepts:
+\* RDD: Resilient Distributed Dataset
+\* Reading and transforming RDDs
+\* Schema in Spark
+\* Spark DataFrame
+\* Temp tables
+\* Caching tables
 
 ### 2. Explore
 
-Exploratory analysis is a key step in any real data project. Data scientists use variety of tools to explore and visualize their data. In the second notebook of this tutorial we introduce several tools in Python and Databricks notebooks that can help you visually explore your large data. By reading this notebook and finishing its exercises you will become familiar with: \* How to view the schema of a table \* How to display ggplot and matplotlib figures in Notebooks \* How to summarize and visualize different aspects of large datasets \* How to sample and visualize large data
+Exploratory analysis is a key step in any real data project. Data scientists use variety of tools to explore and visualize their data. In the second notebook of this tutorial we introduce several tools in Python and Databricks notebooks that can help you visually explore your large data. By reading this notebook and finishing its exercises you will become familiar with:
+\* How to view the schema of a table
+\* How to display ggplot and matplotlib figures in Notebooks
+\* How to summarize and visualize different aspects of large datasets
+\* How to sample and visualize large data
 
 ### 3. Model
 
-The end goal of many data scientists is producing useful models. These models are often used for prediction of new and upcoming events in production. In our third notebook we construct a simple K-means clustering model. In this notebook you will learn about: \* Feature transformation \* Fitting a model using SparkML API \* Applying a model to data \* Visualizing model results \* Model tuning
+The end goal of many data scientists is producing useful models. These models are often used for prediction of new and upcoming events in production. In our third notebook we construct a simple K-means clustering model. In this notebook you will learn about:
+\* Feature transformation
+\* Fitting a model using SparkML API
+\* Applying a model to data
+\* Visualizing model results
+\* Model tuning

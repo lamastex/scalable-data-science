@@ -23,8 +23,8 @@ Links
 -----
 
 -   Spark API docs
--   Scala: [LDA](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LDA)
--   Python: [LDA](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.clustering.LDA)
+    -   Scala: [LDA](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LDA)
+    -   Python: [LDA](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.clustering.LDA)
 -   [MLlib Programming Guide](http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda)
 -   [ML Feature Extractors & Transformers](http://spark.apache.org/docs/latest/ml-features.html)
 -   [Wikipedia: Latent Dirichlet Allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)
@@ -82,18 +82,35 @@ Let's get a bird's eye view of LDA from <https://www.cs.princeton.edu/~blei/pape
 Probabilistic Topic Modeling Example
 ------------------------------------
 
-This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more. - Step 0. Dataset Review - Step 1. Downloading and Loading Data into DBFS - (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.) - Step 2. Loading the Data and Data Cleaning - Step 3. Text Tokenization - Step 4. Remove Stopwords - Step 5. Vector of Token Counts - Step 6. Create LDA model with Online Variational Bayes - Step 7. Review Topics - Step 8. Model Tuning - Refilter Stopwords - Step 9. Create LDA model with Expectation Maximization - Step 10. Visualize Results
+This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more.
+- Step 0. Dataset Review
+- Step 1. Downloading and Loading Data into DBFS
+- (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
+- Step 2. Loading the Data and Data Cleaning
+- Step 3. Text Tokenization
+- Step 4. Remove Stopwords
+- Step 5. Vector of Token Counts
+- Step 6. Create LDA model with Online Variational Bayes
+- Step 7. Review Topics
+- Step 8. Model Tuning - Refilter Stopwords
+- Step 9. Create LDA model with Expectation Maximization
+- Step 10. Visualize Results
 
 Step 0. Dataset Review
 ----------------------
 
 In this example, we will use the [Cornell Movie Dialogs Corpus](https://people.mpi-sws.org/~cristian/Cornell_Movie-Dialogs_Corpus.html).
 
-Here is the `README.txt`: *** *** Cornell Movie-Dialogs Corpus
+Here is the `README.txt`:
+***
+***
+Cornell Movie-Dialogs Corpus
 
 Distributed together with:
 
-"Chameleons in imagined conversations: A new approach to understanding coordination of linguistic style in dialogs" Cristian Danescu-Niculescu-Mizil and Lillian Lee Proceedings of the Workshop on Cognitive Modeling and Computational Linguistics, ACL 2011.
+"Chameleons in imagined conversations: A new approach to understanding coordination of linguistic style in dialogs"
+Cristian Danescu-Niculescu-Mizil and Lillian Lee
+Proceedings of the Workshop on Cognitive Modeling and Computational Linguistics, ACL 2011.
 
 (this paper is included in this zip file)
 
@@ -106,37 +123,94 @@ Contents of this README:
         C) Details on the collection procedure
         D) Contact
 
-1.  Brief description:
+A) Brief description:
 
 This corpus contains a metadata-rich collection of fictional conversations extracted from raw movie scripts:
 
 -   220,579 conversational exchanges between 10,292 pairs of movie characters
 -   involves 9,035 characters from 617 movies
 -   in total 304,713 utterances
--   movie metadata included: - genres - release year - IMDB rating - number of IMDB votes - IMDB rating
--   character metadata included: - gender (for 3,774 characters) - position on movie credits (3,321 characters)
+-   movie metadata included:
+    - genres
+    - release year
+    - IMDB rating
+    - number of IMDB votes
+    - IMDB rating
+-   character metadata included:
+    - gender (for 3,774 characters)
+    - position on movie credits (3,321 characters)
 
-1.  Files description:
+B) Files description:
 
 In all files the field separator is " +++$+++ "
 
--   movie\_titles\_metadata.txt - contains information about each movie title - fields: - movieID, - movie title, - movie year, - IMDB rating, - no. IMDB votes, - genres in the format \['genre1','genre2',...,'genreN'\]
+-   movie*titles*metadata.txt
+    - contains information about each movie title
+    - fields:
+    - movieID,
+    - movie title,
+    - movie year,
+    - IMDB rating,
+    - no. IMDB votes,
+    - genres in the format \['genre1','genre2',...,'genreN'\]
 
--   movie\_characters\_metadata.txt - contains information about each movie character - fields: - characterID - character name - movieID - movie title - gender ("?" for unlabeled cases) - position in credits ("?" for unlabeled cases)
+-   movie*characters*metadata.txt
+    - contains information about each movie character
+    - fields:
+    - characterID
+    - character name
+    - movieID
+    - movie title
+    - gender ("?" for unlabeled cases)
+    - position in credits ("?" for unlabeled cases)
 
--   movie\_lines.txt - contains the actual text of each utterance - fields: - lineID - characterID (who uttered this phrase) - movieID - character name - text of the utterance
+-   movie\_lines.txt
+    - contains the actual text of each utterance
+    - fields:
+    - lineID
+    - characterID (who uttered this phrase)
+    - movieID
+    - character name
+    - text of the utterance
 
--   movie\_conversations.txt - the structure of the conversations - fields - characterID of the first character involved in the conversation - characterID of the second character involved in the conversation - movieID of the movie in which the conversation occurred - list of the utterances that make the conversation, in chronological order: \['lineID1','lineID2',...,'lineIDN'\] has to be matched with movie\_lines.txt to reconstruct the actual content
+-   movie*conversations.txt
+    - the structure of the conversations
+    - fields
+    - characterID of the first character involved in the conversation
+    - characterID of the second character involved in the conversation
+    - movieID of the movie in which the conversation occurred
+    - list of the utterances that make the conversation, in chronological
+    order: \['lineID1','lineID2',...,'lineIDN'\]
+    has to be matched with movie*lines.txt to reconstruct the actual content
 
--   raw\_script\_urls.txt - the urls from which the raw sources were retrieved
+-   raw*script*urls.txt
+    - the urls from which the raw sources were retrieved
 
-1.  Details on the collection procedure:
+C) Details on the collection procedure:
 
-We started from raw publicly available movie scripts (sources acknowledged in raw\_script\_urls.txt). In order to collect the metadata necessary for this study and to distinguish between two script versions of the same movie, we automatically matched each script with an entry in movie database provided by IMDB (The Internet Movie Database; data interfaces available at http://www.imdb.com/interfaces). Some amount of manual correction was also involved. When more than one movie with the same title was found in IMBD, the match was made with the most popular title (the one that received most IMDB votes)
+We started from raw publicly available movie scripts (sources acknowledged in
+raw*script*urls.txt). In order to collect the metadata necessary for this study
+and to distinguish between two script versions of the same movie, we automatically
+matched each script with an entry in movie database provided by IMDB (The Internet
+Movie Database; data interfaces available at http://www.imdb.com/interfaces). Some
+amount of manual correction was also involved. When more than one movie with the same
+title was found in IMBD, the match was made with the most popular title
+(the one that received most IMDB votes)
 
-After discarding all movies that could not be matched or that had less than 5 IMDB votes, we were left with 617 unique titles with metadata including genre, release year, IMDB rating and no. of IMDB votes and cast distribution. We then identified the pairs of characters that interact and separated their conversations automatically using simple data processing heuristics. After discarding all pairs that exchanged less than 5 conversational exchanges there were 10,292 left, exchanging 220,579 conversational exchanges (304,713 utterances). After automatically matching the names of the 9,035 involved characters to the list of cast distribution, we used the gender of each interpreting actor to infer the fictional gender of a subset of 3,321 movie characters (we raised the number of gendered 3,774 characters through manual annotation). Similarly, we collected the end credit position of a subset of 3,321 characters as a proxy for their status.
+After discarding all movies that could not be matched or that had less than 5 IMDB
+votes, we were left with 617 unique titles with metadata including genre, release
+year, IMDB rating and no. of IMDB votes and cast distribution. We then identified
+the pairs of characters that interact and separated their conversations automatically
+using simple data processing heuristics. After discarding all pairs that exchanged
+less than 5 conversational exchanges there were 10,292 left, exchanging 220,579
+conversational exchanges (304,713 utterances). After automatically matching the names
+of the 9,035 involved characters to the list of cast distribution, we used the
+gender of each interpreting actor to infer the fictional gender of a subset of
+3,321 movie characters (we raised the number of gendered 3,774 characters through
+manual annotation). Similarly, we collected the end credit position of a subset
+of 3,321 characters as a proxy for their status.
 
-1.  Contact:
+D) Contact:
 
 Please email any questions to: cristian@cs.cornell.edu (Cristian Danescu-Niculescu-Mizil)
 
@@ -671,7 +745,9 @@ We will use the convenient [Feature extraction and transformation APIs](http://s
 Step 3. Text Tokenization
 -------------------------
 
-We will use the RegexTokenizer to split each document into tokens. We can setMinTokenLength() here to indicate a minimum token length, and filter away all tokens that fall below the minimum. See: \* <http://spark.apache.org/docs/latest/ml-features.html#tokenizer>.
+We will use the RegexTokenizer to split each document into tokens. We can setMinTokenLength() here to indicate a minimum token length, and filter away all tokens that fall below the minimum.
+See:
+\* <http://spark.apache.org/docs/latest/ml-features.html#tokenizer>.
 
 ``` scala
 import org.apache.spark.ml.feature.RegexTokenizer
@@ -702,21 +778,12 @@ display(tokenized_df.sample(false,0.001,1234L).select("tokens"))
 Step 4. Remove Stopwords
 ------------------------
 
-We can easily remove stopwords using the StopWordsRemover(). See: \* <http://spark.apache.org/docs/latest/ml-features.html#stopwordsremover>.
+We can easily remove stopwords using the StopWordsRemover(). See:
+\* <http://spark.apache.org/docs/latest/ml-features.html#stopwordsremover>.
 
 If a list of stopwords is not provided, the StopWordsRemover() will use [this list of stopwords](http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words), also shown below, by default.
 
-``` a,about,above,across,after,afterwards,again,against,all,almost,alone,along,already,also,although,always,am,among,amongst,amoungst,amount,an,and,another,any,anyhow,anyone,anything,anyway,anywhere,
-are,around,as,at,back,be,became,because,become,becomes,becoming,been,before,beforehand,behind,being,below,beside,besides,between,beyond,bill,both,bottom,but,by,call,can,cannot,cant,co,computer,con,could,
-couldnt,cry,de,describe,detail,do,done,down,due,during,each,eg,eight,either,eleven,else,elsewhere,empty,enough,etc,even,ever,every,everyone,everything,everywhere,except,few,fifteen,fify,fill,find,fire,first,
-five,for,former,formerly,forty,found,four,from,front,full,further,get,give,go,had,has,hasnt,have,he,hence,her,here,hereafter,hereby,herein,hereupon,hers,herself,him,himself,his,how,however,hundred,i,ie,if,
-in,inc,indeed,interest,into,is,it,its,itself,keep,last,latter,latterly,least,less,ltd,made,many,may,me,meanwhile,might,mill,mine,more,moreover,most,mostly,move,much,must,my,myself,name,namely,neither,never,
-nevertheless,next,nine,no,nobody,none,noone,nor,not,nothing,now,nowhere,of,off,often,on,once,one,only,onto,or,other,others,otherwise,our,ours,ourselves,out,over,own,part,per,perhaps,please,put,rather,re,same,
-see,seem,seemed,seeming,seems,serious,several,she,should,show,side,since,sincere,six,sixty,so,some,somehow,someone,something,sometime,sometimes,somewhere,still,such,system,take,ten,than,that,the,their,them,
-themselves,then,thence,there,thereafter,thereby,therefore,therein,thereupon,these,they,thick,thin,third,this,those,though,three,through,throughout,thru,thus,to,together,too,top,toward,towards,twelve,twenty,two,
-un,under,until,up,upon,us,very,via,was,we,well,were,what,whatever,when,whence,whenever,where,whereafter,whereas,whereby,wherein,whereupon,wherever,whether,which,while,whither,who,whoever,whole,whom,whose,why,will,
-with,within,without,would,yet,you,your,yours,yourself,yourselves
-```
+`a,about,above,across,after,afterwards,again,against,all,almost,alone,along,already,also,although,always,am,among,amongst,amoungst,amount,an,and,another,any,anyhow,anyone,anything,anyway,anywhere, are,around,as,at,back,be,became,because,become,becomes,becoming,been,before,beforehand,behind,being,below,beside,besides,between,beyond,bill,both,bottom,but,by,call,can,cannot,cant,co,computer,con,could, couldnt,cry,de,describe,detail,do,done,down,due,during,each,eg,eight,either,eleven,else,elsewhere,empty,enough,etc,even,ever,every,everyone,everything,everywhere,except,few,fifteen,fify,fill,find,fire,first, five,for,former,formerly,forty,found,four,from,front,full,further,get,give,go,had,has,hasnt,have,he,hence,her,here,hereafter,hereby,herein,hereupon,hers,herself,him,himself,his,how,however,hundred,i,ie,if, in,inc,indeed,interest,into,is,it,its,itself,keep,last,latter,latterly,least,less,ltd,made,many,may,me,meanwhile,might,mill,mine,more,moreover,most,mostly,move,much,must,my,myself,name,namely,neither,never, nevertheless,next,nine,no,nobody,none,noone,nor,not,nothing,now,nowhere,of,off,often,on,once,one,only,onto,or,other,others,otherwise,our,ours,ourselves,out,over,own,part,per,perhaps,please,put,rather,re,same, see,seem,seemed,seeming,seems,serious,several,she,should,show,side,since,sincere,six,sixty,so,some,somehow,someone,something,sometime,sometimes,somewhere,still,such,system,take,ten,than,that,the,their,them, themselves,then,thence,there,thereafter,thereby,therefore,therein,thereupon,these,they,thick,thin,third,this,those,though,three,through,throughout,thru,thus,to,together,too,top,toward,towards,twelve,twenty,two, un,under,until,up,upon,us,very,via,was,we,well,were,what,whatever,when,whence,whenever,where,whereafter,whereas,whereby,wherein,whereupon,wherever,whether,which,while,whither,who,whoever,whole,whom,whose,why,will, with,within,without,would,yet,you,your,yours,yourself,yourselves`
 
 You can use `getStopWords()` to see the list of stopwords that will be used.
 
@@ -792,9 +859,12 @@ LDA takes in a vector of token counts as input. We can use the `CountVectorizer(
 
 The `CountVectorizer` will return `(VocabSize, Array(Indexed Tokens), Array(Token Frequency))`.
 
-Two handy parameters to note: - `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary. - `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
+Two handy parameters to note:
+- `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
+- `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
 
-See: \* <http://spark.apache.org/docs/latest/ml-features.html#countvectorizer>.
+See:
+\* <http://spark.apache.org/docs/latest/ml-features.html#countvectorizer>.
 
 ``` scala
 import org.apache.spark.ml.feature.CountVectorizer
@@ -847,7 +917,8 @@ lda_countVector.take(1)
 Let's get an overview of LDA in Spark's MLLIB
 ---------------------------------------------
 
-See: \* <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
+See:
+\* <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
 
 Create LDA model with Online Variational Bayes
 ----------------------------------------------
@@ -889,9 +960,9 @@ val ldaModel = lda.run(lda_countVector)
 
 Watch **Online Learning for Latent Dirichlet Allocation** in NIPS2010 by Matt Hoffman (right click and open in new tab)
 
-[\[Matt Hoffman's NIPS 2010 Talk Online LDA\]](http://videolectures.net/nips2010_hoffman_oll/thumb.jpg)\](http://videolectures.net/nips2010\_hoffman\_oll/)
+[!\[Matt Hoffman's NIPS 2010 Talk Online LDA\]](http://videolectures.net/nips2010_hoffman_oll/thumb.jpg)\](http://videolectures.net/nips2010*hoffman*oll/)
 
-Also see the paper on *Online varioational Bayes* by Matt linked for more details (from the above URL): <http://videolectures.net/site/normal_dl/tag=83534/nips2010_1291.pdf>
+Also see the paper on *Online varioational Bayes* by Matt linked for more details (from the above URL): [http://videolectures.net/site/normal*dl/tag=83534/nips2010*1291.pdf](http://videolectures.net/site/normal_dl/tag=83534/nips2010_1291.pdf)
 
 Note that using the OnlineLDAOptimizer returns us a [LocalLDAModel](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LocalLDAModel), which stores the inferred topics of your corpus.
 
@@ -1195,10 +1266,10 @@ Dive into the source!!!
 -   search for 'ml' in the search box on the top left (ml is for ml library)
 -   Then find the `LDA` by scrolling below on the left to mllib's `clustering` methods and click on `LDA`
 -   Then click on the source code link which should take you here:
--   <https://github.com/apache/spark/blob/v1.6.1/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala>
--   Now, simply go to the right function and see the following comment block:
+    -   <https://github.com/apache/spark/blob/v1.6.1/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala>
+    -   Now, simply go to the right function and see the following comment block:
 
-`/**    * Concentration parameter (commonly named "alpha") for the prior placed on documents'    * distributions over topics ("theta").    *    * This is the parameter to a Dirichlet distribution, where larger values mean more smoothing    * (more regularization).    *    * If not set by the user, then docConcentration is set automatically. If set to    * singleton vector [alpha], then alpha is replicated to a vector of length k in fitting.    * Otherwise, the [[docConcentration]] vector must be length k.    * (default = automatic)    *    * Optimizer-specific parameter settings:    *  - EM    *     - Currently only supports symmetric distributions, so all values in the vector should be    *       the same.    *     - Values should be > 1.0    *     - default = uniformly (50 / k) + 1, where 50/k is common in LDA libraries and +1 follows    *       from Asuncion et al. (2009), who recommend a +1 adjustment for EM.    *  - Online    *     - Values should be >= 0    *     - default = uniformly (1.0 / k), following the implementation from    *       [[https://github.com/Blei-Lab/onlineldavb]].    * @group param    */`
+    `/**  * Concentration parameter (commonly named "alpha") for the prior placed on documents'  * distributions over topics ("theta").  *  * This is the parameter to a Dirichlet distribution, where larger values mean more smoothing  * (more regularization).  *  * If not set by the user, then docConcentration is set automatically. If set to  * singleton vector [alpha], then alpha is replicated to a vector of length k in fitting.  * Otherwise, the [[docConcentration]] vector must be length k.  * (default = automatic)  *  * Optimizer-specific parameter settings:  *  - EM  *     - Currently only supports symmetric distributions, so all values in the vector should be  *       the same.  *     - Values should be > 1.0  *     - default = uniformly (50 / k) + 1, where 50/k is common in LDA libraries and +1 follows  *       from Asuncion et al. (2009), who recommend a +1 adjustment for EM.  *  - Online  *     - Values should be >= 0  *     - default = uniformly (1.0 / k), following the implementation from  *       [[https://github.com/Blei-Lab/onlineldavb]].  * @group param  */`
 
 **HOMEWORK:** Try to find the default value for `TopicConcentration`.
 
@@ -1371,7 +1442,8 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 Step 9. Create LDA model with Expectation Maximization
 ------------------------------------------------------
 
-Let's try creating an LDA model with Expectation Maximization on the data that has been refiltered for additional stopwords. We will also increase MaxIterations here to 100 to see if that improves results. See: \* <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
+Let's try creating an LDA model with Expectation Maximization on the data that has been refiltered for additional stopwords. We will also increase MaxIterations here to 100 to see if that improves results. See:
+\* <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
 
 ``` scala
 import org.apache.spark.mllib.clustering.EMLDAOptimizer
@@ -1705,7 +1777,11 @@ We've managed to get some good results here. For example, we can easily infer th
 
 We still get some ambiguous results like Topic 0.
 
-To improve our results further, we could employ some of the below methods: - Refilter data for additional data-specific stopwords - Use Stemming or Lemmatization to preprocess data - Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar - Increase model's MaxIterations
+To improve our results further, we could employ some of the below methods:
+- Refilter data for additional data-specific stopwords
+- Use Stemming or Lemmatization to preprocess data
+- Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
+- Increase model's MaxIterations
 
 Visualize Results
 -----------------
@@ -2088,11 +2164,11 @@ Here are the steps taken for downloading and saving data to the distributed file
 
 Unfortunately, the original data at:
 
--   <http://www.mpi-sws.org/~cristian/data/cornell_movie_dialogs_corpus.zip>
+-   [http://www.mpi-sws.org/~cristian/data/cornell*movie*dialogs\_corpus.zip](http://www.mpi-sws.org/~cristian/data/cornell_movie_dialogs_corpus.zip)
 
 is not suited for manipulation and loading into dbfs easily. So the data has been downloaded, directory renamed without white spaces, superfluous OS-specific files removed, `dos2unix`'d, `tar -zcvf`'d and uploaded to the following URL for an easily dbfs-loadable download:
 
--   <http://lamastex.org/datasets/public/nlp/cornell_movie_dialogs_corpus.tgz>
+-   [http://lamastex.org/datasets/public/nlp/cornell*movie*dialogs\_corpus.tgz](http://lamastex.org/datasets/public/nlp/cornell_movie_dialogs_corpus.tgz)
 
 ``` scala
 //%sh wget http://lamastex.org/datasets/public/nlp/cornell_movie_dialogs_corpus.tgz
@@ -2360,4 +2436,3 @@ display(dbutils.fs.ls("dbfs:/datasets/sds/nlp/cornell_movie_dialogs_corpus/"))
 | dbfs:/datasets/sds/nlp/cornell\_movie\_dialogs\_corpus/movie\_lines.txt                | movie\_lines.txt                | 3.4641919e7 |
 | dbfs:/datasets/sds/nlp/cornell\_movie\_dialogs\_corpus/movie\_titles\_metadata.txt     | movie\_titles\_metadata.txt     | 67289.0     |
 | dbfs:/datasets/sds/nlp/cornell\_movie\_dialogs\_corpus/raw\_script\_urls.txt           | raw\_script\_urls.txt           | 56177.0     |
-

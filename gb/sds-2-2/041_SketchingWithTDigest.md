@@ -299,32 +299,32 @@ We will next execute the companion notebook `040a_TDigestInputStream` in order t
 
 The code in the companion notebook is as follows for convenience (you could just copy-paste this code into another notebook in the same cluster with the same distributed file system):
 
-``` %scala
+\`\`\`%scala
 import scala.util.Random
-import scala.util.Random._
+import scala.util.Random.\_
 
 // make a sample to produce a mixture of two normal RVs with standard deviation 1 but with different location or mean parameters
 def myMixtureOf2Normals( normalLocation: Double, abnormalLocation: Double, normalWeight: Double, r: Random) : (String, Double) = {
-  val sample = if (r.nextDouble <= normalWeight) {r.nextGaussian+normalLocation } 
-               else {r.nextGaussian + abnormalLocation} 
-  Thread.sleep(5L) // sleep 5 milliseconds
-  val now = (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")).format(new java.util.Date())
-  return (now,sample)
-   }
-   
- dbutils.fs.rm("/datasets/streamingFiles/",true) // this is to delete the directory before staring a job
- 
+val sample = if (r.nextDouble &lt;= normalWeight) {r.nextGaussian+normalLocation }
+else {r.nextGaussian + abnormalLocation}
+Thread.sleep(5L) // sleep 5 milliseconds
+val now = (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")).format(new java.util.Date())
+return (now,sample)
+}
+
+dbutils.fs.rm("/datasets/streamingFiles/",true) // this is to delete the directory before staring a job
+
 val r = new Random(12345L)
 var a = 0;
 // for loop execution to write files to distributed fs
-for( a <- 1 to 20){
-  val data = sc.parallelize(Vector.fill(100){myMixtureOf2Normals(1.0, 10.0, 0.99, r)}).coalesce(1).toDF.as[(String,Double)]
-  val minute = (new java.text.SimpleDateFormat("mm")).format(new java.util.Date())
-  val second = (new java.text.SimpleDateFormat("ss")).format(new java.util.Date())
-  data.write.mode(SaveMode.Overwrite).csv("/datasets/streamingFiles/" + minute +"_" + second + ".csv")
-  Thread.sleep(5000L) // sleep 5 seconds
+for( a &lt;- 1 to 20){
+val data = sc.parallelize(Vector.fill(100){myMixtureOf2Normals(1.0, 10.0, 0.99, r)}).coalesce(1).toDF.as\[(String,Double)\]
+val minute = (new java.text.SimpleDateFormat("mm")).format(new java.util.Date())
+val second = (new java.text.SimpleDateFormat("ss")).format(new java.util.Date())
+data.write.mode(SaveMode.Overwrite).csv("/datasets/streamingFiles/" + minute +"\_" + second + ".csv")
+Thread.sleep(5000L) // sleep 5 seconds
 }
-```
+\`\`\`
 
 We will simply apply the batch-learnt t-digest as the threshold for determining if the streaming data is anomalous or not.
 
@@ -539,9 +539,8 @@ Here are some starting points for diving deeper in this direction of *arbitrary 
 -   Spark Summit EU Dublin 2017 Deep Dive: <https://databricks.com/session/deep-dive-stateful-stream-processing>
 -   See <https://youtu.be/JAb4FIheP28>
 -   Official [docs and examples of arbitrary stateful operations](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#arbitrary-stateful-operations)
--   doc: <https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.streaming.GroupState>
--   example: <https://github.com/apache/spark/blob/v2.2.0/examples/src/main/scala/org/apache/spark/examples/sql/streaming/StructuredSessionization.scala>
-
+    -   doc: <https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.streaming.GroupState>
+    -   example: <https://github.com/apache/spark/blob/v2.2.0/examples/src/main/scala/org/apache/spark/examples/sql/streaming/StructuredSessionization.scala>
 -   See [Part 14](http://blog.madhukaraphatak.com/introduction-to-spark-structured-streaming-part-14/) of [the 14-part series on structured streaming series in Madhukar's blog](http://blog.madhukaraphatak.com/categories/introduction-structured-streaming/)
 -   Authoritative resource: <https://jaceklaskowski.gitbooks.io/spark-structured-streaming/content/spark-sql-streaming-KeyValueGroupedDataset-flatMapGroupsWithState.html>
 

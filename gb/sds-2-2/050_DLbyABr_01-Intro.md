@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 Introduction to Deep Learning
 =============================
@@ -11,7 +13,8 @@ Theory and Practice with TensorFlow and Keras
 
 <img src="http://i.imgur.com/Gk8rv2Z.jpg" width=700>
 
-https://arxiv.org/abs/1508.06576<br/> *by the end of this course, this paper and project will be accessible to you!*
+https://arxiv.org/abs/1508.06576<br/>
+*by the end of this course, this paper and project will be accessible to you!*
 
 ### Schedule
 
@@ -45,7 +48,8 @@ https://arxiv.org/abs/1508.06576<br/> *by the end of this course, this paper and
 
 -   Finance / Insurance, Travel, Media / Entertainment, Government
 
-**Note:** Minor mathematical statistical details and other editing for LaTeX added by Dr. Raazesh Sainudiin (Raaz) for the PhD level inter-faculty course at Uppsala University, Spring Semester with Adam's explicit permission for use in a non-profit setting.\* All edits by Raaz are qualified by *(raaz)*. Please get Adam's permission before using this in a for-profit non-University setting.
+**Note:**
+Minor mathematical statistical details and other editing for LaTeX added by Dr. Raazesh Sainudiin (Raaz) for the PhD level inter-faculty course at Uppsala University, Spring Semester with Adam's explicit permission for use in a non-profit setting.\* All edits by Raaz are qualified by *(raaz)*. Please get Adam's permission before using this in a for-profit non-University setting.
 
 ### Class Goals
 
@@ -88,29 +92,24 @@ Traditionally this had been quite a hard task for a computer to do. 99% was not 
 #### Let's describe the specific problem in a little more detail
 
 -   Each image is a 28x28 pixel image
--   originally monochrome; smoothed to gray; typically inverted, so that "blank" pixels are black (zeros)
-
+    -   originally monochrome; smoothed to gray; typically inverted, so that "blank" pixels are black (zeros)
 -   So the **predictors** are 784 (28 \* 28 = 784) values, ranging from 0 (black / no ink when inverted) to 255 (white / full ink when inverted)
 
 -   The **response** -- what we're trying to predict -- is the number that the image represents
--   the response is a value from 0 to 9
--   since there are a small number of discrete catagories for the responses, this is a **classification** problem, not a **regression** problem
--   there are 10 classes
-
+    -   the response is a value from 0 to 9
+    -   since there are a small number of discrete catagories for the responses, this is a **classification** problem, not a **regression** problem
+    -   there are 10 classes
 -   We have, for each data record, predictors and a response to train against, so this is a **supervised** learning task
 
 -   The dataset happens to come partitioned into a **training set** (60,000 records) and a **test set** (10,000 records)
--   We'll "hold out" the test set and not train on it
-
+    -   We'll "hold out" the test set and not train on it
 -   Once our model is trained, we'll use it to **predict** (or perform **inference**) on the test records, and see how well our trained model performs on unseen test data
--   We might want to further split the training set into a **validation set** or even several **K-fold partitions** to evaluate as we go
-
+    -   We might want to further split the training set into a **validation set** or even several **K-fold partitions** to evaluate as we go
 -   As humans, we'll probably measure our success by using **accuracy** as a metric: What fraction of the examples are correctly classified by the model?
--   However, for training, it makes more sense to use **cross-entropy** to measure, correct, and improve the model. Cross-entropy has the advantage that instead of just counting "right or wrong" answers, it provides a continuous measure of "how wrong (or right)" an answer is. For example, if the correct answer is "1" then the answer "probably a 7, maybe a 1" is wrong, but *less wrong* than the answer "definitely a 7"
-
+    -   However, for training, it makes more sense to use **cross-entropy** to measure, correct, and improve the model. Cross-entropy has the advantage that instead of just counting "right or wrong" answers, it provides a continuous measure of "how wrong (or right)" an answer is. For example, if the correct answer is "1" then the answer "probably a 7, maybe a 1" is wrong, but *less wrong* than the answer "definitely a 7"
 -   Do we need to pre-process the data? Depending on the model we use, we may want to ...
--   **Scale** the values, so that they range from 0 to 1, or so that they measure in standard deviations
--   **Center** the values so that 0 corresponds to the (raw central) value 127.5, or so that 0 corresponds to the mean
+    -   **Scale** the values, so that they range from 0 to 1, or so that they measure in standard deviations
+    -   **Center** the values so that 0 corresponds to the (raw central) value 127.5, or so that 0 corresponds to the mean
 
 #### What might be characteristics of a good solution?
 
@@ -118,7 +117,10 @@ Traditionally this had been quite a hard task for a computer to do. 99% was not 
 -   We a model with a good amount of **capacity** to represent different patterns in the training data (e.g., different handwriting styles) while not **overfitting** and learning too much about specific training instances
 -   We'd like a **probabalistic model** that tells us the most likely classes given the data and assumptions (for example, in the U.S., a one is often written with a vertical stroke, whereas in Germany it's usually written with 2 strokes, closer to a U.S. 7)
 
-Going a little further, \* an ideal modeling approach might perform **feature selection** on its own deciding which pixels and combinations of pixels are most informative \* in order to be robust to varying data, a good model might learn **hierarchical or abstract features** like lines, angles, curves and loops that we as humans use to teach, learn, and distinguish Arabic numerals from each other \* it would be nice to add some basic **domain knowledge** like these features aren't arbitrary slots in a vector, but are parts of a 2-dimensional image where the contents are roughly **axis-aligned** and **translation invariant** -- after all, a "7" is still a "7" even if we move it around a bit on the page
+Going a little further,
+\* an ideal modeling approach might perform **feature selection** on its own deciding which pixels and combinations of pixels are most informative
+\* in order to be robust to varying data, a good model might learn **hierarchical or abstract features** like lines, angles, curves and loops that we as humans use to teach, learn, and distinguish Arabic numerals from each other
+\* it would be nice to add some basic **domain knowledge** like these features aren't arbitrary slots in a vector, but are parts of a 2-dimensional image where the contents are roughly **axis-aligned** and **translation invariant** -- after all, a "7" is still a "7" even if we move it around a bit on the page
 
 Lastly, it would be great to have a framework that is flexible enough to adapt to similar tasks -- say, Greek, Cyrillic, or Chinese handwritten characters, not just digits.
 
@@ -160,6 +162,10 @@ It turns out that a model called a convolutional neural network meets all of our
 
 But we will build up to it starting with the simplest neural model.
 
-**Mathematical statistical caveat**: Note that ML algorithmic performance measures such as 99% or 99.99% as well as their justification by comparisons to "typical" human performance measures from a randomised surveyable population actually often make significant mathematical assumptions that may be violated *under the carpet*. Some concrete examples include, the size and nature of the training data and their generalizability to live decision problems based on empirical risk minisation principles like cross-validation. These assumpitons are usually harmless and can be time-saving for most problems like recommending songs in Spotify or shoes in Amazon. It is important to bear in mind that there are problems that should guarantee *worst case scenario avoidance*, like accidents with self-driving cars or global extinction event cause by mathematically ambiguous assumptions in the learning algorithms of say near-Earth-Asteroid mining artificially intelligent robots!
+**Mathematical statistical caveat**: Note that ML algorithmic performance measures such as 99% or 99.99% as well as their justification by comparisons to "typical" human performance measures from a randomised surveyable population actually often make significant mathematical assumptions that may be violated *under the carpet*. Some concrete examples include, the size and nature of the training data and their generalizability to live decision problems based on empirical risk minisation principles like cross-validation.
+These assumpitons are usually harmless and can be time-saving for most problems like recommending songs in Spotify or shoes in Amazon. It is important to bear in mind that there are problems that should guarantee *worst case scenario avoidance*, like accidents with self-driving cars or global extinction event cause by mathematically ambiguous assumptions in the learning algorithms of say near-Earth-Asteroid mining artificially intelligent robots!
 
-Installations \* tensorflow==1.3.0 \* keras==2.0.8 \* dist-keras==0.2.0
+Installations
+\* tensorflow==1.3.0
+\* keras==2.0.8
+\* dist-keras==0.2.0

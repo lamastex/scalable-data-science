@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 CIFAR 10
 ========
@@ -53,7 +55,9 @@ Recall the classes are: **airplane, automobile, bird, cat, deer, dog, frog, hors
 
 Here is the code to unpickle the batches.
 
-Loaded in this way, each of the batch files contains a dictionary with the following elements: \* data - a 10000x3072 numpy array of uint8s. Each row of the array stores a 32x32 colour image. The first 1024 entries contain the red channel values, the next 1024 the green, and the final 1024 the blue. The image is stored in row-major order, so that the first 32 entries of the array are the red channel values of the first row of the image. \* labels - a list of 10000 numbers in the range 0-9. The number at index i indicates the label of the ith image in the array data.
+Loaded in this way, each of the batch files contains a dictionary with the following elements:
+\* data - a 10000x3072 numpy array of uint8s. Each row of the array stores a 32x32 colour image. The first 1024 entries contain the red channel values, the next 1024 the green, and the final 1024 the blue. The image is stored in row-major order, so that the first 32 entries of the array are the red channel values of the first row of the image.
+\* labels - a list of 10000 numbers in the range 0-9. The number at index i indicates the label of the ith image in the array data.
 
 ``` python
 def unpickle(file):
@@ -182,4 +186,3 @@ plt.xlabel('epoch')
 plt.legend(['train', 'val'], loc='upper left')
 display(fig)
 ```
-

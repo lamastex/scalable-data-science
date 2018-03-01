@@ -4,7 +4,8 @@
 Activity Recognition from Accelerometer using Random Forest
 ===========================================================
 
-This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition: \* <https://github.com/MiraLak/activityRecognitionV2>.
+This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition:
+\* <https://github.com/MiraLak/activityRecognitionV2>.
 
 [![Amira's video](http://img.youtube.com/vi/1DV9Kdec0-A/0.jpg)](https://www.youtube.com/watch?v=1DV9Kdec0-A)
 
@@ -169,9 +170,11 @@ Feature Selection on Running Windows
 A Markov Process Assumption
 ---------------------------
 
-This is sensible since the subjects are not instantaneously changing between the activities of interest: sitting, walking, jogging, etc. Thus it makes sense to try and use the most recent accelerometer readings (from the immediate past) to predict the current activity.
+This is sensible since the subjects are not instantaneously changing between the activities of interest: sitting, walking, jogging, etc.
+Thus it makes sense to try and use the most recent accelerometer readings (from the immediate past) to predict the current activity.
 
-See the following for a crash introduction to windows: \* <http://xinhstechblog.blogspot.co.nz/2016/04/spark-window-functions-for-dataframes.html>
+See the following for a crash introduction to windows:
+\* <http://xinhstechblog.blogspot.co.nz/2016/04/spark-window-functions-for-dataframes.html>
 
 ``` scala
  // Import the window functions.
@@ -271,7 +274,9 @@ val (trainingData, testData) = (splits(0), splits(1))
 >     trainingData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [user_id: string, activity: string ... 27 more fields]
 >     testData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [user_id: string, activity: string ... 27 more fields]
 
-See \* <http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier> \* <http://blog.citizennet.com/blog/2012/11/10/random-forests-ensembles-and-performance-metrics>
+See
+\* <http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier>
+\* <http://blog.citizennet.com/blog/2012/11/10/random-forests-ensembles-and-performance-metrics>
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Random_forest"
@@ -429,4 +434,3 @@ display(dbutils.fs.ls("dbfs:///datasets/sds/ActivityRecognition"))
 | path                                                    | name             | size     |
 |---------------------------------------------------------|------------------|----------|
 | dbfs:/datasets/sds/ActivityRecognition/dataTraining.csv | dataTraining.csv | 931349.0 |
-

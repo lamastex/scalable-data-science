@@ -139,7 +139,8 @@ def anonymize(source, target):
 Wireshark and Nmap
 ==================
 
-What is it? https://www.wireshark.org/
+What is it?
+https://www.wireshark.org/
 
 Wireshark is a free and open source packet analyzer. It is used for network troubleshooting, analysis, software and communications protocol development, and education.
 
@@ -149,25 +150,30 @@ Step by step
 ------------
 
 -   Opened up Wireshark on the victims computer as well as logging activity on the network
-    -   For a guide on how to log network info with wireshark, see the following: https://www.wireshark.org/docs/wsug\_html\_chunked/ChCapCapturingSection.html
+    -   For a guide on how to log network info with wireshark, see the following:
+        https://www.wireshark.org/docs/wsug*html*chunked/ChCapCapturingSection.html
 -   Started a lot of transfers and streams on the victims computer
     -   Started a Chromecast stream of a workout video on Youtube to a TV on the network
     -   Streaming music to speakers on the network via Spotify Connect
     -   Sending large files via Apple Airdrop
 -   The attacker started Nmap and started a port scan against the victim
 -   The attacker did a thourough fingerprint of the victim, such as OS detection and software detection at the open ports, also with Nmap
--   We exported the victims wireshark log as CSV by doing the following: ![](https://www.sunlabs.se/assets/sds/wireshark-export-csv.png)
+-   We exported the victims wireshark log as CSV by doing the following:
+    ![](https://www.sunlabs.se/assets/sds/wireshark-export-csv.png)
 
-The following image visualizes the network environment ![](https://www.sunlabs.se/assets/sds/graph-network-collection.png)
+The following image visualizes the network environment
+![](https://www.sunlabs.se/assets/sds/graph-network-collection.png)
 
-The dotted lines shows network communications Filled lines shows local execution or communication between nodes Lines with arrows shows directed communication
+The dotted lines shows network communications
+Filled lines shows local execution or communication between nodes
+Lines with arrows shows directed communication
 
 After that was done, about 30 minutes later, we exported the data to CSV-format. The CSV was formatted as follows:
 
-| No  | Time     | Source    | Destination | Protocol | Length | Info         |
-|-----|----------|-----------|-------------|----------|--------|--------------|
-| 1   | 0.001237 | 10.0.0.66 | 10.0.0.1    | DNS      | 54     | \[Redacted\] |
-| ⫶   | ⫶        | ⫶         | ⫶           | ⫶        | ⫶      | ⫶            |
+No \| Time \| Source \| Destination \| Protocol \| Length \| Info
+--- \| --- \| --- \| --- \| --- \| --- \| ---
+1 \| 0.001237 \| 10.0.0.66 \| 10.0.0.1 \| DNS \| 54 \| \[Redacted\]
+⫶ \| ⫶ \| ⫶ \| ⫶ \| ⫶ \| ⫶ \| ⫶
 
 Description of collected data
 -----------------------------
@@ -991,7 +997,13 @@ Clustering
 Pre-processing of data
 ----------------------
 
-We preprocessed the data logged from wireshark doing the following: - Rounding timestamps by milliseconds, that would be four significant decimals. - Group the data by (timestamp, source, destination, protocol) with a count of how many times these kind of packets was sent/received during a millisecond. - One-hot encoded the protocol values - If you don't what that means, check this article out https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f - Standardized features for count and length of packets
+We preprocessed the data logged from wireshark doing the following:
+- Rounding timestamps by milliseconds, that would be four significant decimals.
+- Group the data by (timestamp, source, destination, protocol) with a count of how many times these kind of packets was sent/received during a millisecond.
+- One-hot encoded the protocol values
+- If you don't what that means, check this article out
+https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f
+- Standardized features for count and length of packets
 
 Setting up k-means clustering
 -----------------------------
@@ -1128,7 +1140,10 @@ val modelTransformed = model.transform(trainingData)
 Improvements and future work
 ============================
 
-In this section we present possible improvements that could have been done for our project and future work to further build on the project, increase its usability and value. \#\# Dimensionality improvements
+In this section we present possible improvements that could have been done for our project and future work to further build on the project, increase its usability and value.
+
+Dimensionality improvements
+---------------------------
 
 We used k-means for clustering our network data which uses euclidean distance. Models using euclidean distance are susceptible to the [Curse of Dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality). With the 23 features we got after using one-hot encoding for the protocol column in the original dataset we are likely suffering from this high dimensionality. To improve the clustering one could an algorithm that doesn't use euclidean distance (or other distance measures that don't work well for high dimensionality). Another possible solution could be to to use [dimensionality reduction](dimensionality%20reduction%20using%20autoencoder) and try to retain as much information as possible with fewer features. This could be done using techniques such as [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) or [LDA](https://en.wikipedia.org/wiki/Linear_discriminant_analysis).
 

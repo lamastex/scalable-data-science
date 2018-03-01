@@ -1,11 +1,13 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 #### We can also implement the model with mini-batches -- this will let us see matrix ops in action:
 
-(N.b., feed\_dict is intended for small data / experimentation. For more info on ingesting data at scale, see https://www.tensorflow.org/api\_guides/python/reading\_data)
+(N.b., feed*dict is intended for small data / experimentation. For more info on ingesting data at scale, see https://www.tensorflow.org/api*guides/python/reading\_data)
 
 ``` python
 # we know these params, but we're making TF learn them
@@ -53,7 +55,7 @@ Yex
 >     array([ 3.12846017,  3.15631072,  2.19605725,  2.4869375 ,  3.61105769,
 >             1.61430847,  2.35396437,  2.72641418,  2.22244393,  2.56596912])
 
-The first entry in Yex is obtained as follows (change the numbers in the produc below if you reevaluated the cells above) and geometrically it is the location in z-axis of the plane with slopes given by REAL\_SLOPE\_X1 in the x-axis and REAL\_SLOPE\_X2 in the y-aixs with intercept 0 at the point in the x-y or x1-x2 plane given by (0.68729439, 0.58462379).
+The first entry in Yex is obtained as follows (change the numbers in the produc below if you reevaluated the cells above) and geometrically it is the location in z-axis of the plane with slopes given by REAL*SLOPE*X1 in the x-axis and REAL*SLOPE*X2 in the y-aixs with intercept 0 at the point in the x-y or x1-x2 plane given by (0.68729439, 0.58462379).
 
 ``` python
 0.68729439*REAL_SLOPE_X1 +  0.58462379*REAL_SLOPE_X2 
@@ -162,4 +164,3 @@ fig.set_size_inches((4,3))
 plt.plot(errors)
 display(fig)
 ```
-

@@ -14,7 +14,8 @@ Remeber that the use of twitter itself comes with various strings attached. Read
 
 -   [Twitter Rules](https://twitter.com/rules)
 
-Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings. Read: - [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
+Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings. Read:
+- [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
 
 ``` run
 "scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
@@ -43,26 +44,26 @@ import twitter4j.conf.ConfigurationBuilder
 -   Go to https://apps.twitter.com and look up your Twitter API Credentials, or create an app to create them.
 -   Run the code in a cell to Enter your own credentials.
 
-``` %scala
+\`\`\`%scala
 // put your own twitter developer credentials below instead of xxx
-// instead of the '%run "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"' above
+// instead of the '%run "scalable-data-science/secrets/026*secret*MyTwitterOAuthCredentials"' above
 // this notebook we just ran contains the following commented code block
 
-/*
+/\*
 import twitter4j.auth.OAuthAuthorization
 import twitter4j.conf.ConfigurationBuilder
 
-def MyconsumerKey       = "xxx"
-def MyconsumerSecret    = "xxx"
-def Mytoken             = "xxx"
-def MytokenSecret       = "xxx"
+def MyconsumerKey = "xxx"
+def MyconsumerSecret = "xxx"
+def Mytoken = "xxx"
+def MytokenSecret = "xxx"
 
 System.setProperty("twitter4j.oauth.consumerKey", MyconsumerKey)
 System.setProperty("twitter4j.oauth.consumerSecret", MyconsumerSecret)
 System.setProperty("twitter4j.oauth.accessToken", Mytoken)
 System.setProperty("twitter4j.oauth.accessTokenSecret", MytokenSecret)
-*/
-```
+\*/
+\`\`\`
 
 The cell-below is hidden to not expose my Twitter API Credentials: `consumerKey`, `consumerSecret`, `accessToken` and `accessTokenSecret`. Use the code above to enter your own credentials!
 
@@ -79,7 +80,8 @@ The cell-below is hidden to not expose my Twitter API Credentials: `consumerKey`
 "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
 ```
 
-If you see warnings then ignore for now: <https://forums.databricks.com/questions/6941/change-in-getargument-for-notebook-input.html>.
+If you see warnings then ignore for now:
+<https://forums.databricks.com/questions/6941/change-in-getargument-for-notebook-input.html>.
 
 ### Step 2: Configure where to output the top hashtags and how often to compute them.
 
@@ -353,8 +355,12 @@ What could you do with this type of streaming capability?
 -   linking twitter activity to mass media activity?
 -   ...
 
-Note that there are various Spark Streaming ML algorithms that one could easily throw at such `reduceByKeyAndWindow` tweet streams: \* [Frequent Pattern Mining](https://spark.apache.org/docs/latest/mllib-frequent-pattern-mining.html) \* [Streaming K-Means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html) \* [Latent Dirichlet Allocation - Topic Modeling](https://spark.apache.org/docs/latest/ml-clustering.html#latent-dirichlet-allocation-lda)
+Note that there are various Spark Streaming ML algorithms that one could easily throw at such `reduceByKeyAndWindow` tweet streams:
+\* [Frequent Pattern Mining](https://spark.apache.org/docs/latest/mllib-frequent-pattern-mining.html)
+\* [Streaming K-Means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html)
+\* [Latent Dirichlet Allocation - Topic Modeling](https://spark.apache.org/docs/latest/ml-clustering.html#latent-dirichlet-allocation-lda)
 
 Student Project or Volunteer for next Meetup - let's check it out now:
 
-HOME-WORK: \* [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)
+HOME-WORK:
+\* [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)

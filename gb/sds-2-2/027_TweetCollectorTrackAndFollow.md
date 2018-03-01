@@ -256,4 +256,3 @@ dbutils.fs.rm(outputDirectoryRoot, true)
 ```
 
 >     res26: Boolean = true
-

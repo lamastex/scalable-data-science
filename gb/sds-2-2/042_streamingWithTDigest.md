@@ -11,7 +11,8 @@ The idea with this sketch is to demonstrate how we can have a running t-Digest i
 Arbitrary stateful aggregations in streaming
 --------------------------------------------
 
-We have two stateful operations, the first is mapGroupsWithState and flatmapGroupsWithState. The Databricks blog have a relatively good explanation of the two operations in their blogpost https://databricks.com/blog/2017/10/17/arbitrary-stateful-processing-in-apache-sparks-structured-streaming.html. However the concept is maybe not so easy to understand so I will try to give a simple explanation of what is going on with these two aggregations.
+We have two stateful operations, the first is mapGroupsWithState and flatmapGroupsWithState. The Databricks blog have a relatively good explanation of the two operations in their blogpost https://databricks.com/blog/2017/10/17/arbitrary-stateful-processing-in-apache-sparks-structured-streaming.html.
+However the concept is maybe not so easy to understand so I will try to give a simple explanation of what is going on with these two aggregations.
 
 ### Structured streaming
 
@@ -25,19 +26,20 @@ The way both mapGroupsWithState and flatMapGroupsWithState works is that we star
 
 The simple difference between these two can be infered from the name, but let us go into detail. If we are only interested in an aggregated "value" (could be a case class) from each key we should use mapGroupsWithState, however there are some interesting caveats with using mapGroupsWithState. For instance certain update-modes are not allowed as well as further aggregations are not allowed. flatmap... on the other hand can output any number of rows, allows more output-modes and allows for further aggregations, see the Structured Streaming programming guide.
 <table>
-  <tr>
-    <td>Query type</td><td>Output mode</td><td>Operations allowed</td>
-  </tr>
-  <tr>
-    <td>mapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
-  </tr>
-  <tr>
-    <td>flatMapGroupsWithState</td><td>Append</td><td>Aggregations allowed after</td>
-  </tr>
-  <tr>
-    <td>flatMapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
-  </tr>
+<tr>
+<td>Query type</td><td>Output mode</td><td>Operations allowed</td>
+</tr>
+<tr>
+<td>mapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
+</tr>
+<tr>
+<td>flatMapGroupsWithState</td><td>Append</td><td>Aggregations allowed after</td>
+</tr>
+<tr>
+<td>flatMapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
+</tr>
 </table>
+
 Some streaming input
 ====================
 
@@ -143,7 +145,11 @@ To begin describing the code below, let us first look at what will be our runnin
 updateAcrossBatch
 -----------------
 
-This is our main update-function that we send as a parameter to flatmapGroupsWithState. \* It takes as first input the key-value, which we will not care about in this example and is just a dummy for us. \* The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types. \* The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`. \* Lastly we have the output, which is an iterator of the case class chosen as outputrow, in our case this is `Iterator[TdigAndAnomaly]`
+This is our main update-function that we send as a parameter to flatmapGroupsWithState.
+\* It takes as first input the key-value, which we will not care about in this example and is just a dummy for us.
+\* The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types.
+\* The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`.
+\* Lastly we have the output, which is an iterator of the case class chosen as outputrow, in our case this is `Iterator[TdigAndAnomaly]`
 
 Each time a batch gets processed, the batch data is in the `inputs` variable. We first make sure that the state is either the previous state (if it exists) or we set it to a zero state. Then we simply process the batch one datapoint at the time, and each time calling updateTDIG, which simply updates the state with the new data point (tDigest add point). Once we have added all the points to the t-Digest, we can compute the updated value of `threshold` using `cdfInverse(0.99)`, after that we simply filter the batch to obtain an iterator of the anomalies.
 
@@ -203,9 +209,9 @@ query.awaitTermination()
 >     -------------------------------------------
 >     Batch: 0
 >     -------------------------------------------
->     +--------------------|------------------|--------------------|------------------+
+>     +--------------------+------------------+--------------------+------------------+
 >     |             tDigSql|     tDigThreshold|                time|             score|
->     +--------------------|------------------|--------------------|------------------+
+>     +--------------------+------------------+--------------------+------------------+
 >     |TDigestSQL(TDiges...|7.9098819334928265|2018-01-30 07:18:...| 9.639219241219372|
 >     |TDigestSQL(TDiges...|7.9098819334928265|2018-01-30 07:18:...|11.539205812425335|
 >     |TDigestSQL(TDiges...|7.9098819334928265|2018-01-30 07:18:...| 9.423175513609095|
@@ -216,28 +222,28 @@ query.awaitTermination()
 >     |TDigestSQL(TDiges...|7.9098819334928265|2018-01-30 07:18:...|11.260505056159252|
 >     |TDigestSQL(TDiges...|7.9098819334928265|2018-01-30 07:18:...| 9.905282503779972|
 >     |TDigestSQL(TDiges...|7.9098819334928265|2018-01-30 07:18:...| 9.102639076417908|
->     +--------------------|------------------|--------------------|------------------+
+>     +--------------------+------------------+--------------------+------------------+
 >
 >     -------------------------------------------
 >     Batch: 1
 >     -------------------------------------------
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >     |             tDigSql|    tDigThreshold|                time|             score|
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >     |TDigestSQL(TDiges...|9.553157173102415|2018-01-30 07:19:...| 9.695132992174205|
 >     |TDigestSQL(TDiges...|9.553157173102415|2018-01-30 07:19:...|10.439052640762693|
 >     |TDigestSQL(TDiges...|9.553157173102415|2018-01-30 07:19:...| 10.02254460606071|
 >     |TDigestSQL(TDiges...|9.553157173102415|2018-01-30 07:19:...|  9.87803253322451|
 >     |TDigestSQL(TDiges...|9.553157173102415|2018-01-30 07:19:...| 9.858438409632281|
 >     |TDigestSQL(TDiges...|9.553157173102415|2018-01-30 07:19:...| 10.45683581285141|
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >
 >     -------------------------------------------
 >     Batch: 2
 >     -------------------------------------------
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >     |             tDigSql|    tDigThreshold|                time|             score|
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >     |TDigestSQL(TDiges...|9.185194249546159|2018-01-30 07:20:...| 10.13608393266294|
 >     |TDigestSQL(TDiges...|9.185194249546159|2018-01-30 07:20:...| 9.562663532092044|
 >     |TDigestSQL(TDiges...|9.185194249546159|2018-01-30 07:20:...| 10.50152359072326|
@@ -251,14 +257,14 @@ query.awaitTermination()
 >     |TDigestSQL(TDiges...|9.185194249546159|2018-01-30 07:20:...|10.380284632322022|
 >     |TDigestSQL(TDiges...|9.185194249546159|2018-01-30 07:20:...|10.399812080160988|
 >     |TDigestSQL(TDiges...|9.185194249546159|2018-01-30 07:20:...| 10.47155413079559|
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >
 >     -------------------------------------------
 >     Batch: 3
 >     -------------------------------------------
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >     |             tDigSql|    tDigThreshold|                time|             score|
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >     |TDigestSQL(TDiges...|9.111097583328926|2018-01-30 07:21:...|11.028282567178604|
 >     |TDigestSQL(TDiges...|9.111097583328926|2018-01-30 07:21:...| 9.801446956198197|
 >     |TDigestSQL(TDiges...|9.111097583328926|2018-01-30 07:21:...| 9.349642991847796|
@@ -269,7 +275,7 @@ query.awaitTermination()
 >     |TDigestSQL(TDiges...|9.111097583328926|2018-01-30 07:21:...|10.031203472330613|
 >     |TDigestSQL(TDiges...|9.111097583328926|2018-01-30 07:21:...| 9.310488974576659|
 >     |TDigestSQL(TDiges...|9.111097583328926|2018-01-30 07:21:...|10.669624608178813|
->     +--------------------|-----------------|--------------------|------------------+
+>     +--------------------+-----------------+--------------------+------------------+
 >
 >     -------------------------------------------
 >     Batch: 4

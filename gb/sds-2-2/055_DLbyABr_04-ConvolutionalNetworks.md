@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 Convolutional Neural Networks
 =============================
@@ -15,21 +17,30 @@ We'll take our deep feed-forward multilayer perceptron network, with ReLU activa
 
 The main part of the code looks like the following (full code you can run is in the next cell):
 
-    # imports, setup, load data sets
+\`\`\`
 
-    model = Sequential()
-    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+imports, setup, load data sets
+==============================
 
-    categorical_labels = to_categorical(y_train, num_classes=10)
+model = Sequential()
+model.add(Dense(20, input*dim=784, kernel*initializer='normal', activation='relu'))
+model.add(Dense(15, kernel*initializer='normal', activation='relu'))
+model.add(Dense(10, kernel*initializer='normal', activation='softmax'))
+model.compile(loss='categorical*crossentropy', optimizer='adam', metrics=\['categorical*accuracy'\])
 
-    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
+categorical*labels = to*categorical(y*train, num*classes=10)
 
-    # print metrics, plot errors
+history = model.fit(X*train, categorical*labels, epochs=100, batch\_size=100)
 
-Note the changes, which are largely about building a classifier instead of a regression model: \* Output layer has one neuron per category, with softmax activation \* **Loss function is cross-entropy loss** \* Accuracy metric is categorical accuracy
+print metrics, plot errors
+==========================
+
+\`\`\`
+
+Note the changes, which are largely about building a classifier instead of a regression model:
+\* Output layer has one neuron per category, with softmax activation
+\* **Loss function is cross-entropy loss**
+\* Accuracy metric is categorical accuracy
 
 Let's hold pointers into wikipedia for these new concepts.
 
@@ -63,9 +74,11 @@ The following is from: <https://www.quora.com/How-does-Keras-calculate-accuracy>
 
 > `K.argmax(y_true)` takes the highest value to be the prediction and matches against the comparative set.
 
-Watch (1:39) \* [![Udacity: Deep Learning by Vincent Vanhoucke - Cross-entropy](http://img.youtube.com/vi/tRsSi_sqXjI/0.jpg)](https://www.youtube.com/watch?v=tRsSi_sqXjI)
+Watch (1:39)
+\* [![Udacity: Deep Learning by Vincent Vanhoucke - Cross-entropy](http://img.youtube.com/vi/tRsSi_sqXjI/0.jpg)](https://www.youtube.com/watch?v=tRsSi_sqXjI)
 
-Watch (1:54) \* [![Udacity: Deep Learning by Vincent Vanhoucke - Minimizing Cross-entropy](http://img.youtube.com/vi/x449QQDhMDE/0.jpg)](https://www.youtube.com/watch?v=x449QQDhMDE)
+Watch (1:54)
+\* [![Udacity: Deep Learning by Vincent Vanhoucke - Minimizing Cross-entropy](http://img.youtube.com/vi/x449QQDhMDE/0.jpg)](https://www.youtube.com/watch?v=x449QQDhMDE)
 
 ``` python
 from keras.models import Sequential
@@ -190,7 +203,7 @@ print ("Elapse: " + str(end-start))
 >     1s - loss: 0.0593 - categorical_accuracy: 0.9807 - val_loss: 0.1736 - val_categorical_accuracy: 0.9638
 >     Epoch 40/40
 >     1s - loss: 0.0538 - categorical_accuracy: 0.9826 - val_loss: 0.1817 - val_categorical_accuracy: 0.9635
->        32/10000 [..............................] - ETA: 0s 1952/10000 [====>.........................] - ETA: 0s 3872/10000 [==========>...................] - ETA: 0s 5792/10000 [================>.............] - ETA: 0s 7712/10000 [======================>.......] - ETA: 0s 9632/10000 [===========================>..] - ETA: 0s
+>        32/10000 [..............................] - ETA: 0s 1952/10000 [====>.........................] - ETA: 0s 3872/10000 [==========>...................] - ETA: 0s 5792/10000 [================>.............] - ETA: 0s 7712/10000 [======================>.......] - ETA: 0s 9632/10000 [===========================>..] - ETA: 0s
 >     loss: 0.205790
 >     categorical_accuracy: 0.959600
 >     Start: 2017-12-07 09:30:17.311756
@@ -199,22 +212,24 @@ print ("Elapse: " + str(end-start))
 
 after about a minute we have:
 
-    ...
+\`\`\`
+...
 
-    Epoch 40/40
-    1s - loss: 0.0610 - categorical_accuracy: 0.9809 - val_loss: 0.1918 - val_categorical_accuracy: 0.9583
+Epoch 40/40
+1s - loss: 0.0610 - categorical*accuracy: 0.9809 - val*loss: 0.1918 - val*categorical*accuracy: 0.9583
 
-    ...
-     
-    loss: 0.216120
+...
 
-    categorical_accuracy: 0.955000
+loss: 0.216120
 
-    Start: 2017-12-06 07:35:33.948102
+categorical\_accuracy: 0.955000
 
-    End: 2017-12-06 07:36:27.046130
+Start: 2017-12-06 07:35:33.948102
 
-    Elapse: 0:00:53.098028
+End: 2017-12-06 07:36:27.046130
+
+Elapse: 0:00:53.098028
+\`\`\`
 
 ``` python
 import matplotlib.pyplot as plt
@@ -242,7 +257,9 @@ This is not terrible compared to other, non-neural-network approaches to the pro
 
 But we talked about using deep learning to solve "95%" problems or "98%" problems ... where one error in 20, or 50 simply won't work. If we can get to "multiple nines" of accuracy, then we can do things like automate mail sorting and translation, create cars that react properly (all the time) to street signs, and control systems for robots or drones that function autonomously.
 
-Try two more experiments (try them separately): 1. Add a third, hidden layer. 2. Increase the size of the hidden layers.
+Try two more experiments (try them separately):
+1. Add a third, hidden layer.
+2. Increase the size of the hidden layers.
 
 Adding another layer slows things down a little (why?) but doesn't seem to make a difference in accuracy.
 
@@ -340,7 +357,8 @@ Ok, let's build our first ConvNet:
 
 First, we want to explicity shape our data into a 2-D configuration. We'll end up with a 4-D tensor where the first dimension is the training examples, then each example is 28x28 pixels, and we'll explicitly say it's 1-layer deep. (Why? with color images, we typically process over 3 or 4 channels in this last dimension)
 
-A step by step animation follows: \* http://cs231n.github.io/assets/conv-demo/index.html
+A step by step animation follows:
+\* http://cs231n.github.io/assets/conv-demo/index.html
 
 ``` python
 train_libsvm = "/dbfs/databricks-datasets/mnist-digits/data-001/mnist-digits-train.txt"
@@ -420,7 +438,7 @@ for i in range(len(model.metrics_names)):
 >     16s - loss: 0.0280 - acc: 0.9917 - val_loss: 0.0445 - val_acc: 0.9875
 >     Epoch 8/8
 >     14s - loss: 0.0225 - acc: 0.9934 - val_loss: 0.0485 - val_acc: 0.9868
->        32/10000 [..............................] - ETA: 0s  672/10000 [=>............................] - ETA: 0s 1312/10000 [==>...........................] - ETA: 0s 1952/10000 [====>.........................] - ETA: 0s 2560/10000 [======>.......................] - ETA: 0s 3072/10000 [========>.....................] - ETA: 0s 3712/10000 [==========>...................] - ETA: 0s 4384/10000 [============>.................] - ETA: 0s 5024/10000 [==============>...............] - ETA: 0s 5632/10000 [===============>..............] - ETA: 0s 6304/10000 [=================>............] - ETA: 0s 6976/10000 [===================>..........] - ETA: 0s 7616/10000 [=====================>........] - ETA: 0s 8256/10000 [=======================>......] - ETA: 0s 8960/10000 [=========================>....] - ETA: 0s 9600/10000 [===========================>..] - ETA: 0s
+>        32/10000 [..............................] - ETA: 0s  672/10000 [=>............................] - ETA: 0s 1312/10000 [==>...........................] - ETA: 0s 1952/10000 [====>.........................] - ETA: 0s 2560/10000 [======>.......................] - ETA: 0s 3072/10000 [========>.....................] - ETA: 0s 3712/10000 [==========>...................] - ETA: 0s 4384/10000 [============>.................] - ETA: 0s 5024/10000 [==============>...............] - ETA: 0s 5632/10000 [===============>..............] - ETA: 0s 6304/10000 [=================>............] - ETA: 0s 6976/10000 [===================>..........] - ETA: 0s 7616/10000 [=====================>........] - ETA: 0s 8256/10000 [=======================>......] - ETA: 0s 8960/10000 [=========================>....] - ETA: 0s 9600/10000 [===========================>..] - ETA: 0s
 >     loss: 0.054931
 >     acc: 0.983000
 
@@ -508,7 +526,7 @@ for i in range(len(model.metrics_names)):
 >     21s - loss: 0.0061 - acc: 0.9981 - val_loss: 0.0523 - val_acc: 0.9883
 >     Epoch 15/15
 >     21s - loss: 0.0069 - acc: 0.9977 - val_loss: 0.0534 - val_acc: 0.9885
->        32/10000 [..............................] - ETA: 1s  448/10000 [>.............................] - ETA: 1s  864/10000 [=>............................] - ETA: 1s 1280/10000 [==>...........................] - ETA: 1s 1696/10000 [====>.........................] - ETA: 1s 2112/10000 [=====>........................] - ETA: 0s 2560/10000 [======>.......................] - ETA: 0s 2976/10000 [=======>......................] - ETA: 0s 3392/10000 [=========>....................] - ETA: 0s 3840/10000 [==========>...................] - ETA: 0s 4320/10000 [===========>..................] - ETA: 0s 4736/10000 [=============>................] - ETA: 0s 5152/10000 [==============>...............] - ETA: 0s 5568/10000 [===============>..............] - ETA: 0s 5952/10000 [================>.............] - ETA: 0s 6368/10000 [==================>...........] - ETA: 0s 6816/10000 [===================>..........] - ETA: 0s 7200/10000 [====================>.........] - ETA: 0s 7648/10000 [=====================>........] - ETA: 0s 8000/10000 [=======================>......] - ETA: 0s 8384/10000 [========================>.....] - ETA: 0s 8800/10000 [=========================>....] - ETA: 0s 9216/10000 [==========================>...] - ETA: 0s 9632/10000 [===========================>..] - ETA: 0s
+>        32/10000 [..............................] - ETA: 1s  448/10000 [>.............................] - ETA: 1s  864/10000 [=>............................] - ETA: 1s 1280/10000 [==>...........................] - ETA: 1s 1696/10000 [====>.........................] - ETA: 1s 2112/10000 [=====>........................] - ETA: 0s 2560/10000 [======>.......................] - ETA: 0s 2976/10000 [=======>......................] - ETA: 0s 3392/10000 [=========>....................] - ETA: 0s 3840/10000 [==========>...................] - ETA: 0s 4320/10000 [===========>..................] - ETA: 0s 4736/10000 [=============>................] - ETA: 0s 5152/10000 [==============>...............] - ETA: 0s 5568/10000 [===============>..............] - ETA: 0s 5952/10000 [================>.............] - ETA: 0s 6368/10000 [==================>...........] - ETA: 0s 6816/10000 [===================>..........] - ETA: 0s 7200/10000 [====================>.........] - ETA: 0s 7648/10000 [=====================>........] - ETA: 0s 8000/10000 [=======================>......] - ETA: 0s 8384/10000 [========================>.....] - ETA: 0s 8800/10000 [=========================>....] - ETA: 0s 9216/10000 [==========================>...] - ETA: 0s 9632/10000 [===========================>..] - ETA: 0s
 >     loss: 0.043144
 >     acc: 0.989100
 
@@ -655,6 +673,8 @@ Of course this world evolves fast - see the new kid in the CNN block -- **capsul
 
 > Hinton: “The pooling operation used in convolutional neural networks is a big mistake and the fact that it works so well is a disaster.”
 
-Well worth the 8 minute read: \* <https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b>
+Well worth the 8 minute read:
+\* <https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b>
 
-To understand deeper: \* original paper: <https://arxiv.org/abs/1710.09829>
+To understand deeper:
+\* original paper: <https://arxiv.org/abs/1710.09829>

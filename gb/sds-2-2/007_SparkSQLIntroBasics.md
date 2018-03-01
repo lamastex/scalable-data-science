@@ -15,7 +15,7 @@ Introduction to Spark SQL
 -   <http://www.infoq.com/articles/apache-spark-sql>
 -   <https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html>
 -   <https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html>
--   **READ**: <https://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf>
+-   **READ**: [https://people.csail.mit.edu/matei/papers/2015/sigmod*spark*sql.pdf](https://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf)
 
 Some of them are embedded below in-place for your convenience.
 
@@ -89,18 +89,18 @@ Starting Point: SparkSession
 
 The entry point into all functionality in Spark is the [SparkSession](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession). To create a basic SparkSession in your scala Spark code, just use `SparkSession.builder()`:
 
-``` scala
+\`\`\`scala
 import org.apache.spark.sql.SparkSession
 
 val spark = SparkSession
-  .builder()
-  .appName("Spark SQL basic example")
-  .config("spark.some.config.option", "some-value")
-  .getOrCreate()
+.builder()
+.appName("Spark SQL basic example")
+.config("spark.some.config.option", "some-value")
+.getOrCreate()
 
 // For implicit conversions like converting RDDs to DataFrames
-import spark.implicits._
-```
+import spark.implicits.\_
+\`\`\`
 
 Conveniently, in Databricks notebook (similar to `spark-shell`) `SparkSession` is already created for you and is available as `spark`.
 
@@ -124,11 +124,11 @@ With a [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html
 -   A DataFrame is a distributed collection of data organized into named columns (it is not strogly typed).
 -   You can think of it as being organized into table RDD of case class `Row` (which is not exactly true).
 -   DataFrames, in comparison to RDDs, are backed by rich optimizations, including:
--   tracking their own schema,
--   adaptive query execution,
--   code generation including whole stage codegen,
--   extensible Catalyst optimizer, and
--   project [Tungsten](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html) for optimized storage.
+    -   tracking their own schema,
+    -   adaptive query execution,
+    -   code generation including whole stage codegen,
+    -   extensible Catalyst optimizer, and
+    -   project [Tungsten](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html) for optimized storage.
 
 > Note that performance for DataFrames is the same across languages Scala, Java, Python, and R. This is due to the fact that the only planning phase is language-specific (logical + physical SQL plan), not the actual execution of the SQL plan.
 
@@ -151,7 +151,8 @@ DataFrame Basics
 
 ### 1. Making an empty DataFrame
 
-Spark has some of the pre-built methods to create simple DataFrames \* let us make an Empty DataFrame
+Spark has some of the pre-built methods to create simple DataFrames
+\* let us make an Empty DataFrame
 
 ``` scala
 val emptyDF = spark.emptyDataFrame // Ctrl+Enter to make an empty DataFrame
@@ -171,7 +172,8 @@ Uncomment the following cell, put your cursor after `emptyDF.` below and hit Tab
 
 ### 2. Making a DataFrame from a range
 
-Let us make a DataFrame next \* from a range of numbers, as follows:
+Let us make a DataFrame next
+\* from a range of numbers, as follows:
 
 ``` scala
 val rangeDF = spark.range(0, 3).toDF() // Ctrl+Enter to make DataFrame with 0,1,2
@@ -489,7 +491,7 @@ spark.sql("SELECT * FROM SDTable WHERE once>2").show()
 Note `-- comments` are how you add `comments` in SQL cells beginning with `%sql`.
 
 -   You can run SQL `select *` statement to see all columns of the table, as follows:
--   This is equivalent to the above \`display(diamondsDF)' with the DataFrame
+    -   This is equivalent to the above \`display(diamondsDF)' with the DataFrame
 
 ``` sql
 -- Ctrl+Enter to select all columns of the table
@@ -631,7 +633,8 @@ ds1.show()
 Next we will play with data
 ---------------------------
 
-The data here is **semi-structured tabular data** (Tab-delimited text file in dbfs). Let us see what Anthony Joseph in BerkeleyX/CS100.1x had to say about such data.
+The data here is **semi-structured tabular data** (Tab-delimited text file in dbfs).
+Let us see what Anthony Joseph in BerkeleyX/CS100.1x had to say about such data.
 
 ### Key Data Management Concepts: Semi-Structured Tabular Data
 
@@ -654,4 +657,5 @@ This week's recommended homework is a deep dive into the [SparkSQL programming g
 
 ### Recommended Extra-work
 
-Those who want to understand SparkSQL functionalities in more detail can see: \* [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](https://docs.databricks.com/spark/1.6/training/introduction-to-big-data-cs100x-2015/module-3.html).
+Those who want to understand SparkSQL functionalities in more detail can see:
+\* [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](https://docs.databricks.com/spark/1.6/training/introduction-to-big-data-cs100x-2015/module-3.html).

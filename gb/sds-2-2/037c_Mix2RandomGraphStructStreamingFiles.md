@@ -11,7 +11,9 @@ We will use it as a basic simulator for timeseries of network data. This can be 
 
 The raw ingredients are here... more or less.
 
-Read the code from github \* https://github.com/apache/spark/blob/master/graphx/src/main/scala/org/apache/spark/graphx/util/GraphGenerators.scala \* Also check out: https://github.com/graphframes/graphframes/blob/master/src/main/scala/org/graphframes/examples/Graphs.scala
+Read the code from github
+\* https://github.com/apache/spark/blob/master/graphx/src/main/scala/org/apache/spark/graphx/util/GraphGenerators.scala
+\* Also check out: https://github.com/graphframes/graphframes/blob/master/src/main/scala/org/graphframes/examples/Graphs.scala
 
 Let's focus on the two of the simplest (deterministic) graphs.
 
@@ -342,4 +344,3 @@ gAllEdges.count
 ```
 
 >     res20: Double = 0.02
-

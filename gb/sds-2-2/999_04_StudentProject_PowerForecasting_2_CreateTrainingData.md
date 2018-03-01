@@ -200,7 +200,8 @@ println("Size of dataset: " + dataFeatDF.count)
 Find the value to predict for every row
 ---------------------------------------
 
-For every row, take the mean power 120 rows down as the power to predict. This corresponds to predicting 60 minutes into the future.
+For every row, take the mean power 120 rows down as the power to predict.
+This corresponds to predicting 60 minutes into the future.
 
 We call this column the `future_power`
 

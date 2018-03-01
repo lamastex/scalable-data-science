@@ -1,14 +1,17 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 Generative Networks
 ===================
 
 ### Concept:
 
-If a set of network weights can convert an image of the numeral 8 or a cat <br/>into the classification "8" or "cat" ...
+If a set of network weights can convert an image of the numeral 8 or a cat
+<br/>into the classification "8" or "cat" ...
 
 ### Does it contain enough information to do the reverse?
 
@@ -28,7 +31,10 @@ So at first, this would seem difficult or impossible.
 
 Those approaches seem like cheating. But let's think about how they work.
 
-If a child (or adult) draws a cat (or number 8), they are probably not drawing any specific cat (or 8). They are drawing a general approximation of a cat based on 1. All of the cats they've seen 2. What they remember as the key elements of a cat (4 legs, tail, pointy ears) 3. A lookup table substitutes one specific cat or 8 ... and, especially in the case of the 8, that may be fine. The only thing we "lose" is the diversity of things that all mapped to cat (or 8) -- and discarding that information was exactly our goal when building a classifier
+If a child (or adult) draws a cat (or number 8), they are probably not drawing any specific cat (or 8). They are drawing a general approximation of a cat based on
+1. All of the cats they've seen
+2. What they remember as the key elements of a cat (4 legs, tail, pointy ears)
+3. A lookup table substitutes one specific cat or 8 ... and, especially in the case of the 8, that may be fine. The only thing we "lose" is the diversity of things that all mapped to cat (or 8) -- and discarding that information was exactly our goal when building a classifier
 
 The "8" is even simpler: we learn that a number is an idea, not a specific instance, so anything that another human recognizes as 8 is good enough. We are not even trying to make a particular shape, just one that represents our encoded information that distinguishes 8 from other possible symbols in the context and the eye of the viewer.
 
@@ -184,15 +190,25 @@ Our autoencoder was able to generate images, but the problem was that arbitrary 
 
 What we would like, is that if we start with a valid input vector and move a bit on some direction, we get a plausible output that is also changed in some way.
 
+------------------------------------------------------------------------
+
+> **ASIDE: Manifold Hypothesis**
+
+> The manifold hypothesis is that the interesting, relevant, or critical subspaces in the space of all vector inputs are actually low(er) dimensional manifolds. A manifold is a space where each point has a neighborhood that behaves like (is homeomorphic to) \\({R^n}\\). So we would like to be able to move a small amount and have only a small amount of change, not a sudden discontinuous change.
+
+------------------------------------------------------------------------
+
 The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters (\\({}\\) and \\({}\\)) for each value of k.
 
 <img src="http://i.imgur.com/OFLDweH.jpg" width=600>
-<sup>(credit to Miram Shiffman, http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html)</sup>
+<div style="text-align: right"><sup>(credit to Miram Shiffman, http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html)</sup></div>
 
 <img src="http://i.imgur.com/LbvJI5q.jpg">
-<sup>(credit to Kevin Franz, http://kvfrans.com/variational-autoencoders-explained/)</sup>
+<div style="text-align: right"><sup>(credit to Kevin Franz, http://kvfrans.com/variational-autoencoders-explained/)</sup></div>
 
-One challenge is how to balance accurate reproduction of the input (traditional autoencoder loss) with the requirement that we match a Gaussian distribution. We can force the network to optimize both of these goals by creating a custom error function that sums up two components: \* How well we match the input, calculated as binary crossentropy or MSE loss \* How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
+One challenge is how to balance accurate reproduction of the input (traditional autoencoder loss) with the requirement that we match a Gaussian distribution. We can force the network to optimize both of these goals by creating a custom error function that sums up two components:
+\* How well we match the input, calculated as binary crossentropy or MSE loss
+\* How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
 
 We can easily implement a custom loss function and pass it as a parameter to the optimizer in Keras.
 
@@ -416,6 +432,12 @@ display(fig)
 ```
 
 Note that it is blurry, and "manipulable" by moving through the latent space!
+
+------------------------------------------------------------------------
+
+> It is *not* intuitively obvious where the calculation of the KL divergence comes from, and in general there is not a simple analytic way to derive KL divergence for arbitrary distributions. Because we have assumptions about Gaussians here, this is a special case -- the derivation is included in the Auto-Encoding Variational Bayes paper (2014; https://arxiv.org/pdf/1312.6114.pdf)
+
+------------------------------------------------------------------------
 
 Generative Adversarial Network (GAN)
 ------------------------------------

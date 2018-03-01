@@ -41,14 +41,16 @@ Introduction to Scala through Scala Notebook
 
 -   From the **File** menu at the top left of this notebook, choose **Clone** or click **Import Notebook** on the top right. This will allow you to interactively execute code cells as you proceed through the notebook.
 
-![Menu Bar Clone Notebook](http://training.databricks.com/databricks_guide/2.8/clone.png) \* Enter a name and a desired location for your cloned notebook (i.e. Perhaps clone to your own user directory or the "Shared" directory.) \* Navigate to the location you selected (e.g. click Menu &gt; Workspace &gt; `Your cloned location`)
+![Menu Bar Clone Notebook](http://training.databricks.com/databricks_guide/2.8/clone.png)
+\* Enter a name and a desired location for your cloned notebook (i.e. Perhaps clone to your own user directory or the "Shared" directory.)
+\* Navigate to the location you selected (e.g. click Menu &gt; Workspace &gt; `Your cloned location`)
 
 ### **Attach** the Notebook to a **cluster**
 
 -   A **Cluster** is a group of machines which can run commands in cells.
 -   Check the upper left corner of your notebook to see if it is **Attached** or **Detached**.
 -   If **Detached**, click on the right arrow and select a cluster to attach your notebook to.
--   If there is no running cluster, create one as described in the [Welcome to Databricks](/#workspace/databricks_guide/00%20Welcome%20to%20Databricks) guide.
+    -   If there is no running cluster, create one as described in the [Welcome to Databricks](/#workspace/databricks_guide/00%20Welcome%20to%20Databricks) guide.
 
 ![Attach Notebook](http://training.databricks.com/databricks_guide/2.8/detached.png)
 
@@ -58,7 +60,10 @@ Introduction to Scala through Scala Notebook
 
 ![A Cell](http://training.databricks.com/databricks_guide/cell.png)
 
-Cells each have a type - including **scala**, **python**, **sql**, **R**, **markdown**, **filesystem**, and **shell**. \* While cells default to the type of the Notebook, other cell types are supported as well. \* This cell is in **markdown** and is used for documentation. [Markdown](http://en.wikipedia.org/wiki/Markdown) is a simple text formatting syntax. \*\*\*
+Cells each have a type - including **scala**, **python**, **sql**, **R**, **markdown**, **filesystem**, and **shell**.
+\* While cells default to the type of the Notebook, other cell types are supported as well.
+\* This cell is in **markdown** and is used for documentation. [Markdown](http://en.wikipedia.org/wiki/Markdown) is a simple text formatting syntax.
+\*\*\*
 
 ------------------------------------------------------------------------
 
@@ -66,24 +71,28 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
 -   When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 
-![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png) \* Type **`%md Hello, world!`** into your new cell (**`%md`** indicates the cell is markdown).
+![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png)
+\* Type **`%md Hello, world!`** into your new cell (**`%md`** indicates the cell is markdown).
 
 -   Click out of the cell to see the cell contents update.
 
-![Run cell](http://training.databricks.com/databricks_guide/run_cell.png) \*\*\*
+    ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
+    \*\*\*
 
 ### **Running a cell in your notebook.**
 
 -   #### Press **Shift+Enter** when in the cell to **run** it and proceed to the next cell.
 
--   The cells contents should update. ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
+    -   The cells contents should update.
+        ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
+
 -   **NOTE:** Cells are not automatically run each time you open it.
--   Instead, Previous results from running a cell are saved and displayed.
+    -   Instead, Previous results from running a cell are saved and displayed.
 -   #### Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
 
-**You Try Now!** Just double-click the cell below, modify the text following `%md` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
-
-    > %md Hello, world!
+**You Try Now!**
+Just double-click the cell below, modify the text following `%md` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
+`> %md Hello, world!`
 
 Hello, world!
 
@@ -93,7 +102,8 @@ Hello, world!
 
 -   To change a non-markdown cell to markdown, add **%md** to very start of the cell.
 -   After updating the contents of a markdown cell, click out of the cell to update the formatted contents of a markdown cell.
--   To edit an existing markdown cell, **doubleclick** the cell. \*\*\*
+-   To edit an existing markdown cell, **doubleclick** the cell.
+    \*\*\*
 
 ------------------------------------------------------------------------
 
@@ -104,9 +114,10 @@ Hello, world!
 -   You know it is a scala notebook because of the `(Scala)` appended to the name of this notebook.
 -   Make sure the cell contents updates before moving on.
 -   Press **Shift+Enter** when in the cell to run it and proceed to the next cell.
--   The cells contents should update.
--   Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
--   characters following `//` are comments in scala. \*\*\*
+    -   The cells contents should update.
+    -   Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
+-   characters following `//` are comments in scala.
+    \*\*\*
 
 ``` scala
 println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that prints its argument as a line
@@ -122,11 +133,11 @@ You will not be learning scala systematically and thoroughly in this course. You
 If you are seriously interested in learning scala properly, then there are various resources, including:
 
 -   [scala-lang.org](http://www.scala-lang.org/) is the **core Scala resource**.
--   [tour-of-scala](http://docs.scala-lang.org/tutorials/tour/tour-of-scala)
+    -   [tour-of-scala](http://docs.scala-lang.org/tutorials/tour/tour-of-scala)
 -   MOOC
--   [courseera: Functional Programming Principles in Scala](https://www.coursera.org/course/progfun)
+    -   [courseera: Functional Programming Principles in Scala](https://www.coursera.org/course/progfun)
 -   [Books](http://www.scala-lang.org/documentation/books.html)
--   [Programming in Scala, 1st Edition, Free Online Reading](http://www.artima.com/pins1ed/)
+    -   [Programming in Scala, 1st Edition, Free Online Reading](http://www.artima.com/pins1ed/)
 
 The main sources for the following content are (you are encouraged to read them for more background):
 
@@ -155,10 +166,10 @@ Why Scala?
 
 -   Spark was originally written in Scala, which allows concise function syntax and interactive use
 -   Spark APIs for other languages include:
--   Java API for standalone use
--   Python API added to reach a wider user community of programmes
--   R API added more recently to reach a wider community of data analyststs
--   Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
+    -   Java API for standalone use
+    -   Python API added to reach a wider user community of programmes
+    -   R API added more recently to reach a wider community of data analyststs
+    -   Unfortunately, Python and R APIs are generally behind Spark's native Scala (for eg. GraphX is only available in Scala currently).
 -   See Darren Wilkinson's 11 reasons for [scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/). It is embedded in-place below for your convenience.
 
 <p class="htmlSandbox"><iframe 
@@ -175,7 +186,12 @@ Why Scala?
 Let's get our hands dirty in Scala
 ==================================
 
-We will go through the following programming concepts and tasks: \* Assignments \* Methods and Tab-completion \* Functions in Scala \* Collections in Scala \* Scala Closures for Functional Programming and MapReduce
+We will go through the following programming concepts and tasks:
+\* Assignments
+\* Methods and Tab-completion
+\* Functions in Scala
+\* Collections in Scala
+\* Scala Closures for Functional Programming and MapReduce
 
 **Remark**: You need to take a computer science course (from CourseEra, for example) to properly learn Scala. Here, we will learn to use Scala by example to accomplish our data science tasks at hand.
 
@@ -192,7 +208,8 @@ val x : Int = 5 // <Ctrl+Enter> to declare a value x to be integer 5
 
 >     x: Int = 5
 
-Scala is statically typed, but it uses built-in type inference machinery to automatically figure out that `x` is an integer or `Int` type as follows. Let's declare a value `x` to be `Int` 5 next without explictly using `Int`.
+Scala is statically typed, but it uses built-in type inference machinery to automatically figure out that `x` is an integer or `Int` type as follows.
+Let's declare a value `x` to be `Int` 5 next without explictly using `Int`.
 
 ``` scala
 val x = 5    // <Ctrl+Enter> to declare a value x as Int 5 (type automatically inferred)
@@ -257,8 +274,13 @@ You can place the cursor after `.` following a declared object and find out the 
 s.    // place cursor after the '.' and press Tab to see all available methods for s 
 ```
 
-For example, \* scroll down to `contains` and double-click on it.
-\* This should lead to `s.contains` in your cell. \* Now add an argument String to see if `s` contains the argument, for example, try: \* `s.contains("f")` \* `s.contains("")` and \* `s.contains("i")`
+For example,
+\* scroll down to `contains` and double-click on it.
+\* This should lead to `s.contains` in your cell.
+\* Now add an argument String to see if `s` contains the argument, for example, try:
+\* `s.contains("f")`
+\* `s.contains("")` and
+\* `s.contains("i")`
 
 ``` scala
 s    // <Shift-Enter> recall the value of String s
@@ -389,34 +411,19 @@ We will apply such *closures* for processing scala collections with functional p
 ### Five ways of adding 1
 
 1.  explicit version:
-
-    ``` %scala
-    (x: Int) => x + 1  
-    ```
+    `%scala (x: Int) => x + 1`
 
 2.  type-inferred more intuitive version:
-
-    ``` %scala
-    x => x + 1   
-    ```
+    `%scala x => x + 1`
 
 3.  placeholder syntax (each argument must be used exactly once):
-
-    ``` %scala
-    _ + 1 
-    ```
+    `%scala _ + 1`
 
 4.  type-inferred more intuitive version with code-block for larger function body:
+    `%scala x => {     // body is a block of code    val integerToAdd = 1    x + integerToAdd }`
 
-    ``` %scala
-    x => { 
-      // body is a block of code
-      val integerToAdd = 1
-      x + integerToAdd
-    }
-    ```
-
-5.  regular functions using `def`: `%scala def addOne(x: Int): Int = x + 1`
+5.  regular functions using `def`:
+    `%scala def addOne(x: Int): Int = x + 1`
 
 Now, let's apply closures for functional programming over scala collection (`List`) using `foreach`, `map`, `filter` and `reduce`. In the end we will write out first mapReduce program!
 
@@ -488,7 +495,8 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 
 >     res23: Int = 36
 
-There are lots of methods in Scala Collections. And much more in this *scalable language*. See for example <http://docs.scala-lang.org/cheatsheets/index.html>.
+There are lots of methods in Scala Collections. And much more in this *scalable language*.
+See for example <http://docs.scala-lang.org/cheatsheets/index.html>.
 
 Spark is written in Scala and the primary language for this course is Scala.
 ----------------------------------------------------------------------------
@@ -503,7 +511,12 @@ Spark is written in Scala and the primary language for this course is Scala.
 
 ### All types of cells can be created in any notebook, regardless of the language.
 
-To create a cell of another language, start the cell with: \* `%md` - Markdown \* `%sql` - SQL \* `%scala` - Scala \* `%py` - Python \* `%r` - R
+To create a cell of another language, start the cell with:
+\* `%md` - Markdown
+\* `%sql` - SQL
+\* `%scala` - Scala
+\* `%py` - Python
+\* `%r` - R
 
 ### Cross-language cells can be used to mix commands from other languages.
 
@@ -1443,9 +1456,9 @@ Further Reference / Homework / Recurrrent Points of Reference
 Please go here for a relaxed and detailed-enough tour (later):
 
 -   databricks
--   <https://docs.databricks.com/index.html>
+    -   <https://docs.databricks.com/index.html>
 -   scala
--   <http://docs.scala-lang.org/>
+    -   <http://docs.scala-lang.org/>
 
 ### Notebooks can be run from other notebooks using **%run**
 

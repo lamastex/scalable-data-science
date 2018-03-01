@@ -37,7 +37,10 @@ The image below (from [Wikipedia](https://en.wikipedia.org/?title=Collaborative_
 
 ![collaborative filtering](https://courses.edx.org/c4x/BerkeleyX/CS100.1x/asset/Collaborative_filtering.gif)
 
-**Resources:** \* [mllib](https://spark.apache.org/mllib/) \* [Wikipedia - collaborative filtering](https://en.wikipedia.org/?title=Collaborative_filtering) \* [Recommender Systems - collaborative filtering](http://recommender-systems.org/collaborative-filtering/)
+**Resources:**
+\* [mllib](https://spark.apache.org/mllib/)
+\* [Wikipedia - collaborative filtering](https://en.wikipedia.org/?title=Collaborative_filtering)
+\* [Recommender Systems - collaborative filtering](http://recommender-systems.org/collaborative-filtering/)
 
 For movie recommendations, we start with a matrix whose entries are movie ratings by users (shown in red in the diagram below). Each row represents a user and each column represents a particular movie. Thus the entry \\(r\_{ij}\\) represents the rating of user \\(i\\) for movie \\(j\\).
 
@@ -45,7 +48,8 @@ Since not all users have rated all movies, we do not know all of the entries in 
 
 ![factorization](http://spark-mooc.github.io/web-assets/images/matrix_factorization.png)
 
-We want to select these two matrices such that the error for the users/movie pairs where we know the correct ratings is minimized. The [Alternating Least Squares](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/) algorithm expands on the [least squares method](https://en.wikiversity.org/wiki/Least-Squares_Method) by:
+We want to select these two matrices such that the error for the users/movie pairs where we know the correct ratings is minimized.
+The [Alternating Least Squares](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/) algorithm expands on the [least squares method](https://en.wikiversity.org/wiki/Least-Squares_Method) by:
 
 1.  first randomly filling the users matrix with values and then
 2.  optimizing the value of the movies such that the error is minimized.
@@ -57,7 +61,8 @@ This optimization is what's being shown on the right in the image above. Given a
 
 For a simple example of what the users and movies matrices might look like, check out the [videos from Lecture 8](https://courses.edx.org/courses/BerkeleyX/CS100.1x/1T2015/courseware/00eb8b17939b4889a41a6d8d2f35db83/3bd3bba368be4102b40780550d3d8da6/) or the [slides from Lecture 8](https://courses.edx.org/c4x/BerkeleyX/CS100.1x/asset/Week4Lec8.pdf) of AJ's Introduction to Data Science course.
 
-See <http://spark.apache.org/docs/latest/mllib-collaborative-filtering.html#collaborative-filtering>.
+See
+<http://spark.apache.org/docs/latest/mllib-collaborative-filtering.html#collaborative-filtering>.
 
 ``` scala
 display(dbutils.fs.ls("/databricks-datasets/cs100/lab4/data-001/")) // The data is already here
@@ -84,9 +89,18 @@ import org.apache.spark.mllib.recommendation.Rating
 
 #### **Preliminaries**
 
-We read in each of the files and create an RDD consisting of parsed lines. Each line in the ratings dataset (`ratings.dat.gz`) is formatted as: `UserID::MovieID::Rating::Timestamp` Each line in the movies (`movies.dat`) dataset is formatted as: `MovieID::Title::Genres` The `Genres` field has the format `Genres1|Genres2|Genres3|...` The format of these files is uniform and simple, so we can use `split()`.
+We read in each of the files and create an RDD consisting of parsed lines.
+Each line in the ratings dataset (`ratings.dat.gz`) is formatted as:
+`UserID::MovieID::Rating::Timestamp`
+Each line in the movies (`movies.dat`) dataset is formatted as:
+`MovieID::Title::Genres`
+The `Genres` field has the format
+`Genres1|Genres2|Genres3|...`
+The format of these files is uniform and simple, so we can use `split()`.
 
-Parsing the two files yields two RDDS \* For each line in the ratings dataset, we create a tuple of (UserID, MovieID, Rating). We drop the timestamp because we do not need it for this exercise. \* For each line in the movies dataset, we create a tuple of (MovieID, Title). We drop the Genres because we do not need them for this exercise.
+Parsing the two files yields two RDDS
+\* For each line in the ratings dataset, we create a tuple of (UserID, MovieID, Rating). We drop the timestamp because we do not need it for this exercise.
+\* For each line in the movies dataset, we create a tuple of (MovieID, Title). We drop the Genres because we do not need them for this exercise.
 
 ``` scala
 // take a peek at what's in the rating file
@@ -242,7 +256,10 @@ Now that we have the dataset we need, let's make a recommender system.
 
 **Creating a Training Set, test Set and Validation Set**
 
-Before we jump into using machine learning, we need to break up the `ratingsRDD` dataset into three pieces: \* A training set (RDD), which we will use to train models \* A validation set (RDD), which we will use to choose the best model \* A test set (RDD), which we will use for our experiments
+Before we jump into using machine learning, we need to break up the `ratingsRDD` dataset into three pieces:
+\* A training set (RDD), which we will use to train models
+\* A validation set (RDD), which we will use to choose the best model
+\* A test set (RDD), which we will use for our experiments
 
 To randomly split the dataset into the multiple groups, we can use the `randomSplit()` transformation. `randomSplit()` takes a set of splits and seed and returns multiple RDDs.
 
@@ -271,7 +288,11 @@ See <http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.m
 
 In this part, we will use the MLlib implementation of Alternating Least Squares, [ALS.train()](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.recommendation.ALS). ALS takes a training dataset (RDD) and several parameters that control the model creation process. To determine the best values for the parameters, we will use ALS to train several models, and then we will select the best model and use the parameters from that model in the rest of this lab exercise.
 
-The process we will use for determining the best model is as follows: \* Pick a set of model parameters. The most important parameter to `ALS.train()` is the *rank*, which is the number of rows in the Users matrix (green in the diagram above) or the number of columns in the Movies matrix (blue in the diagram above). (In general, a lower rank will mean higher error on the training dataset, but a high rank may lead to [overfitting](https://en.wikipedia.org/wiki/Overfitting).) We will train models with ranks of 4, 8, and 12 using the `trainingRDD` dataset. \* Create a model using `ALS.train(trainingRDD, rank, seed=seed, iterations=iterations, lambda_=regularizationParameter)` with three parameters: an RDD consisting of tuples of the form (UserID, MovieID, rating) used to train the model, an integer rank (4, 8, or 12), a number of iterations to execute (we will use 5 for the `iterations` parameter), and a regularization coefficient (we will use 0.1 for the `regularizationParameter`). \* For the prediction step, create an input RDD, `validationForPredictRDD`, consisting of (UserID, MovieID) pairs that you extract from `validationRDD`. You will end up with an RDD of the form: `[(1, 1287), (1, 594), (1, 1270)]` \* Using the model and `validationForPredictRDD`, we can predict rating values by calling [model.predictAll()](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.recommendation.MatrixFactorizationModel.predictAll) with the `validationForPredictRDD` dataset, where `model` is the model we generated with ALS.train(). `predictAll` accepts an RDD with each entry in the format (userID, movieID) and outputs an RDD with each entry in the format (userID, movieID, rating).
+The process we will use for determining the best model is as follows:
+\* Pick a set of model parameters. The most important parameter to `ALS.train()` is the *rank*, which is the number of rows in the Users matrix (green in the diagram above) or the number of columns in the Movies matrix (blue in the diagram above). (In general, a lower rank will mean higher error on the training dataset, but a high rank may lead to [overfitting](https://en.wikipedia.org/wiki/Overfitting).) We will train models with ranks of 4, 8, and 12 using the `trainingRDD` dataset.
+\* Create a model using `ALS.train(trainingRDD, rank, seed=seed, iterations=iterations, lambda_=regularizationParameter)` with three parameters: an RDD consisting of tuples of the form (UserID, MovieID, rating) used to train the model, an integer rank (4, 8, or 12), a number of iterations to execute (we will use 5 for the `iterations` parameter), and a regularization coefficient (we will use 0.1 for the `regularizationParameter`).
+\* For the prediction step, create an input RDD, `validationForPredictRDD`, consisting of (UserID, MovieID) pairs that you extract from `validationRDD`. You will end up with an RDD of the form: `[(1, 1287), (1, 594), (1, 1270)]`
+\* Using the model and `validationForPredictRDD`, we can predict rating values by calling [model.predictAll()](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.recommendation.MatrixFactorizationModel.predictAll) with the `validationForPredictRDD` dataset, where `model` is the model we generated with ALS.train(). `predictAll` accepts an RDD with each entry in the format (userID, movieID) and outputs an RDD with each entry in the format (userID, movieID, rating).
 
 ``` scala
 // Build the recommendation model using ALS by fitting to the training data
@@ -437,9 +458,9 @@ Now let us try to apply this to the test data and find the MSE for the best mode
 \*\* Potential flaws of CF \*\*
 
 -   Cold start for users and items
--   Gray sheep: <https://en.wikipedia.org/wiki/Collaborative_filtering#Gray_sheep>
--   Shilling attacks: <https://en.wikipedia.org/wiki/Collaborative_filtering#Shilling_attacks>
--   Positive feedback problems (rich-get-richer effect): <https://en.wikipedia.org/wiki/Collaborative_filtering#Diversity_and_the_long_tail>
+-   Gray sheep: [https://en.wikipedia.org/wiki/Collaborative*filtering\#Gray*sheep](https://en.wikipedia.org/wiki/Collaborative_filtering#Gray_sheep)
+-   Shilling attacks: [https://en.wikipedia.org/wiki/Collaborative*filtering\#Shilling*attacks](https://en.wikipedia.org/wiki/Collaborative_filtering#Shilling_attacks)
+-   Positive feedback problems (rich-get-richer effect): [https://en.wikipedia.org/wiki/Collaborative*filtering\#Diversity*and*the*long\_tail](https://en.wikipedia.org/wiki/Collaborative_filtering#Diversity_and_the_long_tail)
 
 \*\* Areas to improve upon \*\*
 

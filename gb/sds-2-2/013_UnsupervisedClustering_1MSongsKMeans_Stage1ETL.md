@@ -102,7 +102,8 @@ val header = sc.textFile("/databricks-datasets/songs/data-001/header.txt").map(l
 
 >     header: Array[(String, String)] = Array((artist_id,string), (artist_latitude,double), (artist_longitude,double), (artist_location,string), (artist_name,string), (duration,double), (end_of_fade_in,double), (key,int), (key_confidence,double), (loudness,double), (release,string), (song_hotnes,double), (song_id,string), (start_of_fade_out,double), (tempo,double), (time_signature,double), (time_signature_confidence,double), (title,string), (year,double), (partial_sequence,int))
 
-Let's define a `case class` called `Song` that will be used to represent each row of data in the files: \* `/databricks-datasets/songs/data-001/part-00000` through `/databricks-datasets/songs/data-001/part-00119` or the last `.../part-*****` file.
+Let's define a `case class` called `Song` that will be used to represent each row of data in the files:
+\* `/databricks-datasets/songs/data-001/part-00000` through `/databricks-datasets/songs/data-001/part-00119` or the last `.../part-*****` file.
 
 ``` scala
 case class Song(artist_id: String, artist_latitude: Double, artist_longitude: Double, artist_location: String, artist_name: String, duration: Double, end_of_fade_in: Double, key: Int, key_confidence: Double, loudness: Double, release: String, song_hotness: Double, song_id: String, start_of_fade_out: Double, tempo: Double, time_signature: Double, time_signature_confidence: Double, title: String, year: Double, partial_sequence: Int)
@@ -131,7 +132,9 @@ dataRDD.take(3)
 
 >     res6: Array[String] = Array(AR81V6H1187FB48872	nan	nan		Earl Sixteen	213.7073	0.0	11	0.419	-12.106	Soldier of Jah Army	nan	SOVNZSZ12AB018A9B8	208.289	125.882	1	0.0	Rastaman	2003	--, ARVVZQP11E2835DBCB	nan	nan		Wavves	133.25016	0.0	0	0.282	0.596	Wavvves	0.471578247701	SOJTQHQ12A8C143C5F	128.116	89.519	1	0.0	I Want To See You (And Go To The Movies)	2009	--, ARFG9M11187FB3BBCB	nan	nan	Nashua USA	C-Side	247.32689	0.0	9	0.612	-4.896	Santa Festival Compilation 2008 vol.1	nan	SOAJSQL12AB0180501	242.196	171.278	5	1.0	Loose on the Dancefloor	0	225261)
 
-Each line of data consists of multiple fields separated by `\t`. With that information and what we learned from the header file, we set out to parse our data. \* We have already created a case class based on the header (which seems to agree with the 3 lines above). \* Next, we will create a function that takes each line as input and returns the case class as output.
+Each line of data consists of multiple fields separated by `\t`. With that information and what we learned from the header file, we set out to parse our data.
+\* We have already created a case class based on the header (which seems to agree with the 3 lines above).
+\* Next, we will create a function that takes each line as input and returns the case class as output.
 
 ``` scala
 // let's do this 'by hand' to re-flex our RDD-muscles :)

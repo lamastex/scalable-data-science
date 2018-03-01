@@ -27,8 +27,8 @@ Links
 -----
 
 -   Spark API docs
--   Scala: [LDA](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LDA)
--   Python: [LDA](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.clustering.LDA)
+    -   Scala: [LDA](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LDA)
+    -   Python: [LDA](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.clustering.LDA)
 -   [MLlib Programming Guide](http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda)
 -   [ML Feature Extractors & Transformers](http://spark.apache.org/docs/latest/ml-features.html)
 -   [Wikipedia: Latent Dirichlet Allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)
@@ -87,7 +87,19 @@ Let's get a bird's eye view of LDA from <http://www.cs.columbia.edu/~blei/papers
 Probabilistic Topic Modeling Example
 ------------------------------------
 
-This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more. - Step 0. Dataset Review - Step 1. Downloading and Loading Data into DBFS - (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.) - Step 2. Loading the Data and Data Cleaning - Step 3. Text Tokenization - Step 4. Remove Stopwords - Step 5. Vector of Token Counts - Step 6. Create LDA model with Online Variational Bayes - Step 7. Review Topics - Step 8. Model Tuning - Refilter Stopwords - Step 9. Create LDA model with Expectation Maximization - Step 10. Visualize Results
+This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more.
+- Step 0. Dataset Review
+- Step 1. Downloading and Loading Data into DBFS
+- (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
+- Step 2. Loading the Data and Data Cleaning
+- Step 3. Text Tokenization
+- Step 4. Remove Stopwords
+- Step 5. Vector of Token Counts
+- Step 6. Create LDA model with Online Variational Bayes
+- Step 7. Review Topics
+- Step 8. Model Tuning - Refilter Stopwords
+- Step 9. Create LDA model with Expectation Maximization
+- Step 10. Visualize Results
 
 Step 0. Dataset Review
 ----------------------
@@ -100,24 +112,24 @@ In this example, we will use the mini [20 Newsgroups dataset](http://kdd.ics.uci
 
 The following is the markdown file `20newsgroups.data.md` of the original details on the dataset, obtained as follows:
 
-``` %sh
+\`\`\`%sh
 $ wget -k http://kdd.ics.uci.edu/databases/20newsgroups/20newsgroups.data.html
---2016-04-07 10:31:51--  http://kdd.ics.uci.edu/databases/20newsgroups/20newsgroups.data.html
+--2016-04-07 10:31:51-- http://kdd.ics.uci.edu/databases/20newsgroups/20newsgroups.data.html
 Resolving kdd.ics.uci.edu (kdd.ics.uci.edu)... 128.195.1.95
-Connecting to kdd.ics.uci.edu (kdd.ics.uci.edu)|128.195.1.95|:80... connected.
+Connecting to kdd.ics.uci.edu (kdd.ics.uci.edu)\|128.195.1.95\|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 4371 (4.3K) [text/html]
+Length: 4371 (4.3K) \[text/html\]
 Saving to: '20newsgroups.data.html’
 
-100%[======================================>] 4,371       --.-K/s   in 0s      
+100%\[======================================&gt;\] 4,371 --.-K/s in 0s
 
-2016-04-07 10:31:51 (195 MB/s) - '20newsgroups.data.html’ saved [4371/4371]
+2016-04-07 10:31:51 (195 MB/s) - '20newsgroups.data.html’ saved \[4371/4371\]
 
 Converting 20newsgroups.data.html... nothing to do.
 Converted 1 files in 0 seconds.
 
-$ pandoc -f html -t markdown 20newsgroups.data.html > 20newsgroups.data.md
-```
+$ pandoc -f html -t markdown 20newsgroups.data.html &gt; 20newsgroups.data.md
+\`\`\`
 
 ### 20 Newsgroups
 
@@ -142,7 +154,8 @@ This data set consists of 20000 messages taken from 20 newsgroups.
 
 #### Data Characteristics
 
-One thousand Usenet articles were taken from each of the following 20 newsgroups.
+One thousand Usenet articles were taken from each of the following 20
+newsgroups.
 
         alt.atheism
         comp.graphics
@@ -165,32 +178,43 @@ One thousand Usenet articles were taken from each of the following 20 newsgroups
         talk.politics.misc
         talk.religion.misc
 
-Approximately 4% of the articles are crossposted. The articles are typical postings and thus have headers including subject lines, signature files, and quoted portions of other articles.
+Approximately 4% of the articles are crossposted. The articles are
+typical postings and thus have headers including subject lines,
+signature files, and quoted portions of other articles.
 
 #### Data Format
 
-Each newsgroup is stored in a subdirectory, with each article stored as a separate file.
+Each newsgroup is stored in a subdirectory, with each article stored as
+a separate file.
 
 #### Past Usage
 
 T. Mitchell. Machine Learning, McGraw Hill, 1997.
 
-T. Joachims (1996). [A probabilistic analysis of the Rocchio algorithm with TFIDF for text categorization](http://reports-archive.adm.cs.cmu.edu/anon/1996/CMU-CS-96-118.ps), Computer Science Technical Report CMU-CS-96-118. Carnegie Mellon University.
+T. Joachims (1996). [A probabilistic analysis of the Rocchio algorithm
+with TFIDF for text
+categorization](http://reports-archive.adm.cs.cmu.edu/anon/1996/CMU-CS-96-118.ps),
+Computer Science Technical Report CMU-CS-96-118. Carnegie Mellon
+University.
 
 #### Acknowledgements, Copyright Information, and Availability
 
-You may use this material free of charge for any educational purpose, provided attribution is given in any lectures or publications that make use of this material.
+You may use this material free of charge for any educational purpose,
+provided attribution is given in any lectures or publications that make
+use of this material.
 
 #### References and Further Information
 
-Naive Bayes code for text classification is available from: <http://www.cs.cmu.edu/afs/cs/project/theo-11/www/naive-bayes.html>
+Naive Bayes code for text classification is available from:
+<http://www.cs.cmu.edu/afs/cs/project/theo-11/www/naive-bayes.html>
 
 ------------------------------------------------------------------------
 
-[The UCI KDD Archive](http://kdd.ics.uci.edu/)
-[Information and Computer Science](http://www.ics.uci.edu/)
-[University of California, Irvine](http://www.uci.edu/)
-Irvine, CA 92697-3425
+[The UCI KDD Archive](http://kdd.ics.uci.edu/) \\
+[Information and Computer Science](http://www.ics.uci.edu/) \\
+[University of California, Irvine](http://www.uci.edu/) \\
+Irvine, CA 92697-3425 \\
+
 Last modified: September 9, 1999
 
 ------------------------------------------------------------------------
@@ -222,7 +246,8 @@ Last modified: September 9, 1999
 
 Some of the newsgroups seem pretty similar on first glance, such as *comp.sys.ibm.pc.hardware* and *comp.sys.mac.hardware*, which may affect our results.
 
-**NOTE:** A simpler and slicker version of the analysis is available in this notebook: \* <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
+**NOTE:** A simpler and slicker version of the analysis is available in this notebook:
+\* <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
 
 But, let's do it the hard way here so that we can do it on other arbitrary datasets.
 
@@ -592,7 +617,8 @@ See <http://spark.apache.org/docs/latest/ml-features.html>
 
 To use the convenient [Feature extraction and transformation APIs](http://spark.apache.org/docs/latest/ml-features.html), we will convert our RDD into a DataFrame.
 
-We will also create an ID for every document using `zipWithIndex` \* for sytax and details search for `zipWithIndex` in <https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html>
+We will also create an ID for every document using `zipWithIndex`
+\* for sytax and details search for `zipWithIndex` in <https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html>
 
 ``` scala
 // Convert RDD to DF with ID for every document 
@@ -649,17 +675,7 @@ See <http://spark.apache.org/docs/latest/ml-features.html#stopwordsremover>.
 
 If a list of stopwords is not provided, the StopWordsRemover() will use [this list of stopwords](http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words), also shown below, by default.
 
-``` a,about,above,across,after,afterwards,again,against,all,almost,alone,along,already,also,although,always,am,among,amongst,amoungst,amount,an,and,another,any,anyhow,anyone,anything,anyway,anywhere,
-are,around,as,at,back,be,became,because,become,becomes,becoming,been,before,beforehand,behind,being,below,beside,besides,between,beyond,bill,both,bottom,but,by,call,can,cannot,cant,co,computer,con,could,
-couldnt,cry,de,describe,detail,do,done,down,due,during,each,eg,eight,either,eleven,else,elsewhere,empty,enough,etc,even,ever,every,everyone,everything,everywhere,except,few,fifteen,fify,fill,find,fire,first,
-five,for,former,formerly,forty,found,four,from,front,full,further,get,give,go,had,has,hasnt,have,he,hence,her,here,hereafter,hereby,herein,hereupon,hers,herself,him,himself,his,how,however,hundred,i,ie,if,
-in,inc,indeed,interest,into,is,it,its,itself,keep,last,latter,latterly,least,less,ltd,made,many,may,me,meanwhile,might,mill,mine,more,moreover,most,mostly,move,much,must,my,myself,name,namely,neither,never,
-nevertheless,next,nine,no,nobody,none,noone,nor,not,nothing,now,nowhere,of,off,often,on,once,one,only,onto,or,other,others,otherwise,our,ours,ourselves,out,over,own,part,per,perhaps,please,put,rather,re,same,
-see,seem,seemed,seeming,seems,serious,several,she,should,show,side,since,sincere,six,sixty,so,some,somehow,someone,something,sometime,sometimes,somewhere,still,such,system,take,ten,than,that,the,their,them,
-themselves,then,thence,there,thereafter,thereby,therefore,therein,thereupon,these,they,thick,thin,third,this,those,though,three,through,throughout,thru,thus,to,together,too,top,toward,towards,twelve,twenty,two,
-un,under,until,up,upon,us,very,via,was,we,well,were,what,whatever,when,whence,whenever,where,whereafter,whereas,whereby,wherein,whereupon,wherever,whether,which,while,whither,who,whoever,whole,whom,whose,why,will,
-with,within,without,would,yet,you,your,yours,yourself,yourselves
-```
+`a,about,above,across,after,afterwards,again,against,all,almost,alone,along,already,also,although,always,am,among,amongst,amoungst,amount,an,and,another,any,anyhow,anyone,anything,anyway,anywhere, are,around,as,at,back,be,became,because,become,becomes,becoming,been,before,beforehand,behind,being,below,beside,besides,between,beyond,bill,both,bottom,but,by,call,can,cannot,cant,co,computer,con,could, couldnt,cry,de,describe,detail,do,done,down,due,during,each,eg,eight,either,eleven,else,elsewhere,empty,enough,etc,even,ever,every,everyone,everything,everywhere,except,few,fifteen,fify,fill,find,fire,first, five,for,former,formerly,forty,found,four,from,front,full,further,get,give,go,had,has,hasnt,have,he,hence,her,here,hereafter,hereby,herein,hereupon,hers,herself,him,himself,his,how,however,hundred,i,ie,if, in,inc,indeed,interest,into,is,it,its,itself,keep,last,latter,latterly,least,less,ltd,made,many,may,me,meanwhile,might,mill,mine,more,moreover,most,mostly,move,much,must,my,myself,name,namely,neither,never, nevertheless,next,nine,no,nobody,none,noone,nor,not,nothing,now,nowhere,of,off,often,on,once,one,only,onto,or,other,others,otherwise,our,ours,ourselves,out,over,own,part,per,perhaps,please,put,rather,re,same, see,seem,seemed,seeming,seems,serious,several,she,should,show,side,since,sincere,six,sixty,so,some,somehow,someone,something,sometime,sometimes,somewhere,still,such,system,take,ten,than,that,the,their,them, themselves,then,thence,there,thereafter,thereby,therefore,therein,thereupon,these,they,thick,thin,third,this,those,though,three,through,throughout,thru,thus,to,together,too,top,toward,towards,twelve,twenty,two, un,under,until,up,upon,us,very,via,was,we,well,were,what,whatever,when,whence,whenever,where,whereafter,whereas,whereby,wherein,whereupon,wherever,whether,which,while,whither,who,whoever,whole,whom,whose,why,will, with,within,without,would,yet,you,your,yours,yourself,yourselves`
 
 You can use `getStopWords()` to see the list of stopwords that will be used.
 
@@ -733,7 +749,9 @@ LDA takes in a vector of token counts as input. We can use the `CountVectorizer(
 
 The `CountVectorizer` will return `(VocabSize, Array(Indexed Tokens), Array(Token Frequency))`.
 
-Two handy parameters to note: - `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary. - `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
+Two handy parameters to note:
+- `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
+- `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
 
 See <http://spark.apache.org/docs/latest/ml-features.html#countvectorizer>.
 
@@ -834,9 +852,9 @@ val ldaModel = lda.run(lda_countVector_mllib)
 
 Watch **Online Learning for Latent Dirichlet Allocation** in NIPS2010 by Matt Hoffman (right click and open in new tab)
 
-[\[Matt Hoffman's NIPS 2010 Talk Online LDA\]](http://videolectures.net/nips2010_hoffman_oll/thumb.jpg)\](http://videolectures.net/nips2010\_hoffman\_oll/)
+[!\[Matt Hoffman's NIPS 2010 Talk Online LDA\]](http://videolectures.net/nips2010_hoffman_oll/thumb.jpg)\](http://videolectures.net/nips2010*hoffman*oll/)
 
-Also see the paper on *Online varioational Bayes* by Matt linked for more details (from the above URL): <http://videolectures.net/site/normal_dl/tag=83534/nips2010_1291.pdf>
+Also see the paper on *Online varioational Bayes* by Matt linked for more details (from the above URL): [http://videolectures.net/site/normal*dl/tag=83534/nips2010*1291.pdf](http://videolectures.net/site/normal_dl/tag=83534/nips2010_1291.pdf)
 
 Note that using the OnlineLDAOptimizer returns us a [LocalLDAModel](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LocalLDAModel), which stores the inferred topics of your corpus.
 
@@ -1141,10 +1159,10 @@ Dive into the source!!!
 -   search for 'ml' in the search box on the top left (ml is for ml library)
 -   Then find the `LDA` by scrolling below on the left to mllib's `clustering` methods and click on `LDA`
 -   Then click on the source code link which should take you here:
--   <https://github.com/apache/spark/blob/v2.2.0/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala>
--   Now, simply go to the right function and see the following comment block:
+    -   <https://github.com/apache/spark/blob/v2.2.0/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala>
+    -   Now, simply go to the right function and see the following comment block:
 
-`/**    * Concentration parameter (commonly named "alpha") for the prior placed on documents'    * distributions over topics ("theta").    *    * This is the parameter to a Dirichlet distribution, where larger values mean more smoothing    * (more regularization).    *    * If not set by the user, then docConcentration is set automatically. If set to    * singleton vector [alpha], then alpha is replicated to a vector of length k in fitting.    * Otherwise, the [[docConcentration]] vector must be length k.    * (default = automatic)    *    * Optimizer-specific parameter settings:    *  - EM    *     - Currently only supports symmetric distributions, so all values in the vector should be    *       the same.    *     - Values should be > 1.0    *     - default = uniformly (50 / k) + 1, where 50/k is common in LDA libraries and +1 follows    *       from Asuncion et al. (2009), who recommend a +1 adjustment for EM.    *  - Online    *     - Values should be >= 0    *     - default = uniformly (1.0 / k), following the implementation from    *       [[https://github.com/Blei-Lab/onlineldavb]].    * @group param    */`
+    `/**  * Concentration parameter (commonly named "alpha") for the prior placed on documents'  * distributions over topics ("theta").  *  * This is the parameter to a Dirichlet distribution, where larger values mean more smoothing  * (more regularization).  *  * If not set by the user, then docConcentration is set automatically. If set to  * singleton vector [alpha], then alpha is replicated to a vector of length k in fitting.  * Otherwise, the [[docConcentration]] vector must be length k.  * (default = automatic)  *  * Optimizer-specific parameter settings:  *  - EM  *     - Currently only supports symmetric distributions, so all values in the vector should be  *       the same.  *     - Values should be > 1.0  *     - default = uniformly (50 / k) + 1, where 50/k is common in LDA libraries and +1 follows  *       from Asuncion et al. (2009), who recommend a +1 adjustment for EM.  *  - Online  *     - Values should be >= 0  *     - default = uniformly (1.0 / k), following the implementation from  *       [[https://github.com/Blei-Lab/onlineldavb]].  * @group param  */`
 
 **HOMEWORK:** Try to find the default value for `TopicConcentration`.
 
@@ -1320,21 +1338,7 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 
 We managed to get better results here. We can easily infer that topic 3 is about space, topic 7 is about religion, etc.
 
-    ==========
-    TOPIC 3
-    station	0.0022184815200582244
-    launch	0.0020621309179376145
-    shuttle	0.0019305627762549198
-    space	0.0017600147075534092
-    redesign	0.0014972130065346592
-    ==========
-    TOPIC 7
-    people	0.0038165245379908675
-    church	0.0036902650900400543
-    jesus	0.0029942866750178893
-    paul	0.0026144777524277044
-    bible	0.0020476251853453016
-    ==========
+`========== TOPIC 3 station	0.0022184815200582244 launch	0.0020621309179376145 shuttle	0.0019305627762549198 space	0.0017600147075534092 redesign	0.0014972130065346592 ========== TOPIC 7 people	0.0038165245379908675 church	0.0036902650900400543 jesus	0.0029942866750178893 paul	0.0026144777524277044 bible	0.0020476251853453016 ==========`
 
 Step 9. Create LDA model with Expectation Maximization
 ------------------------------------------------------
@@ -1563,7 +1567,11 @@ We've managed to get some good results here. For example, we can easily infer th
 
 We still get some ambiguous results like Topic 17.
 
-To improve our results further, we could employ some of the below methods: - Refilter data for additional data-specific stopwords - Use Stemming or Lemmatization to preprocess data - Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar - Increase model's MaxIterations
+To improve our results further, we could employ some of the below methods:
+- Refilter data for additional data-specific stopwords
+- Use Stemming or Lemmatization to preprocess data
+- Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
+- Increase model's MaxIterations
 
 Visualize Results
 -----------------
@@ -3295,4 +3303,3 @@ display(dbutils.fs.ls("dbfs:/datasets/mini_newsgroups"))
 | dbfs:/datasets/mini\_newsgroups/talk.politics.mideast/    | talk.politics.mideast/    | 0.0  |
 | dbfs:/datasets/mini\_newsgroups/talk.politics.misc/       | talk.politics.misc/       | 0.0  |
 | dbfs:/datasets/mini\_newsgroups/talk.religion.misc/       | talk.religion.misc/       | 0.0  |
-

@@ -5,16 +5,23 @@ This is a scala version of the python notebook in the following talk:
 
 **Homework:**
 
-See <https://www.brighttalk.com/webcast/12891/199003> (you need to subscribe *freely* to Bright Talk first). Then go through this scala version of the notebook from the talk.
+See <https://www.brighttalk.com/webcast/12891/199003> (you need to subscribe *freely* to Bright Talk first).
+Then go through this scala version of the notebook from the talk.
 
 On-Time Flight Performance with GraphFrames for Apache Spark
 ============================================================
 
 This notebook provides an analysis of On-Time Flight Performance and Departure Delays data using GraphFrames for Apache Spark.
 
-Source Data: \* [OpenFlights: Airport, airline and route data](http://openflights.org/data.html) \* [United States Department of Transportation: Bureau of Transportation Statistics (TranStats)](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) \* Note, the data used here was extracted from the US DOT:BTS between 1/1/2014 and 3/31/2014\*
+Source Data:
+\* [OpenFlights: Airport, airline and route data](http://openflights.org/data.html)
+\* [United States Department of Transportation: Bureau of Transportation Statistics (TranStats)](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time)
+\* Note, the data used here was extracted from the US DOT:BTS between 1/1/2014 and 3/31/2014\*
 
-References: \* [GraphFrames User Guide](http://graphframes.github.io/user-guide.html) \* [GraphFrames: DataFrame-based Graphs (GitHub)](https://github.com/graphframes/graphframes) \* [D3 Airports Example](http://mbostock.github.io/d3/talk/20111116/airports.html)
+References:
+\* [GraphFrames User Guide](http://graphframes.github.io/user-guide.html)
+\* [GraphFrames: DataFrame-based Graphs (GitHub)](https://github.com/graphframes/graphframes)
+\* [D3 Airports Example](http://mbostock.github.io/d3/talk/20111116/airports.html)
 
 ### Preparation
 
@@ -119,7 +126,9 @@ Truncated to 30 rows
 Building the Graph
 ------------------
 
-Now that we've imported our data, we're going to need to build our graph. To do so we're going to do two things. We are going to build the structure of the vertices (or nodes) and we're going to build the structure of the edges. What's awesome about GraphFrames is that this process is incredibly simple. \* Rename IATA airport code to **id** in the Vertices Table \* Start and End airports to **src** and **dst** for the Edges Table (flights)
+Now that we've imported our data, we're going to need to build our graph. To do so we're going to do two things. We are going to build the structure of the vertices (or nodes) and we're going to build the structure of the edges. What's awesome about GraphFrames is that this process is incredibly simple.
+\* Rename IATA airport code to **id** in the Vertices Table
+\* Start and End airports to **src** and **dst** for the Edges Table (flights)
 
 These are required naming conventions for vertices and edges in GraphFrames as of the time of this writing (Feb. 2016).
 
@@ -523,7 +532,8 @@ display(ranks.vertices.orderBy($"pagerank".desc).limit(20))
 
 BTW, A lot more delicate air-traffic arithmetic is possible for a full month of airplane co-trajectories over the radar range of Atlanta, Georgia!
 
-See for instance: \* Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25, [doi: 10.2514/1.I010015](http://arc.aiaa.org/doi/abs/10.2514/1.I010015), 2012. See free preprint: <http://lamastex.org/preprints/AAIASubPavingATC.pdf>.
+See for instance:
+\* Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25, [doi: 10.2514/1.I010015](http://arc.aiaa.org/doi/abs/10.2514/1.I010015), 2012. See free preprint: <http://lamastex.org/preprints/AAIASubPavingATC.pdf>.
 
 Most popular flights (single city hops)
 ---------------------------------------

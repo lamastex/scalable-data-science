@@ -6,7 +6,7 @@ Analysis of NY Taxi dataset in magellan
 
 ### Replicating Ram Sriharsha's analysis by Victor Ingman.
 
-See <https://magellan.ghost.io/magellan-geospatial-processing-made-easy/> for Ram's blog on this data analysis and learn about the dataset at <http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml>.
+See <https://magellan.ghost.io/magellan-geospatial-processing-made-easy/> for Ram's blog on this data analysis and learn about the dataset at [http://www.nyc.gov/html/tlc/html/about/trip*record*data.shtml](http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml).
 
 ``` sh
 # download data yall
@@ -924,4 +924,3 @@ display(
 | Morningside Heights                   | 44428.0   |
 
 Truncated to 30 rows
-

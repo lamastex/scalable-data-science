@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 ``` python
 import numpy
@@ -873,7 +875,7 @@ for pattern in ['WBC', 'WKL', 'WTU', 'DWF', 'MWO', 'VWW', 'GHW', 'JKW', 'PQW']:
 >     0s - loss: 0.3219 - acc: 1.0000
 >     Epoch 400/400
 >     0s - loss: 0.3246 - acc: 1.0000
->     23/23 [==============================] - 0s
+>     23/23 [==============================] - 0s
 >     Model Accuracy: 100.00%
 >     (['W', 'B', 'C'], '->', 'Y')
 >     (['W', 'K', 'L'], '->', 'Y')
@@ -884,4 +886,3 @@ for pattern in ['WBC', 'WKL', 'WTU', 'DWF', 'MWO', 'VWW', 'GHW', 'JKW', 'PQW']:
 >     (['G', 'H', 'W'], '->', 'J')
 >     (['J', 'K', 'W'], '->', 'M')
 >     (['P', 'Q', 'W'], '->', 'S')
-

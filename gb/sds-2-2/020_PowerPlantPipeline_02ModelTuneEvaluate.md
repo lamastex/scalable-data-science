@@ -19,7 +19,7 @@ This is an end-to-end example of using a number of different machine learning al
 
 *We are trying to predict power output given a set of readings from various sensors in a gas-fired power generation plant. Power generation is a complex process, and understanding and predicting power output is an important element in managing a plant and its connection to the power grid.*
 
-More information about Peaker or Peaking Power Plants can be found on Wikipedia https://en.wikipedia.org/wiki/Peaking\_power\_plant
+More information about Peaker or Peaking Power Plants can be found on Wikipedia https://en.wikipedia.org/wiki/Peaking*power*plant
 
 Given this business problem, we need to translate it to a Machine Learning task. The ML task is regression since the label (or target) we are trying to predict is numeric.
 
@@ -37,7 +37,8 @@ More information about Machine Learning with Spark can be found in the [Spark ML
 
 ------------------------------------------------------------------------
 
-To **Rerun Steps 1-4** done in the notebook at: \* [Workspace -&gt; scalable-data-science -&gt; sds-2-2 -&gt; 009\_PowerPlantPipeline\_01ETLEDA](/#workspace/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA)
+To **Rerun Steps 1-4** done in the notebook at:
+\* [Workspace -&gt; scalable-data-science -&gt; sds-2-2 -&gt; 009*PowerPlantPipeline*01ETLEDA](/#workspace/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA)
 
 just `run` the following command as shown in the cell below:
 
@@ -666,9 +667,9 @@ val lrModel = lrPipeline.fit(trainingSet)
 
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
-*y* = *b*<sub>0</sub> + *b*<sub>1</sub>*x*<sub>1</sub> + *b*<sub>2</sub>*x*<sub>2</sub> + *b*<sub>3</sub>*x*<sub>3</sub> + … + *b*<sub>*i*</sub>*x*<sub>*i*</sub> + … + *b*<sub>*k*</sub>*x*<sub>*k*</sub>
+$$ y = b*0 + b*1 x*1 + b*2 x*2 + b*3 x*3 + + b*i x*i + + b*k x\_k $$
 
-where \\(b\_0\\) is the intercept and \\(b\_i\\)'s are coefficients.
+where \\(b*0\\) is the intercept and \\(b*i\\)'s are coefficients.
 
 To express the coefficients of that line we can retrieve the Estimator stage from the fitted, linear-regression pipeline model named `lrModel` and express the weights and the intercept for the function.
 
@@ -734,7 +735,9 @@ println("Linear Regression Equation: " + equation)
 
 >     Linear Regression Equation: y = 427.9139822165837  - (1.9083064919040942 * AT) - (0.25381293007161654 * V) - (0.1474651301033126 * RH) + (0.08739350304730673 * AP)
 
-Based on examining the fitted Linear Regression Equation above: \* There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91. \* But our other dimenensions seem to have little to no correlation with Power Output.
+Based on examining the fitted Linear Regression Equation above:
+\* There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91.
+\* But our other dimenensions seem to have little to no correlation with Power Output.
 
 Do you remember **Step 2: Explore Your Data**? When we visualized each predictor against Power Output using a Scatter Plot, only the temperature variable seemed to have a linear correlation with Power Output so our final equation seems logical.
 
@@ -1025,7 +1028,8 @@ val cvModel = crossval.fit(trainingSet)
 
 >     cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_c77b278496fa
 
-In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large. \* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
+In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large.
+\* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
 
 Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
 
@@ -1057,7 +1061,8 @@ println (f"R2: $r2")
 Let us explore other models to see if we can predict the power output better
 ----------------------------------------------------------------------------
 
-There are several families of models in Spark's scalable machine learning library: \* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
+There are several families of models in Spark's scalable machine learning library:
+\* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
 So our initial untuned and tuned linear regression models are statistically identical.
 
@@ -1065,7 +1070,7 @@ Given that the only linearly correlated variable is Temperature, it makes sense 
 
 A Decision Tree creates a model based on splitting variables using a tree structure. We will first start with a single decision tree model.
 
-Reference Decision Trees: https://en.wikipedia.org/wiki/Decision\_tree\_learning
+Reference Decision Trees: https://en.wikipedia.org/wiki/Decision*tree*learning
 
 ``` scala
 //Let's build a decision tree pipeline
@@ -1210,7 +1215,8 @@ So our DecisionTree was slightly worse than our LinearRegression model (LR: 4.6 
 
 This GBTRegressor code will be way faster on a larger cluster of course.
 
-A visual explanation of gradient boosted trees: \* <http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html>
+A visual explanation of gradient boosted trees:
+\* [http://arogozhnikov.github.io/2016/06/24/gradient*boosting*explained.html](http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
 
 Let's see what a boosting algorithm, a type of ensemble method, is all about in more detail.
 
@@ -1291,4 +1297,6 @@ See <http://spark.apache.org/docs/latest/streaming-programming-guide.html> if yo
 
 After deployment you will be able to use the best predictions from gradient boosed regression trees to feed a real-time dashboard or feed the utility with information on how much power the peaker plant will deliver give current conditions.
 
-Datasource References: \* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/) \* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
+Datasource References:
+\* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
+\* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)

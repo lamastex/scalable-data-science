@@ -1,7 +1,8 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-Let us visit an interactive visual cognitive tool for the basics ideas in linear regression: \* <http://setosa.io/ev/ordinary-least-squares-regression/>
+Let us visit an interactive visual cognitive tool for the basics ideas in linear regression:
+\* <http://setosa.io/ev/ordinary-least-squares-regression/>
 
 The following video is a very concise and thorough treatment of linear regression for those who have taken the 200-level linear algebra. Others can fully understand it with some effort and revisiting.
 
@@ -17,7 +18,7 @@ Please take notes in mark-down if you want.
 
 For latex math within markdown you can do the following for in-line maths: \\( \_{i,j} ^1 \\). And to write maths in display mode do the following:
 
-**A** ∈ ℝ<sup>*m* × *d*</sup>
+$$ ^{m d} $$
 
 You will need to write such notes for your final project presentation!
 

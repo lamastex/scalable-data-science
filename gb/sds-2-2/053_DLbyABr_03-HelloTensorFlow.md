@@ -1,7 +1,9 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind). This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses. A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
+This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
+This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
+A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
 TensorFlow
 ==========
@@ -64,7 +66,7 @@ with tf.Session() as session:
 
 and we typically use NumPy to create and manage the tensors (vectors, matrices, etc.) that will "flow" through our graph
 
-New to NumPy? Grab a cheat sheet: https://s3.amazonaws.com/assets.datacamp.com/blog\_assets/Numpy\_Python\_Cheat\_Sheet.pdf
+New to NumPy? Grab a cheat sheet: https://s3.amazonaws.com/assets.datacamp.com/blog*assets/Numpy*Python*Cheat*Sheet.pdf
 
 ``` python
 import numpy as np

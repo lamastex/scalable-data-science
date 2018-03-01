@@ -83,7 +83,8 @@ rdd.map( x => x*2).collect()    // <Shift+Enter> to perform collect (action) to 
 
 Let's declare another `val` RDD named `rddFiltered` by transforming our first RDD named `rdd` via the `filter` transformation `x%2==0` (of being even).
 
-This filter transformation based on the closure `x => x%2==0` will return `true` if the element, modulo two, equals zero. The closure is automatically passed on to the workers for evaluation (when an action is called later). So this will take our RDD of (1,2,3,4) and return RDD of (2, 4).
+This filter transformation based on the closure `x => x%2==0` will return `true` if the element, modulo two, equals zero. The closure is automatically passed on to the workers for evaluation (when an action is called later).
+So this will take our RDD of (1,2,3,4) and return RDD of (2, 4).
 
 ``` scala
 val rddFiltered = rdd.filter( x => x%2==0 )    // <Ctrl+Enter> to declare rddFiltered from transforming rdd
@@ -222,7 +223,8 @@ sc.parallelize(Seq(1, 2, 3, 4))    // <Ctrl+Enter> will return Array(4, 8)
 
 ##### 6. Transform the RDD by `distinct` to make another RDD
 
-Let's declare another RDD named `rdd2` that has some repeated elements to apply the `distinct` transformation to it. That would give us a new RDD that only contains the distinct elements of the input RDD.
+Let's declare another RDD named `rdd2` that has some repeated elements to apply the `distinct` transformation to it.
+That would give us a new RDD that only contains the distinct elements of the input RDD.
 
 ``` scala
 val rdd2 = sc.parallelize(Seq(4, 1, 3, 2, 2, 2, 3, 4))    // <Ctrl+Enter> to declare rdd2
@@ -252,7 +254,8 @@ val rdd = sc. parallelize(Array(1,2,3)) // <Shift+Enter> to create an RDD of thr
 
 >     rdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[181356] at parallelize at <console>:34
 
-Let us pass the `rdd` above to a map with a closure that will take in each element `x` and return `Array(x, x+5)`. So each element of the mapped RDD named `rddOfArrays` is an `Array[Int]`, an array of integers.
+Let us pass the `rdd` above to a map with a closure that will take in each element `x` and return `Array(x, x+5)`.
+So each element of the mapped RDD named `rddOfArrays` is an `Array[Int]`, an array of integers.
 
 ``` scala
 // <Shift+Enter> to make RDD of Arrays, i.e., RDD[Array[int]]
@@ -284,4 +287,3 @@ rddfM.collect    // <Ctrl+Enter> to collect rddfM = (1, 6, 2, 7, 3, 8)
 ```
 
 >     res24: Array[Int] = Array(1, 6, 2, 7, 3, 8)
-

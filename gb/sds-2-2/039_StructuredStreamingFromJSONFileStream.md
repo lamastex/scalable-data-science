@@ -1611,7 +1611,8 @@ streamingCountsDF.isStreaming
 >     streamingCountsDF: org.apache.spark.sql.DataFrame = [action: string, window: struct<start: timestamp, end: timestamp> ... 1 more field]
 >     res5: Boolean = true
 
-As you can see, `streamingCountsDF` is a streaming Dataframe (`streamingCountsDF.isStreaming` was `true`). You can start streaming computation, by defining the sink and starting it. In our case, we want to interactively query the counts (same queries as above), so we will set the complete set of 1 hour counts to be a in a in-memory table (note that this for testing purpose only in Spark 2.0).
+As you can see, `streamingCountsDF` is a streaming Dataframe (`streamingCountsDF.isStreaming` was `true`). You can start streaming computation, by defining the sink and starting it.
+In our case, we want to interactively query the counts (same queries as above), so we will set the complete set of 1 hour counts to be a in a in-memory table (note that this for testing purpose only in Spark 2.0).
 
 ``` scala
 spark.conf.set("spark.sql.shuffle.partitions", "1")  // keep the size of shuffles small
@@ -1629,7 +1630,8 @@ val query =
 
 `query` is a handle to the streaming query that is running in the background. This query is continuously picking up files and updating the windowed counts.
 
-Note the status of query in the above cell. Both the `Status: ACTIVE` and the progress bar shows that the query is active. Furthermore, if you expand the `>Details` above, you will find the number of files they have already processed.
+Note the status of query in the above cell. Both the `Status: ACTIVE` and the progress bar shows that the query is active.
+Furthermore, if you expand the `>Details` above, you will find the number of files they have already processed.
 
 Let's wait a bit for a few files to be processed and then query the in-memory `counts` table.
 
@@ -1717,12 +1719,10 @@ What's next?
 If you want to learn more about Structured Streaming, here are a few pointers.
 
 -   Databricks blog posts on Structured Streaming and Continuous Applications
--   Blog post 1: [Continuous Applications: Evolving Streaming in Apache Spark 2.0](https://databricks.com/blog/2016/07/28/continuous-applications-evolving-streaming-in-apache-spark-2-0.html)
--   Blog post 2: [Structured Streaming in Apache Spark](https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html)
-
+    -   Blog post 1: [Continuous Applications: Evolving Streaming in Apache Spark 2.0](https://databricks.com/blog/2016/07/28/continuous-applications-evolving-streaming-in-apache-spark-2-0.html)
+    -   Blog post 2: [Structured Streaming in Apache Spark](https://databricks.com/blog/2016/07/28/structured-streaming-in-apache-spark.html)
 -   [Structured Streaming Programming Guide](http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
 
 -   Spark Summit 2016 Talks
--   [Structuring Spark: Dataframes, Datasets And Streaming](https://spark-summit.org/2016/events/structuring-spark-dataframes-datasets-and-streaming/)
--   [A Deep Dive Into Structured Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)
-
+    -   [Structuring Spark: Dataframes, Datasets And Streaming](https://spark-summit.org/2016/events/structuring-spark-dataframes-datasets-and-streaming/)
+    -   [A Deep Dive Into Structured Streaming](https://spark-summit.org/2016/events/a-deep-dive-into-structured-streaming/)

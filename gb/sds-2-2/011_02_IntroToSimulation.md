@@ -10,12 +10,12 @@ Core ideas in Monte Carlo simulation
 -   modular arithmetic gives pseudo-random streams that are indistiguishable from 'true' Uniformly distributed samples in integers from \\(\\{0,1,2,...,m\\}\\)
 -   by diving the integer streams from above by \\(m\\) we get samples from \\(\\{0/m,1/m,...,(m-1)/m\\}\\) and "pretend" this to be samples from the Uniform(0,1) RV
 -   we can use inverse distribution function of von Neumann's rejection sampler to convert samples from Uniform(0,1) RV to the following:
--   any other random variable
--   vector of random variables that could be dependent
--   or more generally other random structures:
-    -   random graphs and networks
-    -   random walks or (sensible perturbations of live traffic data on open street maps for hypothesis tests)
-    -   models of interacting paticle systems in ecology / chemcal physics, etc...
+    -   any other random variable
+    -   vector of random variables that could be dependent
+    -   or more generally other random structures:
+        -   random graphs and networks
+        -   random walks or (sensible perturbations of live traffic data on open street maps for hypothesis tests)
+        -   models of interacting paticle systems in ecology / chemcal physics, etc...
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)"
@@ -28,7 +28,7 @@ Core ideas in Monte Carlo simulation
   </p>
 </iframe></p>
 
--   <https://en.wikipedia.org/wiki/Inverse_transform_sampling>
+-   [https://en.wikipedia.org/wiki/Inverse*transform*sampling](https://en.wikipedia.org/wiki/Inverse_transform_sampling)
 -   <https://en.wikipedia.org/wiki/Rejection_sampling> - will revisit below for Expoential RV
 
 ### breeze.stats.distributions
@@ -333,4 +333,3 @@ dfExpRand.describe().show() // look sensible
 >     |    min|                0|6.881987320686012E-4| 1.0| 0.5|0.001376871299039548|
 >     |    max|              999|  0.9999092082356841| 1.0| 0.5|  18.613883955674265|
 >     +-------+-----------------+--------------------+----+----+--------------------+
-

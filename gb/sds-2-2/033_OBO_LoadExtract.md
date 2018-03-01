@@ -8,7 +8,8 @@ Old Bailey Online Data Analysis in Apache Spark
 
 #### Old Bailey, London's Central Criminal Court, 1674 to 1913
 
--   with Full XML Data for another great project. This is a starting point for ETL of Old Bailey Online Data from <http://lamastex.org/datasets/public/OldBailey/index.html>.
+-   with Full XML Data for another great project.
+    This is a starting point for ETL of Old Bailey Online Data from <http://lamastex.org/datasets/public/OldBailey/index.html>.
 
 This work merely builds on [Old Bailey Online by Clive Emsley, Tim Hitchcock and Robert Shoemaker](https://www.oldbaileyonline.org/) that is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. Permissions beyond the scope of this license may be available at https://www.oldbaileyonline.org/static/Legal-info.jsp.
 
@@ -35,7 +36,8 @@ Analysing the Full Old Bailey Online Sessions Papers Dataset
 ============================================================
 
 First **Step 0: Dowloading and Loading Data (The Full Dataset)** below should have been done on the shard.
-This currently cannot be done in Community Edition as the dataset is not loaded into the dbfs available in CE yet. But the datset is in the academic shard and this is a walkthorugh of the Old Bailey Online data in the academic shard.
+This currently cannot be done in Community Edition as the dataset is not loaded into the dbfs available in CE yet.
+But the datset is in the academic shard and this is a walkthorugh of the Old Bailey Online data in the academic shard.
 
 Let's first check that the datasets are there in the distributed file system.
 
@@ -3364,10 +3366,6 @@ p.format(elem)
 >                   stealing 2 Shirts, value 8d. a Silk Handkerchief, value 1d. and a Pair of Stockings, value 1d.
 >       ...
 
-``` scala
-
-
-%md
 ### Better examples:
 
 http://alvinalexander.com/scala/how-to-extract-data-from-xml-nodes-in-scala
@@ -3378,12 +3376,9 @@ http://alvinalexander.com/scala/scala-xml-xpath-example
 
 https://alvinalexander.com/scala/serializing-deserializing-xml-scala-classes
 
- 
-
 #### XML to JSON, if you want to go this route:
 
 https://stackoverflow.com/questions/9516973/xml-to-json-with-scala
-```
 
 Our Parsing Problem
 -------------------
@@ -4434,7 +4429,9 @@ The steps below need to be done once for a give shard!
 
 You can download the tiny dataset `obo-tiny/OB-tiny_tei_7-2_CC-BY-NC.zip` **to save time and space in db CE**
 
-**Optional TODOs:** \* one could just read the zip files directly (see week 10 on Beijing taxi trajectories example from the scalable-data-science course in 2016 or read 'importing zip files' in the Guide). \* one could just download from s3 directly
+**Optional TODOs:**
+\* one could just read the zip files directly (see week 10 on Beijing taxi trajectories example from the scalable-data-science course in 2016 or read 'importing zip files' in the Guide).
+\* one could just download from s3 directly
 
 ``` sh
 # if you want to download the tiny dataset
@@ -6241,4 +6238,3 @@ util.Properties.versionString // check scala version
 ```
 
 >     res5: String = version 2.11.8
-

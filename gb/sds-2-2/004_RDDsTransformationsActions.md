@@ -9,9 +9,9 @@ Spark Essentials: RDDs, Transformations and Actions
 
 -   This introductory notebook describes how to get started running Spark (Scala) code in Notebooks.
 -   Working with Spark's Resilient Distributed Datasets (RDDs)
--   creating RDDs
--   performing basic transformations on RDDs
--   performing basic actions on RDDs
+    -   creating RDDs
+    -   performing basic transformations on RDDs
+    -   performing basic actions on RDDs
 
 **RECOLLECT** from `001_WhySpark` notebook and AJ's videos (did you watch the ones marked *Watch Now*? if NOT we should watch NOW!!! This was last night's "Viewing Home-Work") that *Spark does fault-tolerant, distributed, in-memory computing*
 
@@ -21,7 +21,13 @@ Spark Cluster Overview:
 Driver Program, Cluster Manager and Worker Nodes
 ------------------------------------------------
 
-The *driver* does the following: 1. connects to a *cluster manager* to allocate resources across applications \* acquire *executors* on cluster nodes \* executor processs run compute tasks and cache data in memory or disk on a *worker node* \* sends *application* (user program built on Spark) to the executors \* sends *tasks* for the executors to run \* task is a unit of work that will be sent to one executor
+The *driver* does the following:
+1. connects to a *cluster manager* to allocate resources across applications
+\* acquire *executors* on cluster nodes
+\* executor processs run compute tasks and cache data in memory or disk on a *worker node*
+\* sends *application* (user program built on Spark) to the executors
+\* sends *tasks* for the executors to run
+\* task is a unit of work that will be sent to one executor
 
 ![](http://spark.apache.org/docs/latest/img/cluster-overview.png)
 
@@ -79,18 +85,18 @@ Key Points
 -   The more partitions in an RDD, the more opportunities for parallelism
 -   There are **two types of operations** you can perform on an RDD:
     -   **transformations** (are lazily evaluated)
-    -   map
-    -   flatMap
-    -   filter
-    -   distinct
-    -   ...
+        -   map
+        -   flatMap
+        -   filter
+        -   distinct
+        -   ...
     -   **actions** (actual evaluation happens)
-    -   count
-    -   reduce
-    -   take
-    -   collect
-    -   takeOrdered
-    -   ...
+        -   count
+        -   reduce
+        -   take
+        -   collect
+        -   takeOrdered
+        -   ...
 -   Spark transformations enable us to create new RDDs from an existing RDD.
 -   RDD transformations are lazy evaluations (results are not computed right away)
 -   Spark remembers the set of transformations that are applied to a base data set (this is the lineage graph of RDD)
@@ -119,7 +125,8 @@ In your databricks community edition:
 
 ### Running **Spark**
 
-The variable **sc** allows you to access a Spark Context to run your Spark programs. Recall `SparkContext` is in the Driver Program.
+The variable **sc** allows you to access a Spark Context to run your Spark programs.
+Recall `SparkContext` is in the Driver Program.
 
 ![](http://spark.apache.org/docs/latest/img/cluster-overview.png)
 
@@ -204,7 +211,8 @@ Thus from the output above, `Array[Array[Int]] = Array(Array(1), Array(2, 3))`, 
 
 ##### You Try!
 
-Crate an RDD `x` with three elements, 1,2,3, and this time do not specifiy the number of partitions. Then the default number of partitions will be used. Find out what this is for the cluster you are attached to.
+Crate an RDD `x` with three elements, 1,2,3, and this time do not specifiy the number of partitions. Then the default number of partitions will be used.
+Find out what this is for the cluster you are attached to.
 
 The default number of partitions for an RDD depends on the cluster this notebook is attached to among others - see [programming-guide](http://spark.apache.org/docs/latest/programming-guide.html).
 
@@ -300,7 +308,9 @@ println(y.collect().mkString(", "))
 
 ### 6. Perform the `reduce` action on the RDD
 
-Reduce aggregates a data set element using a function (closure). This function takes two arguments and returns one and can often be seen as a binary operator. This operator has to be commutative and associative so that it can be computed correctly in parallel (where we have little control over the order of the operations!).
+Reduce aggregates a data set element using a function (closure).
+This function takes two arguments and returns one and can often be seen as a binary operator.
+This operator has to be commutative and associative so that it can be computed correctly in parallel (where we have little control over the order of the operations!).
 
 ### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce) and return here to try out the example codes.
 
@@ -326,7 +336,8 @@ println(y)
 
 ### 7. Transform an RDD by `flatMap` to make another RDD
 
-`flatMap` is similar to `map` but each element from input RDD can be mapped to zero or more output elements. Therefore your function should return a sequential collection such as an `Array` rather than a single element as shown below.
+`flatMap` is similar to `map` but each element from input RDD can be mapped to zero or more output elements.
+Therefore your function should return a sequential collection such as an `Array` rather than a single element as shown below.
 
 ### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap) and return here to try out the example codes.
 
@@ -378,7 +389,15 @@ wordCountPairRDD.collect()
 
 Let's next work with RDD of `(key,value)` pairs called a *Pair RDD* or *Key-Value RDD*.
 
-Now some of the Key-Value transformations that we could perform include the following. \* **`reduceByKey` transformation** \* which takes an RDD and returns a new RDD of key-value pairs, such that: \* the values for each key are aggregated using the given reduced function \* and the reduce function has to be of the type that takes two values and returns one value. \* **`sortByKey` transformation** \* this returns a new RDD of key-value pairs that's sorted by keys in ascending order \* **`groupByKey` transformation** \* this returns a new RDD consisting of key and iterable-valued pairs.
+Now some of the Key-Value transformations that we could perform include the following.
+\* **`reduceByKey` transformation**
+\* which takes an RDD and returns a new RDD of key-value pairs, such that:
+\* the values for each key are aggregated using the given reduced function
+\* and the reduce function has to be of the type that takes two values and returns one value.
+\* **`sortByKey` transformation**
+\* this returns a new RDD of key-value pairs that's sorted by keys in ascending order
+\* **`groupByKey` transformation**
+\* this returns a new RDD consisting of key and iterable-valued pairs.
 
 Let's see some concrete examples next.
 
@@ -426,9 +445,15 @@ wordCountPairRDDSortedByKey.collect() // Cntrl+Enter and comprehend code
 
 The next key value transformation we will see is `groupByKey`
 
-When we apply the `groupByKey` transformation to `wordCountPairRDD` we end up with a new RDD that contains two elements. The first element is the tuple `b` and an iterable `CompactBuffer(1,1,1,1,1)` obtained by grouping the value `1` for each of the five key value pairs `(b,1)`. Similarly the second element is the key `a` and an iterable `CompactBuffer(1,1,1,1,1,1)` obtained by grouping the value `1` for each of the six key value pairs `(a,1)`.
+When we apply the `groupByKey` transformation to `wordCountPairRDD` we end up with a new RDD that contains two elements.
+The first element is the tuple `b` and an iterable `CompactBuffer(1,1,1,1,1)` obtained by grouping the value `1` for each of the five key value pairs `(b,1)`.
+Similarly the second element is the key `a` and an iterable `CompactBuffer(1,1,1,1,1,1)` obtained by grouping the value `1` for each of the six key value pairs `(a,1)`.
 
-*CAUTION*: `groupByKey` can cause a large amount of data movement across the network. It also can create very large iterables at a worker. Imagine you have an RDD where you have 1 billion pairs that have the key `a`. All of the values will have to fit in a single worker if you use group by key. So instead of a group by key, consider using reduced by key.
+*CAUTION*: `groupByKey` can cause a large amount of data movement across the network.
+It also can create very large iterables at a worker.
+Imagine you have an RDD where you have 1 billion pairs that have the key `a`.
+All of the values will have to fit in a single worker if you use group by key.
+So instead of a group by key, consider using reduced by key.
 
 ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-45.png)
 
@@ -503,16 +528,34 @@ We will use these variables in the sequel.
 
 #### SUMMARY
 
-Spark automatically creates closures \* for functions that run on RDDs at workers, \* and for any global variables that are used by those workers \* one closure per worker is sent with every task \* and there's no communication between workers \* closures are one way from the driver to the worker \* any changes that you make to the global variables at the workers \* are not sent to the driver or \* are not sent to other workers.
+Spark automatically creates closures
+\* for functions that run on RDDs at workers,
+\* and for any global variables that are used by those workers
+\* one closure per worker is sent with every task
+\* and there's no communication between workers
+\* closures are one way from the driver to the worker
+\* any changes that you make to the global variables at the workers
+\* are not sent to the driver or
+\* are not sent to other workers.
 
-The problem we have is that these closures \* are automatically created are sent or re-sent with every job \* with a large global variable it gets inefficient to send/resend lots of data to each worker \* we cannot communicate that back to the driver
+The problem we have is that these closures
+\* are automatically created are sent or re-sent with every job
+\* with a large global variable it gets inefficient to send/resend lots of data to each worker
+\* we cannot communicate that back to the driver
 
-To do this, Spark provides shared variables in two different types. \* **broadcast variables** \* lets us to efficiently send large read-only values to all of the workers \* these are saved at the workers for use in one or more Spark operations.
-\* **accumulator variables** \* These allow us to aggregate values from workers back to the driver. \* only the driver can access the value of the accumulator \* for the tasks, the accumulators are basically write-only
+To do this, Spark provides shared variables in two different types.
+\* **broadcast variables**
+\* lets us to efficiently send large read-only values to all of the workers
+\* these are saved at the workers for use in one or more Spark operations.
+\* **accumulator variables**
+\* These allow us to aggregate values from workers back to the driver.
+\* only the driver can access the value of the accumulator
+\* for the tasks, the accumulators are basically write-only
 
 ------------------------------------------------------------------------
 
-\#\#\# 12. Spark Essentials: Summary **(watch now: 0:29)**
+\#\#\# 12. Spark Essentials: Summary
+**(watch now: 0:29)**
 
 [![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/watch?v=F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
 
@@ -520,7 +563,11 @@ To do this, Spark provides shared variables in two different types. \* **broadca
 
 ### 13. HOMEWORK
 
-See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. This notebook will give you more examples of the operations above as well as others we will be using later, including: \* Perform the `takeOrdered` action on the RDD \* Transform the RDD by `distinct` to make another RDD and \* Doing a bunch of transformations to our RDD and performing an action in a single cell.
+See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`.
+This notebook will give you more examples of the operations above as well as others we will be using later, including:
+\* Perform the `takeOrdered` action on the RDD
+\* Transform the RDD by `distinct` to make another RDD and
+\* Doing a bunch of transformations to our RDD and performing an action in a single cell.
 
 ------------------------------------------------------------------------
 
@@ -552,4 +599,3 @@ map.put("e", 5)
 >     import java.util.HashMap
 >     map: java.util.HashMap[String,Int] = {a=1, b=2, c=3, d=4, e=5}
 >     res9: Int = 0
-

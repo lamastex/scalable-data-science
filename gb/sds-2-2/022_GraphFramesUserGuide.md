@@ -3,9 +3,16 @@
 
 This is an augmentation of <http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html>
 
-See: \* <https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf> \* <https://amplab.github.io/graphx/> \* <https://spark.apache.org/docs/latest/graphx-programming-guide.html> \* <https://databricks.com/blog/2016/03/03/introducing-graphframes.html> \* <https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html> \* <http://ampcamp.berkeley.edu/big-data-mini-course/graph-analytics-with-graphx.html>
+See:
+\* <https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf>
+\* <https://amplab.github.io/graphx/>
+\* <https://spark.apache.org/docs/latest/graphx-programming-guide.html>
+\* <https://databricks.com/blog/2016/03/03/introducing-graphframes.html>
+\* <https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html>
+\* <http://ampcamp.berkeley.edu/big-data-mini-course/graph-analytics-with-graphx.html>
 
-And of course the databricks guide: \* <https://docs.databricks.com/spark/latest/graph-analysis/index.html>
+And of course the databricks guide:
+\* <https://docs.databricks.com/spark/latest/graph-analysis/index.html>
 
 <p class="htmlSandbox"><iframe 
  src="https://amplab.github.io/graphx/"
@@ -64,7 +71,8 @@ import org.graphframes._
 Creating GraphFrames
 --------------------
 
-Let us try to create an example social network from the blog: \* <https://databricks.com/blog/2016/03/03/introducing-graphframes.html>.
+Let us try to create an example social network from the blog:
+\* <https://databricks.com/blog/2016/03/03/introducing-graphframes.html>.
 
 ![](https://databricks.com/wp-content/uploads/2016/03/social-network-graph-diagram.png)
 
@@ -770,7 +778,10 @@ force.on("tick", function () {
 
 **Complex triplet filters**
 
-The following example shows how to select a subgraph based upon triplet filters which operate on: \* an edge and \* its src and \* dst vertices.
+The following example shows how to select a subgraph based upon triplet filters which operate on:
+\* an edge and
+\* its src and
+\* dst vertices.
 
 This example could be extended to go beyond triplets by using more complex motifs.
 
@@ -948,7 +959,9 @@ Run static Label Propagation Algorithm for detecting communities in networks.
 
 Each node in the network is initially assigned to its own community. At every superstep, nodes send their community affiliation to all neighbors and update their state to the mode community affiliation of incoming messages.
 
-LPA is a standard community detection algorithm for graphs. It is very inexpensive computationally, although \* (1) convergence is not guaranteed and \* (2) one can end up with trivial solutions (all nodes are identified into a single community).
+LPA is a standard community detection algorithm for graphs. It is very inexpensive computationally, although
+\* (1) convergence is not guaranteed and
+\* (2) one can end up with trivial solutions (all nodes are identified into a single community).
 
 READ: <http://graphframes.github.io/user-guide.html#label-propagation-algorithm-lpa>.
 
