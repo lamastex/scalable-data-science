@@ -6,7 +6,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # **Introduction to Spark**
+// MAGIC # Introduction to Spark
 // MAGIC ## Spark Essentials: RDDs, Transformations and Actions
 // MAGIC 
 // MAGIC * This introductory notebook describes how to get started running Spark (Scala) code in Notebooks.
@@ -24,6 +24,7 @@
 // MAGIC ## Driver Program, Cluster Manager and Worker Nodes
 // MAGIC 
 // MAGIC The *driver* does the following:
+// MAGIC 
 // MAGIC 1. connects to a *cluster manager* to allocate resources across applications
 // MAGIC * acquire *executors* on cluster nodes
 // MAGIC   * executor processs run compute tasks and cache data in memory or disk on a *worker node*
@@ -43,6 +44,7 @@
 // MAGIC #### RDD is a fault-tolerant collection of elements that can be operated on in parallel
 // MAGIC 
 // MAGIC #### Two types of Operations are possible on an RDD
+// MAGIC 
 // MAGIC * Transformations
 // MAGIC * Actions
 // MAGIC 
@@ -149,6 +151,7 @@
 
 // MAGIC %md
 // MAGIC ### We will do the following next:
+// MAGIC 
 // MAGIC 1. Create an RDD using `sc.parallelize`
 // MAGIC * Perform the `collect` action on the RDD and find the number of partitions it is made of using `getNumPartitions` action
 // MAGIC * Perform the ``take`` action on the RDD
@@ -428,6 +431,7 @@ wordCountPairRDD.collect()
 // MAGIC Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
 // MAGIC 
 // MAGIC Now some of the Key-Value transformations that we could perform include the following.
+// MAGIC 
 // MAGIC * **`reduceByKey` transformation**
 // MAGIC   * which takes an RDD and returns a new RDD of key-value pairs, such that:
 // MAGIC     * the values for each key are aggregated using the given reduced function
@@ -563,6 +567,7 @@ rdd1.collect()
 // MAGIC 
 // MAGIC #### SUMMARY
 // MAGIC Spark automatically creates closures 
+// MAGIC 
 // MAGIC   * for functions that run on RDDs at workers,
 // MAGIC   * and for any global variables that are used by those workers
 // MAGIC   * one closure per worker is sent with every task
@@ -574,12 +579,14 @@ rdd1.collect()
 // MAGIC   
 // MAGIC     
 // MAGIC  The problem we have is that these closures
+// MAGIC  
 // MAGIC    * are automatically created are sent or re-sent with every job
 // MAGIC    * with a large global variable it gets inefficient to send/resend lots of data to each worker
 // MAGIC    * we cannot communicate that back to the driver
 // MAGIC   
 // MAGIC   
 // MAGIC  To do this, Spark provides shared variables in two different types.
+// MAGIC  
 // MAGIC   * **broadcast variables**
 // MAGIC     * lets us to efficiently send large read-only values to all of the workers
 // MAGIC     * these are saved at the workers for use in one or more Spark operations.    
@@ -603,6 +610,7 @@ rdd1.collect()
 // MAGIC ### 13. HOMEWORK 
 // MAGIC See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 // MAGIC This notebook will give you more examples of the operations above as well as others we will be using later, including:
+// MAGIC 
 // MAGIC * Perform the ``takeOrdered`` action on the RDD
 // MAGIC * Transform the RDD by ``distinct`` to make another RDD and
 // MAGIC * Doing a bunch of transformations to our RDD and performing an action in a single cell.
@@ -612,7 +620,7 @@ rdd1.collect()
 // MAGIC %md
 // MAGIC ***
 // MAGIC ***
-// MAGIC ### **Importing Standard Scala and Java libraries**
+// MAGIC ### Importing Standard Scala and Java libraries
 // MAGIC * For other libraries that are not available by default, you can upload other libraries to the Workspace.
 // MAGIC * Refer to the **[Libraries](https://docs.databricks.com/user-guide/libraries.html)** guide for more details.
 
