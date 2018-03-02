@@ -12,7 +12,7 @@ by [Li Caldeira Balkeståhl](https://www.linkedin.com/in/li-caldeira-balkest%C3%
 Scalable web scrapper
 ---------------------
 
-### Based on Mastering Spark for Data Science book (Chap. 6)
+### Based on [Mastering Spark for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/mastering-spark-data-science) book (Chap. 6)
 
 This cleaned up notebook contains code to perform web scraping, which should then be called from another notebook
 
@@ -76,10 +76,11 @@ def expandUrluntilsame(url:String) : String ={
 >     expandUrl: (url: String)String
 >     expandUrluntilsame: (url: String)String
 
-To get the articles from the web, use a dataframe of urls and return a dataframe with body, domain,title
-\* First we make a case class Articles containing body, domain, title and meta description (from the HTML)
-\* Use a function getArticles takes a string as input and return an Articles (filled with "null" string if any exception occured)
-\* Then make UserDefinedFunction that takes a column name and returns Articles from stuff in that column (to be able to use directly on the DF)
+To get the articles from the web, use a dataframe of urls and return a dataframe with body, domain, title
+
+-   First we make a case class Articles containing body, domain, title and meta description (from the HTML)
+-   Use a function getArticles takes a string as input and return an Articles (filled with "null" string if any exception occured)
+-   Then make UserDefinedFunction that takes a column name and returns Articles from stuff in that column (to be able to use directly on the DF)
 
 ``` scala
 //the class for the web article

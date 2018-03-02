@@ -23,17 +23,19 @@ What is an agent?
 How is training an agent different from training the models we've used so far?
 
 Most things stay the same, and we can use all of the knowledge we've built:
-\* We can use any or all of the network models, including feed-forward, convolutional, recurrent, and combinations of those.
-\* We will still train in batches using some variant of gradient descent
-\* As before, the model will ideally learn a complex non-obvious function of many parameters
+
+-   We can use any or all of the network models, including feed-forward, convolutional, recurrent, and combinations of those.
+-   We will still train in batches using some variant of gradient descent
+-   As before, the model will ideally learn a complex non-obvious function of many parameters
 
 A few things change ... well, not really change, but "specialize":
-\* The inputs may start out as entire frames (or frame deltas) of a video feed
-\* We may feature engineer more explicitly (or not)
-\* The ouputs may be a low-cardinality set of categories that represent actions (e.g., direction of a digital joystick, or input to a small number of control systems)
-\* We may model state explicitly (outside the network) as well as implicitly (inside the network)
-\* The function we're learning is one which will "tell our agent what to do" or -- assuming there is no disconnect between knowing what to do and doing it, the function will essentially be the agent
-\* **The loss function depends on the outcome of the game, and the game requires many actions to reach an outcome, and so requires some slightly different approaches from the ones we've used before.**
+
+-   The inputs may start out as entire frames (or frame deltas) of a video feed
+    -   We may feature engineer more explicitly (or not)
+-   The ouputs may be a low-cardinality set of categories that represent actions (e.g., direction of a digital joystick, or input to a small number of control systems)
+-   We may model state explicitly (outside the network) as well as implicitly (inside the network)
+-   The function we're learning is one which will "tell our agent what to do" or -- assuming there is no disconnect between knowing what to do and doing it, the function will essentially be the agent
+-   **The loss function depends on the outcome of the game, and the game requires many actions to reach an outcome, and so requires some slightly different approaches from the ones we've used before.**
 
 Principal Approaches: Deep Q-Learning and Policy Gradient Learning
 ==================================================================
@@ -236,8 +238,9 @@ Next, let's look at the network itself -- it's super simple, so we can get that 
 Note that the output layer has `num_actions` neurons.
 
 We are going to implement the training target as
-\* the estimated reward for the one action taken when the game doesn't conclude, or
-\* error/reward for the specific action that loses/wins a game
+
+-   the estimated reward for the one action taken when the game doesn't conclude, or
+-   error/reward for the specific action that loses/wins a game
 
 In any case, we only train with an error/reward for actions the agent actually chose. We neutralize the hypothetical rewards for other actions, as they are not causally chained to any ground truth.
 
@@ -278,11 +281,12 @@ input\_t = env.observe()
 \`\`\`
 
 The key bits are:
-\* Choose an action
-\* Act and collect the reward and new state
-\* Cache previous state, action, reward, and new state in "Experience Replay" buffer
-\* Ask buffer for a batch of action data to train on
-\* Call `model.train_on_batch` to perform one training batch
+
+-   Choose an action
+-   Act and collect the reward and new state
+-   Cache previous state, action, reward, and new state in "Experience Replay" buffer
+-   Ask buffer for a batch of action data to train on
+-   Call `model.train_on_batch` to perform one training batch
 
 Last, let's dive into where the actual Q-Learning calculations occur, which happen, in this code to be in the `get_batch` call to the experience replay buffer object:
 
@@ -324,19 +328,20 @@ class ExperienceReplay(object):
 ```
 
 The key bits here are:
-\* Set up "blank" buffers for a set of items of the requested batch size, or all memory, whichever is less (in case we don't have much data yet)
-\* one buffer is `inputs` -- it will contain the game state or screen before the agent acted
-\* the other buffer is `targets` -- it will contain a vector of rewards-per-action (with just one non-zero entry, for the action the agent actually took)
-\* Based on that batch size, randomly select records from memory
-\* For each of those cached records (which contain initial state, action, next state, and reward),
-\* Insert the initial game state into the proper place in the `inputs` buffer
-\* If the action ended the game then:
-\* Insert a vector into `targets` with the real reward in the position of the action chosen
-\* Else (if the action did not end the game):
-\* Insert a vector into `targets` with the following value in the position of the action taken:
-\* *(real reward)*
-\* **+** *(discount factor)(predicted-reward-for-best-action-in-the-next-state)*
-\* **Note**: although the Q-Learning formula is implemented in the general version here, this specific game only produces reward when the game is over, so the "real reward" in this branch will always be zero
+
+-   Set up "blank" buffers for a set of items of the requested batch size, or all memory, whichever is less (in case we don't have much data yet)
+    -   one buffer is `inputs` -- it will contain the game state or screen before the agent acted
+    -   the other buffer is `targets` -- it will contain a vector of rewards-per-action (with just one non-zero entry, for the action the agent actually took)
+-   Based on that batch size, randomly select records from memory
+-   For each of those cached records (which contain initial state, action, next state, and reward),
+    -   Insert the initial game state into the proper place in the `inputs` buffer
+    -   If the action ended the game then:
+        -   Insert a vector into `targets` with the real reward in the position of the action chosen
+    -   Else (if the action did not end the game):
+        -   Insert a vector into `targets` with the following value in the position of the action taken:
+            -   *(real reward)*
+            -   **+** *(discount factor)(predicted-reward-for-best-action-in-the-next-state)*
+        -   **Note**: although the Q-Learning formula is implemented in the general version here, this specific game only produces reward when the game is over, so the "real reward" in this branch will always be zero
 
 ``` python
 mkdir /dbfs/keras_rl
@@ -1005,12 +1010,14 @@ The following articles are great next steps:
 -   Simple implementation with Open AI Gym support: https://github.com/sherjilozair/dqn
 
 This project offers Keras add-on classes for simple experimentation with DQL:
-\* https://github.com/farizrahman4u/qlearning4k
-\* Note that you'll need to implement (or wrap) the "game" to plug into that framework
+
+-   https://github.com/farizrahman4u/qlearning4k
+-   Note that you'll need to implement (or wrap) the "game" to plug into that framework
 
 Try it at home:
-\* Hack the "Keras Plays Catch" demo to allow the ball to drift horizontally as it falls. Does it work?
-\* Try training the network on "delta frames" instead of static frames. This gives the network information about motion (implicitly).
-\* What if the screen is high-resolution? what happens? how could you handle it better?
+
+-   Hack the "Keras Plays Catch" demo to allow the ball to drift horizontally as it falls. Does it work?
+-   Try training the network on "delta frames" instead of static frames. This gives the network information about motion (implicitly).
+-   What if the screen is high-resolution? what happens? how could you handle it better?
 
 And if you have the sneaking suspicion that there is a connection between PG and DQL, you'd be right: https://arxiv.org/abs/1704.06440

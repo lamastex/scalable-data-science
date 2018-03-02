@@ -100,13 +100,16 @@ Applied Projects in Scalable Data Science
     -   TensorFlow is a machine learning library created by the Brain Team researchers at Google and now open sourced under the Apache License 2.0. TensorFlow is detailed in the whitepaper TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems. The source code can be found on Google Git. It is a tool for writing and executing machine learning algorithms. Computations are done in a data flow graph where the nodes are mathematical operations and the edges are tensors (multidimensional data arrays) that are exchanged between nodes. An user constructs the graph and writes the algorithms that executed on each node. TensorFlow takes care of executing the code asynchronously on different devices, cores, and threads.... TensorFlow is used by Google for GMail (SmartReply), Search (RankBrain), Pictures (Inception Image Classification Model), Translator (Character Recognition), and other products.
     -   See <https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html>
 
-Keep reading...
-\* Association for Computing Machinery (ACM) Communications is a nice central point for a quick overview into current computationallu focussed mathematical sciences.
-\* PNAS/Science/Nature - usual popular science venues
-\* Hacker News
-\* ...
+Keep reading... I have not updated since early 2017!!!
 
-Shared Student Notebooks
-========================
+-   Association for Computing Machinery (ACM) Communications is a nice central point for a quick overview into current computationallu focussed mathematical sciences.
+-   PNAS/Science/Nature - usual popular science venues
+-   Hacker News
+-   ...
+
+Shared Student Notebooks for sds-2.2
+====================================
+
+Several notebooks that stduents tried along the course are part of the course content
 
 -   Yevgen [text analysis of Russian words](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6005499967952011/3389795813726420/4712481027151699/latest.html)

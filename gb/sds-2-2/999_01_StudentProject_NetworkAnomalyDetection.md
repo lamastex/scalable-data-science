@@ -998,12 +998,13 @@ Pre-processing of data
 ----------------------
 
 We preprocessed the data logged from wireshark doing the following:
-- Rounding timestamps by milliseconds, that would be four significant decimals.
-- Group the data by (timestamp, source, destination, protocol) with a count of how many times these kind of packets was sent/received during a millisecond.
-- One-hot encoded the protocol values
-- If you don't what that means, check this article out
-https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f
-- Standardized features for count and length of packets
+
+-   Rounding timestamps by milliseconds, that would be four significant decimals.
+-   Group the data by (timestamp, source, destination, protocol) with a count of how many times these kind of packets was sent/received during a millisecond.
+-   One-hot encoded the protocol values
+    -   If you don't what that means, check this article out
+        https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f
+-   Standardized features for count and length of packets
 
 Setting up k-means clustering
 -----------------------------

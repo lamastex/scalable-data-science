@@ -90,6 +90,12 @@ Assignments, on the other hand, are to be completed individually.
 	*  [Word Count - SOU](sds-2-2/006_WordCount.md)
 4. Ingest, Extract, Transform, Load and Explore with noSQL
 	*  [Spark SQL Basics](sds-2-2/007_SparkSQLIntroBasics.md)
+	*  [SparkSQL HW-a ProgGuide](sds-2-2/007a_SparkSQLProgGuide_HW.md)
+	*  [SparkSQL HW-b ProgGuide](sds-2-2/007b_SparkSQLProgGuide_HW.md)
+	*  [SparkSQL HW-c ProgGuide](sds-2-2/007c_SparkSQLProgGuide_HW.md)
+	*  [SparkSQL HW-d ProgGuide](sds-2-2/007d_SparkSQLProgGuide_HW.md)
+	*  [SparkSQL HW-e ProgGuide](sds-2-2/007e_SparkSQLProgGuide_HW.md)
+	*  [SparkSQL HW-f ProgGuide](sds-2-2/007f_SparkSQLProgGuide_HW.md)
 	*  [ETL Diamonds Data](sds-2-2/008_DiamondsPipeline_01ETLEDA.md)
 	*  [ETL Power Plant](sds-2-2/009_PowerPlantPipeline_01ETLEDA.md)
 	*  [Wiki Click streams](sds-2-2/010_wikipediaClickStream_01ETLEDA.md)

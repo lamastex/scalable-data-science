@@ -20,9 +20,10 @@ There are various ways to use deep learning in an enterprise setting that may no
 \[1\] Load and use a pretrained model
 
 Many of the existing toolkit projects offer models pretrained on datasets, including
-\* natural language corpus models
-\* image datasets like ImageNet (http://www.image-net.org/) or Google's Open Image Dataset (https://research.googleblog.com/2016/09/introducing-open-images-dataset.html)
-\* video datasets like the YouTube 8 million video dataset (https://research.googleblog.com/2016/09/announcing-youtube-8m-large-and-diverse.html)
+
+-   natural language corpus models
+-   image datasets like ImageNet (http://www.image-net.org/) or Google's Open Image Dataset (https://research.googleblog.com/2016/09/introducing-open-images-dataset.html)
+-   video datasets like the YouTube 8 million video dataset (https://research.googleblog.com/2016/09/announcing-youtube-8m-large-and-diverse.html)
 
 \[2\] Augmenting a pretrained model with new training data, or using it in a related context (see Transfer Learning)
 
@@ -78,15 +79,16 @@ Once you want to scale beyond your laptop, there are few options...
 We've focused on TensorFlow and Keras, because that's where the "center of mass" is at the moment.
 
 But there are lots of others. Major ones include:
-\* Caffe
-\* PaddlePaddle
-\* Theano
-\* CNTK
-\* MXNet
-\* DeepLearning4J
-\* BigDL
-\* Torch/PyTorch
-\* NVIDIA Digits
+
+-   Caffe
+-   PaddlePaddle
+-   Theano
+-   CNTK
+-   MXNet
+-   DeepLearning4J
+-   BigDL
+-   Torch/PyTorch
+-   NVIDIA Digits
 
 and there are at least a dozen more minor ones.
 
@@ -128,8 +130,9 @@ Deep learning models are subject to a variety of unexpected perturbations and ad
 <img src="http://i.imgur.com/3LjF9xl.png">
 
 Ian Goodfellow has distilled and referenced some of the research here: https://openai.com/blog/adversarial-example-research/
-\* He is also maintainer of an open-source project to measure robustness to adversarial examples, Clever Hans: https://github.com/tensorflow/cleverhans
-\* Another good project in that space is Foolbox: https://github.com/bethgelab/foolbox
+
+-   He is also maintainer of an open-source project to measure robustness to adversarial examples, Clever Hans: https://github.com/tensorflow/cleverhans
+-   Another good project in that space is Foolbox: https://github.com/bethgelab/foolbox
 
 ##### It's all fun and games until a few tiny stickers that a human won't even notice ... turn a stop sign into a "go" sign for your self-driving car ... **and that's exactly what this team of researchers has done** in *Robust Physical-World Attacks on Machine Learning Models*: https://arxiv.org/pdf/1707.08945v1.pdf
 
@@ -153,10 +156,11 @@ Interested in a slightly different approach to APIs, featuring interactive (impe
 **XLA**, an experimental compiler to make TensorFlow even faster: https://www.tensorflow.org/versions/master/experimental/xla/
 
 ...and in addition to refinements of what we've already talked about, there is bleeding-edge work in
-\* Neural Turing Machines
-\* Code-generating Networks
-\* Network-designing Networks
-\* Evolution Strategies (ES) as an alternative to DQL / PG: https://arxiv.org/abs/1703.03864
+
+-   Neural Turing Machines
+-   Code-generating Networks
+-   Network-designing Networks
+-   Evolution Strategies (ES) as an alternative to DQL / PG: https://arxiv.org/abs/1703.03864
 
 Books
 =====

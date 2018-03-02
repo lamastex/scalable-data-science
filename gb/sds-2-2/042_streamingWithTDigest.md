@@ -4,7 +4,7 @@
 Streaming TDigest with flatMapGroupsWithState
 =============================================
 
-#### <a href="https://www.linkedin.com/in/benny-avelin-460b99121/">Benny Avelin</a> and <a href="https://www.linkedin.com/in/håkan-persson-064b763/">Håkan Persson</a>
+by [Benny Avelin](https://www.linkedin.com/in/benny-avelin-460b99121/) and [Håkan Persson](https://www.linkedin.com/in/håkan-persson-064b763/)
 
 The idea with this sketch is to demonstrate how we can have a running t-Digest in a streaming context.
 
@@ -25,21 +25,21 @@ The way both mapGroupsWithState and flatMapGroupsWithState works is that we star
 ### flatmapGroupsWithState vs mapGroupsWithState
 
 The simple difference between these two can be infered from the name, but let us go into detail. If we are only interested in an aggregated "value" (could be a case class) from each key we should use mapGroupsWithState, however there are some interesting caveats with using mapGroupsWithState. For instance certain update-modes are not allowed as well as further aggregations are not allowed. flatmap... on the other hand can output any number of rows, allows more output-modes and allows for further aggregations, see the Structured Streaming programming guide.
-<table>
-<tr>
-<td>Query type</td><td>Output mode</td><td>Operations allowed</td>
-</tr>
-<tr>
-<td>mapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
-</tr>
-<tr>
-<td>flatMapGroupsWithState</td><td>Append</td><td>Aggregations allowed after</td>
-</tr>
-<tr>
-<td>flatMapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
-</tr>
-</table>
 
+<table>
+  <tr>
+    <td>Query type</td><td>Output mode</td><td>Operations allowed</td>
+  </tr>
+  <tr>
+    <td>mapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
+  </tr>
+  <tr>
+    <td>flatMapGroupsWithState</td><td>Append</td><td>Aggregations allowed after</td>
+  </tr>
+  <tr>
+    <td>flatMapGroupsWithState</td><td>Update</td><td>Aggregations not allowed</td>
+  </tr>
+</table>
 Some streaming input
 ====================
 
@@ -146,10 +146,11 @@ updateAcrossBatch
 -----------------
 
 This is our main update-function that we send as a parameter to flatmapGroupsWithState.
-\* It takes as first input the key-value, which we will not care about in this example and is just a dummy for us.
-\* The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types.
-\* The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`.
-\* Lastly we have the output, which is an iterator of the case class chosen as outputrow, in our case this is `Iterator[TdigAndAnomaly]`
+
+-   It takes as first input the key-value, which we will not care about in this example and is just a dummy for us.
+-   The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types.
+-   The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`.
+-   Lastly we have the output, which is an iterator of the case class chosen as outputrow, in our case this is `Iterator[TdigAndAnomaly]`
 
 Each time a batch gets processed, the batch data is in the `inputs` variable. We first make sure that the state is either the previous state (if it exists) or we set it to a zero state. Then we simply process the batch one datapoint at the time, and each time calling updateTDIG, which simply updates the state with the new data point (tDigest add point). Once we have added all the points to the t-Digest, we can compute the updated value of `threshold` using `cdfInverse(0.99)`, after that we simply filter the batch to obtain an iterator of the anomalies.
 

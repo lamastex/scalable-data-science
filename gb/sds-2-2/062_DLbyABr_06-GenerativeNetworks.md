@@ -32,9 +32,10 @@ So at first, this would seem difficult or impossible.
 Those approaches seem like cheating. But let's think about how they work.
 
 If a child (or adult) draws a cat (or number 8), they are probably not drawing any specific cat (or 8). They are drawing a general approximation of a cat based on
-1. All of the cats they've seen
-2. What they remember as the key elements of a cat (4 legs, tail, pointy ears)
-3. A lookup table substitutes one specific cat or 8 ... and, especially in the case of the 8, that may be fine. The only thing we "lose" is the diversity of things that all mapped to cat (or 8) -- and discarding that information was exactly our goal when building a classifier
+
+1.  All of the cats they've seen
+2.  What they remember as the key elements of a cat (4 legs, tail, pointy ears)
+3.  A lookup table substitutes one specific cat or 8 ... and, especially in the case of the 8, that may be fine. The only thing we "lose" is the diversity of things that all mapped to cat (or 8) -- and discarding that information was exactly our goal when building a classifier
 
 The "8" is even simpler: we learn that a number is an idea, not a specific instance, so anything that another human recognizes as 8 is good enough. We are not even trying to make a particular shape, just one that represents our encoded information that distinguishes 8 from other possible symbols in the context and the eye of the viewer.
 
@@ -207,8 +208,9 @@ The key feature of Variational Autoencoders is that we add a constraint on the e
 <div style="text-align: right"><sup>(credit to Kevin Franz, http://kvfrans.com/variational-autoencoders-explained/)</sup></div>
 
 One challenge is how to balance accurate reproduction of the input (traditional autoencoder loss) with the requirement that we match a Gaussian distribution. We can force the network to optimize both of these goals by creating a custom error function that sums up two components:
-\* How well we match the input, calculated as binary crossentropy or MSE loss
-\* How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
+
+-   How well we match the input, calculated as binary crossentropy or MSE loss
+-   How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
 
 We can easily implement a custom loss function and pass it as a parameter to the optimizer in Keras.
 

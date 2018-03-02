@@ -89,7 +89,7 @@ Starting Point: SparkSession
 
 The entry point into all functionality in Spark is the [SparkSession](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession). To create a basic SparkSession in your scala Spark code, just use `SparkSession.builder()`:
 
-\`\`\`scala
+\`\`\`
 import org.apache.spark.sql.SparkSession
 
 val spark = SparkSession
@@ -152,7 +152,8 @@ DataFrame Basics
 ### 1. Making an empty DataFrame
 
 Spark has some of the pre-built methods to create simple DataFrames
-\* let us make an Empty DataFrame
+
+-   let us make an Empty DataFrame
 
 ``` scala
 val emptyDF = spark.emptyDataFrame // Ctrl+Enter to make an empty DataFrame
@@ -173,7 +174,8 @@ Uncomment the following cell, put your cursor after `emptyDF.` below and hit Tab
 ### 2. Making a DataFrame from a range
 
 Let us make a DataFrame next
-\* from a range of numbers, as follows:
+
+-   from a range of numbers, as follows:
 
 ``` scala
 val rangeDF = spark.range(0, 3).toDF() // Ctrl+Enter to make DataFrame with 0,1,2
@@ -658,4 +660,5 @@ This week's recommended homework is a deep dive into the [SparkSQL programming g
 ### Recommended Extra-work
 
 Those who want to understand SparkSQL functionalities in more detail can see:
-\* [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](https://docs.databricks.com/spark/1.6/training/introduction-to-big-data-cs100x-2015/module-3.html).
+
+-   [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](https://docs.databricks.com/spark/1.6/training/introduction-to-big-data-cs100x-2015/module-3.html).

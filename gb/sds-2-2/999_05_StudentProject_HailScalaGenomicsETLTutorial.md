@@ -912,9 +912,10 @@ Summary
 -------
 
 Data filtering:
-- Filter genotypes
-- Filter samples
-- Filter variants
+
+-   Filter genotypes
+-   Filter samples
+-   Filter variants
 
 *Variants can be filtered before samples filtering if samples are of greater priority in a study.*
 
