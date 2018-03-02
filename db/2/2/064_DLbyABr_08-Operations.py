@@ -26,6 +26,7 @@
 # MAGIC [1] Load and use a pretrained model
 # MAGIC 
 # MAGIC Many of the existing toolkit projects offer models pretrained on datasets, including
+# MAGIC 
 # MAGIC * natural language corpus models
 # MAGIC * image datasets like ImageNet (http://www.image-net.org/) or Google's Open Image Dataset (https://research.googleblog.com/2016/09/introducing-open-images-dataset.html)
 # MAGIC * video datasets like the YouTube 8 million video dataset (https://research.googleblog.com/2016/09/announcing-youtube-8m-large-and-diverse.html)
@@ -87,6 +88,7 @@
 # MAGIC We've focused on TensorFlow and Keras, because that's where the "center of mass" is at the moment.
 # MAGIC 
 # MAGIC But there are lots of others. Major ones include:
+# MAGIC 
 # MAGIC * Caffe
 # MAGIC * PaddlePaddle
 # MAGIC * Theano
@@ -138,6 +140,7 @@
 # MAGIC <img src="http://i.imgur.com/3LjF9xl.png">
 # MAGIC 
 # MAGIC Ian Goodfellow has distilled and referenced some of the research here: https://openai.com/blog/adversarial-example-research/
+# MAGIC 
 # MAGIC * He is also maintainer of an open-source project to measure robustness to adversarial examples, Clever Hans: https://github.com/tensorflow/cleverhans
 # MAGIC * Another good project in that space is Foolbox: https://github.com/bethgelab/foolbox
 # MAGIC 
@@ -165,6 +168,7 @@
 # MAGIC __XLA__, an experimental compiler to make TensorFlow even faster: https://www.tensorflow.org/versions/master/experimental/xla/
 # MAGIC 
 # MAGIC ...and in addition to refinements of what we've already talked about, there is bleeding-edge work in
+# MAGIC 
 # MAGIC * Neural Turing Machines
 # MAGIC * Code-generating Networks
 # MAGIC * Network-designing Networks
