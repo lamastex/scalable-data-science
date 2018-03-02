@@ -90,8 +90,10 @@
 // COMMAND ----------
 
 // MAGIC %md 
+// MAGIC 
 // MAGIC ***
 // MAGIC ### **Create** and **Edit** a New Markdown Cell in this Notebook
+// MAGIC 
 // MAGIC * When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 // MAGIC 
 // MAGIC  ![New Cell](http://training.databricks.com/databricks_guide/create_new_cell.png)
@@ -102,7 +104,8 @@
 // MAGIC * Click out of the cell to see the cell contents update.
 // MAGIC   
 // MAGIC   ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
-// MAGIC   ***
+// MAGIC   
+// MAGIC ***
 
 // COMMAND ----------
 
@@ -239,6 +242,7 @@ displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platfo
 // MAGIC # Let's get our hands dirty in Scala
 // MAGIC 
 // MAGIC We will go through the following programming concepts and tasks:
+// MAGIC 
 // MAGIC * Assignments
 // MAGIC * Methods and Tab-completion
 // MAGIC * Functions in Scala
@@ -337,6 +341,7 @@ s.    // place cursor after the '.' and press Tab to see all available methods f
 
 // MAGIC %md
 // MAGIC For example, 
+// MAGIC 
 // MAGIC * scroll down to ``contains`` and double-click on it.  
 // MAGIC * This should lead to ``s.contains`` in your cell. 
 // MAGIC * Now add an argument String to see if ``s`` contains the argument, for example, try:
@@ -544,6 +549,7 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // MAGIC ### However, let us use the best language for the job!
 // MAGIC 
 // MAGIC ### Cells each have a type - **scala**, **python**, **r**, **sql**, **filesystem**, **command line** or **markdown**.
+// MAGIC 
 // MAGIC * While cells default to the type of the Notebook, other cell types are supported as well.
 // MAGIC * For example, Python Notebooks can contain python, sql, markdown, and even Scala cells. This lets you write notebooks that do use multiple languages.
 // MAGIC * This cell is in **markdown** and is used for documentation purposes.
@@ -554,6 +560,7 @@ lst.map(x => x+10).reduce((x,y) => x+y) // <Ctrl-Enter> to get Int 36 = sum(1+10
 // MAGIC ### All types of cells can be created in any notebook, regardless of the language.
 // MAGIC 
 // MAGIC To create a cell of another language, start the cell with:
+// MAGIC 
 // MAGIC * `%md` - Markdown
 // MAGIC * `%sql` - SQL
 // MAGIC * `%scala` - Scala
