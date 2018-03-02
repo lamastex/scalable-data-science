@@ -11,7 +11,7 @@
 // MAGIC by [Li Caldeira Balkeståhl](https://www.linkedin.com/in/li-caldeira-balkest%C3%A5hl-9b839412b/) and [Mariama Jaiteh](https://www.linkedin.com/in/mariama-jaiteh-a97ab373/)
 // MAGIC 
 // MAGIC ## Scalable web scrapper 
-// MAGIC ### Based on Mastering Spark for Data Science book (Chap. 6)
+// MAGIC ### Based on [Mastering Spark for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/mastering-spark-data-science) book (Chap. 6)
 // MAGIC 
 // MAGIC This cleaned up notebook contains code to perform web scraping, which should then be called from another notebook
 
@@ -77,7 +77,8 @@ def expandUrluntilsame(url:String) : String ={
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC To get the articles from the web, use a dataframe of urls and return a dataframe with body, domain,title
+// MAGIC To get the articles from the web, use a dataframe of urls and return a dataframe with body, domain, title
+// MAGIC 
 // MAGIC * First we make a case class Articles containing body, domain, title and meta description (from the HTML)
 // MAGIC * Use a function getArticles takes a string as input and return an Articles (filled with "null" string if any exception occured)
 // MAGIC * Then make UserDefinedFunction that takes a column name and returns Articles from stuff in that column (to be able to use directly on the DF)
