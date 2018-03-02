@@ -10,6 +10,7 @@
 // MAGIC ### by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning
 // MAGIC 
 // MAGIC This is a `breeze`'y `scala`rific break-down of:
+// MAGIC 
 // MAGIC * Ameet's Linear Algebra Review in CS190.1x Scalable Machine Learning Course that is archived in edX from 2015 and
 // MAGIC * **Home Work:** read this! [https://github.com/scalanlp/breeze/wiki/Quickstart](https://github.com/scalanlp/breeze/wiki/Quickstart)
 // MAGIC 
@@ -25,6 +26,7 @@
 
 // MAGIC %md
 // MAGIC Let's get a quick visual geometric interpretation for vectors, matrices and matrix-vector multiplications, eigen systems with real and comples Eigen values **NOW** from the following interactive visual-cognitive aid at:
+// MAGIC 
 // MAGIC  * [http://setosa.io/ev/eigenvectors-and-eigenvalues/](http://setosa.io/ev/eigenvectors-and-eigenvalues/) just focus on geometric interpretation of vectors and matrices in Cartesian coordinates.
 // MAGIC  
 
@@ -161,6 +163,7 @@ B
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC * A vector is a matrix with many rows and one column.
 // MAGIC * We'll denote a vector by bold lowercase letters:
 // MAGIC   $$\mathbf{a} = \begin{pmatrix} 3.3 \\\\ 1.0 \\\\ 6.3 \\\\ 3.6 \end{pmatrix}$$
@@ -198,7 +201,9 @@ val x = DenseVector.zeros[Double](5) // this will output x: breeze.linalg.DenseV
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC #### Transpose
+// MAGIC 
 // MAGIC **(watch now 1:02 = 95-157 seconds)**:
 // MAGIC 
 // MAGIC [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
