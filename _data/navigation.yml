@@ -63,17 +63,17 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/006_WordCount/
       - title: "SparkSQL Basics"
         url: /sds/2/2/db/007_SparkSQLIntroBasics/
-      - title: "SparkSQL HW-a ProgGuide"
+      - title: "SparkSQL HW-a"
         url: /sds/2/2/db/007a_SparkSQLProgGuide_HW/ 
-      - title: "SparkSQL HW-b ProgGuide"
+      - title: "SparkSQL HW-b"
         url: /sds/2/2/db/007b_SparkSQLProgGuide_HW/ 
-      - title: "SparkSQL HW-c ProgGuide"
+      - title: "SparkSQL HW-c"
         url: /sds/2/2/db/007c_SparkSQLProgGuide_HW/ 
-      - title: "SparkSQL HW-d ProgGuide"
+      - title: "SparkSQL HW-d"
         url: /sds/2/2/db/007d_SparkSQLProgGuide_HW/ 
-      - title: "SparkSQL HW-e ProgGuide"
+      - title: "SparkSQL HW-e"
         url: /sds/2/2/db/007e_SparkSQLProgGuide_HW/ 
-      - title: "SparkSQL HW-f ProgGuide"
+      - title: "SparkSQL HW-f"
         url: /sds/2/2/db/007f_SparkSQLProgGuide_HW/ 
       - title: "ETL Diamonds Data"
         url: /sds/2/2/db/008_DiamondsPipeline_01ETLEDA/
