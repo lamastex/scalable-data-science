@@ -136,7 +136,6 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
 // MAGIC * **(watch now 1:53):** A Brief History of Data Analysis
 // MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/watch?v=5fSSvYlDkag)
 // MAGIC   
-// MAGIC   https://www.youtube.com/v/5fSSvYlDkag?rel=0&autoplay=1&modestbranding=1
 // MAGIC   
 // MAGIC * **(watch now 5:05)**: Where does Data Come From?
 // MAGIC   * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/watch?v=eEJFlHE7Gt4?rel=0&autoplay=1&modestbranding=1)
