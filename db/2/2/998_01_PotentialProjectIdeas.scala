@@ -15,6 +15,7 @@
 // MAGIC %md
 // MAGIC 
 // MAGIC ## Theoretical Projects in Scalable Data Science
+// MAGIC 
 // MAGIC 1. Exact Matrix Completion via Convex Optimization
 // MAGIC  * **Abstract** 
 // MAGIC     - Suppose that one observes an incomplete subset of entries selected from a low-rank matrix. When is it possible to complete the matrix and recover the entries that have not been seen? We demonstrate that in very general settings, one can perfectly recover all of the missing entries from most sufficiently large subsets by solving a convex programming problem that finds the matrix with the minimum nuclear norm agreeing with the observed entries. The techniques used in this analysis draw upon parallels in the field of compressed sensing, demonstrating that objects other than signals and images can be perfectly reconstructed from very limited information.
@@ -28,6 +29,7 @@
 // MAGIC  
 // MAGIC 
 // MAGIC ## Applied Projects in Scalable Data Science
+// MAGIC 
 // MAGIC  1. Content Recommendation on Web Portals
 // MAGIC    * How to offer recommendations to users when they have not specified what they want.
 // MAGIC    * [DOI:10.1145/2461256.2461277](http://dl.acm.org/citation.cfm?id=2461277)
@@ -107,7 +109,8 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Keep reading... 
+// MAGIC Keep reading... I have not updated since early 2017!!!
+// MAGIC 
 // MAGIC * Association for Computing Machinery (ACM) Communications is a nice central point for a quick overview into current computationallu focussed mathematical sciences.
 // MAGIC * PNAS/Science/Nature - usual popular science venues
 // MAGIC * Hacker News
@@ -116,6 +119,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Shared Student Notebooks
-// MAGIC 
+// MAGIC # Shared Student Notebooks for sds-2.2
+// MAGIC  Several notebooks that stduents tried along the course are part of the course content 
+// MAGIC  
 // MAGIC * Yevgen [text analysis of Russian words](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6005499967952011/3389795813726420/4712481027151699/latest.html)
