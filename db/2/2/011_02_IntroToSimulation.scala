@@ -63,17 +63,13 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Poisson_distribution",500))
 
 // COMMAND ----------
 
-
-
-// COMMAND ----------
-
 import breeze.stats.distributions._
 
 val poi = new Poisson(3.0);
 
 // COMMAND ----------
 
-val s = poi.sample(5); // let's draw five samples
+val s = poi.sample(5); // let's draw five samples - black-box
 
 // COMMAND ----------
 
@@ -82,7 +78,7 @@ val s = poi.sample(5); // let's draw five samples
 
 // COMMAND ----------
 
-s.map( x => poi.probabilityOf(x) )
+s.map( x => poi.probabilityOf(x) ) // PMF
 
 // COMMAND ----------
 
@@ -94,7 +90,7 @@ breeze.stats.meanAndVariance(doublePoi.samples.take(1000));
 
 // COMMAND ----------
 
-(poi.mean,poi.variance) // population mean and variance
+(poi.mean, poi.variance) // population mean and variance
 
 // COMMAND ----------
 
@@ -131,16 +127,16 @@ expo.probability(0, math.log(2) * expo.rate)
 
 // COMMAND ----------
 
+expo.probability(math.log(2) * expo.rate, 10000.0)
+
+// COMMAND ----------
+
 expo.probability(0.0, 1.5)
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC The above result means that approximately 95% of the draws from an exponential distribution fall between 0 and thrice the mean. We could have easily computed this with the cumulative distribution as well.
-
-// COMMAND ----------
-
-1.5*0.5
 
 // COMMAND ----------
 
@@ -187,6 +183,10 @@ val df = spark.range(1000).toDF("Id") // just make a DF of 100 row indices
 
 // COMMAND ----------
 
+df.show(5)
+
+// COMMAND ----------
+
 val dfRand = df.select($"Id", rand(seed=1234567) as "rand") // add a column of random numbers in (0,1)
 
 // COMMAND ----------
@@ -215,6 +215,10 @@ val dfExpRand = dfRand.withColumn("expo_sample", -($"one" / $"rate") * log($"one
 // COMMAND ----------
 
 dfExpRand.show(5)
+
+// COMMAND ----------
+
+display(dfExpRand)
 
 // COMMAND ----------
 
