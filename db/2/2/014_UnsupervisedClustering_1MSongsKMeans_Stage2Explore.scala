@@ -109,7 +109,8 @@ display(sqlContext.sql("SELECT duration, year FROM songsTable")) // Aggregation 
 // MAGIC %md
 // MAGIC ## Sampling and visualizing
 // MAGIC 
-// MAGIC Another technique for visually exploring large data, which we are going to try, is sampling data. 
+// MAGIC Another technique for visually exploring large data, which we are going to try, is sampling data.
+// MAGIC 
 // MAGIC * First step is generating a sample.
 // MAGIC * With sampled data we can produce a scatter plot as follows.
 
