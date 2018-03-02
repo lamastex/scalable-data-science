@@ -668,6 +668,7 @@ display(pc12DF)
 // MAGIC %md ## Summary
 // MAGIC 
 // MAGIC Data filtering:
+// MAGIC 
 // MAGIC  - Filter genotypes
 // MAGIC  - Filter samples
 // MAGIC  - Filter variants
