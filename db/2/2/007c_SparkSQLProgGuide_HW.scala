@@ -32,7 +32,7 @@
 // MAGIC The entry point into all functionality in Spark SQL is the
 // MAGIC [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession) class and/or `SQLContext`/`HiveContext`. Spark session is created for you as `spark` when you start **spark-shell** or **pyspark**. You will need to create `SparkSession` usually when building an application (running on production-like on-premises cluster). n this case follow code below to create Spark session.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC import org.apache.spark.sql.SparkSession
 // MAGIC 
 // MAGIC val spark = SparkSession.builder().appName("Spark SQL basic example").getOrCreate()
@@ -584,6 +584,7 @@ ds.show()
 // MAGIC %md
 // MAGIC ## Finally
 // MAGIC DataFrames and Datasets can simplify and improve most of the applications pipelines by bringing concise syntax and performance optimizations. We would highly recommend you to check out the official API documentation, specifically around 
+// MAGIC 
 // MAGIC * [DataFrame API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame), 
 // MAGIC * [Spark SQL functions library](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions$), 
 // MAGIC * [GroupBy clause and aggregated functions](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.GroupedData). 
@@ -597,6 +598,7 @@ ds.show()
 // MAGIC ### How to download data and make a table
 // MAGIC 
 // MAGIC Okay, so how did we actually make table `social_media_usage`? Databricks allows us to upload/link external data and make it available as registerd SQL table. It involves several steps:
+// MAGIC 
 // MAGIC 1. Find interesting set of data - Google can be your friend for most cases here, or you can have your own dataset as CSV file, for example. Good source of data can also be found here: http://www.data.gov/ 
 // MAGIC 2. Download / prepare it to be either on S3, or human-readable format like CSV, or JSON
 // MAGIC 3. Go to Databricks cloud (where you log in to use Databricks notebooks) and open tab **Tables**
