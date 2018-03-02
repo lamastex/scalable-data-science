@@ -77,6 +77,7 @@ val trainingData = new VectorAssembler()
 
 // MAGIC %md
 // MAGIC All we have done above with the `VectorAssembler` method is:
+// MAGIC 
 // MAGIC * created a DataFrame called `trainingData`
 // MAGIC * that `transform`ed our `table` called `songsTable` 
 // MAGIC * by adding an output column named `features` using `setOutputCol("features")`
@@ -114,6 +115,7 @@ display(trainingData.select("duration", "tempo", "loudness", "features").limit(5
 
 // MAGIC %md
 // MAGIC #### [Demonstration of the standard algorithm](https://en.wikipedia.org/wiki/K-means_clustering#Initialization_methods)
+// MAGIC 
 // MAGIC (1) ![](https://upload.wikimedia.org/wikipedia/commons/5/5e/K_Means_Example_Step_1.svg)
 // MAGIC (2) ![](https://upload.wikimedia.org/wikipedia/commons/a/a5/K_Means_Example_Step_2.svg)
 // MAGIC (3) ![](https://upload.wikimedia.org/wikipedia/commons/3/3e/K_Means_Example_Step_3.svg)
@@ -153,7 +155,9 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/K-means_clustering#Standard_a
 
 // MAGIC %md
 // MAGIC ### CAUTION!
+// MAGIC 
 // MAGIC [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set), clustered using 
+// MAGIC 
 // MAGIC   * k-means (left) and 
 // MAGIC   * true species in the data set (right). 
 // MAGIC   
@@ -278,8 +282,9 @@ display(transformed2.sample(false, fraction = 0.1))
 // MAGIC To really understand how the points in 3D behave you need to see them in 3D interactively and understand the limits of its three 2D projections. For this let us spend some time and play in sageMath Worksheet in [CoCalc](https://cocalc.com/) (it is free for light-weight use and perhaps worth the 7 USD a month if you need more serious computing in mathmeatics, statistics, etc. in multiple languages!).
 // MAGIC 
 // MAGIC Let us take a look at this sageMath Worksheet published here:
-// MAGIC   * [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews)
-// MAGIC   * and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files):
+// MAGIC 
+// MAGIC * [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews)
+// MAGIC * and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files):
 // MAGIC     * [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
 // MAGIC     * [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
 // MAGIC 
