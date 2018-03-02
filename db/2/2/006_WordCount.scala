@@ -8,25 +8,26 @@
 // MAGIC %md
 // MAGIC # Word Count on US State of the Union (SoU) Addresses
 // MAGIC 
-// MAGIC * Word Count in big data is the equivalent of 'Hello World' in programming
+// MAGIC * Word Count in big data is the equivalent of `Hello World` in programming
 // MAGIC * We count the number of occurences of each word in the first and last (2016) SoU addresses.
 // MAGIC 
-// MAGIC **prerequisite** see **DO NOW** below. You should have loaded data as instructed in 'scalable-data-science/xtraResources/sdsDatasets'.
+// MAGIC **prerequisite** see **DO NOW** below. You should have loaded data as instructed in `scalable-data-science/xtraResources/sdsDatasets`.
 // MAGIC 
 // MAGIC #### DO NOW (if not done already)
 // MAGIC 
 // MAGIC In your databricks community edition:
 // MAGIC 
-// MAGIC 1. In your `WorkSpace' create a Folder named 'scalable-data-science'
-// MAGIC 2. 'Import' the databricks archive file at the following URL:
+// MAGIC 1. In your `WorkSpace` create a Folder named `scalable-data-science`
+// MAGIC 2. `Import` the databricks archive file at the following URL:
 // MAGIC     * [https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc](https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc)
-// MAGIC 3. This should open a structure of directories in with path: `/Workspace/scalable-data-science/xtraResources/'
+// MAGIC 3. This should open a structure of directories in with path: `/Workspace/scalable-data-science/xtraResources/`
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC 
 // MAGIC An interesting analysis of the textual content of the *State of the Union (SoU)* addresses by all US presidents was done in:
+// MAGIC 
 // MAGIC * [Alix Rule, Jean-Philippe Cointet, and Peter S. Bearman, Lexical shifts, substantive changes, and continuity in State of the Union discourse, 1790–2014, PNAS 2015 112 (35) 10837-10844; doi:10.1073/pnas.1512221112](http://www.pnas.org/content/112/35/10837.full).
 // MAGIC 
 // MAGIC 
@@ -36,6 +37,7 @@
 // MAGIC [Fig. 5](http://www.pnas.org/content/112/35/10837.full). A river network captures the flow across history of US political discourse, as perceived by contemporaries. Time moves along the x axis. Clusters on semantic networks of 300 most frequent terms for each of 10 historical periods are displayed as vertical bars. Relations between clusters of adjacent periods are indexed by gray flows, whose density reflects their degree of connection. Streams that connect at any point in history may be considered to be part of the same system, indicated with a single color. 
 // MAGIC 
 // MAGIC ## Let us investigate this dataset ourselves!
+// MAGIC 
 // MAGIC 1. We first get the source text data by scraping and parsig from [http://stateoftheunion.onetwothree.net/texts/index.html](http://stateoftheunion.onetwothree.net/texts/index.html) as explained in 
 // MAGIC [scraping and parsing SoU addresses](/#workspace/scalable-data-science/xtraResources/sdsDatasets/scraperUSStateofUnionAddresses).
 // MAGIC * This data is already made available in DBFS, our distributed file system.
@@ -45,9 +47,11 @@
 
 // MAGIC %md
 // MAGIC ## Project Suggestion
+// MAGIC 
 // MAGIC **Streaming/NLP/Vertex-Programs, etc**:
-// MAGIC * [project: MEP - meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/) -  just won AWS Cloud Computing Credits for research grant.
-// MAGIC * if interested please come to a group meeting next Monday 1500-1600 September 25th in [Professor Matteo Magnani](http://katalog.uu.se/empinfo/?languageId=1&id=N13-1077)'s Networks Group meeting in IT Department.
+// MAGIC 
+// MAGIC * [project: MEP - meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/) -  just won (2017-2018) AWS Cloud Computing Credits for research grant.
+// MAGIC * [The GDELT Project: Watching our World Unfold](https://www.gdeltproject.org/)
 
 // COMMAND ----------
 
@@ -73,6 +77,7 @@
 
 // MAGIC %md
 // MAGIC ###DBFS and dbutils - where is this dataset in our distributed file system?
+// MAGIC 
 // MAGIC * Since we are on the databricks cloud, it has a file system called DBFS
 // MAGIC * DBFS is similar to HDFS, the Hadoop distributed file system
 // MAGIC * dbutils allows us to interact with dbfs.
@@ -107,6 +112,7 @@ dbutils.fs.head("dbfs:/datasets/sou/17900108.txt",673) // Cntrl+Enter to get the
 
 // MAGIC %md
 // MAGIC ### Read the file into Spark Context as an RDD of Strings
+// MAGIC 
 // MAGIC * The `textFile` method on the available `SparkContext` `sc` can read the text file `dbfs:/datasets/sou/17900108.txt` into Spark and create an RDD of Strings
 // MAGIC   * but this is done lazily until an action is taken on the RDD `sou17900108`!
 
@@ -118,6 +124,7 @@ val sou17900108 = sc.textFile("dbfs:/datasets/sou/17900108.txt") // Cntrl+Enter 
 
 // MAGIC %md
 // MAGIC ### Perform some actions on the RDD
+// MAGIC 
 // MAGIC * Each String in the RDD `sou17900108` represents one line of data from the file and can be made to perform one of the following actions:
 // MAGIC   * count the number of elements in the RDD `sou17900108` (i.e., the number of lines in the text file `dbfs:/datasets/sou/17900108.txt`) using `sou17900108.count()`
 // MAGIC   * display the contents of the RDD using `take` or `collect`.
@@ -142,6 +149,7 @@ sou17900108.collect // <Cntrl+Enter> to display all the elements of RDD
 
 // MAGIC %md
 // MAGIC ### Cache the RDD in (distributed) memory to avoid recreating it for each action
+// MAGIC 
 // MAGIC * Above, every time we took an action on the same RDD, the RDD was reconstructed from the textfile.  
 // MAGIC   * Spark's advantage compared to Hadoop MapReduce is the ability to cache or store the RDD in distributed memory across the nodes.
 // MAGIC * Let's use `.cache()` after creating an RDD so that it is in memory after the first action (and thus avoid reconstruction for subsequent actions).
@@ -176,6 +184,7 @@ sou17900108.take(5) // <Cntrl+Enter> to display the first 5 elements of the cach
 // MAGIC [![Spark Program Lifecycle by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/HWZUqNYAJj4/0.jpg)](https://www.youtube.com/watch?v=HWZUqNYAJj4?rel=0&autoplay=1&modestbranding=1&start=1)
 // MAGIC 
 // MAGIC ##### Summary
+// MAGIC 
 // MAGIC * create RDDs from:
 // MAGIC   * some external data source (such as a distributed file system)
 // MAGIC   * parallelized collection in your driver program
@@ -187,6 +196,7 @@ sou17900108.take(5) // <Cntrl+Enter> to display the first 5 elements of the cach
 
 // MAGIC %md
 // MAGIC ### Transform lines to words
+// MAGIC 
 // MAGIC * We need to loop through each line and split the line into words
 // MAGIC * For now, let us split using whitespace
 // MAGIC * More sophisticated regular expressions can be used to split the line (as we will see soon)
@@ -201,7 +211,9 @@ sou17900108
 
 // MAGIC %md
 // MAGIC ### Naive word count
+// MAGIC 
 // MAGIC At a first glace, to do a word count of George Washingtons SoU address, we are templed to do the following:
+// MAGIC 
 // MAGIC  * just break each line by the whitespace character " " and find the words using a `flatMap`
 // MAGIC  * then do the `map` with the closure `word => (word, 1)` to initialize each `word` with a integer count of `1` 
 // MAGIC     * ie., transform each word to a *(key, value)* pair or `Tuple` such as `(word, 1)`
@@ -221,14 +233,16 @@ sou17900108
 
 // MAGIC %md
 // MAGIC Unfortunately, as you can see from the `collect` above:
+// MAGIC 
 // MAGIC * the words have punctuations at the end which means that the same words are being counted as different words. Eg: importance
 // MAGIC * empty words are being counted
 // MAGIC 
 // MAGIC So we need a bit of `regex`'ing or regular-expression matching (all readily available from Scala via Java String types).
 // MAGIC 
 // MAGIC We will cover the three things we want to do with a simple example from Middle Earth!
+// MAGIC 
 // MAGIC * replace all multiple whitespace characters with one white space character " "
-// MAGIC * replace all punction characters we specify within `[` and `]` such as `[,?.!:;]` by the empty string "" (i.e., remove these punctuation characters)
+// MAGIC * replace all punction characters we specify within `[` and `]` such as `[,?.!:;]` by the empty string `""` (i.e., remove these punctuation characters)
 // MAGIC * convert everything to lower-case.
 
 // COMMAND ----------
@@ -356,6 +370,7 @@ wcs.collect()
 
 // MAGIC %md
 // MAGIC ## HOMEWORK 
+// MAGIC 
 // MAGIC * HOWEWORK WordCount 1: `sortBy`
 // MAGIC * HOMEWROK WordCount 2: `dbutils.fs`
 
