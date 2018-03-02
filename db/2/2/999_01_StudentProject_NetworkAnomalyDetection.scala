@@ -476,6 +476,7 @@ display(g.outDegrees.orderBy($"outDegree".desc))
 // MAGIC ## Pre-processing of data
 // MAGIC 
 // MAGIC We preprocessed the data logged from wireshark doing the following:
+// MAGIC 
 // MAGIC - Rounding timestamps by milliseconds, that would be four significant decimals.
 // MAGIC - Group the data by (timestamp, source, destination, protocol) with a count of how many times these kind of packets was sent/received during a millisecond.
 // MAGIC - One-hot encoded the protocol values
