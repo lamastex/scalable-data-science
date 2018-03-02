@@ -30,6 +30,7 @@
 // MAGIC *I am assuming several of you have or are taking ML courses from experts in IT Department at Uppsala (if not, you might want to consider this seriously). In this course we will focus on getting our hads dirty quickly with some level of common understanding across all the disciplines represented here. Please dive deep at your own time to desired depths and tangents based on your background.*
 // MAGIC 
 // MAGIC I may consider teaching a short theoretical course in statistical learning if there is enough interest for those with background in:
+// MAGIC 
 // MAGIC * Real Analysis, 
 // MAGIC * Geometry, 
 // MAGIC * Combinatorics and 
@@ -37,6 +38,7 @@
 // MAGIC in the future.
 // MAGIC 
 // MAGIC Such a course could be an expanded version of the following notes built on the classic works of [Luc Devroye](http://luc.devroye.org/) and the L1-School of Statistical Learning:
+// MAGIC 
 // MAGIC   * Short course on Non-parametric Density Estimation at Centre for Mathematics and its Applications, Ecole Polytechnique, Palaiseau, France 
 // MAGIC      * [http://lamastex.org/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf](http://lamastex.org/courses/Short_Courses/EcolePolytechnique_MDE_2013.pdf)
 
@@ -49,7 +51,6 @@
 // MAGIC **(watch now 4:14)**:
 // MAGIC 
 // MAGIC Ameet's course is in databricks guide for your convenience:
-// MAGIC 
 // MAGIC 
 // MAGIC * [https://docs.databricks.com/spark/1.6/training/scalable-machine-learning-cs190x-2015/index.html](https://docs.databricks.com/spark/1.6/training/scalable-machine-learning-cs190x-2015/index.html)
 // MAGIC 
