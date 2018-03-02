@@ -21,6 +21,7 @@
 // MAGIC Later on, we will use the [DecisionTree algorithm](http://spark.apache.org/docs/latest/ml-classification-regression.html#decision-trees) to predict the price of a diamond from its characteristics.
 // MAGIC 
 // MAGIC Here is an outline of our pipeline:
+// MAGIC 
 // MAGIC * **Step 1. *Load data*: Load data as DataFrame**
 // MAGIC * **Step 2. *Understand the data*: Compute statistics and create visualizations to get a better understanding of the data.**
 // MAGIC * Step 3. *Hold out data*: Split the data randomly into training and test sets.  We will not look at the test data until *after* learning.
@@ -93,6 +94,7 @@ diamondsRawDF.show(10)
 // MAGIC If you notice the schema of `diamondsRawDF` you will see that the automatic schema inference of `SqlContext.read` method has cast the values in the column `price` as `integer`. 
 // MAGIC 
 // MAGIC To cleanup:
+// MAGIC 
 // MAGIC * let's recast the column `price` as `double` for downstream ML tasks later and 
 // MAGIC * let's also get rid of the first column of row indices. 
 
@@ -128,6 +130,7 @@ display(diamondsDF)
 
 // MAGIC %md 
 // MAGIC We can see that we have a mix of 
+// MAGIC 
 // MAGIC * categorical features (`cut`, `color`, `clarity`) and 
 // MAGIC * continuous features (`depth`, `x`, `y`, `z`).  
 // MAGIC 
