@@ -106,6 +106,7 @@ data.take(2)
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC * The first line looks like a header
 // MAGIC * The second line (separated from the first by ",") contains data organized according to the header, i.e., `prev_id` = 3632887, `curr_id` = 121", and so on.
 // MAGIC 
@@ -146,6 +147,7 @@ data.take(2)
 
 // MAGIC %md 
 // MAGIC In the second line of the file above, we can see there were 121 clicks from Google to the Wikipedia page on "!!" (double exclamation marks).  People search for everything!
+// MAGIC 
 // MAGIC * prev_id =  *(nothing)*
 // MAGIC * curr_id = 3632887  *--> (Wikipedia page ID)*
 // MAGIC * n = 121  *(People clicked from Google to this page 121 times in this month.)*
@@ -621,9 +623,11 @@ display(clicks)  // let's display this DataFrame
 // MAGIC 
 // MAGIC Try to laoad a DataFrame in R from the parquet file just as we did for python.
 // MAGIC Read the docs in databricks guide first:
+// MAGIC 
 // MAGIC * [https://docs.databricks.com/spark/latest/sparkr/overview.html](https://docs.databricks.com/spark/latest/sparkr/overview.html)
 // MAGIC 
 // MAGIC And see the `R` example in the Programming Guide:
+// MAGIC 
 // MAGIC * [https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files](https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files).
 
 // COMMAND ----------
