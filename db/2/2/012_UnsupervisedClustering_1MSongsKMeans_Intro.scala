@@ -31,6 +31,7 @@
 // MAGIC ### 1. ETL
 // MAGIC 
 // MAGIC The first step of most data science projects is extracting, transforming and loading data into well formated tables. Our example starts with ETL as well. By following the ETL noteboook you can expect to learn about following Spark concepts:
+// MAGIC 
 // MAGIC * RDD: Resilient Distributed Dataset
 // MAGIC * Reading and transforming RDDs
 // MAGIC * Schema in Spark
@@ -43,6 +44,7 @@
 // MAGIC %md
 // MAGIC ### 2. Explore
 // MAGIC Exploratory analysis is a key step in any real data project. Data scientists use variety of tools to explore and visualize their data. In the second notebook of this tutorial we introduce several tools in Python and Databricks notebooks that can help you visually explore your large data. By reading this notebook and finishing its exercises you will become familiar with:
+// MAGIC 
 // MAGIC * How to view the schema of a table
 // MAGIC * How to display ggplot and matplotlib figures in Notebooks
 // MAGIC * How to summarize and visualize different aspects of large datasets
@@ -53,6 +55,7 @@
 // MAGIC %md
 // MAGIC ### 3. Model
 // MAGIC The end goal of many data scientists is producing useful models. These models are often used for prediction of new and upcoming events in production. In our third notebook we construct a simple K-means clustering model. In this notebook you will learn about:
+// MAGIC 
 // MAGIC * Feature transformation
 // MAGIC * Fitting a model using SparkML API
 // MAGIC * Applying a model to data
