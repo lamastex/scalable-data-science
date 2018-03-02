@@ -114,12 +114,13 @@ Referers were mapped to a fixed set of values corresponding to internal traffic 
 > -   anything else -&gt; `other-other`
 
 In the second line of the file above, we can see there were 121 clicks from Google to the Wikipedia page on "!!" (double exclamation marks). People search for everything!
-\* prev*id = *(nothing)*
-\* curr*id = 3632887 *--&gt; (Wikipedia page ID)*
-\* n = 121 *(People clicked from Google to this page 121 times in this month.)*
-\* prev*title = other-google *(This data record is for referals from Google.)*
-\* curr*title = !! *(This Wikipedia page is about a double exclamation mark.)*
-\* type = other
+
+-   prev\_id = *(nothing)*
+-   curr\_id = 3632887 *--&gt; (Wikipedia page ID)*
+-   n = 121 *(People clicked from Google to this page 121 times in this month.)*
+-   prev\_title = other-google *(This data record is for referals from Google.)*
+-   curr\_title = !! *(This Wikipedia page is about a double exclamation mark.)*
+-   type = other
 
 ### Create a DataFrame from this CSV
 
@@ -706,10 +707,12 @@ shared from <https://twitter.com/michaelarmbrust/status/699969850475737088>
 
 Try to laoad a DataFrame in R from the parquet file just as we did for python.
 Read the docs in databricks guide first:
-\* <https://docs.databricks.com/spark/latest/sparkr/overview.html>
+
+-   <https://docs.databricks.com/spark/latest/sparkr/overview.html>
 
 And see the `R` example in the Programming Guide:
-\* <https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files>.
+
+-   <https://spark.apache.org/docs/latest/sql-programming-guide.html#parquet-files>.
 
 ``` r
 library(SparkR)

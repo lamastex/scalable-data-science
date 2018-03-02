@@ -76,11 +76,12 @@ val trainingData = new VectorAssembler()
 >     trainingData: org.apache.spark.sql.DataFrame = [artist_id: string, artist_latitude: double ... 19 more fields]
 
 All we have done above with the `VectorAssembler` method is:
-\* created a DataFrame called `trainingData`
-\* that `transform`ed our `table` called `songsTable`
-\* by adding an output column named `features` using `setOutputCol("features")`
-\* that was obtained from an `Array` of the `songsTable`'s columns named `duration`, `tempo` and `loudness` using
-\* `setInputCols(Array("duration", "tempo", "loudness"))`.
+
+-   created a DataFrame called `trainingData`
+-   that `transform`ed our `table` called `songsTable`
+-   by adding an output column named `features` using `setOutputCol("features")`
+-   that was obtained from an `Array` of the `songsTable`'s columns named `duration`, `tempo` and `loudness` using
+    -   `setInputCols(Array("duration", "tempo", "loudness"))`.
 
 ``` scala
 trainingData.take(3) // see first 3 rows of trainingData DataFrame, notice the vectors in the last column
@@ -139,8 +140,9 @@ As k-means is a **heuristic algorithm**, there is **no guarantee that it will co
 ### CAUTION!
 
 [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set), clustered using
-\* k-means (left) and
-\* true species in the data set (right).
+
+-   k-means (left) and
+-   true species in the data set (right).
 
 ![](https://upload.wikimedia.org/wikipedia/commons/1/10/Iris_Flowers_Clustering_kMeans.svg)
 
@@ -446,9 +448,10 @@ The new clustering model makes much more sense. Songs with high tempo and loudne
 To really understand how the points in 3D behave you need to see them in 3D interactively and understand the limits of its three 2D projections. For this let us spend some time and play in sageMath Worksheet in [CoCalc](https://cocalc.com/) (it is free for light-weight use and perhaps worth the 7 USD a month if you need more serious computing in mathmeatics, statistics, etc. in multiple languages!).
 
 Let us take a look at this sageMath Worksheet published here:
-\* <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews>
-\* and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files):
-\* [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures*loudness-tempologDuration*Of1MSongsKMeansfor*015*sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
-\* [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures*loudness-tempoDuration*Of1MSongsKMeansfor*015*sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
+
+-   <https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/3DEuclideanSpace_1MSongsKMeansClustering.sagews>
+-   and the accompanying datasets (downloaded from the `display`s in this notebook and uploaded to CoCalc as CSV files):
+    -   [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures*loudness-tempologDuration*Of1MSongsKMeansfor*015*sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempologDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
+    -   [https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures*loudness-tempoDuration*Of1MSongsKMeansfor*015*sds2-2.csv](https://cocalc.com/projects/ee9392a2-c83b-4eed-9468-767bb90fd12a/files/KMeansClusters10003DFeatures_loudness-tempoDuration_Of1MSongsKMeansfor_015_sds2-2.csv)
 
 The point of the above little example is that you need to be able to tell a sensible story with your data science process and not just blindly apply a heuristic, but highly scalable, algorithm which depends on the notion of nearest neighborhoods defined by the metric (Euclidean distances in 3-dimensional real-valued spaces in this example) induced by the features you have engineered or have the power to re/re/...-engineer to increase the meaningfullness of the problem at hand.

@@ -16,15 +16,16 @@ For this example, we analyze the Diamonds dataset from the R Datasets hosted on 
 Later on, we will use the [DecisionTree algorithm](http://spark.apache.org/docs/latest/ml-classification-regression.html#decision-trees) to predict the price of a diamond from its characteristics.
 
 Here is an outline of our pipeline:
-\* **Step 1. *Load data*: Load data as DataFrame**
-\* **Step 2. *Understand the data*: Compute statistics and create visualizations to get a better understanding of the data.**
-\* Step 3. *Hold out data*: Split the data randomly into training and test sets. We will not look at the test data until *after* learning.
-\* Step 4. On the training dataset:
-\* *Extract features*: We will index categorical (String-valued) features so that DecisionTree can handle them.
-\* *Learn a model*: Run DecisionTree to learn how to predict a diamond's price from a description of the diamond.
-\* *Tune the model*: Tune the tree depth (complexity) using the training data. (This process is also called *model selection*.)
-\* Step 5. *Evaluate the model*: Now look at the test dataset. Compare the initial model with the tuned model to see the benefit of tuning parameters.
-\* Step 6. *Understand the model*: We will examine the learned model and results to gain further insight.
+
+-   **Step 1. *Load data*: Load data as DataFrame**
+-   **Step 2. *Understand the data*: Compute statistics and create visualizations to get a better understanding of the data.**
+-   Step 3. *Hold out data*: Split the data randomly into training and test sets. We will not look at the test data until *after* learning.
+-   Step 4. On the training dataset:
+    -   *Extract features*: We will index categorical (String-valued) features so that DecisionTree can handle them.
+    -   *Learn a model*: Run DecisionTree to learn how to predict a diamond's price from a description of the diamond.
+    -   *Tune the model*: Tune the tree depth (complexity) using the training data. (This process is also called *model selection*.)
+-   Step 5. *Evaluate the model*: Now look at the test dataset. Compare the initial model with the tuned model to see the benefit of tuning parameters.
+-   Step 6. *Understand the model*: We will examine the learned model and results to gain further insight.
 
 In this notebook, we will only cover **Step 1** and **Step 2.** above. The other Steps will be revisited in the sequel.
 
@@ -113,8 +114,9 @@ diamondsRawDF.show(10)
 If you notice the schema of `diamondsRawDF` you will see that the automatic schema inference of `SqlContext.read` method has cast the values in the column `price` as `integer`.
 
 To cleanup:
-\* let's recast the column `price` as `double` for downstream ML tasks later and
-\* let's also get rid of the first column of row indices.
+
+-   let's recast the column `price` as `double` for downstream ML tasks later and
+-   let's also get rid of the first column of row indices.
 
 ``` scala
 import org.apache.spark.sql.types.DoubleType
@@ -208,8 +210,9 @@ Let's examine the data to get a better understanding of what is there. We only e
 For more examples of using Databricks's visualization (even across languages) see <https://docs.databricks.com/user-guide/visualizations/index.html> NOW.
 
 We can see that we have a mix of
-\* categorical features (`cut`, `color`, `clarity`) and
-\* continuous features (`depth`, `x`, `y`, `z`).
+
+-   categorical features (`cut`, `color`, `clarity`) and
+-   continuous features (`depth`, `x`, `y`, `z`).
 
 ##### Let's first look at the categorical features.
 

@@ -7,8 +7,9 @@ Linear Algebra Review / re-Introduction
 ### by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning
 
 This is a `breeze`'y `scala`rific break-down of:
-\* Ameet's Linear Algebra Review in CS190.1x Scalable Machine Learning Course that is archived in edX from 2015 and
-\* **Home Work:** read this! <https://github.com/scalanlp/breeze/wiki/Quickstart>
+
+-   Ameet's Linear Algebra Review in CS190.1x Scalable Machine Learning Course that is archived in edX from 2015 and
+-   **Home Work:** read this! <https://github.com/scalanlp/breeze/wiki/Quickstart>
 
 Using the above resources we'll provide a review of basic linear algebra concepts that will recur throughout the course. These concepts include:
 
@@ -20,7 +21,8 @@ Using the above resources we'll provide a review of basic linear algebra concept
 We will see the accompanying Scala computations in the local or non-distributed setting.
 
 Let's get a quick visual geometric interpretation for vectors, matrices and matrix-vector multiplications, eigen systems with real and comples Eigen values **NOW** from the following interactive visual-cognitive aid at:
-\* <http://setosa.io/ev/eigenvectors-and-eigenvalues/> just focus on geometric interpretation of vectors and matrices in Cartesian coordinates.
+
+-   <http://setosa.io/ev/eigenvectors-and-eigenvalues/> just focus on geometric interpretation of vectors and matrices in Cartesian coordinates.
 
 #### Matrix by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning
 

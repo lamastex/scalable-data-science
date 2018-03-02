@@ -203,8 +203,9 @@ Sampling and visualizing
 ------------------------
 
 Another technique for visually exploring large data, which we are going to try, is sampling data.
-\* First step is generating a sample.
-\* With sampled data we can produce a scatter plot as follows.
+
+-   First step is generating a sample.
+-   With sampled data we can produce a scatter plot as follows.
 
 ``` python
 # let's use ggplot from python

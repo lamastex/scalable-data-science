@@ -3,32 +3,13 @@
 
 This is an elaboration of the <http://spark.apache.org/docs/latest/sql-programming-guide.html> by Ivan Sadikov and Raazesh Sainudiin.
 
-Getting Started
-===============
+Data Sources
+============
 
 Spark Sql Programming Guide
 ---------------------------
 
-[Data Sources](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide)
-==============================================================================================================================
-
-[Spark Sql Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide)
----------------------------------------------------------------------------------------------------------------------------------
-
--   [Overview](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide)
-    -   SQL
-    -   DataFrames
-    -   Datasets
--   [Getting Started](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide)
-    -   Starting Point: SQLContext
-    -   Creating DataFrames
-    -   DataFrame Operations
-    -   Running SQL Queries Programmatically
-    -   Creating Datasets
-    -   Interoperating with RDDs
-        -   Inferring the Schema Using Reflection
-        -   Programmatically Specifying the Schema
--   [Data Sources](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide)
+-   Data Sources
     -   Generic Load/Save Functions
         -   Manually Specifying Options
         -   Run SQL on files directly
@@ -47,15 +28,9 @@ Spark Sql Programming Guide
         -   Interacting with Different Versions of Hive Metastore
     -   JDBC To Other Databases
     -   Troubleshooting
--   [Performance Tuning](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/004_performanceTuning_sqlProgGuide)
-    -   Caching Data In Memory
-    -   Other Configuration Options
--   [Distributed SQL Engine](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/005_distributedSqlEngine_sqlProgGuide)
-    -   Running the Thrift JDBC/ODBC server
-    -   Running the Spark SQL CLI
 
-[Data Sources](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide)
-==============================================================================================================================
+Data Sources
+============
 
 Spark SQL supports operating on a variety of data sources through the `DataFrame` or `DataFrame` interfaces. A Dataset can be operated on as normal RDDs and can also be registered as a temporary table. Registering a Dataset as a table allows you to run SQL queries over its data. But from time to time you would need to either load or save Dataset. Spark SQL provides built-in data sources as well as Data Source API to define your own data source and use it read / write data into Spark.
 
@@ -385,8 +360,9 @@ Starting from Spark 1.6.0, partition discovery only finds partitions under the g
 Like ProtocolBuffer, Avro, and Thrift, Parquet also supports schema evolution. Users can start with a simple schema, and gradually add more columns to the schema as needed. In this way, users may end up with multiple Parquet files with different but mutually compatible schemas. The Parquet data source is now able to automatically detect this case and merge schemas of all these files.
 
 Since schema merging is a relatively expensive operation, and is not a necessity in most cases, we turned it off by default starting from 1.5.0. You may enable it by:
-1. setting data source option `mergeSchema` to `true` when reading Parquet files (as shown in the examples below), or
-2. setting the global SQL option `spark.sql.parquet.mergeSchema` to `true`.
+
+1.  setting data source option `mergeSchema` to `true` when reading Parquet files (as shown in the examples below), or
+2.  setting the global SQL option `spark.sql.parquet.mergeSchema` to `true`.
 
 ``` scala
 // Create a simple DataFrame, stored into a partition directory
@@ -427,14 +403,17 @@ When reading from and writing to Hive metastore Parquet tables, Spark SQL will t
 #### Hive/Parquet Schema Reconciliation
 
 There are two key differences between Hive and Parquet from the perspective of table schema processing.
-1. Hive is case insensitive, while Parquet is not
-2. Hive considers all columns nullable, while nullability in Parquet is significant
+
+1.  Hive is case insensitive, while Parquet is not
+2.  Hive considers all columns nullable, while nullability in Parquet is significant
 
 Due to this reason, we must reconcile Hive metastore schema with Parquet schema when converting a Hive metastore Parquet table to a Spark SQL Parquet table. The reconciliation rules are:
-1. Fields that have the same name in both schema must have the same data type regardless of nullability. The reconciled field should have the data type of the Parquet side, so that nullability is respected.
-2. The reconciled schema contains exactly those fields defined in Hive metastore schema.
-- Any fields that only appear in the Parquet schema are dropped in the reconciled schema.
-- Any fileds that only appear in the Hive metastore schema are added as nullable field in the reconciled schema.
+
+1.  Fields that have the same name in both schema must have the same data type regardless of nullability. The reconciled field should have the data type of the Parquet side, so that nullability is respected.
+2.  The reconciled schema contains exactly those fields defined in Hive metastore schema.
+
+-   Any fields that only appear in the Parquet schema are dropped in the reconciled schema.
+-   Any fileds that only appear in the Hive metastore schema are added as nullable field in the reconciled schema.
 
 #### Metadata Refreshing
 

@@ -31,9 +31,10 @@ This is a break-down of *Power Plant ML Pipeline Application* from databricks.
 The example data is provided by UCI at [UCI Machine Learning Repository Combined Cycle Power Plant Data Set](https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant)
 
 You can read the background on the UCI page, but in summary:
-\* we have collected a number of readings from sensors at a Gas Fired Power Plant (also called a Peaker Plant) and
-\* want to use those sensor readings to predict how much power the plant will generate in a couple weeks from now.
-\* Again, today we will just focus on Steps 1-4 above that pertain to DataFrames.
+
+-   we have collected a number of readings from sensors at a Gas Fired Power Plant (also called a Peaker Plant) and
+-   want to use those sensor readings to predict how much power the plant will generate in a couple weeks from now.
+-   Again, today we will just focus on Steps 1-4 above that pertain to DataFrames.
 
 More information about Peaker or Peaking Power Plants can be found on Wikipedia [https://en.wikipedia.org/wiki/Peaking*power*plant](https://en.wikipedia.org/wiki/Peaking_power_plant).
 
@@ -294,7 +295,8 @@ sqlContext.tables.show() // Ctrl+Enter to see available tables
 >     +--------+--------------------+-----------+
 
 We can also access the list of tables and databases using `spark.catalog` methods as explained here:
-\* <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
+
+-   <https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html>
 
 ``` scala
 spark.catalog.listTables.show(false)
@@ -717,11 +719,13 @@ display(powerPlantDF) // just as we did for the diamonds dataset
 Truncated to 30 rows
 
 We will do the following steps in the sequel.
-- *Step 5: Data Preparation*
-- *Step 6: Data Modeling*
-- *Step 7: Tuning and Evaluation*
-- *Step 8: Deployment*
+
+-   *Step 5: Data Preparation*
+-   *Step 6: Data Modeling*
+-   *Step 7: Tuning and Evaluation*
+-   *Step 8: Deployment*
 
 Datasource References:
-\* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
-\* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
+
+-   Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
+-   Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)

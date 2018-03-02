@@ -28,7 +28,7 @@ Starting Point: SQLContext
 The entry point into all functionality in Spark SQL is the
 [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession) class and/or `SQLContext`/`HiveContext`. Spark session is created for you as `spark` when you start **spark-shell** or **pyspark**. You will need to create `SparkSession` usually when building an application (running on production-like on-premises cluster). n this case follow code below to create Spark session.
 
-\`\`\`scala
+\`\`\`
 import org.apache.spark.sql.SparkSession
 
 val spark = SparkSession.builder().appName("Spark SQL basic example").getOrCreate()
@@ -963,9 +963,10 @@ Finally
 -------
 
 DataFrames and Datasets can simplify and improve most of the applications pipelines by bringing concise syntax and performance optimizations. We would highly recommend you to check out the official API documentation, specifically around
-\* [DataFrame API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame),
-\* [Spark SQL functions library](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions$),
-\* [GroupBy clause and aggregated functions](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.GroupedData).
+
+-   [DataFrame API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame),
+-   [Spark SQL functions library](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions$),
+-   [GroupBy clause and aggregated functions](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.GroupedData).
 
 Unfortunately, this is just *a getting started quickly* course, and we skip features like custom aggregations, types, pivoting, etc., but if you are keen to know then start from the links above and this notebook and others in this directory.
 
@@ -975,10 +976,11 @@ Appendix
 ### How to download data and make a table
 
 Okay, so how did we actually make table `social_media_usage`? Databricks allows us to upload/link external data and make it available as registerd SQL table. It involves several steps:
-1. Find interesting set of data - Google can be your friend for most cases here, or you can have your own dataset as CSV file, for example. Good source of data can also be found here: http://www.data.gov/
-2. Download / prepare it to be either on S3, or human-readable format like CSV, or JSON
-3. Go to Databricks cloud (where you log in to use Databricks notebooks) and open tab **Tables**
-4. On the very top of the left sub-menu you will see button **+ Create table**, click on it
-5. You will see page with drop-down menu of the list of sources you can provide, **File** means any file (Parquet, Avro, CSV), but it works the best with CSV format
-6. Once you have chosen file and loaded it, you can change column names, or tweak types (mainly for CSV format)
-7. That is it. Just click on final button to create table. After that you can refer to the table using `sqlContext.table("YOUR_TABLE_NAME")`.
+
+1.  Find interesting set of data - Google can be your friend for most cases here, or you can have your own dataset as CSV file, for example. Good source of data can also be found here: http://www.data.gov/
+2.  Download / prepare it to be either on S3, or human-readable format like CSV, or JSON
+3.  Go to Databricks cloud (where you log in to use Databricks notebooks) and open tab **Tables**
+4.  On the very top of the left sub-menu you will see button **+ Create table**, click on it
+5.  You will see page with drop-down menu of the list of sources you can provide, **File** means any file (Parquet, Avro, CSV), but it works the best with CSV format
+6.  Once you have chosen file and loaded it, you can change column names, or tweak types (mainly for CSV format)
+7.  That is it. Just click on final button to create table. After that you can refer to the table using `sqlContext.table("YOUR_TABLE_NAME")`.

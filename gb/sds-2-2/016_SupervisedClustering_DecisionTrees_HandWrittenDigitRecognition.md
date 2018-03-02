@@ -109,17 +109,19 @@ display(training) // this is databricks-specific for interactive visual convenie
 
 The pixel intensities are represented in `features` as a sparse vector, for example the first observation, as seen in row 1 of the output to `display(training)` or `training.show(2,false)` above, has `label` as `5`, i.e. the hand-written image is for the number 5. And this hand-written image is the following sparse vector (just click the triangle to the left of the feature in first row to see the following):
 `type: 0 size: 780 indices: [152,153,155,...,682,683] values: [3, 18, 18,18,126,...,132,16]`
-Here
-\* `type: 0` says we have a sparse vector that only represents non-zero entries (as opposed to a dense vector where every entry is represented).
-\* `size: 780` says the vector has 780 indices in total
-\* these indices from 0,...,779 are a unidimensional indexing of the two-dimensional array of pixels in the image
-\* `indices: [152,153,155,...,682,683]` are the indices from the `[0,1,...,779]` possible indices with non-zero values
-\* a value is an integer encoding the gray-level at the pixel index
-\* `values: [3, 18, 18,18,126,...,132,16]` are the actual gray level values, for example:
-\* at pixed index `152` the gray-level value is `3`,
-\* at index `153` the gray-level value is `18`,
-\* ..., and finally at
-\* at index `683` the gray-level value is `18`
+
+Here,
+
+-   `type: 0` says we have a sparse vector that only represents non-zero entries (as opposed to a dense vector where every entry is represented).
+-   `size: 780` says the vector has 780 indices in total
+-   these indices from 0,...,779 are a unidimensional indexing of the two-dimensional array of pixels in the image
+-   `indices: [152,153,155,...,682,683]` are the indices from the `[0,1,...,779]` possible indices with non-zero values
+    -   a value is an integer encoding the gray-level at the pixel index
+-   `values: [3, 18, 18,18,126,...,132,16]` are the actual gray level values, for example:
+    -   at pixed index `152` the gray-level value is `3`,
+    -   at index `153` the gray-level value is `18`,
+    -   ..., and finally at
+    -   at index `683` the gray-level value is `18`
 
 Train a Decision Tree
 ---------------------
@@ -246,7 +248,8 @@ val variedMaxDepthModels = (0 until 8).map { maxDepth =>
 >     variedMaxDepthModels: scala.collection.immutable.IndexedSeq[org.apache.spark.ml.PipelineModel] = Vector(pipeline_69ede46d1710, pipeline_d266ac2104e8, pipeline_56cd339e4e3b, pipeline_537b78b25cae, pipeline_78bbe3bd95e7, pipeline_00b13cbae30c, pipeline_26bb7880555e, pipeline_805019a1d27f)
 
 We will use the default metric to evaluate the performance of our classifier:
-\* <https://en.wikipedia.org/wiki/F1_score>.
+
+-   <https://en.wikipedia.org/wiki/F1_score>.
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/F1_score"
@@ -364,11 +367,12 @@ We can see that extreme discretization (black and white) hurts performance as me
 **Resources**
 
 If you are interested in learning more on these topics, these resources can get you started:
-\* [Excellent visual description of Machine Learning and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
-\* *This gives an intuitive visual explanation of ML, decision trees, overfitting, and more.*
-\* [Blog post on MLlib Random Forests and Gradient-Boosted Trees](https://databricks.com/blog/2015/01/21/random-forests-and-boosting-in-mllib.html)
-\* *Random Forests and Gradient-Boosted Trees combine many trees into more powerful ensemble models. This is the original post describing MLlib's forest and GBT implementations.*
-\* Wikipedia
-\* [Decision tree learning](https://en.wikipedia.org/wiki/Decision_tree_learning)
-\* [Overfitting](https://en.wikipedia.org/wiki/Overfitting)
-\* [Hyperparameter tuning](https://en.wikipedia.org/wiki/Hyperparameter_optimization)
+
+-   [Excellent visual description of Machine Learning and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+    -   *This gives an intuitive visual explanation of ML, decision trees, overfitting, and more.*
+-   [Blog post on MLlib Random Forests and Gradient-Boosted Trees](https://databricks.com/blog/2015/01/21/random-forests-and-boosting-in-mllib.html)
+    -   *Random Forests and Gradient-Boosted Trees combine many trees into more powerful ensemble models. This is the original post describing MLlib's forest and GBT implementations.*
+-   Wikipedia
+    -   [Decision tree learning](https://en.wikipedia.org/wiki/Decision_tree_learning)
+    -   [Overfitting](https://en.wikipedia.org/wiki/Overfitting)
+    -   [Hyperparameter tuning](https://en.wikipedia.org/wiki/Hyperparameter_optimization)
