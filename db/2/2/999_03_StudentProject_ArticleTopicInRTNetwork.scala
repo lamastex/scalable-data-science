@@ -31,7 +31,7 @@
 
 // MAGIC %md
 // MAGIC ## 1. Get list of URLs from twitter
-// MAGIC * Raazesh Sainudiin UK election twitter data
+// MAGIC * UK election twitter data (experiment designed by Raazesh Sainudiin and Joakim Johansson)
 // MAGIC * Filter on only those that have URL
 // MAGIC * We experiment on only a sample of the data by taking a 3% random subsample of the distinct URLSs 
 // MAGIC * For illustration purposes, this notebook includes a smaller testsample of only 13 URL's
@@ -159,7 +159,9 @@ val countVectors = vectorizer.transform(filtered)
 
 // MAGIC %md
 // MAGIC ##  4. Topic modelling - usupervised learning
+// MAGIC 
 // MAGIC We want to find topics in our text collection by using unsupervised learning
+// MAGIC 
 // MAGIC * Latent Dirichlet allocation (LDA)
 // MAGIC   * http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf
 // MAGIC   * Models the documents as coming from one or several topics (distributions over words)
@@ -554,6 +556,7 @@ function classes(root) {
 // MAGIC Some clear topics, but room for improvement.
 // MAGIC 
 // MAGIC For example, should investigate:
+// MAGIC 
 // MAGIC * Different LDA parameters (number of topics, number of iterations...)
 // MAGIC * Different minimization procedure
 // MAGIC * More stopwords
