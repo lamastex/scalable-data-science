@@ -122,7 +122,9 @@ display(training) // this is databricks-specific for interactive visual convenie
 // MAGIC indices: [152,153,155,...,682,683]
 // MAGIC values: [3, 18, 18,18,126,...,132,16]
 // MAGIC ```
-// MAGIC Here 
+// MAGIC 
+// MAGIC Here,
+// MAGIC 
 // MAGIC * `type: 0` says we have a sparse vector that only represents non-zero entries (as opposed to a dense vector where every entry is represented).
 // MAGIC * `size: 780` says the vector has 780 indices in total 
 // MAGIC  * these indices from 0,...,779 are a unidimensional indexing of the two-dimensional array of pixels in the image
@@ -148,7 +150,8 @@ display(training) // this is databricks-specific for interactive visual convenie
 
 // COMMAND ----------
 
-// MAGIC %md 
+// MAGIC %md
+// MAGIC 
 // MAGIC See [http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines](http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines).
 
 // COMMAND ----------
@@ -227,7 +230,9 @@ val variedMaxDepthModels = (0 until 8).map { maxDepth =>
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC We will use the default metric to evaluate the performance of our classifier:
+// MAGIC 
 // MAGIC  * [https://en.wikipedia.org/wiki/F1_score](https://en.wikipedia.org/wiki/F1_score).
 
 // COMMAND ----------
@@ -343,6 +348,7 @@ f1MetricPerformanceMeasures.show()
 // MAGIC **Resources**
 // MAGIC 
 // MAGIC If you are interested in learning more on these topics, these resources can get you started:
+// MAGIC 
 // MAGIC * [Excellent visual description of Machine Learning and Decision Trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 // MAGIC   * *This gives an intuitive visual explanation of ML, decision trees, overfitting, and more.*
 // MAGIC * [Blog post on MLlib Random Forests and Gradient-Boosted Trees](https://databricks.com/blog/2015/01/21/random-forests-and-boosting-in-mllib.html)
