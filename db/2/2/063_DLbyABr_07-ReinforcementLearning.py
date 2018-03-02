@@ -1,6 +1,5 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC 
 # MAGIC # [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 # MAGIC 
 # MAGIC This is used in a non-profit educational setting with kind permission of [Adam Breindel](https://www.linkedin.com/in/adbreind).
@@ -25,11 +24,13 @@
 # MAGIC How is training an agent different from training the models we've used so far?
 # MAGIC 
 # MAGIC Most things stay the same, and we can use all of the knowledge we've built:
+# MAGIC 
 # MAGIC * We can use any or all of the network models, including feed-forward, convolutional, recurrent, and combinations of those.
 # MAGIC * We will still train in batches using some variant of gradient descent
 # MAGIC * As before, the model will ideally learn a complex non-obvious function of many parameters
 # MAGIC 
 # MAGIC A few things change ... well, not really change, but "specialize":
+# MAGIC 
 # MAGIC * The inputs may start out as entire frames (or frame deltas) of a video feed
 # MAGIC     * We may feature engineer more explicitly (or not)
 # MAGIC * The ouputs may be a low-cardinality set of categories that represent actions (e.g., direction of a digital joystick, or input to a small number of control systems)
@@ -261,6 +262,7 @@ class Catch(object):
 # MAGIC Note that the output layer has `num_actions` neurons. 
 # MAGIC 
 # MAGIC We are going to implement the training target as 
+# MAGIC 
 # MAGIC * the estimated reward for the one action taken when the game doesn't conclude, or 
 # MAGIC * error/reward for the specific action that loses/wins a game
 # MAGIC 
@@ -305,6 +307,7 @@ class Catch(object):
 
 # MAGIC %md 
 # MAGIC The key bits are:
+# MAGIC 
 # MAGIC * Choose an action
 # MAGIC * Act and collect the reward and new state
 # MAGIC * Cache previous state, action, reward, and new state in "Experience Replay" buffer
@@ -354,6 +357,7 @@ class ExperienceReplay(object):
 
 # MAGIC %md 
 # MAGIC The key bits here are:
+# MAGIC 
 # MAGIC * Set up "blank" buffers for a set of items of the requested batch size, or all memory, whichever is less (in case we don't have much data yet)
 # MAGIC     * one buffer is `inputs` -- it will contain the game state or screen before the agent acted
 # MAGIC     * the other buffer is `targets` -- it will contain a vector of rewards-per-action (with just one non-zero entry, for the action the agent actually took)
@@ -535,15 +539,14 @@ imageio.mimsave('/dbfs/FileStore/movie.gif', images)
 # MAGIC * Simple implementation with Open AI Gym support: https://github.com/sherjilozair/dqn
 # MAGIC 
 # MAGIC This project offers Keras add-on classes for simple experimentation with DQL:
+# MAGIC 
 # MAGIC * https://github.com/farizrahman4u/qlearning4k
 # MAGIC * Note that you'll need to implement (or wrap) the "game" to plug into that framework
 # MAGIC 
 # MAGIC Try it at home:
+# MAGIC 
 # MAGIC * Hack the "Keras Plays Catch" demo to allow the ball to drift horizontally as it falls. Does it work?
 # MAGIC * Try training the network on "delta frames" instead of static frames. This gives the network information about motion (implicitly).
 # MAGIC * What if the screen is high-resolution? what happens? how could you handle it better?
 # MAGIC 
 # MAGIC And if you have the sneaking suspicion that there is a connection between PG and DQL, you'd be right: https://arxiv.org/abs/1704.06440
-
-# COMMAND ----------
-
