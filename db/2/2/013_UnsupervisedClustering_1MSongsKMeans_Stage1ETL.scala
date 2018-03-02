@@ -77,6 +77,7 @@ val header = sc.textFile("/databricks-datasets/songs/data-001/header.txt").map(l
 
 // MAGIC %md
 // MAGIC Let's define a `case class` called `Song` that will be used to represent each row of data in the files:
+// MAGIC 
 // MAGIC * `/databricks-datasets/songs/data-001/part-00000` through `/databricks-datasets/songs/data-001/part-00119` or the last `.../part-*****` file.
 
 // COMMAND ----------
@@ -105,6 +106,7 @@ dataRDD.take(3)
 
 // MAGIC %md
 // MAGIC Each line of data consists of multiple fields separated by `\t`. With that information and what we learned from the header file, we set out to parse our data.
+// MAGIC 
 // MAGIC * We have already created a case class based on the header (which seems to agree with the 3 lines above).
 // MAGIC * Next, we will create a function that takes each line as input and returns the case class as output.
 
