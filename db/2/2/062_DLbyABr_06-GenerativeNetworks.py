@@ -36,6 +36,7 @@
 # MAGIC Those approaches seem like cheating. But let's think about how they work.
 # MAGIC 
 # MAGIC If a child (or adult) draws a cat (or number 8), they are probably not drawing any specific cat (or 8). They are drawing a general approximation of a cat based on 
+# MAGIC 
 # MAGIC 1. All of the cats they've seen
 # MAGIC 2. What they remember as the key elements of a cat (4 legs, tail, pointy ears)
 # MAGIC 3. A lookup table substitutes one specific cat or 8 ... and, especially in the case of the 8, that may be fine. The only thing we "lose" is the diversity of things that all mapped to cat (or 8) -- and discarding that information was exactly our goal when building a classifier
@@ -182,6 +183,7 @@ with K.get_session().as_default():
 
 # MAGIC %md 
 # MAGIC ### The Goal is to Generate a Variety of New Output From a Variety of New Inputs
+# MAGIC 
 # MAGIC ... Where the Class/Category is Common (i.e., all 8s or Cats)
 # MAGIC 
 # MAGIC Some considerations:
@@ -223,6 +225,7 @@ with K.get_session().as_default():
 # MAGIC <div style="text-align: right"><sup>(credit to Kevin Franz, http://kvfrans.com/variational-autoencoders-explained/)</sup></div>
 # MAGIC 
 # MAGIC One challenge is how to balance accurate reproduction of the input (traditional autoencoder loss) with the requirement that we match a Gaussian distribution. We can force the network to optimize both of these goals by creating a custom error function that sums up two components:
+# MAGIC 
 # MAGIC * How well we match the input, calculated as binary crossentropy or MSE loss
 # MAGIC * How well we match a Gaussian, calculated as KL divergence from the Gaussian distribution
 # MAGIC 
