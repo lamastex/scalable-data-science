@@ -32,18 +32,18 @@
 // MAGIC The entry point into all functionality in Spark SQL is the
 // MAGIC [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession) class and/or `SQLContext`/`HiveContext`. Spark session is created for you as `spark` when you start **spark-shell** or **pyspark**. You will need to create `SparkSession` usually when building an application (running on production-like on-premises cluster). n this case follow code below to create Spark session.
 // MAGIC 
-// MAGIC ```
-// MAGIC import org.apache.spark.sql.SparkSession
 // MAGIC 
-// MAGIC val spark = SparkSession.builder().appName("Spark SQL basic example").getOrCreate()
+// MAGIC >import org.apache.spark.sql.SparkSession
+// MAGIC >
+// MAGIC >val spark = SparkSession.builder().appName("Spark SQL basic example").getOrCreate()
+// MAGIC >
+// MAGIC >// you could get SparkContext and SQLContext from SparkSession
+// MAGIC >val sc = spark.sparkContext
+// MAGIC >val sqlContext = spark.sqlContext
+// MAGIC >
+// MAGIC >// This is used to implicitly convert an RDD or Seq to a DataFrame (see examples below)
+// MAGIC >import spark.implicits._
 // MAGIC 
-// MAGIC // you could get SparkContext and SQLContext from SparkSession
-// MAGIC val sc = spark.sparkContext
-// MAGIC val sqlContext = spark.sqlContext
-// MAGIC 
-// MAGIC // This is used to implicitly convert an RDD or Seq to a DataFrame (see examples below)
-// MAGIC import spark.implicits._
-// MAGIC ```
 // MAGIC 
 // MAGIC But in Databricks notebook (similar to `spark-shell`) `SparkSession` is already created for you and is available as `spark`.
 
