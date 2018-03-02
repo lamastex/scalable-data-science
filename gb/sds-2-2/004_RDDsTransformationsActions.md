@@ -1,8 +1,8 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
-**Introduction to Spark**
-=========================
+Introduction to Spark
+=====================
 
 Spark Essentials: RDDs, Transformations and Actions
 ---------------------------------------------------
@@ -22,12 +22,14 @@ Driver Program, Cluster Manager and Worker Nodes
 ------------------------------------------------
 
 The *driver* does the following:
-1. connects to a *cluster manager* to allocate resources across applications
-\* acquire *executors* on cluster nodes
-\* executor processs run compute tasks and cache data in memory or disk on a *worker node*
-\* sends *application* (user program built on Spark) to the executors
-\* sends *tasks* for the executors to run
-\* task is a unit of work that will be sent to one executor
+
+1.  connects to a *cluster manager* to allocate resources across applications
+
+-   acquire *executors* on cluster nodes
+    -   executor processs run compute tasks and cache data in memory or disk on a *worker node*
+-   sends *application* (user program built on Spark) to the executors
+-   sends *tasks* for the executors to run
+    -   task is a unit of work that will be sent to one executor
 
 ![](http://spark.apache.org/docs/latest/img/cluster-overview.png)
 
@@ -390,14 +392,15 @@ wordCountPairRDD.collect()
 Let's next work with RDD of `(key,value)` pairs called a *Pair RDD* or *Key-Value RDD*.
 
 Now some of the Key-Value transformations that we could perform include the following.
-\* **`reduceByKey` transformation**
-\* which takes an RDD and returns a new RDD of key-value pairs, such that:
-\* the values for each key are aggregated using the given reduced function
-\* and the reduce function has to be of the type that takes two values and returns one value.
-\* **`sortByKey` transformation**
-\* this returns a new RDD of key-value pairs that's sorted by keys in ascending order
-\* **`groupByKey` transformation**
-\* this returns a new RDD consisting of key and iterable-valued pairs.
+
+-   **`reduceByKey` transformation**
+    -   which takes an RDD and returns a new RDD of key-value pairs, such that:
+        -   the values for each key are aggregated using the given reduced function
+        -   and the reduce function has to be of the type that takes two values and returns one value.
+-   **`sortByKey` transformation**
+    -   this returns a new RDD of key-value pairs that's sorted by keys in ascending order
+-   **`groupByKey` transformation**
+    -   this returns a new RDD consisting of key and iterable-valued pairs.
 
 Let's see some concrete examples next.
 
@@ -529,28 +532,31 @@ We will use these variables in the sequel.
 #### SUMMARY
 
 Spark automatically creates closures
-\* for functions that run on RDDs at workers,
-\* and for any global variables that are used by those workers
-\* one closure per worker is sent with every task
-\* and there's no communication between workers
-\* closures are one way from the driver to the worker
-\* any changes that you make to the global variables at the workers
-\* are not sent to the driver or
-\* are not sent to other workers.
+
+-   for functions that run on RDDs at workers,
+-   and for any global variables that are used by those workers
+-   one closure per worker is sent with every task
+-   and there's no communication between workers
+-   closures are one way from the driver to the worker
+-   any changes that you make to the global variables at the workers
+    -   are not sent to the driver or
+    -   are not sent to other workers.
 
 The problem we have is that these closures
-\* are automatically created are sent or re-sent with every job
-\* with a large global variable it gets inefficient to send/resend lots of data to each worker
-\* we cannot communicate that back to the driver
+
+-   are automatically created are sent or re-sent with every job
+-   with a large global variable it gets inefficient to send/resend lots of data to each worker
+-   we cannot communicate that back to the driver
 
 To do this, Spark provides shared variables in two different types.
-\* **broadcast variables**
-\* lets us to efficiently send large read-only values to all of the workers
-\* these are saved at the workers for use in one or more Spark operations.
-\* **accumulator variables**
-\* These allow us to aggregate values from workers back to the driver.
-\* only the driver can access the value of the accumulator
-\* for the tasks, the accumulators are basically write-only
+
+-   **broadcast variables**
+    -   lets us to efficiently send large read-only values to all of the workers
+    -   these are saved at the workers for use in one or more Spark operations.
+-   **accumulator variables**
+    -   These allow us to aggregate values from workers back to the driver.
+    -   only the driver can access the value of the accumulator
+    -   for the tasks, the accumulators are basically write-only
 
 ------------------------------------------------------------------------
 
@@ -565,15 +571,16 @@ To do this, Spark provides shared variables in two different types.
 
 See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`.
 This notebook will give you more examples of the operations above as well as others we will be using later, including:
-\* Perform the `takeOrdered` action on the RDD
-\* Transform the RDD by `distinct` to make another RDD and
-\* Doing a bunch of transformations to our RDD and performing an action in a single cell.
+
+-   Perform the `takeOrdered` action on the RDD
+-   Transform the RDD by `distinct` to make another RDD and
+-   Doing a bunch of transformations to our RDD and performing an action in a single cell.
 
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
-### **Importing Standard Scala and Java libraries**
+### Importing Standard Scala and Java libraries
 
 -   For other libraries that are not available by default, you can upload other libraries to the Workspace.
 -   Refer to the **[Libraries](https://docs.databricks.com/user-guide/libraries.html)** guide for more details.

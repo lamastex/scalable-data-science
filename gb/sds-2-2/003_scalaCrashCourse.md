@@ -77,7 +77,8 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 -   Click out of the cell to see the cell contents update.
 
     ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
-    \*\*\*
+
+------------------------------------------------------------------------
 
 ### **Running a cell in your notebook.**
 
@@ -187,11 +188,12 @@ Let's get our hands dirty in Scala
 ==================================
 
 We will go through the following programming concepts and tasks:
-\* Assignments
-\* Methods and Tab-completion
-\* Functions in Scala
-\* Collections in Scala
-\* Scala Closures for Functional Programming and MapReduce
+
+-   Assignments
+-   Methods and Tab-completion
+-   Functions in Scala
+-   Collections in Scala
+-   Scala Closures for Functional Programming and MapReduce
 
 **Remark**: You need to take a computer science course (from CourseEra, for example) to properly learn Scala. Here, we will learn to use Scala by example to accomplish our data science tasks at hand.
 
@@ -275,12 +277,13 @@ s.    // place cursor after the '.' and press Tab to see all available methods f
 ```
 
 For example,
-\* scroll down to `contains` and double-click on it.
-\* This should lead to `s.contains` in your cell.
-\* Now add an argument String to see if `s` contains the argument, for example, try:
-\* `s.contains("f")`
-\* `s.contains("")` and
-\* `s.contains("i")`
+
+-   scroll down to `contains` and double-click on it.
+-   This should lead to `s.contains` in your cell.
+-   Now add an argument String to see if `s` contains the argument, for example, try:
+    -   `s.contains("f")`
+    -   `s.contains("")` and
+    -   `s.contains("i")`
 
 ``` scala
 s    // <Shift-Enter> recall the value of String s
@@ -512,11 +515,12 @@ Spark is written in Scala and the primary language for this course is Scala.
 ### All types of cells can be created in any notebook, regardless of the language.
 
 To create a cell of another language, start the cell with:
-\* `%md` - Markdown
-\* `%sql` - SQL
-\* `%scala` - Scala
-\* `%py` - Python
-\* `%r` - R
+
+-   `%md` - Markdown
+-   `%sql` - SQL
+-   `%scala` - Scala
+-   `%py` - Python
+-   `%r` - R
 
 ### Cross-language cells can be used to mix commands from other languages.
 

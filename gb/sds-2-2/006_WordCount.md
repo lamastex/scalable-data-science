@@ -4,22 +4,23 @@
 Word Count on US State of the Union (SoU) Addresses
 ===================================================
 
--   Word Count in big data is the equivalent of 'Hello World' in programming
+-   Word Count in big data is the equivalent of `Hello World` in programming
 -   We count the number of occurences of each word in the first and last (2016) SoU addresses.
 
-**prerequisite** see **DO NOW** below. You should have loaded data as instructed in 'scalable-data-science/xtraResources/sdsDatasets'.
+**prerequisite** see **DO NOW** below. You should have loaded data as instructed in `scalable-data-science/xtraResources/sdsDatasets`.
 
 #### DO NOW (if not done already)
 
 In your databricks community edition:
 
-1.  In your \`WorkSpace' create a Folder named 'scalable-data-science'
-2.  'Import' the databricks archive file at the following URL:
+1.  In your `WorkSpace` create a Folder named `scalable-data-science`
+2.  `Import` the databricks archive file at the following URL:
     -   <https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2017/parts/xtraResources.dbc>
-3.  This should open a structure of directories in with path: \`/Workspace/scalable-data-science/xtraResources/'
+3.  This should open a structure of directories in with path: `/Workspace/scalable-data-science/xtraResources/`
 
 An interesting analysis of the textual content of the *State of the Union (SoU)* addresses by all US presidents was done in:
-\* [Alix Rule, Jean-Philippe Cointet, and Peter S. Bearman, Lexical shifts, substantive changes, and continuity in State of the Union discourse, 1790–2014, PNAS 2015 112 (35) 10837-10844; doi:10.1073/pnas.1512221112](http://www.pnas.org/content/112/35/10837.full).
+
+-   [Alix Rule, Jean-Philippe Cointet, and Peter S. Bearman, Lexical shifts, substantive changes, and continuity in State of the Union discourse, 1790–2014, PNAS 2015 112 (35) 10837-10844; doi:10.1073/pnas.1512221112](http://www.pnas.org/content/112/35/10837.full).
 
 ![](http://www.pnas.org/content/112/35/10837/F5.large.jpg)
 
@@ -38,8 +39,9 @@ Project Suggestion
 ------------------
 
 **Streaming/NLP/Vertex-Programs, etc**:
-\* [project: MEP - meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/) - just won AWS Cloud Computing Credits for research grant.
-\* if interested please come to a group meeting next Monday 1500-1600 September 25th in [Professor Matteo Magnani](http://katalog.uu.se/empinfo/?languageId=1&id=N13-1077)'s Networks Group meeting in IT Department.
+
+-   [project: MEP - meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/) - just won (2017-2018) AWS Cloud Computing Credits for research grant.
+-   [The GDELT Project: Watching our World Unfold](https://www.gdeltproject.org/)
 
 Key Data Management Concepts
 ----------------------------
@@ -241,12 +243,13 @@ sou17900108
 ### Naive word count
 
 At a first glace, to do a word count of George Washingtons SoU address, we are templed to do the following:
-\* just break each line by the whitespace character " " and find the words using a `flatMap`
-\* then do the `map` with the closure `word => (word, 1)` to initialize each `word` with a integer count of `1`
-\* ie., transform each word to a *(key, value)* pair or `Tuple` such as `(word, 1)`
-\* then count all *value*s with the same *key* (`word` is the Key in our case) by doing a
-\* `reduceByKey(_+_)`
-\* and finally `collect()` to display the results.
+
+-   just break each line by the whitespace character " " and find the words using a `flatMap`
+-   then do the `map` with the closure `word => (word, 1)` to initialize each `word` with a integer count of `1`
+    -   ie., transform each word to a *(key, value)* pair or `Tuple` such as `(word, 1)`
+-   then count all *value*s with the same *key* (`word` is the Key in our case) by doing a
+    -   `reduceByKey(_+_)`
+-   and finally `collect()` to display the results.
 
 ``` scala
 sou17900108
@@ -259,15 +262,17 @@ sou17900108
 >     res56: Array[(String, Int)] = Array((call,1), (country,3), (House,3), (promoted,1), (admitted,1), (agree,1), (accession,1), (exertion,1), (plenty,1), (have,4), (incident,1), (consideration,,1), (session,3), (national,3), (equal,2), (we,2), (intimating,1), (been,2), (who,2), (eminent,1), (any,1), (immediately,1), (essential.,1), (western,1), (speedy,1), (institution,1), (respect,2), (me,2), (peace.,1), (frontiers,1), (free,2), (parts,2), (are,4), (blessings,2), (8,,1), (authority;,1), (presents,1), (affairs,1), (discriminate,1), (expressive,1), (administration,1), (introduction,1), (comfortable,1), (our,10), (as,9), (intrusted,1), (circumstances,2), (peace,,1), (respectability,1), (contributes,1), (branch,1), (better,1), (them,2), (independent,1), (proceeding,1), (duty,2), (law,,1), (foreigners,1), (satisfactory,1), (is,10), (convey,1), (appointments,,1), (favorable,1), (Senate,2), (am,2), (certain,1), (shall,2), (Commonwealth,1), (Virginia),1), (proper,3), (States,4), (recommendation;,1), (impressions,1), (sense,1), (they,2), (new,1), (my,2), (rising,1), (expedient,1), (hope.,1), (uniting,1), (oppression,1), (free,,1), (now,1), (due,2), (has,3), (university,,1), (deserve,1), (licentiousness--,1), (safety,1), (degree,1), (persons,1), (giving,1), (learning,1), (depredations,,1), (Washington,1), (conducive,1), (according,1), (need,1), (manufactures,1), (render,3), (invasions,1), (honor,1), (fulfill,1), (Still,1), (directed,1), (basis,1), (southern,1), (conduct,1), (exigencies,1), (well-digested,1), (objects,1), (Indians,1), (truly,1), (cares,1), (foreign,1), (welfare,1), (consultations,1), (resolution,1), (means,2), (cherishing,1), (this,3), (convincing,1), (deemed,1), (right,1), (There,1), (themselves,1), (general,2), (entirely,1), (explicit,1), (defense,1), (only,1), (importance,,1), (opinion,2), (security,1), (exercise,1), (Knowledge,1), (already,1), (established,,1), (particularly,2), (satisfaction,2), (realize,1), (afford.,1), (rule,1), (cheerful,1), (nations,1), (measure,1), (congratulating,1), (hope,1), (can,3), (resuming,1), (relieved,1), (country,,1), (communication,1), (will,,1), (aggressors.,1), (into,1), (there,1), (science,1), (hostile,1), (rights;,1), (trust,,1), (discern,1), (lay,1), (own,1), (reason,1), (Among,1), (directed,,1), (declaration.,1), (essential,,1), (patriotism,,1), (high,1), (mature,1), (laid,1), (compensation,1), (surest,1), (advancement,1), (respecting,1), (consideration.,1), (one,2), (with,11), (obviously,1), (first,,1), (January,1), (best,3), (importance,2), (interesting,1), (seminaries,1), (post-roads.,1), (proportionably,1), (duly,1), (attention,2), (promote,1), (economy.,1), (afford,1), (Representatives:,3), (from,12), (other,3), (interest,1), (affairs.,2), (well,2), (close,1), (further,1), (received),,1), (facilitated,1), (requisite;,1), (affording,1), (allowed,1), (their,7), (concord,,1), (adequate,1), (last,2), (expediency,1), (between,3), (will,13), (information,3), (useful,1), (valuable,1), ("",1), (confidence,2), (war,1), (provisions,1), (designated,1), (providing,1), (important,2), (encroachments,,1), (uniform,2), (vigilance,1), (so,4), (devise,1), (blessed,1), (Uniformity,1), (reliance,1), (it,6), (The,5), (than,1), (others,1), (attended,1), (deeply,1), (troops,1), (fund,1), (embrace,1), (protection,1), (secure,1), (desirable,1), (engage,1), (received,1), (such,4), (literature.,1), (add,1), (recommended,1), (papers,2), (burthens,1), (common,1), (end,4), (preserving,1), (Whether,1), (to.,1), (deliberations,1), (resulting,1), (place,1), (ways--by,1), (supplies.,1), (derive,2), (To,2), (laws.,1), (great,4), ((of,1), (establishment,1), (commerce,,1), (task,1), (armed,,1), (reflection,1), (less,1), (currency,,1), (lawful,1), (last--and,1), (inevitable,1), (expedients,1), (speedily,1), (the,92), (sentiment,1), (not,3), (nothing,1), (enable,1), (manufactories,1), (most,2), (if,1), (considerations,1), (be,20), (punish,1), (all,1), (contained,1), (though,1), (legislature.,2), (toward,1), (credit,2), (superfluous,1), (disregard,1), (rights,1), (regard,3), (but,5), (official,1), (deliberate,1), (skill,1), (persuaded,1), (itself,1), (increasing,1), (distinguish,1), (necessary,2), (Nor,1), (George,1), (on,3), (distant,1), (against,2), (would,2), (perfect,1), (before,2), (at,2), (object,3), (estimates,1), (them;,1), (should,,1), (interests,2), (Union,,2), (may,5), (government,3), (ascertained,1), (good,,1), (gracious,1), (or,1), (insuring,1), (I,11), (aids,1), (intercourse,2), (Union,1), (of,68), (respectively,,1), (fellow,1), (reach,1), (Various,1), (1790,1), (saw,1), (answered,1), (producing,1), (encouragement,2), (Carolina,1), (particular,1), (Fellow-Citizens,1), (inducements,1), (auspicious,1), (arrangements,1), (difficulty,1), (pacific,1), (opportunity,1), (prosperity.,2), (patronage,1), (A,1), (plan,1), (which,18), (cooperation,2), (you,,1), (also,1), (inhabitants,1), (competent,1), (require,2), (should,3), (tend,1), (genius,1), (naturalization.,1), (character,1), (promotion,1), (for,7), (Gentlemen,2), (teaching,1), (worthy,1), (placed,1), (effectual,2), (present,2), (entitled,1), (your,9), (inventions,1), (terms,1), (North,1), (cool,1), (happiness.,1), (officers,2), (Providence,1), (people,2), (abroad,1), (pleasure,1), (expect,1), (facilitating,1), (was,1), (merit,1), (community,1), (endeavors,1), (arduous,1), (exertions,1), (peculiar,1), (society;,1), (firmness,,1), (pleasing,1), (by,11), (expectations,1), (tribes,1), (efforts,1), (defined,1), (inviolable,1), (It,1), (value,1), (an,5), (soldiers,1), (temperate,1), (sanction,1), (disciplined;,1), (recent,1), (provision,2), (conciliate,1), (made,2), (constitution,1), (agriculture,,1), (concerned,,1), (enlightened,1), (novelty,1), (people,,1), (adopted,1), (efficient,,1), (defraying,1), (wisdom.,1), (employed,1), (convenience,1), (ought,3), (in,16), (provide,1), (weights,,1), (In,4), (good,2), (those,3), (necessary,,1), (support,2), (manner,1), (public,5), (course,1), (and,,1), (entered,1), (within,1), (ours,1), (receive,1), (prospects,1), (liberty,1), (every,2), (matter,1), (nature,1), (you,10), ((comprehending,1), (prepared,2), (various,1), (avoiding,1), (that,15), (a,20), (many,1), (spirit,1), (expenses,1), (not,,1), (work,1), (state,2), (government.,1), (concur;,1), (to,53), (know,1), (military,,1), (persuaded,,1), (post-office,1), (perceive,1), (Constitution,1), (specify,1), (regard.,1), (and,39), (indispensable,1), (constituents,1), (home,,1), (forbear,1), (United,4), (direct,1), (citizens,2), (measures,4))
 
 Unfortunately, as you can see from the `collect` above:
-\* the words have punctuations at the end which means that the same words are being counted as different words. Eg: importance
-\* empty words are being counted
+
+-   the words have punctuations at the end which means that the same words are being counted as different words. Eg: importance
+-   empty words are being counted
 
 So we need a bit of `regex`'ing or regular-expression matching (all readily available from Scala via Java String types).
 
 We will cover the three things we want to do with a simple example from Middle Earth!
-\* replace all multiple whitespace characters with one white space character " "
-\* replace all punction characters we specify within `[` and `]` such as `[,?.!:;]` by the empty string "" (i.e., remove these punctuation characters)
-\* convert everything to lower-case.
+
+-   replace all multiple whitespace characters with one white space character " "
+-   replace all punction characters we specify within `[` and `]` such as `[,?.!:;]` by the empty string `""` (i.e., remove these punctuation characters)
+-   convert everything to lower-case.
 
 ``` scala
 val example = "Master, Master!   It's me, Sméagol... mhrhm*%* But they took away our precious, they wronged us. Gollum will protect us..., Master, it's me Sméagol."
