@@ -7,7 +7,7 @@
 
 // MAGIC %md 
 // MAGIC # Streaming TDigest with flatMapGroupsWithState
-// MAGIC #### <a href="https://www.linkedin.com/in/benny-avelin-460b99121/">Benny Avelin</a> and <a href="https://www.linkedin.com/in/håkan-persson-064b763/">Håkan Persson</a>
+// MAGIC by [Benny Avelin](https://www.linkedin.com/in/benny-avelin-460b99121/) and [Håkan Persson](https://www.linkedin.com/in/håkan-persson-064b763/)
 // MAGIC 
 // MAGIC The idea with this sketch is to demonstrate how we can have a running t-Digest in a streaming context.
 // MAGIC 
@@ -23,6 +23,7 @@
 // MAGIC 
 // MAGIC ### flatmapGroupsWithState vs mapGroupsWithState
 // MAGIC The simple difference between these two can be infered from the name, but let us go into detail. If we are only interested in an aggregated "value" (could be a case class) from each key we should use mapGroupsWithState, however there are some interesting caveats with using mapGroupsWithState. For instance certain update-modes are not allowed as well as further aggregations are not allowed. flatmap... on the other hand can output any number of rows, allows more output-modes and allows for further aggregations, see the Structured Streaming programming guide.
+// MAGIC 
 // MAGIC <table>
 // MAGIC   <tr>
 // MAGIC     <td>Query type</td><td>Output mode</td><td>Operations allowed</td>
@@ -121,6 +122,7 @@ val streamingLinesDS = spark
 // MAGIC 
 // MAGIC ## updateAcrossBatch
 // MAGIC This is our main update-function that we send as a parameter to flatmapGroupsWithState. 
+// MAGIC 
 // MAGIC * It takes as first input the key-value, which we will not care about in this example and is just a dummy for us. 
 // MAGIC * The second input is the `inputs : Iterator[timedScoreCC]`, this is an iterator over the batch of data that we have recieved. This is the type-safe version, i.e. we know that we have a `Dataset[timedScoreCC]`, if we dont and we instead have a `DataFrame = Dataset[Row]`, we have to use `inputs : Iterator[Row]`, and we have to extract the columns of interest cast into the appropriate types. 
 // MAGIC * The third input is the running state variable, this is always wrapped in a `GroupState` wrapper class, i.e. since `TDigestSQL` was our state we need to have `GroupState[TDigestSQL]` as `oldstate`.
