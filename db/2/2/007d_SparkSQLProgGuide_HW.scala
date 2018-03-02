@@ -8,26 +8,10 @@
 // MAGIC %md
 // MAGIC This is an elaboration of the [http://spark.apache.org/docs/latest/sql-programming-guide.html](http://spark.apache.org/docs/latest/sql-programming-guide.html) by Ivan Sadikov and Raazesh Sainudiin.
 // MAGIC 
-// MAGIC # Getting Started
+// MAGIC # Data Sources
 // MAGIC ## Spark Sql Programming Guide
-// MAGIC # [Data Sources](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide)
 // MAGIC 
-// MAGIC ## [Spark Sql Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/000_sqlProgGuide)
-// MAGIC 
-// MAGIC -   [Overview](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/001_overview_sqlProgGuide)
-// MAGIC     -   SQL
-// MAGIC     -   DataFrames
-// MAGIC     -   Datasets
-// MAGIC -   [Getting Started](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/002_gettingStarted_sqlProgGuide)
-// MAGIC     -   Starting Point: SQLContext
-// MAGIC     -   Creating DataFrames
-// MAGIC     -   DataFrame Operations
-// MAGIC     -   Running SQL Queries Programmatically
-// MAGIC     -   Creating Datasets
-// MAGIC     -   Interoperating with RDDs
-// MAGIC         -   Inferring the Schema Using Reflection
-// MAGIC         -   Programmatically Specifying the Schema
-// MAGIC -   [Data Sources](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide)
+// MAGIC -   Data Sources
 // MAGIC     -   Generic Load/Save Functions
 // MAGIC         -   Manually Specifying Options
 // MAGIC         -   Run SQL on files directly
@@ -46,17 +30,11 @@
 // MAGIC         -   Interacting with Different Versions of Hive Metastore
 // MAGIC     -   JDBC To Other Databases
 // MAGIC     -   Troubleshooting
-// MAGIC -   [Performance Tuning](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/004_performanceTuning_sqlProgGuide)
-// MAGIC     -   Caching Data In Memory
-// MAGIC     -   Other Configuration Options
-// MAGIC -   [Distributed SQL Engine](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/005_distributedSqlEngine_sqlProgGuide)
-// MAGIC     -   Running the Thrift JDBC/ODBC server
-// MAGIC     -   Running the Spark SQL CLI
 
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC # [Data Sources](/#workspace/scalable-data-science/xtraResources/ProgGuides1_6/sqlProgrammingGuide/003_dataSources_sqlProgGuide)
+// MAGIC # Data Sources
 // MAGIC 
 // MAGIC Spark SQL supports operating on a variety of data sources through the `DataFrame` or `DataFrame` interfaces. A Dataset can be operated on as normal RDDs and can also be registered as a temporary table. Registering a Dataset as a table allows you to run SQL queries over its data. But from time to time you would need to either load or save Dataset. Spark SQL provides built-in data sources as well as Data Source API to define your own data source and use it read / write data into Spark.
 
@@ -280,6 +258,7 @@ platforms.distinct.map(t => "Name: " + t(0)).collect().foreach(println)
 // MAGIC Like ProtocolBuffer, Avro, and Thrift, Parquet also supports schema evolution. Users can start with a simple schema, and gradually add more columns to the schema as needed. In this way, users may end up with multiple Parquet files with different but mutually compatible schemas. The Parquet data source is now able to automatically detect this case and merge schemas of all these files.
 // MAGIC 
 // MAGIC Since schema merging is a relatively expensive operation, and is not a necessity in most cases, we turned it off by default starting from 1.5.0. You may enable it by:
+// MAGIC 
 // MAGIC 1.  setting data source option `mergeSchema` to `true` when reading Parquet files (as shown in the examples below), or
 // MAGIC 2.  setting the global SQL option `spark.sql.parquet.mergeSchema` to `true`.
 
@@ -313,10 +292,12 @@ df3.printSchema()
 // MAGIC 
 // MAGIC #### Hive/Parquet Schema Reconciliation
 // MAGIC There are two key differences between Hive and Parquet from the perspective of table schema processing.
+// MAGIC 
 // MAGIC 1.  Hive is case insensitive, while Parquet is not
 // MAGIC 2.  Hive considers all columns nullable, while nullability in Parquet is significant
 // MAGIC 
 // MAGIC Due to this reason, we must reconcile Hive metastore schema with Parquet schema when converting a Hive metastore Parquet table to a Spark SQL Parquet table. The reconciliation rules are:
+// MAGIC 
 // MAGIC 1.  Fields that have the same name in both schema must have the same data type regardless of nullability. The reconciled field should have the data type of the Parquet side, so that nullability is respected.
 // MAGIC 2.  The reconciled schema contains exactly those fields defined in Hive metastore schema.
 // MAGIC   -   Any fields that only appear in the Parquet schema are dropped in the reconciled schema.
