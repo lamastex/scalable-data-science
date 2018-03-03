@@ -19,5 +19,7 @@ Some main ways of doing this include:
 * [Some Setups for your On-Premise Cluster of Computers](setups/)
   * Setting up networking
   * Setting up a Ubuntu Server Master
+* [BASH your own Spark-Yarn-HDFS Cluster](bashSparkCluster/)
 * Under Study/Work: [kubernetes for container orchestration to create on-premise or public cloud clusters](../kubernetes/)
+  * [Spark 2.3 has native Kubernetes support now - March 2018](https://spark.apache.org/docs/latest/running-on-kubernetes.html)
 
