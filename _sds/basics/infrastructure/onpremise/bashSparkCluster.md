@@ -1,5 +1,5 @@
 ---
-title: BASH your own Spark-Yarn-HDFS Cluster
+title: Spark-Yarn-HDFS Cluster
 permalink: /sds/basics/infrastructure/onpremise/bashSparkCluster/
 sidebar:
   nav: "lMenu-SDS-2.2"
@@ -7,7 +7,7 @@ author: "Benny Avelin"
 author_profile: true
 ---
 
-# BASH your own Spark-Yarn-HDFS cluster
+## How to BASH your own Spark-Yarn-HDFS cluster?
 
 By [Benny Avelin](https://www.linkedin.com/in/benny-avelin-460b99121/) 
 
