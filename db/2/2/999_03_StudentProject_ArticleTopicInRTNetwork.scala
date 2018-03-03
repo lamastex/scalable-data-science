@@ -12,6 +12,12 @@
 // MAGIC 
 // MAGIC ### Idea: Do topic modelling on web articles linked from twitter and see what topics are being tweeted by whom
 // MAGIC 
+// MAGIC The aim of the project is to apply topic modelling on web articles linked in tweets obtained from Twitter. Since each article (and its topics) is linked to a user, we hope to highlight the topics spread by every user in their Twitter network.
+// MAGIC 
+// MAGIC 
+// MAGIC ## How to run the notebook
+// MAGIC The repos contains the scala source code and databricks notebook of our project. 
+// MAGIC 
 // MAGIC ## Steps
 // MAGIC #### 1. Get list of URLs from twitter
 // MAGIC #### 2. Get the article content
