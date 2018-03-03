@@ -3,13 +3,13 @@ title: Rootless Spark
 permalink: /sds/basics/infrastructure/onpremise/rootless/
 sidebar:
   nav: "lMenu-SDS-2.2"
-author: "Dan Strängberg"
+author: "Dan Lilja"
 author_profile: true
 ---
 
 ## Installing Spark-Hadoop-Yarn-Hive-Zeppelin without Root Access
 
-By [Dan Strängberg](https://www.linkedin.com/in/dan-str%C3%A4ngberg-a2ab8096/) with assistance from [Tilo Wiklund](https://www.linkedin.com/in/tilo-wiklund-682aa496/)
+By [Dan Lilja](https://www.linkedin.com/in/dan-lilja-a2ab8096/) with assistance from [Tilo Wiklund](https://www.linkedin.com/in/tilo-wiklund-682aa496/)
 
 This guide will help you set up an Apache Spark cluster both in standalone mode and together with Apache Hadoop's HDFS and YARN along with Apache Hive and Apache Zeppelin, all without requiring root access. It assumes a basic familiarity with Spark, OpenSSH, and Bash (the use of which will be assumed throughout this guide). This guide assumes the following setup:
 
