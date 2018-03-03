@@ -11,8 +11,6 @@ author_profile: true
 
 By [Benny Avelin](https://www.linkedin.com/in/benny-avelin-460b99121/) 
 
-{% include toc %}
-
 
 A set of bash scripts available at
 
