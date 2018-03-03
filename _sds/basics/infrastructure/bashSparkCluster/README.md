@@ -1,4 +1,4 @@
-#Setup of Spark-Yarn-HDFS cluster
+# Setup of Spark-Yarn-HDFS cluster
 I have prepared a set of scripts that can be used to setup a cluster given that we already have access to a cluster with Ubuntu running and the network is setup.
 
 We begin by noting that the system this is created for is for user the same user on the master and all nodes, in our notes it is xadmin.
