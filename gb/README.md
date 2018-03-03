@@ -103,17 +103,15 @@ Assignments, on the other hand, are to be completed individually.
 	*  [Simulation Intro](sds-2-2/011_02_IntroToSimulation.md)
 	*  [Machine Learning Intro](sds-2-2/011_03_IntroToML.md)
 6. Unsupervised Learning - Clustering 
-	-  k-means (1 million songs dataset)
-	-  Gaussian Mixture Models and EM Algorithm
+	*  k-means (1 million songs dataset)
+	*  Gaussian Mixture Models and EM Algorithm
 	*  [K-Means 1MSongs Intro](sds-2-2/012_UnsupervisedClustering_1MSongsKMeans_Intro.md)
 	*  [1MSongs - 1 ETL](sds-2-2/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL.md)
 	*  [1MSongs - 2 Explore](sds-2-2/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore.md)
 	*  [1MSongs - 3 Model](sds-2-2/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model.md)
 7. Supervised Learning - Decision Trees
-	-  Unsupervised: Latent Dirichlet Allocation (news groups dataset)
-	- Assignment: Build your own sentiment detector
-	-  Linear Regression (power-plant data)
-	-  Decision Trees for Classification (hand-written digit recognition)
+	*  Linear Regression (power-plant data)
+	*  Decision Trees for Classification (hand-written digit recognition)
 	*  [Decision Trees for Digits](sds-2-2/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition.md)
 8. Linear Algebra for Distributed Machine Learning
 	*  [Linear Algebra Intro](sds-2-2/017_LAlgIntro.md)
@@ -124,10 +122,10 @@ Assignments, on the other hand, are to be completed individually.
 10. Supervised Learning - Random Forests
 	*  [Activity Detection - Random Forest](sds-2-2/021_recognizeActivityByRandomForest.md)
 11. Mining Networks and Graphs with Spark's GraphX
-	-  Extract, transform and loading of network data
-	-  Discovery of communities in graphs (wikipedia click streams)
-	-  label and belief propagation
-	-  querying sub-structures in graphs (US Airport network)
+	*  Extract, transform and loading of network data
+	*  Discovery of communities in graphs (wikipedia click streams)
+	*  label and belief propagation
+	*  querying sub-structures in graphs (US Airport network)
 	*  [Graph Frames Intro](sds-2-2/022_GraphFramesUserGuide.md)
 	*  [Ontime Flight Performance](sds-2-2/023_OnTimeFlightPerformance.md)
 12. Spark Streaming with Discrete Resilient Distributed Datasets
