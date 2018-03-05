@@ -222,7 +222,7 @@ Here are some free online courses if you need quick refreshers or want to go ind
 * [Intro to Descriptive Statistics](https://www.udacity.com/course/intro-to-descriptive-statistics--ud827)
 * [Intro to Inferential Statistics](https://www.udacity.com/course/intro-to-inferential-statistics--ud201)
 
-### Apache Spark / shell / github / Scala / Python / R
+### Apache Spark / shell / github / Scala / Python / Tensorflow / R
 - Learning Spark : lightning-fast data analytics by Holden Karau, Andy Konwinski, Patrick Wendell, and Matei Zaharia, O'Reilly, 2015.
 - Advanced analytics with Spark : patterns for learning from data at scale, O'Reilly, 2015.
 - Command-line Basics
@@ -232,6 +232,7 @@ Here are some free online courses if you need quick refreshers or want to go ind
 - [How to use Git and GitHub: Version control for code](https://www.udacity.com/course/how-to-use-git-and-github--ud775)
 - [Intro to Data Analysis: Using NumPy and Pandas](https://www.udacity.com/course/intro-to-data-analysis--ud170)
 - [Data Analysis with R by facebook](https://www.udacity.com/course/data-analysis-with-r--ud651)
+* [Machine Learning Crash Course with TensorFlow APIs by Google Developers](https://developers.google.com/machine-learning/crash-course/)
 - [Data Visualization and D3.js](https://www.udacity.com/course/data-visualization-and-d3js--ud507)
 - [Scala Programming](http://www.scala-lang.org/documentation)
 - [Scala for Data Science, Pascal Bugnion, Packt Publishing, 416 pages, 2016](http://shop.oreilly.com/product/9781785281372.do). 
