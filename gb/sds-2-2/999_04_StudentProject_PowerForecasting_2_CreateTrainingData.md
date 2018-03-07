@@ -223,6 +223,8 @@ val dataset = dataFeatDF.withColumn("future_power",lead("meanPower",leadSteps,0)
 
 ### Split the data into a training and test set
 
+This is for modelgeneralizability.
+
 ``` scala
 var Array(split20, split80) = dataset.randomSplit(Array(0.20, 0.80), 1800009193L)
 ```
