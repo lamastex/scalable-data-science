@@ -2,11 +2,14 @@
 // MAGIC %md
 // MAGIC 
 // MAGIC # [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
+// MAGIC 
+// MAGIC TODO: Raaz needs to descend into Ram's latest blog and introduce z-order curves form Samet's handbook on multi-dimensional metric data structures and a bit about catalyst optimisation in SparkSQL for contains queries...
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC # Analysis of NY Taxi dataset in magellan
+// MAGIC 
 // MAGIC ### Replicating Ram Sriharsha's analysis by Victor Ingman.
 // MAGIC 
 // MAGIC See [https://magellan.ghost.io/magellan-geospatial-processing-made-easy/](https://magellan.ghost.io/magellan-geospatial-processing-made-easy/) for Ram's blog on this data analysis and learn about the dataset at [http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml](http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml).
