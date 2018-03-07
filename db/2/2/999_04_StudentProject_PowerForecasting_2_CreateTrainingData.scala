@@ -208,7 +208,9 @@ val dataset = dataFeatDF.withColumn("future_power",lead("meanPower",leadSteps,0)
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC ### Split the data into a training and test set
+// MAGIC This is for modelgeneralizability.
 
 // COMMAND ----------
 
