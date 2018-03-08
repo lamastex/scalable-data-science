@@ -7,6 +7,8 @@ To launch spark and zeppelin do:
 ```%sh
 $ docker run -d -p 8080:8080 -p 7077:7077 -p 4040:4040 raazesh/sds-spark:zeppelin
 ```
+and then open a web-browser pointing at `http://localhost:8080` for zeppelin.
+
 ## sds-spark
 This is heavy-weight image over 2G in size
 ```%sh
@@ -18,7 +20,6 @@ root@78775a48187e:/spark# sbt console
 [info] 
 Welcome to Scala 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_144).
 Type in expressions for evaluation. Or try :help.
-
 ```
 
 ### for spark-shell
