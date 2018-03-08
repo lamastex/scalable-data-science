@@ -32,8 +32,9 @@ Towards this we will be using [docker](https://www.docker.com/) to set up the *l
   * Linux OS
   * Mac OS
   * Windows OS
-3. Step 3: Download Docker Image
-  * [How was this Docker image made?](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/docker/)
+3. Step 3: Run Docker from pre-built images for scalable data sciences
+  * Follow instructions at [docker-sds]((https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/docker/docker-sds) to jump-start from pre-built docker images in order to work on your laptop (recommend 2-4 GB of memory). Need 16 GB for more sophisticated docker compositions (only needed for developers and data engineering scientists).
+    * [How were these Docker images made from "scratch"?](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/docker/)
 
 **Optionally** after some downloads and setups, you can also:
 
