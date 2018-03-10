@@ -78,6 +78,7 @@ $$
             -   where, \\(\mathbb{R}\\) here denotes the set of all real numbers in the line given by the open interval: \\( (-\infty,+\infty)\\).
 
 Let us created a matrix `A` as a `val` (that is immutable) in scala. The matrix we want to create is mathematically notated as follows:
+
 $$
 \mathbf{A} =
 \begin{pmatrix}
