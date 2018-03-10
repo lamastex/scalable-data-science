@@ -46,7 +46,7 @@ displayHTML(frameIt("https://spark.apache.org/docs/latest/graphx-programming-gui
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC #GraphFrames User Guide (Scala)
+// MAGIC # GraphFrames User Guide (Scala)
 // MAGIC 
 // MAGIC GraphFrames is a package for Apache Spark which provides DataFrame-based Graphs. It provides high-level APIs in Scala, Java, and Python. It aims to provide both the functionality of GraphX and extended functionality taking advantage of Spark DataFrames. This extended functionality includes motif finding, DataFrame-based serialization, and highly expressive graph queries.
 // MAGIC 
@@ -576,7 +576,8 @@ display(g2.edges)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC READ! [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
+// MAGIC 
+// MAGIC READ [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
 
 // COMMAND ----------
 
@@ -614,7 +615,8 @@ display(filteredPaths)
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC ###Connected components
+// MAGIC 
+// MAGIC ### Connected components
 // MAGIC 
 // MAGIC Compute the connected component membership of each vertex and return a graph with each vertex assigned a component ID.
 // MAGIC 
@@ -647,7 +649,8 @@ display(result)
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC ##Strongly connected components
+// MAGIC 
+// MAGIC ## Strongly connected components
 // MAGIC 
 // MAGIC Compute the strongly connected component (SCC) of each vertex and return a graph with each vertex assigned to the SCC containing that vertex.
 // MAGIC 
@@ -665,7 +668,8 @@ display(result.orderBy("component"))
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC ##Label propagation
+// MAGIC 
+// MAGIC ## Label propagation
 // MAGIC 
 // MAGIC Run static Label Propagation Algorithm for detecting communities in networks.
 // MAGIC 
@@ -689,7 +693,8 @@ display(result.orderBy("label"))
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC ##PageRank
+// MAGIC 
+// MAGIC ## PageRank
 // MAGIC 
 // MAGIC Identify important vertices in a graph based on connections.
 // MAGIC 
@@ -723,8 +728,8 @@ display(results3.vertices)
 
 // COMMAND ----------
 
-// MAGIC %md 
-// MAGIC ##Shortest paths
+// MAGIC %md
+// MAGIC ## Shortest paths
 // MAGIC 
 // MAGIC Computes shortest paths to the given set of landmark vertices, where landmarks are specified by vertex ID.
 // MAGIC 
@@ -742,7 +747,8 @@ display(paths)
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC ###Triangle count
+// MAGIC 
+// MAGIC ### Triangle count
 // MAGIC 
 // MAGIC Computes the number of triangles passing through each vertex.
 
