@@ -91,6 +91,7 @@ import breeze.linalg._
 
 // MAGIC %md
 // MAGIC Let us created a matrix `A` as a `val` (that is immutable) in scala. The matrix we want to create is mathematically notated as follows:
+// MAGIC 
 // MAGIC $$
 // MAGIC \mathbf{A} = \begin{pmatrix}
 // MAGIC a\_{1,1} & a\_{1,2} & a\_{1,3} \\\\
@@ -233,6 +234,7 @@ a.t
 
 // MAGIC %md
 // MAGIC #### Addition and Subtraction
+// MAGIC 
 // MAGIC **(watch now 0:59 = 157-216 seconds)**:
 // MAGIC 
 // MAGIC [![Linear Algebra Review by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/mnS0lJncJzw/0.jpg)](https://www.youtube.com/watch?v=mnS0lJncJzw)
@@ -461,7 +463,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC   
 // MAGIC Breeze is modeled on Scala, and so if you're familiar with it, you'll be familiar with Breeze. First, import the linear algebra package:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> import breeze.linalg._
 // MAGIC ```
 // MAGIC 
@@ -477,7 +479,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC The vector object supports accessing and updating data elements by their index in `0` to `x.length-1`. Like Numpy, negative indices are supported, with the semantics that for an index `i < 0` we operate on the i-th element from the end (`x(i) == x(x.length + i)`).
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> x(0)
 // MAGIC Double = 0.0
 // MAGIC 
@@ -489,7 +491,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Breeze also supports slicing. **Note that slices using a Range are much, much faster than those with an arbitrary sequence.**
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> x(3 to 4) := .5
 // MAGIC breeze.linalg.DenseVector[Double] = DenseVector(0.5, 0.5)
 // MAGIC 
@@ -499,7 +501,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC The slice operator constructs a read-through and write-through view of the given elements in the underlying vector.  You set its values using the vectorized-set operator `:=`.  You could as well have set it to a compatibly sized Vector.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> x(0 to 1) := DenseVector(.1,.2)
 // MAGIC 
 // MAGIC scala> x
@@ -508,7 +510,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Similarly, a DenseMatrix can be created with a constructor method call, and its elements can be accessed and updated.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> val m = DenseMatrix.zeros[Int](5,5)
 // MAGIC m: breeze.linalg.DenseMatrix[Int] = 
 // MAGIC 0  0  0  0  0  
@@ -520,7 +522,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC The columns of `m` can be accessed as DenseVectors, and the rows as DenseMatrices.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> (m.rows, m.cols)
 // MAGIC (Int, Int) = (5,5)
 // MAGIC 
@@ -541,7 +543,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Assignments with incompatible cardinality or a larger numeric type won't compile.  
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> m := x
 // MAGIC <console>:13: error: could not find implicit value for parameter op: breeze.linalg.operators.BinaryUpdateOp[breeze.linalg.DenseMatrix[Int],breeze.linalg.DenseVector[Double],breeze.linalg.operators.OpSet]
 // MAGIC               m := x
@@ -550,14 +552,14 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Assignments with incompatible size will throw an exception:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> m := DenseMatrix.zeros[Int](3,3)
 // MAGIC java.lang.IllegalArgumentException: requirement failed: Matrices must have same number of row
 // MAGIC ```
 // MAGIC 
 // MAGIC Sub-matrices can be sliced and updated, and literal matrices can be specified using a simple tuple-based syntax. **Unlike Scalala, only range slices are supported, and only the columns (or rows for a transposed matrix) can have a Range step size different from 1.**
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> m(0 to 1, 0 to 1) := DenseMatrix((3,1),(-1,-2)) 
 // MAGIC breeze.linalg.DenseMatrix[Int] = 
 // MAGIC 3   1   
@@ -578,7 +580,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Sometimes we want to apply an operation to every row or column of a matrix, as a unit. For instance, you might want to compute the mean of each row, or add a vector to every column. Adapting a matrix so that operations can be applied column-wise or row-wise is called **broadcasting**. Languages like R and numpy automatically and implicitly do broadcasting, meaning they won't stop you if you accidentally add a matrix and a vector. In Breeze, you have to signal your intent using the broadcasting operator `*`. The `*` is meant to evoke "foreach" visually. Here are some examples:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> import breeze.stats.mean
 // MAGIC 
 // MAGIC scala> val dm = DenseMatrix((1.0,2.0,3.0),
@@ -604,7 +606,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Breeze also provides a fairly large number of probability distributions. These come with access to probability density function for either discrete or continuous distributions. Many distributions also have methods for giving the mean and the variance.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> import breeze.stats.distributions._
 // MAGIC 
 // MAGIC scala> val poi = new Poisson(3.0);
@@ -628,7 +630,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC NOTE: Below, there is a possibility of confusion for the term `rate` in the family of exponential distributions. Breeze parameterizes the distribution with the mean, but refers to it as the rate.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC 
 // MAGIC scala> val expo = new Exponential(0.5);
 // MAGIC expo: breeze.stats.distributions.Exponential = Exponential(0.5)
@@ -639,7 +641,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC A characteristic of exponential distributions is its half-life, but we can compute the probability a value falls between any two numbers.
 // MAGIC 
-// MAGIC ``` scala
+// MAGIC ```
 // MAGIC 
 // MAGIC scala> expo.probability(0, log(2) * expo.rate)
 // MAGIC Double = 0.5
@@ -651,13 +653,13 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC This means that approximately 95% of the draws from an exponential distribution fall between 0 and thrice the mean. We could have easily computed this with the cumulative distribution as well
 // MAGIC 
-// MAGIC ``` scala
+// MAGIC ```
 // MAGIC 
 // MAGIC scala> 1 - exp(-3.0)
 // MAGIC Double = 0.950212931632136
 // MAGIC ```
 // MAGIC 
-// MAGIC ``` scala
+// MAGIC ```
 // MAGIC 
 // MAGIC scala> val samples = expo.sample(2).sorted;
 // MAGIC samples: IndexedSeq[Double] = Vector(1.1891135726280517, 2.325607782657507)
@@ -682,7 +684,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Here's a simple `DiffFunction`: a parabola along each vector's coordinate.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC 
 // MAGIC scala> import breeze.optimize._
 // MAGIC 
@@ -696,7 +698,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Note that this function takes its minimum when all values are 3. (It's just a parabola along each coordinate.)
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> f.valueAt(DenseVector(3,3,3))
 // MAGIC Double = 0.0
 // MAGIC 
@@ -709,7 +711,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC You can also use approximate derivatives, if your function is easy enough to compute:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> def g(x: DenseVector[Double]) = (x - 3.0):^ 2.0 sum
 // MAGIC 
 // MAGIC scala> g(DenseVector(0.,0.,0.))
@@ -723,7 +725,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Ok, now let's optimize `f`. The easiest routine to use is just `LBFGS`, which is a quasi-Newton method that works well for most problems.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> val lbfgs = new LBFGS[DenseVector[Double]](maxIter=100, m=3) // m is the memory. anywhere between 3 and 7 is fine. The larger m, the more memory is needed.
 // MAGIC 
 // MAGIC scala> val optimum = lbfgs.minimize(f,DenseVector(0,0,0))
@@ -735,7 +737,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC That's pretty close to 0! You can also use a configurable optimizer, using `FirstOrderMinimizer.OptParams`. It takes several parameters:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC case class OptParams(batchSize:Int = 512,
 // MAGIC                      regularization: Double = 1.0,
 // MAGIC                      alpha: Double = 0.5,
@@ -756,7 +758,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC We provide a DSL for solving linear programs, using Apache's Simplex Solver as the backend. This package isn't industrial strength yet by any means, but it's good for simple problems. The DSL is pretty simple:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC import breeze.optimize.linear._
 // MAGIC val lp = new LinearProgram()
 // MAGIC import lp._
@@ -783,7 +785,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Breeze continues most of the functionality of Scalala's plotting facilities, though the API is somewhat different (in particular, more object oriented.) These methods are documented in scaladoc for the traits in the `breeze.plot` package object. First, let's plot some lines and save the image to file. All the actual plotting work is done by the excellent [`JFreeChart`](http://www.jfree.org/jfreechart/) library.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC import breeze.linalg._
 // MAGIC import breeze.plot._
 // MAGIC 
@@ -800,7 +802,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Then we'll add a new subplot and plot a histogram of 100,000 normally distributed random numbers into 100 buckets.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC val p2 = f.subplot(2,1,1)
 // MAGIC val g = breeze.stats.distributions.Gaussian(0,1)
 // MAGIC p2 += hist(g.sample(100000),100)
@@ -811,7 +813,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC 
 // MAGIC Breeze also supports the Matlab-like "image" command, here imaging a random matrix.
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC val f2 = Figure()
 // MAGIC f2.subplot(0) += image(DenseMatrix.rand(200,200))
 // MAGIC f2.saveas("image.png")
