@@ -20,11 +20,13 @@
 // MAGIC This notebook provides an analysis of On-Time Flight Performance and Departure Delays data using GraphFrames for Apache Spark.
 // MAGIC 
 // MAGIC Source Data: 
+// MAGIC 
 // MAGIC * [OpenFlights: Airport, airline and route data](http://openflights.org/data.html)
 // MAGIC * [United States Department of Transportation: Bureau of Transportation Statistics (TranStats)](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time)
 // MAGIC  * Note, the data used here was extracted from the US DOT:BTS between 1/1/2014 and 3/31/2014*
 // MAGIC 
 // MAGIC References:
+// MAGIC 
 // MAGIC * [GraphFrames User Guide](http://graphframes.github.io/user-guide.html)
 // MAGIC * [GraphFrames: DataFrame-based Graphs (GitHub)](https://github.com/graphframes/graphframes)
 // MAGIC * [D3 Airports Example](http://mbostock.github.io/d3/talk/20111116/airports.html)
