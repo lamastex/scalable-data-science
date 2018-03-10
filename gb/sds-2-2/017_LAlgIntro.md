@@ -562,7 +562,7 @@ David Hall edited this page on 24 Dec 2015
 
 Breeze is modeled on Scala, and so if you're familiar with it, you'll be familiar with Breeze. First, import the linear algebra package:
 
-`scala scala> import breeze.linalg._`
+`scala> import breeze.linalg._`
 
 Let's create a vector:
 `scala scala> val x = DenseVector.zeros[Double](5) x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)`
@@ -573,7 +573,7 @@ Here we make a column vector of zeros of type Double. And there are other ways w
 
 The vector object supports accessing and updating data elements by their index in `0` to `x.length-1`. Like Numpy, negative indices are supported, with the semantics that for an index `i < 0` we operate on the i-th element from the end (`x(i) == x(x.length + i)`).
 
-\`\`\`scala
+\`\`\`
 scala&gt; x(0)
 Double = 0.0
 
@@ -585,7 +585,7 @@ breeze.linalg.DenseVector\[Double\] = DenseVector(0.0, 2.0, 0.0, 0.0, 0.0)
 
 Breeze also supports slicing. **Note that slices using a Range are much, much faster than those with an arbitrary sequence.**
 
-\`\`\`scala
+\`\`\`
 scala&gt; x(3 to 4) := .5
 breeze.linalg.DenseVector\[Double\] = DenseVector(0.5, 0.5)
 
@@ -595,7 +595,7 @@ breeze.linalg.DenseVector\[Double\] = DenseVector(0.0, 2.0, 0.0, 0.5, 0.5)
 
 The slice operator constructs a read-through and write-through view of the given elements in the underlying vector. You set its values using the vectorized-set operator `:=`. You could as well have set it to a compatibly sized Vector.
 
-\`\`\`scala
+\`\`\`
 scala&gt; x(0 to 1) := DenseVector(.1,.2)
 
 scala&gt; x
@@ -604,11 +604,11 @@ breeze.linalg.DenseVector\[Double\] = DenseVector(0.1, 0.2, 0.0, 0.5, 0.5)
 
 Similarly, a DenseMatrix can be created with a constructor method call, and its elements can be accessed and updated.
 
-`scala scala> val m = DenseMatrix.zeros[Int](5,5) m: breeze.linalg.DenseMatrix[Int] =  0  0  0  0  0   0  0  0  0  0   0  0  0  0  0   0  0  0  0  0   0  0  0  0  0`
+`scala> val m = DenseMatrix.zeros[Int](5,5) m: breeze.linalg.DenseMatrix[Int] =  0  0  0  0  0   0  0  0  0  0   0  0  0  0  0   0  0  0  0  0   0  0  0  0  0`
 
 The columns of `m` can be accessed as DenseVectors, and the rows as DenseMatrices.
 
-\`\`\`scala
+\`\`\`
 scala&gt; (m.rows, m.cols)
 (Int, Int) = (5,5)
 
@@ -629,15 +629,15 @@ breeze.linalg.DenseMatrix\[Int\] =
 
 Assignments with incompatible cardinality or a larger numeric type won't compile.
 
-`scala scala> m := x <console>:13: error: could not find implicit value for parameter op: breeze.linalg.operators.BinaryUpdateOp[breeze.linalg.DenseMatrix[Int],breeze.linalg.DenseVector[Double],breeze.linalg.operators.OpSet]               m := x                 ^`
+`scala> m := x <console>:13: error: could not find implicit value for parameter op: breeze.linalg.operators.BinaryUpdateOp[breeze.linalg.DenseMatrix[Int],breeze.linalg.DenseVector[Double],breeze.linalg.operators.OpSet]               m := x                 ^`
 
 Assignments with incompatible size will throw an exception:
 
-`scala scala> m := DenseMatrix.zeros[Int](3,3) java.lang.IllegalArgumentException: requirement failed: Matrices must have same number of row`
+`scala> m := DenseMatrix.zeros[Int](3,3) java.lang.IllegalArgumentException: requirement failed: Matrices must have same number of row`
 
 Sub-matrices can be sliced and updated, and literal matrices can be specified using a simple tuple-based syntax. **Unlike Scalala, only range slices are supported, and only the columns (or rows for a transposed matrix) can have a Range step size different from 1.**
 
-\`\`\`scala
+\`\`\`
 scala&gt; m(0 to 1, 0 to 1) := DenseMatrix((3,1),(-1,-2))
 breeze.linalg.DenseMatrix\[Int\] =
 3 1
@@ -656,7 +656,7 @@ breeze.linalg.DenseMatrix\[Int\] =
 
 Sometimes we want to apply an operation to every row or column of a matrix, as a unit. For instance, you might want to compute the mean of each row, or add a vector to every column. Adapting a matrix so that operations can be applied column-wise or row-wise is called **broadcasting**. Languages like R and numpy automatically and implicitly do broadcasting, meaning they won't stop you if you accidentally add a matrix and a vector. In Breeze, you have to signal your intent using the broadcasting operator `*`. The `*` is meant to evoke "foreach" visually. Here are some examples:
 
-\`\`\`scala
+\`\`\`
 scala&gt; import breeze.stats.mean
 
 scala&gt; val dm = DenseMatrix((1.0,2.0,3.0),
@@ -682,7 +682,7 @@ breeze.linalg.DenseVector\[Double\] = DenseVector(2.0, 5.0)
 
 Breeze also provides a fairly large number of probability distributions. These come with access to probability density function for either discrete or continuous distributions. Many distributions also have methods for giving the mean and the variance.
 
-\`\`\`scala
+\`\`\`
 scala&gt; import breeze.stats.distributions.\_
 
 scala&gt; val poi = new Poisson(3.0);
@@ -706,7 +706,7 @@ scala&gt; (poi.mean,poi.variance)
 
 NOTE: Below, there is a possibility of confusion for the term `rate` in the family of exponential distributions. Breeze parameterizes the distribution with the mean, but refers to it as the rate.
 
-\`\`\`scala
+\`\`\`
 
 scala&gt; val expo = new Exponential(0.5);
 expo: breeze.stats.distributions.Exponential = Exponential(0.5)
@@ -717,7 +717,7 @@ Double = 0.5
 
 A characteristic of exponential distributions is its half-life, but we can compute the probability a value falls between any two numbers.
 
-\`\`\` scala
+\`\`\`
 
 scala&gt; expo.probability(0, log(2) \* expo.rate)
 Double = 0.5
@@ -729,13 +729,13 @@ Double = 0.950212931632136
 
 This means that approximately 95% of the draws from an exponential distribution fall between 0 and thrice the mean. We could have easily computed this with the cumulative distribution as well
 
-\`\`\` scala
+\`\`\`
 
 scala&gt; 1 - exp(-3.0)
 Double = 0.950212931632136
 \`\`\`
 
-\`\`\` scala
+\`\`\`
 
 scala&gt; val samples = expo.sample(2).sorted;
 samples: IndexedSeq\[Double\] = Vector(1.1891135726280517, 2.325607782657507)
@@ -760,7 +760,7 @@ a `breeze.linalg`-enabled type: something like a `Vector` or a `Counter`.
 
 Here's a simple `DiffFunction`: a parabola along each vector's coordinate.
 
-\`\`\`scala
+\`\`\`
 
 scala&gt; import breeze.optimize.\_
 
@@ -774,7 +774,7 @@ f: java.lang.Object with breeze.optimize.DiffFunction\[breeze.linalg.DenseVector
 
 Note that this function takes its minimum when all values are 3. (It's just a parabola along each coordinate.)
 
-\`\`\`scala
+\`\`\`
 scala&gt; f.valueAt(DenseVector(3,3,3))
 Double = 0.0
 
@@ -787,7 +787,7 @@ scala&gt; f.calculate(DenseVector(0,0))
 
 You can also use approximate derivatives, if your function is easy enough to compute:
 
-\`\`\`scala
+\`\`\`
 scala&gt; def g(x: DenseVector\[Double\]) = (x - 3.0):^ 2.0 sum
 
 scala&gt; g(DenseVector(0.,0.,0.))
@@ -801,7 +801,7 @@ breeze.linalg.DenseVector\[Double\] = DenseVector(1.000000082740371E-5, -5.99999
 
 Ok, now let's optimize `f`. The easiest routine to use is just `LBFGS`, which is a quasi-Newton method that works well for most problems.
 
-\`\`\`scala
+\`\`\`
 scala&gt; val lbfgs = new LBFGS[DenseVector\[Double\]](maxIter=100,%20m=3) // m is the memory. anywhere between 3 and 7 is fine. The larger m, the more memory is needed.
 
 scala&gt; val optimum = lbfgs.minimize(f,DenseVector(0,0,0))
@@ -813,7 +813,7 @@ Double = 2.129924444096732E-29
 
 That's pretty close to 0! You can also use a configurable optimizer, using `FirstOrderMinimizer.OptParams`. It takes several parameters:
 
-`scala case class OptParams(batchSize:Int = 512,                      regularization: Double = 1.0,                      alpha: Double = 0.5,                      maxIterations:Int = -1,                      useL1: Boolean = false,                      tolerance:Double = 1E-4,                      useStochastic: Boolean= false) {   // ... }`
+`case class OptParams(batchSize:Int = 512,                      regularization: Double = 1.0,                      alpha: Double = 0.5,                      maxIterations:Int = -1,                      useL1: Boolean = false,                      tolerance:Double = 1E-4,                      useStochastic: Boolean= false) {   // ... }`
 
 `batchSize` applies to `BatchDiffFunctions`, which support using small minibatches of a dataset. `regularization` integrates L2 or L1 (depending on `useL1`) regularization with constant lambda. `alpha` controls the initial stepsize for algorithms that need it. `maxIterations` is the maximum number of gradient steps to be taken (or -1 for until convergence). `tolerance` controls the sensitivity of the
 convergence check. Finally, `useStochastic` determines whether or not batch functions should be optimized using a stochastic gradient algorithm (using small batches), or using LBFGS (using the entire dataset).
@@ -824,7 +824,7 @@ convergence check. Finally, `useStochastic` determines whether or not batch func
 
 We provide a DSL for solving linear programs, using Apache's Simplex Solver as the backend. This package isn't industrial strength yet by any means, but it's good for simple problems. The DSL is pretty simple:
 
-\`\`\`scala
+\`\`\`
 import breeze.optimize.linear.*
 val lp = new LinearProgram()
 import lp.*
@@ -852,7 +852,7 @@ Breeze-Viz
 
 Breeze continues most of the functionality of Scalala's plotting facilities, though the API is somewhat different (in particular, more object oriented.) These methods are documented in scaladoc for the traits in the `breeze.plot` package object. First, let's plot some lines and save the image to file. All the actual plotting work is done by the excellent [`JFreeChart`](http://www.jfree.org/jfreechart/) library.
 
-\`\`\`scala
+\`\`\`
 import breeze.linalg.*
 import breeze.plot.*
 
@@ -869,12 +869,12 @@ f.saveas("lines.png") // save current figure as a .png, eps and pdf also support
 
 Then we'll add a new subplot and plot a histogram of 100,000 normally distributed random numbers into 100 buckets.
 
-`scala val p2 = f.subplot(2,1,1) val g = breeze.stats.distributions.Gaussian(0,1) p2 += hist(g.sample(100000),100) p2.title = "A normal distribution" f.saveas("subplots.png")`
+`val p2 = f.subplot(2,1,1) val g = breeze.stats.distributions.Gaussian(0,1) p2 += hist(g.sample(100000),100) p2.title = "A normal distribution" f.saveas("subplots.png")`
 ![two plots](http://scalanlp.org/examples/subplots.png)
 
 Breeze also supports the Matlab-like "image" command, here imaging a random matrix.
 
-`scala val f2 = Figure() f2.subplot(0) += image(DenseMatrix.rand(200,200)) f2.saveas("image.png")`
+`val f2 = Figure() f2.subplot(0) += image(DenseMatrix.rand(200,200)) f2.saveas("image.png")`
 ![two plots](http://scalanlp.org/examples/image.png)
 
 Where to go next?
