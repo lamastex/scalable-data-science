@@ -14,7 +14,8 @@ cd $PINOT_DIR &&
 
 ## for the whole dbc archive - we temporarily write in /tmp/zp while debugging
 ### /tmp/zp should be replaced by $sds_DIR/zp/2/2/ and zeppelin set to git the notebooks for sds-2-2 collaborators
-stack exec pinot -- --from databricks --to zeppelin $sds_DIR/dbcArchives/2017/sds-2-2.dbc -o /tmp/zp/ # $sds_DIR/zp/2/2/
+#stack exec pinot -- --from databricks --to zeppelin $sds_DIR/dbcArchives/2017/sds-2-2.dbc -o /tmp/zp/ # $sds_DIR/zp/2/2/
+stack exec pinot -- --from databricks --to zeppelin $sds_DIR/dbcArchives/2017/sds-2-2.dbc -o $sds_DIR/zp/2/2/
 
 #stack exec -- pinot -f databricks -t markdown $sds_DIR/dbcArchives/2017/sds-2-2.dbc -o $sds_DIR/gb/ &&
 

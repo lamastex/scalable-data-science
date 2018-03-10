@@ -60,11 +60,6 @@ def myMixtureOf2NormalsReg( normalLocation: Double, abnormalLocation: Double, no
 }
 ```
 
->     import scala.util.Random
->     import scala.util.Random._
->     import scala.util.{Success, Failure}
->     myMixtureOf2NormalsReg: (normalLocation: Double, abnormalLocation: Double, normalWeight: Double, r: scala.util.Random)(String, Double)
-
 The /tmp folder
 ===============
 
