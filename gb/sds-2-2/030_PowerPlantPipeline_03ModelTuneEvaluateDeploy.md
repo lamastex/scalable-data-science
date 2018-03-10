@@ -674,7 +674,7 @@ val lrModel = lrPipeline.fit(trainingSet)
 
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
-$$ y = b*0 + b*1 x*1 + b*2 x*2 + b*3 x*3 + + b*i x*i + + b*k x\_k $$
+$$ y = b*0 + b*1 x*1 + b*2 x*2 + b*3 x*3 + \ldots + b*i x*i + \ldots + b*k x\_k $$
 
 where \\(b*0\\) is the intercept and \\(b*i\\)'s are coefficients.
 

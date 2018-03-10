@@ -154,7 +154,7 @@ Watch now (1:13 seconds)
 ### Chain rule
 
 $$
-(f g)= (fg) g
+(f \circ g)\prime = (f\prime \circ g) \cdot g\prime
 $$
 ***
 ***

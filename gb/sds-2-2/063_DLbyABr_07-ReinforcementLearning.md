@@ -114,7 +114,7 @@ The tricks -- or insights -- here are:
 
 <img src="https://i.imgur.com/ePXoQfR.png" width=250>
 
--   \\({}\\) is a "discount factor" on future reward
+-   \\({\gamma}\\) is a "discount factor" on future reward
 -   Assume the game terminates or "effectively terminates" to make the recursion tractable
 -   This equation is a simplified case of the Bellman Equation
 

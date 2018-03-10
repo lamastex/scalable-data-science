@@ -195,11 +195,11 @@ What we would like, is that if we start with a valid input vector and move a bit
 
 > **ASIDE: Manifold Hypothesis**
 
-> The manifold hypothesis is that the interesting, relevant, or critical subspaces in the space of all vector inputs are actually low(er) dimensional manifolds. A manifold is a space where each point has a neighborhood that behaves like (is homeomorphic to) \\({R^n}\\). So we would like to be able to move a small amount and have only a small amount of change, not a sudden discontinuous change.
+> The manifold hypothesis is that the interesting, relevant, or critical subspaces in the space of all vector inputs are actually low(er) dimensional manifolds. A manifold is a space where each point has a neighborhood that behaves like (is homeomorphic to) \\({\Bbb R^n}\\). So we would like to be able to move a small amount and have only a small amount of change, not a sudden discontinuous change.
 
 ------------------------------------------------------------------------
 
-The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters (\\({}\\) and \\({}\\)) for each value of k.
+The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters (\\({\mu}\\) and \\({\sigma}\\)) for each value of k.
 
 <img src="http://i.imgur.com/OFLDweH.jpg" width=600>
 <div style="text-align: right"><sup>(credit to Miram Shiffman, http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html)</sup></div>

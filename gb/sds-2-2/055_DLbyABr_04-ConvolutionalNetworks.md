@@ -305,7 +305,7 @@ The convolution we deal with in deep learning is a simplified case. We want to c
 
 ------------------------------------------------------------------------
 
-#### Here's an animation (where we change \\({}\\))
+#### Here's an animation (where we change \\({\tau}\\))
 
 <img src="http://i.imgur.com/0BFcnaw.gif">
 

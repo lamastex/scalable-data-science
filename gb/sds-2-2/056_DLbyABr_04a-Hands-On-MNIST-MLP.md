@@ -22,7 +22,7 @@ A few minor modifications and additional mathematical statistical pointers have 
 
 1.  Deeper networks are "smarter" than wider networks (in terms of abstraction)
 
-2.  More neurons & layers \\( \\) more capacity \\( \\) more data \\( \\) more regularization (to prevent overfitting)
+2.  More neurons & layers \\( \to \\) more capacity \\( \to \\) more data \\( \to \\) more regularization (to prevent overfitting)
 
 3.  If you don't have any specific reason not to use the "adam" optimizer, use that one
 

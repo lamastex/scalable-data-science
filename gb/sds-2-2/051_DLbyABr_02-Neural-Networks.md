@@ -17,29 +17,33 @@ The perceptron took a weighted set of input signals and chose an ouput state (on
 (raaz) Thus, the perceptron is defined by:
 
 $$
-f(1, x\_1,x\_2,, x\_n \\, ; \\, w\_0,w\_1,w\_2,, w\_n) =
+f(1, x\_1,x\_2,\ldots , x\_n \\, ; \\, w\_0,w\_1,w\_2,\ldots , w\_n) =
+\begin{cases}
+1 & \text{if} \quad \sum\_{i=0}^n w\_i x\_i > 0 \\\\
+0 & \text{otherwise}
+\end{cases}
 $$
 and implementable with the following arithmetical and logical unit (ALU) operations in a machine:
-\* n inputs from one \\(n\\)-dimensional data point: \\( x*1,x*2,x\_n \\, \\, ^n\\)
+\* n inputs from one \\(n\\)-dimensional data point: \\( x*1,x*2,\ldots x\_n \\, \in \\, \mathbb{R}^n\\)
 \* arithmetic operations
 \* n+1 multiplications
 \* n additions
 \* boolean operations
 \* one if-then on an inequality
-\* one output \\(o \\{0,1\\}\\), i.e., \\(o\\) belongs to the set containing \\(0\\) and \\(1\\)
+\* one output \\(o \in \\{0,1\\}\\), i.e., \\(o\\) belongs to the set containing \\(0\\) and \\(1\\)
 \* n+1 parameters of interest
 
-This is just a hyperplane given by a dot product of \\(n+1\\) known inputs and \\(n+1\\) unknown parameters that can be estimated. This hyperplane can be used to define a hyperplane that partitions \\(^{n+1}\\), the real Euclidean space, into two parts labelled by the outputs \\(0\\) and \\(1\\).
+This is just a hyperplane given by a dot product of \\(n+1\\) known inputs and \\(n+1\\) unknown parameters that can be estimated. This hyperplane can be used to define a hyperplane that partitions \\(\mathbb{R}^{n+1}\\), the real Euclidean space, into two parts labelled by the outputs \\(0\\) and \\(1\\).
 
-The problem of finding estimates of the parameters, \\( (\_0,\_1,\_2,\_n) ^{(n+1)} \\), in some statistically meaningful manner for a predicting task by using the training data given by, say \\(k\\) *labelled points*, where you know both the input and output:
+The problem of finding estimates of the parameters, \\( (\hat{w}\_0,\hat{w}\_1,\hat{w}\_2,\ldots \hat{w}\_n) \in \mathbb{R}^{(n+1)} \\), in some statistically meaningful manner for a predicting task by using the training data given by, say \\(k\\) *labelled points*, where you know both the input and output:
 $$
-( ( \\, 1, x\_1^{(1)},x\_2^{(1)}, x\_n^{(1)}), (o^{(1)}) \\, ), \\, ( \\, 1, x\_1^{(2)},x\_2^{(2)}, x\_n^{(2)}), (o^{(2)}) \\, ), \\, \\, , ( \\, 1, x\_1^{(k)},x\_2^{(k)}, x\_n^{(k)}), (o^{(k)}) \\, ) ) \\, \\, (^{n+1} \\{ 0,1 \\} )^k
+\left( ( \\, 1, x\_1^{(1)},x\_2^{(1)}, \ldots x\_n^{(1)}), (o^{(1)}) \\, ), \\, ( \\, 1, x\_1^{(2)},x\_2^{(2)}, \ldots x\_n^{(2)}), (o^{(2)}) \\, ), \\, \ldots \\, , ( \\, 1, x\_1^{(k)},x\_2^{(k)}, \ldots x\_n^{(k)}), (o^{(k)}) \\, ) \right) \\, \in \\, (\mathbb{R}^{n+1} \times \\{ 0,1 \\} )^k
 $$
 is the machine learning problem here.
 
-Succinctly, we are after a random mapping, denoted below by \\( \_{} \\), called the *estimator*:
+Succinctly, we are after a random mapping, denoted below by \\( \mapsto\_{\rightsquigarrow} \\), called the *estimator*:
 $$
-(^{n+1} \\{0,1\\})^k \_{} \\, ( \\, ( (1,x\_1,x\_2,,x\_n) \\,;\\, (\_0,\_1,\_2,\_n)) : ^{n+1} \\{0,1\\} \\, )
+(\mathbb{R}^{n+1} \times \\{0,1\\})^k \mapsto\_{\rightsquigarrow} \\, \left( \\, \mathtt{model}( (1,x\_1,x\_2,\ldots,x\_n) \\,;\\, (\hat{w}\_0,\hat{w}\_1,\hat{w}\_2,\ldots \hat{w}\_n)) : \mathbb{R}^{n+1} \to \\{0,1\\} \\, \right)
 $$
 which takes *random* labelled dataset (to understand random here think of two scientists doing independent experiments to get their own training datasets) of size \\(k\\) and returns a *model*. These mathematical notions correspond exactly to the `estimator` and `model` (which is a `transformer`) in the language of Apache Spark's Machine Learning Pipleines we have seen before.
 
@@ -51,7 +55,7 @@ If the output isn't right, we can adjust the weights, threshold, or bias (\\(x\_
 
 The model was inspired by discoveries about the neurons of animals, so hopes were quite high that it could lead to a sophisticated machine. This model can be extended by adding multiple neurons in parallel. And we can use linear output instead of a threshold if we like for the output.
 
-If we were to do so, the output would look like \\({x w} + w\_0\\) (this is where the vector multiplication and, eventually, matrix multiplication, comes in)
+If we were to do so, the output would look like \\({x \cdot w} + w\_0\\) (this is where the vector multiplication and, eventually, matrix multiplication, comes in)
 
 When we look at the math this way, we see that despite this being an interesting model, it's really just a fancy linear calculation.
 
@@ -895,8 +899,8 @@ Non-Linearity + Perceptron = Universal Approximation
 ### Where does the non-linearity fit in?
 
 -   We start with the inputs to a perceptron -- these could be from source data, for example.
--   We multiply each input by its respective weight, which gets us the \\(x w\\)
--   Then add the "bias" -- an extra learnable parameter, to get \\({x w} + b\\)
+-   We multiply each input by its respective weight, which gets us the \\(x \cdot w\\)
+-   Then add the "bias" -- an extra learnable parameter, to get \\({x \cdot w} + b\\)
     -   This value (so far) is sometimes called the "pre-activation"
 -   Now, apply a non-linear "activation function" to this value, such as the logistic sigmoid
 

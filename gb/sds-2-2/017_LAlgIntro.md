@@ -44,33 +44,51 @@ A **matrix** is a two-dimensional array.
 
 Let us denote matrices via bold uppercase letters as follows:
 
-For instance, the matrix below is denoted with \\(\\), a capital bold A.
+For instance, the matrix below is denoted with \\(\mathbf{A}\\), a capital bold A.
 
 $$
- =
+\mathbf{A} =
+\begin{pmatrix}
+a\_{11} & a\_{12} & a\_{13} \\\\
+a\_{21} & a\_{22} & a\_{23} \\\\
+a\_{31} & a\_{32} & a\_{33}
+\end{pmatrix}
 $$
 
 We usually put commas between the row and column indexing sub-scripts, to make the possibly multi-digit indices distinguishable as follows:
 
 $$
- =
+\mathbf{A} =
+\begin{pmatrix}
+a\_{1,1} & a\_{1,2} & a\_{1,3} \\\\
+a\_{2,1} & a\_{2,2} & a\_{2,3} \\\\
+a\_{3,1} & a\_{3,2} & a\_{3,3}
+\end{pmatrix}
 $$
 
--   \\( \_{i,j} \\) denotes the entry in \\(i\\)-th row and \\(j\\)-th column of the matrix \\(\\).
+-   \\( \mathbf{A}\_{i,j} \\) denotes the entry in \\(i\\)-th row and \\(j\\)-th column of the matrix \\(\mathbf{A}\\).
 -   So for instance,
-    -   the first entry, the top left entry, is denoted by \\( \_{1,1} \\).
-    -   And the entry in the third row and second column is denoted by \\( \_{3,2} \\).
-    -   We say that a matrix with n rows and m columns is an \\(n\\) by \\(m\\) matrix and written as \\(n m \\)
-        -   The matrix \\(\\) shown above is a generic \\(3 3\\) (pronounced 3-by-3) matrix.
+    -   the first entry, the top left entry, is denoted by \\( \mathbf{A}\_{1,1} \\).
+    -   And the entry in the third row and second column is denoted by \\( \mathbf{A}\_{3,2} \\).
+    -   We say that a matrix with n rows and m columns is an \\(n\\) by \\(m\\) matrix and written as \\(n \times m \\)
+        -   The matrix \\(\mathbf{A}\\) shown above is a generic \\(3 \times 3\\) (pronounced 3-by-3) matrix.
         -   And the matrix in Ameet's example in the video above, having 4 rows and 3 columns, is a 4 by 3 matrix.
-    -   If a matrix \\(\\) is \\(n m \\), we write:
-        -   \\( ^{n m}\\) and say that \\(\\) is an \\(\\) to the power of the n times m,
-            -   where, \\(\\) here denotes the set of all real numbers in the line given by the open interval: \\( (-,+)\\).
+    -   If a matrix \\(\mathbf{A}\\) is \\(n \times m \\), we write:
+        -   \\(\mathbf{A} \in \mathbb{R}^{n \times m}\\) and say that \\(\mathbf{A}\\) is an \\(\mathbb{R}\\) to the power of the n times m,
+            -   where, \\(\mathbb{R}\\) here denotes the set of all real numbers in the line given by the open interval: \\( (-\infty,+\infty)\\).
 
 Let us created a matrix `A` as a `val` (that is immutable) in scala. The matrix we want to create is mathematically notated as follows:
 $$
- =
+\mathbf{A} =
+\begin{pmatrix}
+a\_{1,1} & a\_{1,2} & a\_{1,3} \\\\
+a\_{2,1} & a\_{2,2} & a\_{2,3} 
+\end{pmatrix}
 =
+\begin{pmatrix}
+1 & 2 & 3 \\\\
+4 & 5 & 6 
+\end{pmatrix}
 $$
 
 ``` scala
@@ -105,7 +123,7 @@ A.cols // also say
 
 >     res3: Int = 3
 
-Now, let's access the element \\(a\_{1,1}\\), i.e., the element from the first row and first column of \\(\\), which in our `val A` matrix is the integer of type `Int` equalling `1`.
+Now, let's access the element \\(a\_{1,1}\\), i.e., the element from the first row and first column of \\(\mathbf{A}\\), which in our `val A` matrix is the integer of type `Int` equalling `1`.
 
 ``` scala
 A(0, 0) // Remember elements are indexed by zero in scala
@@ -142,14 +160,15 @@ B
 
 -   A vector is a matrix with many rows and one column.
 -   We'll denote a vector by bold lowercase letters:
-    $$ =
+    $$\mathbf{a} =
+    \begin{pmatrix} 3.3 \\\\ 1.0 \\\\ 6.3 \\\\ 3.6 \end{pmatrix}
     $$
 
-    So, the vector above is denoted by \\(\\), the lowercase, bold a.
+    So, the vector above is denoted by \\(\mathbf{a}\\), the lowercase, bold a.
 -   \\(a\_i\\) denotes the i-th entry of a vector. So for instance:
     -   \\(a\_2\\) denotes the second entry of the vector and it is 1.0 for our vector.
--   If a vector is m-dimensional, then we say that \\(\\) is in \\(^m\\) and write \\( \\ ^m\\).
-    -   So our \\( \\ ^4\\).
+-   If a vector is m-dimensional, then we say that \\(\mathbf{a}\\) is in \\(\mathbb{R}^m\\) and write \\(\mathbf{a} \in \\ \mathbb{R}^m\\).
+    -   So our \\(\mathbf{a} \in \\ \mathbb{R}^4\\).
 
 ``` scala
 val a = DenseVector(3.3, 1.0, 6.3, 3.6) // these are row vectors
