@@ -275,7 +275,7 @@ B - A // should be -A-A=-2A
 // MAGIC 
 // MAGIC All Tensors support a set of operators, similar to those used in Matlab or Numpy. 
 // MAGIC 
-// MAGIC For **HOMEWORK** see: [Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet](/#workspace/scalable-data-science/xtraResources/LinearAlgebra/LAlgCheatSheet) for a list of most of the operators and various operations. 
+// MAGIC For **HOMEWORK** see: `Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet` for a list of most of the operators and various operations. 
 // MAGIC 
 // MAGIC Some of the basic ones are reproduced here, to give you an idea.
 // MAGIC 
