@@ -11,6 +11,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=1219&end=1395&autoplay=1)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC When you first hear a song, do you ever categorize it as slow or fast in your head? Is it even a valid categorization? If so, can one do it automatically? I have always wondered about that. That is why I got excited when I learned about the [Million Songs Dataset  -Kaggle Challenge](https://www.kaggle.com/c/msdchallenge#description). 
 // MAGIC 
