@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/CTR9TIJjRKo/0.jpg)](https://www.youtube.com/embed/CTR9TIJjRKo?start=0&end=1218&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ### Power Plant ML Pipeline Application - DataFrame Part
 // MAGIC This is the Spark SQL parts of an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
 // MAGIC 
