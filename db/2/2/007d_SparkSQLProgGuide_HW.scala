@@ -131,10 +131,10 @@ df.printSchema()
 // MAGIC 
 // MAGIC | Scala/Java | Any language | Meaning |
 // MAGIC | --- | --- | --- |
-// MAGIC | `SaveMode.ErrorIfExists` (default) | `"error"` (default) | When saving a DataFrame to a data source, if data already exists, an exception is expected to be thrown.
-// MAGIC | `SaveMode.Append` | `"append"` | When saving a DataFrame to a data source, if data/table already exists, contents of the DataFrame are expected to be appended to existing data.
-// MAGIC | `SaveMode.Overwrite` | `"overwrite"` | Overwrite mode means that when saving a DataFrame to a data source, if data/table already exists, existing data is expected to be overwritten by the contents of the DataFrame.
-// MAGIC | `SaveMode.Ignore` | `"ignore"` | Ignore mode means that when saving a DataFrame to a data source, if data already exists, the save operation is expected to not save the contents of the DataFrame and to not change the existing data. This is similar to a `CREATE TABLE IF NOT EXISTS` in SQL.
+// MAGIC | `SaveMode.ErrorIfExists` (default) | `"error"` (default) | When saving a DataFrame to a data source, if data already exists, an exception is expected to be thrown. |
+// MAGIC | `SaveMode.Append` | `"append"` | When saving a DataFrame to a data source, if data/table already exists, contents of the DataFrame are expected to be appended to existing data. |
+// MAGIC | `SaveMode.Overwrite` | `"overwrite"` | Overwrite mode means that when saving a DataFrame to a data source, if data/table already exists, existing data is expected to be overwritten by the contents of the DataFrame. |
+// MAGIC | `SaveMode.Ignore` | `"ignore"` | Ignore mode means that when saving a DataFrame to a data source, if data already exists, the save operation is expected to not save the contents of the DataFrame and to not change the existing data. This is similar to a `CREATE TABLE IF NOT EXISTS` in SQL. |
 
 // COMMAND ----------
 
@@ -327,7 +327,7 @@ spark.catalog.refreshTable("simple_range")
 // MAGIC 
 // MAGIC | Property Name | Default | Meaning |
 // MAGIC | --- | --- | --- | --- | 
-// MAGIC | `spark.sql.parquet.binaryAsString` | false | Some other Parquet-producing systems, in particular Impala, Hive, and older versions of Spark SQL, do not differentiate between binary data and strings when writing out the Parquet schema. This flag tells Spark SQL to interpret binary data as a string to provide compatibility with these systems.
+// MAGIC | `spark.sql.parquet.binaryAsString` | false | Some other Parquet-producing systems, in particular Impala, Hive, and older versions of Spark SQL, do not differentiate between binary data and strings when writing out the Parquet schema. This flag tells Spark SQL to interpret binary data as a string to provide compatibility with these systems. |
 // MAGIC | `spark.sql.parquet.int96AsTimestamp` | true | Some Parquet-producing systems, in particular Impala and Hive, store Timestamp into INT96. This flag tells Spark SQL to interpret INT96 data as a timestamp to provide compatibility with these systems. |
 // MAGIC | `spark.sql.parquet.cacheMetadata` | true | Turns on caching of Parquet schema metadata. Can speed up querying of static data. |
 // MAGIC | `spark.sql.parquet.compression.codec` | gzip | Sets the compression codec use when writing Parquet files. Acceptable values include: uncompressed, snappy, gzip, lzo. |
@@ -409,7 +409,8 @@ anotherPlatforms.show()
 // MAGIC Spark SQL also includes a data source that can read data from other databases using JDBC. This functionality should be preferred over using [JdbcRDD](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.JdbcRDD). This is because the results are returned as a DataFrame and they can easily be processed in Spark SQL or joined with other data sources. The JDBC data source is also easier to use from Java or Python as it does not require the user to provide a ClassTag. (Note that this is different than the Spark SQL JDBC server, which allows other applications to run queries using Spark SQL).
 // MAGIC 
 // MAGIC To get started you will need to include the JDBC driver for you particular database on the spark classpath. For example, to connect to postgres from the Spark Shell you would run the following command:
-// MAGIC ```scala
+// MAGIC 
+// MAGIC ```
 // MAGIC SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin/spark-shell
 // MAGIC ```
 // MAGIC 
@@ -419,16 +420,16 @@ anotherPlatforms.show()
 // MAGIC | --- | --- | --- |
 // MAGIC | `url` | The JDBC URL to connect to. |
 // MAGIC | `dbtable` | The JDBC table that should be read. Note that anything that is valid in a `FROM` clause of a SQL query can be used. For example, instead of a full table you could also use a subquery in parentheses. |
-// MAGIC | `driver` | The class name of the JDBC driver needed to connect to this URL. This class will be loaded on the master and workers before running an JDBC commands to allow the driver to register itself with the JDBC subsystem.
-// MAGIC | `partitionColumn, lowerBound, upperBound, numPartitions` | These options must all be specified if any of them is specified. They describe how to partition the table when reading in parallel from multiple workers. `partitionColumn` must be a numeric column from the table in question. Notice that `lowerBound` and `upperBound` are just used to decide the partition stride, not for filtering the rows in table. So all rows in the table will be partitioned and returned.
-// MAGIC | `fetchSize` | The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (eg. Oracle with 10 rows).
+// MAGIC | `driver` | The class name of the JDBC driver needed to connect to this URL. This class will be loaded on the master and workers before running an JDBC commands to allow the driver to register itself with the JDBC subsystem. |
+// MAGIC | `partitionColumn, lowerBound, upperBound, numPartitions` | These options must all be specified if any of them is specified. They describe how to partition the table when reading in parallel from multiple workers. `partitionColumn` must be a numeric column from the table in question. Notice that `lowerBound` and `upperBound` are just used to decide the partition stride, not for filtering the rows in table. So all rows in the table will be partitioned and returned. |
+// MAGIC | `fetchSize` | The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (eg. Oracle with 10 rows). |
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC // Example of using JDBC datasource
 // MAGIC val jdbcDF = spark.read.format("jdbc").options(Map("url" -> "jdbc:postgresql:dbserver", "dbtable" -> "schema.tablename")).load()
 // MAGIC ```
 // MAGIC 
-// MAGIC ```sql
+// MAGIC ```
 // MAGIC -- Or using JDBC datasource in SQL
 // MAGIC CREATE TEMPORARY TABLE jdbcTable
 // MAGIC USING org.apache.spark.sql.jdbc
