@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/zloLA6AyNqk/0.jpg)](https://www.youtube.com/embed/zloLA6AyNqk?start=0&end=3226&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ### A bit about your instructor:
 // MAGIC 
 // MAGIC I, Raazesh Sainudiin or **Raaz**, will be your instructor for the course in data science.
