@@ -6,7 +6,15 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/5-ABjtLR2To/0.jpg)](https://www.youtube.com/embed/5-ABjtLR2To?start=293&end=2471&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC #Introduction to Spark SQL
+// MAGIC 
 // MAGIC * This notebook explains the motivation behind Spark SQL
 // MAGIC * It introduces interactive SparkSQL queries and visualizations
 // MAGIC * This notebook uses content from Databricks SparkSQL notebook and [SparkSQL programming guide](http://spark.apache.org/docs/latest/sql-programming-guide.html)
@@ -15,6 +23,7 @@
 
 // MAGIC %md
 // MAGIC ### Some resources on SQL
+// MAGIC 
 // MAGIC * [https://en.wikipedia.org/wiki/SQL](https://en.wikipedia.org/wiki/SQL)
 // MAGIC * [https://en.wikipedia.org/wiki/Apache_Hive](https://en.wikipedia.org/wiki/Apache_Hive)
 // MAGIC * [http://www.infoq.com/articles/apache-spark-sql](http://www.infoq.com/articles/apache-spark-sql)
@@ -83,7 +92,7 @@ displayHTML(frameIt("https://databricks.com/blog/2016/07/14/a-tale-of-three-apac
 // MAGIC 
 // MAGIC The entry point into all functionality in Spark is the [SparkSession](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession). To create a basic SparkSession in your scala Spark code, just use `SparkSession.builder()`:
 // MAGIC 
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC import org.apache.spark.sql.SparkSession
 // MAGIC 
 // MAGIC val spark = SparkSession
@@ -108,11 +117,13 @@ spark // ready-made Spark-Session
 // MAGIC ## Creating DataFrames
 // MAGIC 
 // MAGIC With a [`SparkSession`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession) or [`SQLContext`](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SQLContext), applications can create [`DataFrame`](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame) 
+// MAGIC 
 // MAGIC * from an existing `RDD`, 
 // MAGIC * from a Hive table, or 
 // MAGIC * from various other data sources.
 // MAGIC 
 // MAGIC #### Just to recap: 
+// MAGIC 
 // MAGIC * A DataFrame is a distributed collection of data organized into named columns (it is not strogly typed). 
 // MAGIC * You can think of it as being organized into table RDD of case class `Row` (which is not exactly true). 
 // MAGIC * DataFrames, in comparison to RDDs, are backed by rich optimizations, including:
@@ -142,7 +153,9 @@ spark // ready-made Spark-Session
 
 // MAGIC %md
 // MAGIC ### 1. Making an empty DataFrame
+// MAGIC 
 // MAGIC Spark has some of the pre-built methods to create simple DataFrames
+// MAGIC 
 // MAGIC * let us make an Empty DataFrame
 
 // COMMAND ----------
@@ -166,7 +179,9 @@ val emptyDF = spark.emptyDataFrame // Ctrl+Enter to make an empty DataFrame
 
 // MAGIC %md
 // MAGIC ### 2. Making a DataFrame from a range
+// MAGIC 
 // MAGIC Let us make a DataFrame next
+// MAGIC 
 // MAGIC * from a range of numbers, as follows:
 
 // COMMAND ----------
@@ -353,6 +368,7 @@ spark.sql("SELECT * FROM SDTable WHERE once>2").show()
 
 // MAGIC %md
 // MAGIC ### 5. Using SQL for interactively querying a table is very powerful!
+// MAGIC 
 // MAGIC Note `-- comments` are how you add `comments` in SQL cells beginning with `%sql`.
 // MAGIC 
 // MAGIC * You can run SQL `select *` statement to see all columns of the table, as follows:
@@ -470,4 +486,5 @@ ds1.show()
 // MAGIC 
 // MAGIC ### Recommended Extra-work
 // MAGIC Those who want to understand SparkSQL functionalities in more detail can see:
+// MAGIC 
 // MAGIC * [video lectures in Module 3 of Anthony Joseph's Introduction to Big Data edX course](https://docs.databricks.com/spark/1.6/training/introduction-to-big-data-cs100x-2015/module-3.html).
