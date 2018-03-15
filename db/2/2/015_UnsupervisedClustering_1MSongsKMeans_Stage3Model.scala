@@ -12,6 +12,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Ib1BIbPDS6U/0.jpg)](https://www.youtube.com/embed/Ib1BIbPDS6U?start=0&end=2545&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Stage 3: Modeling Songs via k-means
 // MAGIC 
 // MAGIC ![Model](http://training.databricks.com/databricks_guide/end-to-end-03.png)
