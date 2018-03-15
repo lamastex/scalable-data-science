@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube videos of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/zloLA6AyNqk/0.jpg)](https://www.youtube.com/embed/zloLA6AyNqk?start=0&end=3226&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/36tQR9UPXP4/0.jpg)](https://www.youtube.com/embed/36tQR9UPXP4?start=0&end=2341&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ## databricks community edition
 // MAGIC 
 // MAGIC 1. First obtain a free Obtain a databricks community edition account at:
