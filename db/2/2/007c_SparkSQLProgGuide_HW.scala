@@ -223,7 +223,8 @@ display(uniquePlatforms) // Ctrl+Enter to show all rows; use the scroll-bar on t
 // MAGIC - do some "magic" with joins and user-defined functions (this will be shown later)
 // MAGIC 
 // MAGIC So Spark gives you ability to actually specify columns when you select. Now the difference between all those three notations is ... none, those things are just aliases for a `Column` in Spark SQL, which means following expressions yield the same result:
-// MAGIC ```scala
+// MAGIC 
+// MAGIC ```
 // MAGIC // Using string expressions
 // MAGIC df.select("agency", "visits")
 // MAGIC 
@@ -238,7 +239,8 @@ display(uniquePlatforms) // Ctrl+Enter to show all rows; use the scroll-bar on t
 // MAGIC ```
 // MAGIC 
 // MAGIC This "same-difference" applies to filtering, i.e. you can either use full expression to filter, or column as shown in the following example:
-// MAGIC ```scala
+// MAGIC 
+// MAGIC ```
 // MAGIC // Using column to filter
 // MAGIC df.select("visits").filter($"visits" > 100)
 // MAGIC 
@@ -356,6 +358,7 @@ cleanedDF.filter($"url".isNotNull).show(5, false) // false in .show(5, false) sh
 // MAGIC Now there is a suggestion from you manager's manager's manager that due to some perceived privacy concerns we want to replace `agency` with some unique identifier.
 // MAGIC 
 // MAGIC So we need to do the following:
+// MAGIC 
 // MAGIC * create unique list of agencies with ids and 
 // MAGIC * join them with main DataFrame. 
 // MAGIC 
@@ -376,7 +379,7 @@ agencies.show(5)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Those who want to understand left/right inner/outer joins can see the [video lectures in Module 3 of Anthony Joseph's Introduction to Big data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module 3: Lectures) from the Community Edition of databricks.  The course has been added to this databricks shard at [/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x) as extra resources for the project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
+// MAGIC Those who want to understand left/right inner/outer joins can see the video lectures in Module 3 of Anthony Joseph's Introduction to Big data edX course.
 
 // COMMAND ----------
 
@@ -418,7 +421,7 @@ anonym.createOrReplaceTempView("anonym")
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC > Note, that we could have done aggregation using DataFrame API instead of Spark SQL.
+// MAGIC Note, that we could have done aggregation using DataFrame API instead of Spark SQL.
 
 // COMMAND ----------
 
