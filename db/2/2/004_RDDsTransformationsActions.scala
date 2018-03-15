@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/OTCS5WHwIHY/0.jpg)](https://www.youtube.com/embed/OTCS5WHwIHY?start=1365&end=2792&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3vxH9SGt37E/0.jpg)](https://www.youtube.com/embed/3vxH9SGt37E?start=0&end=934&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Introduction to Spark
 // MAGIC ## Spark Essentials: RDDs, Transformations and Actions
 // MAGIC 
