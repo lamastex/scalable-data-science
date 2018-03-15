@@ -12,6 +12,14 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Ib1BIbPDS6U/0.jpg)](https://www.youtube.com/embed/Ib1BIbPDS6U?start=2545&end=2888&autoplay=1)
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4_bx9WHKpHs/0.jpg)](https://www.youtube.com/embed/4_bx9WHKpHs?autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Decision Trees for handwritten digit recognition
 // MAGIC 
 // MAGIC This notebook demonstrates learning a [Decision Tree](https://en.wikipedia.org/wiki/Decision_tree_learning) using Spark's distributed implementation.  It gives the reader a better understanding of some critical [hyperparameters](https://en.wikipedia.org/wiki/Hyperparameter_optimization) for the tree learning algorithm, using examples to demonstrate how tuning the hyperparameters can improve accuracy.
@@ -151,7 +159,6 @@ display(training) // this is databricks-specific for interactive visual convenie
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC See [http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines](http://spark.apache.org/docs/latest/ml-guide.html#main-concepts-in-pipelines).
 
 // COMMAND ----------
