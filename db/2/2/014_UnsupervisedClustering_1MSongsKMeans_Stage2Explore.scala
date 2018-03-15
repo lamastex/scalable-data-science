@@ -12,6 +12,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=2050&end=2600&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Stage 2: Exploring songs data
 // MAGIC 
 // MAGIC ![Explore](http://training.databricks.com/databricks_guide/end-to-end-02.png)
