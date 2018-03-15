@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=514&end=1219&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC # Introduction to Machine Learning
 // MAGIC 
