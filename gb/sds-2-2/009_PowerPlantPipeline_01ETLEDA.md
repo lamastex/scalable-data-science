@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/CTR9TIJjRKo/0.jpg)](https://www.youtube.com/embed/CTR9TIJjRKo?start=0&end=1218&autoplay=1)
+
 ### Power Plant ML Pipeline Application - DataFrame Part
 
 This is the Spark SQL parts of an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.

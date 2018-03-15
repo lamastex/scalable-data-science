@@ -8,6 +8,10 @@ Million Song Dataset - Kaggle Challenge
 
 **SOURCE:** This is just a *Scala*-rification of the *Python* notebook published in databricks community edition in 2016.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=2050&end=2600&autoplay=1)
+
 Stage 2: Exploring songs data
 =============================
 

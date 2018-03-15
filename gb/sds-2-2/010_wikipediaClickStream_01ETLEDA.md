@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/CTR9TIJjRKo/0.jpg)](https://www.youtube.com/embed/CTR9TIJjRKo?start=1218&end=2728&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=0&end=514&autoplay=1)
+
 Wiki Clickstream Analysis
 =========================
 

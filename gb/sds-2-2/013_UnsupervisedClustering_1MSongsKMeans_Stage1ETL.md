@@ -10,6 +10,10 @@ Million Song Dataset - Kaggle Challenge
 
 *CAUTION:* This notebook is expected to have an error in command 28 (`Cmd 28` in databricks notebook). You are meant to learn how to fix this error with simple exception-handling to become a better data scientist. So ignore this warning, if any.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=1395&end=2050&autoplay=1)
+
 Stage 1: Parsing songs data
 ===========================
 

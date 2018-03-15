@@ -8,6 +8,10 @@ Million Song Dataset - Kaggle Challenge
 
 **SOURCE:** This is just a *Scala*-rification of the *Python* notebook published in databricks community edition in 2016.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3x5iQoXm3cc/0.jpg)](https://www.youtube.com/embed/3x5iQoXm3cc?start=1219&end=1395&autoplay=1)
+
 When you first hear a song, do you ever categorize it as slow or fast in your head? Is it even a valid categorization? If so, can one do it automatically? I have always wondered about that. That is why I got excited when I learned about the [Million Songs Dataset -Kaggle Challenge](https://www.kaggle.com/c/msdchallenge#description).
 
 In this tutorial we will walk through a practical example of a data science project with Apache Spark in Python. We are going to parse, explore and model a sample from the million songs dataset stored on distributed storage. This tutorial is organized into three sections:

@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/7RVirnJuUNg/0.jpg)](https://www.youtube.com/embed/7RVirnJuUNg?start=0&end=2860&autoplay=1)
+
 ### Diamonds ML Pipeline Workflow - DataFrame ETL and EDA Part
 
 This is the Spark SQL parts that are focussed on extract-transform-Load (ETL) and exploratory-data-analysis (EDA) parts of an end-to-end example of a Machine Learning (ML) workflow.

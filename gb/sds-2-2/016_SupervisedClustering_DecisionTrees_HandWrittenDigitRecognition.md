@@ -8,6 +8,11 @@ Supervised Clustering with Decision Trees
 
 **SOURCE:** This is just a couple of decorations on a notebook published in databricks community edition in 2016.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Ib1BIbPDS6U/0.jpg)](https://www.youtube.com/embed/Ib1BIbPDS6U?start=2545&end=2888&autoplay=1)
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4_bx9WHKpHs/0.jpg)](https://www.youtube.com/embed/4_bx9WHKpHs?autoplay=1)
+
 Decision Trees for handwritten digit recognition
 ================================================
 
