@@ -213,10 +213,10 @@ Save operations can optionally take a `SaveMode`, that specifies how to handle e
 
 \| Scala/Java \| Any language \| Meaning \|
 \| --- \| --- \| --- \|
-\| `SaveMode.ErrorIfExists` (default) \| `"error"` (default) \| When saving a DataFrame to a data source, if data already exists, an exception is expected to be thrown.
-\| `SaveMode.Append` \| `"append"` \| When saving a DataFrame to a data source, if data/table already exists, contents of the DataFrame are expected to be appended to existing data.
-\| `SaveMode.Overwrite` \| `"overwrite"` \| Overwrite mode means that when saving a DataFrame to a data source, if data/table already exists, existing data is expected to be overwritten by the contents of the DataFrame.
-\| `SaveMode.Ignore` \| `"ignore"` \| Ignore mode means that when saving a DataFrame to a data source, if data already exists, the save operation is expected to not save the contents of the DataFrame and to not change the existing data. This is similar to a `CREATE TABLE IF NOT EXISTS` in SQL.
+\| `SaveMode.ErrorIfExists` (default) \| `"error"` (default) \| When saving a DataFrame to a data source, if data already exists, an exception is expected to be thrown. \|
+\| `SaveMode.Append` \| `"append"` \| When saving a DataFrame to a data source, if data/table already exists, contents of the DataFrame are expected to be appended to existing data. \|
+\| `SaveMode.Overwrite` \| `"overwrite"` \| Overwrite mode means that when saving a DataFrame to a data source, if data/table already exists, existing data is expected to be overwritten by the contents of the DataFrame. \|
+\| `SaveMode.Ignore` \| `"ignore"` \| Ignore mode means that when saving a DataFrame to a data source, if data already exists, the save operation is expected to not save the contents of the DataFrame and to not change the existing data. This is similar to a `CREATE TABLE IF NOT EXISTS` in SQL. \|
 
 ### Saving to Persistent Tables
 
@@ -436,7 +436,7 @@ Configuration of Parquet can be done using the `setConf` method on
 
 \| Property Name \| Default \| Meaning \|
 \| --- \| --- \| --- \| --- \|
-\| `spark.sql.parquet.binaryAsString` \| false \| Some other Parquet-producing systems, in particular Impala, Hive, and older versions of Spark SQL, do not differentiate between binary data and strings when writing out the Parquet schema. This flag tells Spark SQL to interpret binary data as a string to provide compatibility with these systems.
+\| `spark.sql.parquet.binaryAsString` \| false \| Some other Parquet-producing systems, in particular Impala, Hive, and older versions of Spark SQL, do not differentiate between binary data and strings when writing out the Parquet schema. This flag tells Spark SQL to interpret binary data as a string to provide compatibility with these systems. \|
 \| `spark.sql.parquet.int96AsTimestamp` \| true \| Some Parquet-producing systems, in particular Impala and Hive, store Timestamp into INT96. This flag tells Spark SQL to interpret INT96 data as a timestamp to provide compatibility with these systems. \|
 \| `spark.sql.parquet.cacheMetadata` \| true \| Turns on caching of Parquet schema metadata. Can speed up querying of static data. \|
 \| `spark.sql.parquet.compression.codec` \| gzip \| Sets the compression codec use when writing Parquet files. Acceptable values include: uncompressed, snappy, gzip, lzo. \|
@@ -561,7 +561,8 @@ JDBC To Other Databases
 Spark SQL also includes a data source that can read data from other databases using JDBC. This functionality should be preferred over using [JdbcRDD](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.JdbcRDD). This is because the results are returned as a DataFrame and they can easily be processed in Spark SQL or joined with other data sources. The JDBC data source is also easier to use from Java or Python as it does not require the user to provide a ClassTag. (Note that this is different than the Spark SQL JDBC server, which allows other applications to run queries using Spark SQL).
 
 To get started you will need to include the JDBC driver for you particular database on the spark classpath. For example, to connect to postgres from the Spark Shell you would run the following command:
-`scala SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin/spark-shell`
+
+`SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin/spark-shell`
 
 Tables from the remote database can be loaded as a DataFrame or Spark SQL Temporary table using the Data Sources API. The following options are supported:
 
@@ -569,13 +570,13 @@ Tables from the remote database can be loaded as a DataFrame or Spark SQL Tempor
 \| --- \| --- \| --- \|
 \| `url` \| The JDBC URL to connect to. \|
 \| `dbtable` \| The JDBC table that should be read. Note that anything that is valid in a `FROM` clause of a SQL query can be used. For example, instead of a full table you could also use a subquery in parentheses. \|
-\| `driver` \| The class name of the JDBC driver needed to connect to this URL. This class will be loaded on the master and workers before running an JDBC commands to allow the driver to register itself with the JDBC subsystem.
-\| `partitionColumn, lowerBound, upperBound, numPartitions` \| These options must all be specified if any of them is specified. They describe how to partition the table when reading in parallel from multiple workers. `partitionColumn` must be a numeric column from the table in question. Notice that `lowerBound` and `upperBound` are just used to decide the partition stride, not for filtering the rows in table. So all rows in the table will be partitioned and returned.
-\| `fetchSize` \| The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (eg. Oracle with 10 rows).
+\| `driver` \| The class name of the JDBC driver needed to connect to this URL. This class will be loaded on the master and workers before running an JDBC commands to allow the driver to register itself with the JDBC subsystem. \|
+\| `partitionColumn, lowerBound, upperBound, numPartitions` \| These options must all be specified if any of them is specified. They describe how to partition the table when reading in parallel from multiple workers. `partitionColumn` must be a numeric column from the table in question. Notice that `lowerBound` and `upperBound` are just used to decide the partition stride, not for filtering the rows in table. So all rows in the table will be partitioned and returned. \|
+\| `fetchSize` \| The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (eg. Oracle with 10 rows). \|
 
-`scala // Example of using JDBC datasource val jdbcDF = spark.read.format("jdbc").options(Map("url" -> "jdbc:postgresql:dbserver", "dbtable" -> "schema.tablename")).load()`
+`// Example of using JDBC datasource val jdbcDF = spark.read.format("jdbc").options(Map("url" -> "jdbc:postgresql:dbserver", "dbtable" -> "schema.tablename")).load()`
 
-`sql -- Or using JDBC datasource in SQL CREATE TEMPORARY TABLE jdbcTable USING org.apache.spark.sql.jdbc OPTIONS (   url "jdbc:postgresql:dbserver",   dbtable "schema.tablename" )`
+`-- Or using JDBC datasource in SQL CREATE TEMPORARY TABLE jdbcTable USING org.apache.spark.sql.jdbc OPTIONS (   url "jdbc:postgresql:dbserver",   dbtable "schema.tablename" )`
 
 ### Troubleshooting
 

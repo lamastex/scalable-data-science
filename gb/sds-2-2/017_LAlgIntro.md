@@ -305,7 +305,7 @@ B - A // should be -A-A=-2A
 
 All Tensors support a set of operators, similar to those used in Matlab or Numpy.
 
-For **HOMEWORK** see: [Workspace -&gt; scalable-data-science -&gt; xtraResources -&gt; LinearAlgebra -&gt; LAlgCheatSheet](/#workspace/scalable-data-science/xtraResources/LinearAlgebra/LAlgCheatSheet) for a list of most of the operators and various operations.
+For **HOMEWORK** see: `Workspace -> scalable-data-science -> xtraResources -> LinearAlgebra -> LAlgCheatSheet` for a list of most of the operators and various operations.
 
 Some of the basic ones are reproduced here, to give you an idea.
 

@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/5-ABjtLR2To/0.jpg)](https://www.youtube.com/embed/5-ABjtLR2To?start=293&end=2471&autoplay=1)
+
 Introduction to Spark SQL
 =========================
 

@@ -334,7 +334,8 @@ As you probably have noticed by now, you can specify individual columns to selec
 - do some "magic" with joins and user-defined functions (this will be shown later)
 
 So Spark gives you ability to actually specify columns when you select. Now the difference between all those three notations is ... none, those things are just aliases for a `Column` in Spark SQL, which means following expressions yield the same result:
-\`\`\`scala
+
+\`\`\`
 // Using string expressions
 df.select("agency", "visits")
 
@@ -349,7 +350,8 @@ df.select(df("agency"), df("visits"))
 \`\`\`
 
 This "same-difference" applies to filtering, i.e. you can either use full expression to filter, or column as shown in the following example:
-\`\`\`scala
+
+\`\`\`
 // Using column to filter
 df.select("visits").filter($"visits" &gt; 100)
 
@@ -551,8 +553,9 @@ cleanedDF.filter($"url".isNotNull).show(5, false) // false in .show(5, false) sh
 Now there is a suggestion from you manager's manager's manager that due to some perceived privacy concerns we want to replace `agency` with some unique identifier.
 
 So we need to do the following:
-\* create unique list of agencies with ids and
-\* join them with main DataFrame.
+
+-   create unique list of agencies with ids and
+-   join them with main DataFrame.
 
 Sounds easy, right? Let's do it.
 
@@ -582,7 +585,7 @@ agencies.show(5)
 >     import org.apache.spark.sql.functions.monotonically_increasing_id
 >     agencies: org.apache.spark.sql.DataFrame = [agency: string, id: bigint]
 
-Those who want to understand left/right inner/outer joins can see the [video lectures in Module 3 of Anthony Joseph's Introduction to Big data edX course](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x/Module%203:%20Lectures) from the Community Edition of databricks. The course has been added to this databricks shard at [/\#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x](/#workspace/scalable-data-science/xtraResources/edXBigDataSeries2015/CS100-1x) as extra resources for the project-focussed course [Scalable Data Science](http://www.math.canterbury.ac.nz/~r.sainudiin/courses/ScalableDataScience/).
+Those who want to understand left/right inner/outer joins can see the video lectures in Module 3 of Anthony Joseph's Introduction to Big data edX course.
 
 ``` scala
 // Ctrl+Enter
@@ -690,7 +693,7 @@ select platform, month(date) as month, sum(visits) as visits from anonym group b
 
 Truncated to 30 rows
 
-> Note, that we could have done aggregation using DataFrame API instead of Spark SQL.
+Note, that we could have done aggregation using DataFrame API instead of Spark SQL.
 
 Alright, now let's see some *cool* operations with window functions.
 
