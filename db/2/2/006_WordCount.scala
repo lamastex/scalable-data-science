@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3vxH9SGt37E/0.jpg)](https://www.youtube.com/embed/3vxH9SGt37E?start=988&end=2073&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Word Count on US State of the Union (SoU) Addresses
 // MAGIC 
 // MAGIC * Word Count in big data is the equivalent of `Hello World` in programming
