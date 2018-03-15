@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3vxH9SGt37E/0.jpg)](https://www.youtube.com/embed/3vxH9SGt37E?start=934&end=988&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/5-ABjtLR2To/0.jpg)](https://www.youtube.com/embed/5-ABjtLR2To?start=0&end=293&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # HOMEWORK notebook - RDDs Transformations and Actions
 // MAGIC Just go through the notebook and familiarize yourself with these transformations and actions.
 
