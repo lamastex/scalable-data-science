@@ -6,9 +6,17 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GbyTz8Z6E-M/0.jpg)](https://www.youtube.com/embed/GbyTz8Z6E-M?start=0&end=2991&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC This is an augmentation of [http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html](http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html)
 // MAGIC 
 // MAGIC See:
+// MAGIC 
 // MAGIC * [https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf](https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf)
 // MAGIC * [https://amplab.github.io/graphx/](https://amplab.github.io/graphx/)
 // MAGIC * [https://spark.apache.org/docs/latest/graphx-programming-guide.html](https://spark.apache.org/docs/latest/graphx-programming-guide.html)
@@ -524,6 +532,7 @@ d3.graphs.force( // let us see g2 now in one cell
 // MAGIC **Complex triplet filters**
 // MAGIC 
 // MAGIC The following example shows how to select a subgraph based upon triplet filters which operate on:
+// MAGIC 
 // MAGIC * an edge and 
 // MAGIC * its src and 
 // MAGIC * dst vertices. 
@@ -577,7 +586,9 @@ display(g2.edges)
 
 // MAGIC %md
 // MAGIC 
-// MAGIC READ [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
+// MAGIC Read 
+// MAGIC 
+// MAGIC * [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
 
 // COMMAND ----------
 
@@ -631,7 +642,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Connected_component_(graph_th
 // MAGIC %md
 // MAGIC From [http://graphframes.github.io/user-guide.html#connected-components](http://graphframes.github.io/user-guide.html#connected-components):-
 // MAGIC 
-// MAGIC NOTE: With GraphFrames 0.3.0 and later releases, the default Connected Components algorithm requires setting a Spark checkpoint directory. Users can revert to the old algorithm using .setAlgorithm("graphx").
+// MAGIC NOTE: With GraphFrames 0.3.0 and later releases, the default Connected Components algorithm requires setting a Spark checkpoint directory. Users can revert to the old algorithm using `.setAlgorithm("graphx")`.
 // MAGIC 
 // MAGIC See [https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-rdd-checkpointing.html](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-rdd-checkpointing.html) to see why we need to check-point to keep the RDD lineage DAGs from growing out of control.
 
@@ -676,6 +687,7 @@ display(result.orderBy("component"))
 // MAGIC Each node in the network is initially assigned to its own community. At every superstep, nodes send their community affiliation to all neighbors and update their state to the mode community affiliation of incoming messages.
 // MAGIC 
 // MAGIC LPA is a standard community detection algorithm for graphs. It is very inexpensive computationally, although 
+// MAGIC 
 // MAGIC * (1) convergence is not guaranteed and 
 // MAGIC * (2) one can end up with trivial solutions (all nodes are identified into a single community).
 // MAGIC 
