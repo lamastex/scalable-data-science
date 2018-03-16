@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GF-VFR39dIU/0.jpg)](https://www.youtube.com/embed/GF-VFR39dIU?start=0&end=410&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/atwM-8fXNQY/0.jpg)](https://www.youtube.com/embed/atwM-8fXNQY?start=0&end=2372&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC #Topic Modeling with Latent Dirichlet Allocation
 // MAGIC 
 // MAGIC This is an augmentation of a notebook from Databricks Guide.   
