@@ -1,6 +1,11 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TsqWglA3_-0/0.jpg)](https://www.youtube.com/embed/TsqWglA3_-0?start=0&end=1324&autoplay=1)
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3Lc2M0LTAUc/0.jpg)](https://www.youtube.com/embed/3Lc2M0LTAUc?start=0&end=2077&autoplay=1)
+
 What is Geospatial Analytics?
 =============================
 
@@ -32,10 +37,12 @@ Introduction to Magellan for Scalable Geospatial Analytics
 ==========================================================
 
 This is a minor augmentation of Ram Harsha's Magellan code blogged here:
-\* [magellan geospatial analytics in spark](https://magellan.ghost.io/welcome-to-ghost/)
+
+-   [magellan geospatial analytics in spark](https://magellan.ghost.io/welcome-to-ghost/)
 
 First you need to attach the following library:
-\* the magellan library (maven coordinates `harsha2010:magellan:1.0.5-s_2.11`)
+
+-   the magellan library (maven coordinates `harsha2010:magellan:1.0.5-s_2.11`)
 
 Do we need one more geospatial analytics library?
 -------------------------------------------------
@@ -58,18 +65,21 @@ Nuts and Bolts of Magellan
 --------------------------
 
 Let us go and grab this databricks notebook:
-\* <https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/137058993011870/882779309834027/6891974485343070/latest.html>
+
+-   <https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/137058993011870/882779309834027/6891974485343070/latest.html>
 
 and look at the magellan README in github:
-\* <https://github.com/harsha2010/magellan>
+
+-   <https://github.com/harsha2010/magellan>
 
 **HOMEWORK**: Watch the [magellan presentation by Ram Harsha (Hortonworks) in Spark Summit East 2016](https://spark-summit.org/east-2016/events/magellan-spark-as-a-geospatial-analytics-engine/).
 
 Other resources for magellan:
-\* [Ram's blog in HortonWorks](http://hortonworks.com/blog/magellan-geospatial-analytics-in-spark/) and the [ZeppelinHub view of the demo code in video above](https://www.zeppelinhub.com/viewer/notebooks/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2hvcnRvbndvcmtzLWdhbGxlcnkvemVwcGVsaW4tbm90ZWJvb2tzL21hc3Rlci8yQjRUV0dDOE0vbm90ZS5qc29u)
-\* [Magellan as Spark project](http://spark-packages.org/package/harsha2010/magellan) and [Magellan github source](https://github.com/harsha2010/magellan)
-\* [shape files](https://en.wikipedia.org/wiki/Shapefile) developed by Environmental Systems Research Institute [(ESRI)](https://en.wikipedia.org/wiki/Esri). See ESRI's [what is a geospatial shape file?](https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)
-\* magellan builds on <http://esri.github.io/> a leading opensource geospatial library
+
+-   [Ram's blog in HortonWorks](http://hortonworks.com/blog/magellan-geospatial-analytics-in-spark/) and the [ZeppelinHub view of the demo code in video above](https://www.zeppelinhub.com/viewer/notebooks/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2hvcnRvbndvcmtzLWdhbGxlcnkvemVwcGVsaW4tbm90ZWJvb2tzL21hc3Rlci8yQjRUV0dDOE0vbm90ZS5qc29u)
+-   [Magellan as Spark project](http://spark-packages.org/package/harsha2010/magellan) and [Magellan github source](https://github.com/harsha2010/magellan)
+-   [shape files](https://en.wikipedia.org/wiki/Shapefile) developed by Environmental Systems Research Institute [(ESRI)](https://en.wikipedia.org/wiki/Esri). See ESRI's [what is a geospatial shape file?](https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)
+-   magellan builds on <http://esri.github.io/> a leading opensource geospatial library
 
 Let's get our hands dirty with basics in magellan.
 
@@ -183,7 +193,8 @@ Read the following for more on catalyst optimizer and whole-stage code generatio
 -   <https://databricks.com/blog/2016/05/23/apache-spark-as-a-compiler-joining-a-billion-rows-per-second-on-a-laptop.html>
 
 Try bench-marks here:
-\* <https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6122906529858466/293651311471490/5382278320999420/latest.html>
+
+-   <https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6122906529858466/293651311471490/5382278320999420/latest.html>
 
 ``` scala
 // Create a Polygon DataFrame
@@ -814,16 +825,18 @@ Spatio-temporal Queries
 can be expressed in SQL using the Boolean predicates such as, \\(\in , \cap, \ldots \\), that operate over space-time sets given products of 2D magellan objects and 1D time intervals.
 
 Want to scalably do the following:
-\* Given :
-\* a set of trajectories as labelled points in space-time and
-\* a product of a time interval \[ts,te\] and a polygon P
-\* Find all labelled space-time points that satisfy the following relations:
-\* intersect with \[ts,te\] X P
-\* the start-time of the ride or the end time of the ride intersects with \[ts,te\] X P
-\* intersect within a given distance d of any point or a given point in P (optional)
+
+-   Given :
+    -   a set of trajectories as labelled points in space-time and
+    -   a product of a time interval \[ts,te\] and a polygon P
+-   Find all labelled space-time points that satisfy the following relations:
+    -   intersect with \[ts,te\] X P
+    -   the start-time of the ride or the end time of the ride intersects with \[ts,te\] X P
+    -   intersect within a given distance d of any point or a given point in P (optional)
 
 This will allow us to answer questions like:
-\* Where did the passengers who were using Uber and present in the SoMa neighbourhood in a given time interval get off?
+
+-   Where did the passengers who were using Uber and present in the SoMa neighbourhood in a given time interval get off?
 
 See 2016 student project by George Dillon on a detailed analysis of spatio-temporal taxi trajectories using the Beijing taxi dataset from Microsoft Research (including map-matching with open-street maps using magellan and graphhopper).
 

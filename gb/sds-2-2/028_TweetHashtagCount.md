@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4tZ0-d_0yZA/0.jpg)](https://www.youtube.com/embed/4tZ0-d_0yZA?start=156&end=2823&autoplay=1)
+
 Twitter Hashtag Count
 =====================
 
@@ -66,15 +70,6 @@ System.setProperty("twitter4j.oauth.accessTokenSecret", MytokenSecret)
 \`\`\`
 
 The cell-below is hidden to not expose my Twitter API Credentials: `consumerKey`, `consumerSecret`, `accessToken` and `accessTokenSecret`. Use the code above to enter your own credentials!
-
->     import twitter4j._
->     import twitter4j.auth.Authorization
->     import twitter4j.conf.ConfigurationBuilder
->     import twitter4j.auth.OAuthAuthorization
->     import org.apache.spark.streaming._
->     import org.apache.spark.streaming.dstream._
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.receiver.Receiver
 
 ``` run
 "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
@@ -325,17 +320,6 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 >     (#WeeklyIdol,1)
 >     (#SAMURAIBLUE,1)
 
->     defined class ExtendedTwitterReceiver
-
->     defined class ExtendedTwitterInputDStream
-
->     import twitter4j.Status
->     import twitter4j.auth.Authorization
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.StreamingContext
->     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
->     defined object ExtendedTwitterUtils
-
 >     twitter OAuth Credentials loaded
 >     MyconsumerKey: String
 >     MyconsumerSecret: String
@@ -343,8 +327,6 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 >     MytokenSecret: String
 >     import twitter4j.auth.OAuthAuthorization
 >     import twitter4j.conf.ConfigurationBuilder
-
->     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
 
 ### Let's brainstorm a bit now
 
@@ -356,11 +338,13 @@ What could you do with this type of streaming capability?
 -   ...
 
 Note that there are various Spark Streaming ML algorithms that one could easily throw at such `reduceByKeyAndWindow` tweet streams:
-\* [Frequent Pattern Mining](https://spark.apache.org/docs/latest/mllib-frequent-pattern-mining.html)
-\* [Streaming K-Means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html)
-\* [Latent Dirichlet Allocation - Topic Modeling](https://spark.apache.org/docs/latest/ml-clustering.html#latent-dirichlet-allocation-lda)
+
+-   [Frequent Pattern Mining](https://spark.apache.org/docs/latest/mllib-frequent-pattern-mining.html)
+-   [Streaming K-Means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html)
+-   [Latent Dirichlet Allocation - Topic Modeling](https://spark.apache.org/docs/latest/ml-clustering.html#latent-dirichlet-allocation-lda)
 
 Student Project or Volunteer for next Meetup - let's check it out now:
 
 HOME-WORK:
-\* [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)
+
+-   [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)

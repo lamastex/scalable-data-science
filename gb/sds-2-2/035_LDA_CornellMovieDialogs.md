@@ -83,18 +83,19 @@ Probabilistic Topic Modeling Example
 ------------------------------------
 
 This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more.
-- Step 0. Dataset Review
-- Step 1. Downloading and Loading Data into DBFS
-- (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
-- Step 2. Loading the Data and Data Cleaning
-- Step 3. Text Tokenization
-- Step 4. Remove Stopwords
-- Step 5. Vector of Token Counts
-- Step 6. Create LDA model with Online Variational Bayes
-- Step 7. Review Topics
-- Step 8. Model Tuning - Refilter Stopwords
-- Step 9. Create LDA model with Expectation Maximization
-- Step 10. Visualize Results
+
+-   Step 0. Dataset Review
+-   Step 1. Downloading and Loading Data into DBFS
+    -   (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
+-   Step 2. Loading the Data and Data Cleaning
+-   Step 3. Text Tokenization
+-   Step 4. Remove Stopwords
+-   Step 5. Vector of Token Counts
+-   Step 6. Create LDA model with Online Variational Bayes
+-   Step 7. Review Topics
+-   Step 8. Model Tuning - Refilter Stopwords
+-   Step 9. Create LDA model with Expectation Maximization
+-   Step 10. Visualize Results
 
 Step 0. Dataset Review
 ----------------------
@@ -102,8 +103,11 @@ Step 0. Dataset Review
 In this example, we will use the [Cornell Movie Dialogs Corpus](https://people.mpi-sws.org/~cristian/Cornell_Movie-Dialogs_Corpus.html).
 
 Here is the `README.txt`:
-***
-***
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
 Cornell Movie-Dialogs Corpus
 
 Distributed together with:
@@ -747,7 +751,8 @@ Step 3. Text Tokenization
 
 We will use the RegexTokenizer to split each document into tokens. We can setMinTokenLength() here to indicate a minimum token length, and filter away all tokens that fall below the minimum.
 See:
-\* <http://spark.apache.org/docs/latest/ml-features.html#tokenizer>.
+
+-   <http://spark.apache.org/docs/latest/ml-features.html#tokenizer>.
 
 ``` scala
 import org.apache.spark.ml.feature.RegexTokenizer
@@ -779,7 +784,8 @@ Step 4. Remove Stopwords
 ------------------------
 
 We can easily remove stopwords using the StopWordsRemover(). See:
-\* <http://spark.apache.org/docs/latest/ml-features.html#stopwordsremover>.
+
+-   <http://spark.apache.org/docs/latest/ml-features.html#stopwordsremover>.
 
 If a list of stopwords is not provided, the StopWordsRemover() will use [this list of stopwords](http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words), also shown below, by default.
 
@@ -860,11 +866,13 @@ LDA takes in a vector of token counts as input. We can use the `CountVectorizer(
 The `CountVectorizer` will return `(VocabSize, Array(Indexed Tokens), Array(Token Frequency))`.
 
 Two handy parameters to note:
-- `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
-- `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
+
+-   `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
+-   `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
 
 See:
-\* <http://spark.apache.org/docs/latest/ml-features.html#countvectorizer>.
+
+-   <http://spark.apache.org/docs/latest/ml-features.html#countvectorizer>.
 
 ``` scala
 import org.apache.spark.ml.feature.CountVectorizer
@@ -918,7 +926,8 @@ Let's get an overview of LDA in Spark's MLLIB
 ---------------------------------------------
 
 See:
-\* <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
+
+-   <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
 
 Create LDA model with Online Variational Bayes
 ----------------------------------------------
@@ -1443,7 +1452,8 @@ Step 9. Create LDA model with Expectation Maximization
 ------------------------------------------------------
 
 Let's try creating an LDA model with Expectation Maximization on the data that has been refiltered for additional stopwords. We will also increase MaxIterations here to 100 to see if that improves results. See:
-\* <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
+
+-   <http://spark.apache.org/docs/latest/mllib-clustering.html#latent-dirichlet-allocation-lda>.
 
 ``` scala
 import org.apache.spark.mllib.clustering.EMLDAOptimizer
@@ -1467,7 +1477,7 @@ val em_ldaModel = em_lda.run(new_lda_countVector)
 >     em_ldaModel: org.apache.spark.mllib.clustering.LDAModel = org.apache.spark.mllib.clustering.DistributedLDAModel@4c061b42
 
 ``` scala
- import org.apache.spark.mllib.clustering.DistributedLDAModel;
+import org.apache.spark.mllib.clustering.DistributedLDAModel;
 val em_DldaModel = em_ldaModel.asInstanceOf[DistributedLDAModel]
 ```
 
@@ -1778,10 +1788,11 @@ We've managed to get some good results here. For example, we can easily infer th
 We still get some ambiguous results like Topic 0.
 
 To improve our results further, we could employ some of the below methods:
-- Refilter data for additional data-specific stopwords
-- Use Stemming or Lemmatization to preprocess data
-- Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
-- Increase model's MaxIterations
+
+-   Refilter data for additional data-specific stopwords
+-   Use Stemming or Lemmatization to preprocess data
+-   Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
+-   Increase model's MaxIterations
 
 Visualize Results
 -----------------

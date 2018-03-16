@@ -1,11 +1,16 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/0RUyuELoNPw/0.jpg)](https://www.youtube.com/embed/0RUyuELoNPw?start=0&end=2083&autoplay=1)
+
 Activity Recognition from Accelerometer using Random Forest
 ===========================================================
 
 This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition:
-\* <https://github.com/MiraLak/activityRecognitionV2>.
+
+-   <https://github.com/MiraLak/activityRecognitionV2>.
 
 [![Amira's video](http://img.youtube.com/vi/1DV9Kdec0-A/0.jpg)](https://www.youtube.com/watch?v=1DV9Kdec0-A)
 
@@ -174,7 +179,8 @@ This is sensible since the subjects are not instantaneously changing between the
 Thus it makes sense to try and use the most recent accelerometer readings (from the immediate past) to predict the current activity.
 
 See the following for a crash introduction to windows:
-\* <http://xinhstechblog.blogspot.co.nz/2016/04/spark-window-functions-for-dataframes.html>
+
+-   <http://xinhstechblog.blogspot.co.nz/2016/04/spark-window-functions-for-dataframes.html>
 
 ``` scala
  // Import the window functions.
@@ -275,8 +281,9 @@ val (trainingData, testData) = (splits(0), splits(1))
 >     testData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [user_id: string, activity: string ... 27 more fields]
 
 See
-\* <http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier>
-\* <http://blog.citizennet.com/blog/2012/11/10/random-forests-ensembles-and-performance-metrics>
+
+-   <http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier>
+-   <http://blog.citizennet.com/blog/2012/11/10/random-forests-ensembles-and-performance-metrics>
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Random_forest"

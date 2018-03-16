@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/63E_Nps98Bk/0.jpg)](https://www.youtube.com/embed/63E_Nps98Bk?start=0&end=1222&autoplay=1)
+
 Twitter Streaming Language Classifier
 =====================================
 

@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GF-VFR39dIU/0.jpg)](https://www.youtube.com/embed/GF-VFR39dIU?start=0&end=410&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/atwM-8fXNQY/0.jpg)](https://www.youtube.com/embed/atwM-8fXNQY?start=0&end=2372&autoplay=1)
+
 Topic Modeling with Latent Dirichlet Allocation
 ===============================================
 
@@ -88,18 +92,19 @@ Probabilistic Topic Modeling Example
 ------------------------------------
 
 This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more.
-- Step 0. Dataset Review
-- Step 1. Downloading and Loading Data into DBFS
-- (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
-- Step 2. Loading the Data and Data Cleaning
-- Step 3. Text Tokenization
-- Step 4. Remove Stopwords
-- Step 5. Vector of Token Counts
-- Step 6. Create LDA model with Online Variational Bayes
-- Step 7. Review Topics
-- Step 8. Model Tuning - Refilter Stopwords
-- Step 9. Create LDA model with Expectation Maximization
-- Step 10. Visualize Results
+
+-   Step 0. Dataset Review
+-   Step 1. Downloading and Loading Data into DBFS
+    -   (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
+-   Step 2. Loading the Data and Data Cleaning
+-   Step 3. Text Tokenization
+-   Step 4. Remove Stopwords
+-   Step 5. Vector of Token Counts
+-   Step 6. Create LDA model with Online Variational Bayes
+-   Step 7. Review Topics
+-   Step 8. Model Tuning - Refilter Stopwords
+-   Step 9. Create LDA model with Expectation Maximization
+-   Step 10. Visualize Results
 
 Step 0. Dataset Review
 ----------------------
@@ -247,9 +252,10 @@ Last modified: September 9, 1999
 Some of the newsgroups seem pretty similar on first glance, such as *comp.sys.ibm.pc.hardware* and *comp.sys.mac.hardware*, which may affect our results.
 
 **NOTE:** A simpler and slicker version of the analysis is available in this notebook:
-\* <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
 
-But, let's do it the hard way here so that we can do it on other arbitrary datasets.
+-   <https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html>
+
+    But, let's do it the hard way here so that we can do it on other arbitrary datasets.
 
 Step 2. Loading the Data and Data Cleaning
 ------------------------------------------
@@ -618,7 +624,8 @@ See <http://spark.apache.org/docs/latest/ml-features.html>
 To use the convenient [Feature extraction and transformation APIs](http://spark.apache.org/docs/latest/ml-features.html), we will convert our RDD into a DataFrame.
 
 We will also create an ID for every document using `zipWithIndex`
-\* for sytax and details search for `zipWithIndex` in <https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html>
+
+-   for sytax and details search for `zipWithIndex` in <https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html>
 
 ``` scala
 // Convert RDD to DF with ID for every document 
@@ -750,8 +757,9 @@ LDA takes in a vector of token counts as input. We can use the `CountVectorizer(
 The `CountVectorizer` will return `(VocabSize, Array(Indexed Tokens), Array(Token Frequency))`.
 
 Two handy parameters to note:
-- `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
-- `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
+
+-   `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
+-   `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
 
 See <http://spark.apache.org/docs/latest/ml-features.html#countvectorizer>.
 
@@ -1154,8 +1162,8 @@ val new_lda = new LDA()
 Dive into the source!!!
 
 1.  Let's find the default value for `docConcentration` now.
-2.  Got to Apache Spark package Root: <https://spark.apache.org/docs/latest/api/scala/#package>
 
+-   Got to Apache Spark package Root: <https://spark.apache.org/docs/latest/api/scala/#package>
 -   search for 'ml' in the search box on the top left (ml is for ml library)
 -   Then find the `LDA` by scrolling below on the left to mllib's `clustering` methods and click on `LDA`
 -   Then click on the source code link which should take you here:
@@ -1568,10 +1576,11 @@ We've managed to get some good results here. For example, we can easily infer th
 We still get some ambiguous results like Topic 17.
 
 To improve our results further, we could employ some of the below methods:
-- Refilter data for additional data-specific stopwords
-- Use Stemming or Lemmatization to preprocess data
-- Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
-- Increase model's MaxIterations
+
+-   Refilter data for additional data-specific stopwords
+-   Use Stemming or Lemmatization to preprocess data
+-   Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
+-   Increase model's MaxIterations
 
 Visualize Results
 -----------------

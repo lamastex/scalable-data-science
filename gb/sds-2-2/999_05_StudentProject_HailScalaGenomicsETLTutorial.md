@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/xxx/0.jpg)](https://www.youtube.com/embed/xxx?start=0&end=2991&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qMGKAERggU8/0.jpg)](https://www.youtube.com/embed/qMGKAERggU8?start=0&end=3028&autoplay=1)
+
 Hail Tutorial in Scala for Population Genomics ETL
 ==================================================
 

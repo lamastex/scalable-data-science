@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TsqWglA3_-0/0.jpg)](https://www.youtube.com/embed/TsqWglA3_-0?start=1324&end=1605&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qBx_pslVBkg/0.jpg)](https://www.youtube.com/embed/qBx_pslVBkg?start=895&end=2160&autoplay=1)
+
 Power Plant ML Pipeline Application
 ===================================
 
@@ -80,36 +84,6 @@ We will need to convert the predictor features from columns to Feature Vectors u
 
 The VectorAssembler will be the first step in building our ML pipeline.
 
-<p class="htmlSandbox"><iframe 
- src="https://en.wikipedia.org/wiki/Peaking_power_plant"
- width="95%" height="300"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-<p class="htmlSandbox"><iframe 
- src="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant"
- width="95%" height="500"
- sandbox>
-  <p>
-    <a href="http://spark.apache.org/docs/latest/index.html">
-      Fallback link for browsers that, unlikely, don't support frames
-    </a>
-  </p>
-</iframe></p>
-
-| path                                                  | name       | size     |
-|-------------------------------------------------------|------------|----------|
-| dbfs:/databricks-datasets/power-plant/data/Sheet1.tsv | Sheet1.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet2.tsv | Sheet2.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet3.tsv | Sheet3.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet4.tsv | Sheet4.tsv | 308693.0 |
-| dbfs:/databricks-datasets/power-plant/data/Sheet5.tsv | Sheet5.tsv | 308693.0 |
-
 ``` scala
 //Let's quickly recall the schema
 // the table is available
@@ -123,31 +97,12 @@ table("power_plant_table").printSchema
 >      |-- RH: double (nullable = true)
 >      |-- PE: double (nullable = true)
 
->     powerPlantRDD: org.apache.spark.rdd.RDD[String] = /databricks-datasets/power-plant/data/Sheet1.tsv MapPartitionsRDD[1] at textFile at <console>:34
-
->     AT	V	AP	RH	PE
->     14.96	41.76	1024.07	73.17	463.26
->     25.18	62.96	1020.04	59.08	444.37
->     5.11	39.4	1012.16	92.14	488.56
->     20.86	57.32	1010.24	76.64	446.48
-
 ``` scala
 //the DataFrame should also be available
 powerPlantDF 
 ```
 
 >     res22: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
-
->     powerPlantDF: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
-
->     root
->      |-- AT: double (nullable = true)
->      |-- V: double (nullable = true)
->      |-- AP: double (nullable = true)
->      |-- RH: double (nullable = true)
->      |-- PE: double (nullable = true)
-
->     res7: Long = 9568
 
 ``` scala
 import org.apache.spark.ml.feature.VectorAssembler
@@ -164,399 +119,12 @@ val vectorizer =  new VectorAssembler()
 >     dataset: org.apache.spark.sql.DataFrame = [AT: double, V: double ... 3 more fields]
 >     vectorizer: org.apache.spark.ml.feature.VectorAssembler = vecAssembler_00521eb9630e
 
->     +-----+-----+-------+-----+------+
->     |   AT|    V|     AP|   RH|    PE|
->     +-----+-----+-------+-----+------+
->     |14.96|41.76|1024.07|73.17|463.26|
->     |25.18|62.96|1020.04|59.08|444.37|
->     | 5.11| 39.4|1012.16|92.14|488.56|
->     |20.86|57.32|1010.24|76.64|446.48|
->     |10.82| 37.5|1009.23|96.62| 473.9|
->     |26.27|59.44|1012.23|58.77|443.67|
->     |15.89|43.96|1014.02|75.24|467.35|
->     | 9.48|44.71|1019.12|66.43|478.42|
->     |14.64| 45.0|1021.78|41.25|475.98|
->     |11.74|43.56|1015.14|70.72| 477.5|
->     +-----+-----+-------+-----+------+
->     only showing top 10 rows
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
-| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
-| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
-| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
-| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
-| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
-| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
-| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
-| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
-| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
-| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
-| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
-| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
-| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
-| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
-| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
-| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
-| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
-| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
-| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
-| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
-| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
-| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
-| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
-| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
-| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
-| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
-| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
-
-Truncated to 30 rows
-
->     res10: Long = 9568
-
->     +--------+--------------------+-----------+
->     |database|           tableName|isTemporary|
->     +--------+--------------------+-----------+
->     | default|          cities_csv|      false|
->     | default|       cleaned_taxes|      false|
->     | default|commdettrumpclint...|      false|
->     | default|   donaldtrumptweets|      false|
->     | default|             linkage|      false|
->     | default|             nations|      false|
->     | default|           newmplist|      false|
->     | default|       ny_baby_names|      false|
->     | default|       nzmpsandparty|      false|
->     | default|    pos_neg_category|      false|
->     | default|                 rna|      false|
->     | default|                samh|      false|
->     | default|        simple_range|      false|
->     | default|  social_media_usage|      false|
->     | default|              table1|      false|
->     | default|          test_table|      false|
->     | default|             uscites|      false|
->     +--------+--------------------+-----------+
-
->     +--------------------------+--------+-----------+---------+-----------+
->     |name                      |database|description|tableType|isTemporary|
->     +--------------------------+--------+-----------+---------+-----------+
->     |cities_csv                |default |null       |EXTERNAL |false      |
->     |cleaned_taxes             |default |null       |MANAGED  |false      |
->     |commdettrumpclintonretweet|default |null       |MANAGED  |false      |
->     |donaldtrumptweets         |default |null       |EXTERNAL |false      |
->     |linkage                   |default |null       |EXTERNAL |false      |
->     |nations                   |default |null       |EXTERNAL |false      |
->     |newmplist                 |default |null       |EXTERNAL |false      |
->     |ny_baby_names             |default |null       |MANAGED  |false      |
->     |nzmpsandparty             |default |null       |EXTERNAL |false      |
->     |pos_neg_category          |default |null       |EXTERNAL |false      |
->     |rna                       |default |null       |MANAGED  |false      |
->     |samh                      |default |null       |EXTERNAL |false      |
->     |simple_range              |default |null       |MANAGED  |false      |
->     |social_media_usage        |default |null       |EXTERNAL |false      |
->     |table1                    |default |null       |EXTERNAL |false      |
->     |test_table                |default |null       |EXTERNAL |false      |
->     |uscites                   |default |null       |EXTERNAL |false      |
->     +--------------------------+--------+-----------+---------+-----------+
-
->     +-------+---------------------+-------------------------+
->     |name   |description          |locationUri              |
->     +-------+---------------------+-------------------------+
->     |default|Default Hive database|dbfs:/user/hive/warehouse|
->     +-------+---------------------+-------------------------+
-
 Step 6: Data Modeling
 ---------------------
 
 Now let's model our data to predict what the power output will be given a set of sensor readings
 
 Our first model will be based on simple linear regression since we saw some linear patterns in our data based on the scatter plots during the exploration stage.
-
->     +--------+--------------------+-----------+
->     |database|           tableName|isTemporary|
->     +--------+--------------------+-----------+
->     | default|          cities_csv|      false|
->     | default|       cleaned_taxes|      false|
->     | default|commdettrumpclint...|      false|
->     | default|   donaldtrumptweets|      false|
->     | default|             linkage|      false|
->     | default|             nations|      false|
->     | default|           newmplist|      false|
->     | default|       ny_baby_names|      false|
->     | default|       nzmpsandparty|      false|
->     | default|    pos_neg_category|      false|
->     | default|                 rna|      false|
->     | default|                samh|      false|
->     | default|        simple_range|      false|
->     | default|  social_media_usage|      false|
->     | default|              table1|      false|
->     | default|          test_table|      false|
->     | default|             uscites|      false|
->     |        |   power_plant_table|       true|
->     +--------+--------------------+-----------+
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
-| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
-| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
-| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
-| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
-| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
-| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
-| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
-| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
-| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
-| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
-| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
-| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
-| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
-| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
-| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
-| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
-| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
-| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
-| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
-| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
-| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
-| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
-| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
-| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
-| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
-| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
-| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
-
-Truncated to 30 rows
-
-| col\_name | data\_type | comment |
-|-----------|------------|---------|
-| AT        | double     | null    |
-| V         | double     | null    |
-| AP        | double     | null    |
-| RH        | double     | null    |
-| PE        | double     | null    |
-
-| summary | AT                 | V                  | AP                 | RH                 | PE                 |
-|---------|--------------------|--------------------|--------------------|--------------------|--------------------|
-| count   | 9568               | 9568               | 9568               | 9568               | 9568               |
-| mean    | 19.65123118729102  | 54.30580372073601  | 1013.2590781772603 | 73.30897784280926  | 454.3650094063554  |
-| stddev  | 7.4524732296110825 | 12.707892998326784 | 5.938783705811581  | 14.600268756728964 | 17.066994999803402 |
-| min     | 1.81               | 25.36              | 992.89             | 25.56              | 420.26             |
-| max     | 37.11              | 81.56              | 1033.3             | 100.16             | 495.76             |
-
-| Temperature | Power  |
-|-------------|--------|
-| 14.96       | 463.26 |
-| 25.18       | 444.37 |
-| 5.11        | 488.56 |
-| 20.86       | 446.48 |
-| 10.82       | 473.9  |
-| 26.27       | 443.67 |
-| 15.89       | 467.35 |
-| 9.48        | 478.42 |
-| 14.64       | 475.98 |
-| 11.74       | 477.5  |
-| 17.99       | 453.02 |
-| 20.14       | 453.99 |
-| 24.34       | 440.29 |
-| 25.71       | 451.28 |
-| 26.19       | 433.99 |
-| 21.42       | 462.19 |
-| 18.21       | 467.54 |
-| 11.04       | 477.2  |
-| 14.45       | 459.85 |
-| 13.97       | 464.3  |
-| 17.76       | 468.27 |
-| 5.41        | 495.24 |
-| 7.76        | 483.8  |
-| 27.23       | 443.61 |
-| 27.36       | 436.06 |
-| 27.47       | 443.25 |
-| 14.6        | 464.16 |
-| 7.91        | 475.52 |
-| 5.81        | 484.41 |
-| 30.53       | 437.89 |
-
-Truncated to 30 rows
-
-| ExhaustVaccum | Power  |
-|---------------|--------|
-| 41.76         | 463.26 |
-| 62.96         | 444.37 |
-| 39.4          | 488.56 |
-| 57.32         | 446.48 |
-| 37.5          | 473.9  |
-| 59.44         | 443.67 |
-| 43.96         | 467.35 |
-| 44.71         | 478.42 |
-| 45.0          | 475.98 |
-| 43.56         | 477.5  |
-| 43.72         | 453.02 |
-| 46.93         | 453.99 |
-| 73.5          | 440.29 |
-| 58.59         | 451.28 |
-| 69.34         | 433.99 |
-| 43.79         | 462.19 |
-| 45.0          | 467.54 |
-| 41.74         | 477.2  |
-| 52.75         | 459.85 |
-| 38.47         | 464.3  |
-| 42.42         | 468.27 |
-| 40.07         | 495.24 |
-| 42.28         | 483.8  |
-| 63.9          | 443.61 |
-| 48.6          | 436.06 |
-| 70.72         | 443.25 |
-| 39.31         | 464.16 |
-| 39.96         | 475.52 |
-| 35.79         | 484.41 |
-| 65.18         | 437.89 |
-
-Truncated to 30 rows
-
-| Pressure | Power  |
-|----------|--------|
-| 1024.07  | 463.26 |
-| 1020.04  | 444.37 |
-| 1012.16  | 488.56 |
-| 1010.24  | 446.48 |
-| 1009.23  | 473.9  |
-| 1012.23  | 443.67 |
-| 1014.02  | 467.35 |
-| 1019.12  | 478.42 |
-| 1021.78  | 475.98 |
-| 1015.14  | 477.5  |
-| 1008.64  | 453.02 |
-| 1014.66  | 453.99 |
-| 1011.31  | 440.29 |
-| 1012.77  | 451.28 |
-| 1009.48  | 433.99 |
-| 1015.76  | 462.19 |
-| 1022.86  | 467.54 |
-| 1022.6   | 477.2  |
-| 1023.97  | 459.85 |
-| 1015.15  | 464.3  |
-| 1009.09  | 468.27 |
-| 1019.16  | 495.24 |
-| 1008.52  | 483.8  |
-| 1014.3   | 443.61 |
-| 1003.18  | 436.06 |
-| 1009.97  | 443.25 |
-| 1011.11  | 464.16 |
-| 1023.57  | 475.52 |
-| 1012.14  | 484.41 |
-| 1012.69  | 437.89 |
-
-Truncated to 30 rows
-
-| Humidity | Power  |
-|----------|--------|
-| 73.17    | 463.26 |
-| 59.08    | 444.37 |
-| 92.14    | 488.56 |
-| 76.64    | 446.48 |
-| 96.62    | 473.9  |
-| 58.77    | 443.67 |
-| 75.24    | 467.35 |
-| 66.43    | 478.42 |
-| 41.25    | 475.98 |
-| 70.72    | 477.5  |
-| 75.04    | 453.02 |
-| 64.22    | 453.99 |
-| 84.15    | 440.29 |
-| 61.83    | 451.28 |
-| 87.59    | 433.99 |
-| 43.08    | 462.19 |
-| 48.84    | 467.54 |
-| 77.51    | 477.2  |
-| 63.59    | 459.85 |
-| 55.28    | 464.3  |
-| 66.26    | 468.27 |
-| 64.77    | 495.24 |
-| 83.31    | 483.8  |
-| 47.19    | 443.61 |
-| 54.93    | 436.06 |
-| 74.62    | 443.25 |
-| 72.52    | 464.16 |
-| 88.44    | 475.52 |
-| 92.28    | 484.41 |
-| 41.85    | 437.89 |
-
-Truncated to 30 rows
-
-| RH    | PE     |
-|-------|--------|
-| 73.17 | 463.26 |
-| 59.08 | 444.37 |
-| 92.14 | 488.56 |
-| 76.64 | 446.48 |
-| 96.62 | 473.9  |
-| 58.77 | 443.67 |
-| 75.24 | 467.35 |
-| 66.43 | 478.42 |
-| 41.25 | 475.98 |
-| 70.72 | 477.5  |
-| 75.04 | 453.02 |
-| 64.22 | 453.99 |
-| 84.15 | 440.29 |
-| 61.83 | 451.28 |
-| 87.59 | 433.99 |
-| 43.08 | 462.19 |
-| 48.84 | 467.54 |
-| 77.51 | 477.2  |
-| 63.59 | 459.85 |
-| 55.28 | 464.3  |
-| 66.26 | 468.27 |
-| 64.77 | 495.24 |
-| 83.31 | 483.8  |
-| 47.19 | 443.61 |
-| 54.93 | 436.06 |
-| 74.62 | 443.25 |
-| 72.52 | 464.16 |
-| 88.44 | 475.52 |
-| 92.28 | 484.41 |
-| 41.85 | 437.89 |
-
-Truncated to 30 rows
-
-| AT    | V     | AP      | RH    | PE     |
-|-------|-------|---------|-------|--------|
-| 14.96 | 41.76 | 1024.07 | 73.17 | 463.26 |
-| 25.18 | 62.96 | 1020.04 | 59.08 | 444.37 |
-| 5.11  | 39.4  | 1012.16 | 92.14 | 488.56 |
-| 20.86 | 57.32 | 1010.24 | 76.64 | 446.48 |
-| 10.82 | 37.5  | 1009.23 | 96.62 | 473.9  |
-| 26.27 | 59.44 | 1012.23 | 58.77 | 443.67 |
-| 15.89 | 43.96 | 1014.02 | 75.24 | 467.35 |
-| 9.48  | 44.71 | 1019.12 | 66.43 | 478.42 |
-| 14.64 | 45.0  | 1021.78 | 41.25 | 475.98 |
-| 11.74 | 43.56 | 1015.14 | 70.72 | 477.5  |
-| 17.99 | 43.72 | 1008.64 | 75.04 | 453.02 |
-| 20.14 | 46.93 | 1014.66 | 64.22 | 453.99 |
-| 24.34 | 73.5  | 1011.31 | 84.15 | 440.29 |
-| 25.71 | 58.59 | 1012.77 | 61.83 | 451.28 |
-| 26.19 | 69.34 | 1009.48 | 87.59 | 433.99 |
-| 21.42 | 43.79 | 1015.76 | 43.08 | 462.19 |
-| 18.21 | 45.0  | 1022.86 | 48.84 | 467.54 |
-| 11.04 | 41.74 | 1022.6  | 77.51 | 477.2  |
-| 14.45 | 52.75 | 1023.97 | 63.59 | 459.85 |
-| 13.97 | 38.47 | 1015.15 | 55.28 | 464.3  |
-| 17.76 | 42.42 | 1009.09 | 66.26 | 468.27 |
-| 5.41  | 40.07 | 1019.16 | 64.77 | 495.24 |
-| 7.76  | 42.28 | 1008.52 | 83.31 | 483.8  |
-| 27.23 | 63.9  | 1014.3  | 47.19 | 443.61 |
-| 27.36 | 48.6  | 1003.18 | 54.93 | 436.06 |
-| 27.47 | 70.72 | 1009.97 | 74.62 | 443.25 |
-| 14.6  | 39.31 | 1011.11 | 72.52 | 464.16 |
-| 7.91  | 39.96 | 1023.57 | 88.44 | 475.52 |
-| 5.81  | 35.79 | 1012.14 | 92.28 | 484.41 |
-| 30.53 | 65.18 | 1012.69 | 41.85 | 437.89 |
-
-Truncated to 30 rows
 
 ### Linear Regression Model
 
@@ -743,8 +311,9 @@ println("Linear Regression Equation: " + equation)
 >     Linear Regression Equation: y = 427.9139822165837  - (1.9083064919040942 * AT) - (0.25381293007161654 * V) - (0.1474651301033126 * RH) + (0.08739350304730673 * AP)
 
 Based on examining the fitted Linear Regression Equation above:
-\* There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91.
-\* But our other dimenensions seem to have little to no correlation with Power Output.
+
+-   There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91.
+-   But our other dimenensions seem to have little to no correlation with Power Output.
 
 Do you remember **Step 2: Explore Your Data**? When we visualized each predictor against Power Output using a Scatter Plot, only the temperature variable seemed to have a linear correlation with Power Output so our final equation seems logical.
 
@@ -1036,7 +605,8 @@ val cvModel = crossval.fit(trainingSet)
 >     cvModel: org.apache.spark.ml.tuning.CrossValidatorModel = cv_414cd3231d9a
 
 In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large.
-\* <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
+
+-   <http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split>
 
 Now that we have tuned let's see what we got for tuning parameters and what our RMSE was versus our intial model
 
@@ -1069,7 +639,8 @@ Let us explore other models to see if we can predict the power output better
 ----------------------------------------------------------------------------
 
 There are several families of models in Spark's scalable machine learning library:
-\* <http://spark.apache.org/docs/latest/ml-classification-regression.html>
+
+-   <http://spark.apache.org/docs/latest/ml-classification-regression.html>
 
 So our initial untuned and tuned linear regression models are statistically identical.
 
@@ -1222,7 +793,8 @@ So our DecisionTree was slightly worse than our LinearRegression model (LR: 4.6 
 This GBTRegressor code will be way faster on a larger cluster of course.
 
 A visual explanation of gradient boosted trees:
-\* [http://arogozhnikov.github.io/2016/06/24/gradient*boosting*explained.html](http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
+
+-   [http://arogozhnikov.github.io/2016/06/24/gradient*boosting*explained.html](http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
 
 Let's see what a boosting algorithm, a type of ensemble method, is all about in more detail.
 
@@ -4723,5 +4295,6 @@ ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
 ```
 
 Datasource References:
-\* Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
-\* Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
+
+-   Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
+-   Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)

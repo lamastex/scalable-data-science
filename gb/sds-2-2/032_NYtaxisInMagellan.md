@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qBx_pslVBkg/0.jpg)](https://www.youtube.com/embed/qBx_pslVBkg?start=271&end=766&autoplay=1)
+
 Analysis of NY Taxi dataset in magellan
 =======================================
 

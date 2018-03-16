@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qgMIxwCA01w/0.jpg)](https://www.youtube.com/embed/qgMIxwCA01w?start=0&end=2991&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/J1NlUSz1MVk/0.jpg)](https://www.youtube.com/embed/J1NlUSz1MVk?start=0&end=2634&autoplay=1)
+
 Tweet Collector - capture live tweets
 =====================================
 
@@ -14,41 +18,20 @@ Here are the main steps in this notebook:
 We will call extendedTwitterUtils notebook from here.
 
 But **first install** the following libraries:
-\* gson
-\* twitter4j-examples
+
+-   gson
+-   twitter4j-examples
 
 ``` run
 "scalable-data-science/sds-2-2/025_a_extendedTwitterUtils2run"
 ```
 
->     import twitter4j._
->     import twitter4j.auth.Authorization
->     import twitter4j.conf.ConfigurationBuilder
->     import twitter4j.auth.OAuthAuthorization
->     import org.apache.spark.streaming._
->     import org.apache.spark.streaming.dstream._
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.receiver.Receiver
-
 Go to SparkUI and see if a streaming job is already running. If so you need to terminate it before starting a new streaming job. Only one streaming job can be run on the DB CE.
-
->     defined class ExtendedTwitterReceiver
-
->     defined class ExtendedTwitterInputDStream
 
 ``` scala
 // this will make sure all streaming job in the cluster are stopped
 StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) }
 ```
-
->     import twitter4j.Status
->     import twitter4j.auth.Authorization
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.StreamingContext
->     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
->     defined object ExtendedTwitterUtils
-
->     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
 
 Let's create a directory in dbfs for storing tweets in the cluster's distributed file system.
 
@@ -113,7 +96,8 @@ Remeber that the use of twitter itself comes with various strings attached. Read
 -   [Twitter Rules](https://twitter.com/rules)
 
 Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings. Read:
-- [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
+
+-   [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
 
 ### Enter your own Twitter API Credentials.
 
@@ -123,7 +107,8 @@ Crucially, the use of the content from twitter by you (as done in this worksheet
 ### Ethical/Legal Aspects
 
 See Background Readings/Viewings in Project MEP:
-\* <https://lamastex.github.io/scalable-data-science/sds/research/mep/>
+
+-   <https://lamastex.github.io/scalable-data-science/sds/research/mep/>
 
 ``` run
 "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"
@@ -775,9 +760,10 @@ dbutils.fs.rm(outputDirectoryRoot, true)
 Clearly there is a lot one can do with tweets!
 
 Enspecially, after you can get a few more primitives under your belt from the following areas:
-\* Natural Language Processing (MLlib, beyond word counts of course),
-\* Distributed vertex programming (Graph Frames, which you already know), and
-\* Scalable geospatial computing with location data on open street maps (roughly a third of tweets are geo-enabled with Latitude and Longitude of the tweet location) - we will get into this.
+
+-   Natural Language Processing (MLlib, beyond word counts of course),
+-   Distributed vertex programming (Graph Frames, which you already know), and
+-   Scalable geospatial computing with location data on open street maps (roughly a third of tweets are geo-enabled with Latitude and Longitude of the tweet location) - we will get into this.
 
 ### Making a function for Spark Streaming job
 
@@ -896,20 +882,6 @@ Please see <http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.htm
 ``` run
 "scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
 ```
-
->     USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
->                       val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
->                       
->     import org.apache.spark.sql.types.{StructType, StructField, StringType}
->     import org.apache.spark.sql.functions._
->     import org.apache.spark.sql.types._
->     import org.apache.spark.sql.ColumnName
->     import org.apache.spark.sql.DataFrame
->     fromParquetFile2DF: (InputDFAsParquetFilePatternString: String)org.apache.spark.sql.DataFrame
->     tweetsJsonStringDF2TweetsDF: (tweetsAsJsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
->     tweetsIDLong_JsonStringPairDF2TweetsDF: (tweetsAsIDLong_JsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
->     tweetsDF2TTTDF: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
->     tweetsDF2TTTDFWithURLsAndHastags: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
 
 ``` scala
 val rawDF = fromParquetFile2DF("/datasets/tweetsStreamTmp/2017/10/*/*/*/*") //.cache()

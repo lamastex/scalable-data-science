@@ -1,15 +1,23 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GbyTz8Z6E-M/0.jpg)](https://www.youtube.com/embed/GbyTz8Z6E-M?start=0&end=2991&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/FS6FdwNJDvY/0.jpg)](https://www.youtube.com/embed/FS6FdwNJDvY?start=0&end=2035&autoplay=1)
+
+Distributed Vertex Programming using GraphX
+-------------------------------------------
+
 This is an augmentation of <http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html>
 
 See:
-\* <https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf>
-\* <https://amplab.github.io/graphx/>
-\* <https://spark.apache.org/docs/latest/graphx-programming-guide.html>
-\* <https://databricks.com/blog/2016/03/03/introducing-graphframes.html>
-\* <https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html>
-\* <http://ampcamp.berkeley.edu/big-data-mini-course/graph-analytics-with-graphx.html>
+
+-   <https://amplab.cs.berkeley.edu/wp-content/uploads/2014/09/graphx.pdf>
+-   <https://amplab.github.io/graphx/>
+-   <https://spark.apache.org/docs/latest/graphx-programming-guide.html>
+-   <https://databricks.com/blog/2016/03/03/introducing-graphframes.html>
+-   <https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html>
+-   <http://ampcamp.berkeley.edu/big-data-mini-course/graph-analytics-with-graphx.html>
 
 And of course the databricks guide:
 \* <https://docs.databricks.com/spark/latest/graph-analysis/index.html>
@@ -779,9 +787,10 @@ force.on("tick", function () {
 **Complex triplet filters**
 
 The following example shows how to select a subgraph based upon triplet filters which operate on:
-\* an edge and
-\* its src and
-\* dst vertices.
+
+-   an edge and
+-   its src and
+-   dst vertices.
 
 This example could be extended to go beyond triplets by using more complex motifs.
 
@@ -842,7 +851,9 @@ GraphFrames comes with a number of standard graph algorithms built in:
 
 ### Breadth-first search (BFS)
 
-READ <http://graphframes.github.io/user-guide.html#breadth-first-search-bfs>.
+Read
+
+-   [graphframes user-guide breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
 
 <p class="htmlSandbox"><iframe 
  src="https://en.wikipedia.org/wiki/Breadth-first_search"
@@ -897,7 +908,7 @@ READ <http://graphframes.github.io/user-guide.html#connected-components>.
 
 From <http://graphframes.github.io/user-guide.html#connected-components>:-
 
-NOTE: With GraphFrames 0.3.0 and later releases, the default Connected Components algorithm requires setting a Spark checkpoint directory. Users can revert to the old algorithm using .setAlgorithm("graphx").
+NOTE: With GraphFrames 0.3.0 and later releases, the default Connected Components algorithm requires setting a Spark checkpoint directory. Users can revert to the old algorithm using `.setAlgorithm("graphx")`.
 
 See <https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-rdd-checkpointing.html> to see why we need to check-point to keep the RDD lineage DAGs from growing out of control.
 
@@ -960,8 +971,9 @@ Run static Label Propagation Algorithm for detecting communities in networks.
 Each node in the network is initially assigned to its own community. At every superstep, nodes send their community affiliation to all neighbors and update their state to the mode community affiliation of incoming messages.
 
 LPA is a standard community detection algorithm for graphs. It is very inexpensive computationally, although
-\* (1) convergence is not guaranteed and
-\* (2) one can end up with trivial solutions (all nodes are identified into a single community).
+
+-   (1) convergence is not guaranteed and
+-   (2) one can end up with trivial solutions (all nodes are identified into a single community).
 
 READ: <http://graphframes.github.io/user-guide.html#label-propagation-algorithm-lpa>.
 

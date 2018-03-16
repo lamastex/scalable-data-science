@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/FS6FdwNJDvY/0.jpg)](https://www.youtube.com/embed/FS6FdwNJDvY?start=2035&end=2276&autoplay=1)
+
 This is a scala version of the python notebook in the following talk:
 
 **Homework:**
@@ -129,8 +133,9 @@ Building the Graph
 ------------------
 
 Now that we've imported our data, we're going to need to build our graph. To do so we're going to do two things. We are going to build the structure of the vertices (or nodes) and we're going to build the structure of the edges. What's awesome about GraphFrames is that this process is incredibly simple.
-\* Rename IATA airport code to **id** in the Vertices Table
-\* Start and End airports to **src** and **dst** for the Edges Table (flights)
+
+-   Rename IATA airport code to **id** in the Vertices Table
+-   Start and End airports to **src** and **dst** for the Edges Table (flights)
 
 These are required naming conventions for vertices and edges in GraphFrames as of the time of this writing (Feb. 2016).
 
@@ -465,7 +470,8 @@ display(ranks.vertices.orderBy($"pagerank".desc).limit(20))
 BTW, A lot more delicate air-traffic arithmetic is possible for a full month of airplane co-trajectories over the radar range of Atlanta, Georgia!
 
 See for instance:
-\* Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25, [doi: 10.2514/1.I010015](http://arc.aiaa.org/doi/abs/10.2514/1.I010015), 2012. See free preprint: <http://lamastex.org/preprints/AAIASubPavingATC.pdf>.
+
+-   Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25, [doi: 10.2514/1.I010015](http://arc.aiaa.org/doi/abs/10.2514/1.I010015), 2012. See free preprint: <http://lamastex.org/preprints/AAIASubPavingATC.pdf>.
 
 Most popular flights (single city hops)
 ---------------------------------------

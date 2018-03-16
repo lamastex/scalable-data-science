@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/63E_Nps98Bk/0.jpg)](https://www.youtube.com/embed/63E_Nps98Bk?start=1912&end=2969&autoplay=1)
+
 Old Bailey Online Data Analysis in Apache Spark
 ===============================================
 
@@ -4430,8 +4434,9 @@ The steps below need to be done once for a give shard!
 You can download the tiny dataset `obo-tiny/OB-tiny_tei_7-2_CC-BY-NC.zip` **to save time and space in db CE**
 
 **Optional TODOs:**
-\* one could just read the zip files directly (see week 10 on Beijing taxi trajectories example from the scalable-data-science course in 2016 or read 'importing zip files' in the Guide).
-\* one could just download from s3 directly
+
+-   one could just read the zip files directly (see week 10 on Beijing taxi trajectories example from the scalable-data-science course in 2016 or read 'importing zip files' in the Guide).
+-   one could just download from s3 directly
 
 ``` sh
 # if you want to download the tiny dataset

@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qgMIxwCA01w/0.jpg)](https://www.youtube.com/embed/qgMIxwCA01w?start=0&end=2991&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/J1NlUSz1MVk/0.jpg)](https://www.youtube.com/embed/J1NlUSz1MVk?start=0&end=2634&autoplay=1)
+
 Tweet Collector - capture live tweets
 =====================================
 
@@ -20,48 +24,12 @@ For this we will first `%run` the `ExtendedTwitterUtils` and `TTTDFfunctions` no
 "scalable-data-science/sds-2-2/025_b_TTTDFfunctions"
 ```
 
->     import twitter4j._
->     import twitter4j.auth.Authorization
->     import twitter4j.conf.ConfigurationBuilder
->     import twitter4j.auth.OAuthAuthorization
->     import org.apache.spark.streaming._
->     import org.apache.spark.streaming.dstream._
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.receiver.Receiver
-
 Go to SparkUI and see if a streaming job is already running. If so you need to terminate it before starting a new streaming job. Only one streaming job can be run on the DB CE.
-
->     defined class ExtendedTwitterReceiver
-
->     defined class ExtendedTwitterInputDStream
 
 ``` scala
 // this will make sure all streaming job in the cluster are stopped
 StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) } 
 ```
-
->     import twitter4j.Status
->     import twitter4j.auth.Authorization
->     import org.apache.spark.storage.StorageLevel
->     import org.apache.spark.streaming.StreamingContext
->     import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
->     defined object ExtendedTwitterUtils
-
->     done running the extendedTwitterUtils2run notebook - ready to stream from twitter
-
->     USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
->                       val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF("parquetFileName")))
->                       
->     import org.apache.spark.sql.types.{StructType, StructField, StringType}
->     import org.apache.spark.sql.functions._
->     import org.apache.spark.sql.types._
->     import org.apache.spark.sql.ColumnName
->     import org.apache.spark.sql.DataFrame
->     fromParquetFile2DF: (InputDFAsParquetFilePatternString: String)org.apache.spark.sql.DataFrame
->     tweetsJsonStringDF2TweetsDF: (tweetsAsJsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
->     tweetsIDLong_JsonStringPairDF2TweetsDF: (tweetsAsIDLong_JsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
->     tweetsDF2TTTDF: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
->     tweetsDF2TTTDFWithURLsAndHastags: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
 
 Load your twitter credentials (secretly!).
 
