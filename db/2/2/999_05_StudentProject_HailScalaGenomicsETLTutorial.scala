@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/xqy5geCNKCg/0.jpg)](https://www.youtube.com/embed/xqy5geCNKCg?start=1456&end=3956&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qMGKAERggU8/0.jpg)](https://www.youtube.com/embed/qMGKAERggU8?start=0&end=3028&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC # Hail Tutorial in Scala for Population Genomics ETL
 // MAGIC ## Student Project
