@@ -104,23 +104,23 @@ lMenu-SDS-2.2:
       - title: "DLA (Distrib. Linear Algebra)"
         url: /sds/2/2/db/019_DistLAlgForLinRegIntro/
       - title: "DLA - Data Types Prog Guide"
-        url: /sds-2-2/019x_000_dataTypesProgGuide/
+        url: /sds/2/2/db/019x_000_dataTypesProgGuide/
       - title: "DLA - Local Vector"
-        url: /sds-2-2/019x_001_LocalVector/
+        url: /sds/2/2/db/019x_001_LocalVector/
       - title: "DLA - Labeled Point"
-        url: /sds-2-2/019x_002_LabeledPoint/
+        url: /sds/2/2/db/019x_002_LabeledPoint/
       - title: "DLA - Local Matrix"
-        url: /sds-2-2/019x_003_LocalMatrix/
+        url: /sds/2/2/db/019x_003_LocalMatrix/
       - title: "DLA - Distributed Matrix"
-        url: /sds-2-2/019x_004_DistributedMatrix/
+        url: /sds/2/2/db/019x_004_DistributedMatrix/
       - title: "DLA - Row Matrix"
-        url: /sds-2-2/019x_005_RowMatrix/
+        url: /sds/2/2/db/019x_005_RowMatrix/
       - title: "DLA - Indexed Row Matrix"
-        url: /sds-2-2/019x_006_IndexedRowMatrix/
+        url: /sds/2/2/db/019x_006_IndexedRowMatrix/
       - title: "DLA - Coordinate Matrix"
-        url: /sds-2-2/019x_007_CoordinateMatrix/
+        url: /sds/2/2/db/019x_007_CoordinateMatrix/
       - title: "DLA - Block Matrix"
-        url: /sds-2-2/019x_008_BlockMatrix/
+        url: /sds/2/2/db/019x_008_BlockMatrix/
       - title: "Power Plant - Model Tune Evaluate"
         url: /sds/2/2/db/020_PowerPlantPipeline_02ModelTuneEvaluate/
       - title: "Activity Detection - Random Forest"
