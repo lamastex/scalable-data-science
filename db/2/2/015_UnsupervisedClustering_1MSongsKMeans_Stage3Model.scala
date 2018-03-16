@@ -14,7 +14,7 @@
 // MAGIC %md
 // MAGIC Archived YouTube video of this live unedited lab-lecture:
 // MAGIC 
-// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Ib1BIbPDS6U/0.jpg)](https://www.youtube.com/embed/Ib1BIbPDS6U?start=0&end=2545&autoplay=1)
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Ib1BIbPDS6U/0.jpg)](https://www.youtube.com/embed/Ib1BIbPDS6U?start=0&end=2545&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/fxAlrRqwYRw/0.jpg)](https://www.youtube.com/embed/fxAlrRqwYRw?start=1488&end=2585&autoplay=1)
 
 // COMMAND ----------
 
