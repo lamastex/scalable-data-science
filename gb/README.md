@@ -117,7 +117,17 @@ Assignments, on the other hand, are to be completed individually.
 8. Linear Algebra for Distributed Machine Learning
 	*  [Linear Algebra Intro](sds-2-2/017_LAlgIntro.md)
 	*  [Linear Regression Intro](sds-2-2/018_LinRegIntro.md)
-	*  [Distrib. Linear Algebra](sds-2-2/019_DistLAlgForLinRegIntro.md)
+	*  [DLA (Distrib. Linear Algebra)](sds-2-2/019_DistLAlgForLinRegIntro.md)
+	*  [DLA - Data Types Prog Guide](sds-2-2/019x_000_dataTypesProgGuide.md)
+	*  [DLA - Local Vector](sds-2-2/019x_001_LocalVector.md)
+	*  [DLA - Labeled Point](sds-2-2/019x_002_LabeledPoint.md)
+	*  [DLA - Local Matrix](sds-2-2/019x_003_LocalMatrix.md)
+	*  [DLA - Distributed Matrix](sds-2-2/019x_004_DistributedMatrix.md)
+	*  [DLA - Row Matrix](sds-2-2/019x_005_RowMatrix.md)
+	*  [DLA - Indexed Row Matrix](sds-2-2/019x_006_IndexedRowMatrix.md)
+	*  [DLA - Coordinate Matrix](sds-2-2/019x_007_CoordinateMatrix.md)
+	*  [DLA - Block Matrix](sds-2-2/019x_008_BlockMatrix.md)
+
 9. Supervised Learning - Regression
 	*  [Power Plant - Model Tune Evaluate](sds-2-2/020_PowerPlantPipeline_02ModelTuneEvaluate.md)
 10. Supervised Learning - Random Forests
