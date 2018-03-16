@@ -13,7 +13,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Distribued Vertex Programming using GraphX
+// MAGIC ## Distributed Vertex Programming using GraphX
 // MAGIC 
 // MAGIC This is an augmentation of [http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html](http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html)
 // MAGIC 
@@ -588,7 +588,7 @@ display(g2.edges)
 
 // MAGIC %md
 // MAGIC 
-// MAGIC Read 
+// MAGIC Read
 // MAGIC 
 // MAGIC * [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
 
