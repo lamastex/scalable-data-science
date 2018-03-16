@@ -156,6 +156,3 @@ def getContent(urlDF:DataFrame): DataFrame = {
   //needs a column called URL with the URLs
     urlDF.withColumn("article",ArticleUserDefined($"URL")).flattenSchema  
 }
-
-// COMMAND ----------
-
