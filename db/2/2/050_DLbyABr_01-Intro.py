@@ -9,6 +9,13 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Archived YouTube video of this live unedited lab-lecture:
+# MAGIC 
+# MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/eJBR6sm4p2g/0.jpg)](https://www.youtube.com/embed/eJBR6sm4p2g?start=0&end=2654&autoplay=1)
+
+# COMMAND ----------
+
 # MAGIC %md 
 # MAGIC # Introduction to Deep Learning
 # MAGIC ## Theory and Practice with TensorFlow and Keras
@@ -43,11 +50,13 @@
 # MAGIC * 10 years teaching front- and back-end technology
 # MAGIC 
 # MAGIC #### Interesting projects...
+# MAGIC 
 # MAGIC * My first full-time job in tech involved streaming neural net fraud scoring (debit cards)
 # MAGIC * Realtime & offline analytics for banking
 # MAGIC * Music synchronization and licensing for networked jukeboxes
 # MAGIC 
 # MAGIC #### Industries
+# MAGIC 
 # MAGIC * Finance / Insurance, Travel, Media / Entertainment, Government
 # MAGIC 
 # MAGIC **Note:**
@@ -57,6 +66,7 @@
 
 # MAGIC %md 
 # MAGIC ### Class Goals
+# MAGIC 
 # MAGIC * Understand deep learning!
 # MAGIC     * Acquire an intiution and feeling for how and why and when it works, so you can use it!
 # MAGIC     * No magic! (or at least very little magic)
@@ -140,6 +150,7 @@
 # MAGIC * We'd like a __probabalistic model__ that tells us the most likely classes given the data and assumptions (for example, in the U.S., a one is often written with a vertical stroke, whereas in Germany it's usually written with 2 strokes, closer to a U.S. 7)
 # MAGIC 
 # MAGIC Going a little further,
+# MAGIC 
 # MAGIC * an ideal modeling approach might perform __feature selection__ on its own deciding which pixels and combinations of pixels are most informative
 # MAGIC * in order to be robust to varying data, a good model might learn __hierarchical or abstract features__ like lines, angles, curves and loops that we as humans use to teach, learn, and distinguish Arabic numerals from each other
 # MAGIC * it would be nice to add some basic __domain knowledge__ like these features aren't arbitrary slots in a vector, but are parts of a 2-dimensional image where the contents are roughly __axis-aligned__ and __translation invariant__ -- after all, a "7" is still a "7" even if we move it around a bit on the page
@@ -184,7 +195,6 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC 
 # MAGIC ### Deep Learning
 # MAGIC 
 # MAGIC It turns out that a model called a convolutional neural network meets all of our goals and can be trained to human-level accuracy on this task in just a few minutes. We will solve MNIST with this sort of model today.
