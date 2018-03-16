@@ -318,6 +318,7 @@ B - A // should be -A-A=-2A
 // MAGIC  * what is a natural geometric interpretation of scalar multiplication of a vector or a matrix and what about vector matrix multiplication?
 // MAGIC  
 // MAGIC  Let's get a quick visual geometric interpretation for vectors, matrices and matrix-vector multiplications from the first interactive visual-cognitive aid at:
+// MAGIC  
 // MAGIC   * [http://setosa.io/ev/eigenvectors-and-eigenvalues/](http://setosa.io/ev/eigenvectors-and-eigenvalues/) 
 
 // COMMAND ----------
@@ -459,6 +460,7 @@ Math.sqrt(4*4 + 3*3) // check
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC **HOMEWORK:** read this! [https://github.com/scalanlp/breeze/wiki/Quickstart](https://github.com/scalanlp/breeze/wiki/Quickstart)
 // MAGIC 
 // MAGIC  It is here in markdown'd via wget and pandoc for your convenience.
@@ -475,7 +477,7 @@ Math.sqrt(4*4 + 3*3) // check
 // MAGIC ```
 // MAGIC 
 // MAGIC Let's create a vector:
-// MAGIC ```scala
+// MAGIC ```
 // MAGIC scala> val x = DenseVector.zeros[Double](5)
 // MAGIC x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
 // MAGIC ```
