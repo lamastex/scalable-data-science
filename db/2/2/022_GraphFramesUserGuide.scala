@@ -13,6 +13,8 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ## Distribued Vertex Programming using GraphX
+// MAGIC 
 // MAGIC This is an augmentation of [http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html](http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html)
 // MAGIC 
 // MAGIC See:
