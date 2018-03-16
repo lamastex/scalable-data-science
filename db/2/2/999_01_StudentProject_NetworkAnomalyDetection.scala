@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/jpRpd8VlMYs/0.jpg)](https://www.youtube.com/embed/jpRpd8VlMYs?start=0&end=1713&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Network anomaly detection 
 // MAGIC 
 // MAGIC ## Student Project
