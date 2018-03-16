@@ -6,9 +6,18 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/1NICbbECaC0/0.jpg)](https://www.youtube.com/embed/1NICbbECaC0?start=2285&end=2880&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC ## We MAY come back to this more detailed deep dive
+// MAGIC 
 // MAGIC **HOMEWORK:** 
+// MAGIC 
 // MAGIC * read: [http://arxiv.org/pdf/1509.02256.pdf](http://arxiv.org/pdf/1509.02256.pdf)  (also see References and Appendix A).
 // MAGIC * and go through the notebooks here: [Data Types - MLlib Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides2_2/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide)
 
@@ -324,6 +333,7 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC ##### SUMMARY: Access rates fall sharply with distance.
 // MAGIC 
 // MAGIC * roughly 50 x gap between reading from memory and reading from either disk or the network.
@@ -347,6 +357,7 @@
 // MAGIC * so this communication hierarchy needs to be accounted for when developing parallel and distributed algorithms.
 // MAGIC 
 // MAGIC **Lessons:**
+// MAGIC 
 // MAGIC * parallelism makes our computation faster
 // MAGIC * but network communication slows us down
 // MAGIC 
@@ -369,6 +380,7 @@
 // MAGIC 
 // MAGIC 
 // MAGIC #### Simple strategies for algorithms in a distributed setting: to reduce network communication, simply keep large objects local
+// MAGIC 
 // MAGIC * In the big n, small d case for linear regression 
 // MAGIC     * we can solve the problem via a closed form solution.
 // MAGIC     * And this requires us to communicate \\(O(d)^2\\) intermediate data.
@@ -410,6 +422,7 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC **Recall** from week 1's lecture that the ideal mathematical preparation to fully digest this material requires a set of self-tutorials from Reza Zadeh's course in Distributed Algorithms and Optimization from Stanford:
 // MAGIC 
 // MAGIC * [http://stanford.edu/~rezab/dao/](http://stanford.edu/~rezab/dao/).
