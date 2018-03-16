@@ -3,7 +3,7 @@
 // MAGIC 
 // MAGIC # [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 // MAGIC 
-// MAGIC ## Russian Text Processing 
+// MAGIC ## Russian Word Count
 // MAGIC By Yevgen Ryeznik
 // MAGIC 
 // MAGIC And how to upload files into databricks distributed file system.
