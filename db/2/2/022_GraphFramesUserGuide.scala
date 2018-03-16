@@ -590,7 +590,7 @@ display(g2.edges)
 // MAGIC 
 // MAGIC Read
 // MAGIC 
-// MAGIC * [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
+// MAGIC * [graphframes user-guide breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
 
 // COMMAND ----------
 
