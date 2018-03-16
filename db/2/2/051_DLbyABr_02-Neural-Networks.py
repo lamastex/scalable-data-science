@@ -9,6 +9,13 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Archived YouTube video of this live unedited lab-lecture:
+# MAGIC 
+# MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/eJBR6sm4p2g/0.jpg)](https://www.youtube.com/embed/eJBR6sm4p2g?start=0&end=2654&autoplay=1)
+
+# COMMAND ----------
+
 # MAGIC %md 
 # MAGIC # Artificial Neural Network - Perceptron
 # MAGIC 
@@ -31,6 +38,7 @@
 # MAGIC \end{cases}
 # MAGIC $$
 # MAGIC and implementable with the following arithmetical and logical unit (ALU) operations in a machine:
+# MAGIC 
 # MAGIC  * n inputs from one \\(n\\)-dimensional data point: \\( x_1,x_2,\ldots x_n \, \in \, \mathbb{R}^n\\)
 # MAGIC  * arithmetic operations
 # MAGIC    * n+1 multiplications
@@ -447,6 +455,7 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 # MAGIC In theory, any non-linearity should allow learning, and maybe we can use one that "works better"
 # MAGIC 
 # MAGIC By "works better" we mean
+# MAGIC 
 # MAGIC * Simpler gradient - faster to compute
 # MAGIC * Less prone to "saturation" -- where the neuron ends up way off in the 0 or 1 territory of the sigmoid and can't easily learn anything
 # MAGIC * Keeps gradients "big" -- avoiding the large, flat, near-zero gradient areas of the sigmoid
@@ -569,6 +578,3 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 # MAGIC Well, theoretically maybe ... try reconfiguring your network, watch the training, and see what happens.
 # MAGIC 
 # MAGIC <img src="http://i.imgur.com/BumsXgL.jpg" width=500>
-
-# COMMAND ----------
-
