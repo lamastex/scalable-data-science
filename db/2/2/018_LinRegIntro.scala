@@ -6,7 +6,16 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/1NICbbECaC0/0.jpg)](https://www.youtube.com/embed/1NICbbECaC0?start=0&end=2880&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
 // MAGIC Let us visit an interactive visual cognitive tool for the basics ideas in linear regression:
+// MAGIC 
 // MAGIC * [http://setosa.io/ev/ordinary-least-squares-regression/](http://setosa.io/ev/ordinary-least-squares-regression/)
 // MAGIC 
 // MAGIC The following video is a very concise and thorough treatment of linear regression for those who have taken the 200-level linear algebra. Others can fully understand it with some effort and revisiting. 
@@ -96,10 +105,6 @@ def frameIt( u:String, h:Int ) : String = {
 </iframe>"""
    }
 displayHTML(frameIt("https://darrenjw.wordpress.com/2017/02/08/a-quick-introduction-to-apache-spark-for-statisticians/",500))
-
-// COMMAND ----------
-
-
 
 // COMMAND ----------
 
