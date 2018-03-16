@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TgDwIhUduLs/0.jpg)](https://www.youtube.com/embed/TgDwIhUduLs?start=0&end=1817&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC # Introduction to Simulation
 
