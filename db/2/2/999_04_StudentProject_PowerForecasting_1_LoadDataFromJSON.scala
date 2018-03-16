@@ -100,6 +100,3 @@ val FinalDF =      DF.select($"DataList.MX41".getItem("P").alias("Power").cast(D
 // MAGIC 
 // MAGIC * `FinalDF` - Dataset 
 // MAGIC * `leadDF` - Dataset with a one-step lag
-
-// COMMAND ----------
-
