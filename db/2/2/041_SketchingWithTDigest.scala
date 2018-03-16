@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GFe7RQXn4Cs/0.jpg)](https://www.youtube.com/embed/GFe7RQXn4Cs?start=0&end=2811&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Sketching with T-digest for quantiles
 // MAGIC ## A Toy Anomaly Detector
 // MAGIC 
