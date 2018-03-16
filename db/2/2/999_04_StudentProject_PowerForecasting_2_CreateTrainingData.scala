@@ -5,6 +5,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/xqy5geCNKCg/0.jpg)](https://www.youtube.com/embed/xqy5geCNKCg?start=0&end=1456&autoplay=1)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC # Power Forecasting
 // MAGIC ## Student Project 
@@ -208,8 +215,8 @@ val dataset = dataFeatDF.withColumn("future_power",lead("meanPower",leadSteps,0)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
 // MAGIC ### Split the data into a training and test set
+// MAGIC 
 // MAGIC This is for modelgeneralizability.
 
 // COMMAND ----------
