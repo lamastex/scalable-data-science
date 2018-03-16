@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4mhl6fbQv-Y/0.jpg)](https://www.youtube.com/embed/4mhl6fbQv-Y?start=0&end=2754&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC This is Raaz's update of Siva's whirl-wind compression of the free Google's DL course in Udacity [https://www.youtube.com/watch?v=iDyeK3GvFpo](https://www.youtube.com/watch?v=iDyeK3GvFpo) for Adam Briendel's DL modules that will follow.
 
