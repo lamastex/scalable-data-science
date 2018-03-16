@@ -60,9 +60,10 @@ print metrics, plot errors
 \`\`\`
 
 Note the changes, which are largely about building a classifier instead of a regression model:
-\* Output layer has one neuron per category, with softmax activation
-\* **Loss function is cross-entropy loss**
-\* Accuracy metric is categorical accuracy
+
+-   Output layer has one neuron per category, with softmax activation
+-   **Loss function is cross-entropy loss**
+-   Accuracy metric is categorical accuracy
 
 ``` python
 from keras.models import Sequential
@@ -135,8 +136,9 @@ You Try Now!
 ------------
 
 Try two more experiments (try them separately):
-1. Add a third, hidden layer.
-2. Increase the size of the hidden layers.
+
+1.  Add a third, hidden layer.
+2.  Increase the size of the hidden layers.
 
 Adding another layer slows things down a little (why?) but doesn't seem to make a difference in accuracy.
 

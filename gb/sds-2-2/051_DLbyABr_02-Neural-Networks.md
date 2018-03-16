@@ -5,6 +5,10 @@ This is used in a non-profit educational setting with kind permission of [Adam B
 This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
 A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/eJBR6sm4p2g/0.jpg)](https://www.youtube.com/embed/eJBR6sm4p2g?start=0&end=2654&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TDisCsfbmYs/0.jpg)](https://www.youtube.com/embed/TDisCsfbmYs?start=0&end=2907&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/-LLL3MUl9ps/0.jpg)](https://www.youtube.com/embed/-LLL3MUl9ps?start=0&end=2467&autoplay=1)
+
 Artificial Neural Network - Perceptron
 ======================================
 
@@ -24,14 +28,15 @@ f(1, x\_1,x\_2,\ldots , x\_n \\, ; \\, w\_0,w\_1,w\_2,\ldots , w\_n) =
 \end{cases}
 $$
 and implementable with the following arithmetical and logical unit (ALU) operations in a machine:
-\* n inputs from one \\(n\\)-dimensional data point: \\( x*1,x*2,\ldots x\_n \\, \in \\, \mathbb{R}^n\\)
-\* arithmetic operations
-\* n+1 multiplications
-\* n additions
-\* boolean operations
-\* one if-then on an inequality
-\* one output \\(o \in \\{0,1\\}\\), i.e., \\(o\\) belongs to the set containing \\(0\\) and \\(1\\)
-\* n+1 parameters of interest
+
+-   n inputs from one \\(n\\)-dimensional data point: \\( x*1,x*2,\ldots x\_n \\, \in \\, \mathbb{R}^n\\)
+-   arithmetic operations
+    -   n+1 multiplications
+    -   n additions
+-   boolean operations
+    -   one if-then on an inequality
+-   one output \\(o \in \\{0,1\\}\\), i.e., \\(o\\) belongs to the set containing \\(0\\) and \\(1\\)
+-   n+1 parameters of interest
 
 This is just a hyperplane given by a dot product of \\(n+1\\) known inputs and \\(n+1\\) unknown parameters that can be estimated. This hyperplane can be used to define a hyperplane that partitions \\(\mathbb{R}^{n+1}\\), the real Euclidean space, into two parts labelled by the outputs \\(0\\) and \\(1\\).
 
@@ -1679,9 +1684,10 @@ Even so, it takes a looooong time to converge. If you experiment a lot, you'll f
 In theory, any non-linearity should allow learning, and maybe we can use one that "works better"
 
 By "works better" we mean
-\* Simpler gradient - faster to compute
-\* Less prone to "saturation" -- where the neuron ends up way off in the 0 or 1 territory of the sigmoid and can't easily learn anything
-\* Keeps gradients "big" -- avoiding the large, flat, near-zero gradient areas of the sigmoid
+
+-   Simpler gradient - faster to compute
+-   Less prone to "saturation" -- where the neuron ends up way off in the 0 or 1 territory of the sigmoid and can't easily learn anything
+-   Keeps gradients "big" -- avoiding the large, flat, near-zero gradient areas of the sigmoid
 
 Turns out that a big breakthrough and popular solution is a very simple hack:
 

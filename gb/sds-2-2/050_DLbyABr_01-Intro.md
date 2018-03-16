@@ -5,6 +5,10 @@ This is used in a non-profit educational setting with kind permission of [Adam B
 This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
 A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/eJBR6sm4p2g/0.jpg)](https://www.youtube.com/embed/eJBR6sm4p2g?start=0&end=2654&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/-LLL3MUl9ps/0.jpg)](https://www.youtube.com/embed/-LLL3MUl9ps?start=0&end=2467&autoplay=1)
+
 Introduction to Deep Learning
 =============================
 
@@ -118,9 +122,10 @@ Traditionally this had been quite a hard task for a computer to do. 99% was not 
 -   We'd like a **probabalistic model** that tells us the most likely classes given the data and assumptions (for example, in the U.S., a one is often written with a vertical stroke, whereas in Germany it's usually written with 2 strokes, closer to a U.S. 7)
 
 Going a little further,
-\* an ideal modeling approach might perform **feature selection** on its own deciding which pixels and combinations of pixels are most informative
-\* in order to be robust to varying data, a good model might learn **hierarchical or abstract features** like lines, angles, curves and loops that we as humans use to teach, learn, and distinguish Arabic numerals from each other
-\* it would be nice to add some basic **domain knowledge** like these features aren't arbitrary slots in a vector, but are parts of a 2-dimensional image where the contents are roughly **axis-aligned** and **translation invariant** -- after all, a "7" is still a "7" even if we move it around a bit on the page
+
+-   an ideal modeling approach might perform **feature selection** on its own deciding which pixels and combinations of pixels are most informative
+-   in order to be robust to varying data, a good model might learn **hierarchical or abstract features** like lines, angles, curves and loops that we as humans use to teach, learn, and distinguish Arabic numerals from each other
+-   it would be nice to add some basic **domain knowledge** like these features aren't arbitrary slots in a vector, but are parts of a 2-dimensional image where the contents are roughly **axis-aligned** and **translation invariant** -- after all, a "7" is still a "7" even if we move it around a bit on the page
 
 Lastly, it would be great to have a framework that is flexible enough to adapt to similar tasks -- say, Greek, Cyrillic, or Chinese handwritten characters, not just digits.
 

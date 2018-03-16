@@ -5,6 +5,10 @@ This is used in a non-profit educational setting with kind permission of [Adam B
 This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
 A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Vwou20grUD4/0.jpg)](https://www.youtube.com/embed/Vwou20grUD4?start=378&end=2146&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/-LLL3MUl9ps/0.jpg)](https://www.youtube.com/embed/-LLL3MUl9ps?start=0&end=2467&autoplay=1)
+
 #### We can also implement the model with mini-batches -- this will let us see matrix ops in action:
 
 (N.b., feed*dict is intended for small data / experimentation. For more info on ingesting data at scale, see https://www.tensorflow.org/api*guides/python/reading\_data)

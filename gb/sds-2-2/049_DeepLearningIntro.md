@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4mhl6fbQv-Y/0.jpg)](https://www.youtube.com/embed/4mhl6fbQv-Y?start=0&end=2754&autoplay=1)
+
 This is Raaz's update of Siva's whirl-wind compression of the free Google's DL course in Udacity <https://www.youtube.com/watch?v=iDyeK3GvFpo> for Adam Briendel's DL modules that will follow.
 
 Deep learning: A Crash Introduction

@@ -10,6 +10,10 @@ Please feel free to refer to basic concepts here:
 -   Udacity's course on Deep Learning <https://www.udacity.com/course/deep-learning--ud730> by Google engineers: Arpan Chakraborty and Vincent Vanhoucke and their full video playlist:
     -   [https://www.youtube.com/watch?v=X*B9NADf2wk&index=2&list=PLAwxTw4SYaPn*OWPFT9ulXLuQrImzHfOV](https://www.youtube.com/watch?v=X_B9NADf2wk&index=2&list=PLAwxTw4SYaPn_OWPFT9ulXLuQrImzHfOV)
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/nHYXMZAHM1c/0.jpg)](https://www.youtube.com/embed/nHYXMZAHM1c?start=0&end=2465&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4cD8ieyHVh4/0.jpg)](https://www.youtube.com/embed/4cD8ieyHVh4?start=0&end=2353&autoplay=1)
+
 Entering the 4th Dimension
 ==========================
 

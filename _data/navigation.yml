@@ -195,19 +195,21 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/998_01_PotentialProjectIdeas/
       - title: "Student Project 01 on Network Anomaly Detection"
         url: /sds/2/2/db/999_01_StudentProject_NetworkAnomalyDetection/
-      - title: "Student Project 02 on Article Topics in Retweet Networks"
+      - title: "Student Project 02 on Twitter UK Election"
+        url: /sds/2/2/db/999_02_StudentProject_Twitter_UKElection2017/
+      - title: "Student Project 03 on Article Topics in Retweet Networks"
         url: /sds/2/2/db/999_03_StudentProject_ArticleTopicInRTNetwork/
-      - title: "Student Project 02 on Article Topics in Retweet Networks - scalable web scraper"
+      - title: "Student Project 03 on Article Topics in Retweet Networks - scalable web scraper"
         url: /sds/2/2/db/999_03_StudentProject_ArticleTopicInRTNetwork_webScraping/
-      - title: "Student Project 03 on Power Forecasting Part 0"
+      - title: "Student Project 04 on Power Forecasting Part 0"
         url: /sds/2/2/db/999_04_StudentProject_PowerForecasting_0_Introduction/
-      - title: "Student Project 03 on Power Forecasting Part 1"
+      - title: "Student Project 04 on Power Forecasting Part 1"
         url: /sds/2/2/db/999_04_StudentProject_PowerForecasting_1_LoadDataFromJSON/
-      - title: "Student Project 03 on Power Forecasting Part 2"
+      - title: "Student Project 04 on Power Forecasting Part 2"
         url: /sds/2/2/db/999_04_StudentProject_PowerForecasting_2_CreateTrainingData/
-      - title: "Student Project 03 on Power Forecasting Part 3"
+      - title: "Student Project 04 on Power Forecasting Part 3"
         url: /sds/2/2/db/999_04_StudentProject_PowerForecasting_3_TrainAndValidate/
-      - title: "Student Project 04 on Hail Scala for Population Genomics ETL"
+      - title: "Student Project 05 on Hail Scala for Population Genomics ETL"
         url: /sds/2/2/db/999_05_StudentProject_HailScalaGenomicsETLTutorial/
   - title: "Contents-CoCalc"
     children:

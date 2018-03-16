@@ -5,6 +5,10 @@ This is used in a non-profit educational setting with kind permission of [Adam B
 This is not licensed by Adam for use in a for-profit setting. Please contact Adam directly at `adbreind@gmail.com` to request or report such use cases or abuses.
 A few minor modifications and additional mathematical statistical pointers have been added by Raazesh Sainudiin when teaching PhD students in Uppsala University.
 
+Archived YouTube video (no sound, sorry) of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/McRp3HsQjLg/0.jpg)](https://www.youtube.com/embed/McRp3HsQjLg?start=0&end=3008&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4N7yiC7-MqU/0.jpg)](https://www.youtube.com/embed/4N7yiC7-MqU?start=0&end=1763&autoplay=1)
+
 Convolutional Neural Networks
 =============================
 

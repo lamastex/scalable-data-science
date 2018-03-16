@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/jpRpd8VlMYs/0.jpg)](https://www.youtube.com/embed/jpRpd8VlMYs?start=0&end=1713&autoplay=1)
+
 Network anomaly detection
 =========================
 
