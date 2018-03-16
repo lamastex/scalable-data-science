@@ -5,6 +5,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TsqWglA3_-0/0.jpg)](https://www.youtube.com/embed/TsqWglA3_-0?start=1324&end=1605&autoplay=1) 
+
+// COMMAND ----------
+
 // MAGIC %md #Power Plant ML Pipeline Application
 // MAGIC This is an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
 // MAGIC 
@@ -275,6 +282,7 @@ println("Linear Regression Equation: " + equation)
 
 // MAGIC %md
 // MAGIC Based on examining the fitted Linear Regression Equation above:
+// MAGIC 
 // MAGIC * There is a strong negative correlation between Atmospheric Temperature (AT) and Power Output due to the coefficient being greater than -1.91.
 // MAGIC * But our other dimenensions seem to have little to no correlation with Power Output. 
 // MAGIC 
@@ -437,6 +445,7 @@ val cvModel = crossval.fit(trainingSet)
 
 // MAGIC %md
 // MAGIC In addition to `CrossValidator` Spark also offers `TrainValidationSplit` for hyper-parameter tuning. `TrainValidationSplit` only evaluates each combination of parameters once as opposed to k times in case of `CrossValidator`. It is therefore less expensive, but will not produce as reliable results when the training dataset is not sufficiently large.
+// MAGIC 
 // MAGIC * [http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split](http://spark.apache.org/docs/latest/ml-tuning.html#train-validation-split)
 
 // COMMAND ----------
@@ -464,6 +473,7 @@ println (f"R2: $r2")
 // MAGIC ## Let us explore other models to see if we can predict the power output better
 // MAGIC 
 // MAGIC There are several families of models in Spark's scalable machine learning library:
+// MAGIC 
 // MAGIC * [http://spark.apache.org/docs/latest/ml-classification-regression.html](http://spark.apache.org/docs/latest/ml-classification-regression.html)
 
 // COMMAND ----------
@@ -562,6 +572,7 @@ println (f"R2: $r2")
 
 // MAGIC %md
 // MAGIC A visual explanation of gradient boosted trees:
+// MAGIC 
 // MAGIC * [http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html](http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
 // MAGIC 
 // MAGIC Let's see what a boosting algorithm, a type of ensemble method, is all about in more detail.
@@ -873,5 +884,6 @@ ssc.stop(stopSparkContext = false) // gotto stop or it ill keep running!!!
 
 // MAGIC %md 
 // MAGIC Datasource References:
+// MAGIC 
 // MAGIC * Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
 // MAGIC * Heysem Kaya, Pinar Tüfekci , Sadik Fikret Gürgen: Local and Global Learning Methods for Predicting Power of a Combined Gas & Steam Turbine, Proceedings of the International Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE 2012, pp. 13-18 (Mar. 2012, Dubai) [Web Link](http://www.cmpe.boun.edu.tr/~kaya/kaya2012gasturbine.pdf)
