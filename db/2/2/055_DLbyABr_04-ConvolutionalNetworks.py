@@ -9,6 +9,13 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Archived YouTube video (no sound, sorry) of this live unedited lab-lecture:
+# MAGIC 
+# MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/McRp3HsQjLg/0.jpg)](https://www.youtube.com/embed/McRp3HsQjLg?start=0&end=3008&autoplay=1) 
+
+# COMMAND ----------
+
 # MAGIC %md 
 # MAGIC # Convolutional Neural Networks
 # MAGIC ## aka CNN, ConvNet
