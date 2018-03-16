@@ -44,6 +44,7 @@
 
 // MAGIC %md
 // MAGIC ## 1. Get list of URLs from twitter
+// MAGIC 
 // MAGIC * UK election twitter data (experiment designed by Raazesh Sainudiin and Joakim Johansson)
 // MAGIC * Filter on only those that have URL
 // MAGIC * We experiment on only a sample of the data by taking a 3% random subsample of the distinct URLSs 
@@ -71,6 +72,7 @@ testsample.count
 
 // MAGIC %md
 // MAGIC ## 2. Get the article content
+// MAGIC 
 // MAGIC * Inspiration (and code) from Mastering Spark for Data Science by Andrew Morgan, Antoine Amend, Matthew Hallet, David George
 // MAGIC   * Code for URL extension
 // MAGIC   * Example on how to use Goose
@@ -82,7 +84,7 @@ testsample.count
 
 // COMMAND ----------
 
-// MAGIC %run ./1_web_scraping_clean
+// MAGIC %run ./999_03_StudentProject_ArticleTopicInRTNetwork_webScraping
 
 // COMMAND ----------
 
@@ -103,6 +105,7 @@ display(test_scraped)
 
 // MAGIC %md
 // MAGIC ## 3. Extract features, clean data
+// MAGIC 
 // MAGIC * Scraped dataframe saved as parquet for easy access
 // MAGIC * Clean out stuff that is not articles
 // MAGIC   * youtube, vimeo have videos, twitter has tweets, not articles
@@ -339,6 +342,7 @@ function classes(root) {
 
 // MAGIC %md 
 // MAGIC ## Need to clean better
+// MAGIC 
 // MAGIC * remove other languages
 // MAGIC * remove non-articles
 // MAGIC   * for example messages about cookies, about javascript, etc
@@ -750,6 +754,7 @@ display(K_modeling_TFCV
 // MAGIC %md 
 // MAGIC 
 // MAGIC By looking at some articles from each cluster:
+// MAGIC 
 // MAGIC * Cluster 0: Diverse
 // MAGIC * Cluster 8: Taxes, Care, People, Politics -- Diverse
 // MAGIC * Cluster 9: about Trump, Trump+Russia, US politics
@@ -823,6 +828,7 @@ display(K_modeling_TFCV_IDF
 
 // MAGIC %md 
 // MAGIC By looking at some articles from each cluster:
+// MAGIC 
 // MAGIC * Cluster 0: Diverse
 // MAGIC * Cluster 5: US related (politics, economics)
 
@@ -921,6 +927,7 @@ display(K_modeling_sparseVectorDF
 
 // MAGIC %md
 // MAGIC ##  5. Connect to tweet network
+// MAGIC 
 // MAGIC * Which is the most probable topc or topics for each tweet with an article?
 // MAGIC * We did not have time for this
 
@@ -947,4 +954,5 @@ display(newjoinedDF.filter($"OPostUserSNinRT"==="jeremycorbyn").select($"title",
 // MAGIC %md 
 // MAGIC 
 // MAGIC ### Future work:
+// MAGIC 
 // MAGIC - Do a better filtering of the urls without clear body article
