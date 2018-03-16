@@ -62,6 +62,7 @@
 # MAGIC ```
 # MAGIC 
 # MAGIC Note the changes, which are largely about building a classifier instead of a regression model:
+# MAGIC 
 # MAGIC * Output layer has one neuron per category, with softmax activation
 # MAGIC * __Loss function is cross-entropy loss__
 # MAGIC * Accuracy metric is categorical accuracy
@@ -140,6 +141,7 @@ display(fig)
 # MAGIC ## You Try Now!
 # MAGIC 
 # MAGIC Try two more experiments (try them separately):
+# MAGIC 
 # MAGIC 1. Add a third, hidden layer.
 # MAGIC 2. Increase the size of the hidden layers.
 # MAGIC 
