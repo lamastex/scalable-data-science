@@ -1,12 +1,17 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/1NICbbECaC0/0.jpg)](https://www.youtube.com/embed/1NICbbECaC0?start=2285&end=2880&autoplay=1)
+
 We MAY come back to this more detailed deep dive
 ------------------------------------------------
 
 **HOMEWORK:**
-\* read: <http://arxiv.org/pdf/1509.02256.pdf> (also see References and Appendix A).
-\* and go through the notebooks here: [Data Types - MLlib Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides2_2/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide)
+
+-   read: <http://arxiv.org/pdf/1509.02256.pdf> (also see References and Appendix A).
+-   and go through the notebooks here: [Data Types - MLlib Programming Guide](/#workspace/scalable-data-science/xtraResources/ProgGuides2_2/MLlibProgrammingGuide/dataTypes/000_dataTypesProgGuide)
 
 #### Distributed Machine Learning: Computation and Storage by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning
 
@@ -323,8 +328,9 @@ We must take this communication hierarchy into consideration when developing par
 -   so this communication hierarchy needs to be accounted for when developing parallel and distributed algorithms.
 
 **Lessons:**
-\* parallelism makes our computation faster
-\* but network communication slows us down
+
+-   parallelism makes our computation faster
+-   but network communication slows us down
 
 -   BINGO: perform parallel and in-memory computation.
 -   Persisting in memory is a particularly attractive option when working with iterative algorithms that

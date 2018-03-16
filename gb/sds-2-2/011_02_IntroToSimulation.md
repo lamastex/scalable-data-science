@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TgDwIhUduLs/0.jpg)](https://www.youtube.com/embed/TgDwIhUduLs?start=0&end=1817&autoplay=1)
+
 Introduction to Simulation
 ==========================
 

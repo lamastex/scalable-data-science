@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/uj6UNCt2eRc/0.jpg)](https://www.youtube.com/embed/uj6UNCt2eRc?start=0&end=1380&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/1NICbbECaC0/0.jpg)](https://www.youtube.com/embed/1NICbbECaC0?start=0&end=872&autoplay=1)
+
 Linear Algebra Review / re-Introduction
 ---------------------------------------
 
@@ -336,7 +340,8 @@ Suggested Home Work for LiAlRusty: watch again and take notes.
 -   what is a natural geometric interpretation of scalar multiplication of a vector or a matrix and what about vector matrix multiplication?
 
 Let's get a quick visual geometric interpretation for vectors, matrices and matrix-vector multiplications from the first interactive visual-cognitive aid at:
-\* <http://setosa.io/ev/eigenvectors-and-eigenvalues/>
+
+-   <http://setosa.io/ev/eigenvectors-and-eigenvalues/>
 
 ``` scala
 val A = DenseMatrix((1, 4), (6, 1), (3, 5)) 
@@ -565,7 +570,7 @@ Breeze is modeled on Scala, and so if you're familiar with it, you'll be familia
 `scala> import breeze.linalg._`
 
 Let's create a vector:
-`scala scala> val x = DenseVector.zeros[Double](5) x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)`
+`scala> val x = DenseVector.zeros[Double](5) x: breeze.linalg.DenseVector[Double] = DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)`
 
 Here we make a column vector of zeros of type Double. And there are other ways we could create the vector - such as with a literal `DenseVector(1,2,3)` or with a call to `fill` or `tabulate`. The vector is "dense" because it is backed by an `Array[Double]`, but could as well have created a `SparseVector.zeros[Double](5)`, which would not allocate memory for zeros.
 

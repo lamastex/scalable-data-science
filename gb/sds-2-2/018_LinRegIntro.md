@@ -1,8 +1,13 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/1NICbbECaC0/0.jpg)](https://www.youtube.com/embed/1NICbbECaC0?start=872&end=2285&autoplay=1)
+
 Let us visit an interactive visual cognitive tool for the basics ideas in linear regression:
-\* <http://setosa.io/ev/ordinary-least-squares-regression/>
+
+-   <http://setosa.io/ev/ordinary-least-squares-regression/>
 
 The following video is a very concise and thorough treatment of linear regression for those who have taken the 200-level linear algebra. Others can fully understand it with some effort and revisiting.
 
