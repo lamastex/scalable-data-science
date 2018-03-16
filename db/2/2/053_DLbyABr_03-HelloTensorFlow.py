@@ -9,6 +9,13 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Archived YouTube video of this live unedited lab-lecture:
+# MAGIC 
+# MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Vwou20grUD4/0.jpg)](https://www.youtube.com/embed/Vwou20grUD4?start=378&end=2146&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/-LLL3MUl9ps/0.jpg)](https://www.youtube.com/embed/-LLL3MUl9ps?start=0&end=2467&autoplay=1)
+
+# COMMAND ----------
+
 # MAGIC %md 
 # MAGIC # TensorFlow
 # MAGIC 
