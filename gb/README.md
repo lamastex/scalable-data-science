@@ -88,6 +88,7 @@ Assignments, on the other hand, are to be completed individually.
 	*  [RDDs](sds-2-2/004_RDDsTransformationsActions.md)
 	*  [RDDs HOMEWORK](sds-2-2/005_RDDsTransformationsActionsHOMEWORK.md)
 	*  [Word Count - SOU](sds-2-2/006_WordCount.md)
+	*  [Russian Word Count](sds-2-2/006a_RussianWordCount.md)
 4. Ingest, Extract, Transform, Load and Explore with noSQL
 	*  [Spark SQL Basics](sds-2-2/007_SparkSQLIntroBasics.md)
 	*  [SparkSQL HW-a ProgGuide](sds-2-2/007a_SparkSQLProgGuide_HW.md)

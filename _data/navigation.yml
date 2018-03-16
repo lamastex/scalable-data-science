@@ -61,6 +61,8 @@ lMenu-SDS-2.2:
         url: /sds/2/2/db/005_RDDsTransformationsActionsHOMEWORK/
       - title: "Word Count - SOU"
         url: /sds/2/2/db/006_WordCount/
+      - title: "Russian Word Count"
+        url: /sds/2/2/db/006a_RussianWordCount/
       - title: "SparkSQL Basics"
         url: /sds/2/2/db/007_SparkSQLIntroBasics/
       - title: "SparkSQL HW-a"
