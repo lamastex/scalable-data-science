@@ -46,6 +46,7 @@
 // MAGIC values, stored on a single machine. 
 // MAGIC 
 // MAGIC MLlib supports two types of local vectors: 
+// MAGIC 
 // MAGIC * dense and 
 // MAGIC * sparse. 
 // MAGIC 
@@ -55,6 +56,7 @@
 // MAGIC 
 // MAGIC For example, a vector
 // MAGIC `(1.0, 0.0, 3.0)` can be represented:
+// MAGIC 
 // MAGIC * in dense format as `[1.0, 0.0, 3.0]` or 
 // MAGIC * in sparse format as `(3, [0, 2], [1.0, 3.0])`, where `3` is the size of the vector.
 // MAGIC 
@@ -103,6 +105,7 @@ val sv2: Vector = Vectors.sparse(3, Seq((0, 1.0), (2, 3.0)))
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC **python**: MLlib recognizes the following types as dense vectors:
 // MAGIC 
 // MAGIC -   NumPy’s
