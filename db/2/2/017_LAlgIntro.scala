@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/uj6UNCt2eRc/0.jpg)](https://www.youtube.com/embed/uj6UNCt2eRc?start=0&end=1380&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/1NICbbECaC0/0.jpg)](https://www.youtube.com/embed/1NICbbECaC0?start=0&end=872&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC ## Linear Algebra Review / re-Introduction
 // MAGIC ### by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning
 // MAGIC 
