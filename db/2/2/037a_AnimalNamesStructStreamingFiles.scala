@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/fXo7AfE3Umg/0.jpg)](https://www.youtube.com/embed/fXo7AfE3Umg?start=0&end=2670&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/sAttqpQq4nA/0.jpg)](https://www.youtube.com/embed/sAttqpQq4nA?start=0&end=2630&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/byAZtT_EdO4/0.jpg)](https://www.youtube.com/embed/byAZtT_EdO4?start=0&end=1045&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/bhHH74vkqHE/0.jpg)](https://www.youtube.com/embed/bhHH74vkqHE?start=0&end=487&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Write files with animal names continuously for structured streaming
 // MAGIC 
 // MAGIC This notebook can be used to write files every 2 seconds into the distributed file system where each of these files contains a row given by the time stamp and two animals chosen at random from six animals in a `animals.txt` file in the driver.
@@ -131,8 +138,8 @@
 
 // COMMAND ----------
 
-//%sh
-//cat logsEvery2Secs/33_51.log
+// MAGIC %sh
+// MAGIC cat logsEvery2Secs/25_46.log
 
 // COMMAND ----------
 

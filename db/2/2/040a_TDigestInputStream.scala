@@ -4,6 +4,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GFe7RQXn4Cs/0.jpg)](https://www.youtube.com/embed/GFe7RQXn4Cs?start=0&end=2811&autoplay=1)
+
+// COMMAND ----------
+
 // this is a companion notebook that generates a bivariate gaussian mixture file stream
 
 import scala.util.Random
@@ -30,6 +37,3 @@ for( a <- 1 to 20){
   data.write.mode(SaveMode.Overwrite).csv("/datasets/streamingFiles/" + minute +"_" + second + ".csv")
   Thread.sleep(5000L) // sleep 5 seconds
 }
-
-// COMMAND ----------
-

@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/fXo7AfE3Umg/0.jpg)](https://www.youtube.com/embed/fXo7AfE3Umg?start=0&end=2670&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/sAttqpQq4nA/0.jpg)](https://www.youtube.com/embed/sAttqpQq4nA?start=0&end=2630&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/byAZtT_EdO4/0.jpg)](https://www.youtube.com/embed/byAZtT_EdO4?start=0&end=1045&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/bhHH74vkqHE/0.jpg)](https://www.youtube.com/embed/bhHH74vkqHE?start=0&end=487&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Write files periodically with normal mixture samples for structured streaming
 // MAGIC 
 // MAGIC This notebook can be used to write files every few seconds into the distributed file system where each of these files contains a time stamp field followed by randomly drawn words.
@@ -70,7 +77,7 @@ display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/"))
 
 // COMMAND ----------
 
-display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/23_35/"))
+display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/57_48/"))
 
 // COMMAND ----------
 
@@ -79,7 +86,7 @@ display(dbutils.fs.ls("/datasets/streamingFilesNormalMixture/23_35/"))
 
 // COMMAND ----------
 
-val df_csv = spark.read.option("inferSchema", "true").csv("/datasets/streamingFilesNormalMixture/23_35/*.csv")
+val df_csv = spark.read.option("inferSchema", "true").csv("/datasets/streamingFilesNormalMixture/57_48/*.csv")
 
 // COMMAND ----------
 
@@ -88,6 +95,3 @@ df_csv.count() // 100 samples per file
 // COMMAND ----------
 
 df_csv.show(10,false) // first 10
-
-// COMMAND ----------
-
