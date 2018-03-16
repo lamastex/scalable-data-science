@@ -90,6 +90,7 @@ import twitter4j.conf.ConfigurationBuilder
 // MAGIC %md
 // MAGIC 
 // MAGIC ### Step 2: Configure where to output the top hashtags and how often to compute them.
+// MAGIC 
 // MAGIC * Run this cell for the input cells to appear.
 // MAGIC * Enter your credentials.
 // MAGIC * Run the cell again to pick up your defaults.
@@ -249,6 +250,7 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 // MAGIC * ...
 // MAGIC 
 // MAGIC Note that there are various Spark Streaming ML algorithms that one could easily throw at such `reduceByKeyAndWindow` tweet streams:
+// MAGIC 
 // MAGIC * [Frequent Pattern Mining](https://spark.apache.org/docs/latest/mllib-frequent-pattern-mining.html)
 // MAGIC * [Streaming K-Means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html)
 // MAGIC * [Latent Dirichlet Allocation - Topic Modeling](https://spark.apache.org/docs/latest/ml-clustering.html#latent-dirichlet-allocation-lda)
@@ -256,4 +258,5 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 // MAGIC Student Project or Volunteer for next Meetup - let's check it out now:
 // MAGIC 
 // MAGIC HOME-WORK:
+// MAGIC 
 // MAGIC * [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)
