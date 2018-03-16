@@ -11,10 +11,13 @@ Deep learning: A Crash Introduction
 ===================================
 
 This notebook provides an introduction to Deep Learning. It is meant to help you descend more fully into these learning resources and references:
-\* Udacity's course on Deep Learning <https://www.udacity.com/course/deep-learning--ud730> by Google engineers: Arpan Chakraborty and Vincent Vanhoucke and their full video playlist:
-\* [https://www.youtube.com/watch?v=X*B9NADf2wk&index=2&list=PLAwxTw4SYaPn*OWPFT9ulXLuQrImzHfOV](https://www.youtube.com/watch?v=X_B9NADf2wk&index=2&list=PLAwxTw4SYaPn_OWPFT9ulXLuQrImzHfOV)
-\* Neural networks and deep learning <http://neuralnetworksanddeeplearning.com/> by Michael Nielsen
-\* Deep learning book <http://www.deeplearningbook.org/> by Ian Goodfellow, Yoshua Bengio and Aaron Courville
+
+-   Udacity's course on Deep Learning <https://www.udacity.com/course/deep-learning--ud730> by Google engineers: Arpan Chakraborty and Vincent Vanhoucke and their full video playlist:
+    -   [https://www.youtube.com/watch?v=X*B9NADf2wk&index=2&list=PLAwxTw4SYaPn*OWPFT9ulXLuQrImzHfOV](https://www.youtube.com/watch?v=X_B9NADf2wk&index=2&list=PLAwxTw4SYaPn_OWPFT9ulXLuQrImzHfOV)
+-   Neural networks and deep learning <http://neuralnetworksanddeeplearning.com/> by Michael Nielsen
+-   Deep learning book <http://www.deeplearningbook.org/> by Ian Goodfellow, Yoshua Bengio and Aaron Courville
+
+<!-- -->
 
 -   Deep learning - buzzword for Artifical Neural Networks
 -   What is it?
@@ -24,8 +27,11 @@ This notebook provides an introduction to Deep Learning. It is meant to help you
 -   Online learning model - backpropogation
 -   Optimization - Stochastic gradient descent
 -   Regularization - L1, L2, Dropout
-    ***
-    ***
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
 -   Supervised
     -   Fully connected network
     -   Convolutional neural network - Eg: For classifying images
@@ -206,8 +212,9 @@ So far we have only seen fully connected neural networks, now let's move into mo
 Watch now (3:55)
 [![Udacity: Deep Learning by Vincent Vanhoucke - Convolutional Neural network](http://img.youtube.com/vi/jajksuQW4mc/0.jpg)](https://www.youtube.com/watch?v=jajksuQW4mc)
 ***
-\* Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton - <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>
-\* Convolutional Neural networks blog - <http://colah.github.io/posts/2014-07-Conv-Nets-Modular/>
+
+-   Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton - <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>
+-   Convolutional Neural networks blog - <http://colah.github.io/posts/2014-07-Conv-Nets-Modular/>
 
 #### Recurrent neural network
 
@@ -241,4 +248,5 @@ Watch now (3:51)
 
 The more recent improvement over CNNs are called capsule networks by Hinton.
 Check them out here if you want to prepare for your future interview question in 2017/2018 or so...:
-\* <https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b>
+
+-   <https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b>
