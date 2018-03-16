@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qgMIxwCA01w/0.jpg)](https://www.youtube.com/embed/qgMIxwCA01w?start=0&end=2991&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/J1NlUSz1MVk/0.jpg)](https://www.youtube.com/embed/J1NlUSz1MVk?start=0&end=2634&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Tweet Collector - capture live tweets
 // MAGIC 
 // MAGIC Here are the main steps in this notebook:
@@ -20,6 +27,7 @@
 // MAGIC We will call extendedTwitterUtils notebook from here. 
 // MAGIC 
 // MAGIC But **first install** the following libraries:
+// MAGIC 
 // MAGIC * gson
 // MAGIC * twitter4j-examples
 
@@ -107,14 +115,18 @@ val ssc = new StreamingContext(sc, slideInterval)
 // MAGIC 
 // MAGIC 
 // MAGIC Crucially, the use of the content from twitter by you (as done in this worksheet) comes with some strings.  Read:
+// MAGIC 
 // MAGIC - [Developer Agreement & Policy Twitter Developer Agreement](https://dev.twitter.com/overview/terms/agreement-and-policy)
 // MAGIC 
 // MAGIC ### Enter your own Twitter API Credentials.
+// MAGIC 
 // MAGIC * Go to https://apps.twitter.com and look up your Twitter API Credentials, or create an app to create them.
 // MAGIC * Get your own Twitter API Credentials: `consumerKey`, `consumerSecret`, `accessToken` and `accessTokenSecret` and enter them in the cell below.
 // MAGIC 
 // MAGIC ### Ethical/Legal Aspects
+// MAGIC 
 // MAGIC See Background Readings/Viewings in Project MEP:
+// MAGIC 
 // MAGIC * [https://lamastex.github.io/scalable-data-science/sds/research/mep/](https://lamastex.github.io/scalable-data-science/sds/research/mep/)
 
 // COMMAND ----------
@@ -298,6 +310,7 @@ dbutils.fs.rm(outputDirectoryRoot, true)
 // MAGIC Clearly there is a lot one can do with tweets!
 // MAGIC 
 // MAGIC Enspecially, after you can get a few more primitives under your belt from the following areas:
+// MAGIC 
 // MAGIC * Natural Language Processing (MLlib, beyond word counts of course), 
 // MAGIC * Distributed vertex programming (Graph Frames, which you already know), and 
 // MAGIC * Scalable geospatial computing with location data on open street maps (roughly a third of tweets are geo-enabled with Latitude and Longitude of the tweet location) -  we will get into this.
