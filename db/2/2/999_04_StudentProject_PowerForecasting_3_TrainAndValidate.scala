@@ -5,6 +5,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/xqy5geCNKCg/0.jpg)](https://www.youtube.com/embed/xqy5geCNKCg?start=0&end=1456&autoplay=1)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC # Power Forecasting
 // MAGIC ## Student Project 
@@ -15,6 +22,7 @@
 // MAGIC %md
 // MAGIC 
 // MAGIC ### Run the create-training-data-21 notebook to create all the data
+// MAGIC   
 
 // COMMAND ----------
 
