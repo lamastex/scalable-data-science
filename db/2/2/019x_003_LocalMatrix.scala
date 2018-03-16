@@ -44,6 +44,7 @@
 // MAGIC 
 // MAGIC A local matrix has integer-typed row and column indices and double-typed
 // MAGIC values, **stored on a single machine**. MLlib supports:
+// MAGIC 
 // MAGIC * dense matrices, whose entry values are stored in a single double array in column-major order, and 
 // MAGIC * sparse matrices, whose non-zero entry values are stored in the Compressed Sparse Column (CSC) format in column-major order. 
 // MAGIC 
