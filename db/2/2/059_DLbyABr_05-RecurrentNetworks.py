@@ -14,6 +14,13 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Archived YouTube video of this live unedited lab-lecture:
+# MAGIC 
+# MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/nHYXMZAHM1c/0.jpg)](https://www.youtube.com/embed/nHYXMZAHM1c?start=0&end=2465&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4cD8ieyHVh4/0.jpg)](https://www.youtube.com/embed/4cD8ieyHVh4?start=0&end=2353&autoplay=1)
+
+# COMMAND ----------
+
 # MAGIC %md 
 # MAGIC # Entering the 4th Dimension
 # MAGIC ## Networks for Understanding Time-Oriented Patterns in Data
