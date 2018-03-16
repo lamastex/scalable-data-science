@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/63E_Nps98Bk/0.jpg)](https://www.youtube.com/embed/63E_Nps98Bk?start=0&end=1222&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Twitter Streaming Language Classifier
 // MAGIC 
 // MAGIC This is a databricksification of [https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html) by Amendra Shreshta.
