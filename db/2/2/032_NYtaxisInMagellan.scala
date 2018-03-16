@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/qBx_pslVBkg/0.jpg)](https://www.youtube.com/embed/qBx_pslVBkg?start=271&end=766&autoplay=1) 
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Analysis of NY Taxi dataset in magellan
 // MAGIC ### Replicating Ram Sriharsha's analysis by Victor Ingman.
 // MAGIC 
