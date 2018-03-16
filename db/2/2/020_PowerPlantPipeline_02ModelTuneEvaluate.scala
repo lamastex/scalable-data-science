@@ -5,6 +5,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/rBZih2BQZuw/0.jpg)](https://www.youtube.com/embed/rBZih2BQZuw?start=428&end=3039&autoplay=1)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC #Power Plant ML Pipeline Application
 // MAGIC This is an end-to-end example of using a number of different machine learning algorithms to solve a supervised regression problem.
