@@ -5,6 +5,13 @@
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/CTcIJcgk87s/0.jpg)](https://www.youtube.com/embed/CTcIJcgk87s?start=0&end=2216&autoplay=1)
+
+// COMMAND ----------
+
 // MAGIC %md 
 // MAGIC # Article Topics in Retweet Network
 // MAGIC ## Student Project 
