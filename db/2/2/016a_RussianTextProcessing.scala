@@ -5,13 +5,15 @@
 // MAGIC 
 // MAGIC ## Russian Text Processing 
 // MAGIC By Yevgen Ryeznik
+// MAGIC 
+// MAGIC And how to upload files into databricks distributed file system.
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC Archived YouTube video of this live unedited lab-lecture:
 // MAGIC 
-// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/fxAlrRqwYRw/0.jpg)](https://www.youtube.com/embed/fxAlrRqwYRw?start=0&end=803&autoplay=1)
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/fxAlrRqwYRw/0.jpg)](https://www.youtube.com/embed/fxAlrRqwYRw?start=0&end=1141&autoplay=1)
 
 // COMMAND ----------
 
