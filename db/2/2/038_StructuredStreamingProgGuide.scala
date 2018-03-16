@@ -6,10 +6,17 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/fXo7AfE3Umg/0.jpg)](https://www.youtube.com/embed/fXo7AfE3Umg?start=0&end=2670&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/sAttqpQq4nA/0.jpg)](https://www.youtube.com/embed/sAttqpQq4nA?start=0&end=2630&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/byAZtT_EdO4/0.jpg)](https://www.youtube.com/embed/byAZtT_EdO4?start=0&end=1045&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/bhHH74vkqHE/0.jpg)](https://www.youtube.com/embed/bhHH74vkqHE?start=0&end=487&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Structured Streaming - A Programming Guide Walkthrough
 // MAGIC 
 // MAGIC -   [Overview](https://spark.apache.org/docs/2.2.0/index.html)
-// MAGIC -   [Programming Guides****](structured-streaming-programming-guide.html#)
+// MAGIC -   [Programming Guides](structured-streaming-programming-guide.html#)
 // MAGIC    
 // MAGIC 
 // MAGIC -   [Overview](https://spark.apache.org/docs/2.2.0/structured-streaming-programming-guide.html#overview)
@@ -790,6 +797,7 @@ query.awaitTermination()
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC ### Handling Late Data and Watermarking
 // MAGIC 
 // MAGIC Now consider what happens if one of the events arrives late to the
@@ -802,8 +810,7 @@ query.awaitTermination()
 // MAGIC that late data can update aggregates of old windows correctly, as
 // MAGIC illustrated below.
 // MAGIC 
-// MAGIC ![Handling Late
-// MAGIC Data](https://spark.apache.org/docs/2.2.0/img/structured-streaming-late-data.png)
+// MAGIC ![Handling Late Data](https://spark.apache.org/docs/2.2.0/img/structured-streaming-late-data.png)
 // MAGIC 
 // MAGIC However, to run this query for days, it’s necessary for the system to
 // MAGIC bound the amount of intermediate in-memory state it accumulates. This
