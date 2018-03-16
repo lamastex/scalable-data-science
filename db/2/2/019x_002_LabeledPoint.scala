@@ -142,6 +142,7 @@ display(examples.toDF) // covert to DataFrame and display for convenient db visu
 
 // MAGIC %md
 // MAGIC The pixel intensities are represented in `features` as a sparse vector, for example the first observation, as seen in row 1 of the output to `display(training)` below, has `label` as `5`, i.e. the hand-written image is for the number 5.  And this hand-written image is the following sparse vector (just click the triangle to the left of the feature in first row to see the following):
+// MAGIC 
 // MAGIC ```
 // MAGIC type: 0
 // MAGIC size: 780
@@ -149,6 +150,7 @@ display(examples.toDF) // covert to DataFrame and display for convenient db visu
 // MAGIC values: [3, 18, 18,18,126,...,132,16]
 // MAGIC ```
 // MAGIC Here 
+// MAGIC 
 // MAGIC * `type: 0` says we hve a sparse vector.
 // MAGIC * `size: 780` says the vector has 780 indices in total 
 // MAGIC  * these indices from 0,...,779 are a unidimensional indexing of the two-dimensional array of pixels in the image
