@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/FS6FdwNJDvY/0.jpg)](https://www.youtube.com/embed/FS6FdwNJDvY?start=2035&end=2276&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC This is a scala version of the python notebook in the following talk:
 // MAGIC 
 // MAGIC **Homework:**
@@ -91,6 +98,7 @@ display(departureDelays_geo)
 // MAGIC %md
 // MAGIC ## Building the Graph
 // MAGIC Now that we've imported our data, we're going to need to build our graph. To do so we're going to do two things. We are going to build the structure of the vertices (or nodes) and we're going to build the structure of the edges. What's awesome about GraphFrames is that this process is incredibly simple. 
+// MAGIC 
 // MAGIC * Rename IATA airport code to **id** in the Vertices Table
 // MAGIC * Start and End airports to **src** and **dst** for the Edges Table (flights)
 // MAGIC 
@@ -220,6 +228,7 @@ display(tripGraph.edges.filter($"src" === "SEA" && $"delay" > 100))
 
 // MAGIC %md 
 // MAGIC ## Vertex Degrees
+// MAGIC 
 // MAGIC * `inDegrees`: Incoming connections to the airport
 // MAGIC * `outDegrees`: Outgoing connections from the airport 
 // MAGIC * `degrees`: Total connections to and from the airport
@@ -281,6 +290,7 @@ display(ranks.vertices.orderBy($"pagerank".desc).limit(20))
 // MAGIC BTW, A lot more delicate air-traffic arithmetic is possible for a full month of airplane co-trajectories over the radar range of Atlanta, Georgia!
 // MAGIC 
 // MAGIC See for instance:
+// MAGIC 
 // MAGIC * Statistical regular pavings to analyze massive data of aircraft trajectories, Gloria Teng, Kenneth Kuhn and Raazesh Sainudiin, Journal of Aerospace Computing, Information, and Communication, Vol. 9, No. 1, pp. 14-25, [doi: 10.2514/1.I010015](http://arc.aiaa.org/doi/abs/10.2514/1.I010015), 2012. See free preprint: [http://lamastex.org/preprints/AAIASubPavingATC.pdf](http://lamastex.org/preprints/AAIASubPavingATC.pdf).
 
 // COMMAND ----------

@@ -8,12 +8,12 @@
 // MAGIC %md
 // MAGIC Archived YouTube video of this live unedited lab-lecture:
 // MAGIC 
-// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GbyTz8Z6E-M/0.jpg)](https://www.youtube.com/embed/GbyTz8Z6E-M?start=0&end=2991&autoplay=1)
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GbyTz8Z6E-M/0.jpg)](https://www.youtube.com/embed/GbyTz8Z6E-M?start=0&end=2991&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/FS6FdwNJDvY/0.jpg)](https://www.youtube.com/embed/FS6FdwNJDvY?start=0&end=2035&autoplay=1)
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Distribued Vertex Programming using GraphX
+// MAGIC ## Distributed Vertex Programming using GraphX
 // MAGIC 
 // MAGIC This is an augmentation of [http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html](http://go.databricks.com/hubfs/notebooks/3-GraphFrames-User-Guide-scala.html)
 // MAGIC 
@@ -588,9 +588,9 @@ display(g2.edges)
 
 // MAGIC %md
 // MAGIC 
-// MAGIC Read 
+// MAGIC Read
 // MAGIC 
-// MAGIC * [http://graphframes.github.io/user-guide.html#breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
+// MAGIC * [graphframes user-guide breadth-first-search-bfs](http://graphframes.github.io/user-guide.html#breadth-first-search-bfs).
 
 // COMMAND ----------
 

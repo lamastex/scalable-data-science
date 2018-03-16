@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GF-VFR39dIU/0.jpg)](https://www.youtube.com/embed/GF-VFR39dIU?start=0&end=410&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/atwM-8fXNQY/0.jpg)](https://www.youtube.com/embed/atwM-8fXNQY?start=0&end=2372&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC #Topic Modeling with Latent Dirichlet Allocation
 // MAGIC 
 // MAGIC This is an augmentation of a notebook from Databricks Guide.   
@@ -15,6 +22,7 @@
 
 // MAGIC %md
 // MAGIC ##Algorithm Summary
+// MAGIC 
 // MAGIC - **Task**: Identify topics from a collection of text documents
 // MAGIC - **Input**: Vectors of word counts
 // MAGIC - **Optimizers**: 
@@ -33,6 +41,7 @@
 
 // MAGIC %md
 // MAGIC ## Links
+// MAGIC 
 // MAGIC - Spark API docs
 // MAGIC   - Scala: [LDA](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.clustering.LDA)
 // MAGIC   - Python: [LDA](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.clustering.LDA)
@@ -98,6 +107,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#M
 // MAGIC ## Probabilistic Topic Modeling Example
 // MAGIC 
 // MAGIC This is an outline of our Topic Modeling workflow. Feel free to jump to any subtopic to find out more.
+// MAGIC 
 // MAGIC - Step 0. Dataset Review
 // MAGIC - Step 1. Downloading and Loading Data into DBFS 
 // MAGIC     - (Step 1. only needs to be done once per shard - see details at the end of the notebook for Step 1.)
@@ -264,6 +274,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#M
 // MAGIC %md
 // MAGIC 
 // MAGIC **NOTE:** A simpler and slicker version of the analysis is available in this notebook:
+// MAGIC 
 // MAGIC * [https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html](https://docs.cloud.databricks.com/docs/latest/sample_applications/07%20Sample%20ML/MLPipeline%20Newsgroup%20Dataset.html)
 // MAGIC    
 // MAGIC    But, let's do it the hard way here so that we can do it on other arbitrary datasets.
@@ -356,6 +367,7 @@ corpus_body.take(5)
 // MAGIC To use the convenient [Feature extraction and transformation APIs](http://spark.apache.org/docs/latest/ml-features.html), we will convert our RDD into a DataFrame.
 // MAGIC 
 // MAGIC We will also create an ID for every document using `zipWithIndex` 
+// MAGIC 
 // MAGIC   * for sytax and details search for `zipWithIndex` in [https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html](https://spark.apache.org/docs/latest/api/scala/org/apache/spark/rdd/RDD.html)
 
 // COMMAND ----------
@@ -490,6 +502,7 @@ val filtered_df = remover.transform(tokenized_df)
 // MAGIC The `CountVectorizer` will return `(VocabSize, Array(Indexed Tokens), Array(Token Frequency))`.
 // MAGIC 
 // MAGIC Two handy parameters to note:
+// MAGIC 
 // MAGIC   - `setMinDF`: Specifies the minimum number of different documents a term must appear in to be included in the vocabulary.
 // MAGIC   - `setMinTF`: Specifies the minimum number of times a term has to appear in a document to be included in the vocabulary.
 
@@ -744,7 +757,7 @@ val new_lda = new LDA()
 // MAGIC Dive into the source!!!
 // MAGIC 
 // MAGIC 1. Let's find the default value for `docConcentration` now.
-// MAGIC 1. Got to Apache Spark package Root: [https://spark.apache.org/docs/latest/api/scala/#package](https://spark.apache.org/docs/latest/api/scala/#package)
+// MAGIC * Got to Apache Spark package Root: [https://spark.apache.org/docs/latest/api/scala/#package](https://spark.apache.org/docs/latest/api/scala/#package)
 // MAGIC * search for 'ml' in the search box on the top left (ml is for ml library)
 // MAGIC * Then find the `LDA` by scrolling below on the left to mllib's `clustering` methods and click on `LDA`
 // MAGIC * Then click on the source code link which should take you here:
@@ -917,6 +930,7 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 // MAGIC %md
 // MAGIC 
 // MAGIC To improve our results further, we could employ some of the below methods:
+// MAGIC 
 // MAGIC - Refilter data for additional data-specific stopwords
 // MAGIC - Use Stemming or Lemmatization to preprocess data
 // MAGIC - Experiment with a smaller number of topics, since some of these topics in the 20 Newsgroups are pretty similar
@@ -1118,6 +1132,3 @@ function classes(root) {
 // COMMAND ----------
 
 display(dbutils.fs.ls("dbfs:/datasets/mini_newsgroups"))
-
-// COMMAND ----------
-

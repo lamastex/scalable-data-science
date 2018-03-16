@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/63E_Nps98Bk/0.jpg)](https://www.youtube.com/embed/63E_Nps98Bk?start=1912&end=2969&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC # Old Bailey Online Data Analysis in Apache Spark
 // MAGIC 
@@ -46,6 +53,7 @@ displayHTML(frameIt("https://www.oldbaileyonline.org/", 450))
 // MAGIC ### This exciting dataset is here for a course project in digital humanities
 // MAGIC 
 // MAGIC #### To understand the extraction job we are about to do here:
+// MAGIC 
 // MAGIC * see [Jasper Mackenzie, Raazesh Sainudiin, James Smithies and Heather Wolffram, A nonparametric view of the civilizing process in London's Old Bailey, Research Report UCDMS2015/1, 32 pages, 2015](http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf).
 
 // COMMAND ----------
@@ -299,6 +307,7 @@ display(trDF)
 // MAGIC You can download the tiny dataset `obo-tiny/OB-tiny_tei_7-2_CC-BY-NC.zip` **to save time and space in db CE**
 // MAGIC 
 // MAGIC **Optional TODOs:** 
+// MAGIC 
 // MAGIC * one could just read the zip files directly (see week 10 on Beijing taxi trajectories example from the scalable-data-science course in 2016 or read 'importing zip files' in the Guide).
 // MAGIC * one could just download from s3 directly
 

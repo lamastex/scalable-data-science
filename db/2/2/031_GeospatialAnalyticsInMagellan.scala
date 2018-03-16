@@ -6,6 +6,14 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/TsqWglA3_-0/0.jpg)](https://www.youtube.com/embed/TsqWglA3_-0?start=0&end=1324&autoplay=1)
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/3Lc2M0LTAUc/0.jpg)](https://www.youtube.com/embed/3Lc2M0LTAUc?start=0&end=2077&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # What is Geospatial Analytics?
 // MAGIC 
 // MAGIC 
@@ -20,9 +28,11 @@
 // MAGIC # Some Concrete Examples of Scalable Geospatial Analytics
 // MAGIC 
 // MAGIC ### Let us check out cross-domain data fusion in MSR's Urban Computing Group 
+// MAGIC 
 // MAGIC * lots of interesting papers to read at [http://research.microsoft.com/en-us/projects/urbancomputing/](http://research.microsoft.com/en-us/projects/urbancomputing/).
 // MAGIC 
 // MAGIC ## Several sciences are naturally geospatial 
+// MAGIC 
 // MAGIC * forestry, 
 // MAGIC * geography, 
 // MAGIC * geology, 
@@ -39,9 +49,11 @@
 // MAGIC # Introduction to Magellan for Scalable Geospatial Analytics
 // MAGIC 
 // MAGIC This is a minor  augmentation of Ram Harsha's Magellan code blogged here:
+// MAGIC 
 // MAGIC * [magellan geospatial analytics in spark](https://magellan.ghost.io/welcome-to-ghost/)
 // MAGIC 
 // MAGIC First you need to attach the following library:
+// MAGIC 
 // MAGIC * the magellan library (maven coordinates `harsha2010:magellan:1.0.5-s_2.11`)
 
 // COMMAND ----------
@@ -70,15 +82,18 @@
 // MAGIC ## Nuts and Bolts of Magellan
 // MAGIC 
 // MAGIC Let us go and grab this databricks notebook:
+// MAGIC 
 // MAGIC * [https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/137058993011870/882779309834027/6891974485343070/latest.html](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/137058993011870/882779309834027/6891974485343070/latest.html) 
 // MAGIC 
 // MAGIC and look at the magellan README in github:
+// MAGIC 
 // MAGIC * [https://github.com/harsha2010/magellan](https://github.com/harsha2010/magellan)
 // MAGIC 
 // MAGIC **HOMEWORK**: Watch the [magellan presentation by Ram Harsha (Hortonworks) in Spark Summit East 2016](https://spark-summit.org/east-2016/events/magellan-spark-as-a-geospatial-analytics-engine/).
 // MAGIC 
 // MAGIC   
 // MAGIC Other resources for magellan:
+// MAGIC 
 // MAGIC * [Ram's blog in HortonWorks](http://hortonworks.com/blog/magellan-geospatial-analytics-in-spark/) and the [ZeppelinHub view of the demo code in video above](https://www.zeppelinhub.com/viewer/notebooks/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2hvcnRvbndvcmtzLWdhbGxlcnkvemVwcGVsaW4tbm90ZWJvb2tzL21hc3Rlci8yQjRUV0dDOE0vbm90ZS5qc29u)
 // MAGIC * [Magellan as Spark project](http://spark-packages.org/package/harsha2010/magellan) and [Magellan github source](https://github.com/harsha2010/magellan)
 // MAGIC * [shape files](https://en.wikipedia.org/wiki/Shapefile) developed by Environmental Systems Research Institute [(ESRI)](https://en.wikipedia.org/wiki/Esri). See ESRI's [what is a geospatial shape file?](https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)
@@ -183,6 +198,7 @@ displayHTML(frameIt("https://databricks.com/blog/2015/04/13/deep-dive-into-spark
 // MAGIC * [https://databricks.com/blog/2016/05/23/apache-spark-as-a-compiler-joining-a-billion-rows-per-second-on-a-laptop.html](https://databricks.com/blog/2016/05/23/apache-spark-as-a-compiler-joining-a-billion-rows-per-second-on-a-laptop.html)
 // MAGIC 
 // MAGIC Try bench-marks here:
+// MAGIC 
 // MAGIC * [https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6122906529858466/293651311471490/5382278320999420/latest.html](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/6122906529858466/293651311471490/5382278320999420/latest.html)
 
 // COMMAND ----------
@@ -294,8 +310,8 @@ display(polylines2)
 // MAGIC %md 
 // MAGIC After downloading the data, we expect to have the following files in distributed file system (dbfs):
 // MAGIC 
-// MAGIC * ```all.tsv``` is the file of all uber trajectories
-// MAGIC * ```SFNbhd``` is the directory containing SF neighborhood shape files.
+// MAGIC * `all.tsv` is the file of all uber trajectories
+// MAGIC * `SFNbhd` is the directory containing SF neighborhood shape files.
 
 // COMMAND ----------
 
@@ -687,6 +703,7 @@ joined
 // MAGIC can be expressed in SQL using the Boolean predicates such as, \\(\in , \cap, \ldots \\), that operate over space-time sets given products of 2D magellan objects and 1D time intervals.
 // MAGIC 
 // MAGIC Want to scalably do the following:
+// MAGIC 
 // MAGIC * Given :
 // MAGIC   * a set of trajectories as labelled points in space-time and 
 // MAGIC   * a product of a time interval [ts,te] and a polygon P
@@ -696,6 +713,7 @@ joined
 // MAGIC     * intersect within a given distance d of any point or a given point in P (optional)
 // MAGIC     
 // MAGIC This will allow us to answer questions like:
+// MAGIC 
 // MAGIC * Where did the passengers who were using Uber and present in the SoMa neighbourhood in a given time interval get off?
 // MAGIC 
 // MAGIC See 2016 student project by George Dillon on a detailed analysis of spatio-temporal taxi trajectories using the Beijing taxi dataset from Microsoft Research (including map-matching with open-street maps using magellan and graphhopper).
