@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video (No Sound - Sorry!) of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/cVXjBz4B2q4/0.jpg)](https://www.youtube.com/embed/cVXjBz4B2q4?start=0&end=5910&autoplay=1) 
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Movie Recommender using Alternating Least Squares
 // MAGIC 
 // MAGIC 
@@ -62,6 +69,7 @@ displayHTML(frameIt("https://en.wikipedia.org/wiki/Collaborative_filtering", 450
 // MAGIC [collab2]: http://recommender-systems.org/collaborative-filtering/
 // MAGIC  
 // MAGIC **Resources:**
+// MAGIC 
 // MAGIC * [mllib](https://spark.apache.org/mllib/)
 // MAGIC * [Wikipedia - collaborative filtering](https://en.wikipedia.org/?title=Collaborative_filtering)
 // MAGIC * [Recommender Systems - collaborative filtering](http://recommender-systems.org/collaborative-filtering/)
@@ -127,7 +135,8 @@ import org.apache.spark.mllib.recommendation.Rating
 // MAGIC   `Genres1|Genres2|Genres3|...`
 // MAGIC The format of these files is uniform and simple, so we can use `split()`.
 // MAGIC 
-// MAGIC Parsing the two files yields two RDDS
+// MAGIC Parsing the two files yields two RDDs
+// MAGIC 
 // MAGIC * For each line in the ratings dataset, we create a tuple of (UserID, MovieID, Rating). We drop the timestamp because we do not need it for this exercise.
 // MAGIC * For each line in the movies dataset, we create a tuple of (MovieID, Title). We drop the Genres because we do not need them for this exercise.
 
@@ -231,6 +240,7 @@ println("Got " + numRatings + " ratings from "
 // MAGIC **Creating a Training Set, test Set and Validation Set**
 // MAGIC 
 // MAGIC Before we jump into using machine learning, we need to break up the `ratingsRDD` dataset into three pieces:
+// MAGIC 
 // MAGIC * A training set (RDD), which we will use to train models
 // MAGIC * A validation set (RDD), which we will use to choose the best model
 // MAGIC * A test set (RDD), which we will use for our experiments
@@ -266,14 +276,11 @@ println(" training data size = " + trainingRDD.count() +
 // MAGIC In this part, we will use the MLlib implementation of Alternating Least Squares, [ALS.train()](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.recommendation.ALS). ALS takes a training dataset (RDD) and several parameters that control the model creation process. To determine the best values for the parameters, we will use ALS to train several models, and then we will select the best model and use the parameters from that model in the rest of this lab exercise.
 // MAGIC  
 // MAGIC The process we will use for determining the best model is as follows:
+// MAGIC 
 // MAGIC * Pick a set of model parameters. The most important parameter to `ALS.train()` is the *rank*, which is the number of rows in the Users matrix (green in the diagram above) or the number of columns in the Movies matrix (blue in the diagram above). (In general, a lower rank will mean higher error on the training dataset, but a high rank may lead to [overfitting](https://en.wikipedia.org/wiki/Overfitting).)  We will train models with ranks of 4, 8, and 12 using the `trainingRDD` dataset.
 // MAGIC * Create a model using `ALS.train(trainingRDD, rank, seed=seed, iterations=iterations, lambda_=regularizationParameter)` with three parameters: an RDD consisting of tuples of the form (UserID, MovieID, rating) used to train the model, an integer rank (4, 8, or 12), a number of iterations to execute (we will use 5 for the `iterations` parameter), and a regularization coefficient (we will use 0.1 for the `regularizationParameter`).
 // MAGIC * For the prediction step, create an input RDD, `validationForPredictRDD`, consisting of (UserID, MovieID) pairs that you extract from `validationRDD`. You will end up with an RDD of the form: `[(1, 1287), (1, 594), (1, 1270)]`
 // MAGIC * Using the model and `validationForPredictRDD`, we can predict rating values by calling [model.predictAll()](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.recommendation.MatrixFactorizationModel.predictAll) with the `validationForPredictRDD` dataset, where `model` is the model we generated with ALS.train().  `predictAll` accepts an RDD with each entry in the format (userID, movieID) and outputs an RDD with each entry in the format (userID, movieID, rating).
-// MAGIC 
-// MAGIC  
-// MAGIC 
-// MAGIC  
 
 // COMMAND ----------
 
@@ -405,6 +412,7 @@ for ( rank <- ranks ){
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC 
 // MAGIC ** Potential flaws of CF **
 // MAGIC 
 // MAGIC * Cold start for users and items
