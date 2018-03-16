@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GFe7RQXn4Cs/0.jpg)](https://www.youtube.com/embed/GFe7RQXn4Cs?start=0&end=2811&autoplay=1)
+
 ``` scala
 // this is a companion notebook that generates a bivariate gaussian mixture file stream
 

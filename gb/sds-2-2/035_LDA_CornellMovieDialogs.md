@@ -1,6 +1,10 @@
 [SDS-2.2, Scalable Data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/)
 ===========================================================================================
 
+Archived YouTube video of this live unedited lab-lecture:
+
+[![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/GF-VFR39dIU/0.jpg)](https://www.youtube.com/embed/GF-VFR39dIU?start=0&end=410&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/atwM-8fXNQY/0.jpg)](https://www.youtube.com/embed/atwM-8fXNQY?start=0&end=2372&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Uh5J9hqk12I/0.jpg)](https://www.youtube.com/embed/Uh5J9hqk12I?start=0&end=2858&autoplay=1) [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/Se_E00wrdqM/0.jpg)](https://www.youtube.com/embed/Se_E00wrdqM?start=0&end=2242&autoplay=1)
+
 Topic Modeling of Movie Dialogs with Latent Dirichlet Allocation
 ================================================================
 
