@@ -6,6 +6,13 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC Archived YouTube video of this live unedited lab-lecture:
+// MAGIC 
+// MAGIC [![Archived YouTube video of this live unedited lab-lecture](http://img.youtube.com/vi/4tZ0-d_0yZA/0.jpg)](https://www.youtube.com/embed/4tZ0-d_0yZA?start=156&end=2823&autoplay=1)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC 
 // MAGIC # Twitter Hashtag Count
 // MAGIC 
@@ -92,13 +99,13 @@ import twitter4j.conf.ConfigurationBuilder
 val outputDirectory = "/datasets/tweetsStreamTmp" // output directory
 
 //Recompute the top hashtags every N seconds. N=1
-val slideInterval = new Duration(1 * 1000) // 1000 milliseconds is 1 second!
+val slideInterval = new Duration(10 * 1000) // 1000 milliseconds is 1 second!
 
 //Compute the top hashtags for the last M seconds. M=5
-val windowLength = new Duration(5 * 1000)
+val windowLength = new Duration(30 * 1000)
 
 // Wait W seconds before stopping the streaming job. W=100
-val timeoutJobLength = 100 * 1000
+val timeoutJobLength = 20 * 1000
 
 // COMMAND ----------
 
@@ -161,7 +168,7 @@ def creatingFunc(): StreamingContext = {
 
   // For each window, calculate the top hashtags for that time period.
   windowedhashTagCountStream.foreachRDD(hashTagCountRDD => {
-    val topEndpoints = hashTagCountRDD.top(10)(SecondValueOrdering)
+    val topEndpoints = hashTagCountRDD.top(20)(SecondValueOrdering)
     dbutils.fs.put(s"${outputDirectory}/top_hashtags_${num}", topEndpoints.mkString("\n"), true)
     println(s"------ TOP HASHTAGS For window ${num}")
     println(topEndpoints.mkString("\n"))
@@ -247,4 +254,6 @@ dbutils.fs.head(s"${outputDirectory}/top_hashtags_11")
 // MAGIC * [Latent Dirichlet Allocation - Topic Modeling](https://spark.apache.org/docs/latest/ml-clustering.html#latent-dirichlet-allocation-lda)
 // MAGIC 
 // MAGIC Student Project or Volunteer for next Meetup - let's check it out now:
+// MAGIC 
+// MAGIC HOME-WORK:
 // MAGIC * [Twitter Streaming Language Classifier](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/twitter_classifier/index.html)
