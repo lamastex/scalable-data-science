@@ -1,7 +1,7 @@
 ---
 layout: single
 title: 360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala
-permalink: /360-in-525/
+permalink: 
 sidebar:
   nav: "lMenu-SDS-2.2"
 header:
