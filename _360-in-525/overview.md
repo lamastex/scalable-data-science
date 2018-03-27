@@ -1,0 +1,135 @@
+---
+layout: single
+title: 360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala
+permalink: /360-in-525/
+sidebar:
+  nav: "lMenu-SDS-2.2"
+header:
+  overlay_color: "#5e616c"
+  overlay_image: /assets/images/DISP-research-1600x524.jpg
+  caption: 
+excerpt: 'Learn data sciences from domain experts and its mathematical foundations while getting your hands dirty with real data.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
+---
+{% include toc %}
+
+# Overview of a 360-in-525 Minutes Course Set in Data Sciences, Spring 2018
+
+**For PhD Students at Uppsala University and Researchers who want to upskill for Data Industry**
+
+
+There will be several full-day workshop-style courses (360 minutes-long, with the usual three 15-minutes-long breaks before and after the 75-minutes-long lunch break in the 525 minutes from 0815 to 1700 hours CET) worth 1hp to 3hp credits each. 
+This is partly supported by the Centre for Interdisciplinary Mathematics jointly with the Department of Mathematics in Spring 2018 and taught by domain experts in Digital Sociology, Geospatial Analytics, Population Genetics and Mathematical Statistics. 
+
+Master students at Uppsala University must contact their study councellor in order to see if it is possible to take the course as a "Selected Topics Course" in their Department.
+
+If you are working in industry and want to upskill in data science then you can take the courses (free of cost) and receive a certificate from the Department of Mathematics upon successful completion.
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages:["orgchart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'CourseName');
+        data.addColumn('string', 'Prereq');
+        data.addColumn('string', 'CourseTip');
+
+        // For each orgchart box, provide the name, coursename, coursedate and coursetip to show.
+        data.addRows([
+          [{v:'360-in-525-1', f:'360-in-525-1: Intro to Apache Spark for Data Scientists (1 hp)<div style="color:red; font-style:italic">On April 20 2018</div>'},
+           '', 'This is a one-full-day workshop (1 hp) on April 20 2018 on Apache Spark, one of the most widely used open-source and commercially friendly software for analysing big data in industry and academia.'],
+          [{v:'360-in-525-2', f:'360-in-525-2: Social Media and Big Data (2 hp) <div style="color:red; font-style:italic">On April 26 and 27 2018</div>'},
+           '360-in-525-1', 'This is a two-full-days workshop (2 hp) on April 26-27 2018. Prerequisites: 360-in-525-1 or ‘Introduction to data Science (the Fall 2017 course)’. The first day will be an introduction to the domain by Professor Simon Lindgren, a digital sociologist from Umea and the second day will build towards making one’s own twitter experimental designs in real-time. We will formalise notions like the Where Am I? Operator in a given population ideological tree or forest of retweet networks and try digesting gdelt global news streams with embeddings and models, if time permits.'],
+          [{v:'360-in-525-3', f:'360-in-525-3: Geospatial Analytics and Big Data (2 hp) <div style="color:red; font-style:italic">On May 3 and 4 2018</div>'},
+           '360-in-525-1', 'This is a two-full-days workshop (2 hp) on May 3-4 2018. Prerequisites: 360-in-525-1 or ‘Introduction to data Science’. The first day will be done by domain experts from Uppsala University’s Department of Social and Economic Geography in order to introduce the basic problems and datasets of the field with hands-on lab tutorials in non-distributed geospatial analytics. The second day will be on distributed geospatial analytics over real datasets that can be scaled to petabytes (syllabus is jointly designed with experts in London’s big data industry).'],
+          [{v: '360-in-525-5', f:'360-in-525-5: Population Genetics and Big Data (1+1 hp) <div style="color:red; font-style:italic">On May 31 and June 1 2018</div>'}, 
+           '360-in-525-4', 'Two-full-day workshops (2 hp) on May 31 and June 1 2018. The first day will be on the basic theories in current population genetics and genomics. The second day will use ADAM and possibly Hail over Apache Spark. Prerequisite for May 31 is 360-in-525-4 or equivalent and for June 1 is 360-in-525-1 or ‘Introduction to data Science’.'],
+          [{v:'360-in-525-4', f:'360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists (3 hp) <div style="color:red; font-style:italic">On May 11, 18 and 25 2018</div>'}, 
+           '', 'Three-full-day workshops (3 hp) on May 11, 18 and 25 2018. Prerequisites: current proficiency in high-school level mathematics (pre-calculus, geometry and algebra with some programming experience beyond Excel). Target Audience: any MSc or PhD student at UU who wants to understand the mathematical statistical foundations in the data scientist’s computational toolbox. The approach will use formal mathematical communication of concepts starting from sets and logic, but with concomitant development of computer programming skills to algorithmically construct and implement the concepts. Topics will include: Sets, Maps, Functions, Modular Arithmetic, Axiomatic Probability, Conditional probability, Pseudo-random constructive understanding of random variables and structures including graphs, Statistics, Likelihood Principle, Bayes Rule, Decisions (parametric and non-parametric) including tests and estimators, Markov chains and their pseudorandom constructions, etc. We will use SageMath locally and collaborate in COCALC during the lab/lectures.'],
+[{v: '360-in-525-0', f: '360-in-525-0: Mathematical Statistical Learning Theory Series; An L1 View (1 hp) <div style="color:red; font-style:italic">Time TBA in Period 4</div>'},
+         '','This course will introduce a PhD student in mathematics or mathematical statistics to one of the fundamental problems at the very core of various probabilistic theories of decision-making. We will mainly focus on the relation between the combinatorial geometric complexity of the (sigma) algebras of a simple measurable space and the rates of convergence of empirical measures over them in one of the simplest posable decision problems – nonparametric density estimation of an unknown density f in L1 based on finitely many observations drawn independently from it, but without making any mathematical compromise whatsoever, and thereby giving the so-called universal performance guarantee. This course was given in another form at CMAP, Ecole Polytechnique, Palaiseau, France for PhD students in mathematics there. Students in Geometry and Combinatorial probability as well as analysis may find this course insightful for their own research, as one of the basic theorems involves the combined use of several unique inequalities in a specific partial order of implications. The emphasis will involve constructive mathematics and perhaps delve into tree arithmetics towards such decision with universal performance guarantees along with their combinatorial, algebraic and analytic properties if time permits. Unfortunately such guarantees are not available for big data sets and may be necessary for being able to impose legal requirements and standards on automated decision-making systems.']
+        ]);
+
+        // Create the chart.
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        // Draw the chart, setting the allowHtml option to true for the tooltips.
+        chart.draw(data, {allowHtml:true});
+      }
+   </script>
+    </head>
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
+
+This course set is coordinated by Dr. Raazesh Sainudiin, a [Researcher in Applied Mathematics and Statistics](http://math.uu.se/research/raazesh-sainudiin/) at the Department of Mathematics, Uppsala University and a Data Science Consultant at [Combient AB](https://combient.com/) in Stockholm. 
+If you are a PhD or MSc student at Uppsala University or a researcher who wants to upskill for the data industry and interested in registering for appropriate subsets of the course set then please email details/questions/etc to the course set coordinator with subject line `360-in-525`. 
+
+Feel free to take any subset of modules if you can satisfy the prerequisite modules. Physical presence is mandatory for the credits in all of these modules.
+
+
+# 360-in-525-1: Introduction to Apache Spark for Data Scientists
+This is a one-full-day workshop (1 hp) on **April 20 2018** on [Apache Spark](https://spark.apache.org/), one of the most widely used open-source and commercially friendly software for analysing big data in industry and academia. 
+A crash course in Scala, the language of Apache Spark, will be followed by introduction to resilient distributed datasets (RDDs), their transformations and actions, Spark DataSets and DataFrames, SparkSQL.  We will have brief teasers on ML Pipelines, Streaming and GraphX as they will be covered in-depth in the sequel modules (concepts will be fortified by auto-graded homework assignments). 
+
+# 360-in-525-2: Social Media and Big Data
+This is a two-full-days workshop (2 hp) on **April 26-27 2018**. Prerequisites: 360-in-525-1 or [Introduction to data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/) (the Fall 2017 UU inter-faculty course). The first day will be an introduction to the domain by [Professor Simon Lindgren, a digital sociologist from Umea](http://www.simonlindgren.com/) and the second day will build towards making one's own twitter experimental designs in real-time. 
+This module will introduce you to topic modeling and other simple pipelines in natural language processing.  
+The course will give you the basic skills needed to go further and investigate the influence, if any, of [micro propaganda machines](https://medium.com/@d1gi/the-election2016-micro-propaganda-machine-383449cc1fba) (as shown below) or other similar opinion engineering operations, for instance. 
+
+![micro propaganda machine https://medium.com/@d1gi/the-election2016-micro-propaganda-machine-383449cc1fba](https://cdn-images-1.medium.com/max/1600/1*VcVXmlB_x-UV_Votm3Xl1w.png)
+
+We will ingest global news streams from the [gdelt project](https://www.gdeltproject.org/) with embeddings and models to gain insights into current affairs (see below). 
+
+![gdelt project globe image https://www.gdeltproject.org/](https://www.gdeltproject.org/images/spinningglobe.gif)
+
+# 360-in-525-3: Geospatial Analytics and Big Data 
+This is a two-full-days workshop (2 hp) on **May 3-4 2018**. Prerequisites: 360-in-525-1  or [Introduction to data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/). The first day will be done by domain experts from Uppsala University's [Department of Social and Economic Geography](http://www.kultgeog.uu.se/?languageId=1) in order to introduce the basic problems and datasets of the field with hands-on lab tutorials in non-distributed geospatial analytics. 
+The second day will be on distributed geospatial analytics over real datasets that can be scaled to petabytes (syllabus is jointly designed with experts in London's big data industry). 
+Topics include efficient distributed spatial joins, ingestion and representations of Open Street Maps that are conducive to pregel-style distributed vertex programs, SparkSQL and Spark Machine Learning pipelines with spatiotemporal GPS trajectories of multiple individuals.
+
+
+![MSR Cross-domain Data Fusion Image](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/urbancomputing-urbanplanning.jpg)
+
+**360-in-525-1,2,3 should prepare you for Microsoft Research's [urban computing](https://www.microsoft.com/en-us/research/project/urban-computing/) and [cross-domain data fusion](https://www.microsoft.com/en-us/research/project/cross-domain-data-fusion/)**
+
+![MSR Urban Computing Image](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/urbancomputing-bigdata.jpg)
+
+
+# 360-in-525-4. Mathematical, Statistical and Computational Foundations for Data Scientists
+ 
+Three-full-day workshops (3 hp) on **May 11, 18 and 25 2018**. Prerequisites: current proficiency in high-school level mathematics (pre-calculus, geometry and algebra with some programming experience beyond Excel). Target Audience: any MSc or PhD student at UU who wants to understand the mathematical statistical foundations in the data scientist's computational toolbox. The approach will use formal mathematical communication of concepts starting from sets and logic, but with concomitant development of computer programming skills to algorithmically construct and implement the concepts. Topics will include: Sets, Maps, Functions, Modular Arithmetic, Axiomatic Probability, Conditional probability, Pseudo-random constructive understanding of random variables and structures including graphs, Statistics, Likelihood Principle, Bayes Rule, Decisions (parametric and non-parametric) including tests and estimators, Markov chains and their pseudorandom constructions, etc. We will use [SageMath](http://www.sagemath.org/) locally and collaborate in [COCALC](https://cocalc.com/) during the lab/lectures (alternative options including [Apache Zeppelin](https://zeppelin.apache.org/) are being investigated to keep the local computing environment identical across the course set).
+
+# 360-in-525-5: Population Genetics and Big Data 
+
+Two-full-day workshops (2 hp) on **May 31 and June 1 2018**. The first day will be on the basic theories in current population genetics and genomics. The second day will use ADAM and possibly Hail over Apache Spark. Prerequisite for May 31 is 360-in-525-4 or equivalent and for June 1 is 360-in-525-1 or [Introduction to data Science](https://lamastex.github.io/scalable-data-science/sds/2/2/).
+We will focus on Extract-Load-Transform operations and subsequent analysis for the [1000 genomes project](http://www.internationalgenome.org/home).
+
+![The 1000 genomes project global map](http://www.internationalgenome.org/sites/1000genomes.org/files/images/1000g_map.png)
+
+# 360-in-525-0: Mathematical Statistical  Learning Theory Series; An L1 View
+
+Meeting time for this 1-day-workshop is TBA via doodle. 
+
+This course will introduce a PhD student in mathematics or mathematical statistics to one of the fundamental problems at the very core of various probabilistic theories of decision-making.  
+We will mainly focus on the relation between the combinatorial geometric complexity of the (sigma) algebras of a simple measurable space and the rates of convergence of empirical measures over them in one of the simplest posable decision problems -- *nonparametric density estimation* of an unknown density f in L1 based on finitely many observations drawn independently from it, but without making any mathematical compromise whatsoever, and thereby giving the so-called *universal performance guarantee* . 
+
+This course was given in another form at CMAP, Ecole Polytechnique, Palaiseau, France for PhD students in mathematics there. Students in Geometry and Combinatorial probability as well as analysis may find this course insightful for their own research, as one of the basic theorems involves the combined use of several unique inequalities in a specific partial order of implications.
+
+The emphasis will involve constructive mathematics and perhaps delve into tree arithmetics towards such decision with universal performance guarantees along with their combinatorial, algebraic and analytic properties if time permits. Unfortunately such guarantees are not available for big data sets and may be necessary for being able to impose legal requirements and standards on automated decision-making systems.
+
+# LOGISTICS
+Please block the dates if you are considering taking them and pass it to other mates of yours who may want to do some subset of these modules. There is no TA support or fika planned during the breaks, so bring enough water, cookies, tea, etc during the three 15 minute breaks before and after lunch. For all courses except 360-in-525-0, you are expected to bring a laptop that is not older than 3 years (in general) with wireless access (details on the needed disk space and RAM will partly depend on which modules are being taken.  
+Effort is underway to make the hardware requirements on the laptop minimal -- any typical Mac, Linux or Windows laptops you use for your research is expected to suffice).
+Please join [Uppsala Big Data Meetup](https://www.meetup.com/Uppsala-Big-Data-Meetup/) to receive communications on course logistics and partake in discussions.
+
+# Industrial sponsors for fika are being sought
+
+We are currently seeking Swedish industrial sponsors to keep our brains hydrated, caffeinated, and sugary! 
+
+Swedish industries that want to optimise their operations based on data at their disposal, especially in geospatial analytics, security, recommender systems, health care, and other areas can help with the preparation of their potential employees. Such employees who want to upskill in data sciences can freely attend the full-day workshop style courses in Uppsala.
+
+We expect over a dozen keen students on each workshop day, except the mathematical course, and may need at least 1000 sek for each of the two fikas on each day out of the 11 days in total (sponsorships can be as low as 1000 sek and in return we will spend time trying to formally relate the appropriate parts of the lecture, at the right mathematical juncture, to problems in your industry with an emphasis on your industry's pressing needs and skill-sets - this gives great advertisement for your company, freely train your employees and can inspire students to continue with research internships at your company in the near future).
