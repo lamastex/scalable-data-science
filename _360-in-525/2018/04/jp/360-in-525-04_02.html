@@ -11824,6 +11824,55 @@ You may type any expression you want to evaluate into a worksheet cell.   We hav
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>The most basic numbers are called natural numbers and they are denoted by $\mathbb{N} :=\{0, 1,2,3,\ldots\}$. 
+See <a href="https://en.wikipedia.org/wiki/Natural_number">https://en.wikipedia.org/wiki/Natural_number</a>.</p>
+<blockquote><p>The natural numbers are the basis from which many other number sets may be built by extension: the integers, by including (if not yet in) the neutral element 0 and an additive inverse (−n) for each nonzero natural number n; the rational numbers, by including a multiplicative inverse (1/n) for each nonzero integer n (and also the product of these inverses by integers); the real numbers by including with the rationals the limits of (converging) Cauchy sequences of rationals; the complex numbers, by including with the real numbers the unresolved square root of minus one (and also the sums and products thereof); and so on. These chains of extensions make the natural numbers canonically embedded (identified) in the other number systems.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Natural_number#Notation&quot;</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="300"
+            src="https://en.wikipedia.org/wiki/Natural_number#Notation"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Let us get our fingers dirty with some numerical operations in SageMath.</p>
 <p>Note that anything after a '#' symbol is a comment - comments are ignored by SAGE but help programmers 
 to know what's going on.</p>
@@ -12301,7 +12350,7 @@ Suppose, we want to</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Try writing an expression which will subtract 3 from 5 and then raise the result to the power of 3.</p>
+<h2 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h2><p>Try writing an expression which will subtract 3 from 5 and then raise the result to the power of 3.</p>
 
 </div>
 </div>
@@ -12372,6 +12421,1996 @@ Suppose, we want to</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Find what the precedence is for the modulus operator <code>%</code> that we discussed above:  try looking at the difference between the results for <code>10%2^2</code> and <code>10%2*2</code> (or <code>10^2+2</code>).  Can you see how SageMath is interpreting your expressions?</p>
+<p>Note that when you have two operators at the same precedence level (like <code>%</code> and <code>*</code>), then what matters is the order - left to right or right to left.  You will see this when you evaluate <code>10%2*2</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Does putting spaces in your expression make any difference?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using parenthesis or white spaces can improve readability a lot! So be generous with them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">10</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">^</span><span class="mi">8</span><span class="o">-</span><span class="mi">4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>352</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">10</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">^</span><span class="mi">8</span> <span class="o">-</span><span class="mi">4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>352</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">(((</span><span class="mi">10</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">8</span><span class="p">))</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span>  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[50]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>352</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The lesson to learn is that it is always good to use the parentheses:  you will make it clear to someone reading your code what you mean to happen as well as making sure that the computer actually does what you mean it to!</p>
+<p>Try this 10 minutes-long videos to get some practice if you are really rusty with order of operations:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ClYdw4d4OmA">Khan Academy Order of operations - https://www.youtube.com/watch?v=ClYdw4d4OmA</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-3:-Rational-Arithmetic">Example 3: Rational Arithmetic<a class="anchor-link" href="#Example-3:-Rational-Arithmetic">&#182;</a></h3><p>So far we have been dealing with integers. Integers are a type in SAGE.  Algebraically speaking, integers, rational numbers and real numbers form a <em>ring</em>.  This is something you will learn in detail in a maths course in Group Theory or Abstract Algebra, but let's take a quick peek at the definition of a ring.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Ring_(mathematics)#Definition_and_illustration&quot;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="400"
+            src="https://en.wikipedia.org/wiki/Ring_(mathematics)#Definition_and_illustration"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># find the data type of 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;sage.rings.integer.Integer&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The output above tells us that <code>1</code> is of type <code>sage.rings.integer.Integer</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Integer&quot;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="400"
+            src="https://en.wikipedia.org/wiki/Integer"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, life with only integers denoted by $\mathbb{Z} := \{\ldots,-3,-2,-1,0,1,2,3,\ldots\}$ is a bit limited. What about values like $1/2$ or $\frac{1}{2}$?</p>
+<p>This brings us to the rational numbers denoted by $\mathbb{Q}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Rational_number&quot;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="400"
+            src="https://en.wikipedia.org/wiki/Rational_number"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># data type of 1/2 is a sage.rings.rational.Rational</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;sage.rings.rational.Rational&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Try evaluating the cell containing <code>1/2 + 2</code> below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1"># add one half to 2 or four halves to obtain the rational number 5/2 or five halves</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5/2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>SageMath seems to have done rational arithmetic for us when evaluating the above expression.</p>
+<p>Next, modify the expression in the cell below and evaluate it again.  Try <code>1/3+2/4</code>, for instance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5/6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can do arithmetic with rationals just as we did with integers.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="c1"># subtracting 3/4 from 1/4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># multiplying 1/2 by 1/2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># dividing 2/5 by 1/5</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">3</span> <span class="c1"># exponentiating 1/2 by 3, i.e., raising 1/2 to the third power</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[54]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Write an expression which evaluates to <code>1</code> using the rationals <code>1/3</code> and <code>1/12</code>, some integers, and some of the arithmetical operators - there are lots of different expressions you can choose, just try a few.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What does SageMath do with something like <code>1/1/5</code>?  Can you see how this is being interpreted?  What should we do if we really want to evaluate <code>1</code> divided by <code>1/5</code>?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Try adding some rationals and some integers together - what type is the result?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-4:-Real-Arithmetic-(multi-precision-floating-point-arithmetic)">Example 4: Real Arithmetic (multi-precision floating-point arithmetic)<a class="anchor-link" href="#Example-4:-Real-Arithmetic-(multi-precision-floating-point-arithmetic)">&#182;</a></h2><p>Recall that real numbers denoted by $\mathbb{R}$ include natural numbers ($\mathbb{N}$), integers ($\mathbb{Z}$), rational numbers ($\mathbb{Q}$) and various types of irrational numbers like the square root of 2 or $\sqrt{2}$, $\pi$ and Euler's constant $e$.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Number-systems.svg/440px-Number-systems.svg.png"></p>
+<p>Real numbers can be thought of as all the numbers in the real line between negative infinity and positive infinity.  Real numbers are represented in decimal format, for e.g. 234.4677878.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Real_number_line.svg/700px-Real_number_line.svg.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Real_number#Definition&quot;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="400"
+            src="https://en.wikipedia.org/wiki/Real_number#Definition"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can do arithmetic with real numbers, actually with <a href="http://www.mpfr.org/">http://www.mpfr.org/</a>'s multiprecision <a href="http://en.wikipedia.org/wiki/Floating_point">floating-point numbers</a>, and can combine them with integer and rational types in SageMath.</p>
+<p><em>Technical note:</em> Computers can be made to exactly compute in integer and rational arithmetic. But, because computers with finite memory (all computers today!) cannot represent the <a href="http://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument">uncountably infinitely many real numbers</a>, they can only mimic or approximate arithmetic over real numbers using finitely many computer-representable floating-point numbers.</p>
+<p>Compare the results of evaluating the expressions below to the equivalent expressions using rationals above.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># data type of 0.2 is a sage.rings.real_mpfr.RealLiteral</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;sage.rings.real_mpfr.RealLiteral&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mf">0.5</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1"># one half as 0.5 is being added to 2 to obtain the real number 2.500..0 in SageMath</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.50000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mf">0.75</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="c1"># subtracting 0.75 from 0.25 is the same as subtracting 0.75 from 1/4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.500000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mf">0.5</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="c1"># multiplying 0.5 by 0.5 is the same as 1/2 * 1/2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.250000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="mf">5.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.2</span> <span class="c1"># dividing 2/5. by 0.2 is the same as (2/5) / (1/5)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.00000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mf">0.5</span><span class="o">^</span><span class="mf">3.0</span> <span class="c1"># exponentiating 0.5 by 3.0 is the same as (1/2)^3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[70]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.125000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">pi</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># 100 digits of pi via the .n(digits=?) method to cast pi as sage.rings.real_mpfr.RealNumber</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Find the type of <code>1/2</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Try a few different ways of getting the same result as typing  <code>((((1/5) / (1/10)) * (0.1 * 2/5) + 4/100))*5/(3/5)</code> - this exact expression has already been put in for you in the cell below you could try something just using floating point numbers.  Then see how important the parentheses are around rationals when you have an expression like this - try taking some of the parenthesis out and just play with complex expressions like these to get familiar.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">((((</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="mi">100</span><span class="p">))</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[78]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.00000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">((((</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="o">*</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="mi">100</span><span class="p">))</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-5:-Variables-and-assignments">Example 5: Variables and assignments<a class="anchor-link" href="#Example-5:-Variables-and-assignments">&#182;</a></h2><p>Loosely speaking one can think of a <em>variable</em> as a way of referring to a memory location used by a computer program. A variable is a symbolic name for this physical location. This memory location contains values, like numbers, text or more complicated types and crucially <em>what is contained in a variable can change</em> based on operations we do to it.</p>
+<p>In SageMath, the symbol <code>=</code> is the <em>assignment operator</em>.  You can assign a numerical value to a <em>variable</em> in SageMath using the assignment operator.  This is a good way to store values you want to use or modify later.</p>
+<p>(If you have programmed before using a a language like C or C++ or Java, you'll see that SageMath is a bit different because in SageMath you don't have to say what type of value is going to be assigned to the variable.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># assign 1 to a variable named a</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span>        <span class="c1"># disclose a  - you need to explicitly do this!</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Just typing the name of a variable to get the value works in the SageMath Notebook, but if you are writing a program and you want to output the value of a variable, you'll probably want to use something like the print command.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>  <span class="c1"># print out the values of a and b and c</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 2 3
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Variables can be strings as well as numbers.  Anything you put inside quote marks will be treated as a string by SageMath.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s2">&quot;this is a string&quot;</span>   <span class="c1"># assign a string to the variable myStr</span>
+<span class="n">myStr</span>                        <span class="c1"># disclose myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this is a string&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myStr</span><span class="p">)</span>                  <span class="c1"># check the type for myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;str&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can reassign different values to variable names.  Using SageMath you can also change the type of the values assigned to the variable (not all programming languages allow you to do this).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span> <span class="s2">&quot;Right now, a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;and is of type&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># using , and strings in double quotes print can be more flexible</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="c1"># reassign 1/3 to the variable a</span>
+<span class="k">print</span> <span class="s2">&quot;Now, a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;and is of type&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># note the change in type</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Right now, a = 1 and is of type &lt;type &#39;sage.rings.integer.Integer&#39;&gt;
+Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># assign the expression to f</span>
+<span class="n">f</span> <span class="c1"># disclose f</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[88]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>23</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">x</span>
+<span class="k">print</span> <span class="n">x</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">x</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sqrt(2)
+1.41421356237310
+1.41421356237309504880168872421
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can assign values to more than one variable on the same line, by separating the assignment expressions with a semicolon <code>;</code>.  However, it is usually best not to do this because it will make your code easier to read (it is hard to spot the other assignments on a single line after the first one).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="k">print</span> <span class="n">s</span> <span class="o">+</span> <span class="n">t</span> <span class="o">+</span> <span class="n">u</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>6
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Try assigning some values to some variables - you choose what values and you choose what variable names to use.  See if you can print out the values you have assigned.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-Try">You Try<a class="anchor-link" href="#You-Try">&#182;</a></h3><p>Assign the value <code>2</code> to a variable named <code>x</code>.</p>
+<p>On the next line down in the same cell, assign the value <code>3</code> to a variable named <code>y</code>.</p>
+<p>Then (on a third line)  put in an expression which will evaluate <code>x + y</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now try reassigning a different value to x and re-evaluating x + y</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Assignment-Gotcha!">Assignment Gotcha!<a class="anchor-link" href="#Assignment-Gotcha!">&#182;</a></h3><p>Let's examine the three assignments in the cell below.</p>
+<p>The first assignment of <code>x=3</code> is standard: Python/SageMath chooses a memory location for <code>x</code> and saves the integer value <code>3</code> in it.</p>
+<p>The second assignment of <code>y=x</code> is more interesting and <em>Pythonic</em>: Instead of finding another location for the variable <code>y</code> and copying the value of <code>3</code> in it, Python/SageMath differs from the ways of C/C++. Since both variables will have the same value after the assignment, Python/SageMath lets <code>y</code> point to the memory location of <code>x</code>.</p>
+<p>Finally, after the third assignment of <code>y=2</code>, <code>x</code> will be NOT be changed to <code>2</code> as because the behavior is not that of a C-pointer. Since <code>x</code> and <code>y</code> will not share the same value anymore, <code>y</code> gets its own memory location, containing <code>2</code> and <code>x</code> sticks to the originally assigned value <code>3</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># x is 3</span>
+<span class="n">y</span><span class="o">=</span><span class="n">x</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># x is 3 and y is </span>
+<span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3
+(3, 3)
+(3, 2)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As every instance (object or variable) has an identity or <code>id()</code>, i.e. an integer which is unique within the script or program, we can use <code>id()</code> to understand the above behavior of Python/SageMath assignments.</p>
+<p>So, let's have a look at our previous example and see how the identities change with the assignments.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;x and its id() are:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">y and its id() are:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">x, y and their id()s are:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>x and its id() are:
+(3, 140218233731808)
+
+y and its id() are:
+(3, 140218233731808)
+
+x, y and their id()s are:
+(3, 2, 140218233731808, 140218233730368)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-6:-Truth-statements-and-Boolean-values">Example 6: Truth statements and Boolean values<a class="anchor-link" href="#Example-6:-Truth-statements-and-Boolean-values">&#182;</a></h2><p>Consider statements like "Today is Friday" or "2 is greater than 1" or " 1 equals 1":   statements which are either true or not true (i.e., false).   SageMath has two values, True and False  which you'll meet in this situation.   These value are called Booleans values, or values of the type Boolean.</p>
+<p>In SageMath, we can express statements like "2 is greater than 1" or " 1 equals 1" with relational operators, also known as value comparison operators.   Have a look at the list below.</p>
+<ul>
+<li><code>&lt;</code> Less than</li>
+<li><code>&gt;</code> Greater than</li>
+<li><code>&lt;=</code> Less than or equal to</li>
+<li><code>&gt;=</code> Greater than or equal to</li>
+<li><code>==</code> Equal to. </li>
+<li><code>!=</code> Not equal to</li>
+</ul>
+<p>Lets try some really simple truth statements.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">1</span>          <span class="c1"># 1 is less than 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[109]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us evaluate the following statement.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="mi">1</span>  <span class="c1"># 1 is less than or equal to 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[112]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can use these operators on variables as well as on values.   Again, try assigning different values to <code>x</code> and <code>y</code>, or try using different operators, if you want to.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>          <span class="c1"># assign the value 1 to x             </span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># assign the value 2 to y </span>
+<span class="n">x</span> <span class="o">==</span> <span class="n">y</span>         <span class="c1"># evaluate the truth statement &quot;x is equal to y&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[113]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that when we check if something equals something else, we use <code>==</code>, a double equals sign. This is because <code>=</code>, a single equals sign, is the assignment operator we talked about above.  Therefore, to test if <code>x</code> equals <code>y</code> we can't write <code>x = y</code> because this would assign <code>y to x</code>, instead we use the equality operator <code>==</code> and write <code>x == y</code>.</p>
+<p>We can also assign a Boolean value to a variable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Using the same x and y as above</span>
+<span class="n">myBoolean</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>   <span class="c1"># assign the result of x == y to the variable myBoolean</span>
+<span class="n">myBoolean</span>              <span class="c1"># disclose myBoolean</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[114]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myBoolean</span><span class="p">)</span>        <span class="c1"># check the type of myBoolean</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[115]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;bool&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to check if two things are not equal we use <code>!=</code>.   As we would expect, it gives us the opposite of testing for equality:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">!=</span> <span class="n">y</span>                 <span class="c1"># evaluate the truth statement &quot;x is not equal to y&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[116]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>             <span class="c1"># Let&#39;s print x and y to make sure the above statement makes sense </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1, 2)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Try assigning some values to two variables - you choose what values and you choose what variable names to use.  Try some truth statements to check if they are equal, or one is less than the other.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Try some strings (we looked at strings briefly in Example 5 above). Can you check if two strings are equal? Can you check if one string is less than (<code>&lt;</code>) another string. How do you think that Sage is ordering strings (try comparing "fred" and "freddy", for example)?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-7:-Mathematical-constants">Example 7: Mathematical constants<a class="anchor-link" href="#Example-7:-Mathematical-constants">&#182;</a></h2><p>Sage has reserved words that are defined as common mathematical constants.  For example, <code>pi</code> and <code>e</code> behave as you expect.  Numerical approximations can be obtained using the <code>.n()</code> method, as before.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">pi</span><span class="p">,</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="n">pi</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>   <span class="c1"># print a numerical approximation of the mathematical constant pi</span>
+<span class="k">print</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>     <span class="c1"># print a numerical approximation of the mathematical constant e</span>
+<span class="k">print</span> <span class="n">I</span><span class="p">,</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="n">I</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>     <span class="c1"># print a numerical approximation of the imaginary number sqrt(-1)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>pi ~ 3.14159265358979
+e ~ 2.71828182845905
+I ~ 1.00000000000000*I
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>   <span class="c1"># print the first 1000 digits of pi/e</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[132]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000*I</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>          <span class="c1"># Euler&#39;s identity symbolically - see https://en.wikipedia.org/wiki/Euler%27s_identity</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[138]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
