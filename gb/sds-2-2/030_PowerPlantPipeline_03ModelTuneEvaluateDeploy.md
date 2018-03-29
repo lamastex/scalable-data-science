@@ -246,7 +246,7 @@ Since Linear Regression is simply a line of best fit over the data that minimize
 
 $$ y = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 + \ldots + b_i x_i + \ldots + b_k x_k $$
 
-where $b_0$ is the intercept and $b_i$'s are coefficients.
+where $$b_0$$ is the intercept and $$b_i$$'s are coefficients.
 
 To express the coefficients of that line we can retrieve the Estimator stage from the fitted, linear-regression pipeline model named `lrModel` and express the weights and the intercept for the function.
 

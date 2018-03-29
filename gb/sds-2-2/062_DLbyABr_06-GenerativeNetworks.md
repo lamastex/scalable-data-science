@@ -20,7 +20,7 @@ I.e., can we ask a network what "8" looks like and get a picture?
 Let's think about this for a second. Clearly the classifications have far fewer bits of entropy than the source images' theoretical limit.
 
 -   Cat (in cat-vs-dog) has just 1 bit, where perhaps a 256x256 grayscale image has up to 512k bits.
--   8 (in MNIST) has ${log _2 10}$ or a little over 3 bits, where a 28x28 grayscale image has over 6000 bits.
+-   8 (in MNIST) has $${log _2 10}$$ or a little over 3 bits, where a 28x28 grayscale image has over 6000 bits.
 
 So at first, this would seem difficult or impossible.
 
@@ -195,11 +195,11 @@ What we would like, is that if we start with a valid input vector and move a bit
 
 > **ASIDE: Manifold Hypothesis**
 
-> The manifold hypothesis is that the interesting, relevant, or critical subspaces in the space of all vector inputs are actually low(er) dimensional manifolds. A manifold is a space where each point has a neighborhood that behaves like (is homeomorphic to) ${\Bbb R^n}$. So we would like to be able to move a small amount and have only a small amount of change, not a sudden discontinuous change.
+> The manifold hypothesis is that the interesting, relevant, or critical subspaces in the space of all vector inputs are actually low(er) dimensional manifolds. A manifold is a space where each point has a neighborhood that behaves like (is homeomorphic to) $${\Bbb R^n}$$. So we would like to be able to move a small amount and have only a small amount of change, not a sudden discontinuous change.
 
 ------------------------------------------------------------------------
 
-The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters (${\mu}$ and ${\sigma}$) for each value of k.
+The key feature of Variational Autoencoders is that we add a constraint on the encoded representation of our data: namely, that it follows a Gaussian distribution. Since the Gaussian is determined by its mean and variance (or standard deviation), we can model it as a k-variate Gaussian with these two parameters ($${\mu}$$ and $${\sigma}$$) for each value of k.
 
 <img src="http://i.imgur.com/OFLDweH.jpg" width=600>
 <div style="text-align: right"><sup>(credit to Miram Shiffman, http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html)</sup></div>

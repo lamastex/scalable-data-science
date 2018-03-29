@@ -822,7 +822,7 @@ joined
 Spatio-temporal Queries
 -----------------------
 
-can be expressed in SQL using the Boolean predicates such as, $\in , \cap, \ldots$, that operate over space-time sets given products of 2D magellan objects and 1D time intervals.
+can be expressed in SQL using the Boolean predicates such as, $$\in , \cap, \ldots$$, that operate over space-time sets given products of 2D magellan objects and 1D time intervals.
 
 Want to scalably do the following:
 
