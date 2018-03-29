@@ -2,12 +2,12 @@
 main:
   - title: "SDS-2.2"
     url: /sds/2/2/
+  - title: "360-in-525"
+    url: /360-in-525/2018/
   - title: "About"
     url: /about/
   - title: "Research"
     url: /sds/research/
-  - title: "360-in-525"
-    url: /360-in-525/2018/
   - title: "LaMaStEx"
     url: https://lamastex.github.io/
   - title: "Contact"
