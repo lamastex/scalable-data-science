@@ -11,8 +11,8 @@ Introduction to Simulation
 Core ideas in Monte Carlo simulation
 ------------------------------------
 
--   modular arithmetic gives pseudo-random streams that are indistiguishable from 'true' Uniformly distributed samples in integers from $$\\{0,1,2,...,m\\}$$
--   by diving the integer streams from above by $$m$$ we get samples from $$\\{0/m,1/m,...,(m-1)/m\\}$$ and "pretend" this to be samples from the Uniform(0,1) RV
+-   modular arithmetic gives pseudo-random streams that are indistiguishable from 'true' Uniformly distributed samples in integers from $$\{0,1,2,...,m\}$$
+-   by diving the integer streams from above by $$m$$ we get samples from $$\{0/m,1/m,...,(m-1)/m\}$$ and "pretend" this to be samples from the Uniform(0,1) RV
 -   we can use inverse distribution function of von Neumann's rejection sampler to convert samples from Uniform(0,1) RV to the following:
     -   any other random variable
     -   vector of random variables that could be dependent

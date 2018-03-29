@@ -35,20 +35,20 @@ and implementable with the following arithmetical and logical unit (ALU) operati
     -   n additions
 -   boolean operations
     -   one if-then on an inequality
--   one output $$o \in \\{0,1\\}$$, i.e., $$o$$ belongs to the set containing $$0$$ and $$1$$
+-   one output $$o \in \{0,1\}$$, i.e., $$o$$ belongs to the set containing $$0$$ and $$1$$
 -   n+1 parameters of interest
 
 This is just a hyperplane given by a dot product of $$n+1$$ known inputs and $$n+1$$ unknown parameters that can be estimated. This hyperplane can be used to define a hyperplane that partitions $$\mathbb{R}^{n+1}$$, the real Euclidean space, into two parts labelled by the outputs $$0$$ and $$1$$.
 
 The problem of finding estimates of the parameters, $$(\hat{w}_0,\hat{w}_1,\hat{w}_2,\ldots \hat{w}_n) \in \mathbb{R}^{(n+1)}$$, in some statistically meaningful manner for a predicting task by using the training data given by, say $$k$$ *labelled points*, where you know both the input and output:
 $$
- \left( ( \, 1, x_1^{(1)},x_2^{(1)}, \ldots x_n^{(1)}), (o^{(1)}) \, ), \, ( \, 1, x_1^{(2)},x_2^{(2)}, \ldots x_n^{(2)}), (o^{(2)}) \, ), \, \ldots \, , ( \, 1, x_1^{(k)},x_2^{(k)}, \ldots x_n^{(k)}), (o^{(k)}) \, ) \right) \, \in \, (\mathbb{R}^{n+1} \times \\{ 0,1 \\} )^k
+ \left( ( \, 1, x_1^{(1)},x_2^{(1)}, \ldots x_n^{(1)}), (o^{(1)}) \, ), \, ( \, 1, x_1^{(2)},x_2^{(2)}, \ldots x_n^{(2)}), (o^{(2)}) \, ), \, \ldots \, , ( \, 1, x_1^{(k)},x_2^{(k)}, \ldots x_n^{(k)}), (o^{(k)}) \, ) \right) \, \in \, (\mathbb{R}^{n+1} \times \{ 0,1 \} )^k
 $$
 is the machine learning problem here.
 
 Succinctly, we are after a random mapping, denoted below by $$\mapsto_{\rightsquigarrow}$$, called the *estimator*:
 $$
-(\mathbb{R}^{n+1} \times \\{0,1\\})^k \mapsto_{\rightsquigarrow} \, \left( \, \mathtt{model}( (1,x_1,x_2,\ldots,x_n) \,;\, (\hat{w}_0,\hat{w}_1,\hat{w}_2,\ldots \hat{w}_n)) : \mathbb{R}^{n+1} \to \\{0,1\\} \,  \right)
+(\mathbb{R}^{n+1} \times \{0,1\})^k \mapsto_{\rightsquigarrow} \, \left( \, \mathtt{model}( (1,x_1,x_2,\ldots,x_n) \,;\, (\hat{w}_0,\hat{w}_1,\hat{w}_2,\ldots \hat{w}_n)) : \mathbb{R}^{n+1} \to \{0,1\} \,  \right)
 $$
 which takes *random* labelled dataset (to understand random here think of two scientists doing independent experiments to get their own training datasets) of size $$k$$ and returns a *model*. These mathematical notions correspond exactly to the `estimator` and `model` (which is a `transformer`) in the language of Apache Spark's Machine Learning Pipleines we have seen before.
 
