@@ -655,8 +655,8 @@ Most of the common operations on DataFrame/Dataset are supported for
 streaming. The few operations that are not supported are discussed
 later in **unsupported-operations** section.
 
-\`\`\`%scala
-case class DeviceData(device: String, deviceType: String, signal: Double, time: DateTime)
+``` %scala
+    case class DeviceData(device: String, deviceType: String, signal: Double, time: DateTime)
 
     val df: DataFrame = ... // streaming DataFrame with IOT device data with schema { device: string, deviceType: string, signal: double, time: string }
     val ds: Dataset[DeviceData] = df.as[DeviceData]    // streaming Dataset with IOT device data
@@ -671,8 +671,7 @@ case class DeviceData(device: String, deviceType: String, signal: Double, time: 
     // Running average signal for each device type
     import org.apache.spark.sql.expressions.scalalang.typed
     ds.groupByKey(_.deviceType).agg(typed.avg(_.signal))    // using typed API
-
-\`\`\`
+```
 
 A Quick Mixture Example
 -----------------------
@@ -2367,13 +2366,11 @@ the watermarking to clean the state in aggregation queries *(as of Spark
 Streaming DataFrames can be joined with static DataFrames to create new
 streaming DataFrames. Here are a few examples.
 
-\`\`\`
-val staticDf = spark.read. ...
-val streamingDf = spark.readStream. ...
+    val staticDf = spark.read. ...
+    val streamingDf = spark.readStream. ...
 
-streamingDf.join(staticDf, "type") // inner equi-join with a static DF
-streamingDf.join(staticDf, "type", "right\_join") // right outer join with a static DF
-\`\`\`
+    streamingDf.join(staticDf, "type")          // inner equi-join with a static DF
+    streamingDf.join(staticDf, "type", "right_join")  // right outer join with a static DF
 
 ### Streaming Deduplication
 
@@ -2396,18 +2393,17 @@ watermarking.
     record may arrive, the query stores the data from all the past
     records as state.
 
-\`\`\`
-val streamingDf = spark.readStream. ... // columns: guid, eventTime, ...
+<!-- -->
 
-    // Without watermark using guid column
-    streamingDf.dropDuplicates("guid")
+        val streamingDf = spark.readStream. ...  // columns: guid, eventTime, ...
 
-    // With watermark using guid and eventTime columns
-    streamingDf
-      .withWatermark("eventTime", "10 seconds")
-      .dropDuplicates("guid", "eventTime")
+        // Without watermark using guid column
+        streamingDf.dropDuplicates("guid")
 
-\`\`\`
+        // With watermark using guid and eventTime columns
+        streamingDf
+          .withWatermark("eventTime", "10 seconds")
+          .dropDuplicates("guid", "eventTime")
 
 ### Arbitrary Stateful Operations
 
@@ -2608,22 +2604,21 @@ There are a few types of built-in output sinks.
 
 -   **File sink** - Stores the output to a directory.
 
-\`\`\`
-writeStream
-.format("parquet") // can be "orc", "json", "csv", etc.
-.option("path", "path/to/destination/dir")
-.start()
+<!-- -->
 
-\`\`\`
-- **Foreach sink** - Runs arbitrary computation on the records in
-the output. See later in the section for more details.
+        writeStream
+            .format("parquet")        // can be "orc", "json", "csv", etc.
+            .option("path", "path/to/destination/dir")
+            .start()
 
-\`\`\`
-writeStream
-.foreach(...)
-.start()
+-   **Foreach sink** - Runs arbitrary computation on the records in
+    the output. See later in the section for more details.
 
-\`\`\`
+<!-- -->
+
+        writeStream
+            .foreach(...)
+            .start()
 
 -   **Console sink (for debugging)** - Prints the output to the
     console/stdout every time there is a trigger. Both, Append and
@@ -2631,7 +2626,11 @@ writeStream
     debugging purposes on low data volumes as the entire output is
     collected and stored in the driver’s memory after every trigger.
 
-`writeStream         .format("console")         .start()`
+<!-- -->
+
+        writeStream
+            .format("console")
+            .start()
 
 -   **Memory sink (for debugging)** - The output is stored in memory as
     an in-memory table. Both, Append and Complete output modes,
@@ -2639,7 +2638,12 @@ writeStream
     data volumes as the entire output is collected and stored in the
     driver’s memory. Hence, use it with caution.
 
-`writeStream         .format("memory")         .queryName("tableName")         .start()`
+<!-- -->
+
+        writeStream
+            .format("memory")
+            .queryName("tableName")
+            .start()
 
 Some sinks are not fault-tolerant because they do not guarantee
 persistence of the output and are meant for debugging purposes only. See
@@ -2801,28 +2805,25 @@ Managing Streaming Queries
 The `StreamingQuery` object created when a query is started can be used
 to monitor and manage the query.
 
-\`\`\`
-val query = df.writeStream.format("console").start() // get the query object
+        val query = df.writeStream.format("console").start()   // get the query object
 
-    query.id          // get the unique identifier of the running query that persists across restarts from checkpoint data
+        query.id          // get the unique identifier of the running query that persists across restarts from checkpoint data
 
-    query.runId       // get the unique id of this run of the query, which will be generated at every start/restart
+        query.runId       // get the unique id of this run of the query, which will be generated at every start/restart
 
-    query.name        // get the name of the auto-generated or user-specified name
+        query.name        // get the name of the auto-generated or user-specified name
 
-    query.explain()   // print detailed explanations of the query
+        query.explain()   // print detailed explanations of the query
 
-    query.stop()      // stop the query
+        query.stop()      // stop the query
 
-    query.awaitTermination()   // block until query is terminated, with stop() or with error
+        query.awaitTermination()   // block until query is terminated, with stop() or with error
 
-    query.exception       // the exception if the query has been terminated with error
+        query.exception       // the exception if the query has been terminated with error
 
-    query.recentProgress  // an array of the most recent progress updates for this query
+        query.recentProgress  // an array of the most recent progress updates for this query
 
-    query.lastProgress    // the most recent progress update of this streaming query
-
-\`\`\`
+        query.lastProgress    // the most recent progress update of this streaming query
 
 You can start any number of queries in a single SparkSession. They will
 all be running concurrently sharing the cluster resources. You can use
@@ -2830,16 +2831,13 @@ all be running concurrently sharing the cluster resources. You can use
 ([Scala](https://spark.apache.org/docs/2.2.0/api/scala/index.html#org.apache.spark.sql.streaming.StreamingQueryManager)/[Java](https://spark.apache.org/docs/2.2.0/api/java/org/apache/spark/sql/streaming/StreamingQueryManager.html)/[Python](https://spark.apache.org/docs/2.2.0/api/python/pyspark.sql.html#pyspark.sql.streaming.StreamingQueryManager)
 docs) that can be used to manage the currently active queries.
 
-\`\`\`
-val spark: SparkSession = ...
+        val spark: SparkSession = ...
 
-    spark.streams.active    // get the list of currently active streaming queries
+        spark.streams.active    // get the list of currently active streaming queries
 
-    spark.streams.get(id)   // get a query object by its unique id
+        spark.streams.get(id)   // get a query object by its unique id
 
-    spark.streams.awaitAnyTermination()   // block until any one of them terminates
-
-\`\`\`
+        spark.streams.awaitAnyTermination()   // block until any one of them terminates
 
 Monitoring Streaming Queries
 ----------------------------
@@ -2872,71 +2870,68 @@ being processed, etc.
 
 Here are a few examples.
 
-\`\`\`
-val query: StreamingQuery = ...
+        val query: StreamingQuery = ...
 
-    println(query.lastProgress)
+        println(query.lastProgress)
 
-    /* Will print something like the following.
+        /* Will print something like the following.
 
-    {
-      "id" : "ce011fdc-8762-4dcb-84eb-a77333e28109",
-      "runId" : "88e2ff94-ede0-45a8-b687-6316fbef529a",
-      "name" : "MyQuery",
-      "timestamp" : "2016-12-14T18:45:24.873Z",
-      "numInputRows" : 10,
-      "inputRowsPerSecond" : 120.0,
-      "processedRowsPerSecond" : 200.0,
-      "durationMs" : {
-        "triggerExecution" : 3,
-        "getOffset" : 2
-      },
-      "eventTime" : {
-        "watermark" : "2016-12-14T18:45:24.873Z"
-      },
-      "stateOperators" : [ ],
-      "sources" : [ {
-        "description" : "KafkaSource[Subscribe[topic-0]]",
-        "startOffset" : {
-          "topic-0" : {
-            "2" : 0,
-            "4" : 1,
-            "1" : 1,
-            "3" : 1,
-            "0" : 1
+        {
+          "id" : "ce011fdc-8762-4dcb-84eb-a77333e28109",
+          "runId" : "88e2ff94-ede0-45a8-b687-6316fbef529a",
+          "name" : "MyQuery",
+          "timestamp" : "2016-12-14T18:45:24.873Z",
+          "numInputRows" : 10,
+          "inputRowsPerSecond" : 120.0,
+          "processedRowsPerSecond" : 200.0,
+          "durationMs" : {
+            "triggerExecution" : 3,
+            "getOffset" : 2
+          },
+          "eventTime" : {
+            "watermark" : "2016-12-14T18:45:24.873Z"
+          },
+          "stateOperators" : [ ],
+          "sources" : [ {
+            "description" : "KafkaSource[Subscribe[topic-0]]",
+            "startOffset" : {
+              "topic-0" : {
+                "2" : 0,
+                "4" : 1,
+                "1" : 1,
+                "3" : 1,
+                "0" : 1
+              }
+            },
+            "endOffset" : {
+              "topic-0" : {
+                "2" : 0,
+                "4" : 115,
+                "1" : 134,
+                "3" : 21,
+                "0" : 534
+              }
+            },
+            "numInputRows" : 10,
+            "inputRowsPerSecond" : 120.0,
+            "processedRowsPerSecond" : 200.0
+          } ],
+          "sink" : {
+            "description" : "MemorySink"
           }
-        },
-        "endOffset" : {
-          "topic-0" : {
-            "2" : 0,
-            "4" : 115,
-            "1" : 134,
-            "3" : 21,
-            "0" : 534
-          }
-        },
-        "numInputRows" : 10,
-        "inputRowsPerSecond" : 120.0,
-        "processedRowsPerSecond" : 200.0
-      } ],
-      "sink" : {
-        "description" : "MemorySink"
-      }
-    }
-    */
+        }
+        */
 
 
-    println(query.status)
+        println(query.status)
 
-    /*  Will print something like the following.
-    {
-      "message" : "Waiting for data to arrive",
-      "isDataAvailable" : false,
-      "isTriggerActive" : false
-    }
-    */
-
-\`\`\`
+        /*  Will print something like the following.
+        {
+          "message" : "Waiting for data to arrive",
+          "isDataAvailable" : false,
+          "isTriggerActive" : false
+        }
+        */
 
 ### Asynchronous API
 
@@ -2948,22 +2943,19 @@ docs). Once you attach your custom `StreamingQueryListener` object with
 query is started and stopped and when there is progress made in an
 active query. Here is an example,
 
-\`\`\`
-val spark: SparkSession = ...
+        val spark: SparkSession = ...
 
-    spark.streams.addListener(new StreamingQueryListener() {
-        override def onQueryStarted(queryStarted: QueryStartedEvent): Unit = {
-            println("Query started: " + queryStarted.id)
-        }
-        override def onQueryTerminated(queryTerminated: QueryTerminatedEvent): Unit = {
-            println("Query terminated: " + queryTerminated.id)
-        }
-        override def onQueryProgress(queryProgress: QueryProgressEvent): Unit = {
-            println("Query made progress: " + queryProgress.progress)
-        }
-    })
-
-\`\`\`
+        spark.streams.addListener(new StreamingQueryListener() {
+            override def onQueryStarted(queryStarted: QueryStartedEvent): Unit = {
+                println("Query started: " + queryStarted.id)
+            }
+            override def onQueryTerminated(queryTerminated: QueryTerminatedEvent): Unit = {
+                println("Query terminated: " + queryTerminated.id)
+            }
+            override def onQueryProgress(queryProgress: QueryProgressEvent): Unit = {
+                println("Query made progress: " + queryProgress.progress)
+            }
+        })
 
 Recovering from Failures with Checkpointing
 -------------------------------------------
@@ -2980,7 +2972,12 @@ HDFS compatible file system, and can be set as an option in the
 DataStreamWriter when *starting a
 query*.
 
-`aggDF       .writeStream       .outputMode("complete")       .option("checkpointLocation", "path/to/HDFS/dir")       .format("memory")       .start()`
+        aggDF
+          .writeStream
+          .outputMode("complete")
+          .option("checkpointLocation", "path/to/HDFS/dir")
+          .format("memory")
+          .start()
 
 Where to go from here
 =====================

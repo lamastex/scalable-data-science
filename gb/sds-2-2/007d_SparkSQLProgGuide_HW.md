@@ -348,9 +348,35 @@ platforms.distinct.map(t => "Name: " + t(0)).collect().foreach(println)
 ### Partition Discovery
 
 Table partitioning is a common optimization approach used in systems like Hive. In a partitioned table, data are usually stored in different directories, with partitioning column values encoded in the path of each partition directory. The Parquet data source is now able to discover and infer partitioning information automatically. For example, we can store all our previously used population data (from the programming guide example!) into a partitioned table using the following directory structure, with two extra columns, `gender` and `country` as partitioning columns:
-`path     └── to         └── table             ├── gender=male             │   ├── ...             │   │             │   ├── country=US             │   │   └── data.parquet             │   ├── country=CN             │   │   └── data.parquet             │   └── ...             └── gender=female                 ├── ...                 │                 ├── country=US                 │   └── data.parquet                 ├── country=CN                 │   └── data.parquet                 └── ...`
+
+        path
+        └── to
+            └── table
+                ├── gender=male
+                │   ├── ...
+                │   │
+                │   ├── country=US
+                │   │   └── data.parquet
+                │   ├── country=CN
+                │   │   └── data.parquet
+                │   └── ...
+                └── gender=female
+                    ├── ...
+                    │
+                    ├── country=US
+                    │   └── data.parquet
+                    ├── country=CN
+                    │   └── data.parquet
+                    └── ...
+
 By passing `path/to/table` to either `SparkSession.read.parquet` or `SparkSession.read.load`, Spark SQL will automatically extract the partitioning information from the paths. Now the schema of the returned DataFrame becomes:
-`root     |-- name: string (nullable = true)     |-- age: long (nullable = true)     |-- gender: string (nullable = true)     |-- country: string (nullable = true)`
+
+        root
+        |-- name: string (nullable = true)
+        |-- age: long (nullable = true)
+        |-- gender: string (nullable = true)
+        |-- country: string (nullable = true)
+
 Notice that the data types of the partitioning columns are automatically inferred. Currently, numeric data types and string type are supported. Sometimes users may not want to automatically infer the data types of the partitioning columns. For these use cases, the automatic type inference can be configured by `spark.sql.sources.partitionColumnTypeInference.enabled`, which is default to `true`. When type inference is disabled, string type will be used for the partitioning columns.
 
 Starting from Spark 1.6.0, partition discovery only finds partitions under the given paths by default. For the above example, if users pass `path/to/table/gender=male` to either `SparkSession.read.parquet` or `SparkSession.read.load`, `gender` will not be considered as a partitioning column. If users need to specify the base path that partition discovery should start with, they can set `basePath` in the data source options. For example, when `path/to/table/gender=male` is the path of the data and users set `basePath` to `path/to/table/`, `gender` will be a partitioning column.
@@ -532,7 +558,7 @@ Configuration of Hive is done by placing your `hive-site.xml`, `core-site.xml` (
 
 When working with Hive one must construct a `HiveContext`, which inherits from `SQLContext`, and adds support for finding tables in the MetaStore and writing queries using HiveQL. Users who do not have an existing Hive deployment can still create a `HiveContext`. When not configured by the hive-site.xml, the context automatically creates `metastore_db` in the current directory and creates `warehouse` directory indicated by HiveConf, which defaults to `/user/hive/warehouse`. Note that you may need to grant write privilege on `/user/hive/warehouse` to the user who starts the spark application.
 
-\`\`\`scala
+``` scala
 val spark = SparkSession.builder.enableHiveSupport().getOrCreate()
 
 spark.sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING)")
@@ -540,7 +566,7 @@ spark.sql("LOAD DATA LOCAL INPATH 'examples/src/main/resources/kv1.txt' INTO TAB
 
 // Queries are expressed in HiveQL
 spark.sql("FROM src SELECT key, value").collect().foreach(println)
-\`\`\`
+```
 
 ### Interacting with Different Versions of Hive Metastore
 
@@ -562,7 +588,7 @@ Spark SQL also includes a data source that can read data from other databases us
 
 To get started you will need to include the JDBC driver for you particular database on the spark classpath. For example, to connect to postgres from the Spark Shell you would run the following command:
 
-`SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin/spark-shell`
+    SPARK_CLASSPATH=postgresql-9.3-1102-jdbc41.jar bin/spark-shell
 
 Tables from the remote database can be loaded as a DataFrame or Spark SQL Temporary table using the Data Sources API. The following options are supported:
 
@@ -574,9 +600,16 @@ Tables from the remote database can be loaded as a DataFrame or Spark SQL Tempor
 \| `partitionColumn, lowerBound, upperBound, numPartitions` \| These options must all be specified if any of them is specified. They describe how to partition the table when reading in parallel from multiple workers. `partitionColumn` must be a numeric column from the table in question. Notice that `lowerBound` and `upperBound` are just used to decide the partition stride, not for filtering the rows in table. So all rows in the table will be partitioned and returned. \|
 \| `fetchSize` \| The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (eg. Oracle with 10 rows). \|
 
-`// Example of using JDBC datasource val jdbcDF = spark.read.format("jdbc").options(Map("url" -> "jdbc:postgresql:dbserver", "dbtable" -> "schema.tablename")).load()`
+    // Example of using JDBC datasource
+    val jdbcDF = spark.read.format("jdbc").options(Map("url" -> "jdbc:postgresql:dbserver", "dbtable" -> "schema.tablename")).load()
 
-`-- Or using JDBC datasource in SQL CREATE TEMPORARY TABLE jdbcTable USING org.apache.spark.sql.jdbc OPTIONS (   url "jdbc:postgresql:dbserver",   dbtable "schema.tablename" )`
+    -- Or using JDBC datasource in SQL
+    CREATE TEMPORARY TABLE jdbcTable
+    USING org.apache.spark.sql.jdbc
+    OPTIONS (
+      url "jdbc:postgresql:dbserver",
+      dbtable "schema.tablename"
+    )
 
 ### Troubleshooting
 

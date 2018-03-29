@@ -114,7 +114,7 @@ The tricks -- or insights -- here are:
 
 <img src="https://i.imgur.com/ePXoQfR.png" width=250>
 
--   \\({\gamma}\\) is a "discount factor" on future reward
+-   ${\gamma}$ is a "discount factor" on future reward
 -   Assume the game terminates or "effectively terminates" to make the recursion tractable
 -   This equation is a simplified case of the Bellman Equation
 
@@ -233,7 +233,11 @@ class Catch(object):
 
 Next, let's look at the network itself -- it's super simple, so we can get that out of the way too:
 
-`model = Sequential() model.add(Dense(hidden_size, input_shape=(grid_size**2,), activation='relu')) model.add(Dense(hidden_size, activation='relu')) model.add(Dense(num_actions)) model.compile(sgd(lr=.2), "mse")`
+    model = Sequential()
+    model.add(Dense(hidden_size, input_shape=(grid_size**2,), activation='relu'))
+    model.add(Dense(hidden_size, activation='relu'))
+    model.add(Dense(num_actions))
+    model.compile(sgd(lr=.2), "mse")
 
 Note that the output layer has `num_actions` neurons.
 
@@ -246,39 +250,36 @@ In any case, we only train with an error/reward for actions the agent actually c
 
 Next, let's zoom in on at the main game training loop:
 
-\`\`\`
-win*cnt = 0
-for e in range(epoch):
-loss = 0.
-env.reset()
-game*over = False
-\# get initial input
-input\_t = env.observe()
+    win_cnt = 0
+    for e in range(epoch):
+        loss = 0.
+        env.reset()
+        game_over = False
+        # get initial input
+        input_t = env.observe()
 
-    while not game_over:
-        input_tm1 = input_t
-        # get next action
-        if np.random.rand() <= epsilon:
-            action = np.random.randint(0, num_actions, size=1)
-        else:
-            q = model.predict(input_tm1)
-            action = np.argmax(q[0])
+        while not game_over:
+            input_tm1 = input_t
+            # get next action
+            if np.random.rand() <= epsilon:
+                action = np.random.randint(0, num_actions, size=1)
+            else:
+                q = model.predict(input_tm1)
+                action = np.argmax(q[0])
 
-        # apply action, get rewards and new state
-        input_t, reward, game_over = env.act(action)
-        if reward == 1:
-            win_cnt += 1
+            # apply action, get rewards and new state
+            input_t, reward, game_over = env.act(action)
+            if reward == 1:
+                win_cnt += 1
 
-        # store experience
-        exp_replay.remember([input_tm1, action, reward, input_t], game_over)
+            # store experience
+            exp_replay.remember([input_tm1, action, reward, input_t], game_over)
 
-        # adapt model
-        inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
+            # adapt model
+            inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
 
-        loss += model.train_on_batch(inputs, targets)
-    print("Epoch {:03d}/{:d} | Loss {:.4f} | Win count {}".format(e, epoch - 1, loss, win_cnt))
-
-\`\`\`
+            loss += model.train_on_batch(inputs, targets)
+        print("Epoch {:03d}/{:d} | Loss {:.4f} | Win count {}".format(e, epoch - 1, loss, win_cnt))
 
 The key bits are:
 

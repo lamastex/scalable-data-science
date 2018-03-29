@@ -22,7 +22,7 @@ A few minor modifications and additional mathematical statistical pointers have 
 
 1.  Deeper networks are "smarter" than wider networks (in terms of abstraction)
 
-2.  More neurons & layers \\( \to \\) more capacity \\( \to \\) more data \\( \to \\) more regularization (to prevent overfitting)
+2.  More neurons & layers $\to$ more capacity $\to$ more data $\to$ more regularization (to prevent overfitting)
 
 3.  If you don't have any specific reason not to use the "adam" optimizer, use that one
 
@@ -39,25 +39,19 @@ We'll take our deep feed-forward multilayer perceptron network, with ReLU activa
 
 The main part of the code looks like the following (full code you can run is in the next cell):
 
-\`\`\`
+    # imports, setup, load data sets
 
-imports, setup, load data sets
-==============================
+    model = Sequential()
+    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-model = Sequential()
-model.add(Dense(20, input*dim=784, kernel*initializer='normal', activation='relu'))
-model.add(Dense(15, kernel*initializer='normal', activation='relu'))
-model.add(Dense(10, kernel*initializer='normal', activation='softmax'))
-model.compile(loss='categorical*crossentropy', optimizer='adam', metrics=\['categorical*accuracy'\])
+    categorical_labels = to_categorical(y_train, num_classes=10)
 
-categorical*labels = to*categorical(y*train, num*classes=10)
+    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
 
-history = model.fit(X*train, categorical*labels, epochs=100, batch\_size=100)
-
-print metrics, plot errors
-==========================
-
-\`\`\`
+    # print metrics, plot errors
 
 Note the changes, which are largely about building a classifier instead of a regression model:
 

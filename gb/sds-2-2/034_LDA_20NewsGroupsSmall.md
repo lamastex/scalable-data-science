@@ -117,24 +117,24 @@ In this example, we will use the mini [20 Newsgroups dataset](http://kdd.ics.uci
 
 The following is the markdown file `20newsgroups.data.md` of the original details on the dataset, obtained as follows:
 
-\`\`\`%sh
+``` %sh
 $ wget -k http://kdd.ics.uci.edu/databases/20newsgroups/20newsgroups.data.html
---2016-04-07 10:31:51-- http://kdd.ics.uci.edu/databases/20newsgroups/20newsgroups.data.html
+--2016-04-07 10:31:51--  http://kdd.ics.uci.edu/databases/20newsgroups/20newsgroups.data.html
 Resolving kdd.ics.uci.edu (kdd.ics.uci.edu)... 128.195.1.95
-Connecting to kdd.ics.uci.edu (kdd.ics.uci.edu)\|128.195.1.95\|:80... connected.
+Connecting to kdd.ics.uci.edu (kdd.ics.uci.edu)|128.195.1.95|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 4371 (4.3K) \[text/html\]
+Length: 4371 (4.3K) [text/html]
 Saving to: '20newsgroups.data.html’
 
-100%\[======================================&gt;\] 4,371 --.-K/s in 0s
+100%[======================================>] 4,371       --.-K/s   in 0s      
 
-2016-04-07 10:31:51 (195 MB/s) - '20newsgroups.data.html’ saved \[4371/4371\]
+2016-04-07 10:31:51 (195 MB/s) - '20newsgroups.data.html’ saved [4371/4371]
 
 Converting 20newsgroups.data.html... nothing to do.
 Converted 1 files in 0 seconds.
 
-$ pandoc -f html -t markdown 20newsgroups.data.html &gt; 20newsgroups.data.md
-\`\`\`
+$ pandoc -f html -t markdown 20newsgroups.data.html > 20newsgroups.data.md
+```
 
 ### 20 Newsgroups
 
@@ -682,7 +682,17 @@ See <http://spark.apache.org/docs/latest/ml-features.html#stopwordsremover>.
 
 If a list of stopwords is not provided, the StopWordsRemover() will use [this list of stopwords](http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words), also shown below, by default.
 
-`a,about,above,across,after,afterwards,again,against,all,almost,alone,along,already,also,although,always,am,among,amongst,amoungst,amount,an,and,another,any,anyhow,anyone,anything,anyway,anywhere, are,around,as,at,back,be,became,because,become,becomes,becoming,been,before,beforehand,behind,being,below,beside,besides,between,beyond,bill,both,bottom,but,by,call,can,cannot,cant,co,computer,con,could, couldnt,cry,de,describe,detail,do,done,down,due,during,each,eg,eight,either,eleven,else,elsewhere,empty,enough,etc,even,ever,every,everyone,everything,everywhere,except,few,fifteen,fify,fill,find,fire,first, five,for,former,formerly,forty,found,four,from,front,full,further,get,give,go,had,has,hasnt,have,he,hence,her,here,hereafter,hereby,herein,hereupon,hers,herself,him,himself,his,how,however,hundred,i,ie,if, in,inc,indeed,interest,into,is,it,its,itself,keep,last,latter,latterly,least,less,ltd,made,many,may,me,meanwhile,might,mill,mine,more,moreover,most,mostly,move,much,must,my,myself,name,namely,neither,never, nevertheless,next,nine,no,nobody,none,noone,nor,not,nothing,now,nowhere,of,off,often,on,once,one,only,onto,or,other,others,otherwise,our,ours,ourselves,out,over,own,part,per,perhaps,please,put,rather,re,same, see,seem,seemed,seeming,seems,serious,several,she,should,show,side,since,sincere,six,sixty,so,some,somehow,someone,something,sometime,sometimes,somewhere,still,such,system,take,ten,than,that,the,their,them, themselves,then,thence,there,thereafter,thereby,therefore,therein,thereupon,these,they,thick,thin,third,this,those,though,three,through,throughout,thru,thus,to,together,too,top,toward,towards,twelve,twenty,two, un,under,until,up,upon,us,very,via,was,we,well,were,what,whatever,when,whence,whenever,where,whereafter,whereas,whereby,wherein,whereupon,wherever,whether,which,while,whither,who,whoever,whole,whom,whose,why,will, with,within,without,would,yet,you,your,yours,yourself,yourselves`
+``` a,about,above,across,after,afterwards,again,against,all,almost,alone,along,already,also,although,always,am,among,amongst,amoungst,amount,an,and,another,any,anyhow,anyone,anything,anyway,anywhere,
+are,around,as,at,back,be,became,because,become,becomes,becoming,been,before,beforehand,behind,being,below,beside,besides,between,beyond,bill,both,bottom,but,by,call,can,cannot,cant,co,computer,con,could,
+couldnt,cry,de,describe,detail,do,done,down,due,during,each,eg,eight,either,eleven,else,elsewhere,empty,enough,etc,even,ever,every,everyone,everything,everywhere,except,few,fifteen,fify,fill,find,fire,first,
+five,for,former,formerly,forty,found,four,from,front,full,further,get,give,go,had,has,hasnt,have,he,hence,her,here,hereafter,hereby,herein,hereupon,hers,herself,him,himself,his,how,however,hundred,i,ie,if,
+in,inc,indeed,interest,into,is,it,its,itself,keep,last,latter,latterly,least,less,ltd,made,many,may,me,meanwhile,might,mill,mine,more,moreover,most,mostly,move,much,must,my,myself,name,namely,neither,never,
+nevertheless,next,nine,no,nobody,none,noone,nor,not,nothing,now,nowhere,of,off,often,on,once,one,only,onto,or,other,others,otherwise,our,ours,ourselves,out,over,own,part,per,perhaps,please,put,rather,re,same,
+see,seem,seemed,seeming,seems,serious,several,she,should,show,side,since,sincere,six,sixty,so,some,somehow,someone,something,sometime,sometimes,somewhere,still,such,system,take,ten,than,that,the,their,them,
+themselves,then,thence,there,thereafter,thereby,therefore,therein,thereupon,these,they,thick,thin,third,this,those,though,three,through,throughout,thru,thus,to,together,too,top,toward,towards,twelve,twenty,two,
+un,under,until,up,upon,us,very,via,was,we,well,were,what,whatever,when,whence,whenever,where,whereafter,whereas,whereby,wherein,whereupon,wherever,whether,which,while,whither,who,whoever,whole,whom,whose,why,will,
+with,within,without,would,yet,you,your,yours,yourself,yourselves
+```
 
 You can use `getStopWords()` to see the list of stopwords that will be used.
 
@@ -1170,7 +1180,33 @@ Dive into the source!!!
     -   <https://github.com/apache/spark/blob/v2.2.0/mllib/src/main/scala/org/apache/spark/ml/clustering/LDA.scala>
     -   Now, simply go to the right function and see the following comment block:
 
-    `/**  * Concentration parameter (commonly named "alpha") for the prior placed on documents'  * distributions over topics ("theta").  *  * This is the parameter to a Dirichlet distribution, where larger values mean more smoothing  * (more regularization).  *  * If not set by the user, then docConcentration is set automatically. If set to  * singleton vector [alpha], then alpha is replicated to a vector of length k in fitting.  * Otherwise, the [[docConcentration]] vector must be length k.  * (default = automatic)  *  * Optimizer-specific parameter settings:  *  - EM  *     - Currently only supports symmetric distributions, so all values in the vector should be  *       the same.  *     - Values should be > 1.0  *     - default = uniformly (50 / k) + 1, where 50/k is common in LDA libraries and +1 follows  *       from Asuncion et al. (2009), who recommend a +1 adjustment for EM.  *  - Online  *     - Values should be >= 0  *     - default = uniformly (1.0 / k), following the implementation from  *       [[https://github.com/Blei-Lab/onlineldavb]].  * @group param  */`
+    <!-- -->
+
+        /**
+         * Concentration parameter (commonly named "alpha") for the prior placed on documents'
+         * distributions over topics ("theta").
+         *
+         * This is the parameter to a Dirichlet distribution, where larger values mean more smoothing
+         * (more regularization).
+         *
+         * If not set by the user, then docConcentration is set automatically. If set to
+         * singleton vector [alpha], then alpha is replicated to a vector of length k in fitting.
+         * Otherwise, the [[docConcentration]] vector must be length k.
+         * (default = automatic)
+         *
+         * Optimizer-specific parameter settings:
+         *  - EM
+         *     - Currently only supports symmetric distributions, so all values in the vector should be
+         *       the same.
+         *     - Values should be > 1.0
+         *     - default = uniformly (50 / k) + 1, where 50/k is common in LDA libraries and +1 follows
+         *       from Asuncion et al. (2009), who recommend a +1 adjustment for EM.
+         *  - Online
+         *     - Values should be >= 0
+         *     - default = uniformly (1.0 / k), following the implementation from
+         *       [[https://github.com/Blei-Lab/onlineldavb]].
+         * @group param
+         */
 
 **HOMEWORK:** Try to find the default value for `TopicConcentration`.
 
@@ -1346,7 +1382,21 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 
 We managed to get better results here. We can easily infer that topic 3 is about space, topic 7 is about religion, etc.
 
-`========== TOPIC 3 station	0.0022184815200582244 launch	0.0020621309179376145 shuttle	0.0019305627762549198 space	0.0017600147075534092 redesign	0.0014972130065346592 ========== TOPIC 7 people	0.0038165245379908675 church	0.0036902650900400543 jesus	0.0029942866750178893 paul	0.0026144777524277044 bible	0.0020476251853453016 ==========`
+    ==========
+    TOPIC 3
+    station	0.0022184815200582244
+    launch	0.0020621309179376145
+    shuttle	0.0019305627762549198
+    space	0.0017600147075534092
+    redesign	0.0014972130065346592
+    ==========
+    TOPIC 7
+    people	0.0038165245379908675
+    church	0.0036902650900400543
+    jesus	0.0029942866750178893
+    paul	0.0026144777524277044
+    bible	0.0020476251853453016
+    ==========
 
 Step 9. Create LDA model with Expectation Maximization
 ------------------------------------------------------

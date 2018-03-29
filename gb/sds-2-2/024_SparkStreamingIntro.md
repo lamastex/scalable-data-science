@@ -165,7 +165,12 @@ In this we will do two things.
 
 -   Define a custom receiver as the dummy source (no need to understand this)
     -   this custom receiver will have lines that end with a random number between 0 and 9 and read:
-        `I am a dummy source 2  I am a dummy source 8  ...`
+
+    <!-- -->
+
+        I am a dummy source 2
+        I am a dummy source 8
+        ...
 
 This is the dummy source implemented as a custom receiver. **No need to understand this now.**
 

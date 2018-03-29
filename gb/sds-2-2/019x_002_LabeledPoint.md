@@ -142,7 +142,11 @@ display(examples.toDF) // covert to DataFrame and display for convenient db visu
 
 The pixel intensities are represented in `features` as a sparse vector, for example the first observation, as seen in row 1 of the output to `display(training)` below, has `label` as `5`, i.e. the hand-written image is for the number 5. And this hand-written image is the following sparse vector (just click the triangle to the left of the feature in first row to see the following):
 
-`type: 0 size: 780 indices: [152,153,155,...,682,683] values: [3, 18, 18,18,126,...,132,16]`
+    type: 0
+    size: 780
+    indices: [152,153,155,...,682,683]
+    values: [3, 18, 18,18,126,...,132,16]
+
 Here
 
 -   `type: 0` says we hve a sparse vector.

@@ -48,26 +48,26 @@ import twitter4j.conf.ConfigurationBuilder
 -   Go to https://apps.twitter.com and look up your Twitter API Credentials, or create an app to create them.
 -   Run the code in a cell to Enter your own credentials.
 
-\`\`\`%scala
+``` %scala
 // put your own twitter developer credentials below instead of xxx
-// instead of the '%run "scalable-data-science/secrets/026*secret*MyTwitterOAuthCredentials"' above
+// instead of the '%run "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"' above
 // this notebook we just ran contains the following commented code block
 
-/\*
+/*
 import twitter4j.auth.OAuthAuthorization
 import twitter4j.conf.ConfigurationBuilder
 
-def MyconsumerKey = "xxx"
-def MyconsumerSecret = "xxx"
-def Mytoken = "xxx"
-def MytokenSecret = "xxx"
+def MyconsumerKey       = "xxx"
+def MyconsumerSecret    = "xxx"
+def Mytoken             = "xxx"
+def MytokenSecret       = "xxx"
 
 System.setProperty("twitter4j.oauth.consumerKey", MyconsumerKey)
 System.setProperty("twitter4j.oauth.consumerSecret", MyconsumerSecret)
 System.setProperty("twitter4j.oauth.accessToken", Mytoken)
 System.setProperty("twitter4j.oauth.accessTokenSecret", MytokenSecret)
-\*/
-\`\`\`
+*/
+```
 
 The cell-below is hidden to not expose my Twitter API Credentials: `consumerKey`, `consumerSecret`, `accessToken` and `accessTokenSecret`. Use the code above to enter your own credentials!
 

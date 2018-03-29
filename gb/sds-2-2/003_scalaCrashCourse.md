@@ -97,7 +97,8 @@ Cells each have a type - including **scala**, **python**, **sql**, **R**, **mark
 
 **You Try Now!**
 Just double-click the cell below, modify the text following `%md` and press **Ctrl+Enter** to evaluate it and see it's mark-down'd output.
-`> %md Hello, world!`
+
+    > %md Hello, world!
 
 Hello, world!
 
@@ -418,19 +419,38 @@ We will apply such *closures* for processing scala collections with functional p
 ### Five ways of adding 1
 
 1.  explicit version:
-    `%scala (x: Int) => x + 1`
 
-2.  type-inferred more intuitive version:
-    `%scala x => x + 1`
+``` %scala
+(x: Int) => x + 1  
+```
 
-3.  placeholder syntax (each argument must be used exactly once):
-    `%scala _ + 1`
+1.  type-inferred more intuitive version:
 
-4.  type-inferred more intuitive version with code-block for larger function body:
-    `%scala x => {     // body is a block of code    val integerToAdd = 1    x + integerToAdd }`
+``` %scala
+x => x + 1   
+```
 
-5.  regular functions using `def`:
-    `%scala def addOne(x: Int): Int = x + 1`
+1.  placeholder syntax (each argument must be used exactly once):
+
+``` %scala
+_ + 1 
+```
+
+1.  type-inferred more intuitive version with code-block for larger function body:
+
+``` %scala
+x => { 
+      // body is a block of code
+      val integerToAdd = 1
+      x + integerToAdd
+}
+```
+
+1.  regular functions using `def`:
+
+``` %scala
+def addOne(x: Int): Int = x + 1
+```
 
 Now, let's apply closures for functional programming over scala collection (`List`) using `foreach`, `map`, `filter` and `reduce`. In the end we will write out first mapReduce program!
 

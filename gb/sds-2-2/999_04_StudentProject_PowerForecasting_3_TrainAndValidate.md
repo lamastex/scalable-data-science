@@ -209,7 +209,9 @@ val r2 = metrics.r2
 >     explainedVariance: Double = 185.85849068387805
 >     r2: Double = 0.8651582362729922
 
-`rmse: Double = 5.3684288676362915 explainedVariance: Double = 185.85849068387805 r2: Double = 0.8651582362729922`
+    rmse: Double = 5.3684288676362915
+    explainedVariance: Double = 185.85849068387805
+    r2: Double = 0.8651582362729922
 
 #### Train a gradient boosted tree
 
@@ -295,7 +297,9 @@ println (f"R2: $r2")
 >     explainedVariance: Double = 202.1087124482088
 >     r2: Double = 0.961637980977275
 
-`rmse: Double = 2.863424384194055 explainedVariance: Double = 202.1087124482088 r2: Double = 0.961637980977275`
+    rmse: Double = 2.863424384194055
+    explainedVariance: Double = 202.1087124482088
+    r2: Double = 0.961637980977275
 
 ``` scala
 val results = predictionsAndLabels.withColumn("difference", $"Predicted_Power" - $"future_power").cache()

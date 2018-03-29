@@ -21,46 +21,46 @@ The perceptron took a weighted set of input signals and chose an ouput state (on
 (raaz) Thus, the perceptron is defined by:
 
 $$
-f(1, x\_1,x\_2,\ldots , x\_n \\, ; \\, w\_0,w\_1,w\_2,\ldots , w\_n) =
+f(1, x_1,x_2,\ldots , x_n \, ; \, w_0,w_1,w_2,\ldots , w_n) =
 \begin{cases}
-1 & \text{if} \quad \sum\_{i=0}^n w\_i x\_i > 0 \\\\
+1 & \text{if} \quad \sum_{i=0}^n w_i x_i > 0 \\
 0 & \text{otherwise}
 \end{cases}
 $$
 and implementable with the following arithmetical and logical unit (ALU) operations in a machine:
 
--   n inputs from one \\(n\\)-dimensional data point: \\( x*1,x*2,\ldots x\_n \\, \in \\, \mathbb{R}^n\\)
+-   n inputs from one $n$-dimensional data point: $x_1,x_2,\ldots x_n \, \in \, \mathbb{R}^n$
 -   arithmetic operations
     -   n+1 multiplications
     -   n additions
 -   boolean operations
     -   one if-then on an inequality
--   one output \\(o \in \\{0,1\\}\\), i.e., \\(o\\) belongs to the set containing \\(0\\) and \\(1\\)
+-   one output $o \in \\{0,1\\}$, i.e., $o$ belongs to the set containing $0$ and $1$
 -   n+1 parameters of interest
 
-This is just a hyperplane given by a dot product of \\(n+1\\) known inputs and \\(n+1\\) unknown parameters that can be estimated. This hyperplane can be used to define a hyperplane that partitions \\(\mathbb{R}^{n+1}\\), the real Euclidean space, into two parts labelled by the outputs \\(0\\) and \\(1\\).
+This is just a hyperplane given by a dot product of $n+1$ known inputs and $n+1$ unknown parameters that can be estimated. This hyperplane can be used to define a hyperplane that partitions $\mathbb{R}^{n+1}$, the real Euclidean space, into two parts labelled by the outputs $0$ and $1$.
 
-The problem of finding estimates of the parameters, \\( (\hat{w}\_0,\hat{w}\_1,\hat{w}\_2,\ldots \hat{w}\_n) \in \mathbb{R}^{(n+1)} \\), in some statistically meaningful manner for a predicting task by using the training data given by, say \\(k\\) *labelled points*, where you know both the input and output:
+The problem of finding estimates of the parameters, $(\hat{w}_0,\hat{w}_1,\hat{w}_2,\ldots \hat{w}_n) \in \mathbb{R}^{(n+1)}$, in some statistically meaningful manner for a predicting task by using the training data given by, say $k$ *labelled points*, where you know both the input and output:
 $$
-\left( ( \\, 1, x\_1^{(1)},x\_2^{(1)}, \ldots x\_n^{(1)}), (o^{(1)}) \\, ), \\, ( \\, 1, x\_1^{(2)},x\_2^{(2)}, \ldots x\_n^{(2)}), (o^{(2)}) \\, ), \\, \ldots \\, , ( \\, 1, x\_1^{(k)},x\_2^{(k)}, \ldots x\_n^{(k)}), (o^{(k)}) \\, ) \right) \\, \in \\, (\mathbb{R}^{n+1} \times \\{ 0,1 \\} )^k
+ \left( ( \, 1, x_1^{(1)},x_2^{(1)}, \ldots x_n^{(1)}), (o^{(1)}) \, ), \, ( \, 1, x_1^{(2)},x_2^{(2)}, \ldots x_n^{(2)}), (o^{(2)}) \, ), \, \ldots \, , ( \, 1, x_1^{(k)},x_2^{(k)}, \ldots x_n^{(k)}), (o^{(k)}) \, ) \right) \, \in \, (\mathbb{R}^{n+1} \times \\{ 0,1 \\} )^k
 $$
 is the machine learning problem here.
 
-Succinctly, we are after a random mapping, denoted below by \\( \mapsto\_{\rightsquigarrow} \\), called the *estimator*:
+Succinctly, we are after a random mapping, denoted below by $\mapsto_{\rightsquigarrow}$, called the *estimator*:
 $$
-(\mathbb{R}^{n+1} \times \\{0,1\\})^k \mapsto\_{\rightsquigarrow} \\, \left( \\, \mathtt{model}( (1,x\_1,x\_2,\ldots,x\_n) \\,;\\, (\hat{w}\_0,\hat{w}\_1,\hat{w}\_2,\ldots \hat{w}\_n)) : \mathbb{R}^{n+1} \to \\{0,1\\} \\, \right)
+(\mathbb{R}^{n+1} \times \\{0,1\\})^k \mapsto_{\rightsquigarrow} \, \left( \, \mathtt{model}( (1,x_1,x_2,\ldots,x_n) \,;\, (\hat{w}_0,\hat{w}_1,\hat{w}_2,\ldots \hat{w}_n)) : \mathbb{R}^{n+1} \to \\{0,1\\} \,  \right)
 $$
-which takes *random* labelled dataset (to understand random here think of two scientists doing independent experiments to get their own training datasets) of size \\(k\\) and returns a *model*. These mathematical notions correspond exactly to the `estimator` and `model` (which is a `transformer`) in the language of Apache Spark's Machine Learning Pipleines we have seen before.
+which takes *random* labelled dataset (to understand random here think of two scientists doing independent experiments to get their own training datasets) of size $k$ and returns a *model*. These mathematical notions correspond exactly to the `estimator` and `model` (which is a `transformer`) in the language of Apache Spark's Machine Learning Pipleines we have seen before.
 
 We can use this `transformer` for *prediction* of *unlabelled data* where we only observe the input and what to know the output under some reasonable assumptions.
 
 Of course we want to be able to generalize so we don't overfit to the training data using some *empirical risk minisation rule* such as cross-validation. Again, we have seen these in Apache Spark for other ML methods like linear regression and decision trees.
 
-If the output isn't right, we can adjust the weights, threshold, or bias (\\(x\_0\\) above)
+If the output isn't right, we can adjust the weights, threshold, or bias ($x_0$ above)
 
 The model was inspired by discoveries about the neurons of animals, so hopes were quite high that it could lead to a sophisticated machine. This model can be extended by adding multiple neurons in parallel. And we can use linear output instead of a threshold if we like for the output.
 
-If we were to do so, the output would look like \\({x \cdot w} + w\_0\\) (this is where the vector multiplication and, eventually, matrix multiplication, comes in)
+If we were to do so, the output would look like ${x \cdot w} + w_0$ (this is where the vector multiplication and, eventually, matrix multiplication, comes in)
 
 When we look at the math this way, we see that despite this being an interesting model, it's really just a fancy linear calculation.
 
@@ -904,8 +904,8 @@ Non-Linearity + Perceptron = Universal Approximation
 ### Where does the non-linearity fit in?
 
 -   We start with the inputs to a perceptron -- these could be from source data, for example.
--   We multiply each input by its respective weight, which gets us the \\(x \cdot w\\)
--   Then add the "bias" -- an extra learnable parameter, to get \\({x \cdot w} + b\\)
+-   We multiply each input by its respective weight, which gets us the $x \cdot w$
+-   Then add the "bias" -- an extra learnable parameter, to get ${x \cdot w} + b$
     -   This value (so far) is sometimes called the "pre-activation"
 -   Now, apply a non-linear "activation function" to this value, such as the logistic sigmoid
 
@@ -2479,10 +2479,10 @@ print("\nroot %s: %f" % (model.metrics_names[1], np.sqrt(scores[1])))
 
 Would you look at that?!
 
--   We break $1000 RMSE around epoch 112
--   $900 around epoch 220
--   $800 around epoch 450
--   By around epoch 2000, my RMSE is &lt; $600
+-   We break \$1000 RMSE around epoch 112
+-   \$900 around epoch 220
+-   \$800 around epoch 450
+-   By around epoch 2000, my RMSE is &lt; \$600
 
 ...
 
@@ -2523,11 +2523,11 @@ if you get stuck, there is a solution in the Keras-DFFN notebook
 
 ------------------------------------------------------------------------
 
-I'm getting RMSE &lt; $1000 by epoch 35 or so
+I'm getting RMSE &lt; \$1000 by epoch 35 or so
 
-&lt; $800 by epoch 90
+&lt; \$800 by epoch 90
 
-In this configuration, mine makes progress to around 700 epochs or so and then stalls with RMSE around $560
+In this configuration, mine makes progress to around 700 epochs or so and then stalls with RMSE around \$560
 
 ### Our network has "gone meta"
 

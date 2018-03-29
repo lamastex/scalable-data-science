@@ -21,25 +21,19 @@ We'll take our deep feed-forward multilayer perceptron network, with ReLU activa
 
 The main part of the code looks like the following (full code you can run is in the next cell):
 
-\`\`\`
+    # imports, setup, load data sets
 
-imports, setup, load data sets
-==============================
+    model = Sequential()
+    model.add(Dense(20, input_dim=784, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(15, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
 
-model = Sequential()
-model.add(Dense(20, input*dim=784, kernel*initializer='normal', activation='relu'))
-model.add(Dense(15, kernel*initializer='normal', activation='relu'))
-model.add(Dense(10, kernel*initializer='normal', activation='softmax'))
-model.compile(loss='categorical*crossentropy', optimizer='adam', metrics=\['categorical*accuracy'\])
+    categorical_labels = to_categorical(y_train, num_classes=10)
 
-categorical*labels = to*categorical(y*train, num*classes=10)
+    history = model.fit(X_train, categorical_labels, epochs=100, batch_size=100)
 
-history = model.fit(X*train, categorical*labels, epochs=100, batch\_size=100)
-
-print metrics, plot errors
-==========================
-
-\`\`\`
+    # print metrics, plot errors
 
 Note the changes, which are largely about building a classifier instead of a regression model:
 \* Output layer has one neuron per category, with softmax activation
@@ -74,7 +68,12 @@ The following is from: <https://www.quora.com/How-does-Keras-calculate-accuracy>
 
 **Categorical accuracy:**
 
-`%python def categorical_accuracy(y_true, y_pred):  return K.cast(K.equal(K.argmax(y_true, axis=-1),  K.argmax(y_pred, axis=-1)),  K.floatx())`
+``` %python
+def categorical_accuracy(y_true, y_pred):
+ return K.cast(K.equal(K.argmax(y_true, axis=-1),
+ K.argmax(y_pred, axis=-1)),
+ K.floatx())
+```
 
 > `K.argmax(y_true)` takes the highest value to be the prediction and matches against the comparative set.
 
@@ -216,24 +215,22 @@ print ("Elapse: " + str(end-start))
 
 after about a minute we have:
 
-\`\`\`
-...
+    ...
 
-Epoch 40/40
-1s - loss: 0.0610 - categorical*accuracy: 0.9809 - val*loss: 0.1918 - val*categorical*accuracy: 0.9583
+    Epoch 40/40
+    1s - loss: 0.0610 - categorical_accuracy: 0.9809 - val_loss: 0.1918 - val_categorical_accuracy: 0.9583
 
-...
+    ...
+     
+    loss: 0.216120
 
-loss: 0.216120
+    categorical_accuracy: 0.955000
 
-categorical\_accuracy: 0.955000
+    Start: 2017-12-06 07:35:33.948102
 
-Start: 2017-12-06 07:35:33.948102
+    End: 2017-12-06 07:36:27.046130
 
-End: 2017-12-06 07:36:27.046130
-
-Elapse: 0:00:53.098028
-\`\`\`
+    Elapse: 0:00:53.098028
 
 ``` python
 import matplotlib.pyplot as plt
@@ -309,7 +306,7 @@ The convolution we deal with in deep learning is a simplified case. We want to c
 
 ------------------------------------------------------------------------
 
-#### Here's an animation (where we change \\({\tau}\\))
+#### Here's an animation (where we change ${\tau}$)
 
 <img src="http://i.imgur.com/0BFcnaw.gif">
 

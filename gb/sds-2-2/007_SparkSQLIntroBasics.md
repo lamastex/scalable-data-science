@@ -93,18 +93,16 @@ Starting Point: SparkSession
 
 The entry point into all functionality in Spark is the [SparkSession](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession). To create a basic SparkSession in your scala Spark code, just use `SparkSession.builder()`:
 
-\`\`\`
-import org.apache.spark.sql.SparkSession
+    import org.apache.spark.sql.SparkSession
 
-val spark = SparkSession
-.builder()
-.appName("Spark SQL basic example")
-.config("spark.some.config.option", "some-value")
-.getOrCreate()
+    val spark = SparkSession
+      .builder()
+      .appName("Spark SQL basic example")
+      .config("spark.some.config.option", "some-value")
+      .getOrCreate()
 
-// For implicit conversions like converting RDDs to DataFrames
-import spark.implicits.\_
-\`\`\`
+    // For implicit conversions like converting RDDs to DataFrames
+    import spark.implicits._
 
 Conveniently, in Databricks notebook (similar to `spark-shell`) `SparkSession` is already created for you and is available as `spark`.
 

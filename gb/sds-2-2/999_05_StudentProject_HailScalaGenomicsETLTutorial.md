@@ -95,19 +95,29 @@ First, download Hail source code and build `hail-all-spark.jar` file from the so
 
 On Debian-based Linux, install compilers:
 
-`sudo apt-get install g++ cmake`
+    sudo apt-get install g++ cmake
+
 On Mac OS X, install Xcode, available through the App Store, for the C++ compiler. CMake can be downloaded from the CMake website or through Homebrew. To install with Homebrew, run
-`brew install cmake`
+
+     brew install cmake
 
 Clone the Hail repository and build:
-`git clone --branch 0.1 https://github.com/broadinstitute/hail.git cd hail ./gradlew -Dspark.version=2.0.2 shadowJar`
+
+    git clone --branch 0.1 https://github.com/broadinstitute/hail.git
+    cd hail
+    ./gradlew -Dspark.version=2.0.2 shadowJar
+
 You can also download the pre-built `hail-all-spark.jar` from [here](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2017/parts/studentProjects/Kryvokhyzha-Ryeznik/hail-all-spark.jar).
 
 Upload the built `build/libs/hail-all-spark.jar` to Databricks `Workspace > Shared > Libraries > Create Library` and click `Drop library JAR here to upload`
 
 Next click the `Clusters` icon on the left sidebar and then `+Create Cluster`. For `Apache Spark Version`, select `Spark 2.0 (Auto-updating, Scala 2.11)`. In the Databricks cluster creation dialog, click on the `Spark` tab, and paste the text below into the `Spark config` box.
 
-`spark.hadoop.io.compression.codecs org.apache.hadoop.io.compress.DefaultCodec,is.hail.io.compress.BGzipCodec,org.apache.hadoop.io.compress.GzipCodec spark.sql.files.openCostInBytes 1099511627776 spark.sql.files.maxPartitionBytes 1099511627776 spark.hadoop.mapreduce.input.fileinputformat.split.minsize 1099511627776 spark.hadoop.parquet.block.size 1099511627776`
+    spark.hadoop.io.compression.codecs org.apache.hadoop.io.compress.DefaultCodec,is.hail.io.compress.BGzipCodec,org.apache.hadoop.io.compress.GzipCodec
+    spark.sql.files.openCostInBytes 1099511627776
+    spark.sql.files.maxPartitionBytes 1099511627776
+    spark.hadoop.mapreduce.input.fileinputformat.split.minsize 1099511627776
+    spark.hadoop.parquet.block.size 1099511627776
 
 Go back to `Workspace > Shared > Libraries` click on the `hail-all-spark.jar` library and attach it to the created cluster.
 

@@ -974,33 +974,37 @@ We will make sure to write the tweets to AWS's simple storage service or S3, a s
 
 But all the main syntactic bits are here for your future convenience :)
 
-\`\`\`
-// Replace with your AWS S3 credentials
-//
-// NOTE: Set the access to this notebook appropriately to protect the security of your keys.
-// Or you can delete this cell after you run the mount command below once successfully.
+    // Replace with your AWS S3 credentials
+    //
+    // NOTE: Set the access to this notebook appropriately to protect the security of your keys.
+    // Or you can delete this cell after you run the mount command below once successfully.
 
-val AccessKey = getArgument("1. ACCESS*KEY", "REPLACE*WITH*YOUR*ACCESS*KEY")
-val SecretKey = getArgument("2. SECRET*KEY", "REPLACE*WITH*YOUR*SECRET*KEY")
-val EncodedSecretKey = SecretKey.replace("/", "%2F")
-val AwsBucketName = getArgument("3. S3*BUCKET", "REPLACE*WITH*YOUR*S3*BUCKET")
-val MountName = getArgument("4. MNT*NAME", "REPLACE*WITH*YOUR*MOUNT*NAME")
-val s3Filename = "tweetDump"
-\`\`\`
+    val AccessKey = getArgument("1. ACCESS_KEY", "REPLACE_WITH_YOUR_ACCESS_KEY")
+    val SecretKey = getArgument("2. SECRET_KEY", "REPLACE_WITH_YOUR_SECRET_KEY")
+    val EncodedSecretKey = SecretKey.replace("/", "%2F")
+    val AwsBucketName = getArgument("3. S3_BUCKET", "REPLACE_WITH_YOUR_S3_BUCKET")
+    val MountName = getArgument("4. MNT_NAME", "REPLACE_WITH_YOUR_MOUNT_NAME")
+    val s3Filename = "tweetDump"
 
 Now just mount s3 as follows:
 
-`dbutils.fs.mount(s"s3a://$AccessKey:$EncodedSecretKey@$AwsBucketName", s"/mnt/$MountName")`
+    dbutils.fs.mount(s"s3a://$AccessKey:$EncodedSecretKey@$AwsBucketName", s"/mnt/$MountName")
 
 Now you can use the `dbutils` commands freely to access data in the mounted S3.
 
-`dbutils.fs.help()`
+    dbutils.fs.help()
 
 copying:
-`// to copy all the tweets to s3 dbutils.fs.cp("dbfs:/rawTweets",s"/mnt/$MountName/rawTweetsInS3/",recurse=true)`
+
+    // to copy all the tweets to s3
+    dbutils.fs.cp("dbfs:/rawTweets",s"/mnt/$MountName/rawTweetsInS3/",recurse=true) 
 
 deleting:
-`// to remove all the files from s3 dbutils.fs.rm(s"/mnt/$MountName/rawTweetsInS3",recurse=true)`
+
+    // to remove all the files from s3
+    dbutils.fs.rm(s"/mnt/$MountName/rawTweetsInS3",recurse=true) 
 
 unmounting:
-`// finally unmount when done - IMPORTANT! dbutils.fs.unmount(s"/mnt/$MountName")`
+
+    // finally unmount when done - IMPORTANT!
+    dbutils.fs.unmount(s"/mnt/$MountName") 

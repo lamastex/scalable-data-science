@@ -47,7 +47,7 @@ The image below (from [Wikipedia](https://en.wikipedia.org/?title=Collaborative_
 -   [Wikipedia - collaborative filtering](https://en.wikipedia.org/?title=Collaborative_filtering)
 -   [Recommender Systems - collaborative filtering](http://recommender-systems.org/collaborative-filtering/)
 
-For movie recommendations, we start with a matrix whose entries are movie ratings by users (shown in red in the diagram below). Each row represents a user and each column represents a particular movie. Thus the entry \\(r\_{ij}\\) represents the rating of user \\(i\\) for movie \\(j\\).
+For movie recommendations, we start with a matrix whose entries are movie ratings by users (shown in red in the diagram below). Each row represents a user and each column represents a particular movie. Thus the entry $r_{ij}$ represents the rating of user $i$ for movie $j$.
 
 Since not all users have rated all movies, we do not know all of the entries in this matrix, which is precisely why we need collaborative filtering. For each user, we have ratings for only a subset of the movies. With collaborative filtering, *the idea is to approximate the ratings matrix by factorizing it as the product of two matrices*: one that describes properties of each user (shown in green), and one that describes properties of each movie (shown in blue).
 

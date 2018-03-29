@@ -352,12 +352,12 @@ We must take this communication hierarchy into consideration when developing par
 
 -   In the big n, small d case for linear regression
     -   we can solve the problem via a closed form solution.
-    -   And this requires us to communicate \\(O(d)^2\\) intermediate data.
+    -   And this requires us to communicate $O(d)^2$ intermediate data.
     -   the largest object in this example is our initial data, which we store in a distributed fashion and never communicate! This is a *data parallel setting*.
 -   In the big n, big d case:
     -   for linear regression.
         -   we use gradient descent to iteratively train our model and are again in a *data parallel setting*.
-        -   At each iteration we communicate the current parameter vector \\(w\_i\\) and the required \\(O(d)\\) communication is feasible even for fairly large d.
+        -   At each iteration we communicate the current parameter vector $w_i$ and the required $O(d)$ communication is feasible even for fairly large d.
 -   In the small n, small d case:
     -   for ridge regression
         -   we can communicate the small data to all of the workers.

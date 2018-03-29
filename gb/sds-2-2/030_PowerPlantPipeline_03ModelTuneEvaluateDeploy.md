@@ -46,7 +46,9 @@ To **Rerun Steps 1-4** done in the notebook at:
 
 just `run` the following command as shown in the cell below:
 
-`%scala   %run "/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"`
+``` %scala
+%run "/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA"
+```
 
 -   *Note:* If you already evaluated the `%run ...` command above then:
     -   first delete the cell by pressing on `x` on the top-right corner of the cell and
@@ -242,9 +244,9 @@ val lrModel = lrPipeline.fit(trainingSet)
 
 Since Linear Regression is simply a line of best fit over the data that minimizes the square of the error, given multiple input dimensions we can express each predictor as a line function of the form:
 
-$$ y = b*0 + b*1 x*1 + b*2 x*2 + b*3 x*3 + \ldots + b*i x*i + \ldots + b*k x\_k $$
+$$ y = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 + \ldots + b_i x_i + \ldots + b_k x_k $$
 
-where \\(b*0\\) is the intercept and \\(b*i\\)'s are coefficients.
+where $b_0$ is the intercept and $b_i$'s are coefficients.
 
 To express the coefficients of that line we can retrieve the Estimator stage from the fitted, linear-regression pipeline model named `lrModel` and express the weights and the intercept for the function.
 

@@ -49,7 +49,9 @@ spark
 >     res0: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@2d0c6c9
 
 After evaluation you should see something like this:
-`res0: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@2d0c6c9`
+
+    res0: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@2d0c6c9
+
 In order to enable Hive support use `enableHiveSupport()` method on builder when constructing Spark session, which provides richer functionality over standard Spark SQL context, for example, usage of Hive user-defined functions or loading and writing data from/into Hive. Note that most of the SQL functionality is available regardless Hive support.
 
 Creating DataFrames
@@ -335,29 +337,25 @@ As you probably have noticed by now, you can specify individual columns to selec
 
 So Spark gives you ability to actually specify columns when you select. Now the difference between all those three notations is ... none, those things are just aliases for a `Column` in Spark SQL, which means following expressions yield the same result:
 
-\`\`\`
-// Using string expressions
-df.select("agency", "visits")
+    // Using string expressions
+    df.select("agency", "visits")
 
-// Using "$" alias for column
-df.select($"agency", $"visits")
+    // Using "$" alias for column
+    df.select($"agency", $"visits")
 
-// Using "col" alias for column
-df.select(col("agency"), col("visits"))
+    // Using "col" alias for column
+    df.select(col("agency"), col("visits"))
 
-// Using DataFrame name for column
-df.select(df("agency"), df("visits"))
-\`\`\`
+    // Using DataFrame name for column
+    df.select(df("agency"), df("visits"))
 
 This "same-difference" applies to filtering, i.e. you can either use full expression to filter, or column as shown in the following example:
 
-\`\`\`
-// Using column to filter
-df.select("visits").filter($"visits" &gt; 100)
+    // Using column to filter
+    df.select("visits").filter($"visits" > 100)
 
-// Or you can use full expression as string
-df.select("visits").filter("visits &gt; 100")
-\`\`\`
+    // Or you can use full expression as string
+    df.select("visits").filter("visits > 100")
 
 > Note that `$"visits" > 100` expression looks amazing, but under the hood it is just another column, and it equals to `df("visits").>(100)`, where, thanks to Scala paradigm `>` is just another function that you can define.
 
