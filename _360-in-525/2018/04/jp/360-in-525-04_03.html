@@ -11781,7 +11781,7 @@ div#notebook {
 <p>Here is a map for some family relationships:</p>
 <ul>
 <li>$Raaz$ has two daughters named $Anu$ and $Ashu$, </li>
-<li>$Jenny$ has a sister called $Cathy$ and the father of $Jenny$ and $Cathy$ is Jonathan, and</li>
+<li>$Jenny$ has a sister called $Cathy$ and the father of $Jenny$ and $Cathy$ is $Jonathan$, and</li>
 <li>$Fred$ is a man who has no daughter.</li>
 </ul>
 <p>We can map these daughters to their fathers with the $FindFathersMap$ shown below: The daughters are in the domain and the fathers are in the range made up of men.  Each daughter maps to a father (there is no immaculate conceptions here!).  More than one daughter can map to the same father (some fathers have more daughters!). But there can be men in the range who are not fathers (this is also natural, may be they only have sons or have no children at all).</p>
@@ -11789,7 +11789,7 @@ div#notebook {
 <p>The notation for this mapping would be:</p>
 $$FindFathersMap: Daughters \rightarrow Men$$<p>The domain is the set:</p>
 $$Daughters = \{Anu, Ashu, Jenny, Cathy\}$$<p></p>
-<p>and the range is the set:</p>
+<p>and the range or codomain is the set:</p>
 $$Men = \{Raaz, Jonathan, Fred\}.$$<p>The element in the range that an element in the domain maps to is called the image of that domain element.<br>
 For example, $Raaz$ is the image of $Anu$ in the $FindFathersMap$.  The notation for this is:</p>
 $$FindFathersMap(Anu) = Raaz \ .$$<p></p>
@@ -11812,15 +11812,18 @@ $$\left\{(x, f(x)): x \in \mathbb{X}, f(x) \in \mathbb{Y}\right\} \ .$$</p>
 <p>Now lets take a more mathematical looking function $f(x) = x^2$.</p>
 <p>Version 1 of this function is going to have a finite domain (only five elements).</p>
 <p>The domain is the set $\{-2, -1, 0, 1, 2\}$ and the range is the set $\{0, 1, 2, 3, 4\}$.</p>
-<p>The mapping for version 1 is $f(x) = x^2\,:\,\{-2, -1, 0, 1, 2\} \rightarrow \{0, 1, 2, 3, 4\}$.</p>
+<p>The mapping for version 1 is 
+$$f(x) = x^2\,:\,\{-2, -1, 0, 1, 2\} \rightarrow \{0, 1, 2, 3, 4\} \ .$$</p>
 <p><img src="images/xSquaredMap.png" alt="xSquaredMap.png" width="350"></p>
 <p>We can also represent this mapping as the set of ordered pairs $\{(-2,4), (-1,1), (0,0), (1,1), (2,4)\}$.</p>
 <p>Note that the values 2 and 3 in the range have no pre-image in the domain.  This is okay because not every element in the range needs to be mapped.</p>
 <p>Having a domain with only five elements in it is a bit restrictive:  how about an infinite domain?</p>
-<p>Version 2   $f(x) = x^2\,:\,\{\ldots, -2, -1, 0, 1, 2, \ldots\} \rightarrow \{0, 1, 2, 3, 4, \ldots\}$</p>
+<p>Version 2<br>
+$$f(x) = x^2\,:\,\{\ldots, -2, -1, 0, 1, 2, \ldots\} \rightarrow \{0, 1, 2, 3, 4, \ldots\}$$</p>
 <p>As ordered pairs, we now have $\{\ldots, (-2,4), (-1,1), (0,0), (1,1), (2,4), \ldots\}$, but it is impossible to write them all down since there are infinitely many elements in the domain.</p>
 <p>What if we wanted to use the function for the whole of $\mathbb{R}$, the real line?</p>
-<p>Version 3   $f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R}$.</p>
+<p>Version 3<br>
+$$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 
 </div>
 </div>
@@ -11870,10 +11873,107 @@ $$\left\{(x, f(x)): x \in \mathbb{X}, f(x) \in \mathbb{Y}\right\} \ .$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Maps-and-Functions-are-encoded-as-(i)-sets-of-ordered-pairs-or-as-(ii)-procedures.">Maps and Functions are encoded as (i) sets of ordered pairs or as (ii) procedures.<a class="anchor-link" href="#Maps-and-Functions-are-encoded-as-(i)-sets-of-ordered-pairs-or-as-(ii)-procedures.">&#182;</a></h2><h2 id="Example-1:">Example 1:<a class="anchor-link" href="#Example-1:">&#182;</a></h2><p>In Sage we can encode a map as a set of ordered pairs as follows.</p>
+<p>In a computer, maps or functions are encoded as (i) sets of ordered pairs or as (ii) procedures.</p>
+<h2 id="Example-1:--Encoding-a-map-as-a-set-of-ordered-pairs">Example 1:  Encoding a map as a set of ordered pairs<a class="anchor-link" href="#Example-1:--Encoding-a-map-as-a-set-of-ordered-pairs">&#182;</a></h2><p>In SageMath we can encode a map as a set of ordered pairs as follows.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">findFathersMap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Jenny&#39;</span><span class="p">:</span> <span class="s1">&#39;Jonathan&#39;</span><span class="p">,</span> <span class="s1">&#39;Cathy&#39;</span><span class="p">:</span> <span class="s1">&#39;Jonathan&#39;</span><span class="p">,</span> <span class="s1">&#39;Anu&#39;</span><span class="p">:</span> <span class="s1">&#39;Raaz&#39;</span><span class="p">,</span> <span class="s1">&#39;Ashu&#39;</span><span class="p">:</span> <span class="s1">&#39;Raaz&#39;</span><span class="p">}</span>
+<span class="n">findFathersMap</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;Anu&#39;: &#39;Raaz&#39;, &#39;Ashu&#39;: &#39;Raaz&#39;, &#39;Cathy&#39;: &#39;Jonathan&#39;, &#39;Jenny&#39;: &#39;Jonathan&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given a key (child) we can use the map to find the father.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">findFathersMap</span><span class="p">[</span><span class="s1">&#39;Anu&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Raaz&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">&quot;The father of Anu is&quot;</span><span class="p">,</span> <span class="n">findFathersMap</span><span class="p">[</span><span class="s1">&#39;Anu&#39;</span><span class="p">]</span>    <span class="c1"># we can use a print statement to make it flow</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The father of Anu is Raaz
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
