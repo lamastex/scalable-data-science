@@ -14552,8 +14552,7 @@ Remember that for SageMath, the names <code>Fred</code> and <code>Mary</code> ar
 <p>An <strong>experiment</strong> is an activity or procedure that produces distinct or well-defined outcomes.  The <em>set</em> of such outcomes is called the <strong>sample space</strong> of the experiment.  The sample space is usually denoted with the symbol $\Omega$.  Lets look at some examples of experiments.</p>
 <h3 id="Roll-a-dice-experiment">Roll a dice experiment<a class="anchor-link" href="#Roll-a-dice-experiment">&#182;</a></h3><p>If our experiment is to roll a dice wth faces painted $red$, $green$, $yellow$, $pink$, $blue$ and $black$ and find what colour the top face is at the end of each roll, then the sample space $\Omega = \{red, green, yellow, pink, blue, black\}$.</p>
 <h3 id="Flip-a-coin-experiment">Flip a coin experiment<a class="anchor-link" href="#Flip-a-coin-experiment">&#182;</a></h3><p>If our experiment is to flip a coin where the two faces of the coin can be identified as 'heads' ($H$) and 'tails' ($T$), and we are interested in what face lands uppermost, then the sample space is $\Omega = \{H, T\}$.</p>
-<p>Draw a fruit from a fruit bowl</p>
-<p>Suppose we have a well-mixed fruit bowl that contains:</p>
+<h3 id="Draw-a-fruit-from-a-fruit-bowl">Draw a fruit from a fruit bowl<a class="anchor-link" href="#Draw-a-fruit-from-a-fruit-bowl">&#182;</a></h3><p>Suppose we have a well-mixed fruit bowl that contains:</p>
 <ul>
 <li>2 oranges</li>
 <li>3 apples</li>
@@ -14594,7 +14593,13 @@ $$<p>Let's look at axioms 1, 2, and 3 above more closely.</p>
 <p>If $A$ and $B$ are disjoint (i.e., $A \cap B =  \emptyset$), then $N(A \cup B, n) = N(A, n) + N(B, n)$ since $A \cup B$ occurs if either $A$ or $B$ occurs but we know that it is impossible for both $A$ and $B$ to happen (the intersection is the empty set).  This extends to infinitely many disjoint events.</p>
 <p>Axiom 4 is a bit more controversial, but here we assume it as part of our axiomatic definition of probability (without it the maths is much harder!).</p>
 <p>Lets do some probability examples.</p>
-<h3 id="Example-1:-Tossing-a-fair-coin">Example 1: Tossing a fair coin<a class="anchor-link" href="#Example-1:-Tossing-a-fair-coin">&#182;</a></h3><p>$\Omega = \{H, T\}$, $P(H) = P(T) = \frac{1}{2}$</p>
+<h3 id="Example-1:-Tossing-a-fair-coin">Example 1: Tossing a fair coin<a class="anchor-link" href="#Example-1:-Tossing-a-fair-coin">&#182;</a></h3><p>The sample space and probabilties of this experiment are:</p>
+$$\Omega = \{H, T\}, \ \text{and} \ P(\{H\}) = P(\{T\}) = \frac{1}{2} \ .$$<p>We can represent our probability as the following function:</p>
+<ul>
+<li>$P : \{ \{H\} , \{T\}, \{H,T\}, \{\} \} \to \{0,\frac{1}{2},1\}$, </li>
+<li>with $P(\{H\})=\frac{1}{2}$, $P(\{T\})=\frac{1}{2}$, $P(\{H,T\})=1$ and $P(\{\})=0$.</li>
+</ul>
+<p><em>notational convenience:</em> The outcomes which are the elements in the the sample space are denoted without set brackets, for example: $P(\{H\})$ is denoted by $P(H)$ for brevity.</p>
 <p>Check that all our axioms are satisfied:</p>
 <ol>
 <li>yes! because: $0 \le P(H) = P(T) = \frac{1}{2} \le 1$ and $0 \le P(\Omega) = 1 \le 1$.</li>
@@ -14634,7 +14639,7 @@ $$
 <p>Recall that axiom 3 says that if $A_1 \cap A_2 = \emptyset$ then $P(A_1 \cup A_2) = P(A_1) + P(A_2)$</p>
 <p>So this implies that $P(A) + P(A^c) = P(\Omega) = 1$, by axiom 2 which says that $P(\Omega) = 1$</p>
 <p>Subtracting $P(A^c)$ from both sides, we get $P(A) + P(A^c) - P(A^c) = 1 - P(A^c)$</p>
-<p>Cancelling out the two $P(A^c)$ terms on the right hand side, we get $P(A) = 1 - P(A^c)$ $QED$</p>
+<p>Cancelling out the two $P(A^c)$ terms on the right hand side, we get $P(A) = 1 - P(A^c)$ .</p>
 <p>For example, in the coin tossing experiment, $\Omega = \{H, T\}$</p>
 $$P(H) = 1 - P(H^c) = 1 - P(\Omega \setminus H) = 1 - P(T)$$<h2 id="Property-2">Property 2<a class="anchor-link" href="#Property-2">&#182;</a></h2><p>For any two events $A$, $B$,</p>
 <p>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</p>
@@ -15405,7 +15410,7 @@ P( {&#39;orange&#39;, &#39;lemon&#39;, &#39;apple&#39;} ) =  1
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h2><p>Try working through Example 6 below for yourself in the tutorial.</p>
-<h3 id="Example-6:-Experiments-with-the-English-language">Example 6: Experiments with the English language<a class="anchor-link" href="#Example-6:-Experiments-with-the-English-language">&#182;</a></h3><p>In English language text there are 26 letters in the alphabet. The relative frequencies with which each letter appears is tabulated below:</p>
+<h3 id="Example-5:-Experiments-with-the-English-language">Example 5: Experiments with the English language<a class="anchor-link" href="#Example-5:-Experiments-with-the-English-language">&#182;</a></h3><p>In English language text there are 26 letters in the alphabet. The relative frequencies with which each letter appears is tabulated below:</p>
 <table border="1"><colgroup> <col width="20" /> <col width="30" /> <col width="20" /> <col width="30" /> <col width="20" /> <col width="30" /> </colgroup>
 <tbody>
 <tr>
@@ -15754,7 +15759,7 @@ P( {&#39;orange&#39;, &#39;lemon&#39;, &#39;apple&#39;} ) =  1
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The crucial point of the above exercise in our own implementation of a class for probability maps (for finite sample spaces) is to show how computers and mathematics can go hand in hand to quickly generalize operations over specific instances of a large class of mathemtical concepts.</p>
+<p>The crucial point of the above exercise in our own implementation of a class for probability maps (for finite sample spaces) is to show how computers and mathematics can go hand in hand to quickly generalize operations over specific instances of a large class of mathemtical concepts (Example 4 and 5 in our case).</p>
 
 </div>
 </div>
