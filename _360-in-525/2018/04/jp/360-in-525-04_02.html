@@ -13319,35 +13319,6 @@ Suppose, we want to</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">pi</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># 100 digits of pi via the .n(digits=?) method to cast pi as sage.rings.real_mpfr.RealNumber</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -13839,13 +13810,11 @@ Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">x</span>
-<span class="k">print</span> <span class="n">x</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">x</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">x</span>
 </pre></div>
 
 </div>
@@ -13856,13 +13825,116 @@ Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>sqrt(2)
-1.41421356237310
-1.41421356237309504880168872421
-</pre>
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>sqrt(2)</pre>
 </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># x is a sage symbolic expression</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;sage.symbolic.expression.Expression&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Many of the commands in SageMath/Python are "methods" of objects.</p>
+<p>That is, we access them by typing:</p>
+<ul>
+<li>the name of the mathematical object,</li>
+<li>a dot/period,</li>
+<li>the name of the method, and</li>
+<li>parentheses (possibly with an argument).</li>
+</ul>
+<p>This is a huge advantage, once you get familiar with it, because it allows you to do only the things that are possible, and all such things. See <a href="http://doc.sagemath.org/html/en/prep/Programming.html#methods-and-dot-notation">SageMath programming guide for more details on this</a>.</p>
+<p>Let's try to hit the Tab button after the <code>.</code> following <code>x</code> below to view all available methods for <code>x</code> which is currently <code>sqrt(2)</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">.</span>  <span class="c1">#  hit the Tab button after the &#39;.&#39; following &#39;x&#39; </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">n</span><span class="err">?</span> <span class="c1"># we can use ? after a method to get breif help</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># this gives a numerical approximation for x</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.414213562373095048801688724209698078569671875376948073176679737990732478462107038850387534327641573</pre>
+</div>
+
 </div>
 
 </div>
