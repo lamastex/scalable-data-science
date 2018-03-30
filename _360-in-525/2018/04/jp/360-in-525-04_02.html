@@ -13139,7 +13139,8 @@ Suppose, we want to</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can do arithmetic with real numbers, actually with <a href="http://www.mpfr.org/">http://www.mpfr.org/</a>'s multiprecision <a href="http://en.wikipedia.org/wiki/Floating_point">floating-point numbers</a>, and can combine them with integer and rational types in SageMath.</p>
 <p><em>Technical note:</em> Computers can be made to exactly compute in integer and rational arithmetic. But, because computers with finite memory (all computers today!) cannot represent the <a href="http://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument">uncountably infinitely many real numbers</a>, they can only mimic or approximate arithmetic over real numbers using finitely many computer-representable floating-point numbers.</p>
-<p>Compare the results of evaluating the expressions below to the equivalent expressions using rationals above.</p>
+<p>See <a href="http://doc.sagemath.org/html/en/prep/Quickstarts/NumAnalysis.html">SageMath Quick Start on Numerical Analysis</a> to understand SageMath's multiprecision real arithmetic.</p>
+<p>For now, let's compare the results of evaluating the expressions below to the equivalent expressions using rational numbers above.</p>
 
 </div>
 </div>
@@ -13472,6 +13473,7 @@ Suppose, we want to</p>
 <h2 id="Example-5:-Variables-and-assignments">Example 5: Variables and assignments<a class="anchor-link" href="#Example-5:-Variables-and-assignments">&#182;</a></h2><p>Loosely speaking one can think of a <em>variable</em> as a way of referring to a memory location used by a computer program. A variable is a symbolic name for this physical location. This memory location contains values, like numbers, text or more complicated types and crucially <em>what is contained in a variable can change</em> based on operations we do to it.</p>
 <p>In SageMath, the symbol <code>=</code> is the <em>assignment operator</em>.  You can assign a numerical value to a <em>variable</em> in SageMath using the assignment operator.  This is a good way to store values you want to use or modify later.</p>
 <p>(If you have programmed before using a a language like C or C++ or Java, you'll see that SageMath is a bit different because in SageMath you don't have to say what type of value is going to be assigned to the variable.)</p>
+<p>Feel free to take a deeper dive into <a href="https://en.wikipedia.org/wiki/Assignment_(computer_science)">the computer science concept of assignment</a>.</p>
 
 </div>
 </div>
@@ -13645,6 +13647,116 @@ Suppose, we want to</p>
 
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;type &#39;str&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also create a string by enclosing them in single quotes or three consecutive single quotes. In SageMath/Python a character (represented by the <code>char</code> type in languages like C/C++/Scala) is just a string made up of one character.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s1">&#39;this is a string&#39;</span>   <span class="c1"># assign a string to the variable myStr using single quotes</span>
+<span class="n">myStr</span>                        <span class="c1"># disclose myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this is a string&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;this is a string&#39;&#39;&#39;</span>   <span class="c1"># assign a string to the variable myStr using three consecutive single quotes</span>
+<span class="n">myStr</span>                            <span class="c1"># disclose myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this is a string&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using triple single quotes is especially useful if your string has single or double quotes within it. Triple quotes are often used to create <code>DocString</code> to document code in Pyhton/SageMath.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStrContainingQuotes</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;this string has &quot;a double quoted sub-string&quot; and some escaped characters: \,&#39;, - all OK!&#39;&#39;&#39;</span>
+<span class="n">myStrContainingQuotes</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this string has &#34;a double quoted sub-string&#34; and some escaped characters: \\,\&#39;, - all OK!&#39;</pre>
 </div>
 
 </div>
@@ -14870,6 +14982,7 @@ I ~ 1.00000000000000*I
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you want to actually round a number to a specific number of decimal places, you can also use the round(...) function.</p>
+<p>For deeper dive see documents on <a href="https://docs.python.org/2/library/stdtypes.html#numeric-types-int-float-long-complex">Python Numeric Types</a> and <a href="">SageMath Numeric Types</a></p>
 
 </div>
 </div>
@@ -15072,7 +15185,7 @@ $$\boxed{ A \cap B = \emptyset} \ .$$</p>
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>    <span class="c1"># we can assign the list to a variable myList</span>
 <span class="k">print</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>         <span class="c1"># print myList </span>
-<span class="nb">type</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>          <span class="c1"># and ask for its type</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>          <span class="c1"># and ask for its type </span>
 </pre></div>
 
 </div>

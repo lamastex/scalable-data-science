@@ -11873,8 +11873,67 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Mathematical-notation-for-functions">Mathematical notation for functions<a class="anchor-link" href="#Mathematical-notation-for-functions">&#182;</a></h3><p>There are many notations for functions and it is a good idea to familiarize ourselves with some of them via examples. Scroll down the url <a href="https://en.wikipedia.org/wiki/Function_(mathematics)#Notation">function notation</a> to become familiar with the following notations:</p>
+<ul>
+<li>$f: \mathbb{X} \to \mathbb{Y}$ or $\mathbb{X} \overset{f}{\to} \mathbb{Y}$ means $f$ is a function from $\mathbb{X}$ to $\mathbb{Y}$ </li>
+<li>and $y=f(x)$ means $y \in \mathbb{Y}$ is equal to $f(x)$, the image of the function evaluated at $x \in \mathbb{X}$</li>
+</ul>
+<p>Another convenient notation for a function is <em>maps to</em> denoted by $\mapsto$. For example, we can know the domain and range of a function and how it <em>maps</em> an argument <em>to</em> its image as follows:</p>
+<ul>
+<li>$f: \mathbb{N} \to \mathbb{Z}$ can be read as <ul>
+<li>"$f$ is a function from $\mathbb{N}$ (the set of natural numbers) to $\mathbb{Z}$ (the set of integers)" or</li>
+<li>"$f$ is a $\mathbb{Z}$-valued function of an $\mathbb{N}$-valued variable"</li>
+</ul>
+</li>
+<li>$x \mapsto 4-x$ can be read as "$x$ maps to $4-x$"</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Function_(mathematics)#Notation&quot;</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="300"
+            src="https://en.wikipedia.org/wiki/Function_(mathematics)#Notation"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>In a computer, maps or functions are encoded as (i) sets of ordered pairs or as (ii) procedures.</p>
-<h2 id="Example-1:--Encoding-a-map-as-a-set-of-ordered-pairs">Example 1:  Encoding a map as a set of ordered pairs<a class="anchor-link" href="#Example-1:--Encoding-a-map-as-a-set-of-ordered-pairs">&#182;</a></h2><p>In SageMath we can encode a map as a set of ordered pairs as follows.</p>
+<h2 id="Example-1:--Encoding-a-function-or-map-as-a-set-of-ordered-pairs">Example 1:  Encoding a function or map as a set of ordered pairs<a class="anchor-link" href="#Example-1:--Encoding-a-function-or-map-as-a-set-of-ordered-pairs">&#182;</a></h2><p>In SageMath we can encode a map as a set of ordered pairs as follows.</p>
 
 </div>
 </div>
@@ -11908,6 +11967,45 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">findFathersMap</span><span class="p">)</span>     <span class="c1"># find the type of findFathersMap</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;dict&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>findFathersMap</code> is a Python/SageMath built-in datatype called <code>dict</code> which is short for <code>dictionary</code>. We will see dictionaries in more detail soon (or if you are imaptient see <a href="https://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dict Python docs</a>). For now, we are taking a mathematical view and learning to implement functions or maps as a set of ordered pairs.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -11974,6 +12072,2094 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We could also encode our  <em>inverse map</em> of the <code>findFathersMap</code> as <code>findDaughtersMap</code>.  We map from one father key (e.g. Raaz) to multiple values for daughters (for Raaz, it is Anu and Ashu).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">findDaughtersMap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Jonathan&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Jenny&#39;</span><span class="p">,</span> <span class="s1">&#39;Cathy&#39;</span><span class="p">],</span> <span class="s1">&#39;Raaz&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Anu&#39;</span><span class="p">,</span> <span class="s1">&#39;Ashu&#39;</span><span class="p">]}</span>
+
+<span class="c1"># don&#39;t worry about the way we have done the printing below, just check the output makes sense to you!</span>
+<span class="k">for</span> <span class="n">fatherKey</span> <span class="ow">in</span> <span class="n">findDaughtersMap</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">fatherKey</span><span class="p">,</span> <span class="s2">&quot;has daughters:&quot;</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">findDaughtersMap</span><span class="p">[</span><span class="n">fatherKey</span><span class="p">]:</span>
+        <span class="k">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">child</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Raaz has daughters:
+	Anu
+	Ashu
+Jonathan has daughters:
+	Jenny
+	Cathy
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also use a map for a numerical function 
+$$y(x) = x^2 + 2: \{-2 ,-1 ,0, 1 ,2\} \to \{2, 3, 4, 5, 6\}$$ 
+by encoding this function as a set of ordered pairs 
+$$\{ (-2,6), (-1,3), (0,2), (1,3), (2,6)\}$$ 
+in SageMath as follows.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunctionMap</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">0</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+<span class="n">myFunctionMap</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{-2: 6, -1: 3, 0: 2, 1: 3, 2: 6}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Looking up the value or image of the keys in our domain $\{-2,-1,0,1,2\}$ works.  Note the <code>KeyError</code> message when the key is outside the domain.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunctionMap</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    <span class="c1"># this return the value or image of the argument or key -2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunctionMap</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span> <span class="c1"># KeyError: -20 since -20 is not in {-2,-1,0,1,2}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-2:-Encoding-function-as-a-procedure">Example 2: Encoding function as a procedure<a class="anchor-link" href="#Example-2:-Encoding-function-as-a-procedure">&#182;</a></h2><p>But it is clearly not a good way to try to specify a function mapping that can deal with lots of different $x$'s:  in fact it would be impossible to try to specify a mapping like this if we want the domain of the function to have infinitely many elements (for example, if the domain is the set of all integers, or all rational numbers, or a segment of the real line, for example $f(x) = x^2 + 2 : \mathbb{R} \rightarrow \mathbb{R}$).</p>
+<p>Instead, in SAGE we can just define our own <em>function as a procedure</em> that can evaluate our image value "on-the-fly" for any $x$ we want.   We'll be doing more on functions in later labs so for the moment just think about how defining the function can be seen as a much more flexible way of specifying a mapping from the arguments in the domain of the function to values or images in its range.</p>
+<h4 id="The-basics-steps-in-encoding-a-function-as-a-procedure-in-SageMath/Python:">The basics steps in encoding a function as a procedure in SageMath/Python:<a class="anchor-link" href="#The-basics-steps-in-encoding-a-function-as-a-procedure-in-SageMath/Python:">&#182;</a></h4><ol>
+<li>The function named <code>myFunc</code> we want to define for $x \mapsto x^2+2$ is preceeded by the keyword <code>def</code> for definition.</li>
+<li>The function name <code>myFunc</code> is succeeded by any input argument(s) to it within a pair of parentheses, for e.g., <code>(x)</code> in this case since there is only one argument, namely <code>x</code>.</li>
+<li>After we have defined the function by its name <code>myFunc</code> followed by its input argument <code>(x)</code> we end the line with a colon <code>:</code> before continuing to the next line.</li>
+<li>Now, we are ready to write the body of the function. It is a customary to leave 4 white spaces. The number of spaces before a line or the indentation is used to delineate a block of code in SageMath/Python.</li>
+<li>It is a matter of courteous programming practice to enclose the Docstring, i.e., comments on what the function does, inside triple quotes.  The Docstring is returned when we ask SageMath for help on the function.</li>
+<li>Finally, we output the image of our function with the keyword <code>return</code> and the expression <code>x^2+2</code>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>                                 <span class="c1"># starting the definition</span>
+    <span class="sd">&#39;&#39;&#39;A function to return x^2 + 2&#39;&#39;&#39;</span>         <span class="c1"># the docstring</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span>                               <span class="c1"># the function body (only one line in this example</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span>myFunc<span class="o">?</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you evaluate the above cell you should see something like this:</p>
+
+<pre><code>Signature:      myFunc(x)
+Docstring:      A function to return x^2 + 2
+Init docstring: x.__init__(...) initializes x; see help(type(x)) for signature
+File:           ~/all/git/scalable-data-science/_360-in-525/2018/04/jp/&lt;ipython-input-18-ac2a17246c36&gt;
+Type:           function</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>   <span class="c1"># use the function to calculate 0.1^2 + 2 with argument as a mpfr_real Literal</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.01000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you evaluate the cell below, SageMath will complain about an indentation error that you can easily fix.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A function to return x^2 + 2&#39;&#39;&#39;</span>
+     <span class="k">return</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The command to plot is pretty simple. The four arguments to plot are the function to be plotted, the input argument that is varying along the x-axis, the lower-bound and upper-bound of the input argument.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>plot  <span class="c1"># for help hit the DocString of the function</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can get a bit more control of the figure size (and other aspects) by first assigning the plot to a variable and using the show method as follows.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myPlot</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">myPlot</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+mJjntSIzM5OlS5dSv359h5VJIPTp04d3332X+fPnU7ly5Tzv88fPkZNaMfqjQ4cO0aZNG1asWMGM
+GTM4ePAgW7duBaB06dIUKlSIatWqkZSUxE033cTzzz/PgQMH6Nu3LykpKSQmJp7O5SXI7dixgw0b
+NrBp0yY8z+Obb77B8zwSExNJSEigRIkS9OjRg4EDB1KqVCni4uLo168fDRo0oE6dOq7LF5EA2rNn
+D9999x3e4WEM69evZ+XKlZQuXZpKlSrRv39/HnnkEc477zzOOecc7r//fs4666xj2sNIeOnVqxep
+qalMnz6d2NjY3IwRHx9P0aJF/fNz5DROzXk//vijFxUVlefN5/N5UVFR3oIFC3Kft2PHDq9z585e
+iRIlvJIlS3o9e/b09uzZczqXlhAwYcKE3O+Ho98efPDB3Ofs37/f69Onj1emTBmvePHiXtu2bb2t
+W7c6rFpEXPjoo4+O+3pxww035D7ngQce8M4880zvjDPO8Jo0aeJ9++23DiuWQDje90RUVJQ3ceLE
+3OcU9M8RzUoTEREROUyz0kREREQOUzASEREROUzBSEREROQwBSMRERGRwxSMRERERA5TMBIRERE5
+TMFIRERE5DAFIxEREZHDFIxEREREDlMwEhERETlMwUhERETksP8H907Q7wffbWAAAAAASUVORK5C
+YII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The simple plot command hides what is going on under the hood.  Before we understand the fundamentals of plotting, let us get a better appreciation for the ordered pairs $(x,f(x))$ that make up the curve in this plot.</p>
+<p>We can use SageMath to plot functions and add a way for you to interact with the plot.   When you have evaluated this cell you'll see a plot of our function between $x=-20$ and $x=20$.   The point on the curve where $x=3$ is indicated in red.   You can alter the position of this point by putting a new value into the box at the top of the display (you can put in real number, eg 4.45, but if your number is outside the range -20 to 20 it won't be shown.   Just try changing the value of x to plot as a point on the curve and don't worry about the way the code looks - you aren't expected to do this yourselves (at least not yet).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Don&#39;t worry about this code and just interact with its output cell by changing the value in the box labelled x</span>
+<span class="nd">@interact</span>
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">my_x</span><span class="o">=</span><span class="n">input_box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$x$&quot;</span><span class="p">)):</span>
+    <span class="n">myPt</span> <span class="o">=</span> <span class="p">(</span><span class="n">my_x</span><span class="p">,</span> <span class="n">myFunc</span><span class="p">(</span><span class="n">my_x</span><span class="p">))</span>
+    <span class="n">myLabel</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">%.1f</span><span class="s2">, </span><span class="si">%.1f</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">myPt</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">myFunc</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">my_x</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">20</span> <span class="ow">and</span> <span class="n">my_x</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">+=</span> <span class="n">point</span><span class="p">(</span><span class="n">myPt</span><span class="p">,</span><span class="n">rgbcolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">+=</span> <span class="n">text</span><span class="p">(</span><span class="n">myLabel</span><span class="p">,</span> <span class="p">(</span><span class="n">my_x</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span><span class="n">myFunc</span><span class="p">(</span><span class="n">my_x</span><span class="p">)),</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Define a more complicated function with four input arguments next. The rules for defining such a function are as before with the additional caveat of declaring all four input arguments inside the pair of parenthesis following the name of the function. In the cell below you will have to uncomment one line and then evaluate the cell to define the function (remember that comments begin with the <code>#</code> character).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Here is a quadratic function of x with three additional parameters a,b,c</span>
+<span class="k">def</span> <span class="nf">myQuadFunc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A function to return a*x^2 + b*x + c&#39;&#39;&#39;</span>
+    <span class="c1">#return a*x^2 + b*x + c</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now try writing an expression to find out what <code>myQuadFunc</code> is for some values of <code>x</code> and coefficients <code>a=1</code>, <code>b=0</code>, <code>c=2</code>.</p>
+<p>We have put the expression that uses these coefficients and <code>x=10</code> into the cell below for you.</p>
+<p>Can you see how Sage interprets the expression using the order in which we specified <code>a, b, c, x</code> in the definition above?</p>
+<p>Try changing the expression to evaluate the function with same coefficients <code>(a, b, c)</code> but different values of <code>x</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myQuadFunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># a = 1, b = 0, c = 2, x = 10</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># we can make the same plot as before by letting a=1, b=0, c=2</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">myQuadFunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-3:-Polymorphism-and-Type-Errors">Example 3: Polymorphism and Type Errors<a class="anchor-link" href="#Example-3:-Polymorphism-and-Type-Errors">&#182;</a></h2><p>You can call the same function <code>myFunc</code> with different <code>types</code> and the operations in the body of the function, such a s power (<code>^</code>) and addition (<code>+</code>), will be automatically evaluated for the input type. This can be quite convenient!</p>
+<p>When code is written without mention of any specific type and thus can be used transparently with any number of new types we are experiencing the concept of <a href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)">polymorphism</a> (parametric plymorphism or generic programming).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>   <span class="c1"># use the function to calculate 0.1^2 + 2 with argument as a Python float</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.01</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>         <span class="c1"># use the function to calculate 0.1^2 + 2 with argument as a Sage Rational</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>201/100</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1"># use the function to calculate 0.1^2 + 2 with argument as a Sage Integer</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>       <span class="c1"># use the function to calculate 0.1^2 + 2 with argument as a Sage Rational</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>      <span class="c1"># calling myFunc on an input string argument results in a TypeError</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We should see something like:</p>
+
+<pre><code>TypeError: unsupported operand parent(s) for +: '&lt;type 'str'&gt;' and 'Integer Ring'</code></pre>
+<p>This is because in the body of <code>myFunc(x)</code> we have <code>x^2+2</code> where <code>x^2</code> is added to <code>2</code> using thr <code>+</code> operator, where <code>2</code> is a SageMath type <code>Integer</code>. And when we pass in the string <code>hello</code> for <code>x</code> by evaluating <code>myFunc('hello')</code> we are running into the mentioned <code>TypeError</code> of unsupported operand parents for <code>+</code>.</p>
+<p>Interestingly, integer power of a string using the <code>^</code> operator is well defined as illustrated for <code>hello</code> below!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="s1">&#39;hello&#39;</span><span class="o">^</span><span class="mi">2</span>  <span class="c1"># or &#39;hello&#39;^2 = &#39;hellohello&#39;, i.e., &#39;hello&#39; concatenated with itself two times</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;hellohello&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="s1">&#39;hi&#39;</span><span class="o">^</span><span class="mi">3</span>   <span class="c1"># or &#39;hi&#39;^3 = &#39;hihihi&#39;, i.e., &#39;hi&#39; concatenated with itself three times</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[54]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;hihihi&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Also, addition of two string is also defined as concatenation:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="s1">&#39;hello&#39;</span><span class="o">+</span><span class="s1">&#39;hey&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;hellohey&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Just to illustrate this, we next write a function named <code>myFunc2</code> that returns <code>x^2+x</code> and will work for any input argument for which the operations of <code>^2</code> and <code>+</code> are well-defined for their operand parent types.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myFunc2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;square x and add x to it&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc2</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[50]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.110000000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myFunc2</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>             <span class="c1"># &#39;hi&#39;^2 + &#39;hi&#39; = &#39;hihi&#39;+&#39;hi&#39; = &#39;hihihi&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;hihihi&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark:</strong> such parametric polymorphism can be convenient but it can also have unintended consequences when you run the program. So be cautious!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-4:-Mathematical-functions">Example 4: Mathematical functions<a class="anchor-link" href="#Example-4:-Mathematical-functions">&#182;</a></h2><p>Many familiar mathematical functions such as $\sin$, $\cos$, $\log$, $\exp$ are also available directly in SageMath as <em>built-in</em> functions.  They can be evaluated using parenthesis (brackets) as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[57]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s1">&#39;sin(pi) prints as&#39;</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sin(pi) prints as 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># understand the output of each line and the symbolic/numeric expressions being evaluated and printed</span>
+<span class="k">print</span> <span class="s1">&#39;cos(1/2) prints as&#39;</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;cos(1/2).n(digits=5) prints as&#39;</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;float(cos(1/2)) prints as&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span> <span class="s1">&#39;cos(0.5) prints as&#39;</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s1">&#39;exp(2*pi*e) prints as&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">e</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s1">&#39;log(10) prints as&#39;</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;log(10).n(digits=5) prints as&#39;</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;float(log(10)) prints as&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span> <span class="s1">&#39;log(10.0) prints as&#39;</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>cos(1/2) prints as cos(1/2)
+cos(1/2).n(digits=5) prints as 0.87758
+float(cos(1/2)) prints as 0.87758256189
+cos(0.5) prints as 0.877582561890373
+exp(2*pi*e) prints as e^(2*pi*e)
+log(10) prints as log(10)
+log(10).n(digits=5) prints as 2.3026
+float(log(10)) prints as 2.30258509299
+log(10.0) prints as 2.30258509299405
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>You can find out what built-in functions are available for a particular variable by typing the variable name followed by a <code>.</code> and then pressing the TAB key.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">=-</span><span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">.</span>  <span class="c1"># place the cursor after the . and press Tab</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Try the <code>abs</code> function that evaluates the absolute value of <code>x</code> that is one of the methods available for <code>x</code>.</p>
+<p>Here are two ways of calling <code>abs</code> method for <code>x</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="c1"># </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember to ask for help!</p>
+<p>If you want to know what a built-in function does, type the function name prepended by a '?'.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>abs
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Collections-in-Sage">Collections in Sage<a class="anchor-link" href="#Collections-in-Sage">&#182;</a></h1><p>We have already talked about the SageMath and Python number types and a little about the string type.   You have also met sets in SageMath with a brief mention of lists.   A set and list in Sage are, loosely speaking, examples of collection types.   Collections are a useful idea: grouping or collecting together some data (or variables) so that we can refer to it and use it collectively.</p>
+<p>SageMath provides quite a few collections.  One that we will meet very often is the list, <a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">a built-in sequence type in Python</a>) like the strings we have already seen. See <a href="https://docs.python.org/2/tutorial/datastructures.html">Python tutorial for built-in data structures</a>.</p>
+<h2 id="Example-1:-Lists">Example 1: Lists<a class="anchor-link" href="#Example-1:-Lists">&#182;</a></h2><p>Technically, a <em>list</em> in SageMath/Python is a <em>sequence type</em>.   This basically means that the order of the things in the list is imporant and we can use concepts related to ordering when we work with a list. More specifically, a list is a <em>mutable sequence type</em>. This just means that you can change or mutate the contents of the list.</p>
+<p>Don't worry about these details (unless you are interested in them of course and follow links below), but for now just look at the worksheet cells below to see how useful and flexible lists are.</p>
+<p>When you want a list in SageMath you put the things in the list inside <code>[</code> <code>]</code> called square brackets.   You can put almost anything in a list (including having lists of lists, as we'll see later).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="p">[]</span>     <span class="c1"># an empty list</span>
+<span class="n">L1</span>          <span class="c1"># display L1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;lemon&#39;</span><span class="p">]</span>   <span class="c1"># a list of strings - remember that strings are within quote marks</span>
+<span class="n">L2</span>                                  <span class="c1"># display L2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;orange&#39;, &#39;apple&#39;, &#39;lemon&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;banana&#39;</span><span class="p">)</span>                 <span class="c1"># append something to the end of a list</span>
+<span class="n">L2</span>                                  <span class="c1"># display L2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[70]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;orange&#39;, &#39;apple&#39;, &#39;lemon&#39;, &#39;banana&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span> <span class="p">,</span><span class="mi">13</span><span class="p">]</span>               <span class="c1"># a list of integers</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>                            <span class="c1"># type of L3 is</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[72]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;list&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are various functions and methods we can use with lists.  For a more exhaustive dive see <a href="https://docs.python.org/2/library/index.html">Python standard library docs</a> specifically for the methods on lists that are:</p>
+<ul>
+<li><a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">common to all sequence types</a> and </li>
+<li><a href="https://docs.python.org/2/library/stdtypes.html#mutable-sequence-types">common to mutable sequence types</a>.</li>
+</ul>
+<p>In the interest of time, we are going to only familiarize ourselves with the immediately useful methods and learn new ones as we need them.</p>
+<p>A very useful one is <code>len</code>, which gives us the length of the list, i.e., the number of elements in the list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[73]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What about getting at the elements in a list once we have put them in?   This is done by indexing into the list, or list indexing .   Slightly confusingly, once you have a list, you index into it by using the <code>[ ]</code> brackets again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                               <span class="c1"># the first position in the list is</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[74]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that in SageMath the first position in the list is at position 0, or index [0] not at index [1].   In the list <code>L3</code>, which has 4 elements (<code>len(L3) = 4</code>), the indices are <code>[0]</code>, <code>[1]</code>, <code>[2]</code> and <code>[3]</code>.   In the cell below you can check what you get when you ask for the element at the fourth position in the list (i.e., index <code>[3]</code> since the indexes start from <code>[0]</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L3</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[75]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>13</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You will get an error message if the index you use is out of range (which means that you are trying to refer to something outside the range of the list).   SageMath/Python "knows" that the list only has 4 elements, so asking for the element in the fifth position (index <code>[4]</code>) makes no sense and you get an <code>IndexError: list out of range</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L3</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also get at more than one element in the list with the indexing operator <code>[ ]</code>, by using <code>:</code> to indicate all elements from a position to another position.   This <em>slicing</em> of a list is hard to explain in words but easy to see in action.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L3</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>                        <span class="c1"># elements in positions 0 to 2 in list L3 are</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[10, 11]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you leave out the starting and ending positions and just use <code>[:]</code> you'll get the whole list.   This is useful for making copies of whole lists.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L4</span> <span class="o">=</span> <span class="n">L3</span><span class="p">[:]</span>
+<span class="n">L4</span>             <span class="c1"># disclose L4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[78]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[10, 11, 12, 13]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>SageMath also provides some helpful ways to make lists quickly.   The one you'll use most often is range.   Used in its most simple form, <code>range(n)</code> gives you a list of <code>n</code> integers from <code>0</code> to <code>n-1</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L5</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                      <span class="c1"># a quick way to make a list of 10 numbers starting from 0</span>
+<span class="n">L5</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the numbers you get start from <code>0</code> and the last one is <code>9</code>.</p>
+<p>You'll see that we can get even cleverer and use range to get a list that starts and stops at specified numbers with a specified step size between the numbers.   Let's try this to get numbers in steps of <code>5</code> from <code>100</code> to <code>145</code>, in the cell below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">L6</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>   <span class="c1"># get a list with a specified start, stop and step </span>
+<span class="n">L6</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[81]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[100, 105, 110, 115, 120, 125, 130, 135, 140, 145]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that again we don't go right up to the "stop" number (<code>200</code>) but to the last one below it taking into account our step size (<code>5</code>), ie <code>145</code>.</p>
+<p>When we just asked for <code>range(10)</code> SageMath assumed a default start of <code>0</code> and a default step of <code>1</code>. Thus,  <code>range(10)</code> is equivalent to <code>range(0, 10, 1)</code>.</p>
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Find out more about list and range by evaluating the cells below and looking at the Python docs (see links above) or just via DocStrings.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>range
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">)</span>   <span class="c1"># or use help for brief DocStrings</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on method_descriptor:
+
+append(...)
+    L.append(object) -- append object to end
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Make yourself a list with some elements in it; you can choose how many elements to have and what type they are.<br>
+Assign the list to a variable named <code>myList</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Add a new element to <code>myList</code> using the <code>.append</code> method.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the nice way of copying we showed you above (remember, <code>[:]</code>) to copy everything in <code>myList</code> to a new list called <code>myNewList</code>.  Use the <code>len</code> function to check the length of your new list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the indexing operator <code>[ ]</code> to find out what the first element in <code>myList</code> is (remember that the index of the first element will be <code>0</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the indexing opertor <code>[ ]</code> to change the first element in <code>myNewList</code> to some different value.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Disclose the original list, <code>myList</code>, to check that nothing in that has changed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use range to make a list of the integer numbers between <code>4</code> and <code>16</code>, going up in steps of <code>4</code>.  Assign this list to a variable named <code>rangeList</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Disclose your list rangeList to check the contents.  You should have the values <code>4</code>, <code>8</code>, <code>12</code>, <code>16</code>.  If you don't, check what you asked for in the cell above and fix it up to give the values that you wanted.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
