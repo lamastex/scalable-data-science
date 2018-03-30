@@ -14642,46 +14642,13 @@ I ~ 1.00000000000000*I
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="mf">3.3</span> <span class="o">//</span> <span class="mf">2.0</span> <span class="c1"># this will give error - floor division is undefined for Sage real literals</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-201-f41c41ed5947&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>RealNumber<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;3.3&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">//</span> RealNumber<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;2.0&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># uncommenting and evaluating this will give error - floor division is undefined for Sage real literals</span>
-
-<span class="ansi-green-fg">/home/raazesh/all/software/sage/SageMath/src/sage/structure/element.pyx</span> in <span class="ansi-cyan-fg">sage.structure.element.Element.__floordiv__ (build/cythonized/sage/structure/element.c:13318)</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">   1814</span>         cdef int cl <span class="ansi-blue-fg">=</span> classify_elements<span class="ansi-blue-fg">(</span>left<span class="ansi-blue-fg">,</span> right<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1815</span>         <span class="ansi-green-fg">if</span> HAVE_SAME_PARENT<span class="ansi-blue-fg">(</span>cl<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1816</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&lt;</span>Element<span class="ansi-blue-fg">&gt;</span>left<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>_floordiv_<span class="ansi-blue-fg">(</span>right<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1817</span>         <span class="ansi-green-fg">if</span> BOTH_ARE_ELEMENT<span class="ansi-blue-fg">(</span>cl<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1818</span>             <span class="ansi-green-fg">return</span> coercion_model<span class="ansi-blue-fg">.</span>bin_op<span class="ansi-blue-fg">(</span>left<span class="ansi-blue-fg">,</span> right<span class="ansi-blue-fg">,</span> floordiv<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/home/raazesh/all/software/sage/SageMath/src/sage/structure/element.pyx</span> in <span class="ansi-cyan-fg">sage.structure.element.Element._floordiv_ (build/cythonized/sage/structure/element.c:13639)</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">   1849</span>             python_op <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&lt;</span>object<span class="ansi-blue-fg">&gt;</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>_floordiv_
-<span class="ansi-green-intense-fg ansi-bold">   1850</span>         <span class="ansi-green-fg">except</span> AttributeError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1851</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> bin_op_exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;//&#39;</span><span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">,</span> other<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1852</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1853</span>             <span class="ansi-green-fg">return</span> python_op<span class="ansi-blue-fg">(</span>other<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">TypeError</span>: unsupported operand parent(s) for //: &#39;Real Field with 53 bits of precision&#39; and &#39;Real Field with 53 bits of precision&#39;</pre>
-</div>
-</div>
-
 </div>
 </div>
 
