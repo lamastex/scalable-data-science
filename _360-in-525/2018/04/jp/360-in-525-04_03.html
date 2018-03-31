@@ -15436,6 +15436,7 @@ Remember that for SageMath, the names <code>Fred</code> and <code>Mary</code> ar
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Probability">Probability<a class="anchor-link" href="#Probability">&#182;</a></h1><p>The origins of probability can be traced back to the 17th century.  It arose out of the study of gambling and games of chance.  Many well-known names associated with probability worked on problems to do with gambling:  people like Bernoulli and Pascal did quite a lot of work in this area ...  even Newton was persuaded to set down some of his thoughts about a game involving dice (in a letter to a Samuel Pepys).</p>
+<p>Dive into the main wikipedia article <a href="https://en.wikipedia.org/wiki/Probability">here</a> for more details. Here, we will take the shortest mathemtical path to understanding probability.</p>
 <p>Probability has a language of its own.  We are going to introduce you to some of the essential terms:</p>
 <p>An <strong>experiment</strong> is an activity or procedure that produces distinct or well-defined outcomes.  The <em>set</em> of such outcomes is called the <strong>sample space</strong> of the experiment.  The sample space is usually denoted with the symbol $\Omega$.  Lets look at some examples of experiments.</p>
 <h3 id="Roll-a-dice-experiment">Roll a dice experiment<a class="anchor-link" href="#Roll-a-dice-experiment">&#182;</a></h3><p>If our experiment is to roll a dice wth faces painted $red$, $green$, $yellow$, $pink$, $blue$ and $black$ and find what colour the top face is at the end of each roll, then the sample space $\Omega = \{red, green, yellow, pink, blue, black\}$.</p>
@@ -15519,7 +15520,7 @@ $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Aside:</em> The set of all possible subsets of $\Omega$ is called the power set and is denoted by $2^{\Omega}$.  The power set contains all events of a sample space is a natural domain for the probability function.  More on this later!</p>
+<p><em>Aside:</em> The set of all possible subsets of $\Omega$ is called the power set and is denoted by $2^{\Omega}$.  The power set contains all events of a sample space and is a natural domain for the probability function defined on a sample space with finitely many outcomes.  We will see more on this later but if you are impatient see <a href="https://en.wikipedia.org/wiki/Event_(probability_theory)#Events_in_probability_spaces">here</a>.</p>
 <p>Now, having introduced a number of definitions, we will derive some basic logical consequences, (i.e., properties) of probabilities (axiomatically defined).</p>
 <h2 id="Property-1">Property 1<a class="anchor-link" href="#Property-1">&#182;</a></h2><p>$P(A) = 1 - P(A^c)$, where $A^c = \Omega \setminus A$ is the complement of $A$.</p>
 <p><strong>Proof</strong></p>

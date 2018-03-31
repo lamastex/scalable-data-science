@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>360-in-525-04_00</title>
+<title>360-in-525-04_04</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11755,150 +11755,75 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="00.-Introduction">00. Introduction<a class="anchor-link" href="#00.-Introduction">&#182;</a></h1><h2 id="Mathematical-Statistical-and-Computational-Foundations-for-Data-Scientists"><a href="https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/">Mathematical Statistical and Computational Foundations for Data Scientists</a><a class="anchor-link" href="#Mathematical-Statistical-and-Computational-Foundations-for-Data-Scientists">&#182;</a></h2><p>&copy;2018 Raazesh Sainudiin. <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0 International (CC BY 4.0)</a></p>
+<h1 id="04.-Conditional-Probability,-Random-Variables,-Loops-and-Conditionals">04. Conditional Probability, Random Variables, Loops and Conditionals<a class="anchor-link" href="#04.-Conditional-Probability,-Random-Variables,-Loops-and-Conditionals">&#182;</a></h1><h2 id="Mathematical-Statistical-and-Computational-Foundations-for-Data-Scientists"><a href="https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/">Mathematical Statistical and Computational Foundations for Data Scientists</a><a class="anchor-link" href="#Mathematical-Statistical-and-Computational-Foundations-for-Data-Scientists">&#182;</a></h2><p>&copy;2018 Raazesh Sainudiin. <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0 International (CC BY 4.0)</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Topics:">Topics:<a class="anchor-link" href="#Topics:">&#182;</a></h3><ul>
+<li>Probability</li>
+<li>Independence</li>
+<li>Conditional Probability</li>
+<li>Bayes Theorem</li>
+<li>Random Variables</li>
+<li>For loops</li>
+<li>Conditional Statements</li>
+</ul>
+<h1 id="Probability">Probability<a class="anchor-link" href="#Probability">&#182;</a></h1><h3 id="(continued-from-360-in-525-04_03)">(continued from 360-in-525-04_03)<a class="anchor-link" href="#(continued-from-360-in-525-04_03)">&#182;</a></h3><h3 id="Recap-on-probability">Recap on probability<a class="anchor-link" href="#Recap-on-probability">&#182;</a></h3><p>An experiment is an activity or procedure that produces distinct or well-defined outcomes.  The set of such outcomes is called the sample space of the experiment.  The sample space is usually denoted with the symbol $\Omega$.</p>
+<p>An event is a subset of the sample space.</p>
+<p>Probability is a function that associates each event in a set of events (denoted by $\{ \text{ events }\}$) with a real number in the range 0 to 1 (denoted by $[0,1]$):</p>
+$$P : \{ \text{ events } \} \rightarrow [0,1]$$<p>while satisfying the following axioms:</p>
 <ol>
-<li>Introduction</li>
-<li>What is SageMath and why are we using it?</li>
-<li>Interaction  - learning/teaching style</li>
-<li>What can you expect to get out of this course? </li>
+<li>For any event $A$, $ 0 \le P(A) \le 1$.</li>
+<li>If $\Omega$ is the sample space, $P(\Omega) = 1$.</li>
+<li>If $A$ and $B$ are disjoint (i.e., $A \cap B =  \emptyset$), then $P(A \cup B) = P(A) + P(B)$.</li>
+<li>If $A_1, A_2, \ldots$ is an infinite sequence of pair-wise disjoint events (i.e., $A_i \cap A_j =  \emptyset$ when $i \ne j$), then
+$$
+\begin{array}{lcl}
+\underbrace{P\left(\bigcup_{i=1}^{\infty}A_i\right)} &=& \underbrace{\sum_{i=1}^{\infty}P\left(A_i\right)} \\
+A_1 \cup A_2 \cup A_3 \dots &=& P(A_1) + P(A_2) + P(A_3) + \ldots
+\end{array}
+$$</li>
 </ol>
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>This is a course over three full-day workshops (3 hp) on May 11, 18 and 25 2018.</p>
-<p><em>Prerequisites:</em> current proficiency in high-school level mathematics (pre-calculus, geometry and algebra with some programming experience beyond Excel).</p>
-<p><em>Target Audience:</em> any MSc or PhD student at UU who wants to understand the mathematical statistical foundations in the data scientist’s computational toolbox. The approach will use formal mathematical communication of concepts starting from sets and logic, but with concomitant development of computer programming skills to algorithmically construct and implement the concepts. Topics will include: Sets, Maps, Functions, Modular Arithmetic, Axiomatic Probability, Conditional probability, Pseudo-random constructive understanding of random variables and structures including graphs, Statistics, Likelihood Principle, Bayes Rule, Decisions (parametric and non-parametric) including tests and estimators, Markov chains and their pseudorandom constructions, etc.</p>
-<p>This course is designed to help you take the first steps along the mathematical-statistical-computational path of being a data scientist.</p>
-<h2 id="What-is-SageMath-and-why-are-we-using-it?">What is SageMath and why are we using it?<a class="anchor-link" href="#What-is-SageMath-and-why-are-we-using-it?">&#182;</a></h2><p>We will be using Sage or <a href="http://www.sagemath.org/">SageMath</a> for our <em>hands-on</em> work in this course. Sage is a free open-source mathematics software system licensed under the GPL.  Sage can be used to study mathematics and statistics, including algebra, calculus, elementary to very advanced number theory, cryptography, commutative algebra, group theory, combinatorics, graph theory, exact linear algebra, optimization, interactive data visualization, randomized or Monte Carlo algorithms, scientific and statistical computing and much more. It combines various software packages into an integrative learning, teaching and research experience that is well suited for novice as well as professional researchers.</p>
-<p>Sage is a set of software libraries built on top of <a href="http://www.python.org/">Python</a>, a widely used general purpose programming language. Sage greatly enhance Python's already mathematically friendly nature. It is one of the languages used at Google, US National Aeronautic and Space Administration (NASA), US Jet Propulsion Laboratory (JPL), Industrial Light and Magic, YouTube, and other leading entities in industry and public sectors. Scientists, engineers, and mathematicians often find it well suited for their work. Obtain a more thorough rationale for Sage from <a href="http://www.sagemath.org/library/why.html" target="_blank">Why Sage?</a> and <a href="http://www.sagemath.org/library/stories.html" target="_blank">Success Stories, Testimonials and News Articles</a>. Jump start your motivation by taking a <a href="http://www.sagemath.org/tour.html" target="_blank">Sage Feature Tour</a> right now!</p>
-<h2 id="Interaction---learning/teaching-style">Interaction - learning/teaching style<a class="anchor-link" href="#Interaction---learning/teaching-style">&#182;</a></h2><p>This is an interactive jupyter notebook with SageMath interpreter and interactive means...</p>
-<h4 id="Videos">Videos<a class="anchor-link" href="#Videos">&#182;</a></h4><p>We will embed relevant videos in the notebook, such as those from <a href="http://www.khanacademy.org/">The Khan Academy</a> or open MOOCs from google, facebook, academia, etc.</p>
-<p><a href="https://www.youtube.com/embed/D4FQsYTbLoI"><img src="http://img.youtube.com/vi/D4FQsYTbLoI/0.jpg" alt="Hal varian&#39;s dream job speech"></a></p>
-<h4 id="Latex">Latex<a class="anchor-link" href="#Latex">&#182;</a></h4><p>We will <em>formally present mathematical and statistical concepts</em> in the Notebook using Latex as follows:</p>
-$$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \times 6 = 360 $$$$ \binom{n}{k}:= \frac{n!}{k!(n-k)!}, \qquad \lim_{x \to \infty}\exp{(-x)} = 0 $$$$ \{\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \mu,\theta, \vartheta, \phi, \varphi, \omega, \sigma, \varsigma,\Gamma, \Delta, \Theta, \Phi, \Omega\}, \qquad \forall x \in X, \quad \exists y \leq \epsilon, \ldots $$<h4 id="Interactive-Visualizations">Interactive Visualizations<a class="anchor-link" href="#Interactive-Visualizations">&#182;</a></h4><p>We will use interactive visualisations to convey concepts when possible. See the Taylor approximation below for a given order.</p>
+<h4 id="Property-1">Property 1<a class="anchor-link" href="#Property-1">&#182;</a></h4><p>$P(A) = 1 - P(A^c)$, where $A^c = \Omega \setminus A$</p>
+<h4 id="Property-2">Property 2<a class="anchor-link" href="#Property-2">&#182;</a></h4><p>For any two events $A$, $B$,</p>
+<p>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</p>
+<p>The idea in Property 2 generalises to the <em>inclusion-exclusion formula</em> as follows:</p>
+<p>Let $A_1, A_2, \ldots, A_n$ be any $n$ events.  Then,</p>
+$$
+\begin{array}{lcl}
+P\left(\bigcup_{i=1}^n A_i \right) 
+&=& \sum_{i=1}^nP(A_i) \, - \, \sum_{i<j}P(A_i \cap A_j) \\ 
+&\,& \quad + \, \sum_{i<j<k}P(A_i \cap A_j \cap A_k) + \ldots + (-1)^{n+1}P(A_1 \cap A_2 \cap \ldots \cap A_n) \end{array}
+$$<p>In words, we take all the possible intersections of one, two, three, $\ldots$, $n$ events and let the signs alternate to more carefully account for multiple countings.</p>
+<h3 id="Question">Question<a class="anchor-link" href="#Question">&#182;</a></h3><p>Does the inclusion-exclusion formula agree with the extended Axiom 3: If $A_1, A_2, \ldots, A_n$ are pair-wise disjoint events then $P\left( \bigcup_{i=1}^n A_i \right) = \sum_{i=1}^nP(A_i)$?</p>
+<h3 id="The-domain-of-the-probability-function">The domain of the probability function<a class="anchor-link" href="#The-domain-of-the-probability-function">&#182;</a></h3><p>What exactly is stipulated by the axioms about the domain of the probability function?</p>
+<p>The domain should be a sigma-field ($\sigma$-field) or sigma-algebra ($\sigma$-algebra), denoted $\sigma(\Omega)$ or $\mathcal{F}$ such that:</p>
+<ul>
+<li>$\Omega \in \, \mathcal{F}$</li>
+<li>$ A \in \mathcal{F} \Rightarrow A^c \in \, \mathcal{F}$</li>
+<li>$A_1, A_2, \ldots \in \mathcal{F} \Rightarrow \cup A_i \in \, \mathcal{F}$</li>
+</ul>
+<p>We will not use the full machinery of sigma-algebras in this course as it requires more formal training in mathemtics but it is important to know what's under the hood of the domain of our probability function; in case we need to <a href="https://en.wikipedia.org/wiki/Sigma-algebra">dive deeper into sigma-algebras</a> for more compicated probabilistic models of our data.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">var</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">x0</span>  <span class="o">=</span> <span class="mi">0</span>
-<span class="n">f</span>   <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-<span class="n">p</span>   <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">dot</span> <span class="o">=</span> <span class="n">point</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)),</span><span class="n">pointsize</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="n">rgbcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="o">.</span><span class="mi">12</span><span class="p">]):</span>
-    <span class="n">ft</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">taylor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">order</span><span class="p">)</span>
-    <span class="n">pt</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">ft</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$f(x)\;=\;</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="k">latex</span>(f)))
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$\hat{f}(x;</span><span class="si">%s</span><span class="s1">)\;=\;</span><span class="si">%s</span><span class="s1">+\mathcal{O}(x^{</span><span class="si">%s</span><span class="s1">})$&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">latex</span><span class="p">(</span><span class="n">ft</span><span class="p">),</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
-    <span class="n">show</span><span class="p">(</span><span class="n">dot</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pt</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Lab-Lecture-Style-of-Teaching-Learning">Lab-Lecture Style of Teaching-Learning<a class="anchor-link" href="#Lab-Lecture-Style-of-Teaching-Learning">&#182;</a></h4><p>We will <em>write computer programs</em> within code cells in the Notebook right after we learn the mathematical and statistical concepts.</p>
-<p>Thus, there is a significant overlap between traditional lectures and labs in this course -- in fact these interactions are <em>lab-lectures</em>.</p>
-<h4 id="Live-Data-Explorations-and-Modeling">Live Data Explorations and Modeling<a class="anchor-link" href="#Live-Data-Explorations-and-Modeling">&#182;</a></h4><p>Let us visualize the CO2 data, fetched from US NOAA, and do a simple linear regression.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Author: Marshall Hampton </span>
-<span class="kn">import</span> <span class="nn">urllib2</span> <span class="kn">as</span> <span class="nn">U</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="kn">as</span> <span class="nn">Stat</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">co2data</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_mlo.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-<span class="n">datalines</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">a_line</span> <span class="ow">in</span> <span class="n">co2data</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">a_line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;Creation:&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">cdate</span> <span class="o">=</span> <span class="n">a_line</span>
-    <span class="k">if</span> <span class="n">a_line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">a_line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">temp</span> <span class="k">if</span> <span class="n">q</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
-        <span class="n">datalines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
-<span class="n">trdf</span> <span class="o">=</span> <span class="n">RealField</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">mauna_loa_co2</span><span class="p">(</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1958</span><span class="p">),</span> <span class="n">end_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2009</span><span class="p">)):</span>
-    <span class="n">htmls1</span> <span class="o">=</span> <span class="s1">&#39;&lt;h3&gt;CO2 monthly averages at Mauna Loa (interpolated), from NOAA/ESRL data&lt;/h3&gt;&#39;</span>
-    <span class="n">htmls2</span> <span class="o">=</span> <span class="s1">&#39;&lt;h4&gt;&#39;</span><span class="o">+</span><span class="n">cdate</span><span class="o">+</span><span class="s1">&#39;&lt;/h4&gt;&#39;</span>
-    <span class="n">sel_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">datalines</span> <span class="k">if</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">end_date</span><span class="p">]</span>
-    <span class="n">c_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sel_data</span><span class="p">])</span>
-    <span class="n">c_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sel_data</span><span class="p">])</span>
-    <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ttprob</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">Stat</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">sel_data</span><span class="p">)</span>
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">htmls1</span><span class="o">+</span><span class="n">htmls2</span><span class="o">+</span><span class="s1">&#39;&lt;h4&gt;Linear regression slope: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">slope</span><span class="p">))</span>
-                      <span class="o">+</span> <span class="s1">&#39; ppm/year; correlation coefficient: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;&lt;/h4&gt;&#39;</span><span class="p">))</span>
-    <span class="n">var</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
-    <span class="n">show</span><span class="p">(</span><span class="n">list_plot</span><span class="p">(</span><span class="n">sel_data</span><span class="p">,</span> <span class="n">plotjoined</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> 
-                   <span class="o">+</span> <span class="n">plot</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">intercept</span><span class="p">,</span><span class="n">start_date</span><span class="p">,</span><span class="n">end_date</span><span class="p">),</span> 
-                      <span class="n">xmin</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">c_min</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">c_max</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> 
-                      <span class="n">frame</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="We-will-use-publicly-available-resources-generously!">We will use publicly available resources generously!<a class="anchor-link" href="#We-will-use-publicly-available-resources-generously!">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">showURL</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ht</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return an IFrame of the url to show in notebook with height ht&quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
     <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">ht</span><span class="p">)</span> 
-<span class="n">showURL</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/Number&#39;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">showURL</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/Sigma-algebra&#39;</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11909,14 +11834,14 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
         <iframe
             width="95%"
-            height="400"
-            src="https://en.wikipedia.org/wiki/Number"
+            height="600"
+            src="https://en.wikipedia.org/wiki/Sigma-algebra"
             frameborder="0"
             allowfullscreen
         ></iframe>
@@ -11934,17 +11859,81 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-can-you-expect-to-get-out-of-this-course?">What can you expect to get out of this course?<a class="anchor-link" href="#What-can-you-expect-to-get-out-of-this-course?">&#182;</a></h2><p>While teaching <a href="https://lamastex.github.io/scalable-data-science/sds/2/2/">SDS-2.2: Scalable Data Science from Atlantis</a>, a fast-paced industrially aligned course in data science to research students at Uppsala University from various Departments in the Technical and Natural Sciences, I realized that the students have a significant variance in their mathemtical, statistical and computational backgrounds.</p>
-<p>Most of the students of that course were able to learn and apply the methods and interpret the outputs of the models and methods on datasets. However, only those with a background in probability and statistics as well as computing were able to understand the models well enough to adapth them for the problem and dataset at hand - a crucial distinguishing skillset of a data scientist.</p>
-<p>This course is nearly reverse-engineered from my experience in <a href="https://lamastex.github.io/scalable-data-science/sds/2/2/">SDS-2.2</a> with <em>the goal of making the mathematical, statistical and computational foundations reasonably strong for a data scientist who is fairly rusty on these interweaving foundations</em>.</p>
-<p>We will take a "middle path" to reach as many course participants (MSc students, PhD students, postdoctoral researchers, industrial employees), given their varied backgrounds across:</p>
-<ul>
-<li>pure mathemtics, </li>
-<li>computational biology,</li>
-<li>industrial researchers and developers from several sectors, </li>
-<li>Masters students from cultural geography, IT,</li>
-<li>etc.</li>
-</ul>
+<h2 id="Probability-Space">Probability Space<a class="anchor-link" href="#Probability-Space">&#182;</a></h2><p>Thus the domain of the probability is not just any old set of events (recall events are subsets of $\Omega$), but rather a set of events that form a $\sigma$-field that contains the sample space $\Omega$, is closed under complementation and countable union.</p>
+<p>$\left(\Omega, \mathcal{F}(\Omega), P\right)$ is called a <em>probability space</em> or probability triple.</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>Let $\Omega = \{H, T\}$.  What $\sigma$-fields could we have?</p>
+<p>$\mathcal{F}\left({\Omega}\right) = \{\{H, T\}, \emptyset, \{H\}, \{T\}\}$ is the finest $\sigma$-field.</p>
+<p>$\mathcal{F}'\left({\Omega}\right) = \{ \{H, T\}, \emptyset \}$ is a trivial $\sigma$-field.</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>Let $\Omega = \{\omega_1, \ldots, \omega_n\}$.</p>
+<p>$\mathcal{F}\left({\Omega}\right) = 2^\Omega$, the set of all subsets of $\Omega$, also known as the power set of $\Omega$.</p>
+<p>$\vert 2^\Omega \vert = 2^n$.</p>
+<p>We have finally defined <em>probability space</em> as quickly as possible from first principles. As your mathematical background matures you can dive deeper into more subtle aspects of <a href="https://en.wikipedia.org/wiki/Probability_space">probability space</a>, in its generality, as needed.</p>
+<p><a href="https://en.wikipedia.org/wiki/Probability_space#Examples">These examples</a> are great for becoming more familiar with probability spaces.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Probability_space&quot;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="400"
+            src="https://en.wikipedia.org/wiki/Probability_space"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Independence">Independence<a class="anchor-link" href="#Independence">&#182;</a></h2><p>Two events $A$ and $B$ are independent if $P(A \cap B) = P(A)P(B)$.</p>
+<p>Intuitively, $A$ and $B$ are independent if the occurrence of $A$ has no influence on the probability of the occurrence of $B$ (and vice versa).</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>Flip a fair coin  twice.  Event $A$ is the event "The first flip is 'H'"; event $B$ is the event "The second flip is 'H'".</p>
+<p>$P(A) = \frac{1}{2}$, $P(B) = \frac{1}{2}$</p>
+<p>Because the flips are independent (what happens on the first flip does not influence the second flip),</p>
+<p>$P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$.</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>We can generalise this by saying that we will flip a coin with an unknown probability parameter $\theta \in [0,1]$.  We flip this coin twice and the coin is made so that for any flip,  $P(\mbox{'H'}) = \theta$, $P(\mbox{'T'}) = 1-\theta$.</p>
+<p>Take the same events as before: event $A$ is the event "The first flip is 'H'"; event $B$ is the event "The second flip is 'H'".</p>
+<p>Because the flips are independent,</p>
+<p>$P(A \cap B) = \theta \times \theta = \theta^2$.</p>
+<p>If we take event $C$ as the event "The second flip is 'T'", then</p>
+<p>$P(A \cap C) = \theta \times (1-\theta)$.</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>Roll a fair die twice.  The face of the die is enumerated 1, 2, 3, 4, 5, 6.</p>
+<p>Event $A$ is the event "The first roll is 5"; event $B$ is the event "The second roll is 1".</p>
+<p>$P(A) = \frac{1}{6}$, $P(B) = \frac{1}{6}$</p>
+<p>If the two rolls are independent,</p>
+<p>$P(A \cap B) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}$</p>
+<h3 id="You-try-at-home">You try at home<a class="anchor-link" href="#You-try-at-home">&#182;</a></h3><p>For those who are rusty on probability models.</p>
+<p>Suppose you roll two fair dice independently. What is the probability of getting the sum of the outcomes to be seven?</p>
+<p>Solution: Watch the <a href="https://www.youtube.com/embed/2XToWi9j0Tk">Khan Academy movie about probability and two dice</a>.</p>
 
 </div>
 </div>
@@ -11955,6 +11944,391 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a class for a random variable map</span>
+
+<span class="k">class</span> <span class="nc">RV</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>                <span class="c1"># class definition</span>
+    <span class="s1">&#39;Random variable class&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sspace</span><span class="o">=</span><span class="p">[],</span> <span class="n">probs</span><span class="o">=</span><span class="p">[],</span> <span class="n">probmap</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[]):</span> <span class="c1"># constructor with default args</span>
+        
+        <span class="c1"># provide default empty values which will be used if initialisation fails in try clause    </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># if error, rvmap is empty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># if error, rvinvmap is empty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># if error, rvprobmap is empty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="bp">None</span>     <span class="c1"># for the last value for which a probability was calculated</span>
+         
+        <span class="k">try</span><span class="p">:</span> <span class="c1"># make checks on the objects given as sspace and probs</span>
+            <span class="k">if</span> <span class="n">probmap</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span> <span class="c1"># no probability map provided</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span> <span class="o">=</span> <span class="n">ProbyMap</span><span class="p">(</span><span class="n">sspace</span><span class="o">=</span><span class="n">sspace</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probs</span><span class="p">)</span> <span class="c1"># make the probability map</span>
+               
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">probmap</span><span class="p">,</span> <span class="n">ProbyMap</span><span class="p">)</span> <span class="c1"># make sure probmap is a ProbyMap</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span> <span class="o">=</span> <span class="n">probmap</span> <span class="c1"># use the provided probability map</span>
+                <span class="n">sspace</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">sspace</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+            <span class="n">values_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="c1"># make values into a list</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">values_list</span><span class="p">)</span> <span class="c1"># 1 value for each event</span>
+            
+            <span class="c1"># if there has been no error make the rv map as private</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sspace</span><span class="p">),</span><span class="n">values_list</span><span class="p">))</span>
+                                        <span class="c1"># map from sspace to random variable values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># make an empty map for inverse map from rvs to lists of events</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># and an empty map for the map from rvs to probabilities</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">:</span> <span class="c1"># fill in the inverse map and rvmap</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># if the rv already there</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span> <span class="c1"># add the event to list</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">[</span><span class="n">ev</span><span class="p">])</span> <span class="c1"># add proby</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">ev</span><span class="p">,</span> <span class="p">]</span> <span class="c1"># add entry</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">[</span><span class="n">ev</span><span class="p">],</span> <span class="p">]</span> <span class="c1"># add entry</span>
+
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Check your sample space, probabilities and random variable values&quot;</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span> 
+            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>   
+        
+           
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                            <span class="c1"># redefine printable string rep</span>
+        <span class="s1">&#39;Printable representation of the object.&#39;</span>
+        <span class="k">return</span> <span class="s2">&quot;Inverse map from RV to events is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span><span class="p">)</span>        
+        
+        
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span>
+    
+    <span class="k">def</span> <span class="nf">__printprobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                            <span class="c1"># method to create a printable representation of the rv probababilities</span>
+        <span class="s1">&#39;Printable representation of the probabilities.&#39;</span>
+        <span class="n">num_keys</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">counter1</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="s1">&#39;RV probabilites map is {&#39;</span>
+        <span class="k">for</span> <span class="n">each_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">:</span>
+            <span class="n">counter1</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">each_key</span><span class="p">)</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;: [&#39;</span>
+            <span class="n">num_vals</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">each_key</span><span class="p">])</span>
+            <span class="n">counter2</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">each_key</span><span class="p">]:</span>
+                <span class="n">counter2</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">retval</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">val</span>
+                <span class="k">if</span> <span class="n">counter2</span> <span class="o">&lt;</span> <span class="n">num_vals</span><span class="p">:</span>
+                    <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;]&#39;</span>        
+            <span class="k">if</span> <span class="n">counter1</span> <span class="o">&lt;</span> <span class="n">num_keys</span><span class="p">:</span>
+                <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span>
+        <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;}&#39;</span>        
+        <span class="k">return</span> <span class="n">retval</span>
+    
+    <span class="k">def</span> <span class="nf">get_probmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        <span class="c1"># get a deep copy of the probmap</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">)</span>      <span class="c1"># getter cannot alter object&#39;s map</span>
+    
+    <span class="k">def</span> <span class="nf">get_rvmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                          <span class="c1"># get a deep copy of the rv map</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">)</span>        <span class="c1"># getter cannot alter object&#39;s map</span>
+    
+    <span class="k">def</span> <span class="nf">get_rvinvmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                          <span class="c1"># get a deep copy of the rvinv map</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvinvmap</span><span class="p">)</span>        <span class="c1"># getter cannot alter object&#39;s map</span>
+        
+    <span class="k">def</span> <span class="nf">get_rvprobmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                          <span class="c1"># get a deep copy of the rv prob map</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">)</span>        <span class="c1"># getter cannot alter object&#39;s map</span>
+                
+    <span class="n">probmap</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_probmap</span><span class="p">)</span>
+    <span class="n">rvmap</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_rvmap</span><span class="p">)</span>
+    <span class="n">rvinvmap</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_rvinvmap</span><span class="p">)</span>
+    <span class="n">rvprobmap</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_rvprobmap</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;random variable exponentiated.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># proby map is going to be this object&#39;s proby map</span>
+            <span class="n">newvalues</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list for new values</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">:</span> <span class="c1"># for each event</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>         <span class="c1"># find the value the event maps to</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">oldval</span><span class="o">^</span><span class="n">x</span>                 <span class="c1"># take the function of the value</span>
+                <span class="n">newvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newval</span><span class="p">)</span>          <span class="c1"># add the function of the value to the list of values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>                <span class="c1"># set the last calculation attribute on this RV to &#39;X&#39;</span>
+            <span class="k">return</span> <span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">newvalues</span><span class="p">)</span>       
+            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Cannot raise to power &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+            
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;random variable with number added.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># proby map is going to be this object&#39;s proby map</span>
+            <span class="n">newvalues</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list for new values</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">:</span> <span class="c1"># for each event</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>         <span class="c1"># find the value the event maps to</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">oldval</span><span class="o">+</span><span class="n">x</span>                 <span class="c1"># take the function of the value</span>
+                <span class="n">newvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newval</span><span class="p">)</span>          <span class="c1"># add the function of the value to the list of values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>                <span class="c1"># set the last calculation attribute on this RV to &#39;X&#39;</span>
+            <span class="k">return</span> <span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">newvalues</span><span class="p">)</span>       
+            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Cannot add&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>      
+            
+    <span class="fm">__radd__</span> <span class="o">=</span> <span class="fm">__add__</span>         <span class="c1"># adding object to number is same as adding number to object</span>
+    
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;random variable with number substracted.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># proby map is going to be this object&#39;s proby map</span>
+            <span class="n">newvalues</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list for new values</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">:</span> <span class="c1"># for each event</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>         <span class="c1"># find the value the event maps to</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">oldval</span><span class="o">-</span><span class="n">x</span>                 <span class="c1"># take the function of the value</span>
+                <span class="n">newvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newval</span><span class="p">)</span>          <span class="c1"># add the function of the value to the list of values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>                <span class="c1"># set the last calculation attribute on this RV to &#39;X&#39;</span>
+            <span class="k">return</span> <span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">newvalues</span><span class="p">)</span>       
+            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Cannot substract&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>      
+            
+    <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;number with random variable number substracted.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># proby map is going to be this object&#39;s proby map</span>
+            <span class="n">newvalues</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list for new values</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">:</span> <span class="c1"># for each event</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>         <span class="c1"># find the value the event maps to</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">x</span><span class="o">-</span><span class="n">oldval</span>                 <span class="c1"># take the function of the value</span>
+                <span class="n">newvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newval</span><span class="p">)</span>          <span class="c1"># add the function of the value to the list of values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>                <span class="c1"># set the last calculation attribute on this RV to &#39;X&#39;</span>
+            <span class="k">return</span> <span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">newvalues</span><span class="p">)</span>       
+            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Cannot substract rv from &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>  
+            
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;random variable multiplied by number.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># proby map is going to be this object&#39;s proby map</span>
+            <span class="n">newvalues</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list for new values</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">:</span> <span class="c1"># for each event</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>         <span class="c1"># find the value the event maps to</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">oldval</span><span class="o">*</span><span class="n">x</span>                 <span class="c1"># take the function of the value</span>
+                <span class="n">newvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newval</span><span class="p">)</span>          <span class="c1"># add the function of the value to the list of values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>                <span class="c1"># set the last calculation attribute on this RV to &#39;X&#39;</span>
+            <span class="k">return</span> <span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">newvalues</span><span class="p">)</span>       
+            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Cannot multiply by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>   
+            
+    <span class="fm">__rmul__</span> <span class="o">=</span> <span class="fm">__mul__</span>      <span class="c1"># object multiplied by number is same as number multiplied by object</span>
+    
+    <span class="k">def</span> <span class="fm">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;random variable divided  by number.</span>
+<span class="sd">        </span>
+<span class="sd">        This performs true division.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># proby map is going to be this object&#39;s proby map</span>
+            <span class="n">newvalues</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list for new values</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">ref_probmap</span><span class="p">:</span> <span class="c1"># for each event</span>
+                <span class="n">oldval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>         <span class="c1"># find the value the event maps to</span>
+                <span class="n">newval</span> <span class="o">=</span> <span class="n">oldval</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>          <span class="c1"># take the function of the value</span>
+                <span class="n">newvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newval</span><span class="p">)</span>          <span class="c1"># add the function of the value to the list of values</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>                <span class="c1"># set the last calculation attribute on this RV to &#39;X&#39;</span>
+            <span class="k">return</span> <span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">newvalues</span><span class="p">)</span>       
+            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Cannot divide by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span> 
+            
+    <span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">myval</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return the probability of a value.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="bp">None</span>     <span class="c1"># reset attribute lastvalue</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># default return value</span>
+        <span class="k">try</span><span class="p">:</span>                              
+            <span class="k">assert</span> <span class="n">myval</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">myval</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="n">myval</span>     <span class="c1"># set lastvalue to the value we just calculated proby for</span>
+                                         <span class="c1"># last value is used by explainLastCalc method</span>
+                            
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>      
+        
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="mi">0</span>                    
+        <span class="k">return</span> <span class="n">retval</span>
+    
+    <span class="k">def</span> <span class="nf">explainLastCalc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                   <span class="c1"># return details of the calculation for the last probability calculated</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
+            <span class="n">retvalue</span> <span class="o">=</span> <span class="s2">&quot;Sorry, that calculation was on function of this RV, not the RV itself&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">retvalue</span> <span class="o">=</span> <span class="s2">&quot;Sorry, no valid last calculation to explain&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">num_keys</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">retvalue</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; and </span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__printprobs</span><span class="p">()</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">so E()&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; = &#39;</span>
+                <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">:</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;(</span><span class="si">%.1f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">val</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; multiplied by &#39;</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">val</span><span class="p">])</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;)&#39;</span>
+                    <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">num_keys</span><span class="p">:</span>
+                        <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">+ &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">which is &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">Exp</span><span class="p">()</span>        
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+                <span class="n">retvalue</span> <span class="o">=</span> <span class="s2">&quot;Error, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">==</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">num_keys</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Exp</span><span class="p">()</span>
+                <span class="n">retvalue</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; and </span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__printprobs</span><span class="p">()</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">so Var()&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; = &#39;</span>
+                <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">:</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;((</span><span class="si">%.1f</span><span class="s2"> - </span><span class="si">%.2f</span><span class="s2">)^2&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; multiplied by &#39;</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">val</span><span class="p">])</span>
+                    <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;)&#39;</span>
+                    <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">num_keys</span><span class="p">:</span>
+                        <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">+ &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;where </span><span class="si">%.2f</span><span class="s2"> is the mean,&quot;</span> <span class="o">%</span> <span class="n">mean</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">so the variance is &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">Variance</span><span class="p">()</span>        
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+                <span class="n">retvalue</span> <span class="o">=</span> <span class="s2">&quot;Error, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">retvalue</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; and </span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__printprobs</span><span class="p">()</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">so P(&#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span><span class="p">)</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39;) = &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; the sum of the probabilities &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span><span class="p">)</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s1">&#39; maps to, which is &#39;</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+                <span class="n">retvalue</span> <span class="o">=</span> <span class="s2">&quot;Error: Probably invalid value&quot;</span>
+            
+        <span class="k">print</span> <span class="n">retvalue</span>        
+
+            
+            
+    <span class="k">def</span> <span class="nf">Exp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return the expectation of this RV.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="bp">None</span>     <span class="c1"># reset attribute lastvalue</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># default return value</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">:</span>
+                <span class="n">retval</span> <span class="o">+=</span> <span class="n">val</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">val</span><span class="p">])</span>                              
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;E&#39;</span>     <span class="c1"># set attribute lastvalue                           </span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="bp">None</span>      
+        
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">Variance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return the variance of this RV.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="bp">None</span>     <span class="c1"># reset attribute lastvalue</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># default return value</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">:</span>
+                <span class="n">retval</span> <span class="o">+=</span> <span class="n">val</span><span class="o">^</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="p">[</span><span class="n">val</span><span class="p">])</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="n">retval</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Exp</span><span class="p">())</span><span class="o">^</span><span class="mi">2</span>                                  
+            <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">=</span> <span class="s1">&#39;V&#39;</span>     <span class="c1"># set attribute lastvalue                           </span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="bp">None</span>      
+        
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
+           
+<span class="c1"># the class has ended here, now we have definitions outside the class</span>
+                                           
+<span class="k">def</span> <span class="nf">E</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">RV</span><span class="p">)</span>
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">Exp</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;Sorry: can only do expectations on RVs&quot;</span>
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">retvalue</span> 
+    
+<span class="k">def</span> <span class="nf">Var</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">RV</span><span class="p">)</span>
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">Variance</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;Sorry: can only do variances on RVs&quot;</span>
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">retvalue</span>
 </pre></div>
 
 </div>
