@@ -12530,6 +12530,7 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Example-1:-fruit-bowl-experiments">Example 1: fruit bowl experiments<a class="anchor-link" href="#Example-1:-fruit-bowl-experiments">&#182;</a></h3><p>We are going to use our class 'RV' above and the fruit bowl example, and the random variable $X$  to give each kind of fruit a numerical value: $X(\mbox{apple}) = 1$, $X(\mbox{orange}) = X(\mbox{lemon}) = 0$   This is a discrete random variable because it can only take a finite number of discrete values (in this case, either 1 or 0).</p>
+<p>(You don't have to worry about how RV works: it is our 'home-made' class for you to try out.)</p>
 
 </div>
 </div>
@@ -12602,6 +12603,910 @@ $$</p>
 <pre>Inverse map from RV to events is {0: [&#39;orange&#39;, &#39;lemon&#39;], 1: [&#39;apple&#39;]}</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can get probabilities using the syntax <code>X.P(x)</code> to find $P(X=x)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># find the probability that X is 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">explainLastCalc</span><span class="p">()</span>     <span class="c1"># print out the values used in the calculation of the probability that X = 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Inverse map from RV to events is {0: [&#39;orange&#39;, &#39;lemon&#39;], 1: [&#39;apple&#39;]} and 
+RV probabilites map is {0: [0.333, 0.167], 1: [0.500]}
+so P(1) =  the sum of the probabilities 1 maps to, which is 0.50
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You have seen that different random variables can be defined on the same probability space, i.e., the sample space and the associated probability map, depending on how the outcomes are mapped to real values taken by the random variable.   Usually there is some good experimental or mathematical reason for the particular random variable (i.e., event-to-value-mappings) that we use.   In the experiment we just did we could have been an experimenter particularly interested in citrus fruit but not concerned with what particular kind of citrus it is.</p>
+<p>On the other hand, what if we want to differentiate between each fruit in the sample space?   Then we could give each fruit-outcome a different value.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the sample space set as a list of outcomes</span>
+<span class="n">samplespace</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;lemon&#39;</span><span class="p">]</span>
+<span class="c1"># the corresponding list of outcome probabilities</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">]</span>
+<span class="c1"># list of image values corresponding to the list of outcomes </span>
+<span class="c1"># map for another random variable is 1, 2, 3 if the fruit we pick is apple, orange or lemon, respectively.</span>
+<span class="n">mapZ</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span> <span class="s2">&quot;defined sample space, probabilities, and mapZ&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>defined sample space, probabilities, and mapZ
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">RV</span><span class="p">(</span><span class="n">sspace</span><span class="o">=</span><span class="n">samplespace</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">mapZ</span><span class="p">)</span> <span class="c1"># this random variable will be called Z</span>
+<span class="n">Z</span> <span class="c1"># disclose the representation of the random variable Z</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Inverse map from RV to events is {1: [&#39;apple&#39;], 2: [&#39;orange&#39;], 3: [&#39;lemon&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Z</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Z</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">Z</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># find the probability that Z=1, Z=2, Z=3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1/2, 1/3, 1/6)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-2:-Coin-toss-experiments">Example 2: Coin toss experiments<a class="anchor-link" href="#Example-2:-Coin-toss-experiments">&#182;</a></h3><p>An experiment that is used a lot in examples is the coin toss experiment.   If we toss a fair coin once, the sample space is either head (denoted here as H) or tail (T).   The probability of a head is a half and the probability of tail is a half.</p>
+<p>We can do the probability map for this as one of our <code>ProbyMap</code> objects.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">samplespace</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span>     <span class="c1"># sample space is the result of one coin toss</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># probabilities for a fair coin</span>
+<span class="n">probMapCoinToss</span> <span class="o">=</span> <span class="n">ProbyMap</span><span class="p">(</span><span class="n">sspace</span> <span class="o">=</span> <span class="n">samplespace</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probabilities</span><span class="p">)</span>
+<span class="c1"># disclose the representation of the probability map from a one-coin toss sample space to the probabilities</span>
+<span class="n">probMapCoinToss</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{H: 0.500, T: 0.500}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's have a random variable called oneHead that takes the value 1 if we get one head, 0 otherwise and simulate this with an RV object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mapOneHead</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>     <span class="c1"># map for a random variable is 1 if the result is a head, 0 if it is a tail</span>
+<span class="n">oneHead</span> <span class="o">=</span> <span class="n">RV</span><span class="p">(</span><span class="n">sspace</span><span class="o">=</span><span class="n">samplespace</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">mapOneHead</span><span class="p">)</span> <span class="c1"># this random variable will be called OneHead</span>
+<span class="n">oneHead</span>     <span class="c1"># disclose the representation of the random variable OneHead</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Inverse map from RV to events is {0: [&#39;T&#39;], 1: [&#39;H&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">oneHead</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># find the probability that the random variable oneHead = 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One toss is not very interesting.<br>
+What if we we have a sample space that is the possible outcomes of two independent tosses of the same coin?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># we can &#39;square&#39; our probability map from for one coin toss to get the map for two tosses of the coin</span>
+<span class="n">probMapTwoCoinTosses</span> <span class="o">=</span> <span class="n">probMapCoinToss</span><span class="o">^</span><span class="mi">2</span>     
+<span class="c1"># disclose the map from the events for two coin tosses to the probabilities (the probability map)</span>
+<span class="n">probMapTwoCoinTosses</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{H H: 0.250, T H: 0.250, T T: 0.250, H T: 0.250}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tossing the coin twice and looking at the results of each toss in order is a different experiment to tossing the coin once.</p>
+<p>We have a different set of possible outcomes, $\{HH, HT, TH, TT\}$.   Note that the order matters:   getting a head in the first toss and a tail in the second ($HT$) is a different event to getting a tail in the first toss and a head in the second ($TH$).</p>
+<p>We can define a different random variable on this set of outcomes.   Let's take an experimenter who is particularly interested in the number of heads we get in two tosses.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mapHeadsInTwoTosses</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># map for a random variable is the number of heads in two tosses</span>
+<span class="n">headsInTwoTosses</span><span class="o">=</span><span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="n">probMapTwoCoinTosses</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">mapHeadsInTwoTosses</span><span class="p">)</span> <span class="c1"># this random variable will be called HeadsInTwoTosses</span>
+<span class="n">headsInTwoTosses</span> <span class="c1"># disclose the representation of the random variable headsInTwoTosses</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Inverse map from RV to events is {0: [&#39;T T&#39;], 1: [&#39;H T&#39;, &#39;T H&#39;], 2: [&#39;H H&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As you can see, two different events in the sample space, a head and then a tail ($HT$) and a tail and then a head ($TH$) both give this  random variable a value of 1.   The event $HH$ gives it a value 2 (2 heads) and the event $TT$ gives it a value 0 (no heads).</p>
+<p>Now we can try the probabilities.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">headsInTwoTosses</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># probability that headsInTwoTosses = 0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">headsInTwoTosses</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># probability that headsInTwoTosses = 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">headsInTwoTosses</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># probability that headsInTwoTosses = 2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-indicator-function">The indicator function<a class="anchor-link" href="#The-indicator-function">&#182;</a></h2><p>The indicator function of an event $A \in \mathcal{F}$, denoted $\mathbf{1}_A$, is defined as follows:</p>
+$$
+\begin{equation}
+\mathbf{1}_A(\omega) :=
+\begin{cases}
+1 & \qquad \text{if} \quad \omega \in A \\
+0 & \qquad \text{if} \quad \omega \notin A
+\end{cases}
+\end{equation}
+$$<p>The indicator function $\mathbf{1}_A$ is really an RV.</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>"Will it rain tomorrow in the Southern Alps?" can be formulated as the RV given by the indicator function of the event "rain drops fall on the Southern Alps tomorrow".  Can you imagine what the $\omega$'s in the sample space $\Omega$ can be?</p>
+<h2 id="Probability-Mass-Function">Probability Mass Function<a class="anchor-link" href="#Probability-Mass-Function">&#182;</a></h2><p>Recall that a discrete RV $X$ takes on at most countably many values in $\mathbb{R}$.</p>
+<p>The probability mass function (PMF) $f$ of a discrete RV $X$ is :</p>
+$$f(x) := P(X=x) = P\left(\{\omega: X(\omega) = x \}\right)$$<h2 id="Bernoulli-random-variable">Bernoulli random variable<a class="anchor-link" href="#Bernoulli-random-variable">&#182;</a></h2><p>The Bernoulli RV is a $\theta$-parameterised family of $\mathbf{1}_A$.</p>
+<p>Take an event $A$.  The parameter $\theta$ (pronounced 'theta) denotes the probability that "$A$ occurs", i.e., $P(A) = \theta$.</p>
+<p>The indicator function $\mathbf{1}_A$ of "$A$ occurs" is the $Bernoulli(\theta)$ RV.</p>
+<p>Given a parameter $\theta \in [0,1]$, the probability mass function (PMF) for the $Bernoulli(\theta)$ RV $X$ is:</p>
+$$
+\begin{equation}
+f(x;\theta)= \theta^x (1-\theta)^{1-x} \mathbf{1}_{\{0,1\}}(x) =
+\begin{cases}
+\theta & \text{if $x=1$,}\\
+1-\theta & \text{if $x=0$,}\\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+$$<p>and its DF is:</p>
+$$
+\begin{equation}
+F(x;\theta) =
+\begin{cases}
+1 & \text{if }$1 \le x$\text{,}\\
+1-\theta & \text{if } 0 \le x < 1\text{,}\\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+$$<p>We emphasise the dependence of the probabilities on the parameter $\theta$ by specifying it following the semicolon in the argument for $f$ and $F$ and by subscripting the probabilities, i.e. $P_{\theta}(X=1)=\theta$ and $P_{\theta}(X=0)=1-\theta$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="For-loops">For loops<a class="anchor-link" href="#For-loops">&#182;</a></h1><p><em>For loops</em> are a very useful way that most computer programming languages provide to allow us to repeat the same action.   In Sage, you can use a for loop on a list to just go through the elements in the list, doing something with each element in turn.</p>
+<p>The SageMath/Python syntax for a <em>for loop</em> is:</p>
+<ol>
+<li>Start with the keyword <code>for</code></li>
+<li>Then we use a kind of temporary variable which is going to take each value in the list, one by one, in order. In the example below we use the name x for this variable and write for x in myList.</li>
+<li>After we have specified what we are looping through, we end the line with a colon <code>:</code> before continuing to the next line.</li>
+<li>Now, we are ready to write the body of the for loop.   In the body, we put whatever we want to actually do with each value as we loop through.   Remember when we defined a function, and the function body was indented?  It's the same here:   the body is a block of code which is indented (the Sage standard indentation for block is 4 spaces).</li>
+<li>Indicate to Sage when your for loop has ended by moving the beginning of the line following the for loop back so that is it aligned with the for which started the whole loop.</li>
+</ol>
+<p>The cell below gives a very simple example using a list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># a simple routine to print every number in a list</span>
+<span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myList</span><span class="p">:</span>            <span class="c1"># this statement will just go through the list in order.</span>
+                            <span class="c1"># Note the :</span>
+                            <span class="c1"># each element in turn is assigned to the variable x</span>
+    <span class="k">print</span> <span class="n">x</span>                 <span class="c1"># body of the for loop (just one line in this case)</span>
+
+<span class="k">print</span> <span class="s1">&#39;end of my first for loop&#39;</span>  <span class="c1"># not in the body of loop because it is not indented</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+3
+6
+4
+2
+end of my first for loop
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we wanted to do this for any list, we could write a simple function that takes any list we give it and puts it through a for loop, like the function below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myPrintListFunc</span><span class="p">(</span><span class="n">ll</span><span class="p">):</span>                               <span class="c1"># start defining the function</span>
+    <span class="sd">&#39;&#39;&#39;A simple function to print a given list.&#39;&#39;&#39;</span>     <span class="c1"># the docstring for the function</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ll</span><span class="p">:</span>                                       <span class="c1"># body of the function starts</span>
+        <span class="k">print</span> <span class="n">x</span>                                        <span class="c1"># body of loop is indented again</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that we start indenting with 4 spaces when we write the function body.   Then, when we have the for loop inside the function body, we just indent the body of the for loop again.</p>
+<p>Sage needs the indentation to help it to know what is in a function, or a for loop, and what is outside, but indentation also helps us as programmers to be able to look at a piece of code and easily see what is going on.</p>
+<p>Let's try our function on another list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">anotherList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
+<span class="n">myPrintListFunc</span><span class="p">(</span><span class="n">anotherList</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>20
+24
+46
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have just programmed a basic for loop with a list.   We can do much more than this with for loops, but this covers the essentials that we need to know.   The important thing to remember is that whenever you have a list, you can easily write a for loop to go through each element in turn and do something with it.</p>
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><h3 id="Example-3:-For-loops">Example 3: For loops<a class="anchor-link" href="#Example-3:-For-loops">&#182;</a></h3><p>Try first assigning the value 0 to a variable named <code>mySum</code> and then making yourself a list (you pick what it is called and what values it contains) and then looping through the list, adding each element in the list to <code>mySum</code>.  When the loop has finished, the value of <code>mySum</code> will be the accumulated value of all the elements in the list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What about defining a function to accumulate the values in a list?  Remember to give your function a good name, and include the docstring to tell everyone what it does.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Try out your function!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A for loop can be used on more than just a list.  For example, try a loop with the set S we make below - you can try making a loop to print the elements in the set one by one, as we did above, or to accumulate them, or do anything else you think is sensible ....</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">S</span><span class="o">=</span><span class="nb">set</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>     <span class="c1"># make the set S </span>
+<span class="n">S</span>             <span class="c1"># display the set S</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{5, 10, 15, 70}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Loop over the set and do something.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can even use a for loop on a string like "thisisastring", but this is not as useful for us as being able to use a for loop on a list or set.</p>
+<p>We can use the <code>range</code> function we met last week to make a for loop that will do something a specified number of times.  Remind yourself about the range function:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>    <span class="c1"># reminder about range</span>
+<span class="n">counter</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's use the counter idea do a specified number of rolls of the die that we can simulate with <code>randint(1,6)</code>.  Notice that here the actual value of the elements in the list is not being used directly: the list is being used like a counter to make sure that we do something a specified number of times.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">dieResult</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s2">&quot;Number on die is &quot;</span><span class="p">,</span> <span class="n">dieResult</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number on die is  4
+Number on die is  2
+Number on die is  6
+Number on die is  1
+Number on die is  3
+Number on die is  6
+Number on die is  3
+Number on die is  6
+Number on die is  6
+Number on die is  1
+</pre>
+</div>
 </div>
 
 </div>
