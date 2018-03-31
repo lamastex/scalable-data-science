@@ -13513,6 +13513,597 @@ Number on die is  1
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conditional-statements">Conditional statements<a class="anchor-link" href="#Conditional-statements">&#182;</a></h1><p>A conditional statement is also known as an if statement or if-else statement.   And it's basically as simple as that:   if [some condition] is true then do [something].   To make it more powerful, we can also say else (ie, if not), then do [a different something].</p>
+<p>The if statement syntax is a way of putting into a programming language a way of thinking that we use every day:   E.g. "if it is raining, I'll take the bus to uni; else I'll walk".</p>
+<p>You'll notice that when we have an if statement, what we do depends on whether the condition we specify is true or false (i.e. is conditional on this expression).   This is why if statements are called conditional statements.</p>
+<p>When we say "depends on whether the condition we specify is true or false", in SageMath terms we are talking about whether the expression we specify as our condition evaluates to the Boolean true or the Boolean false.   Remember those Boolean values, true and false, that we talked about in Lab 1?</p>
+<p>The SageMath syntax for a conditional statement including if and else clauses is explained below:</p>
+<ol>
+<li>Start with the keyword if</li>
+<li>Immediately after keyword if we specify the condition that determines what happens next.   The condition therefore has to be the kind of truth statement we talked about in Lab 1, an expression which SageMath can evaluate as either Boolean true or Boolean false.   The examples below will make this a bit clearer.</li>
+<li>After we have specified the condition, we end the line with a colon : before continuing to the next line.</li>
+<li>Now, immediately below the line that starts if, we give the code that says what happens if the condition we specified is true.   This block of code is indented so that SageMath can recognise that it should do everything in that block if the condition is true.   If the condition is false, SageMath will not go into this indented block to execute any of this code but instead look for the next line which is aligned with the original if, i.e. the next line which is not part of the if-block.</li>
+<li>In some situations we only want do something if the condition is true, and there is nothing else we want to do if the condition is false.   In this situaion all we need is the if-block of code described above, the part that is executed only if the condition is true.   Then we can carry on with the rest of the program.   An everyday example would be "if it is cold I will wear gloves".</li>
+<li>In some other situations, however, we also want to specify something to happen when the condition is false - else-block.   We specify this by following the if-block with the keyword else, aligned with the if so that SageMath knows this is where it jumps to when the if condition is false.   The keyword else is also followed by a colon :</li>
+<li>Immediately below the line that starts else, we say what happens if the condition we specified is false.   Again, this block of code (the else-block) is indented so that SAGE can recognise that it should do everything in that block if the condition is false.  </li>
+</ol>
+<p>Note that SageMath will either execute the code in the if-block or will execute the code in the else-block. What happens, i.e. which block gets executed,  depends on whether the condition evaluates to true or false.</p>
+<p>Let's set up a nice simple conditional statement and see what happens. We want take two variables, named x and y, and print something out only if x is greater than y.   The condition is 'x &gt; y', and you can see that this evaluates to either true or false, depending on the values of x and y.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>                             <span class="c1"># assign the value 50 to the variable called x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">40</span>                             <span class="c1"># assign the value 40 to the variable called y</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>                          <span class="c1"># does the expression &#39;x &gt; y&#39; evaluate to true or false</span>
+    <span class="k">print</span> <span class="s2">&quot;x is greater than y&quot;</span>    <span class="c1"># this indented code is only executed if the condition is true</span>
+<span class="k">print</span> <span class="s2">&quot;This is the end of my first conditional statement&quot;</span>  <span class="c1"># this code is not indented</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>x is greater than y
+This is the end of my first conditional statement
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can nest conditional statements so that one whole conditional statement is in the if-block (or else-block) of another one.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>                             <span class="c1"># assign a value to a variable called x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">40</span>                             <span class="c1"># assign a value to a variable called y</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">60</span>                             <span class="c1"># assign a value to a variable called z</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>                          <span class="c1"># does the expression &#39;x &gt; y&#39; evaluate to true or false</span>
+    <span class="k">print</span> <span class="s2">&quot;x is greater than y&quot;</span>    <span class="c1"># this indented code is only executed if the condition is true</span>
+    <span class="k">if</span> <span class="n">z</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>                      <span class="c1"># nested if does the expression &#39;z &gt; x&#39; evaluate to true or false</span>
+        <span class="k">print</span> <span class="s2">&quot;and z is greater than z&quot;</span>    <span class="c1"># only executed if both conditions are true</span>
+    
+<span class="k">print</span> <span class="s2">&quot;This is the end of my nested conditional statement&quot;</span>  <span class="c1"># this code is not indented</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>x is greater than y
+and z is greater than z
+This is the end of my nested conditional statement
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><h3 id="Example-4:-Conditional-statements">Example 4: Conditional statements<a class="anchor-link" href="#Example-4:-Conditional-statements">&#182;</a></h3><p>The cell above only did something if the condition was true.  Now let's try if and else.  This is a more complicated example and you might want to come back to it to make sure you understand what is going on.</p>
+<p>Try assigning different values to the variable <code>myAge</code> and see what happens when you evaluate the cell.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myAge</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>             <span class="c1"># assign the value 50 to the variable called x</span>
+<span class="n">myResult</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>           <span class="c1"># myResult is an empty string waiting to be filled in</span>
+<span class="k">if</span> <span class="n">myAge</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;------- code in the if block is being executed&quot;</span>
+    <span class="n">myResult</span> <span class="o">=</span> <span class="s2">&quot;You are old enough to know better . . .&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;------- code in the else block is being executed&quot;</span>
+    <span class="n">myResult</span> <span class="o">=</span> <span class="s2">&quot;You are young enough to dream . . .&quot;</span>
+<span class="k">print</span> <span class="s2">&quot;------- we are now back in the main flow of the program&quot;</span>
+<span class="k">print</span> <span class="n">myResult</span>          <span class="c1"># the value of myResult will depend on what happened above</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>------- code in the else block is being executed
+------- we are now back in the main flow of the program
+You are young enough to dream . . .
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We could also define a function which uses if and else.   Let us define a function called <code>myMaxFunc</code> which takes two variables <code>x</code> and <code>y</code> as parameters.  Note how we indent once for the body of the function, and again when we want to indicate what is in the if-block and else-block.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myMaxFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> 
+    <span class="sd">&#39;&#39;&#39;A function to return the maximum of x and y.&#39;&#39;&#39;</span>  <span class="c1"># a one-line docstring</span>
+     
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>                 <span class="c1"># use an if-else statement to test if x greater than y</span>
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="n">x</span>          <span class="c1"># if-block code is indented again</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="n">y</span>          <span class="c1"># else-block code is indented again</span>
+    <span class="k">return</span> <span class="n">retvalue</span>           <span class="c1"># return x if x &gt; y, else return y</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There is of course a perfectly good <code>max()</code> function in SageMath/Python which does the same thing - this is just a convenient example of the use of if and else.</p>
+<p>Now we try our function out with some variables.   Try using different values for <code>firstNumber</code> and <code>secondNumber</code> to test it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">firstNumber</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">secondNumber</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">myMaxFunc</span><span class="p">(</span><span class="n">firstNumber</span><span class="p">,</span> <span class="n">secondNumber</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>40</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="For-loops-and-conditionals">For loops and conditionals<a class="anchor-link" href="#For-loops-and-conditionals">&#182;</a></h2><p>Finally, lets look at something to bring together for loops and conditional statements.  We have seen how we can use a for loop to simulate throwing a die a specified number of times.  We could add a conditional statement to count how many times we get a certain number on the die.  Try altering the values of <code>resultOfInterest</code> and <code>numberOfThrows</code> and see what happens.   Note that being able to find and alter values in your code easily is part of the benefits of using variable names.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">resultOfInterest</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># specify what number we will count occurrences of</span>
+<span class="n">countNumber</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># to accumulate the count of the occurrences   </span>
+<span class="n">numberOfThrows</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># how many throws to simulate</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numberOfThrows</span><span class="p">):</span>    <span class="c1"># loop numberOfThrows times</span>
+    <span class="n">dieNumber</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dieNumber</span> <span class="o">==</span> <span class="n">resultOfInterest</span><span class="p">:</span>
+        <span class="n">countNumber</span> <span class="o">=</span> <span class="n">countNumber</span> <span class="o">+</span> <span class="mi">1</span>        <span class="c1"># increment for each occurrence</span>
+<span class="k">print</span> <span class="s2">&quot;You got the number&quot;</span><span class="p">,</span> <span class="n">resultOfInterest</span><span class="p">,</span> <span class="n">countNumber</span><span class="p">,</span> <span class="s2">&quot;times out of &quot;</span><span class="p">,</span> <span class="n">numberOfThrows</span><span class="p">,</span> <span class="s2">&quot; trials&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>You got the number 5 17 times out of  100  trials
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To get even fancier, we could set up a map and count the occurences of every number 1, 2, ... 6.   Make sure that you understand what we are doing here.  We are using a dictionary with (key, value) pairs to associate a count with each number that could come up on the die (number on die, count of number on die).  Notice that we do not have to use the conditional statement (if ...) because we can access the value by using the key that is a particular result of a roll of the die.</p>
+<p>Try altering the <code>numberOfThrows</code> and see what happens.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">countMap</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>      <span class="c1"># start with a dictionary with all count values 0</span>
+<span class="n">numberOfThrows</span> <span class="o">=</span> <span class="mi">100</span>                           <span class="c1"># number of throws to make</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numberOfThrows</span><span class="p">):</span>                <span class="c1"># loop numberOfThrows times</span>
+    <span class="n">dieNumber</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">countMap</span><span class="p">[</span><span class="n">dieNumber</span><span class="p">]</span> <span class="o">=</span> <span class="n">countMap</span><span class="p">[</span><span class="n">dieNumber</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+    
+<span class="n">countMap</span>                                       <span class="c1"># disclose the final countMap</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{1: 18, 2: 18, 3: 19, 4: 16, 5: 11, 6: 18}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Earlier, we looked at the probability of the event $B|A$ when we toss two dice and $A$ is the event that the sum of the two numbers on the dice is 6 and $B$ is the event that the first die is a 2. We worked out that $P(B|A) = \frac{1}{5}$.  See if you can do another version of the code we have above to simulate throwing two dice a specified number of times, and use two nested conditional statements to accumulate a count of how many times the sum of the two numbers is 6 and how many out of those times the first die is a 2.  When the loop has finished, you could print out or disclose the proportion $\frac{\text{number of times sum is 6 and first die is 2}}{\text{number of times sum is 6}}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-5:-More-coin-toss-experiments">Example 5: More coin toss experiments<a class="anchor-link" href="#Example-5:-More-coin-toss-experiments">&#182;</a></h3><p>If you have time, try the three-coin-toss and four-coin-toss examples below.  These continue from Example 2 above.</p>
+<p>Another new experiment:   the outcomes of three tosses of the coin.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">samplespace</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span>     <span class="c1"># sample space is the result of one coin toss</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># probabilities for a fair coin</span>
+<span class="n">probMapCoinToss</span> <span class="o">=</span> <span class="n">ProbyMap</span><span class="p">(</span><span class="n">sspace</span> <span class="o">=</span> <span class="n">samplespace</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probabilities</span><span class="p">)</span>
+<span class="c1"># disclose the representation of the probability map from a one-coin toss sample space to the probabilities</span>
+<span class="n">probMapCoinToss</span>
+<span class="c1"># &#39;cubing&#39; the probability map from for one coin toss to get the map for three tosses of the coin</span>
+<span class="n">probMapThreeCoinTosses</span> <span class="o">=</span> <span class="n">probMapCoinToss</span><span class="o">^</span><span class="mi">3</span>     
+<span class="n">probMapThreeCoinTosses</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{T H H: 0.125, T T H: 0.125, H H H: 0.125, T H T: 0.125, H T T: 0.125, T T T: 0.125, H T H: 0.125, H H T: 0.125}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The random variable we define is the number of heads we get in three tosses.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mapHeadsInThreeTosses</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># map for a random variable is the number of heads in three tosses</span>
+
+<span class="c1"># this random variable will be called X (easier than headsInThreeTosses!)</span>
+<span class="n">X</span><span class="o">=</span><span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="n">probMapThreeCoinTosses</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">mapHeadsInThreeTosses</span><span class="p">)</span> 
+
+<span class="n">X</span> <span class="c1"># disclose the representation of the random variable X</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Inverse map from RV to events is {0: [&#39;T T T&#39;], 1: [&#39;H T T&#39;, &#39;T H T&#39;, &#39;T T H&#39;], 2: [&#39;T H H&#39;, &#39;H T H&#39;, &#39;H H T&#39;], 3: [&#39;H H H&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>     <span class="c1"># find the probability that X = 3 (X is the number of heads in three tosses of the coin)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you are not bored yet, try a four-tosses experiment where we define a random variable which takes value 1 when the outcome includes exactly two heads, and 0 otherwise.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">probMapFourCoinTosses</span> <span class="o">=</span> <span class="n">probMapCoinToss</span><span class="o">^</span><span class="mi">4</span>     <span class="c1"># the probability map for 4 independent tosses of the coin</span>
+<span class="n">probMapFourCoinTosses</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{H H T T: 0.062, T H T T: 0.062, T H T H: 0.062, T T T T: 0.062, H H H T: 0.062, T T H T: 0.062, H T H H: 0.062, H T H T: 0.062, T H H H: 0.062, H H H H: 0.062, T T H H: 0.062, H T T H: 0.062, H T T T: 0.062, T T T H: 0.062, T H H T: 0.062, H H T H: 0.062}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># map for a r.v. which takes value 1 if two heads, 0 otherwise</span>
+<span class="n">mapExactlyTwoHeadsInFourTosses</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> 
+
+<span class="c1"># this random variable will be called Y</span>
+<span class="n">Y</span><span class="o">=</span><span class="n">RV</span><span class="p">(</span><span class="n">probmap</span><span class="o">=</span><span class="n">probMapFourCoinTosses</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">mapExactlyTwoHeadsInFourTosses</span><span class="p">)</span> 
+
+<span class="n">Y</span> <span class="c1"># disclose the representation of the random variable Y</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Inverse map from RV to events is {0: [&#39;T H T T&#39;, &#39;T T T T&#39;, &#39;T T T H&#39;, &#39;H H H T&#39;, &#39;H T H H&#39;, &#39;T H H H&#39;, &#39;H H H H&#39;, &#39;H T T T&#39;, &#39;T T H T&#39;, &#39;H H T H&#39;], 1: [&#39;H H T T&#39;, &#39;H T T H&#39;, &#39;T H T H&#39;, &#39;T T H H&#39;, &#39;H T H T&#39;, &#39;T H H T&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># find the probability that we don&#39;t get exactly 2 heads in four tosses</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5/8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">.</span><span class="n">explainLastCalc</span><span class="p">()</span> <span class="c1"># see the calculation</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Inverse map from RV to events is {0: [&#39;T H T T&#39;, &#39;T T T T&#39;, &#39;T T T H&#39;, &#39;H H H T&#39;, &#39;H T H H&#39;, &#39;T H H H&#39;, &#39;H H H H&#39;, &#39;H T T T&#39;, &#39;T T H T&#39;, &#39;H H T H&#39;], 1: [&#39;H H T T&#39;, &#39;H T T H&#39;, &#39;T H T H&#39;, &#39;T T H H&#39;, &#39;H T H T&#39;, &#39;T H H T&#39;]} and 
+RV probabilites map is {0: [0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062], 1: [0.062, 0.062, 0.062, 0.062, 0.062, 0.062]}
+so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
