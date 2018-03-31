@@ -12029,64 +12029,55 @@ $$\boxed{P(B|A) = \frac{P(B \cap A)}{P(A)} = \frac{P(A \cap B)}{P(A)} = \frac{P(
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Random-Variables">Random Variables<a class="anchor-link" href="#Random-Variables">&#182;</a></h1><p>A random variable is a mapping from the sample space $\Omega$ to the set of real numbers $\mathbb{R}$.  In other words, it is a numerical value determined by the outcome of the experiment. (Actually, this is a real-valued random variable and one can have random variables taking values in other sets).</p>
+<p>This is not as complicated as it sounds:  let's look at a simple example:</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><h4 id="Roll-two-fair-dice.">Roll two fair dice.<a class="anchor-link" href="#Roll-two-fair-dice.">&#182;</a></h4><p>The sample space is the set of 36 ordered pairs $\Omega = \{(1,1), (1,2), \dots, (2,1), (2,2), \ldots, (1,6), \ldots, (6,6)\}$</p>
+<p>Let random variable $X$ be the sum of the two numbers that appear, $X : \Omega \rightarrow \mathbb{R}$.</p>
+<p><img src="images/RandomVariableMapping.png" atl="RandomVariableMapping" width="300"></p>
+<p>For example, $X\left(\{(6,6)\}\right) = 12$</p>
+<p>$P(X=12) = P\left(\{(6,6)\}\right)$</p>
+<p>And, $X\left( \{ (3,2) \}\right) = 5$</p>
+<p>Formal definition of a random variable</p>
+<p>Let $\left(\Omega, \mathcal{F}, P \right)$ be some probability triple.  Then a random variable, say $X$, is a function from the sample space $\Omega$ to the set of real numbers $\mathbb{R}$</p>
+$$X: \Omega \rightarrow \mathbb{R}$$<p>such that for every number $x$ in $\mathbb{R}$, the inverse image of the half-open interval $(-\infty, x]$ is an element of the collection of events $\mathcal{F}$, i.e.,</p>
+<p>for every number $x$ in $\mathbb{R}$, 
+$$X^{[-1]}\left( (-\infty, x] \right) := \{\omega: X(\omega) \le x\} \in \mathcal{F}$$</p>
+<h2 id="Discrete-random-variable">Discrete random variable<a class="anchor-link" href="#Discrete-random-variable">&#182;</a></h2><p>A random variable is said to be discrete when it can take a countable sequence of values (a finite set is countable).  The three examples below are discrete random variables.</p>
+<h2 id="Probability-of-a-random-variable">Probability of a random variable<a class="anchor-link" href="#Probability-of-a-random-variable">&#182;</a></h2><p>Finally, we assign probability to a random variable $X$ as follows:</p>
+$$P(X \le x) = P \left( X^{[-1]}\left( (-\infty, x] \right) \right) := P\left( \{ \omega: X(\omega) \le x \} \right)$$<h2 id="Distribution-Function">Distribution Function<a class="anchor-link" href="#Distribution-Function">&#182;</a></h2><p>The distribution function (DF) or cumulative distribution function (CDF) of any RV $X$, denoted by $F$ is:</p>
+$$F(x) := P(X \leq x) = P\left( \{ \omega: X(\omega) \leq x \} \right) \mbox{, for any } x \in \mathbb{R}$$<h3 id="Example---Sum-of-Two-Dice">Example - Sum of Two Dice<a class="anchor-link" href="#Example---Sum-of-Two-Dice">&#182;</a></h3><p>In our example above (tossing two die and taking $X$ as the sum of the numbers shown) we said that $X\left((3,2)\right) = 5$, but (3,2) is not the only outcome that $X$ maps to 5: $X^{[-1]}\left(5\right) = \{(1,4), (2,3), (3,2), (4,1)\}$</p>
+$$
+\begin{array}{lcl} P(X=5) & = & P\left(\{\omega: X(\omega) = 5\}\right)\\ & = & P\left(X^{[-1]}\left(5\right)\right)\\ & = & P(\{(1,4), (2,3), (3,2), (4,1)\})
+\end{array}
+$$<h3 id="Example---Pick-a-Fruit-at-Random">Example - Pick a Fruit at Random<a class="anchor-link" href="#Example---Pick-a-Fruit-at-Random">&#182;</a></h3><p>Remember our "well-mixed" fruit bowl containing 3 apples, 2 oranges, 1 lemon?  If our experiment is to take a piece of fruit from the bowl and the outcome is the kind of fruit we take, then we saw that $\Omega = \{\mbox{apple}, \mbox{orange}, \mbox{lemon}\}$.</p>
+<p>Define a random variable $Y$ to give each kind of fruit a numerical value: $Y(\mbox{apple}) = 1$, $Y(\mbox{orange}) = 0$, $Y(\mbox{lemon}) = 0$.</p>
+<h3 id="Example---Flip-Until-Heads">Example - Flip Until Heads<a class="anchor-link" href="#Example---Flip-Until-Heads">&#182;</a></h3><p>Flip a fair coin  until a 'H' appears.  Let $X$ be the number of times we have to flip the coin until the first 'H'.</p>
+<p>$\Omega = \{\mbox{H}, \mbox{TH}, \mbox{TTH}, \ldots, \mbox{TTTTTTTTTH}, \ldots \}$</p>
+<p>$X(\mbox{H}) = 0$,  $X(\mbox{TH}) = 1$, $X(\mbox{TTH}) = 2$, $\ldots$</p>
+<h4 id="You-try-at-home">You try at home<a class="anchor-link" href="#You-try-at-home">&#182;</a></h4><p>Consider the example above of 'Pick a Fruit at Random'. We defined a random variable $Y$ there as $Y(\mbox{apple}) = 1$, $Y(\mbox{orange}) = 0$, $Y(\mbox{lemon}) = 0$. Using step by step arguments as done in the example of 'Sum of Two Dice' above, find the following probabilities for our random variable $Y$: 
+$$
+\begin{array}{lcl}
+P(Y=0) & = & P\left(\{\omega: Y(\omega) = \quad \}\right)\\ & = & P\left(Y^{[-1]} \left( \quad \right)\right)\\ &= & P(\{\quad , \quad \})
+\end{array}
+$$</p>
+<p><a href="http://www.youtube.com/v/IYdiKeQ9xEI">Watch the Khan Academy movie about random variables</a></p>
+<p>When we introduced the subject of probability, we said that many famous people had become interested in it from the point of view of gambling.   Games of dice are one of the earliest forms of gambling (probably deriving from an even earlier game which involved throwing animal 'ankle' bones or astragali).   Galileo was one of those who wrote about dice, including an important piece which explained what many experienced gamblers had sensed but had not been able to formalise - the difference between the probability of throwing a 9 and the probability of throwing a 10 with two dice.  You should be able to see why this is from our map above.  If you are interested you can read a translation (Galileo wrote in Latin) of Galileo's Sorpa le Scoperte Dei Dadi.   This is also printed in a nice book, Games, Gods and Gambling by F.N. David (originally published 1962, newer editions now available).</p>
+<h2 id="Implementing-a-Random-Variable">Implementing a Random Variable<a class="anchor-link" href="#Implementing-a-Random-Variable">&#182;</a></h2><p>We have made our own random variable map object in Sage called RV.  As with the Sage probability maps we looked at last week, it is based on a map or dictionary.  We specify the sample the samplespace and probabilities and the random variable map, MapX, from the samplespace to the values taken by the random variable $X$).</p>
 
 </div>
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a class for a random variable map</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a class for a random variable map - just evaluate this cell and don&#39;t worry about understanding this now</span>
 
 <span class="k">class</span> <span class="nc">RV</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>                <span class="c1"># class definition</span>
     <span class="s1">&#39;Random variable class&#39;</span>
@@ -12420,6 +12411,209 @@ $$\boxed{P(B|A) = \frac{P(B \cap A)}{P(A)} = \frac{P(A \cap B)}{P(A)} = \frac{P(
         <span class="k">print</span> <span class="s2">&quot;Sorry: can only do variances on RVs&quot;</span>
         <span class="n">retvalue</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="k">return</span> <span class="n">retvalue</span>
+
+<span class="c1"># create a class for a probability map - if you are new to SageMath/Python just evaluate and skip this cell</span>
+<span class="c1"># This was coded by Jenny Harlow</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="k">class</span> <span class="nc">ProbyMap</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>                <span class="c1"># class definition</span>
+    <span class="s1">&#39;Probability map class&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sspace</span><span class="p">,</span> <span class="n">probs</span><span class="p">):</span> <span class="c1"># constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># default probmap is empty</span>
+        <span class="c1"># make checks on the objects given as sspace and probs</span>
+        <span class="k">try</span><span class="p">:</span>                           
+            <span class="n">sspace_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">sspace</span><span class="p">)</span> <span class="c1"># check that we can make the sample space into a set</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sspace_set</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">sspace</span><span class="p">)</span> <span class="c1"># and not lose any elements</span>
+            <span class="n">prob_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span> <span class="c1"># and we can make the probs into a list</span>
+            <span class="n">probsum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">prob_list</span><span class="p">)</span> <span class="c1"># and we can sum the probs</span>
+            <span class="k">assert</span> <span class="n">probsum</span> <span class="o">==</span> <span class="mi">1</span> <span class="c1"># and the probs sum to 1</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">prob_list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">sspace_set</span><span class="p">)</span> <span class="c1"># and there is proby for each event</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sspace</span><span class="p">),</span><span class="n">prob_list</span><span class="p">))</span>    <span class="c1"># map from sspace to probs</span>
+                    
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span> <span class="c1"># if there any problems with types</span>
+            <span class="n">init_error</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="n">init_error</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">print</span> <span class="s2">&quot;Check sample space and probabilities&quot;</span>
+            
+                  
+    <span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">events</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return the probability of an event or set of events.</span>
+<span class="sd">        </span>
+<span class="sd">        events is set of events in the sample space to calculate the probability for.&#39;&#39;&#39;</span>
+        
+        <span class="n">retvalue</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">try</span><span class="p">:</span>                              
+            <span class="n">events_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="c1"># check we can make a set out of the events</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">events_set</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="c1"># and not lose any events</span>
+            <span class="k">assert</span> <span class="n">events_set</span> <span class="o">&lt;=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="c1"># events subset of sample space</span>
+        
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>     <span class="c1"># add each mapped probability to the return value</span>
+                <span class="n">retvalue</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">[</span><span class="n">ev</span><span class="p">]</span>
+                
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">diag</span><span class="p">:</span>
+            <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>      
+        
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Check your events&quot;</span>
+        
+        <span class="k">return</span> <span class="n">retvalue</span>
+        
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                            <span class="c1"># redefine printable string rep</span>
+        <span class="s1">&#39;Printable representation of the object.&#39;</span>
+        <span class="n">num_keys</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="s1">&#39;{&#39;</span>
+        <span class="k">for</span> <span class="n">each_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">:</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">each_key</span><span class="p">)</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;: &#39;</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">[</span><span class="n">each_key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">num_keys</span><span class="p">:</span>
+                <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span>
+        <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;}&#39;</span>        
+                
+        <span class="k">return</span> <span class="n">retval</span>
+        
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span>
+        
+    <span class="k">def</span> <span class="nf">get_probmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        <span class="c1"># get a deep copy of the proby map</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">)</span>      <span class="c1"># getter cannot alter object&#39;s map</span>
+    
+    <span class="n">probmap</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_probmap</span><span class="p">)</span>               <span class="c1"># allow read access via .probmap</span>
+    
+    <span class="k">def</span> <span class="nf">get_ref_probmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                    <span class="c1"># get a reference to the real probmap</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span>                     <span class="c1"># getter can alter the object&#39;s map</span>
+        
+    
+    <span class="n">ref_probmap</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_ref_probmap</span><span class="p">)</span>       <span class="c1"># allow access via .ref_probmap</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">dictExp</span><span class="p">(</span><span class="n">big_map</span><span class="p">,</span> <span class="n">small_map</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Internal helper function for __pow__(...).</span>
+<span class="sd">        </span>
+<span class="sd">        Takes two proby map dictionaries and returns one mult by other.&#39;&#39;&#39;</span>
+        <span class="n">new_bl</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">sle</span> <span class="ow">in</span> <span class="n">small_map</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ble</span> <span class="ow">in</span> <span class="n">big_map</span><span class="p">:</span>
+                <span class="n">new_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ble</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span> <span class="p">(</span><span class="n">sle</span><span class="p">)</span>
+                <span class="n">new_bl</span><span class="p">[</span><span class="n">new_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">big_map</span><span class="p">[</span><span class="n">ble</span><span class="p">]</span><span class="o">*</span><span class="n">small_map</span><span class="p">[</span><span class="n">sle</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">new_bl</span>
+        
+    <span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;probability map exponentiated.&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Integer</span><span class="p">)</span>
+            <span class="n">pmap</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">)</span> <span class="c1"># copy the probability map dictionary</span>
+            <span class="n">new_pmap</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__probmap</span><span class="p">)</span> <span class="c1"># and another copy</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">new_pmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictExp</span><span class="p">(</span><span class="n">new_pmap</span><span class="p">,</span> <span class="n">pmap</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">ProbyMap</span><span class="p">(</span><span class="n">new_pmap</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">new_pmap</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>       
+            
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;cannot raise to non-integer power&quot;</span>
+            <span class="k">return</span> <span class="bp">None</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-1:-fruit-bowl-experiments">Example 1: fruit bowl experiments<a class="anchor-link" href="#Example-1:-fruit-bowl-experiments">&#182;</a></h3><p>We are going to use our class 'RV' above and the fruit bowl example, and the random variable $X$  to give each kind of fruit a numerical value: $X(\mbox{apple}) = 1$, $X(\mbox{orange}) = X(\mbox{lemon}) = 0$   This is a discrete random variable because it can only take a finite number of discrete values (in this case, either 1 or 0).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the sample space set as a list of outcomes</span>
+<span class="n">samplespace</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;lemon&#39;</span><span class="p">]</span>
+<span class="c1"># the corresponding list of outcome probabilities</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">]</span>
+<span class="c1"># list of image values corresponding to the list of outcomes </span>
+<span class="c1"># taken by the random variable X (1 if we pick an apple and 0 otherwise)</span>
+<span class="n">mapX</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="s2">&quot;defined samplespace, probabilities, and mapX&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>defined samplespace, probabilities, and mapX
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To make an RV, we can specify the lists for the sample space, the probabilities, and the random variable values associated with each outcome.   Since there are three different lists here, we can make things clearer by actually saying what each list is.   The RV we create in the cell below is going to be called X.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">RV</span><span class="p">(</span><span class="n">sspace</span><span class="o">=</span><span class="n">samplespace</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">mapX</span><span class="p">)</span> <span class="c1"># this random variable will be called X</span>
+<span class="n">X</span> <span class="c1"># disclose the representation of the random variable X</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Inverse map from RV to events is {0: [&#39;orange&#39;, &#39;lemon&#39;], 1: [&#39;apple&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
