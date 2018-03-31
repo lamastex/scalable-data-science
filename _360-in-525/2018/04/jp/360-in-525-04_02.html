@@ -11756,10 +11756,6 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="02.-Numbers,-Strings,-Booleans-and-Sets">02. Numbers, Strings, Booleans and Sets<a class="anchor-link" href="#02.-Numbers,-Strings,-Booleans-and-Sets">&#182;</a></h1><h2 id="Mathematical-Statistical-and-Computational-Foundations-for-Data-Scientists"><a href="https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/">Mathematical Statistical and Computational Foundations for Data Scientists</a><a class="anchor-link" href="#Mathematical-Statistical-and-Computational-Foundations-for-Data-Scientists">&#182;</a></h2><p>&copy;2018 Raazesh Sainudiin. <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0 International (CC BY 4.0)</a></p>
-<ol>
-<li>Introduction</li>
-<li>Interactions</li>
-</ol>
 
 </div>
 </div>
@@ -11769,7 +11765,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will start by showing you some of the basic numeric capabilities of SageMath.</p>
+<h1 id="Numbers-and-Arithmetic-Operations">Numbers and Arithmetic Operations<a class="anchor-link" href="#Numbers-and-Arithmetic-Operations">&#182;</a></h1><p>We will start by showing you some of the basic numeric capabilities of SageMath.</p>
 <p>A worksheet cell is the area enclosed by a gray rectangle.<br>
 You may type any expression you want to evaluate into a worksheet cell.   We have already put some expressions into this worksheet.</p>
 <p>When you are in a cell you can evaluate the expression in it by pressing <SHIFT><ENTER> or just by clicking the evaluate button below the cell.</p>
@@ -11781,7 +11777,7 @@ You may type any expression you want to evaluate into a worksheet cell.   We hav
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">showURL</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ht</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
@@ -11799,7 +11795,7 @@ You may type any expression you want to evaluate into a worksheet cell.   We hav
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -15031,8 +15027,54 @@ I ~ 1.00000000000000*I
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Sets">Sets<a class="anchor-link" href="#Sets">&#182;</a></h1><p>Let us learn or recall elementary set theory.  Sets are perhaps the most fundamental concept in mathematics.</p>
-<p><strong>Set</strong> <em>is a collection of distinct elements</em>.</p>
+<h1 id="Sets">Sets<a class="anchor-link" href="#Sets">&#182;</a></h1><p>Set theory is at the very foundation in modern mathematics and is necessary to understand the mathematical notions of probability and statistics. We will take a practical mathemtical tour of the essential concepts from set theory that a data scientist needs to understand and build probabilistic models from the data using statistical principles.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Set_(mathematics)&quot;</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="500"
+            src="https://en.wikipedia.org/wiki/Set_(mathematics)"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Essentials-of-Set-Theory-for-Probability-and-Statistics">Essentials of Set Theory for Probability and Statistics<a class="anchor-link" href="#Essentials-of-Set-Theory-for-Probability-and-Statistics">&#182;</a></h2><p>Let us learn or recall elementary set theory.  Sets are perhaps the most fundamental concept in mathematics.</p>
+<h3 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h3><p><strong>Set</strong> <em>is a collection of distinct elements</em>.</p>
 <p>We write a set by enclosing its elements with curly brackets.  Let us see some example next.</p>
 <ul>
 <li>The collection of $\star$ and $\circ$ is $\{\star,\circ\}$.</li>
@@ -15057,7 +15099,7 @@ $$\boxed{C \subset D}$$<p>if every element of $C$ is also an element of $D$.  Fo
 <li>$\{\star\} \subset \{\star,\circ\}$</li>
 <li>Question: Is $\{6,9\}\subset \{b,d,6,p,q,9\}$?</li>
 </ul>
-<h2 id="Set-Operations">Set Operations<a class="anchor-link" href="#Set-Operations">&#182;</a></h2><p>We can add distinct new elements to an existing set by <strong>union</strong> operation denoted by $\cup$ symbol.</p>
+<h3 id="Set-Operations">Set Operations<a class="anchor-link" href="#Set-Operations">&#182;</a></h3><p>We can add distinct new elements to an existing set by <strong>union</strong> operation denoted by $\cup$ symbol.</p>
 <p>For example</p>
 <ul>
 <li>$\{\circ, \bullet\} \cup \{\star\} = \{\circ,\bullet,\star\}$</li>
@@ -15089,6 +15131,15 @@ $$\boxed{A = B \quad \text{if and only if} \quad A \subset B \ \text{and} \ B \s
 <p>Two sets $A$ anb $B$ are said to be <strong>disjoint</strong> if 
 $$\boxed{ A \cap B = \emptyset} \ .$$</p>
 <p>Given a <strong>universal set</strong> $\Omega$, we define the <strong>complement</strong> of a subset $A$ of the universal set by $$\boxed{A^c = \Omega \setminus A = \{x: x \in \Omega \ \text{and} \ x \notin A\}} \ .$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="An-Interactive-Venn-Diagram">An Interactive Venn Diagram<a class="anchor-link" href="#An-Interactive-Venn-Diagram">&#182;</a></h3><p>Let us gain more intuition by seeing the unions and intersections of sets interactively.  The following interact is from <a href="https://wiki.sagemath.org/interact/misc#AnInteractiveVennDiagram">interact/misc</a> page  of Sage Wiki.</p>
 
 </div>
@@ -15174,7 +15225,7 @@ $$\boxed{ A \cap B = \emptyset} \ .$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Now-we'll-look-at-how-we-can-create-and-manipulate-sets-in-SageMath.">Now we'll look at how we can create and manipulate sets in SageMath.<a class="anchor-link" href="#Now-we'll-look-at-how-we-can-create-and-manipulate-sets-in-SageMath.">&#182;</a></h3>
+<h1 id="Create-and-manipulate-sets-in-SageMath.">Create and manipulate sets in SageMath.<a class="anchor-link" href="#Create-and-manipulate-sets-in-SageMath.">&#182;</a></h1>
 </div>
 </div>
 </div>
