@@ -11761,6 +11761,7 @@ div#notebook {
 <li>Collections in Sage<ul>
 <li>List</li>
 <li>Set</li>
+<li>Tuple</li>
 <li>Dictionary</li>
 </ul>
 </li>
@@ -11837,7 +11838,7 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">showURL</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ht</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
@@ -11855,7 +11856,7 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[104]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -11900,7 +11901,7 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Function_(mathematics)#Notation&quot;</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
@@ -11914,7 +11915,7 @@ $$f(x) = x^2 : \mathbb{R} \rightarrow \mathbb{R} \ . $$</p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -14349,7 +14350,7 @@ log(10.0) prints as 2.30258509299405
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Collections-in-Sage">Collections in Sage<a class="anchor-link" href="#Collections-in-Sage">&#182;</a></h1><p>We have already talked about the SageMath and Python number types and a little about the string type.   You have also met sets in SageMath with a brief mention of lists.   A set and list in Sage are, loosely speaking, examples of collection types.   Collections are a useful idea: grouping or collecting together some data (or variables) so that we can refer to it and use it collectively.</p>
-<p>SageMath provides quite a few collections.  One that we will meet very often is the list, <a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">a built-in sequence type in Python</a>) like the strings we have already seen. See <a href="https://docs.python.org/2/tutorial/datastructures.html">Python tutorial for built-in data structures</a>.</p>
+<p>SageMath provides quite a few collections.  One that we will meet very often is the list, <a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">a built-in sequence type in Python</a> like the strings we have already seen. See <a href="https://docs.python.org/2/tutorial/datastructures.html">Python tutorial for built-in data structures</a>.</p>
 <h2 id="Example-1:-Lists">Example 1: Lists<a class="anchor-link" href="#Example-1:-Lists">&#182;</a></h2><p>Technically, a <em>list</em> in SageMath/Python is a <em>sequence type</em>.   This basically means that the order of the things in the list is imporant and we can use concepts related to ordering when we work with a list. More specifically, a list is a <em>mutable sequence type</em>. This just means that you can change or mutate the contents of the list.</p>
 <p>Don't worry about these details (unless you are interested in them of course and follow links below), but for now just look at the worksheet cells below to see how useful and flexible lists are.</p>
 <p>When you want a list in SageMath you put the things in the list inside <code>[</code> <code>]</code> called square brackets.   You can put almost anything in a list (including having lists of lists, as we'll see later).</p>
@@ -15054,7 +15055,268 @@ Assign the list to a variable named <code>myList</code>.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-2:-Sets">Example 2: Sets<a class="anchor-link" href="#Example-2:-Sets">&#182;</a></h2><p>We already created and assigned sets and operated with them.   <code>Set</code>/<code>set</code> are another SageMath/Python collection.  Remember that in a set, each element has to be unique. We can specify a set directly or make one out of a list.</p>
+<h2 id="Example-2:-Tuples">Example 2: Tuples<a class="anchor-link" href="#Example-2:-Tuples">&#182;</a></h2><p>A <code>tuple</code> is another <a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">built-in sequence type in Python</a> like lists and strings.  The values in a <code>tuple</code> are enclosed in curved parentheses <code>(</code> <code>)</code> and the values are separated by commas.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># assign the tuple (1,2) to variable nemed muTuple1</span>
+<span class="n">myTuple1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1, 2)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myTuple1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;tuple&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">myTuple2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(10, 11, 13)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tuples are <em>immutable</em>.   In programming, an 'immutable' object is an object whose state cannot be modified after it has been created (Etymology: 'mutable comes from the Latin verb mutare, or 'to change' -- the same root we get 'mutate' from.  So in-mutable, or immutable, means not capable of or susceptible to change).   This means that although we can access the element at a particular position in a tuple by indexing ...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># disclose what is in the first position in the tuple</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>... we can't change what is in that particular position in the tuple.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>     <span class="c1"># try to assign a different value to the first position in the tuple</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-f499764cf49e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>myTuple1<span class="ansi-blue-fg">[</span>Integer<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> Integer<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span>     <span class="ansi-red-fg"># try to assign a different value to the first position in the tuple</span>
+
+<span class="ansi-red-fg">TypeError</span>: &#39;tuple&#39; object does not support item assignment</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># the first element in the tuple is immutably 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Useful-things-you-can-do-with-tuples">Useful things you can do with tuples<a class="anchor-link" href="#Useful-things-you-can-do-with-tuples">&#182;</a></h3><p>Sage has a very useful <code>zip</code> function.   Zip can be used to 'zip' sequences together, making a list of tuples out of the values at corresponding index positions in each list.  Consider a simple example:  Note that in general <code>zip</code> works with sequences, so it can be used to zip tuples as well as lists.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;x&#39;, 1), (&#39;y&#39;, 2), (&#39;z&#39;, 3)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-3:-Sets">Example 3: Sets<a class="anchor-link" href="#Example-3:-Sets">&#182;</a></h2><p>We already created and assigned sets and operated with them.   <code>Set</code>/<code>set</code> are another SageMath/Python collection.  Remember that in a set, each element has to be unique. We can specify a set directly or make one out of a list.</p>
 
 </div>
 </div>
@@ -15160,7 +15422,7 @@ Assign the list to a variable named <code>myList</code>.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-3:-Dictionaries">Example 3: Dictionaries<a class="anchor-link" href="#Example-3:-Dictionaries">&#182;</a></h2><p>When we created our maps or functions at the start of this worksheet, we actually used dictionaries:  A SageMath/Python dictionary gives you a way of mapping from a key to a value.   As we said earlier, the keys have to be unique (only one of each key) but more than one key can map to the same value.   Remember the <code>FindFathersMap</code>?   It is actually a <a href="https://docs.python.org/2/library/stdtypes.html#dict">Python dictionary or simply <code>dict</code></a>.</p>
+<h2 id="Example-4:-Dictionaries">Example 4: Dictionaries<a class="anchor-link" href="#Example-4:-Dictionaries">&#182;</a></h2><p>When we created our maps or functions at the start of this worksheet, we actually used dictionaries:  A SageMath/Python dictionary gives you a way of mapping from a key to a value.   As we said earlier, the keys have to be unique (only one of each key) but more than one key can map to the same value.   Remember the <code>FindFathersMap</code>?   It is actually a <a href="https://docs.python.org/2/library/stdtypes.html#dict">Python dictionary or simply <code>dict</code></a>.</p>
 <p>Although, we used the syntax for dictionaries to conceptually reinforce functions and maps, we revisit them here and contrast them with the other collections we have already seen like lists and sets.</p>
 
 </div>
@@ -15362,6 +15624,48 @@ Assign the list to a variable named <code>myList</code>.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><code>zip</code>-ping of tuples gives us a quick way to make a dictionary if we have separate lists or tuples which contain our keys and values.  Note that the ordering in the key and value sequences has to be consistent   --  the first key will be mapped to the first value, etc., etc.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myKeys</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Ben&#39;</span><span class="p">,</span> <span class="s1">&#39;Raaz&#39;</span><span class="p">,</span> <span class="s1">&#39;susy&#39;</span><span class="p">)</span>
+<span class="n">myValues</span> <span class="o">=</span> <span class="p">(</span><span class="mi">888</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">78987</span><span class="p">)</span>
+<span class="n">myPhoneDictByZip</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">myKeys</span><span class="p">,</span> <span class="n">myValues</span><span class="p">))</span>
+<span class="n">myPhoneDictByZip</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;Ben&#39;: 888, &#39;Raaz&#39;: 333, &#39;susy&#39;: 78987}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Try adding to what we have to put in two more people, <code>Fred</code>, whose phone number is <code>1234</code>, and <code>Mary</code> whose phone number is <code>7777</code>.<br>
 Remember that for SageMath, the names <code>Fred</code> and <code>Mary</code> are strings and you must put them in quote marks, like the names that are already there.</p>
 
@@ -15413,6 +15717,126 @@ Remember that for SageMath, the names <code>Fred</code> and <code>Mary</code> ar
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are also some useful methods of dictionaries that allow you to 'dissect' the dictionary and extract just the keys or just the values.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myPhoneDictByZip</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;susy&#39;, &#39;Raaz&#39;, &#39;Ben&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myPhoneDictByZip</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[78987, 333, 888]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And there is also an <code>.items()</code> method that gives you back your your (key, value) pairs again.  You will see that is it a list of tuples.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myPhoneDictByZip</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;susy&#39;, 78987), (&#39;Raaz&#39;, 333), (&#39;Ben&#39;, 888)]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 

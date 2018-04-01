@@ -12555,6 +12555,714 @@ $$</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Statistics">Statistics<a class="anchor-link" href="#Statistics">&#182;</a></h1><p>The official NZ Government site for statistics about New Zealand is <a href="http://www.stats.govt.nz/">http://www.stats.govt.nz/</a> and that for Sweden is <a href="http://www.scb.se/en/About-us/official-statistics-of-sweden/">http://www.scb.se/en/About-us/official-statistics-of-sweden/</a></p>
+<p>Take a tour through it!</p>
+<h2 id="Data-and-statistics">Data and statistics<a class="anchor-link" href="#Data-and-statistics">&#182;</a></h2><p>In general, given some probability triple $(\Omega, \mathcal{F}, P)$, let the function $X$ measure the outcome $\omega$ from the sample space $\Omega$.</p>
+$$X(\omega): \Omega \rightarrow \mathbb{X}$$<p>$X$ is called data.</p>
+<p>$\mathbb{X}$ is called the data space (sample space of the data $X$).</p>
+<p>$X(\omega)=x$ is the outcome $\omega$ measured by $X$ and is called the observed data or the realisation of $X$.</p>
+<p>Often the measurements made by $X$ are real numbers or vectors of real numbers (but can come from more general objects, like addresses, images, videos, trajectories, etc.).</p>
+<p>This is the link to the definition of a random variable we have already seen (a random variable $X$ as a function or map from the sample space to the real line $\mathbb{R}$).  We have also seen that $X$ can in fact be a vector-valued random variable $X=(X_1,X_2,\ldots,X_n)$, i.e. a vector of random variables or simply random vector. $X$ can be much more general as we will see in the sequel.</p>
+<p>When we talked about an experiment involving two IID Bernoulli$(\frac{1}{2})$ RVs above (tossing two coins), we listed the different results we might get as (0,0), (1,0), (0,1), (1,1).</p>
+<p>Say we observe the outcome $\omega$ = (H, H) (two heads).   Our $Bernoulli$ random vector $X$ measures this as (1,1).  Thus, (1,1) is the observed data or the realisation of $X$.</p>
+<h2 id="So-what-is-a-statistic?">So what is a statistic?<a class="anchor-link" href="#So-what-is-a-statistic?">&#182;</a></h2><p>A <em>statistic</em> is any <em><a href="https://en.wikipedia.org/wiki/Measurable_function">measureable function</a></em> of the data: $T(x): \mathbb{X} \rightarrow \mathbb{T}$.</p>
+<p>Thus, a statistic $T$ is also an RV that takes values in the space $\mathbb{T}$.</p>
+<p>When $x \in \mathbb{X}$ is the observed data, $T(x)=t$ is the observed statistic of the observed data $x$.</p>
+<h2 id="Example-2:-New-Zealand-Lotto-Data-and-a-Probability-Model-of-it-as-IID-de-Moivre-RVs">Example 2: New Zealand Lotto Data and a Probability Model of it as IID de Moivre RVs<a class="anchor-link" href="#Example-2:-New-Zealand-Lotto-Data-and-a-Probability-Model-of-it-as-IID-de-Moivre-RVs">&#182;</a></h2><h3 id="New-Zealand-lotto-data">New Zealand lotto data<a class="anchor-link" href="#New-Zealand-lotto-data">&#182;</a></h3><p>Let's look at our pre-made New Zealand lotto data. This is the winning first ball drawn from a NZ Lotto machine for several years.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># These lotto draws of the first ball from NZ Lotto was already downloaded and processed for you</span>
+<span class="n">listBallOne</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> \
+            <span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span>\
+            <span class="mi">36</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span>\
+            <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>\
+            <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>\
+            <span class="mi">5</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>\
+            <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span>\
+            <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>\
+            <span class="mi">34</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span>\
+            <span class="mi">14</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span>\
+            <span class="mi">16</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span>\
+            <span class="mi">39</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>\
+            <span class="mi">32</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span>\
+            <span class="mi">10</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span>\
+            <span class="mi">10</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>\
+            <span class="mi">37</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span>\
+            <span class="mi">16</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span>\
+            <span class="mi">30</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span>\
+            <span class="mi">3</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span>\
+            <span class="mi">34</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>\
+            <span class="mi">23</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span>\
+            <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span>\
+            <span class="mi">8</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span>\
+            <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span>\
+            <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>\
+            <span class="mi">9</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>\
+            <span class="mi">26</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>\
+            <span class="mi">29</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>\
+            <span class="mi">3</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>\
+            <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span>\
+            <span class="mi">2</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>\
+            <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span>\
+            <span class="mi">25</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span>\
+            <span class="mi">26</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>\
+            <span class="mi">31</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span>\
+            <span class="mi">27</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>\
+            <span class="mi">9</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span>\
+            <span class="mi">10</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>\
+            <span class="mi">8</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>\
+            <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span>\
+            <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>\
+            <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">35</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span> <span class="c1"># there are 1114 draws from </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1114</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Space">Data Space<a class="anchor-link" href="#Data-Space">&#182;</a></h3><p>The data space is every possible sequence of ball numbers that we could have got in these 1114 draws.  $\mathbb{X} = \{1, 2, \ldots, 40\}^{1114}$.  There are $40^{1114}$ possible sequences and</p>
+<h3 id="Probability-model">Probability model<a class="anchor-link" href="#Probability-model">&#182;</a></h3><p>We can think of this list <code>listBallOne</code> of sample size $n=1114$ as $x = (x_1,x_2,\ldots,x_{1114})$, the realisation of a random vector $X = (X_1, X_2,\ldots, X_{1114})$ where $X_1, X_2,\ldots, X_{1114} \overset{IID}{\thicksim} de Moivre(\frac{1}{40}, \frac{1}{40}, \ldots, \frac{1}{40})$.</p>
+<p>$P \left( (X_1, X_2, \ldots, X_{1114}) = (x_1, x_2, \ldots, x_{1114}) \right) = \frac{1}{40} \times \frac{1}{40} \times \ldots \times \frac{1}{40} = \left(\frac{1}{40}\right)^{1114}$ if $(x_1, x_2, \ldots, x_{1114}) \in \mathbb{X} = \{1, 2, \ldots, 40\}^{1114}$</p>
+<p>Our data is just one of the $40^{1114}$ possible points in this data space.</p>
+<h2 id="Some-statistics">Some statistics<a class="anchor-link" href="#Some-statistics">&#182;</a></h2><h3 id="Sample-mean">Sample mean<a class="anchor-link" href="#Sample-mean">&#182;</a></h3><p>From a given sequence of RVs $X_1, X_2, \ldots, X_n$, or a random vector $X = (X_1, X_2, \ldots, X_n)$, we can obtain another RV called the sample mean (technically, the $n$-sample mean):</p>
+$$T_n((X_1, X_2, \ldots, X_n)) = \bar{X_n}((X_1, X_2, \ldots, X_n)) :=\frac{1}{n}\displaystyle\sum_{i=1}^nX_i$$<p>We write $\bar{X_n}((X_1, X_2, \ldots, X_n))$ as $\bar{X}$,</p>
+<p>and its realisation $\bar{X_n}((x_1, x_2, \ldots, x_n))$ as $\bar{x_n}$.</p>
+<p>By the properties of expectations that we have seen before,</p>
+$$E(\bar{X_n}) = E \left(\frac{1}{n}\sum_{i=1}^nX_i \right) = \frac{1}{n}E\left(\sum_{i=1}^nX_i\right) = \frac{1}{n}\sum_{i=1}^nE(X_i)$$<p>And because every $X_i$ is identically distributed with the same expectation, say $E(X_1)$, then</p>
+$$E(\bar{X_n}) = \frac{1}{n}\sum_{i=1}^nE(X_i)= \frac{1}{n} \times n \times E(X_1) = E(X_1)$$<p>Similarly, we can show that,</p>
+$$V(\bar{X_n}) = V\left(\frac{1}{n}\sum_{i=1}^nX_i\right) = \frac{1}{n^2}V\left(\sum_{i=1}^nX_i\right)$$<p>And because every $X_i$ is independently and identically distributed with the same variance, say $V(X_1)$, then</p>
+$$V(\bar{X_n}) = \frac{1}{n^2}V\left(\sum_{i=1}^nX_i \right) = \frac{1}{n^2} \times n \times V(X_1) = \frac{1}{n} V(X_1)$$<h3 id="Sample-variance">Sample variance<a class="anchor-link" href="#Sample-variance">&#182;</a></h3><p>Sample variance is given by $$ \frac{1}{n}\sum_{i=1}^n \left( X_i - \bar{X}_n \right)^2$$ Sometimes, we divide by $n-1$ instead of $n$. It is a measure of spread from the sample.</p>
+<p>Similarly, we can look at a sample standard deviation = $\sqrt{\text{sample variance}}$</p>
+<h3 id="numpy-for-numerical-Python">numpy for numerical Python<a class="anchor-link" href="#numpy-for-numerical-Python">&#182;</a></h3><p>Python has a nice module called <code>numpy</code> for numerical computing akin to MATLAB. We will import <code>numpy</code> to use some of its basic statistical capabilities for our Lotto data.  To be able to use these capabilities, it is easiest to convert our Lotto Data into a type called a <code>numpy.array</code> or <code>np.array</code> if we <code>import numpy as np</code>.   (You will be looking more closely at <code>numpy</code> <code>array</code>s in the You Try sections below).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1">#import array, mean, var, std # make pylab stuff we need accessible in Sage</span>
+<span class="n">arrayBallOne</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span> <span class="c1"># make the array out of the list</span>
+<span class="n">arrayBallOne</span>     <span class="c1"># disclose the list</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 4,  3, 11, ...,  6,  8, 35])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span>  <span class="c1"># hit the Tab after the . and see the available methods on numpy arrays</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can get the some sample statistics for the lotto ball one data.</p>
+<h3 id="Sample-mean-of-NZ-Lotto-data">Sample mean of NZ Lotto data<a class="anchor-link" href="#Sample-mean-of-NZ-Lotto-data">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># this calls the mean method and gives our first statistic, the sample mean</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>20.649910233393179</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">mean</span>  <span class="c1"># if you just call the method without &#39;()&#39; then you are not evaluating it</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;built-in method mean of numpy.ndarray object at 0x7fad6fa68f30&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sample-vairance-and-sample-standard-deviation-of-NZ-Lotto-data">Sample vairance and sample standard deviation of NZ Lotto data<a class="anchor-link" href="#Sample-vairance-and-sample-standard-deviation-of-NZ-Lotto-data">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>135.08030968673549</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>11.622405503454759</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">var</span><span class="p">())</span>   <span class="c1"># just checking std is indeed sqrt(var)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>11.62240550345476</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Order-statistics">Order statistics<a class="anchor-link" href="#Order-statistics">&#182;</a></h2><p>The $k$th order statistic of a sample is the $k$th smallest value in the sample.  Order statistics that may be of particular interest include the smallest (minimum) and largest (maximum) values in the sample.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>         <span class="c1"># sample minimum statistic</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>         <span class="c1"># sample maximum statistic</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>40</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOneSorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span> <span class="c1"># make the array out of the list for sorting next</span>
+<span class="n">arrayBallOneSorted</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>        <span class="c1"># sort the array to get the order statistic - this sorts arrayBallOneSorted </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOneSorted</span>             <span class="c1"># the sorted data array - numpy automatically displays with intermediates as ...</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 1,  1,  1, ..., 40, 40, 40])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayBallOne</span>                   <span class="c1"># the original data array</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 4,  3, 11, ...,  6,  8, 35])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Frequencies">Frequencies<a class="anchor-link" href="#Frequencies">&#182;</a></h2><p>The next most interesting statistics we will visit is the frequencies of the ball numbers.</p>
+<p>With lots of discrete data like this, we may be interested in the frequency of each value, or the number of times we get a particular value.  This can be formalized as the following process of adding indicator functions of the data points $(X_1,X_2,\ldots,X_n)$: $$ \sum_{i=1}^n \mathbf{1}_{\{X_i\}}(x) $$</p>
+<p>We can use the SageMath/Python dictionary to give us a mapping from ball numbers in the list to the count of the number of times each ball number comes up.</p>
+<p>Although we are doing this with the Lotto data, mapping a list like this seems like a generally useful thing to be able to do, and so we write it as a function <code>makeFreqDict(myDataSeq)</code> and then use the function on our Lotto data. This is a good example of reusing useful code through a function. We will rely on this function in the sequel for other input data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">makeFreqDict</span><span class="p">(</span><span class="n">myDataSeq</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Make a frequency mapping out of a sequence of data - list, array, str.</span>
+<span class="sd">    </span>
+<span class="sd">    Param myDataList, a list of data.</span>
+<span class="sd">    Return a dictionary mapping each unique data value to its frequency count.&#39;&#39;&#39;</span>
+       
+    <span class="n">freqDict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># start with an empty dictionary</span>
+        
+    <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">myDataSeq</span><span class="p">:</span>
+        
+        <span class="k">if</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">freqDict</span><span class="p">:</span> <span class="c1"># the data value already exists as a key</span>
+                <span class="n">freqDict</span><span class="p">[</span><span class="n">res</span><span class="p">]</span> <span class="o">=</span> <span class="n">freqDict</span><span class="p">[</span><span class="n">res</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># add 1 to the count</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># the data value does not exist as a key value</span>
+            <span class="n">freqDict</span><span class="p">[</span><span class="n">res</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># add a new key-value pair for this new data value, frequency 1</span>
+        
+    <span class="k">return</span> <span class="n">freqDict</span> <span class="c1"># return the dictionary created</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myExampleDataList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># a list with one 1, two 2&#39;s and three 3&#39;s</span>
+<span class="n">myExampleFreqDict</span> <span class="o">=</span> <span class="n">makeFreqDict</span><span class="p">(</span><span class="n">myExampleDataList</span><span class="p">)</span> <span class="c1"># the frequencies are returned as a dictionary</span>
+<span class="n">myExampleFreqDict</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{1: 1, 2: 2, 3: 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myExampleFreqDict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>  <span class="c1"># this returns the (k,v) or key,value pairs in the dictionary as a list</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(1, 1), (2, 2), (3, 3)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myExampleFreqDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># this returns the keys</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 2, 3]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myExampleFreqDict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="c1"># this returns the values which happens to be same in our case!</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 2, 3]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the function <code>makeFreqDict</code> also works on other sequence types like <code>numpy.arrays</code>, and <code>str</code> or sequence of bytes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myExampleDataArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">myExampleDataList</span><span class="p">)</span>
+<span class="n">makeFreqDict</span><span class="p">(</span><span class="n">myExampleDataArray</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{1: 1, 2: 2, 3: 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myExampleDataStr</span> <span class="o">=</span> <span class="s1">&#39;122333&#39;</span>
+<span class="n">makeFreqDict</span><span class="p">(</span><span class="n">myExampleDataStr</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
@@ -12567,6 +13275,862 @@ $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us use the <code>makeFreqDict</code> to find the frequencies of the balls that popped out first in the 1114 NZ Lotto draws.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ballOneFreqs</span> <span class="o">=</span> <span class="n">makeFreqDict</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span> <span class="c1"># call the function</span>
+<span class="n">ballOneFreqs</span>                             <span class="c1"># disclose it</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{1: 29,
+ 2: 28,
+ 3: 31,
+ 4: 24,
+ 5: 27,
+ 6: 30,
+ 7: 31,
+ 8: 32,
+ 9: 22,
+ 10: 27,
+ 11: 25,
+ 12: 28,
+ 13: 29,
+ 14: 22,
+ 15: 22,
+ 16: 27,
+ 17: 20,
+ 18: 28,
+ 19: 28,
+ 20: 32,
+ 21: 30,
+ 22: 30,
+ 23: 27,
+ 24: 36,
+ 25: 37,
+ 26: 22,
+ 27: 26,
+ 28: 24,
+ 29: 24,
+ 30: 33,
+ 31: 28,
+ 32: 27,
+ 33: 28,
+ 34: 27,
+ 35: 34,
+ 36: 24,
+ 37: 26,
+ 38: 30,
+ 39: 22,
+ 40: 37}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Thus, balls labelled by the number 1 come up 29 times in the first ball drawn (Ball One) out of 1,114 Lotto trials.   Similarly, the number 2 comes up 28 times, ... 40 comes up 37 times.  Of course, these numbers would be different if you have downloaded a more recent data file with additional trials!</p>
+<p>So what?   Well, we'd hope that the lotto is fair, i.e. that the probability of each ball coming up with any of the available numbers is the same for each number:   the probability that Ball One is a 1 is the same as the probability that it is 2, is the same as the probability that it is 3,..... , is the same as the probability that it is 40.   If the lotto is fair, the number that comes up on each ball should be a discrete uniform random variable.  More formally, we would expect it to be the de Moivre$(\frac{1}{40}, \frac{1}{40}, \ldots, \frac{1}{40})$ RV as lectured.   Over the long term, we'd expect the number of times each number comes up on a given trial to be about the same as the number of times any other number comes up on that trial.</p>
+<p>We have data from 1987 to 2008, and a first step to assessing the fairness of the lotto (for Ball One, anyway) could be to just visualise the data.   We can use the list of points we created above and the SageMath plotting function points to plot a simple graphic like this.</p>
+<p>Here we are plotting the frequency with which each number comes up against the numbers themselves, but it is a bit hard to see what number on the ball each red point relates to.   To deal with this we add dotted lines going up from the number on the horizontal axis to the corresponding (number, frequency) tuple plotted as a red point.</p>
+<p>For these plots let us use SageMath Graphics primitives: <code>point</code>, <code>points</code> and <code>line</code>, and their <code>+</code> operations for superimpositions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>point <span class="c1"># Returns either a 2-dimensional or 3-dimensional point or &quot;sum&quot; of points as Graphics object</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>line <span class="c1"># Returns either a 2-dimensional or 3-dimensional line depending on value of points as Graphics object</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># DATA we plot each item (k,f) in ballOneFreqs.items() as a red points at (k,f), k is ball number, f is frequency</span>
+<span class="n">lottoPlotCounts</span> <span class="o">=</span> <span class="n">point</span><span class="p">(</span><span class="n">ballOneFreqs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="c1"># MODEL next loop through each key k and add a blue dotted line that goes from (k, 0) to (k, ballOneFreqs[k])</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ballOneFreqs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">lottoPlotCounts</span> <span class="o">+=</span> <span class="n">line</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">),(</span><span class="n">k</span><span class="p">,</span> <span class="n">ballOneFreqs</span><span class="p">[</span><span class="n">k</span><span class="p">])],</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">lottoPlotCounts</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+fmrvKtZap061PkNmvUdN2waDdb2ClWPj/OmnjvRxjEPvdScE67Zs2nr5u0/ITR727bOv4bFvXytC
+fvQjqWNH+9J9P/+5+30M5NR6OZETrGPsiHXr7Itpdeggffe7rYpinP3szBlp5kz7terZU3rnHd9y
+Tp6UJk60f4f1729fnK0VTHqPmrYNBut6BatWj/Pp09L06fZ7NDFRKix0tF+LffKJNGqU/V4fNkwq
+KXG3j4J3WzZtvfzdJ+R2Wzp1Siouti983KGDDwEffmj/4bPDFh5uH4Tt49VMW93HUE6tlxM5wTrG
+jujZUyorO3d73Trpppt8imKc/exXv5Juv/3c7Suv9O2sVk8/Ld1zz7nbEydK69f7XMuk96hp22Cw
+rlewavU4P/+89O1vn7s9apS0bZtj/Vrs7rulJUvO3c7MtH+PuChYt2XT1svffVp0hWl/Sk9P9+/Z
+lj7ToYN9+iqfnTjRcJeB2lr7f/J8nDy0uo+hnFovJ3KCdYwdUVHR9O0WYJz97POvTWWlbzmf/3O+
+5nzGpPeoadtgsK5XsGr1ODv1HnWKw+91JwTrtmzaevm7jzG7LeXl5Sk/P9+vEwdHDB1qfyx51je/
+KfXu7V4foDUefPDc9yNHSlOmuNcFTcvIkAYMsL8PC5Puv9+3nP/3/+xPnCSpXTvpBz9wph8Q6m69
+1T5ttWTvlbBggbt95s6VunSxv4+OlrKz3e2DoBFyuy05oq5O2rxZioiwr1QNtGU7dkhHj9rbsgmf
+t6JxFRX2UXB9+kiXX+57ziefSH/7mz0Z+eIXnesHhDqvV9q6VerbVxoyxO029kU7i4rs3xd9+7rd
+BkHCmE8eAqW4WJo1y176LCxMxX1v0KxlY1uX41QfAzm1Xk7kBOsYO6U49krN+vlEFZe2buLAOAdA
+584q/uIkzXrk8taNc7duKh40WbPu/2JQvUdN2waDdb2ClSPjHBtrv0cfHmLG69Wzp/1ev7uvEX2C
+dVs2bb383ceYYx4CpbbW/s+72trgynHEzp3SSy/Z/6v57W/bH7v6yKTxMWqMLcs+YO2DD6SvflVK
+SXG7kVGvlXE+/FB64QUpJsbeBcCAT2ZMe71Meo86kmNZ9mt+4IA0bZp90KubfRzMQdOMer02b5bW
+rrV3lb71Vvf7/OEP0rvv2hfXnTTJ3S4GMm29/N2H3ZZg+8c/pKuvtg/+luzTdv70p+52CkYPPSQ9
+/rj9fbt20pYt0ujR7nbCxR09Kg0ffu5sVDfdZJ+NCsHtvvukxYvt79u3l95+2z4eCAiUTZukCRPO
+/cvvySft7dItzz0nzZlz7vbLL0s33+xeH7gu5HZbQiM2bDg3cZCk/Hz3ugSz88f19Gnptdfc64Km
+/e1vDU9ju369IxfTg+HOf4/W1Nj/+wsE0iuvNPwvY7f/Pv7887vdB64zZvKQnp6utLQ05ebmul0l
+NH3+wK7kZHd6BLvPj7MJB9Th4gYOtD8dOispSYqMdK8PAoP3KNxm2t/HvCfwOeE5OTk5bhaorq7W
+okWLVFhYqNtvv13Dhw/36/PV1NgnH4iKatUu/cbltNpll0k9eqim/JhKR0xW1HM/UXiXGJ/jTBof
+Y8ZYksaPV82Hh1Qa3ltR8+5QeNZ3XC5k1mtllG7dpOHDVXPwXyodMFZRv3pW4Qlxbrcy7vUy6T3q
+SM6ECfZr3q6vov77Owqf8y13+ziYg6YZ83pdcYWdU1mt0mtnKmrZYoV39P0/Llrd5z/+QzVHvCo9
+3V1RX/+awh950D5dtBtdDGXaevm9j+Uyr9drSbK8Xm9Anq+w0LIkexlMOU4xbb2cyAnWMXaKSa+V
+iUxbL9NeL5Peo+SgNUx7vUzKMamLiUxbL3/3MWa3pUAZONDehXXgwODKcYpp6+VETrCOsVNMeq1M
+ZNp6mfZ6mfQeJSdA6ursryBj2utlUo5JXRx35kyrI0xbL3/34WxLAACgeZ57TrrrLvv7JUvsM/MB
+bdGWLfbFEI4ckb71LenZZyWPx+1WbQKTBwAAcGmHD0uJiefOBBQWJn38sX0f0NYMHGhfz+WsNWuk
+tDT3+rQhxuy2xNmWAAAwWGVlw1OI1tXZ9wFt0fHjTd9Go1o0eXjyySc1atQode7cWfHx8Zo+fbr2
+7dvX4DE33HCDwsLC6r/Cw8OVlZV1yey8vDzl5+crIyOjZWvQQiUlUna2vQymHKeYtl5O5ATrGDvF
+pNfKRKatl2mvl0nvUXL8bMAAadYslaiXsvUjlUy+Qxo0yOVSzjHt9TIpx6QujrnvvnPb8oDrW/Wp
+g1HrJf/3adHkYcuWLbrzzju1bds2bdiwQadPn9ZNN92kU6dO1T/G4/Fozpw5Ki8vV1lZmUpLS/XU
+U085XtxXFRX2RWIrKoIrxymmrZcTOcE6xk4x6bUykWnrZdrrZdJ7lJwAyMtTxfMvaV2/Oar4YXDt
+I27a62VSjkldHPP976vit2u1rs+3VZH7itSli89RRq2X/N+nVcc8HD16VD169NDmzZs1duxYSdK4
+ceN05ZVXasmSJc3K4JgHAAAAoG1o1TEPx48fl8fjUdeuXRvcv3LlSsXFxWn48OG6//77G3wyAcAB
+dXXSL38pLVwovfee220AAECI8PmTB8uyNHXqVFVWVurNN9+sv//5559Xv379lJiYqL///e+69957
+NXr0aP3+97+/aA6fPAA+uPNO6Zln7O87dZIKC4Nq32MAAGCmCF//YFZWlvbs2aO//vWvDe6/4447
+6r8fOnSoEhISNGHCBB08eFBJSUm+NwVwzh/+cO77Eyek9euZPAAAAL/zabelefPm6dVXX9WmTZvU
+s2fPJh87evRoWZal/fv3N/m4s6dqPf/LH6dt3b7dPr5r+/bgynGKaevlRE5QjvGgQSpVgnL0iEqV
+0KqJg0mvlYlMWy/TXi+T3qPkBIZpfZxi2utlUo5JXZzEevkmPCcnJ6clf2DevHlas2aNNm3apP79
++1/y8e+8845efPFF3XPPPerRo8cFP6+urtaiRYtUWFio22+/XRkZGfVfw4cPb0m1ZmnXzv531ujR
+UseOwZPjFNPWy4mcoBzjCRNU/d4BHarurqH3fEUdZ/+nu30czDGNaetl2utl0nuUnMAwrY9TTHu9
+TMoxqYuTWC/ftOiYh6ysLOXm5io/P1+DzvufztjYWEVFRam4uFirVq3SlClT1K1bNxUVFSk7O1t9
++/bVX/7yl4tmcswDAAAA0Da0aPIQFhYmz0XO6fzCCy8oMzNTJSUluu222/Tee++pqqpKffr00de+
+9jU98MAD6tSp00UzmTw4xLKC6nzbAIAg59TfW/z9F5p43V3TomMe6urqVFtbe8FXZmamJKl3797a
+tGmTjhw5opMnT2rv3r168sknG504wCH33CNFRUmJidJ5Z74CAMBIS5dK0dHSF74gNXI2xmZ5+GGp
+QwcpPt4+cQSC3+7d0he/KLVvL33jG1JtrduNQk6rrvPQFpWXS0uW2MugyNm4UXr6aammRiotlW67
+zd0+BuY41cUpJo2NiTmmMW29THu9THqPkhMYre6zb590993SqVPS8eP2PwBPnmx5TkGB9NhjUnW1
+dPiwlJHhYyGbaa+XSTkmddGcOdL+/dKZM9JvfiP9+tfu9nEwxyl+72O5zOv1WpKs1NRUa+rUqdaq
+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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Empirical-mass-function,-another-statistic">Empirical mass function, another statistic<a class="anchor-link" href="#Empirical-mass-function,-another-statistic">&#182;</a></h2><p>What about plotting the height of a point as the relative frequency rather than the frequency?   The relative frequency for a number is the count (frequency) for that number divided by the sample size, i.e., the total number of trials. This can be formalized as the following process of adding normalized indicator functions of the data points $(X_1,X_2,\ldots,X_n)$: $$\frac{1}{n} \sum_{i=1}^n \mathbf{1}_{\{X_i\}}(x)$$</p>
+<p>In the next section on <em>List comprehensions and tuples</em> below we will show how the guts of the <code>makeEMF</code> function works.  For now just evaluate the next cell and use the <code>makeEMF</code> so that you can just concentrate on the data for now. All <code>makeEMF</code> does is turn the frequencies in the above plot to relative frequences that sum to $1$ instead of the sample size $n=1114$.</p>
+<p>Now, we plot the points based on relative frequencies.   What we have made is another statistic called the empirical mass function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">makeEMF</span><span class="p">(</span><span class="n">myDataList</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Make an empirical mass function from a data list.</span>
+<span class="sd">    </span>
+<span class="sd">    Param myDataList, list of data to make emf from.</span>
+<span class="sd">    Return list of tuples comprising (data value, relative frequency) ordered by data value.&#39;&#39;&#39;</span> 
+
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">makeFreqDict</span><span class="p">(</span><span class="n">myDataList</span><span class="p">)</span>     <span class="c1"># make the frequency counts mapping</span>
+    <span class="n">totalCounts</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">relFreqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">fr</span><span class="o">/</span><span class="n">totalCounts</span> <span class="k">for</span> <span class="n">fr</span> <span class="ow">in</span> <span class="n">freqs</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span> <span class="c1"># use a list comprehension</span>
+    <span class="n">numRelFreqPairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">relFreqs</span><span class="p">)</span> <span class="c1"># zip the keys and relative frequencies together</span>
+    
+    <span class="k">return</span> <span class="n">numRelFreqPairs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">numRelFreqPairs</span> <span class="o">=</span> <span class="n">makeEMF</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span> <span class="c1"># make a list of unique data values and their relative frequencies</span>
+
+<span class="n">lottoPlotEMF</span> <span class="o">=</span> <span class="n">point</span><span class="p">(</span><span class="n">numRelFreqPairs</span><span class="p">,</span> <span class="n">rgbcolor</span> <span class="o">=</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">numRelFreqPairs</span><span class="p">:</span>    <span class="c1"># for each tuple in the list</span>
+    <span class="n">kkey</span><span class="p">,</span> <span class="n">kheight</span> <span class="o">=</span> <span class="n">k</span>     <span class="c1"># unpack tuple</span>
+    <span class="n">lottoPlotEMF</span> <span class="o">+=</span> <span class="n">line</span><span class="p">([(</span><span class="n">kkey</span><span class="p">,</span> <span class="mi">0</span><span class="p">),(</span><span class="n">kkey</span><span class="p">,</span> <span class="n">kheight</span><span class="p">)],</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">lottoPlotEMF</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+RK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span>    
+<span class="k">def</span> <span class="nf">makeEDF</span><span class="p">(</span><span class="n">myDataList</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Make an empirical distribution function from a data list.</span>
+<span class="sd">    </span>
+<span class="sd">    Param myDataList, list of data to make emf from.</span>
+<span class="sd">    Return list of tuples comprising (data value, cumulative relative frequency) ordered by data value.&#39;&#39;&#39;</span> 
+
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">makeFreqDict</span><span class="p">(</span><span class="n">myDataList</span><span class="p">)</span>     <span class="c1"># make the frequency counts mapping</span>
+    <span class="n">totalCounts</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">relFreqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">fr</span><span class="o">/</span><span class="n">totalCounts</span> <span class="k">for</span> <span class="n">fr</span> <span class="ow">in</span> <span class="n">freqs</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span> <span class="c1"># use a list comprehension</span>
+    <span class="n">relFreqsArray</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">relFreqs</span><span class="p">)</span>
+    <span class="n">cumFreqs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">relFreqsArray</span><span class="o">.</span><span class="n">cumsum</span><span class="p">())</span>
+    <span class="n">numCumFreqPairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">cumFreqs</span><span class="p">)</span> <span class="c1"># zip the keys and culm relative frequencies together</span>
+    
+    <span class="k">return</span> <span class="n">numCumFreqPairs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="List-Comprehensions-in-04_04...">List Comprehensions in 04_04...<a class="anchor-link" href="#List-Comprehensions-in-04_04...">&#182;</a></h2>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
