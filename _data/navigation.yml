@@ -41,16 +41,20 @@ lMenu-360-in-525:
   - title: "360-in-525-4"
     url: /360-in-525/2018/04/
     children:
-      - title: "Introduction"
+      - title: "00. Introduction"
         url: /360-in-525/2018/04/jp/360-in-525-04_00/
-      - title: "BASH crash"
+      - title: "01. BASH crash"
         url: /360-in-525/2018/04/jp/360-in-525-04_01/
-      - title: "Numbers, Strings, Booleans and Sets"
+      - title: "02, Numbers, Strings, Booleans and Sets"
         url: /360-in-525/2018/04/jp/360-in-525-04_02/
-      - title: "Map, Function, Collection, and Probability"
+      - title: "03. Map, Function, Collection, and Probability"
         url: /360-in-525/2018/04/jp/360-in-525-04_03/
-      - title: "Conditional Probability, Random Variables, Loops and Conditionals"
+      - title: "04. Conditional Probability, Random Variables, Loops and Conditionals"
         url: /360-in-525/2018/04/jp/360-in-525-04_04/
+      - title: "05. Random Variables, Expectations, Data, Statistics, Arrays and Tuples"
+        url: /360-in-525/2018/04/jp/360-in-525-04_05/
+      - title: "..."
+        url: /360-in-525/2018/04/jp/360-in-525-04_05/
   - title: "360-in-525-5"
     url: /360-in-525/2018/05/
   - title: "360-in-525-0"

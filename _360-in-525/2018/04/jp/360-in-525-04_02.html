@@ -13437,7 +13437,7 @@ Suppose, we want to</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-5:-Variables-and-assignments">Example 5: Variables and assignments<a class="anchor-link" href="#Example-5:-Variables-and-assignments">&#182;</a></h2><p>Loosely speaking one can think of a <em>variable</em> as a way of referring to a memory location used by a computer program. A variable is a symbolic name for this physical location. This memory location contains values, like numbers, text or more complicated types and crucially <em>what is contained in a variable can change</em> based on operations we do to it.</p>
+<h2 id="Example-5:-Variables-and-assignments-of-numbers-and-expressions">Example 5: Variables and assignments of numbers and expressions<a class="anchor-link" href="#Example-5:-Variables-and-assignments-of-numbers-and-expressions">&#182;</a></h2><p>Loosely speaking one can think of a <em>variable</em> as a way of referring to a memory location used by a computer program. A variable is a symbolic name for this physical location. This memory location contains values, like numbers, text or more complicated types and crucially <em>what is contained in a variable can change</em> based on operations we do to it.</p>
 <p>In SageMath, the symbol <code>=</code> is the <em>assignment operator</em>.  You can assign a numerical value to a <em>variable</em> in SageMath using the assignment operator.  This is a good way to store values you want to use or modify later.</p>
 <p>(If you have programmed before using a a language like C or C++ or Java, you'll see that SageMath is a bit different because in SageMath you don't have to say what type of value is going to be assigned to the variable.)</p>
 <p>Feel free to take a deeper dive into <a href="https://en.wikipedia.org/wiki/Assignment_(computer_science)">the computer science concept of assignment</a>.</p>
@@ -13547,257 +13547,6 @@ Suppose, we want to</p>
 <pre>1 2 3
 </pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Variables can be strings as well as numbers.  Anything you put inside quote marks will be treated as a string by SageMath.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s2">&quot;this is a string&quot;</span>   <span class="c1"># assign a string to the variable myStr</span>
-<span class="n">myStr</span>                        <span class="c1"># disclose myStr</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;this is a string&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[86]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myStr</span><span class="p">)</span>                  <span class="c1"># check the type for myStr</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;type &#39;str&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can also create a string by enclosing them in single quotes or three consecutive single quotes. In SageMath/Python a character (represented by the <code>char</code> type in languages like C/C++/Scala) is just a string made up of one character.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s1">&#39;this is a string&#39;</span>   <span class="c1"># assign a string to the variable myStr using single quotes</span>
-<span class="n">myStr</span>                        <span class="c1"># disclose myStr</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;this is a string&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;this is a string&#39;&#39;&#39;</span>   <span class="c1"># assign a string to the variable myStr using three consecutive single quotes</span>
-<span class="n">myStr</span>                            <span class="c1"># disclose myStr</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;this is a string&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Using triple single quotes is especially useful if your string has single or double quotes within it. Triple quotes are often used to create <code>DocString</code> to document code in Pyhton/SageMath.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStrContainingQuotes</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;this string has &quot;a double quoted sub-string&quot; and some escaped characters: \,&#39;, - all OK!&#39;&#39;&#39;</span>
-<span class="n">myStrContainingQuotes</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;this string has &#34;a double quoted sub-string&#34; and some escaped characters: \\,\&#39;, - all OK!&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can reassign different values to variable names.  Using SageMath you can also change the type of the values assigned to the variable (not all programming languages allow you to do this).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">print</span> <span class="s2">&quot;Right now, a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;and is of type&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># using , and strings in double quotes print can be more flexible</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="c1"># reassign 1/3 to the variable a</span>
-<span class="k">print</span> <span class="s2">&quot;Now, a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;and is of type&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># note the change in type</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Right now, a = 1 and is of type &lt;type &#39;sage.rings.integer.Integer&#39;&gt;
-Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># assign the expression to f</span>
-<span class="n">f</span> <span class="c1"># disclose f</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[88]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>23</pre>
-</div>
-
 </div>
 
 </div>
@@ -13937,16 +13686,6 @@ Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can assign values to more than one variable on the same line, by separating the assignment expressions with a semicolon <code>;</code>.  However, it is usually best not to do this because it will make your code easier to read (it is hard to spot the other assignments on a single line after the first one).</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[90]:</div>
@@ -13969,6 +13708,36 @@ Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
 <pre>6
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># assign the expression to f</span>
+<span class="n">f</span> <span class="c1"># disclose f</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[88]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>23</pre>
+</div>
+
 </div>
 
 </div>
@@ -14016,7 +13785,49 @@ Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="You-Try">You Try<a class="anchor-link" href="#You-Try">&#182;</a></h3><p>Assign the value <code>2</code> to a variable named <code>x</code>.</p>
+<p>You can reassign different values to variable names.  Using SageMath you can also change the type of the values assigned to the variable (not all programming languages allow you to do this).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span> <span class="s2">&quot;Right now, a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;and is of type&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># using , and strings in double quotes print can be more flexible</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="c1"># reassign 1/3 to the variable a</span>
+<span class="k">print</span> <span class="s2">&quot;Now, a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;and is of type&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># note the change in type</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Right now, a = 1 and is of type &lt;type &#39;sage.rings.integer.Integer&#39;&gt;
+Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="You-try">You try<a class="anchor-link" href="#You-try">&#182;</a></h3><p>Assign the value <code>2</code> to a variable named <code>x</code>.</p>
 <p>On the next line down in the same cell, assign the value <code>3</code> to a variable named <code>y</code>.</p>
 <p>Then (on a third line)  put in an expression which will evaluate <code>x + y</code></p>
 
@@ -14058,6 +13869,847 @@ Now, a = 1/3 and is of type &lt;type &#39;sage.rings.rational.Rational&#39;&gt;
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-6:-Strings">Example 6: Strings<a class="anchor-link" href="#Example-6:-Strings">&#182;</a></h2><p>Variables can be strings (an not just numbers).  Anything you put inside quote marks will be treated as a string by SageMath/Python.</p>
+<p>Strings as <code>str</code> and <code>unicode</code> are built-in <a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">sequence types</a> for storing strings of bytes and unicode-encoded characters and and operating over them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s2">&quot;this is a string&quot;</span>   <span class="c1"># assign a string to the variable myStr</span>
+<span class="n">myStr</span>                        <span class="c1"># disclose myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this is a string&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myStr</span><span class="p">)</span>                  <span class="c1"># check the type for myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;str&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also create a string by enclosing them in single quotes or three consecutive single quotes. In SageMath/Python a character (represented by the <code>char</code> type in languages like C/C++/Scala) is just a string made up of one character.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s1">&#39;this is a string&#39;</span>   <span class="c1"># assign a string to the variable myStr using single quotes</span>
+<span class="n">myStr</span>                        <span class="c1"># disclose myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this is a string&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can assign values to more than one variable on the same line, by separating the assignment expressions with a semicolon <code>;</code>.  However, it is usually best not to do this because it will make your code easier to read (it is hard to spot the other assignments on a single line after the first one).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStr</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;this is a string&#39;&#39;&#39;</span>   <span class="c1"># assign a string to the variable myStr using three consecutive single quotes</span>
+<span class="n">myStr</span>                            <span class="c1"># disclose myStr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this is a string&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using triple single quotes is especially useful if your string has single or double quotes within it. Triple quotes are often used to create <code>DocString</code> to document code in Pyhton/SageMath.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myStrContainingQuotes</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;this string has &quot;a double quoted sub-string&quot; and some escaped characters: \,&#39;, - all OK!&#39;&#39;&#39;</span>
+<span class="n">myStrContainingQuotes</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;this string has &#34;a double quoted sub-string&#34; and some escaped characters: \\,\&#39;, - all OK!&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Str-and-unicode-Strings">Str and unicode Strings<a class="anchor-link" href="#Str-and-unicode-Strings">&#182;</a></h3><p>In Python/SageMath, we need to be extremely careful with strings.
+The type 'str' is actually a sequence of bytes while the unicode string of type <code>unicode</code> is a sequence of unicode characters (some of which can be more than a byte in size). See <a href="http://pgbovine.net/unicode-python.htm">this</a> for an nice clarification of ASCII and unicode (utf-8) encoded strings. 
+So, it is a good habit to convert strings from natural languages that are meant for processing into unicode strings using the <code>decode(utf-8)</code> method right away.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hi猫&#39;</span> <span class="c1"># this is hi (each letter is encoded by one byte) followed by the Chinese character for cat (3 bytes)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x is of type str = sequence of bytes in Python2 / SageMath</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[87]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;str&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># this is a sequence of five hexadecimal numbers each requiring a byte to represent</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[106]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Disclosing <code>x</code> below only shows the hexa-decimal numbers <code>68</code> <code>69</code> <code>e7</code> <code>8c</code> <code>ab</code>, 
+but only <code>h</code> for <code>68</code> and <code>i</code> for <code>69</code> from <a href="http://www.asciitable.com/">ASCII table</a>, are displayed as characters here,
+while <code>\xe7\x8c\xab</code> are shown as hexadecimal numbers with prefix <code>\x</code> 
+instead of the Chinese character for cat: 猫</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span>    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[101]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;hi\xe7\x8c\xab&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># printing a string displays the desired if the display is unicode-compatible</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hi猫
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Generally it is safe safe to convert strings from natural languages to unicode in Python/SageMath.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1"># this decodes or converts the sequence of bytes to a sequence of unicode characters</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>               <span class="c1"># the type of y now is unicode </span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[90]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;unicode&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># now we have a sequence of just 3 unicode characters as we want</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[107]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Disclosing <code>y</code> shows the two ASCII character <code>h</code> and <code>i</code> and the Chinese cat character 猫 is specified by the corresponding entry in <a href="https://en.wikipedia.org/wiki/UTF-8">utf-8 table</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">y</span>   <span class="c1"># output prepended by u shows it is a unicode sequence as opposed to a str which is a byte sequence</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[108]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>u&#39;hi\u732b&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">y</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hi猫
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When programmatically processing sequences of unicode characters it is much safer to work with <code>repr</code> for the canonical string representation of the object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>repr <span class="c1"># gives the canonical string representation of the object</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>u&#39;hi\u732b&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;unicode_escape&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>u&#39;hi猫&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-Pride-and-Prejudice-as-unicode">Example: Pride and Prejudice as unicode<a class="anchor-link" href="#Example:-Pride-and-Prejudice-as-unicode">&#182;</a></h2><p>We will explore frequencies of strings for the most downloaded book at <a href="http://www.gutenberg.org/ebooks/search/?sort_order=downloads">Project Gutenberg</a> that publishes public domain books online.
+Currently, books published before 1923 are in the <em>public domain</em> - meaning anyone has the right to copy or use the text in any way.</p>
+<p>Pride and Prejudice by Jane Austin had the most number of downloads and it's available from</p>
+<ul>
+<li><a href="http://www.gutenberg.org/ebooks/1342">http://www.gutenberg.org/ebooks/1342</a>.</li>
+</ul>
+<p>A quick exploration allows us to see the utf-encoded text <a href="http://www.gutenberg.org/files/1342/1342-0.txt">here</a>.</p>
+<p>For now, we will just show how to download the most popular book from the project and display it's contents for processing down the road.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># this downloads the unicode text of the book from the right url we found at the Gutenberg Project</span>
+<span class="c1"># and assigns it to a variable named prideAndPrejudiceRaw</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="o">*</span> 
+<span class="n">prideAndPrejudiceRaw</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://www.gutenberg.org/files/1342/1342-0.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">prideAndPrejudiceRaw</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">]</span> <span class="c1"># just showing the first 1000 raw characters of the downloaded book as unicode</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>u&#39;\ufeffThe Project Gutenberg EBook of Pride and Prejudice, by Jane Austen\r\n\r\nThis eBook is for the use of anyone anywhere at no cost and with\r\nalmost no restrictions whatsoever.  You may copy it, give it away or\r\nre-use it under the terms of the Project Gutenberg License included\r\nwith this eBook or online at www.gutenberg.org\r\n\r\n\r\nTitle: Pride and Prejudice\r\n\r\nAuthor: Jane Austen\r\n\r\nPosting Date: August 26, 2008 [EBook #1342]\r\nRelease Date: June, 1998\r\nLast Updated: March 10, 2018\r\n\r\nLanguage: English\r\n\r\nCharacter set encoding: UTF-8\r\n\r\n*** START OF THIS PROJECT GUTENBERG EBOOK PRIDE AND PREJUDICE ***\r\n\r\n\r\n\r\n\r\nProduced by Anonymous Volunteers\r\n\r\n\r\n\r\n\r\n\r\nPRIDE AND PREJUDICE\r\n\r\nBy Jane Austen\r\n\r\n\r\n\r\nChapter 1\r\n\r\n\r\nIt is a truth universally acknowledged, that a single man in possession\r\nof a good fortune, must be in want of a wife.\r\n\r\nHowever little known the feelings or views of such a man may be on his\r\nfirst entering a neighbourhood, this truth is so well fixed in the minds\r\nof the surround&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">prideAndPrejudiceRaw</span><span class="p">)</span> <span class="c1"># this is a sequence of utf-8-encoded characters</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;unicode&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">prideAndPrejudiceRaw</span><span class="p">)</span> <span class="c1"># the length of the unicode string is about 700 thousand unicode characters</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>717617</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we will show how trivial it is to "read" all the chapters into SageMath/Python using these steps:</p>
+<ul>
+<li>we use regular expressions via the <code>re</code> library to substitue all occurences of white-space characters like one or more consecutive end-of-line, tabs, white space characters, etc with a single white space, </li>
+<li>we split by 'Chapter ' into multiple chapters in a list</li>
+<li>print the first 100 character in each of the first 10 Chapters</li>
+</ul>
+<p>(don't worry about the details now - we will revist these in detail later)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">re</span> 
+<span class="c1"># make a list of chapters</span>
+<span class="n">chapterList</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">prideAndPrejudiceRaw</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;Chapter &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="k">for</span> <span class="n">chapter</span> <span class="ow">in</span> <span class="n">chapterList</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">chapter</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;unicode_escape&#39;</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>u&#39;1 It is a truth universally acknowledged, that a single man in possession of a good fortune, must be&#39; 
+
+u&#39;2 Mr. Bennet was among the earliest of those who waited on Mr. Bingley. He had always intended to vi&#39; 
+
+u&#39;3 Not all that Mrs. Bennet, however, with the assistance of her five daughters, could ask on the sub&#39; 
+
+u&#39;4 When Jane and Elizabeth were alone, the former, who had been cautious in her praise of Mr. Bingley&#39; 
+
+u&#39;5 Within a short walk of Longbourn lived a family with whom the Bennets were particularly intimate. &#39; 
+
+u&#39;6 The ladies of Longbourn soon waited on those of Netherfield. The visit was soon returned in due fo&#39; 
+
+u&#34;7 Mr. Bennet&#39;s property consisted almost entirely in an estate of two thousand a year, which, unfort&#34; 
+
+u&#34;8 At five o&#39;clock the two ladies retired to dress, and at half-past six Elizabeth was summoned to di&#34; 
+
+u&#34;9 Elizabeth passed the chief of the night in her sister&#39;s room, and in the morning had the pleasure &#34; 
+
+u&#39;10 The day passed much as the day before had done. Mrs. Hurst and Miss Bingley had spent some hours &#39; 
+
+u&#39;11 When the ladies removed after dinner, Elizabeth ran up to her sister, and seeing her well guarded&#39; 
+
+u&#39;12 In consequence of an agreement between the sisters, Elizabeth wrote the next morning to their mot&#39; 
+
+u&#39;13 “I hope, my dear,” said Mr. Bennet to his wife, as they were at breakfast the next morning, “that&#39; 
+
+u&#39;14 During dinner, Mr. Bennet scarcely spoke at all; but when the servants were withdrawn, he thought&#39; 
+
+u&#39;15 Mr. Collins was not a sensible man, and the deficiency of nature had been but little assisted by &#39; 
+
+u&#34;16 As no objection was made to the young people&#39;s engagement with their aunt, and all Mr. Collins&#39;s &#34; 
+
+u&#39;17 Elizabeth related to Jane the next day what had passed between Mr. Wickham and herself. Jane list&#39; 
+
+u&#39;18 Till Elizabeth entered the drawing-room at Netherfield, and looked in vain for Mr. Wickham among &#39; 
+
+u&#39;19 The next day opened a new scene at Longbourn. Mr. Collins made his declaration in form. Having re&#39; 
+
+u&#39;20 Mr. Collins was not left long to the silent contemplation of his successful love; for Mrs. Bennet&#39; 
+
+u&#34;21 The discussion of Mr. Collins&#39;s offer was now nearly at an end, and Elizabeth had only to suffer &#34; 
+
+u&#39;22 The Bennets were engaged to dine with the Lucases and again during the chief of the day was Miss &#39; 
+
+u&#39;23 Elizabeth was sitting with her mother and sisters, reflecting on what she had heard, and doubting&#39; 
+
+u&#34;24 Miss Bingley&#39;s letter arrived, and put an end to doubt. The very first sentence conveyed the assu&#34; 
+
+u&#39;25 After a week spent in professions of love and schemes of felicity, Mr. Collins was called from hi&#39; 
+
+u&#34;26 Mrs. Gardiner&#39;s caution to Elizabeth was punctually and kindly given on the first favourable oppo&#34; 
+
+u&#39;27 With no greater events than these in the Longbourn family, and otherwise diversified by little be&#39; 
+
+u&#34;28 Every object in the next day&#39;s journey was new and interesting to Elizabeth; and her spirits were&#34; 
+
+u&#34;29 Mr. Collins&#39;s triumph, in consequence of this invitation, was complete. The power of displaying t&#34; 
+
+u&#39;30 Sir William stayed only a week at Hunsford, but his visit was long enough to convince him of his &#39; 
+
+u&#34;31 Colonel Fitzwilliam&#39;s manners were very much admired at the Parsonage, and the ladies all felt th&#34; 
+
+u&#39;32 Elizabeth was sitting by herself the next morning, and writing to Jane while Mrs. Collins and Mar&#39; 
+
+u&#39;33 More than once did Elizabeth, in her ramble within the park, unexpectedly meet Mr. Darcy. She fel&#39; 
+
+u&#39;34 When they were gone, Elizabeth, as if intending to exasperate herself as much as possible against&#39; 
+
+u&#39;35 Elizabeth awoke the next morning to the same thoughts and meditations which had at length closed &#39; 
+
+u&#39;36 If Elizabeth, when Mr. Darcy gave her the letter, did not expect it to contain a renewal of his o&#39; 
+
+u&#39;37 The two gentlemen left Rosings the next morning, and Mr. Collins having been in waiting near the &#39; 
+
+u&#39;38 On Saturday morning Elizabeth and Mr. Collins met for breakfast a few minutes before the others a&#39; 
+
+u&#39;39 It was the second week in May, in which the three young ladies set out together from Gracechurch &#39; 
+
+u&#34;40 Elizabeth&#39;s impatience to acquaint Jane with what had happened could no longer be overcome; and a&#34; 
+
+u&#34;41 The first week of their return was soon gone. The second began. It was the last of the regiment&#39;s&#34; 
+
+u&#34;42 Had Elizabeth&#39;s opinion been all drawn from her own family, she could not have formed a very plea&#34; 
+
+u&#39;43 Elizabeth, as they drove along, watched for the first appearance of Pemberley Woods with some per&#39; 
+
+u&#39;44 Elizabeth had settled it that Mr. Darcy would bring his sister to visit her the very day after he&#39; 
+
+u&#34;45 Convinced as Elizabeth now was that Miss Bingley&#39;s dislike of her had originated in jealousy, she&#34; 
+
+u&#39;46 Elizabeth had been a good deal disappointed in not finding a letter from Jane on their first arri&#39; 
+
+u&#39;47 “I have been thinking it over again, Elizabeth,” said her uncle, as they drove from the town; “an&#39; 
+
+u&#39;48 The whole party were in hopes of a letter from Mr. Bennet the next morning, but the post came in &#39; 
+
+u&#34;49 Two days after Mr. Bennet&#39;s return, as Jane and Elizabeth were walking together in the shrubbery &#34; 
+
+u&#39;50 Mr. Bennet had very often wished before this period of his life that, instead of spending his who&#39; 
+
+u&#34;51 Their sister&#39;s wedding day arrived; and Jane and Elizabeth felt for her probably more than she fe&#34; 
+
+u&#39;52 Elizabeth had the satisfaction of receiving an answer to her letter as soon as she possibly could&#39; 
+
+u&#39;53 Mr. Wickham was so perfectly satisfied with this conversation that he never again distressed hims&#39; 
+
+u&#39;54 As soon as they were gone, Elizabeth walked out to recover her spirits; or in other words, to dwe&#39; 
+
+u&#39;55 A few days after this visit, Mr. Bingley called again, and alone. His friend had left him that mo&#39; 
+
+u&#34;56 One morning, about a week after Bingley&#39;s engagement with Jane had been formed, as he and the fem&#34; 
+
+u&#39;57 The discomposure of spirits which this extraordinary visit threw Elizabeth into, could not be eas&#39; 
+
+u&#39;58 Instead of receiving any such letter of excuse from his friend, as Elizabeth half expected Mr. Bi&#39; 
+
+u&#39;59 “My dear Lizzy, where can you have been walking to?” was a question which Elizabeth received from&#39; 
+
+u&#34;60 Elizabeth&#39;s spirits soon rising to playfulness again, she wanted Mr. Darcy to account for his hav&#34; 
+
+u&#39;61 Happy for all her maternal feelings was the day on which Mrs. Bennet got rid of her two most dese&#39; 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we learn more we will return to this popular book's unicode.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
