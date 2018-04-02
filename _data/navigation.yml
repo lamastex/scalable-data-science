@@ -38,6 +38,11 @@ lMenu-360-in-525:
     url: /360-in-525/2018/02/
   - title: "360-in-525-3"
     url: /360-in-525/2018/03/
+    children:
+      - title: "000. Scalable Geospatial Computing"
+        url: /360-in-525/2018/03/db/000_ScalableGeospatialComputing/
+      - title: "001. Geospatial Analytics in Magellan"
+        url: /360-in-525/2018/03/db/001_GeospatialAnalyticsInMagellan/
   - title: "360-in-525-4"
     url: /360-in-525/2018/04/
     children:
