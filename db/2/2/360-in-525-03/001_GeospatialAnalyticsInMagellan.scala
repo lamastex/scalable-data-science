@@ -1,7 +1,7 @@
 // Databricks notebook source
 // MAGIC %md
 // MAGIC 
-// MAGIC # [360-in-525-03: Geospatial Analytics and Big Data](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/)
+// MAGIC # [SDS-2.2-360-in-525-03: Geospatial Analytics and Big Data](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/)
 
 // COMMAND ----------
 
