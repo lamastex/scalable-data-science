@@ -1,8 +1,7 @@
 // Databricks notebook source
 // MAGIC %md
 // MAGIC 
-// MAGIC # [SDS-2.2-360-in-525-3, Geospatial Analytics and Big Data](https://lamastex.github.io/360-in-525/)
-// MAGIC 
+// MAGIC # [SDS-2.2-360-in-525-03: Geospatial Analytics and Big Data](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/)
 // MAGIC This needs to be edited for Spark 2.2 and for tight integration with other topics like:
 // MAGIC 
 // MAGIC * geomesa
