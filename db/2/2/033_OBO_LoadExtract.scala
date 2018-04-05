@@ -276,7 +276,7 @@ trialCountsDF.printSchema
 
 // COMMAND ----------
 
-trialCountsDF.count // total number of trials
+trialCountsDF.count // total number of trials = 197751
 
 // COMMAND ----------
 
@@ -292,7 +292,16 @@ display(trDF)
 
 // COMMAND ----------
 
-
+// MAGIC %md
+// MAGIC This is already available as the following csv file:
+// MAGIC 
+// MAGIC - [http://lamastex.org/datasets/public/OldBailey/oboOffencePunnishmentCountsFrom-sds-2-2-ApacheSparkScalaProcessingOfOBOXMLDoneByRaazOn20180405.csv](http://lamastex.org/datasets/public/OldBailey/oboOffencePunnishmentCountsFrom-sds-2-2-ApacheSparkScalaProcessingOfOBOXMLDoneByRaazOn20180405.csv)
+// MAGIC 
+// MAGIC Please cite this URL if you use this data or the Apache licensed codes in the databricks notebook above for your own non-commerical analysis:
+// MAGIC 
+// MAGIC  - [http://lamastex.org/datasets/public/OldBailey/](http://lamastex.org/datasets/public/OldBailey/)
+// MAGIC 
+// MAGIC Raazesh Sainudiin generated this header **Old bailey Processing in Apache Spark** on Thu Apr  5 18:22:43 CEST 2018 in Uppsala, Sweden.
 
 // COMMAND ----------
 
