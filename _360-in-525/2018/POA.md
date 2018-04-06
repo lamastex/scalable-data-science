@@ -1,4 +1,22 @@
+---
+layout: single
+title: 360-in-525. POA in Progress
+permalink: /360-in-525/2018/POA/
+sidebar:
+  nav: "lMenu-360-in-525"
+header:
+  overlay_color: "#5e616c"
+  overlay_image: /assets/images/DISP-research-1600x524.jpg
+  caption: 
+excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -- Learn data sciences from domain experts and its mathematical foundations while getting your hands dirty with real data.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
+---
+{% include toc %}
+
 # POA - 360-in-525
+
+**Plan of Action (POA) is in progress** The final POA may change. 
+{: .notice--danger}
+
 
 ## 000 - LOGISTICS
 
