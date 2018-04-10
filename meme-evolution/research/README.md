@@ -1,6 +1,6 @@
 # Project MEP: Meme Evolution Programme / research
 
-This is the public research/learning/teaching repository for [Project MEP: Meme Evolution Programme](http://lamastex.org).
+This is the public research/learning/teaching repository for [Project MEP: Meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/).
 
 This programme is partly supported by:
 
@@ -63,14 +63,22 @@ We will eventually lua/la/ka-tex mathematically here..
 	* etc, etc...
 	* see databricks notebook: [http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html](http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html)
 
+#### Twitter Health Metrics Proposal in One Image
+
+![proposals/twitterHealthMetrics/images/fullProposalAs1OrigSmall.jpg](proposals/twitterHealthMetrics/images/fullProposalAs1OrigSmall.jpg)
+
+Read it [here](proposals/twitterHealthMetrics/README.md) in more detail.
+
 #### To Be Released Soon
 
 * single-source shortest weighted path-ways as distributed vertex programs
 	* Aldous' 'directed' meeting process as Geomertic Random Variables on each directed edge between a pair of twitter-ID-nodes that is obtained from a Poisson with random mean drawn from Exponential Random Variables with rate given by the inverse of the observed number of 'meeting' events
 	* adaptation of the above to multiple sources for 'multi-extremal' ideological concurrence profiles
+        * with iterative k-means clustering for a de-contracting hierarchy of Nearest Neighbor-joining trees/forests (Joakim Johansson's MSc theses Uppsala 2018)
 
 * interactive and iterative populations-of-interest selective breadth-first network expansion designs for updating live stream filters
- 
+	* interctive D3 plots by Olof Bjorck, Uppsala University Spring 2018.
+
 #### Theory under Progress
 * theory being "tango-ed" with data in:
 	* [private github repos](https://github.com/raazesh-sainudiin/working-manuscript-MEPCMAPX)
