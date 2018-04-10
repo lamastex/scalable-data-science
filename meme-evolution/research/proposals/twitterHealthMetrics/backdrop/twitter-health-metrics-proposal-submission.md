@@ -2,18 +2,12 @@
 Twitter Health Metrics Proposal Submission 
 ==========================================
 
-<div
-class="b02-blog-post-no-masthead__info color--neutral-light-gray type--roman-14">
-
 By [Twitter
-Inc.](https://blog.twitter.com/official/en_us/authors.Twitter.html){.type--roman-14
-.theme-color--dark .theme-color--dark--hover}
-<div class="second-line">
+Inc.](https://blog.twitter.com/official/en_us/authors.Twitter.html)
 
-<span
-class="b02-blog-post-no-masthead__date color--neutral-light-gray type--roman-14">Thursday,
-1 March 2018</span>
-<div class="b02-blog-post-no-masthead__share--icons">
+
+Thursday,
+1 March 2018
 
 
 We’re committing to helping increase the collective health, openness,
