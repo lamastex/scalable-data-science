@@ -63,7 +63,7 @@ We will eventually lua/la/ka-tex mathematically here..
 	* etc, etc...
 	* see databricks notebook: [http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html](http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html)
 
-#### Twitter Health Metrics Proposal in One Image
+#### Twitter Health Metrics Proposal "Scalable Markov Kernels from Twitterverse to GDELT Project"
 
 ![proposals/twitterHealthMetrics/images/fullProposalAs1OrigSmall.jpg](proposals/twitterHealthMetrics/images/fullProposalAs1OrigSmall.jpg)
 

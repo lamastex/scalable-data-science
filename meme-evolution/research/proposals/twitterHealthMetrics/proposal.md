@@ -21,6 +21,9 @@ below by Friday, April 13, that includes:
 Please make clear in your proposal if this is a joint application with
 another institution.
 
+# Scalable Markov Kernels from Twitterverse to GDELT Project
+
+* TODO - tex-up the notes from whiteboard in miage below
 
 #### Twitter Health Metrics Proposal in One Image
 
