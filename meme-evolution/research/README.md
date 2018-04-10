@@ -67,7 +67,7 @@ We will eventually lua/la/ka-tex mathematically here..
 
 ![proposals/twitterHealthMetrics/images/fullProposalAs1OrigSmall.jpg](proposals/twitterHealthMetrics/images/fullProposalAs1OrigSmall.jpg)
 
-Read it [here](proposals/twitterHealthMetrics/README.md) in more detail.
+Read it [here](proposals/twitterHealthMetrics/proposal.md) in more detail.
 
 #### To Be Released Soon
 
@@ -82,4 +82,5 @@ Read it [here](proposals/twitterHealthMetrics/README.md) in more detail.
 #### Theory under Progress
 * theory being "tango-ed" with data in:
 	* [private github repos](https://github.com/raazesh-sainudiin/working-manuscript-MEPCMAPX)
+* see [Published and Working papers of Project MEP: Meme Evolution Programme](https://lamastex.github.io/scalable-data-science/sds/research/mep/#published-and-working-papers-of-projet-mep)
 
