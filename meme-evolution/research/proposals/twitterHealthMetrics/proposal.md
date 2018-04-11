@@ -21,12 +21,18 @@ below by Friday, April 13, that includes:
 Please make clear in your proposal if this is a joint application with
 another institution.
 
-# Scalable Markov Kernels from Twitterverse to GDELT Project
+# Scalable Markov Kernels from Twitterverse to GDELT Project: Measuring Real-World Effectiveness of a Measurable Health Metric
 
-* TODO - tex-up the notes from whiteboard in miage below
+* TODO - tex-up the notes from whiteboard in image below
 
 #### Twitter Health Metrics Proposal in One Image
 
 ![fullProposalAs1OrigSmall](images/fullProposalAs1OrigSmall.jpg)
 
+* In addition to our own proposed *twitter Health metrics*:
+	* various statistics of the *leaf-fused tweet transmission forests of various tweet-types* 
+	* or that of its network progenitors (tweet-type specific directed multi-edged time-stamped networks)
+* we will use the Markov kernel to assess the quality of the metric against measurable events in the GDELT space.
 
+ 
+ 
