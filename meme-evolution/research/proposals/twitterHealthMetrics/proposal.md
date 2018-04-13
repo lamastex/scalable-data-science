@@ -15,6 +15,9 @@ kernels (to estimate and test) into the measurable spaces provided by
 the [GDELT](https://www.google.com/url?q=https://www.gdeltproject.org/&sa=D&ust=1523612488646000) project
 for a grounding in reality.
 
+### Population Twitter Forests of Interest and Concern
+<img src="images/fullProposalAs1OrigSmall.jpg">
+
 THE FORM:
 
 ### Name of Point of Contact
