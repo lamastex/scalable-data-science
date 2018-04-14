@@ -9,7 +9,7 @@ main:
   - title: "Research"
     url: /sds/research/
   - title: "LaMaStEx"
-    url: https://lamastex.github.io/
+    url: "https://lamastex.github.io/"
   - title: "Contact"
     url: /contact/
  # - title: "Sitemap"
@@ -17,7 +17,7 @@ main:
 
 lMenu:
   - title: "LaMaStEx"
-    url: https://lamastex.github.io/
+    url: "https://lamastex.github.io/"
   - title: "SDS"
     url: /
     children:
@@ -31,7 +31,7 @@ lMenu-360-in-525:
     url: /360-in-525/2018/
     children:
       - title: "A 2018 Uppsala Big Data Meetup"
-        url: https://www.meetup.com/Uppsala-Big-Data-Meetup/
+        url: "https://www.meetup.com/Uppsala-Big-Data-Meetup/"
   - title: "360-in-525-1"
     url: /360-in-525/2018/01/
   - title: "360-in-525-2"
@@ -70,11 +70,11 @@ lMenu-SDS-2.2:
     url: /sds/2/2/
     children:
       - title: "A 2017 Uppsala Big Data Meetup"
-        url: https://www.meetup.com/Uppsala-Big-Data-Meetup/
+        url: "https://www.meetup.com/Uppsala-Big-Data-Meetup/"
       - title: "YouTube PlayList"
-        url: https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY
+        url: "https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY"
       - title: "sds-2-2 gitbook"
-        url: https://lamastex.gitbooks.io/sds-2-2/
+        url: "https://lamastex.gitbooks.io/sds-2-2/"
       - title: "Basics"
         url: /sds/basics/
   - title: "Infrastructure"
