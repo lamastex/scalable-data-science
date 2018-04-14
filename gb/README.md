@@ -13,7 +13,7 @@ There are two parts to the course sequel:
 
 ## SDS-2.2 Book 
 The course gitbook, edited by Dan Lilja, Raazesh Sainudiin and Tilo Wiklund, is under construction at:
- * [https://www.gitbook.com/book/lamastex/sds-2-2/details](https://www.gitbook.com/book/lamastex/sds-2-2/details).
+ * [https://lamastex.gitbooks.io/sds-2-2/](https://lamastex.gitbooks.io/sds-2-2/).
 
 ## Uppsala University Students
 

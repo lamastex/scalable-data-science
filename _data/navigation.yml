@@ -73,6 +73,8 @@ lMenu-SDS-2.2:
         url: https://www.meetup.com/Uppsala-Big-Data-Meetup/
       - title: "YouTube PlayList"
         url: https://www.youtube.com/playlist?list=PL_I1mOIPmfpawQcs9l1vYfh50RhK_UJfY
+      - title: "sds-2-2 gitbook"
+        url: https://lamastex.gitbooks.io/sds-2-2/
       - title: "Basics"
         url: /sds/basics/
   - title: "Infrastructure"
