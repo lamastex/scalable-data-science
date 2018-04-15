@@ -50,11 +50,11 @@ This is a two-full-days workshop (2 hp) on April 26-27 2018. Prerequisites: 360-
 The course will give you the basic skills needed to go further and investigate the influence, if any, of micro propaganda machines (as shown below) or other similar opinion engineering operations, for instance. 
 --->
 
-### 000-090 of 360 Minutes: What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
+* 000-090 of 360 Minutes: What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
-### 091-180 of 360 Minutes: A look into relevant EU laws of relevance.
+* 091-180 of 360 Minutes: A look into relevant EU laws of relevance.
   - [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) will do lectures on relevant law:
     * Data protection, where's it come from, what's the point?
     * So what's personal data? (rules of thumb)
@@ -65,10 +65,10 @@ The course will give you the basic skills needed to go further and investigate t
     * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
       - wrip from HateTransmissionNetwork (make non-confidential subset public here for leture outline; live via web searches a dn string chasing... with local backups)
 
-### Lunch
+* Lunch
   - you can buy sandwiches or have a full meal in cafes nearby.
 
-### 181-270 of 360 Minutes: The English Civilizing Process: London's Old Bailey and the evolution of English law
+* 181-270 of 360 Minutes: The English Civilizing Process: London's Old Bailey and the evolution of English law
   - On *inferential thinking* for digital sociology and humanities
   - What is the Data? Why did people support the printing and archiving of court proceedings in London's Old Bailey Court? etc.
   - Illustrating *inferential thinking* on the ``English Civilizing Process'' from [Old Bailey Online](https://www.oldbaileyonline.org/) dataset as XML files:
@@ -77,9 +77,9 @@ The course will give you the basic skills needed to go further and investigate t
     - It's time to *lock and load* into your own [databricks Community Edition at [https://community.cloud.databricks.com/](https://community.cloud.databricks.com/) and play with data parsing from raw xml files in order to get the data that went in as input to the inferential thinking process above using the following databricks notebook. 
     - [https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/](https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/) 
 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
-### 271-360 of 360 Minutes: Getting your hands dirty to visually explore on Jupyter for digital socilogy
+* 271-360 of 360 Minutes: Getting your hands dirty to visually explore on Jupyter for digital socilogy
   - Simon Lindgren Jupyter notebook based stuff with twitter data, networks visual, Nlp etc.
     - **NOTE:** There is no software requirements from students as we will abstract away the code and just focus on what each code cell executed by Simon is doing for gaining insights of interest to digital humanities. *We will learn Python-on-Jupyter in 360-in-525-4*.
     - Just relax and enjoy Simon's live show!
@@ -89,35 +89,35 @@ The course will give you the basic skills needed to go further and investigate t
 
 Using Apache Spark details for more *inferential thinking* with *computational thinking* at terabyte scale...
 
-### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 091-180 of 360 Minutes:
-### Lunch
-### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 271-360 of 360 Minutes:
+* 000-090 of 360 Minutes: 
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 091-180 of 360 Minutes:
+* Lunch
+* 181-270 of 360 Minutes:
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 271-360 of 360 Minutes:
 
 
 ## 360-in-525-3: Geospatial Analytics and Big Data on **May 3 2018**
 
-### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 091-180 of 360 Minutes:
-### Lunch
-### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 271-360 of 360 Minutes:
+* 000-090 of 360 Minutes: 
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 091-180 of 360 Minutes:
+* Lunch
+* 181-270 of 360 Minutes:
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 271-360 of 360 Minutes:
 
 
 ## 360-in-525-3: Geospatial Analytics and Big Data on **May 4 2018**
 
-### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 091-180 of 360 Minutes:
-### Lunch
-### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 271-360 of 360 Minutes:
+* 000-090 of 360 Minutes: 
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 091-180 of 360 Minutes:
+* Lunch
+* 181-270 of 360 Minutes:
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 271-360 of 360 Minutes:
 
 
 <!---
@@ -135,34 +135,34 @@ This is a mathematically more careful (``deeper'' or ``advanced'' undergraduate)
    - as talked about at the end [here](https://www.youtube.com/watch?v=ggq7HiDO0OU).
 
 
-### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 091-180 of 360 Minutes:
-### Lunch
-### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 271-360 of 360 Minutes:
+* 000-090 of 360 Minutes: 
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 091-180 of 360 Minutes:
+* Lunch
+* 181-270 of 360 Minutes:
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 271-360 of 360 Minutes:
 
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 18 2018**
 
-### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 091-180 of 360 Minutes:
-### Lunch
-### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 271-360 of 360 Minutes:
+* 000-090 of 360 Minutes: 
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 091-180 of 360 Minutes:
+* Lunch
+* 181-270 of 360 Minutes:
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 271-360 of 360 Minutes:
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 25 2018**
 
-### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 091-180 of 360 Minutes:
-### Lunch
-### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-### 271-360 of 360 Minutes:
+* 000-090 of 360 Minutes: 
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 091-180 of 360 Minutes:
+* Lunch
+* 181-270 of 360 Minutes:
+* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
+* 271-360 of 360 Minutes:
 
 ## 360-in-525-5: Population Genetics and Big Data  on (( **May 31 2018**  AND **June 1 2018**) exclusive-OR (ONLY **June 1 2018**))
 
