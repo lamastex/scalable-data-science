@@ -6,7 +6,7 @@ sidebar:
   nav: "lMenu-360-in-525"
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/DISP-research-1600x524.jpg
+  overlay_image: /assets/images/DISP-360-in-525-1600x524.jpg
   caption: 
 excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -- Learn data sciences from domain experts and its mathematical foundations while getting your hands dirty with real data.<br /><br /><br />{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=lamastex&repo=scalable-data-science&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 ---
@@ -20,6 +20,7 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
 
 ## 000 - LOGISTICS
 
+<!---
 	- set up Meetup (only allow people registers access to information)
 	- get datbricks account and upload content for 360-in-525-01
 	- check out how to give wireless access to people without UC wireless
@@ -29,6 +30,7 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
   - Lecture Plan
     - Do a full day of X-lectures (and some explicit tree arithmetics if time permits) to understand the Theorems in [YatracosThis](http://lamastex.org/preprints/20180405_MDEYatracosThis.pdf) 
     - (Optionally, depending on audience C++ skills) dive from within docker into: [https://github.com/lamastex/mrs2/tree/master/companions/mrs-1.0-YatracosThis](https://github.com/lamastex/mrs2/tree/master/companions/mrs-1.0-YatracosThis) **Pre-Action:** Gloria needs to write a README on how to run the example on Table I in [YatracosThis](http://lamastex.org/preprints/20180405_MDEYatracosThis.pdf).
+--->
 
 ## 360-in-525-1: Introduction to Apache Spark for Data Scientists on **April 20 2018**
   - from first couple weeks of [SDS-2-2](https://lamastex.github.io/scalable-data-science/sds/2/2/) contents (tightly couplable with needed extensions down the road)
@@ -50,7 +52,7 @@ The course will give you the basic skills needed to go further and investigate t
 
 ### 000-090 of 360 Minutes: What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
 ### 091-180 of 360 Minutes: A look into relevant EU laws of relevance.
   - [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) will do lectures on relevant law:
@@ -75,7 +77,7 @@ The course will give you the basic skills needed to go further and investigate t
     - It's time to *lock and load* into your own [databricks Community Edition at [https://community.cloud.databricks.com/](https://community.cloud.databricks.com/) and play with data parsing from raw xml files in order to get the data that went in as input to the inferential thinking process above using the following databricks notebook. 
     - [https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/](https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/) 
 
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
 ### 271-360 of 360 Minutes: Getting your hands dirty to visually explore on Jupyter for digital socilogy
   - Simon Lindgren Jupyter notebook based stuff with twitter data, networks visual, Nlp etc.
@@ -88,33 +90,33 @@ The course will give you the basic skills needed to go further and investigate t
 Using Apache Spark details for more *inferential thinking* with *computational thinking* at terabyte scale...
 
 ### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 091-180 of 360 Minutes:
 ### Lunch
 ### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 271-360 of 360 Minutes:
 
 
 ## 360-in-525-3: Geospatial Analytics and Big Data on **May 3 2018**
 
 ### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 091-180 of 360 Minutes:
 ### Lunch
 ### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 271-360 of 360 Minutes:
 
 
 ## 360-in-525-3: Geospatial Analytics and Big Data on **May 4 2018**
 
 ### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 091-180 of 360 Minutes:
 ### Lunch
 ### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 271-360 of 360 Minutes:
 
 
@@ -134,32 +136,32 @@ This is a mathematically more careful (``deeper'' or ``advanced'' undergraduate)
 
 
 ### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 091-180 of 360 Minutes:
 ### Lunch
 ### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 271-360 of 360 Minutes:
 
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 18 2018**
 
 ### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 091-180 of 360 Minutes:
 ### Lunch
 ### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 271-360 of 360 Minutes:
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 25 2018**
 
 ### 000-090 of 360 Minutes: 
-#### Fika break 30 minutes - sponsored by []()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 091-180 of 360 Minutes:
 ### Lunch
 ### 181-270 of 360 Minutes:
-#### Fika break 30 minutes - sponsored by [?]()
+#### Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 ### 271-360 of 360 Minutes:
 
 ## 360-in-525-5: Population Genetics and Big Data  on (( **May 31 2018**  AND **June 1 2018**) exclusive-OR (ONLY **June 1 2018**))
