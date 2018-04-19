@@ -71,13 +71,15 @@ The course will give you the basic skills needed to go further and investigate t
     * on supposed *toothlessness* of *a right to an explanation*
     * ... Oxford Internet Institute Working Papers, etc.
     * Bias in Mathematical Models, Big Data Ethics and Social Responsibilites
-      - https://weaponsofmathdestructionbook.com/
-      - https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end
+      - [Weapons of Math Destruction by Cathy O'Neil](https://weaponsofmathdestructionbook.com/)
+      - [Cathy's 20 minute TedTalk on The Era of Blind Faith in Big Data Must End](https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end)
       - 
-    * Information As a Commodity, Security, Privacy, ...
-      - https://www.schneier.com/books/data_and_goliath/
-      - https://www.youtube.com/watch?v=GhWJTWUvc7E
+    * Information as a commodity in *free* market: Security, Privacy, Profit...
+      - [Data and Goliath by Bruce Schneier](https://www.schneier.com/books/data_and_goliath/)
+      - [Bruce's Seminar of Data and Goliath](https://www.youtube.com/watch?v=GhWJTWUvc7E)
     * [Mathematical Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
+
+
 <!---
     wrip from HateTransmissionNetwork (make non-confidential subset public here for leture outline; live via web searches a dn string chasing... with local backups)
 
