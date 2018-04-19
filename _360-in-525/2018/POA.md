@@ -83,13 +83,12 @@ The course will give you the basic skills needed to go further and investigate t
   - What is the Data? Why did people support the printing and archiving of court proceedings in London's Old Bailey Court? etc.
   - Illustrating *inferential thinking* on the ``English Civilizing Process'' from [Old Bailey Online](https://www.oldbaileyonline.org/) dataset as XML files:
     - for example, did capital punishment for offence types really change between 1673 and 1911 in London?
-  - Fusing *inferential thinking* with *computational thinking* in one place:
-    - It's time to *lock and load* into your own [databricks Community Edition at [https://community.cloud.databricks.com/](https://community.cloud.databricks.com/) and play with data parsing from raw xml files in order to get the data that went in as input to the inferential thinking process above using the following databricks notebook. 
+  - Fusing *inferential thinking* with *computational thinking* in one place using Apache Spark (same code can scale to petabytes, if needed!)
+    - It's time to *lock and load* into your own databricks Community Edition at [https://community.cloud.databricks.com/](https://community.cloud.databricks.com/) and play with data parsing from raw xml files in order to get the data that went in as input to the inferential thinking process above using the following databricks notebook. 
     - [https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/](https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/) 
 
 ## 360-in-525-2: Social Media and Big Data on **April 27 2018**
 
-Using Apache Spark details for more *inferential thinking* with *computational thinking* at terabyte scale...
 
 * 000-090 of 360 Minutes: 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
