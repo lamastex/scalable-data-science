@@ -20,9 +20,9 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
 
 ## 000 - LOGISTICS
 
-- You can only physically be present at the course set if you have registered with Raazesh Sainudiin via email (registration deadline has passed for Spring 2018). You can join us online on HangOutsOnAir at [this](https://www.youtube.com/channel/UCPJ5ALbDtuCA4DJmN3GvanA) channel or later on YouTube at [this](https://www.youtube.com/playlist?list=PL_I1mOIPmfpZ6kq86w5ordoB7FY1Uj2ac) play-list.
-- Join [https://www.meetup.com/Uppsala-Big-Data-Meetup/](https://www.meetup.com/Uppsala-Big-Data-Meetup/), you may need to sign-up at [meetup.com](https://www.meetup.com/)  for receiveing course logistics (each meeting is in a different room).
-- RSVP at least 3 days before the registered course event you will be able to attend so fika can be ordered for you.
+- You can only physically be present at the course set if you have registered with Raazesh Sainudiin via email (registration deadline has passed for Spring 2018). You can join us online on HangOutsOnAir at [this](https://www.youtube.com/channel/UCPJ5ALbDtuCA4DJmN3GvanA) channel or later on YouTube at [this](https://www.youtube.com/playlist?list=PL_I1mOIPmfpZ6kq86w5ordoB7FY1Uj2ac) playlist.
+- Join [https://www.meetup.com/Uppsala-Big-Data-Meetup/](https://www.meetup.com/Uppsala-Big-Data-Meetup/) (you may need to sign-up at [meetup.com](https://www.meetup.com/) first and then join) for receiveing course logistics (for eg. each meeting is in a different room).
+- Please RSVP via [Uppsala Big Data Meetup](https://www.meetup.com/Uppsala-Big-Data-Meetup/) at least 3 days before the registered course event you will actually be able to attend. This is to order fika and ensure other infrastructures exist for you.
 - Bring you wireless-enabled laptop with power chord for the lab-lectures.
 - Sign-up for databricks community edition at [https://community.cloud.databricks.com/login.html](https://community.cloud.databricks.com/login.html).
  
