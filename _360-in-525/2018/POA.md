@@ -59,14 +59,14 @@ The course will give you the basic skills needed to go further and investigate t
 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
-*  1030-1200 hours; (091-180 of 360 Minutes): A look into relevant EU laws of relevance plus questions and discussions.
+*  1030-1200 hours; (091-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
   - 1030-1115 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR:
     * Data protection, where's it come from, what's the point?
     * So what's personal data? (rules of thumb)
     * New rules: profiling (art 22 GDPR). what's that about?
     * Ethics for scientists: the Swedish approach, cost, what's the idea?
     * Using public records does not absolve you from GDPR responsibilities (necessarily)!
-  - 1115-1200 hours by Raazesh Sainudiin on some relevant EU laws for mathematical statistical researchers 
+  - 1115-1200 hours by Raazesh Sainudiin on law, bias, and operations for mathematical statistical researchers 
     * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
     * monitoring for violations of a particular EU Law against Online Hate Speech 
     * enforceability issues around *cloud operations on sovereign soil(s)*
