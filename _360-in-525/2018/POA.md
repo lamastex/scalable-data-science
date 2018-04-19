@@ -53,6 +53,8 @@ This is a two-full-days workshop (2 hp) on April 26-27 2018. Prerequisites: 360-
 The course will give you the basic skills needed to go further and investigate the influence, if any, of micro propaganda machines (as shown below) or other similar opinion engineering operations, for instance. 
 --->
 
+**Preparation**: *Please spend about an hour to mindfully watch the **assigned viewing** below.*
+
 * 0830-1000 hours; (000-090 of 360 Minutes): What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
