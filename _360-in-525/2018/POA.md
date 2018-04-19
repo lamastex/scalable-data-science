@@ -24,7 +24,7 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
 - Join [https://www.meetup.com/Uppsala-Big-Data-Meetup/](https://www.meetup.com/Uppsala-Big-Data-Meetup/), you may need to sign-up at [meetup.com](https://www.meetup.com/)  for receiveing course logistics (each meeting is in a different room).
 - RSVP at least 3 days before the registered course event you will be able to attend so fika can be ordered for you.
 - Bring you wireless-enabled laptop with power chord for the lab-lectures.
-- Sign-up for databricks community edition at [community.cloud.databricks.com/login.html](community.cloud.databricks.com/login.html).
+- Sign-up for databricks community edition at [https://community.cloud.databricks.com/login.html](https://community.cloud.databricks.com/login.html).
  
 <!---
 	- set up Meetup (only allow people registers access to information)
