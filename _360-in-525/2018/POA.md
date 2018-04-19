@@ -64,9 +64,21 @@ The course will give you the basic skills needed to go further and investigate t
     * enforceability issues around *cloud operations on sovereign soil(s)*
     * on supposed *toothlessness* of *a right to an explanation*
     * ... Oxford Internet Institute Working Papers, etc.
-
+    * Bias in Mathematical Models, Big Data Ethics and Social Responsibilites
+      - https://weaponsofmathdestructionbook.com/
+      - https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end
+      - 
+    * Information As a Commodity, Security, Privacy, ...
+      - https://www.schneier.com/books/data_and_goliath/
+      - https://www.youtube.com/watch?v=GhWJTWUvc7E
+    * [Mathematical Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
 <!---
     wrip from HateTransmissionNetwork (make non-confidential subset public here for leture outline; live via web searches a dn string chasing... with local backups)
+
+I have tried to get every citizen to be sceptical and participate in the democratic process today.
+Here is a link to a PDF of a recent public talk I gave:
+Thursday 15 February 2018, on "Towards Participatory Democracy in the Big Data Age", Engineers without Borders and Reflective Engineer Society, Uppsala University, Uppsala, Sweden (PDF 6.9MB)
+
 --->
 
 * Lunch
