@@ -77,6 +77,7 @@ The course will give you the basic skills needed to go further and investigate t
     * Information as a commodity in *free* market: Security, Privacy, Profit...
       - [Data and Goliath by Bruce Schneier](https://www.schneier.com/books/data_and_goliath/)
       - [Bruce's Talks at Google on "Data and Goliath: The Hidden Battles to Collect Your Data and Control Your World"](https://www.youtube.com/watch?v=GhWJTWUvc7E)
+      - [Bruce Schneier and Edward Snowden @ Harvard Data Privacy Symposium 1/23/15](https://youtu.be/7Ui3tLbzIgQ)
     * [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
 
 
