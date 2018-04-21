@@ -34,17 +34,8 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
 --->
 
 ## 360-in-525-1: Introduction to Apache Spark for Data Scientists on **April 20 2018**
-  - IN PROGRESS - DUE for COMPLETION by 0700 hours April 20 2018
 
-<!--- 
-  - from first couple weeks of [SDS-2-2](https://lamastex.github.io/scalable-data-science/sds/2/2/) contents (tightly couplable with needed extensions down the road)
-HEAVILY REUSE FROM SDS-2-2 (but repackage into scalable-data-science/360-in-525-01/) 
-	- make folder 'scalable-data-science' in 'Workspace' and upload 360-in-525-01.dbc
-        - but see db-Dub content and HEAVILY reuse existing notebooks... Also re-read Mattei's definitive guide but keeping RDDs real from start!
-
-official goals/outlines:
-This is a one-full-day workshop (1 hp) on April 20 2018 on Apache Spark, one of the most widely used open-source and commercially friendly software for analysing big data in industry and academia. A crash course in Scala, the language of Apache Spark, will be followed by introduction to resilient distributed datasets (RDDs), their transformations and actions, Spark DataSets and DataFrames, SparkSQL. We will have brief teasers on ML Pipelines, Streaming and GraphX as they will be covered in-depth in the sequel modules (concepts will be fortified by auto-graded homework assignments).
---->
+See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/01/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/01/).
 
 ## 360-in-525-2: Social Media and Big Data on **April 26 2018**
 
