@@ -4,8 +4,6 @@ main:
     url: /sds/2/2/
   - title: "360-in-525"
     url: /360-in-525/2018/
-  - title: "About"
-    url: /about/
   - title: "Research"
     url: /sds/research/
   - title: "LaMaStEx"
@@ -53,7 +51,7 @@ lMenu-360-in-525:
         url: /360-in-525/2018/01/db/007a_SparkSQLProgGuide_HW/
       - title: "007b SparkSQL PG Homework"
         url: /360-in-525/2018/01/db/007b_SparkSQLProgGuide_HW/
-      - title: "001c SparkSQL PG Homework"
+      - title: "007c SparkSQL PG Homework"
         url: /360-in-525/2018/01/db/007c_SparkSQLProgGuide_HW/
       - title: "007d SparkSQL PG Homework"
         url: /360-in-525/2018/01/db/007d_SparkSQLProgGuide_HW/
