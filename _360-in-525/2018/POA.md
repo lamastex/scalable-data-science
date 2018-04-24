@@ -48,7 +48,7 @@ The course will give you the basic skills needed to go further and investigate t
 * **Preparation for Friday** Readings on the following from [Twitter Developer Terms](https://developer.twitter.com/en/developer-terms):
   * peruse [https://developer.twitter.com/en/developer-terms/agreement](https://developer.twitter.com/en/developer-terms/agreement)
 
-### LOCATION
+**LOCATIONS:**
 
 * Thursday April 26th 2018 0815 hours :  2001, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-2001)
 * Thursday April 26th 2018 1330 hours :  6K1113, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-6K1113)
@@ -59,7 +59,7 @@ The course will give you the basic skills needed to go further and investigate t
 
 
 
-### PLAN of Lectures
+**PLAN of Lectures:**
 
 * 0830-1000 hours; (000-090 of 360 Minutes): What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
 
