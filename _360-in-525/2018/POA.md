@@ -64,27 +64,28 @@ The course will give you the basic skills needed to go further and investigate t
     * 0915-1000  MeToo Case Study in Action (via Jupyter notebooks)
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
-* 1030-1040 hours; (91-101 of 360 Minutes): [David Sumpter](https://www.linkedin.com/in/david-sumpter-164866b8/) about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
-*  1040-1200 hours; (101-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
-  - 1040-1130 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR (with discussions):
+* 1030-1200 hours; (91-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
+  * 1030-1040 hours by [David Sumpter](https://www.linkedin.com/in/david-sumpter-164866b8/) about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
+  * 1040-1130 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR (with discussions):
     * Data protection, where's it come from, what's the point?
     * So what's personal data? (rules of thumb)
     * New rules: profiling (art 22 GDPR). what's that about?
     * Ethics for scientists: the Swedish approach, cost, what's the idea?
     * Using public records does not absolve you from GDPR responsibilities (necessarily)!
-  - 1130-1200 hours by Raazesh Sainudiin on law, bias, and operations for mathematical statistical researchers 
-    * Bias in Mathematical Models, Big Data Ethics and Social Responsibilites
+  * 1130-1200 hours by Raazesh Sainudiin on mathematical bias in models, applied operations research and information engineering and applicability of law for mathematical statistical researchers 
+    * [Towards Participatory Democracy in the Big Data Age](http://lamastex.org/talks/20180215_TowardsParticipatoryDemocracyBigDataAge90Minutes.pdf)
       - [Weapons of Math Destruction by Cathy O'Neil](https://weaponsofmathdestructionbook.com/)
       - **assigned viewing**: [Cathy's 20-minutes-long TedTalk on "The Era of Blind Faith in Big Data Must End"](https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end)
     * Information as a commodity in *free* market: Security, Privacy, Profit...
       - [Data and Goliath by Bruce Schneier](https://www.schneier.com/books/data_and_goliath/)
       - **assigned viewing**: [Bruce's 40-minutes-long Talks at Google on "Data and Goliath: The Hidden Battles to Collect Your Data and Control Your World"](https://www.youtube.com/watch?v=GhWJTWUvc7E)
       - [Bruce Schneier and Edward Snowden @ Harvard Data Privacy Symposium 1/23/15](https://youtu.be/7Ui3tLbzIgQ)
-    * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
-    * monitoring for violations of a particular EU Law against Online Hate Speech 
-    * enforceability issues around *cloud operations on sovereign soil(s)*
-    * on supposed *toothlessness* of *a right to an explanation*
-    * ... Oxford Internet Institute Working Papers, etc.
+    * A Concerete Deep Dive into Law (if time permits OR spill-over to 1530-1700 session)
+      * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
+      * monitoring for violations of a particular EU Law against Online Hate Speech 
+      * enforceability issues around *cloud operations on sovereign soil(s)*
+      * on supposed *toothlessness* of *a right to an explanation*
+      * ... Oxford Internet Institute Working Papers, etc.
 
 
 <!---
