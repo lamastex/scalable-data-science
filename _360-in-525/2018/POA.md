@@ -58,19 +58,26 @@ The course will give you the basic skills needed to go further and investigate t
 
 **PLAN of Lectures:**
 
-* 0830-1000 hours; (000-090 of 360 Minutes): *What is digital sociology?* and *A MeToo Case Study* by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
+* 0830-1000 hours; (000-090 of 360 Minutes): Introduction to Digital Sociology by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
     * 0830-0915  What is digital sociology?
     * 0915-1000  MeToo Case Study in Action (via Jupyter notebooks)
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
 * 1030-1200 hours; (91-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
   * 1030-1040 hours by [David Sumpter](https://www.linkedin.com/in/david-sumpter-164866b8/) about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
-  * 1040-1130 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR (with discussions):
-    * Data protection, where's it come from, what's the point?
-    * So what's personal data? (rules of thumb)
-    * New rules: profiling (art 22 GDPR). what's that about?
-    * Ethics for scientists: the Swedish approach, cost, what's the idea?
-    * Using public records does not absolve you from GDPR responsibilities (necessarily)!
+  * 1040-1130 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on (General) Data Protection (Regulations), [PDF slides](http://lamastex.org/talks/20180426_AmeliaAndersdotter_360-in-525-2_GDPR_for_Researchers.pdf), and pointers:
+    * Hongkong Privacy Commissioner introduction to Data Protection Law as [YouTube video](https://www.youtube.com/watch?v=j6fO6JVGGHg)
+    * [Chapter 2 in Seda Gürses doctoral thesis on Privacy-Enhancing Technologies or PETs](https://www.esat.kuleuven.be/cosic/publications/thesis-177.pdf). It covers the setting and background of privacy paradigms well.
+    * [Emotional contagion experiment on/of Facebook](http://www.pnas.org/content/early/2014/05/29/1320040111.short)
+    * Swedish survey of subjects' attitudes to healthcare data research: 
+      * [https://www.vardanalys.se/rapporter/for-sakerhets-skull/](https://www.vardanalys.se/rapporter/for-sakerhets-skull/)
+    * Some examples of breach notification reports in English, Swedish (and Romanian): 
+      * [https://dataskydd.net/incidentrapporter-exempel](https://dataskydd.net/incidentrapporter-exempel). Note: All prefaces are in Swedish, and most of the reports are also in Swedish.
+    * Ethics compliance form:
+      * [https://www.epn.se/media/2425/ansoekningsblankett.doc](https://www.epn.se/media/2425/ansoekningsblankett.doc)
+    * Generally about using special research registries in Sweden (focused on health care and social services): 
+      * [https://www.registerforskning.se](https://www.registerforskning.se)
+
   * 1130-1200 hours by Raazesh Sainudiin on mathematical bias in models, applied operations research and information engineering and applicability of law for mathematical statistical researchers 
     * [Towards Participatory Democracy in the Big Data Age](http://lamastex.org/talks/20180215_TowardsParticipatoryDemocracyBigDataAge90Minutes.pdf)
       - [Weapons of Math Destruction by Cathy O'Neil](https://weaponsofmathdestructionbook.com/)
