@@ -57,12 +57,11 @@ The course will give you the basic skills needed to go further and investigate t
 
 *I am aware that the Meetup site was busted (temporarily, and hopefully not recurrently!).*
 
-
-
 **PLAN of Lectures:**
 
-* 0830-1000 hours; (000-090 of 360 Minutes): What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
-
+* 0830-1000 hours; (000-090 of 360 Minutes): *What is digital sociology?* and *A MeToo Case Study* by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
+    * 0830-0915  What is digital sociology?
+    * 0915-1000  MeToo Case Study in Action (via Jupyter notebooks)
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
 * 1030-1040 hours; (91-101 of 360 Minutes): [David Sumpter](https://www.linkedin.com/in/david-sumpter-164866b8/) about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
@@ -100,10 +99,11 @@ Thursday 15 February 2018, on "Towards Participatory Democracy in the Big Data A
 * Lunch
   - you can buy sandwiches or have a full meal in cafes nearby.
 
-* 1330-1500 hours; (181-270 of 360 Minutes): Getting your hands dirty to visually explore on Jupyter for digital sociology
-  - Simon Lindgren Jupyter notebook based stuff with twitter data, networks visual, Nlp etc.
-    - **NOTE:** There is no software requirements from students as we will abstract away the code and just focus on what each code cell executed by Simon is doing for gaining insights of interest to digital humanities. *We will learn Python-on-Jupyter in 360-in-525-4*.
-    - Just relax and enjoy Simon's live show!
+* 1330-1500 hours; (181-270 of 360 Minutes): Analyzing 2017 UK and 2016 US Elections on Twitter
+  * 1330-1415, Simon Lingren, UK General Election Case Study, with SNA
+  * 1415-1500, Raazesh Sainudiin, [Characterizing the Twitter network of prominent politicians and hate groups in the 2016 US Election](http://lamastex.org/talks/20180322_Orebro_2016USElection.pdf)
+    * recommended reading: [Rejecting the Null Hypothesis of Apathetic Retweeting of US politicians and SPLC-defined Hate Groups in the 2016 US Presidential Election](http://lamastex.org/preprints/20180423_NullApatheticRetweetOfUSPolitsHategrps.pdf)
+
 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
