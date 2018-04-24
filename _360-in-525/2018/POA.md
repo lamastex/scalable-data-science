@@ -113,6 +113,8 @@ Thursday 15 February 2018, on "Towards Participatory Democracy in the Big Data A
   - Illustrating *inferential thinking* on the ``English Civilizing Process'' from [Old Bailey Online](https://www.oldbaileyonline.org/) dataset as XML files:
     - for example, did capital punishment for offence types really change between 1673 and 1911 in London?
   - Fusing *inferential thinking* with *computational thinking* in one place using Apache Spark (same code can scale to petabytes, if needed!)
+    - Recommend reading for mathematical statistical researcher:
+      - [http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf](http://lamastex.org/preprints/20150828_civilizingProcOBO.pdf)
     - It's time to *lock and load* into your own databricks Community Edition at [https://community.cloud.databricks.com/](https://community.cloud.databricks.com/) and play with data parsing from raw xml files in order to get the data that went in as input to the inferential thinking process above using the following databricks notebook. 
     - [https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/](https://lamastex.github.io/scalable-data-science/sds/2/2/db/033_OBO_LoadExtract/) 
 
