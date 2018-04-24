@@ -44,25 +44,36 @@ This is a two-full-days workshop (2 hp) on April 26-27 2018. Prerequisites: 360-
 The course will give you the basic skills needed to go further and investigate the influence, if any, of micro propaganda machines (as shown below) or other similar opinion engineering operations, for instance. 
 --->
 
-**Preparation**: *Please spend about an hour to mindfully watch the **assigned viewing** below.*
+* **Preparation for Thursday**: *Please spend about an hour to mindfully watch the **assigned viewing** below.*
+* **Preparation for Friday** Readings on the following from [Twitter Developer Terms](https://developer.twitter.com/en/developer-terms):
+  * peruse [https://developer.twitter.com/en/developer-terms/agreement](https://developer.twitter.com/en/developer-terms/agreement)
+
+### LOCATION
+
+* Thursday April 26th 2018 0815 hours :  2001, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-2001)
+* Thursday April 26th 2018 1330 hours :  6K1113, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-6K1113)
+* Friday April 27th 2018 0815 hours : 6K1113, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-6K1113) 
+* Friday April 27th 2018 1330 hours : 4003, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-4003)
+
+*I am aware that the Meetup site is busted (for now, and hopefully not for long!).*
+
+
+
+### PLAN of Lectures
 
 * 0830-1000 hours; (000-090 of 360 Minutes): What is digital sociology? by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
-*  1030-1200 hours; (091-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
-  - 1030-1115 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR:
+* 1030-1040 hours; (91-101 of 360 Minutes): David Sumpter about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
+*  1040-1200 hours; (101-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
+  - 1040-1130 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR (with discussions):
     * Data protection, where's it come from, what's the point?
     * So what's personal data? (rules of thumb)
     * New rules: profiling (art 22 GDPR). what's that about?
     * Ethics for scientists: the Swedish approach, cost, what's the idea?
     * Using public records does not absolve you from GDPR responsibilities (necessarily)!
-  - 1115-1200 hours by Raazesh Sainudiin on law, bias, and operations for mathematical statistical researchers 
-    * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
-    * monitoring for violations of a particular EU Law against Online Hate Speech 
-    * enforceability issues around *cloud operations on sovereign soil(s)*
-    * on supposed *toothlessness* of *a right to an explanation*
-    * ... Oxford Internet Institute Working Papers, etc.
+  - 1130-1200 hours by Raazesh Sainudiin on law, bias, and operations for mathematical statistical researchers 
     * Bias in Mathematical Models, Big Data Ethics and Social Responsibilites
       - [Weapons of Math Destruction by Cathy O'Neil](https://weaponsofmathdestructionbook.com/)
       - **assigned viewing**: [Cathy's 20-minutes-long TedTalk on "The Era of Blind Faith in Big Data Must End"](https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end)
@@ -70,7 +81,11 @@ The course will give you the basic skills needed to go further and investigate t
       - [Data and Goliath by Bruce Schneier](https://www.schneier.com/books/data_and_goliath/)
       - **assigned viewing**: [Bruce's 40-minutes-long Talks at Google on "Data and Goliath: The Hidden Battles to Collect Your Data and Control Your World"](https://www.youtube.com/watch?v=GhWJTWUvc7E)
       - [Bruce Schneier and Edward Snowden @ Harvard Data Privacy Symposium 1/23/15](https://youtu.be/7Ui3tLbzIgQ)
-    * [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
+    * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
+    * monitoring for violations of a particular EU Law against Online Hate Speech 
+    * enforceability issues around *cloud operations on sovereign soil(s)*
+    * on supposed *toothlessness* of *a right to an explanation*
+    * ... Oxford Internet Institute Working Papers, etc.
 
 
 <!---
