@@ -48,12 +48,11 @@ The course will give you the basic skills needed to go further and investigate t
 * **Preparation for Friday** Readings on the following from [Twitter Developer Terms](https://developer.twitter.com/en/developer-terms):
   * peruse [https://developer.twitter.com/en/developer-terms/agreement](https://developer.twitter.com/en/developer-terms/agreement)
 
+
 **LOCATIONS:**
 
 * Thursday April 26th 2018 0815 hours :  2001, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-2001)
 * Thursday April 26th 2018 1330 hours :  6K1113, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-6K1113)
-* Friday April 27th 2018 0815 hours : 6K1113, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-6K1113) 
-* Friday April 27th 2018 1330 hours : 4003, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-4003)
 
 *I am aware that the Meetup site was busted (temporarily, and hopefully not recurrently!).*
 
@@ -121,6 +120,10 @@ Thursday 15 February 2018, on "Towards Participatory Democracy in the Big Data A
 
 ## 360-in-525-2: Social Media and Big Data on **April 27 2018**
 
+**LOCATIONS:**
+
+* Friday April 27th 2018 0815 hours : 6K1113, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-6K1113) 
+* Friday April 27th 2018 1330 hours : 4003, Ångström [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-4003)
 
 * 000-090 of 360 Minutes: 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
