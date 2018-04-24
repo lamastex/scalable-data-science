@@ -65,7 +65,7 @@ The course will give you the basic skills needed to go further and investigate t
 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
-* 1030-1040 hours; (91-101 of 360 Minutes): David Sumpter about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
+* 1030-1040 hours; (91-101 of 360 Minutes): [David Sumpter](https://www.linkedin.com/in/david-sumpter-164866b8/) about the culminating [Mathematics for Social Activism Workshop at Uppsala June 4-5](https://www.eventbrite.co.uk/e/mathematics-for-social-activism-tickets-44145938691)
 *  1040-1200 hours; (101-180 of 360 Minutes): A look into EU laws of relevance, mathematical biases, big data ethics, privacy, security plus questions and discussions.
   - 1040-1130 hours by [Amelia Andersdotter](https://www.linkedin.com/in/amelia-andersdotter-906b8357/) on GDPR (with discussions):
     * Data protection, where's it come from, what's the point?
