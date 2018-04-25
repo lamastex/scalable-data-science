@@ -172,7 +172,7 @@ This is a two-full-days workshop (2 hp) on May 3-4 2018. Prerequisites: 360-in-5
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 11 2018**
 
-This is a mathematically more careful (``deeper'' or ``advanced'' undergraduate) version of UC Berkeley's most popular freshman course:
+This is a mathematically more careful (at an advanced undergraduate level) version of UC Berkeley's most popular freshman course:
  - [http://data8.org/](http://data8.org/) with the formula:
    - **computatioal thinking + inferential thinking  = data science** 
    - as talked about at the end [here](https://www.youtube.com/watch?v=ggq7HiDO0OU).
