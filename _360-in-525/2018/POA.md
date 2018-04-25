@@ -59,7 +59,7 @@ The course will give you the basic skills needed to go further and investigate t
 **PLAN of Lectures:**
 
 * 0830-1000 hours; (000-090 of 360 Minutes): Introduction to Digital Sociology by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
-    * 0830-0915  What is digital sociology?
+    * 0830-0915  What is digital sociology? [PDF slides](http://lamastex.org/talks/20180426_SimonLindgren_360-in-525-2_DigSocIntro_MeToo.pdf)
     * 0915-1000  MeToo Case Study in Action (via Jupyter notebooks)
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 
@@ -79,7 +79,7 @@ The course will give you the basic skills needed to go further and investigate t
       * [https://www.registerforskning.se](https://www.registerforskning.se)
 
   * 1130-1200 hours by Raazesh Sainudiin on mathematical bias in models, applied operations research and information engineering and applicability of law for mathematical statistical researchers 
-    * [Towards Participatory Democracy in the Big Data Age](http://lamastex.org/talks/20180215_TowardsParticipatoryDemocracyBigDataAge90Minutes.pdf)
+    * Towards Participatory Democracy in the Big Data Age, [PDF slides](http://lamastex.org/talks/20180215_TowardsParticipatoryDemocracyBigDataAge90Minutes.pdf)
       - [Weapons of Math Destruction by Cathy O'Neil](https://weaponsofmathdestructionbook.com/)
       - **assigned viewing**: [Cathy's 20-minutes-long TedTalk on "The Era of Blind Faith in Big Data Must End"](https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end)
     * Information as a commodity in *free* market: Security, Privacy, Profit...
@@ -107,8 +107,8 @@ Thursday 15 February 2018, on "Towards Participatory Democracy in the Big Data A
   - you can buy sandwiches or have a full meal in cafes nearby.
 
 * 1330-1500 hours; (181-270 of 360 Minutes): Analyzing 2017 UK and 2016 US Elections on Twitter
-  * 1330-1415, Simon Lingren, UK General Election Case Study, with SNA
-  * 1415-1500, Raazesh Sainudiin, [Characterizing the Twitter network of prominent politicians and hate groups in the 2016 US Election](http://lamastex.org/talks/20180322_Orebro_2016USElection.pdf)
+  * 1330-1415, Simon Lingren, UK General Election Case Study: Social Network Analysis, [PDF slides](http://lamastex.org/talks/20180426_SimonLindgren_360-in-525-2_SocNetAnalysis_2017GBGenElec.pdf)
+  * 1415-1500, Raazesh Sainudiin, Characterizing the Twitter network of prominent politicians and hate groups in the 2016 US Election, [PDF slides](http://lamastex.org/talks/20180322_Orebro_2016USElection.pdf)
     * recommended reading: [Rejecting the Null Hypothesis of Apathetic Retweeting of US politicians and SPLC-defined Hate Groups in the 2016 US Presidential Election](http://lamastex.org/preprints/20180423_NullApatheticRetweetOfUSPolitsHategrps.pdf)
 
 
