@@ -79,13 +79,18 @@ The course will give you the basic skills needed to go further and investigate t
       * [https://www.registerforskning.se](https://www.registerforskning.se)
 
   * 1130-1200 hours by Raazesh Sainudiin on mathematical bias in models, applied operations research and information engineering and applicability of law for mathematical statistical researchers 
-    * Towards Participatory Democracy in the Big Data Age, [PDF slides](http://lamastex.org/talks/20180215_TowardsParticipatoryDemocracyBigDataAge90Minutes.pdf)
+    * Towards Participatory Democracy in the Big Data Age, [PDF slides](http://lamastex.org/talks/20180426_TowardsParticipatoryDemocracyBigDataAge.pdf)
       - [Weapons of Math Destruction by Cathy O'Neil](https://weaponsofmathdestructionbook.com/)
       - **assigned viewing**: [Cathy's 20-minutes-long TedTalk on "The Era of Blind Faith in Big Data Must End"](https://www.ted.com/talks/cathy_o_neil_the_era_of_blind_faith_in_big_data_must_end)
     * Information as a commodity in *free* market: Security, Privacy, Profit...
       - [Data and Goliath by Bruce Schneier](https://www.schneier.com/books/data_and_goliath/)
       - **assigned viewing**: [Bruce's 40-minutes-long Talks at Google on "Data and Goliath: The Hidden Battles to Collect Your Data and Control Your World"](https://www.youtube.com/watch?v=GhWJTWUvc7E)
       - [Bruce Schneier and Edward Snowden @ Harvard Data Privacy Symposium 1/23/15](https://youtu.be/7Ui3tLbzIgQ)
+      - [Michael Jordan's Data Science Revolution Talk](https://youtu.be/ggq7HiDO0OU?start=158&end=1724)
+        - Math-Stats Paper: [MinimaxOptimal Procedures for Locally Private Estimation, 2017](https://arxiv.org/abs/1604.02390)
+
+<!---
+
     * A Concerete Deep Dive into Law (if time permits OR spill-over to 1530-1700 session)
       * an excursion into the EU Commission's Memorandum of Understanding with IT companies signed in 2016/7
       * monitoring for violations of a particular EU Law against Online Hate Speech 
@@ -93,8 +98,6 @@ The course will give you the basic skills needed to go further and investigate t
       * on supposed *toothlessness* of *a right to an explanation*
       * ... Oxford Internet Institute Working Papers, etc.
 
-
-<!---
     wrip from HateTransmissionNetwork (make non-confidential subset public here for leture outline; live via web searches a dn string chasing... with local backups)
 
 I have tried to get every citizen to be sceptical and participate in the democratic process today.
