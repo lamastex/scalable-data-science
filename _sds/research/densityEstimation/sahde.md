@@ -34,7 +34,7 @@ The license for [mrs2](https://github.com/raazesh-sainudiin/mrs2) is GNU General
 ## Current Sub-Projects of SAHDE 
 
 -  [SparkDensityTree](https://github.com/TiloWiklund/SparkDensityTree) for scalable density estimation using optimally smoothed L2-risk minimizing penalties (*in progress*)
--  [SparkOnlineLearning](https://github.com/BennyAvelin/SparkOnlineLearning) has potential for streaming tree arithmetic by extending from the Scala trees in [SparkDensityTree](https://github.com/TiloWiklund/SparkDensityTree).
+-  [SparkOnlineLearning](https://github.com/BennyAvelin/SparkOnlineLearning) has potential for streaming [regularly paved tree arithmetic](http://interval.louisiana.edu/reliable-computing-journal/volume-16/reliable-computing-16-pp-252-282.pdf) by extending from the Scala trees in [SparkDensityTree](https://github.com/TiloWiklund/SparkDensityTree).
 
 ### Blackboard discussion notes at LaMaStEx on 2016-10-08.
  
