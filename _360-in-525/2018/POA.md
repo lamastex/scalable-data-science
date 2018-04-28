@@ -56,6 +56,21 @@ The course will give you the basic skills needed to go further and investigate t
 
 *I am aware that the Meetup site was busted (temporarily, and hopefully not recurrently!).*
 
+**YouTube Archive of Lab/-Lectures**
+
+1. 360-in-525-02 (Day-1/2-LabLec-1/4): [https://youtu.be/53CkeLZRttU](https://youtu.be/53CkeLZRttU)
+- 360-in-525-02 (Day-1/2-LabLec-2/4): [https://youtu.be/-bzaPdL4v4o](https://youtu.be/-bzaPdL4v4o)
+- 360-in-525-02 (Day-1/2-LabLec-3/4): [https://youtu.be/LpuXO6mKong](https://youtu.be/LpuXO6mKong)
+- 360-in-525-02 (Day-1/2-LabLec-4/4) Face-to-face-ONLY Tutorials / Assignment Marking.
+- 360-in-525-02 (Day-2/2-LabLec-1/4): [https://youtu.be/4QFqrlN3_RI](https://youtu.be/4QFqrlN3_RI)
+  - Assumed Publicly Available Information Algebras for Raaz's Mathematical Statistical Discourse:
+    - [Joint Operating Environment - JOE 2010](http://lamastex.org/JOE/JOE_2010_o.pdf)
+    - [Manifesto on the Future of Seeds - MFS 2006](http://lamastex.org/JOE/ManifestoOnFutureOfSeeds_2006.pdf)
+- 360-in-525-02 (Day-2/2-LabLec-2/4): [https://youtu.be/davVIU3PjLE](https://youtu.be/davVIU3PjLE)
+- 360-in-525-02 (Day-2/2-LabLec-3/4): [https://youtu.be/_RGthSxnwV0](https://youtu.be/_RGthSxnwV0)
+- 360-in-525-02 (Day-2/2-LabLec-4/4): [https://youtu.be/H4WGyKbJor0](https://youtu.be/H4WGyKbJor0)
+
+
 **PLAN of Lectures:**
 
 * 0830-1000 hours; (000-090 of 360 Minutes): Introduction to Digital Sociology by [Simon Lindgren](https://www.linkedin.com/in/simon-lindgren-0a656160/) 
