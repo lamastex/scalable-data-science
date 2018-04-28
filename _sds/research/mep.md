@@ -56,10 +56,13 @@ the following individuals (in chronological order):
 -   Ivan Sadikov
 -   Rania Sahioun
 -   Akinwande Atanda
+-   Joakim Johansson
+-   Olof Björck
 
-Published and Working Papers of Projet MEP
+Published, Submitted and Working Papers of Projet MEP
 ------------------------------------------
 
+-   Raazesh Sainudiin, Kumar Yogeeswaran, Kyle Nash and Rania Sahioun, Rejecting the Null Hypothesis of Apathetic Retweeting of US politicians and SPLC-defined Hate Groups in the 2016 US Presidential Election, 8 pages, 2018 ([PDF](http://lamastex.org/preprints/20180423_NullApatheticRetweetOfUSPolitsHategrps.pdf) 448KB)
 -   Kumar Yogeeswaran, Kyle Nash, Rania Sahioun and Raazesh Sainudiin,
     Seeded by Hate? Characterizing the Twitter Networks of Prominent
     Politicians and Hate Groups in the 2016 US Election, 2017 ([PDF of Working Paper](http://lamastex.org/preprints/2017HateIn2016USAElection.pdf) 816KB)
