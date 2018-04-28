@@ -27,24 +27,14 @@ Project SAHDE is an effort to create a scalable version of the adaptive histogra
 based on mathematical statistical notions in:
 * Data-adaptive histograms through statistical regular pavings, Raazesh Sainudiin, Gloria Teng, Jennifer Harlow and Warwick Tucker, 2016 ([PDF](http://lamastex.org/preprints/20161121optMAPMDE.pdf) 1.8MB)
 
-
-
 ## LICENSE
 
-Copyright 2016 Raazesh Sainudiin and Sivanand Sivaram
+The license for [mrs2](https://github.com/raazesh-sainudiin/mrs2) is GNU General Public License (GPL) and that for SAHDE Project is [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Current Sub-Projects of SAHDE 
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+-  [SparkDensityTree](https://github.com/TiloWiklund/SparkDensityTree) for scalable density estimation using optimally smoothed L2-risk minimizing penalties (*in progress*)
+-  [SparkOnlineLearning](https://github.com/BennyAvelin/SparkOnlineLearning) has potential for streaming tree arithmetic by extending from the Scala trees in [SparkDensityTree](https://github.com/TiloWiklund/SparkDensityTree).
 
 ### Blackboard discussion notes at LaMaStEx on 2016-10-08.
  
