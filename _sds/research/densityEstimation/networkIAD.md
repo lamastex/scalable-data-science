@@ -16,6 +16,8 @@ excerpt: 'for Scalable Mathematical Statistical Experiments.<br /><br /><br />'
 
 Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
+**These are merely field notes for *live* research...**
+
 ## Basic Background Viewing
 
 * [PlayList](https://www.youtube.com/playlist?list=PL_I1mOIPmfpbkPn3IoPiY6oGbtBiJ4wLS)
@@ -54,6 +56,7 @@ Prepared by Raazesh Sainudiin partly for [Combient AB](https://combient.com/).
 
 * [docker container for DNS logs](https://hub.docker.com/r/storytel/dnsmasq/)
 Some instructions on getting the DNS logs collection going:
+
 ```%sh
 #Pull this docker down: storytel/dnsmasq
 
