@@ -37,7 +37,7 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
 
 See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/01/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/01/).
 
-## 360-in-525-2: Social Media and Big Data on **April 26 2018**
+## 360-in-525-2: Social Media and Big Data on **April 26-27 2018**
 
 See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/02/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/02/).
 
