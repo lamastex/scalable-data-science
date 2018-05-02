@@ -28,7 +28,7 @@ lMenu-360-in-525:
   - title: "360-in-525 Courses"
     url: /360-in-525/2018/
     children:
-      - title: "An Uppsala-Big-Data-Meetup"
+      - title: "This is an Uppsala-Big-Data-Meetup"
         url: "https://www.meetup.com/Uppsala-Big-Data-Meetup/"
       - title: "Download .dbc Course Contents"
         url: "https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2018"
