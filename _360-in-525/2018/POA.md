@@ -56,6 +56,7 @@ See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/02/](https
 * 0830-1000: Introduction to Geospatial Analysis by [John Östh](http://katalog.uu.se/empinfo/?id=N2-980) and [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/) from Uppsala University's [Department of Social and Economic Geography](http://www.kultgeog.uu.se/?languageId=1),  [PDF slides](http://lamastex.org/talks/20180503_JohnOsth_360-in-525-3_GeospatialAnalysisIntro.pdf) and [hyper-links](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/JohnOsth_IntroToGeospatialAnalysis/linksInLecture/)
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 * 1030-1200: Introduction to Geographical Information Systems using [QGIS](https://qgis.org/en/site/about/index.html), Lab-Lecture by [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/)
+  * [Marina's db published notebook](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/8240011188865852/509411391656351/4718909336200379/latest.html)
 * Lunch
 * 1330-1500: Primer on Linear Algebra, Distributed Linear Algebra and Linear Regression Pipeline
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
