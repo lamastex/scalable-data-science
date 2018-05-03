@@ -53,7 +53,7 @@ See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/02/](https
 
 **SCHEDULE:**
 
-* 0830-1000: Introduction to Geospatial Analysis by [John Östh](http://katalog.uu.se/empinfo/?id=N2-980) and [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/) from Uppsala University's [Department of Social and Economic Geography](http://www.kultgeog.uu.se/?languageId=1),  [PDF slides](http://lamastex.org/talks/20180503_JohnOsth_360-in-525-3_GeospatialAnalysisIntro.pdf)
+* 0830-1000: Introduction to Geospatial Analysis by [John Östh](http://katalog.uu.se/empinfo/?id=N2-980) and [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/) from Uppsala University's [Department of Social and Economic Geography](http://www.kultgeog.uu.se/?languageId=1),  [PDF slides](http://lamastex.org/talks/20180503_JohnOsth_360-in-525-3_GeospatialAnalysisIntro.pdf) and [hyper-links](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/JohnOsth_IntroToGeospatialAnalysis/linksInLecture/)
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
 * 1030-1200: Introduction to Geographical Information Systems using [QGIS](https://qgis.org/en/site/about/index.html), Lab-Lecture by [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/)
 * Lunch
