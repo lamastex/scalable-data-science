@@ -42,56 +42,10 @@ See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/01/](https
 See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/02/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/02/).
 
 
-## 360-in-525-3: Geospatial Analytics and Big Data on **May 3 2018**
+## 360-in-525-3: Geospatial Analytics and Big Data on **May 3-4 2018**
 
+See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/).
 **Locations:**
-
-*NOTE:* Today's meetings are in ITC across the road from Ångström.
-
-- 0815-1200 hours, The fair, 6140, ITC, [mazemap](http://use.mazemap.com/?campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=ITC%20HUS%206-140)
-- 1315-1700 hours, 2344, ITC, [mazemap](http://use.mazemap.com/?campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=ITC%20HUS%202-344)
-
-**SCHEDULE:**
-
-* 0830-1000: Introduction to Geospatial Analysis by [John Östh](http://katalog.uu.se/empinfo/?id=N2-980) and [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/) from Uppsala University's [Department of Social and Economic Geography](http://www.kultgeog.uu.se/?languageId=1),  [PDF slides](http://lamastex.org/talks/20180503_JohnOsth_360-in-525-3_GeospatialAnalysisIntro.pdf) and [hyper-links](https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/JohnOsth_IntroToGeospatialAnalysis/linksInLecture/)
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 1030-1200: Introduction to Geographical Information Systems using [QGIS](https://qgis.org/en/site/about/index.html), Lab-Lecture by [Marina Toger](https://www.linkedin.com/in/marina-toger-29030320/)
-  * [Marina's db published notebook](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/8240011188865852/509411391656351/4718909336200379/latest.html)
-* Lunch
-* 1330-1500: Primer on Linear Algebra, Distributed Linear Algebra and Linear Regression Pipeline
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 1530-1700: Introduction to Spark's GraphX and GraphFrames Library
-
-
-## 360-in-525-3: Geospatial Analytics and Big Data on **May 4 2018**
-
-**Locations:**
-
-- 0815-1200 hours, 4001, Ångström, [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-4001)
-- 1315-1700 hours, 2002, Ångström, [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-2002)
-
-* 0830-1000: Scalable Geospatial Analytics, An Introduction
-  * Cross-Domain Data Fusion and Knowledge Extraction (~20 minutes Lecture)
-  * Introduction to Magellan with Uber GPS Trajectories for Scalable Geospatial Analytics (Lab-Lecture)
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 1030-1200: TBA
-* Lunch
-* 1330-1500: TBA 
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 1530-1700: TBA + tutorial/assignment examination time
-
-* **TBA topics are likely to be picked from:**
-  * Activity Detection from accelerometer-enriched trajectories using Markov (time-series) models of Random Forests
-  * Spatio-temporal constraint satisfaction problems, including co-occurence operators
-  * map-matching at scale
-  * OpenStreetMap ingestion and their lumped Markov chain representations
-  * A nonparametric formulation of trajectories as Markov chains over lumped state-space representations of OpenStreetMaps as a generic framework of computational/inferential thinking for geospatial data scientists
-
-<!---
-This is a two-full-days workshop (2 hp) on May 3-4 2018. Prerequisites: 360-in-525-1 or Introduction to data Science. The first day will be done by domain experts from Uppsala University’s Department of Social and Economic Geography in order to introduce the basic problems and datasets of the field with hands-on lab tutorials in non-distributed geospatial analytics. The second day will be on distributed geospatial analytics over real datasets that can be scaled to petabytes (syllabus is jointly designed with experts in London’s big data industry). Topics include efficient distributed spatial joins, ingestion and representations of Open Street Maps that are conducive to pregel-style distributed vertex programs, SparkSQL and Spark Machine Learning pipelines with spatiotemporal GPS trajectories of multiple individuals.
---->
-
-
 
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 11 2018**
