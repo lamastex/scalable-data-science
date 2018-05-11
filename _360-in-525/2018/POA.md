@@ -74,7 +74,7 @@ May 11 2018 Meetings are in **2003, Ångström**, [mazemap](http://use.mazemap.c
 
 This is a mathematically more careful (at an advanced undergraduate level) version of UC Berkeley's most popular freshman course:
  - [http://data8.org/](http://data8.org/) with the formula:
-   - **computatioal thinking + inferential thinking  = data science** 
+   - **computational thinking + inferential thinking  = data science** 
    - as talked about at the end [here](https://www.youtube.com/watch?v=ggq7HiDO0OU).
 
 
