@@ -1,7 +1,7 @@
 ---
 layout: single
 title: 360-in-525-3. Geospatial Analytics and Big Data
-permalink: /360-in-525/2018/03/
+permalink: /360-in-525/2018/03/JohnOsth_IntroToGeospatialAnalysis/linksInLecture/
 sidebar:
   nav: "lMenu-360-in-525"
 header:
