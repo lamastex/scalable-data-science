@@ -77,6 +77,9 @@ This is a mathematically more careful (at an advanced undergraduate level) versi
    - **computational thinking + inferential thinking  = data science** 
    - as talked about at the end [here](https://www.youtube.com/watch?v=ggq7HiDO0OU).
 
+**Download** the zip file of SageMath ipynb notebooks from:
+
+ - [https://github.com/lamastex/scalable-data-science/tree/master/_360-in-525/2018/04/jp/sageMathIpynbArchive](https://github.com/lamastex/scalable-data-science/tree/master/_360-in-525/2018/04/jp/sageMathIpynbArchive)
 
 * 000-090 of 360 Minutes: 
 * Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
