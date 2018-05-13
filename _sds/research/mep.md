@@ -29,7 +29,7 @@ notions.
     codes](https://github.com/raazesh-sainudiin/scalable-data-science/tree/master/meme-evolution)
 -   Live research: [github MEP
     research](https://github.com/raazesh-sainudiin/scalable-data-science/tree/master/meme-evolution/research)
-
+-   [Project MEP: Meme Evolution Programme - Privacy-Preserving Decisions](privacy/)
 
 MEP is partly supported by:
 -   [AWS Cloud Credits for Research](https://aws.amazon.com/research-credits/)
