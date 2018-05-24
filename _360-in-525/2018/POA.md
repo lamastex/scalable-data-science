@@ -66,10 +66,6 @@ To test that you have installed correctly do the following:
 - Those with Windows should follow the instructions in the following URL and test that the jupyter notebook server launches successfully:
   - [https://wiki.sagemath.org/SageWindows](https://wiki.sagemath.org/SageWindows)
 
-**Locations:**
-
-May 11 2018 Meetings are in **2003, Ångström**, [mazemap](http://use.mazemap.com/?v=1&campusid=49&campuses=uu&sharepoitype=identifier&sharepoi=%C3%85ngstr%C3%B6m-2003).
-
 **SCHEDULE:**
 
 This is a mathematically more careful (at an advanced undergraduate level) version of UC Berkeley's most popular freshman course:
@@ -81,24 +77,7 @@ This is a mathematically more careful (at an advanced undergraduate level) versi
 
  - [https://github.com/lamastex/scalable-data-science/tree/master/_360-in-525/2018/04/jp/sageMathIpynbArchive](https://github.com/lamastex/scalable-data-science/tree/master/_360-in-525/2018/04/jp/sageMathIpynbArchive)
 
-* 000-090 of 360 Minutes: 
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 091-180 of 360 Minutes:
-* Lunch
-* 181-270 of 360 Minutes:
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 271-360 of 360 Minutes:
-
-
-## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 18 2018**
-
-* 000-090 of 360 Minutes: 
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 091-180 of 360 Minutes:
-* Lunch
-* 181-270 of 360 Minutes:
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 271-360 of 360 Minutes:
+See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/).
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 25 2018**
 
@@ -107,8 +86,7 @@ This is a mathematically more careful (at an advanced undergraduate level) versi
 * 091-180 of 360 Minutes:
 * Lunch
 * 181-270 of 360 Minutes:
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 271-360 of 360 Minutes:
+* 1515-1630 hours: [Kollokvium: Local asymptotic equivalence of pure quantum states ensembles and quantum gaussian white noise](http://math.uu.se/kalendarium/evenemang/?eventId=35784)
 
 ## 360-in-525-5: Population Genetics and Big Data (1 hp)  on **May 31 2018** 
 
