@@ -87,10 +87,22 @@ lMenu-360-in-525:
         url: /360-in-525/2018/04/jp/360-in-525-04_03/
       - title: "04. Conditional Probability, Random Variables, Loops and Conditionals"
         url: /360-in-525/2018/04/jp/360-in-525-04_04/
-      - title: "05. Random Variables, Expectations, Data, Statistics, Arrays and Tuples"
+      - title: "05. Random Variables, Expectations, Data, Statistics, Arrays and Tuples, Iterators and Generators"
         url: /360-in-525/2018/04/jp/360-in-525-04_05/
-      - title: "..."
-        url: /360-in-525/2018/04/jp/360-in-525-04_05/
+      - title: "06. Statistics and List Comprehensions with New Zealand Earthquakes"
+        url: /360-in-525/2018/04/jp/360-in-525-04_06/
+      - title: "07. Modular Arithmetic, Linear Congruential Generators, and Pseudo-Random Numbers"
+        url: /360-in-525/2018/04/jp/360-in-525-04_07/
+      - title: "08. Pseudo-Random Numbers, Simulating from Some Discrete and Continuous Random Variables"
+        url: /360-in-525/2018/04/jp/360-in-525-04_08/
+      - title: "09. Estimation, Likelihood, Maximum Likelihood Estimators and Symbolic Expressions"
+        url: /360-in-525/2018/04/jp/360-in-525-04_09/
+      - title: "10. Markov Chains"
+        url: /360-in-525/2018/04/jp/360-in-525-04_10/
+      - title: "11. Limits, Convergence, and Estimation"
+        url: /360-in-525/2018/04/jp/360-in-525-04_11/
+      - title: "12. Non-parametric Estimation and Testing"
+        url: /360-in-525/2018/04/jp/360-in-525-04_12/
   - title: "360-in-525-5"
     url: /360-in-525/2018/05/
   - title: "360-in-525-0"
