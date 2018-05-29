@@ -49,44 +49,7 @@ See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/03/](https
 
 ## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 11 2018**
 
-#### Prepare your laptop 
-
-**SOFTWARE**: We will be using SageMath/Python ecosystem for the next three Fridays. 
-Follow the download and installation instructions for your Operating System from the following URL:
-
-- [http://www.sagemath.org/download.html](http://www.sagemath.org/download.html)
-
-To test that you have installed correctly do the following:
-
-- On a Mac OS X or Unix/Linux syatem, say you installed sage in a directory inside your home directory called `~/all/software/sage/`, then you can see if the following command launches a Jupyter notebook server successfully:
-
-> $ ~/all/software/sage/SageMath/sage -n jupyter
-
-
-- Those with Windows should follow the instructions in the following URL and test that the jupyter notebook server launches successfully:
-  - [https://wiki.sagemath.org/SageWindows](https://wiki.sagemath.org/SageWindows)
-
-**SCHEDULE:**
-
-This is a mathematically more careful (at an advanced undergraduate level) version of UC Berkeley's most popular freshman course:
- - [http://data8.org/](http://data8.org/) with the formula:
-   - **computational thinking + inferential thinking  = data science** 
-   - as talked about at the end [here](https://www.youtube.com/watch?v=ggq7HiDO0OU).
-
-**Download** the zip file of SageMath ipynb notebooks from:
-
- - [https://github.com/lamastex/scalable-data-science/tree/master/_360-in-525/2018/04/jp/sageMathIpynbArchive](https://github.com/lamastex/scalable-data-science/tree/master/_360-in-525/2018/04/jp/sageMathIpynbArchive)
-
 See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/).
-
-## 360-in-525-4: Mathematical, Statistical and Computational Foundations for Data Scientists on **May 25 2018**
-
-* 000-090 of 360 Minutes: 
-* Fika break 30 minutes - sponsored by [Combient AB](https://combient.com/)
-* 091-180 of 360 Minutes:
-* Lunch
-* 181-270 of 360 Minutes:
-* 1515-1630 hours: [Kollokvium: Local asymptotic equivalence of pure quantum states ensembles and quantum gaussian white noise](http://math.uu.se/kalendarium/evenemang/?eventId=35784)
 
 ## 360-in-525-5: Population Genetics and Big Data (1 hp)  on **May 31 2018** 
 
