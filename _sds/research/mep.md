@@ -57,7 +57,7 @@ the following individuals (in chronological order):
 -   Rania Sahioun
 -   Akinwande Atanda
 -   Joakim Johansson
--   Olof Björck
+-   Olof Björck [twitterVisualizations](https://github.com/olofbjorck/twitterVisualizations)
 
 Published, Submitted and Working Papers of Projet MEP
 ------------------------------------------
