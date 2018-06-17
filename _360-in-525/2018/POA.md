@@ -14,10 +14,6 @@ excerpt: '360-in-525 Minutes Course Set in Data Sciences, Spring 2018, Uppsala -
 
 # POA - 360-in-525
 
-**Plan of Action (POA) is in progress** The final POA may change. 
-{: .notice--danger}
-
-
 ## 000 - LOGISTICS
 
 - You can only physically be present at the course set if you have registered with Raazesh Sainudiin via email (registration deadline has passed for Spring 2018). You can join us online on HangOutsOnAir at [this](https://www.youtube.com/channel/UCPJ5ALbDtuCA4DJmN3GvanA) channel or later on YouTube at [this](https://www.youtube.com/playlist?list=PL_I1mOIPmfpZ6kq86w5ordoB7FY1Uj2ac) playlist.
@@ -53,14 +49,8 @@ See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/04/](https
 
 ## 360-in-525-5: Population Genetics and Big Data (1 hp)  on **May 31 2018** 
 
-**hp change:** *due to complicated scheduling issues 360-in-525-5 is now only 1hp for one full day. If you want to do it as a 2hp course then there may be possibilities for supervised projects on genome scale population demographic inference. Please talk to Raaz if you want to do a 2hp version.*
-<!---
-Two-full-day workshops (2 hp) on May 31 and June 1 2018. The first day will be on the basic theories in current population genetics and genomics. The second day will use ADAM and possibly Hail over Apache Spark. Prerequisite for May 31 is 360-in-525-4 or equivalent and for June 1 is 360-in-525-1 or Introduction to data Science. We will focus on Extract-Load-Transform operations and subsequent analysis for the 1000 genomes project.
---->
+See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/05/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/05/).
 
 ## 360-in-525-0: Mathematical Statistical Learning Theory Series; An L1 View (1 hp) **June 1 2018**
-<!---
-  - Lecture Plan
-    - Do a full day of X-lectures (and some explicit tree arithmetics if time permits) to understand the Theorems in [YatracosThis](http://lamastex.org/preprints/20180405_MDEYatracosThis.pdf) 
-    - (Optionally, depending on audience C++ skills) dive from within docker into: [https://github.com/lamastex/mrs2/tree/master/companions/mrs-1.0-YatracosThis](https://github.com/lamastex/mrs2/tree/master/companions/mrs-1.0-YatracosThis) **Pre-Action:** Gloria needs to write a README on how to run the example on Table I in [YatracosThis](http://lamastex.org/preprints/20180405_MDEYatracosThis.pdf).
---->
+
+See [https://lamastex.github.io/scalable-data-science/360-in-525/2018/00/](https://lamastex.github.io/scalable-data-science/360-in-525/2018/00/).
