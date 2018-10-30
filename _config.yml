@@ -262,6 +262,9 @@ collections:
   sds:
     output: true
     permalink: /:collection/:path/
+  infty:
+    output: true
+    permalink: /:collection/:path/
   360-in-525:
     output: true
     permalink: /:collection/:path/
@@ -293,6 +296,14 @@ defaults:
   - scope:
       path: ""
       type: sds
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _infty
+  - scope:
+      path: ""
+      type: infty
     values:
       layout: single
       author_profile: false
