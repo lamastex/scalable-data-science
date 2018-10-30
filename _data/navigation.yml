@@ -2,6 +2,8 @@
 main:
   - title: "infty-2018-01"
     url: /infty/2018/01/
+  - title: "glm-2018"
+    url: /glm/2018/
   - title: "SDS-2.2"
     url: /sds/2/2/
   - title: "360-in-525"
@@ -27,6 +29,8 @@ lMenu:
         url: /360-in-525/2018/
       - title: "infty-2018-01"
         url: /infty/2018/01/
+      - title: "glm-2018"
+        url: /glm/2018/01/
 
 lMenu-infty:
   - title: "infty-2018-01"

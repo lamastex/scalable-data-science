@@ -262,6 +262,9 @@ collections:
   sds:
     output: true
     permalink: /:collection/:path/
+  glm:
+    output: true
+    permalink: /:collection/:path/
   infty:
     output: true
     permalink: /:collection/:path/
@@ -296,6 +299,14 @@ defaults:
   - scope:
       path: ""
       type: sds
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _glm
+  - scope:
+      path: ""
+      type: glm
     values:
       layout: single
       author_profile: false
