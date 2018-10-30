@@ -24,11 +24,11 @@ lMenu:
       - title: "360-in-525"
         url: /360-in-525/2018/
       - title: "infty-2018-01"
-        url: /infty/2018/
+        url: /infty/2018/01/
 
 lMenu-infty:
   - title: "infty-2018-01"
-    url: /infty/2018/
+    url: /infty/2018/01/
     children:
       - title: "00. Introduction"
         url: /infty/2018/01/jp/00/
