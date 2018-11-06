@@ -1,0 +1,8 @@
+Obs  Level  Length   Thickness
+
+20    6      lang     tynd
+20    14     lang     mid
+20    18     lang     tyk
+20    4      kort     tynd
+20    10     kort     mid
+20    11     kort     tyk
