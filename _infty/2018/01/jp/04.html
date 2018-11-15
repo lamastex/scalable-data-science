@@ -12076,7 +12076,7 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a class for a random variable map - just evaluate this cell and don&#39;t worry about understanding this now</span>
@@ -13172,7 +13172,7 @@ $$<p>We emphasise the dependence of the probabilities on the parameter $\theta$ 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># a simple routine to print every number in a list</span>
@@ -13182,7 +13182,7 @@ $$<p>We emphasise the dependence of the probabilities on the parameter $\theta$ 
                             <span class="c1"># Note the :</span>
                             <span class="c1"># each element in turn is assigned to the variable x</span>
     <span class="k">print</span> <span class="n">x</span>                 <span class="c1"># body of the for loop (just one line in this case)</span>
-
+ 
 <span class="k">print</span> <span class="s1">&#39;end of my first for loop&#39;</span>  <span class="c1"># not in the body of loop because it is not indented</span>
 </pre></div>
 
@@ -13222,7 +13222,7 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myPrintListFunc</span><span class="p">(</span><span class="n">ll</span><span class="p">):</span>                               <span class="c1"># start defining the function</span>
@@ -13250,10 +13250,13 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">anotherList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
+<span class="n">myPrintListFunc</span><span class="p">(</span><span class="n">anotherList</span><span class="p">)</span>
+<span class="n">anotherList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;print appended list&quot;</span>
 <span class="n">myPrintListFunc</span><span class="p">(</span><span class="n">anotherList</span><span class="p">)</span>
 </pre></div>
 
@@ -13270,6 +13273,11 @@ end of my first for loop
 <pre>20
 24
 46
+print appended list
+20
+24
+46
+22
 </pre>
 </div>
 </div>
@@ -13291,7 +13299,7 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">mySum</span> <span class="o">=</span> <span class="mi">0</span>
@@ -13305,12 +13313,13 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myList22</span><span class="p">:</span>
+    <span class="c1">#print mySum</span>
     <span class="n">mySum</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">mySum</span>
-
+    <span class="c1">#print mySum</span>
 <span class="k">print</span> <span class="n">mySum</span>
 </pre></div>
 
@@ -13404,7 +13413,7 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">S</span><span class="o">=</span><span class="nb">set</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>     <span class="c1"># make the set S </span>
@@ -13419,7 +13428,7 @@ end of my first for loop
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13444,7 +13453,7 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
@@ -13486,7 +13495,7 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>    <span class="c1"># reminder about range</span>
@@ -13501,7 +13510,7 @@ end of my first for loop
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13526,7 +13535,7 @@ end of my first for loop
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -13544,16 +13553,16 @@ end of my first for loop
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Number on die is  3
-Number on die is  4
-Number on die is  3
-Number on die is  5
-Number on die is  1
-Number on die is  3
-Number on die is  3
+<pre>Number on die is  1
+Number on die is  2
 Number on die is  5
 Number on die is  2
 Number on die is  6
+Number on die is  3
+Number on die is  4
+Number on die is  5
+Number on die is  1
+Number on die is  2
 </pre>
 </div>
 </div>
@@ -13589,7 +13598,7 @@ Number on die is  6
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>                             <span class="c1"># assign the value 50 to the variable called x</span>
@@ -13631,7 +13640,7 @@ This is the end of my first conditional statement
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>                             <span class="c1"># assign a value to a variable called x</span>
@@ -13727,7 +13736,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">myMaxFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> 
@@ -13758,7 +13767,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">firstNumber</span> <span class="o">=</span> <span class="mi">20</span>
@@ -13774,7 +13783,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13799,7 +13808,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">resultOfInterest</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># specify what number we will count occurrences of</span>
@@ -13822,7 +13831,7 @@ You are young enough to dream . . .
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>You got the number 5 11 times out of  100  trials
+<pre>You got the number 5 18 times out of  100  trials
 </pre>
 </div>
 </div>
@@ -13844,7 +13853,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">countMap</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>      <span class="c1"># start with a dictionary with all count values 0</span>
@@ -13864,11 +13873,11 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[55]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{1: 16, 2: 11, 3: 14, 4: 20, 5: 24, 6: 15}</pre>
+<pre>{1: 20, 2: 16, 3: 19, 4: 14, 5: 19, 6: 12}</pre>
 </div>
 
 </div>
@@ -13913,7 +13922,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">samplespace</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span>     <span class="c1"># sample space is the result of one coin toss</span>
@@ -13934,7 +13943,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[61]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13959,7 +13968,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">mapHeadsInThreeTosses</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># map for a random variable is the number of heads in three tosses</span>
@@ -13978,7 +13987,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[62]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13993,7 +14002,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>     <span class="c1"># find the probability that X = 3 (X is the number of heads in three tosses of the coin)</span>
@@ -14007,7 +14016,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14032,7 +14041,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">probMapFourCoinTosses</span> <span class="o">=</span> <span class="n">probMapCoinToss</span><span class="o">^</span><span class="mi">4</span>     <span class="c1"># the probability map for 4 independent tosses of the coin</span>
@@ -14047,7 +14056,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14062,7 +14071,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># map for a r.v. which takes value 1 if two heads, 0 otherwise</span>
@@ -14082,7 +14091,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14097,7 +14106,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># find the probability that we don&#39;t get exactly 2 heads in four tosses</span>
@@ -14111,7 +14120,7 @@ You are young enough to dream . . .
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14126,7 +14135,7 @@ You are young enough to dream . . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">.</span><span class="n">explainLastCalc</span><span class="p">()</span> <span class="c1"># see the calculation</span>
@@ -14168,7 +14177,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myList</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -14183,7 +14192,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14198,7 +14207,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Get the square of each element in myList</span>
@@ -14214,7 +14223,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[70]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14239,7 +14248,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">]</span>
@@ -14253,7 +14262,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[72]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14278,7 +14287,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">combs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -14297,7 +14306,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[74]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14312,7 +14321,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a list of 2-tuples like (number, square)</span>
@@ -14327,7 +14336,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[75]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14342,7 +14351,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># flatten a list using a listcomp with two &#39;for&#39;</span>
@@ -14360,7 +14369,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[76]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14385,7 +14394,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myListEven</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myList</span> <span class="k">if</span> <span class="n">x</span><span class="o">%</span><span class="k">2</span>==0]
@@ -14400,7 +14409,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14415,7 +14424,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myListOdd</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">myList</span> <span class="k">if</span> <span class="n">y</span><span class="o">%</span><span class="k">2</span>==1]
@@ -14430,7 +14439,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[78]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14494,7 +14503,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myMatrix</span> <span class="o">=</span> <span class="p">[</span>
@@ -14513,7 +14522,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14528,7 +14537,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">myMatrix</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
@@ -14542,7 +14551,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[80]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14557,7 +14566,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the above comprehension is equivalent to:</span>
@@ -14576,7 +14585,7 @@ so P(0) =  the sum of the probabilities 0 maps to, which is 0.62
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[81]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14608,7 +14617,7 @@ We can use <strong>lambda expressions</strong> for anonymous functions as descri
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> <span class="c1"># a list comprehensions</span>
@@ -14622,7 +14631,7 @@ We can use <strong>lambda expressions</strong> for anonymous functions as descri
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14637,7 +14646,7 @@ We can use <strong>lambda expressions</strong> for anonymous functions as descri
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># mapping a lambda expression to get the same result as above</span>
@@ -14651,7 +14660,7 @@ We can use <strong>lambda expressions</strong> for anonymous functions as descri
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
