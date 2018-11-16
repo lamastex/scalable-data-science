@@ -11792,7 +11792,8 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
     <span class="n">ft</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">taylor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">order</span><span class="p">)</span>
     <span class="n">pt</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">ft</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$f(x)\;=\;</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="k">latex</span>(f)))
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$\hat{f}(x;</span><span class="si">%s</span><span class="s1">)\;=\;</span><span class="si">%s</span><span class="s1">+\mathcal{O}(x^{</span><span class="si">%s</span><span class="s1">})$&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">latex</span><span class="p">(</span><span class="n">ft</span><span class="p">),</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$\hat{f}(x;</span><span class="si">%s</span><span class="s1">)\;=\;</span><span class="si">%s</span><span class="s1">+\mathcal{O}</span><span class="se">\</span>
+<span class="s1">                 (x^{</span><span class="si">%s</span><span class="s1">})$&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">latex</span><span class="p">(</span><span class="n">ft</span><span class="p">),</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
     <span class="n">show</span><span class="p">(</span><span class="n">dot</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pt</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 
@@ -11835,7 +11836,9 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 <span class="kn">import</span> <span class="nn">urllib2</span> <span class="kn">as</span> <span class="nn">U</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="kn">as</span> <span class="nn">Stat</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">co2data</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_mlo.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="n">co2data</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>\
+          <span class="s1">&#39;ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_mlo.txt&#39;</span>\
+                   <span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">datalines</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">a_line</span> <span class="ow">in</span> <span class="n">co2data</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">a_line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;Creation:&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -11846,19 +11849,25 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
         <span class="n">datalines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
 <span class="n">trdf</span> <span class="o">=</span> <span class="n">RealField</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
 <span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">mauna_loa_co2</span><span class="p">(</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1958</span><span class="p">),</span> <span class="n">end_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2009</span><span class="p">)):</span>
-    <span class="n">htmls1</span> <span class="o">=</span> <span class="s1">&#39;&lt;h3&gt;CO2 monthly averages at Mauna Loa (interpolated), from NOAA/ESRL data&lt;/h3&gt;&#39;</span>
+<span class="k">def</span> <span class="nf">mauna_loa_co2</span><span class="p">(</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1958</span><span class="p">),</span> \
+                  <span class="n">end_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2009</span><span class="p">)):</span>
+    <span class="n">htmls1</span> <span class="o">=</span> <span class="s1">&#39;&lt;h3&gt;CO2 monthly averages at Mauna Loa (interpolated),</span><span class="se">\</span>
+<span class="s1">    from NOAA/ESRL data&lt;/h3&gt;&#39;</span>
     <span class="n">htmls2</span> <span class="o">=</span> <span class="s1">&#39;&lt;h4&gt;&#39;</span><span class="o">+</span><span class="n">cdate</span><span class="o">+</span><span class="s1">&#39;&lt;/h4&gt;&#39;</span>
-    <span class="n">sel_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">datalines</span> <span class="k">if</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">end_date</span><span class="p">]</span>
+    <span class="n">sel_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">datalines</span> <span class="k">if</span> <span class="n">start_date</span> <span class="o">&lt;</span> \
+                <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">end_date</span><span class="p">]</span>
     <span class="n">c_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sel_data</span><span class="p">])</span>
     <span class="n">c_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sel_data</span><span class="p">])</span>
     <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ttprob</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">Stat</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">sel_data</span><span class="p">)</span>
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">htmls1</span><span class="o">+</span><span class="n">htmls2</span><span class="o">+</span><span class="s1">&#39;&lt;h4&gt;Linear regression slope: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">slope</span><span class="p">))</span>
-                      <span class="o">+</span> <span class="s1">&#39; ppm/year; correlation coefficient: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;&lt;/h4&gt;&#39;</span><span class="p">))</span>
+    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">htmls1</span><span class="o">+</span><span class="n">htmls2</span><span class="o">+</span><span class="s1">&#39;&lt;h4&gt;Linear regression slope: &#39;</span>\
+                      <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">slope</span><span class="p">))</span><span class="o">+</span> \
+                      <span class="s1">&#39; ppm/year; correlation coefficient: &#39;</span> <span class="o">+</span>\
+                      <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;&lt;/h4&gt;&#39;</span><span class="p">))</span>
     <span class="n">var</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
     <span class="n">show</span><span class="p">(</span><span class="n">list_plot</span><span class="p">(</span><span class="n">sel_data</span><span class="p">,</span> <span class="n">plotjoined</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> 
                    <span class="o">+</span> <span class="n">plot</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">intercept</span><span class="p">,</span><span class="n">start_date</span><span class="p">,</span><span class="n">end_date</span><span class="p">),</span> 
-                      <span class="n">xmin</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">c_min</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">c_max</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> 
+                      <span class="n">xmin</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">c_min</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> \
+                      <span class="n">xmax</span> <span class="o">=</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">c_max</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> \
                       <span class="n">frame</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 
@@ -11891,11 +11900,12 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">showURL</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ht</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return an IFrame of the url to show in notebook with height ht&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Return an IFrame of the url to show in notebook \</span>
+<span class="sd">       with height ht&quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
     <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">ht</span><span class="p">)</span> 
 <span class="n">showURL</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/Number&#39;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
@@ -11909,7 +11919,7 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -11952,7 +11962,7 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Data_science&quot;</span><span class="p">)</span>
@@ -11966,7 +11976,7 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -11991,7 +12001,9 @@ $$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-is-Statistical-Inference-and-how-is-this-related-to-Data-Science?">What is Statistical Inference and how is this related to Data Science?<a class="anchor-link" href="#What-is-Statistical-Inference-and-how-is-this-related-to-Data-Science?">&#182;</a></h2><p>Please see video linked at the bottom of <a href="https://lamastex.github.io/scalable-data-science/infty/2018/01/">Inference Theory 1</a> to find out more.</p>
+<h2 id="What-is-Statistical-Inference-and-how-is-this-related-to-Data-Science?">What is Statistical Inference and how is this related to Data Science?<a class="anchor-link" href="#What-is-Statistical-Inference-and-how-is-this-related-to-Data-Science?">&#182;</a></h2><p><strong>Global Background and Context:</strong> This is a mathematically more mature variant of UC Berkeley’s popular freshman course, <a href="http://data8.org/">http://data8.org/</a>, with the formula:</p>
+<p>computational thinking + inferential thinking = data science
+as talked about at the end <a href="https://www.youtube.com/watch?v=ggq7HiDO0OU">here</a>.</p>
 <p>This course is <strong>being</strong> designed to help you take your mathematical steps in the inferential direction.</p>
 
 </div>
