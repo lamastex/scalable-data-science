@@ -12356,24 +12356,18 @@ We live in a time of extraordinary change, change that&#39;s reshaping the way w
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="How-the-sou.tgz-file-was-created?">How the <code>sou.tgz</code> file was created?<a class="anchor-link" href="#How-the-sou.tgz-file-was-created?">&#182;</a></h2><p>If you are curious, read: <a href="http://lamastex.org/datasets/public/SOU/README.md">http://lamastex.org/datasets/public/SOU/README.md</a>.</p>
-<p>Briefly, this is how a website with SOU was scraped. A data scientist is expected to be comfortable with such web-scraping tasks (which can be done in more gracious ways).</p>
+<p>Briefly, this is how a website with SOU was scraped by Paul Brouwers and adapted by Raazesh Sainudiin. A data scientist, and more generally a researcher interested in making statistical inference from data that is readily available online in a particular format, is expected to be comfortable with such <em>web-scraping tasks</em> (which can be done in more gracious and robust ways using specialised Python libraries). Such tasks also known as <em>Extract-Load-Transform (ELT)</em> operations are often time-consuming, expensive andnthe necessary first step towards statistical inference.</p>
+<h3 id="A-bit-of-bash-and-lynx-to-achieve-the-scraping-of-the-state-of-the-union-addresses-of-the-US-Presidents,">A bit of bash and lynx to achieve the scraping of the state of the union addresses of the US Presidents,<a class="anchor-link" href="#A-bit-of-bash-and-lynx-to-achieve-the-scraping-of-the-state-of-the-union-addresses-of-the-US-Presidents,">&#182;</a></h3><h4 id="by-Paul-Brouwers">by Paul Brouwers<a class="anchor-link" href="#by-Paul-Brouwers">&#182;</a></h4><p>The code below is mainly there to show how the text content of each state of the union address was scraped from the following URL:</p>
+<ul>
+<li><a href="http://stateoftheunion.onetwothree.net/texts/index.html">http://stateoftheunion.onetwothree.net/texts/index.html</a></li>
+</ul>
+<p>Such data acquisition tasks is usually the first and cucial step in a data scientist's workflow.</p>
+<p>We have done this and put the data in the distributed file system for easy loading into our notebooks for further analysis.  This keeps us from having to install unix programs like <code>lynx</code>, <code>sed</code>, etc. that are needed in the shell script below.</p>
 
-<pre><code>## A bit of bash and lynx to achieve the scraping of the state of the union addresses of the US Presidents
-### by Paul Brouwers
-
-The code below is mainly there to show how the text content of each state of the union address was scraped from the following URL:
-* [http://stateoftheunion.onetwothree.net/texts/index.html](http://stateoftheunion.onetwothree.net/texts/index.html)
-
-Such data acquisition tasks is usually the first and cucial step in a data scientist's workflow.
-
-We have done this and put the data in the distributed file system for easy loading into our notebooks for further analysis.  This keeps us from having to install unix programs like ``lynx``, ``sed``, etc. that are needed in the shell script below.
-
-```%sh
-for i in $(lynx --dump http://stateoftheunion.onetwothree.net/texts/index.html | grep texts | grep -v index | sed 's/.*http/http/') ; do lynx --dump $i | tail -n+13 | head -n-14 | sed 's/^\s\+//' | sed -e ':a;N;$!ba;s/\(.\)\n/\1 /g' -e 's/\n/\n\n/' &gt; $(echo $i | sed 's/.*\([0-9]\{8\}\).*/\1/').txt ; done</code></pre>
+<pre><code>for i in $(lynx --dump http://stateoftheunion.onetwothree.net/texts/index.html | grep texts | grep -v index | sed 's/.*http/http/') ; do lynx --dump $i | tail -n+13 | head -n-14 | sed 's/^\s\+//' | sed -e ':a;N;$!ba;s/\(.\)\n/\1 /g' -e 's/\n/\n\n/' &gt; $(echo $i | sed 's/.*\([0-9]\{8\}\).*/\1/').txt ; done</code></pre>
 <p>Or in a more atomic form:</p>
 
-<pre><code>%sh
-for i in $(lynx --dump http://stateoftheunion.onetwothree.net/texts/index.html \
+<pre><code>for i in $(lynx --dump http://stateoftheunion.onetwothree.net/texts/index.html \
 
         | grep texts \
 
@@ -12399,19 +12393,6 @@ done</code></pre>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
     </div>
   </div>
