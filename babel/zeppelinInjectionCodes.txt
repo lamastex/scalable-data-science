@@ -1,0 +1,3 @@
+def display_HTML(input: String): String = {
+	print(input)
+}

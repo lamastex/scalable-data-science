@@ -1,5 +1,15 @@
 
 ## Build
+
+All of this is superceded by pinot at https://gitlab.com/tilo.wiklund/pinot
+
+Raazesh Sainudiin
+
+Uppsala, Sweden
+Mon Dec 10 15:30:44 IST 2018
+
+## Past Build
+
 Steps to add newly created notebook in Databricks cloud (as `.scala`) into gitbook (`.md`):
 
 - Export notebook from Databricks cloud onto your local machine. We work with `.scala` notebooks
