@@ -1,5 +1,14 @@
 # zeppelin with spark 
 
+## run latest quickly
+For the latest zeppelin run:
+
+```
+docker run -d -p 8080:8080 -p 8443:8443 xemuliam/zeppelin
+```
+
+## build your own
+
 Building a docker image, pushing it to docker hub and running it:
 ```
   298  docker build -t zeppelin .

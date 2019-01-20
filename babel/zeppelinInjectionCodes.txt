@@ -1,3 +1,7 @@
-def display_HTML(input: String): String = {
-	print(input)
+//to use html display in zeppelin
+def displayHTML(input: String): Unit = {
+	print("%html " + input)
 }
+
+// to display in zeppelin
+def display(df: Any) = z.show(df)
