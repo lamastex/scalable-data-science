@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "as-2019"
+    url: /as/2019/
   - title: "infty-2018-01"
     url: /infty/2018/01/
   - title: "glm-2018"
@@ -23,6 +25,8 @@ lMenu:
   - title: "SDS"
     url: /
     children:
+      - title: "as-2019"
+        url: /as/2019/
       - title: "SDS-2.2"
         url: /sds/2/2/
       - title: "360-in-525"
@@ -30,7 +34,7 @@ lMenu:
       - title: "infty-2018-01"
         url: /infty/2018/01/
       - title: "glm-2018"
-        url: /glm/2018/01/
+        url: /glm/2018/
 
 lMenu-infty:
   - title: "infty-2018-01"
