@@ -12507,7 +12507,20 @@ done</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Finding-out-the-number-of-lines-and-characters-in-a-file">Finding out the number of lines and characters in a file<a class="anchor-link" href="#Finding-out-the-number-of-lines-and-characters-in-a-file">&#182;</a></h3><p>Evaluate the cell below to find the number of lines and number of characters in <code>data/earthquakes_small.csv</code> and update the following cell with the right answers. Here is a brief synopsis of <code>wc</code>:</p>
+<h3 id="Finding-out-the-number-of-lines-and-characters-in-a-file">Finding out the number of lines and characters in a file<a class="anchor-link" href="#Finding-out-the-number-of-lines-and-characters-in-a-file">&#182;</a></h3><p>Evaluate the following two cells by replacing <code>X</code> with the right command-line option to <code>wc</code> command in order to find:</p>
+<ol>
+<li>the number of lines in <code>data/earthquakes_small.csv</code> and </li>
+<li>the number of characters in <code>data/earthquakes_small.csv</code> </li>
+</ol>
+<p>Finally, update the following cell by replacing <code>XXX</code> with the right integer answers, respectively, for:</p>
+<ol>
+<li><code>NumberOfLinesIn_earthquakes_small_csv_file</code> and </li>
+<li><code>NumberOfCharactersIn_earthquakes_small_csv_file</code> </li>
+</ol>
+<p>Here is a brief synopsis of <code>wc</code> that you would get from running <code>man wc</code> as follows:</p>
+
+<pre><code>%%sh
+man wc</code></pre>
 
 <pre><code>WC(1)                     BSD General Commands Manual                    WC(1)
 
@@ -12544,7 +12557,23 @@ DESCRIPTION
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
-wc data/earthquakes_small.csv
+<span class="c1"># replace X in the next line with the right option to find the number of lines</span>
+wc -X data/earthquakes_small.csv
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span>%%sh
+<span class="c1"># replace X in the next line with the right option to find the number of characters</span>
+wc -X data/earthquakes_small.csv
 </pre></div>
 
 </div>
@@ -12574,6 +12603,7 @@ wc data/earthquakes_small.csv
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 1, POINTS 2</span>
+<span class="c1"># Run this test locally to make sure you have the answer as a non-negative integer</span>
 <span class="k">assert</span><span class="p">(</span><span class="n">NumberOfLinesIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">assert</span><span class="p">(</span><span class="n">NumberOfCharactersIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
