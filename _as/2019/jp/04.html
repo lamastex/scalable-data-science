@@ -12011,6 +12011,59 @@ If the two events $A$ and $B$ are independent then</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<hr>
+<h2 id="Assignment-1,-Problem-3">Assignment 1, Problem 3<a class="anchor-link" href="#Assignment-1,-Problem-3">&#182;</a></h2><p>Maximum Points = 1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider the experiment where we roll two fair dice independently.</p>
+<p>Let $D$ be the event that "the sum of the two dice is 8" and let $C$ be the event that "the first die is 2".</p>
+<p>What is the probability of D given C, i.e. what is $P(D|C)$?</p>
+<p>Do the calculation by hand and write the answer in the next cell by assigning the variable <code>ProbOfDGivenC</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Replace XXX below with the correct answer to Assignment 1 Problem 3</span>
+<span class="c1"># Do NOT change the name of the variable ProbOfDGivenC</span>
+<span class="n">ProbOfDGivenC</span> <span class="o">=</span> <span class="n">XXX</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 3, POINTS 1</span>
+<span class="c1"># test that your answer is indeed a probability!</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">ProbOfDGivenC</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ProbOfDGivenC</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-foretaste-of-simulation">A foretaste of simulation<a class="anchor-link" href="#A-foretaste-of-simulation">&#182;</a></h3><p>The next cell uses a function called <code>randint</code> which we will talk about more later in the course.   For this week we'll just use randint as a computerised way of rolling a die:  every time we call <code>randint(1,6)</code> we will get some integer number from 1 to 6, we won't be able to predict in advance what we will get, and the probability of each of the numbers <code>1, 2, 3, 4, 5, 6</code> is equal.  Here we use randint to simulate the experiment of tossing two dice.  The sample space $\Omega$ is all 36 possible ordered pairs $(1,1), \ldots (6,6)$.  We print out the results for each die.   Try evaluating the cell several times and notice how the numbers you get differ each time.</p>
 
 </div>
@@ -14800,6 +14853,79 @@ We can use <strong>lambda expressions</strong> for anonymous functions as descri
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<hr>
+<h2 id="Assignment-1,-Problem-4">Assignment 1, Problem 4<a class="anchor-link" href="#Assignment-1,-Problem-4">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recall that for a given parameter $\theta \in [0,1]$, the probability mass function (PMF) for the $Bernoulli(\theta)$ RV $X$ is:</p>
+<p>$$
+\begin{equation}
+f(x;\theta)= \theta^x (1-\theta)^{1-x} \mathbf{1}_{\{0,1\}}(x) =
+\begin{cases}
+\theta &amp; \text{if $x=1$,}\\
+1-\theta &amp; \text{if $x=0$,}\\
+0 &amp; \text{otherwise}
+\end{cases}
+\end{equation}
+$$</p>
+<p>In the next cell write a function named <code>pmfOfBernoulli</code> that takes in two arguments:</p>
+<ul>
+<li>the first argument is <code>x</code> and </li>
+<li>the second argument is <code>theta</code></li>
+</ul>
+<p>and returns the value for $f(x; \theta)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Replace RRR...RRR below Do NOT change the name of the function `pmfOfBernoulli`!</span>
+
+<span class="k">def</span> <span class="nf">pmfOfBernoulli</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;RRR ... RRR&#39;&#39;&#39;</span>
+    <span class="n">RRR</span>
+    <span class="n">RRR</span>
+    <span class="n">RRR</span>
+    <span class="o">...</span>
+    <span class="n">RRR</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 4, POINTS 2</span>
+<span class="c1"># Use this to locally test that your solution is returning probabilities</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
