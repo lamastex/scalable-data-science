@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>00</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Assignment01</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11784,218 +11784,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="00.-Introduction">00. Introduction<a class="anchor-link" href="#00.-Introduction">&#182;</a></h1><ol>
-<li>Introduction</li>
-<li>What is SageMath and why are we using it?</li>
-<li>Interaction  - learning/teaching style</li>
-<li>What can you expect to get out of this course? </li>
-</ol>
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>See <a href="https://lamastex.github.io/scalable-data-science/as/2019/">Applied Statistics</a> for learning outcomes, content, assessment, etc.</p>
-<p><strong>Assessment:</strong></p>
-<ul>
-<li>Three Computer Lab Assessments (attendance will be taken in the Labs)</li>
-<li>Final Exam will be in Computer Lab</li>
-</ul>
-<h2 id="What-is-SageMath-and-why-are-we-using-it?">What is SageMath and why are we using it?<a class="anchor-link" href="#What-is-SageMath-and-why-are-we-using-it?">&#182;</a></h2><p>We will be using Sage or <a href="http://www.sagemath.org/">SageMath</a> for our <em>hands-on</em> work in this course. Sage is a free open-source mathematics software system licensed under the GPL.  Sage can be used to study mathematics and statistics, including algebra, calculus, elementary to very advanced number theory, cryptography, commutative algebra, group theory, combinatorics, graph theory, exact linear algebra, optimization, interactive data visualization, randomized or Monte Carlo algorithms, scientific and statistical computing and much more. It combines various software packages into an integrative learning, teaching and research experience that is well suited for novice as well as professional researchers.</p>
-<p>Sage is a set of software libraries built on top of <a href="http://www.python.org/">Python</a>, a widely used general purpose programming language. Sage greatly enhance Python's already mathematically friendly nature. It is one of the languages used at Google, US National Aeronautic and Space Administration (NASA), US Jet Propulsion Laboratory (JPL), Industrial Light and Magic, YouTube, and other leading entities in industry and public sectors. Scientists, engineers, and mathematicians often find it well suited for their work. Obtain a more thorough rationale for Sage from <a href="http://www.sagemath.org/library/why.html" target="_blank">Why Sage?</a> and <a href="http://www.sagemath.org/library/stories.html" target="_blank">Success Stories, Testimonials and News Articles</a>. Jump start your motivation by taking a <a href="http://www.sagemath.org/tour.html" target="_blank">Sage Feature Tour</a> right now!</p>
-<h2 id="Interaction---learning/teaching-style">Interaction - learning/teaching style<a class="anchor-link" href="#Interaction---learning/teaching-style">&#182;</a></h2><p>This is an interactive jupyter notebook with SageMath interpreter and interactive means...</p>
-<h4 id="Videos">Videos<a class="anchor-link" href="#Videos">&#182;</a></h4><p>We will embed relevant videos in the notebook, such as those from <a href="http://www.khanacademy.org/">The Khan Academy</a> or open MOOCs from google, facebook, academia, etc.</p>
-<ul>
-<li><a href="https://www.youtube.com/embed/D4FQsYTbLoI">watch Google's Hal Varian's 'statistics is the dream' job speech</a></li>
-<li><a href="https://youtu.be/ggq7HiDO0OU">watch UC Berkeley Professor Michael Jordan's speech on 'The Data Science Revolution'</a></li>
-</ul>
-<h4 id="Latex">Latex<a class="anchor-link" href="#Latex">&#182;</a></h4><p>We will <em>formally present mathematical and statistical concepts</em> in the Notebook using Latex as follows:</p>
-<p>$$ \sum_{i=1}^5 i = 1+2+3+4+5=15, \qquad \prod_{i=3}^6 i = 3 \times 4 \times 5 \times 6 = 360 $$</p>
-<p>$$ \binom{n}{k}:= \frac{n!}{k!(n-k)!}, \qquad \lim_{x \to \infty}\exp{(-x)} = 0 $$</p>
-<p>$$ \{\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \mu,\theta, \vartheta, \phi, \varphi, \omega, \sigma, \varsigma,\Gamma, \Delta, \Theta, \Phi, \Omega\}, \qquad \forall x \in X, \quad \exists y \leq \epsilon, \ldots $$</p>
-<h4 id="Interactive-Visualizations">Interactive Visualizations<a class="anchor-link" href="#Interactive-Visualizations">&#182;</a></h4><p>We will use interactive visualisations to convey concepts when possible. See the Taylor approximation below for a given order.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">var</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">x0</span>  <span class="o">=</span> <span class="mi">0</span>
-<span class="n">f</span>   <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-<span class="n">p</span>   <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">dot</span> <span class="o">=</span> <span class="n">point</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)),</span><span class="n">pointsize</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="n">rgbcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="o">.</span><span class="mi">12</span><span class="p">]):</span>
-    <span class="n">ft</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">taylor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">order</span><span class="p">)</span>
-    <span class="n">pt</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">ft</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$f(x)\;=\;</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="k">latex</span>(f)))
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;$\hat{f}(x;</span><span class="si">%s</span><span class="s1">)\;=\;</span><span class="si">%s</span><span class="s1">+\mathcal{O}</span><span class="se">\</span>
-<span class="s1">                 (x^{</span><span class="si">%s</span><span class="s1">})$&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">latex</span><span class="p">(</span><span class="n">ft</span><span class="p">),</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
-    <span class="n">show</span><span class="p">(</span><span class="n">dot</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pt</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="f0f06741-d423-418e-9359-d9ec55213caa"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#f0f06741-d423-418e-9359-d9ec55213caa');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0de36b8ed60a462baa7d8d02a23609e3", "version_minor": 0, "version_major": 2}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Lab-Lecture-Style-of-Teaching-Learning">Lab-Lecture Style of Teaching-Learning<a class="anchor-link" href="#Lab-Lecture-Style-of-Teaching-Learning">&#182;</a></h4><p>We will <em>write computer programs</em> within code cells in the Notebook right after we learn the mathematical and statistical concepts.</p>
-<p>Thus, there is a significant overlap between traditional lectures and labs in this course -- in fact these interactions are <em>lab-lectures</em>.</p>
-<h4 id="Live-Data-Explorations-and-Modeling">Live Data Explorations and Modeling<a class="anchor-link" href="#Live-Data-Explorations-and-Modeling">&#182;</a></h4><p>Let us visualize the CO2 data, fetched from US NOAA, and do a simple linear regression.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Author: Marshall Hampton </span>
-<span class="kn">import</span> <span class="nn">urllib2</span> <span class="kn">as</span> <span class="nn">U</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="kn">as</span> <span class="nn">Stat</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">co2data</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>\
-          <span class="s1">&#39;ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_mlo.txt&#39;</span>\
-                   <span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-<span class="n">datalines</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">a_line</span> <span class="ow">in</span> <span class="n">co2data</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">a_line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;Creation:&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">cdate</span> <span class="o">=</span> <span class="n">a_line</span>
-    <span class="k">if</span> <span class="n">a_line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">a_line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">temp</span> <span class="k">if</span> <span class="n">q</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
-        <span class="n">datalines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
-<span class="n">trdf</span> <span class="o">=</span> <span class="n">RealField</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">mauna_loa_co2</span><span class="p">(</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span><span class="mi">2018</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1958</span><span class="p">),</span> \
-                  <span class="n">end_date</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="mi">1958</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2018</span><span class="p">)):</span>
-    <span class="n">htmls1</span> <span class="o">=</span> <span class="s1">&#39;&lt;h3&gt;CO2 monthly averages at Mauna Loa (interpolated),</span><span class="se">\</span>
-<span class="s1">    from NOAA/ESRL data&lt;/h3&gt;&#39;</span>
-    <span class="n">htmls2</span> <span class="o">=</span> <span class="s1">&#39;&lt;h4&gt;&#39;</span><span class="o">+</span><span class="n">cdate</span><span class="o">+</span><span class="s1">&#39;&lt;/h4&gt;&#39;</span>
-    <span class="n">sel_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">datalines</span> <span class="k">if</span> <span class="n">start_date</span> <span class="o">&lt;</span> \
-                <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">end_date</span><span class="p">]</span>
-    <span class="n">c_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sel_data</span><span class="p">])</span>
-    <span class="n">c_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sel_data</span><span class="p">])</span>
-    <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ttprob</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">Stat</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">sel_data</span><span class="p">)</span>
-    <span class="n">pretty_print</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">htmls1</span><span class="o">+</span><span class="n">htmls2</span><span class="o">+</span><span class="s1">&#39;&lt;h4&gt;Linear regression slope: &#39;</span>\
-                      <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">slope</span><span class="p">))</span><span class="o">+</span> \
-                      <span class="s1">&#39; ppm/year; correlation coefficient: &#39;</span> <span class="o">+</span>\
-                      <span class="nb">str</span><span class="p">(</span><span class="n">trdf</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;&lt;/h4&gt;&#39;</span><span class="p">))</span>
-    <span class="n">var</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
-    <span class="n">show</span><span class="p">(</span><span class="n">list_plot</span><span class="p">(</span><span class="n">sel_data</span><span class="p">,</span> <span class="n">plotjoined</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">rgbcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> 
-                   <span class="o">+</span> <span class="n">plot</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">intercept</span><span class="p">,</span><span class="n">start_date</span><span class="p">,</span><span class="n">end_date</span><span class="p">),</span> 
-                      <span class="n">xmin</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">c_min</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> \
-                      <span class="n">xmax</span> <span class="o">=</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">c_max</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> \
-                      <span class="n">frame</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="19ac04f2-742d-4cd0-8111-7cb9c723e69a"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#19ac04f2-742d-4cd0-8111-7cb9c723e69a');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6c51d88232fc4c3998c3b1cb7a4d8e85", "version_minor": 0, "version_major": 2}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="We-will-use-publicly-available-resources-generously!">We will use publicly available resources generously!<a class="anchor-link" href="#We-will-use-publicly-available-resources-generously!">&#182;</a></h3><p>Here is an image of number systems from Wikipedia.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/NumberSetinC.svg" alt="NumberSetinC" width='200'></p>
-<p>We will also sometimes embed whole wikipedia pages. Expect cached wikipedia pages in your final exam. The curse will prepare you to think from facts in publicly available information.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">showURL</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ht</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return an IFrame of the url to show in notebook \</span>
-<span class="sd">       with height ht&quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
-    <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">ht</span><span class="p">)</span> 
-<span class="n">showURL</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/Number&#39;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-can-you-expect-to-get-out-of-this-course?">What can you expect to get out of this course?<a class="anchor-link" href="#What-can-you-expect-to-get-out-of-this-course?">&#182;</a></h2><p>Strengthen your foundations in:</p>
-<ul>
-<li>probability and statistics,</li>
-<li>computing and data analysis</li>
-</ul>
-<p>in order to understand the probabilistic models and statistical inference procedures as well implement computer programs for processing raw data - a crucial distinguishing skillset of a <em>modern applied statistician</em>, i.e., a <em>data scientist</em> who knows her/his probabilistic and statistical foundations.</p>
-<h4 id="What-is-Data-Science?">What is Data Science?<a class="anchor-link" href="#What-is-Data-Science?">&#182;</a></h4><p>We will steer clear of academic/philosophical discussions on "what is data science?" and focus instead on the core skillset in mathematics, statistics and computing that is expected in a typical data science job today.</p>
+<h1 id="Assignment-1-for-Course-1MS926">Assignment 1 for Course 1MS926<a class="anchor-link" href="#Assignment-1-for-Course-1MS926">&#182;</a></h1><p>Fill in your Personal Number, make     sure you pass the <code># ... Test</code> cells and
+ submit by email with <em>Subject line</em>     <strong>1MS926 Assignment1</strong>.
+You can submit multiple times before the deadline     and your highest score will be used.</p>
 
 </div>
 </div>
@@ -12005,32 +11796,19 @@ var element = $('#19ac04f2-742d-4cd0-8111-7cb9c723e69a');
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Data_science&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Enter your 12 digit personal number here and evaluate this cell</span>
+<span class="n">MyPersonalNumber</span> <span class="o">=</span> <span class="s1">&#39;YYYYMMDDXXXX&#39;</span>
+
+<span class="c1">#tests</span>
+<span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">MyPersonalNumber</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">))</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">MyPersonalNumber</span><span class="o">.</span><span class="n">isdigit</span><span class="p">())</span>
+<span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">MyPersonalNumber</span><span class="p">)</span><span class="o">==</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Course-Structure">Course Structure<a class="anchor-link" href="#Course-Structure">&#182;</a></h1><p>There will be 12 "lab-lectures" where I will be using <code>.ipynb</code> or IPython notebooks like this and 3 dedicated computer laboratories.</p>
-<p>We will start with basics of programming in BASH and a review of Python before recollecting concepts in probability and setting the stage for applied statistics, including, hypothesis testing and parameter estimation.</p>
-<p><strong>Connection to Statistical Machine Learning and AI:</strong> An immediate application of paramter estimation in <em>statistical machine learning (SML)</em> and <em>artifical intelligence (AI)</em>, where you apply more sophisticated methods than what you will learn here, is <em>prediction</em>. This course will prepare you for SML and AI.</p>
-<p><strong>STS also stands for Society</strong></p>
-<p>As STS students, you have the natural responsibility to ask questions such as: <em>what is the cost of such sophisticated prediction algorithms on our society and planet?</em></p>
-<p>Here your first assigned reading is from the following work:</p>
-<ul>
-<li><a href="https://anatomyof.ai/">https://anatomyof.ai/</a>, "Anatomy of an AI System" By Kate Crawford and Vladan Joler (2018)</li>
-</ul>
-<p>The Amazon Echo as an anatomical map of human labor, data and planetary resources. Download the detailed <a href="https://anatomyof.ai/img/ai-anatomy-map.pdf">ai-anatomy-map.pdf</a>.</p>
-<p><img src="https://anatomyof.ai/ai-system-facebook-og.jpg" alt="ai-anatomy-map.pdf"></p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12118,6 +11896,253 @@ var element = $('#19ac04f2-742d-4cd0-8111-7cb9c723e69a');
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<hr>
+<h2 id="Assignment-1,-Problem-2">Assignment 1, Problem 2<a class="anchor-link" href="#Assignment-1,-Problem-2">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Finding-out-the-number-of-lines-and-characters-in-a-file">Finding out the number of lines and characters in a file<a class="anchor-link" href="#Finding-out-the-number-of-lines-and-characters-in-a-file">&#182;</a></h3><p>Evaluate the following two cells by replacing <code>X</code> with the right command-line option to <code>wc</code> command in order to find:</p>
+<ol>
+<li>the number of lines in <code>data/earthquakes_small.csv</code> and </li>
+<li>the number of characters in <code>data/earthquakes_small.csv</code> </li>
+</ol>
+<p>Finally, update the following cell by replacing <code>XXX</code> with the right integer answers, respectively, for:</p>
+<ol>
+<li><code>NumberOfLinesIn_earthquakes_small_csv_file</code> and </li>
+<li><code>NumberOfCharactersIn_earthquakes_small_csv_file</code> </li>
+</ol>
+<p>Here is a brief synopsis of <code>wc</code> that you would get from running <code>man wc</code> as follows:</p>
+
+<pre><code>%%sh
+man wc</code></pre>
+
+<pre><code>WC(1)                     BSD General Commands Manual                    WC(1)
+
+NAME
+     wc -- word, line, character, and byte count
+
+SYNOPSIS
+     wc [-clmw] [file ...]
+
+DESCRIPTION
+     The wc utility displays the number of lines, words, and bytes contained in each input file, or standard input (if no file is specified) to the standard output.  A line is defined as a string of characters delimited by a &lt;newline&gt; character.  Characters beyond the final &lt;newline&gt; character will not be included in the line count.
+
+     A word is defined as a string of characters delimited by white space characters.  White space characters are the set of characters for which the iswspace(3) function returns true.  If more than one input file is specified, a line of cumulative counts for all the files is displayed on a separate line after the output for the last file.
+
+     The following options are available:
+
+     -c      The number of bytes in each input file is written to the standard output.  This will cancel out any prior usage of the -m option.
+
+     -l      The number of lines in each input file is written to the standard output.
+
+     -m      The number of characters in each input file is written to the standard output.  If the current locale does not support multibyte
+             characters, this is equivalent to the -c option.  This will cancel out any prior usage of the -c option.
+
+     -w      The number of words in each input file is written to the standard output.
+
+     When an option is specified, wc only reports the information requested by that option.  The order of output always takes the form of line, word, byte, and file name.  The default action is equivalent to specifying the -c, -l and -w options.</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span>%%sh
+<span class="c1"># replace X in the next line with the right option to find the number of lines</span>
+wc -X data/earthquakes_small.csv
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span>%%sh
+<span class="c1"># replace X in the next line with the right option to find the number of characters</span>
+wc -X data/earthquakes_small.csv
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># write your answer below by replacing XXX don&#39;t modify anything else! </span>
+
+<span class="n">NumberOfLinesIn_earthquakes_small_csv_file</span> <span class="o">=</span> <span class="n">XXX</span>
+<span class="n">NumberOfCharactersIn_earthquakes_small_csv_file</span> <span class="o">=</span> <span class="n">XXX</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 2, POINTS 2</span>
+<span class="c1"># Run this test locally to make sure you have the answer as a non-negative integer</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">NumberOfLinesIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">NumberOfCharactersIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<hr>
+<h2 id="Assignment-1,-Problem-3">Assignment 1, Problem 3<a class="anchor-link" href="#Assignment-1,-Problem-3">&#182;</a></h2><p>Maximum Points = 1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider the experiment where we roll two fair dice independently.</p>
+<p>Let $D$ be the event that "the sum of the two dice is 8" and let $C$ be the event that "the first die is 2".</p>
+<p>What is the probability of D given C, i.e. what is $P(D|C)$?</p>
+<p>Do the calculation by hand and write the answer in the next cell by assigning the variable <code>ProbOfDGivenC</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Replace XXX below with the correct answer to Assignment 1 Problem 3</span>
+<span class="c1"># Do NOT change the name of the variable ProbOfDGivenC</span>
+<span class="n">ProbOfDGivenC</span> <span class="o">=</span> <span class="n">XXX</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 3, POINTS 1</span>
+<span class="c1"># test that your answer is indeed a probability!</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">ProbOfDGivenC</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ProbOfDGivenC</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<hr>
+<h2 id="Assignment-1,-Problem-4">Assignment 1, Problem 4<a class="anchor-link" href="#Assignment-1,-Problem-4">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recall that for a given parameter $\theta \in [0,1]$, the probability mass function (PMF) for the $Bernoulli(\theta)$ RV $X$ is:</p>
+<p>$$
+\begin{equation}
+f(x;\theta)= \theta^x (1-\theta)^{1-x} \mathbf{1}_{\{0,1\}}(x) =
+\begin{cases}
+\theta &amp; \text{if $x=1$,}\\
+1-\theta &amp; \text{if $x=0$,}\\
+0 &amp; \text{otherwise}
+\end{cases}
+\end{equation}
+$$</p>
+<p>In the next cell write a function named <code>pmfOfBernoulli</code> that takes in two arguments:</p>
+<ul>
+<li>the first argument is <code>x</code> and </li>
+<li>the second argument is <code>theta</code></li>
+</ul>
+<p>and returns the value for $f(x; \theta)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Replace RRR...RRR below Do NOT change the name of the function `pmfOfBernoulli`!</span>
+
+<span class="k">def</span> <span class="nf">pmfOfBernoulli</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;RRR ... RRR&#39;&#39;&#39;</span>
+    <span class="n">RRR</span>
+    <span class="n">RRR</span>
+    <span class="n">RRR</span>
+    <span class="o">...</span>
+    <span class="n">RRR</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 4, POINTS 2</span>
+<span class="c1"># Use this to locally test that your solution is returning probabilities</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
