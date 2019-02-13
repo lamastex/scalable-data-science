@@ -11841,7 +11841,7 @@ and hitting <code>Search</code> box gave the following URLs for downloading data
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
@@ -11874,7 +11874,7 @@ and hitting <code>Search</code> box gave the following URLs for downloading data
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
@@ -11902,8 +11902,10 @@ ls <span class="c1"># list contents of working directory</span>
 04.ipynb
 05.ipynb
 06.ipynb
+07.ipynb
 data
 images
+myHist.png
 </pre>
 </div>
 </div>
@@ -11914,7 +11916,7 @@ images
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
@@ -11955,7 +11957,7 @@ rainfallInChristchurch.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh  
@@ -11990,7 +11992,7 @@ head -3 data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh 
@@ -12025,7 +12027,7 @@ tail -3 data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh  
@@ -12091,7 +12093,7 @@ wc -l  data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/earthquakes_small.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -12107,7 +12109,7 @@ wc -l  data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">dataList</span><span class="p">)</span>
@@ -12123,7 +12125,7 @@ wc -l  data/earthquakes_small.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[48]:</div>
+<div class="prompt output_prompt">Out[59]:</div>
 
 
 
@@ -12140,7 +12142,7 @@ wc -l  data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">dataList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -12156,7 +12158,7 @@ wc -l  data/earthquakes_small.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[49]:</div>
+<div class="prompt output_prompt">Out[60]:</div>
 
 
 
@@ -12173,7 +12175,7 @@ wc -l  data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myDataAccumulatorList</span> <span class="o">=</span><span class="p">[]</span>
@@ -13201,7 +13203,7 @@ wc -l  data/earthquakes_small.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
@@ -13230,7 +13232,7 @@ ls -al
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>total 9540
 drwxr-xr-x 11 sage sage     352 Feb 11 22:43 .
-drwxr-xr-x 12 sage sage     384 Feb 11 23:45 ..
+drwxr-xr-x 14 sage sage     448 Feb 12 11:01 ..
 -rw-r--r--  1 sage sage   50555 Jan 22 19:58 co2_mm_mlo.txt
 -rw-r--r--  1 sage sage 1344114 Jan 23 14:15 earthquakes.csv.zip
 -rw-r--r--  1 sage sage 1344959 Jan 23 14:15 earthquakes.tgz
@@ -13250,7 +13252,7 @@ drwxr-xr-x 12 sage sage     384 Feb 11 23:45 ..
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
@@ -13302,7 +13304,7 @@ Blekinge län,Karlshamn,0 - Centrala Asarum,BLANK,13
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span><span class="o">,</span> <span class="nn">sys</span>
@@ -13354,7 +13356,7 @@ Blekinge län,Karlshamn,0 - Centrala Asarum,BLANK,13
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># fancy printing of non-ASCII string</span>
@@ -13399,7 +13401,7 @@ party  SD 	has a total of votes =	1135627
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># let&#39;s sort by descending order of votes</span>
