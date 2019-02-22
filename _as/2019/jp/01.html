@@ -12484,8 +12484,7 @@ done</code></pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<hr>
-<h2 id="Assignment-1,-Problem-2">Assignment 1, Problem 2<a class="anchor-link" href="#Assignment-1,-Problem-2">&#182;</a></h2><p>Maximum Points = 2</p>
+<h2 id="Assignment-1,-PROBLEM-2">Assignment 1, PROBLEM 2<a class="anchor-link" href="#Assignment-1,-PROBLEM-2">&#182;</a></h2><p>Maximum Points = 2</p>
 
 </div>
 </div>
@@ -12584,18 +12583,54 @@ wc -X data/earthquakes_small.csv
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h4 id="Local-Test-for-Assignment-1,-PROBLEM-2">Local Test for Assignment 1, PROBLEM 2<a class="anchor-link" href="#Local-Test-for-Assignment-1,-PROBLEM-2">&#182;</a></h4><p>Evaluate cell below to make sure your answer is valid.                         You <strong>should not</strong> modify anything in the cell below when evaluating it to do a local test of                         your solution.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 2, POINTS 2</span>
-<span class="c1"># Run this test locally to make sure you have the answer as a non-negative integer</span>
-<span class="k">assert</span><span class="p">(</span><span class="n">NumberOfLinesIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">assert</span><span class="p">(</span><span class="n">NumberOfCharactersIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Evaluate this cell locally to make sure you have the answer as a non-negative integer</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">NumberOfLinesIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Good! You have 0 or more lines as your answer. Hopefully it is the correct!&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Try Again. You seem to not have a valid number of lines as your answer.&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">NumberOfCharactersIn_earthquakes_small_csv_file</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Good! You have 0 or more characters as your answer. Hopefully it is the correct!&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Try Again. You seem to not have a valid number of characters as your answer.&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Good! You have 0 or more lines as your answer. Hopefully it is the correct!
+Good! You have 0 or more characters as your answer. Hopefully it is the correct!
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 

@@ -11958,7 +11958,7 @@ $$</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>-0.9518552014037851</pre>
+<pre>-0.8217886764011983</pre>
 </div>
 
 </div>
@@ -12252,7 +12252,7 @@ $$</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.44966908066260813</pre>
+<pre>0.9090323910118501</pre>
 </div>
 
 </div>
@@ -12291,7 +12291,7 @@ $$</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The relative frequency of x &lt;= 0.50  was 0.530
+<pre>The relative frequency of x &lt;= 0.50  was 0.450
 </pre>
 </div>
 </div>
@@ -12335,7 +12335,7 @@ $$</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1</pre>
+<pre>0</pre>
 </div>
 
 </div>
@@ -12374,7 +12374,7 @@ $$</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The relative frequency of x == 1  was 0.471
+<pre>The relative frequency of x == 1  was 0.490
 </pre>
 </div>
 </div>
@@ -12495,7 +12495,7 @@ $$</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.0260000000000000</pre>
+<pre>0.0250000000000000</pre>
 </div>
 
 </div>
@@ -12572,7 +12572,9 @@ ls data/
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>co2_mm_mlo.txt
+<pre>NYPowerBall.csv
+co2_mm_mlo.txt
+earthquakes.csv
 earthquakes.csv.zip
 earthquakes.tgz
 earthquakes_small.csv
@@ -12626,10 +12628,12 @@ ls -al
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>total 9540
-drwxr-xr-x 11 sage sage     352 Feb 11 22:43 .
-drwxr-xr-x 14 sage sage     448 Feb 12 09:27 ..
+<pre>total 13564
+drwxr-xr-x 13 sage sage     416 Feb 18 06:20 .
+drwxr-xr-x 21 sage sage     672 Feb 22 22:03 ..
+-rw-r--r--  1 sage sage   29002 Feb 13 05:14 NYPowerBall.csv
 -rw-r--r--  1 sage sage   50555 Jan 22 19:58 co2_mm_mlo.txt
+-rw-r--r--  1 sage sage 4085555 Jan 23 14:06 earthquakes.csv
 -rw-r--r--  1 sage sage 1344114 Jan 23 14:15 earthquakes.csv.zip
 -rw-r--r--  1 sage sage 1344959 Jan 23 14:15 earthquakes.tgz
 -rw-r--r--  1 sage sage   77786 Jan 21 13:41 earthquakes_small.csv
@@ -12963,7 +12967,7 @@ $$</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;built-in method mean of numpy.ndarray object at 0x7f3adace5c10&gt;</pre>
+<pre>&lt;built-in method mean of numpy.ndarray object at 0x7f809eed8c10&gt;</pre>
 </div>
 
 </div>
@@ -14451,7 +14455,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">numCumFreqPairs</span> <span class="o">=</span> <span class="n">makeEDF</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span>
@@ -14510,7 +14514,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># We are loading the file from our data directory</span>
@@ -14539,7 +14543,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">points</span><span class="p">(</span><span class="n">heList</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;he&#39;</span><span class="p">)</span>
@@ -14589,7 +14593,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># We are loading the file from our data directory</span>
@@ -14619,7 +14623,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[62]:</div>
+<div class="prompt output_prompt">Out[63]:</div>
 
 
 
@@ -14653,7 +14657,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Regular_expression&quot;</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
@@ -14669,7 +14673,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[103]:</div>
+<div class="prompt output_prompt">Out[64]:</div>
 
 
 
@@ -14702,7 +14706,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -14755,7 +14759,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -14825,7 +14829,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># first method to download the NYpowerball data</span>
@@ -14856,7 +14860,7 @@ $$\widehat{F}_n (x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{[X_i,+\infty)}(x) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[194]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span>%%sh
@@ -14893,7 +14897,7 @@ wc -l NYPowerBall.csv
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 29002  100 29002    0     0  29002      0  0:00:01 --:--:--  0:00:01 51881
+100 29002  100 29002    0     0  29002      0  0:00:01 --:--:--  0:00:01 30985
 </pre>
 </div>
 </div>
@@ -14904,7 +14908,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[195]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Method 2 - Part B - We are loading the file from our data directory</span>
@@ -14919,7 +14923,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[196]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">NYpowerball</span><span class="p">)</span> <span class="c1"># this is a unicode sequence</span>
@@ -14935,7 +14939,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[196]:</div>
+<div class="prompt output_prompt">Out[70]:</div>
 
 
 
@@ -14952,7 +14956,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># this splits the unicode by the end of line character &#39;\n&#39; in a list</span>
@@ -14966,7 +14970,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">NYpowerballLines</span><span class="p">)</span> <span class="c1"># we have a list of lines now</span>
@@ -14982,7 +14986,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[198]:</div>
+<div class="prompt output_prompt">Out[72]:</div>
 
 
 
@@ -14999,7 +15003,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#  we can see the first 10 lines now and the first 0-index row is the header line</span>
@@ -15016,7 +15020,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[199]:</div>
+<div class="prompt output_prompt">Out[73]:</div>
 
 
 
@@ -15042,7 +15046,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">NYpowerballLines</span><span class="p">)</span> 
@@ -15059,7 +15063,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[200]:</div>
+<div class="prompt output_prompt">Out[74]:</div>
 
 
 
@@ -15076,7 +15080,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
@@ -15093,7 +15097,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[201]:</div>
+<div class="prompt output_prompt">Out[75]:</div>
 
 
 
@@ -15110,7 +15114,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[202]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> 
@@ -15127,7 +15131,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[202]:</div>
+<div class="prompt output_prompt">Out[76]:</div>
 
 
 
@@ -15144,7 +15148,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[203]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> 
@@ -15161,7 +15165,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[203]:</div>
+<div class="prompt output_prompt">Out[77]:</div>
 
 
 
@@ -15178,7 +15182,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[204]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> 
@@ -15195,7 +15199,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[204]:</div>
+<div class="prompt output_prompt">Out[78]:</div>
 
 
 
@@ -15212,7 +15216,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[205]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> 
@@ -15229,7 +15233,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[205]:</div>
+<div class="prompt output_prompt">Out[79]:</div>
 
 
 
@@ -15246,7 +15250,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> 
@@ -15263,7 +15267,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[206]:</div>
+<div class="prompt output_prompt">Out[80]:</div>
 
 
 
@@ -15294,7 +15298,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">firstWins</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># initialize an empty list to append to it each winning first number</span>
@@ -15320,7 +15324,7 @@ wc -l NYPowerBall.csv
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-207-9dec7e3d0f0e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-81-9dec7e3d0f0e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">      1</span> firstWins <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span> <span class="ansi-red-fg"># initialize an empty list to append to it each winning first number</span>
 <span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">for</span> Line <span class="ansi-green-fg">in</span> NYpowerballLines<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">     </span>win1 <span class="ansi-blue-fg">=</span> int<span class="ansi-blue-fg">(</span>Line<span class="ansi-blue-fg">.</span>split<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;,&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>Integer<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>split<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39; &#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>Integer<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
@@ -15345,7 +15349,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>   
@@ -15362,7 +15366,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[208]:</div>
+<div class="prompt output_prompt">Out[82]:</div>
 
 
 
@@ -15397,7 +15401,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># let&#39;s be cautious and process only the first 10 lines</span>
@@ -15435,7 +15439,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">firstWins</span> 
@@ -15452,7 +15456,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[210]:</div>
+<div class="prompt output_prompt">Out[84]:</div>
 
 
 
@@ -15469,7 +15473,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># now let&#39;s bravely process all the lines</span>
@@ -15510,7 +15514,7 @@ wc -l NYPowerBall.csv
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-211-e0306dd89cdf&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-85-e0306dd89cdf&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">for</span> Line <span class="ansi-green-fg">in</span> NYpowerballLines<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">      4</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">         </span>win1 <span class="ansi-blue-fg">=</span> int<span class="ansi-blue-fg">(</span>Line<span class="ansi-blue-fg">.</span>split<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;,&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>Integer<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>split<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39; &#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>Integer<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
@@ -15536,7 +15540,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">firstWins</span><span class="p">)</span>
@@ -15552,7 +15556,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[212]:</div>
+<div class="prompt output_prompt">Out[86]:</div>
 
 
 
@@ -15569,7 +15573,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[213]:</div>
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">941</span><span class="p">]</span> 
@@ -15586,7 +15590,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[213]:</div>
+<div class="prompt output_prompt">Out[87]:</div>
 
 
 
@@ -15603,7 +15607,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[214]:</div>
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">NYpowerballLines</span><span class="p">)</span> <span class="c1"># but there is another line at the last index 940</span>
@@ -15619,7 +15623,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[214]:</div>
+<div class="prompt output_prompt">Out[88]:</div>
 
 
 
@@ -15636,7 +15640,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">NYpowerballLines</span><span class="p">[</span><span class="mi">942</span><span class="p">]</span> 
@@ -15653,7 +15657,7 @@ wc -l NYPowerBall.csv
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[215]:</div>
+<div class="prompt output_prompt">Out[89]:</div>
 
 
 
@@ -15683,7 +15687,7 @@ wc -l NYPowerBall.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># now let&#39;s bravely process all the Lines</span>
@@ -15724,7 +15728,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[217]:</div>
+<div class="prompt input_prompt">In&nbsp;[91]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">firstWins</span><span class="p">)</span> <span class="c1"># now we got an exception-handled data processing done!</span>
@@ -15740,7 +15744,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[217]:</div>
+<div class="prompt output_prompt">Out[91]:</div>
 
 
 
@@ -15757,7 +15761,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[218]:</div>
+<div class="prompt input_prompt">In&nbsp;[92]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">firstWins</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">firstWins</span><span class="p">[</span><span class="mi">931</span><span class="p">:]</span> 
@@ -15839,7 +15843,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In&nbsp;[93]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -15883,7 +15887,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="prompt input_prompt">In&nbsp;[94]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># make an array the hard way</span>
@@ -15901,7 +15905,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[103]:</div>
+<div class="prompt output_prompt">Out[94]:</div>
 
 
 
@@ -15929,7 +15933,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array1</span><span class="o">.</span><span class="n">shape</span>
@@ -15945,7 +15949,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[104]:</div>
+<div class="prompt output_prompt">Out[95]:</div>
 
 
 
@@ -15972,7 +15976,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In&nbsp;[96]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">)])</span>     <span class="c1"># make an one dimensional array of Python int&#39;s</span>
@@ -15989,7 +15993,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[105]:</div>
+<div class="prompt output_prompt">Out[96]:</div>
 
 
 
@@ -16018,7 +16022,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In&nbsp;[97]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>      <span class="c1"># use the array&#39;s resize method to change the shape of the array 18=3*6</span>
@@ -16035,7 +16039,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[106]:</div>
+<div class="prompt output_prompt">Out[97]:</div>
 
 
 
@@ -16063,7 +16067,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In&nbsp;[99]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
@@ -16079,7 +16083,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[107]:</div>
+<div class="prompt output_prompt">Out[99]:</div>
 
 
 
@@ -16105,7 +16109,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>      <span class="c1"># use the array&#39;s resize method to change the shape of the array 18=3*2*3</span>
@@ -16122,7 +16126,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[108]:</div>
+<div class="prompt output_prompt">Out[100]:</div>
 
 
 
@@ -16156,7 +16160,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.18</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># the pylab.arange(start, stop, step)</span>
@@ -16173,7 +16177,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[110]:</div>
+<div class="prompt output_prompt">Out[101]:</div>
 
 
 
@@ -16191,7 +16195,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
+<div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">array3</span><span class="p">)</span> <span class="c1"># type is actually a numpy.ndarray</span>
@@ -16207,7 +16211,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[111]:</div>
+<div class="prompt output_prompt">Out[102]:</div>
 
 
 
@@ -16224,7 +16228,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array3</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># the shape is 1 dimensional</span>
@@ -16240,7 +16244,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[112]:</div>
+<div class="prompt output_prompt">Out[103]:</div>
 
 
 
@@ -16267,7 +16271,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[104]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array3</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>                     <span class="c1"># which we can resize into a 9 by 2 array</span>
@@ -16284,7 +16288,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[113]:</div>
+<div class="prompt output_prompt">Out[104]:</div>
 
 
 
@@ -16309,7 +16313,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In&nbsp;[105]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array3</span><span class="o">.</span><span class="n">shape</span>                            <span class="c1"># try to see the shape of array3 now</span>
@@ -16325,7 +16329,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[114]:</div>
+<div class="prompt output_prompt">Out[105]:</div>
 
 
 
@@ -16342,7 +16346,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In&nbsp;[106]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span> <span class="o">=</span> <span class="n">array3</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>     <span class="c1"># reshape makes a new array of the specified size 6 by 3</span>
@@ -16359,7 +16363,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[115]:</div>
+<div class="prompt output_prompt">Out[106]:</div>
 
 
 
@@ -16381,7 +16385,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="o">.</span><span class="n">shape</span>                            <span class="c1"># try to see the shape of array4 now</span>
@@ -16397,7 +16401,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[116]:</div>
+<div class="prompt output_prompt">Out[107]:</div>
 
 
 
@@ -16414,7 +16418,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array3</span><span class="o">.</span><span class="n">shape</span>                            <span class="c1"># try to see the shape of array3 now, i.e. after it was reshaped into array4</span>
@@ -16430,7 +16434,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[117]:</div>
+<div class="prompt output_prompt">Out[108]:</div>
 
 
 
@@ -16465,7 +16469,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">In&nbsp;[109]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># make sure we have array4</span>
@@ -16484,7 +16488,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[118]:</div>
+<div class="prompt output_prompt">Out[109]:</div>
 
 
 
@@ -16515,7 +16519,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[119]:</div>
+<div class="prompt input_prompt">In&nbsp;[110]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
@@ -16531,7 +16535,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[119]:</div>
+<div class="prompt output_prompt">Out[110]:</div>
 
 
 
@@ -16548,7 +16552,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[120]:</div>
+<div class="prompt input_prompt">In&nbsp;[111]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
@@ -16564,7 +16568,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[120]:</div>
+<div class="prompt output_prompt">Out[111]:</div>
 
 
 
@@ -16590,7 +16594,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">In&nbsp;[112]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
@@ -16606,7 +16610,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[121]:</div>
+<div class="prompt output_prompt">Out[112]:</div>
 
 
 
@@ -16632,7 +16636,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">In&nbsp;[113]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
@@ -16648,7 +16652,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[122]:</div>
+<div class="prompt output_prompt">Out[113]:</div>
 
 
 
@@ -16674,7 +16678,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
@@ -16690,7 +16694,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[123]:</div>
+<div class="prompt output_prompt">Out[114]:</div>
 
 
 
@@ -16716,7 +16720,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[115]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
@@ -16732,7 +16736,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[124]:</div>
+<div class="prompt output_prompt">Out[115]:</div>
 
 
 
@@ -16758,7 +16762,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In&nbsp;[116]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,:]</span>
@@ -16774,7 +16778,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[125]:</div>
+<div class="prompt output_prompt">Out[116]:</div>
 
 
 
@@ -16803,7 +16807,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">In&nbsp;[117]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
@@ -16819,7 +16823,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[126]:</div>
+<div class="prompt output_prompt">Out[117]:</div>
 
 
 
@@ -16850,7 +16854,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[158]:</div>
+<div class="prompt input_prompt">In&nbsp;[118]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>     
@@ -16866,7 +16870,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[158]:</div>
+<div class="prompt output_prompt">Out[118]:</div>
 
 
 
@@ -16894,7 +16898,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In&nbsp;[119]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">CopyOfArray4</span> <span class="o">=</span> <span class="n">array4</span><span class="p">[:]</span>         <span class="c1"># assign a copy of array4 to the new array named CopyOfArray4</span>
@@ -16911,7 +16915,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[127]:</div>
+<div class="prompt output_prompt">Out[119]:</div>
 
 
 
@@ -16933,7 +16937,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In&nbsp;[120]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">CopyOfArray4</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># resize CopyOfArray4 from a 6-by-3 array to a 9-by-2 array</span>
@@ -16950,7 +16954,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[128]:</div>
+<div class="prompt output_prompt">Out[120]:</div>
 
 
 
@@ -16975,7 +16979,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">In&nbsp;[121]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">array4</span>             <span class="c1"># note that our original array4 has remained unchanged with size 6-by-3</span>
@@ -16991,7 +16995,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[129]:</div>
+<div class="prompt output_prompt">Out[121]:</div>
 
 
 
@@ -17023,7 +17027,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="prompt input_prompt">In&nbsp;[122]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayOfZeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># get a 2-by-3 array of zeros</span>
@@ -17040,7 +17044,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[130]:</div>
+<div class="prompt output_prompt">Out[122]:</div>
 
 
 
@@ -17058,7 +17062,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[123]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">arrayOfOnes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># get a 2-by-3 array of ones</span>
@@ -17075,7 +17079,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[131]:</div>
+<div class="prompt output_prompt">Out[123]:</div>
 
 
 
@@ -17102,7 +17106,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="prompt input_prompt">In&nbsp;[124]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">iden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># get a 3-by-3 identity matrix with 1&#39;s along the diagonal and 0&#39;s elsewhere</span>
@@ -17119,7 +17123,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[132]:</div>
+<div class="prompt output_prompt">Out[124]:</div>
 
 
 
@@ -17149,7 +17153,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">obsDataList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -17166,7 +17170,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[133]:</div>
+<div class="prompt output_prompt">Out[125]:</div>
 
 
 
@@ -17183,7 +17187,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">obsDataTuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">obsDataList</span><span class="p">)</span>
@@ -17200,7 +17204,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[134]:</div>
+<div class="prompt output_prompt">Out[126]:</div>
 
 
 
@@ -17226,7 +17230,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[135]:</div>
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">obsDataTuple</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>        <span class="c1"># frequency of 0 using the tuple</span>
@@ -17242,7 +17246,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[135]:</div>
+<div class="prompt output_prompt">Out[127]:</div>
 
 
 
@@ -17259,7 +17263,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[136]:</div>
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">obsDataList</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        <span class="c1"># frequency of 1 using the list</span>
@@ -17275,7 +17279,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[136]:</div>
+<div class="prompt output_prompt">Out[128]:</div>
 
 
 
@@ -17301,7 +17305,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[137]:</div>
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">obsDataTuple</span><span class="p">)</span>            <span class="c1"># sample sum</span>
@@ -17317,7 +17321,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[137]:</div>
+<div class="prompt output_prompt">Out[129]:</div>
 
 
 
@@ -17334,7 +17338,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="prompt input_prompt">In&nbsp;[130]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">obsDataTuple</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span>          <span class="c1"># sample mean using sage.rings.Rational</span>
@@ -17350,7 +17354,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[138]:</div>
+<div class="prompt output_prompt">Out[130]:</div>
 
 
 
@@ -17367,7 +17371,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[171]:</div>
+<div class="prompt input_prompt">In&nbsp;[131]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">obsDataTuple</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>    <span class="c1"># alternative expression for sample mean in IID Bernoulli trials</span>
@@ -17383,7 +17387,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[171]:</div>
+<div class="prompt output_prompt">Out[131]:</div>
 
 
 
@@ -17410,7 +17414,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="prompt input_prompt">In&nbsp;[132]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">ballOneFreqs</span> <span class="o">=</span> <span class="n">makeFreqDict</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span>   <span class="c1"># call the function to make the dictionary</span>
@@ -17456,7 +17460,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[140]:</div>
+<div class="prompt input_prompt">In&nbsp;[133]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">ballOneFreqs</span> <span class="o">=</span> <span class="n">makeFreqDict</span><span class="p">(</span><span class="n">listBallOne</span><span class="p">)</span>   <span class="c1"># call the function to make the dictionary</span>
@@ -17500,7 +17504,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[141]:</div>
+<div class="prompt input_prompt">In&nbsp;[134]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">empty</span> <span class="o">=</span> <span class="p">()</span>
@@ -17517,7 +17521,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[141]:</div>
+<div class="prompt output_prompt">Out[134]:</div>
 
 
 
@@ -17543,11 +17547,266 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[142]:</div>
+<div class="prompt input_prompt">In&nbsp;[135]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">aFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">)</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">aFineSingletonTuple</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[135]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;tuple&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[136]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">unFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">unFineSingletonTuple</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[136]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;sage.rings.integer.Integer&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[137]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">unFineSingletonTuple</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">unFineSingletonTuple</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[137]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;sage.rings.integer.Integer&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">aFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lonelyString&#39;</span><span class="p">,</span> <span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">aFineSingletonTuple</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[138]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;tuple&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">unFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lonelyString&#39;</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">unFineSingletonTuple</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[139]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;type &#39;str&#39;&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can make tuples out almost any object.   It's as easy as putting the things you want in ( ) parentheses and separating them by commas.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[140]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTupleOfStuff</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ZZ</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">QQ</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">RR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">long</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">myTupleOfStuff</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[140]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1, 1, 1, 1.00000000000000, 1, 1L, 1.0)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[141]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">==</span><span class="n">ZZ</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># remember? will this be True/False?</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[141]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Actually, you don't even need the ( ).   If you present SageMath (Python) with a sequence of object separated by commas, the default result is a tuple.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[142]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple2</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">400</span>    <span class="c1"># assign a tuple to the variable named myTuple2</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">myTuple2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -17575,261 +17834,6 @@ list length had IndexError - line was:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[143]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">unFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">unFineSingletonTuple</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[143]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;type &#39;sage.rings.integer.Integer&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[144]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">unFineSingletonTuple</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">))</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">unFineSingletonTuple</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[144]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;type &#39;sage.rings.integer.Integer&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[145]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">aFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lonelyString&#39;</span><span class="p">,</span> <span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">aFineSingletonTuple</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[145]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;type &#39;tuple&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[146]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">unFineSingletonTuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lonelyString&#39;</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">unFineSingletonTuple</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[146]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;type &#39;str&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can make tuples out almost any object.   It's as easy as putting the things you want in ( ) parentheses and separating them by commas.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[147]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTupleOfStuff</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ZZ</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">QQ</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">RR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">long</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">myTupleOfStuff</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[147]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(1, 1, 1, 1.00000000000000, 1, 1L, 1.0)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[148]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">==</span><span class="n">ZZ</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># remember? will this be True/False?</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[148]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Actually, you don't even need the ( ).   If you present SageMath (Python) with a sequence of object separated by commas, the default result is a tuple.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[150]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">myTuple2</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">400</span>    <span class="c1"># assign a tuple to the variable named myTuple2</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">myTuple2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[150]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;type &#39;tuple&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -17842,7 +17846,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[151]:</div>
+<div class="prompt input_prompt">In&nbsp;[143]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">myTuple2</span>     <span class="c1"># tuple unpacking</span>
@@ -17873,7 +17877,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[151]:</div>
+<div class="prompt output_prompt">Out[143]:</div>
 
 
 
@@ -17899,7 +17903,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[152]:</div>
+<div class="prompt input_prompt">In&nbsp;[144]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">600.0</span><span class="p">,</span> <span class="mf">4000.0</span>
@@ -17930,7 +17934,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[152]:</div>
+<div class="prompt output_prompt">Out[144]:</div>
 
 
 
@@ -17956,7 +17960,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[153]:</div>
+<div class="prompt input_prompt">In&nbsp;[145]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
@@ -17999,7 +18003,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[154]:</div>
+<div class="prompt input_prompt">In&nbsp;[146]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
@@ -18015,7 +18019,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[154]:</div>
+<div class="prompt output_prompt">Out[146]:</div>
 
 
 
@@ -18041,7 +18045,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[156]:</div>
+<div class="prompt input_prompt">In&nbsp;[147]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -18057,13 +18061,13 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[156]:</div>
+<div class="prompt output_prompt">Out[147]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;generator object &lt;genexpr&gt; at 0x7f3ad876d230&gt;</pre>
+<pre>&lt;generator object &lt;genexpr&gt; at 0x7f80a2cd2e10&gt;</pre>
 </div>
 
 </div>
@@ -18086,7 +18090,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="prompt input_prompt">In&nbsp;[148]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://docs.python.org/2/howto/functional.html#functional-programming-howto&quot;</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
@@ -18102,7 +18106,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[188]:</div>
+<div class="prompt output_prompt">Out[148]:</div>
 
 
 
@@ -18139,7 +18143,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[157]:</div>
+<div class="prompt input_prompt">In&nbsp;[149]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -18157,13 +18161,13 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[157]:</div>
+<div class="prompt output_prompt">Out[149]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;listiterator object at 0x7f3ad834bc90&gt;</pre>
+<pre>&lt;listiterator object at 0x7f809c34bcd0&gt;</pre>
 </div>
 
 </div>
@@ -18174,7 +18178,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[158]:</div>
+<div class="prompt input_prompt">In&nbsp;[150]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
@@ -18190,7 +18194,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[158]:</div>
+<div class="prompt output_prompt">Out[150]:</div>
 
 
 
@@ -18207,7 +18211,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[159]:</div>
+<div class="prompt input_prompt">In&nbsp;[151]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18223,7 +18227,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[159]:</div>
+<div class="prompt output_prompt">Out[151]:</div>
 
 
 
@@ -18240,7 +18244,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[160]:</div>
+<div class="prompt input_prompt">In&nbsp;[152]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18256,7 +18260,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[160]:</div>
+<div class="prompt output_prompt">Out[152]:</div>
 
 
 
@@ -18273,7 +18277,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[161]:</div>
+<div class="prompt input_prompt">In&nbsp;[153]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18289,7 +18293,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[161]:</div>
+<div class="prompt output_prompt">Out[153]:</div>
 
 
 
@@ -18306,7 +18310,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[162]:</div>
+<div class="prompt input_prompt">In&nbsp;[154]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18327,9 +18331,9 @@ list length had IndexError - line was:
 
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">----------------------------------------------------------</span>
-<span class="ansi-red-fg">StopIteration</span>            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-162-24d6ab57088b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-154-24d6ab57088b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>it<span class="ansi-blue-fg">.</span>next<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">StopIteration</span>: </pre>
@@ -18352,7 +18356,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[163]:</div>
+<div class="prompt input_prompt">In&nbsp;[155]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -18371,7 +18375,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[163]:</div>
+<div class="prompt output_prompt">Out[155]:</div>
 
 
 
@@ -18388,7 +18392,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[164]:</div>
+<div class="prompt input_prompt">In&nbsp;[156]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -18407,7 +18411,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[164]:</div>
+<div class="prompt output_prompt">Out[156]:</div>
 
 
 
@@ -18424,7 +18428,7 @@ list length had IndexError - line was:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[157]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
@@ -18441,7 +18445,7 @@ list length had IndexError - line was:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[197]:</div>
+<div class="prompt output_prompt">Out[157]:</div>
 
 
 
@@ -18499,7 +18503,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[165]:</div>
+<div class="prompt input_prompt">In&nbsp;[158]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">line_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  line 1</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;line 2  </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;line 3   </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]</span>
@@ -18518,7 +18522,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[166]:</div>
+<div class="prompt input_prompt">In&nbsp;[159]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">stripped_list</span> <span class="c1"># returns a list</span>
@@ -18534,7 +18538,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[166]:</div>
+<div class="prompt output_prompt">Out[159]:</div>
 
 
 
@@ -18551,7 +18555,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[167]:</div>
+<div class="prompt input_prompt">In&nbsp;[160]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">stripped_iter</span><span class="p">)</span> <span class="c1"># returns a generator</span>
@@ -18567,7 +18571,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[167]:</div>
+<div class="prompt output_prompt">Out[160]:</div>
 
 
 
@@ -18584,7 +18588,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="prompt input_prompt">In&nbsp;[161]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">stripped_iter</span> <span class="c1"># returns only an genexpr generator object</span>
@@ -18600,13 +18604,13 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[168]:</div>
+<div class="prompt output_prompt">Out[161]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;generator object &lt;genexpr&gt; at 0x7f3ad8cd4e10&gt;</pre>
+<pre>&lt;generator object &lt;genexpr&gt; at 0x7f809ef9b0f0&gt;</pre>
 </div>
 
 </div>
@@ -18617,7 +18621,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="prompt input_prompt">In&nbsp;[162]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">stripped_iter</span><span class="p">)</span> <span class="c1"># the generator can be materialized into a list </span>
@@ -18633,7 +18637,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[169]:</div>
+<div class="prompt output_prompt">Out[162]:</div>
 
 
 
@@ -18650,7 +18654,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="prompt input_prompt">In&nbsp;[163]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">tuple</span><span class="p">(</span><span class="n">stripped_iter</span><span class="p">)</span> 
@@ -18667,7 +18671,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[170]:</div>
+<div class="prompt output_prompt">Out[163]:</div>
 
 
 
@@ -18684,7 +18688,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[171]:</div>
+<div class="prompt input_prompt">In&nbsp;[164]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Generator expression -- returns a generator</span>
@@ -18702,7 +18706,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[171]:</div>
+<div class="prompt output_prompt">Out[164]:</div>
 
 
 
@@ -18728,7 +18732,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[172]:</div>
+<div class="prompt input_prompt">In&nbsp;[165]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">stripped_iter</span><span class="p">)</span> 
@@ -18744,7 +18748,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[172]:</div>
+<div class="prompt output_prompt">Out[165]:</div>
 
 
 
@@ -18761,7 +18765,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="prompt input_prompt">In&nbsp;[166]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://docs.python.org/2/howto/functional.html#generator-expressions-and-list-comprehensions&quot;</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
@@ -18777,7 +18781,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[206]:</div>
+<div class="prompt output_prompt">Out[166]:</div>
 
 
 
@@ -18801,7 +18805,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[173]:</div>
+<div class="prompt input_prompt">In&nbsp;[167]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myGenerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># this is actually a generator</span>
@@ -18814,7 +18818,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[174]:</div>
+<div class="prompt input_prompt">In&nbsp;[168]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myGenerator</span><span class="p">)</span>
@@ -18830,7 +18834,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[174]:</div>
+<div class="prompt output_prompt">Out[168]:</div>
 
 
 
@@ -18847,7 +18851,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[175]:</div>
+<div class="prompt input_prompt">In&nbsp;[169]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myGenerator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18863,7 +18867,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[175]:</div>
+<div class="prompt output_prompt">Out[169]:</div>
 
 
 
@@ -18880,7 +18884,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[176]:</div>
+<div class="prompt input_prompt">In&nbsp;[170]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myGenerator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18896,7 +18900,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[176]:</div>
+<div class="prompt output_prompt">Out[170]:</div>
 
 
 
@@ -18913,7 +18917,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[177]:</div>
+<div class="prompt input_prompt">In&nbsp;[171]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myGenerator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18929,7 +18933,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[177]:</div>
+<div class="prompt output_prompt">Out[171]:</div>
 
 
 
@@ -18946,7 +18950,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[178]:</div>
+<div class="prompt input_prompt">In&nbsp;[173]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myGenerator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -18967,9 +18971,9 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">----------------------------------------------------------</span>
-<span class="ansi-red-fg">StopIteration</span>            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-178-4f7e77ff116f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-173-4f7e77ff116f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>myGenerator<span class="ansi-blue-fg">.</span>next<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">StopIteration</span>: </pre>
@@ -18991,7 +18995,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[181]:</div>
+<div class="prompt input_prompt">In&nbsp;[174]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">myGenerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> 
@@ -19004,7 +19008,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[182]:</div>
+<div class="prompt input_prompt">In&nbsp;[175]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">myGenerator</span><span class="p">)</span>
@@ -19020,7 +19024,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[182]:</div>
+<div class="prompt output_prompt">Out[175]:</div>
 
 
 
@@ -19050,7 +19054,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[183]:</div>
+<div class="prompt input_prompt">In&nbsp;[176]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">generate_ints</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
@@ -19077,7 +19081,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="prompt input_prompt">In&nbsp;[177]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gen</span> <span class="o">=</span> <span class="n">generate_ints</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -19094,13 +19098,13 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[184]:</div>
+<div class="prompt output_prompt">Out[177]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;generator object generate_ints at 0x7f3ad8cd4730&gt;</pre>
+<pre>&lt;generator object generate_ints at 0x7f80a433a1e0&gt;</pre>
 </div>
 
 </div>
@@ -19111,7 +19115,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="prompt input_prompt">In&nbsp;[178]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gen</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -19127,7 +19131,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[185]:</div>
+<div class="prompt output_prompt">Out[178]:</div>
 
 
 
@@ -19144,7 +19148,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[186]:</div>
+<div class="prompt input_prompt">In&nbsp;[179]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gen</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -19160,7 +19164,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[186]:</div>
+<div class="prompt output_prompt">Out[179]:</div>
 
 
 
@@ -19177,7 +19181,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="prompt input_prompt">In&nbsp;[180]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gen</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -19193,7 +19197,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[187]:</div>
+<div class="prompt output_prompt">Out[180]:</div>
 
 
 
@@ -19210,7 +19214,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="prompt input_prompt">In&nbsp;[181]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gen</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -19231,9 +19235,9 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">----------------------------------------------------------</span>
-<span class="ansi-red-fg">StopIteration</span>            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-188-f768795504b6&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-181-f768795504b6&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>gen<span class="ansi-blue-fg">.</span>next<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">StopIteration</span>: </pre>
@@ -19246,7 +19250,7 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[222]:</div>
+<div class="prompt input_prompt">In&nbsp;[182]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#gen. </span>
@@ -19281,13 +19285,251 @@ Generator expressions are surrounded by parentheses (“()”) and list comprehe
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="YouTry!">YouTry!<a class="anchor-link" href="#YouTry!">&#182;</a></h1><p>Recall how we downloaded <em>Pride and Prejudice</em> and processed it as a String and break it by Chapters. This is at our disposal - all we need to do is copy-paste the right set of cells from earlier here to have the string from that Book for more refined processing.</p>
-<p>Think about what algorithmic constructs and methods one will need to <code>split</code> each sentence by <code>words</code> it contains and count the number of each distinct word.</p>
-<p>Now that you have understood <code>for</code> loops, <code>list</code> comprehensions and anonymous <code>function</code>s, and can learn about the needed methods on strings for splitting (which you can search by adding a <code>.</code> after a <code>srt</code> and hitting the <code>Tab</code> button to look through exixting methods), the <code>dictionary</code> data structure, and already seen how to count the number of ball labels, you are ready for the challenge.</p>
-<p><strong>Problem:</strong> Process the English words in the book <em>Pride and Prejudice</em> by Jane Austin and obtain six empirical mass functions corresponding to the 20 most frequent words that are longer than 0, 1, 2, 3, 4 and 5 characters in length. You may report it as a dictionary. If you have more time them try to plot the empirical mass function as a picture/image as we did above.</p>
+<hr>
+<h2 id="Assignment-2,-PROBLEM-0">Assignment 2, PROBLEM 0<a class="anchor-link" href="#Assignment-2,-PROBLEM-0">&#182;</a></h2><p>Maximum Points = 1</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have seen how to implement a new iterator (just like a function) but with <code>yield</code> statement (just like <code>return</code> in a function). This model of computation is called <strong>continuation</strong>. This is very useful in combinatorics, especially when combined with recursion (<em>Computational Mathematics with SageMath, SIAM, 2019, p. 346</em>). Below is an iterator called <code>generateWords(alphabet,L)</code> that can generate all words of of a given length <code>L</code> on a given <code>alphabet</code>.</p>
+<p>Your task is simple!</p>
+<ul>
+<li>Just understand what the following iterator is doing from the comments in code and explanations earlier. </li>
+<li>how we are computing the number of words of length <code>L</code> equalling 3 and then 23 using <code>sum</code>:<ul>
+<li>via list comprehension</li>
+<li>via generator expression</li>
+</ul>
+</li>
+<li>You <em>don't need to change any of the code in the next 4 cells, but just understand it</em>. </li>
+<li>Finally, try to explain by chosing the right answer below as to why the list comprhension is taking longer to compute than the generator expression as evident by the <code>Wall time</code> (see <a href="https://en.wikipedia.org/wiki/Elapsed_real_time">Wall Time</a>, it's just the elapsed real time from the start to end of a computation).</li>
+</ul>
+<hr>
+
+<pre><code>%%time 
+# time for list comprehension to compute the sum of [1,1,1,...,2^23]
+sumFromListCom = sum( [ 1 for w in generateWords(['H','T'], 23) ]  )</code></pre>
+<p>will result in output:</p>
+
+<pre><code>CPU times: user 6.94 s, sys: 200 ms, total: 7.14 s
+Wall time: 7.11 s</code></pre>
+<hr>
+<hr>
+
+<pre><code>%%time 
+# time for generator expression to compute the sum of [1,1,1,...,2^23]
+sumFromGenEx = sum( ( 1 for w in generateWords(['H','T'], 23) )  )</code></pre>
+<p>will result in output:</p>
+
+<pre><code>CPU times: user 5.51 s, sys: 0 ns, total: 5.51 s
+Wall time: 5.52 s</code></pre>
+<hr>
+<p>(you may have slightly different numbers for <code>time</code> and <code>Wall time</code> based on your machine details at the time of computation).</p>
+<p><strong>Multiple-choice Question:</strong></p>
+<ul>
+<li>Why is the <code>Wall time</code> for generator expression (genex) smaller that for the list comprehension (listcomp) here? </li>
+</ul>
+<p><strong>Answer Choices</strong></p>
+<ul>
+<li><strong>A.</strong> genex if faster because the individual words are not allocated space in memory, i.e., materialised in memory</li>
+<li><strong>B.</strong> listcomp is slower because the list of all words is allocated space in memory</li>
+<li><strong>C.</strong> both <strong>A</strong> and <strong>B</strong> are true</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[183]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">choiceForProblem2</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span> <span class="c1"># replace X by A, B or C</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h4 id="Local-Test-for-Assignment-2,-PROBLEM-0">Local Test for Assignment 2, PROBLEM 0<a class="anchor-link" href="#Local-Test-for-Assignment-2,-PROBLEM-0">&#182;</a></h4><p>Evaluate cell below to make sure your answer is valid.                         You <strong>should not</strong> modify anything in the cell below when evaluating it to do a local test of                         your solution.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">choiceForProblem2</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">])</span>
+    <span class="k">print</span> <span class="s2">&quot;You have chosen one of the possible options. Hopefully, you are correct.&quot;</span>
+<span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;Try again. you have to choose between &#39;A&#39;, &#39;B&#39; and &#39;C&#39;.&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>You have chosen one of the possible options. Hopefully, you are correct.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># This cell is to help you make the right choice between A, B and C</span>
+<span class="k">def</span> <span class="nf">generateWords</span><span class="p">(</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">L</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">generateWords</span><span class="p">(</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># here is the recursion when we cann the iterator again on L-1</span>
+            <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span> 
+                <span class="k">yield</span> <span class="n">word</span> <span class="o">+</span> <span class="p">[</span><span class="n">L</span><span class="p">]</span>
+
+<span class="k">print</span> <span class="p">[</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">generateWords</span><span class="p">([</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="p">]</span> <span class="c1"># now call the iterator to find all words of length 3 in [&#39;H&#39;,&#39;T&#39;]</span>
+
+<span class="k">print</span> <span class="nb">sum</span><span class="p">(</span> <span class="p">[</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">generateWords</span><span class="p">([</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="p">]</span>  <span class="p">)</span> <span class="c1"># these words can then be counted by list comprehension</span>
+<span class="k">print</span> <span class="nb">sum</span><span class="p">(</span> <span class="p">(</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">generateWords</span><span class="p">([</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="p">)</span>  <span class="p">)</span> <span class="c1"># these words can then be counted by generator expression</span>
+
+<span class="k">print</span> <span class="s1">&#39;The number of words of length 3 from an alphabet of size 2 is 2^3 = &#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">^</span><span class="mi">3</span> <span class="c1"># the above sum`s makes sense</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[&#39;H&#39;, &#39;H&#39;, &#39;H&#39;], [&#39;H&#39;, &#39;H&#39;, &#39;T&#39;], [&#39;H&#39;, &#39;T&#39;, &#39;H&#39;], [&#39;H&#39;, &#39;T&#39;, &#39;T&#39;], [&#39;T&#39;, &#39;H&#39;, &#39;H&#39;], [&#39;T&#39;, &#39;H&#39;, &#39;T&#39;], [&#39;T&#39;, &#39;T&#39;, &#39;H&#39;], [&#39;T&#39;, &#39;T&#39;, &#39;T&#39;]]
+8
+8
+The number of words of length 3 from an alphabet of size 2 is 2^3 =  8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">time</span> 
+# time for list comprehension to compute the sum of [1,1,1,...,2^23]
+sumFromListCom = sum( [ 1 for w in generateWords([&#39;H&#39;,&#39;T&#39;], 23) ]  ) 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 6.6 s, sys: 220 ms, total: 6.82 s
+Wall time: 6.83 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">time</span> 
+# time for generator expression to compute the sum of [1,1,1,...,2^23]
+sumFromGenEx = sum( ( 1 for w in generateWords([&#39;H&#39;,&#39;T&#39;], 23) )  ) 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 5.53 s, sys: 0 ns, total: 5.53 s
+Wall time: 5.53 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># making sure the answers returned are what we expect</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">sumFromListCom</span> <span class="o">==</span> <span class="mi">2</span><span class="o">^</span><span class="mi">23</span><span class="p">)</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">sumFromGenEx</span> <span class="o">==</span> <span class="mi">2</span><span class="o">^</span><span class="mi">23</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>

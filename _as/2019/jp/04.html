@@ -12012,8 +12012,7 @@ If the two events $A$ and $B$ are independent then</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<hr>
-<h2 id="Assignment-1,-Problem-3">Assignment 1, Problem 3<a class="anchor-link" href="#Assignment-1,-Problem-3">&#182;</a></h2><p>Maximum Points = 1</p>
+<h2 id="Assignment-1,-PROBLEM-3">Assignment 1, PROBLEM 3<a class="anchor-link" href="#Assignment-1,-PROBLEM-3">&#182;</a></h2><p>Maximum Points = 1</p>
 
 </div>
 </div>
@@ -12045,14 +12044,27 @@ If the two events $A$ and $B$ are independent then</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h4 id="Local-Test-for-Assignment-1,-PROBLEM-3">Local Test for Assignment 1, PROBLEM 3<a class="anchor-link" href="#Local-Test-for-Assignment-1,-PROBLEM-3">&#182;</a></h4><p>Evaluate cell below to make sure your answer is valid.                         You <strong>should not</strong> modify anything in the cell below when evaluating it to do a local test of                         your solution.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 3, POINTS 1</span>
-<span class="c1"># test that your answer is indeed a probability!</span>
-<span class="k">assert</span><span class="p">(</span><span class="n">ProbOfDGivenC</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ProbOfDGivenC</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># test that your answer is indeed a probability by evaluating this cell after you replaced XXX above and evaluated it.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">ProbOfDGivenC</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ProbOfDGivenC</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Your answer is a probability, hopefully it is correct.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Try again! and make sure you are actually producing a valid probability, i.e., a real number in [0,1]&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12168,6 +12180,7 @@ $$</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a class for a random variable map - just evaluate this cell and don&#39;t worry about understanding this now</span>
+<span class="c1"># This was coded by Jenny Harlow</span>
 
 <span class="k">class</span> <span class="nc">RV</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>                <span class="c1"># class definition</span>
     <span class="s1">&#39;Random variable class&#39;</span>
@@ -12219,7 +12232,7 @@ $$</p>
         
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span>
     
-    <span class="k">def</span> <span class="nf">__printprobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                            <span class="c1"># method to create a printable representation of the rv probababilities</span>
+    <span class="k">def</span> <span class="nf">__printprobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># method to create a printable representation of the rv probababilities</span>
         <span class="s1">&#39;Printable representation of the probabilities.&#39;</span>
         <span class="n">num_keys</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rvprobmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="n">counter1</span> <span class="o">=</span> <span class="mi">0</span>
@@ -12384,7 +12397,7 @@ $$</p>
             <span class="n">retval</span> <span class="o">=</span> <span class="mi">0</span>                    
         <span class="k">return</span> <span class="n">retval</span>
     
-    <span class="k">def</span> <span class="nf">explainLastCalc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                   <span class="c1"># return details of the calculation for the last probability calculated</span>
+    <span class="k">def</span> <span class="nf">explainLastCalc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># return details of the calculation for the last probability calculated</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
             <span class="n">retvalue</span> <span class="o">=</span> <span class="s2">&quot;Sorry, that calculation was on function of this RV, not the RV itself&quot;</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lastvalue</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
@@ -14862,8 +14875,7 @@ We can use <strong>lambda expressions</strong> for anonymous functions as descri
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<hr>
-<h2 id="Assignment-1,-Problem-4">Assignment 1, Problem 4<a class="anchor-link" href="#Assignment-1,-Problem-4">&#182;</a></h2><p>Maximum Points = 2</p>
+<h2 id="Assignment-1,-PROBLEM-4">Assignment 1, PROBLEM 4<a class="anchor-link" href="#Assignment-1,-PROBLEM-4">&#182;</a></h2><p>Maximum Points = 2</p>
 
 </div>
 </div>
@@ -14914,18 +14926,49 @@ $$</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h4 id="Local-Test-for-Assignment-1,-PROBLEM-4">Local Test for Assignment 1, PROBLEM 4<a class="anchor-link" href="#Local-Test-for-Assignment-1,-PROBLEM-4">&#182;</a></h4><p>Evaluate cell below to make sure your answer is valid.                         You <strong>should not</strong> modify anything in the cell below when evaluating it to do a local test of                         your solution.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># ASSIGNMENT 1, Test 4, POINTS 2</span>
-<span class="c1"># Use this to locally test that your solution is returning probabilities</span>
-<span class="k">assert</span><span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">assert</span><span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Evaluate this to locally test that your solution is returning probabilities</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">pmfOfBernoulli</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;You seem to have a valid probability for your answer. Hopefully it is correct!&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Try again. You don&#39;t have a valid probability,</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">           i.e., a real number in the unit interval [0,1] for your answer&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>You seem to have a valid probability for your answer. Hopefully it is correct!
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
