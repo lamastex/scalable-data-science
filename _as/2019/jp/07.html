@@ -12427,10 +12427,10 @@ $$(x_1, x_2, x_3) \in \mathbb{M}^3 := \mathbb{M} \times \mathbb{M} \times \mathb
 
  
  
-<div id="cf767470-e514-43d4-9226-28d1308a073a"></div>
+<div id="a52097b5-0a99-45c0-93f0-cfa97198f848"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#cf767470-e514-43d4-9226-28d1308a073a');
+var element = $('#a52097b5-0a99-45c0-93f0-cfa97198f848');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "559a6c04be3643068040235a9aafc93b", "version_minor": 0, "version_major": 2}
@@ -23733,10 +23733,10 @@ $$f(k) = \mathbf{1}_{\{-1,+1\}}(k)\frac{1}{2} = \begin{cases} \frac{1}{2} \quad 
 
  
  
-<div id="57dce04d-0b3e-4c87-a92b-09e67f177868"></div>
+<div id="777b66a7-6f71-493b-ae38-173547bd20ab"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#57dce04d-0b3e-4c87-a92b-09e67f177868');
+var element = $('#777b66a7-6f71-493b-ae38-173547bd20ab');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d5201857ef44cdd9687e58d085ec77e", "version_minor": 0, "version_major": 2}
@@ -23796,10 +23796,10 @@ var element = $('#57dce04d-0b3e-4c87-a92b-09e67f177868');
 
  
  
-<div id="c97c80f3-0333-4ae5-bb5e-c76fd164c33c"></div>
+<div id="3f10211d-a131-4e85-a57c-f38f91c56e6a"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#c97c80f3-0333-4ae5-bb5e-c76fd164c33c');
+var element = $('#3f10211d-a131-4e85-a57c-f38f91c56e6a');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "a8dae65146e04a84bf65535506fd77f3", "version_minor": 0, "version_major": 2}
@@ -27942,8 +27942,44 @@ var element = $('#c97c80f3-0333-4ae5-bb5e-c76fd164c33c');
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Animations-of-your-Simulations---First-Steps">Animations of your Simulations - First Steps<a class="anchor-link" href="#Animations-of-your-Simulations---First-Steps">&#182;</a></h1><p>Sometimes you may want to simulate a phenomenon and make an animation, either to build intuition ro to make a presentation to a broader audience. Here the following code snippets can get you started.</p>
-<p>This is advanced content and you need to know more about administering your system. It is here for those who want to take it further on their own.</p>
+<h1 id="Animations-of-your-Simulations">Animations of your Simulations<a class="anchor-link" href="#Animations-of-your-Simulations">&#182;</a></h1><p>In summary, we can see from the animations of simulations above, we can multiply the independent estimates of the probabilities of going:</p>
+<ul>
+<li>from the first circle at the origin to the second one north-east of it and </li>
+<li>from the seconf circle to the one to the north-east of it</li>
+</ul>
+<p>Think! Why can we multiply these probability estimates? What property of the random walk justifies this?</p>
+<p>We know that the estimates themselves are simply simulations of very definition of probability as the expectation of the event, i.e., the sample mean of the indicator function of the event - in other words the fraction of simulation trails that actually resulted in the event of interest.</p>
+<p>Imagine how more complex rare events (these are just events with very low probability) can be estimated by simulating various independent componenets of them, if they exist.</p>
+<table style="width:100%">
+  <caption><strong>simulations-based estimate of p = probrobability of our random walk going from first circle to second to third</strong></caption>
+  <tr>
+    <th>10 simulations from first circle to second</th>
+    <th>10 simulations from second circle to third</th>
+    <th>simuln-based estimate of p from 10 X 10 IID simulations</th>
+  </tr>
+  <tr>
+    <td><img src="http://www.lamastex.org/images/courses/sds/as/rareEventProbSim1.gif" alt="10 simulations from first circle to second" height="250" width="250"></td>
+    <td><img src="http://www.lamastex.org/images/courses/sds/as/rareEventProbSim1.gif" alt="10 simulations from second circle to third" height="250" width="250"></td>
+      <td><img src="http://www.lamastex.org/images/courses/sds/as/rareEventProbSim1.gif" alt="prob estimate from 10 X 10 IID simulations to estimate p" height="250" width="250"></td>
+  </tr>
+</table><!-- // this is commented because these images were added after the first as.zip was already downloaded so we are backing off to lamastex.or for now above
+<table style="width:100%">
+  <caption>simulations based estimate of p = probrobability of our random walk going from first circle to second to third</caption>
+  <tr>
+    <th>10 simulations from first circle to second</th>
+    <th>10 simulations from second circle to third</th>
+    <th>prob estimates from 10 X 10 IID simulations to estimate p</th>
+  </tr>
+  <tr>
+    <td><img src="images/rareEventProbSim1.gif" alt="10 simulations from first circle to second" height="200" width="200"></td>
+    <td><img src="images/rareEventProbSim1.gif" alt="10 simulations from second circle to third" height="200" width="200"></td>
+      <td><img src="images/rareEventProbSim1.gif" alt="prob estimates from 10 X 10 IID simulations to estimate p" height="150" width="150"></td>
+  </tr>
+</table>
+-->
+
+<h3 id="How-to-do-it-yourself-if-you-want-to---Hust-Some-First-Steps">How to do it yourself if you want to - Hust Some First Steps<a class="anchor-link" href="#How-to-do-it-yourself-if-you-want-to---Hust-Some-First-Steps">&#182;</a></h3><p>Sometimes you may want to simulate a phenomenon and make an animation, either to build intuition ro to make a presentation to a broader audience. Here the following code snippets can get you started.</p>
+<p>This is advanced content and you need to know more about administering your system. It is here for those who want to take it further on their own. To understand the html code in the animation above go to <a href="https://www.w3schools.com/html/html_tables.asp">w3 schools for table</a> - this is how people keep learning things they don't know about coding certain things.</p>
 
 </div>
 </div>
