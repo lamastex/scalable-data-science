@@ -12427,10 +12427,10 @@ $$(x_1, x_2, x_3) \in \mathbb{M}^3 := \mathbb{M} \times \mathbb{M} \times \mathb
 
  
  
-<div id="0bf6ecbc-5c86-4226-927a-cd201f1ced08"></div>
+<div id="e3dae9ad-692d-4d15-8537-7c26b87981a7"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#0bf6ecbc-5c86-4226-927a-cd201f1ced08');
+var element = $('#e3dae9ad-692d-4d15-8537-7c26b87981a7');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "559a6c04be3643068040235a9aafc93b", "version_minor": 0, "version_major": 2}
@@ -22581,10 +22581,27 @@ myHist.png
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="prompt input_prompt">In&nbsp;[135]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">try</span><span class="p">:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">linConGen</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A linear congruential sequence generator.</span>
+<span class="sd">    </span>
+<span class="sd">    Param m is the integer modulus to use in the generator.</span>
+<span class="sd">    Param a is the integer multiplier.</span>
+<span class="sd">    Param c is the integer increment.</span>
+<span class="sd">    Param x0 is the integer seed.</span>
+<span class="sd">    Param n is the integer number of desired pseudo-random numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns a list of n pseudo-random integer modulo m numbers.&#39;&#39;&#39;</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span> <span class="c1"># the seed</span>
+    <span class="n">retValue</span> <span class="o">=</span> <span class="p">[</span><span class="n">Mod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">)]</span>  <span class="c1"># start the list with x=x0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">Mod</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="c1"># the generator, using modular arithmetic</span>
+        <span class="n">retValue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># append the new x to the list</span>
+    <span class="k">return</span> <span class="n">retValue</span>
+<span class="k">try</span><span class="p">:</span>
     <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2147483648</span><span class="p">,</span> <span class="mi">65539</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5010</span>
     <span class="n">randuListComp</span> <span class="o">=</span> <span class="n">linConGen</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="n">randuGenExp</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">xrange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">lcg</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">x0</span><span class="p">))]</span>
@@ -23733,10 +23750,10 @@ $$f(k) = \mathbf{1}_{\{-1,+1\}}(k)\frac{1}{2} = \begin{cases} \frac{1}{2} \quad 
 
  
  
-<div id="eb8ba6ea-0463-4324-9644-a3899d20af93"></div>
+<div id="b9d83529-195c-465c-9f64-47f24a0756f3"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#eb8ba6ea-0463-4324-9644-a3899d20af93');
+var element = $('#b9d83529-195c-465c-9f64-47f24a0756f3');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d5201857ef44cdd9687e58d085ec77e", "version_minor": 0, "version_major": 2}
@@ -23796,10 +23813,10 @@ var element = $('#eb8ba6ea-0463-4324-9644-a3899d20af93');
 
  
  
-<div id="7c6eb34a-01c6-4cc8-9870-ee9ba50803dc"></div>
+<div id="a9bf1cc2-e853-45e7-95fa-9dec185b87db"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#7c6eb34a-01c6-4cc8-9870-ee9ba50803dc');
+var element = $('#a9bf1cc2-e853-45e7-95fa-9dec185b87db');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "a8dae65146e04a84bf65535506fd77f3", "version_minor": 0, "version_major": 2}
