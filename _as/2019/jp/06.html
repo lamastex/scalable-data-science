@@ -13775,6 +13775,15 @@ OGEJ 	2120
 <p>Recall the problem above on counting the number of votes by party across all of Sweden from the <strong>Swedish 2018 National Election Data</strong>.</p>
 <p>Your task is to adapt the code snippets there and others we have encountered thus far to count the total number of votes by each <strong>district</strong> and return a <code>list</code> of <code>Integers</code> giving the number of votes for the top <code>K</code> districts with the most votes. Your function <code>numberOfVotesInKMostVotedDistrictsInSE('data/final.csv', K)</code> should work for any valid integer <code>K</code>.</p>
 <p><em>Note: that you may not import libraries that have not been introduced in the course so far.</em></p>
+<hr>
+<p><em>unzip issues:</em> If you are unable to call <code>unzip final.csv.zip</code> on your windows laptop. You can either do it in the computer lab or do the following with internet access to download the large <code>final.csv</code> file from the internet:</p>
+
+<pre><code>%%sh
+cd data
+
+curl -O http://lamastex.org/datasets/public/elections/2018/sv/final.csv</code></pre>
+<p>Then you should have the needed <code>data/final.csv</code> file.</p>
+<hr>
 
 </div>
 </div>
