@@ -11792,7 +11792,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
+<h2 id="Outline-of-this-notebook">Outline of this notebook<a class="anchor-link" href="#Outline-of-this-notebook">&#182;</a></h2><ul>
 <li>Estimation and Likelihood</li>
 <li>Parameter, Models, and Real Life</li>
 <li>The Likelihood Function</li>
@@ -11806,7 +11806,10 @@ div#notebook {
 <li>The Maximum Likelihood Principle</li>
 <li>Maximum Likelihood and the $Exponential(\lambda)$ RV</li>
 <li>Inter-earthquake Times for New Zealand Earthquakes</li>
-<li>Regression (we will most probably come to regression last; after seeing concepts in notebooks 10 and 11)<ul>
+<li>Language BABYLONIA: Python - R - JVM language - C/C++/FORTRAN</li>
+</ul>
+<h4 id="Coming-Attraction:">Coming Attraction:<a class="anchor-link" href="#Coming-Attraction:">&#182;</a></h4><ul>
+<li>Regression (coming attaction in notebook 12)<ul>
 <li>Point Estimation (parametric estimation with the likelihood principle and MLE)<ul>
 <li>linear and logistic models and their least-squares estimators</li>
 <li>problem of prediction: in regression and classification<ul>
@@ -12754,10 +12757,10 @@ If we observe [1] The likelihood of theta= 1.0  is  1.00000000000000
 
  
  
-<div id="370316d9-f2a7-4fa2-bce0-b1df7cef7413"></div>
+<div id="99e2c692-d73f-42c2-aa8d-a13fd4a26802"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#370316d9-f2a7-4fa2-bce0-b1df7cef7413');
+var element = $('#99e2c692-d73f-42c2-aa8d-a13fd4a26802');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d3b32bdc0fe4aa782e765a6d79c6e0e", "version_minor": 0, "version_major": 2}
@@ -12992,10 +12995,10 @@ $$</p>
 
  
  
-<div id="2c9fdbe9-7b3a-44d3-b07d-99e55ba2e8f1"></div>
+<div id="b676e4c6-5c8c-4c0a-af34-8a4ae4afdef8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#2c9fdbe9-7b3a-44d3-b07d-99e55ba2e8f1');
+var element = $('#b676e4c6-5c8c-4c0a-af34-8a4ae4afdef8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e071586561f4c51aa701870a00455a0", "version_minor": 0, "version_major": 2}
@@ -13104,10 +13107,10 @@ $$</p>
 
  
  
-<div id="e9809d0d-9688-44ea-9d67-635b24ffa4f5"></div>
+<div id="1663c0da-a686-46d6-b7f4-3c913808032d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#e9809d0d-9688-44ea-9d67-635b24ffa4f5');
+var element = $('#1663c0da-a686-46d6-b7f4-3c913808032d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "537a6a85c1b24ff3afc8e674dd34063e", "version_minor": 0, "version_major": 2}
@@ -13596,10 +13599,10 @@ var element = $('#e9809d0d-9688-44ea-9d67-635b24ffa4f5');
 
  
  
-<div id="543770cc-d95f-46c0-b46f-4752b4a9ef63"></div>
+<div id="72749197-bc68-4303-8500-14bcb7fe9874"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#543770cc-d95f-46c0-b46f-4752b4a9ef63');
+var element = $('#72749197-bc68-4303-8500-14bcb7fe9874');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6ebdaed0a5a0436094e953c659b6e669", "version_minor": 0, "version_major": 2}
@@ -14647,9 +14650,9 @@ $$</p>
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Here we are doing all the previous steps</span>
 <span class="n">lam</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">tn</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s1">&#39;lam n tn&#39;</span><span class="p">)</span> <span class="c1"># remember NOT to assign to lambda as we will overwrite &#39;lambda&#39; keyword in Python!</span>
-<span class="n">logL</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">lam</span><span class="o">^</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">lam</span><span class="o">*</span><span class="n">tn</span> <span class="c1"># Exponential log likelihood</span>
-<span class="n">dlogL</span> <span class="o">=</span> <span class="n">logL</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
-<span class="n">d2logL</span> <span class="o">=</span> <span class="n">logL</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span> 
+<span class="n">logL</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">lam</span><span class="o">^</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">lam</span><span class="o">*</span><span class="n">tn</span> <span class="c1"># Exponential log likelihood - this is something you need to derive for the problem</span>
+<span class="n">dlogL</span> <span class="o">=</span> <span class="n">logL</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span> <span class="c1"># first derivative</span>
+<span class="n">d2logL</span> <span class="o">=</span> <span class="n">logL</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span> <span class="c1"># second derivative</span>
 <span class="n">d2logL</span>
 </pre></div>
 
@@ -14684,7 +14687,7 @@ $$</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">d2logL</span> <span class="o">=</span> <span class="n">logL</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">full_simplify</span><span class="p">()</span> <span class="c1"># sometimes you may need .full_simplify() method</span>
-<span class="n">d2logL</span>
+<span class="n">d2logL</span> <span class="c1"># this can also be done by hand</span>
 </pre></div>
 
 </div>
@@ -14770,6 +14773,258 @@ $$</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sample-Exam-Problem-1-with-Solution">Sample Exam Problem 1 with Solution<a class="anchor-link" href="#Sample-Exam-Problem-1-with-Solution">&#182;</a></h1><p>Repeat the four steps shown above for the derivation of the maximum likelihood estimate for data from $n$ IID $Exponential(\lambda)$ trials above, but for the random variable with the following probability density function:</p>
+<p>$$
+f(x; \lambda) = \frac{1}{2} \lambda^3 x^2 \exp(-\lambda x), \qquad \text{ where, } \lambda&gt;0, x &gt; 0
+$$</p>
+<p>Complete the basic four steps to compute the MLe of $\lambda$ based on $n$ IID samples $X_1,X_2,\ldots,X_n \sim f(x;\lambda)$. Here we can easily use the symbolic expressions in SageMath to find the expression for the log-likelihood value of each $x_i$ and then do the sum from $1$ to $n$ in our head.</p>
+<p><strong>NOTE:</strong> It might be easier to do this by hand on a pencil and paper! You just need to write a function <code>MLeForSampleExamProblem1(x)</code> in the end that returns the MLe for a given input observation <code>x</code> = $(x_1,x_2,\ldots,x_n)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, evaluate the log-likelihood function given by 
+$$\log \left( \prod_{i=1}^n f(x_i;\lambda) \right) = \sum_{i=1}^n \log \left( f(x_i; \lambda) \right) $$
+for each term $x_i$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[226]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">lam</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x_i</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s1">&#39;lam n x_i&#39;</span><span class="p">)</span> <span class="c1"># setup the variables </span>
+<span class="n">fxi</span> <span class="o">=</span> <span class="n">lam</span><span class="o">^</span><span class="mi">3</span><span class="o">*</span><span class="n">x_i</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lam</span><span class="o">*</span><span class="n">x_i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># get the pdf as a symbolic expression f</span>
+<span class="n">logfxi</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">fxi</span><span class="p">)</span> <span class="c1"># log of pdf</span>
+<span class="n">logfxi</span><span class="o">.</span><span class="n">log_expand</span><span class="p">()</span> <span class="c1"># expanding the log(f) gives log likelihood for each data point x_i</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[226]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-lam*x_i - log(2) + 3*log(lam) + 2*log(x_i)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[228]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># take the derivative w.r.t lam, the parameter</span>
+<span class="n">dLogfxi</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">logfxi</span><span class="p">,</span><span class="n">lam</span><span class="p">)</span><span class="o">.</span><span class="n">full_simplify</span><span class="p">()</span>
+<span class="n">dLogfxi</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[228]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-(lam*x_i - 3)/lam</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[229]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># summing over n samples and setting it equal to 0 and solving for lam gives</span>
+<span class="n">lamHat</span><span class="p">,</span><span class="n">tn</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s1">&#39;lamHat&#39;</span><span class="p">,</span> <span class="s1">&#39;tn&#39;</span><span class="p">)</span> <span class="c1"># declare two more variables, here tn = sum x_i or the sample sum</span>
+<span class="n">lamHat</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="n">tn</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># now evaluate the second derivate for each term in the log likelihood w.r.t lam</span>
+<span class="n">d2Logfxi</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">logfxi</span><span class="p">,</span><span class="n">lam</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">full_simplify</span><span class="p">()</span>
+<span class="n">d2Logfxi</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[230]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-3/lam^2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[231]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the second derivate is negative since lam &gt; 0, and lamHat is indeed MLE, but we can go one step further</span>
+<span class="c1"># since sample sum is always positive the second derivate at MLe lanHat &lt; 0 and we have a maximum</span>
+<span class="n">d2Logfxi</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">lam</span> <span class="o">=</span> <span class="n">lamHat</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[231]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-1/3*tn^2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a function that returns the MLe for this problem</span>
+<span class="k">def</span> <span class="nf">MLeForSampleExamProblem1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;returns the MLe for the Sample Exam Problem 1 where x is a sample of n data points&#39;&#39;&#39;</span>
+    <span class="n">tn</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># get the sample sum statistics</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">/</span><span class="n">tn</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[233]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="n">MLeForSampleExamProblem1</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># assert that the Mle is correct on a small test input data</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Assignment-3,-PROBLEM-1">Assignment 3, PROBLEM 1<a class="anchor-link" href="#Assignment-3,-PROBLEM-1">&#182;</a></h2><p>Maximum Points = 1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using the steps in the Sample Exam Problem 1 with Solution in notebook <code>09.ipynb</code>, derive the maximum likelihood estimate for $n$ IID samples from a random variable with the following Probability density function:
+$$
+f(x; \lambda) = \frac{1}{24} \lambda^5 x^4 \exp(-\lambda x), \qquad \text{ where, } \lambda&gt;0, x &gt; 0
+$$</p>
+<p>You can solve the MLe by hand (using pencil paper or using key-strokes). Present your solution as the return value of a function called <code>def MLeForAssignment3Problem1(x)</code>, where <code>x</code> is a list of $n$ input data points.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># do not change the name of the function, just replace XXX with the appropriate expressions for the MLe</span>
+<span class="k">def</span> <span class="nf">MLeForAssignment3Problem1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;write comment of what this function does&#39;&#39;&#39;</span>
+    <span class="n">XXX</span> 
+    <span class="n">XXX</span>
+    <span class="k">return</span> <span class="n">XXX</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -16603,7 +16858,7 @@ publicid,eventtype,origintime,modificationtime,longitude, latitude, magnitude, d
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Take-the-Feature-Tour-of-SageMath-Now!">Take the Feature Tour of SageMath Now!<a class="anchor-link" href="#Take-the-Feature-Tour-of-SageMath-Now!">&#182;</a></h1><p><a href="http://www.sagemath.org/tour.html">http://www.sagemath.org/tour.html</a></p>
+<h2 id="Take-the-Feature-Tour-of-SageMath-Now!">Take the Feature Tour of SageMath Now!<a class="anchor-link" href="#Take-the-Feature-Tour-of-SageMath-Now!">&#182;</a></h2><p><a href="http://www.sagemath.org/tour.html">http://www.sagemath.org/tour.html</a></p>
 
 </div>
 </div>
@@ -16612,39 +16867,22 @@ publicid,eventtype,origintime,modificationtime,longitude, latitude, magnitude, d
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Regression">Regression<a class="anchor-link" href="#Regression">&#182;</a></h1><ul>
-<li>Point Estimation (parametric estimation with the likelihood principle and MLE)<ul>
-<li>linear and logistic models and their estimators (least squares estimators)</li>
-<li>problem of prediction: in regression and classification<ul>
-<li>correlation versus causation</li>
-<li>assessing fit using diagnostic plots</li>
+<h1 id="Language-BABYLONIA:-Python---R---JVM-language---C/C++/FORTRAN">Language BABYLONIA: Python - R - JVM language - C/C++/FORTRAN<a class="anchor-link" href="#Language-BABYLONIA:-Python---R---JVM-language---C/C++/FORTRAN">&#182;</a></h1><p>This is a course from the Department of Mathemtics and the language is not as important as the learning outcomes.</p>
+<p>However, in the applied stats / data science / machine-learning/AI communities there is some debate about which language is best for extracting useful and actionable decisions from data. The industrially recommended consensus is simple: "use the right language/package for the task at hand".</p>
+<p>You can see one such debate here:</p>
+<ul>
+<li><a href="https://medium.com/@data_driven/python-vs-r-for-data-science-and-the-winner-is-3ebb1a968197">https://medium.com/@data_driven/python-vs-r-for-data-science-and-the-winner-is-3ebb1a968197</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li>Point Estimation (with empirical risk minimisation principle - point estimation with validation of penalised least squares estimators)<ul>
-<li>bias-variance trade-off (over-fitting)</li>
-<li>hold-out estimators including cross-validation</li>
-</ul>
-</li>
-</ul>
-<p><em>Raaz needs 8-12 hours</em></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="https://medium.com/@data_driven/python-vs-r-for-data-science-and-the-winner-is-3ebb1a968197">https://medium.com/@data_driven/python-vs-r-for-data-science-and-the-winner-is-3ebb1a968197</a></p>
+<p>The best advise from me (Raaz) is the same as the one from industry, from the perspective of preparing for industrial-certified exams. Often jobs that extract menaing from data expect one to be able to code in the right language for the particular task. Having employees that are addicted/habbituated to any one language too much become difficult when they refuse to use a readily available package or tool in a language that they are 'against' using in some sense.</p>
+<p>The great advantage of SageMath is that it is not only a superset of Python but also R (along with several classical numerics libraries like <a href="https://www.gnu.org/software/gsl/">GSL</a>, in addition to mathematically precise type hierarchies we have taken significant advantage of so far).</p>
+<p>For example it is trivial to call R programs from a SageMath notebook, as an R kernel is automatically started for you in the background, as shown below:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="prompt input_prompt">In&nbsp;[209]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">r</span>
@@ -16680,7 +16918,7 @@ a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="prompt input_prompt">In&nbsp;[210]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">r</span>
@@ -16711,6 +16949,29 @@ b
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For peadagogical reasons we will not learn mathematics and basic programming needed for this course in Applied Statistics in Python and R simultaneously from SageMath.</p>
+<p>Moreover, R was not designed for manipulating mathematical objects as we can do in the SageMath/Python pairing (which wraps classical librries from the 60s onwards in a consistent manner with no conflict in name-spaces) and STS students have just had a course in elementary Python programming that can be leveraged, as opposed to learning another language from scratch.</p>
+<p>In any event, we can esily drop into R to make you comfortable with babbling between SageMath/Python and SageMath/R so you can be well-versed in SageMath/Python/R if you wnat to in the future when you take courses that use R, C or C++.</p>
+<p>Here are some starting points for docs on:</p>
+<ul>
+<li>R:<ul>
+<li><a href="https://cran.r-project.org/doc/manuals/R-intro.html">https://cran.r-project.org/doc/manuals/R-intro.html</a></li>
+</ul>
+</li>
+<li>SageMath/R:<ul>
+<li><a href="http://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/r.html">http://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/r.html</a></li>
+</ul>
+</li>
+</ul>
+<p>We take the attitude: "use the right tool for the job!". We will see a crash course on R in SageMath when we see regression.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
