@@ -12758,10 +12758,10 @@ If we observe [1] The likelihood of theta= 1.0  is  1.00000000000000
 
  
  
-<div id="fea9bc0d-5758-4c65-8590-8740a2ee7d1d"></div>
+<div id="b31be452-df52-4c33-b753-4913fa2684e9"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#fea9bc0d-5758-4c65-8590-8740a2ee7d1d');
+var element = $('#b31be452-df52-4c33-b753-4913fa2684e9');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d3b32bdc0fe4aa782e765a6d79c6e0e", "version_minor": 0, "version_major": 2}
@@ -12996,10 +12996,10 @@ $$</p>
 
  
  
-<div id="49cc7fcc-aa2d-42e6-8665-011fa86cdbf6"></div>
+<div id="e6b2aeb9-34a5-4b0b-a5f5-35bfe3a47696"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#49cc7fcc-aa2d-42e6-8665-011fa86cdbf6');
+var element = $('#e6b2aeb9-34a5-4b0b-a5f5-35bfe3a47696');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e071586561f4c51aa701870a00455a0", "version_minor": 0, "version_major": 2}
@@ -13108,10 +13108,10 @@ $$</p>
 
  
  
-<div id="e51ecf35-2cd5-4d13-9129-fcb83b2d3dc2"></div>
+<div id="8638d78b-38a1-4d8e-a30c-9b09324e2d06"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#e51ecf35-2cd5-4d13-9129-fcb83b2d3dc2');
+var element = $('#8638d78b-38a1-4d8e-a30c-9b09324e2d06');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "537a6a85c1b24ff3afc8e674dd34063e", "version_minor": 0, "version_major": 2}
@@ -13600,10 +13600,10 @@ var element = $('#e51ecf35-2cd5-4d13-9129-fcb83b2d3dc2');
 
  
  
-<div id="48e1129f-6717-42dc-b690-aefa07b1e720"></div>
+<div id="08d820d4-0856-47e4-a82c-9fd41fcf1b2b"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#48e1129f-6717-42dc-b690-aefa07b1e720');
+var element = $('#08d820d4-0856-47e4-a82c-9fd41fcf1b2b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6ebdaed0a5a0436094e953c659b6e669", "version_minor": 0, "version_major": 2}
@@ -17425,9 +17425,12 @@ but while constraining $(x_1,x_2)$ to lie within the bounding box given by the s
 <p><br></p>
 <p>We can use this iterative numerical method called <code>optimize.minimize</code> to find the MLe of statistical experiments that have more than one parameter using:</p>
 <ul>
-<li>the numerical expression for the negative log likelihood function and a given dataset</li>
-<li>specifying the appropriate dounding boxes for the parameters (so the likelihood is well-defined)</li>
-<li>specifying good initial conditions for the parameters in <code>optimize.minimize</code> <ul>
+<li>the numerical expression for a function <code>f</code> we want to minimise<ul>
+<li>for us, <code>f</code> will be <code>negLogLkl</code>, the negative log likelihood function, for a given <code>dataset</code></li>
+</ul>
+</li>
+<li>specifying <code>parameter_bounding_box</code>, the appropriate bounding boxes for the parameters (so the likelihood is well-defined)</li>
+<li>specifying <code>initial_arguments</code> for the initial values for the parameters in the iterative <code>optimize.minimize</code> method<ul>
 <li>make sure the initial value is within the bounding box!</li>
 </ul>
 </li>
@@ -17511,6 +17514,13 @@ but while constraining $(x_1,x_2)$ to lie within the bounding box given by the s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Use the <strong>Multi-dimensional Constrained Optimisation</strong> example above (in <code>09.ipynb</code>) to numerically find the MLe for the mean and variance parameter based on <code>normallySimulatedDataSamples</code>, an array obtained by a specific simulation of $30$ IID samples from the $Normal(10,2)$ random variable.</p>
+<p>Recall that $Normal(\mu, \sigma^2)$ RV has the probability density function given by:</p>
+<p>$$
+f(x ;\mu, \sigma) = \displaystyle\frac{1}{\sigma\sqrt{2\pi}}\exp\left(\frac{-1}{2\sigma^2}(x-\mu)^2\right)
+$$</p>
+<p>The two parameters, $\mu \in \mathbb{R} := (-\infty,\infty)$ and $\sigma \in (0,\infty)$, are sometimes referred to as the location and scale parameters.</p>
+<p>You know that the log likelihood function for $n$ IID samples from a Normal RV with parameters $\mu$ and $\sigma$ simply follows from $\sum_{i=1}^n \log(f(x_i; \mu,\sigma))$, based on the IID assumption.</p>
+<p>NOTE: When setting bounding boxes for $\mu$ and $\sigma$ try to start with some guesses like $[-20,20]$ and $[0.1,5.0]$ and make it larger if the solution is at the boundary. Making the left bounding-point for $\sigma$ too close to $0.0$ will cause division by zero Warnings. Other numerical instabilities can happen in such iterative numerical solutions to the MLe. You need to be patient and learn by trial-and-error. You will see the mathematical theory in more details in a future course in scientific computing/optimisation. So don't worry too much now except learning to use it for our problems.</p>
 
 </div>
 </div>
@@ -17530,10 +17540,10 @@ but while constraining $(x_1,x_2)$ to lie within the bounding box given by the s
 <span class="c1"># define the negative log likelihoo function you want to minimise by editing XXX</span>
 <span class="k">def</span> <span class="nf">negLogLklOfIIDNormalSamples</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;return the -log(likelihood) of normallySimulatedDataSamples with mean and var parameters&#39;&#39;&#39;</span>
-    <span class="n">mean_param</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">var_param</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mu_param</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sigma_param</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">XXX</span>
-    <span class="n">XXX</span>
+    <span class="n">XXX</span> <span class="c1"># add more or less lines as you need</span>
     <span class="k">return</span> <span class="n">XXX</span> 
 
 <span class="c1"># you should only change XXX below and not anything else</span>
@@ -17641,8 +17651,8 @@ b
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For peadagogical reasons we will not learn mathematics and basic programming needed for this course in Applied Statistics in Python and R simultaneously from SageMath.</p>
-<p>Moreover, R was not designed for manipulating mathematical objects as we can do in the SageMath/Python pairing (which wraps classical librries from the 60s onwards in a consistent manner with no conflict in name-spaces) and STS students have just had a course in elementary Python programming that can be leveraged, as opposed to learning another language from scratch.</p>
-<p>In any event, we can esily drop into R to make you comfortable with babbling between SageMath/Python and SageMath/R so you can be well-versed in SageMath/Python/R if you wnat to in the future when you take courses that use R, C or C++.</p>
+<p>Moreover, R was not designed for manipulating mathematical objects as we can do in the SageMath/Python pairing (which wraps classical libraries from the 1960s onwards in a consistent manner with no conflict in name-spaces) and STS students have just had a course in elementary Python programming that can be leveraged, as opposed to learning another language from scratch.</p>
+<p>In any event, we can esily drop into R to make you comfortable with babbling between SageMath/Python and SageMath/R so you can be well-versed in SageMath/Python/R if you want to be in the future when you take courses that use R, C or C++.</p>
 <p>Here are some starting points for docs on:</p>
 <ul>
 <li>R:<ul>
@@ -17654,7 +17664,7 @@ b
 </ul>
 </li>
 </ul>
-<p>We take the attitude: "use the right tool for the job!". We will see a crash course on R in SageMath when we see regression.</p>
+<p>We take the attitude: "use the right tool for the job!". We will see a crash demo on using R in SageMath when we see regression.</p>
 
 </div>
 </div>
