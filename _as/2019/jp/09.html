@@ -12757,10 +12757,10 @@ If we observe [1] The likelihood of theta= 1.0  is  1.00000000000000
 
  
  
-<div id="99e2c692-d73f-42c2-aa8d-a13fd4a26802"></div>
+<div id="f98ddddc-97fa-4925-9b30-8bd1d7dff729"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#99e2c692-d73f-42c2-aa8d-a13fd4a26802');
+var element = $('#f98ddddc-97fa-4925-9b30-8bd1d7dff729');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d3b32bdc0fe4aa782e765a6d79c6e0e", "version_minor": 0, "version_major": 2}
@@ -12995,10 +12995,10 @@ $$</p>
 
  
  
-<div id="b676e4c6-5c8c-4c0a-af34-8a4ae4afdef8"></div>
+<div id="9b2ac99d-f506-4e89-a815-9f77f7c16ddb"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#b676e4c6-5c8c-4c0a-af34-8a4ae4afdef8');
+var element = $('#9b2ac99d-f506-4e89-a815-9f77f7c16ddb');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e071586561f4c51aa701870a00455a0", "version_minor": 0, "version_major": 2}
@@ -13107,10 +13107,10 @@ $$</p>
 
  
  
-<div id="1663c0da-a686-46d6-b7f4-3c913808032d"></div>
+<div id="2d2e1382-0739-4356-a3b3-c5e792666d1f"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#1663c0da-a686-46d6-b7f4-3c913808032d');
+var element = $('#2d2e1382-0739-4356-a3b3-c5e792666d1f');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "537a6a85c1b24ff3afc8e674dd34063e", "version_minor": 0, "version_major": 2}
@@ -13599,10 +13599,10 @@ var element = $('#1663c0da-a686-46d6-b7f4-3c913808032d');
 
  
  
-<div id="72749197-bc68-4303-8500-14bcb7fe9874"></div>
+<div id="f18f1f7e-6c12-448b-aaa0-729882b4a62a"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#72749197-bc68-4303-8500-14bcb7fe9874');
+var element = $('#f18f1f7e-6c12-448b-aaa0-729882b4a62a');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6ebdaed0a5a0436094e953c659b6e669", "version_minor": 0, "version_major": 2}
@@ -14872,12 +14872,12 @@ for each term $x_i$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[229]:</div>
+<div class="prompt input_prompt">In&nbsp;[234]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># summing over n samples and setting it equal to 0 and solving for lam gives</span>
 <span class="n">lamHat</span><span class="p">,</span><span class="n">tn</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s1">&#39;lamHat&#39;</span><span class="p">,</span> <span class="s1">&#39;tn&#39;</span><span class="p">)</span> <span class="c1"># declare two more variables, here tn = sum x_i or the sample sum</span>
-<span class="n">lamHat</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="n">tn</span>
+<span class="n">lamHat</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="n">tn</span>
 </pre></div>
 
 </div>
@@ -14887,7 +14887,7 @@ for each term $x_i$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="prompt input_prompt">In&nbsp;[235]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># now evaluate the second derivate for each term in the log likelihood w.r.t lam</span>
@@ -14905,7 +14905,7 @@ for each term $x_i$.</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[230]:</div>
+<div class="prompt output_prompt">Out[235]:</div>
 
 
 
@@ -14922,12 +14922,12 @@ for each term $x_i$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[231]:</div>
+<div class="prompt input_prompt">In&nbsp;[239]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the second derivate is negative since lam &gt; 0, and lamHat is indeed MLE, but we can go one step further</span>
 <span class="c1"># since sample sum is always positive the second derivate at MLe lanHat &lt; 0 and we have a maximum</span>
-<span class="n">d2Logfxi</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">lam</span> <span class="o">=</span> <span class="n">lamHat</span><span class="p">)</span> 
+<span class="n">d2Logfxi</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">lam</span> <span class="o">=</span> <span class="n">lamHat</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14940,13 +14940,13 @@ for each term $x_i$.</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[231]:</div>
+<div class="prompt output_prompt">Out[239]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>-1/3*tn^2</pre>
+<pre>-1/3*tn^2/n^2</pre>
 </div>
 
 </div>
@@ -14957,14 +14957,15 @@ for each term $x_i$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="prompt input_prompt">In&nbsp;[241]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># create a function that returns the MLe for this problem</span>
 <span class="k">def</span> <span class="nf">MLeForSampleExamProblem1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;returns the MLe for the Sample Exam Problem 1 where x is a sample of n data points&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;returns the MLe for the Sample Exam Problem 1 where x is a sample of n data points in a list&#39;&#39;&#39;</span>
     <span class="n">tn</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># get the sample sum statistics</span>
-    <span class="k">return</span> <span class="mi">3</span><span class="o">/</span><span class="n">tn</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="n">tn</span>
 </pre></div>
 
 </div>
@@ -14974,10 +14975,44 @@ for each term $x_i$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[233]:</div>
+<div class="prompt input_prompt">In&nbsp;[242]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="n">MLeForSampleExamProblem1</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># assert that the Mle is correct on a small test input data</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">MLeForSampleExamProblem1</span><span class="p">([</span><span class="mf">2.7</span><span class="p">,</span><span class="mf">2.1</span><span class="p">,</span><span class="mf">3.8</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[242]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.04651162790698</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[244]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="n">MLeForSampleExamProblem1</span><span class="p">([</span><span class="mf">2.7</span><span class="p">,</span><span class="mf">2.1</span><span class="p">,</span><span class="mf">3.8</span><span class="p">])</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0465</span><span class="p">)</span> 
+<span class="c1"># assert that the Mle is correct on a small test input data</span>
 </pre></div>
 
 </div>
