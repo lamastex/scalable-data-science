@@ -12758,10 +12758,10 @@ If we observe [1] The likelihood of theta= 1.0  is  1.00000000000000
 
  
  
-<div id="e167ad1f-a68b-4a37-9269-82888c8fc3a5"></div>
+<div id="fea9bc0d-5758-4c65-8590-8740a2ee7d1d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#e167ad1f-a68b-4a37-9269-82888c8fc3a5');
+var element = $('#fea9bc0d-5758-4c65-8590-8740a2ee7d1d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d3b32bdc0fe4aa782e765a6d79c6e0e", "version_minor": 0, "version_major": 2}
@@ -12996,10 +12996,10 @@ $$</p>
 
  
  
-<div id="d9e84814-87cf-4bf1-af01-f9a2a209e3bb"></div>
+<div id="49cc7fcc-aa2d-42e6-8665-011fa86cdbf6"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#d9e84814-87cf-4bf1-af01-f9a2a209e3bb');
+var element = $('#49cc7fcc-aa2d-42e6-8665-011fa86cdbf6');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e071586561f4c51aa701870a00455a0", "version_minor": 0, "version_major": 2}
@@ -13108,10 +13108,10 @@ $$</p>
 
  
  
-<div id="1209dff0-ff70-41f0-acb3-f28fe790cf0c"></div>
+<div id="e51ecf35-2cd5-4d13-9129-fcb83b2d3dc2"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#1209dff0-ff70-41f0-acb3-f28fe790cf0c');
+var element = $('#e51ecf35-2cd5-4d13-9129-fcb83b2d3dc2');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "537a6a85c1b24ff3afc8e674dd34063e", "version_minor": 0, "version_major": 2}
@@ -13600,10 +13600,10 @@ var element = $('#1209dff0-ff70-41f0-acb3-f28fe790cf0c');
 
  
  
-<div id="5c051e4e-4227-48aa-b62f-59a3d635a521"></div>
+<div id="48e1129f-6717-42dc-b690-aefa07b1e720"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#5c051e4e-4227-48aa-b62f-59a3d635a521');
+var element = $('#48e1129f-6717-42dc-b690-aefa07b1e720');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6ebdaed0a5a0436094e953c659b6e669", "version_minor": 0, "version_major": 2}
@@ -17072,6 +17072,7 @@ If not given, chosen to be one of BFGS, L-BFGS-B, SLSQP, depending if the proble
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Example from https://scipy-lectures.org/advanced/mathematical_optimization/index.html#id38</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span> <span class="c1"># import numpy for np.methods</span>
 <span class="c1"># import optimize from scipy to do numerical optimization</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 
@@ -17235,7 +17236,10 @@ argmin_x of f(x) = 0.699999999784
 <div class="prompt input_prompt">In&nbsp;[294]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">initial_x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># this is where we are initialising the iterative search</span>
@@ -17298,7 +17302,10 @@ argmin_x of f(x) = 0.699999999784
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># these are the same data-points in sampleWaitingTimes collected by Joshua Fenemore</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="c1"># these are the same data-points in sampleWaitingTimes collected by Joshua Fenemore</span>
 <span class="c1"># Here we make the sampleWaitingTimes as a global variable that we will use inside the function f below </span>
 <span class="c1"># this is for simplicity</span>
 <span class="n">sampleWaitingTimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span>\
@@ -17327,7 +17334,9 @@ argmin_x of f(x) = 0.699999999784
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Sample Exam Problem 2 with Solution</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="c1">## Sample Exam Problem 2 with Solution</span>
 <span class="c1"># these are the same data-points in sampleWaitingTimes collected by Joshua Fenemore</span>
 <span class="c1"># Here we make the dataSamples as a global variable that we will use inside the function f below - for simplicity</span>
 <span class="n">sampleWaitingTimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span>\
@@ -17374,7 +17383,9 @@ argmin_x of f(x) = 0.699999999784
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># do not change next line - dataSamplesCoinToss is the sampled data-points</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="c1"># do not change next line - dataSamplesCoinToss is the sampled data-points</span>
 <span class="n">dataSamplesCoinToss</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># finding MLE for IID Bernoulli(theta) RV</span>
@@ -17391,6 +17402,146 @@ argmin_x of f(x) = 0.699999999784
 <span class="n">boundedBernoulliResult</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">negLogLklOBernoulliIIDSamples</span><span class="p">,</span> <span class="n">theta_initial</span><span class="p">,</span> \
                                                   <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.099</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span>
 <span class="n">boundedBernoulliResult</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multi-dimensional-Constrained-Optimisation">Multi-dimensional Constrained Optimisation<a class="anchor-link" href="#Multi-dimensional-Constrained-Optimisation">&#182;</a></h2><p>The following example is from <a href="https://scipy-lectures.org/advanced/mathematical_optimization/index.html#id54">2.7.7.1. Box bounds</a> of <a href="https://scipy-lectures.org/advanced/mathematical_optimization/index.html">scipy lectures on mathematical optimisation</a>.</p>
+<p>We want to find the argument that minimises the function $f$ of two variables $(x_1,x_2)$
+$$
+argmin_{(x_1,x_2) \in [-1.5,1.5]^2} f(x_1,x_2) = \sqrt{\left( (x_1 - 3)^2 + (x_2 - 2)^2 \right)}
+$$
+but while constraining $(x_1,x_2)$ to lie within the bounding box given by the square $[-1.5,1.5]^2 := [-1.5,1.5] \times [-1.5,1.5]$.</p>
+<p><br>
+<br></p>
+<p><img src="https://scipy-lectures.org/_images/sphx_glr_plot_constraints_002.png"></p>
+<p><br></p>
+<p>We can use this iterative numerical method called <code>optimize.minimize</code> to find the MLe of statistical experiments that have more than one parameter using:</p>
+<ul>
+<li>the numerical expression for the negative log likelihood function and a given dataset</li>
+<li>specifying the appropriate dounding boxes for the parameters (so the likelihood is well-defined)</li>
+<li>specifying good initial conditions for the parameters in <code>optimize.minimize</code> <ul>
+<li>make sure the initial value is within the bounding box!</li>
+</ul>
+</li>
+</ul>
+<p>You should have seen these ideas in some form in your scientific computing courses, if not, don't worry as you will see them soon in more advanced scientific computing courses you will be taking in the future.</p>
+<p>If you want to use the source to deepen your understanding through a great set of codes and lecture notes that will help you understand what is going on when we call <code>optimize.minimize</code> method, then please feel free to dive here:</p>
+<ul>
+<li><a href="https://scipy-lectures.org/advanced/mathematical_optimization/auto_examples/plot_gradient_descent.html#sphx-glr-advanced-mathematical-optimization-auto-examples-plot-gradient-descent-py">https://scipy-lectures.org/advanced/mathematical_optimization/auto_examples/plot_gradient_descent.html#sphx-glr-advanced-mathematical-optimization-auto-examples-plot-gradient-descent-py</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[313]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="c1"># define the objective/cost/loss function we want to minimise</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># multi-dimensional optimisation is syntactically similar to 1D, </span>
+<span class="c1"># but we are using Gradient and Hessian information from numerical evaluation of f to </span>
+<span class="c1"># iteratively improve the solution along the steepest direction, etc. </span>
+<span class="c1"># It &#39;LBFGS&#39; method you will see in scientific computing</span>
+<span class="n">parameter_bounding_box</span><span class="o">=</span><span class="p">((</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span> <span class="c1"># specify the constraints for each parameter</span>
+<span class="n">initial_arguments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># point in 2D to initialise the minimize algorithm</span>
+<span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">initial_arguments</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">parameter_bounding_box</span><span class="p">)</span> <span class="c1"># just call the minimize method!</span>
+<span class="c1"># notuce that the argmin x = (1.5,1,5) within the bounding-box.</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[313]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>      fun: 1.5811388300841898
+ hess_inv: &lt;2x2 LbfgsInvHessProduct with dtype=float64&gt;
+      jac: array([-0.94868331, -0.31622778])
+  message: &#39;CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL&#39;
+     nfev: 9
+      nit: 2
+   status: 0
+  success: True
+        x: array([ 1.5,  1.5])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Assignment-3,-PROBLEM-4">Assignment 3, PROBLEM 4<a class="anchor-link" href="#Assignment-3,-PROBLEM-4">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the <strong>Multi-dimensional Constrained Optimisation</strong> example above (in <code>09.ipynb</code>) to numerically find the MLe for the mean and variance parameter based on <code>normallySimulatedDataSamples</code>, an array obtained by a specific simulation of $30$ IID samples from the $Normal(10,2)$ random variable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="c1"># do NOT change the next three lines</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123456</span><span class="p">)</span> <span class="c1"># set seed</span>
+<span class="c1"># simulate 30 IID samples drawn from Normal(10,2)RV</span>
+<span class="n">normallySimulatedDataSamples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> 
+
+<span class="c1"># define the negative log likelihoo function you want to minimise by editing XXX</span>
+<span class="k">def</span> <span class="nf">negLogLklOfIIDNormalSamples</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;return the -log(likelihood) of normallySimulatedDataSamples with mean and var parameters&#39;&#39;&#39;</span>
+    <span class="n">mean_param</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">var_param</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">XXX</span>
+    <span class="n">XXX</span>
+    <span class="k">return</span> <span class="n">XXX</span> 
+
+<span class="c1"># you should only change XXX below and not anything else</span>
+<span class="n">parameter_bounding_box</span><span class="o">=</span><span class="p">((</span><span class="n">XXX</span><span class="p">,</span> <span class="n">XXX</span><span class="p">),</span> <span class="p">(</span><span class="n">XXX</span><span class="p">,</span> <span class="n">XXX</span><span class="p">))</span> <span class="c1"># specify the constraints for each parameter - some guess work...</span>
+<span class="n">initial_arguments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">XXX</span><span class="p">,</span> <span class="n">XXX</span><span class="p">])</span> <span class="c1"># point in 2D to initialise the minimize algorithm</span>
+<span class="n">result_Ass3Prob4</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">XXX</span><span class="p">,</span> <span class="n">initial_arguments</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">parameter_bounding_box</span><span class="p">,</span> <span class="n">XXX</span><span class="p">)</span> 
+<span class="c1"># call the minimize method above finally! you need to play a bit to get initial conditions and bounding box ok</span>
+<span class="n">result_Ass3Prob4</span>
 </pre></div>
 
 </div>
