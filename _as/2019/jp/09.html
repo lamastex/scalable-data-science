@@ -12757,10 +12757,10 @@ If we observe [1] The likelihood of theta= 1.0  is  1.00000000000000
 
  
  
-<div id="f98ddddc-97fa-4925-9b30-8bd1d7dff729"></div>
+<div id="89f9e961-3da6-4255-8e94-1a14a18cea1e"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#f98ddddc-97fa-4925-9b30-8bd1d7dff729');
+var element = $('#89f9e961-3da6-4255-8e94-1a14a18cea1e');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d3b32bdc0fe4aa782e765a6d79c6e0e", "version_minor": 0, "version_major": 2}
@@ -12995,10 +12995,10 @@ $$</p>
 
  
  
-<div id="9b2ac99d-f506-4e89-a815-9f77f7c16ddb"></div>
+<div id="1b11f1ff-d90c-4e6a-96ca-60f950e6e16b"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9b2ac99d-f506-4e89-a815-9f77f7c16ddb');
+var element = $('#1b11f1ff-d90c-4e6a-96ca-60f950e6e16b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e071586561f4c51aa701870a00455a0", "version_minor": 0, "version_major": 2}
@@ -13107,10 +13107,10 @@ $$</p>
 
  
  
-<div id="2d2e1382-0739-4356-a3b3-c5e792666d1f"></div>
+<div id="f8634f98-adf8-4066-a18d-88ed56caf3cd"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#2d2e1382-0739-4356-a3b3-c5e792666d1f');
+var element = $('#f8634f98-adf8-4066-a18d-88ed56caf3cd');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "537a6a85c1b24ff3afc8e674dd34063e", "version_minor": 0, "version_major": 2}
@@ -13599,10 +13599,10 @@ var element = $('#2d2e1382-0739-4356-a3b3-c5e792666d1f');
 
  
  
-<div id="f18f1f7e-6c12-448b-aaa0-729882b4a62a"></div>
+<div id="ac9b3787-d71b-4b6f-a982-f4f61eacc7b5"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#f18f1f7e-6c12-448b-aaa0-729882b4a62a');
+var element = $('#ac9b3787-d71b-4b6f-a982-f4f61eacc7b5');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6ebdaed0a5a0436094e953c659b6e669", "version_minor": 0, "version_major": 2}
@@ -15034,7 +15034,7 @@ for each term $x_i$.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using the steps in the Sample Exam Problem 1 with Solution in notebook <code>09.ipynb</code>, derive the maximum likelihood estimate for $n$ IID samples from a random variable with the following Probability density function:
+<p>Using the steps in the Sample Exam Problem 1 with Solution in notebook <code>09.ipynb</code>, derive the maximum likelihood estimate for $n$ IID samples from a random variable with the following probability density function:
 $$
 f(x; \lambda) = \frac{1}{24} \lambda^5 x^4 \exp(-\lambda x), \qquad \text{ where, } \lambda&gt;0, x &gt; 0
 $$</p>
@@ -16897,6 +16897,66 @@ publicid,eventtype,origintime,modificationtime,longitude, latitude, magnitude, d
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Assignment-3,-PROBLEM-2">Assignment 3, PROBLEM 2<a class="anchor-link" href="#Assignment-3,-PROBLEM-2">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Joshua Fenemore collected data in 2007 on waiting times at the Orbiter bus-stop close to University of Canterbury, Christchurch, New Zealand.
+The sampled waiting times at the bus-stop, i.e., the inter-arrival time between consecutive buses, were recored in units of nearest minute and are given in the list <code>sampleWaitingTimes</code> below.</p>
+<p>Your <strong>task</strong> is to assume that the inter-arrival time between Orbiter buses is independent and identically distributed according to $Exponential(\lambda)$ random variable and write a generic function:</p>
+<ul>
+<li>called <code>mleOfExponetialLambdaRVFromIIDSamples(samples)</code>,</li>
+<li>where <code>samples</code> is a <code>list</code> of  data points assumed to be drawn from IID  $Exponential(\lambda)$ random variable,</li>
+<li>such that, the function returns the maximum likelihood estimate or MLe $\widehat{\lambda}_n$ of the unknown rate parameter $\lambda$ </li>
+<li>finally get the MLe for Joshua's data by calling your function on his samples as follows:<ul>
+<li><code>mleOfRateParameterForOrbiterWaitingTimes = mleOfExponetialLambdaRVFromIIDSamples(sampleWaitingTimes)</code></li>
+</ul>
+</li>
+</ul>
+<p>(NOTE: The MLe for this model was already derived "above", i.e., in <code>09.ipynb</code>, so you can directly use this expression to complete your task).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[245]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># do not change the sampled data-points in sampleWaitingTimes</span>
+<span class="n">sampleWaitingTimes</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>\
+                    <span class="mi">21</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>\
+                    <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> \
+                    <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> \
+                    <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>\
+                    <span class="mi">6</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># do not change the next line, but just replace XXX - 1 POINT</span>
+<span class="c1"># in the body of the function to complete your task</span>
+<span class="k">def</span> <span class="nf">mleOfExponetialLambdaRVFromIIDSamples</span><span class="p">(</span><span class="n">samples</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;XXX&#39;&#39;&#39;</span>
+    <span class="n">XXX</span>
+    <span class="n">XXX</span>
+    <span class="k">return</span> <span class="n">XXX</span>
+
+<span class="c1"># You should not change anything in the line below - 1 POINT</span>
+<span class="n">mleOfRateParameterForOrbiterWaitingTimes</span> <span class="o">=</span> <span class="n">mleOfExponetialLambdaRVFromIIDSamples</span><span class="p">(</span><span class="n">sampleWaitingTimes</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
