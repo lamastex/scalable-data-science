@@ -12757,10 +12757,10 @@ If we observe [1] The likelihood of theta= 1.0  is  1.00000000000000
 
  
  
-<div id="89f9e961-3da6-4255-8e94-1a14a18cea1e"></div>
+<div id="64db7fb0-63da-4d09-ab29-fa4b084e4874"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#89f9e961-3da6-4255-8e94-1a14a18cea1e');
+var element = $('#64db7fb0-63da-4d09-ab29-fa4b084e4874');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "8d3b32bdc0fe4aa782e765a6d79c6e0e", "version_minor": 0, "version_major": 2}
@@ -12995,10 +12995,10 @@ $$</p>
 
  
  
-<div id="1b11f1ff-d90c-4e6a-96ca-60f950e6e16b"></div>
+<div id="358e06b0-9db3-43b3-9ccc-63ed96b4e378"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#1b11f1ff-d90c-4e6a-96ca-60f950e6e16b');
+var element = $('#358e06b0-9db3-43b3-9ccc-63ed96b4e378');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e071586561f4c51aa701870a00455a0", "version_minor": 0, "version_major": 2}
@@ -13107,10 +13107,10 @@ $$</p>
 
  
  
-<div id="f8634f98-adf8-4066-a18d-88ed56caf3cd"></div>
+<div id="91275a3e-5eaf-4f39-ba40-db93ff0641ed"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#f8634f98-adf8-4066-a18d-88ed56caf3cd');
+var element = $('#91275a3e-5eaf-4f39-ba40-db93ff0641ed');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "537a6a85c1b24ff3afc8e674dd34063e", "version_minor": 0, "version_major": 2}
@@ -13599,10 +13599,10 @@ var element = $('#f8634f98-adf8-4066-a18d-88ed56caf3cd');
 
  
  
-<div id="ac9b3787-d71b-4b6f-a982-f4f61eacc7b5"></div>
+<div id="1369f2bf-8ca0-4d43-9e4b-5eb43fb58839"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#ac9b3787-d71b-4b6f-a982-f4f61eacc7b5');
+var element = $('#1369f2bf-8ca0-4d43-9e4b-5eb43fb58839');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6ebdaed0a5a0436094e953c659b6e669", "version_minor": 0, "version_major": 2}
@@ -16951,6 +16951,451 @@ The sampled waiting times at the bus-stop, i.e., the inter-arrival time between 
 
 <span class="c1"># You should not change anything in the line below - 1 POINT</span>
 <span class="n">mleOfRateParameterForOrbiterWaitingTimes</span> <span class="o">=</span> <span class="n">mleOfExponetialLambdaRVFromIIDSamples</span><span class="p">(</span><span class="n">sampleWaitingTimes</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Numerical-Optimisation-for-Finding-MLE">Numerical Optimisation for Finding MLE<a class="anchor-link" href="#Numerical-Optimisation-for-Finding-MLE">&#182;</a></h1><p>Instead of analytically (by pencil/paper) or symbolically (with SageMath) solving for the MLe of the parameter from the log-likelihood function, we can use numerical optimisation methods in SageMath/Python.</p>
+<p>The main function we need with multiple optimisation methods is the following:</p>
+<ul>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html</a></li>
+</ul>
+<p>Here is a brief of the doc:</p>
+<p>scipy.optimize.minimize(fun, x0, args=(), method=None, jac=None, hess=None, hessp=None, bounds=None, constraints=(), tol=None, callback=None, options=None)[source]
+Minimization of scalar function of one or more variables.</p>
+<p>Parameters: 
+fun : callable
+The objective function to be minimized.</p>
+<p>fun(x, *args) -&gt; float</p>
+<p>where x is an 1-D array with shape (n,) and args is a tuple of the fixed parameters needed to completely specify the function.</p>
+<p>x0 : ndarray, shape (n,)
+Initial guess. Array of real elements of size (n,), where ‘n’ is the number of independent variables.</p>
+<p>args : tuple, optional
+Extra arguments passed to the objective function and its derivatives (fun, jac and hess functions).</p>
+<p>method : str or callable, optional
+Type of solver. Should be one of</p>
+<ul>
+<li>‘Nelder-Mead’ (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-neldermead.html#optimize-minimize-neldermead">see here</a>)</li>
+<li>...</li>
+<li>‘BFGS’ (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-bfgs.html#optimize-minimize-bfgs">see here</a>)</li>
+<li>‘Newton-CG’ (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-newtoncg.html#optimize-minimize-newtoncg">see here</a>)</li>
+<li>‘L-BFGS-B’ (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html#optimize-minimize-lbfgsb">see here</a>)</li>
+<li>...</li>
+<li>‘SLSQP’ (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">see here</a>)</li>
+<li>...</li>
+</ul>
+<p>custom - a callable object (added in version 0.14.0), see below for description.
+If not given, chosen to be one of BFGS, L-BFGS-B, SLSQP, depending if the problem has constraints or bounds.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-great-set-of-lectures-in-Optimisation-in-next-URL">A great set of lectures in Optimisation in next URL<a class="anchor-link" href="#A-great-set-of-lectures-in-Optimisation-in-next-URL">&#182;</a></h1><p>You have seen some methods in scientific computing and will see more in your programme.</p>
+<p>Here we just use some basic methods in numerical optimisation to be able to find the maximum likelihood estimate.</p>
+<p>Note that in optimisation one is interested in minimising a cost or loss, so we need to recast MLe problem as minimising negative of the log likelihood function:</p>
+<p>$$argmax_{\theta \in \mathbf{\Theta}} \log(L(\theta)) = argmin_{\theta \in \mathbf{\Theta}} - \log(L(\theta))$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[267]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">showURL</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ht</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return an IFrame of the url to show in notebook with height ht&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+    <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">ht</span><span class="p">)</span> 
+<span class="n">showURL</span><span class="p">(</span><span class="s2">&quot;https://scipy-lectures.org/advanced/mathematical_optimization/index.html&quot;</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[267]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="95%"
+            height="500"
+            src="https://scipy-lectures.org/advanced/mathematical_optimization/index.html"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.7.2.1.-Getting-started:-1D-Optimisation">2.7.2.1. Getting started: 1D Optimisation<a class="anchor-link" href="#2.7.2.1.-Getting-started:-1D-Optimisation">&#182;</a></h3><p>This example is from <a href="https://scipy-lectures.org/advanced/mathematical_optimization/index.html#id38">https://scipy-lectures.org/advanced/mathematical_optimization/index.html#id38</a></p>
+<blockquote><p>Let’s get started by finding the minimum of the scalar function $f(x)=\exp(x-0.7)^2$. 
+<code>scipy.optimize.minimize_scalar()</code> uses Brent’s method to find the minimum of a function</p>
+</blockquote>
+<p>See <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html#scipy.optimize.minimize_scalar">docs for <code>scipy.optimize.minimize_scalar()</code></a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[272]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Example from https://scipy-lectures.org/advanced/mathematical_optimization/index.html#id38</span>
+
+<span class="c1"># import optimize from scipy to do numerical optimization</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="c1">#define the function f we want to minimize - see points plot below</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#call the optimize.minimize_scalar method to find the minimim, argmin, etc.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;result.success = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">))</span> <span class="c1"># check if solver was successful</span>
+
+<span class="c1"># argmin, i.e., the x that minimizes f(x)</span>
+<span class="n">x_min</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+
+<span class="c1"># note argmin is close to the true argmin at 0.7</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;argmin_x of f(x) = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x_min</span><span class="p">))</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>result.success = True
+argmin_x of f(x) = 0.699999999784
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[275]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">xValuesToPlot</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">points</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">xValuesToPlot</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">xValuesToPlot</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[275]:</div>
+
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[278]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the value of the function&#39;s minimum, number of function evaluations, number of iterations</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">nfev</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(-1.0, 13, 9)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[287]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">result</span> <span class="c1"># we can see result directly too</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[287]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>     fun: -1.0
+    nfev: 13
+     nit: 9
+ success: True
+       x: 0.6999999997839409</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Bounded-1D-Optimisation">Bounded 1D Optimisation<a class="anchor-link" href="#Bounded-1D-Optimisation">&#182;</a></h2><p>In MLe problems we often want to optimise or minimise $f(x)$ while constraining of bounding $x$ to be inside an interval, say $[0,1]$. This is possible using <code>method='bounded'</code> in our previous example. The implementation uses Brent's method under the set constraints.</p>
+<p>See <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html#scipy.optimize.minimize_scalar">docs for <code>scipy.optimize.minimize_scalar()</code></a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[294]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">initial_x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># this is where we are initialising the iterative search</span>
+<span class="n">boundedResult</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">initial_x</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span>
+<span class="n">boundedResult</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[294]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>     fun: -0.99999999999979161
+ message: &#39;Solution found.&#39;
+    nfev: 8
+  status: 0
+ success: True
+       x: 0.69999954355294169</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Maximum-Likelihood-Estimate-using-Optimisation">Maximum Likelihood Estimate using Optimisation<a class="anchor-link" href="#Maximum-Likelihood-Estimate-using-Optimisation">&#182;</a></h2><p>Let us apply the above idea in <strong>Bounded 1D Optimisation</strong> to find the MLe for statistical experiments from $n$ IID samples that are assumed to drawn from a random variable with only one real-valued parameter that satisfies some given  constraints.</p>
+<p>We can thus get the MLe by minimising the negative log likelihood function <em>numerically</em> using <em>floating-point numbers</em> via <code>numpy</code> ans <code>scipy</code> libraries/packages (such methods are also  called <em>scientific computing</em>) .</p>
+<p>This approach is easier in a sense as you only need the likelhood expression, however, it comes at a price. The solutions do not in general have guarantees unless various conditions are satisfied. However, a lot of successful methods in statistical machine learning and AI are based on such methods!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sample-Exam-Problem-2-with-Solution">Sample Exam Problem 2 with Solution<a class="anchor-link" href="#Sample-Exam-Problem-2-with-Solution">&#182;</a></h1><p>Use Bounded 1D Optimisation to find the maximum likelihood estimate for the IID $Exponential(\lambda)$ experiment using data in the array <code>dataSamples</code> below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># these are the same data-points in sampleWaitingTimes collected by Joshua Fenemore</span>
+<span class="c1"># Here we make the sampleWaitingTimes as a global variable that we will use inside the function f below </span>
+<span class="c1"># this is for simplicity</span>
+<span class="n">sampleWaitingTimes</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>\
+                    <span class="mi">21</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>\
+                    <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> \
+                    <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> \
+                    <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>\
+                    <span class="mi">6</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># finding MLE for IID exponential(paramLambda) RV - replace XXX by the right expression</span>
+<span class="c1"># do NOT change the function name `negLogLklOfExpIIDSamples`</span>
+<span class="k">def</span> <span class="nf">negLogLklOfExpIIDSamples</span><span class="p">(</span><span class="n">paramLam</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;negative log likelihood function for IID expoenential trials&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">XXX</span>
+
+<span class="c1"># you should NOT change the next two lines</span>
+<span class="n">boundedResult</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">negLogLklOfExpIIDSamples</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span>
+<span class="n">boundedResult</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Sample Exam Problem 2 with Solution</span>
+<span class="c1"># these are the same data-points in sampleWaitingTimes collected by Joshua Fenemore</span>
+<span class="c1"># Here we make the dataSamples as a global variable that we will use inside the function f below - for simplicity</span>
+<span class="n">sampleWaitingTimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>\
+                    <span class="mi">21</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>\
+                    <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> \
+                    <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> \
+                    <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>\
+                    <span class="mi">6</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># finding MLE for IID exponential(paramLambda) RV</span>
+<span class="k">def</span> <span class="nf">negLogLklOfExpIIDSamples</span><span class="p">(</span><span class="n">paramLam</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;negative log likelihood function for IID expoenential trials&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">paramLam</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">paramLam</span> <span class="o">*</span> <span class="n">sampleWaitingTimes</span><span class="p">))</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="n">boundedResult</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">negLogLklOfExpIIDSamples</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span>
+<span class="n">boundedResult</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Assignment-3,-PROBLEM-3">Assignment 3, PROBLEM 3<a class="anchor-link" href="#Assignment-3,-PROBLEM-3">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use Bounded 1D Optimisation to find the maximum likelihood estimate for the IID $Bernoulli(\theta)$ experiment using data in the array <code>dataSamples</code> below.</p>
+<p>HINT: First, Study the Solution to the <strong>Sample Exam Problem 2</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># do not change next line - dataSamplesCoinToss is the sampled data-points</span>
+<span class="n">dataSamplesCoinToss</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># finding MLE for IID Bernoulli(theta) RV</span>
+<span class="c1"># do not Chnage the name of the next function - just replace XXX</span>
+<span class="k">def</span> <span class="nf">negLogLklOBernoulliIIDSamples</span><span class="p">(</span><span class="n">paramLam</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;XXX&#39;&#39;&#39;</span>
+    <span class="n">XXX</span>
+    <span class="n">XXX</span>
+    <span class="k">return</span> <span class="n">XXX</span>
+
+<span class="n">theta_initial</span><span class="o">=</span><span class="n">XXX</span>
+
+<span class="c1"># do NOT change the next two lines</span>
+<span class="n">boundedBernoulliResult</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">negLogLklOBernoulliIIDSamples</span><span class="p">,</span> <span class="n">theta_initial</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.099</span><span class="p">),</span>\
+                                         <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span>
+<span class="n">boundedBernoulliResult</span>
 </pre></div>
 
 </div>
