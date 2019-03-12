@@ -11793,13 +11793,14 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Topics">Topics<a class="anchor-link" href="#Topics">&#182;</a></h3><ul>
-<li>Non-parametric Estimation</li>
+<li>Nonparametric Estimation</li>
 <li>Glivenko-Cantelli Theorem</li>
 <li>Dvoretsky-Kiefer-Wolfowitz Inequality</li>
-<li>Hypothesis Testing</li>
+<li>Plug-in Estimator</li>
+<li>Nonparametric Confidence Intervals via Bootstrap</li>
+<li>Nonparametric Hypothesis Testing </li>
 <li>Permutation Testing</li>
 <li>Permutation Testing with Shells Data</li>
-<li>Plug-in Estimation and Bootstraps</li>
 </ul>
 <h2 id="Inference-and-Estimation:-The-Big-Picture">Inference and Estimation: The Big Picture<a class="anchor-link" href="#Inference-and-Estimation:-The-Big-Picture">&#182;</a></h2><p>The Big Picture is about inference and estimation, and especially inference and estimation problems where computational techniques are helpful.</p>
 <table border="1" cellspacing="2" cellpadding="2" align="center">
@@ -11808,6 +11809,7 @@ div#notebook {
 <td style="background-color: #ccccff;" align="center">&nbsp;</td>
 <td style="background-color: #ccccff;" align="center"><strong>Point estimation</strong></td>
 <td style="background-color: #ccccff;" align="center"><strong>Set estimation</strong></td>
+<td style="background-color: #ccccff;" align="center"><strong>Hypothesis Testing</strong></td>
 </tr>
 <tr>
 <td style="background-color: #ccccff;">
@@ -11818,7 +11820,10 @@ div#notebook {
 <p>MLE of finitely many parameters<br /><span style="color: #3366ff;"><em>done</em></span></p>
 </td>
 <td style="background-color: #ccccff;" align="center">
-<p>Confidence intervals,<br /> via the central limit theorem</p>
+<p>Asymptotically Normal Confidence Intervals<br /><span style="color: #3366ff;"><em>done</em></span></p>
+</td>
+<td style="background-color: #ccccff;" align="center">
+<p>Wald Test from Confidence Interval<br /><span style="color: #3366ff;"><em>done</em></span></p>
 </td>
 </tr>
 <tr>
@@ -11827,6 +11832,8 @@ div#notebook {
 </td>
 <td style="background-color: #ccccff;" align="center"><strong><em><span style="color: #3366ff;">about to see ... </span></em></strong></td>
 <td style="background-color: #ccccff;" align="center"><strong><em><span style="color: #3366ff;">about to see ... </span></em></strong></td>
+<td style="background-color: #ccccff;" align="center"><strong><em><span style="color: #3366ff;">about to see ... </span></em></strong></td>
+</td>
 </tr>
 </tbody>
 </table><p>So far we have seen parametric models, for example</p>
@@ -12119,10 +12126,10 @@ div#notebook {
 
  
  
-<div id="22d87c38-2349-4eaa-8fae-f883a5fbbbc2"></div>
+<div id="099af9cd-5f3a-4f38-956d-bba4580dd8ce"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#22d87c38-2349-4eaa-8fae-f883a5fbbbc2');
+var element = $('#099af9cd-5f3a-4f38-956d-bba4580dd8ce');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "fcc73c601f0c4e369ea0b2f2143b4522", "version_minor": 0, "version_major": 2}
@@ -12168,10 +12175,10 @@ var element = $('#22d87c38-2349-4eaa-8fae-f883a5fbbbc2');
 
  
  
-<div id="3f9312d8-8090-4e42-a03b-3b73155e3110"></div>
+<div id="6dfa6064-b70c-42d6-ad6d-8809f6b95f84"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#3f9312d8-8090-4e42-a03b-3b73155e3110');
+var element = $('#6dfa6064-b70c-42d6-ad6d-8809f6b95f84');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "40de98edefb84f49a5e11b7e05b23aeb", "version_minor": 0, "version_major": 2}
@@ -13105,10 +13112,10 @@ drwxr-xr-x 24 sage sage     768 Mar  8 13:56 ..
 
  
  
-<div id="9e1e1a92-00ba-4776-b104-75ceb5562a96"></div>
+<div id="15989b97-f650-4b75-8256-ac218761dfde"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9e1e1a92-00ba-4776-b104-75ceb5562a96');
+var element = $('#15989b97-f650-4b75-8256-ac218761dfde');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "a7465698a57f4f7c864073fe3e75d6a3", "version_minor": 0, "version_major": 2}
@@ -13183,6 +13190,7 @@ to estimate $T(F)={F}^{[-1]}(q)$, and $\widehat{F}_n^{[-1]}(q)$ is called the <s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Example:--Estimating-quantiles-of-inter-earthquake-times">Example:  Estimating quantiles of inter-earthquake times<a class="anchor-link" href="#Example:--Estimating-quantiles-of-inter-earthquake-times">&#182;</a></h3><p>We can simply call the quantile function knowing that it is just a plug-in estimator of the $q$-th quantile.</p>
+<h4 id="Quantiles-and-Percentiles">Quantiles and Percentiles<a class="anchor-link" href="#Quantiles-and-Percentiles">&#182;</a></h4><p>If $q \in [0,100]$ then we call $(\frac{q}{100})$-th quantile as the $q$-th percentile.</p>
 
 </div>
 </div>
@@ -13271,9 +13279,53 @@ to estimate $T(F)={F}^{[-1]}(q)$, and $\widehat{F}_n^{[-1]}(q)$ is called the <s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Bootstrap:-Nonparametric-Set-Estimators">Bootstrap: Nonparametric Set Estimators<a class="anchor-link" href="#Bootstrap:-Nonparametric-Set-Estimators">&#182;</a></h1><p>Plug-in estimators are point estimators. Next we will see a very general way called <strong>bootstrap</strong> to obtain set estimators of $\theta^* = T(F^*)$, some statistical functional of interest, when we do not make any parametric assumptions about the underlying unknown distribution function $F^*$ in our IID experiment:</p>
+<h1 id="Bootstrap-for-Confidence-Sets-in-Nonparametric-Experiments">Bootstrap for Confidence Sets in Nonparametric Experiments<a class="anchor-link" href="#Bootstrap-for-Confidence-Sets-in-Nonparametric-Experiments">&#182;</a></h1><blockquote><p>This is an adaptation of <em>All of Statistics (2003)</em> by Wasserman of Carnegie Mellon University, Pittsburgh, PA, USA (one of the first universities that started presenting an integrated research and educational view of mathematical statistics and machine learning, along both theoretical and applied fronts).</p>
+</blockquote>
+<p>Plug-in estimators are point estimators. Next we will see a very general way to obtain set estimators of $\theta^* = T(F^*)$, some statistical functional of interest, when we do not make any parametric assumptions about the underlying unknown distribution function $F^*$ in our IID experiment:</p>
 <p>$$X_1,\ldots,X_n \overset{IID}{\sim}F^* \in \{ \text{ all DFs } \}$$</p>
-<p>NOTE: To get confidence sets (or intervals in 1D) we need to obtain estimated standard error $\widehat{se}_n$ of our point estimator, such as the plug-in estimator, $\widehat{\Theta}_n$ of $\theta^*=T(F^*)$. This is generally not possible. However, the simple bootstrap gives us a helping hand.</p>
+<p>NOTE: To get confidence sets (or intervals in 1D) we need to obtain estimated standard error $\widehat{se}_n$ of our point estimator, such as the plug-in estimator, $\widehat{\Theta}_n$ of $\theta^*=T(F^*)$. This is generally not possible. However, the bootstrap due to Efron gives us a helping hand.</p>
+<p>The <strong>bootstrap</strong> is a statistical method for estimating standard errors and confidence sets of statistics, such as estimators.</p>
+<p>Let $T_n := T_n((X_1,X_2,\ldots,X_n))$ be a statistic, i.e, any function of the data $X_1,X_2,\ldots,X_n \overset{IID}{\sim} F^*$.</p>
+<p>Suppose we want to know its variance $V_{F^*}(T_n)$, which clearly depends on the fixed and possibly unknown DF $F^*$ (hence the subscripting by $F^*$ to emphasise this dependence).</p>
+<p>If our statistic $T_n$ is one with an analytically unknown variance, then we can use the bootstrap to estimate it.</p>
+<p>The bootstrap idea has the following <strong>two basic steps</strong> with their underlying assumptions:</p>
+<ul>
+<li>$\mathsf{Step~1}$: <em>Estimate</em> $V_{F^*}(T_n)$ with $V_{\widehat{F}_n}(T_n)$.<ul>
+<li>Here we are assuming that $n$ is large enough so that $\widehat{F}_n$ is a good approximation of $F^*$.</li>
+</ul>
+</li>
+<li>$\mathsf{Step~2}$: <em>Approximate</em> $V_{\widehat{F}_n}(T_n)$ using simulated data from the "Bootstrap World." (Glivenko-Cantelli Theorem and Dvoretzky-Kiefer-Wolfowitz Inequality)<ul>
+<li>Here we are assuming that the simulated data is available $B$ times for large enough $B$ to approximate $V_{\widehat{F}_n}(T_n)$ (Law of Large Numbers)</li>
+</ul>
+</li>
+</ul>
+<p>For example, if $T_n=\overline{X}_n$, in $\mathsf{Step~1}$, $V_{\widehat{F}_n}(T_n) = s_n^2/n$, where $s_n^2=n^{-1} \sum_{i=1}^n (x_i-\overline{x}_n)$ is the sample variance and $\overline{x}_n$ is the sample mean.  In this case,  $\mathsf{Step~1}$ is enough.  However, when the statistic $T_n$ is more complicated (e.g. $T_n=\widetilde{X}_n = F^{[-1]}(0.5)$), the sample median, then we may not be able to find a simple expression for $V_{\widehat{F}_n}(T_n)$ and may need $\mathsf{Step~2}$ of the bootstrap.</p>
+<p>$$
+\boxed{
+\begin{eqnarray}
+\text{Real World Data come from} &amp;  F^* \quad \implies X_1,X_2,\ldots,X_n &amp; \implies
+T_n((X_1,X_2,\ldots,X_n))=t_n \notag \\
+\text{Bootstrap World Data come from} &amp; \widehat{F}_n \quad  \implies X^{\bullet}_1,X^{\bullet}_2,\ldots,X^{\bullet}_n &amp; \implies
+T_n((X^{\bullet}_1,X^{\bullet}_2,\ldots,X^{\bullet}_n))=t^{\bullet}_n \notag
+\end{eqnarray}
+}
+$$</p>
+<p>Observe that drawing an observation from the empirical DF $\widehat{F}_n$ is equivalent to drawing one point at random from the original data (think of the indices $[n] := \{ 1,2,\ldots,n \}$ of the original data $X_1,X_2,\ldots,X_n$ being drawn according to the equi-probable $de~Moivre(1/n,1/n,\ldots,1/n)$ RV on $[n]$).  Thus, to simulate $X^{\bullet}_1,X^{\bullet}_2,\ldots,X^{\bullet}_n$ from $\widehat{F}_n$, it is enough to drawn $n$ observations with replacement from the dataset $\{X_1,X_2,\ldots,X_n\}$.</p>
+<p>In summary, the algorithm for Bootstrap Variance Estimation is:</p>
+<blockquote><ul>
+<li>$\mathsf{Step~1}$: Draw $X^{\bullet}_1,X^{\bullet}_2,\ldots,X^{\bullet}_n \sim \widehat{F}_n$</li>
+<li>$\mathsf{Step~2}$: Compute $t_n^{\bullet} = T_n((X^{\bullet}_1,X^{\bullet}_2,\ldots,X^{\bullet}_n))$</li>
+<li>$\mathsf{Step~3}$: Repeat $\mathsf{Step~1}$ and $\mathsf{Step~2}$ $B$ times, for some large $B$, say $B&gt;1000$, to get $t_{n,1}^{\bullet}, t_{n,2}^{\bullet},\ldots,t_{n,B}^{\bullet}$</li>
+<li>$\mathsf{Step~4}$: Several ways of estimating the bootstrap confidence intervals are possible, we use the one based on percentiles:<ul>
+<li>The $1-\alpha$ percentile-based bootstrap confidence interval is:
+$$
+C_n=[\widehat{G^{\bullet}}_{n}^{-1}(\alpha/2),\widehat{G^{\bullet}}_{n}^{-1}(1-\alpha/2)] ,
+$$
+where $\widehat{G^{\bullet}}_{n}$ is the empirical DF of the bootstrapped $t_{n,1}^{\bullet}, t_{n,2}^{\bullet},\ldots,t_{n,B}^{\bullet}$ and $\widehat{G^{\bullet}}_{n}^{-1}(q)$ is the $q^{\text{th}}$ sample quantile of $t_{n,1}^{\bullet}, t_{n,2}^{\bullet},\ldots,t_{n,B}^{\bullet}$.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 
 </div>
 </div>
@@ -13282,7 +13334,862 @@ to estimate $T(F)={F}^{[-1]}(q)$, and $\widehat{F}_n^{[-1]}(q)$ is called the <s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nonparametric-Hypothesis-Testing">Nonparametric Hypothesis Testing<a class="anchor-link" href="#Nonparametric-Hypothesis-Testing">&#182;</a></h1><p>What if we are not interested in estimating $F^*$ itself, but we are interested in scientificially investigating whether two distributions are the same.  For example, perhaps, whether the distribution of earthquake magnitudes was the same in April as it was in March.  Then, we should attempt to reject a falsifiable hypothesis ...</p>
+<h2 id="Confidence-Interval-via-Bootstrap---Median-of-inter-EQ-Times-in-Minutes">Confidence Interval via Bootstrap - Median of inter-EQ Times in Minutes<a class="anchor-link" href="#Confidence-Interval-via-Bootstrap---Median-of-inter-EQ-Times-in-Minutes">&#182;</a></h2><p>Use Bootstrap to obtain a 95% confidence interval of the median inter earth-quate time in minutes. Use this interval to test the null hypothesis that the median inter earth-quate time is 10 minutes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Sample Exam Problem x - Solution</span>
+<span class="c1"># Be patient! this can take a couple minutes; reduce B to 100 to save time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">iQMinutes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interQuakesSecs</span><span class="p">)</span><span class="o">/</span><span class="mf">60.0</span>
+<span class="n">sampleMedian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">,</span><span class="mf">50.0</span><span class="p">)</span> <span class="c1"># median </span>
+<span class="k">print</span> <span class="s2">&quot;The sample median = &quot;</span><span class="p">,</span><span class="n">sampleMedian</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># Number of Bootstrap replications</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">)</span> <span class="c1"># sample size of the original dataset</span>
+<span class="n">bootstrappedSampleMedians</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># list to store the sample medians from each bootstrapped data</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+    <span class="c1">#sample indices at random between 0 and len(iQMinutes)-1 to make the bootstrapped dataset</span>
+    <span class="n">randIndices</span><span class="o">=</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> 
+    <span class="n">bootstrappedDataset</span> <span class="o">=</span> <span class="n">iQMinutes</span><span class="p">[</span><span class="n">randIndices</span><span class="p">]</span> <span class="c1"># resample with replacement from original dataset</span>
+    <span class="n">bootstrappedMedian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedDataset</span><span class="p">,</span><span class="mf">50.0</span><span class="p">)</span>
+    <span class="n">bootstrappedSampleMedians</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bootstrappedMedian</span><span class="p">)</span>
+
+<span class="n">lower95BootstrapCIForMedian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedSampleMedians</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">upper95BootstrapCIForMedian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedSampleMedians</span><span class="p">,</span><span class="mf">97.5</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s2">&quot;The inner 95% percentile based Confidence Interval for the Median = &quot;</span>
+<span class="k">print</span> <span class="s2">&quot;[ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lower95BootstrapCIForMedian</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; , &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">upper95BootstrapCIForMedian</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot; ]&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The sample median =  15.5166666667
+The inner 95% percentile based Confidence Interval for the Median = 
+[ 15.1666666667 , 15.85 ]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Testing-via-Bootstrap">Testing via Bootstrap<a class="anchor-link" href="#Testing-via-Bootstrap">&#182;</a></h2><p>We reject the null that the median is $10$ minutes if $10$ is not inside the 95% confidence interval for the median we just obtained via bootstrap. This is just like the Wald test except that we use the bootstrap instead of the asymptotic normality of the maximum likelihood estimator.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">nullValueForMedian</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+<span class="c1"># check if the null value is in the 95% CI or not to fail to reject or reject the null hypothesis</span>
+<span class="k">if</span> <span class="n">nullValueForMedian</span> <span class="o">&gt;=</span> <span class="n">lower95BootstrapCIForMedian</span> <span class="ow">and</span> <span class="n">nullValueForMedian</span> <span class="o">&lt;=</span> <span class="n">upper95BootstrapCIForMedian</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;The null value for median = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nullValueForMedian</span><span class="p">)</span><span class="o">+</span>\
+    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">is inside the 95% Bootstrapped Confidence Interval: &quot;</span><span class="o">+</span>\
+    <span class="s2">&quot;[ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lower95BootstrapCIForMedian</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; , &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">upper95BootstrapCIForMedian</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot; ]&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;        Therefore, we fail to reject the null hypothesis H_0: median=1.0&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;The null value for median = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nullValueForMedian</span><span class="p">)</span><span class="o">+</span>\
+    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">is NOT inside the 95% Bootstrapped Confidence Interval: &quot;</span><span class="o">+</span>\
+    <span class="s2">&quot;[ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lower95BootstrapCIForMedian</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; , &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">upper95BootstrapCIForMedian</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot; ]&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;        Therefore, we reject the null hypothesis H_0: median = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nullValueForMedian</span><span class="p">)</span>
+    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The null value for median = 10.0000000000000
+is NOT inside the 95% Bootstrapped Confidence Interval: [ 15.1666666667 , 15.85 ]
+        Therefore, we reject the null hypothesis H_0: median = 10.0000000000000
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Making-a-Generic-Bootstrap-Function-for-$1-\alpha$-Confidence-Interval-of-any-Statistic">Making a Generic Bootstrap Function for $1-\alpha$ Confidence Interval of any Statistic<a class="anchor-link" href="#Making-a-Generic-Bootstrap-Function-for-$1-\alpha$-Confidence-Interval-of-any-Statistic">&#182;</a></h3><p>Making a generic function <code>makeBootstrappedConfidenceIntervalOfStatisticT</code> as done below can be helpful in other problems.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[220]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">statT</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;make a bootstrapped 1-alpha confidence interval for ANY given statistic statT </span>
+<span class="sd">    from the dataset with B Bootstrap replications for 0 &lt; alpha &lt; 1, and </span>
+<span class="sd">    return lower CI, upper CI, bootstrapped_samples &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="c1"># sample size of the original dataset</span>
+    <span class="n">bootstrappedStatisticTs</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># list to store the statistic T from each bootstrapped data</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="c1">#sample indices at random between 0 and len(iQMinutes)-1 to make the bootstrapped dataset</span>
+        <span class="n">randIndices</span><span class="o">=</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> 
+        <span class="n">bootstrappedDataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">randIndices</span><span class="p">]</span> <span class="c1"># resample with replacement from original dataset</span>
+        <span class="n">bootstrappedStatisticT</span> <span class="o">=</span> <span class="n">statT</span><span class="p">(</span><span class="n">bootstrappedDataset</span><span class="p">)</span>
+        <span class="n">bootstrappedStatisticTs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bootstrappedStatisticT</span><span class="p">)</span>
+    <span class="c1"># noe get the [2.5%, 97.5%] percentile-based CI</span>
+    <span class="n">alpaAsPercentage</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="mf">100.0</span>
+    <span class="n">lowerBootstrap1MinusAlphaCIForStatisticT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">,</span><span class="n">alpaAsPercentage</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">upperBootstrap1MinusAlphaCIForStatisticT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">,</span><span class="mi">100</span><span class="o">-</span><span class="n">alpaAsPercentage</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">#print &quot;The inner (1 - &quot;+str(alpha)+&quot; ) percentile based Confidence Interval for the statistic T = &quot;</span>
+    <span class="c1">#print &quot;[ &quot;+str(lowerBootstrap1MinusAlphaCIForStatisticT)+&quot; , &quot; +str(upperBootstrap1MinusAlphaCIForStatisticT)+&quot; ]&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">lowerBootstrap1MinusAlphaCIForStatisticT</span><span class="p">,</span><span class="n">upperBootstrap1MinusAlphaCIForStatisticT</span><span class="p">,</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Demonstrating-the-use-of-bootstrap-for-different-statistics-of-interest">Demonstrating the use of bootstrap for different statistics of interest<a class="anchor-link" href="#Demonstrating-the-use-of-bootstrap-for-different-statistics-of-interest">&#182;</a></h2><p>We can obtain the bootstrap-based $1-\alpha$ confidence intervals quite easily for any statistic and any dataset as demonstrated below.</p>
+<h3 id="Bootstrapped-$1-\alpha$-Confidence-Interval-for-Sample-Median-of-inter-EQ-Time-in-Minutes">Bootstrapped $1-\alpha$ Confidence Interval for Sample Median of inter-EQ Time in Minutes<a class="anchor-link" href="#Bootstrapped-$1-\alpha$-Confidence-Interval-for-Sample-Median-of-inter-EQ-Time-in-Minutes">&#182;</a></h3><p>All we need to do is follow these <strong>three steps to perform a bootstrap</strong>:</p>
+<ol>
+<li>define a lambda expression for the statistic of interest: <code>statTMedian = lambda dataset : np.percentile(dataset,50.0)</code> </li>
+<li>get the plugin estimate : <code>statTMedian = lambda dataset : np.percentile(dataset,50.0)</code></li>
+<li>and call the generic function we made:<blockquote><p><code>lowerCIMedian,upperCIMedian,bootValuesMedian = \</code>
+   <code>makeBootstrappedConfidenceIntervalOfStatisticT(iQMinutes, statTMedian, alpha, B)</code></p>
+</blockquote>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># dataset</span>
+<span class="n">iQMinutes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interQuakesSecs</span><span class="p">)</span><span class="o">/</span><span class="mf">60.0</span>
+
+<span class="c1"># our statistic T as one example, say the 50-th percentile or median as  </span>
+<span class="c1"># via anonymous function / lambda expression</span>
+<span class="n">statTMedian</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dataset</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span><span class="mf">50.0</span><span class="p">)</span>
+
+<span class="c1"># now obtain the bootstrapped 1-alpha confidence interval with alpha=0.5, i.e. 95% conf Interval</span>
+<span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">B</span><span class="o">=</span><span class="mi">100</span> <span class="c1"># number of bootstrap samples</span>
+
+<span class="c1"># plug-in point estimate of population median of inter-EQ times</span>
+<span class="n">plugInEstimateOfMedian</span> <span class="o">=</span> <span class="n">statTMedian</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s call our convenient function</span>
+<span class="c1"># and get the bootstrapped samples and build 1-alpha confidence interval</span>
+<span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">,</span><span class="n">bootValuesMedian</span> <span class="o">=</span> \
+           <span class="n">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">,</span> <span class="n">statTMedian</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># print the results</span>
+<span class="k">print</span> <span class="s2">&quot;The Plug-in Point Estimate of the Population Median of inter-EQ Times  = &quot;</span><span class="p">,</span> <span class="n">plugInEstimateOfMedian</span>
+<span class="k">print</span> <span class="s2">&quot;1-alpha Bootstrapped CI for the media of inter-EQ Times = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;         where alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s2">&quot; and bootstrap replicates = &quot;</span><span class="p">,</span> <span class="n">B</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The Plug-in Point Estimate of the Population Median of inter-EQ Times  =  15.5166666667
+1-alpha Bootstrapped CI for the media of inter-EQ Times =  (15.199999999999999, 15.910416666666666)
+         where alpha =  0.050  and bootstrap replicates =  100
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span> <span class="c1"># clear current figure</span>
+<span class="n">Bins</span><span class="o">=</span><span class="mi">8</span> <span class="c1"># Number of histogram bins</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bootValuesMedian</span><span class="p">,</span> <span class="n">Bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">true</span><span class="p">)</span> 
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;normalised count&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Normalised histogram of bootstrapped samples of the plug-in estimate of median inter-EQ time&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">plugInEstimateOfMedian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># plot vertical line at plug-in point estimate</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lowerCIMedian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot vertical line at lower CI at (alpha/2)-th Quantile</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">upperCIMedian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot vertical line at upper CI at (1-alpha/2)-th Quantile</span>
+<span class="c1">#pylab.savefig(&#39;myHist&#39;) # to actually save the figure for subsequent extraction elsewhere</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CAUTION:-Bootstrap-is-justified-if-two-of-its-assumptions-are-satisfied:">CAUTION: Bootstrap is justified if two of its assumptions are satisfied:<a class="anchor-link" href="#CAUTION:-Bootstrap-is-justified-if-two-of-its-assumptions-are-satisfied:">&#182;</a></h3><p>Recall assumptions in <strong>the two basic steps</strong> in the Bootstrap from above (notebook <code>11.ipynb</code>):</p>
+<ol>
+<li>$\mathsf{Step~1}$: $n$ is large enough, so that the empirical DF $\widehat{F}_n$ is a good approximation for the unknown $F^*$ in the model $X_1,X_2,\ldots,X_n \overset{IID}{\sim} F^*$, and</li>
+<li>$\mathsf{Step~2}$: $B$, the number of bootstrap samples is large enough.</li>
+</ol>
+<p>So it is a good idea to increase $B$ to $1000$ or perhaps more (depending on the problem and available computational resources) to see how the results are affected. Remember, the confidence intervals will slightly change due to random seed in the simulation and your values for $n$ and $B$.</p>
+<p>NOTE: When the dataset is much larger in size (order of billions or hundreds of billions) or not IID real-valued but perhaps dependent (eg. time series models) then there are other sub-sampling schemes that one may need to use under further assumptions on the model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sample-Exam-Problem-7">Sample Exam Problem 7<a class="anchor-link" href="#Sample-Exam-Problem-7">&#182;</a></h1><p>Obtain the plug-in estimate of the population median of inter-EQ times in minutes stored in the array <code>iQMinutes</code>. 
+Using $1000$ bootstrap replicates $B$, obtain the the 95% confidence interval for the median inter-EQ time in minutes.
+Using a Wald-like Test based on the bootstrapped 95% confidence interval, test the null hypothesis that the inter-EQ time is 20 minutes (just report the finding of your test through the boolean <code>RejectedH0_sampleMedianIs20min</code> ).</p>
+<p>NOTE: Make Sure you run the <code>REQUIRED-CELL</code> before trying the Problem.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Sample Exam Problem 7 - REQUIRED-CELL</span>
+
+<span class="c1"># DO NOT MODIFY this cell </span>
+<span class="c1"># Evaluate this cell before trying this PROBLEM so that the required functions and variables are loaded</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1">## Be Patient! - This will take more time, about a minute or so</span>
+<span class="c1">###############################################################################################</span>
+<span class="k">def</span> <span class="nf">getLonLatMagDepTimes</span><span class="p">(</span><span class="n">NZEQCsvFileName</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;returns longitude, latitude, magnitude, depth and the origin time as unix time</span>
+<span class="sd">    for each observed earthquake in the csv filr named NZEQCsvFileName&#39;&#39;&#39;</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">from</span> <span class="nn">dateutil.parser</span> <span class="kn">import</span> <span class="n">parse</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">NZEQCsvFileName</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+        <span class="n">dataList</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+    <span class="n">myDataAccumulatorList</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">dataList</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">dataRow</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">myTimeString</span> <span class="o">=</span> <span class="n">dataRow</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># origintime</span>
+        <span class="c1"># let&#39;s also grab longitude, latitude, magnitude, depth</span>
+        <span class="n">myDataString</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">7</span><span class="p">]]</span>
+        <span class="k">try</span><span class="p">:</span> 
+            <span class="n">myTypedTime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="n">myTimeString</span><span class="p">)</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
+            <span class="n">myFloatData</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myDataString</span><span class="p">]</span>
+            <span class="n">myFloatData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myTypedTime</span><span class="p">)</span> <span class="c1"># append the processed timestamp</span>
+            <span class="n">myDataAccumulatorList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myFloatData</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># error handling for type incompatibilities</span>
+            <span class="k">print</span> <span class="s1">&#39;Error:  Error is &#39;</span><span class="p">,</span> <span class="n">e</span>
+    <span class="c1">#return np.array(myDataAccumulatorList)</span>
+    <span class="k">return</span> <span class="n">myDataAccumulatorList</span>
+
+<span class="n">myProcessedList</span> <span class="o">=</span> <span class="n">getLonLatMagDepTimes</span><span class="p">(</span><span class="s1">&#39;data/earthquakes.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">interQuakeTimes</span><span class="p">(</span><span class="n">quakeTimes</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Return a list inter-earthquake times in seconds from earthquake origin times</span>
+<span class="sd">    Date and time elements are expected to be in the 5th column of the array</span>
+<span class="sd">    Return a list of inter-quake times in seconds. NEEDS sorted quakeTimes Data&#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+    <span class="n">retList</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">quakeTimes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">retList</span> <span class="o">=</span> <span class="p">[</span><span class="n">quakeTimes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">quakeTimes</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">quakeTimes</span><span class="p">))]</span>
+    <span class="c1">#return np.array(retList)</span>
+    <span class="k">return</span> <span class="n">retList</span>
+
+<span class="k">def</span> <span class="nf">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">statT</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;make a bootstrapped 1-alpha confidence interval for ANY given statistic statT </span>
+<span class="sd">    from the dataset with B Bootstrap replications for 0 &lt; alpha &lt; 1, and </span>
+<span class="sd">    return lower CI, upper CI, bootstrapped_samples &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="c1"># sample size of the original dataset</span>
+    <span class="n">bootstrappedStatisticTs</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># list to store the statistic T from each bootstrapped data</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="c1">#sample indices at random between 0 and len(iQMinutes)-1 to make the bootstrapped dataset</span>
+        <span class="n">randIndices</span><span class="o">=</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> 
+        <span class="n">bootstrappedDataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">randIndices</span><span class="p">]</span> <span class="c1"># resample with replacement from original dataset</span>
+        <span class="n">bootstrappedStatisticT</span> <span class="o">=</span> <span class="n">statT</span><span class="p">(</span><span class="n">bootstrappedDataset</span><span class="p">)</span>
+        <span class="n">bootstrappedStatisticTs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bootstrappedStatisticT</span><span class="p">)</span>
+    <span class="c1"># noe get the [2.5%, 97.5%] percentile-based CI</span>
+    <span class="n">alpaAsPercentage</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="mf">100.0</span>
+    <span class="n">lowerBootstrap1MinusAlphaCIForStatisticT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">,</span><span class="n">alpaAsPercentage</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">upperBootstrap1MinusAlphaCIForStatisticT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">,</span><span class="mi">100</span><span class="o">-</span><span class="n">alpaAsPercentage</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">#print &quot;The inner (1 - &quot;+str(alpha)+&quot; ) percentile based Confidence Interval for the statistic T = &quot;</span>
+    <span class="c1">#print &quot;[ &quot;+str(lowerBootstrap1MinusAlphaCIForStatisticT)+&quot; , &quot; +str(upperBootstrap1MinusAlphaCIForStatisticT)+&quot; ]&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">lowerBootstrap1MinusAlphaCIForStatisticT</span><span class="p">,</span><span class="n">upperBootstrap1MinusAlphaCIForStatisticT</span><span class="p">,</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">))</span>
+
+<span class="n">interQuakesSecs</span> <span class="o">=</span> <span class="n">interQuakeTimes</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myProcessedList</span><span class="p">]))</span>
+<span class="n">iQMinutes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interQuakesSecs</span><span class="p">)</span><span class="o">/</span><span class="mf">60.0</span>
+<span class="c1">###############################################################################################</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Sample Exam Problem 7</span>
+<span class="c1"># first evaluate the REQUIRED-CELL above</span>
+<span class="c1"># Do NOT change the variable or function Names - Just replace XXXs</span>
+<span class="c1"># now obtain the bootstrapped 1-alpha confidence interval with alpha=0.5, i.e. 95% conf Interval</span>
+<span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">B</span><span class="o">=</span><span class="mi">1000</span> <span class="c1"># number of bootstrap samples=1000</span>
+<span class="c1"># our statistic T as one example, say the 50-th percentile or median as  </span>
+<span class="c1"># via anonymous function / lambda expression</span>
+<span class="n">statTMedian</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dataset</span> <span class="p">:</span> <span class="n">XXXX</span>
+
+<span class="c1"># plug-in point estimate of population median of inter-EQ times</span>
+<span class="n">plugInEstimateOfMedian</span> <span class="o">=</span> <span class="n">statTMedian</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s call our convenient function</span>
+<span class="c1"># and get the bootstrapped samples and build 1-alpha confidence interval</span>
+<span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">,</span><span class="n">bootValuesMedian</span> <span class="o">=</span> \
+           <span class="n">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">XXX</span><span class="p">,</span> <span class="n">XXX</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># print in more details if you want to see if your values make sense</span>
+<span class="k">print</span> <span class="s2">&quot;The Plug-in Point Estimate of the Population Median of inter-EQ Times  = &quot;</span><span class="p">,</span> <span class="n">plugInEstimateOfMedian</span>
+<span class="k">print</span> <span class="s2">&quot;1-alpha Bootstrapped CI for the media of inter-EQ Times = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;         where alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s2">&quot; and bootstrap replicates = &quot;</span><span class="p">,</span> <span class="n">B</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="n">plugInEstimateOfMedian</span><span class="p">,</span><span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">)</span>
+
+<span class="c1"># Hypothesis test</span>
+<span class="n">NullValueForMedian</span><span class="o">=</span><span class="mi">20</span> <span class="c1"># 20 minutes is the value of Median under the Null Hypothesis, H_0: Population Median = 20</span>
+<span class="n">RejectedH0_sampleMedianIs20min</span> <span class="o">=</span> <span class="p">(</span><span class="n">NullValueForMedian</span> <span class="o">&lt;=</span> <span class="n">XXX</span> <span class="ow">and</span> <span class="n">NullValueForMedian</span> <span class="o">&gt;=</span> <span class="n">XXX</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">RejectedH0_sampleMedianIs20min</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot; RejectedH0_sampleMedianIs20min = True, so the Null Hypothesis is Rejected at size alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot; RejectedH0_sampleMedianIs20min = False, so the Null Hypothesis is NOT Rejected at size alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sample-Exam-Problem-7-Solution">Sample Exam Problem 7 Solution<a class="anchor-link" href="#Sample-Exam-Problem-7-Solution">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Sample Exam Problem 7 - SOLUTION</span>
+<span class="c1"># Do NOT change the variable or function Names - Just replace XXXs</span>
+<span class="c1"># now obtain the bootstrapped 1-alpha confidence interval with alpha=0.5, i.e. 95% conf Interval</span>
+<span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">B</span><span class="o">=</span><span class="mi">100</span> <span class="c1"># number of bootstrap samples=1000</span>
+<span class="c1"># our statistic T as one example, say the 50-th percentile or median as  </span>
+<span class="c1"># via anonymous function / lambda expression</span>
+<span class="n">statTMedian</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dataset</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span><span class="mf">50.0</span><span class="p">)</span>
+
+<span class="c1"># plug-in point estimate of population median of inter-EQ times</span>
+<span class="n">plugInEstimateOfMedian</span> <span class="o">=</span> <span class="n">statTMedian</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s call our convenient function</span>
+<span class="c1"># and get the bootstrapped samples and build 1-alpha confidence interval</span>
+<span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">,</span><span class="n">bootValuesMedian</span> <span class="o">=</span> \
+           <span class="n">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">,</span> <span class="n">statTMedian</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># print in more details if you want to see if your values make sense</span>
+<span class="k">print</span> <span class="s2">&quot;The Plug-in Point Estimate of the Population Median of inter-EQ Times  = &quot;</span><span class="p">,</span> <span class="n">plugInEstimateOfMedian</span>
+<span class="k">print</span> <span class="s2">&quot;1-alpha Bootstrapped CI for the media of inter-EQ Times = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;         where alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s2">&quot; and bootstrap replicates = &quot;</span><span class="p">,</span> <span class="n">B</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="n">plugInEstimateOfMedian</span><span class="p">,</span><span class="n">lowerCIMedian</span><span class="p">,</span><span class="n">upperCIMedian</span><span class="p">)</span>
+
+<span class="c1"># Hypothesis test</span>
+<span class="n">NullValueForMedian</span><span class="o">=</span><span class="mi">20</span> <span class="c1"># 20 minutes is the value of Median under the Null Hypothesis, H_0: Population Median = 20</span>
+
+<span class="n">RejectedH0_sampleMedianIs20min</span> <span class="o">=</span> <span class="p">(</span><span class="n">NullValueForMedian</span> <span class="o">&lt;=</span> <span class="n">upperCIMedian</span> <span class="ow">and</span> <span class="n">NullValueForMedian</span> <span class="o">&gt;=</span> <span class="n">lowerCIMedian</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">RejectedH0_sampleMedianIs20min</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot; RejectedH0_sampleMedianIs20min = True, so the Null Hypothesis is Rejected at size alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot; RejectedH0_sampleMedianIs20min = False, so the Null Hypothesis is NOT Rejected at size alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span>
+
+<span class="c1"># This is just extra stuff you don&#39;t need to do for this sample exam problem!</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span> <span class="c1"># clear current figure</span>
+<span class="n">Bins</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># Number of histogram bins</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bootValuesMedian</span><span class="p">,</span> <span class="n">Bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">true</span><span class="p">)</span> 
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;normalised count&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Normalised histogram of bootstrapped samples of the plug-in estimate of median inter-EQ time&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">plugInEstimateOfMedian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># plot vertical line at plug-in point estimate</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lowerCIMedian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot vertical line at lower CI at (alpha/2)-th Quantile</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">upperCIMedian</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot vertical line at upper CI at (1-alpha/2)-th Quantile</span>
+<span class="c1">#pylab.savefig(&#39;myHist&#39;) # to actually save the figure for subsequent extraction elsewhere</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The Plug-in Point Estimate of the Population Median of inter-EQ Times  =  15.5166666667
+1-alpha Bootstrapped CI for the media of inter-EQ Times =  (15.166666666666666, 15.758750000000001)
+         where alpha =  0.050  and bootstrap replicates =  100
+(15.516666666666667, 15.166666666666666, 15.758750000000001)
+ RejectedH0_sampleMedianIs20min = False, so the Null Hypothesis is NOT Rejected at size alpha =  0.0500000000000000
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Assignment-3,-PROBLEM-7">Assignment 3, PROBLEM 7<a class="anchor-link" href="#Assignment-3,-PROBLEM-7">&#182;</a></h2><p>Maximum Points = 2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Repeat the <strong>three steps to perform a bootstrap</strong> above as done in <strong>Median of inter-EQ Time</strong> example (notebook <code>11.ipynb</code>) to find the plug-in estimate and 95% CI for the <em>99-th Percentile of the inter-EQ time in minutes</em>.</p>
+<p>You just need to evaluate the next <code>REQUIRED-CELL</code> and replace <code>XXX</code> with the right expressions in the following cell.</p>
+<p>HINT: Median is the $50$-th Percentile.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># REQUIRED-CELL</span>
+
+<span class="c1"># DO NOT MODIFY this cell </span>
+<span class="c1"># Evaluate this cell before trying this PROBLEM so that the required functions and variables are loaded</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1">## Be Patient! - This will take more time, about a minute or so</span>
+<span class="c1">###############################################################################################</span>
+<span class="k">def</span> <span class="nf">getLonLatMagDepTimes</span><span class="p">(</span><span class="n">NZEQCsvFileName</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;returns longitude, latitude, magnitude, depth and the origin time as unix time</span>
+<span class="sd">    for each observed earthquake in the csv filr named NZEQCsvFileName&#39;&#39;&#39;</span>
+    <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">from</span> <span class="nn">dateutil.parser</span> <span class="kn">import</span> <span class="n">parse</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">NZEQCsvFileName</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+        <span class="n">dataList</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+    <span class="n">myDataAccumulatorList</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">dataList</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">dataRow</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">myTimeString</span> <span class="o">=</span> <span class="n">dataRow</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># origintime</span>
+        <span class="c1"># let&#39;s also grab longitude, latitude, magnitude, depth</span>
+        <span class="n">myDataString</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="n">dataRow</span><span class="p">[</span><span class="mi">7</span><span class="p">]]</span>
+        <span class="k">try</span><span class="p">:</span> 
+            <span class="n">myTypedTime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="n">myTimeString</span><span class="p">)</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
+            <span class="n">myFloatData</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myDataString</span><span class="p">]</span>
+            <span class="n">myFloatData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myTypedTime</span><span class="p">)</span> <span class="c1"># append the processed timestamp</span>
+            <span class="n">myDataAccumulatorList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myFloatData</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># error handling for type incompatibilities</span>
+            <span class="k">print</span> <span class="s1">&#39;Error:  Error is &#39;</span><span class="p">,</span> <span class="n">e</span>
+    <span class="c1">#return np.array(myDataAccumulatorList)</span>
+    <span class="k">return</span> <span class="n">myDataAccumulatorList</span>
+
+<span class="n">myProcessedList</span> <span class="o">=</span> <span class="n">getLonLatMagDepTimes</span><span class="p">(</span><span class="s1">&#39;data/earthquakes.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">interQuakeTimes</span><span class="p">(</span><span class="n">quakeTimes</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Return a list inter-earthquake times in seconds from earthquake origin times</span>
+<span class="sd">    Date and time elements are expected to be in the 5th column of the array</span>
+<span class="sd">    Return a list of inter-quake times in seconds. NEEDS sorted quakeTimes Data&#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+    <span class="n">retList</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">quakeTimes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">retList</span> <span class="o">=</span> <span class="p">[</span><span class="n">quakeTimes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">quakeTimes</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">quakeTimes</span><span class="p">))]</span>
+    <span class="c1">#return np.array(retList)</span>
+    <span class="k">return</span> <span class="n">retList</span>
+
+<span class="k">def</span> <span class="nf">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">statT</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;make a bootstrapped 1-alpha confidence interval for ANY given statistic statT </span>
+<span class="sd">    from the dataset with B Bootstrap replications for 0 &lt; alpha &lt; 1, and </span>
+<span class="sd">    return lower CI, upper CI, bootstrapped_samples &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="c1"># sample size of the original dataset</span>
+    <span class="n">bootstrappedStatisticTs</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># list to store the statistic T from each bootstrapped data</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="c1">#sample indices at random between 0 and len(iQMinutes)-1 to make the bootstrapped dataset</span>
+        <span class="n">randIndices</span><span class="o">=</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> 
+        <span class="n">bootstrappedDataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">randIndices</span><span class="p">]</span> <span class="c1"># resample with replacement from original dataset</span>
+        <span class="n">bootstrappedStatisticT</span> <span class="o">=</span> <span class="n">statT</span><span class="p">(</span><span class="n">bootstrappedDataset</span><span class="p">)</span>
+        <span class="n">bootstrappedStatisticTs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bootstrappedStatisticT</span><span class="p">)</span>
+    <span class="c1"># noe get the [2.5%, 97.5%] percentile-based CI</span>
+    <span class="n">alpaAsPercentage</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="mf">100.0</span>
+    <span class="n">lowerBootstrap1MinusAlphaCIForStatisticT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">,</span><span class="n">alpaAsPercentage</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">upperBootstrap1MinusAlphaCIForStatisticT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">,</span><span class="mi">100</span><span class="o">-</span><span class="n">alpaAsPercentage</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">#print &quot;The inner (1 - &quot;+str(alpha)+&quot; ) percentile based Confidence Interval for the statistic T = &quot;</span>
+    <span class="c1">#print &quot;[ &quot;+str(lowerBootstrap1MinusAlphaCIForStatisticT)+&quot; , &quot; +str(upperBootstrap1MinusAlphaCIForStatisticT)+&quot; ]&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">lowerBootstrap1MinusAlphaCIForStatisticT</span><span class="p">,</span><span class="n">upperBootstrap1MinusAlphaCIForStatisticT</span><span class="p">,</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bootstrappedStatisticTs</span><span class="p">))</span>
+
+<span class="n">interQuakesSecs</span> <span class="o">=</span> <span class="n">interQuakeTimes</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myProcessedList</span><span class="p">]))</span>
+<span class="n">iQMinutes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interQuakesSecs</span><span class="p">)</span><span class="o">/</span><span class="mf">60.0</span>
+<span class="c1">###############################################################################################</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">statT99thPercentile</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dataset</span> <span class="p">:</span> <span class="n">XXX</span> <span class="c1">#statistic of interest</span>
+<span class="n">alpha</span><span class="o">=</span><span class="n">XXX</span>
+<span class="n">B</span><span class="o">=</span><span class="mi">1000</span> <span class="c1"># number of bootstrap samples, reduce this to 100 while debuging and back to 1000 when done</span>
+<span class="c1"># plug-in point estimate of the 99th-Percentile of inter-EQ Times</span>
+<span class="n">plugInEstimateOf99thPercentile</span> <span class="o">=</span> <span class="n">XXX</span> 
+<span class="c1"># get the bootstrapped samples and build 1-alpha confidence interval</span>
+<span class="c1"># do NOT change anything below</span>
+<span class="n">lowerCIT99P</span><span class="p">,</span><span class="n">upperCIT99P</span><span class="p">,</span><span class="n">bootValuesT99P</span> <span class="o">=</span> \
+                      <span class="n">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">iQMinutes</span><span class="p">,</span> <span class="n">statT99thPercentile</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;The Plug-in Point Estimate of the 99th-Percentile of inter-EQ Times = &quot;</span><span class="p">,</span> <span class="n">plugInEstimateOf99thPercentile</span>
+<span class="k">print</span> <span class="s2">&quot;1-alpha Bootstrapped CI for the 99th-Percentile of inter-EQ Times = &quot;</span><span class="p">,(</span><span class="n">lowerCIT99P</span><span class="p">,</span><span class="n">upperCIT99P</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;         for alpha = &quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s2">&quot; and bootstrap replicates = &quot;</span><span class="p">,</span><span class="n">B</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Correlation:-A-Bivariate-Nonparametric-Bootstrap">Correlation: A Bivariate Nonparametric Bootstrap<a class="anchor-link" href="#Correlation:-A-Bivariate-Nonparametric-Bootstrap">&#182;</a></h1><p>Here is a classical data set used by Bradley Efron at Stanford University's Statistics Department (the inventor of bootstrap) to illustrate the method.</p>
+<p>The data are LSAT (Law School Admission Test in the USA) scores and GPA (grade point average) of just fifteen individuals. The inference task involved assisting the Admissions Office with their evidence-based investigations on their admissions policies.</p>
+<p>Thus, we have bivariate data of the form $(Y_i,Z_i)$, where $Y_i={\rm LSAT}_i$ and $Z_i={\rm GPA}_i$.  For example, the first individual had an LSAT score of  $y_1=576$ and a GPA of $z_1=3.39$ while the fifteenth individual had an LSAT score of $y_{15}=594$ and a GPA of $z_{15}=3.96$.</p>
+<p>We supose that the bivariate data has the following IID bivariate model:</p>
+<p>$$\boxed{(Y_1,Z_1),(Y_2,Z_2),\ldots,(Y_{15},Z_{15})  \overset{IID}{\sim} F^* \in \{ \text{all bivariate DFs} \}}$$</p>
+<p>This is a <em>bivariate nonparametric experiment</em> and its bivariate data is plotted below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">LSAT</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">576</span><span class="p">,</span> <span class="mi">635</span><span class="p">,</span> <span class="mi">558</span><span class="p">,</span> <span class="mi">578</span><span class="p">,</span> <span class="mi">666</span><span class="p">,</span> <span class="mi">580</span><span class="p">,</span> <span class="mi">555</span><span class="p">,</span> <span class="mi">661</span><span class="p">,</span> <span class="mi">651</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="mi">653</span><span class="p">,</span> <span class="mi">575</span><span class="p">,</span> <span class="mi">545</span><span class="p">,</span> <span class="mi">572</span><span class="p">,</span> <span class="mi">594</span><span class="p">])</span> <span class="c1"># LSAT data</span>
+<span class="n">GPA</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.39</span><span class="p">,</span> <span class="mf">3.30</span><span class="p">,</span> <span class="mf">2.81</span><span class="p">,</span> <span class="mf">3.03</span><span class="p">,</span> <span class="mf">3.44</span><span class="p">,</span> <span class="mf">3.07</span><span class="p">,</span> <span class="mf">3.00</span><span class="p">,</span> <span class="mf">3.43</span><span class="p">,</span> <span class="mf">3.36</span><span class="p">,</span> <span class="mf">3.13</span><span class="p">,</span> <span class="mf">3.12</span><span class="p">,</span> <span class="mf">2.74</span><span class="p">,</span> <span class="mf">2.76</span><span class="p">,</span> <span class="mf">2.88</span><span class="p">,</span> <span class="mf">3.96</span><span class="p">])</span> <span class="c1"># GPA data</span>
+<span class="c1"># use np.vstack to vertically stack a sequence of arrays into a matrix of stacked rows</span>
+<span class="c1"># see https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html#numpy.vstack</span>
+<span class="n">LSATGPA_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">LSAT</span><span class="p">,</span><span class="n">GPA</span><span class="p">))</span> <span class="c1"># this is a 2D array of matric now</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">points</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">LSATGPA_data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">LSATGPA_data</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">axes_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;$Y_i$ (LSAT scores)&#39;</span><span class="p">,</span><span class="s1">&#39;$Z_i$ (GPA)&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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8z2+d+9eSdnJRWhoaL7b2rVrJWX3uVTy+72au7u7JFlfgVwcJBUAAAB2VKVKFT300EOSpDfeeEPz588v8PX348ePV//+/Yvd9tWjEykpKbYFWgB3d3d1795dTz75pNavX69vvvlG1atX18WLF/Xqq6/mqrt48WJlZWWpU6dOatmyZa4yV1dXDRo0SJIKfL1uaerQoYO++eYb9e7dW6dOndLcuXP10EMPyd/fX3369LEmETly3qZUs2bNYrV/7tw5SdlrkBSkbt26kqS0tLR8y6tXr57v8Zz/lkeOHNGWLVvy3X755RdJfyYCJb3fq505c0aSVKtWrcJuOReSCgAAADvz8vKSJE2ePFl+fn4F1hs2bFiJPti5ubnJ09NT0p8fDMtaaGioHn/8cUnS9u3bc5XlJAvff/+99bWpV2/z5s2TlP2oUX6vRC1tN998s9asWaOzZ88qJiZGkydPlr+/v7766iv16tVLycnJ1ro5id7VxwpTo0YNSdJvv/1WYJ2kpKRcbRdXTttRUVEy2XOiC9yee+65v3S/V8v53aldu3axYySpAAAAsLOc+Qc561aUpg4dOkhSod9El7YmTZpIkjIyMqzHdu/erX379slisahu3boFbq6urrp48WKJF/mzRY0aNdSnTx/NmDFDP/30k5o2bapTp05p9erV1jpt2rSRJG3btq1YbbZo0UKSdODAgXzL09LSdPLkyVx1iyvnkap9+/aV6Lwcxbnfq+XcQ6dOnYp9DZIKAAAAO7py5Yq2bNmiOnXqWD+4XmvevHmaPn26wsPDS9x+aGioJGnnzp02xZnjjz/+KHKi77fffitJuSY054xShIWFKTExscBt0qRJuerbW7Vq1dSuXTtJyjXf4O6775YkrVixQj///HOR7fTp00eS9MknnygxMTFP+dy5c5Wenq6GDRvmeRSsKPfcc48kadGiRTp9+nSJzr1WQfd7tR07dkiSunfvXux2SSoAAADsaNeuXTp37pxuueWWfMu/++47+fn5qXv37vrvf/9b4vZ79+4tSdq8ebNNceZYtGiROnTooKioqDwfaJOTk/Xss89q0aJFkqSHH35YkpSZmaklS5ZIyn6EqzA580tiY2Ot3+SXhTFjxmjp0qW6cOFCruPffPONvv76a0m5v5m/8cYbdc899+jSpUvq27ev9YN2jiNHjuiVV16x7vfo0UPB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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plug-in-Point-Estimate-of-the-Correlation">Plug-in Point Estimate of the Correlation<a class="anchor-link" href="#Plug-in-Point-Estimate-of-the-Correlation">&#182;</a></h2><p>The law school was interested in the <strong>correlation</strong> between the GPA and LSAT scores:</p>
+<p>$$
+\boxed{
+\theta^* = \frac{\int \int (y-E(Y))(z-E(Z))dF(y,z)}{\sqrt{\int (y-E(Y))^2 dF(y) \int (z-E(Z))^2 dF(z)}}
+}
+$$</p>
+<p>The <em>plug-in estimate of the population correlation</em> $\theta^*$ is the <em>sample correlation</em>:
+$$
+\boxed{
+\widehat{\Theta}_n = \frac{\sum_{i=1}^n(Y_i-\overline{Y}_n)(Z_i-\overline{Z}_n)}{\sqrt{\sum_{i=1}^n(Y_i-\overline{Y}_n)^2 \sum_{i=1}^n(Z_i-\overline{Z}_n)^2}}
+}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the sample correlation matrix, it&#39;s symmetric with diagonal elements as 1</span>
+<span class="n">SampleCorrelationMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">LSATGPA_data</span><span class="p">)</span> 
+<span class="k">print</span> <span class="s2">&quot;The Sample Correlation Matrix is&quot;</span>
+<span class="k">print</span> <span class="n">SampleCorrelationMatrix</span>
+<span class="k">print</span> <span class="s2">&quot;For a pair of variables we can extract the right entry of the symmetric Sample Correlation Matrix:&quot;</span>
+<span class="n">SampleCorrelation_GPA_LSAT</span> <span class="o">=</span> <span class="n">SampleCorrelationMatrix</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="k">print</span> <span class="n">SampleCorrelation_GPA_LSAT</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The Sample Correlation Matrix is
+[[ 1.          0.54591892]
+ [ 0.54591892  1.        ]]
+For a pair of variables we can extract the right entry of the symmetric Sample Correlation Matrix:
+0.54591891618
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Bootstrapped-$1-\alpha$-Confidence-Interval-of-the-Sample-Correlation-and-a-Test">The Bootstrapped $1-\alpha$ Confidence Interval of the Sample Correlation and a Test<a class="anchor-link" href="#The-Bootstrapped-$1-\alpha$-Confidence-Interval-of-the-Sample-Correlation-and-a-Test">&#182;</a></h2><p>In order to obtain the $1-\alpha$ confidence interval of the plug-in estimate of the population correlation, we can quickly tap into our function thousand bootstrapped data sets.</p>
+<p>Then we can reject (or fail to reject) the null hypothesis that the true correlation coefficient is $0$ if $0$ is not contained in the bootstrapped 95% confidence interval (akin to a Wald Test, but with the nonparametric model).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># use the right lamba expression for the statistic of interest</span>
+<span class="n">statTSampleCorrCoeff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dataMatrix</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">dataMatrix</span><span class="p">)[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span> <span class="c1">#statistic of interest</span>
+<span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">B</span><span class="o">=</span><span class="mi">1000</span> <span class="c1"># number of bootstrap samples</span>
+<span class="c1"># get bootstrapped 1-alpha confidence Interval for statT99thPercentile</span>
+<span class="n">lowerCITcor</span><span class="p">,</span><span class="n">upperCITcor</span><span class="p">,</span><span class="n">bootValuesTcor</span> <span class="o">=</span> \
+                 <span class="n">makeBootstrappedConfidenceIntervalOfStatisticT</span><span class="p">(</span><span class="n">LSATGPA_data</span><span class="p">,</span> <span class="n">statTSampleCorrCoeff</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> 
+
+<span class="k">if</span> <span class="mi">0</span><span class="o">&gt;=</span><span class="n">lowerCITcor</span> <span class="ow">and</span> <span class="mi">0</span><span class="o">&lt;=</span><span class="n">upperCITcor</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;0 is inside the 1-alpha bootstrapped confidence interval for the correlation coefficient:&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;   So, we fail to reject the Null Hypothesis that the population correlation coefficient = 0&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;0 is not inside the 1-alpha bootstrapped confidence interval for the correlation coefficient:&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;   So, we reject the Null Hypothesis that the population correlation coefficient = 0&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 is not inside the 1-alpha bootstrapped confidence interval for the correlation coefficient:
+   So, we reject the Null Hypothesis that the population correlation coefficient = 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Why-is-testing-whether-correlation-=-0-interesting?">Why is testing whether correlation = 0 interesting?<a class="anchor-link" href="#Why-is-testing-whether-correlation-=-0-interesting?">&#182;</a></h2><h3 id="Correlation-Versus-Causation---Proceed-with-Extreme-Caution!">Correlation Versus Causation - Proceed with Extreme Caution!<a class="anchor-link" href="#Correlation-Versus-Causation---Proceed-with-Extreme-Caution!">&#182;</a></h3><p>The following image from <a href="https://en.wikipedia.org/wiki/Correlation_and_dependence">https://en.wikipedia.org/wiki/Correlation_and_dependence</a> shows:</p>
+<blockquote><p>Several sets of (x, y) points, with the (Pearson's) correlation coefficient of x and y for each set. Note that the correlation reflects the noisiness and direction of a linear relationship (top row), but not the slope of that relationship (middle), nor many aspects of nonlinear relationships (bottom). N.B.: the figure in the center has a slope of 0 but in that case the correlation coefficient is undefined because the variance of Y is zero.</p>
+</blockquote>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Correlation_examples2.svg/1200px-Correlation_examples2.svg.png" alt="Correlation examples2.svg"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Nonparametric-Hypothesis-Testing">Nonparametric Hypothesis Testing<a class="anchor-link" href="#Nonparametric-Hypothesis-Testing">&#182;</a></h1><h2 id="Are-two-samples-from-the-same-distribution-or-not?">Are two samples from the same distribution or not?<a class="anchor-link" href="#Are-two-samples-from-the-same-distribution-or-not?">&#182;</a></h2><p>What if we are not interested in estimating $F^*$ itself, but we are interested in scientificially investigating whether two distributions are the same.  For example, perhaps, whether the distribution of earthquake magnitudes was the same in April as it was in March.  Then, we should attempt to reject a falsifiable hypothesis ...</p>
 <p><strong>Recall:</strong> 
 A formal definition of hypothesis testing is beyond our current scope.  Here we will look in particular at a non-parametric hypothesis test called a permutation test.  First, a quick review:</p>
 <p>The outcomes of a hypothesis test, in general, are:</p>
