@@ -12126,10 +12126,10 @@ div#notebook {
 
  
  
-<div id="099af9cd-5f3a-4f38-956d-bba4580dd8ce"></div>
+<div id="917bcdcd-8587-48a7-a6a1-d09783cfd849"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#099af9cd-5f3a-4f38-956d-bba4580dd8ce');
+var element = $('#917bcdcd-8587-48a7-a6a1-d09783cfd849');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "fcc73c601f0c4e369ea0b2f2143b4522", "version_minor": 0, "version_major": 2}
@@ -12175,10 +12175,10 @@ var element = $('#099af9cd-5f3a-4f38-956d-bba4580dd8ce');
 
  
  
-<div id="6dfa6064-b70c-42d6-ad6d-8809f6b95f84"></div>
+<div id="2177c2c7-4996-495f-b9ce-e2a6a3602ce5"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#6dfa6064-b70c-42d6-ad6d-8809f6b95f84');
+var element = $('#2177c2c7-4996-495f-b9ce-e2a6a3602ce5');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "40de98edefb84f49a5e11b7e05b23aeb", "version_minor": 0, "version_major": 2}
@@ -13112,10 +13112,10 @@ drwxr-xr-x 24 sage sage     768 Mar  8 13:56 ..
 
  
  
-<div id="15989b97-f650-4b75-8256-ac218761dfde"></div>
+<div id="4c4bdb18-9534-47d4-8de8-6c5f0399eb75"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#15989b97-f650-4b75-8256-ac218761dfde');
+var element = $('#4c4bdb18-9534-47d4-8de8-6c5f0399eb75');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "a7465698a57f4f7c864073fe3e75d6a3", "version_minor": 0, "version_major": 2}
@@ -13397,7 +13397,16 @@ The inner 95% percentile based Confidence Interval for the Median =
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Testing-via-Bootstrap">Testing via Bootstrap<a class="anchor-link" href="#Testing-via-Bootstrap">&#182;</a></h2><p>We reject the null that the median is $10$ minutes if $10$ is not inside the 95% confidence interval for the median we just obtained via bootstrap. This is just like the Wald test except that we use the bootstrap instead of the asymptotic normality of the maximum likelihood estimator.</p>
+<h2 id="Testing-via-Bootstrap">Testing via Bootstrap<a class="anchor-link" href="#Testing-via-Bootstrap">&#182;</a></h2><p>We can use bootstrap-based confidence interval in conjunction with Wald test in nonparametric experiments just as we used confidence interval from an asymptotically normal estimator such as the MLE in the parametric experiments.</p>
+<h3 id="The-$\mathsf{size}$-Wald-test-from-bootstrapped-$1-\alpha$-Confidence-Interval-$C_n$-for-a-statistic-$t$">The $\mathsf{size}$ Wald test from bootstrapped $1-\alpha$ Confidence Interval $C_n$ for a statistic $t$<a class="anchor-link" href="#The-$\mathsf{size}$-Wald-test-from-bootstrapped-$1-\alpha$-Confidence-Interval-$C_n$-for-a-statistic-$t$">&#182;</a></h3><p>The $\mathsf{size}$ $\alpha$ Wald test rejects:</p>
+<p>$$
+\boxed{
+\text{ $H_0: t^*=t_0$ versus $H_1: t^* \neq t_0$ if and only if $t_0 \notin C_n := C_n=[\widehat{G^{\bullet}}_{n}^{-1}(\alpha/2),\widehat{G^{\bullet}}_{n}^{-1}(1-\alpha/2)]$.
+}}
+$$</p>
+<p>$$\boxed{\text{Therefore, testing the hypothesis is equivalent to verifying whether the null value $t_0$ is in the bootstrapped confidence interval.}}$$</p>
+<h3 id="Example:-Wald-Test-that-median-of-inter-EQ-times-is-10-minutes">Example: Wald Test that median of inter-EQ times is 10 minutes<a class="anchor-link" href="#Example:-Wald-Test-that-median-of-inter-EQ-times-is-10-minutes">&#182;</a></h3><p>We reject the null hypothesis that the median is $10$ minutes, if $10$ is not inside the 95% confidence interval for the median we just obtained via bootstrap. This is just like the Wald test except that we use the bootstrap instead of the asymptotic normality of the maximum likelihood estimator.</p>
+<p>Let us see this more explicitly in the next cell.</p>
 
 </div>
 </div>
@@ -13407,7 +13416,9 @@ The inner 95% percentile based Confidence Interval for the Median =
 <div class="prompt input_prompt">In&nbsp;[130]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">nullValueForMedian</span> <span class="o">=</span> <span class="mf">10.0</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### Example: Wald Test that median of inter-EQ times is 10 minutes</span>
+
+<span class="n">nullValueForMedian</span> <span class="o">=</span> <span class="mf">10.0</span>
 
 <span class="c1"># check if the null value is in the 95% CI or not to fail to reject or reject the null hypothesis</span>
 <span class="k">if</span> <span class="n">nullValueForMedian</span> <span class="o">&gt;=</span> <span class="n">lower95BootstrapCIForMedian</span> <span class="ow">and</span> <span class="n">nullValueForMedian</span> <span class="o">&lt;=</span> <span class="n">upper95BootstrapCIForMedian</span><span class="p">:</span>
@@ -14189,46 +14200,10 @@ For a pair of variables we can extract the right entry of the symmetric Sample C
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nonparametric-Hypothesis-Testing">Nonparametric Hypothesis Testing<a class="anchor-link" href="#Nonparametric-Hypothesis-Testing">&#182;</a></h1><h2 id="Are-two-samples-from-the-same-distribution-or-not?">Are two samples from the same distribution or not?<a class="anchor-link" href="#Are-two-samples-from-the-same-distribution-or-not?">&#182;</a></h2><p>What if we are not interested in estimating $F^*$ itself, but we are interested in scientificially investigating whether two distributions are the same.  For example, perhaps, whether the distribution of earthquake magnitudes was the same in April as it was in March.  Then, we should attempt to reject a falsifiable hypothesis ...</p>
-<p><strong>Recall:</strong> 
-A formal definition of hypothesis testing is beyond our current scope.  Here we will look in particular at a non-parametric hypothesis test called a permutation test.  First, a quick review:</p>
-<p>The outcomes of a hypothesis test, in general, are:</p>
-<table border="1" cellspacing="2" cellpadding="2" align="center">
-<tbody>
-<tr>
-<td align="center">'true state of nature'</td>
-<td align="center"><strong>Do not reject $H_0$<br /></strong></td>
-<td align="center"><strong>Reject $H_0$<br /></strong></td>
-</tr>
-<tr>
-<td>
-<p><strong>$H_0$ is true<br /></strong></p>
-<p>&nbsp;</p>
-</td>
-<td align="center">
-<p>OK<span style="color: #3366ff;">&nbsp;</span></p>
-</td>
-<td align="center">
-<p>Type I error</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><strong>$H_0$ is false</strong></p>
-</td>
-<td align="center">Type II error</td>
-<td align="center">OK</td>
-</tr>
-</tbody>
-</table><p>So, we want a small probability that we reject  $H_0$ when $H_0$ is true (minimise Type I error).  Similarly, we want to minimise the probability that we fail to reject $H_0$ when $H_0$ is false (type II error).</p>
-<p>The P-value is one way to conduct a desirable hypothesis test.  The scale of the evidence against $H_0$ is stated in terms of the P-value.  The following interpretation of P-values is commonly used:</p>
-<ul>
-<li>P-value $\in (0, 0.01]$: Very strong evidence against $H_0$</li>
-<li>P-value $\in (0.01, 0.05]$: Strong evidence against $H_0$</li>
-<li>P-value $\in (0.05, 0.1]$: Weak evidence against $H_0$</li>
-<li>P-value $\in (0.1, 1]$: Little or no evidence against $H_0$</li>
-</ul>
-<h2 id="Permutation-Testing">Permutation Testing<a class="anchor-link" href="#Permutation-Testing">&#182;</a></h2><p>A Permuation Test is a <strong>non-parametric exact</strong> method for testing whether two distributions are the same based on samples from each of them. In industry analogs and variants of permutation testing is known as <em>A/B Testing</em>.</p>
+<h1 id="Nonparametric-Hypothesis-Testing">Nonparametric Hypothesis Testing<a class="anchor-link" href="#Nonparametric-Hypothesis-Testing">&#182;</a></h1><h2 id="Are-two-samples-from-the-same-distribution-or-not?">Are two samples from the same distribution or not?<a class="anchor-link" href="#Are-two-samples-from-the-same-distribution-or-not?">&#182;</a></h2><p>What if we are not interested in estimating $F^*$ itself, but we are interested in scientificially investigating whether two distributions are the same.  For example, perhaps, whether the distribution of earthquake magnitudes was the same in April as it was in March or whether human subjects under a clinical trial are reacting differently two a new drug to treat some disease (typically you have a control group that does not get the treatment and the treated group).</p>
+<p>You already have the means to do by using a Wald test of say the difference in sample means of the two samples, or correlation coefficient, etc for parametric or nonparametric experiments.</p>
+<p>We will next see a useful nonparametric approach to this problem.</p>
+<h2 id="Permutation-Testing">Permutation Testing<a class="anchor-link" href="#Permutation-Testing">&#182;</a></h2><p>A Permuation Test is a <strong>non-parametric exact</strong> method for testing whether two distributions are the same based on samples from each of them. In industry analogs and variants of permutation testing is known as <em>A/B Testing</em> in industry today.</p>
 <p>What do we mean by "non-parametric exact"?  It is non-parametric because we do not impose any parametric assumptions.  It is exact because it works for any sample size.</p>
 <p>Formally, we suppose that: 
 $$ X_1,X_2,\ldots,X_m \overset{IID}{\sim} F^* \quad \text{and} \quad X_{m+1}, X_{m+2},\ldots,X_{m+n} \overset{IID}{\sim} G^* \enspace , $$
