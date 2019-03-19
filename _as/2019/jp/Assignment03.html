@@ -12037,7 +12037,7 @@ $$</p>
 <p>Obtain the 95% CI based on the asymptotic normality of the MLE for the mean paramater $\lambda$ based on $n$ IID $Poisson(\lambda^*)$ trials.</p>
 <p>Recall that a random variable $X \sim Poisson(\lambda)$ if its probability mass function is:</p>
 <p>$$
-f(x; \lambda) = \exp{-\lambda} \frac{\lambda^x}{x!}, \quad \lambda &gt; 0, \quad x \in \{0,1,2,\ldots\}
+f(x; \lambda) = \exp{(-\lambda)} \frac{\lambda^x}{x!}, \quad \lambda &gt; 0, \quad x \in \{0,1,2,\ldots\}
 $$</p>
 <p>The MLe $\widehat{\lambda}_n = \overline{x}_n$, the sample mean.</p>
 <p>Work out your answer and express it in the next cell by replacing <code>XXX</code>s.</p>
@@ -12282,7 +12282,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For the fitted regression model in the next cell get the residuals and plot them against the covariate. 
+<p>For the fitted regression model in the next cell get the residuals and plot them against the covariate [see <strong>Residual analysis</strong> section in latest <code>12.ipynb</code> for the basic ideas conveyed in the last lecture]. 
 How do the residuals compare to a Normal random variable centred at $0$ with a constant variance (summarise in a sentence or two by double-clicking this cell and writing in between the two lines <code>---</code> below)?</p>
 <hr>
 <hr>

@@ -11785,14 +11785,15 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="12.-Linear-Regression">12. Linear Regression<a class="anchor-link" href="#12.-Linear-Regression">&#182;</a></h1><ul>
-<li><p>Regression</p>
-<ul>
+<li>Regression <ul>
 <li>linear models and their least-squares estimators</li>
-<li>assessing fit using diagnostic plots</li>
+<li>assessing fit using diagnostic plots (residual analysis)</li>
+<li>multiple linear regression - not covered in detail and won't be on exam</li>
+<li>prediction; not covered - not covered and won't be on exam</li>
+<li>prelude to statistical ML - not covered and won't be on exam</li>
 </ul>
 </li>
-<li><p>Introduction to R in SageMath Jupyter IPython Notebook - SageMath/R</p>
-</li>
+<li>Introduction to R in SageMath Jupyter IPython Notebook - SageMath/R</li>
 </ul>
 
 </div>
@@ -11883,6 +11884,115 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Least-Squares-and-Maximum-Likelihood">Least Squares and Maximum Likelihood<a class="anchor-link" href="#Least-Squares-and-Maximum-Likelihood">&#182;</a></h1><p>Suppose we add the assumption about the model's noise that</p>
+<p>$$\boxed{\displaystyle{\epsilon_i | X_i \sim Normal(0,\sigma^2) \quad \text{ i.e., }\quad Y_i|X_i \sim Normal(\mu_i,\sigma^2), \quad \text{ where } \quad \mu_i = \beta_0+\beta_1 X_i }}$$</p>
+<p>Then, the likelihood function is:</p>
+<p>$$
+\begin{align}
+\displaystyle{\prod_{i=1}^n f(X_i,Y_i)} \,
+&amp;= \displaystyle{\prod_{i=1}^n f_X(X_i) \, f_{Y|X}(Y_i|X_i)}\\ 
+&amp;= \displaystyle{\prod_{i=1}^n f_X(X_i) \, \prod_{i=1}^n f_{Y|X}(Y_i|X_i)}\\
+&amp;=: L_{n,X} \, L_{n,Y|X}
+\end{align}
+$$</p>
+<p>where, $L_{n,X}:=\prod_{i=1}^n f_X(X_i)$ is the marginal likelihood of $X_1,\ldots,X_n$ that does not depend on the parameters $(\beta_0,\beta_1,\sigma)$, and $L_{n,Y|X}:=\prod_{i=1}^n f_{Y|X}(Y_i|X_i)$ is the <em>conditional likelihood</em> that does depend on the parameters. Therefore the likelihood function is given by the conditional likelihood:</p>
+<p>$$
+\begin{align}
+L(\beta_0,\beta_1,\sigma) \quad
+&amp;\propto \quad \displaystyle{\prod_{i=1}^n f(X_i,Y_i)}  \\
+&amp;\propto \quad L_{n,Y|X}  = \displaystyle{\prod_{i=1}^n f_{Y|X}(Y_i|X_i)}\\
+&amp;\propto \quad \displaystyle{\sigma^{-n} \exp\left(-\frac{1}{2 \sigma^2}\sum_{i=1}^n\left(Y_i-\mu_i\right)^2 \right)}\\
+\end{align}
+$$</p>
+<p>and the conditional log-likelihood is:</p>
+<p>$$
+\boxed{
+l(\beta_0,\beta_1,\sigma) \quad =\quad \displaystyle{-n \log(\sigma) -\frac{1}{2 \sigma^2} \sum_{i=1}^n\left(Y_i-\mu_i\right)^2 }
+}
+$$</p>
+<p>To find the MLE of $(\beta_0,\beta_1)$ we need to maximise $\ell(\beta_0,\beta_1,\sigma)$ for a given $\sigma$. From the above expresion it is clear that maximising the log-likelihood is equivalent to minimising the <em>residual sum of squares</em> or <em>RSS</em> given by</p>
+<p>$$
+\boxed{
+\sum_{i=1}^n\left(Y_i-\mu_i\right)^2
+}
+$$</p>
+<p>Therefore, we have shown the following Theorem.</p>
+<h3 id="Theorem-[MLE-is-LSE]">Theorem [MLE is LSE]<a class="anchor-link" href="#Theorem-[MLE-is-LSE]">&#182;</a></h3><blockquote><p>Under the assumption of normally distributed noise, the maximum likelihood estimator (MLE) is the least squares estimator (LSE).</p>
+</blockquote>
+<p>We can maximise $l(\beta_0,\beta_1,\sigma)$ over $\sigma$ and obtain the MLE for $\sigma$ as follows:</p>
+<p>$$
+\widehat{\sigma}^2  =  \frac{1}{n} \sum_{i=1}^n \ \widehat{\epsilon}^2 \, .
+$$</p>
+<p>But it is more common in practise to use the unbiased estimator, with $E(\widehat{\sigma}^2)=\sigma^2$, that we saw earlier for sample size $n&gt;2$:</p>
+<p>$$
+\widehat{\sigma}^2 = \displaystyle{\left(\frac{1}{n-2}\right) \sum_{i=1}^n \widehat{\epsilon}_i^2} \, .
+$$</p>
+<h2 id="Properties-of-the-Least-Squares-Estimator-(LSE)">Properties of the Least Squares Estimator (LSE)<a class="anchor-link" href="#Properties-of-the-Least-Squares-Estimator-(LSE)">&#182;</a></h2><p>It's finally time to obtain the standard errors and limititng distribution of the least quares estimator (also the MLE).</p>
+<p>In regression we are interested in the properties of the estimators conditional on the covariates</p>
+<p>$$X_{1:n}:= (X_1,X_2,\ldots,X_n)$$</p>
+<h3 id="Conditional-Mean-and-Variance-of-LSE">Conditional Mean and Variance of LSE<a class="anchor-link" href="#Conditional-Mean-and-Variance-of-LSE">&#182;</a></h3><p>Let $\widehat{\beta}^T=(\widehat{\beta}_0,\widehat{\beta}_1)^T$ denote the least squares estimators (which is also the MLE). Then</p>
+<p>$$
+\begin{align}
+E \left(\widehat{\beta} \, | \, X_{1:n} \right) 
+&amp;=  \displaystyle{\left( {\begin{array}{c}
+   \beta_0 \\
+   \beta_1 \\
+  \end{array} } \right)}\\
+V \left(\widehat{\beta} \, | \, X_{1:n} \right) 
+&amp;= \displaystyle{\frac{\sigma^2}{n s_X^2} 
+\left( {\begin{array}{cc}
+   \frac{1}{n}\sum_{i=1}^n X_i^2 &amp; -\overline{X}_n \\
+   -\overline{X}_n &amp; 1\\
+  \end{array} } \right)}
+\end{align}
+$$</p>
+<p>where,</p>
+<p>$$
+s_X^2 = \frac{1}{n} \sum_{i=1}^n \left(X_i -\overline{X}_n\right)^2
+$$</p>
+<h3 id="Estimated-Standard-Errors">Estimated Standard Errors<a class="anchor-link" href="#Estimated-Standard-Errors">&#182;</a></h3><p>The estimated standard errors for $\widehat{\beta}_0$ and $\widehat{\beta}_1$, or more precisely, the estimated standard errors conditional on the covariates, are given by the square-root of the diagonal terms of the variance-covariance matrix $V \left(\widehat{\beta} \, | \, X_{1:n} \right) $ and substituting the estimate $\widehat{\sigma}$ for $\sigma$, as follows:</p>
+<p>$$
+\begin{align}
+\widehat{se}\left(\widehat{\beta}_0\right) := \widehat{se}\left(\widehat{\beta}_0 \, | \, X_{1:n} \right) \, 
+&amp;= \, \frac{\widehat{\sigma}}{s_X \sqrt{n}} \sqrt{\frac{\sum_{i=1}^nX_i^2}{n}}\\
+\widehat{se}\left(\widehat{\beta}_1\right) := \widehat{se}\left(\widehat{\beta}_0 \, | \, X_{1:n}\right) \, 
+&amp;= \, \frac{\widehat{\sigma}}{s_X \sqrt{n}}
+\end{align}
+$$</p>
+<p>Thus under appropriate modeling assumptions in simple leinear regression we have the following four properties.</p>
+<h3 id="Four-Asymptotic-Properties-of-the-LSE">Four Asymptotic Properties of the LSE<a class="anchor-link" href="#Four-Asymptotic-Properties-of-the-LSE">&#182;</a></h3><h4 id="1.-Asymptotic-Consistency">1. Asymptotic Consistency<a class="anchor-link" href="#1.-Asymptotic-Consistency">&#182;</a></h4><p>As $n \to \infty$, the LSE, i.e. $\widehat{\beta}_0$ and $\widehat{\beta}_1$, converges in probability to the parameters, i.e., $\beta_0,\beta_1$, generating the data $(Y_1,X_1),(Y_2,X_2),\ldots,(Y_n,X_n)$ as summarised below.</p>
+<p>$$
+\boxed{
+\widehat{\beta}_0 \overset{P}{\to} \beta_0 \quad \text{ and } \quad \widehat{\beta}_1 \overset{P}{\to} \beta_1
+}
+$$</p>
+<h4 id="2.-Asymptotic-Normality">2. Asymptotic Normality<a class="anchor-link" href="#2.-Asymptotic-Normality">&#182;</a></h4><p>As $n \to \infty$, the LSE, i.e. $\widehat{\beta}_0$ and $\widehat{\beta}_1$, converges in distribution to the parameters, i.e., $\beta_0,\beta_1$, generating the data $(Y_1,X_1),(Y_2,X_2),\ldots,(Y_n,X_n)$ as summarised below.</p>
+<p>$$
+\boxed{
+\frac{\widehat{\beta}_0 - \beta_0}{\widehat{se}\left(\widehat{\beta}_0\right)} \overset{d}{\to} Normal(0,1) \quad \text{ and } \quad \frac{\widehat{\beta}_1 - \beta_1}{\widehat{se}\left(\widehat{\beta}_1\right)} \overset{d}{\to} Normal(0,1) 
+}
+$$</p>
+<h4 id="3.-Approximate-$1-\alpha$-Confidence-Interval">3. Approximate $1-\alpha$ Confidence Interval<a class="anchor-link" href="#3.-Approximate-$1-\alpha$-Confidence-Interval">&#182;</a></h4><p>The $1-\alpha$ confidence interval for $\beta_0$ and $\beta_1$ that is obtained from the approximately normal distribution as $n$ gets large is:</p>
+<p>$$
+\boxed{
+\widehat{\beta}_0 \, \pm \, z_{\alpha/2} \, \widehat{se}\left(\widehat{\beta}_0\right) \quad \text{ and } \quad
+\widehat{\beta}_1 \, \pm \, z_{\alpha/2} \, \widehat{se}\left(\widehat{\beta}_1\right) 
+}
+$$</p>
+<h4 id="4.-The-Wald-Test">4. The Wald Test<a class="anchor-link" href="#4.-The-Wald-Test">&#182;</a></h4><p>Recall Wald test statistic for testing the null hypothesis with the null value $\beta^{(0)}$:</p>
+<p>$$
+H_0: \beta = \beta^{(0)} \quad \text{ versus } \quad H_1: \beta \neq \beta^{(0)} \quad { is } \quad W = \frac{\left(\widehat{\beta}-\beta^{(0)}\right)}{\widehat{se}\left(\widehat{\beta}\right)}
+$$</p>
+<p>Thus the Wald test for testing $H_0: \beta_1=0$ versus $H_1: \beta_1 \neq 0$ is to 
+reject $H_0$ if $|W| &gt; z_{\alpha/2}$ where $W=\frac{\widehat{\beta}_1}{\widehat{se}\left(\widehat{\beta}_1\right)}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Implementing-Simple-Linear-Regression-from-Scratch">Implementing Simple Linear Regression from Scratch<a class="anchor-link" href="#Implementing-Simple-Linear-Regression-from-Scratch">&#182;</a></h1><p>Using the above formulas we can implement Python functions to calculate the <strong>least squares estimates</strong>,
 $\widehat{\beta}_0$ and $\widehat{\beta}_1$, that minimise $RSS$.</p>
 
@@ -11891,7 +12001,7 @@ $\widehat{\beta}_0$ and $\widehat{\beta}_1$, that minimise $RSS$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">In&nbsp;[170]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span> 
@@ -11905,10 +12015,23 @@ $\widehat{\beta}_0$ and $\widehat{\beta}_1$, that minimise $RSS$.</p>
     <span class="c1"># xy cross-deviation and xx deviation</span>
     <span class="n">SS_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">mean_y</span><span class="o">*</span><span class="n">mean_x</span><span class="p">)</span> 
     <span class="n">SS_xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">mean_x</span><span class="o">*</span><span class="n">mean_x</span><span class="p">)</span>  
-    <span class="c1"># calculating regression coefficients </span>
-    <span class="n">b_1</span> <span class="o">=</span> <span class="n">SS_xy</span> <span class="o">/</span> <span class="n">SS_xx</span> 
-    <span class="n">b_0</span> <span class="o">=</span> <span class="n">mean_y</span> <span class="o">-</span> <span class="n">b_1</span><span class="o">*</span><span class="n">mean_x</span> 
-    <span class="k">return</span><span class="p">(</span><span class="n">b_0</span><span class="p">,</span> <span class="n">b_1</span><span class="p">)</span>
+    <span class="c1"># calculating LSE of regression coefficients </span>
+    <span class="n">b1_hat</span> <span class="o">=</span> <span class="n">SS_xy</span> <span class="o">/</span> <span class="n">SS_xx</span> 
+    <span class="n">b0_hat</span> <span class="o">=</span> <span class="n">mean_y</span> <span class="o">-</span> <span class="n">b1_hat</span><span class="o">*</span><span class="n">mean_x</span> 
+    <span class="n">sigma_hat2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">b0_hat</span> <span class="o">+</span> <span class="n">b1_hat</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">sigma_hat2</span> <span class="o">=</span> <span class="n">sigma_hat2</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">sigma_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_hat2</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b0_hat</span><span class="p">,</span> <span class="n">b1_hat</span><span class="p">,</span> <span class="n">sigma_hat</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">standard_errors</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+    <span class="n">b0_hat</span><span class="p">,</span><span class="n">b1_hat</span><span class="p">,</span><span class="n">s_hat</span> <span class="o">=</span> <span class="n">estimate_coefficients</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">s2X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mean_x</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="p">)</span>
+    <span class="n">se_b1</span> <span class="o">=</span> <span class="n">s_hat</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s2X</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">se_b0</span> <span class="o">=</span> <span class="n">se_b1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">se_b0</span><span class="p">,</span> <span class="n">se_b1</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">plot_regression_line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> 
     <span class="c1"># plotting the data points on a graph</span>
@@ -11926,7 +12049,7 @@ $\widehat{\beta}_0$ and $\widehat{\beta}_1$, that minimise $RSS$.</p>
 <span class="k">def</span> <span class="nf">SimpleLinearRegression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> 
     <span class="c1"># estimating coefficients </span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">estimate_coefficients</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Estimated coefficients:</span><span class="se">\n</span><span class="s2">b_0 = {} </span><span class="se">\n</span><span class="s2">b_1 = {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Estimated coefficients:</span><span class="se">\n</span><span class="s2">b0_hat = {} </span><span class="se">\n</span><span class="s2">b1_hat = {}</span><span class="se">\n</span><span class="s2">sigma_hat = {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> 
     <span class="c1"># plotting fitted regression line  with data</span>
     <span class="n">plot_regression_line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
@@ -11938,7 +12061,7 @@ $\widehat{\beta}_0$ and $\widehat{\beta}_1$, that minimise $RSS$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[171]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Datasets for x and y </span>
@@ -11963,8 +12086,9 @@ $\widehat{\beta}_0$ and $\widehat{\beta}_1$, that minimise $RSS$.</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Estimated coefficients:
-b_0 = -0.000193932215061 
-b_1 = 0.00526687127757
+b0_hat = -0.000193932215061 
+b1_hat = 0.00526687127757
+sigma_hat = 0.287336087556
 </pre>
 </div>
 </div>
@@ -11977,7 +12101,7 @@ b_1 = 0.00526687127757
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -11999,7 +12123,7 @@ b_1 = 0.00526687127757
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">In&nbsp;[172]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictedGPA</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.000193932215061</span> <span class="o">+</span> <span class="mf">0.00526687127757</span><span class="o">*</span><span class="n">LSAT</span>
@@ -12021,7 +12145,7 @@ b_1 = 0.00526687127757
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[121]:</div>
+<div class="prompt output_prompt">Out[172]:</div>
 
 
 
@@ -12040,7 +12164,7 @@ b_1 = 0.00526687127757
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -12055,7 +12179,13 @@ b_1 = 0.00526687127757
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Solving-Least-Squares-Using-Numerical-Linear-Algebra-Routine-in-scipy">Solving Least Squares Using Numerical Linear Algebra Routine in scipy<a class="anchor-link" href="#Solving-Least-Squares-Using-Numerical-Linear-Algebra-Routine-in-scipy">&#182;</a></h2><p>We can use <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq">scipy.linalg.lstsq</a> to get the least squares solution to our regression problems quite easily, including generalisation to multiple linear regression when the covariates are in more than 1 dimension.</p>
+<h3 id="Residual-Analysis">Residual Analysis<a class="anchor-link" href="#Residual-Analysis">&#182;</a></h3><p>Looking at the residuals $\epsilon_i$'s in the above plot we can notice how just $4$ of the $15$ datapoints are abov $0$. If $\epsilon_i$ were truly IID $Normal(0,\sigma^2)$, we would expect roughly the same number of points to be spread above and below zero, i.e., the $x$-axis, in an equally likely manner. Also, we would expect more points to be closer to zero and fewer points to be further away.</p>
+<p>In conclusion, the residuals of the linear regression of LSAT and GPA do not look like they are normall distributed.</p>
+<p>We could try different approaches to improve the model. For example, we could try to increase the sample size or standardise the scales by subtracting the sample mean and dividing by the the sample standard deviation for the $x$ and $y$ values separately and doing regression with the standardised data, etc.</p>
+<p>The <a href="">real wiki</a> page has some simple examples of residual plots and they are useful for insights:</p>
+<blockquote><p>Examples of residual plots are shown in the following figure. (a) is a satisfactory plot with the residuals falling in a horizontal band with no systematic pattern. Such a plot indicates an appropriate regression model. (b) shows residuals falling in a funnel shape. Such a plot indicates increase in variance of residuals and the assumption of constant variance is violated here. Transformation on  may be helpful in this case (see Transformations). If the residuals follow the pattern of (c) or (d), then this is an indication that the linear regression model is not adequate. Addition of higher order terms to the regression model or transformation on  or  may be required in such cases. A plot of residuals may also show a pattern as seen in (e), indicating that the residuals increase (or decrease) as the run order sequence or time progresses. This may be due to factors such as operator-learning or instrument-creep and should be investigated further.)</p>
+</blockquote>
+<p><img src="http://reliawiki.org/images/e/ee/Doe4.13.png"></p>
 
 </div>
 </div>
@@ -12064,14 +12194,208 @@ b_1 = 0.00526687127757
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let us try to understand the code in the previous cell by learning how to do a least squares fit by setting up the right design matrix.</p>
+<p>We can finally obtain 95% confidence intervals for the fitted parameters in the simple linear regression model and do a Wald test as follows.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[175]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">b0_hat</span><span class="p">,</span> <span class="n">b1_hat</span><span class="p">,</span> <span class="n">s_hat</span> <span class="o">=</span> <span class="n">estimate_coefficients</span><span class="p">(</span><span class="n">LSAT</span><span class="p">,</span><span class="n">GPA</span><span class="p">)</span>
+<span class="n">se_b0</span><span class="p">,</span><span class="n">se_b1</span> <span class="o">=</span> <span class="n">standard_errors</span><span class="p">(</span><span class="n">LSAT</span><span class="p">,</span><span class="n">GPA</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Estimated standard errors for beta_0_hat and beta_1_hat are:&quot;</span>
+<span class="k">print</span> <span class="n">se_b0</span><span class="p">,</span><span class="n">se_b1</span> 
+<span class="k">print</span> <span class="s2">&quot;and the approximate 95</span><span class="si">% c</span><span class="s2">onfidence intervals for beta_0_hat is:&quot;</span>
+<span class="k">print</span> <span class="s2">&quot;          [ &quot;</span><span class="p">,</span> <span class="n">b0_hat</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">se_b0</span><span class="p">,</span><span class="s2">&quot; , &quot;</span><span class="p">,</span> <span class="n">b0_hat</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">se_b0</span><span class="p">,</span> <span class="s2">&quot; ]&quot;</span>
+<span class="k">print</span> <span class="s2">&quot;and the approximate 95</span><span class="si">% c</span><span class="s2">onfidence intervals for beta_1_hat is:&quot;</span>
+<span class="k">print</span> <span class="s2">&quot;          [ &quot;</span><span class="p">,</span> <span class="n">b1_hat</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">se_b1</span><span class="p">,</span><span class="s2">&quot; , &quot;</span><span class="p">,</span> <span class="n">b1_hat</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">se_b1</span><span class="p">,</span> <span class="s2">&quot; ]&quot;</span>
+<span class="k">print</span> <span class="s2">&quot;The Wald test for the null hypothesis H0 that beta_1 = 0 is:&quot;</span>
+<span class="n">W</span> <span class="o">=</span> <span class="p">(</span><span class="n">b1_hat</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">se_b1</span>
+<span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">W</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Reject H0 that beta_1=0 at alpha=0.05, since W = &quot;</span><span class="p">,</span><span class="n">W</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;fail to reject H0 that beta_1=0 at alpha=0.05, since W = &quot;</span><span class="p">,</span><span class="n">W</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Estimated standard errors for beta_0_hat and beta_1_hat are:
+1.10543055036 0.00183741362459
+and the approximate 95% confidence intervals for beta_0_hat is:
+          [  -2.21105503294  ,  2.21066716851  ]
+and the approximate 95% confidence intervals for beta_1_hat is:
+          [  0.00159204402838  ,  0.00894169852675  ]
+The Wald test for the null hypothesis H0 that beta_1 = 0 is:
+Reject H0 that beta_1=0 at alpha=0.05, since W =  2.86645924852
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Multiple-Regression">Multiple Regression<a class="anchor-link" href="#Multiple-Regression">&#182;</a></h1><h3 id="This-is-just-as-simple,-except-we-have-more-than-one-covariate">This is just as simple, except we have more than one covariate<a class="anchor-link" href="#This-is-just-as-simple,-except-we-have-more-than-one-covariate">&#182;</a></h3><p>Now, let's suppose that the covariate, feature, predictor or dependent variable is a vector of length $k$. So our data for regression is of the following form:</p>
+<p>$$
+(Y_1,X_1), (Y_2,X_2), \ldots, (Y_i,X_i), \ldots, (Y_n,X_n)
+$$</p>
+<p>where, $X_i$ is a vector of length $k$ for the $i$-th observation or datapoint $(Y_i,X_i)$.</p>
+<p>$$
+X_i = (X_{i,1},X_{i,2},\ldots,X_{i,k}) \, .
+$$</p>
+<p>Then the linear regression model is:</p>
+<p>$$
+Y_i = \displaystyle{\sum_{j=0}^k \beta_j X_{i,j} + \epsilon_i, \quad \text{ for } i \in \{1,2,\ldots,n\} }
+$$</p>
+<p>where $\beta_0$ is the intercept term with $X_{i,0}=1$ for each $i \in \{1,2,\ldots,n\}$ and</p>
+<p>$$
+E \left( \epsilon_i | X_{1,i}, X_{2,i}, \ldots, X_{k,i} \right) = 0.
+$$</p>
+<p>We can denote the model using matrices and vectors more conveniently as follows:</p>
+<p>$$
+Y 
+= \displaystyle{\left( {\begin{array}{c}
+   Y_1 \\
+   Y_2 \\
+   \vdots \\
+   Y_n
+  \end{array} } \right)} \, ,
+\qquad 
+X 
+=  \displaystyle{\left( {\begin{array}{cccc}
+   1&amp; X_{1,1}&amp; \ldots&amp; X_{1,k} \\
+   1&amp; X_{2,1}&amp; \ldots&amp; X_{2,k} \\
+   \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+   1&amp; X_{n,1}&amp; \ldots&amp; X_{n,k} 
+  \end{array} } \right)} \, ,
+\qquad
+\beta 
+= \displaystyle{\left( {\begin{array}{c}
+   \beta_0 \\
+   \beta_1 \\
+   \vdots \\
+   \beta_k
+  \end{array} } \right)} \, ,
+\qquad 
+\epsilon 
+= \displaystyle{\left( {\begin{array}{c}
+   \epsilon_1 \\
+   \epsilon_2 \\
+   \vdots \\
+   \epsilon_n
+  \end{array} } \right)} \, .
+$$</p>
+<p>With $X \in \mathbb{R}^{n \times (k+1)}$, i.e., $X$ being a $n \times (k+1)$ matrix, $\beta \in \mathbb{R}^{(k+1) \times 1}$, i.e., $\beta$ being a a column vector with $k+1$ rows, and $\epsilon \in \mathbb{R}^{n \times 1}$, i.e., $\epsilon$ being a column vector with $n$ rows, we obtain the multiple regression model:</p>
+<p>$$
+\boxed{
+Y = X \beta + \epsilon \, .
+}
+$$</p>
+<p>Just as in the 1D case with $k=1$, the least sqaures estimate is as follows, under the assumption that $X^T X$ is invertible:</p>
+<p>$$
+\boxed{
+\begin{align}
+\widehat{\beta} &amp;= \left( X^T X\right)^{-1} X^T Y\\
+V\left(\widehat{\beta} | X_{1:n} \right) &amp;= \sigma^2 \left( X^T X \right)^{-1} \\
+\widehat{\beta} &amp;\approx Normal \left(\beta, \sigma^2 \left( X^T X\right)^{-1} \right)
+\end{align} \, .
+}
+$$</p>
+<p>The estimate of the regression function is:</p>
+<p>$$
+\boxed{
+\widehat{r}(x) = \sum_{j=0}^k \widehat{\beta}_j \, x_j \, .
+}
+$$</p>
+<p>An unbiased estimate of $\sigma^2$ is:</p>
+<p>$$
+\widehat{\sigma}^2 = \left( \frac{1}{n-k} \right) \sum_{i=1}^n \widehat{\epsilon}_i^2 \, 
+$$</p>
+<p>where $\widehat{\epsilon}$ is the vector of residuals:</p>
+<p>$$
+\boxed{
+\widehat{\epsilon}=X \widehat{\beta} - Y
+}
+\ , \text{ i.e.,} \quad
+\widehat{\epsilon} 
+= \displaystyle{\left( {\begin{array}{c}
+   \widehat{\epsilon}_1 \\
+   \widehat{\epsilon}_2 \\
+   \vdots \\
+   \widehat{\epsilon}_n
+  \end{array} } \right)}
+= \displaystyle{\left( {\begin{array}{cccc}
+   1&amp; X_{1,1}&amp; \ldots&amp; X_{1,k} \\
+   1&amp; X_{2,1}&amp; \ldots&amp; X_{2,k} \\
+   \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+   1&amp; X_{n,1}&amp; \ldots&amp; X_{n,k} 
+  \end{array} } \right)} \ 
+  \displaystyle{\left( {\begin{array}{c}
+   \widehat{\beta}_0 \\
+   \widehat{\beta}_1 \\
+   \vdots \\
+   \widehat{\beta}_k
+  \end{array} } \right)} \</p>
+<ul>
+<li>\displaystyle{\left( {\begin{array}{c}
+ Y_1 \\
+ Y_2 \\
+ \vdots \\
+ Y_n
+\end{array} } \right)}
+$$</li>
+</ul>
+<p>An approximate $1-\alpha$ confidence interval for $\beta_j$ is</p>
+<p>$$
+\boxed{
+\widehat{\beta}_j \pm z_{\alpha/2} \widehat{se}(\widehat{\beta}_j)
+}
+$$
+where $\left(\widehat{se}(\widehat{\beta}_j)\right)^2$ is the $j$-th diagonal entry of the matrix  $\widehat{\sigma}^2 (X^T X)^{-1}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Solving-Least-Squares-Using-Numerical-Linear-Algebra-Routine-in-scipy">Solving Least Squares Using Numerical Linear Algebra Routine in scipy<a class="anchor-link" href="#Solving-Least-Squares-Using-Numerical-Linear-Algebra-Routine-in-scipy">&#182;</a></h2><p>We can use <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html#scipy.linalg.lstsq">scipy.linalg.lstsq</a> to get the least squares solution to our regression problems quite easily, including generalisation to multiple linear regression when the covariates are in more than 1 dimension.</p>
+<p>Let us try to understand the code in the previous cell by learning how to do a least squares fit by setting up the right design matrix.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-1:-Fitting-a-Line-is-Simple-Linear-Regression">Example 1: Fitting a Line is Simple Linear Regression<a class="anchor-link" href="#Example-1:-Fitting-a-Line-is-Simple-Linear-Regression">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[177]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">lstsq</span>
@@ -12098,7 +12422,7 @@ b_1 = 0.00526687127757
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[26]:</div>
+<div class="prompt output_prompt">Out[177]:</div>
 
 
 
@@ -12121,7 +12445,7 @@ b_1 = 0.00526687127757
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[178]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#We want to find the least-squares solution to </span>
@@ -12140,7 +12464,7 @@ b_1 = 0.00526687127757
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[30]:</div>
+<div class="prompt output_prompt">Out[178]:</div>
 
 
 
@@ -12157,7 +12481,7 @@ b_1 = 0.00526687127757
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[179]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
@@ -12202,7 +12526,7 @@ b_1 = 0.00526687127757
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Fitting-a-Quadratic-is-also-Simple-Linear-Regresssion">Fitting a Quadratic is also Simple Linear Regresssion<a class="anchor-link" href="#Fitting-a-Quadratic-is-also-Simple-Linear-Regresssion">&#182;</a></h3><p>Suppose we want to fit a quadratic polynomial of the form $y = a + b*x^2$ to the same data. 
+<h3 id="Example-2:-Fitting-a-Quadratic-is-also-Simple-Linear-Regresssion">Example 2: Fitting a Quadratic is also Simple Linear Regresssion<a class="anchor-link" href="#Example-2:-Fitting-a-Quadratic-is-also-Simple-Linear-Regresssion">&#182;</a></h3><p>Suppose we want to fit a quadratic polynomial of the form $y = a + b*x^2$ to the same data. 
 Then we first form the design matrix <code>M2</code>, with a constant column of <code>1</code>s and a column containing <code>x^2</code> as follows:</p>
 
 </div>
@@ -12210,7 +12534,7 @@ Then we first form the design matrix <code>M2</code>, with a constant column of 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[180]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">M2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">^</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -12227,7 +12551,7 @@ Then we first form the design matrix <code>M2</code>, with a constant column of 
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[35]:</div>
+<div class="prompt output_prompt">Out[180]:</div>
 
 
 
@@ -12250,7 +12574,7 @@ Then we first form the design matrix <code>M2</code>, with a constant column of 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[181]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># least square solution with M2</span>
@@ -12297,8 +12621,7 @@ Then we first form the design matrix <code>M2</code>, with a constant column of 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Multivariate-Regression">Multivariate Regression<a class="anchor-link" href="#Multivariate-Regression">&#182;</a></h1><h2 id="is-just-as-simple---except-we-have-more-than-one-covariate">is just as simple - except we have more than one covariate<a class="anchor-link" href="#is-just-as-simple---except-we-have-more-than-one-covariate">&#182;</a></h2><p>...</p>
-<h3 id="Fitting-a-3rd-Order-Polynomial-is-Multiple-Linear-Regresssion">Fitting a 3rd Order Polynomial is Multiple Linear Regresssion<a class="anchor-link" href="#Fitting-a-3rd-Order-Polynomial-is-Multiple-Linear-Regresssion">&#182;</a></h3><p>Suppose we want to fit a degree-3 polynomial of the form $y = \beta_0 + \beta_1 x + \beta_2 x^2+ \beta_3 x^3$ to the same data. 
+<h3 id="Example-3:-Fitting-a-3rd-Order-Polynomial-is-Multiple-Linear-Regresssion">Example 3: Fitting a 3rd Order Polynomial is Multiple Linear Regresssion<a class="anchor-link" href="#Example-3:-Fitting-a-3rd-Order-Polynomial-is-Multiple-Linear-Regresssion">&#182;</a></h3><p>Suppose we want to fit a degree-3 polynomial of the form $y = \beta_0 + \beta_1 x + \beta_2 x^2+ \beta_3 x^3$ to the same data. 
 Then we first form the design matrix <code>M3</code>, with a constant column of <code>1</code>s with <code>x^0</code> and three additional columns containing <code>x^1</code>, <code>x^2</code> and <code>x^3</code> as follows:</p>
 
 </div>
@@ -12306,7 +12629,7 @@ Then we first form the design matrix <code>M3</code>, with a constant column of 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Fitting a cubic polynolial is the same idea</span>
@@ -12318,36 +12641,10 @@ Then we first form the design matrix <code>M3</code>, with a constant column of 
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[41]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([[   1.   ,    1.   ,    1.   ,    1.   ],
-       [   1.   ,    2.5  ,    6.25 ,   15.625],
-       [   1.   ,    3.5  ,   12.25 ,   42.875],
-       [   1.   ,    4.   ,   16.   ,   64.   ],
-       [   1.   ,    5.   ,   25.   ,  125.   ],
-       [   1.   ,    7.   ,   49.   ,  343.   ],
-       [   1.   ,    8.5  ,   72.25 ,  614.125]])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">rnk</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">lstsq</span><span class="p">(</span><span class="n">M3</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -12363,28 +12660,6 @@ Then we first form the design matrix <code>M3</code>, with a constant column of 
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12443,7 +12718,7 @@ Then we first form the design matrix <code>M3</code>, with a constant column of 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[176]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Sample Exam Problem 8 Solution</span>
@@ -12517,7 +12792,7 @@ Then we first form the design matrix <code>M3</code>, with a constant column of 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For the fitted regression model in the next cell get the residuals and plot them against the covariate. 
+<p>For the fitted regression model in the next cell get the residuals and plot them against the covariate [see <strong>Residual analysis</strong> section in latest <code>12.ipynb</code> for the basic ideas conveyed in the last lecture]. 
 How do the residuals compare to a Normal random variable centred at $0$ with a constant variance (summarise in a sentence or two by double-clicking this cell and writing in between the two lines <code>---</code> below)?</p>
 <hr>
 <hr>
@@ -12573,7 +12848,39 @@ How do the residuals compare to a Normal random variable centred at $0$ with a c
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Least-Squares-and-Maximum-Likelihood">Least Squares and Maximum Likelihood<a class="anchor-link" href="#Least-Squares-and-Maximum-Likelihood">&#182;</a></h1><p>...</p>
+<h1 id="Prediction">Prediction<a class="anchor-link" href="#Prediction">&#182;</a></h1><p>Let's consider the 1D setting for simplicity of notation. 
+Suppose we have estimated a regression model:
+$$\widehat{r}(x) = \widehat{\beta}_0 + \widehat{\beta}_1 x $$
+from data $(X_1,Y_1), (X_2,Y_2), \ldots, (X_n,Y_n)$.</p>
+<p>Now suppose we observe the value $X=x_*$ of the covariate of a new observarion but <em>do not</em> observe the response $Y_*$ and want to <strong>predict</strong> it. An estimate of $Y_*$ is</p>
+<p>$$
+\boxed{
+\widehat{Y}_* = \widehat{\beta}_0 + \widehat{\beta}_1 x_* \, .
+}
+$$</p>
+<p>By the formula for the variance of the sum of two random variables:</p>
+<p>$$
+V(\widehat{Y}_*) = V(\widehat{\beta}_0 + \widehat{\beta}_1 x_*) 
+= V(\widehat{\beta}_0) + x_*^2 V(\widehat{\beta}_1 ) + 2 x_* Cov (\widehat{\beta}_0,\widehat{\beta}_1)
+$$</p>
+<p>We have all the needed terms to compute $V(\widehat{Y}_*)$ from the earlier result on the conditional variance of the least squares estimate:</p>
+<p>$$
+V \left( \widehat{\beta} \, | \, X_{1:n} \right) 
+= \frac{\sigma^2}{n s_X^2} 
+\left( 
+{\begin{array}{cc}
+   \frac{1}{n}\sum_{i=1}^n X_i^2 &amp; -\overline{X}_n \\
+   -\overline{X}_n &amp; 1\\
+  \end{array}} 
+  \right)
+$$</p>
+<p>The estimated standard error $\widehat{se}(\widehat{Y}_*)$ is just $\sqrt{V(\widehat{Y}_*)}$ with $\widehat{\sigma}^2$ substituted in for $\sigma^2$. An approximate $1-alpha$ confidence interval for $Y^*$ is called an <strong>approximate $1-\alpha$ prediction interval for $Y_*$</strong> and is given by</p>
+<p>$$
+\boxed{
+\widehat{Y}_* \pm z_{\alpha/2} \widehat{\xi}_n \, , \quad \text{ where } \quad 
+\widehat{\xi}^2_n = \widehat{\sigma}^2 \left( \frac{\sum_{i=1}^n (X_i-X_*)^2}{n \sum_{i=1}^n (X_i-\overline{X})^2} + 1 \right)
+}
+$$</p>
 
 </div>
 </div>
@@ -12582,7 +12889,10 @@ How do the residuals compare to a Normal random variable centred at $0$ with a c
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Prediction">Prediction<a class="anchor-link" href="#Prediction">&#182;</a></h1><p>...</p>
+<h1 id="Multiple-Regression-on-2018-Swedish-Election-Data">Multiple Regression on 2018 Swedish Election Data<a class="anchor-link" href="#Multiple-Regression-on-2018-Swedish-Election-Data">&#182;</a></h1><p>If you are interested, you already have the basic skills to look at the data from Swedish election using these ideas.</p>
+<p>Try to model, say the $\log$ of the number of district-level votes for the top two most voted parties.</p>
+<p>You can introduce latitude of the district centres (if you have such information from geospatial database you could join), distance of the district to one of the four largest cities in Sweden, or the socio-economic indicators of the district for Swedish Central Statistical Bureau, etc., as covariates.</p>
+<p>But this is a good project and beyond current scope (mainly due to time limitations).</p>
 
 </div>
 </div>
@@ -12591,16 +12901,11 @@ How do the residuals compare to a Normal random variable centred at $0$ with a c
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Multiple-Regression-Examples">Multiple Regression Examples<a class="anchor-link" href="#Multiple-Regression-Examples">&#182;</a></h1><p>...</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Loss-functions-and-gradient-descent">Loss functions and gradient descent<a class="anchor-link" href="#Loss-functions-and-gradient-descent">&#182;</a></h2><p>In the above example with linear regression we wanted to minimize the vertical distance between the fitted line and the data, this vertical distance is a prime example of a <strong>loss function</strong>. In general when we are faced with a regression problem we want a way of measure how good our model is, this quantity that we want to <em>minimise</em> is called the loss function and its expectation (over different sample data-points is called the <strong>risk</strong>). The mathematical statistical justification for this approach towards minimising expected loss or risk is called <a href="https://en.wikipedia.org/wiki/Empirical_risk_minimization">empirical risk minimisation</a>, as we will see in the sequel in more detail.</p>
+<h1 id="Prelude-to-Statistical-Machine-Learning">Prelude to Statistical Machine Learning<a class="anchor-link" href="#Prelude-to-Statistical-Machine-Learning">&#182;</a></h1><p>Here, we just start you off on the path to more statistical modeling for purposes of prediction.
+Now statistical learning from the 1970s is needed to mathematically justify the methods.</p>
+<p>The following is a teaser of what you will see in the first couple weeks of you course in 'statistical machine learning'.</p>
+<h2 id="Loss-functions-and-gradient-descent">Loss functions and gradient descent<a class="anchor-link" href="#Loss-functions-and-gradient-descent">&#182;</a></h2><p>[this header was adapted from some notes by Benny Avelin]</p>
+<p>In the above example with linear regression we wanted to minimize the vertical distance between the fitted line and the data, this vertical distance is a prime example of a <strong>loss function</strong>. In general when we are faced with a regression problem we want a way of measure how good our model is, this quantity that we want to <em>minimise</em> is called the loss function and its expectation (over different sample data-points is called the <strong>risk</strong>). The mathematical statistical justification for this approach towards minimising expected loss or risk is called <a href="https://en.wikipedia.org/wiki/Empirical_risk_minimization">empirical risk minimisation</a>, as we will see in the sequel in more detail.</p>
 <p>Let us circle back to linear regression once again. The way the <code>np.argmin</code> method searched for the minimum of:</p>
 <p>$$L(a,b) = \sum_{i=1}^N (y_i - f_{a,b}(x_i))^2$$</p>
 <p>was by simply evaluating $L(a,b)$ for each value of $a$ in the array <code>prop_a</code> with our guessed values for $a$ and picking the $a$ that minimised $L(a,b)$. Recall we fixed $b$ in the search.</p>
@@ -12631,16 +12936,10 @@ $$\sqrt( ( L(a_{i+1},b_{i+1})- L(a_{i},b_{i}))^2) &lt; \tau, \qquad \text{ where
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Introduction-to-R-in-SageMath-Jupyter-IPython-Notebook">Introduction to R in SageMath Jupyter IPython Notebook<a class="anchor-link" href="#Introduction-to-R-in-SageMath-Jupyter-IPython-Notebook">&#182;</a></h1><ol>
-<li><p>How to run <code>R</code> commands in SageMath</p>
-<ul>
-<li>installing packages</li>
-<li>loading libraries</li>
-<li>loading data</li>
-<li>running typical statistical models like generalised linear models (a superset of linear regression models in this course) on the beetles data</li>
-<li>making PNG images of the plots</li>
+<li>How to run R commands in SageMath<ul>
+<li>doing linear regression regression using R's builtin <code>lm</code> (linear model) package in SageMath/R</li>
+<li>installing non-builtin packages, loading libraries and data</li>
 </ul>
-</li>
-<li><p>Why SageMath for <code>R</code>?</p>
 </li>
 </ol>
 
@@ -12653,22 +12952,77 @@ $$\sqrt( ( L(a_{i+1},b_{i+1})- L(a_{i},b_{i}))^2) &lt; \tau, \qquad \text{ where
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Running-R-in-SageMath-is-&quot;easy-as&quot;:">Running R in SageMath is "easy as":<a class="anchor-link" href="#Running-R-in-SageMath-is-&quot;easy-as&quot;:">&#182;</a></h2><ul>
 <li>Use <code>%%r</code> to denote that the <code>Code</code> cell is of language <code>R</code></li>
-<li>Installing R packages with <code>install.packages(...)</code></li>
 </ul>
-<p><strong>Note:</strong> Once a package is installed on a particular machine using <code>install.packages("wantedpackage")</code> then you only need to load that library using <code>library(wantedpackage)</code> when you are using the same machine.</p>
+<p>First note that SageMath/Python and R kernels will be available in the SageMath Jupyter notebook.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[148]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># this is x and y available as numpy arrays in SageMath/Python</span>
+<span class="k">print</span> <span class="n">x</span>
+<span class="k">print</span> <span class="n">y</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[ 5.23  5.74  4.93  5.74  5.19  5.46  5.27  5.57  5.12  5.45  5.42  4.05
+  4.26  4.58  3.94  4.18  4.18  4.38  4.22  4.42  4.85  5.02  4.66  4.66
+  4.9   4.39  4.42  5.1   5.22  4.34  5.62  5.1   5.22  5.18  5.57  4.62
+  5.06  5.34  5.34  5.54  4.98  4.5 ]
+[ 4.37  4.56  4.26  4.56  4.3   4.46  4.57  4.26  4.37  4.43  4.48  4.01
+  4.29  4.42  4.23  4.42  4.23  4.29  4.29  4.42  4.49  4.38  4.42  4.29
+  4.38  4.22  4.38  4.56  4.45  4.23  4.62  4.53  4.45  4.53  4.43  4.38
+  4.45  4.5   4.45  4.55  4.45  4.42]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Assigning-to-x-and-y-in-SageMath/R">Assigning to <code>x</code> and <code>y</code> in SageMath/R<a class="anchor-link" href="#Assigning-to-x-and-y-in-SageMath/R">&#182;</a></h3><p>We use the assignment operator, <code>&lt;-</code>, in R, as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[150]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">r</span>
-#install.packages(&quot;Flury&quot;)
-#library(Flury)
-#data(dead.beetles)
+x &lt;- c(5.23,  5.74,  4.93,  5.74,  5.19,  5.46,  5.27,  5.57,  5.12,
+         5.45,  5.42,  4.05,  4.26,  4.58,  3.94,  4.18,  4.18,  4.38,
+         4.22,  4.42,  4.85,  5.02,  4.66,  4.66,  4.9 ,  4.39,  4.42,
+         5.1 ,  5.22,  4.34,  5.62,  5.1 ,  5.22,  5.18,  5.57,  4.62,
+         5.06,  5.34,  5.34,  5.54,  4.98,  4.5)
+y &lt;- c(4.37,  4.56,  4.26,  4.56,  4.3 ,  4.46,  4.57,  4.26,  4.37,
+         4.43,  4.48,  4.01,  4.29,  4.42,  4.23,  4.42,  4.23,  4.29,
+         4.29,  4.42,  4.49,  4.38,  4.42,  4.29,  4.38,  4.22,  4.38,
+         4.56,  4.45,  4.23,  4.62,  4.53,  4.45,  4.53,  4.43,  4.38,
+         4.45,  4.5 ,  4.45,  4.55,  4.45,  4.42)
 </pre></div>
 
 </div>
@@ -12688,6 +13042,13 @@ $$\sqrt( ( L(a_{i+1},b_{i+1})- L(a_{i},b_{i}))^2) &lt; \tau, \qquad \text{ where
 <pre>
 
 
+
+
+
+
+
+
+
 </pre>
 </div>
 </div>
@@ -12700,10 +13061,75 @@ $$\sqrt( ( L(a_{i+1},b_{i+1})- L(a_{i},b_{i}))^2) &lt; \tau, \qquad \text{ where
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Additional-Packages">Additional Packages<a class="anchor-link" href="#Additional-Packages">&#182;</a></h2><p>One often needs several additional packages to run certain desired <code>R</code> commands. Let's get some such packages.</p>
+<h3 id="Doing-Linear-Regression-in-SameMath/R">Doing Linear Regression in SameMath/R<a class="anchor-link" href="#Doing-Linear-Regression-in-SameMath/R">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">r</span>
+linearRegressionModel &lt;- lm(formula = y ~ x + I(x^2))
+
+summary(linearRegressionModel)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Running-R-in-SageMath-is-&quot;easy-as&quot;:">Running R in SageMath is "easy as":<a class="anchor-link" href="#Running-R-in-SageMath-is-&quot;easy-as&quot;:">&#182;</a></h2><p>Sometimes you need additional <code>R</code> packages.</p>
+<ul>
+<li>Installing R packages with <code>install.packages(...)</code></li>
+</ul>
+<p><strong>Note:</strong> Once a package is installed on a particular machine using <code>install.packages("wantedpackage")</code> then you only need to load that library using <code>library(wantedpackage)</code> when you are using the same machine.</p>
+<h3 id="Additional-Packages">Additional Packages<a class="anchor-link" href="#Additional-Packages">&#182;</a></h3><p>One often needs several additional packages to run certain desired <code>R</code> commands. Let's get some such packages.</p>
 <p>In other words, you don't have to install packages that are already installed and thus can be automatically found by <code>R</code> in the default location it will be installed at. In the case below, you can see where the package was installed from the following line:</p>
 <ul>
 <li><code>Installing package into ‘/some_path_to_where_the_package_is_installed’</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">r</span>
+# there will be further dependencies, you may need to recursively install...
+#install.packages(&quot;Flury&quot;)
+#library(Flury)
+#data(dead.beetles)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SageMath/R-docs">SageMath/R docs<a class="anchor-link" href="#SageMath/R-docs">&#182;</a></h2><p>For example, you can find in the docs more systematic/programmatic way to assign SageMath/Python objects to SageMath/R objects.</p>
+<ul>
+<li>R:<ul>
+<li><a href="https://cran.r-project.org/doc/manuals/R-intro.html">https://cran.r-project.org/doc/manuals/R-intro.html</a></li>
+</ul>
+</li>
+<li>SageMath/R:<ul>
+<li><a href="http://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/r.html">http://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/r.html</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
