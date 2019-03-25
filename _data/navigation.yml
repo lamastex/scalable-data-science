@@ -1,34 +1,32 @@
 # main links
 main:
-  - title: "as-2019"
-    url: /as/2019/
-  - title: "infty-2018-01"
-    url: /infty/2018/01/
-  - title: "glm-2018"
-    url: /glm/2018/
   - title: "SDS-2.2"
     url: /sds/2/2/
+  - title: "Privacy-Decisions"
+    url: /360-in-525/2019/
   - title: "360-in-525"
     url: /360-in-525/2018/
-  - title: "Research"
+  - title: "SDS-Research"
     url: /sds/research/
   - title: "LaMaStEx"
     url: "https://lamastex.github.io/"
   - title: "Contact"
-    url: /contact/
- # - title: "Sitemap"
- #   url: /sitemap/
+    url: "https://lamastex.github.io/contact/"
 
 lMenu:
   - title: "LaMaStEx"
     url: "https://lamastex.github.io/"
-  - title: "SDS"
-    url: /
+  - title: "Research"
+    url: "https://lamastex.github.io/research/"
+  - title: "Courses"
+    url: "https://lamastex.github.io/courses/"
     children:
-      - title: "as-2019"
-        url: /as/2019/
       - title: "SDS-2.2"
         url: /sds/2/2/
+      - title: "Privacy-Decisions"
+        url: /360-in-525/2019/
+      - title: "as-2019"
+        url: /as/2019/
       - title: "360-in-525"
         url: /360-in-525/2018/
       - title: "infty-2018-01"
