@@ -16,8 +16,10 @@ main:
 lMenu:
   - title: "LaMaStEx"
     url: "https://lamastex.github.io/"
-  - title: "SDS-Courses"
-    url: /
+  - title: "Research"
+    url: "https://lamastex.github.io/research/"
+  - title: "Courses"
+    url: "https://lamastex.github.io/courses/"
     children:
       - title: "SDS-2.2"
         url: /sds/2/2/
