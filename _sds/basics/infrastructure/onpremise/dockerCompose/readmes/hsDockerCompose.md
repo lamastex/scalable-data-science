@@ -62,3 +62,5 @@ Some important notes for each application included are:
   password simply remove the entire line.
 - **Nifi**: The port for the webUI is published to port 9090 to not collide with
   Zeppelin.
+- **Kafka**: The default port for the built-in Zookeeper is 2181 and the default
+  port for Kafka clients is 9092.
