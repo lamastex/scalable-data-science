@@ -14,9 +14,13 @@
 
 # hs dockerimages and docker-compose configuration #
 
-This is a guide to using the lamastex/hs{base,zeppelin,jupyter,nifi,kafka}
+This is a guide to using the `lamastex/hs{base,zeppelin,jupyter,nifi,kafka}`
 docker images and the `docker-compose.yml` configuration to start all the
 services.
+
+First each image is explained on its own. Then the `docker-compose` config is
+explained with some minimal examples included. Lastly some important notes to be
+aware of.
 
 ## Docker images ##
 
@@ -116,7 +120,27 @@ The required file `docker-compose.yml` is located in the folder
 `.../_sds/basics/infrastructure/onpremise/dockerCompose`. You can either `cd` to
 this directory or run every command with `-f
 .../_sds/basics/infrastructure/onpremise/dockerCompose/docker-compose.yml`. For
-simplicity I will assume that your working directory is the above folder.
+simplicity I will assume that your working directory is the above folder and
+I'll refer to it as the *root folder*.
+
+### Folder structure ###
+
+There are currently 5 folders in the root folder.
+
+- **data**: This is a folder for any data you want mounted into the containers
+  started by `docker-compose`. It will automatically be mounted as read-only
+  into the `/root` folder (which is also the working directory, the one that you
+  automatically start in when opening a terminal) of any started container.
+- **hadoopConfig**: Contains configuration files for hadoop. Is automatically
+  mounted as read-only into each container so they all can communicate with
+  hdfs.
+- **sshConfig**: Contains ssh configuration. Is built in to each image. Allows
+  the containers to speak to each other without requiring you to accept the host
+  key manually each time.
+- **readmes**: Contains this readme and some others.
+- **zimport**: Contains the `zimport.py` Python script for automatically
+  importing the output of Pinot into Zeppelin. See `dbToZp.md` for instructions
+  on how to use it.
 
 ### Start and stop commands ###
 
@@ -143,10 +167,94 @@ to use `-it` to access the shell since it will automatically attach input and
 output. Instead you have to use `-T` if you **don't** want it to attach input and
 output.
 
-Lastly if you want to attach to a running container you can use `docker-compose
+If you want to attach to a running container you can use `docker-compose
 exec <service> <command>`. This will attach to the service `<service>` and run
 the command `<command>`. For example, if you want to access a shell inside a
 running `jupyter` service you can use `docker-compose exec jupyter bash`.
+
+Lastly, if you want to start a subset of the services you cna open the
+`docker-compose.yml` file and comment out the services you don't need. When you
+then run `docker-compose up` it won't start those services.
+
+### Communication between containers ###
+
+When using `docker-compose up` a network is automatically set up to communicate
+between services. Furthermore DNS resolution is set up so that the service names
+point to the correct container, for example you could use `ping zeppelin` if you
+wanted to ping the container running the `zeppelin` service.
+
+Note that firewalls can interfere with this communication. If you're getting
+timeouts or the network is otherwise not working as it should, try turning off
+all firewalls.
+
+### SOU minimal example ###
+
+This is a minimal example for doing a word count on the SOU data loaded into
+HDFS from zeppelin on the `docker-compose` config.
+
+1. Run `docker-compose up -d` to start services. You can comment out `jupyter`,
+   `nifi` and `kafka` services for this example.
+2. Run `docker-compose exec hadoop bash` to start a terminal in the `hadoop`
+   container.
+3. In the `hadoop` container run `hdfs dfs -ls /`. You should get back an empty
+   directory.
+4. In the `hadoop` container run `hdfs dfs -put data /`. This will boot the
+   `data` folder which contains the SOU data in the root folder of HDFS.
+5. In the `hadoop` container run `hdfs dfs -ls /data/sou`. You should see all
+   the SOU text files.
+6. In your browser go to `localhost:8080` to open the Zeppelin webUI and create
+   a new notebook.
+7. In the new notebook run the following:
+   ```
+   val sou = sc.textFile("hdfs:///data/sou/*")
+   sou.take(5)
+   ```
+   to load all the SOU files into the rdd `sou` and then print the first five lines.
+8. From here you can continue doing whatever analysis you like of the SOU data
+   from Zeppelin.
+
+### Spark Streaming with Kafka in spark-shell minimal example ###
+
+The following is a "minimal" example of Spark Streaming using Kafka
+
+1. Run `docker-compose up -d` to start services. You can comment out `zeppelin`,
+   `jupyter` and `nifi` for this example.
+2. Run `docker-compose exec kafka bash` to start a terminal in the `kafka`
+   container.
+3. Create a simple text file using `echo -e "hello\nworld" > test.txt`. Skip
+   this step if you want to use a different text file.
+4. Run `kafka-topic --create --zookeeper kafka:2181 --replication-factor 1
+   --partitions 1 --topic test` to create a Kafka topic called `test`.
+5. Run `kafka-console-producer --broker-list kafka:9092 --topic test < test.txt`
+   to populate the topic with some data. Instead of `test.txt` you can use any
+   other text file you can find in the container.
+6. Exit the `kafka` container or open a new terminal and run `docker-compose
+   exec hadoop bash` to open a terminal in the `hadoop` service.
+7. In the `hadoop` service run `spark-shell` to start the Spark shell.
+8. In the Spark shell run the following code to set up for streaming:
+   ```
+   import org.apache.spark.streaming._
+   import org.apache.spark.streaming.kafka010._
+   import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+   import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
+   import org.apache.kafka.clients.consumer.ConsumerRecord
+   import org.apache.kafka.common.serialization.StringDeserializer
+   
+   val ssc = new StreamingContext(sc, Seconds(5))
+   
+   val kafkaParams = Map[String, Object]("bootstrap.servers" -> "kafka:9092", "key.deserializer" -> classOf[StringDeserializer], "value.deserializer" -> classOf[StringDeserializer], "group.id" -> "stream_group_id", "auto.offset.reset" -> "earliest", "enable.auto.commit" -> (false: java.lang.Boolean))
+   
+  val topics = Array("test")
+  val stream = KafkaUtils.createDirectStream[String, String](ssc, PreferConsistent, Subscribe[String, String](topics, kafkaParams))
+  stream.map(record => (record.key, record.value)).print()
+   ```
+9. In the Spark shell run `ssc.start()` to start streaming data. You should
+   first see the data you populated the Kafka topic with. If you add more data
+   to the Kafka topic while streaming it will show up in the Spark shell.
+   
+The same setup could of course work in Zeppelin as well but the printing out to
+console won't work so you would have to do something different, like saving to
+files.
 
 ## Notes ##
 
