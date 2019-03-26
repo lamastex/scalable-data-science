@@ -15,7 +15,7 @@
 version: "3.7"
 services:
   hadoop:
-    image: danlilja/hsbase
+    image: lamastex/hsbase
     command: --format
     volumes:
       - type: bind
@@ -68,7 +68,7 @@ services:
       - published: 9090
         target: 8080
   kafka:
-    image: danlilja/hskafka
+    image: lamastex/hskafka
     ports:
       - published: 2181
         target: 2181
