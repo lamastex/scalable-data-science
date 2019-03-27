@@ -157,20 +157,11 @@ not remove the containers, e.g. if you want to continue working later, use
 
 To start all stopped containers use `docker-compose start`.
 
-If you only want to start a single container you can use `docker-compose run
-<service>` where `<service>` is the name of one of the services defined in the
-`docker-compose.yml` file you're using. For now the defined services are
-`hadoop` for hdfs and Yarn, `zeppelin` for Zeppelin, `jupyter` for Jupyter,
-`nifi` for Nifi and `kafka` for Kafka. It works like the normal `docker run`
-command in that you have to use `-p` to publish ports except that you don't need
-to use `-it` to access the shell since it will automatically attach input and
-output. Instead you have to use `-T` if you **don't** want it to attach input and
-output.
-
-If you want to attach to a running container you can use `docker-compose
-exec <service> <command>`. This will attach to the service `<service>` and run
-the command `<command>`. For example, if you want to access a shell inside a
-running `jupyter` service you can use `docker-compose exec jupyter bash`.
+If you want to attach to a running container you can use `docker-compose exec
+<service> <command>`. This will attach to the service `<service>` and run the
+command `<command>`. For example, if you want to access a shell inside a running
+`jupyter` service you can use `docker-compose exec jupyter bash`. The defined
+services are `hadoop`, `zeppelin`, `jupyter`, `nifi` and `kafka`.
 
 Lastly, if you want to start a subset of the services you cna open the
 `docker-compose.yml` file and comment out the services you don't need. When you
