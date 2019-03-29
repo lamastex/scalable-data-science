@@ -275,3 +275,14 @@ Some important notes for each application included are:
   port for Kafka clients is 9092.
 - **On-premise cluster**: To use these tools in a cluster with more than one node,
   read up on docker swarm and docker stack.
+
+# Quick Docker Commands
+
+- docker-compose up -d
+- docker-compose down
+- to view all current docer containers (including stopped ones)
+`docker ps -aq`
+`docker-compose ps`
+- to remove all docker containers:
+`docker rm $(docker ps -aq)`
+`docker-compose rm`

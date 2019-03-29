@@ -14,7 +14,7 @@
 
 version: "3.7"
 services:
-  hadoop:
+  hadoop: # this is the name of the service for hdfs+yarn+spark
     image: lamastex/hsbase
     command: --format
     volumes:
@@ -27,12 +27,16 @@ services:
         target: /root/data
         read_only: true
     ports:
-      - published: 50070 #hdfs webUI
+      - published: 50070 # hdfs webUI
         target: 50070 
-      - published: 7070 # remapped Spark webUI
+      - published: 7070 # spark's standalone mode webUI (yarn is default)
         target: 8080
-      - published: 8088 # yarn (resource manager) webUI
+      - published: 8088 # yarn resource manager webUI
         target: 8088
+      - published: 4040 # spark context webUI
+        target: 4040
+      - published: 8042 # yark-worker that is the spark-master's logs (to see stdout of spark-submit job in webUI)
+        target: 8042
   zeppelin:
     image: lamastex/hszeppelin
     ports:
@@ -70,7 +74,7 @@ services:
   kafka:
     image: lamastex/hskafka
     ports:
-      - published: 2181 # for zookeeper client connection
+      - published: 2181
         target: 2181
     volumes:
       - type: bind
