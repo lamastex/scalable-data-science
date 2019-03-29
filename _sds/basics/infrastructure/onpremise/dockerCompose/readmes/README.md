@@ -32,15 +32,16 @@ The docker images are called `lamastex/hsbase`, `lamastex/hszeppelin`,
 The image `lamastex/hsbase` contains Spark and Hadoop ready to start in
 pseudo-distributed mode.
 
-To start a container, use `docker run -p 50070:50070 -p 7070:7070 -p 8088:8088
--d lamastex/hsbase`. This will start hdfs, Yarn and fork the container to the
-background. Note that this only works if you have mounted an already functioning
+To start a container, use 
+`docker run -p 50070:50070 -p 7070:7070 -p 8088:8088 -d lamastex/hsbase`. 
+This will start hdfs, Yarn and fork the container to the background. 
+Note that this only works if you have mounted an already functioning
 hdfs file system. If you're not mounting an already existing hdfs file system,
 use `docker run -p 50070:50070 -p 7070:7070 -p 8088:8088 -d lamastex/hsbase
 --format` which will also format the namenode and create a functioning, empty
 hdfs.
 
-The hdfs webUi will be available at `localhost:50070`, the Yarn webUI will be
+The hdfs webUI will be available at `localhost:50070`, the Yarn webUI will be
 available at `localhost:8088`.
 
 ### hszeppelin ###
@@ -50,11 +51,12 @@ start in pseudo-distributed mode.
 
 To start only Zeppelin, use `docker run -p 8080:8080 lamastex/hszeppelin`.
 
-To start `hdfs` and Zeppelin, use `docker run -it -p 50070:50070 -p 7070:7070 -p
-8088:8088 -p 8080:8080 lamastex/hszeppelin --hadoop`. Furthermore if you also
-want to format the namenode, for example if starting fresh, also add `--format`.
+To start `hdfs` and Zeppelin, use 
+`docker run -it -p 50070:50070 -p 7070:7070 -p 8088:8088 -p 8080:8080 lamastex/hszeppelin --hadoop`. 
+Furthermore if you also want to format the namenode, for example if starting fresh, 
+also add `--format`.
 
-In either case Zeppelin will be available at `localhost:8080` in your web
+In either case, Zeppelin will be available at `localhost:8080` in your web
 browser of choice.
 
 ### hsjupyter ###
@@ -64,9 +66,10 @@ Hadoop ready to start in pseudo-distributed mode.
 
 To start only Jupyter, use `docker run -p 8888:8888 lamastex/hsjupyter`.
 
-To start `hdfs` and Jupyter, use `docker run -it -p 50070:50070 -p 7070:7070 -p
-8088:8088 -p 8080:8080 lamastex/hsjupyter --hadoop`. Furthermore if you also
-want to format the namenode, for example if starting fresh, also add `--format`.
+To start `hdfs` and Jupyter, use 
+`docker run -it -p 50070:50070 -p 7070:7070 -p 8088:8088 -p 8080:8080 lamastex/hsjupyter --hadoop`. 
+Furthermore if you also want to format the namenode, for example if starting fresh, 
+also add `--format`.
 
 In either case Jupyter will be available at `localhost:8888` in your web browser
 of choice.
@@ -90,21 +93,21 @@ as `sc`.
 The image `lamastex/hskafka` is built on `lamastex/hsbase` and in addition
 contains Kafka.
 
-To start a Kafka server with default standalone configuration, use `docker run
--p 2181:2181 -p 9092:9092 -d lamastex/hskafka`.
+To start a Kafka server with default standalone configuration, use 
+`docker run -p 2181:2181 -p 9092:9092 -d lamastex/hskafka`.
 
-To start a container with a different command, e.g. `bash`, use `docker run -p
-2181:2181 -p 9092:9092 --entrypoint <command> lamastex/hskafka` where
-`<command>` is the command you want to run. If you want to gain access to a
+To start a container with a different command, e.g. `bash`, use 
+`docker run -p 2181:2181 -p 9092:9092 --entrypoint <command> lamastex/hskafka` 
+where `<command>` is the command you want to run. If you want to gain access to a
 command line in the container use the command `bash` and add the options `-it`
 before `lamastex/hskafka`.
 
 If you want to get a terminal inside a running container, e.g. if you want to
 run Kafka commands such as creating topics and console producer and consumer,
-use `docker exec <container> bash ` where `<container>` is the ID of the running
+use `docker exec <container> bash` where `<container>` is the ID of the running
 container.
 
-### Running on squidmaster ###
+### Running on a bare-metal clutser, called squidmaster ###
 
 To run the docker containers on `squidmaster` you also need to forward the
 corresponding ports when you `ssh` to `squidmaster`. The following command will
@@ -118,9 +121,9 @@ ssh -L 50070:localhost:50070 -L 8080:localhost:8080 -L 8088:localhost:8088 -L 70
 
 The required file `docker-compose.yml` is located in the folder
 `.../_sds/basics/infrastructure/onpremise/dockerCompose`. You can either `cd` to
-this directory or run every command with `-f
-.../_sds/basics/infrastructure/onpremise/dockerCompose/docker-compose.yml`. For
-simplicity I will assume that your working directory is the above folder and
+this directory or run every command with 
+`-f .../_sds/basics/infrastructure/onpremise/dockerCompose/docker-compose.yml`. 
+For simplicity I will assume that your working directory is the above folder and
 I'll refer to it as the *root folder*.
 
 ### Folder structure ###
@@ -163,7 +166,7 @@ command `<command>`. For example, if you want to access a shell inside a running
 `jupyter` service you can use `docker-compose exec jupyter bash`. The defined
 services are `hadoop`, `zeppelin`, `jupyter`, `nifi` and `kafka`.
 
-Lastly, if you want to start a subset of the services you cna open the
+Lastly, if you want to start a subset of the services you can open the
 `docker-compose.yml` file and comment out the services you don't need. When you
 then run `docker-compose up` it won't start those services.
 
@@ -259,8 +262,7 @@ Some important notes for each application included are:
 - **Yarn**: By default only the port for the central resource manager webUI is
   published.
 - **Zeppelin**: Nothing I can think of.
-- **Jupyter**: The published port is 8889 instead of the standard 8888 but only
-  because there's currently a running sagemath container using 8888. Since
+- **Jupyter**: The published port is 8888. Since
   finding the token in the torrent of text being output to the shell when using
   `docker-compose up` I have set up the `docker-compose.yml` file so that it
   will define the password `lamastex` for the Jupyter notebook server. To change

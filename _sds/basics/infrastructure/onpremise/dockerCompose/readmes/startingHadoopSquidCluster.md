@@ -1,5 +1,7 @@
 # Running Hadoop clusters on squidcluster
 
+This is instructions for an on-premise "cloud on desk" made of 3 Intel NUCs.
+
 First you need to forward the correct ports when you ssh into `squidmaster`. To
 do this use the command
 

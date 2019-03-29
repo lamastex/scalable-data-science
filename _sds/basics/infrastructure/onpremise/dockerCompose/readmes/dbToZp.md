@@ -23,13 +23,13 @@ If you want to use the imported notebooks inside a docker container running a
 Zeppelin server you have to mount the contents of the `ZEPPELIN_NOTEBOOK_DIR`
 that you got from above as a volume in the container to the corresponding
 `ZEPPELIN_NOTEBOOK_DIR` inside the container. Assuming that you are starting a
-container for the `lamastex/hszeppelin` image the command to do this is `docker
-run -v <folder>:/root/zeppelin-0.8.0-bin-all/notebook -p 8080:8080
-lamastex/hszeppelin` where you should replace `<folder>` with the path to the
-folder containing the imported Zeppelin notebooks.
+container for the `lamastex/hszeppelin` image the command to do this is 
+`docker run -v <folder>:/root/zeppelin-0.8.0-bin-all/notebook -p 8080:8080 lamastex/hszeppelin` 
+where you should replace `<folder>` with the path to the folder containing the 
+imported Zeppelin notebooks.
 
 The same command also works with the `docker-compose.yml` file if you replace
 `docker` with `docker-compose` and `lamastex/hszeppelin` with `zeppelin`. To use
 the imported notebooks with `docker-compose up` to start all services defined in
-the `docker-compose.ynl` file you have to edit the `docker-compose.yml` file to
+the `docker-compose.yml` file you have to edit the `docker-compose.yml` file to
 add the volume to be mounted under the `zeppelin` service.
