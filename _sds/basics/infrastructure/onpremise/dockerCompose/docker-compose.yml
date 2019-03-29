@@ -27,11 +27,11 @@ services:
         target: /root/data
         read_only: true
     ports:
-      - published: 50070
-        target: 50070
-      - published: 7070
+      - published: 50070 #hdfs webUI
+        target: 50070 
+      - published: 7070 # remapped Spark webUI
         target: 8080
-      - published: 8088
+      - published: 8088 # yarn (resource manager) webUI
         target: 8088
   zeppelin:
     image: lamastex/hszeppelin
@@ -51,7 +51,7 @@ services:
     image: lamastex/hsjupyter
     command: --password lamastex
     ports:
-      - published: 8889
+      - published: 8888
         target: 8888
     volumes:
       - type: bind
@@ -70,7 +70,7 @@ services:
   kafka:
     image: lamastex/hskafka
     ports:
-      - published: 2181
+      - published: 2181 # for zookeeper client connection
         target: 2181
     volumes:
       - type: bind
