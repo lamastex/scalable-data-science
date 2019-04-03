@@ -62,7 +62,8 @@ after downloading the zip file below for `dockerCompose`
 
 More details are here:
 
-- You need to download the contents of the dockerCompose directory only (will be updated via this [zipped file]()):
+- You need to download the contents of the dockerCompose directory only (will be updated via this zipped file:
+  - [dockerCompose.zip](https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/dockerCompose.zip)
   - https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/
 - Quickly getting started once you have installed docker-compose and are inside the directory containing contents of `dockerCompose`:
   - https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes.md 
