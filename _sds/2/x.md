@@ -105,7 +105,7 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
-<!--
+<!---
 
 5. Introduction to Machine Learning
 	*  [Simulation Intro](db/011_02_IntroToSimulation/)
