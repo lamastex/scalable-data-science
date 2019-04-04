@@ -23,7 +23,7 @@ $ pwd
 data				hadoopConfig			zimport
 docker-compose-hszeppelin.yml	readmes
 docker-compose.yml		sshConfig
-``
+```
 
 ## 2. Cache the docker images from dockerhub
 
