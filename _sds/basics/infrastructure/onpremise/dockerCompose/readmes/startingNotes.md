@@ -77,21 +77,15 @@ Congratulations! You have started spark-shell, this is the interctive REPL that 
 
 We will mostly use zeppelin as a local alternative to databricks (until databricks provides local notebook server support in some minimal form, as anticipated/envisioned by Ion Stoica, a core member of the BDAS or Berkely Data Analytic Stack that gave rise to Apache Spark, in a tech video interview linked in the learning content). However, Jupyter can also be run in this docker composition to comfort the *Jupyter-istas*.
 
-My own advise is to start by using `spark-shell` that is under the hood of these web-based notebooks.
+We will start by using `spark-shell` that is under the hood of these web-based notebooks.
 
-Okay, it's time to write your first set of `spark-shell` commands.
+It's time to write your first set of `spark-shell` commands.
 
 ```
 scala> sc.setLogLevel("ERROR")
 
 scala> val myrdd = sc.parallelize(Seq(1,2,3))
 myrdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at parallelize at <console>:24
-
-scala> myrdd.co
-coalesce   collect   collectAsync   compute   context   copy   count   countApprox   countApproxDistinct   countAsync   countByValue   countByValueApprox
-
-scala> myrdd.collect
-collect   collectAsync
 
 scala> myrdd.collect()
 res1: Array[Int] = Array(1, 2, 3)
@@ -105,7 +99,33 @@ res3: Long = 21881
 scala> :quit
 ```
 
-You can put these commands in a file, say `myFirstCommands.scala`, and load it into `spark-shell` by using the `:load("myFirstCommands.scala")` command.
+You can put these commands in a file, say `aSparkShellScript.scala`, that contains these lines:
+
+```
+ cat aSparkShellScript.scala 
+sc.setLogLevel("ERROR")
+
+val myrdd = sc.parallelize(Seq(1,2,3))
+
+myrdd.collect()
+
+val sourdd = sc.textFile("file:///root/data/sou/*")
+
+sourdd.count()
+
+// :quit // this will quit spark-shell
+```
+
+and load it into `spark-shell` by using the `:load  aSparkShellScript.scala` command.
+
+```
+scala> :load aSparkShellScript.scala
+Loading aSparkShellScript.scala...
+myrdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at parallelize at <console>:24
+res2: Array[Int] = Array(1, 2, 3)
+sourdd: org.apache.spark.rdd.RDD[String] = file:///root/data/sou/* MapPartitionsRDD[2] at textFile at <console>:24
+res3: Long = 21881             
+```
 
 This is a simple and powerful way of using your favourite text editor on `myFirstCommands.scala` and simply rerunning the `load` command. 
 
