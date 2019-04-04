@@ -112,7 +112,6 @@ val sourdd = sc.textFile("file:///root/data/sou/*")
 
 sourdd.count()
 
-// :quit // this will quit spark-shell
 ```
 
 and load it into `spark-shell` by using the `:load  aSparkShellScript.scala` command.
