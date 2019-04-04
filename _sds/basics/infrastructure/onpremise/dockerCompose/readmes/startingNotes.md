@@ -102,7 +102,6 @@ scala> :quit
 You can put these commands in a file, say `aSparkShellScript.scala`, that contains these lines:
 
 ```
- cat aSparkShellScript.scala 
 sc.setLogLevel("ERROR")
 
 val myrdd = sc.parallelize(Seq(1,2,3))
