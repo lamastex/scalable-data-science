@@ -106,6 +106,7 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
 <!--
+
 5. Introduction to Machine Learning
 	*  [Simulation Intro](db/011_02_IntroToSimulation/)
 	*  [Machine Learning Intro](db/011_03_IntroToML/)
@@ -184,6 +185,7 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [Student Project 04 on Power Forecasting - Part 2](db/999_04_StudentProject_PowerForecasting_2_CreateTrainingData/)
 	*  [Student Project 04 on Power Forecasting - Part 3](db/999_04_StudentProject_PowerForecasting_3_TrainAndValidate/)
 	*  [Student Project 05 on Hail Scala for Population Genomics ETL](db/999_05_StudentProject_HailScalaGenomicsETLTutorial/)
+
 -->
 
 
