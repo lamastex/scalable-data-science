@@ -27,7 +27,60 @@ docker-compose.yml		sshConfig
 
 ## 2. Cache the docker images from dockerhub
 
-Now run `docker-compose` like this in a open network so all the images are downloaded from dockerhub:
+
+The images will get updated as needs evolve. 
+Run the following commands to pull the latest docker images:
+
+```
+:dockerCompose $ docker pull lamastex/hsbase
+:dockerCompose $ docker pull lamastex/hszeppelin
+:dockerCompose $ docker pull lamastex/hsjupyter
+:dockerCompose $ docker pull apache/nifi
+:dockerCompose $ docker pull lamastex/hskafka
+```
+
+## 3. Running `spark-shell`, `sbt`, etc. via `docker-compose` 
+
+There are two ways (FAT and SKINNY) to run the `spark-shell`, `sbt`, etc.
+ 
+The SKINNY way is recommended for older laptops although one cannot run several simultaneous services in this case.
+
+### 3.a SKINNY way, i.e. with hadoop service only (better for older laptops)
+
+```
+:dockerCompose $ docker-compose -f docker-compose-hadoop.yml up -d
+Recreating dockercompose_hadoop_1 ... done
+```
+
+Now listing the running docker processes as follows will show `dockercompose_hadoop_1` container we just composed up:
+
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                                                                          NAMES
+565e8dc215d9        lamastex/hsbase     "/root/start.sh --fo…"   53 seconds ago      Up 52 seconds       0.0.0.0:4040->4040/tcp, 7070/tcp, 0.0.0.0:8042->8042/tcp, 0.0.0.0:8088->8088/tcp, 0.0.0.0:50070->50070/tcp, 8081/tcp, 0.0.0.0:7070->8080/tcp   dockercompose_hadoop_1
+```
+ 
+```
+:dockerCompose $ n$ docker-compose exec hadoop bash
+root@565e8dc215d9:~# 
+```
+
+Now you are root inside the `hadoop` container (in the SKINNY way).
+
+```
+root@565e8dc215d9:~# ls
+data  hadoop-2.9.2  programs  spark-2.3.0-bin-hadoop2.7  start.sh
+```
+
+### 3.b FAT way, i.e. with hadoop, zeppelin, jupyter, nifi and kafka services
+
+**This is the preferred way for development in a more representative hadoop ecosystem.**
+
+First do `docker ps` to list all the running container. 
+You can `docker stop CONTAINER_ID` to stop a running container with the specified `CONTAINER_ID` given by the `docker ps` command.
+Stopping unneeded containers can free up resources.
+
+Then you can do the following `docker-compose` command to start all the services in `docker-compose.yml` file.
 
 ```
 :dockerCompose $ docker-compose up -d
@@ -39,17 +92,16 @@ Creating dockercompose_nifi_1     ... done
 Creating dockercompose_zeppelin_1 ... done
 ```
 
-## 3. Running `spark-shell`
-
+#### SKINNY or FAT: run `spark-shell` in `hadoop` service
 Next, test if `spark-shell` works. We will first `exec`ute `bash` inside the core docker container called `hadoop` (it has hdfs, yarn and spark), our core workhorse. 
 
 ```
 :dockerCompose $ docker-compose exec hadoop bash
 root@c004f9cc093d:~# ls
-data  hadoop-2.9.2  spark-2.3.0-bin-hadoop2.7  start.sh
+data  hadoop-2.9.2  programs  spark-2.3.0-bin-hadoop2.7  start.sh
 ```
 
-Now you are root inside the `hadoop` container.
+Now you are root inside the `hadoop` container (in the FAT way).
 
 Run `spark-shell` like this:
 
