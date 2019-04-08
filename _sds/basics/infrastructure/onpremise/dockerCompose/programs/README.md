@@ -22,3 +22,8 @@ We will mostly be using `sbt` from within the container/service.
 We will mostly work from notebooks to focus on concepts and take advantage of interactive visualisations in notebook REPLs.
 
 Engineers are welcome to work on the corresponding local development using the instaructions above.
+
+## 3. Go trough the exercises
+
+- `dockerCompose/programs/exercises/totorialSbtScalaSpark/README.md
+- `dockerCompose/programs/exercises/sparkSubmit/README.md
