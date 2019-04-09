@@ -166,7 +166,7 @@ lMenu-SDS-2.x:
       - title: "course content as .dbc link"
         url: "https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2019/sds-2-x.dbc"
       - title: "Introduction"
-        url: /sds/2/x/db/000_scalableDataScience/
+        url: /sds/2/x/db/000_scalableDataEngineeringScience/
       - title: "Why Spark?"
         url: /sds/2/x/db/001_whySpark/
       - title: "Login to databricks"

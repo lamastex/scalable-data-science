@@ -50,8 +50,8 @@ Thes steps on how to upload will be explained face-to-face.
 
 #### NOTE: Most links below will NOT work until we calibrate the content interactively. But you can get the contents from dbc ARCHIVES above.
 
-1. Introduction:  What is Data Science and the Data Science Process?
-	*  [Introduction](db/000_scalableDataScience/)
+1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
+	*  [Introduction](db/000_scalableDataEngineeringScience/)
 2. Apache Spark and Big Data
 	*  [Why Spark?](db/001_whySpark/)
 	*  [Login to databricks](db/002_loginToDatabricks/)
