@@ -7,4 +7,4 @@ sidebar:
 
 [As an importable databricks notebook](https://lamastex.github.io/scalable-data-science/sds/2/x/db/000_scalableDataEngineeringScience.html)
 
-<iframe src="https://lamastex.github.io/scalable-data-science/sds/2/x/db/000_scalableDataEngineeringScience.html" width="98%" height="1080" frameborder="0"></iframe>
+<iframe src="https://lamastex.github.io/scalable-data-science/sds/2/x/db/000_scalableDataEngineeringScience.html" width="1080" height="1080" frameborder="0"></iframe>
