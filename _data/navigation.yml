@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "SDS-2.x"
+    url: /sds/2/x/
   - title: "SDS-2.2"
     url: /sds/2/2/
   - title: "Privacy-Decisions"
@@ -21,6 +23,8 @@ lMenu:
   - title: "Courses"
     url: "https://lamastex.github.io/courses/"
     children:
+      - title: "SDS-2.x"
+        url: /sds/2/x/
       - title: "SDS-2.2"
         url: /sds/2/2/
       - title: "Privacy-Decisions"
