@@ -75,7 +75,7 @@ Thes steps on how to upload will be explained face-to-face.
 
 # Assigned Exercises
 
-- Read [use sbt to spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
+- Read details here to be able to [use sbt to spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
 
 <!---
 
