@@ -48,7 +48,6 @@ Follow these [instructions](https://github.com/lamastex/scalable-data-science/tr
 
 Thes steps on how to upload will be explained face-to-face.
 
-#### NOTE: Most links below will NOT work until we calibrate the content interactively. But you can get the contents from dbc ARCHIVES above.
 
 1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
 	*  [Introduction](db/000_scalableDataEngineeringScience/)
@@ -73,7 +72,11 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [ETL Power Plant](db/009_PowerPlantPipeline_01ETLEDA/)
 	*  [Wiki Click streams](db/010_wikipediaClickStream_01ETLEDA/)
 
+<!---
+
 **Possible Topics to Choose From:**
+
+#### NOTE: Most links below will NOT work until we calibrate the content interactively. But you can get the contents from dbc ARCHIVES above.
 
 * Mining Networks and Graphs with Spark's GraphX
 	*  Extract, transform and loading of network data
@@ -107,7 +110,6 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
-<!---
 
 5. Introduction to Machine Learning
 	*  [Simulation Intro](db/011_02_IntroToSimulation/)
