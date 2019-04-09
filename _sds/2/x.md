@@ -72,11 +72,12 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [ETL Power Plant](db/009_PowerPlantPipeline_01ETLEDA/)
 	*  [Wiki Click streams](db/010_wikipediaClickStream_01ETLEDA/)
 
-<!---
 
 # Assigned Exercises
 
-- [use sbt to spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs)
+- Read [use sbt to spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
+
+<!---
 
 **Possible Topics to Choose From:**
 
