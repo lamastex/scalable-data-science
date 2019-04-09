@@ -2,7 +2,7 @@
 title: SDS-2.x
 permalink: 
 sidebar:
-  nav: "lMenu"
+  nav: "lMenu-SDS-2.x"
 header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/DISP-SDS-orange-1600x524.jpg
@@ -43,7 +43,9 @@ Follow these [instructions](https://github.com/lamastex/scalable-data-science/tr
 
 
 0. Uploading Course Content into Databricks
-	*  [2019 dbc ARCHIVES](db/dbcArchive/2019)
+	*  [2019 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2019)
+        *  [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
+
 Thes steps on how to upload will be explained face-to-face.
 
 #### NOTE: Most links below will NOT work until we calibrate the content interactively. But you can get the contents from dbc ARCHIVES above.
