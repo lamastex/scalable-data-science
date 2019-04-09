@@ -149,6 +149,53 @@ lMenu-360-in-525:
   - title: "360-in-525-0"
     url: /360-in-525/2018/00/
 
+lMenu-SDS-2.x:
+  - title: "SDS-2.x Course"
+    url: /sds/2/x/
+    children:
+      - title: "Basics"
+        url: /sds/basics/
+      - title: "Setup Instructions"
+        url: "https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/instructions"
+  - title: "Contents-databricks"
+    children:
+      - title: "course content as .dbc link"
+        url: "https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2019/sds-2-x.dbc"
+      - title: "Introduction"
+        url: /sds/2/x/db/000_scalableDataScience/
+      - title: "Why Spark?"
+        url: /sds/2/x/db/001_whySpark/
+      - title: "Login to databricks"
+        url: /sds/2/x/db/002_loginToDatabricks/
+      - title: "Scala Crash Course"
+        url: /sds/2/x/db/003_scalaCrashCourse/
+      - title: "RDDs"
+        url: /sds/2/x/db/004_RDDsTransformationsActions/
+      - title: "RDDs HOMEWORK"
+        url: /sds/2/x/db/005_RDDsTransformationsActionsHOMEWORK/
+      - title: "Word Count - SOU"
+        url: /sds/2/x/db/006_WordCount/
+      - title: "SparkSQL Basics"
+        url: /sds/2/x/db/007_SparkSQLIntroBasics/
+      - title: "SparkSQL HW-a"
+        url: /sds/2/x/db/007a_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-b"
+        url: /sds/2/x/db/007b_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-c"
+        url: /sds/2/x/db/007c_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-d"
+        url: /sds/2/x/db/007d_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-e"
+        url: /sds/2/x/db/007e_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-f"
+        url: /sds/2/x/db/007f_SparkSQLProgGuide_HW/ 
+      - title: "ETL Diamonds Data"
+        url: /sds/2/x/db/008_DiamondsPipeline_01ETLEDA/
+      - title: "ETL Power Plant"
+        url: /sds/2/x/db/009_PowerPlantPipeline_01ETLEDA/
+      - title: "Wiki Click streams"
+        url: /sds/2/x/db/010_wikipediaClickStream_01ETLEDA/
+
 lMenu-SDS-2.2:
   - title: "SDS-2.2 Course"
     url: /sds/2/2/
