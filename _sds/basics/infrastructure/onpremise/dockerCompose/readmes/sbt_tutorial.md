@@ -167,7 +167,7 @@ sbt:tutorialsbtscalaspark>
 
 Fix the `min` function in `src/main/scala/example/ListReduce.scala` so the minimum is `-3` instead of `42` when you `run` again.
 
-# 6. Strongly Recommended for Engineers
+# 6. Strongly Recommended for Engineers/Developers
 
 Spend several hours reading details of docs by starting from here: 
 
