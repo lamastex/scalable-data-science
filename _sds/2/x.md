@@ -1,6 +1,6 @@
 ---
 title: SDS-2.x
-permalink: 
+permalink: /sds/2/x/
 sidebar:
   nav: "lMenu-SDS-2.x"
 header:
