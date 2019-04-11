@@ -35,9 +35,9 @@ knowledge of a data engineering scientist’s toolkit: Shell/Scala/SQL/, etc.
   - Part of your suggested assignments/mini-projects (that use publicly available datasets and codes) needs to be published in a public repository as part of your portfolio that provides evidence of your abilities (upon completing the course). 
   - However, the larger project involving teams of 2 to 4 individuals need not be made publicly available and you are anticipated to continue working on this after the completion of the course. 
 
-## Setup
+# Instructions to Prepare for sds-2.x
 
-Follow these [instructions](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/instructions).
+Follow these [instructions](/sds/basics/instructions/).
 
 ## Tentative Outline of Topics  
 
