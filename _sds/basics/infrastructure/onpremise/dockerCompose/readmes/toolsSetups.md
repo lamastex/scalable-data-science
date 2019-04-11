@@ -1,4 +1,21 @@
+---
+title: Installing Developer Tools on your own System 
+permalink: /sds/basics/infrastructure/onpremise/dockerCompose/readmes/toolsSetups/
+sidebar:
+  nav: "lMenu-SDS-2.x"
+author: "Raazesh Sainudiin"
+author_profile: true
+---
+
 # Summary
+
+All the developer tools we need (minimally), including JDK, sbt, etc. are already installed in `lamastex/hsbase` docker image.
+
+**OPTIONALLY**, You can also install it on your local machine, especially if you want to integrate it with IDEs you prefer (we will mostly use command-line developer tools like sbt within docker services here in order to allow system-specific installations to the user).
+
+
+# Installing Developer Tools on your own System
+ 
 In order to work on the programming exercises locally, you need to have the following tools installed on your local machine:
 
 1. Oracle JDK, the Java Development Kit, version 1.8. 

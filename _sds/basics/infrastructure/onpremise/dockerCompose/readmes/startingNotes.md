@@ -1,8 +1,30 @@
+---
+title: Starting Notes: Quick start for docker-compose
+permalink: /sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes/
+sidebar:
+  nav: "lMenu-SDS-2.x"
+author: "Raazesh Sainudiin"
+author_profile: true
+---
+
 # Quick Start
 
 This is the `dockerCompose/readmes/startingNotes.md` file.
 
-It is meant to quickly get you going. Details are in `readmes/README.md` file.
+**PRE-REQUISITE:** You already need to have docker installed on your local system (laptop or provisioned VM). If not follow these instructions:
+
+- [TASK 2 of /sds/basics/instructions/prep/](/sds/basics/instructions/prep/)
+
+These starting notes are meant to quickly get you going with the following:
+
+* download and set-up for using `docker-compose` on your local system (laptop or provisioned VM).
+* start and stop a `docker-compose`d hadoop service (either the SKINNY or FAT variant)
+* attach to the service to run `spark-shell` and `spark-submit` from command-line.
+* inject zeppelin notes (notebooks) into the zeppelin notebook server.
+
+Details of the `docker-compose` and the services it comes with including `hadoop` (hdfs, yarn, spark, sbt), extended by `zeppelin`, `jupyter`, `kafka` and `nifi` are in:
+
+- [dockerCompose/readmes/README.md](/sds/basics/infrastructure/onpremise/dockerCompose/readmes/README/).
 
 ## 1. Download `dockerCompose` 
 

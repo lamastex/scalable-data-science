@@ -1,5 +1,19 @@
+---
+title: sbt Tutorial
+permalink: /sds/basics/infrastructure/onpremise/dockerCompose/readmes/sbt_tutorial/
+sidebar:
+  nav: "lMenu-SDS-2.x"
+author: "Raazesh Sainudiin"
+author_profile: true
+---
+
 We use `sbt` for building, testing, running and programming exercises. 
 This tutorial explains all `sbt` commands that you will be needing here. 
+
+**You should have already completed:**
+
+- 
+
 The [toolsSetups.md](toolsSetups.md) file explains how to install `sbt`.
 
 You will be doing the following steps:
