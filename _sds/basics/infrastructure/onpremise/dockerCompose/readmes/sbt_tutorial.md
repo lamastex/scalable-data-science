@@ -12,7 +12,9 @@ This tutorial explains all `sbt` commands that you will be needing here.
 
 **You should have already completed:**
 
-- 
+- [Setup and Preparation for sds-2-x](/sds/basics/instructions/prep/) 
+
+If not, then first complete the setup and preparation instructions.
 
 The [toolsSetups.md](toolsSetups.md) file explains how to install `sbt`.
 
@@ -169,7 +171,7 @@ Fix the `min` function in `src/main/scala/example/ListReduce.scala` so the minim
 
 Spend several hours reading details of docs by starting from here: 
 
- - https://www.scala-sbt.org/1.x/docs/sbt-by-example.html
+ - [https://www.scala-sbt.org/1.x/docs/sbt-by-example.html](https://www.scala-sbt.org/1.x/docs/sbt-by-example.html)
 
 Note that you can have `sbt` installed on your system outside the `dockerCompose` folder (even using Eclipse or IntelliJ) and can play with spark on the local file system in standalone model. 
 
