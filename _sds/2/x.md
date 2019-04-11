@@ -37,7 +37,7 @@ knowledge of a data engineering scientist’s toolkit: Shell/Scala/SQL/, etc.
 
 # Instructions to Prepare for sds-2.x
 
-Follow these [instructions](/sds/basics/instructions/).
+Follow these [instructions](https://lamastex.github.io/scalable-data-science/sds/basics/instructions/) to prepare for the course.
 
 ## Tentative Outline of Topics  
 

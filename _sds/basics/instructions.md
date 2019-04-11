@@ -13,10 +13,8 @@ Here you will find general list of instructions to prepare for sds-2.x.
 
 Note that each item in the list below may cascade into other instructions that you need to follow.
 
-1. Follow these setup instructions to prepare your laptop:
-    * [/sds/basics/instructions/prep/](/sds/basics/instructions/prep/) 
-*  Follow these instructions to obtain a twiter developer acccount:
-    * [/sds/basics/instructions/getTwitterDevCreds/](/sds/basics/instructions/getTwitterDevCreds/)
+1. Follow [these setup instructions](prep/) to prepare your laptop
+*  Follow [these instructions to obtain a twiter developer acccount](getTwitterDevCreds/)
 
 
 
