@@ -17,10 +17,18 @@ This is the `dockerCompose/readmes/startingNotes.md` file.
 
 These starting notes are meant to quickly get you going with the following:
 
-* download and set-up for using `docker-compose` on your local system (laptop or provisioned VM).
-* start and stop a `docker-compose`d hadoop service (either the SKINNY or FAT variant)
-* attach to the service to run `spark-shell` and `spark-submit` from command-line.
-* inject zeppelin notes (notebooks) into the zeppelin notebook server.
+1. Download dockerCompose
+  - download and set-up for using `docker-compose` on your local system (laptop or provisioned VM).
+1. Cache the docker images from dockerhub 
+1. Running `spark-shell`, `sbt`, etc. via `docker-compose`
+  - start and stop a `docker-compose`d hadoop service (either the SKINNY way or the FAT way)
+  - initially we only need the SKINNY `docker-compose` variant as this will require far less resources of your local system
+  - attach to the service to run `spark-shell` from command-line.
+1. `spark-submit` in `cluster` `deploy-mode`
+  - attach to the service to run `spark-submit` from command-line.
+1. Bring down the composition
+1. (optionally) inject zeppelin notes (notebooks) into the zeppelin notebook server
+  - skip this step if you went the SKINNY way for now.
 
 Details of the `docker-compose` and the services it comes with including `hadoop` (hdfs, yarn, spark, sbt), extended by `zeppelin`, `jupyter`, `kafka` and `nifi` are in:
 
@@ -73,6 +81,13 @@ The SKINNY way is recommended for older laptops although one cannot run several 
 :dockerCompose $ docker-compose -f docker-compose-hadoop.yml up -d
 Recreating dockercompose_hadoop_1 ... done
 ```
+
+Next open a browser and check that the webUIs are active at the following URLs:
+
+- [http://localhost:50070/](http://localhost:50070/) for hdfs namenode information
+- [http://localhost:8088/cluster](http://localhost:8088/cluster) for yarn cluster manager
+- [http://localhost:8042/node](http://localhost:8042/node) for yarn worker (or spark-master) for spark jobs
+- [http://localhost:8042/logs/](http://localhost:8042/logs/userlogs/) see userlogs for result of a `spark-submit` applications
 
 Now listing the running docker processes as follows will show `dockercompose_hadoop_1` container we just composed up:
 
@@ -203,7 +218,7 @@ This is a simple and powerful way of using your favourite text editor on `myFirs
 
 Of course notebooks are more handy when it comes to interactive visualisations, etc. So we will see that too.
 
-## 4. spark-submit in cluster deploy-mode
+## 4. `spark-submit` in `cluster` `deploy-mode`
 
 Run the job from jar using `spark-submit`.
 
@@ -232,9 +247,27 @@ Pi is roughly 3.1368956844784224
 $ docker-compose down
 ```
 
+Note that you will typically only do the following instead of `docker-compose down`:
+
+```
+$ docker-compose stop
+```
+
+This way you are just stopping the containers in the composition. This will keep all the injected files into hdfs, etc.
+
+This way you can simply do the following to get back into the service/containers:
+
+```
+docker-compose start
+```
+
+and `attach` as before to continue your work on the re`start`ed service/containers.
+ 
 ## 6. zeppelin notebook postings
 
-1. docker-compose up -d
+This is optional and not required until the local environment is provisioned sufficiently.
+
+1. first do `docker-compose up -d` if `docker ps` does not show the container/service you started (in the FAT way), otherwise simply `start` and `attach` 
 2. When zeppelin is running do:
 
 ```
