@@ -1,6 +1,21 @@
-# Set Up
+---
+title: Set Up and Preparation for sds-2-x
+permalink: /sds/basics/instructions/prep/
+sidebar:
+  nav: "lMenu-SDS-2.x"
+author: "Raazesh Sainudiin"
+author_profile: true
+---
 
-Please setup for the workshop/course.
+# Summary of Setup and Preparation for [sds-2-x](/sds/2/x),
+
+Here you are given instructions to setup and prepare for the workshop/course.
+
+Here you have two main tasks:
+
+* TASK 1 is to set up a free databricks community edition account.
+* TASK 2 is to set up docker in your local system (laptop or provisioned VM).
+
 
 ## 1. Cloud-full Computing Environment Setup
 
