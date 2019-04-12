@@ -85,8 +85,9 @@ Here you need to do a little more work.
 - 2.1. load data into hdfs, our distributed file system, from the local mounted file system at `dockerCompose/data/sou`
 - 2.2. use `sbt` to compile and package to produce the `souWordCount` App located in the path below and `spark-submit` it to confirm that reading from hdfs works as expected
   - `root@4bf966fb974f:~/programs/exercises/sparkSubmit/target/scala-2.11/spark_2.11-0.1.0-SNAPSHOT.jar` 
-- 2.3. by recalling the `006_WordCount` notebook of SOU addresses, add additional code to `souWordCount.scala`, in order to count the number of each word across all the `sou/*.txt` files, to the following Scala source file:
-  - `root@4bf966fb974f:~/programs/exercises/sparkSubmit# ls src/main/scala/examples/souWordCount.scala`
+- 2.3. by recalling the end of `006_WordCount` notebook of SOU addresses, add additional code to `souWordCount.scala` file at:
+  - `root@4bf966fb974f:~/programs/exercises/sparkSubmit/src/main/scala/examples/souWordCount.scala`
+*in order to count the number of each word across all the `sou/*.txt` files and output the result as an Array of (word,count) tuples from the most frequent to the least frequent word.* 
 - 2.4 finally, using sbt `compile`, `package` and `spark-submit` this as an application to the cluster.
 
 ## 2.1. load data into `hdfs`
