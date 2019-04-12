@@ -25,7 +25,10 @@ You will be doing the following steps:
 
 
 # 1. Starting up `sbt`
-In order to start `sbt`, go to `dockerCompose/` directory from a termina/console. And follow these commands to navigate to an a directory inside `programs` that was mounted into the container with read and write access, and finally calling `sbt` will open the `sbt` command prompt `sbt:ex1>` as shown below.
+In order to start `sbt`, go to `dockerCompose/` directory from a terminal/console. 
+Make sure the hadoop service is running (if you `stop`ped the service then `start` it again using the container-id from `docker ps` and if you took it `down` then bring it back `up` as we did before).
+
+Now, you can execute the commands to navigate to an a directory inside `programs` that was mounted into the container with read and write access, and call `sbt` to open the `sbt` command prompt `sbt:ex1>` as shown below.
 
 ```
 :dockerCompose raazsainudiin$ docker-compose exec hadoop bash

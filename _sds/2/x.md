@@ -79,18 +79,18 @@ These are complements to YouTrys in the notebooks (databricks community edition)
 Note that these are just the **minimal exercises** for successful completion of the course. 
 You are expected to be a self-directed learner and try out more complex exercises on your own by building from the minimal ones.
 
+## Assigned Minimal Exercises for Days 1 and 2
 
 PREREQUISITES: 
 
 - You should have already installed docker and gone through the [setup and preparation instructions for TASK 2](https://lamastex.github.io/scalable-data-science/sds/basics/instructions/prep/).
 - Successfully complete at least the SKINNY `docker-compose` steps 1-5 in [Quick Start](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes/)
 
-## Exercise 1
-- Complete the [sbt tutorial](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/sbt_tutorial/)
+1. Complete the [sbt tutorial](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/sbt_tutorial/)
+1. Complete the exercises to [use sbt and spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
 
-More **minimal exercises** will be assigned. Please be self-directed and try out more complex exercises on your own.
-
-- Read details here to be able to [use sbt to spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
+More **minimal exercises** will be assigned once the more generously provisioned learning environment is ready. 
+Please be self-directed and try out more complex exercises on your own either in the databricks community edition and/or in sbt in the local hadoop service.
 
 <!---
 
