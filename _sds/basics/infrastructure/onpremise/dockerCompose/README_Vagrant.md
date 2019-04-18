@@ -4,7 +4,7 @@
 1. Make sure you have installed Vagrant.
 1. Install the vagrant-disksize plugin by running `vagran plugin install vagrant-disksize`.
 1. Run `vagrant up` to start the Vagrant VM.
-1. When the Vagrant VM is up, run 'vagrant ssh' to open a shell in the VM.
+1. When the Vagrant VM is up, run `vagrant ssh` to open a shell in the VM.
 1. The contents of the `dockerCompose` folder are inside the `/vagrant` folder in the VM.
   - `cd` to the `/vagrant` folder. 
   - From here you can run the `docker-compose` as usual.
