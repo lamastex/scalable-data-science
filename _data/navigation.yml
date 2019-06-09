@@ -23,6 +23,8 @@ lMenu:
   - title: "Courses"
     url: "https://lamastex.github.io/courses/"
     children:
+      - title: "in-2019"
+        url: /in/2019/
       - title: "SDS-2.x"
         url: /sds/2/x/
       - title: "SDS-2.2"
