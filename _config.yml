@@ -262,6 +262,9 @@ collections:
   sds:
     output: true
     permalink: /:collection/:path/
+  in:
+    output: true
+    permalink: /:collection/:path/
   as:
     output: true
     permalink: /:collection/:path/
@@ -302,6 +305,14 @@ defaults:
   - scope:
       path: ""
       type: sds
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _in
+  - scope:
+      path: ""
+      type: in
     values:
       layout: single
       author_profile: false
