@@ -2,6 +2,7 @@
 
 Use the Makefile as follows:
 
+Go one level ip.
 Terminal 0:
 `make build` builds a new docker image from `sagemath/sagemath`.
 
