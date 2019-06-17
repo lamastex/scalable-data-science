@@ -11,6 +11,7 @@
 # cd to pinot directory
 # git clone https://gitlab.com/tilo.wiklund/pinot
 # follow instructions for pinot
+# install pinot https://docs.haskellstack.org/en/stable/install_and_upgrade/#linux
 #################################################
 
 #################################################
@@ -47,3 +48,6 @@ stack exec -- adder -f zeppelin -c $sds_DIR/babel/zeppelinInjectionCodes.txt  $(
 #mv ~/all/git/scalable-data-science/gb/sds-2-2/ ~/all/git/scalable-data-science/gb/db 
 #################################################
 
+#################################################
+# 5. ssh -i ~/.ssh/id_rsa -N -L 8890:ec2-34-240-7-43.eu-west-1.compute.amazonaws.com:8890 Raaz@ec2-xx-xxx-x-xx.eu-west-1.compute.amazonaws.com
+#################################################
