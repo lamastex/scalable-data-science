@@ -1,0 +1,38 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+# [name]  [maven artifact]  [description]
+
+alluxio         org.apache.zeppelin:zeppelin-alluxio:0.8.0              Alluxio interpreter
+angular         org.apache.zeppelin:zeppelin-angular:0.8.0              HTML and AngularJS view rendering
+beam            org.apache.zeppelin:zeppelin-beam:0.8.0                 Beam interpreter
+bigquery        org.apache.zeppelin:zeppelin-bigquery:0.8.0             BigQuery interpreter
+cassandra       org.apache.zeppelin:zeppelin-cassandra_2.11:0.8.0       Cassandra interpreter built with Scala 2.11
+elasticsearch   org.apache.zeppelin:zeppelin-elasticsearch:0.8.0        Elasticsearch interpreter
+file            org.apache.zeppelin:zeppelin-file:0.8.0                 HDFS file interpreter
+flink           org.apache.zeppelin:zeppelin-flink_2.11:0.8.0           Flink interpreter built with Scala 2.11
+hbase           org.apache.zeppelin:zeppelin-hbase:0.8.0                Hbase interpreter
+ignite          org.apache.zeppelin:zeppelin-ignite_2.11:0.8.0          Ignite interpreter built with Scala 2.11
+jdbc            org.apache.zeppelin:zeppelin-jdbc:0.8.0                 Jdbc interpreter
+kylin           org.apache.zeppelin:zeppelin-kylin:0.8.0                Kylin interpreter
+lens            org.apache.zeppelin:zeppelin-lens:0.8.0                 Lens interpreter
+livy            org.apache.zeppelin:zeppelin-livy:0.8.0                 Livy interpreter
+md              org.apache.zeppelin:zeppelin-markdown:0.8.0             Markdown support
+pig             org.apache.zeppelin:zeppelin-pig:0.8.0                  Pig interpreter
+python          org.apache.zeppelin:zeppelin-python:0.8.0               Python interpreter
+scio            org.apache.zeppelin:zeppelin-scio_2.11:0.8.0            Scio interpreter
+shell           org.apache.zeppelin:zeppelin-shell:0.8.0                Shell command
