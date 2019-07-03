@@ -24,7 +24,10 @@ host = "http://{}:{}".format(args.host, args.port)
 
 def import_notebook(note):
     requestURL = "{}/api/notebook/import".format(host)
-    r = requests.post(requestURL, data = note.encode('utf-8')).json()
+    try:
+        r = requests.post(requestURL, data = note.encode('utf-8')).json()
+    except:
+        r = requests.post(requestURL, data = note.encode('utf-8'))
     if r["status"] == "OK":
         return r["body"]
     else:
