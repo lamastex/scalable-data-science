@@ -258,7 +258,7 @@ lMenu-SDS-2.x:
       - title: "Tuning for Partitioning"
         url: /sds/2/x/db/04_partitioning/
       - title: "Introduction to Data Science: A Computational, Mathematical and Statistical Approach"
-        url: /sds/2/x/https://lamastex.github.io/scalable-data-science/in/2019/
+        url: "https://lamastex.github.io/scalable-data-science/in/2019/"
       - title: "Simulation Intro"
         url: /sds/2/x/db/011_02_IntroToSimulation/
       - title: "Machine Learning Intro"
