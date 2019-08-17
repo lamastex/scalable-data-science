@@ -116,13 +116,11 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [1MSongs - 3 Model](db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/)
 13. Supervised Learning - Decision Trees
 	*  Linear Regression (power-plant data)
-	*  Decision Trees for Classification (hand-written digit recognition)
 	*  [Decision Trees for Digits](db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/)
 14. Linear Algebra for Distributed Machine Learning
 	*  [Linear Algebra Intro](db/017_LAlgIntro/)
 	*  [Linear Regression Intro](db/018_LinRegIntro/)
-	*  [Distrib. Linear Algebra](db/019_DistLAlgForLinRegIntro/)
-	*  [DLA (Distrib. Linear Algebra)](db/019_DistLAlgForLinRegIntro/)
+	*  [DLA - Distributed Linear Algebra](db/019_DistLAlgForLinRegIntro/)
 	*  [DLA - Data Types Prog Guide](db/019x_000_dataTypesProgGuide/)
 	*  [DLA - Local Vector](db/019x_001_LocalVector/)
 	*  [DLA - Labeled Point](db/019x_002_LabeledPoint/)
@@ -133,24 +131,22 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [DLA - Coordinate Matrix](db/019x_007_CoordinateMatrix/)
 	*  [DLA - Block Matrix](db/019x_008_BlockMatrix/)
 
-15. Supervised Learning - Regression
+15. Supervised Learning - Regression and Random Forests
 	*  [Power Plant - Model Tune Evaluate](db/020_PowerPlantPipeline_02ModelTuneEvaluate/)
+	*  [Tweet Language Classifier](db/029_TweetLanguageClassifier/)
 	*  [Power Plant - Model Tune Evaluate Deploy](db/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/) 
-16. Supervised Learning - Random Forests
 	*  [Activity Detection - Random Forest](db/021_recognizeActivityByRandomForest/)
-18. Unsupervised Learning - Latent Dirichlet Allocation
+16. Unsupervised Learning - Latent Dirichlet Allocation
 	*  [20 Newsgroups - Latent Dirichlet Allocation](db/034_LDA_20NewsGroupsSmall/)
 	*  [Cornell Movie Dialogs - Latent Dirichlet Allocation](db/035_LDA_CornellMovieDialogs/)
-19. Scalabe Geospatial Analytics
+17. Collaborative Filtering for Recommendation Systems
+	*  [Movie Recommendation - Alternating Least Squares](db/036_ALS_MovieRecommender/)
+18. Scalabe Geospatial Analytics
 	*  [Geospatial Analytics in Magellan](db/031_GeospatialAnalyticsInMagellan/)
 	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
-19. Collaborative Filtering for Recommendation Systems
-	*  Matrix completion via Alternative Least Squares
-	*  [Movie Recommendation - Alternating Least Squares](db/036_ALS_MovieRecommender/)
+19. Natural Language Processing
+
 20. Neural networks and Deep Learning
-	- Linear and logistic regression as neural networks
-	- Back propagation for gradient descent
-	- Use of pre-trained neural networks from google/Baidu/facebook in your machine learning pipeline
 	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
 	*  [Outline for DL](db/050_DLbyABr_01-Intro/)
 	*  [Neural Networks](db/051_DLbyABr_02-Neural-Networks/)
