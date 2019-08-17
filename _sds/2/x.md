@@ -40,8 +40,9 @@ Follow these [instructions](https://lamastex.github.io/scalable-data-science/sds
 **Outline of Topics** 
 
 Uploading Course Content into Databricks Community Edition
-	*  [2019 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2019)
-        *  [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
+
+*  [2019 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2019)
+*  [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
 
 ## Course 1: Data Engineering with Apache Spark
 
@@ -88,7 +89,6 @@ Course 1 involved 32 hours of face-to-face training and 32 hours of homework.
 	* [MLeap Model Export Demo](db/080_MLeapModelExportDemo/)
 	* [Market Basket Analysis via FP Growth](db/081_MarketBasketAnalysisByFPGrowth/)
 9. Spark Structured Streaming
-	*  [Spark SQL Basics](db/007_SparkSQLIntroBasics/)
 	*  [Animal Names Streaming Files](db/037a_AnimalNamesStructStreamingFiles/)
 	*  [Normal Mixture Streaming Files](db/037b_Mix2NormalsStructStreamingFiles/)
 	*  [Structured Streaming Prog Guide](db/038_StructuredStreamingProgGuide/)
@@ -99,7 +99,6 @@ Course 1 involved 32 hours of face-to-face training and 32 hours of homework.
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
 
-
 ## Course 2: Data Science with Apache Spark
 
 Course 2 involved 80 hours of face-to-face training and 16 hours of course project.
@@ -108,14 +107,11 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Simulation Intro](db/011_02_IntroToSimulation/)
 	*  [Machine Learning Intro](db/011_03_IntroToML/)
 12. Unsupervised Learning - Clustering 
-	*  k-means (1 million songs dataset)
-	*  Gaussian Mixture Models and EM Algorithm
 	*  [K-Means 1MSongs Intro](db/012_UnsupervisedClustering_1MSongsKMeans_Intro/)
 	*  [1MSongs - 1 ETL](db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/)
 	*  [1MSongs - 2 Explore](db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/)
 	*  [1MSongs - 3 Model](db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/)
 13. Supervised Learning - Decision Trees
-	*  Linear Regression (power-plant data)
 	*  [Decision Trees for Digits](db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/)
 14. Linear Algebra for Distributed Machine Learning
 	*  [Linear Algebra Intro](db/017_LAlgIntro/)
@@ -130,7 +126,6 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [DLA - Indexed Row Matrix](db/019x_006_IndexedRowMatrix/)
 	*  [DLA - Coordinate Matrix](db/019x_007_CoordinateMatrix/)
 	*  [DLA - Block Matrix](db/019x_008_BlockMatrix/)
-
 15. Supervised Learning - Regression and Random Forests
 	*  [Power Plant - Model Tune Evaluate](db/020_PowerPlantPipeline_02ModelTuneEvaluate/)
 	*  [Tweet Language Classifier](db/029_TweetLanguageClassifier/)
@@ -143,7 +138,11 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Movie Recommendation - Alternating Least Squares](db/036_ALS_MovieRecommender/)
 18. Scalabe Geospatial Analytics
 	*  [Geospatial Analytics in Magellan](db/031_GeospatialAnalyticsInMagellan/)
+	*  [Open Street Map Ingestion in Magellan](db/031a_MagellanOSMIngestion/)
 	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
+	*  [Querying Beijin Taxi Trajectories in Magellan](db/032a_MSR_BeijingTaxiTrajectories_MagellanQueries/)
+	*  [Map-matching and Visualizing Uber Trajectories](032b_UberMapMatchingAndVisualization/)
+
 19. Natural Language Processing
 
 20. Neural networks and Deep Learning
