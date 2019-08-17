@@ -98,22 +98,29 @@ Course 1 involved 32 hours of face-to-face training and 32 hours of homework.
 	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
+11. Spark Performance Tuning
+	*  [Tuning Utilities](db/00_dbcTuningUtilities2run/)
+	*  [Tuning Transformations and Actions](db/01_TransformationsActions/)
+	*  [Tuning Utilities in Action](db/02_tuningUtilitiesInAction/)
+	*  [Tuning for Caching](db/03_caching/)
+	*  [Tuning for Partitioning](db/04_partitioning/)
+
 
 ## Course 2: Data Science with Apache Spark
 
 Course 2 involved 80 hours of face-to-face training and 16 hours of course project.
 
-11. Introduction to Machine Learning
+12. Introduction to Simulation and Machine Learning
 	*  [Simulation Intro](db/011_02_IntroToSimulation/)
 	*  [Machine Learning Intro](db/011_03_IntroToML/)
-12. Unsupervised Learning - Clustering 
+13. Unsupervised Learning - Clustering 
 	*  [K-Means 1MSongs Intro](db/012_UnsupervisedClustering_1MSongsKMeans_Intro/)
 	*  [1MSongs - 1 ETL](db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/)
 	*  [1MSongs - 2 Explore](db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/)
 	*  [1MSongs - 3 Model](db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/)
-13. Supervised Learning - Decision Trees
+14. Supervised Learning - Decision Trees
 	*  [Decision Trees for Digits](db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/)
-14. Linear Algebra for Distributed Machine Learning
+15. Linear Algebra for Distributed Machine Learning
 	*  [Linear Algebra Intro](db/017_LAlgIntro/)
 	*  [Linear Regression Intro](db/018_LinRegIntro/)
 	*  [DLA - Distributed Linear Algebra](db/019_DistLAlgForLinRegIntro/)
@@ -126,23 +133,23 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [DLA - Indexed Row Matrix](db/019x_006_IndexedRowMatrix/)
 	*  [DLA - Coordinate Matrix](db/019x_007_CoordinateMatrix/)
 	*  [DLA - Block Matrix](db/019x_008_BlockMatrix/)
-15. Supervised Learning - Regression and Random Forests
+16. Supervised Learning - Regression and Random Forests
 	*  [Power Plant - Model Tune Evaluate](db/020_PowerPlantPipeline_02ModelTuneEvaluate/)
 	*  [Tweet Language Classifier](db/029_TweetLanguageClassifier/)
 	*  [Power Plant - Model Tune Evaluate Deploy](db/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/) 
 	*  [Activity Detection - Random Forest](db/021_recognizeActivityByRandomForest/)
-16. Unsupervised Learning - Latent Dirichlet Allocation
+17. Unsupervised Learning - Latent Dirichlet Allocation
 	*  [20 Newsgroups - Latent Dirichlet Allocation](db/034_LDA_20NewsGroupsSmall/)
 	*  [Cornell Movie Dialogs - Latent Dirichlet Allocation](db/035_LDA_CornellMovieDialogs/)
-17. Collaborative Filtering for Recommendation Systems
+18. Collaborative Filtering for Recommendation Systems
 	*  [Movie Recommendation - Alternating Least Squares](db/036_ALS_MovieRecommender/)
-18. Scalabe Geospatial Analytics
+19. Scalabe Geospatial Analytics
 	*  [Geospatial Analytics in Magellan](db/031_GeospatialAnalyticsInMagellan/)
 	*  [Open Street Map Ingestion in Magellan](db/031a_MagellanOSMIngestion/)
 	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
 	*  [Querying Beijin Taxi Trajectories in Magellan](db/032a_MSR_BeijingTaxiTrajectories_MagellanQueries/)
 	*  [Map-matching and Visualizing Uber Trajectories](db/032b_UberMapMatchingAndVisualization/)
-19. Natural Language Processing
+20. Natural Language Processing
 	*  [Intro to NLP](db/00_Intro2NLP)
 	*  [Getting Started with SparkNLP](db/01_GettingStarted_SparkNLP/)
 	*  [Annotations with Pretrained Pipelines](db/02_annotation_1_PreTrainedPipelines/)
@@ -150,7 +157,7 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Tain Lemmatizer Model in Italian](db/03_training_1_TrainLemmatizerModelInItalian/)
 	*  [Training French POS Tagger](db/03_training_2_TrainPOSTagger_French_UniversalDependency/)
 	*  [Evaluate French POS Model](db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/)
-20. Neural networks and Deep Learning
+21. Neural networks and Deep Learning
 	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
 	*  [Outline for DL](db/050_DLbyABr_01-Intro/)
 	*  [Neural Networks](db/051_DLbyABr_02-Neural-Networks/)
@@ -167,7 +174,7 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Generative Networks](db/062_DLbyABr_06-GenerativeNetworks/)
 	*  [Reinforcement Learning](db/063_DLbyABr_07-ReinforcementLearning/)
 	*  [DL Operations](db/064_DLbyABr_08-Operations/)
-21. Privacy and GDPR-compliant Machine Learning
+22. Privacy and GDPR-compliant Machine Learning
 	*  [Intro to Privacy-preserving Machine Learning](db/01_privacyPreservingDataScience/)
 	*  [Privacy and Pseudonomyzation](db/02_privacyPreservingDataScience_pseudonomyzation/)
 	*  [Differential Privacy](db/03_privacyPreservingDataScience_Differential_Privacy/)
