@@ -150,7 +150,6 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Tain Lemmatizer Model in Italian](db/03_training_1_TrainLemmatizerModelInItalian/)
 	*  [Training French POS Tagger](db/03_training_2_TrainPOSTagger_French_UniversalDependency/)
 	*  [Evaluate French POS Model](db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/)
-
 20. Neural networks and Deep Learning
 	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
 	*  [Outline for DL](db/050_DLbyABr_01-Intro/)
@@ -168,10 +167,11 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Generative Networks](db/062_DLbyABr_06-GenerativeNetworks/)
 	*  [Reinforcement Learning](db/063_DLbyABr_07-ReinforcementLearning/)
 	*  [DL Operations](db/064_DLbyABr_08-Operations/)
+21. Privacy and GDPR-compliant Machine Learning
+	*  [Intro to Privacy-preserving Machine Learning](db/01_privacyPreservingDataScience/)
+	*  [Privacy and Pseudonomyzation](db/02_privacyPreservingDataScience_pseudonomyzation/)
+	*  [Differential Privacy](db/03_privacyPreservingDataScience_Differential_Privacy/)
 
-22. Data Science and Ethical Issues
-	-  Discussions on ethics, privacy and security
-	-  Case studies from the field
 
 # Assigned Minimal Exercises
 
