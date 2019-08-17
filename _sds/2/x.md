@@ -12,17 +12,15 @@ excerpt: 'Scalable Data Engineering Science with Apache Spark 2.x.<br /><br /><b
 
 {% include toc %}
 
-# SDS-2.x
-
-## Introduction to Data Engineering Science
+# SDS-2.x: Data Engineering and Data Science with Apache Spark
 
 **Contents:**
 
 - key concepts in distributed fault-tolerant storage and computing, and working
 knowledge of a data engineering scientist’s toolkit: Shell/Scala/SQL/, etc.
 - practical understanding of the *data science process*:
-  - *engineering focus*: ingest, extract, load, transform and explore (IELTE) structured and unstructured datasets
-  - *science focus*: model, train/fit, validate/select, tune, test and predict (through an estimator) with a practical understanding of the underlying mathematics, numerics and statistics
+  - *Data Engineering with Apache Spark*: ingest, extract, load, transform and explore (IELTE) structured and unstructured datasets
+  - *Data Science with Apache Spark*: model, train/fit, validate/select, tune, test and predict (through an estimator) with a practical understanding of the underlying mathematics, numerics and statistics
   - communicate and serve the model’s predictions to the clients
 - practical applications of IELTE and various scalable predictive ML/AI models, using case-studies of real datasets
  
@@ -35,19 +33,19 @@ knowledge of a data engineering scientist’s toolkit: Shell/Scala/SQL/, etc.
   - Part of your suggested assignments/mini-projects (that use publicly available datasets and codes) needs to be published in a public repository as part of your portfolio that provides evidence of your abilities (upon completing the course). 
   - However, the larger project involving teams of 2 to 4 individuals need not be made publicly available and you are anticipated to continue working on this after the completion of the course. 
 
-# Instructions to Prepare for sds-2.x
+**Instructions to Prepare for sds-2.x**
 
 Follow these [instructions](https://lamastex.github.io/scalable-data-science/sds/basics/instructions/) to prepare for the course.
 
-## Tentative Outline of Topics  
+**Outline of Topics** 
 
-
-0. Uploading Course Content into Databricks
+Uploading Course Content into Databricks Community Edition
 	*  [2019 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2019)
         *  [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
 
-Thes steps on how to upload will be explained face-to-face.
+## Course 1: Data Engineering with Apache Spark
 
+Course 1 involved 32 hours of face-to-face training and 32 hours of homework.
 
 1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
 	*  [Introduction](db/000_scalableDataEngineeringScience/)
@@ -71,7 +69,107 @@ Thes steps on how to upload will be explained face-to-face.
 	*  [ETL Diamonds Data](db/008_DiamondsPipeline_01ETLEDA/)
 	*  [ETL Power Plant](db/009_PowerPlantPipeline_01ETLEDA/)
 	*  [Wiki Click streams](db/010_wikipediaClickStream_01ETLEDA/)
+	*  [Spark SQL Windows and Activity Detection by Random Forest](db/021_recognizeActivityByRandomForest/)
+5. Distributed Vertex Programming, ETL and Graph Querying with GraphX and GraphFrames
+	*  [Graph Frames Intro](db/022_GraphFramesUserGuide/)
+	*  [Ontime Flight Performance](db/023_OnTimeFlightPerformance/)
+6. Spark Streaming with Discrete Resilient Distributed Datasets
+	*  [Spark Streaming Intro](db/024_SparkStreamingIntro/)
+	*  [Extended Twitter Utils](db/025_a_extendedTwitterUtils2run/)
+	*  [Tweet Transmission Trees](db/025_b_TTTDFfunctions/)
+	*  [Tweet Collector](db/026_TweetCollector/)
+	*  [Tweet Track, Follow](db/027_TweetCollectorTrackAndFollow/)
+	*  [Tweet Hashtag Counter](db/028_TweetHashtagCount/)
+7. ETL of GDELT Dataset and XML-structured Dataset
+	*  [GDELT dataset](db/030_Spark-gdelt-1.1-examples.md/)
+	*  [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
+8. ETL, Exploration and Export of Structured, Semi-Structured and Unstructured Data and Models
+	* [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
+	* [MLeap Model Export Demo](db/080_MLeapModelExportDemo/)
+	* [Market Basket Analysis via FP Growth](db/081_MarketBasketAnalysisByFPGrowth/)
+9. Spark Structured Streaming
+	*  [Spark SQL Basics](db/007_SparkSQLIntroBasics/)
+	*  [Animal Names Streaming Files](db/037a_AnimalNamesStructStreamingFiles/)
+	*  [Normal Mixture Streaming Files](db/037b_Mix2NormalsStructStreamingFiles/)
+	*  [Structured Streaming Prog Guide](db/038_StructuredStreamingProgGuide/)
+	*  [Graph Mixture Streaming Files](db/037c_Mix2RandomGraphStructStreamingFiles/)
+	*  [Structured Streaming of JSONs](db/039_StructuredStreamingFromJSONFileStream/)
+10. Sketching for Anomaly Detection in Streams
+	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
+	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
+	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
 
+
+## Course 2: Data Science with Apache Spark
+
+Course 2 involved 80 hours of face-to-face training and 16 hours of course project.
+
+11. Introduction to Machine Learning
+	*  [Simulation Intro](db/011_02_IntroToSimulation/)
+	*  [Machine Learning Intro](db/011_03_IntroToML/)
+12. Unsupervised Learning - Clustering 
+	*  k-means (1 million songs dataset)
+	*  Gaussian Mixture Models and EM Algorithm
+	*  [K-Means 1MSongs Intro](db/012_UnsupervisedClustering_1MSongsKMeans_Intro/)
+	*  [1MSongs - 1 ETL](db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/)
+	*  [1MSongs - 2 Explore](db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/)
+	*  [1MSongs - 3 Model](db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/)
+13. Supervised Learning - Decision Trees
+	*  Linear Regression (power-plant data)
+	*  Decision Trees for Classification (hand-written digit recognition)
+	*  [Decision Trees for Digits](db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/)
+14. Linear Algebra for Distributed Machine Learning
+	*  [Linear Algebra Intro](db/017_LAlgIntro/)
+	*  [Linear Regression Intro](db/018_LinRegIntro/)
+	*  [Distrib. Linear Algebra](db/019_DistLAlgForLinRegIntro/)
+	*  [DLA (Distrib. Linear Algebra)](db/019_DistLAlgForLinRegIntro/)
+	*  [DLA - Data Types Prog Guide](db/019x_000_dataTypesProgGuide/)
+	*  [DLA - Local Vector](db/019x_001_LocalVector/)
+	*  [DLA - Labeled Point](db/019x_002_LabeledPoint/)
+	*  [DLA - Local Matrix](db/019x_003_LocalMatrix/)
+	*  [DLA - Distributed Matrix](db/019x_004_DistributedMatrix/)
+	*  [DLA - Row Matrix](db/019x_005_RowMatrix/)
+	*  [DLA - Indexed Row Matrix](db/019x_006_IndexedRowMatrix/)
+	*  [DLA - Coordinate Matrix](db/019x_007_CoordinateMatrix/)
+	*  [DLA - Block Matrix](db/019x_008_BlockMatrix/)
+
+15. Supervised Learning - Regression
+	*  [Power Plant - Model Tune Evaluate](db/020_PowerPlantPipeline_02ModelTuneEvaluate/)
+	*  [Power Plant - Model Tune Evaluate Deploy](db/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/) 
+16. Supervised Learning - Random Forests
+	*  [Activity Detection - Random Forest](db/021_recognizeActivityByRandomForest/)
+18. Unsupervised Learning - Latent Dirichlet Allocation
+	*  [20 Newsgroups - Latent Dirichlet Allocation](db/034_LDA_20NewsGroupsSmall/)
+	*  [Cornell Movie Dialogs - Latent Dirichlet Allocation](db/035_LDA_CornellMovieDialogs/)
+19. Scalabe Geospatial Analytics
+	*  [Geospatial Analytics in Magellan](db/031_GeospatialAnalyticsInMagellan/)
+	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
+19. Collaborative Filtering for Recommendation Systems
+	*  Matrix completion via Alternative Least Squares
+	*  [Movie Recommendation - Alternating Least Squares](db/036_ALS_MovieRecommender/)
+20. Neural networks and Deep Learning
+	- Linear and logistic regression as neural networks
+	- Back propagation for gradient descent
+	- Use of pre-trained neural networks from google/Baidu/facebook in your machine learning pipeline
+	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
+	*  [Outline for DL](db/050_DLbyABr_01-Intro/)
+	*  [Neural Networks](db/051_DLbyABr_02-Neural-Networks/)
+	*  [Deep feed Forward NNs with Keras](db/052_DLbyABr_02a-Keras-DFFN/)
+	*  [Hello Tensorflow](db/053_DLbyABr_03-HelloTensorFlow/)
+	*  [Batch Tensorflow with Matrices](db/054_DLbyABr_03a-BatchTensorFlowWithMatrices/)
+	*  [Convolutional Neural Nets](db/055_DLbyABr_04-ConvolutionalNetworks/)
+	*  [MNIST: Multi-Layer-Perceptron](db/056_DLbyABr_04a-Hands-On-MNIST-MLP/)
+	*  [MNIST: Convolutional Neural net](db/057_DLbyABr_04b-Hands-On-MNIST-CNN/)
+	*  [CIFAR-10: CNNs](db/058_DLbyABr_04c-CIFAR-10/)
+	*  [Recurrent Neural Nets and LSTMs](db/059_DLbyABr_05-RecurrentNetworks/)
+	*  [LSTM solution](db/060_DLByABr_05a-LSTM-Solution/)
+	*  [LSTM spoke Zarathustra](db/061_DLByABr_05b-LSTM-Language/)
+	*  [Generative Networks](db/062_DLbyABr_06-GenerativeNetworks/)
+	*  [Reinforcement Learning](db/063_DLbyABr_07-ReinforcementLearning/)
+	*  [DL Operations](db/064_DLbyABr_08-Operations/)
+22. Data Science and Ethical Issues
+	-  Discussions on ethics, privacy and security
+	-  Case studies from the field
 
 # Assigned Minimal Exercises
 
@@ -98,103 +196,7 @@ Please be self-directed and try out more complex exercises on your own either in
 
 #### NOTE: Most links below will NOT work until we calibrate the content interactively. But you can get the contents from dbc ARCHIVES above.
 
-* Mining Networks and Graphs with Spark's GraphX
-	*  Extract, transform and loading of network data
-	*  Discovery of communities in graphs (wikipedia click streams)
-	*  label and belief propagation
-	*  querying sub-structures in graphs (US Airport network)
-	*  [Graph Frames Intro](db/022_GraphFramesUserGuide/)
-	*  [Ontime Flight Performance](db/023_OnTimeFlightPerformance/)
-* Spark Streaming with Discrete Resilient Distributed Datasets
-	*  [Spark Streaming Intro](db/024_SparkStreamingIntro/)
-* Social networks as distributed graphs (twitter data)
-	*  [Extended Twitter Utils](db/025_a_extendedTwitterUtils2run/)
-	*  [Tweet Transmission Trees](db/025_b_TTTDFfunctions/)
-	*  [REST Twitter API](db/025_c_RESTTwitter/)
-	*  [Tweet Collector](db/026_TweetCollector/)
-	*  [Tweet Track, Follow](db/027_TweetCollectorTrackAndFollow/)
-	*  [Tweet Hashtag Counter](db/028_TweetHashtagCount/)
-	*  [Tweet Classifier](db/029_TweetLanguageClassifier/)
-* Scalabe Geospatial Analytics
-	*  [Geospatial Analytics in Magellan](db/031_GeospatialAnalyticsInMagellan/)
-	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
-* ETL of XML-structured Dataset
-	*  [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
-* Spark Structured Streaming
-	*  [Animal Names Streaming Files](db/037a_AnimalNamesStructStreamingFiles/)
-	*  [Normal Mixture Streaming Files](db/037b_Mix2NormalsStructStreamingFiles/)
-	*  [Structured Streaming Prog Guide](db/038_StructuredStreamingProgGuide/)
-	*  [Graph Mixture Streaming Files](db/037c_Mix2RandomGraphStructStreamingFiles/)
-	*  [Structured Streaming of JSONs](db/039_StructuredStreamingFromJSONFileStream/)
-* Sketching for Anomaly Detection in Streams
-	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
-	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
-	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
 
-5. Introduction to Machine Learning
-	*  [Simulation Intro](db/011_02_IntroToSimulation/)
-	*  [Machine Learning Intro](db/011_03_IntroToML/)
-6. Unsupervised Learning - Clustering 
-	*  k-means (1 million songs dataset)
-	*  Gaussian Mixture Models and EM Algorithm
-	*  [K-Means 1MSongs Intro](db/012_UnsupervisedClustering_1MSongsKMeans_Intro/)
-	*  [1MSongs - 1 ETL](db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/)
-	*  [1MSongs - 2 Explore](db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/)
-	*  [1MSongs - 3 Model](db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/)
-7. Supervised Learning - Decision Trees
-	*  Linear Regression (power-plant data)
-	*  Decision Trees for Classification (hand-written digit recognition)
-	*  [Decision Trees for Digits](db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/)
-8. Linear Algebra for Distributed Machine Learning
-	*  [Linear Algebra Intro](db/017_LAlgIntro/)
-	*  [Linear Regression Intro](db/018_LinRegIntro/)
-	*  [Distrib. Linear Algebra](db/019_DistLAlgForLinRegIntro/)
-	*  [DLA (Distrib. Linear Algebra)](db/019_DistLAlgForLinRegIntro/)
-	*  [DLA - Data Types Prog Guide](db/019x_000_dataTypesProgGuide/)
-	*  [DLA - Local Vector](db/019x_001_LocalVector/)
-	*  [DLA - Labeled Point](db/019x_002_LabeledPoint/)
-	*  [DLA - Local Matrix](db/019x_003_LocalMatrix/)
-	*  [DLA - Distributed Matrix](db/019x_004_DistributedMatrix/)
-	*  [DLA - Row Matrix](db/019x_005_RowMatrix/)
-	*  [DLA - Indexed Row Matrix](db/019x_006_IndexedRowMatrix/)
-	*  [DLA - Coordinate Matrix](db/019x_007_CoordinateMatrix/)
-	*  [DLA - Block Matrix](db/019x_008_BlockMatrix/)
-
-9. Supervised Learning - Regression
-	*  [Power Plant - Model Tune Evaluate](db/020_PowerPlantPipeline_02ModelTuneEvaluate/)
-10. Supervised Learning - Random Forests
-	*  [Activity Detection - Random Forest](db/021_recognizeActivityByRandomForest/)
-14. Supervised Learning - Regression as a Complete Data Science Process
-	*  [Power Plant - Model Tune Evaluate Deploy](db/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/) 
-17. Unsupervised Learning - Latent Dirichlet Allocation
-	*  [20 Newsgroups - Latent Dirichlet Allocation](db/034_LDA_20NewsGroupsSmall/)
-	*  [Cornell Movie Dialogs - Latent Dirichlet Allocation](db/035_LDA_CornellMovieDialogs/)
-18. Collaborative Filtering for Recommendation Systems
-	*  Matrix completion via Alternative Least Squares
-	*  [Movie Recommendation - Alternating Least Squares](db/036_ALS_MovieRecommender/)
-21. Neural networks and Deep Learning
-	- Linear and logistic regression as neural networks
-	- Back propagation for gradient descent
-	- Use of pre-trained neural networks from google/Baidu/facebook in your machine learning pipeline
-	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
-	*  [Outline for DL](db/050_DLbyABr_01-Intro/)
-	*  [Neural Networks](db/051_DLbyABr_02-Neural-Networks/)
-	*  [Deep feed Forward NNs with Keras](db/052_DLbyABr_02a-Keras-DFFN/)
-	*  [Hello Tensorflow](db/053_DLbyABr_03-HelloTensorFlow/)
-	*  [Batch Tensorflow with Matrices](db/054_DLbyABr_03a-BatchTensorFlowWithMatrices/)
-	*  [Convolutional Neural Nets](db/055_DLbyABr_04-ConvolutionalNetworks/)
-	*  [MNIST: Multi-Layer-Perceptron](db/056_DLbyABr_04a-Hands-On-MNIST-MLP/)
-	*  [MNIST: Convolutional Neural net](db/057_DLbyABr_04b-Hands-On-MNIST-CNN/)
-	*  [CIFAR-10: CNNs](db/058_DLbyABr_04c-CIFAR-10/)
-	*  [Recurrent Neural Nets and LSTMs](db/059_DLbyABr_05-RecurrentNetworks/)
-	*  [LSTM solution](db/060_DLByABr_05a-LSTM-Solution/)
-	*  [LSTM spoke Zarathustra](db/061_DLByABr_05b-LSTM-Language/)
-	*  [Generative Networks](db/062_DLbyABr_06-GenerativeNetworks/)
-	*  [Reinforcement Learning](db/063_DLbyABr_07-ReinforcementLearning/)
-	*  [DL Operations](db/064_DLbyABr_08-Operations/)
-22. Data Science and Ethical Issues
-	-  Discussions on ethics, privacy and security
-	-  Case studies from the field
 23. Advise from Industry
 	*  [2017 Advise from Data Industry](adviseFromIndustry/AndrewMorgan/)
 24. Project Ideas
