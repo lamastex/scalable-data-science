@@ -168,6 +168,7 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Generative Networks](db/062_DLbyABr_06-GenerativeNetworks/)
 	*  [Reinforcement Learning](db/063_DLbyABr_07-ReinforcementLearning/)
 	*  [DL Operations](db/064_DLbyABr_08-Operations/)
+
 22. Data Science and Ethical Issues
 	-  Discussions on ethics, privacy and security
 	-  Case studies from the field
