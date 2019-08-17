@@ -141,9 +141,15 @@ Course 2 involved 80 hours of face-to-face training and 16 hours of course proje
 	*  [Open Street Map Ingestion in Magellan](db/031a_MagellanOSMIngestion/)
 	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
 	*  [Querying Beijin Taxi Trajectories in Magellan](db/032a_MSR_BeijingTaxiTrajectories_MagellanQueries/)
-	*  [Map-matching and Visualizing Uber Trajectories](032b_UberMapMatchingAndVisualization/)
-
+	*  [Map-matching and Visualizing Uber Trajectories](db/032b_UberMapMatchingAndVisualization/)
 19. Natural Language Processing
+	*  [Intro to NLP](db/00_Intro2NLP)
+	*  [Getting Started with SparkNLP](db/01_GettingStarted_SparkNLP/)
+	*  [Annotations with Pretrained Pipelines](db/02_annotation_1_PreTrainedPipelines/)
+	*  [Named Entity Recognitions with Pretrained Models](db/02_annotation_2_NerDL_WordEmbeddingsPreTrainedModels/)
+	*  [Tain Lemmatizer Model in Italian](db/03_training_1_TrainLemmatizerModelInItalian/)
+	*  [Training French POS Tagger](db/03_training_2_TrainPOSTagger_French_UniversalDependency/)
+	*  [Evaluate French POS Model](db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/)
 
 20. Neural networks and Deep Learning
 	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
