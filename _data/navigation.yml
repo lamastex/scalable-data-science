@@ -222,7 +222,7 @@ lMenu-SDS-2.x:
       - title: "Tweet Hashtag Counter"
         url: /sds/2/x/db/028_TweetHashtagCount/
       - title: "GDELT dataset"
-        url: /sds/2/x/db/030_Spark-gdelt-1.1-examples.md/
+        url: /sds/2/x/db/030_Spark-gdelt-1.1-examples/
       - title: "Old Bailey Online - ETL of XML"
         url: /sds/2/x/db/033_OBO_LoadExtract/
       - title: "Latent Dirichlet Allocation of Cornell Movie Dialogs"

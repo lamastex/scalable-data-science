@@ -82,7 +82,7 @@ Course 1 involved 32 hours of face-to-face training and 32 hours of homework.
 	*  [Tweet Track, Follow](db/027_TweetCollectorTrackAndFollow/)
 	*  [Tweet Hashtag Counter](db/028_TweetHashtagCount/)
 7. ETL of GDELT Dataset and XML-structured Dataset
-	*  [GDELT dataset](db/030_Spark-gdelt-1.1-examples.md/)
+	*  [GDELT dataset](db/030_Spark-gdelt-1.1-examples/)
 	*  [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
 8. ETL, Exploration and Export of Structured, Semi-Structured and Unstructured Data and Models
 	* [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
