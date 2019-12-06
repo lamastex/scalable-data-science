@@ -82,12 +82,12 @@ You next need to run `docker-compose` from an open network environment as instru
 
 But briefly, you need to minimally do the following (see **More Details** section below).
  
-After downloading `dockerCompose.zip` as explaine dbelow, unzip it into say a directory called `sds` inside your home directory like so: `/.../home/user/sds/`, minimally run these commands in an open network envitonment. See `startingNotes.md` file below to test Spark-shell, etc.
+After downloading `dockerCompose.zip` as explained below, unzip it into say a directory called `sds` inside your home directory like so: `/.../home/user/sds/`, minimally run these commands in an open network envitonment. See `startingNotes.md` file below to test Spark-shell, etc.
 
 ```
 $ pwd
 $ dockerCompose/
-$ docker-compose up -d
+$ docker-compose -f docker-compose-hadoop.yml up -d
 $ docker-compose down
 ```
 
@@ -99,9 +99,9 @@ Note that you will generally use `stop` and `start` as well as `attach` in `dock
   - [https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose.zip](https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose.zip)
 - The zipped archive is a periodic update of this directory:
   - [https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/](https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/)
-- Quickly getting started once you have installed docker-compose and are inside the directory containing contents of `dockerCompose`:
+- Go through [startingNotes](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes/) once you have installed docker-compose and are inside the directory containing contents of `dockerCompose`:
   - [https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes.md](https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes.md ) 
-- [https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/README.md](https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/README.md ) 
+- For full details see: [https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/README.md](https://github.com/lamastex/scalable-data-science/blob/master/_sds/basics/infrastructure/onpremise/dockerCompose/readmes/README.md ) 
+- For the source of the docker images see [https://gitlab.com/dlilja/hsdockerfiles](https://gitlab.com/dlilja/hsdockerfiles)
 - A lot of publicly available learning/teaching/training/researching content (feel free to fork and sparse checkout and make PRs if you want):
   - [https://github.com/lamastex/scalable-data-science/](https://github.com/lamastex/scalable-data-science/)
- 

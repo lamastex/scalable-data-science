@@ -251,6 +251,7 @@ Note that you will typically only do the following instead of `docker-compose do
 
 ```
 $ docker-compose stop
+$ docker-compose -f docker-compose-hadoop.yml stop
 ```
 
 This way you are just stopping the containers in the composition. This will keep all the injected files into hdfs, etc.
