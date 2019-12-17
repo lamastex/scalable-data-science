@@ -251,6 +251,7 @@ Note that you will typically only do the following instead of `docker-compose do
 
 ```
 $ docker-compose stop
+$ # or if you run a specific compose
 $ docker-compose -f docker-compose-hadoop.yml stop
 ```
 
@@ -259,11 +260,18 @@ This way you are just stopping the containers in the composition. This will keep
 This way you can simply do the following to get back into the service/containers:
 
 ```
-docker-compose start
+$ docker-compose start
+# or if you run a specific compose
+$ docker-compose -f docker-compose-hadoop.yml start
 ```
 
 and `attach` as before to continue your work on the re`start`ed service/containers.
- 
+
+```
+$ docker-compose exec hadoop bash
+root@ee9770572342:~# ./start.sh &
+``` 
+
 ## 6. zeppelin notebook postings
 
 This is optional and not required until the local environment is provisioned sufficiently.
