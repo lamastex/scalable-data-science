@@ -1,0 +1,65 @@
+# Copyright 2019 Dan Lilja
+
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+
+#        http://www.apache.org/licenses/LICENSE-2.0
+
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+
+version: "3.7"
+services:
+  hadoop: # this is the name of the service for hdfs+yarn+spark
+    image: lamastex/hsbase
+    command: --format
+    volumes:
+      - type: bind
+        source: ./hadoopConfig
+        target: /root/hadoop-2.9.2/etc/hadoop
+        read_only: true
+      - type: bind
+        source: ./data
+        target: /root/data
+        read_only: true
+      - type: bind
+        source: ./programs
+        target: /root/programs
+        read_only: false
+    ports:
+      - published: 50070 # hdfs webUI
+        target: 50070 
+      - published: 7070 # spark's standalone mode webUI (yarn is default)
+        target: 8080
+      - published: 8088 # yarn resource manager webUI
+        target: 8088
+      - published: 4040 # spark context webUI
+        target: 4040
+      - published: 8042 # yark-worker that is the spark-master's logs (to see stdout of spark-submit job in webUI)
+        target: 8042
+  zeppelin:
+    image: lamastex/hszeppelin
+    ports:
+      - published: 8080
+        target: 8080
+    volumes:
+      - type: bind
+        source: ./hadoopConfig
+        target: /root/hadoop-2.9.2/etc/hadoop
+        read_only: true
+      - type: bind
+        source: ./zeppelinConf
+        target: /root/zeppelin-0.8.0-bin-all/conf
+        read_only: true
+      - type: bind
+        source: ./data
+        target: /root/data
+        read_only: true
+      - type: bind
+        source: ./programs
+        target: /root/programs
+        read_only: false
