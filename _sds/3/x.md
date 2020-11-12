@@ -47,13 +47,14 @@ Uploading Course Content into Databricks Community Edition
 	*  [Introduction](db/000_ScaDaMaLe/)
 2. Apache Spark and Big Data
 	*  [Why Spark?](db/001_whySpark/)
-	*  [Login to databricks](db/002_loginToDatabricks/)
-	*  [Scala Crash Course](db/003_scalaCrashCourse/)
+	*  [Login to databricks](db/002_00_loginToDatabricks/)
+	*  [Multi-Lingual Notebooks](db/002_01_multiLingualNotebooks/)
+	*  [Scala Crash Course 00](db/003_00_scalaCrashCourse/)
+	*  [Scala Crash Course 01](db/003_01_scalaCrashCourse/)
 3. Map-Reduce, Transformations and Actions with Resilient Distributed datasets
 	*  [RDDs](db/004_RDDsTransformationsActions/)
 	*  [RDDs HOMEWORK](db/005_RDDsTransformationsActionsHOMEWORK/)
 	*  [Word Count - SOU](db/006_WordCount/)
-	*  [Russian Word Count](db/006a_RussianWordCount/)
 4. Ingest, Extract, Transform, Load and Explore with noSQL
 	*  [Spark SQL Basics](db/007_SparkSQLIntroBasics/)
 	*  [SparkSQL HW-a ProgGuide](db/007a_SparkSQLProgGuide_HW/)
@@ -62,10 +63,12 @@ Uploading Course Content into Databricks Community Edition
 	*  [SparkSQL HW-d ProgGuide](db/007d_SparkSQLProgGuide_HW/)
 	*  [SparkSQL HW-e ProgGuide](db/007e_SparkSQLProgGuide_HW/)
 	*  [SparkSQL HW-f ProgGuide](db/007f_SparkSQLProgGuide_HW/)
+	*  [SparkSQL HW-g ProgGuide](db/007g_PivotInSQL/)
 	*  [ETL Diamonds Data](db/008_DiamondsPipeline_01ETLEDA/)
 	*  [ETL Power Plant](db/009_PowerPlantPipeline_01ETLEDA/)
 	*  [Wiki Click streams](db/010_wikipediaClickStream_01ETLEDA/)
 	*  [Spark SQL Windows and Activity Detection by Random Forest](db/021_recognizeActivityByRandomForest/)
+
 5. Distributed Vertex Programming, ETL and Graph Querying with GraphX and GraphFrames
 	*  [Graph Frames Intro](db/022_GraphFramesUserGuide/)
 	*  [Ontime Flight Performance](db/023_OnTimeFlightPerformance/)

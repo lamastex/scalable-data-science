@@ -172,17 +172,19 @@ lMenu-SDS-3.x:
       - title: "Why Spark?"
         url: /sds/3/x/db/001_whySpark/
       - title: "Login to databricks"
-        url: /sds/3/x/db/002_loginToDatabricks/
-      - title: "Scala Crash Course"
-        url: /sds/3/x/db/003_scalaCrashCourse/
+        url: /sds/3/x/db/002_00_loginToDatabricks/
+      - title: "Multi-Lingual Notebooks"
+        url: /sds/3/x/db/002_01_multiLingualNotebooks/
+      - title: "Scala Crash Course 00"
+        url: /sds/3/x/db/003_00_scalaCrashCourse/
+      - title: "Scala Crash Course 01"
+        url: /sds/3/x/db/003_01_scalaCrashCourse/
       - title: "RDDs"
         url: /sds/3/x/db/004_RDDsTransformationsActions/
       - title: "RDDs HOMEWORK"
         url: /sds/3/x/db/005_RDDsTransformationsActionsHOMEWORK/
       - title: "Word Count - SOU"
         url: /sds/3/x/db/006_WordCount/
-      - title: "Russian Word Count"
-        url: /sds/3/x/db/006a_RussianWordCount/
       - title: "SparkSQL Basics"
         url: /sds/3/x/db/007_SparkSQLIntroBasics/
       - title: "SparkSQL HW-a"
@@ -197,6 +199,8 @@ lMenu-SDS-3.x:
         url: /sds/3/x/db/007e_SparkSQLProgGuide_HW/ 
       - title: "SparkSQL HW-f"
         url: /sds/3/x/db/007f_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-g"
+        url: /sds/3/x/db/007g_PivotInSQL/ 
       - title: "ETL Diamonds Data"
         url: /sds/3/x/db/008_DiamondsPipeline_01ETLEDA/
       - title: "ETL Power Plant"
