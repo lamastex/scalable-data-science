@@ -97,12 +97,12 @@ Uploading Course Content into Databricks Community Edition
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
 <!--
-11. Spark Performance Tuning
-	*  [Tuning Utilities](db/00_dbcTuningUtilities2run/)
-	*  [Tuning Transformations and Actions](db/01_TransformationsActions/)
-	*  [Tuning Utilities in Action](db/02_tuningUtilitiesInAction/)
-	*  [Tuning for Caching](db/03_caching/)
-	*  [Tuning for Partitioning](db/04_partitioning/)
+Optional materials 11. Spark Performance Tuning
+*  [Tuning Utilities](db/00_dbcTuningUtilities2run/)
+*  [Tuning Transformations and Actions](db/01_TransformationsActions/)
+*  [Tuning Utilities in Action](db/02_tuningUtilitiesInAction/)
+*  [Tuning for Caching](db/03_caching/)
+*  [Tuning for Partitioning](db/04_partitioning/)
 -->
 
 
