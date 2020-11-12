@@ -7,7 +7,7 @@
 // MAGIC %md
 // MAGIC ### A bit about your instructor:
 // MAGIC 
-// MAGIC I, Raazesh Sainudiin or **Raaz**, will be your instructor for the module today.
+// MAGIC I, Raazesh Sainudiin or **Raaz**, will be your instructor for the course.
 // MAGIC 
 // MAGIC I have 
 // MAGIC 
