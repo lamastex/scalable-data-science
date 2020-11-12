@@ -155,6 +155,226 @@ lMenu-360-in-525:
   - title: "360-in-525-0"
     url: /360-in-525/2018/00/
 
+lMenu-SDS-3.x:
+  - title: "SDS-3.x Course"
+    url: /sds/3/x/
+    children:
+      - title: "Basics"
+        url: /sds/basics/
+      - title: "Setup Instructions"
+        url: "https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/instructions"
+  - title: "Contents-databricks"
+    children:
+#     - title: "course content as .dbc link"
+#       url: "https://github.com/lamastex/scalable-data-science/raw/master/dbcArchives/2019/sds-2-x.dbc"
+      - title: "Introduction"
+        url: /sds/3/x/db/000_scalableDataEngineeringScience/
+      - title: "Why Spark?"
+        url: /sds/3/x/db/001_whySpark/
+      - title: "Login to databricks"
+        url: /sds/3/x/db/002_loginToDatabricks/
+      - title: "Scala Crash Course"
+        url: /sds/3/x/db/003_scalaCrashCourse/
+      - title: "RDDs"
+        url: /sds/3/x/db/004_RDDsTransformationsActions/
+      - title: "RDDs HOMEWORK"
+        url: /sds/3/x/db/005_RDDsTransformationsActionsHOMEWORK/
+      - title: "Word Count - SOU"
+        url: /sds/3/x/db/006_WordCount/
+      - title: "Russian Word Count"
+        url: /sds/3/x/db/006a_RussianWordCount/
+      - title: "SparkSQL Basics"
+        url: /sds/3/x/db/007_SparkSQLIntroBasics/
+      - title: "SparkSQL HW-a"
+        url: /sds/3/x/db/007a_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-b"
+        url: /sds/3/x/db/007b_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-c"
+        url: /sds/3/x/db/007c_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-d"
+        url: /sds/3/x/db/007d_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-e"
+        url: /sds/3/x/db/007e_SparkSQLProgGuide_HW/ 
+      - title: "SparkSQL HW-f"
+        url: /sds/3/x/db/007f_SparkSQLProgGuide_HW/ 
+      - title: "ETL Diamonds Data"
+        url: /sds/3/x/db/008_DiamondsPipeline_01ETLEDA/
+      - title: "ETL Power Plant"
+        url: /sds/3/x/db/009_PowerPlantPipeline_01ETLEDA/
+      - title: "Wiki Click streams"
+        url: /sds/3/x/db/010_wikipediaClickStream_01ETLEDA/
+      - title: "Spark SQL Windows and Activity Detection by Random Forest"
+        url: /sds/3/x/db/021_recognizeActivityByRandomForest/
+      - title: "Graph Frames Intro"
+        url: /sds/3/x/db/022_GraphFramesUserGuide/
+      - title: "Ontime Flight Performance"
+        url: /sds/3/x/db/023_OnTimeFlightPerformance/
+      - title: "Spark Streaming Intro"
+        url: /sds/3/x/db/024_SparkStreamingIntro/
+      - title: "Extended Twitter Utils"
+        url: /sds/3/x/db/025_a_extendedTwitterUtils2run/
+      - title: "Tweet Transmission Trees"
+        url: /sds/3/x/db/025_b_TTTDFfunctions/
+      - title: "Tweet Collector"
+        url: /sds/3/x/db/026_TweetCollector/
+      - title: "Tweet Track, Follow"
+        url: /sds/3/x/db/027_TweetCollectorTrackAndFollow/
+      - title: "Tweet Hashtag Counter"
+        url: /sds/3/x/db/028_TweetHashtagCount/
+      - title: "GDELT dataset"
+        url: /sds/3/x/db/030_Spark-gdelt-1.1-examples/
+      - title: "Old Bailey Online - ETL of XML"
+        url: /sds/3/x/db/033_OBO_LoadExtract/
+      - title: "Latent Dirichlet Allocation of Cornell Movie Dialogs"
+        url: /sds/3/x/db/035_LDA_CornellMovieDialogs/
+      - title: "MLeap Model Export Demo"
+        url: /sds/3/x/db/080_MLeapModelExportDemo/
+      - title: "Market Basket Analysis via FP Growth"
+        url: /sds/3/x/db/081_MarketBasketAnalysisByFPGrowth/
+      - title: "Animal Names Streaming Files"
+        url: /sds/3/x/db/037a_AnimalNamesStructStreamingFiles/
+      - title: "Normal Mixture Streaming Files"
+        url: /sds/3/x/db/037b_Mix2NormalsStructStreamingFiles/
+      - title: "Structured Streaming Prog Guide"
+        url: /sds/3/x/db/038_StructuredStreamingProgGuide/
+      - title: "Graph Mixture Streaming Files"
+        url: /sds/3/x/db/037c_Mix2RandomGraphStructStreamingFiles/
+      - title: "Structured Streaming of JSONs"
+        url: /sds/3/x/db/039_StructuredStreamingFromJSONFileStream/
+      - title: "T-Digest Normal Mixture Streaming Files"
+        url: /sds/3/x/db/040a_TDigestInputStream/
+      - title: "Sketching with T-Digest"
+        url: /sds/3/x/db/041_SketchingWithTDigest/
+      - title: "Streaming with T-Digest"
+        url: /sds/3/x/db/042_streamingWithTDigest/
+      - title: "Tuning Utilities"
+        url: /sds/3/x/db/00_dbcTuningUtilities2run/
+      - title: "Tuning Transformations and Actions"
+        url: /sds/3/x/db/01_TransformationsActions/
+      - title: "Tuning Utilities in Action"
+        url: /sds/3/x/db/02_tuningUtilitiesInAction/
+      - title: "Tuning for Caching"
+        url: /sds/3/x/db/03_caching/
+      - title: "Tuning for Partitioning"
+        url: /sds/3/x/db/04_partitioning/
+#     - title: "Introduction to Data Science: A Computational, Mathematical and Statistical Approach"
+#       url: "https://lamastex.github.io/scalable-data-science/in/2019/"
+      - title: "Simulation Intro"
+        url: /sds/3/x/db/011_02_IntroToSimulation/
+      - title: "Machine Learning Intro"
+        url: /sds/3/x/db/011_03_IntroToML/
+      - title: "K-Means 1MSongs Intro"
+        url: /sds/3/x/db/012_UnsupervisedClustering_1MSongsKMeans_Intro/
+      - title: "1MSongs - 1 ETL"
+        url: /sds/3/x/db/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/
+      - title: "1MSongs - 2 Explore"
+        url: /sds/3/x/db/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/
+      - title: "1MSongs - 3 Model"
+        url: /sds/3/x/db/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
+      - title: "Decision Trees for Digits"
+        url: /sds/3/x/db/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
+      - title: "Linear Algebra Intro"
+        url: /sds/3/x/db/017_LAlgIntro/
+      - title: "Linear Regression Intro"
+        url: /sds/3/x/db/018_LinRegIntro/
+      - title: "DLA - Distributed Linear Algebra"
+        url: /sds/3/x/db/019_DistLAlgForLinRegIntro/
+      - title: "DLA - Data Types Prog Guide"
+        url: /sds/3/x/db/019x_000_dataTypesProgGuide/
+      - title: "DLA - Local Vector"
+        url: /sds/3/x/db/019x_001_LocalVector/
+      - title: "DLA - Labeled Point"
+        url: /sds/3/x/db/019x_002_LabeledPoint/
+      - title: "DLA - Local Matrix"
+        url: /sds/3/x/db/019x_003_LocalMatrix/
+      - title: "DLA - Distributed Matrix"
+        url: /sds/3/x/db/019x_004_DistributedMatrix/
+      - title: "DLA - Row Matrix"
+        url: /sds/3/x/db/019x_005_RowMatrix/
+      - title: "DLA - Indexed Row Matrix"
+        url: /sds/3/x/db/019x_006_IndexedRowMatrix/
+      - title: "DLA - Coordinate Matrix"
+        url: /sds/3/x/db/019x_007_CoordinateMatrix/
+      - title: "DLA - Block Matrix"
+        url: /sds/3/x/db/019x_008_BlockMatrix/
+      - title: "Power Plant - Model Tune Evaluate"
+        url: /sds/3/x/db/020_PowerPlantPipeline_02ModelTuneEvaluate/
+      - title: "Tweet Language Classifier"
+        url: /sds/3/x/db/029_TweetLanguageClassifier/
+      - title: "Power Plant - Model Tune Evaluate Deploy"
+        url: /sds/3/x/db/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/ 
+      - title: "Activity Detection - Random Forest"
+        url: /sds/3/x/db/021_recognizeActivityByRandomForest/
+      - title: "20 Newsgroups - Latent Dirichlet Allocation"
+        url: /sds/3/x/db/034_LDA_20NewsGroupsSmall/
+      - title: "Cornell Movie Dialogs - Latent Dirichlet Allocation"
+        url: /sds/3/x/db/035_LDA_CornellMovieDialogs/
+      - title: "Movie Recommendation - Alternating Least Squares"
+        url: /sds/3/x/db/036_ALS_MovieRecommender/
+      - title: "Geospatial Analytics in Magellan"
+        url: /sds/3/x/db/031_GeospatialAnalyticsInMagellan/
+      - title: "Open Street Map Ingestion in Magellan"
+        url: /sds/3/x/db/031a_MagellanOSMIngestion/
+      - title: "NY Taxi trips in Magellan"
+        url: /sds/3/x/db/032_NYtaxisInMagellan/
+      - title: "Querying Beijin Taxi Trajectories in Magellan"
+        url: /sds/3/x/db/032a_MSR_BeijingTaxiTrajectories_MagellanQueries/
+      - title: "Map-matching and Visualizing Uber Trajectories"
+        url: /sds/3/x/db/032b_UberMapMatchingAndVisualization/
+      - title: "Intro to NLP"
+        url: /sds/3/x/db/00_Intro2NLP)
+      - title: "Getting Started with SparkNLP"
+        url: /sds/3/x/db/01_GettingStarted_SparkNLP/
+      - title: "Annotations with Pretrained Pipelines"
+        url: /sds/3/x/db/02_annotation_1_PreTrainedPipelines/
+      - title: "Named Entity Recognitions with Pretrained Models"
+        url: /sds/3/x/db/02_annotation_2_NerDL_WordEmbeddingsPreTrainedModels/
+      - title: "Tain Lemmatizer Model in Italian"
+        url: /sds/3/x/db/03_training_1_TrainLemmatizerModelInItalian/
+      - title: "Training French POS Tagger"
+        url: /sds/3/x/db/03_training_2_TrainPOSTagger_French_UniversalDependency/
+      - title: "Evaluate French POS Model"
+        url: /sds/3/x/db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/
+      - title: "Intro to Deep Learning"
+        url: /sds/3/x/db/049_DeepLearningIntro/
+      - title: "Outline for DL"
+        url: /sds/3/x/db/050_DLbyABr_01-Intro/
+      - title: "Neural Networks"
+        url: /sds/3/x/db/051_DLbyABr_02-Neural-Networks/
+      - title: "Deep feed Forward NNs with Keras"
+        url: /sds/3/x/db/052_DLbyABr_02a-Keras-DFFN/
+      - title: "Hello Tensorflow"
+        url: /sds/3/x/db/053_DLbyABr_03-HelloTensorFlow/
+      - title: "Batch Tensorflow with Matrices"
+        url: /sds/3/x/db/054_DLbyABr_03a-BatchTensorFlowWithMatrices/
+      - title: "Convolutional Neural Nets"
+        url: /sds/3/x/db/055_DLbyABr_04-ConvolutionalNetworks/
+      - title: "MNIST: Multi-Layer-Perceptron"
+        url: /sds/3/x/db/056_DLbyABr_04a-Hands-On-MNIST-MLP/
+      - title: "MNIST: Convolutional Neural net"
+        url: /sds/3/x/db/057_DLbyABr_04b-Hands-On-MNIST-CNN/
+      - title: "CIFAR-10: CNNs"
+        url: /sds/3/x/db/058_DLbyABr_04c-CIFAR-10/
+      - title: "Recurrent Neural Nets and LSTMs"
+        url: /sds/3/x/db/059_DLbyABr_05-RecurrentNetworks/
+      - title: "LSTM solution"
+        url: /sds/3/x/db/060_DLByABr_05a-LSTM-Solution/
+      - title: "LSTM spoke Zarathustra"
+        url: /sds/3/x/db/061_DLByABr_05b-LSTM-Language/
+      - title: "Generative Networks"
+        url: /sds/3/x/db/062_DLbyABr_06-GenerativeNetworks/
+      - title: "Reinforcement Learning"
+        url: /sds/3/x/db/063_DLbyABr_07-ReinforcementLearning/
+      - title: "DL Operations"
+        url: /sds/3/x/db/064_DLbyABr_08-Operations/
+      - title: "Intro to Privacy-preserving Machine Learning"
+        url: /sds/3/x/db/01_privacyPreservingDataScience/
+      - title: "Privacy and Pseudonomyzation"
+        url: /sds/3/x/db/02_privacyPreservingDataScience_pseudonomyzation/
+      - title: "Differential Privacy"
+        url: /sds/3/x/db/03_privacyPreservingDataScience_Differential_Privacy/
+
+
 lMenu-SDS-2.x:
   - title: "SDS-2.x Course"
     url: /sds/2/x/
