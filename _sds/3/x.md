@@ -174,17 +174,6 @@ Uploading Course Content into Databricks Community Edition
 
 
 
-#### Recommended Preparations for Data *Engineering* Scientists: 
-
-- You should have already installed docker and gone through the [setup and preparation instructions for TASK 2](https://lamastex.github.io/scalable-data-science/sds/basics/instructions/prep/).
-- Successfully complete at least the SKINNY `docker-compose` steps 1-5 in [Quick Start](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes/)
-
-1. Complete the [sbt tutorial](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/sbt_tutorial/)
-1. Complete the exercises to [use sbt and spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
-
-More **minimal exercises** will be assigned once the more generously provisioned learning environment is ready. 
-Please be self-directed and try out more complex exercises on your own either in the databricks community edition and/or in sbt in the local hadoop service.
-
 <!---
 
 **Possible Topics to Choose From:**
@@ -216,6 +205,16 @@ Several freely available MOOCs, hyperlinks and reference books are used to bolst
 We will be supplementing the lecture notes with reading assignments from original sources.  
 
 Here are some resources that may be of further help.
+
+### Recommended Preparations for Data *Engineering* Scientists: 
+
+- You should have already installed docker and gone through the [setup and preparation instructions for TASK 2](https://lamastex.github.io/scalable-data-science/sds/basics/instructions/prep/).
+- Successfully complete at least the SKINNY `docker-compose` steps 1-5 in [Quick Start](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/startingNotes/)
+
+1. Complete the [sbt tutorial](https://lamastex.github.io/scalable-data-science/sds/basics/infrastructure/onpremise/dockerCompose/readmes/sbt_tutorial/)
+1. Complete the exercises to [use sbt and spark-submit packaged jars to a yarn-managed hdfs-based spark cluster](https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/infrastructure/onpremise/dockerCompose/programs).
+
+Please be self-directed and try out more complex exercises on your own either in the databricks community edition and/or in sbt in the local hadoop service.
 
 ### Mathematical Statistical Foundations
 - Avrim Blum, John Hopcroft and Ravindran Kannan.  Foundations of Data Science. Freely available from: [https://www.cs.cornell.edu/jeh/book2016June9.pdf](https://www.cs.cornell.edu/jeh/book2016June9.pdf). It is  intended as a modern theoretical course in computer science and statistical learning.
