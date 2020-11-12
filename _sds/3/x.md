@@ -32,11 +32,8 @@ Classification and regression using generalised linear models, including differe
 Theoretical foundations of distributed systems and analysis of their scalable algorithms for sorting, joining, streaming, sketching, optimising and computing in numerical linear algebra with applications in scalable machine learning pipelines for typical decision problems (eg. prediction, A/B testing, anomaly detection) with various types of data (eg. time-indexed, space-time-indexed and network-indexed). Privacy-aware decisions with sanitized (cleaned, imputed, anonymised) datasets and datastreams. Practical applications of these algorithms on real-world examples (eg. mobility, social media, machine sensors and logs). Illustration via industrial use-cases. 
 
  
-**Instructions to Prepare for sds-3.x**
 
-Follow these [instructions](https://lamastex.github.io/scalable-data-science/sds/basics/instructions/) to prepare for the course.
-
-**Outline of Topics** 
+# Course Content 
 
 <!--
 Uploading Course Content into Databricks Community Edition
