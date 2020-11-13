@@ -9,7 +9,7 @@
 // MAGIC ## 1. ETL Using SparkSQL Windows 
 // MAGIC ## 2. Prediction using Random Forest
 // MAGIC 
-// MAGIC This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition:
+// MAGIC This work is a simpler databricksification of Amira Lakhal's more complex framework for activity recognition: 
 // MAGIC 
 // MAGIC * [https://github.com/MiraLak/activityRecognitionV2](https://github.com/MiraLak/activityRecognitionV2).
 
