@@ -143,16 +143,28 @@ val ssc = new StreamingContext(sc, slideInterval)
 import twitter4j.auth.OAuthAuthorization
 import twitter4j.conf.ConfigurationBuilder
 
-def MyconsumerKey       = "???"
-def MyconsumerSecret    = "???"
-def Mytoken             = "???"
-def MytokenSecret       = "???"
-*/
+// put your own twitter developer credentials below 
+// instead of the '%run "./secrets/026_secret_MyTwitterOAuthCredentials"' above
 
-System.setProperty("twitter4j.oauth.consumerKey", MyconsumerKey)
-System.setProperty("twitter4j.oauth.consumerSecret", MyconsumerSecret)
-System.setProperty("twitter4j.oauth.accessToken", Mytoken)
-System.setProperty("twitter4j.oauth.accessTokenSecret", MytokenSecret)
+import twitter4j.auth.OAuthAuthorization
+import twitter4j.conf.ConfigurationBuilder
+
+
+// These have been regenerated!!! - need to chane them
+
+def myAPIKey       = "XXXX" // APIKey 
+def myAPISecret    = "XXXX" // APISecretKey
+def myAccessToken          = "XXXX" // AccessToken
+def myAccessTokenSecret    = "XXXX" // AccessTokenSecret
+
+
+System.setProperty("twitter4j.oauth.consumerKey", myAPIKey)
+System.setProperty("twitter4j.oauth.consumerSecret", myAPISecret)
+System.setProperty("twitter4j.oauth.accessToken", myAccessToken)
+System.setProperty("twitter4j.oauth.accessTokenSecret", myAccessTokenSecret)
+
+println("twitter OAuth Credentials loaded")
+*/
 
 
 // COMMAND ----------
