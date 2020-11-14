@@ -175,7 +175,9 @@ Optional materials 11. Spark Performance Tuning
 	*  [Privacy and Pseudonomyzation](db/02_privacyPreservingDataScience_pseudonomyzation/)
 	*  [Differential Privacy](db/03_privacyPreservingDataScience_Differential_Privacy/)
 
-
+13. Ethics, Explainability and Fairness - An Operational View
+	* [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
+	* [Ethical AI - Fairness](colab/colab/Ethical_AI_Fairness_Self_Study_Exercise/)
 
 <!---
 
