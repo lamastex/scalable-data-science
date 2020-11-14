@@ -39,37 +39,42 @@ StreamingContext.getActive.foreach{ _.stop(stopSparkContext = false) }
 
 // COMMAND ----------
 
-// put your own twitter developer credentials below instead of xxx
-// instead of the '%run "scalable-data-science/secrets/026_secret_MyTwitterOAuthCredentials"' above
-// this notebook we just ran contains the following commented code block
-
-/*
-import twitter4j.auth.OAuthAuthorization
-import twitter4j.conf.ConfigurationBuilder
-
-// put your own twitter developer credentials below 
-// instead of the '%run "./secrets/026_secret_MyTwitterOAuthCredentials"' below
-
-import twitter4j.auth.OAuthAuthorization
-import twitter4j.conf.ConfigurationBuilder
-
-
-// These have been regenerated!!! - need to chane them
-
-def myAPIKey       = "XXXX" // APIKey 
-def myAPISecret    = "XXXX" // APISecretKey
-def myAccessToken          = "XXXX" // AccessToken
-def myAccessTokenSecret    = "XXXX" // AccessTokenSecret
-
-
-System.setProperty("twitter4j.oauth.consumerKey", myAPIKey)
-System.setProperty("twitter4j.oauth.consumerSecret", myAPISecret)
-System.setProperty("twitter4j.oauth.accessToken", myAccessToken)
-System.setProperty("twitter4j.oauth.accessTokenSecret", myAccessTokenSecret)
-
-println("twitter OAuth Credentials loaded")
-*/
-
+// MAGIC %md
+// MAGIC 
+// MAGIC ### First Step to Do Your Own Experiments in Twitter: Enter your Twitter API Credentials.
+// MAGIC * Go to https://apps.twitter.com and look up your Twitter API Credentials, or create an app to create them.
+// MAGIC * Run the code in a cell to Enter your own credentials.
+// MAGIC 
+// MAGIC ```%scala
+// MAGIC // put your own twitter developer credentials below instead of xxx
+// MAGIC // instead of the '%run ".../secrets/026_secret_MyTwitterOAuthCredentials"' below
+// MAGIC // you need to copy-paste the following code-block with your own Twitter credentials replacing XXXX
+// MAGIC 
+// MAGIC 
+// MAGIC // put your own twitter developer credentials below 
+// MAGIC 
+// MAGIC import twitter4j.auth.OAuthAuthorization
+// MAGIC import twitter4j.conf.ConfigurationBuilder
+// MAGIC 
+// MAGIC 
+// MAGIC // These have been regenerated!!! - need to chane them
+// MAGIC 
+// MAGIC def myAPIKey       = "XXXX" // APIKey 
+// MAGIC def myAPISecret    = "XXXX" // APISecretKey
+// MAGIC def myAccessToken          = "XXXX" // AccessToken
+// MAGIC def myAccessTokenSecret    = "XXXX" // AccessTokenSecret
+// MAGIC 
+// MAGIC 
+// MAGIC System.setProperty("twitter4j.oauth.consumerKey", myAPIKey)
+// MAGIC System.setProperty("twitter4j.oauth.consumerSecret", myAPISecret)
+// MAGIC System.setProperty("twitter4j.oauth.accessToken", myAccessToken)
+// MAGIC System.setProperty("twitter4j.oauth.accessTokenSecret", myAccessTokenSecret)
+// MAGIC 
+// MAGIC println("twitter OAuth Credentials loaded")
+// MAGIC 
+// MAGIC ```
+// MAGIC 
+// MAGIC The cell-below will not expose my Twitter API Credentials: `myAPIKey`, `myAPISecret`, `myAccessToken` and `myAccessTokenSecret`. Use the code above to enter your own credentials in a scala cell.
 
 // COMMAND ----------
 
