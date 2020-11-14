@@ -96,15 +96,6 @@ Uploading Course Content into Databricks Community Edition
 	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
-<!--
-Optional materials 11. Spark Performance Tuning
-*  [Tuning Utilities](db/00_dbcTuningUtilities2run/)
-*  [Tuning Transformations and Actions](db/01_TransformationsActions/)
-*  [Tuning Utilities in Action](db/02_tuningUtilitiesInAction/)
-*  [Tuning for Caching](db/03_caching/)
-*  [Tuning for Partitioning](db/04_partitioning/)
--->
-
 
 2. Introduction to Simulation and Machine Learning
 	*  [Simulation Intro](db/011_02_IntroToSimulation/)
@@ -145,14 +136,6 @@ Optional materials 11. Spark Performance Tuning
 	*  [NY Taxi trips in Magellan](db/032_NYtaxisInMagellan/)
 	*  [Querying Beijin Taxi Trajectories in Magellan](db/032a_MSR_BeijingTaxiTrajectories_MagellanQueries/)
 	*  [Map-matching and Visualizing Uber Trajectories](db/032b_UberMapMatchingAndVisualization/)
-10. Natural Language Processing
-	*  [Intro to NLP](db/00_Intro2NLP)
-	*  [Getting Started with SparkNLP](db/01_GettingStarted_SparkNLP/)
-	*  [Annotations with Pretrained Pipelines](db/02_annotation_1_PreTrainedPipelines/)
-	*  [Named Entity Recognitions with Pretrained Models](db/02_annotation_2_NerDL_WordEmbeddingsPreTrainedModels/)
-	*  [Tain Lemmatizer Model in Italian](db/03_training_1_TrainLemmatizerModelInItalian/)
-	*  [Training French POS Tagger](db/03_training_2_TrainPOSTagger_French_UniversalDependency/)
-	*  [Evaluate French POS Model](db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/)
 11. Neural networks and Deep Learning
 	*  [Intro to Deep Learning](db/049_DeepLearningIntro/)
 	*  [Outline for DL](db/050_DLbyABr_01-Intro/)
@@ -177,7 +160,7 @@ Optional materials 11. Spark Performance Tuning
 
 13. Ethics, Explainability and Fairness - An Operational View
 	* [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
-	* [Ethical AI - Fairness](colab/colab/Ethical_AI_Fairness_Self_Study_Exercise/)
+	* [Ethical AI - Fairness](colab/Ethical_AI_Fairness_Self_Study_Exercise/)
 
 <!---
 
@@ -201,6 +184,24 @@ Optional materials 11. Spark Performance Tuning
 	*  [Student Project 04 on Power Forecasting - Part 3](db/999_04_StudentProject_PowerForecasting_3_TrainAndValidate/)
 	*  [Student Project 05 on Hail Scala for Population Genomics ETL](db/999_05_StudentProject_HailScalaGenomicsETLTutorial/)
 
+-->
+
+<!--
+Optional materials 11. Spark Performance Tuning
+	*  [Tuning Utilities](db/00_dbcTuningUtilities2run/)
+	*  [Tuning Transformations and Actions](db/01_TransformationsActions/)
+	*  [Tuning Utilities in Action](db/02_tuningUtilitiesInAction/)
+	*  [Tuning for Caching](db/03_caching/)
+	*  [Tuning for Partitioning](db/04_partitioning/)
+
+10. Natural Language Processing
+	*  [Intro to NLP](db/00_Intro2NLP)
+	*  [Getting Started with SparkNLP](db/01_GettingStarted_SparkNLP/)
+	*  [Annotations with Pretrained Pipelines](db/02_annotation_1_PreTrainedPipelines/)
+	*  [Named Entity Recognitions with Pretrained Models](db/02_annotation_2_NerDL_WordEmbeddingsPreTrainedModels/)
+	*  [Tain Lemmatizer Model in Italian](db/03_training_1_TrainLemmatizerModelInItalian/)
+	*  [Training French POS Tagger](db/03_training_2_TrainPOSTagger_French_UniversalDependency/)
+	*  [Evaluate French POS Model](db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/)
 -->
 
 # Supplements
