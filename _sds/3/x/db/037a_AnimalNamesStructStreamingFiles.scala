@@ -1,6 +1,6 @@
 // Databricks notebook source
 // MAGIC %md
-// MAGIC # [SDS-2.x, Scalable Data Engineering Science](https://lamastex.github.io/scalable-data-science/sds/2/x/)
+// MAGIC # [ScaDaMaLe, Scalable Data Science and Distributed Machine Learning](https://lamastex.github.io/scalable-data-science/sds/3/x/)
 
 // COMMAND ----------
 
