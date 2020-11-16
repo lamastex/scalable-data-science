@@ -405,7 +405,7 @@ display(filteredPaths)
 
 // COMMAND ----------
 
-package d3a
+package d3a1
 // We use a package object so that we can define top level classes like Edge that need to be used in other cells
 
 import org.apache.spark.sql._
@@ -441,6 +441,14 @@ displayHTML(s"""<!DOCTYPE html>
   <head>
     <link type="text/css" rel="stylesheet" href="https://mbostock.github.io/d3/talk/20111116/style.css"/>
     <style type="text/css">
+      body.no-margin {
+        margin: 0px;
+      }
+      
+      #content-wrapper {
+        overflow: visible;
+      }
+      
       #states path {
         fill: #ccc;
         stroke: #fff;
@@ -473,7 +481,8 @@ displayHTML(s"""<!DOCTYPE html>
       }
     </style>
   </head>
-  <body>
+  <body class="no-margin">
+    <div id="myelement"></div>
     <script src="https://mbostock.github.io/d3/talk/20111116/d3/d3.js"></script>
     <script src="https://mbostock.github.io/d3/talk/20111116/d3/d3.csv.js"></script>
     <script src="https://mbostock.github.io/d3/talk/20111116/d3/d3.geo.js"></script>
@@ -497,8 +506,8 @@ displayHTML(s"""<!DOCTYPE html>
       var path = d3.geo.path()
           .projection(projection);
 
-      var svg = d3.select("body")
-          .insert("svg:svg", "h2")
+      var svg = d3.select("#myelement")
+          .append("svg:svg")
           .attr("width", w)
           .attr("height", h);
 
@@ -606,7 +615,7 @@ Produces a force-directed graph given a collection of edges of the following for
 
 // COMMAND ----------
 
-d3a.graphs.help()
+d3a1.graphs.help()
 
 // COMMAND ----------
 
@@ -616,7 +625,7 @@ d3a.graphs.help()
 // COMMAND ----------
 
 // On-time and Early Arrivals
-import d3a._
+import d3a1._
 
 graphs.force(
   height = 800,
@@ -633,7 +642,7 @@ graphs.force(
 // COMMAND ----------
 
 // Delayed Trips from CA, OR, and/or WA
-import d3a._
+import d3a1._
 
 graphs.force(
   height = 800,
@@ -648,12 +657,9 @@ graphs.force(
 // COMMAND ----------
 
 // Trips (from DepartureDelays Dataset)
-import d3a._
+import d3a1._
 
 graphs.force(
   height = 800,
   width = 1200,
   clicks = sql("""select src, dst as dest, count(1) as count from departureDelays_geo group by src, dst""").as[Edge])
-
-// COMMAND ----------
-
