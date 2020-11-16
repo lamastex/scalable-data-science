@@ -29,18 +29,9 @@
 // MAGIC # What is Geospatial Analytics?
 // MAGIC 
 // MAGIC 
-// MAGIC **(watch now 3 minutes and 23 seconds: 111-314 seconds)**:
+// MAGIC **(watch  3 minutes and 23 seconds: 111-314 seconds)**:
 // MAGIC 
 // MAGIC [![Spark Summit East 2016 - What is Geospatial Analytics by Ram Sri Harsha](http://img.youtube.com/vi/1lF1oSjxMT4/0.jpg)](https://www.youtube.com/watch?v=1lF1oSjxMT4?rel=0&autoplay=1&modestbranding=1&start=111&end=314)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC 
-// MAGIC Needs magellan jar assembled from a fork (see below): 
-// MAGIC  - `harsha2010:magellan:1.0.6-s_2.11`
-// MAGIC  
-// MAGIC  - https://github.com/harsha2010/magellan
 
 // COMMAND ----------
 
@@ -145,7 +136,8 @@ displayHTML(frameIt("https://magellan.ghost.io/how-does-magellan-scale-geospatia
 // MAGIC 
 // MAGIC ### Users' View of Spatial Data Structures (details are typically "invisible" to user)
 // MAGIC 
-// MAGIC <img src="https://www.neonscience.org/sites/default/files/images/dc-spatial-vector/pnt_line_poly.png" width=555>
+// MAGIC <img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/vector-general/pnt_line_poly.png" width=555>
+// MAGIC 
 // MAGIC 
 // MAGIC ### Predicates
 // MAGIC 
