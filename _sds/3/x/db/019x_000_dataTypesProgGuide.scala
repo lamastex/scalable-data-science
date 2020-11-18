@@ -27,3 +27,10 @@
 // MAGIC [Breeze](http://www.scalanlp.org/) and [jblas](http://jblas.org/). A
 // MAGIC training example used in supervised learning is called a “labeled point”
 // MAGIC in MLlib.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Why are we going through the basic distributed linear algebray Data Types?
+// MAGIC 
+// MAGIC This is to get you to be able to directly use them in a project or to roll your own algorithms.
