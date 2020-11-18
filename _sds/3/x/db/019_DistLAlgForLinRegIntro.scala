@@ -6,7 +6,7 @@
 
 // MAGIC %md
 // MAGIC 
-// MAGIC ## We MAY come back to this more detailed deep dive
+// MAGIC ## We need this more detailed deep dive
 // MAGIC 
 // MAGIC **HOMEWORK:** 
 // MAGIC 
@@ -18,7 +18,7 @@
 
 // MAGIC %md
 // MAGIC #### Distributed Machine Learning: Computation and Storage by Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning
-// MAGIC **(watch now/later? 8:48)**:
+// MAGIC **(watch now 8:48)**:
 // MAGIC 
 // MAGIC [![Distributed Machine Learning: Computation and Storageby Ameet Talwalkar in BerkeleyX: CS190.1x Scalable Machine Learning](http://img.youtube.com/vi/r2EWm82rneY/0.jpg)](https://www.youtube.com/watch?v=r2EWm82rneY)
 
