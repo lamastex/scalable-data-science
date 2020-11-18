@@ -455,7 +455,7 @@ display(dbutils.fs.ls("dbfs:/tmp/stopwords")) // check if the file already exist
 
 // COMMAND ----------
 
-//%fs cp file:/tmp/stopwords dbfs:/tmp/stopwords # uncomment '//' at the beginning and repeat only if needed again
+//%fs cp file:/tmp/stopwords dbfs:/tmp/stopwords 
 
 // COMMAND ----------
 
@@ -912,10 +912,10 @@ topics.zipWithIndex.foreach { case (topic, i) =>
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC We've managed to get some good results here. For example, we can easily infer that Topic 0 is about computers, Topic 8 is about space, etc. 
+// MAGIC We've managed to get some good results here. For example, we can easily infer that Topic 12 is about computers, Topic 8 is about Christianity, etc. 
 // MAGIC 
 // MAGIC 
-// MAGIC We still get some ambiguous results like Topic 17.
+// MAGIC We still get some ambiguous results.
 
 // COMMAND ----------
 
@@ -1100,7 +1100,7 @@ function classes(root) {
 
 // COMMAND ----------
 
-//%sh wget http://kdd.ics.uci.edu/databases/20newsgroups/mini_newsgroups.tar.gz -O /tmp/newsgroups.tar.gz
+// MAGIC %sh wget http://kdd.ics.uci.edu/databases/20newsgroups/mini_newsgroups.tar.gz -O /tmp/newsgroups.tar.gz
 
 // COMMAND ----------
 
@@ -1109,7 +1109,7 @@ function classes(root) {
 
 // COMMAND ----------
 
-//%sh tar xvfz /tmp/newsgroups.tar.gz -C /tmp/
+// MAGIC %sh tar xvfz /tmp/newsgroups.tar.gz -C /tmp/
 
 // COMMAND ----------
 
@@ -1120,8 +1120,11 @@ function classes(root) {
 
 // COMMAND ----------
 
-//%fs cp -r file:/tmp/mini_newsgroups dbfs:/datasets/mini_newsgroups
+// MAGIC %fs cp -r file:/tmp/mini_newsgroups dbfs:/datasets/mini_newsgroups
 
 // COMMAND ----------
 
 display(dbutils.fs.ls("dbfs:/datasets/mini_newsgroups"))
+
+// COMMAND ----------
+
