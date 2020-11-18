@@ -52,12 +52,12 @@
 // MAGIC %md
 // MAGIC To **Rerun Steps 1-4** done in the notebook at:
 // MAGIC 
-// MAGIC * [Workspace -> scalable-data-science -> sds-2-2 -> 009_PowerPlantPipeline_01ETLEDA](/#workspace/scalable-data-science/sds-2-2/009_PowerPlantPipeline_01ETLEDA)
+// MAGIC * `Workspace -> PATH_TO -> 009_PowerPlantPipeline_01ETLEDA]`
 // MAGIC 
 // MAGIC just `run` the following command as shown in the cell below: 
 // MAGIC 
 // MAGIC   ```%scala
-// MAGIC   %run "/scalable-data-science/sds-2-x/009_PowerPlantPipeline_01ETLEDA"
+// MAGIC   %run "/PATH_TO/009_PowerPlantPipeline_01ETLEDA"
 // MAGIC   ```
 // MAGIC   
 // MAGIC    * *Note:* If you already evaluated the `%run ...` command above then:
@@ -67,7 +67,7 @@
 
 // COMMAND ----------
 
-// MAGIC %run "/scalable-data-science/sds-2-x/009_PowerPlantPipeline_01ETLEDA"
+// MAGIC %run "../009_PowerPlantPipeline_01ETLEDA" 
 
 // COMMAND ----------
 
