@@ -67,6 +67,11 @@ Uploading Course Content into Databricks Community Edition
 	*  [ETL Diamonds Data](db/008_DiamondsPipeline_01ETLEDA/)
 	*  [ETL Power Plant](db/009_PowerPlantPipeline_01ETLEDA/)
 	*  [Wiki Click streams](db/010_wikipediaClickStream_01ETLEDA/)
+13. Ethics, Explainability and Fairness - An Operational View
+	* [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
+	* [Ethical AI - Fairness](colab/Ethical_AI_Fairness_Self_Study_Exercise/)
+
+<!---
 	*  [Spark SQL Windows and Activity Detection by Random Forest](db/021_recognizeActivityByRandomForest/)
 
 5. Distributed Vertex Programming, ETL and Graph Querying with GraphX and GraphFrames
@@ -158,11 +163,6 @@ Uploading Course Content into Databricks Community Edition
 	*  [Privacy and Pseudonomyzation](db/02_privacyPreservingDataScience_pseudonomyzation/)
 	*  [Differential Privacy](db/03_privacyPreservingDataScience_Differential_Privacy/)
 
-13. Ethics, Explainability and Fairness - An Operational View
-	* [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
-	* [Ethical AI - Fairness](colab/Ethical_AI_Fairness_Self_Study_Exercise/)
-
-<!---
 
 **Possible Topics to Choose From:**
 
