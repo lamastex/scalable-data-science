@@ -35,13 +35,22 @@ Theoretical foundations of distributed systems and analysis of their scalable al
 
 # Course Content 
 
-<!--
 Uploading Course Content into Databricks Community Edition
 
-*  [2019 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2019)
+*  [2020 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2020)
 *  [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
--->
 
+Reading Materials Provided
+
+* [read](https://github.com/lamastex/scalable-data-science/tree/master/read)
+
+Supplementary Readings in O'Rielly (you need to be logged into your library with access to this publisher):
+
+* [https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/)
+* [https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/](https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/)
+* [https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
+
+The databricks notebooks will be made available as the course progresses below:
 
 1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
 	*  [Introduction](db/000_ScaDaMaLe/)
