@@ -109,7 +109,7 @@ qrResult.R
 // MAGIC # Get its size.
 // MAGIC m = mat.numRows()  # 4
 // MAGIC n = mat.numCols()  # 3
-// MAGIC print m,'x',n
+// MAGIC print (m,'x',n)
 // MAGIC 
 // MAGIC # Get the rows as an RDD of vectors again.
 // MAGIC rowsRDD = mat.rows
