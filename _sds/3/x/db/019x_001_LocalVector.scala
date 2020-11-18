@@ -139,10 +139,10 @@ val sv2: Vector = Vectors.sparse(3, Seq((0, 1.0), (2, 3.0)))
 // COMMAND ----------
 
 // MAGIC %py
-// MAGIC print dv1
-// MAGIC print dv2
-// MAGIC print sv1
-// MAGIC print sv2
+// MAGIC print (dv1)
+// MAGIC print (dv2)
+// MAGIC print (sv1)
+// MAGIC print (sv2)
 
 // COMMAND ----------
 
