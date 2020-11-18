@@ -29,7 +29,7 @@
 // MAGIC 
 // MAGIC **HOMEWORK:** Make sure you are understanding everything he is trying to convey!
 // MAGIC 
-// MAGIC **Recall** from week 1's lectures that we are weaving over Ameet's course here to get to advanced applications "in a hurry" and it is assumed you have already done the edX Big Data Series from 2015 or will be doing the 2016 version, ideally with certification :)
+// MAGIC **Recall** from week 1's lectures that we are weaving over Ameet's course here to get to advanced applications "in a hurry"...
 // MAGIC 
 // MAGIC In this segment, we'll begin our discussion
 // MAGIC of **distributed machine learning principles related
