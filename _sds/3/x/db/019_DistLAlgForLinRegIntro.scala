@@ -420,4 +420,6 @@
 // MAGIC 
 // MAGIC * [http://stanford.edu/~rezab/dao/](http://stanford.edu/~rezab/dao/).
 // MAGIC 
-// MAGIC This is a minimal pre-requisite for designing new algorithms or improving exixting ones!!!
+// MAGIC This is a minimal pre-requisite for designing new algorithms or improving exixting ones.
+// MAGIC 
+// MAGIC Notes for these lectures will be provided for self-study.
