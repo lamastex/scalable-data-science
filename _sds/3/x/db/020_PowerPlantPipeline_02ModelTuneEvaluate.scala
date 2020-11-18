@@ -673,6 +673,30 @@ gbtModel.bestModel.asInstanceOf[PipelineModel].stages.last.asInstanceOf[GBTRegre
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC ## Persisting Statistical Machine Learning Models
+// MAGIC 
+// MAGIC 
+// MAGIC See https://databricks.com/blog/2016/05/31/apache-spark-2-0-preview-machine-learning-model-persistence.html
+// MAGIC 
+// MAGIC Let's save our best model so we can load it without having to rerun the validation and training again.
+
+// COMMAND ----------
+
+gbtModel
+
+// COMMAND ----------
+
+gbtModel.bestModel.asInstanceOf[PipelineModel]
+        .write.overwrite().save("dbfs:///databricks/driver/MyTrainedBestPipelineModel")
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC When it is time to deploy the trained model to serve predicitons, we cna simply reload this model and proceed as shown later.
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC Datasource References:
 // MAGIC 
 // MAGIC * Pinar Tüfekci, Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods, International Journal of Electrical Power & Energy Systems, Volume 60, September 2014, Pages 126-140, ISSN 0142-0615, [Web Link](http://www.journals.elsevier.com/international-journal-of-electrical-power-and-energy-systems/)
