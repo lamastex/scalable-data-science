@@ -421,3 +421,11 @@ for ( rank <- ranks ){
 // MAGIC * More complete models would include analysing the genres to give better recommendations.
 // MAGIC * For first time users, the program could give the top rated movies over all users.
 // MAGIC * Could have used bigger dataset
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Project Ideas
+// MAGIC 
+// MAGIC - Do an analysis od ALS algorithm under the hood.
+// MAGIC - Try to improve the model
