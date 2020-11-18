@@ -201,7 +201,7 @@ def streamFunc(): StreamingContext = {
   // Create the OAuth Twitter credentials 
   val auth = Some(new OAuthAuthorization(new ConfigurationBuilder().build()))
   
-  val track = List("aon rules!", "#MakeDataGreatAgain","sds-2-x rules!")//, "Hi")// just added for some live tests
+  val track = List("WASP rules!", "#MakeDataGreatAgain","sds-3-x rules!")//, "Hi")// just added for some live tests
   //val track = List.empty // if you do not want to track by any string
   
   val follow = seedIDs // who to follow in Twitter
@@ -259,17 +259,40 @@ display(dbutils.fs.ls(outputDirectoryRoot+"/2020/11/14/14/1605363120000/")) // k
 
 // COMMAND ----------
 
-// this will make sure all streaming job in the cluster are stopped 
-StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } 
+val rawDF = fromParquetFile2DF(outputDirectoryRoot+"/2020/11/*/*/*/*") //.cache()
+rawDF.count
 
 // COMMAND ----------
 
-val rawDF = fromParquetFile2DF(outputDirectoryRoot+"/2020/11/14/*/*/*") //.cache()
 val TTTsDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(rawDF)).cache()
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC Collect for a few minutes so all fields are availabale in the Tweets... otherwise you will get errors like this  (which may be unavidable if what you are tracking has no `geoLocation` informaiton for example, only a small fraction of Tweets have this information):
+// MAGIC 
+// MAGIC 
+// MAGIC > "org.apache.spark.sql.AnalysisException: cannot resolve '`geoLocation.latitude`' given input columns: [contributorsIDs, createdAt, currentUserRetweetId, displayTextRangeEnd, displayTextRangeStart, favoriteCount, hashtagEntities, id, inReplyToScreenName, inReplyToStatusId, inReplyToUserId, isFavorited, isPossiblySensitive, isRetweeted, isTruncated, lang, mediaEntities, place, quotedStatus, quotedStatusId, quotedStatusPermalink, retweetCount, retweetedStatus, source, symbolEntities, text, urlEntities, user, userMentionEntities, withheldInCountries];;"
+// MAGIC 
+// MAGIC 
+// MAGIC We can parse more robustly... but let's go and modify the function so it does not look for the missing fields in these tweeets...
+
+// COMMAND ----------
+
+// MAGIC %run "./025_b_TTTDFfunctions"
+
+// COMMAND ----------
+
+val TTTsDF = tweetsDF2TTTDFLightWeight(tweetsJsonStringDF2TweetsDF(rawDF)).cache()
+
+// COMMAND ----------
+
 display(TTTsDF)  // output not displayed to comply with Twitter Developer rules
+
+// COMMAND ----------
+
+// this will make sure all streaming job in the cluster are stopped 
+StreamingContext.getActive.foreach { _.stop(stopSparkContext = false) } 
 
 // COMMAND ----------
 
