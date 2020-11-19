@@ -44,11 +44,13 @@ Reading Materials Provided
 
 * [read](https://github.com/lamastex/scalable-data-science/tree/master/read)
 
-Supplementary Readings in O'Rielly (you need to be logged into your library with access to this publisher):
+Expected Reference Readings (you need to be logged into your library with access to these publishers):
 
 * [https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/)
 * [https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/](https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/)
 * [https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
+* Introduction to Algorithms, Third Edition, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein from 
+  - [https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142](https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142)
 
 The databricks notebooks will be made available as the course progresses below:
 
