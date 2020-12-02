@@ -1,0 +1,9 @@
+I have scheduled to post specific notebooks (some of them with video from 2017, 2018, 2019) to help each group more specifically (please let me know if I said I would do something more but forgot):
+
+    those parsing xml in general for any group-project,
+    those tasked with distributed vertex programs for TDA (pointers to papers and rat brain network data... via GitHub pushes)
+    doing LDA (with another notebook on Cornell movie dialogs that shows how to parse input data in non-standard formats)
+    sentiment analysis with tweets or any text inputs in Swedish language (Swedish lexicon for sentiments plus emotion score mapper),plus custom track-and-follow for Wallenberg network of companies world-wide
+    add NASA airtraffic data over Atlanta Georgia for the group interested in sketching quantiles with more notebooks for sketches and t-digest with structured streaming flat-map-groups-with-states example in action on t-digest (this already works in Spark 2.0, but not in 10x more efficient version in spark 3.0)
+    perhaps making sure sds-2-x-dl notebooks work in the special version 2 spark cluster for the group analysis data from the Hadron collider...
+
