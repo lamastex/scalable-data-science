@@ -185,6 +185,8 @@ lMenu-SDS-3.x:
         url: /sds/3/x/db/005_RDDsTransformationsActionsHOMEWORK/
       - title: "Word Count - SOU"
         url: /sds/3/x/db/006_WordCount/
+      - title: "Introduction to Piped RDDs"
+        url: /sds/3/x/db/006a_PipedRDD/
       - title: "SparkSQL Basics"
         url: /sds/3/x/db/007_SparkSQLIntroBasics/
       - title: "SparkSQL HW-a"
@@ -207,8 +209,14 @@ lMenu-SDS-3.x:
         url: /sds/3/x/db/009_PowerPlantPipeline_01ETLEDA/
       - title: "Wiki Click streams"
         url: /sds/3/x/db/010_wikipediaClickStream_01ETLEDA/
-      - title: "Spark SQL Windows and Activity Detection by Random Forest"
-
+      - title: "Introduction to Spark GDELT-project: Global Mass Media Monitoring"
+        url: /sds/3/x/db/030_Spark-GDELT-project/
+      - title: "Old Bailey Online - ETL of XML"
+        url: /sds/3/x/db/033_OBO_LoadExtract/
+      - title: "Piped RDDs - Rigorous Bayesian A/B Testing on Old Bailey Online Data"
+        url: /sds/3/x/db/033_OBO_PipedRDD_RigorousBayesianABTesting/
+      - title: "Latent Dirichlet Allocation of Cornell Movie Dialogs"
+        url: /sds/3/x/db/035_LDA_CornellMovieDialogs/
 
 lMenu-SDS-2.x:
   - title: "SDS-2.x Course"
