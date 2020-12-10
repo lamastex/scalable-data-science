@@ -1,5 +1,10 @@
 // Databricks notebook source
 // MAGIC %md
+// MAGIC # [ScaDaMaLe, Scalable Data Science and Distributed Machine Learning](https://lamastex.github.io/scalable-data-science/sds/3/x/)
+
+// COMMAND ----------
+
+// MAGIC %md
 // MAGIC # Piped RDDs and Bayesian AB Testing
 
 // COMMAND ----------
