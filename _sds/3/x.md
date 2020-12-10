@@ -89,9 +89,9 @@ The databricks notebooks will be made available as the course progresses below:
     * [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
   * group-project-17 doing distributed Topological Data Analysis with single-machine-processes via PipedRDDs
     * [Introduction to Piped RDDs](db/006a_PipedRDD/)
-    * [Piped RDDs - Rigorous Bayesian A/B Testing on Old Bailey Online Data](db/033_OBO_PipedRDD_RigorousBayesianABTesting/)
+    * [Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data](db/033_OBO_PipedRDD_RigorousBayesianABTesting/)
   * group-projects interested in integrating with mass-media data
-    * [Introduction to Spark GDELT-project: Global Mass Media Monitoring](db/030_Spark-GDELT-project/)
+    * [Introduction to Spark GDELT-project - Global Mass Media Monitoring](db/030_Spark-GDELT-project/)
   * group-projects doing Latent Dirichlet Allocation
     * [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
 
