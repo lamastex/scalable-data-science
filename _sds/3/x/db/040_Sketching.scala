@@ -12,10 +12,15 @@
 
 // MAGIC %md
 // MAGIC 
-// MAGIC To get an overview of sketching in under 30 minutes see this **Spark-AI 2020 Talk on Apache Sketches by Lee RHodes*:
-// MAGIC  - https://databricks.com/session_na20/a-production-quality-sketching-library-for-the-analysis-of-big-data
-// MAGIC - Watch Video of the Talk  Now/Later (29 minutes)
-// MAGIC   - [![Spark Transformations by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/WPwCnswDbOU/0.jpg)](https://www.youtube.com/watch?v=WPwCnswDbOU?rel=0&autoplay=1&modestbranding=1)
+// MAGIC - To get an overview of sketching in under 30 minutes see this **Spark-AI 2020 Talk on Apache Sketches by Lee RHodes*:
+// MAGIC   - https://databricks.com/session_na20/a-production-quality-sketching-library-for-the-analysis-of-big-data
+// MAGIC   - Watch Video of the Talk  Now/Later (29 minutes)
+// MAGIC     - [![Spark Transformations by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/WPwCnswDbOU/0.jpg)](https://www.youtube.com/watch?v=WPwCnswDbOU?rel=0&autoplay=1&modestbranding=1)
+// MAGIC - **Other great recent talks:**
+// MAGIC   - Yeshwant Vijaykumar of Adobe Inc at Spark+AI Summit 2020:
+// MAGIC     - [https://databricks.com/session_na20/everyday-probabilistic-data-structures-for-humans](https://databricks.com/session_na20/everyday-probabilistic-data-structures-for-humans)
+// MAGIC   - Simeon Simeonov of Swoop at Spark+AI Summit 2020:
+// MAGIC     - [https://databricks.com/session_na20/high-performance-analytics-with-probabilistic-data-structures-the-power-of-hyperloglog](https://databricks.com/session_na20/high-performance-analytics-with-probabilistic-data-structures-the-power-of-hyperloglog)
 
 // COMMAND ----------
 
