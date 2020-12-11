@@ -84,6 +84,7 @@ The databricks notebooks will be made available as the course progresses below:
 
 14. Links to notebooks covered in Module-03 will be added here in time (they are already made available as .dbc archives)
 
+<!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
 	* group-project-01 doing scalable XML-parsing 
 		* [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
@@ -95,7 +96,6 @@ The databricks notebooks will be made available as the course progresses below:
 	* group-projects doing Latent Dirichlet Allocation
 		* [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
 
-<!---
 	*  [Spark SQL Windows and Activity Detection by Random Forest](db/021_recognizeActivityByRandomForest/)
 
 5. Distributed Vertex Programming, ETL and Graph Querying with GraphX and GraphFrames
