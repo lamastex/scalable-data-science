@@ -85,15 +85,15 @@ The databricks notebooks will be made available as the course progresses below:
 14. Links to notebooks covered in Module-03 will be added here in time (they are already made available as .dbc archives)
 
 15. Additional Topics to bolster by examples and help prepare for group-projects:
-  * group-project-01 doing scalable XML-parsing 
-    * [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
-  * group-project-17 doing distributed Topological Data Analysis with single-machine-processes via PipedRDDs
-    * [Introduction to Piped RDDs](db/006a_PipedRDD/)
-    * [Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data](db/033_OBO_PipedRDD_RigorousBayesianABTesting/)
-  * group-projects interested in integrating with mass-media data
-    * [Introduction to Spark GDELT-project - Global Mass Media Monitoring](db/030_Spark-GDELT-project/)
-  * group-projects doing Latent Dirichlet Allocation
-    * [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
+	* group-project-01 doing scalable XML-parsing 
+		* [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
+		* group-project-17 doing distributed Topological Data Analysis with single-machine-processes via PipedRDDs
+	* [Introduction to Piped RDDs](db/006a_PipedRDD/)
+		* [Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data](db/033_OBO_PipedRDD_RigorousBayesianABTesting/)
+	* group-projects interested in integrating with mass-media data
+		* [Introduction to Spark GDELT-project - Global Mass Media Monitoring](db/030_Spark-GDELT-project/)
+	* group-projects doing Latent Dirichlet Allocation
+		* [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
 
 <!---
 	*  [Spark SQL Windows and Activity Detection by Random Forest](db/021_recognizeActivityByRandomForest/)
