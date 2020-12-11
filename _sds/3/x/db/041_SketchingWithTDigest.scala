@@ -5,16 +5,6 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC 
-// MAGIC Sources:
-// MAGIC 
-// MAGIC - READ: [https://arxiv.org/pdf/1902.04023.pdf](https://arxiv.org/pdf/1902.04023.pdf)
-// MAGIC - WATCH: [https://databricks.com/session/sketching-data-with-t-digest-in-apache-spark](https://databricks.com/session/sketching-data-with-t-digest-in-apache-spark)
-// MAGIC - GLANCE: [https://medium.com/@mani./t-digest-an-interesting-datastructure-to-estimate-quantiles-accurately-b99a50eaf4f7](https://medium.com/@mani./t-digest-an-interesting-datastructure-to-estimate-quantiles-accurately-b99a50eaf4f7)
-
-// COMMAND ----------
-
-// MAGIC %md
 // MAGIC # Sketching with T-digest for quantiles
 // MAGIC ## A Toy Anomaly Detector
 // MAGIC 
@@ -30,8 +20,25 @@
 
 // MAGIC %md
 // MAGIC 
-// MAGIC * Read now: https://medium.com/@muppal/probabilistic-data-structures-in-the-big-data-world-code-b9387cff0c55
-// MAGIC * See Ted Dunning's explanation of t-digest now: https://www.youtube.com/watch?v=B0dMc0t7K1g
+// MAGIC 
+// MAGIC Here we focus on a specific sketch called **T-Digest** for approximating extreme quantiles:
+// MAGIC 
+// MAGIC **Pointers:**
+// MAGIC 
+// MAGIC - READ White Paper: [https://arxiv.org/pdf/1902.04023.pdf](https://arxiv.org/pdf/1902.04023.pdf)
+// MAGIC - WATCH Spark/AI/Data Summit Talks: 
+// MAGIC   - [https://databricks.com/session/sketching-data-with-t-digest-in-apache-spark](https://databricks.com/session/sketching-data-with-t-digest-in-apache-spark)
+// MAGIC   - [https://databricks.com/session/one-pass-data-science-in-apache-spark-with-generative-t-digests](https://databricks.com/session/one-pass-data-science-in-apache-spark-with-generative-t-digests)
+// MAGIC - GLANCE Blogs: 
+// MAGIC   - [https://medium.com/@muppal/probabilistic-data-structures-in-the-big-data-world-code-b9387cff0c55](https://medium.com/@muppal/probabilistic-data-structures-in-the-big-data-world-code-b9387cff0c55)
+// MAGIC   - [https://medium.com/@mani./t-digest-an-interesting-datastructure-to-estimate-quantiles-accurately-b99a50eaf4f7](https://medium.com/@mani./t-digest-an-interesting-datastructure-to-estimate-quantiles-accurately-b99a50eaf4f7)  
+// MAGIC 
+// MAGIC **NOTE:**
+// MAGIC 
+// MAGIC * Once you could see Ted Dunning's explanation of t-digest here: 
+// MAGIC   - https://www.youtube.com/watch?v=B0dMc0t7K1g 
+// MAGIC   - But, unfortunately, since 2020 this video has become a private property with this warning: *Private video Sign in if you've been granted access to this video*
+// MAGIC   
 
 // COMMAND ----------
 
