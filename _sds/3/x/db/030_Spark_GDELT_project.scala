@@ -5,7 +5,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Plugging into GDELT Streams
+// MAGIC # Plugging into GDELT Streams - TODO - IN PROGRESS
 
 // COMMAND ----------
 
@@ -19,11 +19,12 @@
 // MAGIC We will use a spark-gdelt library for Spark 3.0.1:
 // MAGIC 
 // MAGIC - [https://github.com/aamend/spark-gdelt](https://github.com/aamend/spark-gdelt)
-
-// COMMAND ----------
-
-import com.aamend.spark.gdelt._
-
+// MAGIC 
+// MAGIC 
+// MAGIC SEE:
+// MAGIC 
+// MAGIC - https://github.com/lamastex/spark-gdelt-examples
+// MAGIC - 
 
 // COMMAND ----------
 
@@ -82,19 +83,29 @@ import com.aamend.spark.gdelt._
 
 // COMMAND ----------
 
-// MAGIC %fs cp "file:///databricks/driver/20180416121500.gkg.csv" "dbfs:///datasets/"
+// MAGIC %fs
+// MAGIC ls /datasets/ScaDaMaLe/
 
 // COMMAND ----------
 
-// MAGIC %fs cp "file:///databricks/driver/20190523121500.gkg.csv" "dbfs:///datasets/"
+// MAGIC %fs cp "file:///databricks/driver/20180416121500.gkg.csv" "dbfs:///datasets/ScaDaMaLe/GDELT/"
 
 // COMMAND ----------
 
-// MAGIC %fs cp "file:///databricks/driver/20190517121500.gkg.csv" "dbfs:///datasets/"
+// MAGIC %fs
+// MAGIC ls /datasets/ScaDaMaLe/GDELT/
 
 // COMMAND ----------
 
-// MAGIC %fs ls "dbfs:///datasets/"
+// MAGIC %fs cp "file:///databricks/driver/20190523121500.gkg.csv" "dbfs:///datasets/ScaDaMaLe/GDELT/"
+
+// COMMAND ----------
+
+// MAGIC %fs cp "file:///databricks/driver/20190517121500.gkg.csv" "dbfs:///datasets/ScaDaMaLe/GDELT/"
+
+// COMMAND ----------
+
+// MAGIC %fs ls "dbfs:///datasets/ScaDaMaLe/GDELT/"
 
 // COMMAND ----------
 
@@ -103,7 +114,8 @@ import com.aamend.spark.gdelt._
 import spark.implicits._
 import org.apache.spark.sql.Dataset
 //val gdeltEventDS: Dataset[Event] = spark.read.gdeltEvent("/path/to/event.csv")
-val gdeltGkgDS: Dataset[GKGEvent] = spark.read.gdeltGkg("dbfs:/datasets/20190523121500.gkg.csv")
+//val gdeltGkgDS: Dataset[GKGEventV1] = spark.read.gdeltGkg("dbfs:/datasets/20190523121500.gkg.csv")
+val gdeltGkgDS = spark.read.format("text").load("dbfs:/datasets/ScaDaMaLe/GDELT/20190523121500.gkg.csv")//.as[GKGEventV1]
 //val gdeltMention: Dataset[Mention] = spark.read.gdeltMention("/path/to/mention.csv")
 
 // COMMAND ----------
@@ -117,6 +129,11 @@ display(gdeltGkgDS)
 // COMMAND ----------
 
 gdeltGkgDS.count
+
+// COMMAND ----------
+
+val gdeltGkgDS = spark.read.format("text").load("dbfs:/datasets/ScaDaMaLe/GDELT/20190523121500.gkg.csv").as[GKGEventV2]
+
 
 // COMMAND ----------
 
