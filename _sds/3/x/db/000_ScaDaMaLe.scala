@@ -90,7 +90,9 @@
 // COMMAND ----------
 
 // MAGIC %md 
-// MAGIC # What is the [Data Science Process](https://en.wikipedia.org/wiki/Data_science) in one picture?
+// MAGIC # What is the [Data Science Process](https://en.wikipedia.org/wiki/Data_science) 
+// MAGIC 
+// MAGIC **The Data Science Process in one picture**
 // MAGIC 
 // MAGIC ![what is sds?](https://github.com/lamastex/scalable-data-science/raw/master/assets/images/sds.png "sds")
 // MAGIC 
@@ -107,7 +109,15 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Let's look at two industrially-informed academic papers about what constitutes the contents of this course.
+// MAGIC ## What is Data Science?
+// MAGIC 
+// MAGIC It is increasingly accepted that [Data Science](https://en.wikipedia.org/wiki/Data_science)
+// MAGIC 
+// MAGIC > is an inter-disciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from many structural and unstructured data. Data science is related to data mining, machine learning and big data.
+// MAGIC 
+// MAGIC > Data science is a "concept to unify statistics, data analysis and their related methods" in order to "understand and analyze actual phenomena" with data. It uses techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, domain knowledge and information science. Turing award winner Jim Gray imagined data science as a "fourth paradigm" of science (empirical, theoretical, computational and now data-driven) and asserted that "everything about science is changing because of the impact of information technology" and the data deluge.
+// MAGIC 
+// MAGIC Now, let us look at two industrially-informed academic papers that influence the above quote on what is Data Science, but with a view towards the contents and syllabus of this course.
 // MAGIC 
 // MAGIC Source: [Vasant Dhar, Data Science and Prediction, Communications of the ACM, Vol. 56 (1). p. 64, DOI:10.1145/2500499](http://dl.acm.org/citation.cfm?id=2500499)
 // MAGIC 
@@ -146,19 +156,6 @@
 
 // COMMAND ----------
 
-// MAGIC %md
-// MAGIC # Data Science
-// MAGIC 
-// MAGIC It is [increasingly accepted](https://en.wikipedia.org/wiki/Data_science) that:
-// MAGIC 
-// MAGIC > Data science is an inter-disciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from many structural and unstructured data. Data science is related to data mining, machine learning and big data.
-// MAGIC 
-// MAGIC > Data science is a "concept to unify statistics, data analysis and their related methods" in order to "understand and analyze actual phenomena" with data. It uses techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, domain knowledge and information science. Turing award winner Jim Gray imagined data science as a "fourth paradigm" of science (empirical, theoretical, computational and now data-driven) and asserted that "everything about science is changing because of the impact of information technology" and the data deluge.
-// MAGIC 
-// MAGIC But what is Data Engineering (including Machine Learning Engineering and Operations) and how does it relate to Data Science?
-
-// COMMAND ----------
-
 //This allows easy embedding of publicly available information into any other notebook
 //Example usage:
 // displayHTML(frameIt("https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Topics_in_LDA",250))
@@ -175,6 +172,13 @@ def frameIt( u:String, h:Int ) : String = {
 </iframe>"""
    }
 displayHTML(frameIt("https://en.wikipedia.org/wiki/Data_science",500))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC 
+// MAGIC 
+// MAGIC But what is Data Engineering (including Machine Learning Engineering and Operations) and how does it relate to Data Science?
 
 // COMMAND ----------
 
@@ -216,20 +220,20 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 
 // MAGIC 
 // MAGIC %md
-// MAGIC # The Data Engineering Scientist as "The Middle Way"
+// MAGIC ## The Data Engineering Scientist as "The Middle Way"
 // MAGIC 
 // MAGIC Here are some basic axioms that should be self-evident.
 // MAGIC 
 // MAGIC - Yes, there are differences in skillsets across humans
 // MAGIC   - some humans will be better and have inclinations for engineering and others for pure mathematics by nature and nurture
-// MAGIC   - one human cannot easily be a master of everything needed for innovating a new data-based product or service (very very rarely)
+// MAGIC   - one human cannot easily be a master of everything needed for innovating a new data-based product or service (very very rarely though this happens)
 // MAGIC - Skills can be gained by any human who wants to learn to the extent s/he is able to expend time, energy, etc.
 // MAGIC 
-// MAGIC For the **Scalable Data Engineering Science Process:** *towards Production-Ready and Productisable Prototyping for the Data Factory* we need to allow each data engineer to be more of a data scientist and each data scientist to be more of a data engineer, up to each individual's *comfort zones* in technical and mathematical/conceptual and time-availability planes, but with some **minimal expectations** of mutual appreciation.
+// MAGIC For the **Scalable Data Engineering Science Process:** *towards Production-Ready and Productisable Prototyping for the Data-based Factory* we need to allow each data engineer to be more of a data scientist and each data scientist to be more of a data engineer, up to each individual's *comfort zones* in technical and mathematical/conceptual and time-availability planes, but with some **minimal expectations** of mutual appreciation.
 // MAGIC 
-// MAGIC This course is designed to help you take the first minimal steps towards **data engineering science**.
+// MAGIC This course is designed to help you take the first minimal steps towards such a **data engineering science**.
 // MAGIC 
-// MAGIC In the sequel it will become apparent **why a team of data engineering scientists** with skills across the conventional (2019) spectrum of data engineer versus data scientist  **is crucial** for **Production-Ready and Productisable Prototyping for the Data Factory**.
+// MAGIC In the sequel it will become apparent **why a team of data engineering scientists** with skills across the conventional (2021) spectrum of data engineer versus data scientist  **is crucial** for **Production-Ready and Productisable Prototyping for the Data-based Factory**, whose outputs include standard AI products today.
 
 // COMMAND ----------
 
@@ -252,8 +256,10 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## A Brief History of Data Analysis and Where Does "Big Data" Come From?
-// MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
+// MAGIC # A Brief Tour of Data Science
+// MAGIC ## History of Data Analysis and Where Does "Big Data" Come From?
+// MAGIC 
+// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
 // MAGIC 
 // MAGIC * **(watch now 1:53):** A Brief History of Data Analysis
 // MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/watch?v=5fSSvYlDkag)
@@ -296,7 +302,8 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 
 // MAGIC %md
 // MAGIC ## Data Science Defined, Cloud Computing and What's Hard About Data Science?
-// MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
+// MAGIC 
+// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
 // MAGIC 
 // MAGIC * **(watch now 2:03)**: Data Science Defined
 // MAGIC   * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/watch?v=g4ujW1m2QNc?rel=0&modestbranding=1)
@@ -310,35 +317,7 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC **(Watch later 0:52)**: What is Data Science? According to a Udacity Course.
-// MAGIC 
-// MAGIC [![What is Data Science? Udacity Course](https://img.youtube.com/vi/9PIqjaXJo7M/0.jpg)](https://www.youtube.com/watch?v=9PIqjaXJo7M)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC # What should *you* be able to do at the end of this course?
-// MAGIC 
-// MAGIC By following these online interactions in the form of lab/lectures, asking questions, engaging in discussions, doing HOMEWORK assignments and completing the group project, you should be able to:
-// MAGIC 
-// MAGIC * Understand the principles of fault-tolerant scalable computing in Spark
-// MAGIC   * in-memory and generic DAG extensions of Map-reduce
-// MAGIC   * resilient distributed datasets for fault-tolerance
-// MAGIC   * skills to process today's big data using state-of-the art techniques in Apache Spark 3.0, in terms of:
-// MAGIC     * hands-on coding with realistic datasets
-// MAGIC     * an intuitive understanding of the ideas behind the technology and methods
-// MAGIC     * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
-// MAGIC * More concretely, you will be able to:
-// MAGIC   * Extract, Transform, Load, Interact, Explore and Analyze Data
-// MAGIC   * Build Scalable Machine Learning Pipelines (or help build them) using  Distributed Algorithms and Optimization
-// MAGIC * How to keep up?
-// MAGIC   - This is a fast-changing world. 
-// MAGIC   - Recent videos around Apache Spark are archived here (these videos are a great way to learn the latest happenings in industrial R&D today!):
-// MAGIC     - https://databricks.com/sparkaisummit/north-america/sessions
-// MAGIC * What is mathematically stable in the world of 'big data'?
-// MAGIC   - There is a growing body of work on the analysis of parallel and distributed algorithms, the work-horse of big data and AI. 
-// MAGIC   - We will see some of this in a theoretical module later, but the focus here is on how to write programs and analyze data.
-// MAGIC * Recommended Light reading (18 minutes)
+// MAGIC Here is a recommended light reading on **What is "Big Data" -- Understanding th History** (18 minutes):
 // MAGIC   - [https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce](https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce)
 
 // COMMAND ----------
@@ -358,7 +337,7 @@ displayHTML(frameIt("https://towardsdatascience.com/what-is-big-data-understandi
 // MAGIC %md
 // MAGIC ## Background Materials on Data Science
 // MAGIC 
-// MAGIC Here are some extra materials on Data Science by Anthony Joseph in BerkeleyX/CS100.1x
+// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
 // MAGIC 
 // MAGIC * **(watch later 2:31)**: Why all the excitement about *Big Data Analytics*? (using google search to now-cast google flu-trends)
 // MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/16wqonWTAsI/0.jpg)](https://www.youtube.com/watch?v=16wqonWTAsI)
@@ -397,3 +376,28 @@ displayHTML(frameIt("https://towardsdatascience.com/what-is-big-data-understandi
 // MAGIC     * business intelligence and analytics tools
 // MAGIC   * Most Maths/Stats/Computing programs cater to the *programmer* role
 // MAGIC     * Numpy and Matplotlib, R, Matlab, and Octave.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # What should *you* be able to do at the end of this course?
+// MAGIC 
+// MAGIC By following these online interactions in the form of lab/lectures, asking questions, engaging in discussions, doing HOMEWORK assignments and completing the group project, you should be able to:
+// MAGIC 
+// MAGIC * Understand the principles of fault-tolerant scalable computing in Spark
+// MAGIC   * in-memory and generic DAG extensions of Map-reduce
+// MAGIC   * resilient distributed datasets for fault-tolerance
+// MAGIC   * skills to process today's big data using state-of-the art techniques in Apache Spark 3.0, in terms of:
+// MAGIC     * hands-on coding with realistic datasets
+// MAGIC     * an intuitive understanding of the ideas behind the technology and methods
+// MAGIC     * pointers to academic papers in the literature, technical blogs and video streams for *you to futher your theoretical understanding*.
+// MAGIC * More concretely, you will be able to:
+// MAGIC   * Extract, Transform, Load, Interact, Explore and Analyze Data
+// MAGIC   * Build Scalable Machine Learning Pipelines (or help build them) using  Distributed Algorithms and Optimization
+// MAGIC * How to keep up?
+// MAGIC   - This is a fast-changing world. 
+// MAGIC   - Recent videos around Apache Spark are archived here (these videos are a great way to learn the latest happenings in industrial R&D today!):
+// MAGIC     - https://databricks.com/sparkaisummit/north-america/sessions
+// MAGIC * What is mathematically stable in the world of 'big data'?
+// MAGIC   - There is a growing body of work on the analysis of parallel and distributed algorithms, the work-horse of big data and AI. 
+// MAGIC   - We will see some of this in a theoretical module later, but the focus here is on how to write programs and analyze data.
