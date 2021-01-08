@@ -1,6 +1,6 @@
 // Databricks notebook source
 // MAGIC %md
-// MAGIC # [ScaDaMaLe, Scalable Data Science and Distributed Machine Learning](https://lamastex.github.io/scalable-data-science/sds/3/x/)
+// MAGIC ScaDaMaLe Course [site](https://lamastex.github.io/scalable-data-science/sds/3/x/) and [book](https://lamastex.github.io/ScaDaMaLe/index.html)
 
 // COMMAND ----------
 
@@ -14,6 +14,14 @@
 // MAGIC [![Apache Spark ACM Video](https://i.vimeocdn.com/video/597494216_640.jpg)](https://player.vimeo.com/video/185645796)
 // MAGIC 
 // MAGIC Right-click the above image-link, open in a new tab and watch the video (4 minutes) or read about it in the Communications of the ACM in the frame below or from the link above.
+// MAGIC 
+// MAGIC **Key Insights from [Apache Spark: A Unified Engine for Big Data Processing](https://cacm.acm.org/magazines/2016/11/209116-apache-spark/fulltext) **
+// MAGIC 
+// MAGIC - A simple programming model can capture streaming, batch, and interactive workloads and enable new applications that combine them. 
+// MAGIC - Apache Spark applications range from finance to scientific data processing and combine libraries for SQL, machine learning, and graphs. 
+// MAGIC - In six years, Apache Spark has  grown to 1,000 contributors and thousands of deployments. 
+// MAGIC 
+// MAGIC ![Key Insights](https://dl.acm.org/cms/attachment/6f54b222-fe96-497a-8bfc-0e6ea250b05d/ins01.gif)
 
 // COMMAND ----------
 
@@ -44,8 +52,11 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### The big data problem, Hardware, distributing work, handling failed and slow machines
-// MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
+// MAGIC ## The big data problem
+// MAGIC 
+// MAGIC **Hardware, distributing work, handling failed and slow machines**
+// MAGIC 
+// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
 // MAGIC 
 // MAGIC * **(watch now 1:48)**: The Big Data Problem
 // MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/0JdJe5iehhw/0.jpg)](https://www.youtube.com/watch?v=0JdJe5iehhw&modestbranding=1&start=1)
@@ -61,7 +72,8 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 
 // MAGIC %md
 // MAGIC ## MapReduce and Apache Spark.
-// MAGIC #### by Anthony Joseph in BerkeleyX/CS100.1x
+// MAGIC 
+// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
 // MAGIC 
 // MAGIC * **(watch now 1:48)**: Map Reduce (is bounded by Disk I/O)
 // MAGIC   * [![The Big Data Problem by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/NqG_hYAKjYk/0.jpg)](https://www.youtube.com/watch?v=NqG_hYAKjYk&rel=0&autoplay=1&modestbranding=1&start=1)
@@ -107,13 +119,8 @@ displayHTML(frameIt("https://cacm.acm.org/magazines/2016/11/209116-apache-spark/
 // MAGIC %md
 // MAGIC ***
 // MAGIC ***
-// MAGIC some time...
 // MAGIC 
-// MAGIC We have come to the end of this section.
+// MAGIC **Next let us get everyone to login to databricks** (or another Spark platform) to get our hands dirty with some Spark code! 
 // MAGIC 
-// MAGIC **Next let us get everyone to login to databricks** to get our hands dirty with some Spark code! 
-// MAGIC 
-// MAGIC 10-15 minutes.
-// MAGIC Then break for 5.
 // MAGIC ***
 // MAGIC ***
