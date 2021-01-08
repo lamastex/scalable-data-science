@@ -5,9 +5,10 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Scalable Data Science and Distributed Machine Learning
+// MAGIC # Introduction
 // MAGIC 
-// MAGIC The Course Acronym is **ScaDaMaLe** or **sds-3.x** in the sequel.
+// MAGIC - **Course Name:** *Scalable Data Science and Distributed Machine Learning*
+// MAGIC - **Course Acronym:** *ScaDaMaLe* or *sds-3.x*.
 // MAGIC 
 // MAGIC The course is the fifth and final mandatory course in the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/). 
 // MAGIC It is given in three modules. In addition to academic lectures there is invited guest speakers from industry.
@@ -26,9 +27,6 @@
 // MAGIC 
 // MAGIC Theoretical foundations of distributed systems and analysis of their scalable algorithms for sorting, joining, streaming, sketching, optimising and computing in numerical linear algebra with applications in scalable machine learning pipelines for typical decision problems (eg. prediction, A/B testing, anomaly detection) with various types of data (eg. time-indexed, space-time-indexed and network-indexed). Privacy-aware decisions with sanitized (cleaned, imputed, anonymised) datasets and datastreams. Practical applications of these algorithms on real-world examples (eg. mobility, social media, machine sensors and logs). Illustration via industrial use-cases. 
 // MAGIC 
-// MAGIC  
-// MAGIC 
-// MAGIC # Course Pointers 
 // MAGIC 
 // MAGIC ## Expected Reference Readings 
 // MAGIC 
@@ -145,6 +143,19 @@
 // MAGIC   * financial modeling
 // MAGIC   * policing
 // MAGIC   * marketing
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Data Science
+// MAGIC 
+// MAGIC It is [increasingly accepted](https://en.wikipedia.org/wiki/Data_science) that:
+// MAGIC 
+// MAGIC > Data science is an inter-disciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from many structural and unstructured data. Data science is related to data mining, machine learning and big data.
+// MAGIC 
+// MAGIC > Data science is a "concept to unify statistics, data analysis and their related methods" in order to "understand and analyze actual phenomena" with data. It uses techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, domain knowledge and information science. Turing award winner Jim Gray imagined data science as a "fourth paradigm" of science (empirical, theoretical, computational and now data-driven) and asserted that "everything about science is changing because of the impact of information technology" and the data deluge.
+// MAGIC 
+// MAGIC But what is Data Engineering (including Machine Learning Engineering and Operations) and how does it relate to Data Science?
 
 // COMMAND ----------
 
@@ -327,13 +338,8 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // MAGIC * What is mathematically stable in the world of 'big data'?
 // MAGIC   - There is a growing body of work on the analysis of parallel and distributed algorithms, the work-horse of big data and AI. 
 // MAGIC   - We will see some of this in a theoretical module later, but the focus here is on how to write programs and analyze data.
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ## Recommended Light reading (18 minutes)
-// MAGIC 
-// MAGIC - [https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce](https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce)
+// MAGIC * Recommended Light reading (18 minutes)
+// MAGIC   - [https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce](https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce)
 
 // COMMAND ----------
 
