@@ -1,22 +1,39 @@
-From:
-
-- https://gitlab.com/tilowiklund/pinot/-/issues/1#note_478647799
-
 # Short Jupyter book tutorial 
 
 ## Install jupyter-book, e.g. in a virtual environment
 
+
 ```
-mkdir book-project # mkdir ~/all/git/lamastex/scalable-data-science/books
+mkdir ~/all/git/lamastex/scalable-data-science/books
+sudo apt install python3-virtualenv
+virtualenv .
+source bin/activate
+pip install -U jupyter-book
+# jupyter-book create ScaDaMaLe
+mkdir 2021
+cd 2021/
+# jupyter-book create ScaDaMaLe
+./makeBook.sh
+```
+
+
+See `2021/makeBook.sh` to make ScaDaMaLe Book.
+
+# Here are generic instructions
+
+From:
+
+- https://gitlab.com/tilowiklund/pinot/-/issues/1#note_478647799
+
+## Install jupyter-book, e.g. in a virtual environment
+
+```
+mkdir book-project # 
 cd book-project
 virtualenv .
 source bin/activate # or source bin/activate.fish ...
 pip install -U jupyter-book
 ```
-
-See `2021/makeBook.sh` to make ScaDaMaLe Book.
-
-Here are generic instructions
 
 ## Start the book project and set it to not automatically run cells (we will rely on pinot's cell results)
 
