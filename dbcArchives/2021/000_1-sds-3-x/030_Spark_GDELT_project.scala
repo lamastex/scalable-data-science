@@ -1,6 +1,8 @@
 // Databricks notebook source
 // MAGIC %md
 // MAGIC # [ScaDaMaLe, Scalable Data Science and Distributed Machine Learning](https://lamastex.github.io/scalable-data-science/sds/3/x/)
+// MAGIC 
+// MAGIC Johannes Graner, Albert Nilsson and Raazesh Sainudiin
 
 // COMMAND ----------
 
@@ -10,7 +12,7 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC This is just a breif teaser into the world of the GDELT-project:
+// MAGIC This is just a brief teaser into the world of the GDELT-project:
 // MAGIC  * [https://www.gdeltproject.org/](https://www.gdeltproject.org/)
 // MAGIC  
 // MAGIC 

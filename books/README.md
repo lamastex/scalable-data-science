@@ -2,7 +2,25 @@
 
 ## Install jupyter-book, e.g. in a virtual environment
 
+On Ubuntu 18.04 do:
 
+```
+lsb_release -a
+python3 -V
+sudo apt-get upgrade python3
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+pip3 -V
+sudo apt-get update
+sudo apt install python3-pip
+sudo apt install -y python3-venv
+python3 -m venv ScaDaMaLeBook
+source ScaDaMaLeBook/bin/activate
+pip3 install -U jupyter-book
+```
+
+From: https://vitux.com/install-python3-on-ubuntu-and-set-up-a-virtual-programming-environment/
+
+This also works
 ```
 mkdir ~/all/git/lamastex/scalable-data-science/books
 sudo apt install python3-virtualenv
