@@ -1,26 +1,41 @@
 - file: 000_1-sds-3-x/000_ScaDaMaLe.ipynb
-- file: 000_1-sds-3-x/001_whySpark.ipynb
-- file: 000_1-sds-3-x/002_00_loginToDatabricks.ipynb
-- file: 000_1-sds-3-x/002_01_multiLingualNotebooks.ipynb
-- file: 000_1-sds-3-x/003_00_scalaCrashCourse.ipynb
-- file: 000_1-sds-3-x/003_01_scalaCrashCourse.ipynb
-- file: 000_1-sds-3-x/004_RDDsTransformationsActions.ipynb
-- file: 000_1-sds-3-x/005_RDDsTransformationsActionsHOMEWORK.ipynb
-- file: 000_1-sds-3-x/006a_PipedRDD.ipynb
-- file: 000_1-sds-3-x/006_WordCount.ipynb
-- file: 000_1-sds-3-x/007a_SparkSQLProgGuide_HW.ipynb
-- file: 000_1-sds-3-x/007b_SparkSQLProgGuide_HW.ipynb
-- file: 000_1-sds-3-x/007c_SparkSQLProgGuide_HW.ipynb
-- file: 000_1-sds-3-x/007d_SparkSQLProgGuide_HW.ipynb
-- file: 000_1-sds-3-x/007e_SparkSQLProgGuide_HW.ipynb
-- file: 000_1-sds-3-x/007f_SparkSQLProgGuide_HW.ipynb
-- file: 000_1-sds-3-x/007g_PivotInSQL.ipynb
-- file: 000_1-sds-3-x/007_SparkSQLIntroBasics.ipynb
-- file: 000_1-sds-3-x/008_DiamondsPipeline_01ETLEDA.ipynb
-- file: 000_1-sds-3-x/009_PowerPlantPipeline_01ETLEDA.ipynb
-- file: 000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA.ipynb
-- file: 000_1-sds-3-x/030_Spark_GDELT_project.ipynb
-- file: 000_1-sds-3-x/033_OBO_LoadExtract.ipynb
-- file: 000_1-sds-3-x/033_OBO_PipedRDD_RigorousBayesianABTesting.ipynb
-- file: 000_1-sds-3-x/035_LDA_CornellMovieDialogs.ipynb
+- part: Introduction to Apache Spark Core
+  chapters:
+  - file: 000_1-sds-3-x/001_whySpark.ipynb
+  - file: 000_1-sds-3-x/002_00_loginToDatabricks.ipynb
+  - file: 000_1-sds-3-x/002_01_multiLingualNotebooks.ipynb
+  - file: 000_1-sds-3-x/003_00_scalaCrashCourse.ipynb
+  - file: 000_1-sds-3-x/003_01_scalaCrashCourse.ipynb
+  - file: 000_1-sds-3-x/004_RDDsTransformationsActions.ipynb
+  - file: 000_1-sds-3-x/005_RDDsTransformationsActionsHOMEWORK.ipynb
+  - file: 000_1-sds-3-x/006a_PipedRDD.ipynb
+  - file: 000_1-sds-3-x/006_WordCount.ipynb
+- part: Introduction to Apache Spark SQL
+  chapters:
+  - file: 000_1-sds-3-x/007_SparkSQLIntroBasics.ipynb
+  - file: 000_1-sds-3-x/007a_SparkSQLProgGuide_HW.ipynb
+  - file: 000_1-sds-3-x/007b_SparkSQLProgGuide_HW.ipynb
+  - file: 000_1-sds-3-x/007c_SparkSQLProgGuide_HW.ipynb
+  - file: 000_1-sds-3-x/007d_SparkSQLProgGuide_HW.ipynb
+  - file: 000_1-sds-3-x/007e_SparkSQLProgGuide_HW.ipynb
+  - file: 000_1-sds-3-x/007f_SparkSQLProgGuide_HW.ipynb
+  - file: 000_1-sds-3-x/007g_PivotInSQL.ipynb
+  - file: 000_1-sds-3-x/008_DiamondsPipeline_01ETLEDA.ipynb
+  - file: 000_1-sds-3-x/009_PowerPlantPipeline_01ETLEDA.ipynb
+  - file: 000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA.ipynb
+  - file: 000_1-sds-3-x/033_OBO_LoadExtract.ipynb
+  - file: 000_1-sds-3-x/033_OBO_PipedRDD_RigorousBayesianABTesting.ipynb
+  - file: 000_1-sds-3-x/035_LDA_CornellMovieDialogs.ipynb
+    #- part: Introduction to Apache Spark ML
+    #chapters:
+    #- part: Introduction to Apache Spark Streaming
+    #chapters:
+    #- part: Introduction to Apache Spark Structured Streaming
+    #  chapters:
+- part: WASP AI-Track Student Projects
+  chapters:
+  - file: 000_1-sds-3-x/035_LDA_CornellMovieDialogs.ipynb
+- part: Voluntary Student Projects
+  chapters:
+  - file: 000_1-sds-3-x/030_Spark_GDELT_project.ipynb
 #- file: notebooks.ipynb

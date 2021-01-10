@@ -10,8 +10,12 @@ pushd ~/all/git/tilowiklund/pinot &&
 # to undo the above do:
 # git update-index --no-assume-unchanged ../../dbcArchives/2021/000_1-sds-3-x.dbc
 stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
+#stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
+#stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_0-sds-3-x-projects.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
 popd &&
 # find ScaDaMaLe -iname '*.ipynb' | sort -h | cut -d'/' -f 2- | xargs printf "- file: %s\n" > ScaDaMaLe/_toc.yml
+#find ScaDaMaLe -iname '*.ipynb' | sort -h | cut -d'/' -f 2- | xargs printf "- file: %s\n" > ScaDaMaLe_all_toc.yml
+pwd &&
 cp _toc.yml ScaDaMaLe/_toc.yml &&
 jupyter-book build ScaDaMaLe &&
 pushd ~/all/git/lamastex/ScaDaMaLe &&
