@@ -9,4 +9,7 @@ databricks workspace list /scalable-data-science
 databricks workspace list /scalable-data-science/000_1-sds-3-x
 mkdir /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x
 databricks workspace export_dir -o /scalable-data-science/000_1-sds-3-x ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x/
+mkdir /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml
+databricks workspace export_dir -o /scalable-data-science/000_2-sds-3-x-ml ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml/
+workspace import_dir -o ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x /scalable-data-science/000_1-sds-3-x
 
