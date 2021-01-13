@@ -1,12 +1,12 @@
 // Databricks notebook source
 // MAGIC %md
-// MAGIC # [ScaDaMaLe, Scalable Data Science and Distributed Machine Learning](https://lamastex.github.io/scalable-data-science/sds/3/x/)
+// MAGIC ScaDaMaLe Course [site](https://lamastex.github.io/scalable-data-science/sds/3/x/) and [book](https://lamastex.github.io/ScaDaMaLe/index.html)
 
 // COMMAND ----------
 
 // MAGIC %md
 // MAGIC # Topic Modeling of Movie Dialogs with Latent Dirichlet Allocation
-// MAGIC ### Let us cluster the conversations from different movies!
+// MAGIC **Let us cluster the conversations from different movies!**
 // MAGIC 
 // MAGIC This notebook will provide a brief algorithm summary, links for further reading, and an example of how to use LDA for Topic Modeling.
 // MAGIC 

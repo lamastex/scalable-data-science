@@ -1,6 +1,6 @@
 // Databricks notebook source
 // MAGIC %md
-// MAGIC # [ScaDaMaLe, Scalable Data Science and Distributed Machine Learning](https://lamastex.github.io/scalable-data-science/sds/3/x/)
+// MAGIC ScaDaMaLe Course [site](https://lamastex.github.io/scalable-data-science/sds/3/x/) and [book](https://lamastex.github.io/ScaDaMaLe/index.html)
 
 // COMMAND ----------
 
@@ -11,7 +11,7 @@
 // MAGIC 2016, by Raaz Sainudiin and James Smithies is licensed under [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
 // MAGIC 
 // MAGIC 
-// MAGIC #### Old Bailey, London's Central Criminal Court, 1674 to 1913
+// MAGIC **Old Bailey, London's Central Criminal Court, 1674 to 1913**
 // MAGIC 
 // MAGIC * with Full XML Data for another great project. 
 // MAGIC This is a starting point for ETL of Old Bailey Online Data from [http://lamastex.org/datasets/public/OldBailey/index.html](http://lamastex.org/datasets/public/OldBailey/index.html).

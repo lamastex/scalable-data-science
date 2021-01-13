@@ -11,20 +11,19 @@ pushd ~/all/git/tilowiklund/pinot &&
 # git update-index --no-assume-unchanged ../../dbcArchives/2021/000_1-sds-3-x.dbc
 stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
 #stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
-#stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_0-sds-3-x-projects.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
+##stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_0-sds-3-x-projects.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
+## to field unreachable files
+stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_0-sds-3-x-projects.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ -R ~/all/git/lamastex/scalable-data-science/books/2021/extra-resources-student-projects &&
+stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_7-sds-3-x-ddl.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
+stack exec pinot -- --from databricks --to jupyter ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_9-sds-3-x-trends.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
 popd &&
 # find ScaDaMaLe -iname '*.ipynb' | sort -h | cut -d'/' -f 2- | xargs printf "- file: %s\n" > ScaDaMaLe/_toc.yml
-#find ScaDaMaLe -iname '*.ipynb' | sort -h | cut -d'/' -f 2- | xargs printf "- file: %s\n" > ScaDaMaLe_all_toc.yml
+find ScaDaMaLe -iname '*.ipynb' | sort -h | cut -d'/' -f 2- | xargs printf "- file: %s\n" > ScaDaMaLe_all_toc.yml &&
+find ScaDaMaLe -iname '*.ipynb' | sort -h | cut -d'/' -f 2- | xargs printf "- file: %s\n" > ScaDaMaLe_ALL_toc.yml &&
+cat ScaDaMaLe_ALL_toc.yml | grep student-project | grep -v "sds-2-x-dl" | grep -v "development" > ScaDaMaLe_student-project_toc.yml &&
+sed -i -e 's/^/  /' ScaDaMaLe_student-project_toc.yml && # prefix each line with two white-spaces to conform to yml
+
 pwd &&
 cp _toc.yml ScaDaMaLe/_toc.yml &&
-jupyter-book build ScaDaMaLe &&
-pushd ~/all/git/lamastex/ScaDaMaLe &&
-# git checkout main and setup CI... TW
-# suggesated use of fork's to make new books and versions... TW
-git checkout gh-pages
-# git push --set-upstream origin gh-pages
-#cp -r ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/_build/html/* ~/all/git/lamastex/ScaDaMaLe/
-cp -r ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/_build/html/* . &&
-git commit -a -m "book draft in progress" &&
-git push origin gh-pages &&
-popd
+jupyter-book build ScaDaMaLe #&&
+#./pushBook

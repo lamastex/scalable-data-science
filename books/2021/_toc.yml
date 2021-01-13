@@ -2,29 +2,36 @@
 - part: Introduction to Apache Spark Core
   chapters:
   - file: 000_1-sds-3-x/001_whySpark.ipynb
-  - file: 000_1-sds-3-x/002_00_loginToDatabricks.ipynb
-  - file: 000_1-sds-3-x/002_01_multiLingualNotebooks.ipynb
+    sections:
+      - file: 000_1-sds-3-x/002_00_loginToDatabricks.ipynb
+      - file: 000_1-sds-3-x/002_01_multiLingualNotebooks.ipynb
   - file: 000_1-sds-3-x/003_00_scalaCrashCourse.ipynb
-  - file: 000_1-sds-3-x/003_01_scalaCrashCourse.ipynb
+    sections:
+      - file: 000_1-sds-3-x/003_01_scalaCrashCourse.ipynb
   - file: 000_1-sds-3-x/004_RDDsTransformationsActions.ipynb
-  - file: 000_1-sds-3-x/005_RDDsTransformationsActionsHOMEWORK.ipynb
-  - file: 000_1-sds-3-x/006a_PipedRDD.ipynb
-  - file: 000_1-sds-3-x/006_WordCount.ipynb
+    sections:
+      - file: 000_1-sds-3-x/005_RDDsTransformationsActionsHOMEWORK.ipynb
+      - file: 000_1-sds-3-x/006a_PipedRDD.ipynb
+      - file: 000_1-sds-3-x/006_WordCount.ipynb
 - part: Introduction to Apache Spark SQL
   chapters:
   - file: 000_1-sds-3-x/007_SparkSQLIntroBasics.ipynb
-  - file: 000_1-sds-3-x/007a_SparkSQLProgGuide_HW.ipynb
-  - file: 000_1-sds-3-x/007b_SparkSQLProgGuide_HW.ipynb
-  - file: 000_1-sds-3-x/007c_SparkSQLProgGuide_HW.ipynb
-  - file: 000_1-sds-3-x/007d_SparkSQLProgGuide_HW.ipynb
-  - file: 000_1-sds-3-x/007e_SparkSQLProgGuide_HW.ipynb
-  - file: 000_1-sds-3-x/007f_SparkSQLProgGuide_HW.ipynb
-  - file: 000_1-sds-3-x/007g_PivotInSQL.ipynb
+    sections:
+      - file: 000_1-sds-3-x/007a_SparkSQLProgGuide_HW.ipynb
+      - file: 000_1-sds-3-x/007b_SparkSQLProgGuide_HW.ipynb
+      - file: 000_1-sds-3-x/007c_SparkSQLProgGuide_HW.ipynb
+      - file: 000_1-sds-3-x/007d_SparkSQLProgGuide_HW.ipynb
+      - file: 000_1-sds-3-x/007e_SparkSQLProgGuide_HW.ipynb
+      - file: 000_1-sds-3-x/007f_SparkSQLProgGuide_HW.ipynb
+      - file: 000_1-sds-3-x/007g_PivotInSQL.ipynb
+- part: Extract Transform and Load
+  chapters:
   - file: 000_1-sds-3-x/008_DiamondsPipeline_01ETLEDA.ipynb
   - file: 000_1-sds-3-x/009_PowerPlantPipeline_01ETLEDA.ipynb
   - file: 000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA.ipynb
   - file: 000_1-sds-3-x/033_OBO_LoadExtract.ipynb
-  - file: 000_1-sds-3-x/033_OBO_PipedRDD_RigorousBayesianABTesting.ipynb
+    sections:
+      - file: 000_1-sds-3-x/033_OBO_PipedRDD_RigorousBayesianABTesting.ipynb
   - file: 000_1-sds-3-x/035_LDA_CornellMovieDialogs.ipynb
     #- part: Introduction to Apache Spark ML
     #chapters:
@@ -32,10 +39,103 @@
     #chapters:
     #- part: Introduction to Apache Spark Structured Streaming
     #  chapters:
+- part: Distribute Deep Learning with Horovod
+  chapters:
+  - file: 000_7-sds-3-x-ddl/00_DDL_Introduction.ipynb
+    sections:
+      - file: 000_7-sds-3-x-ddl/0x_mnist-tensorflow-keras.ipynb
+      - file: 000_7-sds-3-x-ddl/0y_mnist-pytorch.ipynb
 - part: WASP AI-Track Student Projects
   chapters:
-  - file: 000_1-sds-3-x/035_LDA_CornellMovieDialogs.ipynb
-- part: Voluntary Student Projects
-  chapters:
-  - file: 000_1-sds-3-x/030_Spark_GDELT_project.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/00_download_data.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/00_download_data.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01b_show_data.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/02_logisticregression.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/03_word2vec.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/04_LDA.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-02_group-LiUUmeaSceneGraphMotifs/01_Loading_GQA-JSON.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-02_group-LiUUmeaSceneGraphMotifs/02_SceneGraphMotifs.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-03_group-GuangyiZhang/01_triads.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-04_group-DistributedLinearAlgebra/01_DistributedSVD.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-04_group-DistributedLinearAlgebra/02_CollaborativeFiltering.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-05_group-LundDirichletAnalysts/01_Wikipedia_LDA_Analysis.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-06_group-ParticleClustering/00_Introduction.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-06_group-ParticleClustering/01_data_and_preprocessing.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-06_group-ParticleClustering/02_dl_single_machine.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-06_group-ParticleClustering/03_dl_horovod.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-06_group-ParticleClustering/04_evaluate.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-07_group-MathAtKTH/01_Coding_Motifs.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-07_group-MathAtKTH/02_Data_Processing.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-07_group-MathAtKTH/03_graph_string_converter.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-08_group-DistributedEnsemble/00_project.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-09_group-TopicModeling/01_Introduction.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-09_group-TopicModeling/02_Data_Processing.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-09_group-TopicModeling/03_LDA.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-09_group-TopicModeling/04_Classification_CountVector.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-09_group-TopicModeling/05_Classification.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-09_group-TopicModeling/06_Results.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/01_Introduction.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/02_ClusteringEmoticonsBasedOnTweets.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/04_conclusion.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/05_appendix_get-cc-data.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-10_group-Geosmus/07_b_appendix_TTTDFfunctions.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-11_group-Sketchings/00_QuantileEstimation.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/00_ProjectDescriptionAndPlanning.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/01_StreamToFile.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/02_DataPreprocess.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/04_DataVisualize.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/05_Clustering.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/06_DataPredicton_LR.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/07_DataPredicton_ARIMA.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-12_group-CovidPandemic/08_DataPrediction_GP.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-13_group-Genomics/01_1000genomes.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-14_group-NullHypothesisEvaluationCriteria/00_distributed_combinatorial_bandit.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-15_group-FinancialDataStreams/00_video.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-15_group-FinancialDataStreams/01_rl_intraday_trading.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-15_group-FinancialDataStreams/02_rl_intraday_trading_elephas.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-15_group-FinancialDataStreams/03_resources.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-16_group-IntrusionDetection/00_Introduction.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-17_group-TowardsScalableTDA/00_introduction.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-18_group-ProjectRL/00_Intro.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-18_group-ProjectRL/01_Project.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-19_group-Featuring/01_FundamentalMatrix.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-19_group-Featuring/01_FundamentalMatrix.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-20_group-Generalization/00_Background.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-20_group-Generalization/01_Random_Forest.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-20_group-Generalization/02_CNNs.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-20_group-Generalization/03_Introduction.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-21_group-GraphSpectralAnalysis/00_introduction.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-21_group-GraphSpectralAnalysis/02_generate_graphs.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.ipynb
+      - file: 000_0-sds-3-x-projects/student-project-21_group-GraphSpectralAnalysis/04_analyse_eigenvalues.ipynb
+  - file: 000_0-sds-3-x-projects/student-project-22_group-SwapWithDDP/00_Introduction.ipynb
+    sections:
+      - file: 000_0-sds-3-x-projects/student-project-22_group-SwapWithDDP/01_SWAP_with_DDP.ipynb
+#- part: Voluntary Student Projects
+# chapters:
+# - file: 000_1-sds-3-x/030_Spark_GDELT_project.ipynb
+# - file: 000_0-sds-3-x-projects/voluntary-student-project-01_group-DDLInMining/00_Introduction.ipynb
 #- file: notebooks.ipynb
+#      - file: 000_0-sds-3-x-projects/student-project-19_group-Featuring/images/FundamentalMatrix_dev_6images.ipynb
+

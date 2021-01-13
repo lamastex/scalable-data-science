@@ -11,7 +11,7 @@ mkdir /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-
 databricks workspace export_dir -o /scalable-data-science/000_1-sds-3-x ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x/
 mkdir /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml
 databricks workspace export_dir -o /scalable-data-science/000_2-sds-3-x-ml ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml/
-workspace import_dir -o ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x /scalable-data-science/000_1-sds-3-x
+databricks workspace import_dir -o ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x /scalable-data-science/000_1-sds-3-x
 mkdir ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_3-sds-3-x-st/
 mkdir ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_4-sds-3-x-ss/
 databricks workspace export_dir -o /scalable-data-science/000_3-sds-3-x-st ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_3-sds-3-x-st/

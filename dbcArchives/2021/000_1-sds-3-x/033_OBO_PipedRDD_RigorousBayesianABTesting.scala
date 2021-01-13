@@ -1,7 +1,10 @@
 // Databricks notebook source
 // MAGIC %md
+// MAGIC ScaDaMaLe Course [site](https://lamastex.github.io/scalable-data-science/sds/3/x/) and [book](https://lamastex.github.io/ScaDaMaLe/index.html)
+
+// MAGIC %md
 // MAGIC # Piped RDDs and Bayesian AB Testing
-// MAGIC ## Continued with Application to Old Bailey Online Data
+// MAGIC **Continued with Application to Old Bailey Online Data**
 
 // COMMAND ----------
 
