@@ -7,7 +7,7 @@ git checkout gh-pages &&
 ## git push --set-upstream origin gh-pages
 ##cp -r ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/_build/html/* ~/all/git/lamastex/ScaDaMaLe/
 cp -r ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/_build/html/* . &&
-git commit -a -m "book draft 4.0 time-stamped versions in progress" &&
+git commit -a -m "book draft 4.4 time-stamped versions in progress" &&
 git push origin gh-pages &&
 popd
 

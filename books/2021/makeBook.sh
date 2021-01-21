@@ -3,8 +3,9 @@
 rm -r ScaDaMaLe/ &&
 jupyter-book create ScaDaMaLe &&
 cp _config.yml ScaDaMaLe/_config.yml &&
-convert -font Helvetica -pointsize 16 -draw "text 140,65 'V. $(date +%Y/%m/%d/%M:%S_%Z)'" logo.png logo_withText.png && 
-convert -font Courier -pointsize 14 -draw "text 100,12 'Copyright: CC0 1.0 Universal'" logo_withText.png logoWithVersionAndCC.png &&
+convert -font Helvetica -pointsize 16 -draw "text 110,65 'V. $(date +%Y/%m/%d/%H:%M:%S_%Z)'" logo.png logo_withText.png && 
+convert -font Courier -pointsize 14 -draw "text 2,12 'IN PROGRESS. Copyright: CC0 1.0 Universal'" logo_withText.png logoWithVersionAndCC.png &&
+#convert -font Courier -pointsize 14 -draw "text 100,12 'Copyright: CC0 1.0 Universal'" logo_withText.png logoWithVersionAndCC.png &&
 cp logoWithVersionAndCC.png ScaDaMaLe/logo.png &&
 rm logo_withText.png logoWithVersionAndCC.png &&
 pushd ~/all/git/tilowiklund/pinot &&
