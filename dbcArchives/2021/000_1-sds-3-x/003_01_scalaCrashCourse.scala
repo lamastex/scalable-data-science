@@ -5,6 +5,9 @@
 // COMMAND ----------
 
 // MAGIC %md
+// MAGIC # Scala Crash Course Continued
+// MAGIC 
+// MAGIC Recall!
 // MAGIC 
 // MAGIC ## Scala Resources
 // MAGIC 
@@ -53,7 +56,7 @@ def frameIt( u:String, h:Int ) : String = {
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Let's continue to get our hands dirty in Scala
+// MAGIC ## Let's continue getting our hands dirty in Scala
 // MAGIC 
 // MAGIC We will go through the **remaining** programming concepts and tasks by building on [https://docs.scala-lang.org/tour/basics.html](https://docs.scala-lang.org/tour/basics.html).
 // MAGIC 
@@ -74,7 +77,7 @@ def frameIt( u:String, h:Int ) : String = {
 
 // MAGIC %md
 // MAGIC 
-// MAGIC # Scala Type Hierarchy
+// MAGIC ### Scala Type Hierarchy
 // MAGIC 
 // MAGIC In Scala, all values have a type, including numerical values and functions. The diagram below illustrates a subset of the type hierarchy. 
 // MAGIC 
@@ -91,7 +94,7 @@ displayHTML(frameIt("https://docs.scala-lang.org/tour/unified-types.html",550))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Scala Collections
+// MAGIC ### Scala Collections
 // MAGIC  
 // MAGIC Familiarize yourself with the main Scala collections classes here:
 // MAGIC 
@@ -104,7 +107,7 @@ displayHTML(frameIt("https://docs.scala-lang.org/overviews/scala-book/collection
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## List
+// MAGIC #### List
 // MAGIC 
 // MAGIC Lists are one of the most basic data structures.
 // MAGIC 
@@ -125,7 +128,7 @@ val lst = List(1, 2, 3)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Vectors
+// MAGIC #### Vectors
 // MAGIC 
 // MAGIC > The Vector class is an indexed, immutable sequence. The “indexed” part of the description means that you can access Vector elements very rapidly by their index value, such as accessing listOfPeople(999999).
 // MAGIC 
@@ -142,7 +145,7 @@ val vec = Vector(1,2,3)
 
 // MAGIC %md
 // MAGIC 
-// MAGIC ## Arrays, Sequences and Tuples
+// MAGIC #### Arrays, Sequences and Tuples
 // MAGIC 
 // MAGIC See [https://www.scala-lang.org/api/current/scala/collection/index.html](https://www.scala-lang.org/api/current/scala/collection/index.html) for docs.
 
@@ -177,7 +180,7 @@ myTuple._2 // accessing the second element of the tuple
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Functional Programming and MapReduce
+// MAGIC ### Functional Programming and MapReduce
 // MAGIC 
 // MAGIC *"Functional programming is a style of programming that emphasizes writing applications using only pure functions and immutable values. As Alvin Alexander wrote in Functional Programming, Simplified, rather than using that description, it can be helpful to say that functional programmers have an extremely strong desire to see their code as math — to see the combination of their functions as a series of algebraic equations. In that regard, you could say that functional programmers like to think of themselves as mathematicians. That’s the driving desire that leads them to use only pure functions and immutable values, because that’s what you use in algebra and other forms of math."* 
 // MAGIC 
@@ -185,7 +188,7 @@ myTuple._2 // accessing the second element of the tuple
 // MAGIC 
 // MAGIC We will apply functions for processing elements of a scala collection to quickly demonstrate functional programming.
 // MAGIC 
-// MAGIC ### Five ways of adding 1
+// MAGIC #### Five ways of adding 1
 // MAGIC 
 // MAGIC The first four use anonymous functions and the last one uses a named method.
 // MAGIC 
@@ -286,7 +289,7 @@ lst.map(x => x+10)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Exercise in Functional Programming
+// MAGIC #### Exercise in Functional Programming
 // MAGIC 
 // MAGIC You should spend an hour or so going through the Functional Programming Section of the Scala Book:
 // MAGIC 
@@ -305,7 +308,7 @@ displayHTML(frameIt("https://docs.scala-lang.org/overviews/scala-book/functional
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Lazy Evaluation 
+// MAGIC ### Lazy Evaluation 
 // MAGIC 
 // MAGIC Another powerful programming concept we will need is *lazy evaluation* -- a form of delayed evaluation. So the value of an expression that is lazily evaluated is only available when it is actually needed.
 // MAGIC 
@@ -405,7 +408,7 @@ z + y + x + z + y + x
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Lazy Evaluation Exercise - You try Now!
+// MAGIC #### Lazy Evaluation Exercise - You try Now!
 // MAGIC 
 // MAGIC Understand why the output above is what it is!
 // MAGIC 
@@ -422,14 +425,14 @@ builder.result()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Why Lazy?
+// MAGIC ### Why Lazy?
 // MAGIC 
 // MAGIC Imagine a more complex expression involving the evaluation of millions of values. Lazy evaluation will allow us to actually compute with big data when it may become impossible to hold all the values in memory. This is exactly what Apache Spark does as we will see.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Recursions
+// MAGIC ### Recursions
 // MAGIC 
 // MAGIC Recursion is a powerful framework when a function calls another function, including itself, until some terminal condition is reached.
 // MAGIC 
@@ -496,7 +499,7 @@ factorialNaive(4)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Tail Recursion Exercise - You Try Now
+// MAGIC #### Tail Recursion Exercise - You Try Now
 // MAGIC 
 // MAGIC Replace ``???`` with the correct values to make this a tail recursion for factorial.
 

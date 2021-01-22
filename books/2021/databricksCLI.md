@@ -1,13 +1,13 @@
-pip3 install databricks-cli
-# curl -X GET -H 'Authorization: Bearer <token>' https:/<shardID>.cloud.databricks.com/api/2.0/clusters/list
-databricks configure --token
-cat ~/.databrickscfg 
-databricks fs -h
-databricks workspace -h
-databricks workspace list
+#pip3 install databricks-cli
+## curl -X GET -H 'Authorization: Bearer <token>' https:/<shardID>.cloud.databricks.com/api/2.0/clusters/list
+#databricks configure --token
+#cat ~/.databrickscfg 
+#databricks fs -h
+#databricks workspace -h
+#databricks workspace list
 databricks workspace list /scalable-data-science
 databricks workspace list /scalable-data-science/000_1-sds-3-x
-mkdir /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x
+mkdir -p /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x
 databricks workspace export_dir -o /scalable-data-science/000_1-sds-3-x ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_1-sds-3-x/
 mkdir /home/squid/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml
 databricks workspace export_dir -o /scalable-data-science/000_2-sds-3-x-ml ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml/

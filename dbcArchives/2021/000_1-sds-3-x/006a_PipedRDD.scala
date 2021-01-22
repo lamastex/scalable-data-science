@@ -22,9 +22,9 @@
 // MAGIC %md
 // MAGIC First, we create the toy RDDs as in *The Definitive Guide*:
 // MAGIC 
-// MAGIC > # From a Local Collection
+// MAGIC > **From a Local Collection**
 // MAGIC 
-// MAGIC To create an RDD from a collection, you will need to use the parallelize method on a SparkContext (within a SparkSession). This turns a single node collection into a parallel collection. When creating this parallel collection, you can also explicitly state the number of partitions into which you would like to distribute this array. In this case, we are creating two partitions:
+// MAGIC > To create an RDD from a collection, you will need to use the parallelize method on a SparkContext (within a SparkSession). This turns a single node collection into a parallel collection. When creating this parallel collection, you can also explicitly state the number of partitions into which you would like to distribute this array. In this case, we are creating two partitions:
 
 // COMMAND ----------
 
@@ -45,7 +45,7 @@ val words = spark.sparkContext.parallelize(myCollection, 2)
 
 // MAGIC %md
 // MAGIC 
-// MAGIC > # glom
+// MAGIC > **glom** from *The Definitive Guide*
 // MAGIC 
 // MAGIC > `glom` is an interesting function that takes every partition in your dataset and converts them to arrays. This can be useful if you’re going to collect the data to the driver and want to have an array for each partition. However, this can cause serious stability issues because if you have large partitions or a large number of partitions, it’s simple to crash the driver.
 
@@ -67,7 +67,8 @@ words.glom.collect
 
 // MAGIC %md
 // MAGIC 
-// MAGIC > # Checkpointing
+// MAGIC > **Checkpointing** from *The Definitive Guide*
+// MAGIC 
 // MAGIC > One feature not available in the DataFrame API is the concept of checkpointing. Checkpointing is the act of saving an RDD to disk so that future references to this RDD point to those intermediate partitions on disk rather than recomputing the RDD from its original source. This is similar to caching except that it’s not stored in memory, only disk. This can be helpful when performing iterative computation, similar to the use cases for caching:
 // MAGIC 
 // MAGIC 

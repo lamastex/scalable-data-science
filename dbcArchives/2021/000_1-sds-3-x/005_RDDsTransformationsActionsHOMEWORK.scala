@@ -5,13 +5,13 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # HOMEWORK notebook - RDDs Transformations and Actions
+// MAGIC # HOMEWORK on RDD Transformations and Actions
 // MAGIC Just go through the notebook and familiarize yourself with these transformations and actions.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ##### 1. Perform the ``takeOrdered`` action on the RDD
+// MAGIC ## 1. Perform the ``takeOrdered`` action on the RDD**
 // MAGIC 
 // MAGIC To illustrate ``take`` and ``takeOrdered`` actions, let's create a bigger RDD named ``rdd0_1000000`` that is made up of a million integers from 0 to 1000000.  
 // MAGIC We will ``sc.parallelize`` the ``Seq`` Scala collection by using its ``.range(startInteger,stopInteger)`` method.
@@ -45,7 +45,7 @@ sc.parallelize(Seq.range(0, 10)).takeOrdered(5)(Ordering[Int].reverse) // <Ctrl+
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ##### 2. More examples of `map`
+// MAGIC ## 2. More examples of `map`
 
 // COMMAND ----------
 
@@ -79,7 +79,7 @@ rdd.map( x => x*2).collect()    // <Shift+Enter> to perform collect (action) to 
 
 // MAGIC %md
 // MAGIC 
-// MAGIC ##### 3. More examples of `filter`
+// MAGIC ## 3. More examples of `filter`
 // MAGIC Let's declare another ``val`` RDD named ``rddFiltered`` by transforming our first RDD named ``rdd`` via the ``filter`` transformation ``x%2==0`` (of being even). 
 // MAGIC 
 // MAGIC This filter transformation based on the closure ``x => x%2==0`` will return ``true`` if the element, modulo two, equals zero. The closure is automatically passed on to the workers for evaluation (when an action is called later). 
@@ -96,7 +96,7 @@ rddFiltered.collect()    // <Ctrl+Enter> to collect (action) elements of rddFilt
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ##### 4. More examples of `reduce`
+// MAGIC ## 4. More examples of `reduce`
 
 // COMMAND ----------
 
@@ -184,7 +184,7 @@ sc.parallelize(Seq.range(1L, 100L)).reduce( (x,y)=>x*y )
 // MAGIC %md
 // MAGIC ***
 // MAGIC 
-// MAGIC ##### 5. Let us do a bunch of transformations to our RDD and perform an action
+// MAGIC ## 5. Let us do a bunch of transformations to our RDD and perform an action
 // MAGIC 
 // MAGIC * start from a Scala ``Seq``,
 // MAGIC * ``sc.parallelize`` the list to create an RDD,
@@ -204,7 +204,7 @@ sc.parallelize(Seq(1, 2, 3, 4))    // <Ctrl+Enter> will return Array(4, 8)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ##### 6. Transform the RDD by ``distinct`` to make another RDD
+// MAGIC ## 6. Transform the RDD by ``distinct`` to make another RDD
 // MAGIC 
 // MAGIC Let's declare another RDD named ``rdd2`` that has some repeated elements to apply the ``distinct`` transformation to it. 
 // MAGIC That would give us a new RDD that only contains the distinct elements of the input RDD.
@@ -229,7 +229,7 @@ rdd2Distinct.collect()    // <Ctrl+Enter> to collect (action) as Array(4, 2, 1, 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ##### 7. more flatMap
+// MAGIC ## 7. more flatMap
 
 // COMMAND ----------
 
@@ -266,6 +266,3 @@ val rddfM = rdd.flatMap(x => Array(x, x+5))    // <Shift+Enter> to flatMap the r
 // COMMAND ----------
 
 rddfM.collect    // <Ctrl+Enter> to collect rddfM = (1, 6, 2, 7, 3, 8)
-
-// COMMAND ----------
-

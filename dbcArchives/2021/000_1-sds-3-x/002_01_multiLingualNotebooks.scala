@@ -13,10 +13,23 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Notebooks
+// MAGIC # Multi-lingual Notebooks
+// MAGIC 
 // MAGIC Write Spark code for processing your data in notebooks. 
 // MAGIC 
+// MAGIC Note that there are several open-sourced notebook servers including:
+// MAGIC 
+// MAGIC - [zeppelin](https://zeppelin.apache.org/)
+// MAGIC - [jupyter](https://jupyter.org/) and its variants
+// MAGIC - etc
+// MAGIC 
+// MAGIC Here, we are mainly focused on using databricks notebooks due to its effeciently managed engineering layers over AWS (or Azure public clouds).
+// MAGIC 
 // MAGIC **NOTE**: You should have already cloned this notebook and attached it to a cluster that you started in the Community Edition of databricks by now.
+// MAGIC 
+// MAGIC ## Databricks Notebook
+// MAGIC 
+// MAGIC Next we delve into the mechanics of working with databricks notebooks. But many of the details also apply to other notebook environments with minor differences.
 
 // COMMAND ----------
 
@@ -24,6 +37,7 @@
 // MAGIC ### Notebooks can be written in **Python**, **Scala**, **R**, or **SQL**.
 // MAGIC 
 // MAGIC * This is a Scala notebook - which is indicated next to the title above by ``(Scala)``.
+// MAGIC * One can choose the default language of the notebook when it is created.
 
 // COMMAND ----------
 
@@ -65,6 +79,10 @@
 // MAGIC   * If there is no running cluster, create one as described in the [Welcome to Databricks](/#workspace/databricks_guide/00 Welcome to Databricks) guide.
 // MAGIC 
 // MAGIC ![Attach Notebook](http://training.databricks.com/databricks_guide/2.8/detached.png)
+// MAGIC 
+// MAGIC ### Deep-dive into databricks notebooks
+// MAGIC 
+// MAGIC Let's take a deeper dive into a databricks notebook next.
 
 // COMMAND ----------
 
@@ -85,7 +103,7 @@
 // MAGIC %md 
 // MAGIC 
 // MAGIC ***
-// MAGIC ### **Create** and **Edit** a New Markdown Cell in this Notebook
+// MAGIC #### **Create** and **Edit** a New Markdown Cell in this Notebook
 // MAGIC 
 // MAGIC * When you mouse between cells, a + sign will pop up in the center that you can click on to create a new cell.
 // MAGIC 
@@ -109,7 +127,7 @@
 
 // MAGIC %md
 // MAGIC 
-// MAGIC ### **Running a cell in your notebook.**
+// MAGIC #### **Running a cell in your notebook.**
 // MAGIC * #### Press **Shift+Enter** when in the cell to **run** it and proceed to the next cell.
 // MAGIC   * The cells contents should update.
 // MAGIC   ![Run cell](http://training.databricks.com/databricks_guide/run_cell.png)
@@ -154,7 +172,7 @@
 
 // MAGIC %md
 // MAGIC ***
-// MAGIC ### Run a **Scala Cell**
+// MAGIC #### Run a **Scala Cell**
 // MAGIC * Run the following scala cell.
 // MAGIC * Note: There is no need for any special indicator (such as ``%md``) necessary to create a Scala cell in a Scala notebook.
 // MAGIC * You know it is a scala notebook because of the `` (Scala)`` appended to the name of this notebook.
@@ -181,34 +199,38 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Spark is written in Scala and the primary language for this course is Scala.
-// MAGIC ### However, let us use the best language for the job!
+// MAGIC ### Spark is written in Scala, but ...
 // MAGIC 
-// MAGIC ### Cells each have a type - **scala**, **python**, **r**, **sql**, **filesystem**, **command line** or **markdown**.
+// MAGIC For this reason Scala will be the primary language for this course is Scala.
 // MAGIC 
-// MAGIC * While cells default to the type of the Notebook, other cell types are supported as well.
-// MAGIC * For example, Python Notebooks can contain python, sql, markdown, and even Scala cells. This lets you write notebooks that do use multiple languages.
-// MAGIC * This cell is in **markdown** and is used for documentation purposes.
+// MAGIC **However, let us use the best language for the job!** as each cell can be written in a specific language in the same notebook.
+// MAGIC Such multi-lingual notebooks are the norm in any realistic data science process today!
+// MAGIC 
+// MAGIC The beginning of each cells has a language type if it is not the default language of the notebook. Such cell-specific language types include the following with the prefix `%`:
+// MAGIC 
+// MAGIC - `%scala` for **Scala**, 
+// MAGIC - `%py` for **Python**, 
+// MAGIC - `%r` for **R**, 
+// MAGIC - `%sql` for **SQL**, 
+// MAGIC - `%fs` for databricks' **filesystem**, 
+// MAGIC - `%sh` for **BASH SHELL** and
+// MAGIC - `%md` for **markdown**.
+// MAGIC 
+// MAGIC * While cells default to the language type of the Notebook (scala, python, r or sql), other cell types are supported as well in a cell-specific manner.
+// MAGIC * For example, Python Notebooks can contain python, sql, markdown, and even scala cells. This lets you write notebooks that do use multiple languages.
+// MAGIC * This cell is in **markdown** as it begins with `%md`and is used for documentation purposes.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### All types of cells can be created in any notebook, regardless of the language.
-// MAGIC 
-// MAGIC To create a cell of another language, start the cell with:
-// MAGIC 
-// MAGIC * `%md` - Markdown
-// MAGIC * `%sql` - SQL
-// MAGIC * `%scala` - Scala
-// MAGIC * `%py` - Python
-// MAGIC * `%r` - R
+// MAGIC Thus, **all language-typed cells can be created in any notebook**, regardless of the the default language of the notebook itself.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Cross-language cells can be used to mix commands from other languages.
+// MAGIC Cross-language cells can be used to mix commands from other languages.
 // MAGIC 
-// MAGIC Examples:
+// MAGIC **Examples:**
 
 // COMMAND ----------
 
@@ -222,8 +244,14 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 
 // COMMAND ----------
 
+// MAGIC %scala
+// MAGIC // you can be explicit about the language even if the notebook's default language is the same
+// MAGIC println("We can access Scala like this.")
+
+// COMMAND ----------
+
 // MAGIC %md
-// MAGIC ### Command line cells can be used to work with local files on the Spark driver node.
+// MAGIC Command line cells can be used to work with local files on the Spark driver node.
 // MAGIC * Start a cell with `%sh` to run a command line command
 
 // COMMAND ----------
@@ -241,25 +269,29 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Filesystem cells allow access to the Databricks File System.
+// MAGIC Filesystem cells allow access to the Databricks File System (DBFS).
+// MAGIC 
 // MAGIC * Start a cell with `%fs` to run DBFS commands
 // MAGIC * Type `%fs help` for a list of commands
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Further Reference / Homework / Recurrrent Points of Reference
+// MAGIC #### Notebooks can be run from other notebooks using **%run**
 // MAGIC 
-// MAGIC Please go here for a relaxed and detailed-enough tour (later):
+// MAGIC * Syntax: `%run /full/path/to/notebook`
+// MAGIC * This is commonly used to import functions you defined in other notebooks.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC ## Further Pointers 
+// MAGIC 
+// MAGIC Here are some useful links to bookmark as you will need to use them for Reference.
+// MAGIC 
+// MAGIC These links provide a relaxed and detailed-enough tour (that you are strongly encouraged to take later):
 // MAGIC 
 // MAGIC * databricks
 // MAGIC   * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
 // MAGIC * scala
 // MAGIC   * [http://docs.scala-lang.org/](http://docs.scala-lang.org/)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ### Notebooks can be run from other notebooks using **%run**
-// MAGIC * Syntax: `%run /full/path/to/notebook`
-// MAGIC * This is commonly used to import functions you defined in other notebooks.

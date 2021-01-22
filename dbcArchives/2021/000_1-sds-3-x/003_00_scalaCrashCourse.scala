@@ -5,46 +5,27 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Introduction to Scala through Scala Notebook
+// MAGIC # Scala Crash Course
+// MAGIC 
+// MAGIC Here we take a minimalist approach to learning just enough Scala, the language that Apache Spark is written in, to be able to use Spark effectively.
+// MAGIC 
+// MAGIC In the sequel we can learn more Scala concepts as they arise. This learning can be done by chasing the pointers in this crash course for a detailed deeper dive on your own time.
+// MAGIC 
+// MAGIC There are two basic ways in which we can learn Scala:
+// MAGIC 
+// MAGIC **1. Learn Scala in a notebook environment**
 // MAGIC 
 // MAGIC For convenience we use databricks Scala notebooks like this one here.
 // MAGIC 
 // MAGIC You can learn Scala locally on your own computer using Scala REPL (and Spark using Spark-Shell).
 // MAGIC 
-// MAGIC ## Scala in your own computer
+// MAGIC **2. Learn Scala in your own computer**
 // MAGIC 
 // MAGIC The most easy way to get Scala locally is through sbt, the Scala Build Tool. You can also use an IDE that integrates sbt.
 // MAGIC 
 // MAGIC See: [https://docs.scala-lang.org/getting-started/index.html](https://docs.scala-lang.org/getting-started/index.html) to set up Scala in your own computer.
 // MAGIC 
 // MAGIC **Software Engineering NOTE:** If you completed TASK 2 for **Cloud-free Computing Environment** in the notebook prefixed `002_00` using dockerCompose (optional exercise) then you will have Scala 2.11 with sbt and Spark 2.4 inside the docker services you can start and stop locally. Using docker volume binds you can also connect the docker container and its services (including local zeppelin or jupyter notebook servers as well as hadoop file system) to IDEs on your machine, etc.
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ***
-// MAGIC ### Run a **Scala Cell**
-// MAGIC * Run the following scala cell.
-// MAGIC * Note: There is no need for any special indicator (such as ``%md``) necessary to create a Scala cell in a Scala notebook.
-// MAGIC * You know it is a scala notebook because of the `` (Scala)`` appended to the name of this notebook.
-// MAGIC * Make sure the cell contents updates before moving on.
-// MAGIC * Press **Shift+Enter** when in the cell to run it and proceed to the next cell.
-// MAGIC   * The cells contents should update.
-// MAGIC   * Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
-// MAGIC * characters following ``//`` are comments in scala.
-// MAGIC ***
-
-// COMMAND ----------
-
-1+1
-
-// COMMAND ----------
-
-println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that prints its argument as a line
-
-// COMMAND ----------
-
-// MAGIC %md
 // MAGIC 
 // MAGIC ## Scala Resources
 // MAGIC 
@@ -69,11 +50,7 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC * [Martin Oderski's Scala by example](https://www.scala-lang.org/old/sites/default/files/linuxsoft_archives/docu/files/ScalaByExample.pdf)
 // MAGIC * [Scala crash course by Holden Karau](http://lintool.github.io/SparkTutorial/slides/day1_Scala_crash_course.pdf)
 // MAGIC * [Darren's brief introduction to scala and breeze for statistical computing](https://darrenjw.wordpress.com/2013/12/30/brief-introduction-to-scala-and-breeze-for-statistical-computing/)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC #Introduction to Scala
+// MAGIC 
 // MAGIC ## What is Scala?
 // MAGIC "Scala  smoothly  integrates  object-oriented  and  functional  programming.  It is designed to express common programming patterns in a concise, elegant, and type-safe way." by Matrin Odersky.
 // MAGIC 
@@ -101,6 +78,31 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC ## Learn Scala in Notebook Environment
+// MAGIC 
+// MAGIC ***
+// MAGIC ### Run a **Scala Cell**
+// MAGIC * Run the following scala cell.
+// MAGIC * Note: There is no need for any special indicator (such as ``%md``) necessary to create a Scala cell in a Scala notebook.
+// MAGIC * You know it is a scala notebook because of the `` (Scala)`` appended to the name of this notebook.
+// MAGIC * Make sure the cell contents updates before moving on.
+// MAGIC * Press **Shift+Enter** when in the cell to run it and proceed to the next cell.
+// MAGIC   * The cells contents should update.
+// MAGIC   * Alternately, press **Ctrl+Enter** when in a cell to **run** it, but not proceed to the next cell.
+// MAGIC * characters following ``//`` are comments in scala.
+// MAGIC ***
+
+// COMMAND ----------
+
+1+1
+
+// COMMAND ----------
+
+println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that prints its argument as a line
+
+// COMMAND ----------
+
 //%run "/scalable-data-science/xtraResources/support/sdsFunctions"
 //This allows easy embedding of publicly available information into any other notebook
 //when viewing in git-book just ignore this block - you may have to manually chase the URL in frameIt("URL").
@@ -121,12 +123,17 @@ def frameIt( u:String, h:Int ) : String = {
 
 // COMMAND ----------
 
+// MAGIC %md
+// MAGIC See [Scala as a platform for statistical computing and data science](https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/).
+
+// COMMAND ----------
+
 displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platform-for-statistical-computing-and-data-science/",500))
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Let's get our hands dirty in Scala
+// MAGIC ## Let's get our hands dirty in Scala
 // MAGIC 
 // MAGIC We will go through the **following** programming concepts and tasks by building on [https://docs.scala-lang.org/tour/basics.html](https://docs.scala-lang.org/tour/basics.html).
 // MAGIC 
@@ -147,7 +154,7 @@ displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platfo
 
 // MAGIC %md
 // MAGIC 
-// MAGIC # Scala Types
+// MAGIC ### Scala Types
 // MAGIC 
 // MAGIC In Scala, all values have a type, including numerical values and functions. The diagram below illustrates a subset of the type hierarchy. 
 // MAGIC 
@@ -158,7 +165,7 @@ displayHTML(frameIt("https://darrenjw.wordpress.com/2013/12/23/scala-as-a-platfo
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Expressions
+// MAGIC ### Expressions
 // MAGIC 
 // MAGIC Expressions are computable statements such as the `1+1` we have seen before.
 
@@ -182,8 +189,9 @@ println("hej hej!") // printing a string
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Naming and Assignments 
-// MAGIC ### value and variable as ``val`` and ``var``
+// MAGIC ### Naming and Assignments 
+// MAGIC 
+// MAGIC **value and variable as ``val`` and ``var``**
 // MAGIC 
 // MAGIC You can name the results of expressions using keywords `val` and `var`.
 // MAGIC 
@@ -265,7 +273,7 @@ println(y) // the var y is 6 now
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Blocks
+// MAGIC ### Blocks
 // MAGIC 
 // MAGIC Just combine expressions by surrounding them with `{` and `}` called a block.
 
@@ -283,7 +291,7 @@ println({ val x=22; x+2})
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Functions
+// MAGIC ### Functions
 // MAGIC 
 // MAGIC Functions are expressions that have parameters. A function takes arguments as input and returns expressions as output.
 // MAGIC 
@@ -340,7 +348,7 @@ println(multiplyTheseTwoIntegers(2,4)) // 8
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Methods
+// MAGIC ### Methods
 // MAGIC 
 // MAGIC Methods are very similar to functions, but a few key differences exist.
 // MAGIC 
@@ -438,7 +446,7 @@ println("Current time in milliseconds is " + time)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Classes
+// MAGIC ### Classes
 // MAGIC The `class` keyword followed by the name and constructor parameters is used to define a class.
 
 // COMMAND ----------
@@ -505,7 +513,7 @@ myVaryingCuboid.printVolume()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Case Classes
+// MAGIC ### Case Classes
 // MAGIC 
 // MAGIC Scala has a special type of class called a *case class* that can be defined with the `case class` keyword. 
 // MAGIC 
@@ -575,7 +583,7 @@ if (myVaryingCuboid == my1Cube) {
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Methods and Tab-completion
+// MAGIC ### Methods and Tab-completion
 // MAGIC 
 // MAGIC Many methods of a class can be accessed by `.`.
 
@@ -627,7 +635,7 @@ s.contains("i")    // <Ctrl+Enter> returns Boolean true since s contains the str
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Objects
+// MAGIC ### Objects
 // MAGIC 
 // MAGIC Objects are single instances of their own definitions using the `object` keyword. You can think of them as singletons of their own classes.
 
@@ -664,7 +672,7 @@ println(newerId) // 2
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Traits
+// MAGIC ### Traits
 // MAGIC 
 // MAGIC Traits are abstract data types containing certain fields and methods. They can be defined using the `trait` keyword.
 // MAGIC 
@@ -742,7 +750,7 @@ customGreeter.greet("Scala developer") // How are you, Scala developer?
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Main Method
+// MAGIC ### Main Method
 // MAGIC 
 // MAGIC The main method is the entry point of a Scala program. 
 // MAGIC 
@@ -760,9 +768,9 @@ object Main {
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # What I try not do while learning a new language?
+// MAGIC **What I try not do while learning a new language?**
 // MAGIC 
 // MAGIC 1. I don't immediately try to ask questions like: 
 // MAGIC   - "how can I do this particular variation of some small thing I just learned so I can use patterns I am used to from another language I am hooked-on right now?" immediately
 // MAGIC - first go through the detailed Scala Tour on your own and then through the 50 odd lessons in the Scala Book
-// MAGIC - then return to 1. and ask detailed cross-language comparison questions by diving deep as needed with the source and scala docs as needed (google search!).
+// MAGIC - then return to 1. and ask detailed cross-language comparison questions by diving deep as needed with the source and scala docs as needed (google or duck-duck-go search!).

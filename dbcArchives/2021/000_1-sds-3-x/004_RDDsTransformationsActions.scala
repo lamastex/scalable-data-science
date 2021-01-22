@@ -23,8 +23,9 @@
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC # Spark Cluster Overview:
-// MAGIC ## Driver Program, Cluster Manager and Worker Nodes
+// MAGIC ## Spark Cluster Overview:
+// MAGIC 
+// MAGIC **Driver Program, Cluster Manager and Worker Nodes**
 // MAGIC 
 // MAGIC The *driver* does the following:
 // MAGIC 
@@ -44,9 +45,9 @@
 // MAGIC %md
 // MAGIC ## The Abstraction of Resilient Distributed Dataset (RDD)
 // MAGIC 
-// MAGIC #### RDD is a fault-tolerant collection of elements that can be operated on in parallel
+// MAGIC **RDD is a fault-tolerant collection of elements that can be operated on in parallel.**
 // MAGIC 
-// MAGIC #### Two types of Operations are possible on an RDD
+// MAGIC **Two types of Operations are possible on an RDD:**
 // MAGIC 
 // MAGIC * Transformations
 // MAGIC * Actions
@@ -58,7 +59,7 @@
 // MAGIC 
 // MAGIC ***
 // MAGIC 
-// MAGIC ## Transformations
+// MAGIC ### Transformations
 // MAGIC **(watch now 1:18)**:
 // MAGIC 
 // MAGIC [![Spark Transformations by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/360UHWy052k/0.jpg)](https://www.youtube.com/watch?v=360UHWy052k?rel=0&autoplay=1&modestbranding=1)
@@ -66,14 +67,14 @@
 // MAGIC ***
 // MAGIC 
 // MAGIC 
-// MAGIC ## Actions
+// MAGIC ### Actions
 // MAGIC **(watch now 0:48)**:
 // MAGIC 
 // MAGIC [![Spark Actions by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F2G4Wbc5ZWQ/0.jpg)](https://www.youtube.com/watch?v=F2G4Wbc5ZWQ?rel=0&autoplay=1&modestbranding=1&start=1&end=48)
 // MAGIC 
 // MAGIC ***
 // MAGIC 
-// MAGIC ## Key Points
+// MAGIC ### Key Points
 // MAGIC 
 // MAGIC * Resilient distributed datasets (RDDs) are the primary abstraction in Spark.
 // MAGIC * RDDs are immutable once created:
@@ -136,13 +137,9 @@ displayHTML(frameIt("https://spark.apache.org/docs/latest/rdd-programming-guide.
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Let us get our hands dirty in Spark implementing these ideas!
-
-// COMMAND ----------
-
-// MAGIC %md
+// MAGIC ## Let's get our hands dirty in Spark!
 // MAGIC 
-// MAGIC #### DO NOW 
+// MAGIC **DO NOW!**
 // MAGIC 
 // MAGIC In your databricks community edition:
 // MAGIC 
@@ -154,7 +151,7 @@ displayHTML(frameIt("https://spark.apache.org/docs/latest/rdd-programming-guide.
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Let us look at the legend and overview of the visual RDD Api by doing the following first:
+// MAGIC **Let us look at the legend and overview of the visual RDD Api by doing the following first:**
 // MAGIC 
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-1.png)
@@ -188,11 +185,12 @@ displayHTML(frameIt("https://spark.apache.org/docs/latest/rdd-programming-guide.
 // MAGIC * Shipping Closures, Broadcast Variables and Accumulator Variables
 // MAGIC * Spark Essentials: Summary
 // MAGIC * HOMEWORK
+// MAGIC * Importing Standard Scala and Java libraries
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Entry Point
+// MAGIC #### Entry Point
 // MAGIC 
 // MAGIC Now we are ready to start programming in Spark!
 // MAGIC 
@@ -230,7 +228,7 @@ println(sqlContext)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 1. Create an RDD using `sc.parallelize`
+// MAGIC #### 1. Create an RDD using `sc.parallelize`
 // MAGIC 
 // MAGIC First, let us create an RDD of three elements (of integer type ``Int``) from a Scala ``Seq`` (or ``List`` or ``Array``) with two partitions by using the ``parallelize`` method of the available Spark Context ``sc`` as follows:
 
@@ -245,7 +243,7 @@ val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this ce
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 2. Perform the `collect` action on the RDD and find the number of partitions it is made of using `getNumPartitions` action
+// MAGIC #### 2. Perform the `collect` action on the RDD and find the number of partitions in it using `getNumPartitions` action
 // MAGIC 
 // MAGIC No action has been taken by ``sc.parallelize`` above.  To see what is "cooked" by the recipe for RDD ``x`` we need to take an action.  
 // MAGIC 
@@ -256,7 +254,7 @@ val x = sc.parallelize(Array(1, 2, 3), 2)    // <Ctrl+Enter> to evaluate this ce
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect) and return here to try out the example codes.
+// MAGIC ##### Let us look at the [collect action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/collect) and return here to try out the example codes.
 // MAGIC 
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-90.png)
@@ -279,7 +277,7 @@ x.collect()    // <Ctrl+Enter> to collect (action) elements of rdd; should be (1
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
+// MAGIC ##### Let us look at the [getNumPartitions action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/getNumPartitions) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-88.png)
 
@@ -333,7 +331,7 @@ x.glom().collect() // <Ctrl+Enter> to evaluate this cell
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 3. Perform the `take` action on the RDD
+// MAGIC #### 3. Perform the `take` action on the RDD
 // MAGIC 
 // MAGIC The ``.take(n)`` action returns an array with the first ``n`` elements of the RDD.
 
@@ -356,14 +354,14 @@ x.take(2) // Ctrl+Enter to take two elements from the RDD x
 // MAGIC %md
 // MAGIC ***
 // MAGIC 
-// MAGIC ### 4. Transform the RDD by ``map`` to make another RDD
+// MAGIC #### 4. Transform the RDD by ``map`` to make another RDD
 // MAGIC 
 // MAGIC The ``map`` transformation returns a new RDD that's formed by passing each element of the source RDD through a function (closure). The closure is automatically passed on to the workers for evaluation (when an action is called later). 
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map) and return here to try out the example codes.
+// MAGIC ##### Let us look at the [map transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/map) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-18.png)
 
@@ -384,14 +382,14 @@ println(y.collect().mkString(", "))
 // MAGIC %md
 // MAGIC ***
 // MAGIC 
-// MAGIC ### 5. Transform the RDD by ``filter`` to make another RDD
+// MAGIC #### 5. Transform the RDD by ``filter`` to make another RDD
 // MAGIC 
 // MAGIC The ``filter`` transformation returns a new RDD that's formed by selecting those elements of the source RDD on which the function returns ``true``.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC #### Let us look at the [filter transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter) and return here to try out the example codes.
+// MAGIC ##### Let us look at the [filter transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/filter) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-24.png)
 
@@ -414,7 +412,7 @@ println(y.collect().mkString(", "))
 
 // MAGIC %md
 // MAGIC ***
-// MAGIC ### 6. Perform the ``reduce`` action on the RDD
+// MAGIC #### 6. Perform the ``reduce`` action on the RDD
 // MAGIC 
 // MAGIC Reduce aggregates a data set element using a function (closure). 
 // MAGIC This function takes two arguments and returns one and can often be seen as a binary operator. 
@@ -423,7 +421,7 @@ println(y.collect().mkString(", "))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce) and return here to try out the example codes.
+// MAGIC ##### Let us look at the [reduce action in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/actions/reduce) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-94.png)
 
@@ -442,7 +440,7 @@ println(y)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 7. Transform an RDD by ``flatMap`` to make another RDD
+// MAGIC #### 7. Transform an RDD by ``flatMap`` to make another RDD
 // MAGIC 
 // MAGIC ``flatMap`` is similar to ``map`` but each element from input RDD can be mapped to zero or more output elements. 
 // MAGIC Therefore your function should return a sequential collection such as an ``Array`` rather than a single element as shown below.
@@ -450,7 +448,7 @@ println(y)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap) and return here to try out the example codes.
+// MAGIC ##### Let us look at the [flatMap transformation in detail](/#workspace/scalable-data-science/xtraResources/visualRDDApi/recall/transformations/flatMap) and return here to try out the example codes.
 // MAGIC 
 // MAGIC ![](https://raw.githubusercontent.com/lamastex/scalable-data-science/master/db/visualapi/med/visualapi-31.png)
 
@@ -470,7 +468,7 @@ sc.parallelize(Array(1,2,3)).map(n => Array(n,n*100,42)).collect()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 8. Create a Pair RDD
+// MAGIC #### 8. Create a Pair RDD
 // MAGIC 
 // MAGIC Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
 
@@ -494,7 +492,7 @@ wordCountPairRDD.collect()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### Wide Transformations and Shuffles
+// MAGIC #### Wide Transformations and Shuffles
 // MAGIC 
 // MAGIC So far we have seen transformations that are **narrow** -- with no data transfer between partitions. Think of `map`.
 // MAGIC 
@@ -518,6 +516,8 @@ wordCountPairRDD.collect()
 // MAGIC > The Shuffle is an expensive operation since it involves disk I/O, data serialization, and network I/O. To organize data for the shuffle, Spark generates sets of tasks - map tasks to organize the data, and a set of reduce tasks to aggregate it. This nomenclature comes from MapReduce and does not directly relate to Spark’s map and reduce operations.
 // MAGIC 
 // MAGIC > Internally, results from individual map tasks are kept in memory until they can’t fit. Then, these are sorted based on the target partition and written to a single file. On the reduce side, tasks read the relevant sorted blocks.
+// MAGIC 
+// MAGIC [https://spark.apache.org/docs/latest/rdd-programming-guide.html#shuffle-operations](https://spark.apache.org/docs/latest/rdd-programming-guide.html#shuffle-operations)
 
 // COMMAND ----------
 
@@ -526,7 +526,7 @@ displayHTML(frameIt("https://spark.apache.org/docs/latest/rdd-programming-guide.
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 9. Perform some transformations on a Pair RDD
+// MAGIC #### 9. Perform some transformations on a Pair RDD
 // MAGIC 
 // MAGIC Let's next work with RDD of ``(key,value)`` pairs called a *Pair RDD* or *Key-Value RDD*.
 // MAGIC 
@@ -622,8 +622,10 @@ wordCountPairRDDGroupByKey.collect()  // Cntrl+Enter
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 10. Understanding Closures - Where in the cluster is your computation running?
-// MAGIC > One of the harder things about Spark is understanding the scope and life cycle of variables and methods when executing code across a cluster. RDD operations that modify variables outside of their scope can be a frequent source of confusion. In the example below we’ll look at code that uses foreach() to increment a counter, but similar issues can occur for other operations as well.
+// MAGIC #### 10. Understanding Closures - Where in the cluster is your computation running?
+// MAGIC > One of the harder things about Spark is understanding the scope and life cycle of variables and methods when executing code across a cluster. RDD operations that modify variables outside of their scope can be a frequent source of confusion. In the example below we’ll look at code that uses `foreach()` to increment a counter, but similar issues can occur for other operations as well.
+// MAGIC 
+// MAGIC [https://spark.apache.org/docs/latest/rdd-programming-guide.html#understanding-closures-](https://spark.apache.org/docs/latest/rdd-programming-guide.html#understanding-closures-)
 
 // COMMAND ----------
 
@@ -652,9 +654,9 @@ println("Counter value: " + counter)
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 11. Shipping Closures, Broadcast Variables and Accumulator Variables
+// MAGIC #### 11. Shipping Closures, Broadcast Variables and Accumulator Variables
 // MAGIC 
-// MAGIC #### Closures, Broadcast and Accumulator Variables
+// MAGIC ##### Closures, Broadcast and Accumulator Variables
 // MAGIC **(watch now 2:06)**:
 // MAGIC 
 // MAGIC [![Closures, Broadcast and Accumulators by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/I9Zcr4R35Ao/0.jpg)](https://www.youtube.com/watch?v=I9Zcr4R35Ao?rel=0&autoplay=1&modestbranding=1)
@@ -662,7 +664,7 @@ println("Counter value: " + counter)
 // MAGIC 
 // MAGIC We will use these variables in the sequel.
 // MAGIC 
-// MAGIC #### SUMMARY
+// MAGIC ##### SUMMARY
 // MAGIC Spark automatically creates closures 
 // MAGIC 
 // MAGIC   * for functions that run on RDDs at workers,
@@ -693,20 +695,15 @@ println("Counter value: " + counter)
 // MAGIC     * for the tasks, the accumulators are basically write-only
 // MAGIC     
 // MAGIC  ***
-// MAGIC  
-// MAGIC  ### 12. Spark Essentials: Summary
-// MAGIC  **(watch now: 0:29)**
-// MAGIC  
-// MAGIC [![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/watch?v=F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
-// MAGIC 
-// MAGIC *NOTE:* In databricks cluster, we (the course coordinator/administrators) set the number of workers for you.
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Accumulators 
+// MAGIC ##### Accumulators 
 // MAGIC 
 // MAGIC > Accumulators are variables that are only “added” to through an associative and commutative operation and can therefore be efficiently supported in parallel. They can be used to implement counters (as in MapReduce) or sums. Spark natively supports accumulators of numeric types, and programmers can add support for new types.
+// MAGIC 
+// MAGIC Read: [https://spark.apache.org/docs/latest/rdd-programming-guide.html#accumulators](https://spark.apache.org/docs/latest/rdd-programming-guide.html#accumulators).
 
 // COMMAND ----------
 
@@ -734,13 +731,15 @@ accum.value
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Broadcast Variables
+// MAGIC ##### Broadcast Variables
+// MAGIC 
+// MAGIC From [https://spark.apache.org/docs/latest/rdd-programming-guide.html#broadcast-variables](https://spark.apache.org/docs/latest/rdd-programming-guide.html#broadcast-variables):
 // MAGIC 
 // MAGIC > Broadcast variables allow the programmer to keep a read-only variable cached on each machine rather than shipping a copy of it with tasks. They can be used, for example, to give every node a copy of a large input dataset in an efficient manner. Spark also attempts to distribute broadcast variables using efficient broadcast algorithms to reduce communication cost.
 // MAGIC 
 // MAGIC > Spark actions are executed through a set of stages, separated by distributed “shuffle” operations. Spark automatically broadcasts the common data needed by tasks within each stage. The data broadcasted this way is cached in serialized form and deserialized before running each task. This means that explicitly creating broadcast variables is only useful when tasks across multiple stages need the same data or when caching the data in deserialized form is important.
 // MAGIC 
-// MAGIC > Broadcast variables are created from a variable v by calling SparkContext.broadcast(v). The broadcast variable is a wrapper around v, and its value can be accessed by calling the value method. The code below shows this:
+// MAGIC > Broadcast variables are created from a variable v by calling SparkContext.broadcast(v). The broadcast variable is a wrapper around v, and its value can be accessed by calling the value method. The code below shows this in action.
 
 // COMMAND ----------
 
@@ -788,7 +787,7 @@ broadcastVar.unpersist()
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### A more interesting example of broadcast variable
+// MAGIC ##### A more interesting example of broadcast variable
 // MAGIC 
 // MAGIC Let us broadcast maps and use them to lookup the values at each executor. This example is taken from:
 // MAGIC  - [https://sparkbyexamples.com/spark/spark-broadcast-variables/](https://sparkbyexamples.com/spark/spark-broadcast-variables/)
@@ -823,7 +822,17 @@ println(rdd2.collect().mkString("\n"))
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ### 13. HOMEWORK 
+// MAGIC #### 12. Spark Essentials: Summary
+// MAGIC  **(watch now: 0:29)**
+// MAGIC  
+// MAGIC [![Spark Essentials Summary by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/F50Vty9Ia8Y/0.jpg)](https://www.youtube.com/watch?v=F50Vty9Ia8Y?rel=0&autoplay=1&modestbranding=1)
+// MAGIC 
+// MAGIC *NOTE:* In databricks cluster, we (the course coordinator/administrators) set the number of workers for you.
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC #### 13. HOMEWORK 
 // MAGIC See the notebook in this folder named `005_RDDsTransformationsActionsHOMEWORK`. 
 // MAGIC This notebook will give you more examples of the operations above as well as others we will be using later, including:
 // MAGIC 
@@ -836,7 +845,7 @@ println(rdd2.collect().mkString("\n"))
 // MAGIC %md
 // MAGIC ***
 // MAGIC ***
-// MAGIC ### Importing Standard Scala and Java libraries
+// MAGIC #### 14. Importing Standard Scala and Java libraries
 // MAGIC * For other libraries that are not available by default, you can upload other libraries to the Workspace.
 // MAGIC * Refer to the **[Libraries](https://docs.databricks.com/user-guide/libraries.html)** guide for more details.
 
@@ -854,7 +863,3 @@ map.put("b", 2)
 map.put("c", 3)
 map.put("d", 4)
 map.put("e", 5)
-
-
-// COMMAND ----------
-
