@@ -1,5 +1,14 @@
 # Short Jupyter book tutorial 
 
+Unfortunately, creating a html book from the jupyter notebooks via jupyter book is highly limiting.
+
+The main issues we could not resolve easily include:
+
+- Being unable to have cell-specific progrramming language sytax-highlighting
+  -this is due to hard assumption of **the** `code` cell in jupyter notebooks
+
+*Solution:* We will be using mdbook instead and bypass via `md` extracts of the original noebooks before making the html book.
+
 ## Install jupyter-book, e.g. in a virtual environment
 
 On Ubuntu 18.04 do:
