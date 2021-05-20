@@ -1,4 +1,7 @@
 # List of TODOs to fix in [ScaDaMaLe Book](https://lamastex.github.io/ScaDaMaLe)
+ Some of these are fundamentally unresolvable without a lot of work...
+
+We are now trying mdbook and avoiding JupyterBook.
 
 The real work is done here on issues raised:
 

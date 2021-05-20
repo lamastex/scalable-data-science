@@ -1,3 +1,6 @@
+# databricks CLI to avoid GUIs
+
+```
 #pip3 install databricks-cli
 ## curl -X GET -H 'Authorization: Bearer <token>' https:/<shardID>.cloud.databricks.com/api/2.0/clusters/list
 #databricks configure --token
@@ -16,4 +19,4 @@ mkdir ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_3-sds-3-x-st
 mkdir ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_4-sds-3-x-ss/
 databricks workspace export_dir -o /scalable-data-science/000_3-sds-3-x-st ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_3-sds-3-x-st/
 databricks workspace export_dir -o /scalable-data-science/000_4-sds-3-x-ss ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_4-sds-3-x-ss/
-
+```
