@@ -15,9 +15,9 @@ We will use [pinot](https://gitlab.com/tilowiklund/pinot/) and [mdbook](https://
 convert a sequence of databricks notebooks in a sequence of .dbc archive files into one indexed and browsable html book by: 
 
 1. converting content of all cells in all the notebooks into markdown (md) format via pinot
-- and then use mdbook to convert the extracted md content into html book
+2. and then use mdbook to convert the extracted md content into html book
 
-Note that the first attempt was via jupyterbook but this method as serious limitations and does not allow for nearly complete notebook format agnosticity while allowing for different programming languages in each cell of each notebook.
+Note that the first attempt was via jupyterbook but this method had serious limitations and does not allow for nearly complete notebook format agnosticity while allowing for syntax-highlighting of different programming languages in each cell of each notebook.
 See [jupyterBook.md](jupyterBook.md) for this excursion.
  
 The details of using pinot and mdbook are as follows:
@@ -35,7 +35,9 @@ See [README of pinot](https://gitlab.com/tilowiklund/pinot/-/blob/master/README.
 :~/all/git/tilowiklund$ cd pinot
 :~/all/git/tilowiklund/pinot$ ls
 data  LICENSE  old  pinot.cabal  README.md  Setup.hs  shell.nix  src  stack.yaml  stack.yaml.lock
-:~/all/git/tilowiklund/pinot$ stack exec
+# to reinstall stack for haskell
+:~/all/git/tilowiklund/pinot$ curl -sSL https://get.haskellstack.org/ | sh -s - -f
+:~/all/git/tilowiklund/pinot$ stack setup
 :~/all/git/tilowiklund/pinot$ stack build
 ```
 ### Setup mdbook project
