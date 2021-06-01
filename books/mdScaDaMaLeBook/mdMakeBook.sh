@@ -14,8 +14,9 @@ pushd $PINOTdir &&
 # git update-index --assume-unchanged ../../dbcArchives/2021/000_1-sds-3-x.dbc
 # to undo the above do:
 # git update-index --no-assume-unchanged ../../dbcArchives/2021/000_1-sds-3-x.dbc
+rm -r $MDBOOKdir/src/contents/* && #first clean the md files to avoid pre-pumped files
 stack exec pinot -- --from databricks --to mdbook $DBCarchives/000_1-sds-3-x.dbc -o $MDBOOKdir/src/contents &&
-#stack exec pinot -- --from databricks --to jupyter-book ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_2-sds-3-x-ml.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
+stack exec pinot -- --from databricks --to mdbook $DBCarchives/000_2-sds-3-x-ml.dbc -o $MDBOOKdir/src/contents &&
 ##stack exec pinot -- --from databricks --to jupyter-book ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_0-sds-3-x-projects.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ &&
 ## to field unreachable files
 #stack exec pinot -- --from databricks --to jupyter-book ~/all/git/lamastex/scalable-data-science/dbcArchives/2021/000_0-sds-3-x-projects.dbc -o ~/all/git/lamastex/scalable-data-science/books/2021/ScaDaMaLe/ -R ~/all/git/lamastex/scalable-data-science/books/2021/extra-resources-student-projects &&
