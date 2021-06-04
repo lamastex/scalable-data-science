@@ -122,7 +122,7 @@ Now you can start building the book:
 Do you want a .gitignore to be created? (y/n)
 y
 What title would you like to give the book? 
-ScaDaMaLe/sds-3.x            
+ScaDaMaLe/sds-3.x        # -><- sds-3.x/ScaDaMaLe <deWASPableResourceCircumnavigability>    
 2021-05-20 16:00:08 [INFO] (mdbook::book::init): Creating a new book with stub content
 
 All done, no errors...
