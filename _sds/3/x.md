@@ -55,7 +55,7 @@ Expected Reference Readings (you need to be logged into your library with access
 The databricks notebooks will be made available as the course progresses below:
 
 1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
-	*  [Introduction](db/000_ScaDaMaLe/)
+	*  [Introduction](db/000_1-sds-3-x/000_ScaDaMaLe/)
 2. Apache Spark and Big Data
 	*  [Why Spark?](db/001_whySpark/)
 	*  [Login to databricks](db/002_00_loginToDatabricks/)
