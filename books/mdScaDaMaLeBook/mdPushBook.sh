@@ -10,7 +10,7 @@ git pull &&
 #git rm -r * &&
 #git commit -a -m "clean wipe" &&
 #git push &&
-cp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/main_index.html ./index.html &&
+## cp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/main_index.html ./index.html &&
 mkdir -p 000_1-sds-3-x && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_1-sds-3-x/book/* ./000_1-sds-3-x &&
 mkdir -p 000_2-sds-3-x-ml && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_2-sds-3-x-ml/book/* ./000_2-sds-3-x-ml &&
 # search file too large for 000_3-sds-3-x-st: so break it into two bdc files
