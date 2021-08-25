@@ -16,6 +16,7 @@ mkdir -p 000_2-sds-3-x-ml && cp -rp ~/all/git/lamastex/scalable-data-science/boo
 # search file too large for 000_3-sds-3-x-st: so break it into two bdc files
 #mkdir -p 000_3-sds-3-x-st && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_3-sds-3-x-st/book/* ./000_3-sds-3-x-st &&
 mkdir -p 000_4-sds-3-x-ss && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_4-sds-3-x-ss/book/* ./000_4-sds-3-x-ss &&
+# 000_5-sds-2-x-geo seems to be missing now
 mkdir -p 000_5-sds-2-x-geo && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_5-sds-2-x-geo/book/* ./000_5-sds-2-x-geo &&
 mkdir -p 000_6-sds-3-x-dl && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_6-sds-3-x-dl/book/* ./000_6-sds-3-x-dl &&
 mkdir -p 000_7-sds-3-x-ddl && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_7-sds-3-x-ddl/book/* ./000_7-sds-3-x-ddl &&
