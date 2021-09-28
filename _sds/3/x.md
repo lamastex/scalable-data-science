@@ -86,8 +86,15 @@ The databricks notebooks have been made available as the following course module
 5. Ethics, Explainability and Fairness - An Operational View
 	* [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
 	* [Ethical AI - Fairness](colab/Ethical_AI_Fairness_Self_Study_Exercise/)
+6. Introduction to Spark GDELT-project: Global Mass Media Monitoring
+        * [030_Spark-GDELT-project](db/000_1-sds-3-x/030_Spark-GDELT-project/)
+7. Old Bailey Online - ETL of XML
+        * [033_OBO_LoadExtract](db/000_1-sds-3-x/033_OBO_LoadExtract/)
+7. Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
+        * [033_OBO_PipedRDD_RigorousBayesianABTesting](db/000_1-sds-3-x/033_OBO_PipedRDD_RigorousBayesianABTesting/)
+9. Latent Dirichlet Allocation of Cornell Movie Dialogs
+        * [035_LDA_CornellMovieDialogs](db/000_1-sds-3-x/035_LDA_CornellMovieDialogs/)
 
-14. Links to notebooks covered in Module-03 will be added here in time (they are already made available as .dbc archives)
 
 <!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
