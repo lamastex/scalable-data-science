@@ -55,7 +55,7 @@ The databricks notebooks have been made available as the following course module
 
 # 000_1-sds-3-x
 
-## Introduction to Scalable Data Science and Distributed Machine Learning. 
+## 000_1-sds-3-x: Introduction to Scalable Data Science and Distributed Machine Learning. 
 
 **Topics:** *Apache Spark, Scala, RDD, map-reduce, Ingest, Extract, Load, Transform and Explore with noSQL in SparkSQL.*
 
