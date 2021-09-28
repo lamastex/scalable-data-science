@@ -35,10 +35,9 @@ Theoretical foundations of distributed systems and analysis of their scalable al
 
 # Course Content 
 
-Uploading Course Content into Databricks Community Edition
+Upload Course Content as `.dbc` file into [Databricks Community Edition](https://community.cloud.databricks.com/login.html).
 
-*  [2020 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2020)
-*  [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
+*  [2021 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2021)
 
 Reading Materials Provided
 
@@ -52,7 +51,11 @@ Expected Reference Readings (you need to be logged into your library with access
 * Introduction to Algorithms, Third Edition, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein from 
   - [https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142](https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142)
 
-The databricks notebooks will be made available as the course progresses below:
+The databricks notebooks have been made available as the following course modules:
+
+# 000_1-sds-3-x
+
+## Introduction to Scalable Data Science and Distributed Machine Learning. Topics: Apache Spark, Scala, RDD, map-reduce, Ingest, Extract, Load, Transform and Explore with noSQL in SparkSQL.
 
 1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
 	*  [Introduction](db/000_1-sds-3-x/000_ScaDaMaLe/)
