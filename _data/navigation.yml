@@ -98,14 +98,16 @@ lMenu-SDS-3.x:
         url: /sds/3/x/db/000_1-sds-3-x/009_PowerPlantPipeline_01ETLEDA/
       - title: "Wiki Click streams"
         url: /sds/3/x/db/000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA/
+  - title: "000_2-sds-3-x-ml"
+    children:
       - title: "Introduction to Spark GDELT-project: Global Mass Media Monitoring"
-        url: /sds/3/x/db/000_1-sds-3-x/030_Spark-GDELT-project/
+        url: /sds/3/x/db/000_2-sds-3-x-ml/030_Spark-GDELT-project/
       - title: "Old Bailey Online - ETL of XML"
-        url: /sds/3/x/db/000_1-sds-3-x/033_OBO_LoadExtract/
+        url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_LoadExtract/
       - title: "Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data"
-        url: /sds/3/x/db/000_1-sds-3-x/033_OBO_PipedRDD_RigorousBayesianABTesting/
+        url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_PipedRDD_RigorousBayesianABTesting/
       - title: "Latent Dirichlet Allocation of Cornell Movie Dialogs"
-        url: /sds/3/x/db/000_1-sds-3-x/035_LDA_CornellMovieDialogs/
+        url: /sds/3/x/db/000_2-sds-3-x-ml/035_LDA_CornellMovieDialogs/
 
 
 
