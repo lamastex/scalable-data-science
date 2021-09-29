@@ -89,7 +89,7 @@ The databricks notebooks have been made available as the following course module
 
 # 000_2-sds-3-x-ml
 
-## Deeper Dive into Dustributed Machine Learning
+## Deeper Dive into Distributed Machine Learning
 
 **Topics:**  *Distributed Simulation; various un/supervised ML Algorithms; Linear Algebra; Vertex Programming using SparkML, GraphX and piped-RDDs.*
 

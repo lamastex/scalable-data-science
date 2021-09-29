@@ -1,3 +1,8 @@
+
+```
+ls *.html |  sed 's/html$/md/' | xargs touch
+```
+
 I have scheduled to post specific notebooks (some of them with video from 2017, 2018, 2019) to help each group more specifically (please let me know if I said I would do something more but forgot):
 
     those parsing xml in general for any group-project,
