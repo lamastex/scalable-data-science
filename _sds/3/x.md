@@ -136,8 +136,9 @@ The databricks notebooks have been made available as the following course module
     * [035_LDA_CornellMovieDialogs](db/000_2-sds-3-x-ml/035_LDA_CornellMovieDialogs/)
 10. Collaborative Filtering for Recommendation Systems
     * [036_ALS_MovieRecommender](db/000_2-sds-3-x-ml/036_ALS_MovieRecommender/)
+11. Extending built-in functions in GraphX
     * [998_EX_01_GraphXShortestWeightedPaths](db/000_2-sds-3-x-ml/998_EX_01_GraphXShortestWeightedPaths/)
-11. Fraud Detection with Decision Trees
+12. Fraud Detection with Decision Trees
     * [999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels](db/000_2-sds-3-x-ml/999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels/)
 
 <!---
