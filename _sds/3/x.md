@@ -128,6 +128,8 @@ The databricks notebooks have been made available as the following course module
 	*  [Tweet Track, Follow](db/027_TweetCollectorTrackAndFollow/)
 	*  [Tweet Hashtag Counter](db/028_TweetHashtagCount/)
 7. ETL of GDELT Dataset and XML-structured Dataset
+1. Introduction to Spark GDELT-project: Global Mass Media Monitoring
+	* [030_Spark-GDELT-project](db/000_2-sds-3-x-ml/030_Spark-GDELT-project/)
 	*  [GDELT dataset](db/030_Spark-gdelt-1.1-examples/)
 	*  [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
 8. ETL, Exploration and Export of Structured, Semi-Structured and Unstructured Data and Models
