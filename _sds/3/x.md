@@ -93,14 +93,14 @@ The databricks notebooks have been made available as the following course module
 
 **Topics:**  *Distributed Simulation; various un/supervised ML Algorithms; Linear Algebra; Vertex Programming using SparkML, GraphX and piped-RDDs.*
 
-6. Introduction to Spark GDELT-project: Global Mass Media Monitoring
-        * [030_Spark-GDELT-project](db/000_2-sds-3-x-ml/030_Spark-GDELT-project/)
-7. Old Bailey Online - ETL of XML
-        * [033_OBO_LoadExtract](db/000_2-sds-3-x-ml/033_OBO_LoadExtract/)
-7. Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
-        * [033_OBO_PipedRDD_RigorousBayesianABTesting](db/000_2-sds-3-x-ml/033_OBO_PipedRDD_RigorousBayesianABTesting/)
-9. Latent Dirichlet Allocation of Cornell Movie Dialogs
-        * [035_LDA_CornellMovieDialogs](db/000_2-sds-3-x-ml/035_LDA_CornellMovieDialogs/)
+1. Introduction to Spark GDELT-project: Global Mass Media Monitoring
+	* [030_Spark-GDELT-project](db/000_2-sds-3-x-ml/030_Spark-GDELT-project/)
+- Old Bailey Online - ETL of XML
+	* [033_OBO_LoadExtract](db/000_2-sds-3-x-ml/033_OBO_LoadExtract/)
+- Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
+	* [033_OBO_PipedRDD_RigorousBayesianABTesting](db/000_2-sds-3-x-ml/033_OBO_PipedRDD_RigorousBayesianABTesting/)
+- Latent Dirichlet Allocation of Cornell Movie Dialogs
+	* [035_LDA_CornellMovieDialogs](db/000_2-sds-3-x-ml/035_LDA_CornellMovieDialogs/)
 
 
 <!---
