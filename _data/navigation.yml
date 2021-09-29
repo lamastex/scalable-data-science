@@ -100,14 +100,76 @@ lMenu-SDS-3.x:
         url: /sds/3/x/db/000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA/
   - title: "000_2-sds-3-x-ml"
     children:
-      - title: "Introduction to Spark GDELT-project: Global Mass Media Monitoring"
-        url: /sds/3/x/db/000_2-sds-3-x-ml/030_Spark-GDELT-project/
-      - title: "Old Bailey Online - ETL of XML"
+      - title: "Packaging Notebooks"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/010a_packageCells/
+      - title: "Intro to Simulation"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/011_02_IntroToSimulation/
+      - title: "Intro to ML"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/011_03_IntroToML/
+      - title: "Unsupervised clustering K-Means"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/012_UnsupervisedClustering_1MSongsKMeans_Intro/
+      - title: "K-Means 1M Songs ETL"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/013_UnsupervisedClustering_1MSongsKMeans_Stage1ETL/
+      - title: "K-Means 1M Songs Explore"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/014_UnsupervisedClustering_1MSongsKMeans_Stage2Explore/
+      - title: "K-Means 1M Songs Model"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/015_UnsupervisedClustering_1MSongsKMeans_Stage3Model/
+      - title: "Supervised Clustering Decision Trees MNIST"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/016_SupervisedClustering_DecisionTrees_HandWrittenDigitRecognition/
+      - title: "Linear Algebra Intro"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/017_LAlgIntro/
+      - title: "Linear Regression Intro"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/018_LinRegIntro/
+      - title: "Distributed Linear Algebra (DLA)"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019_DistLAlgForLinRegIntro/
+      - title: "DLA Prog Guide"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_000_dataTypesProgGuide/
+      - title: "DLA Local Vector"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_001_LocalVector/
+      - title: "DLA Labeled Point"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_002_LabeledPoint/
+      - title: "DLA Local Matrix"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_003_LocalMatrix/
+      - title: "DLA Distributed Matrix"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_004_DistributedMatrix/
+      - title: "DLA Row Matrix"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_005_RowMatrix/
+      - title: "DLA Indexed Row Matrix"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_006_IndexedRowMatrix/
+      - title: "DLA Coordinate Matrix"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_007_CoordinateMatrix/
+      - title: "DLA Block Matrix"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/019x_008_BlockMatrix/
+      - title: "Power Plant Pipeline Model-Tune-Evaluate"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/020_PowerPlantPipeline_02ModelTuneEvaluate/
+      - title: "Activity Recognition by Random Forest"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/021_recognizeActivityByRandomForest/
+      - title: "Graph Frames"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/022_GraphFramesUserGuide/
+      - title: "Flight Performance"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/023_OnTimeFlightPerformance/
+      - title: "Power Plant Pipeline Deploy"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/
+      - title: "Old Bailey Online - ETL"
         url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_LoadExtract/
-      - title: "Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data"
+      - title: "Old Bailey Online AB Test"
         url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_PipedRDD_RigorousBayesianABTesting/
-      - title: "Latent Dirichlet Allocation of Cornell Movie Dialogs"
+      - title: "Old Bailey Piped RDD 0"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_xx0_IvanSadikov_PipedRDDhelp/
+      - title: "Old Bailey Piped RDD 1"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_xx1_OBOnlineExample/
+      - title: "Old Bailey Piped RDD 2"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/033_OBO_xx2_OBOnlineExampleScala/
+      - title: "LDA of NewsGroups"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/034_LDA_20NewsGroupsSmall/
+      - title: "LDA Movie Dialogs"
         url: /sds/3/x/db/000_2-sds-3-x-ml/035_LDA_CornellMovieDialogs/
+      - title: "Movie Recommender"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/036_ALS_MovieRecommender/
+      - title: "GraphX Shortest Weighted Paths"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/998_EX_01_GraphXShortestWeightedPaths/
+      - title: "Fraud Detection with Random Forests"
+        url: /sds/3/x/db/000_2-sds-3-x-ml/999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels/
 
 
 
