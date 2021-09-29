@@ -124,20 +124,20 @@ The databricks notebooks have been made available as the following course module
     * [022_GraphFramesUserGuide](db/000_2-sds-3-x-ml/022_GraphFramesUserGuide/)
     * [023_OnTimeFlightPerformance](db/000_2-sds-3-x-ml/023_OnTimeFlightPerformance/)
     * [030_PowerPlantPipeline_03ModelTuneEvaluateDeploy](db/000_2-sds-3-x-ml/030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/)
-- Old Bailey Online - ETL of XML
+7. Old Bailey Online - ETL of XML
     * [033_OBO_LoadExtract](db/000_2-sds-3-x-ml/033_OBO_LoadExtract/)
-- Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
+8. Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
     * [033_OBO_PipedRDD_RigorousBayesianABTesting](db/000_2-sds-3-x-ml/033_OBO_PipedRDD_RigorousBayesianABTesting/)
     * [033_OBO_xx0_IvanSadikov_PipedRDDhelp](db/000_2-sds-3-x-ml/033_OBO_xx0_IvanSadikov_PipedRDDhelp/)
     * [033_OBO_xx1_OBOnlineExample](db/000_2-sds-3-x-ml/033_OBO_xx1_OBOnlineExample/)
     * [033_OBO_xx2_OBOnlineExampleScala](db/000_2-sds-3-x-ml/033_OBO_xx2_OBOnlineExampleScala/)
-- Latent Dirichlet Allocation of NewsGroups and Cornell Movie Dialogs
+9. Latent Dirichlet Allocation of NewsGroups and Cornell Movie Dialogs
     * [034_LDA_20NewsGroupsSmall](db/000_2-sds-3-x-ml/034_LDA_20NewsGroupsSmall/)
     * [035_LDA_CornellMovieDialogs](db/000_2-sds-3-x-ml/035_LDA_CornellMovieDialogs/)
-- Collaborative Filtering for Recommendation Systems
+10. Collaborative Filtering for Recommendation Systems
     * [036_ALS_MovieRecommender](db/000_2-sds-3-x-ml/036_ALS_MovieRecommender/)
     * [998_EX_01_GraphXShortestWeightedPaths](db/000_2-sds-3-x-ml/998_EX_01_GraphXShortestWeightedPaths/)
-- Fraud Detection with Decision Trees
+11. Fraud Detection with Decision Trees
     * [999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels](db/000_2-sds-3-x-ml/999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels/)
 
 <!---
