@@ -10,10 +10,12 @@
 // MAGIC - **Course Name:** *Scalable Data Science and Distributed Machine Learning*
 // MAGIC - **Course Acronym:** *ScaDaMaLe* or *sds-3.x*.
 // MAGIC 
-// MAGIC The course is the fifth and final mandatory course in the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/). 
-// MAGIC It is given in three modules. In addition to academic lectures there is invited guest speakers from industry.
+// MAGIC The course was designed to be the fifth and final mandatory course in the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/) in 2021. *From 2022 ScaDaMaLe is an optional course for WASP students who have successfully completed the mandatory courses*. 
+// MAGIC It is given in three modules. In addition to academic lectures there are invited guest speakers from industry.
 // MAGIC 
-// MAGIC This site provides course contents for modules 1 and 3 with some background materials for module 2. This content is referred to as **sds-3.x** here.
+// MAGIC The course can also be taken by select post-graduate students at Uppsala University as a *Special Topics Course* from the Department of Mathematics.
+// MAGIC 
+// MAGIC This site provides course contents for the three modules. This content is referred to as **sds-3.x** here.
 // MAGIC 
 // MAGIC **Module 1** – Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
 // MAGIC 
@@ -47,15 +49,14 @@
 // MAGIC   - [https://lamastex.github.io/ScaDaMaLe/index.html](https://lamastex.github.io/ScaDaMaLe/index.html)
 // MAGIC 
 // MAGIC - You may upload Course Content into Databricks Community Edition from:
-// MAGIC   - [2020 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2020)
-// MAGIC   - [Extra Resources](https://github.com/lamastex/scalable-data-science/blob/master/dbcArchives/2017/parts/xtraResources.dbc)
+// MAGIC   - [2021 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2021)
 // MAGIC 
 // MAGIC ## Course Assessment
 // MAGIC 
 // MAGIC There will be minimal reading and coding exercises that will not be graded. The main assessment will be based on a peer-reviewed group project. 
 // MAGIC The group project will include notebooks/codes along with a video of the project presentation. Each group cannot have more than four members and should be seen as an opportunity to do something you are passionate about or interested in, as opposed to completing and auto-gradeable programming assessment in the shortest amount of time. 
 // MAGIC 
-// MAGIC Detailed instructions will be given in the sequel especially over 12-16 Open Office Hours after the lab/lectures finish after 6 full days of interactions.
+// MAGIC Detailed instructions will be given in the sequel.
 // MAGIC   
 // MAGIC ## Course Sponsors
 // MAGIC 
@@ -73,7 +74,7 @@
 // MAGIC 
 // MAGIC I currently (2020) have an effective joint appointment as:
 // MAGIC 
-// MAGIC * [Associate Professor of Mathematics with specialisation in Data Science](http://katalog.uu.se/profile/?id=N17-214) at [Department of Mathematics](http://www.math.uu.se/), [Uppsala University](http://www.uu.se/), Uppsala, Sweden and
+// MAGIC * [Associate Professor of Mathematics with specialisation in Data Science](https://katalog.uu.se/profile/?id=N17-214) at [Department of Mathematics](https://www.math.uu.se/), [Uppsala University](https://www.uu.se/), Uppsala, Sweden and
 // MAGIC * Director, Technical Strategy and Research at [Combient Mix AB](https://combient.com/mix), Stockholm, Sweden
 // MAGIC 
 // MAGIC Quick links on Raaz's background:
@@ -119,7 +120,7 @@
 // MAGIC 
 // MAGIC Now, let us look at two industrially-informed academic papers that influence the above quote on what is Data Science, but with a view towards the contents and syllabus of this course.
 // MAGIC 
-// MAGIC Source: [Vasant Dhar, Data Science and Prediction, Communications of the ACM, Vol. 56 (1). p. 64, DOI:10.1145/2500499](http://dl.acm.org/citation.cfm?id=2500499)
+// MAGIC Source: [Vasant Dhar, Data Science and Prediction, Communications of the ACM, Vol. 56 (1). p. 64, DOI:10.1145/2500499](https://dl.acm.org/citation.cfm?id=2500499)
 // MAGIC 
 // MAGIC **key insights in the above paper** 
 // MAGIC 
@@ -134,7 +135,7 @@
 // MAGIC   * optimization, 
 // MAGIC   * along with a deep understanding of the craft of problem formulation to engineer effective solutions.
 // MAGIC   
-// MAGIC Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](http://science.sciencemag.org/content/349/6245/255.full-text.pdf+html)
+// MAGIC Source: [Machine learning: Trends, perspectives, and prospects, M. I. Jordan, T. M. Mitchell, Science  17 Jul 2015: Vol. 349, Issue 6245, pp. 255-260, DOI: 10.1126/science.aaa8415](https://www.science.org/doi/pdf/10.1126/science.aaa8415)
 // MAGIC 
 // MAGIC **key insights in the above paper** 
 // MAGIC 
@@ -240,16 +241,16 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // MAGIC %md
 // MAGIC ## Standing on shoulders of giants!
 // MAGIC 
-// MAGIC This course will build on content owned by the instructors in two other edX courses from 2015 where needed.  
+// MAGIC This course was originally structured from two other edX courses from 2015. Unfortunately, these courses and their content,including video lectures and slides, are not available openly any longer.
 // MAGIC 
-// MAGIC * [BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x)
-// MAGIC * [BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x)
+// MAGIC * BerkeleyX/CS100-1x, Introduction to Big Data Using Apache Spark by Anthony A Joseph, Chancellor's Professor, UC Berkeley
+// MAGIC * BerkeleyX/CS190-1x, Scalable Machine Learning by Ameet Talwalkar, Ass. Prof., UC Los Angeles
 // MAGIC 
 // MAGIC This course will be an *expanded and up-to-date scala version* with an emphasis on *individualized course project* as opposed to completing labs that test sytactic skills that are auto-gradeable. 
 // MAGIC 
 // MAGIC We will also be borrowing more theoretical aspects from the following course:
 // MAGIC 
-// MAGIC * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](http://stanford.edu/~rezab/dao/)
+// MAGIC * [Stanford/CME323, Distributed Algorithms and Optimization by Reza Zadeh, Ass. Prof., Institute for Computational and Mathematical Engineering, Stanford Univ.](https://stanford.edu/~rezab/dao/)
 // MAGIC 
 // MAGIC Note the **Expected Reference Readings** above for this course.
 
@@ -259,15 +260,13 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // MAGIC # A Brief Tour of Data Science
 // MAGIC ## History of Data Analysis and Where Does "Big Data" Come From?
 // MAGIC 
-// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
-// MAGIC 
-// MAGIC * **(watch now 1:53):** A Brief History of Data Analysis
-// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/5fSSvYlDkag/0.jpg)](https://www.youtube.com/watch?v=5fSSvYlDkag)
+// MAGIC *  A Brief History and Timeline of Data Analysis and Big Data
+// MAGIC   * [https://en.wikipedia.org/wiki/Big_data](https://en.wikipedia.org/wiki/Big_data)
+// MAGIC   * [https://whatis.techtarget.com/feature/A-history-and-timeline-of-big-data](https://whatis.techtarget.com/feature/A-history-and-timeline-of-big-data)
 // MAGIC   
+// MAGIC *  Where does Data Come From?
 // MAGIC   
-// MAGIC * **(watch now 5:05)**: Where does Data Come From?
-// MAGIC   * [![Where Does Data Come From by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/eEJFlHE7Gt4/0.jpg)](https://www.youtube.com/watch?v=eEJFlHE7Gt4?rel=0&autoplay=1&modestbranding=1)
-// MAGIC   * SUMMARY of Some of the sources of big data.
+// MAGIC   * Some of the sources of big data.
 // MAGIC      * online click-streams (a lot of it is recorded but a tiny amount is analyzed):
 // MAGIC        * record every click
 // MAGIC        * every ad you view
@@ -301,24 +300,33 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC ## Data Science Defined, Cloud Computing and What's Hard About Data Science?
+// MAGIC ## Data Science with Cloud Computing and What's Hard about it?
 // MAGIC 
-// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
+// MAGIC * See [Cloud Computing](https://en.wikipedia.org/wiki/Cloud_computing) to understand the work-horse for analysing big data at [data centers](https://en.wikipedia.org/wiki/Data_center)
 // MAGIC 
-// MAGIC * **(watch now 2:03)**: Data Science Defined
-// MAGIC   * [![Data Science Defined by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/g4ujW1m2QNc/0.jpg)](https://www.youtube.com/watch?v=g4ujW1m2QNc?rel=0&modestbranding=1)
-// MAGIC *  **(watch now 1:11)**: Cloud Computing
-// MAGIC   * [![Cloud Computing by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/TAZvh0WmOHM/0.jpg)](https://www.youtube.com/watch?v=TAZvh0WmOHM?rel=0&modestbranding=1)
-// MAGIC   * In fact, if you are logged into `https://*.databricks.com/*` you are computing in the cloud!
-// MAGIC   * The Scalable Data Science course is supported by Databricks Academic Partners Program and the AWS Educate Grant to University of Canterbury (applied by Raaz Sainudiin in 2015).
-// MAGIC * **(watch now 3:31)**: What's hard about data science
-// MAGIC   * [![What's hard about data science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/MIqbwJ6AbIY/0.jpg)](https://www.youtube.com/watch?v=MIqbwJ6AbIY?rel=0&modestbranding=1)
+// MAGIC > Cloud computing is the on-demand availability of computer system resources, especially data storage (cloud storage) and computing power, without direct active management by the user. Large clouds often have functions distributed over multiple locations, each location being a data center. Cloud computing relies on sharing of resources to achieve coherence and economies of scale, typically using a "pay-as-you-go" model which can help in reducing capital expenses but may also lead to unexpected operating expenses for unaware users.
+// MAGIC 
+// MAGIC * In fact, if you are logged into `https://*.databricks.com/*` you are computing in the cloud! So the computations are actually running in an instance of the hardware available at a data center like the following:
+// MAGIC 
+// MAGIC   * ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/CERN_Server_03.jpg/250px-CERN_Server_03.jpg)
+// MAGIC 
+// MAGIC * Here is a data center used by CERN in 2010.
+// MAGIC   * ![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Cern_datacenter.jpg/450px-Cern_datacenter.jpg)
+// MAGIC   
+// MAGIC   
+// MAGIC 
+// MAGIC * What's hard about scalable data science in the cloud?
+// MAGIC   *  To analyse datasets that are big, say more than a few TBs, we need to split the data and put it in several computers that are networked - *a typical cloud *
+// MAGIC     * ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Wikimedia_Foundation_Servers-8055_03_square.jpg/120px-Wikimedia_Foundation_Servers-8055_03_square.jpg)
+// MAGIC   * However, as the number of computer nodes in such a network increases, the probability of hardware failure or fault (say the hard-disk or memory or CPU or switch breaking down) also increases and can happen while the computation is being performed
+// MAGIC   * Therefore for scalable data science, i.e., data science that can scale with the size of the input data by adding more computer nodes, we need *fault-tolerant computing and storage framework at the software level* to ensure the computations finish even if there are hardware faults. 
 
 // COMMAND ----------
 
 // MAGIC %md
-// MAGIC Here is a recommended light reading on **What is "Big Data" -- Understanding th History** (18 minutes):
+// MAGIC Here is a recommended light reading on **What is "Big Data" -- Understanding the History** (18 minutes):
 // MAGIC   - [https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce](https://towardsdatascience.com/what-is-big-data-understanding-the-history-32078f3b53ce)
+// MAGIC   
 
 // COMMAND ----------
 
@@ -327,51 +335,6 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // MAGIC ---
 // MAGIC 
 // MAGIC ---
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC ## Background Materials on Data Science
-// MAGIC 
-// MAGIC The following content was created by Anthony Joseph and used in BerkeleyX/CS100.1x from 2015.
-// MAGIC 
-// MAGIC * **(watch later 2:31)**: Why all the excitement about *Big Data Analytics*? (using google search to now-cast google flu-trends)
-// MAGIC   * [![A Brief History of Data Analysis by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/16wqonWTAsI/0.jpg)](https://www.youtube.com/watch?v=16wqonWTAsI)
-// MAGIC * other interesting big data examples - recommender systems and netflix prize?
-// MAGIC 
-// MAGIC * **(watch later 10:41)**: Contrasting data science with traditional databases, ML, Scientific computing
-// MAGIC   * [![Data Science Database Contrast by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/c7KG0c3ADk0/0.jpg)](https://www.youtube.com/watch?v=c7KG0c3ADk0)
-// MAGIC   * SUMMARY:
-// MAGIC    * traditional databases versus data science
-// MAGIC      * preciousness versus cheapness of the data
-// MAGIC      * ACID and eventual consistency, CAP theorem, ...
-// MAGIC      * interactive querying: SQL versus noSQL
-// MAGIC      * querying the past versus querying/predicting the future
-// MAGIC    * traditional scientific computing versus data science
-// MAGIC      * science-based or mechanistic models versus data-driven black-box (deep-learning) statistical models (of course both schools co-exist)
-// MAGIC      * super-computers in traditional science-based models versus cluster of commodity computers
-// MAGIC    * traditional ML versus data science
-// MAGIC      * smaller amounts of clean data in traditional ML versus massive amounts of dirty data in data science
-// MAGIC      * traditional ML researchers try to publish academic papers versus data scientists try to produce actionable intelligent systems
-// MAGIC * **(watch later 1:49)**: Three Approaches to Data Science
-// MAGIC   * [![Approaches to Data Science by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/yAOEyeDVn8s/0.jpg)](https://www.youtube.com/watch?v=yAOEyeDVn8s)
-// MAGIC * **(watch later 4:29)**:  Performing Data Science and Preparing Data, Data Acquisition and Preparation, ETL, ...
-// MAGIC   * [![Data Science Database Contrast by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/3V6ws_VEzaE/0.jpg)](https://www.youtube.com/watch?v=3V6ws_VEzaE)
-// MAGIC * **(watch later 2:01)**: Four Examples of Data Science Roles
-// MAGIC   * [![Data Science Roles by Anthony Joseph in BerkeleyX/CS100.1x](http://img.youtube.com/vi/gB-9rdM6W1A/0.jpg)](https://www.youtube.com/watch?v=gB-9rdM6W1A)
-// MAGIC   * SUMMARY of Data Science Roles.
-// MAGIC    * individual roles:
-// MAGIC      1. business person
-// MAGIC      2. programmer
-// MAGIC    * organizational roles:
-// MAGIC      3. enterprise
-// MAGIC      4. web company
-// MAGIC   * Each role has it own unique set of:
-// MAGIC     * data sources
-// MAGIC     * Extract-Transform-Load (ETL) process
-// MAGIC     * business intelligence and analytics tools
-// MAGIC   * Most Maths/Stats/Computing programs cater to the *programmer* role
-// MAGIC     * Numpy and Matplotlib, R, Matlab, and Octave.
 
 // COMMAND ----------
 
@@ -393,7 +356,7 @@ displayHTML(frameIt("https://www.oreilly.com/ideas/data-engineers-vs-data-scient
 // MAGIC * How to keep up?
 // MAGIC   - This is a fast-changing world. 
 // MAGIC   - Recent videos around Apache Spark are archived here (these videos are a great way to learn the latest happenings in industrial R&D today!):
-// MAGIC     - https://databricks.com/sparkaisummit/north-america/sessions
+// MAGIC     - [https://databricks.com/sparkaisummit](https://databricks.com/sparkaisummit)
 // MAGIC * What is mathematically stable in the world of 'big data'?
 // MAGIC   - There is a growing body of work on the analysis of parallel and distributed algorithms, the work-horse of big data and AI. 
-// MAGIC   - We will see some of this in a theoretical module later, but the focus here is on how to write programs and analyze data.
+// MAGIC   - We will see some of this in a theoretical module later, but the immediate focus here is on how to write programs and analyze data.

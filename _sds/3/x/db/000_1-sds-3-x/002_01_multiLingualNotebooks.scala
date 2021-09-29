@@ -294,4 +294,4 @@ println(System.currentTimeMillis) // press Ctrl+Enter to evaluate println that p
 // MAGIC * databricks
 // MAGIC   * [https://docs.databricks.com/index.html](https://docs.databricks.com/index.html)
 // MAGIC * scala
-// MAGIC   * [http://docs.scala-lang.org/](http://docs.scala-lang.org/)
+// MAGIC   * [https://docs.scala-lang.org/](https://docs.scala-lang.org/)
