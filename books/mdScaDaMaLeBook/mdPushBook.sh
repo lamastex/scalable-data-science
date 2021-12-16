@@ -12,6 +12,7 @@ git pull &&
 #git push &&
 ## cp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/main_index.html ./index.html &&
 mkdir -p 000_1-sds-3-x && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_1-sds-3-x/book/* ./000_1-sds-3-x &&
+: '
 mkdir -p 000_2-sds-3-x-ml && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_2-sds-3-x-ml/book/* ./000_2-sds-3-x-ml &&
 # search file too large for 000_3-sds-3-x-st: so break it into two bdc files
 #mkdir -p 000_3-sds-3-x-st && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_3-sds-3-x-st/book/* ./000_3-sds-3-x-st &&
@@ -24,10 +25,10 @@ mkdir -p 000_8-sds-3-x-pri && cp -rp ~/all/git/lamastex/scalable-data-science/bo
 # fix mdbook error with the POI notebook in 000_9-sds-3-x-trends - currently 000_9-sds-3-x-trends/src/SUMMARY.md does not have this notebook
 mkdir -p 000_9-sds-3-x-trends && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_9-sds-3-x-trends/book/* ./000_9-sds-3-x-trends &&
 mkdir -p xtraResources && cp -rp ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/xtraResources/book/* ./xtraResources &&
-
+'
 git add -A &&
 git status &&
-git commit -a -m "book draft 6 version -- tor  3 jun 2021 01:31:54 CEST Uppsala, Sweden" &&
+git commit -a -m "book draft 7 version -- ons 29 sep 2021 19:56:42 CEST Uppsala, Sweden" &&
 git push origin gh-pages &&
 popd
 
