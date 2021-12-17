@@ -1,10 +1,16 @@
 #!/bin/bash
-## to generate md files in a dir do `./makeMds.sh 000_2-sds-3-x-ml`
-for fileName in $1/*.md
+## to generate md files in a dir with html files do `./makeMds.sh 000_2-sds-3-x-ml`
+for fileName in $1/*.html #$(ls $1/*.html | cut -d'/' -f 9-10 | head -n 100)
 do
-  fn=${fileName/.md/}
   echo "$fileName"
-  echo "$fn"
-  cat xxxxMD.template > "$fileName"
-  sed -i "s@xxxx@${fn}@g" "$fileName" 
+  hn=${fileName/.html/}
+  echo "$hn"
+  strippedHn=$(echo $hn | cut -d'/' -f 10-11)
+  echo "$strippedHn"
+  mdFileName=${hn}.md
+  echo "$mdFileName"
+  touch $mdFileName
+  #fn=${fileName/.md/}
+  cat xxxxMD.template > "$mdFileName"
+  sed -i "s@xxxx@${strippedHn}@g" "$mdFileName" 
 done
