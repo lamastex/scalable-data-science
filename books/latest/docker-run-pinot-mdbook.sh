@@ -15,7 +15,8 @@ echo ${MDBOOKdir}
 
 echo "done echoing env variables in use inside docker"
 
-modules="000_1-sds-3-x " #000_2-sds-3-x-ml #000_3-sds-3-x-st 000_4-sds-3-x-ss 000_5-sds-2-x-geo 000_6-sds-3-x-dl 000_7-sds-3-x-ddl 000_8-sds-3-x-pri xtraResources 000_9-sds-3-x-trends
+#modules="000_1-sds-3-x " #000_2-sds-3-x-ml #"000_3-sds-3-x-st " #000_4-sds-3-x-ss 000_5-sds-2-x-geo 000_6-sds-3-x-dl 000_7-sds-3-x-ddl 000_8-sds-3-x-pri xtraResources 
+modules=000_9-sds-3-x-trends
 #rm -r $MDBOOKdir/*-sds-*/src/contents/* && #first clean the md files to avoid pre-pumped files
 cd $MDBOOKdir
 for module in $modules

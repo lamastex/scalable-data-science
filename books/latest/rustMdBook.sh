@@ -10,5 +10,6 @@ pushd $MDBOOKdir
   ##cd ..
   ###################################################
 mkdir -p $1/src && cat src/bigSUMMARY.md | grep "${1}"  > $1/src/SUMMARY.md && cp scroll-mdbook-outputs.css $1/ &&
-pushd $MDBOOKdir/$1 && mdbook build && popd && pwd &&
+pushd $MDBOOKdir/$1 && rm -rf book && mdbook build && popd && pwd &&
 echo "done with making mdbook for module ${1}" 
+
