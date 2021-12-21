@@ -7,9 +7,9 @@ echo ${localgitdbcDIRPATH}
 echo ${localgitsiteDIRPATH}
 echo "done echoing env variables in use inside docker"
 
-sdsCourseModule=000_2-sds-3-x-ml
+sdsCourseModule=000_3-sds-3-x-st
 #
-#done already .. 000_1-sds-3-x
+#done already .. 000_1-sds-3-x 000_2-sds-3-x-ml
 
 ## this just lists the workspace/scalable-data-science
 #databricks --profile ${dbProfile0} workspace list /scalable-data-science && 
