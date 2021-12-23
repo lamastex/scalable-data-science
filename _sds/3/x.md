@@ -61,7 +61,7 @@ Expected Reference Readings (you need to be logged into your library with access
 
 The databricks notebooks have been made available as the following course modules:
 
-# 000_1-sds-3-x
+# [000_1-sds-3-x](db/000_1-sds-3-x)
 
 ## Introduction to Scalable Data Science and Distributed Machine Learning
 
