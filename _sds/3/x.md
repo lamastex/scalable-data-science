@@ -14,10 +14,18 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 
 # SDS-3.x: Scalable Data Science and Distributed Machine Learning
 
-The course is the fifth and final mandatory course in the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/). 
-It is given in three modules. In addition to academic lectures there is invited guest speakers from industry.
+The course is developed for the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/) and for the Centre for Interdisciplinary Mathematics at Uppsala University. 
+It is given in several modules for the *ScadaMaLe-WASP* and *ScaDaMaLe-UU* course instances. 
 
-This site provides course contents for modules 1 and 3 with some background materials for module 2. This content is referred to as **sds-3.x** here.
+
+This site provides course contents for the two instances with multiple deep-dive pathways. 
+These contents, instances and pathways are packaged as modules and referred to as **sds-3.x** here.
+
+## ScadaMaLe-WASP 
+
+This instance for  the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/)is divided into the following three modules.
+
+In addition to academic lectures there is invited guest speakers from industry.
 
 **Module 1** – Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
 
@@ -55,35 +63,9 @@ The databricks notebooks have been made available as the following course module
 
 # 000_1-sds-3-x
 
-## Introduction to Scalable Data Science and Distributed Machine Learning. 
+- See [000_1-sds-3-x](db/000_1-sds-3-x)
 
-**Topics:** *Apache Spark, Scala, RDD, map-reduce, Ingest, Extract, Load, Transform and Explore with noSQL in SparkSQL.*
-
-1. Introduction:  What is Data Science, Data Engineering and the Data Engineering Science Process?
-  *  [Introduction](db/000_1-sds-3-x/000_ScaDaMaLe/)
-2. Apache Spark and Big Data
-  *  [Why Spark?](db/000_1-sds-3-x/001_whySpark/)
-  *  [Login to databricks](db/000_1-sds-3-x/002_00_loginToDatabricks/)
-  *  [Multi-Lingual Notebooks](db/000_1-sds-3-x/002_01_multiLingualNotebooks/)
-  *  [Scala Crash Course 00](db/000_1-sds-3-x/003_00_scalaCrashCourse/)
-  *  [Scala Crash Course 01](db/000_1-sds-3-x/003_01_scalaCrashCourse/)
-3. Map-Reduce, Transformations and Actions with Resilient Distributed datasets
-  *  [RDDs](db/000_1-sds-3-x/004_RDDsTransformationsActions/)
-  *  [RDDs HOMEWORK](db/000_1-sds-3-x/005_RDDsTransformationsActionsHOMEWORK/)
-  *  [Word Count - SOU](db/000_1-sds-3-x/006_WordCount/)
-4. Ingest, Extract, Transform, Load and Explore with noSQL
-  *  [Spark SQL Basics](db/000_1-sds-3-x/007_SparkSQLIntroBasics/)
-  *  [SparkSQL HW-a ProgGuide](db/000_1-sds-3-x/007a_SparkSQLProgGuide_HW/)
-  *  [SparkSQL HW-b ProgGuide](db/000_1-sds-3-x/007b_SparkSQLProgGuide_HW/)
-  *  [SparkSQL HW-c ProgGuide](db/000_1-sds-3-x/007c_SparkSQLProgGuide_HW/)
-  *  [SparkSQL HW-d ProgGuide](db/000_1-sds-3-x/007d_SparkSQLProgGuide_HW/)
-  *  [SparkSQL HW-e ProgGuide](db/000_1-sds-3-x/007e_SparkSQLProgGuide_HW/)
-  *  [SparkSQL HW-f ProgGuide](db/000_1-sds-3-x/007f_SparkSQLProgGuide_HW/)
-  *  [SparkSQL HW-g ProgGuide](db/000_1-sds-3-x/007g_PivotInSQL/)
-  *  [ETL Diamonds Data](db/000_1-sds-3-x/008_DiamondsPipeline_01ETLEDA/)
-  *  [ETL Power Plant](db/000_1-sds-3-x/009_PowerPlantPipeline_01ETLEDA/)
-  *  [Wiki Click streams](db/000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA/)
-5. Ethics, Explainability and Fairness - An Operational View
+## 000_1-sds-3-x Ethics, Explainability and Fairness - An Operational View
   * [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
   * [Ethical AI - Fairness](colab/Ethical_AI_Fairness_Self_Study_Exercise/)
 
