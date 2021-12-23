@@ -63,7 +63,9 @@ The databricks notebooks have been made available as the following course module
 
 # 000_1-sds-3-x
 
-- See [000_1-sds-3-x](db/000_1-sds-3-x)
+## Introduction to Scalable Data Science and Distributed Machine Learning
+
+- Contents at [000_1-sds-3-x](db/000_1-sds-3-x)
 
 ## 000_1-sds-3-x Ethics, Explainability and Fairness - An Operational View
   * [Ethical AI - Explainability](colab/Ethical_AI_Explainability_Self_Study_Exercise/)
