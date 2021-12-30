@@ -7,7 +7,7 @@ do
   hn=${fileName/.html/}
   echo "$hn"
   #strippedHn=$(echo $hn | cut -d'/' -f 10-11)
-  strippedHn=$(echo $hn | cut -d'/' -f 10-12)
+  strippedHn=$(echo $hn | cut -d'/' -f 10-12) # for 000_0-sds-3-x-projects/*/
   echo "$strippedHn"
   mdFileName=${hn}.md
   echo "$mdFileName"
