@@ -17,7 +17,7 @@ sdsCourseModule=$1 # the first argument is module name
 #################================================================################## 
 ## /scalable-data-science/* with delimiterField=12
 ## databricks --profile dbua-us-west workspace list /scalable-data-science | grep -v projects | grep sds-3-x | sort > modules.txt
-##
+## for line in `cat modules.txt`; do docker run --rm  -it --name=python-dbcli  --env-file env.list  --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/db.sh "$line"; done
 ## 000_1-sds-3-x 000_2-sds-3-x-ml 000_3-sds-3-x-st
 ###################################################################################
 
