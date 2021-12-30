@@ -7,7 +7,7 @@ We will use the following three docker containers to present the ScaDaMaLe lates
 - site: .html, .source (.scala,.python.R,.sql), and .md
 
 ```
-docker run --rm -d -it --name=python-dbcli --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest
+docker run --rm -d -it --name=python-dbcli --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest
 
 docker run --rm -d -it --name=haskell-pinot --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/haskell-pinot:latest
 
@@ -41,6 +41,6 @@ docker exec -it python-dbcli /bin/bash /root/GIT/lamastex/scalable-data-science/
 To run the same command in one go when there is no running container in `-d` mode:
 
 ```
-docker run --rm  -it --name=python-dbcli --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/db.sh
+docker run --rm  -it --name=python-dbcli --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/db.sh
 ```
 
