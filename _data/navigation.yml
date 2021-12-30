@@ -55,7 +55,7 @@ lMenu-SDS-3.x:
       - title: "Setup Instructions"
         url: "https://github.com/lamastex/scalable-data-science/tree/master/_sds/basics/instructions"
   - title: "000_1-sds-3-x"
-  - url: /sds/3/x/db/000_1-sds-3-x/
+    url: /sds/3/x/db/000_1-sds-3-x/
     children:
       - title: "Introduction"
         url: /sds/3/x/db/000_1-sds-3-x/000_ScaDaMaLe/
@@ -100,7 +100,7 @@ lMenu-SDS-3.x:
       - title: "Wiki Click streams"
         url: /sds/3/x/db/000_1-sds-3-x/010_wikipediaClickStream_01ETLEDA/
   - title: "000_2-sds-3-x-ml"
-  - url: /sds/3/x/db/000_2-sds-3-x-ml/
+    url: /sds/3/x/db/000_2-sds-3-x-ml/
     children:
       - title: "Packaging Notebooks"
         url: /sds/3/x/db/000_2-sds-3-x-ml/010a_packageCells/
