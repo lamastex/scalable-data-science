@@ -7,15 +7,17 @@ echo ${localgitdbcDIRPATH}
 echo ${localgitsiteDIRPATH}
 echo "done echoing env variables in use inside docker"
 
-delimiterField=13 #12
+delimiterField=12 #13
 sdsCourseModule=$1 # the first argument is module name
 ###################################################################################
-## 000_0-sds-3-x-projects/* is done already .. with delimiterField=13
+## /scalable-data-science/000_0*-sds-*-projects/* done already with delimiterField=13
 ## databricks workspace list /scalable-data-science/000_0-sds-3-x-projects | sort | sed -e 's/^/000_0-sds-3-x-projects\//' > projects.txt
 ## databricks --profile dbua-us-west workspace list /scalable-data-science/000_00-sds-2-x-projects | sort | sed -e 's/^/000_00-sds-2-x-projects\//' >> projects.tx
 ## for line in `cat projects.txt`; do docker run --rm  -it --name=python-dbcli  --env-file env.list  --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/db.sh "$line"; done
-## 
-## with delimiterField=12
+#################================================================################## 
+## /scalable-data-science/* with delimiterField=12
+## databricks --profile dbua-us-west workspace list /scalable-data-science | grep -v projects | grep sds-3-x | sort > modules.txt
+##
 ## 000_1-sds-3-x 000_2-sds-3-x-ml 000_3-sds-3-x-st
 ###################################################################################
 
