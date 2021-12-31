@@ -17,7 +17,27 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 ## 000_3-sds-3-x-st: Introduction to Spark Streaming
 
 
-**Topics:**  
+**Topics:** *Introduction to Spark Streaming with Discrete RDDs and live Experiments in Twitter with Interactive custom D3 Interactions.* 
 
 - [000_3-sds-3-x-st as book](https://lamastex.github.io/ScaDaMaLe/000_3-sds-3-x-st/)
 
+## 1. Spark Streaming with Discrete Resilient Distributed Datasets
+
+*  [Spark Streaming Intro](db/024_SparkStreamingIntro/)
+
+## 2. Spark Streaming Experiments with Twitter
+
+*  [025_0_getTwitterDeveloperCredentials](025_0_getTwitterDeveloperCredentials/)
+*  [Extended Twitter Utils](db/025_a_extendedTwitterUtils2run/)
+*  [Tweet Transmission Trees](db/025_b_TTTDFfunctions/)
+*  [025_c_extendedTwitterUtils2runWithLangs](025_c_extendedTwitterUtils2runWithLangs/)
+*  [Tweet Collector](db/026_TweetCollector/)
+*  [Tweet Track, Follow](db/027_TweetCollectorTrackAndFollow/)
+*  [Tweet Hashtag Counter](db/028_TweetHashtagCount/)
+*  [029_TweetLanguageClassifier](029_TweetLanguageClassifier/)
+*  [029_Viz_0_TwitterInteractiveVizualisations](029_Viz_0_TwitterInteractiveVizualisations/)
+*  [029_Viz_1_GraphNetworkTimeline](029_Viz_1_GraphNetworkTimeline/)
+*  [029_Viz_2_CoSENSE_EmotionalDimensions](029_Viz_2_CoSENSE_EmotionalDimensions/)
+*  [029_Viz_x_VizGraphFunction](029_Viz_x_VizGraphFunction/)
+*  [029_Viz_x_VizNetworkFunction](029_Viz_x_VizNetworkFunction/)
+*  [029_Viz_x_VizTimelineFunction](029_Viz_x_VizTimelineFunction/)

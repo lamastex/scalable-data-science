@@ -47,20 +47,6 @@ Upload Course Content as `.dbc` file into [Databricks Community Edition](https:/
 
 *  [2021 dbc ARCHIVES](https://github.com/lamastex/scalable-data-science/tree/master/dbcArchives/2021)
 
-Reading Materials Provided
-
-* [read](https://github.com/lamastex/scalable-data-science/tree/master/read)
-
-Reference Readings 
-
-Note: you may need to be logged into your library with access to these publishers.
-
-* [https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/)
-* [https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/](https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/)
-* [https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
-* Introduction to Algorithms, Third Edition, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein from 
-  - [https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142](https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142)
-
 The databricks notebooks have been made available as the following course modules:
 
 # [000_1-sds-3-x](db/000_1-sds-3-x)
@@ -71,9 +57,9 @@ The databricks notebooks have been made available as the following course module
 
 ## Deeper Dive into Distributed Machine Learning
 
-# 000_3-sds-3-x-st
+# [000_3-sds-3-x-st](db/000_3-sds-3-x-st)
 
-    * []()
+## Introduction to Spark Streaming
 
 <!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
@@ -88,16 +74,6 @@ The databricks notebooks have been made available as the following course module
     * [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
   *  [Spark SQL Windows and Activity Detection by Random Forest](db/021_recognizeActivityByRandomForest/)
 
-5. Distributed Vertex Programming, ETL and Graph Querying with GraphX and GraphFrames
-  *  [Graph Frames Intro](db/022_GraphFramesUserGuide/)
-  *  [Ontime Flight Performance](db/023_OnTimeFlightPerformance/)
-6. Spark Streaming with Discrete Resilient Distributed Datasets
-  *  [Spark Streaming Intro](db/024_SparkStreamingIntro/)
-  *  [Extended Twitter Utils](db/025_a_extendedTwitterUtils2run/)
-  *  [Tweet Transmission Trees](db/025_b_TTTDFfunctions/)
-  *  [Tweet Collector](db/026_TweetCollector/)
-  *  [Tweet Track, Follow](db/027_TweetCollectorTrackAndFollow/)
-  *  [Tweet Hashtag Counter](db/028_TweetHashtagCount/)
 7. ETL of GDELT Dataset and XML-structured Dataset
 1. Introduction to Spark GDELT-project: Global Mass Media Monitoring
   * [030_Spark-GDELT-project](db/000_2-sds-3-x-ml/030_Spark-GDELT-project/)
@@ -186,7 +162,16 @@ Optional materials 11. Spark Performance Tuning
   *  [Evaluate French POS Model](db/04_EvaluateFrenchPOSModelBySparkMultiClassMetrics/)
 -->
 
-# Supplements
+# Reference Readings
+
+* [read](https://github.com/lamastex/scalable-data-science/tree/master/read)
+* [https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/)
+* [https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/](https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/)
+* [https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
+* Introduction to Algorithms, Third Edition, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein from 
+  - [https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142](https://ebookcentral.proquest.com/lib/uu/reader.action?docID=3339142)
+
+## Supplements
 
 Several freely available MOOCs, hyperlinks and reference books are used to bolster the learning experience. Plese see references to such additional supplemantary resources in the above content.
 

@@ -60,35 +60,38 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 
 * [020_PowerPlantPipeline_02ModelTuneEvaluate](020_PowerPlantPipeline_02ModelTuneEvaluate/)
 * [021_recognizeActivityByRandomForest](021_recognizeActivityByRandomForest/)
-* [022_GraphFramesUserGuide](022_GraphFramesUserGuide/)
-* [023_OnTimeFlightPerformance](023_OnTimeFlightPerformance/)
 * [030_PowerPlantPipeline_03ModelTuneEvaluateDeploy](030_PowerPlantPipeline_03ModelTuneEvaluateDeploy/)
 
-## 7. Old Bailey Online - ETL of XML
+## 7. Distributed Vertex Programming, ETL and Graph Querying with GraphX and GraphFrames
+
+* [022_GraphFramesUserGuide](022_GraphFramesUserGuide/)
+* [023_OnTimeFlightPerformance](023_OnTimeFlightPerformance/)
+
+## 8. Old Bailey Online - ETL of XML
 
 * [033_OBO_LoadExtract](033_OBO_LoadExtract/)
 
-## 8. Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
+## 9. Piped RDDs - Rigorous Bayesian AB Testing on Old Bailey Online Data
 
 * [033_OBO_PipedRDD_RigorousBayesianABTesting](033_OBO_PipedRDD_RigorousBayesianABTesting/)
 * [033_OBO_xx0_IvanSadikov_PipedRDDhelp](033_OBO_xx0_IvanSadikov_PipedRDDhelp/)
 * [033_OBO_xx1_OBOnlineExample](033_OBO_xx1_OBOnlineExample/)
 * [033_OBO_xx2_OBOnlineExampleScala](033_OBO_xx2_OBOnlineExampleScala/)
 
-## 9. Latent Dirichlet Allocation of NewsGroups and Cornell Movie Dialogs
+## 10. Latent Dirichlet Allocation of NewsGroups and Cornell Movie Dialogs
 
 * [034_LDA_20NewsGroupsSmall](034_LDA_20NewsGroupsSmall/)
 * [035_LDA_CornellMovieDialogs](035_LDA_CornellMovieDialogs/)
 
-## 10. Collaborative Filtering for Recommendation Systems
+## 11. Collaborative Filtering for Recommendation Systems
 
 * [036_ALS_MovieRecommender](036_ALS_MovieRecommender/)
 
-## 11. Extending built-in functions in GraphX
+## 12. Extending built-in functions in GraphX
 
 * [998_EX_01_GraphXShortestWeightedPaths](998_EX_01_GraphXShortestWeightedPaths/)
 
-## 12. Fraud Detection with Decision Trees
+## 13. Fraud Detection with Decision Trees
 
 * [999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels](999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels/)
 
