@@ -21,7 +21,7 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 
 - [000_3-sds-3-x-st as book](https://lamastex.github.io/ScaDaMaLe/000_3-sds-3-x-st/)
 
-## 1. Spark Streaming with Discrete Resilient Distributed Datasets
+## 1. Spark Streaming with Discrete RDDs
 
 *  [Spark Streaming Intro](db/024_SparkStreamingIntro/)
 
