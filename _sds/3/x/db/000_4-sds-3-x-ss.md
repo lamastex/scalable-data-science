@@ -32,7 +32,7 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 ## 2. Sketching for Anomaly Detection in Streams
 
 *  [T-Digest Normal Mixture Streaming Files](040a_TDigestInputStream/)
-*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
+*  [Sketching with T-Digest](041_SketchingWithTDigest/)
 
 <!--
 *  [Streaming with T-Digest](db/042_streamingWithTDigest/)
