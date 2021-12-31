@@ -61,6 +61,10 @@ The databricks notebooks have been made available as the following course module
 
 ## Introduction to Spark Streaming
 
+# [000_4-sds-3-x-ss](db/000_4-sds-3-x-ss)
+
+## Introduction to Spark Structured Streaming
+
 <!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
   * group-project-01 doing scalable XML-parsing 
