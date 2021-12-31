@@ -173,11 +173,68 @@ lMenu-SDS-3.x:
       - title: "Fraud Detection with Random Forests"
         url: /sds/3/x/db/000_2-sds-3-x-ml/999_YT_01_FinancialFraudDetectionUsingDecisionTreeMachineLearningModels/
   - title: "000_3-sds-3-x-st"
+    url: /sds/3/x/db/000_3-sds-3-x-st/
     children:
-      - title: "Introduction"
-        url: /sds/3/x/db/000_3-sds-3-x-st/.../
-
-
+      - title: "Spark Streaming Intro"
+        url: /sds/3/x/db/024_SparkStreamingIntro/
+      - title: "025_0_getTwitterDeveloperCredentials"
+        url: /sds/3/x/db/025_0_getTwitterDeveloperCredentials/
+      - title: "Extended Twitter Utils"
+        url: /sds/3/x/db/025_a_extendedTwitterUtils2run/
+      - title: "Tweet Transmission Trees"
+        url: /sds/3/x/db/025_b_TTTDFfunctions/
+      - title: "025_c_extendedTwitterUtils2runWithLangs"
+        url: /sds/3/x/db/025_c_extendedTwitterUtils2runWithLangs/
+      - title: "Tweet Collector"
+        url: /sds/3/x/db/026_TweetCollector/
+      - title: "Tweet Track, Follow"
+        url: /sds/3/x/db/027_TweetCollectorTrackAndFollow/
+      - title: "Tweet Hashtag Counter"
+        url: /sds/3/x/db/028_TweetHashtagCount/
+      - title: "029_TweetLanguageClassifier"
+        url: /sds/3/x/db/029_TweetLanguageClassifier/
+      - title: "029_Viz_0_TwitterInteractiveVizualisations"
+        url: /sds/3/x/db/029_Viz_0_TwitterInteractiveVizualisations/
+      - title: "029_Viz_1_GraphNetworkTimeline"
+        url: /sds/3/x/db/029_Viz_1_GraphNetworkTimeline/
+      - title: "029_Viz_2_CoSENSE_EmotionalDimensions"
+        url: /sds/3/x/db/029_Viz_2_CoSENSE_EmotionalDimensions/
+      - title: "029_Viz_x_VizGraphFunction"
+        url: /sds/3/x/db/029_Viz_x_VizGraphFunction/
+      - title: "029_Viz_x_VizNetworkFunction"
+        url: /sds/3/x/db/029_Viz_x_VizNetworkFunction/
+      - title: "029_Viz_x_VizTimelineFunction"
+        url: /sds/3/x/db/029_Viz_x_VizTimelineFunction/
+  - title: "000_4-sds-3-x-ss"
+    url: /sds/3/x/db/000_4-sds-3-x-ss/
+    children:
+      - title: "Structured Streaming"
+        url: /sds/3/x/db//
+  - title: "000_6-sds-3-x-dl"
+    url: /sds/3/x/db/000_6-sds-3-x-dl/
+    children:
+      - title: ""
+        url: /sds/3/x/db/000_6-sds-3-x-dl/
+  - title: "000_7-sds-3-x-ddl"
+    url: /sds/3/x/db/000_7-sds-3-x-ddl/
+    children:
+      - title: ""
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/
+  - title: "000_8-sds-3-x-pri"
+    url: /sds/3/x/db/000_8-sds-3-x-pri/
+    children:
+      - title: ""
+        url: /sds/3/x/db/000_8-sds-3-x-pri/
+  - title: "000_9-sds-3-x-trends"
+    url: /sds/3/x/db/000_9-sds-3-x-trends/
+    children:
+      - title: ""
+        url: /sds/3/x/db/000_9-sds-3-x-trends/
+  - title: "000_0-sds-3-x-projects"
+    url: /sds/3/x/db/000_0-sds-3-x-projects/
+    children:
+      - title: ""
+        url: /sds/3/x/db/000_0-sds-3-x-projects/
 
 lMenu-SDS-2.x:
   - title: "SDS-2.x Course"
