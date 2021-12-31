@@ -25,7 +25,7 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 
 *  [Spark Streaming Intro](db/024_SparkStreamingIntro/)
 
-## 2. Spark Streaming Experiments with Twitter
+## 2. Spark Streaming Live Experiments in Twitter
 
 *  [025_0_getTwitterDeveloperCredentials](025_0_getTwitterDeveloperCredentials/)
 *  [Extended Twitter Utils](025_a_extendedTwitterUtils2run/)
