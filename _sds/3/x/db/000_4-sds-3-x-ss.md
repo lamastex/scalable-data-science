@@ -17,7 +17,24 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 ## 000_4-sds-3-x-ss: Introduction to Spark Structured Streaming
 
 
-**Topics:**  
+**Topics:** *Introduction to Spark Structured Streaming and Sketching* 
 
 - [000_4-sds-3-x-ss as book](https://lamastex.github.io/ScaDaMaLe/000_4-sds-3-x-ss/)
 
+## 1. Spark Structured Streaming
+
+*  [Animal Names Streaming Files](037a_AnimalNamesStructStreamingFiles/)
+*  [Normal Mixture Streaming Files](037b_Mix2NormalsStructStreamingFiles/)
+*  [Structured Streaming Prog Guide](038_StructuredStreamingProgGuide/)
+*  [Graph Mixture Streaming Files](037c_Mix2RandomGraphStructStreamingFiles/)
+*  [Structured Streaming of JSONs](039_StructuredStreamingFromJSONFileStream/)
+
+## 2. Sketching for Anomaly Detection in Streams
+
+*  [T-Digest Normal Mixture Streaming Files](040a_TDigestInputStream/)
+*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
+
+<!--
+*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
+*  [042_streamingWithTDigest_TODO](042_streamingWithTDigest_TODO)
+-->

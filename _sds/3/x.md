@@ -83,16 +83,6 @@ The databricks notebooks have been made available as the following course module
   * [Latent Dirichlet Allocation of Cornell Movie Dialogs](db/035_LDA_CornellMovieDialogs/)
   * [MLeap Model Export Demo](db/080_MLeapModelExportDemo/)
   * [Market Basket Analysis via FP Growth](db/081_MarketBasketAnalysisByFPGrowth/)
-9. Spark Structured Streaming
-  *  [Animal Names Streaming Files](db/037a_AnimalNamesStructStreamingFiles/)
-  *  [Normal Mixture Streaming Files](db/037b_Mix2NormalsStructStreamingFiles/)
-  *  [Structured Streaming Prog Guide](db/038_StructuredStreamingProgGuide/)
-  *  [Graph Mixture Streaming Files](db/037c_Mix2RandomGraphStructStreamingFiles/)
-  *  [Structured Streaming of JSONs](db/039_StructuredStreamingFromJSONFileStream/)
-10. Sketching for Anomaly Detection in Streams
-  *  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
-  *  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
-  *  [Streaming with T-Digest](db/042_streamingWithTDigest/)
 
 9. Scalabe Geospatial Analytics
   *  [Geospatial Analytics in Magellan](db/031_GeospatialAnalyticsInMagellan/)

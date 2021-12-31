@@ -35,6 +35,9 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 *  [Tweet Track, Follow](027_TweetCollectorTrackAndFollow/)
 *  [Tweet Hashtag Counter](028_TweetHashtagCount/)
 *  [029_TweetLanguageClassifier](029_TweetLanguageClassifier/)
+
+## 3. Custom D3 Interactive Visualizations
+
 *  [029_Viz_0_TwitterInteractiveVizualisations](029_Viz_0_TwitterInteractiveVizualisations/)
 *  [029_Viz_1_GraphNetworkTimeline](029_Viz_1_GraphNetworkTimeline/)
 *  [029_Viz_2_CoSENSE_EmotionalDimensions](029_Viz_2_CoSENSE_EmotionalDimensions/)
