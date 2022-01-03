@@ -65,6 +65,26 @@ The databricks notebooks have been made available as the following course module
 
 ## Introduction to Spark Structured Streaming
 
+# []()
+
+## 
+
+# []()
+
+## 
+
+# [000_7-sds-3-x-ddl](000_7-sds-3-x-ddl)
+
+## Introduction to Distributed Deep Learning
+
+# [000_8-sds-3-x-pri](000_8-sds-3-x-pri)
+
+## Privacy-Preserving Data Science
+
+# [000_9-sds-3-x-trends](000_9-sds-3-x-trends)
+
+## Trends in Money Market and Media
+
 <!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
   * group-project-01 doing scalable XML-parsing 

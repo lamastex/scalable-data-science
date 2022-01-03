@@ -209,19 +209,19 @@ lMenu-SDS-3.x:
     url: /sds/3/x/db/000_4-sds-3-x-ss/
     children:
       - title: "Animal Names Streaming Files"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/037a_AnimalNamesStructStreamingFiles/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/037a_AnimalNamesStructStreamingFiles/
       - title: "Normal Mixture Streaming Files"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/037b_Mix2NormalsStructStreamingFiles/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/037b_Mix2NormalsStructStreamingFiles/
       - title: "Structured Streaming Prog Guide"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/038_StructuredStreamingProgGuide/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/038_StructuredStreamingProgGuide/
       - title: "Graph Mixture Streaming Files"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/037c_Mix2RandomGraphStructStreamingFiles/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/037c_Mix2RandomGraphStructStreamingFiles/
       - title: "Structured Streaming of JSONs"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/039_StructuredStreamingFromJSONFileStream/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/039_StructuredStreamingFromJSONFileStream/
       - title: "T-Digest Normal Mixture Streaming Files"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/040a_TDigestInputStream/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/040a_TDigestInputStream/
       - title: "Sketching with T-Digest"
-      - url: /sds/3/x/db/000_4-sds-3-x-ss/041_SketchingWithTDigest/
+        url: /sds/3/x/db/000_4-sds-3-x-ss/041_SketchingWithTDigest/
   - title: "000_6-sds-3-x-dl"
     url: /sds/3/x/db/000_6-sds-3-x-dl/
     children:
