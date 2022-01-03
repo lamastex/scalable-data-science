@@ -71,6 +71,7 @@ The databricks notebooks have been made available as the following course module
 
 ## Introduction to Spark Structured Streaming
 
+<!---
 **Topics:** *Introduction to Spark Structured Streaming and Sketching*  
 
 # [000_6-sds-3-x-dl](db/000_6-sds-3-x-dl)
@@ -97,7 +98,6 @@ The databricks notebooks have been made available as the following course module
 
 **Topics:** *Trends in Financial Stocks and News Events using GDELT mass media metadata and yfinance via a Scalably Streamable Trend Calculus. Exploring Events and Persons of Interest at Time Points of Trend Reversals in Commodity Oil Price.*
 
-<!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
   * group-project-01 doing scalable XML-parsing 
     * [Old Bailey Online - ETL of XML](db/033_OBO_LoadExtract/)
