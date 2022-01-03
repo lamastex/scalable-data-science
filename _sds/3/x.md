@@ -69,9 +69,9 @@ The databricks notebooks have been made available as the following course module
 
 # [000_4-sds-3-x-ss](db/000_4-sds-3-x-ss)
 
+<!---
 ## Introduction to Spark Structured Streaming
 
-<!---
 **Topics:** *Introduction to Spark Structured Streaming and Sketching*  
 
 # [000_6-sds-3-x-dl](db/000_6-sds-3-x-dl)
