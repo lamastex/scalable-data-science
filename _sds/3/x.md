@@ -66,6 +66,7 @@ The databricks notebooks have been made available as the following course module
 ## Introduction to Spark Streaming
 
 **Topics:** *Introduction to Spark Streaming with Discrete RDDs and live Experiments in Twitter with Interactive custom D3 Interactions.* 
+
 # [000_4-sds-3-x-ss](db/000_4-sds-3-x-ss)
 
 ## Introduction to Spark Structured Streaming
