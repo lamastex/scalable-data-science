@@ -234,7 +234,7 @@ lMenu-SDS-3.x:
         url: /sds/3/x/db/000_7-sds-3-x-ddl/00_DDL_Introduction/
       - title: "MNIST on tensorflow and keras"
         url: /sds/3/x/db/000_7-sds-3-x-ddl/0x_mnist-tensorflow-keras/
-      - title: "MNIST on pytorch
+      - title: "MNIST on pytorch"
         url: /sds/3/x/db/000_7-sds-3-x-ddl/0y_mnist-pytorch/
       - title: "Image Segmentation"
         url: /sds/3/x/db/000_7-sds-3-x-ddl/exjobbsOfCombientMix2021_00_introduction/
