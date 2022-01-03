@@ -17,7 +17,12 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 ## 000_8-sds-3-x-pri: Privacy-Preserving Data Science
 
 
-**Topics:**  
+**Topics:** *Introduction to Privacy-aware Scalable Data Science. Topics: Data Sanitization, Algorithmic Sanitization, GDPR law and its implications for AI/ML, Pseudonymzation and Differential Privacy, Minimax Optimal Procedures for Locally Private Estimation* 
 
 - [000_8-sds-3-x-pri as book](https://lamastex.github.io/ScaDaMaLe/000_8-sds-3-x-pri/)
 
+## 1. Primer on Privacy in Data Science
+
+* [Introduction to Privacy in Data Science](01_privacyPreservingDataScience/)
+* [Pseudoanonymization](02_privacyPreservingDataScience_pseudonomyzation/)
+* [Differential Privacy](03_privacyPreservingDataScience_Differential_Privacy/)

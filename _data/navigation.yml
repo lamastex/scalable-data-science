@@ -232,11 +232,33 @@ lMenu-SDS-3.x:
     children:
       - title: ""
         url: /sds/3/x/db/000_7-sds-3-x-ddl/
+      - title: "DDL Intro"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/00_DDL_Introduction/
+      - title: "MNIST on tensorflow and keras"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/0x_mnist-tensorflow-keras/
+      - title: "MNIST on pytorch
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/0y_mnist-pytorch/
+      - title: "Image Segmentation"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/exjobbsOfCombientMix2021_00_introduction/
+      - title: "U-Net"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/exjobbsOfCombientMix2021_01a_image_segmentation_unet/
+      - title: "PSP-Net"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/exjobbsOfCombientMix2021_02a_image_segmenation_pspnet/
+      - title: "PSP-Net Tuning"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/exjobbsOfCombientMix2021_04_pspnet_tuning_parallel/
+      - title: "PSP-Net on Horovod"
+        url: /sds/3/x/db/000_7-sds-3-x-ddl/exjobbsOfCombientMix2021_05_pspnet_horovod/
+
   - title: "000_8-sds-3-x-pri"
     url: /sds/3/x/db/000_8-sds-3-x-pri/
     children:
-      - title: ""
-        url: /sds/3/x/db/000_8-sds-3-x-pri/
+      - title: "Primer on Privacy in Data Science"
+        url: /sds/3/x/db/000_8-sds-3-x-pri/01_privacyPreservingDataScience
+      - title: "Pseudoanonymization"
+        url: /sds/3/x/db/000_8-sds-3-x-pri/02_privacyPreservingDataScience_pseudonomyzation
+      - title: "Differential Privacy"
+        url: /sds/3/x/db/000_8-sds-3-x-pri/03_privacyPreservingDataScience_Differential_Privacy
+
   - title: "000_9-sds-3-x-trends"
     url: /sds/3/x/db/000_9-sds-3-x-trends/
     children:
