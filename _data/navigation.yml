@@ -176,40 +176,52 @@ lMenu-SDS-3.x:
     url: /sds/3/x/db/000_3-sds-3-x-st/
     children:
       - title: "Spark Streaming Intro"
-        url: /sds/3/x/db/024_SparkStreamingIntro/
+        url: /sds/3/x/db/000_3-sds-3-x-st/024_SparkStreamingIntro/
       - title: "025_0_getTwitterDeveloperCredentials"
-        url: /sds/3/x/db/025_0_getTwitterDeveloperCredentials/
+        url: /sds/3/x/db/000_3-sds-3-x-st/025_0_getTwitterDeveloperCredentials/
       - title: "Extended Twitter Utils"
-        url: /sds/3/x/db/025_a_extendedTwitterUtils2run/
+        url: /sds/3/x/db/000_3-sds-3-x-st/025_a_extendedTwitterUtils2run/
       - title: "Tweet Transmission Trees"
-        url: /sds/3/x/db/025_b_TTTDFfunctions/
+        url: /sds/3/x/db/000_3-sds-3-x-st/025_b_TTTDFfunctions/
       - title: "025_c_extendedTwitterUtils2runWithLangs"
-        url: /sds/3/x/db/025_c_extendedTwitterUtils2runWithLangs/
+        url: /sds/3/x/db/000_3-sds-3-x-st/025_c_extendedTwitterUtils2runWithLangs/
       - title: "Tweet Collector"
-        url: /sds/3/x/db/026_TweetCollector/
+        url: /sds/3/x/db/000_3-sds-3-x-st/026_TweetCollector/
       - title: "Tweet Track, Follow"
-        url: /sds/3/x/db/027_TweetCollectorTrackAndFollow/
+        url: /sds/3/x/db/000_3-sds-3-x-st/027_TweetCollectorTrackAndFollow/
       - title: "Tweet Hashtag Counter"
-        url: /sds/3/x/db/028_TweetHashtagCount/
+        url: /sds/3/x/db/000_3-sds-3-x-st/028_TweetHashtagCount/
       - title: "029_TweetLanguageClassifier"
-        url: /sds/3/x/db/029_TweetLanguageClassifier/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_TweetLanguageClassifier/
       - title: "029_Viz_0_TwitterInteractiveVizualisations"
-        url: /sds/3/x/db/029_Viz_0_TwitterInteractiveVizualisations/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_Viz_0_TwitterInteractiveVizualisations/
       - title: "029_Viz_1_GraphNetworkTimeline"
-        url: /sds/3/x/db/029_Viz_1_GraphNetworkTimeline/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_Viz_1_GraphNetworkTimeline/
       - title: "029_Viz_2_CoSENSE_EmotionalDimensions"
-        url: /sds/3/x/db/029_Viz_2_CoSENSE_EmotionalDimensions/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_Viz_2_CoSENSE_EmotionalDimensions/
       - title: "029_Viz_x_VizGraphFunction"
-        url: /sds/3/x/db/029_Viz_x_VizGraphFunction/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_Viz_x_VizGraphFunction/
       - title: "029_Viz_x_VizNetworkFunction"
-        url: /sds/3/x/db/029_Viz_x_VizNetworkFunction/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_Viz_x_VizNetworkFunction/
       - title: "029_Viz_x_VizTimelineFunction"
-        url: /sds/3/x/db/029_Viz_x_VizTimelineFunction/
+        url: /sds/3/x/db/000_3-sds-3-x-st/029_Viz_x_VizTimelineFunction/
   - title: "000_4-sds-3-x-ss"
     url: /sds/3/x/db/000_4-sds-3-x-ss/
     children:
-      - title: "Structured Streaming"
-        url: /sds/3/x/db//
+      - title: "Animal Names Streaming Files"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/037a_AnimalNamesStructStreamingFiles/
+      - title: "Normal Mixture Streaming Files"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/037b_Mix2NormalsStructStreamingFiles/
+      - title: "Structured Streaming Prog Guide"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/038_StructuredStreamingProgGuide/
+      - title: "Graph Mixture Streaming Files"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/037c_Mix2RandomGraphStructStreamingFiles/
+      - title: "Structured Streaming of JSONs"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/039_StructuredStreamingFromJSONFileStream/
+      - title: "T-Digest Normal Mixture Streaming Files"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/040a_TDigestInputStream/
+      - title: "Sketching with T-Digest"
+      - url: /sds/3/x/db/000_4-sds-3-x-ss/041_SketchingWithTDigest/
   - title: "000_6-sds-3-x-dl"
     url: /sds/3/x/db/000_6-sds-3-x-dl/
     children:
