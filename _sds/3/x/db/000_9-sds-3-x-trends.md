@@ -16,8 +16,31 @@ excerpt: 'Scalable Data Science and Distributed Machine Learning with Apache Spa
 
 ## 000_9-sds-3-x-trends: Trends in Money, Markets and Media
 
-
-**Topics:**  
+**Topics:** *Trends in Financial Stocks and News Events using GDELT mass media metadata and yfinance via a Scalably Streamable Trend Calculus. Exploring Events and Persons of Interest at Time Points of Trend Reversals in Commodity Oil Price.*
 
 - [000_9-sds-3-x-trends as book](https://lamastex.github.io/ScaDaMaLe/000_9-sds-3-x-trends/)
+
+## 1. Setting up Delta Lakes for Fiancial and Media Events
+
+* [000a_finance_utils](000a_finance_utils
+* [000b_gdelt_utils](000b_gdelt_utils)
+
+## 2. Foreign Exchange 1 Minute Data and Yahoo! Finance
+
+* [00a_FX1M](00a_FX1M)
+* [00b_yfinance](00b_yfinance)
+
+## 3. Trend Calculus
+
+* [000_TrendsInFinancialStocksAndNewsEvents](000_TrendsInFinancialStocksAndNewsEvents)
+
+## 4. GDELT POI and EOI Detection
+
+* [030b_gdelt_POI_detection](030b_gdelt_POI_detection)
+
+## 5. Streamable Trend Calculus
+
+* [02_streamable_trend_calculus](02_streamable_trend_calculus)
+* [03_streamable_trend_calculus_estimators](03_streamable_trend_calculus_estimators)
+
 

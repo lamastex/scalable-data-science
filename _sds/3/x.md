@@ -53,37 +53,48 @@ The databricks notebooks have been made available as the following course module
 
 ## Introduction to Scalable Data Science and Distributed Machine Learning
 
+**Topics:** *Apache Spark, Scala, RDD, map-reduce, Ingest, Extract, Load, Transform and Explore with noSQL in SparkSQL.*
+
 # [000_2-sds-3-x-ml](db/000_2-sds-3-x-ml)
 
 ## Deeper Dive into Distributed Machine Learning
+
+**Topics:**  *Distributed Simulation; various un/supervised ML Algorithms; Linear Algebra; Vertex Programming using SparkML, GraphX and piped-RDDs.*
 
 # [000_3-sds-3-x-st](db/000_3-sds-3-x-st)
 
 ## Introduction to Spark Streaming
 
+**Topics:** *Introduction to Spark Streaming with Discrete RDDs and live Experiments in Twitter with Interactive custom D3 Interactions.* 
 # [000_4-sds-3-x-ss](db/000_4-sds-3-x-ss)
 
 ## Introduction to Spark Structured Streaming
 
-# []()
+**Topics:** *Introduction to Spark Structured Streaming and Sketching*  
 
-## 
+# [000_6-sds-3-x-dl](db/000_6-sds-3-x-dl)
 
-# []()
+## Introduction to Deep Learning
 
-## 
+**Topics:** *Introduction to Deep Learning with Keras, tensorflow, pytorch and PySpark. Topics: TensorFlow Basics, Artificial Neural Networks, Multilayer Deep Feed-Forward Neural Networks, Training, Convolutional Neural Networks, Recurrent Neural Networks like LSTM and GRU, Generative Networks or Patterns, Introduction to Reinforcement Learning, Real-world Operations and MLOps with PyTorch and MLflow for image classification.* 
 
-# [000_7-sds-3-x-ddl](000_7-sds-3-x-ddl)
+# [000_7-sds-3-x-ddl](db/000_7-sds-3-x-ddl)
 
 ## Introduction to Distributed Deep Learning
 
-# [000_8-sds-3-x-pri](000_8-sds-3-x-pri)
+**Topics:** *Introduction to Distributed Deep Learning (DDL) with Horovod over Tensorflow/keras and Pytorch. DDL of various CNN architectures for image segmentation with horovod, MLFlow and hyper-parameter tuning through SparkTrials.* 
+
+# [000_8-sds-3-x-pri](db/000_8-sds-3-x-pri)
 
 ## Privacy-Preserving Data Science
 
-# [000_9-sds-3-x-trends](000_9-sds-3-x-trends)
+**Topics:** *Introduction to Privacy-aware Scalable Data Science. Topics: Data Sanitization, Algorithmic Sanitization, GDPR law and its implications for AI/ML, Pseudonymzation and Differential Privacy, Minimax Optimal Procedures for Locally Private Estimation* 
+
+# [000_9-sds-3-x-trends](db/000_9-sds-3-x-trends)
 
 ## Trends in Money Market and Media
+
+**Topics:** *Trends in Financial Stocks and News Events using GDELT mass media metadata and yfinance via a Scalably Streamable Trend Calculus. Exploring Events and Persons of Interest at Time Points of Trend Reversals in Commodity Oil Price.*
 
 <!---
 15. Additional Topics to bolster by examples and help prepare for group-projects:
