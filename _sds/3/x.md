@@ -25,18 +25,15 @@ These contents, instances and pathways are packaged as modules and referred to a
 
 This is the instance of the course for students at Uppsala University. It is given in the following modules that are worth 1hp each.
 
-<!-- 
-## ScadaMaLe-WASP 
-This instance for  the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/)is divided into the following three modules.
--->
-
-In addition to academic lectures there is invited guest speakers from industry.
+In addition to academic lectures there will be invited guest speakers from industry.
 
 **Module 01** (3 hp) – Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
 
 Prerequisites: Programming experience in at least one programming language and permission of the instructor.
 
 The whole data science process illustrated with industrial case-studies. Practical introduction to scalable data processing to ingest, extract, load, transform, and explore (un)structured datasets. Scalable machine learning pipelines to model, train/fit, validate, select, tune, test and predict or estimate in an unsupervised and a supervised setting using nonparametric and partitioning methods such as random forests. Introduction to distributed vertex-programming.
+
+Contents: [000_1-sds-3-x](#000_1-sds-3-x)
 
 **Module 02** (3 hp) – Distributed Deep Learning: Introduction to the theory and implementation of distributed deep learning.
 
@@ -53,10 +50,6 @@ This module will allow one to explore different domains to solve decision proble
 
 As we explore different domains, students are encouraged to form groups to do a group project in an application domain we have explored or another they can explore bsed on their preparedness from Modules 01, 02 and 03. Such projects are typically meant to be of direct relevance to a student's research area. 
 
-<!--
-WASP Module 03: 
-Theoretical foundations of distributed systems and analysis of their scalable algorithms for sorting, joining, streaming, sketching, optimising and computing in numerical linear algebra with applications in scalable machine learning pipelines for typical decision problems (eg. prediction, A/B testing, anomaly detection) with various types of data (eg. time-indexed, space-time-indexed and network-indexed). Privacy-aware decisions with sanitized (cleaned, imputed, anonymised) datasets and datastreams. Practical applications of these algorithms on real-world examples (eg. mobility, social media, machine sensors and logs). Illustration via industrial use-cases. 
--->
 
 **Module 04** (6 hp) – Distributed Algorithms and Optimisation (advanced)
 
@@ -263,3 +256,26 @@ Here are some free online courses if you need quick refreshers or want to go ind
 * [Intro to Computer Science (with Python)](https://www.udacity.com/course/intro-to-computer-science--cs101)
 * [Intro to Python Programming](https://www.udacity.com/course/programming-foundations-with-python--ud036)
 * [Intro to Relational Databases](https://www.udacity.com/course/intro-to-relational-databases--ud197)
+
+
+## ScadaMaLe-WASP 
+
+This instance for  the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/)is divided into the following three modules.
+
+In addition to academic lectures there will be invited guest speakers from industry.
+
+**Module 01** (2 hp) – Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
+
+Prerequisites: Programming experience in at least one programming language and permission of the instructor.
+
+The whole data science process illustrated with industrial case-studies. Practical introduction to scalable data processing to ingest, extract, load, transform, and explore (un)structured datasets. Scalable machine learning pipelines to model, train/fit, validate, select, tune, test and predict or estimate in an unsupervised and a supervised setting using nonparametric and partitioning methods such as random forests. Introduction to distributed vertex-programming.
+
+**Module 02** (2 hp) – Distributed Deep Learning: Introduction to the theory and implementation of distributed deep learning.
+
+Prerequisites: Passing Module 01 with active course participation.
+
+Classification and regression using generalised linear models, including different learning, regularization, and hyperparameters tuning techniques. The feedforward deep network as a fundamental network, and the advanced techniques to overcome its main challenges, such as overfitting, vanishing/exploding gradient, and training speed. Various deep neural networks for various kinds of data. For example, the CNN for scaling up neural networks to process large images, RNN to scale up deep neural models to long temporal sequences, and autoencoder and GANs. 
+
+**Module 03** (2 hp) – Decision-making with Scalable Algorithms
+
+Theoretical foundations of distributed systems and analysis of their scalable algorithms for sorting, joining, streaming, sketching, optimising and computing in numerical linear algebra with applications in scalable machine learning pipelines for typical decision problems (eg. prediction, A/B testing, anomaly detection) with various types of data (eg. time-indexed, space-time-indexed and network-indexed). Privacy-aware decisions with sanitized (cleaned, imputed, anonymised) datasets and datastreams. Practical applications of these algorithms on real-world examples (eg. mobility, social media, machine sensors and logs). Illustration via industrial use-cases. 
