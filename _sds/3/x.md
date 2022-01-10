@@ -262,6 +262,8 @@ Here are some free online courses if you need quick refreshers or want to go ind
 
 This instance for  the [AI-Track of the WASP Graduate School](https://wasp-sweden.org/graduate-school/ai-graduate-school-courses/)is divided into the following three modules.
 
+The next instance of ScadaMaLe-WASP is in 2022 Fall.
+
 In addition to academic lectures there will be invited guest speakers from industry.
 
 **Module 01** (2 hp) – Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
