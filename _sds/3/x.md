@@ -19,37 +19,43 @@ It is given in several modules for the *ScadaMaLe-WASP* and *ScaDaMaLe-UU* cours
 
 
 This site provides course contents for the two instances with multiple deep-dive pathways. 
-These contents, instances and pathways are packaged as modules and referred to as **sds-3.x** here.
+These contents, instances and pathways are packaged into numbered Modules that contain multiple course packs referred by **sds-3.x** suffixes here.
 
-## ScadaMaLe-UU
+# ScadaMaLe-UU
 
 This is the instance of the course for students at Uppsala University. It is given in the following modules that are worth 1hp each.
 
 In addition to academic lectures there will be invited guest speakers from industry.
 
-**Module 01** (3 hp) – Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
+# Module 01 (3 hp) 
+## Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
 
-Prerequisites: Programming experience in at least one programming language and permission of the instructor.
+**Prerequisites:** Programming experience in at least one programming language and permission of the instructor.
 
 The whole data science process illustrated with industrial case-studies. Practical introduction to scalable data processing to ingest, extract, load, transform, and explore (un)structured datasets. Scalable machine learning pipelines to model, train/fit, validate, select, tune, test and predict or estimate in an unsupervised and a supervised setting using nonparametric and partitioning methods such as random forests. Introduction to distributed vertex-programming.
 
-Contents: [000_1-sds-3-x](#000_1-sds-3-x)
+Contents: [000_1-sds-3-x](#000_1-sds-3-x), [000_2-sds-3-x-ml](#000_1-sds-3-x-ml)
 
-**Module 02** (3 hp) – Distributed Deep Learning: Introduction to the theory and implementation of distributed deep learning.
+# Module 02 (3 hp) 
+## Distributed Deep Learning: Introduction to the theory and implementation of distributed deep learning.
 
-Prerequisites: Passing Module 01 with active course participation.
+**Prerequisites:** Passing Module 01 with active course participation.
 
 Classification and regression using generalised linear models, including different learning, regularization, and hyperparameters tuning techniques. The feedforward deep network as a fundamental network, and the advanced techniques to overcome its main challenges, such as overfitting, vanishing/exploding gradient, and training speed. Various deep neural networks for various kinds of data. For example, the CNN for scaling up neural networks to process large images, RNN to scale up deep neural models to long temporal sequences, and autoencoder and GANs. 
 
-**Module 03** (4 hp) – Project in Data Science
+Contents: [000_6-sds-3-x-dl](#000_6-sds-3-x-dl), [000_7-sds-3-x-ddl](#000_7-sds-3-x-ddl)
 
-Prerequisites: Module 01 and Module 02 or Module 4.
+# Module 03 (4 hp) 
+## Problem Domains and Projects in Data Science
 
-This module will allow one to explore different domains to solve decision problems 
+**Prerequisites:** Module 01 and/or Module 02; or Module 4.
+
+This module will allow one to explore different domains to solve specific decision problems 
 (eg. prediction, A/B testing, anomaly detection, etc.) with various types of data (eg. time-indexed, space-time-indexed and network-indexed). Privacy-aware decisions with sanitized (cleaned, imputed, anonymised) datasets and datastreams. Practical applications of these algorithms on real-world examples (eg. mobility, social media, machine sensors and logs). Illustration via industrial use-cases.
 
 As we explore different domains, students are encouraged to form groups to do a group project in an application domain we have explored or another they can explore bsed on their preparedness from Modules 01, 02 and 03. Such projects are typically meant to be of direct relevance to a student's research area. 
 
+Contents: [000_3-sds-3-st](#000_3-sds-3-st), [000_4-sds-3-x-ss](#000_4-sds-3-x-ss), [000_8-sds-3-x-pri](#000_8-sds-3-x-pri), [000_9-sds-3-x-trends](#000_9-sds-3-x-trends)
 
 **Module 04** (6 hp) – Distributed Algorithms and Optimisation (advanced)
 
