@@ -60,7 +60,8 @@ As we explore different domains, students are encouraged to form groups to do a 
 
 Contents: [000_3-sds-3-st](#000_3-sds-3-st), [000_4-sds-3-x-ss](#000_4-sds-3-x-ss), [000_8-sds-3-x-pri](#000_8-sds-3-x-pri), [000_9-sds-3-x-trends](#000_9-sds-3-x-trends)
 
-**Module 04** (6 hp) – Distributed Algorithms and Optimisation (advanced)
+# Module 04 (6 hp) 
+## Distributed Algorithms and Optimisation (advanced)
 
 This course is for advanced PhD students who have already taken a previous instance of ScaDaMaLe-WASP or ScaDaMaLe-UU (sds and 360-in-525 series in 2017 or 2018) and have the permission of the instructor.
 
