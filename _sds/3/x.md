@@ -23,14 +23,17 @@ These contents, instances and pathways are packaged into numbered Modules that c
 
 # ScadaMaLe-UU
 
-This is the instance of the course for students at Uppsala University. It is given in the following modules that are worth 1hp each.
+This is the instance of the course for students at Uppsala University. 
 
-In addition to academic lectures there will be invited guest speakers from industry.
+ScadaMaLe-UU is given in the following four modules that are worth 3-6hp each. 
+Students can just take Module 01 or continue with more Modules. 
+
+In addition to academic lectures there may be invited guest speakers from industry.
 
 # Module 01 (3 hp) 
 ## Introduction to Data Science: Introduction to fault-tolerant distributed file systems and computing.
 
-**Prerequisites:** Programming experience in at least one programming language and permission of the instructor.
+**Prerequisites:** Experience in at least one programming language, maturity in mathematical abstractions (or courses in multivariate calculus, linear algebra, probability, etc. at least at the undergarduate-level) and/or permission of the instructor.
 
 The whole data science process illustrated with industrial case-studies. Practical introduction to scalable data processing to ingest, extract, load, transform, and explore (un)structured datasets. Scalable machine learning pipelines to model, train/fit, validate, select, tune, test and predict or estimate in an unsupervised and a supervised setting using nonparametric and partitioning methods such as random forests. Introduction to distributed vertex-programming.
 
@@ -39,7 +42,7 @@ Contents: [000_1-sds-3-x](#000_1-sds-3-x), [000_2-sds-3-x-ml](#000_1-sds-3-x-ml)
 # Module 02 (3 hp) 
 ## Distributed Deep Learning: Introduction to the theory and implementation of distributed deep learning.
 
-**Prerequisites:** Passing Module 01 with active course participation.
+**Prerequisites:** Passing Module 01 with active course participation and completion of Assignments.
 
 Classification and regression using generalised linear models, including different learning, regularization, and hyperparameters tuning techniques. The feedforward deep network as a fundamental network, and the advanced techniques to overcome its main challenges, such as overfitting, vanishing/exploding gradient, and training speed. Various deep neural networks for various kinds of data. For example, the CNN for scaling up neural networks to process large images, RNN to scale up deep neural models to long temporal sequences, and autoencoder and GANs. 
 
