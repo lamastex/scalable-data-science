@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>05_Horovod_test - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/01_Background.html">01_Background</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/02_Random_Forest.html">02_Random_Forest</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/03_CNN_MNIST.html">03_CNN_MNIST</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/04_CNN_Intel_Image.html">04_CNN_Intel_Image</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/05_Horovod_test.html" class="active">05_Horovod_test</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="cnns-and-mixup-with-horovod"><a class="header" href="#cnns-and-mixup-with-horovod">CNNs and MixUp with Horovod</a></h2>
+<p>One of the arguments in favor for using MixUp is the data augmentation it provides. For iterative learning algorithms, such as CNNs trained with a variant of stochastic gradient descent, we can generate new MixUp data for each training batch. This effectively means that the network will never see any training example twice. To harness this positive aspect of MixUp to its fullest extent, we want our algorithm to be scalable in the data to use it efficiently. To train neural networks in a scalable way with respet to the data, one can use Horovod, which parallelizes the neural network training procedure.</p>
+<p>In this notebook, we use Horovod to train a CNN on the CIFAR-10 data set, both without and with MixUp. While the notebook is executed with only one GPU, the code scales nicely if more GPUs are available.</p>
+</div>
+<div class="cell markdown">
+<p>First, we import packages and check what computational resources are available. In this case, we have one GPU.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import horovod.tensorflow.keras as hvd
+import tensorflow as tf
+import numpy as np
+from tensorflow import keras
+from tensorflow.keras.layers import Dense,Conv2D,Flatten,BatchNormalization,Dropout
+from tensorflow.keras import Sequential
+from sklearn.metrics import confusion_matrix
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from functools import partial
+import os
+import time
+
+print(tf.__version__)
+from tensorflow.python.client import device_lib
+local_device_protos = device_lib.list_local_devices()
+print(local_device_protos)
+
+checkpoint_dir = '/dbfs/ml/Group_20/train/{}/'.format(time.time())
+
+os.makedirs(checkpoint_dir)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Next, we define the generator for our MixUp images.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">class MixupImageDataGenerator_from_tensor(tf.keras.utils.Sequence):
+
+    &quot;&quot;&quot;
+    A datagenerator that performs mixup on the input data. The input to the generator is numpy arrays with data and labels. 
+    &quot;&quot;&quot;
+  
+    def __init__(self, X,Y, batch_size, alpha=0.2, subset=None):
+        self.batch_size = batch_size
+        self.batch_index = 0
+        self.alpha = alpha
+        self.X = X
+        self.Y = Y
+        
+        # First iterator yielding tuples of (x, y)
+        ind = np.random.permutation(len(X))
+        self.generator1 = iter(tf.data.Dataset.from_tensor_slices((X[ind],Y[ind])).batch(self.batch_size))
+        
+        
+        # Second iterator yielding tuples of (x, y)
+        ind = np.random.permutation(len(X))
+        self.generator2 = iter(tf.data.Dataset.from_tensor_slices((X[ind],Y[ind])).batch(self.batch_size))
+
+        # Number of images across all classes in image directory.
+        self.n = len(X)
+
+
+    def __len__(self):
+        # returns the number of batches
+        return (self.n + self.batch_size - 1) // self.batch_size
+
+    def __getitem__(self, index):
+        
+        if self.batch_index &gt;= self.__len__()-1:
+          self.reset_index()
+          self.batch_index = 0
+        else:
+          self.batch_index += 1
+        
+        # Get a pair of inputs and outputs from two iterators.
+        X1, y1 = self.generator1.next()
+        X2, y2 = self.generator2.next()
+        
+        # random sample the lambda value from beta distribution.
+        l = np.random.beta(self.alpha, self.alpha, X1.shape[0])
+
+        X_l = l.reshape(X1.shape[0], 1, 1, 1)
+        y_l = l.reshape(X1.shape[0], 1)
+
+
+        # Perform the mixup.
+        X = X1 * X_l + X2 * (1 - X_l)
+        y = y1 * y_l + y2 * (1 - y_l)
+        return X, y
+
+    def reset_index(self):
+        &quot;&quot;&quot;Reset the generator indexes array.
+        &quot;&quot;&quot;
+
+        # First iterator yielding tuples of (x, y)
+        ind = np.random.permutation(len(self.X))
+        self.generator1 = iter(tf.data.Dataset.from_tensor_slices((self.X[ind],self.Y[ind])).batch(self.batch_size))
+        
+        
+        # Second iterator yielding tuples of (x, y)
+        ind = np.random.permutation(len(self.X))
+        self.generator2 = iter(tf.data.Dataset.from_tensor_slices((self.X[ind],self.Y[ind])).batch(self.batch_size))
+
+
+
+    def on_epoch_end(self):
+        return
+        #self.reset_index()
+        
+        
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We now define functions for creating the neural network and initializing the dataloaders. We will use dataloaders both with and without MixUp for both training and validation.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">&quot;&quot;&quot;
+creates the CNN with number_conv convolutional layers followed by number_dense dense layers. THe model is compiled with a SGD optimizer and a categorical crossentropy loss.
+&quot;&quot;&quot;
+def create_model(number_conv,number_dense,optimizer = &quot;adam&quot;):
+    model = Sequential()
+    model.add(Conv2D(24,kernel_size = 3, activation='relu',padding=&quot;same&quot;, input_shape=(img_height, img_width,channels)))
+    model.add(BatchNormalization())
+    for s in range(1,number_conv):
+        model.add(Conv2D(24+12*s,kernel_size = 3,padding=&quot;same&quot;, activation = 'relu'))
+        model.add(BatchNormalization())
+    model.add(Flatten())
+    model.add(Dropout(0.4))
+    for s in range(number_dense):
+        model.add(Dense(units=num_classes, activation='relu'))
+        model.add(Dropout(0.4))
+    model.add(BatchNormalization())
+    model.add(Dense(num_classes,activation= &quot;softmax&quot;))
+    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+    return model
+
+
+&quot;&quot;&quot;
+A method that gives us the different dataloaders that we need for training and validation. with for_training set to True the model will give us the dataloades
+
+train_mix_loader: A data loader that will give us mixes data for training
+train_loader: A data loader that gives us the unmixed training data
+val_mixed_loader: A data loader that gives us the mixed validation data
+val_loader: A data loader with the unmixed validation data
+
+By setting for_training to False the method will give us the dataloader
+
+test_loader: Unmixed and unshuffled dataloader for the testing data. The reason for not shuffeling the data is in order to simplify the validation process.
+&quot;&quot;&quot;
+def get_cifar_dataloaders():
+    (trainX,trainY),(testX,testY) = tf.keras.datasets.cifar10.load_data()
+    trainX,testX = tf.cast(trainX,tf.float32),tf.cast(testX,tf.float32)
+    #trainX,testX = tf.expand_dims(trainX, 3),tf.expand_dims(testX, 3)
+    trainY_oh,testY_oh = tf.one_hot(trainY[:,0],10),tf.one_hot(testY[:,0],10)
+    trainY_oh,testY_oh = tf.cast(trainY_oh,tf.float32).numpy(),tf.cast(testY_oh,tf.float32).numpy()
+    trainX,testX = trainX.numpy()/255 * 2 - 2,testX.numpy()/255 * 2 - 2
+
+
+    train_loader_mix = MixupImageDataGenerator_from_tensor(trainX,trainY_oh,batch_size)
+    train_loader = tf.data.Dataset.from_tensor_slices((trainX,trainY_oh)).batch(batch_size)
+    test_loader_mix = MixupImageDataGenerator_from_tensor(testX,testY_oh,batch_size)
+    test_loader = tf.data.Dataset.from_tensor_slices((trainX,trainY_oh)).batch(batch_size)
+
+    return train_loader_mix,train_loader,test_loader_mix,test_loader
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Next, we define the training function that will be used by Horovod. Each worker uses the datagenerator to load data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def train_hvd(learning_rate=1.0, train_with_mix = False):
+  # Import tensorflow modules to each worker
+  from tensorflow.keras import backend as K
+  from tensorflow.keras.models import Sequential
+  import tensorflow as tf
+  from tensorflow import keras
+  import horovod.tensorflow.keras as hvd
+  
+  # Initialize Horovod
+  hvd.init()
+
+  # Pin GPU to be used to process local rank (one GPU per process)
+  # These steps are skipped on a CPU cluster
+  gpus = tf.config.experimental.list_physical_devices('GPU')
+  for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+  if gpus:
+    tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+
+  # Call the get_dataset function you created, this time with the Horovod rank and size
+  train_mix_dataloader,train_dataloader,val_mix_dataloader,val_dataloader = get_cifar_dataloaders()
+  model = create_model( number_conv,number_dense )
+
+  # Adjust learning rate based on number of GPUs
+  optimizer = keras.optimizers.Adadelta(lr=learning_rate * hvd.size())
+
+  # Use the Horovod Distributed Optimizer
+  optimizer = hvd.DistributedOptimizer(optimizer)
+
+  model.compile(optimizer=optimizer,
+                loss='categorical_crossentropy',
+                metrics=['accuracy'])
+
+  # Create a callback to broadcast the initial variable states from rank 0 to all other processes.
+  # This is required to ensure consistent initialization of all workers when training is started with random weights or restored from a checkpoint.
+  callbacks = [
+      hvd.callbacks.BroadcastGlobalVariablesCallback(0),
+  ]
+
+  # Save checkpoints only on worker 0 to prevent conflicts between workers
+  if hvd.rank() == 0:
+      callbacks.append(keras.callbacks.ModelCheckpoint(checkpoint_dir + '/checkpoint-{epoch}.ckpt', save_weights_only = True))
+      
+  if train_with_mix:
+    model.fit(train_mix_dataloader,
+            batch_size=batch_size,
+            callbacks=callbacks,
+            epochs=epochs,
+            verbose=2,
+            validation_data=val_dataloader)
+  else:
+    model.fit(train_dataloader,
+            batch_size=batch_size,
+            callbacks=callbacks,
+            epochs=epochs,
+            verbose=2,
+            validation_data=val_dataloader)
+       
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Below, we give the parameters that control the training procedure.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">&quot;&quot;&quot;
+The global parameters for training.
+&quot;&quot;&quot;
+
+img_height,img_width,channels = 32,32,3
+batch_size = 32
+#train_data_dir,test_data_dir = &quot;/content/seg_train/seg_train&quot;,&quot;/content/seg_test/seg_test&quot;
+#train_data_dir,test_data_dir = &quot;dbfs/FileStore/tables/Group20/seg_train/seg_train/&quot;, &quot;dbfs/FileStore/tables/Group20/seg_test/seg_test/&quot;
+#train_data_dir,test_data_dir = copy_data()
+num_classes = 10
+number_conv = 4
+number_dense = 2
+epochs = 30
+alpha = 0.2
+#train_with_mixed_data = True
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Now, let us run training with Horovod, first on MixUp data, then without MixUp.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from sparkdl import HorovodRunner
+
+hr = HorovodRunner(np=2)
+hr.run(train_hvd, learning_rate=0.1, train_with_mix = True)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from sparkdl import HorovodRunner
+
+hr_nomix = HorovodRunner(np=2)
+hr_nomix.run(train_hvd, learning_rate=0.1, train_with_mix = False)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h4 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h4>
+<p>From our simulations on CIFAR-10 with and without MixUp it seems that MixUp provides stability against overfitting and has a bit higher top validation accuracy during training. Specifically, when using MixUp, we reach a validation accuracy around 75%, while we peak at 70% without MixUp. Furthermore, when not using MixUp, the validation accuracy starts to decrease after 20 epochs, while it continues to improve with MixUp. Since this is based on only one simulation, we cannot be fully certain about these conclusions. When it comes to the scalability of the model, Horovod provides beneficial scaling with the data and makes the code very simular to a regular single-machine training notebook. Horovod can also be combined with Ray Tune to also perform a hyperparameter search, but this was not done in this project.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-20_group-Generalization/04_CNN_Intel_Image.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-20_group-Generalization/04_CNN_Intel_Image.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

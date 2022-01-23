@@ -1,0 +1,892 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>04_LDA - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html">00_download_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html">01_load_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html" class="active">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="topic-modeling-with-lda"><a class="header" href="#topic-modeling-with-lda">Topic Modeling with LDA</a></h2>
+</div>
+<div class="cell markdown">
+<h3 id="notebook-description"><a class="header" href="#notebook-description">Notebook description</a></h3>
+<p><a href="https://www.flashback.org/">Flashback</a> and <a href="https://www.familjeliv.se/forum">Familjeliv</a> are two well-known swedish online forums. Flashback is one of Sweden's most visited websites and has discussions on a wide-range of topics. It is famous for emphasizing freedom of speech and the members citizen journalism on many topics. The online forum Familjeliv, on the other hand, focuses more on questions about pregnancy, children and parenthood (the translation is &quot;Family Life&quot;). Part of the forum is also for more general topics, and this part of Familjeliv is probably more famous than its other parts.</p>
+<p>What we want to do in this notebook is analyze the language used in these two, quite different, online forums. An interesting approach we will try here is to do some topic modeling with <a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">Latent Dirichlet Allocation</a> (LDA). We know that each discussion forum in our data has multiple subforums, so it would be interesting to see if LDA can accurately pick up these different subforums as different topics, or if it sees other patterns in the threads (the threads are what corresponds to documents in the LDA method). We will also mainly do this with forums that have a correspondence in both Flashback and Familjeliv. For instance, both have forums dedicated to questions regarding economy and also forums discussing topics close to sex and relationships.</p>
+<p>This notebook is to a large extent adapted from notebook 034<em>LDA</em>20NewsGroupsSmall.</p>
+</div>
+<div class="cell markdown">
+<h3 id="downloading-the-data"><a class="header" href="#downloading-the-data">Downloading the data</a></h3>
+<p>Data comes from <a href="https://spraakbanken.gu.se">språkbanken</a>, see notebook 00<em>download</em>data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/00_download_data
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="preprocessing-and-loading-the-relevant-data"><a class="header" href="#preprocessing-and-loading-the-relevant-data">Preprocessing and loading the relevant data</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Here we just import methods from notebook 01_load_data, so we can load our data
+
+%run /scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="lda-methods"><a class="header" href="#lda-methods">LDA Methods</a></h3>
+<p>Below we put some of the LDA pipeline, working with <a href="https://spark.apache.org/docs/latest/ml-guide.html">MLlib</a>, into a single function called get_lda.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.{RegexTokenizer, StopWordsRemover, CountVectorizer}
+import org.apache.spark.mllib.clustering.{LDA, OnlineLDAOptimizer}
+import org.apache.spark.ml.{Pipeline, PipelineModel, PipelineStage}
+import org.apache.spark.sql.types.{ LongType }
+import org.apache.spark.ml.linalg.Vector
+
+def get_lda(df: org.apache.spark.sql.DataFrame,  // Main function to do LDA
+            min_token: Int,
+            vocabSize: Int,
+            minDF: Int,            
+            numTopics: Int,
+            maxIter: Int,
+            stopWords: Array[String]) = { 
+
+  val corpus_df = df.select(&quot;w&quot;, &quot;thread_id&quot;).withColumn(&quot;thread_id&quot;,col(&quot;thread_id&quot;).cast(LongType)) // From the whole dataframe we take out each thread
+
+  val tokenizer = new RegexTokenizer()
+  .setPattern(&quot;(?U)[\\W_]+&quot;) // break by white space character(s)  - try to remove emails and other patterns
+  .setMinTokenLength(min_token) // Filter away tokens with length &lt; min_token
+  .setInputCol(&quot;w&quot;) // name of the input column
+  .setOutputCol(&quot;tokens&quot;) // name of the output column
+  
+  val remover = new StopWordsRemover() 
+  .setStopWords(stopWords)
+  .setInputCol(tokenizer.getOutputCol)
+  .setOutputCol(&quot;filtered&quot;)
+  
+  val tokenized_df = tokenizer.transform(corpus_df) // Removes uninteresting words from each thread
+  val filtered_df = remover.transform(tokenized_df).select(&quot;thread_id&quot;,&quot;filtered&quot;) // Chosing only the filtered threads 
+  
+  val vectorizer = new CountVectorizer() // Creates dictionary and counts the occurences of different words
+   .setInputCol(remover.getOutputCol)
+   .setOutputCol(&quot;features&quot;)
+   .setVocabSize(vocabSize) // Size of dictonary
+   .setMinDF(minDF)
+   .fit(filtered_df) // returns CountVectorizerModel
+  
+  val lda = new LDA() // Creates LDA Model with some user defined choice of parameters
+  .setOptimizer(new OnlineLDAOptimizer().setMiniBatchFraction(0.8))
+  .setK(numTopics)
+  .setMaxIterations(maxIter)
+  .setDocConcentration(-1) // use default values
+  .setTopicConcentration(-1)
+  
+  val countVectors = vectorizer.transform(filtered_df).select(&quot;thread_id&quot;, &quot;features&quot;)
+
+  val lda_countVector = countVectors.map { case Row(id: Long, countVector: Vector) =&gt; (id, countVector) }
+  val lda_countVector_mllib = lda_countVector.map { case (id, vector) =&gt; (id, org.apache.spark.mllib.linalg.Vectors.fromML(vector)) }.rdd
+  
+  val lda_model = lda.run(lda_countVector_mllib)
+  (lda_model, vectorizer)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.{RegexTokenizer, StopWordsRemover, CountVectorizer}
+import org.apache.spark.mllib.clustering.{LDA, OnlineLDAOptimizer}
+import org.apache.spark.ml.{Pipeline, PipelineModel, PipelineStage}
+import org.apache.spark.sql.types.LongType
+import org.apache.spark.ml.linalg.Vector
+get_lda: (df: org.apache.spark.sql.DataFrame, min_token: Int, vocabSize: Int, minDF: Int, numTopics: Int, maxIter: Int, stopWords: Array[String])(org.apache.spark.mllib.clustering.LDAModel, org.apache.spark.ml.feature.CountVectorizerModel)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="stopwords"><a class="header" href="#stopwords">Stopwords</a></h4>
+<p>Stop words are highly relevant to get interesting topics distributions, with not all weight on very common words that do not carry much meaning for a particular topic. To do this we both use collections by others and input words we find meaningless for these particular settings.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv -O /tmp/stopwords.csv
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>--2021-01-11 14:30:09--  https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.52.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.52.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1936 (1.9K) [text/plain]
+Saving to: ‘/tmp/stopwords.csv’
+
+     0K .                                                     100% 11.5M=0s
+
+2021-01-11 14:30:09 (11.5 MB/s) - ‘/tmp/stopwords.csv’ saved [1936/1936]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-fs">cp file:/tmp/stopwords.csv dbfs:/datasets/student-project-01/stopwords.csv
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res24: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Creating a list with stopwords
+
+import org.apache.spark.ml.feature.StopWordsRemover
+val stoppord = sc.textFile(&quot;dbfs:/datasets/student-project-01/stopwords.csv&quot;).collect()
+val stopwordList = Array(&quot;bara&quot;,&quot;lite&quot;,&quot;finns&quot;,&quot;vill&quot;,&quot;samt&quot;,&quot;inga&quot;,&quot;även&quot;,&quot;finns&quot;,&quot;ganska&quot;,&quot;också&quot;,&quot;igen&quot;,&quot;just&quot;,&quot;that&quot;,&quot;with&quot;,&quot;http&quot;,&quot;jpg&quot;,&quot;kanske&quot;,&quot;tycker&quot;,&quot;gillar&quot;, &quot;bra&quot;,&quot;the&quot;,&quot;000&quot;,&quot;måste&quot;,&quot;tjej&quot;,&quot;tjejer&quot;,&quot;tjejen&quot;,&quot;tjejerna&quot;,&quot;kvinna&quot;,&quot;kvinnor&quot;,&quot;kille&quot;,&quot;killar&quot;,&quot;killen&quot;,&quot;män&quot;,&quot;rätt&quot;,&quot;män&quot;,&quot;com&quot;,&quot;and&quot;,&quot;html&quot;,&quot;många&quot;,&quot;aldrig&quot;,&quot;www&quot;,&quot;mpg&quot;,&quot;avi&quot;,&quot;wmv&quot;,&quot;fan&quot;,&quot;förhelvetet&quot;,&quot;riktigt&quot;,&quot;känner&quot;,&quot;väldigt&quot;,&quot;font&quot;,&quot;size&quot;,&quot;mms&quot;,&quot;2008&quot;,&quot;2009&quot;,&quot;95kr&quot;,&quot;dom&quot;,&quot;får&quot;,&quot;ska&quot;,&quot;kommer&quot;,&quot;två&quot;,&quot;vet&quot;,&quot;mer&quot;,&quot;pengar&quot;,&quot;pengarna&quot;,&quot;göra&quot;,&quot;fick&quot;,&quot;tror&quot;,&quot;andra&quot;,&quot;helt&quot;,&quot;kunna&quot;,&quot;behöver&quot;,&quot;betala&quot;,&quot;inget&quot;,&quot;dock&quot;,&quot;inget&quot;,&quot;tack&quot;
+).union(stoppord).union(StopWordsRemover.loadDefaultStopWords(&quot;swedish&quot;)) // In this step we add custom stop words and another premade list of stopwords.
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="experiments"><a class="header" href="#experiments">Experiments</a></h3>
+<p>Below we we chosen some similar forums from FB and FL. First two regarding economics, and two discussing sex and relationships. Here we run the two economics forums and see how well TDA captures any topic structure.</p>
+<p>Here one does not have to use similar forums, but if one is interested in only Flashback forums one could use only those. We could also of course join several of these forums together to try to capture even broader topic distributions</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Loading the forums we will do LDA on.
+
+val file_path_FL = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi_df&quot;
+val file_path_FB = &quot;dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df&quot;
+//val file_path_FL = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df&quot;
+//val file_path_FB = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex_df&quot;
+  
+val df_FL = load_df(file_path_FL)
+val df_FB = load_df(file_path_FB)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_path_FL: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi_df
+file_path_FB: String = dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+df_FL: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+df_FB: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Dataframes containg a forum from FB.
+
+df_FB.show
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Overview of number of threads in different subforums
+
+df_FL.groupBy($&quot;forum_title&quot;).agg(count($&quot;forum_title&quot;).as(&quot;count&quot;)).show(false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+----------------------------------------------------------+-----+
+|forum_title                                               |count|
++----------------------------------------------------------+-----+
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Konsument/Inhandla|26307|
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Familjerätt       |1623 |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Övrigt            |1638 |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Ekonomi           |24284|
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Spartips          |217  |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Juridik           |3246 |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Företagande       |957  |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Lån &amp; skulder     |1168 |
++----------------------------------------------------------+-----+
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_FB.groupBy($&quot;forum_title&quot;).agg(count($&quot;forum_title&quot;).as(&quot;count&quot;)).show(false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+---------------------------------------------------+-----+
+|forum_title                                        |count|
++---------------------------------------------------+-----+
+|Ekonomi &gt; Privatekonomi                            |15154|
+|Ekonomi &gt; Bitcoin och andra virtuella valutor      |524  |
+|Ekonomi &gt; Värdepapper, valutor och råvaror: allmänt|8300 |
+|Ekonomi &gt; Fonder                                   |645  |
+|Ekonomi &gt; Företagande och företagsekonomi          |12139|
+|Ekonomi &gt; Nationalekonomi                          |3114 |
+|Ekonomi &gt; Aktier                                   |508  |
+|Ekonomi &gt; Ekonomi: övrigt                          |19308|
+|Ekonomi &gt; Offshore och skatteplanering             |1567 |
++---------------------------------------------------+-----+
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Set parameters, and perform two different LDAs, one on FB and one on FL
+
+val min_token = 4 // only accept tokens larger or equal to
+val vocabSize = 10000 // Size of the vocab dictionary
+val minDF = 5 // The minimum number of different documents a term must appear in to be included in the vocabulary
+val minTF = 2 // The minimum number of times a term has to appear in a document to be included in the vocabulary
+
+val numTopics_FL = no_forums(df_FL).toInt //4 // Number of topics in LDA model
+val numTopics_FB = no_forums(df_FB).toInt
+val maxIter = 8  // Maximum number of iterations for LDA model
+val stopwords = stopwordList
+val (ldaModel_FL, vectorizer_FL) = get_lda(df_FL, min_token, vocabSize, minDF, numTopics_FL, maxIter, stopwords)
+val (ldaModel_FB, vectorizer_FB) = get_lda(df_FB, min_token, vocabSize, minDF, numTopics_FB, maxIter, stopwords)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="results"><a class="header" href="#results">Results</a></h3>
+<p>Here we will visualize the most important part of the different topic distributions, both for FB and for FL.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Here we pick out the most important terms in each topic for FL.
+
+val topicIndices = ldaModel_FL.describeTopics(maxTermsPerTopic = 5)
+val vocabList = vectorizer_FL.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$numTopics_FL topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Here we pick out the most important terms in each topic for FB.
+
+val topicIndices = ldaModel_FB.describeTopics(maxTermsPerTopic = 5)
+val vocabList = vectorizer_FB.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$numTopics_FB topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Zip topic terms with topic IDs
+val termArray = topics.zipWithIndex
+
+// Transform data into the form (term, probability, topicId)
+val termRDD = sc.parallelize(termArray)
+val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+  val arrayOfTuple = x._1
+  val topicId = x._2
+  arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+})
+
+// Create DF with proper column names
+val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+
+display(termDF)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Creates JSON data to display topic distribution of forum in FB
+val rawJson = termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var json = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1000,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r)
+    .attr(&quot;height&quot;, r)
+    .attr(&quot;class&quot;, &quot;bubble&quot;);
+
+  
+var node = vis.selectAll(&quot;g.node&quot;)
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/1_04_1.JPG?raw=true" alt="1041" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">// Similar as above but for FL
+
+val topicIndices = ldaModel_FL.describeTopics(maxTermsPerTopic = 6)
+val vocabList = vectorizer_FL.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$numTopics_FL topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+
+// Zip topic terms with topic IDs
+val termArray = topics.zipWithIndex
+
+// Transform data into the form (term, probability, topicId)
+val termRDD = sc.parallelize(termArray)
+val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+  val arrayOfTuple = x._1
+  val topicId = x._2
+  arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+})
+
+// Create DF with proper column names
+val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+
+// Create JSON data to display topic distribution of forum in FB
+val rawJson = termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var json = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1000,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r)
+    .attr(&quot;height&quot;, r)
+    .attr(&quot;class&quot;, &quot;bubble&quot;);
+
+  
+var node = vis.selectAll(&quot;g.node&quot;)
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/1_04_2.JPG?raw=true" alt="1042" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">def rawJson(lda_model: org.apache.spark.mllib.clustering.LDAModel, vectorizer: org.apache.spark.ml.feature.CountVectorizerModel): String = {
+  val topicIndices = lda_model.describeTopics(maxTermsPerTopic = 6)
+  val vocabList = vectorizer.vocabulary
+  val topics = topicIndices.map { case (terms, termWeights) =&gt;
+    terms.map(vocabList(_)).zip(termWeights)
+  }
+  println(s&quot;$numTopics_FL topics:&quot;)
+  topics.zipWithIndex.foreach { case (topic, i) =&gt;
+    println(s&quot;TOPIC $i&quot;)
+    topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+    println(s&quot;==========&quot;)
+  }
+
+  // Zip topic terms with topic IDs
+  val termArray = topics.zipWithIndex
+
+  // Transform data into the form (term, probability, topicId)
+  val termRDD = sc.parallelize(termArray)
+  val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+    val arrayOfTuple = x._1
+    val topicId = x._2
+    arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+  })
+
+  // Create DF with proper column names
+  val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+
+  // Create JSON data to display topic distribution
+  termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+}
+// Create JSON data to display topic distribution
+val rawJson_FL = rawJson(ldaModel_FL, vectorizer_FL)
+val rawJson_FB = rawJson(ldaModel_FB, vectorizer_FB)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+/////////////////////////////////////////////////////////////////////////////   
+var json_FL = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson_FL}
+     ]
+    }
+   ]
+};
+
+var r1 = 500,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble1 = d3.layout.pack()
+    .sort(null)
+    .size([r1, r1])
+    .padding(1.5);
+
+var vis1 = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r1)
+    .attr(&quot;height&quot;, r1)
+    .attr(&quot;class&quot;, &quot;bubble1&quot;);
+
+  
+var node = vis1.selectAll(&quot;g.node&quot;)
+    .data(bubble1.nodes(classes(json_FL))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+/////////////////////////////////////////////////////////////////////////////   
+var json_FB = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson_FB}
+     ]
+    }
+   ]
+};
+
+var r2 = 500,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble2 = d3.layout.pack()
+    .sort(null)
+    .size([r2, r2])
+    .padding(1.5);
+
+var vis2 = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r2)
+    .attr(&quot;height&quot;, r2)
+    .attr(&quot;class&quot;, &quot;bubble1&quot;);
+
+  
+var node = vis2.selectAll(&quot;g.node&quot;)
+    .data(bubble1.nodes(classes(json_FB))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+/////////////////////////////////////////////////////////////////////////////   
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/1_04_3.JPG?raw=true" alt="1043" /></p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

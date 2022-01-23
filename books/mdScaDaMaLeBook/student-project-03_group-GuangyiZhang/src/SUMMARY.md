@@ -1,0 +1,1 @@
+- [01_triads](./contents/student-project-03_group-GuangyiZhang/01_triads.md)

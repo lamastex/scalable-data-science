@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>02_DataPreprocess - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/00_ProjectDescriptionAndPlanning.html">00_ProjectDescriptionAndPlanning</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.html">01_DownloadFilesPeriodicallyScript</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_StreamToFile.html">01_StreamToFile</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/02_DataPreprocess.html" class="active">02_DataPreprocess</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.html">021_DataPreprocess_Explain</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.html">03_ExplosiveAnalysis</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/04_DataVisualize.html">04_DataVisualize</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/05_Clustering.html">05_Clustering</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.html">06_DataPredicton_LR</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/07_DataPredicton_ARIMA.html">07_DataPredicton_ARIMA</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.html">08_DataPrediction_GP</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="loading-data"><a class="header" href="#loading-data">Loading data</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(&quot;/datasets/group12/&quot;))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/datasets/group12/20_12_04_08_31_44.csv</td>
+<td>20_12_04_08_31_44.csv</td>
+<td>1.4181338e7</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/group12/20_12_04_08_32_40.csv</td>
+<td>20_12_04_08_32_40.csv</td>
+<td>1.4181338e7</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/group12/20_12_04_10_47_08.csv</td>
+<td>20_12_04_10_47_08.csv</td>
+<td>1.4190774e7</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/group12/21_01_07_08_50_05.csv</td>
+<td>21_01_07_08_50_05.csv</td>
+<td>1.4577033e7</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/group12/21_01_07_09_05_33.csv</td>
+<td>21_01_07_09_05_33.csv</td>
+<td>1.4577033e7</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/group12/analysis/</td>
+<td>analysis/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/group12/chkpoint/</td>
+<td>chkpoint/</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df = spark.read.parquet(&quot;dbfs:/datasets/group12/analysis/*.parquet&quot;)
+
+display(df)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.count()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res10: Long = 60544
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="preprocessing"><a class="header" href="#preprocessing">Preprocessing</a></h2>
+<h3 id="0-filter-out-data-of-hongkong-and-unknown-location"><a class="header" href="#0-filter-out-data-of-hongkong-and-unknown-location">0. filter out data of HongKong and unknown location</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions._
+import org.apache.spark.sql.expressions.Window
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions._
+import org.apache.spark.sql.expressions.Window
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// filter unknow and HK data
+val df_filteredLocation = df.filter($&quot;iso_code&quot;=!=&quot;HKG&quot;).filter($&quot;iso_code&quot;.isNotNull)
+
+// fill missing continent value for World data
+val df_fillContinentNull = df_filteredLocation.na.fill(&quot;World&quot;,Array(&quot;continent&quot;)).cache
+df_filteredLocation.unpersist()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_filteredLocation: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [iso_code: string, continent: string ... 48 more fields]
+df_fillContinentNull: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [iso_code: string, continent: string ... 48 more fields]
+res4: df_filteredLocation.type = [iso_code: string, continent: string ... 48 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="1-fill-dates-from-2020-01-23-to-ensure-all-countries-having-316-days-loggings"><a class="header" href="#1-fill-dates-from-2020-01-23-to-ensure-all-countries-having-316-days-loggings">1. fill dates from 2020-01-23 (to ensure all countries having 316 days loggings)</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// filter date before 2020-01-23
+val df_filtered_date = df_fillContinentNull.filter($&quot;date&quot;&gt;&quot;2020-01-22&quot;).cache
+df_fillContinentNull.unpersist()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_filtered_date: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [iso_code: string, continent: string ... 48 more fields]
+res6: df_fillContinentNull.type = [iso_code: string, continent: string ... 48 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="2-fill-missing-value-for-totalcases-totaldeaths-newcasessmoothed-newdeathssmoothed"><a class="header" href="#2-fill-missing-value-for-totalcases-totaldeaths-newcasessmoothed-newdeathssmoothed">2. Fill missing value for total<em>cases, total</em>deaths, new<em>cases</em>smoothed, new<em>deaths</em>smoothed</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">
+// fill missing for new_cases_smoothed and new_deaths_smoothed
+val df_fillNullForSmooth = df_filtered_date.na.fill(0,Array(&quot;new_cases_smoothed&quot;))
+                           .na.fill(0,Array(&quot;new_deaths_smoothed&quot;))
+                           .cache
+df_filtered_date.unpersist()
+
+// fill missing for total_cases
+val df_fillNullForTotalCases = df_fillNullForSmooth.na.fill(0, Array(&quot;total_cases&quot;)).cache
+df_fillNullForSmooth.unpersist()
+
+// correct total_deaths, new_deaths, new_deaths_smoothed
+val df_fillNullForTotalDeathsSpecial = df_fillNullForTotalCases.withColumn(&quot;total_deaths_correct&quot;, 
+                                        when(col(&quot;iso_code&quot;).equalTo(&quot;ISL&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-03-13&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-03-22&quot;),0)
+                                       .when(col(&quot;iso_code&quot;).equalTo(&quot;PNG&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-07-19&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-07-23&quot;),0)
+                                       .when(col(&quot;iso_code&quot;).equalTo(&quot;SVK&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-03-17&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-03-23&quot;),0).otherwise(col(&quot;total_deaths&quot;)))
+                            .withColumn(&quot;new_deaths_correct&quot;, 
+                                        when(col(&quot;iso_code&quot;).equalTo(&quot;ISL&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-03-13&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-03-22&quot;),0)
+                                       .when(col(&quot;iso_code&quot;).equalTo(&quot;PNG&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-07-19&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-07-23&quot;),0)
+                                       .when(col(&quot;iso_code&quot;).equalTo(&quot;SVK&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-03-17&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-03-23&quot;),0).otherwise(col(&quot;new_deaths&quot;)))
+                            .withColumn(&quot;new_deaths_smoothed_correct&quot;, 
+                                        when(col(&quot;iso_code&quot;).equalTo(&quot;ISL&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-03-13&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-03-22&quot;),0)
+                                       .when(col(&quot;iso_code&quot;).equalTo(&quot;PNG&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-07-19&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-07-23&quot;),0)
+                                       .when(col(&quot;iso_code&quot;).equalTo(&quot;SVK&quot;)&amp;&amp;(col(&quot;date&quot;)&gt;&quot;2020-03-17&quot; &amp;&amp; col(&quot;date&quot;)&lt;&quot;2020-03-23&quot;),0).otherwise(col(&quot;new_deaths_smoothed&quot;)))
+                            .cache
+df_fillNullForTotalCases.unpersist()
+
+val df_cleaned = df_fillNullForTotalDeathsSpecial
+                                  .drop(&quot;new_deaths&quot;, &quot;total_deaths&quot;, &quot;new_deaths_smoothed&quot;) // drop old column to rename
+                                  .withColumnRenamed(&quot;new_deaths_correct&quot;,&quot;new_deaths&quot;)
+                                  .withColumnRenamed(&quot;total_deaths_correct&quot;,&quot;total_deaths&quot;)
+                                  .withColumnRenamed(&quot;new_deaths_smoothed_correct&quot;,&quot;new_deaths_smoothed&quot;)
+                                  .na.fill(0, Array(&quot;total_deaths&quot;))
+                                  .select(df.columns.head, df.columns.tail: _*)
+                                  .cache
+df_fillNullForTotalDeathsSpecial.unpersist()
+
+display(df_cleaned)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="3-select-invariant-during-pandemic-features-for-clustering-and-filter-out-countries-that-have-missing-invariant-features"><a class="header" href="#3-select-invariant-during-pandemic-features-for-clustering-and-filter-out-countries-that-have-missing-invariant-features">3. Select invariant (during pandemic) features for clustering and filter out countries that have missing invariant features</a></h3>
+<p>Invariant feature list: - population - population<em>density - median</em>age - aged<em>65</em>older - aged<em>70</em>older - gdp<em>per</em>capita - cardiovasc<em>death</em>rate - diabetes<em>prevalence - female</em>smokers - male<em>smokers - hospital</em>beds<em>per</em>thousand - life<em>expectancy - human</em>development_index</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// select invariant features
+val df_invariantFeatures = df_cleaned.select($&quot;iso_code&quot;,$&quot;location&quot;, $&quot;population&quot;,$&quot;population_density&quot;,
+                                             $&quot;median_age&quot;, $&quot;aged_65_older&quot;,
+                                             $&quot;aged_70_older&quot;,$&quot;gdp_per_capita&quot;,
+                                             $&quot;cardiovasc_death_rate&quot;,$&quot;diabetes_prevalence&quot;,
+                                             $&quot;female_smokers&quot;,$&quot;male_smokers&quot;,$&quot;hospital_beds_per_thousand&quot;,
+                                             $&quot;life_expectancy&quot;,$&quot;human_development_index&quot;).cache
+
+// Extract valid distrinct features RDD
+val valid_distinct_features = df_invariantFeatures.distinct()
+                                 .filter($&quot;population&quot;.isNotNull &amp;&amp; $&quot;population_density&quot;.isNotNull &amp;&amp; $&quot;median_age&quot;.isNotNull &amp;&amp; 
+                                 $&quot;aged_65_older&quot;.isNotNull &amp;&amp; $&quot;aged_70_older&quot;.isNotNull &amp;&amp; $&quot;gdp_per_capita&quot;.isNotNull &amp;&amp;
+                                 $&quot;cardiovasc_death_rate&quot;.isNotNull &amp;&amp; $&quot;diabetes_prevalence&quot;.isNotNull &amp;&amp; $&quot;female_smokers&quot;.isNotNull &amp;&amp; 
+                                 $&quot;male_smokers&quot;.isNotNull &amp;&amp; $&quot;hospital_beds_per_thousand&quot;.isNotNull &amp;&amp; $&quot;life_expectancy&quot;.isNotNull &amp;&amp;
+                                 $&quot;human_development_index&quot;.isNotNull)
+
+
+// filter out NULL feature countries
+val df_cleaned_feature = df_cleaned.filter($&quot;location&quot;.isin(valid_distinct_features.select($&quot;location&quot;).rdd.map(r =&gt; r(0)).collect().toSeq: _*)).cache
+
+df_cleaned.unpersist()
+
+display(df_cleaned_feature)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="4-imputing-missing-data-for"><a class="header" href="#4-imputing-missing-data-for">4. Imputing missing data for</a></h3>
+<ul>
+<li>total<em>cases</em>per_million</li>
+<li>new<em>cases</em>per_million</li>
+<li>new<em>cases</em>smoothed<em>per</em>million</li>
+<li>total<em>deaths</em>per_million</li>
+<li>new<em>deaths</em>per_million</li>
+<li>new<em>deaths</em>smoothed<em>per</em>million</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df_cleaned_feature_permillion = df_cleaned_feature.withColumn(&quot;total_cases_per_million_correct&quot;, df_cleaned_feature(&quot;total_cases&quot;)/df_cleaned_feature(&quot;population&quot;)*1000000)
+                                                   .withColumn(&quot;new_cases_per_million_correct&quot;, df_cleaned_feature(&quot;new_cases&quot;)/df_cleaned_feature(&quot;population&quot;)*1000000)
+                                                   .withColumn(&quot;new_cases_smoothed_per_million_correct&quot;, df_cleaned_feature(&quot;new_cases_smoothed&quot;)/df_cleaned_feature(&quot;population&quot;)*1000000)
+                                                   .withColumn(&quot;total_deaths_per_million_correct&quot;, df_cleaned_feature(&quot;total_deaths&quot;)/df_cleaned_feature(&quot;population&quot;)*1000000)
+                                                   .withColumn(&quot;new_deaths_per_million_correct&quot;, df_cleaned_feature(&quot;new_deaths&quot;)/df_cleaned_feature(&quot;population&quot;)*1000000)
+                                                   .withColumn(&quot;new_deaths_smoothed_per_million_correct&quot;, df_cleaned_feature(&quot;new_deaths_smoothed&quot;)/df_cleaned_feature(&quot;population&quot;)*1000000)
+                                                   .drop(&quot;total_cases_per_million&quot;, &quot;new_cases_per_million&quot;, &quot;new_cases_smoothed_per_million&quot;, 
+                                                         &quot;total_deaths_per_million&quot;, &quot;new_deaths_per_million&quot;, &quot;new_deaths_smoothed_per_million&quot;) // drop old column to rename
+                                                   .withColumnRenamed(&quot;total_cases_per_million_correct&quot;,&quot;total_cases_per_million&quot;)
+                                                   .withColumnRenamed(&quot;new_cases_per_million_correct&quot;,&quot;new_cases_per_million&quot;)
+                                                   .withColumnRenamed(&quot;new_cases_smoothed_per_million_correct&quot;,&quot;new_cases_smoothed_per_million&quot;)
+                                                   .withColumnRenamed(&quot;total_deaths_per_million_correct&quot;,&quot;total_deaths_per_million&quot;)
+                                                   .withColumnRenamed(&quot;new_deaths_per_million_correct&quot;,&quot;new_deaths_per_million&quot;)
+                                                   .withColumnRenamed(&quot;new_deaths_smoothed_per_million_correct&quot;,&quot;new_deaths_smoothed_per_million&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_cleaned_feature_permillion: org.apache.spark.sql.DataFrame = [iso_code: string, continent: string ... 48 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="5-impute-time-series-data-of"><a class="header" href="#5-impute-time-series-data-of">5. Impute time series data of</a></h3>
+<ul>
+<li>reproduction_rate</li>
+<li>total_tests</li>
+<li>stringency_index</li>
+<li>total<em>tests</em>per_thousand</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df_cleaned_time_series = df_cleaned_feature_permillion
+                              .withColumn(&quot;reproduction_rate&quot;, last(&quot;reproduction_rate&quot;, true)
+                                         .over(Window.partitionBy(&quot;location&quot;).orderBy(&quot;date&quot;).rowsBetween(-df_cleaned_feature_permillion.count(), 0)))
+                              .withColumn(&quot;reproduction_rate&quot;, first(&quot;reproduction_rate&quot;, true)
+                                         .over(Window.partitionBy(&quot;location&quot;).orderBy(&quot;date&quot;).rowsBetween(0, df_cleaned_feature_permillion.count())))
+                              .na.fill(0, Array(&quot;reproduction_rate&quot;))
+                              .withColumn(&quot;stringency_index&quot;, last(&quot;stringency_index&quot;, true)
+                                         .over(Window.partitionBy(&quot;location&quot;).orderBy(&quot;date&quot;).rowsBetween(-df_cleaned_feature_permillion.count(), 0)))
+                              .na.fill(0, Array(&quot;stringency_index&quot;))
+                              .withColumn(&quot;total_tests&quot;, last(&quot;total_tests&quot;, true)
+                                         .over(Window.partitionBy(&quot;location&quot;).orderBy(&quot;date&quot;).rowsBetween(-df_cleaned_feature_permillion.count(), 0)))
+                              .withColumn(&quot;total_tests&quot;, first(&quot;total_tests&quot;, true)
+                                         .over(Window.partitionBy(&quot;location&quot;).orderBy(&quot;date&quot;).rowsBetween(0, df_cleaned_feature_permillion.count())))
+                              .na.fill(0, Array(&quot;total_tests&quot;))
+                              .withColumn(&quot;total_tests_per_thousand&quot;, col(&quot;total_tests&quot;)/col(&quot;population&quot;)*1000)
+                              .cache
+
+df_cleaned_feature_permillion.unpersist()
+
+display(df_cleaned_time_series)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/01_StreamToFile.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/01_StreamToFile.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

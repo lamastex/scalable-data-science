@@ -1,0 +1,2214 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-01_group-TheTwoCultures/00_download_data.html">00_download_data</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-01_group-TheTwoCultures/01_load_data.html">01_load_data</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-01_group-TheTwoCultures/01b_show_data.html">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-01_group-TheTwoCultures/02_logisticregression.html">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-01_group-TheTwoCultures/03_word2vec.html">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-01_group-TheTwoCultures/04_LDA.html">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="the-two-cultures"><a class="header" href="#the-two-cultures">The two cultures</a></h1>
+</div>
+<div class="cell markdown">
+<p>Link to video presentation: https://www.youtube.com/watch?v=NzxBRxheJ9s&amp;feature=youtu.be</p>
+</div>
+<div class="cell markdown">
+<ol>
+<li>Introduction</li>
+</ol>
+<hr />
+<p>This is the final project in the Scalable Data Science and Distributed Machine Learning (6 credits) course. Our aim is to compare and distinguish forum threads from two of the most popular forum sites in Sweden; Familjeliv and Flashback. For this we will use both logisitic regression models and topic modelling. We will compare two different feature approaches using logistic regression; one using word occurencies as our input features and one using more advanced word2vec features. For topic modelling we will use an LDA model and observe the most significant words in each forum.</p>
+<p><img src="https://kwiss.me/assets/quiz/1512031277717651576.png" alt="flvsfb" /></p>
+<p><strong>Project members:</strong> - Daniel Ahlsén - Martin Andersson - Niklas Gunnarsson - Jonathan Styrud</p>
+</div>
+<div class="cell markdown">
+<ol start="2">
+<li>Download data</li>
+</ol>
+<hr />
+<p>For this project we use data resources from the swedish research unit Språkbanken (https://spraakbanken.gu.se/)</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var root = &quot;dbfs:/datasets/student-project-01&quot;
+try{
+  dbutils.fs.ls(root)
+} catch {
+  case e: java.io.FileNotFoundException =&gt; dbutils.fs.mkdirs(root)
+}
+
+display(dbutils.fs.ls(root)) 
+
+var fl_root = &quot;dbfs:/datasets/student-project-01/familjeliv/&quot;
+try{
+  dbutils.fs.ls(fl_root)
+} catch {
+  case e: java.io.FileNotFoundException =&gt; dbutils.fs.mkdirs(fl_root)
+}
+
+var fb_root = &quot;dbfs:/datasets/student-project-01/flashback/&quot;
+try{
+  dbutils.fs.ls(fb_root)
+} catch {
+  case e: java.io.FileNotFoundException =&gt; dbutils.fs.mkdirs(fb_root)
+}
+
+display(dbutils.fs.ls(root))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/datasets/student-project-01/familjeliv/</td>
+<td>familjeliv/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/student-project-01/flashback/</td>
+<td>flashback/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/student-project-01/stoppord.csv</td>
+<td>stoppord.csv</td>
+<td>1936.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/student-project-01/stopwords2.csv</td>
+<td>stopwords2.csv</td>
+<td>145866.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/student-project-01/word2vec_model_sex/</td>
+<td>word2vec_model_sex/</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//[   ]	familjeliv-adoption.xml.bz2	            2017-07-23 17:39	195M	 
+//[   ]	familjeliv-allmanna-ekonomi.xml.bz2	    2017-09-18 13:50	838M	 
+//[   ]	familjeliv-allmanna-familjeliv.xml.bz2	2017-09-19 15:49	1.1G	 
+//[   ]	familjeliv-allmanna-fritid.xml.bz2	    2017-09-19 17:30	588M	 
+//[   ]	familjeliv-allmanna-husdjur.xml.bz2	    2017-09-20 15:31	846M	 
+//[   ]	familjeliv-allmanna-hushem.xml.bz2	    2017-09-21 12:27	1.3G	 
+//[   ]	familjeliv-allmanna-kropp.xml.bz2	    2017-09-21 18:41	2.3G	 
+//[   ]	familjeliv-allmanna-noje.xml.bz2	    2017-09-21 19:57	1.6G	 
+//[   ]	familjeliv-allmanna-samhalle.xml.bz2	2017-09-22 03:52	5.0G	 
+//[   ]	familjeliv-allmanna-sandladan.xml.bz2	2017-09-22 10:43	778M	 
+//[   ]	familjeliv-anglarum.xml.bz2	            2017-07-23 18:10	336M	 
+//[   ]	familjeliv-expert.xml.bz2	            2017-07-20 11:32	142M	 
+//[   ]	familjeliv-foralder.xml.bz2	            2017-08-04 19:16	10G	 
+//[   ]	familjeliv-gravid.xml.bz2	            2017-07-15 04:50	7.5G	 
+//[   ]	familjeliv-kansliga.xml.bz2	            2017-09-05 18:13	14G	 
+//[   ]	familjeliv-medlem-allmanna.xml.bz2	    2017-07-24 03:47	4.4G	 
+//[   ]	familjeliv-medlem-foraldrar.xml.bz2	    2017-07-20 22:11	4.5G	 
+//[   ]	familjeliv-medlem-planerarbarn.xml.bz2	2017-07-18 15:08	1.9G	 
+//[   ]	familjeliv-medlem-vantarbarn.xml.bz2	2017-07-17 08:04	4.5G	 
+//[   ]	familjeliv-pappagrupp.xml.bz2	        2017-06-28 16:18	38M	 
+//[   ]	familjeliv-planerarbarn.xml.bz2	        2017-08-28 20:55	2.8G	 
+//[   ]	familjeliv-sexsamlevnad.xml.bz2	        2017-08-25 16:39	2.3G	 
+//[   ]	familjeliv-svartattfabarn.xml.bz2	    2017-07-03 07:04	2.6G
+
+//[   ]	flashback-dator.xml.bz2	                2017-04-06 09:08	4.5G	 
+//[   ]	flashback-droger.xml.bz2	            2017-04-06 08:59	3.5G	 
+//[   ]	flashback-ekonomi.xml.bz2	            2017-04-06 10:53	1.2G	 
+//[   ]	flashback-flashback.xml.bz2	            2017-04-05 18:16	429M	 
+//[   ]	flashback-fordon.xml.bz2	            2017-04-06 12:00	1.0G	 
+//[   ]	flashback-hem.xml.bz2	                2017-04-07 03:10	4.6G	 
+//[   ]	flashback-kultur.xml.bz2	            2017-04-06 22:51	5.5G	 
+//[   ]	flashback-livsstil.xml.bz2	            2017-04-07 00:11	1.7G	 
+//[   ]	flashback-mat.xml.bz2	                2017-04-07 08:52	1.0G	 
+//[   ]	flashback-ovrigt.xml.bz2	            2017-04-07 18:54	1.9G	 
+//[   ]	flashback-politik.xml.bz2	            2017-04-14 17:06	9.0G	 
+//[   ]	flashback-resor.xml.bz2	                2017-04-09 15:52	566M	 
+//[   ]	flashback-samhalle.xml.bz2	            2017-04-12 20:36	8.3G	 
+//[   ]	flashback-sex.xml.bz2	                2017-04-11 20:32	1.3G	 
+//[   ]	flashback-sport.xml.bz2	                2017-04-12 22:10	3.3G	 
+//[   ]	flashback-vetenskap.xml.bz2	            2017-04-14 20:34	5.8G	 
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import sys.process._
+
+val fl_data = Array(&quot;familjeliv-allmanna-ekonomi.xml&quot;,
+                    &quot;familjeliv-sexsamlevnad.xml&quot;)
+
+val fb_data = Array(&quot;flashback-ekonomi.xml&quot;,
+                    &quot;flashback-sex.xml&quot;)
+
+val url = &quot;http://spraakbanken.gu.se/lb/resurser/meningsmangder/&quot;
+val tmp_folder_fl = &quot;/tmp/familjeliv/&quot;
+val tmp_folder_fb = &quot;/tmp/flashback/&quot;
+
+s&quot;rm -f -r ${tmp_folder_fl}&quot; .!! // Remove tmp folder if exists
+s&quot;rm -f -r ${tmp_folder_fb}&quot; .!!
+
+for (name &lt;- fl_data){
+  try{
+    dbutils.fs.ls(s&quot;${fl_root}${name}&quot;)
+    println(s&quot;${name} already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      println(s&quot;Downloading ${name} ...&quot;)
+      s&quot;wget -P ${tmp_folder_fl} ${url}${name}.bz2&quot; .!!
+      println(&quot;Unzipping ...&quot;)
+      s&quot;bzip2 -d ${tmp_folder_fl}${name}.bz2&quot; .!!
+      println(&quot;Moving ... &quot;)
+      val localpath=s&quot;file:${tmp_folder_fl}${name}&quot;
+      dbutils.fs.mv(localpath, fl_root)
+      println(s&quot;Done ${name}!&quot;)
+    }
+  }
+}
+
+s&quot;rm -f -r ${tmp_folder_fl}&quot; .!!
+
+for (name &lt;- fb_data){
+  try{
+    dbutils.fs.ls(s&quot;${fb_root}${name}&quot;)
+    println(s&quot;${name} already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      println(s&quot;Downloading ${name} ...&quot;)
+      s&quot;wget -P ${tmp_folder_fb} ${url}${name}.bz2&quot; .!!
+      println(&quot;Unzipping ...&quot;)
+      s&quot;bzip2 -d ${tmp_folder_fb}${name}.bz2&quot; .!!
+      println(&quot;Moving ... &quot;)
+      val localpath=s&quot;file:${tmp_folder_fb}${name}&quot;
+      dbutils.fs.mv(localpath, fb_root)
+      println(s&quot;Done ${name}!&quot;)
+    }
+  }
+}
+s&quot;rm -f -r ${tmp_folder_fb}&quot; .!!
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>familjeliv-allmanna-ekonomi.xml already exists!
+familjeliv-sexsamlevnad.xml already exists!
+flashback-ekonomi.xml already exists!
+flashback-sex.xml already exists!
+import sys.process._
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi.xml, familjeliv-sexsamlevnad.xml)
+fb_data: Array[String] = Array(flashback-ekonomi.xml, flashback-sex.xml)
+url: String = http://spraakbanken.gu.se/lb/resurser/meningsmangder/
+tmp_folder_fl: String = /tmp/familjeliv/
+tmp_folder_fb: String = /tmp/flashback/
+res14: String = &quot;&quot;
+</code></pre>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<ol start="3">
+<li>Methods to load data</li>
+</ol>
+<hr />
+</div>
+<div class="cell markdown">
+<h3 id="preprocessing-and-loading-the-relevant-data"><a class="header" href="#preprocessing-and-loading-the-relevant-data">Preprocessing and loading the relevant data</a></h3>
+<p>Each forum comes as an XML-file with the structure given below:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Data comes in XML-files with the following structure.
+/*
+&lt;corpus id=&quot;familjeliv-adoption&quot;&gt;
+&lt;forum id=&quot;13-242&quot; title=&quot;Adoption &amp;gt; Intresserad&quot; url=&quot;http://www.familjeliv.
+se/forum/13/242&quot;&gt;
+&lt;thread id=&quot;34277335&quot; title=&quot;Tips för att välja land&quot; postcount=&quot;25&quot; lastpost=&quot;2
+008-07-08 17:55:14&quot; url=&quot;http://www.familjeliv.se/forum/thread/34277335-tips-for
+-att-valja-land&quot;&gt;
+&lt;text datefrom=&quot;20080707&quot; dateto=&quot;20080707&quot; timefrom=&quot;220854&quot; timeto=&quot;220854&quot; lix=&quot;30.55&quot; ovix=&quot;60.74&quot; nk=&quot;0.51&quot; id=&quot;34284994&quot; username=&quot;Miss TN&quot; date=&quot;2008-07-07 22:08:54&quot; url=&quot;http://www.familjeliv.se/forum/thread/34277335-tips-for-att-valja-land/2#anchor-m16&quot;&gt;
+&lt;sentence id=&quot;bacc55562-baca83a75&quot; _geocontext=&quot;|&quot;&gt;
+&lt;w pos=&quot;VB&quot; msd=&quot;VB.PRS.AKT&quot; lemma=&quot;|känna|&quot; lex=&quot;|känna..vb.2|känna..vb.1|&quot; sense=&quot;|känna..1:0.522|känna..2:0.313|känna..4:0.158|känna..3:0.006|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;01&quot; dephead=&quot;07&quot; deprel=&quot;AA&quot;&gt;Känner&lt;/w&gt;
+&lt;w pos=&quot;PN&quot; msd=&quot;PN.UTR.SIN.DEF.SUB&quot; lemma=&quot;|ni|&quot; lex=&quot;|ni..pn.1|&quot; sense=&quot;|ni..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;02&quot; dephead=&quot;01&quot; deprel=&quot;OO&quot;&gt;ni&lt;/w&gt;
+&lt;w pos=&quot;PP&quot; msd=&quot;PP&quot; lemma=&quot;|för|&quot; lex=&quot;|för..pp.1|&quot; sense=&quot;|för..1:-1.000|för..5:-1.000|för..6:-1.000|för..7:-1.000|för..9:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;03&quot; dephead=&quot;01&quot; deprel=&quot;OA&quot;&gt;för&lt;/w&gt;
+&lt;w pos=&quot;DT&quot; msd=&quot;DT.NEU.SIN.IND&quot; lemma=&quot;|en|&quot; lex=&quot;|en..al.1|&quot; sense=&quot;|den..1:-1.000|en..2:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;04&quot; dephead=&quot;06&quot; deprel=&quot;DT&quot;&gt;ett&lt;/w&gt;
+&lt;w pos=&quot;JJ&quot; msd=&quot;JJ.POS.NEU.SIN.IND.NOM&quot; lemma=&quot;|låg|&quot; lex=&quot;|låg..av.1|&quot; sense=&quot;|låg..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;05&quot; dephead=&quot;06&quot; deprel=&quot;AT&quot;&gt;lågt&lt;/w&gt;
+&lt;w pos=&quot;NN&quot; msd=&quot;NN.NEU.SIN.IND.NOM&quot; lemma=&quot;|medgivande|&quot; lex=&quot;|medgivande..nn.1|&quot; sense=&quot;|medgivande..1:0.595|medgivande..2:0.405|&quot; prefix=&quot;|medge..vb.1|mede..nn.1|&quot; suffix=&quot;|givande..nn.1|ande..nn.1|&quot; compwf=&quot;|medgiv+ande|med+givande|med+giv+ande|&quot; complemgram=&quot;|medge..vb.1+ande..nn.1:4.632e-17|mede..nn.1+givande..nn.1:6.075e-27|mede..nn.1+giv..nn.1+ande..nn.1:5.387e-27|mede..nn.1+ge..vb.1+ande..nn.1:1.257e-29|&quot; ref=&quot;06&quot; dephead=&quot;03&quot; deprel=&quot;PA&quot;&gt;medgivande&lt;/w&gt;
+&lt;w pos=&quot;VB&quot; msd=&quot;VB.PRS.AKT&quot; lemma=&quot;|skola|&quot; lex=&quot;|skola..vb.2|&quot; sense=&quot;|skola..4:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;07&quot; deprel=&quot;ROOT&quot;&gt;ska&lt;/w&gt;
+&lt;w pos=&quot;PN&quot; msd=&quot;PN.UTR.PLU.DEF.SUB&quot; lemma=&quot;|ni|&quot; lex=&quot;|ni..pn.1|&quot; sense=&quot;|ni..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;08&quot; dephead=&quot;07&quot; deprel=&quot;SS&quot;&gt;ni&lt;/w&gt;
+&lt;w pos=&quot;AB&quot; msd=&quot;AB&quot; lemma=&quot;|verkligen|&quot; lex=&quot;|verkligen..ab.1|&quot; sense=&quot;|verkligen..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;09&quot; dephead=&quot;07&quot; deprel=&quot;MA&quot;&gt;verkligen&lt;/w&gt;
+&lt;w pos=&quot;VB&quot; msd=&quot;VB.INF.AKT&quot; lemma=&quot;|sträva|&quot; lex=&quot;|sträva..vb.1|&quot; sense=&quot;|sträva..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;10&quot; dephead=&quot;07&quot; deprel=&quot;VG&quot;&gt;sträva&lt;/w&gt;
+.
+.
+.
+&lt;/sentence&gt;
+&lt;/text&gt;
+&lt;/thread&gt;
+&lt;thread id=&quot;42755312&quot; title=&quot;Om vi planerar ett barn om sju år, när ska vi dra igång adoptionsprocessen?&quot; postcount=&quot;3&quot; lastpost=&quot;2009-04-01 18:39:55&quot; url=&quot;http://www.familjeliv.se/forum/thread/42755312-om-vi-planerar-ett-barn-om-sju-ar-nar-ska-vi-dra-igang-adoptionsprocessen&quot;&gt;
+&lt;text datefrom=&quot;20090331&quot; dateto=&quot;20090331&quot; timefrom=&quot;201724&quot; timeto=&quot;201724&quot; lix=&quot;27.48&quot; ovix=&quot;50.60&quot; nk=&quot;0.37&quot; id=&quot;42755312&quot; username=&quot;alvaereva&quot; date=&quot;2009-03-31 20:17:24&quot; url=&quot;http://www.familjeliv.se/forum/thread/42755312-om-vi-planerar-ett-barn-om-sju-ar-nar-ska-vi-dra-igang-adoptionsprocessen/1&quot;&gt;
+&lt;sentence id=&quot;bac2ec05f-bace4e647&quot; _geocontext=&quot;|&quot;&gt;
+&lt;w pos=&quot;KN&quot; msd=&quot;KN&quot; lemma=&quot;|&quot; lex=&quot;|&quot; sense=&quot;|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;01&quot; deprel=&quot;ROOT&quot;&gt;Som&lt;/w&gt;
+.
+.
+.
+*/
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions.{col,concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ ArrayType, StructType, StructField, StringType, IntegerType }
+import com.databricks.spark.xml._ // Add the DataFrame.read.xml() method
+import org.apache.spark.sql.functions._
+
+
+def read_xml(file_name: String): org.apache.spark.sql.DataFrame = {
+  val sentence_schema = StructType(Array(
+    StructField(&quot;w&quot;, ArrayType(StringType, true), nullable=true)
+  ))
+  val text_schema = StructType(Array(
+     StructField(&quot;sentence&quot;, ArrayType(sentence_schema), nullable=false)
+  ))
+
+  val thread_schema = StructType(Array(
+    StructField(&quot;_id&quot;, StringType, nullable = false),
+    StructField(&quot;_title&quot;, StringType, nullable = false),
+    StructField(&quot;_url&quot;, StringType, nullable = false),
+    StructField(&quot;text&quot;, text_schema, nullable=false)
+  ))
+
+  val forum_schema = StructType(Array(
+    StructField(&quot;_id&quot;, StringType, nullable = false),
+    StructField(&quot;_title&quot;, StringType, nullable = false),
+    StructField(&quot;_url&quot;, StringType, nullable = false),
+    StructField(&quot;thread&quot;, ArrayType(thread_schema), nullable=false)
+  ))
+
+  val corpus_schema = StructType(Array(
+    StructField(&quot;_id&quot;, StringType, nullable = false),
+    StructField(&quot;forum&quot;, forum_schema, nullable=false)
+  ))
+
+  spark.read
+    .option(&quot;rowTag&quot;, &quot;forum&quot;)
+    .schema(forum_schema)
+    .xml(file_name)
+ }
+
+def get_dataset(file_name: String) : org.apache.spark.sql.DataFrame = {
+  val xml_df = read_xml(file_name)
+  val ds = xml_df.withColumn(&quot;thread&quot;, explode($&quot;thread&quot;))
+  val splitted_name = file_name.split(&quot;/&quot;)
+  val forum = splitted_name(splitted_name.size-2)
+  val corpus = splitted_name(splitted_name.size-1)
+  val value = udf((arr: Seq[String]) =&gt; arr.mkString(&quot;,&quot;))
+  ds.select(col(&quot;_id&quot;) as &quot;forum_id&quot;,
+                     col(&quot;_title&quot;) as &quot;forum_title&quot;,
+                     col(&quot;thread._id&quot;) as &quot;thread_id&quot;,
+                     col(&quot;thread._title&quot;) as &quot;thread_title&quot;,
+                     flatten(col(&quot;thread.text.sentence.w&quot;)) as &quot;w&quot;)
+                .withColumn(&quot;w&quot;, explode($&quot;w&quot;))
+               .groupBy(&quot;thread_id&quot;)
+               .agg(first(&quot;thread_title&quot;) as(&quot;thread_title&quot;),
+                    collect_list(&quot;w&quot;) as &quot;w&quot;,
+                    first(&quot;forum_id&quot;) as &quot;forum_id&quot;,
+                    first(&quot;forum_title&quot;) as &quot;forum_title&quot;)
+               .withColumn(&quot;w&quot;, concat_ws(&quot;,&quot;,col(&quot;w&quot;)))
+               .withColumn(&quot;platform&quot;, lit(forum))
+               .withColumn(&quot;corpus_id&quot;, lit(corpus))
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def save_df(df: org.apache.spark.sql.DataFrame, filePath:String){
+  df.write.format(&quot;parquet&quot;).save(filePath)  
+}
+
+def load_df(filePath: String): org.apache.spark.sql.DataFrame = {
+  spark.read.format(&quot;parquet&quot;).load(filePath)
+ }
+
+def no_forums(df: org.apache.spark.sql.DataFrame): Long = {
+  val forums = df.select(&quot;forum_title&quot;).distinct()
+  forums.show(false)
+  forums.count()
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="4">
+<li>Save preprocessed data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var fl_root = &quot;dbfs:/datasets/student-project-01/familjeliv/&quot;
+var fb_root = &quot;dbfs:/datasets/student-project-01/flashback/&quot;
+
+val fl_data = Array(&quot;familjeliv-allmanna-ekonomi&quot;,
+                    &quot;familjeliv-sexsamlevnad&quot;)
+
+val fb_data = Array(&quot;flashback-ekonomi&quot;,
+                    &quot;flashback-sex&quot;)
+
+for (name &lt;- fl_data){
+  try{
+    println(s&quot;${fb_root}${name}_df&quot;)
+    dbutils.fs.ls(s&quot;${fl_root}${name}_df&quot;)
+    println(s&quot;${name}_df already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      val file_name = s&quot;${fl_root}${name}.xml&quot;
+      val df = get_dataset(file_name)
+      val file_path = s&quot;${fl_root}${name}_df&quot;
+      save_df(df, file_path)
+    }
+  }
+}
+
+for (name &lt;- fb_data){
+  try{
+    println(s&quot;${fb_root}${name}_df&quot;)
+    dbutils.fs.ls(s&quot;${fb_root}${name}_df&quot;)
+    println(s&quot;${name}_df already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      val file_name = s&quot;${fb_root}${name}.xml&quot;
+      val df = get_dataset(file_name)
+      val file_path = s&quot;${fb_root}${name}_df&quot;
+      save_df(df, file_path)
+    }
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var file_name = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi.xml&quot;
+var xml_df = read_xml(file_name).cache()
+var df = get_dataset(file_name).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_name: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi.xml
+xml_df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [_id: string, _title: string ... 2 more fields]
+df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">xml_df.printSchema()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- _id: string (nullable = false)
+ |-- _title: string (nullable = false)
+ |-- _url: string (nullable = false)
+ |-- thread: array (nullable = false)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- _id: string (nullable = false)
+ |    |    |-- _title: string (nullable = false)
+ |    |    |-- _url: string (nullable = false)
+ |    |    |-- text: struct (nullable = false)
+ |    |    |    |-- sentence: array (nullable = false)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- w: array (nullable = true)
+ |    |    |    |    |    |    |-- element: string (containsNull = true)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">xml_df.show(10)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------------------+--------------------+--------------------+
+|   _id|              _title|                _url|              thread|
++------+--------------------+--------------------+--------------------+
+|19-290|Allmänna rubriker...|http://www.familj...|[[70148929, Frivi...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[58302374, Missh...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[36330819, Är så...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[75852809, Hur k...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[42304381, Hej a...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[41294375, när p...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[47653437, Har v...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[75266317, Anmäl...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[76559817, Fel a...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[62028128, Vad g...|
++------+--------------------+--------------------+--------------------+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.printSchema()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- thread_id: string (nullable = true)
+ |-- thread_title: string (nullable = true)
+ |-- w: string (nullable = false)
+ |-- forum_id: string (nullable = true)
+ |-- forum_title: string (nullable = true)
+ |-- platform: string (nullable = false)
+ |-- corpus_id: string (nullable = false)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df)
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="the-two-cultures---classifying-threads-with-logistic-regression"><a class="header" href="#the-two-cultures---classifying-threads-with-logistic-regression">The two cultures - Classifying threads with logistic regression</a></h1>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Imports
+import org.apache.spark.ml.feature.StopWordsRemover
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.feature.CountVectorizer
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.StopWordsRemover
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.feature.CountVectorizer
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol>
+<li>Load the data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Load dataframes
+val file_path_familjeliv = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df&quot;
+val file_path_flashback = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex_df&quot;
+val df_familjeliv = load_df(file_path_familjeliv)
+val df_flashback = load_df(file_path_flashback)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_path_familjeliv: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df
+file_path_flashback: String = dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+df_familjeliv: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+df_flashback: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Extract the text
+val df_text_flashback = df_flashback.select(&quot;w&quot;)
+val df_text_familjeliv = df_familjeliv.select(&quot;w&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_text_flashback: org.apache.spark.sql.DataFrame = [w: string]
+df_text_familjeliv: org.apache.spark.sql.DataFrame = [w: string]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="2">
+<li>Add labels</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Add label columns and make sure that we have exactly the same amount of data from both forums
+val df_text_flashback_c = df_text_flashback.withColumn(&quot;c&quot;, lit(0))
+val df_text_familjeliv_c = df_text_familjeliv.orderBy(rand()).limit(df_text_flashback_c.count().toInt).withColumn(&quot;c&quot;, lit(1))
+val df_text_full = df_text_flashback_c.union(df_text_familjeliv_c)
+
+//Check the counts
+println(df_text_flashback_c.count())
+println(df_text_familjeliv_c.count())
+println(df_text_full.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>56621
+56621
+113242
+df_text_flashback_c: org.apache.spark.sql.DataFrame = [w: string, c: int]
+df_text_familjeliv_c: org.apache.spark.sql.DataFrame = [w: string, c: int]
+df_text_full: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [w: string, c: int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="3">
+<li>Extract single words</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val tokenizer = new RegexTokenizer()
+  .setPattern(&quot;(?U),&quot;) // break by whitespace
+  .setMinTokenLength(5) // Filter away tokens with length &lt; 5
+  .setInputCol(&quot;w&quot;) // name of the input column
+  .setOutputCol(&quot;text&quot;) // name of the output column
+val tokenized_df = tokenizer.transform(df_text_full).select(&quot;c&quot;, &quot;text&quot;)
+tokenized_df.show(3, false)
+</code></pre>
+</div>
+<div class="cell markdown">
+<ol start="4">
+<li>Remove stopwords</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Stopwordsremover (similar to lda notebook)
+val stoppord = sc.textFile(&quot;dbfs:/datasets/student-project-01/stoppord.csv&quot;).collect()
+val stopwordList = Array(&quot;bara&quot;,&quot;lite&quot;,&quot;finns&quot;,&quot;vill&quot;,&quot;samt&quot;,&quot;inga&quot;,&quot;även&quot;,&quot;finns&quot;,&quot;ganska&quot;,&quot;också&quot;,&quot;igen&quot;,&quot;just&quot;,&quot;that&quot;,&quot;with&quot;,&quot;http&quot;,&quot;jpg&quot;,  &quot;kanske&quot;,&quot;tycker&quot;,&quot;gillar&quot;,&quot;bra&quot;,&quot;000&quot;,&quot;måste&quot;,&quot;tjej&quot;,&quot;tjejer&quot;,&quot;tjejen&quot;,&quot;tjejerna&quot;,&quot;kvinna&quot;,&quot;kvinnor&quot;,&quot;kille&quot;,&quot;killar&quot;,&quot;killen&quot;,&quot;män&quot;,&quot;rätt&quot;,&quot;män&quot;,&quot;com&quot;,&quot;and&quot;,&quot;html&quot;,&quot;många&quot;,&quot;aldrig&quot;,&quot;www&quot;,&quot;mpg&quot;,&quot;avi&quot;,&quot;wmv&quot;,&quot;riktigt&quot;,&quot;känner&quot;,&quot;väldigt&quot;,&quot;font&quot;,&quot;size&quot;,&quot;mms&quot;,&quot;2008&quot;,&quot;2009&quot;, &quot;flashback&quot;, &quot;familjeliv&quot;).union(stoppord).union(StopWordsRemover.loadDefaultStopWords(&quot;swedish&quot;))
+
+val remover = new StopWordsRemover()
+  .setStopWords(stopwordList)
+  .setInputCol(&quot;text&quot;)
+  .setOutputCol(&quot;filtered&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Run the stopwordsremover
+val removed_df = remover.transform(tokenized_df).select(&quot;c&quot;, &quot;filtered&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>removed_df: org.apache.spark.sql.DataFrame = [c: int, filtered: array&lt;string&gt;]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="5">
+<li>Count words and create vocabulary vector</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Unlimited size vocabulary just to see how much there is
+val vectorizerall = new CountVectorizer()
+   .setInputCol(&quot;filtered&quot;)
+   .setOutputCol(&quot;features&quot;)
+   .setMinDF(5) // Only count words that occur in at least 5 threadss
+   .fit(removed_df) // returns CountVectorizerModel
+
+//This is the one we use, limit size of vocabulary
+val vectorizer = new CountVectorizer()
+   .setInputCol(&quot;filtered&quot;)
+   .setOutputCol(&quot;features&quot;)
+   .setVocabSize(1000) // Size of dictonary
+   .setMinDF(5) // Only count words that occur in at least 5 threadss
+   .fit(removed_df) // returns CountVectorizerModel
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>vectorizerall: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_e9a01f8ad0fe, vocabularySize=129204
+vectorizer: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_9d51ff227f19, vocabularySize=1000
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Let's take a look at the vocabulary
+vectorizer.vocabulary
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Count the word frequencies
+val tf = vectorizer.transform(removed_df.select(&quot;c&quot;, &quot;filtered&quot;)).select(&quot;c&quot;, &quot;features&quot;).cache()
+
+//Print the feature vector to show what it looks like
+tf.take(1).foreach(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>[0,(1000,[0,4,5,6,12,16,33,34,48,53,56,60,64,66,68,73,83,84,91,100,101,105,107,119,123,125,127,141,143,163,171,201,205,210,212,261,273,302,325,338,341,348,361,367,383,414,424,453,454,491,571,621,632,635,667,684,693,701,829,849,933,981],[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,2.0,2.0,1.0,1.0,3.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0])]
+tf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="6">
+<li>Split data into training and test data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Train test split
+val random_order = tf.orderBy(rand())
+val splits = random_order.randomSplit(Array(0.8, 0.2), seed = 1337)
+val training = splits(0)
+val test = splits(1)
+println(training.count())
+println(test.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>90818
+22424
+random_order: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+splits: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] = Array([c: int, features: vector], [c: int, features: vector])
+training: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="7">
+<li>Logistic Regression model</li>
+</ol>
+<hr />
+<p>\[P(y = 1) = \frac{1}{1+exp(-\beta X^T)}\]</p>
+<p>\[
+X = [1,x_1, \dots, x_m], \quad
+\beta = [\beta_0, \beta_1, ..., \beta_m]
+\]</p>
+<p>where \(x_i\) is occurrence for word \(i\), \(m\) is 1000.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Logistic regression
+val lr = new LogisticRegression()
+  .setLabelCol(&quot;c&quot;)
+  .setMaxIter(100) //Run for 100 iterations (not necessary but let's stay on safe side)
+  .setRegParam(0.0001) //Just a tiny bit of regularization to avoid overfitting
+  .setElasticNetParam(0.5) // 50-50 between L1 and L2 loss
+
+// Fit the model
+val lrModel = lr.fit(training)
+
+// Print the coefficients and intercept for logistic regression
+println(s&quot;Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}&quot;)
+
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Check the training progress
+lrModel.binarySummary.objectiveHistory.foreach(loss =&gt; println(loss))
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Ugly code to lookup maximum and minimum values
+var maxarray = Array.ofDim[Double](5,2)
+def findmax(idx: Int, value: Double) = {
+  if (value &gt; maxarray(4)(1)){
+    maxarray(4)(0) = idx
+    maxarray(4)(1) = value
+    maxarray = maxarray.sortBy(- _(1))
+  }
+}
+var minarray = Array.ofDim[Double](5,2)
+def findmin(idx: Int, value: Double) = {
+  if (value &lt; minarray(4)(1)){
+    minarray(4)(0) = idx
+    minarray(4)(1) = value
+    minarray = minarray.sortBy(_(1))
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>maxarray: Array[Array[Double]] = Array(Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0))
+findmax: (idx: Int, value: Double)Unit
+minarray: Array[Array[Double]] = Array(Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0))
+findmin: (idx: Int, value: Double)Unit
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Let's check which words are considered most important for classification
+lrModel.coefficients.foreachActive((idx, value) =&gt; findmax(idx, value))
+
+//First check familjeliv
+println(maxarray.deep.foreach(println))
+println(vectorizer.vocabulary(maxarray(0)(0).toInt))
+println(vectorizer.vocabulary(maxarray(1)(0).toInt))
+println(vectorizer.vocabulary(maxarray(2)(0).toInt))
+println(vectorizer.vocabulary(maxarray(3)(0).toInt))
+println(vectorizer.vocabulary(maxarray(4)(0).toInt))
+lrModel.coefficients.foreachActive((idx, value) =&gt; findmin(idx, value))
+
+//Check for flashback
+println(minarray.deep.foreach(println))
+println(vectorizer.vocabulary(minarray(0)(0).toInt))
+println(vectorizer.vocabulary(minarray(1)(0).toInt))
+println(vectorizer.vocabulary(minarray(2)(0).toInt))
+println(vectorizer.vocabulary(minarray(3)(0).toInt))
+println(vectorizer.vocabulary(minarray(4)(0).toInt))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Array(46.0, 1.8647655096872564)
+Array(885.0, 1.275281418044729)
+Array(950.0, 1.224376631679196)
+Array(380.0, 0.9577079595234373)
+Array(32.0, 0.8432880748567715)
+()
+anonym
+förlossningen
+maken
+sambon
+sambo
+Array(990.0, -2.2314223680319945)
+Array(664.0, -1.8291269454715258)
+Array(857.0, -1.4232104863197035)
+Array(275.0, -1.3427561053936439)
+Array(173.0, -1.1857533047141897)
+()
+topic
+bruden
+vafan
+brudar
+jävligt
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="8">
+<li>Predict on test data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">val predictions = lrModel.transform(test)
+predictions.orderBy(rand()).select(&quot;c&quot;, &quot;prediction&quot;, &quot;probability&quot;).show(30, false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+---+----------+-------------------------------------------+
+|c  |prediction|probability                                |
++---+----------+-------------------------------------------+
+|0  |0.0       |[0.9721401017870042,0.027859898212995764]  |
+|0  |0.0       |[0.975623998737009,0.02437600126299096]    |
+|1  |1.0       |[4.6730789993111417E-7,0.9999995326921002] |
+|0  |0.0       |[0.933249707175278,0.066750292824722]      |
+|0  |0.0       |[0.9902085789245901,0.009791421075409966]  |
+|0  |0.0       |[0.5279677569376853,0.47203224306231467]   |
+|0  |0.0       |[0.9932461412304279,0.00675385876957205]   |
+|1  |1.0       |[2.43269453308815E-5,0.9999756730546691]   |
+|1  |1.0       |[8.266454051870882E-10,0.9999999991733546] |
+|0  |0.0       |[0.9997151003194746,2.8489968052548283E-4] |
+|1  |0.0       |[0.5514931570249911,0.44850684297500887]   |
+|0  |0.0       |[0.5858664716477586,0.41413352835224143]   |
+|1  |1.0       |[0.002100566198113697,0.9978994338018863]  |
+|1  |1.0       |[0.07917634407205193,0.920823655927948]    |
+|0  |0.0       |[0.9970675008521647,0.0029324991478353007] |
+|0  |0.0       |[0.9999595461915014,4.045380849869759E-5]  |
+|0  |1.0       |[0.33337692071405434,0.6666230792859457]   |
+|1  |1.0       |[0.36761800025826114,0.6323819997417389]   |
+|1  |1.0       |[0.3245585295503879,0.6754414704496121]    |
+|1  |1.0       |[0.2355899833856519,0.7644100166143482]    |
+|0  |0.0       |[0.9999999999997755,2.2452150253864004E-13]|
+|1  |1.0       |[0.18608690603389255,0.8139130939661074]   |
+|0  |0.0       |[0.740890026139782,0.25910997386021795]    |
+|0  |0.0       |[0.963586227883629,0.036413772116371014]   |
+|1  |1.0       |[0.0021508873399861557,0.9978491126600139] |
+|1  |1.0       |[0.3858439417926455,0.6141560582073544]    |
+|1  |1.0       |[0.4517753939274335,0.5482246060725665]    |
+|1  |1.0       |[0.02573645474447229,0.9742635452555276]   |
+|0  |0.0       |[0.8022052550237544,0.19779474497624555]   |
+|1  |1.0       |[0.042382658471976975,0.9576173415280229]  |
++---+----------+-------------------------------------------+
+only showing top 30 rows
+
+predictions: org.apache.spark.sql.DataFrame = [c: int, features: vector ... 3 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Check auroc value
+val evaluator = new BinaryClassificationEvaluator().setLabelCol(&quot;c&quot;)
+evaluator.evaluate(predictions)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>evaluator: org.apache.spark.ml.evaluation.BinaryClassificationEvaluator = BinaryClassificationEvaluator: uid=binEval_0812f13ed2be, metricName=areaUnderROC, numBins=1000
+res19: Double = 0.928445521562674
+</code></pre>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="classification-using-word2vec"><a class="header" href="#classification-using-word2vec">Classification using Word2Vec</a></h1>
+<h2 id="word-embeddings"><a class="header" href="#word-embeddings">Word embeddings</a></h2>
+<p>Word embeddings map words to vectors of real numbers. Frequency analysis, which we did in a another notebook, is an example of this. There, the 1000 most common words in a collection of text words were mapped to a 1000-dimensional space using one-hot encoding, while the other words were sent to the zero vector. An array of words is mapped to the sum of the one-hot encoded vectors.</p>
+<p>A more sophisticated word embedding is Word2Vec, which uses the skip-gram model and hierarchical softmax. The idea is to map words to the vector so that it predicts the other words around it well. We refer to <a href="https://arxiv.org/abs/1301.3781">Efficient Estimation of Word Representations in Vector Space</a> and <a href="https://arxiv.org/abs/1310.4546">Distributed Representations of Words and Phrases and their Compositionality</a> for details.</p>
+<p>The practical difference is that Word2Vec maps every word to a non-zero vector, and that the output dimension can be chosen freely. Also, the embedding itself has to be trained before use, using some large collection of words. An array of words is mapped to the average of these words.</p>
+<p>This case study uses the sex forums on Flashback and Familjeliv. The aim is to determine which forum a thread comes from by using the resulting word embeddings, using logistic regression.</p>
+</div>
+<div class="cell markdown">
+<h2 id="preamble"><a class="header" href="#preamble">Preamble</a></h2>
+<p>This section loads libraries and imports functions from another notebook.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// import required libraries
+import org.apache.spark.ml.feature.{Word2Vec,Word2VecModel}
+import org.apache.spark.ml.{Pipeline, PipelineModel}
+import org.apache.spark.ml.linalg.{Vector, Vectors}
+import org.apache.spark.sql.Row
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.{Word2Vec, Word2VecModel}
+import org.apache.spark.ml.{Pipeline, PipelineModel}
+import org.apache.spark.ml.linalg.{Vector, Vectors}
+import org.apache.spark.sql.Row
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell markdown">
+<h2 id="loading-the-data"><a class="header" href="#loading-the-data">Loading the data</a></h2>
+<p>To extract the data from the .xml-file we use get_dataset().</p>
+<p>Scraping the data takes quite some time, so we also supply a second cell that loads saved results.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// process .xml-files
+val file_name = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad.xml&quot;
+val df = get_dataset(file_name)
+val file_name2 = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex.xml&quot;
+val df2 = get_dataset(file_name2)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// paths to saved dataframes
+val file_path_familjeliv = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df&quot; 
+val file_path_flashback = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex_df&quot;
+
+// load saved data frame
+val df_familjeliv = load_df(file_path_familjeliv)
+val df_flashback = load_df(file_path_flashback)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_path_familjeliv: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df
+file_path_flashback: String = dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+df_familjeliv: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+df_flashback: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The dataframes consist of 7 fields: * thread<em>id - a unique numerical signifier for each thread * thread</em>title - the title of the thread, set by the person who created it * w - a comma separated string of all posts in a thread * forum<em>id - a numerical forum signifier * forum</em>title - name of the forum to which the thread belongs * platform - the platform from which the thread comes (flashback or familjeliv) * corpus_id - the corpus from which the data was gathered</p>
+<p>Let's have a look at the dataframes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df_familjeliv)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We add labels and merge the two dataframes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df = df_flashback.withColumn(&quot;c&quot;, lit(0.0)).union(df_familjeliv.withColumn(&quot;c&quot;, lit(1.0)))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="preprocessing-the-data"><a class="header" href="#preprocessing-the-data">Preprocessing the data</a></h2>
+<p>Next, we must split and clean the text. For this we use Regex Tokenizers. We do not eliminate stop words.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// define the tokenizer
+val tokenizer = new RegexTokenizer()
+  .setPattern(&quot;(?U),&quot;) // break by commas
+  .setMinTokenLength(5) // Filter away tokens with length &lt; 5
+  .setInputCol(&quot;w&quot;) // name of the input column
+  .setOutputCol(&quot;text&quot;) // name of the output column
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>tokenizer: org.apache.spark.ml.feature.RegexTokenizer = regexTok_f0701eaf4f60
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let's tokenize and check out the result.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// define the thread title tokenizer
+
+val df_tokenized = tokenizer.transform(df)
+display(df_tokenized.select(&quot;w&quot;,&quot;text&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="define-and-training-a-word2vec-model"><a class="header" href="#define-and-training-a-word2vec-model">Define and training a Word2Vec model</a></h2>
+<p>We use the text from the threads to train the Word2Vec model. First we define the model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// define the model
+val word2Vec = new Word2Vec()
+  .setInputCol(&quot;text&quot;)
+  .setOutputCol(&quot;result&quot;)
+  .setVectorSize(200)
+  .setMinCount(0)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>word2Vec: org.apache.spark.ml.feature.Word2Vec = w2v_945abe6fab57
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>We train the model by fitting it to any dataframe we wish. Here, we use the tokenized one. Training the model takes roughly 2h30m, so we save the result to avoid the hassle of redoing calculations.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// train it
+val word2Vec_model = word2Vec.fit(df_tokenized)
+
+// save it
+word2Vec_model.save(&quot;dbfs:/datasets/student-project-01/word2vec_model_sex&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We can also load a saved model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// load a saved model
+
+val model = Word2VecModel.load(&quot;dbfs:/datasets/student-project-01/word2vec_model_sex&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>model: org.apache.spark.ml.feature.Word2VecModel = w2v_854b46dceacc
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="embedding-using-word2vec"><a class="header" href="#embedding-using-word2vec">Embedding using Word2Vec</a></h2>
+<p>Let's embedd the text and view the results.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// transform the text using the model
+
+val embedded_text = model.transform(df_tokenized)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>embedded_text: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 8 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let's have a look!</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(embedded_text.select(&quot;c&quot;,&quot;result&quot;,&quot;text&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="classification-using-word2vec-1"><a class="header" href="#classification-using-word2vec-1">Classification using Word2Vec</a></h2>
+<p>For classification we use logistic regression to compare with results from earlier. First we define the logistic regression model, using the same settings as before.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Logistic regression
+val logreg = new LogisticRegression()
+  .setLabelCol(&quot;c&quot;)
+  .setFeaturesCol(&quot;result&quot;)
+  .setMaxIter(100)
+  .setRegParam(0.0001)
+  .setElasticNetParam(0.5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>logreg: org.apache.spark.ml.classification.LogisticRegression = logreg_55ef614f783e
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The easiest way to do the classification is to gather the tokenizer, Word2Vec and logistic regression into a pipeline.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val pipeline = new Pipeline().setStages(Array(tokenizer, word2Vec, logreg))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>pipeline: org.apache.spark.ml.Pipeline = pipeline_2254409a91a2
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Split the data into training and test data</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val random_order = df.orderBy(rand())
+val splits = random_order.randomSplit(Array(0.8, 0.2))
+val training = splits(0)
+val test = splits(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>random_order: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+splits: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] = Array([thread_id: string, thread_title: string ... 6 more fields], [thread_id: string, thread_title: string ... 6 more fields])
+training: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Fit the model to the training data. This will take a while, so we make sure to save the result.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// fit the model to the training data
+val logreg_model = pipeline.fit(training)
+
+// save the model to filesystem
+logreg_model.save(&quot;dbfs:/datasets/student-project-01/word2vec_logreg_model&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// load saved model
+
+val loaded_model = PipelineModel.load(&quot;dbfs:/datasets/student-project-01/word2vec_logreg_model&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>loaded_model: org.apache.spark.ml.PipelineModel = pipeline_25839437fccb
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val predictions = loaded_model.transform(test).orderBy(rand())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>predictions: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 11 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">predictions.select(&quot;c&quot;,&quot;prediction&quot;,&quot;probability&quot;).show(30,false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+---+----------+------------------------------------------+
+|c  |prediction|probability                               |
++---+----------+------------------------------------------+
+|1.0|1.0       |[0.005855361335036372,0.9941446386649635] |
+|1.0|1.0       |[0.2712120894396273,0.7287879105603726]   |
+|1.0|1.0       |[0.0017886928649958375,0.9982113071350042]|
+|1.0|1.0       |[2.263165652125581E-4,0.9997736834347875] |
+|0.0|1.0       |[0.42059601285820825,0.5794039871417918]  |
+|1.0|1.0       |[6.566687042616189E-4,0.9993433312957383] |
+|0.0|0.0       |[0.7054463412596114,0.29455365874038864]  |
+|1.0|1.0       |[0.03103196407369915,0.9689680359263009]  |
+|0.0|0.0       |[0.9294663779954874,0.07053362200451263]  |
+|1.0|1.0       |[0.13974006800394764,0.8602599319960523]  |
+|1.0|1.0       |[0.08228914085494436,0.9177108591450557]  |
+|0.0|0.0       |[0.9788989176701534,0.021101082329846567] |
+|0.0|0.0       |[0.9975070728891363,0.0024929271108637065]|
+|1.0|1.0       |[0.0010781075297480556,0.998921892470252] |
+|0.0|0.0       |[0.9253825302681451,0.07461746973185476]  |
+|1.0|1.0       |[0.01751495449884683,0.9824850455011531]  |
+|1.0|0.0       |[0.9864736560167631,0.013526343983237045] |
+|1.0|1.0       |[0.002472519507918196,0.9975274804920817] |
+|0.0|0.0       |[0.6174112612306129,0.3825887387693872]   |
+|0.0|0.0       |[0.7130899106721519,0.2869100893278482]   |
+|0.0|0.0       |[0.9263664682801233,0.07363353171987672]  |
+|0.0|0.0       |[0.9561455191484204,0.04385448085157954]  |
+|0.0|0.0       |[0.5835745861693306,0.41642541383066944]  |
+|1.0|1.0       |[0.4296249407516458,0.5703750592483542]   |
+|1.0|1.0       |[0.0032969395487662213,0.9967030604512337]|
+|1.0|1.0       |[0.008645133666934816,0.9913548663330651] |
+|1.0|1.0       |[4.1492836709996625E-5,0.9999585071632902]|
+|0.0|1.0       |[0.43037903982909986,0.5696209601709002]  |
+|0.0|1.0       |[0.43707897641990706,0.562921023580093]   |
+|1.0|1.0       |[0.29846393214228517,0.7015360678577148]  |
++---+----------+------------------------------------------+
+only showing top 30 rows
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val evaluator = new BinaryClassificationEvaluator().setLabelCol(&quot;c&quot;)
+evaluator.evaluate(predictions)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>evaluator: org.apache.spark.ml.evaluation.BinaryClassificationEvaluator = binEval_0d518432d17a
+res13: Double = 0.9499399325125091
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>An AUCROC of 0.95 is good, but not notably better than the other, conceptually simpler model. More is not always better!</p>
+<p>Previously, we classified entire threads. Let's see if it works as well on thread titles.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df_threads = df.select(&quot;c&quot;,&quot;thread_title&quot;).withColumnRenamed(&quot;thread_title&quot;,&quot;w&quot;)
+val evaluation = loaded_model.transform(df_threads).orderBy(rand())
+evaluator.evaluate(evaluation)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_threads: org.apache.spark.sql.DataFrame = [c: double, w: string]
+evaluation: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: double, w: string ... 5 more fields]
+res14: Double = 0.5261045467524708
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>This did not work at all. It is essentially equivalent to guessing randomly. Thread titles contain only a few words, so this is not surprising.</p>
+<p>Note: the same model was used as for both classifying tasks. Since thread titles were not part of the threads, the entire dataset could conceivably be used for training. Whether or not this would improve results is unclear.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="topic-modeling-with-lda"><a class="header" href="#topic-modeling-with-lda">Topic Modeling with LDA</a></h2>
+</div>
+<div class="cell markdown">
+<h3 id="notebook-description"><a class="header" href="#notebook-description">Notebook description</a></h3>
+<p><a href="https://www.flashback.org/">Flashback</a> and <a href="https://www.familjeliv.se/forum">Familjeliv</a> are two well-known swedish online forums. Flashback is one of Sweden's most visited websites and has discussions on a wide-range of topics. It is famous for emphasizing freedom of speech and the members citizen journalism on many topics. The online forum Familjeliv, on the other hand, focuses more on questions about pregnancy, children and parenthood (the translation is &quot;Family Life&quot;). Part of the forum is also for more general topics, and this part of Familjeliv is probably more famous than its other parts.</p>
+<p>What we want to do in this notebook is analyze the language used in these two, quite different, online forums. An interesting approach we will try here is to do some topic modeling with <a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">Latent Dirichlet Allocation</a> (LDA). We know that each discussion forum in our data has multiple subforums, so it would be interesting to see if LDA can accurately pick up these different subforums as different topics, or if it sees other patterns in the threads (the threads are what corresponds to documents in the LDA method). We will also mainly do this with forums that have a correspondence in both Flashback and Familjeliv. For instance, both have forums dedicated to questions regarding economy and also forums discussing topics close to sex and relationships.</p>
+<p>This notebook is to a large extent adapted from notebook 034<em>LDA</em>20NewsGroupsSmall.</p>
+</div>
+<div class="cell markdown">
+<h3 id="downloading-the-data"><a class="header" href="#downloading-the-data">Downloading the data</a></h3>
+<p>Data comes from <a href="https://spraakbanken.gu.se">språkbanken</a>, see notebook 00<em>download</em>data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/00_download_data
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="preprocessing-and-loading-the-relevant-data-1"><a class="header" href="#preprocessing-and-loading-the-relevant-data-1">Preprocessing and loading the relevant data</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Here we just import methods from notebook 01_load_data, so we can load our data
+
+%run /scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="lda-methods"><a class="header" href="#lda-methods">LDA Methods</a></h3>
+<p>Below we put some of the LDA pipeline, working with <a href="https://spark.apache.org/docs/latest/ml-guide.html">MLlib</a>, into a single function called get_lda.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.{RegexTokenizer, StopWordsRemover, CountVectorizer}
+import org.apache.spark.mllib.clustering.{LDA, OnlineLDAOptimizer}
+import org.apache.spark.ml.{Pipeline, PipelineModel, PipelineStage}
+import org.apache.spark.sql.types.{ LongType }
+import org.apache.spark.ml.linalg.Vector
+
+def get_lda(df: org.apache.spark.sql.DataFrame,  // Main function to do LDA
+            min_token: Int,
+            vocabSize: Int,
+            minDF: Int,            
+            numTopics: Int,
+            maxIter: Int,
+            stopWords: Array[String]) = { 
+
+  val corpus_df = df.select(&quot;w&quot;, &quot;thread_id&quot;).withColumn(&quot;thread_id&quot;,col(&quot;thread_id&quot;).cast(LongType)) // From the whole dataframe we take out each thread
+
+  val tokenizer = new RegexTokenizer()
+  .setPattern(&quot;(?U)[\\W_]+&quot;) // break by white space character(s)  - try to remove emails and other patterns
+  .setMinTokenLength(min_token) // Filter away tokens with length &lt; min_token
+  .setInputCol(&quot;w&quot;) // name of the input column
+  .setOutputCol(&quot;tokens&quot;) // name of the output column
+  
+  val remover = new StopWordsRemover() 
+  .setStopWords(stopWords)
+  .setInputCol(tokenizer.getOutputCol)
+  .setOutputCol(&quot;filtered&quot;)
+  
+  val tokenized_df = tokenizer.transform(corpus_df) // Removes uninteresting words from each thread
+  val filtered_df = remover.transform(tokenized_df).select(&quot;thread_id&quot;,&quot;filtered&quot;) // Chosing only the filtered threads 
+  
+  val vectorizer = new CountVectorizer() // Creates dictionary and counts the occurences of different words
+   .setInputCol(remover.getOutputCol)
+   .setOutputCol(&quot;features&quot;)
+   .setVocabSize(vocabSize) // Size of dictonary
+   .setMinDF(minDF)
+   .fit(filtered_df) // returns CountVectorizerModel
+  
+  val lda = new LDA() // Creates LDA Model with some user defined choice of parameters
+  .setOptimizer(new OnlineLDAOptimizer().setMiniBatchFraction(0.8))
+  .setK(numTopics)
+  .setMaxIterations(maxIter)
+  .setDocConcentration(-1) // use default values
+  .setTopicConcentration(-1)
+  
+  val countVectors = vectorizer.transform(filtered_df).select(&quot;thread_id&quot;, &quot;features&quot;)
+
+  val lda_countVector = countVectors.map { case Row(id: Long, countVector: Vector) =&gt; (id, countVector) }
+  val lda_countVector_mllib = lda_countVector.map { case (id, vector) =&gt; (id, org.apache.spark.mllib.linalg.Vectors.fromML(vector)) }.rdd
+  
+  val lda_model = lda.run(lda_countVector_mllib)
+  (lda_model, vectorizer)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.{RegexTokenizer, StopWordsRemover, CountVectorizer}
+import org.apache.spark.mllib.clustering.{LDA, OnlineLDAOptimizer}
+import org.apache.spark.ml.{Pipeline, PipelineModel, PipelineStage}
+import org.apache.spark.sql.types.LongType
+import org.apache.spark.ml.linalg.Vector
+get_lda: (df: org.apache.spark.sql.DataFrame, min_token: Int, vocabSize: Int, minDF: Int, numTopics: Int, maxIter: Int, stopWords: Array[String])(org.apache.spark.mllib.clustering.LDAModel, org.apache.spark.ml.feature.CountVectorizerModel)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="stopwords"><a class="header" href="#stopwords">Stopwords</a></h4>
+<p>Stop words are highly relevant to get interesting topics distributions, with not all weight on very common words that do not carry much meaning for a particular topic. To do this we both use collections by others and input words we find meaningless for these particular settings.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv -O /tmp/stopwords.csv
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>--2021-01-11 14:30:09--  https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.52.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.52.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1936 (1.9K) [text/plain]
+Saving to: ‘/tmp/stopwords.csv’
+
+     0K .                                                     100% 11.5M=0s
+
+2021-01-11 14:30:09 (11.5 MB/s) - ‘/tmp/stopwords.csv’ saved [1936/1936]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-fs">cp file:/tmp/stopwords.csv dbfs:/datasets/student-project-01/stopwords.csv
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res24: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Creating a list with stopwords
+
+import org.apache.spark.ml.feature.StopWordsRemover
+val stoppord = sc.textFile(&quot;dbfs:/datasets/student-project-01/stopwords.csv&quot;).collect()
+val stopwordList = Array(&quot;bara&quot;,&quot;lite&quot;,&quot;finns&quot;,&quot;vill&quot;,&quot;samt&quot;,&quot;inga&quot;,&quot;även&quot;,&quot;finns&quot;,&quot;ganska&quot;,&quot;också&quot;,&quot;igen&quot;,&quot;just&quot;,&quot;that&quot;,&quot;with&quot;,&quot;http&quot;,&quot;jpg&quot;,&quot;kanske&quot;,&quot;tycker&quot;,&quot;gillar&quot;, &quot;bra&quot;,&quot;the&quot;,&quot;000&quot;,&quot;måste&quot;,&quot;tjej&quot;,&quot;tjejer&quot;,&quot;tjejen&quot;,&quot;tjejerna&quot;,&quot;kvinna&quot;,&quot;kvinnor&quot;,&quot;kille&quot;,&quot;killar&quot;,&quot;killen&quot;,&quot;män&quot;,&quot;rätt&quot;,&quot;män&quot;,&quot;com&quot;,&quot;and&quot;,&quot;html&quot;,&quot;många&quot;,&quot;aldrig&quot;,&quot;www&quot;,&quot;mpg&quot;,&quot;avi&quot;,&quot;wmv&quot;,&quot;fan&quot;,&quot;förhelvetet&quot;,&quot;riktigt&quot;,&quot;känner&quot;,&quot;väldigt&quot;,&quot;font&quot;,&quot;size&quot;,&quot;mms&quot;,&quot;2008&quot;,&quot;2009&quot;,&quot;95kr&quot;,&quot;dom&quot;,&quot;får&quot;,&quot;ska&quot;,&quot;kommer&quot;,&quot;två&quot;,&quot;vet&quot;,&quot;mer&quot;,&quot;pengar&quot;,&quot;pengarna&quot;,&quot;göra&quot;,&quot;fick&quot;,&quot;tror&quot;,&quot;andra&quot;,&quot;helt&quot;,&quot;kunna&quot;,&quot;behöver&quot;,&quot;betala&quot;,&quot;inget&quot;,&quot;dock&quot;,&quot;inget&quot;,&quot;tack&quot;
+).union(stoppord).union(StopWordsRemover.loadDefaultStopWords(&quot;swedish&quot;)) // In this step we add custom stop words and another premade list of stopwords.
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="experiments"><a class="header" href="#experiments">Experiments</a></h3>
+<p>Below we we chosen some similar forums from FB and FL. First two regarding economics, and two discussing sex and relationships. Here we run the two economics forums and see how well TDA captures any topic structure.</p>
+<p>Here one does not have to use similar forums, but if one is interested in only Flashback forums one could use only those. We could also of course join several of these forums together to try to capture even broader topic distributions</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Loading the forums we will do LDA on.
+
+val file_path_FL = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi_df&quot;
+val file_path_FB = &quot;dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df&quot;
+//val file_path_FL = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df&quot;
+//val file_path_FB = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex_df&quot;
+  
+val df_FL = load_df(file_path_FL)
+val df_FB = load_df(file_path_FB)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_path_FL: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi_df
+file_path_FB: String = dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+df_FL: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+df_FB: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Dataframes containg a forum from FB.
+
+df_FB.show
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Overview of number of threads in different subforums
+
+df_FL.groupBy($&quot;forum_title&quot;).agg(count($&quot;forum_title&quot;).as(&quot;count&quot;)).show(false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+----------------------------------------------------------+-----+
+|forum_title                                               |count|
++----------------------------------------------------------+-----+
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Konsument/Inhandla|26307|
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Familjerätt       |1623 |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Övrigt            |1638 |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Ekonomi           |24284|
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Spartips          |217  |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Juridik           |3246 |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Företagande       |957  |
+|Allmänna rubriker &gt; Ekonomi &amp; juridik &gt; Lån &amp; skulder     |1168 |
++----------------------------------------------------------+-----+
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_FB.groupBy($&quot;forum_title&quot;).agg(count($&quot;forum_title&quot;).as(&quot;count&quot;)).show(false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+---------------------------------------------------+-----+
+|forum_title                                        |count|
++---------------------------------------------------+-----+
+|Ekonomi &gt; Privatekonomi                            |15154|
+|Ekonomi &gt; Bitcoin och andra virtuella valutor      |524  |
+|Ekonomi &gt; Värdepapper, valutor och råvaror: allmänt|8300 |
+|Ekonomi &gt; Fonder                                   |645  |
+|Ekonomi &gt; Företagande och företagsekonomi          |12139|
+|Ekonomi &gt; Nationalekonomi                          |3114 |
+|Ekonomi &gt; Aktier                                   |508  |
+|Ekonomi &gt; Ekonomi: övrigt                          |19308|
+|Ekonomi &gt; Offshore och skatteplanering             |1567 |
++---------------------------------------------------+-----+
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Set parameters, and perform two different LDAs, one on FB and one on FL
+
+val min_token = 4 // only accept tokens larger or equal to
+val vocabSize = 10000 // Size of the vocab dictionary
+val minDF = 5 // The minimum number of different documents a term must appear in to be included in the vocabulary
+val minTF = 2 // The minimum number of times a term has to appear in a document to be included in the vocabulary
+
+val numTopics_FL = no_forums(df_FL).toInt //4 // Number of topics in LDA model
+val numTopics_FB = no_forums(df_FB).toInt
+val maxIter = 8  // Maximum number of iterations for LDA model
+val stopwords = stopwordList
+val (ldaModel_FL, vectorizer_FL) = get_lda(df_FL, min_token, vocabSize, minDF, numTopics_FL, maxIter, stopwords)
+val (ldaModel_FB, vectorizer_FB) = get_lda(df_FB, min_token, vocabSize, minDF, numTopics_FB, maxIter, stopwords)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="results"><a class="header" href="#results">Results</a></h3>
+<p>Here we will visualize the most important part of the different topic distributions, both for FB and for FL.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Here we pick out the most important terms in each topic for FL.
+
+val topicIndices = ldaModel_FL.describeTopics(maxTermsPerTopic = 5)
+val vocabList = vectorizer_FL.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$numTopics_FL topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Here we pick out the most important terms in each topic for FB.
+
+val topicIndices = ldaModel_FB.describeTopics(maxTermsPerTopic = 5)
+val vocabList = vectorizer_FB.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$numTopics_FB topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Zip topic terms with topic IDs
+val termArray = topics.zipWithIndex
+
+// Transform data into the form (term, probability, topicId)
+val termRDD = sc.parallelize(termArray)
+val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+  val arrayOfTuple = x._1
+  val topicId = x._2
+  arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+})
+
+// Create DF with proper column names
+val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+
+display(termDF)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Creates JSON data to display topic distribution of forum in FB
+val rawJson = termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var json = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1000,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r)
+    .attr(&quot;height&quot;, r)
+    .attr(&quot;class&quot;, &quot;bubble&quot;);
+
+  
+var node = vis.selectAll(&quot;g.node&quot;)
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/1_04_1.JPG?raw=true" alt="1041" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">// Similar as above but for FL
+
+val topicIndices = ldaModel_FL.describeTopics(maxTermsPerTopic = 6)
+val vocabList = vectorizer_FL.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$numTopics_FL topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+
+// Zip topic terms with topic IDs
+val termArray = topics.zipWithIndex
+
+// Transform data into the form (term, probability, topicId)
+val termRDD = sc.parallelize(termArray)
+val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+  val arrayOfTuple = x._1
+  val topicId = x._2
+  arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+})
+
+// Create DF with proper column names
+val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+
+// Create JSON data to display topic distribution of forum in FB
+val rawJson = termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var json = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1000,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r)
+    .attr(&quot;height&quot;, r)
+    .attr(&quot;class&quot;, &quot;bubble&quot;);
+
+  
+var node = vis.selectAll(&quot;g.node&quot;)
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/1_04_2.JPG?raw=true" alt="1042" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">def rawJson(lda_model: org.apache.spark.mllib.clustering.LDAModel, vectorizer: org.apache.spark.ml.feature.CountVectorizerModel): String = {
+  val topicIndices = lda_model.describeTopics(maxTermsPerTopic = 6)
+  val vocabList = vectorizer.vocabulary
+  val topics = topicIndices.map { case (terms, termWeights) =&gt;
+    terms.map(vocabList(_)).zip(termWeights)
+  }
+  println(s&quot;$numTopics_FL topics:&quot;)
+  topics.zipWithIndex.foreach { case (topic, i) =&gt;
+    println(s&quot;TOPIC $i&quot;)
+    topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+    println(s&quot;==========&quot;)
+  }
+
+  // Zip topic terms with topic IDs
+  val termArray = topics.zipWithIndex
+
+  // Transform data into the form (term, probability, topicId)
+  val termRDD = sc.parallelize(termArray)
+  val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+    val arrayOfTuple = x._1
+    val topicId = x._2
+    arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+  })
+
+  // Create DF with proper column names
+  val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+
+  // Create JSON data to display topic distribution
+  termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+}
+// Create JSON data to display topic distribution
+val rawJson_FL = rawJson(ldaModel_FL, vectorizer_FL)
+val rawJson_FB = rawJson(ldaModel_FB, vectorizer_FB)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+/////////////////////////////////////////////////////////////////////////////   
+var json_FL = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson_FL}
+     ]
+    }
+   ]
+};
+
+var r1 = 500,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble1 = d3.layout.pack()
+    .sort(null)
+    .size([r1, r1])
+    .padding(1.5);
+
+var vis1 = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r1)
+    .attr(&quot;height&quot;, r1)
+    .attr(&quot;class&quot;, &quot;bubble1&quot;);
+
+  
+var node = vis1.selectAll(&quot;g.node&quot;)
+    .data(bubble1.nodes(classes(json_FL))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+/////////////////////////////////////////////////////////////////////////////   
+var json_FB = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson_FB}
+     ]
+    }
+   ]
+};
+
+var r2 = 500,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble2 = d3.layout.pack()
+    .sort(null)
+    .size([r2, r2])
+    .padding(1.5);
+
+var vis2 = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r2)
+    .attr(&quot;height&quot;, r2)
+    .attr(&quot;class&quot;, &quot;bubble1&quot;);
+
+  
+var node = vis2.selectAll(&quot;g.node&quot;)
+    .data(bubble1.nodes(classes(json_FB))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+/////////////////////////////////////////////////////////////////////////////   
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/1_04_3.JPG?raw=true" alt="1043" /></p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

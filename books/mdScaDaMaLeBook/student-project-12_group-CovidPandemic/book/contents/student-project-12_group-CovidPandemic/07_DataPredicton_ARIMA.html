@@ -1,0 +1,833 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>07_DataPredicton_ARIMA - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/00_ProjectDescriptionAndPlanning.html">00_ProjectDescriptionAndPlanning</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.html">01_DownloadFilesPeriodicallyScript</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_StreamToFile.html">01_StreamToFile</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/02_DataPreprocess.html">02_DataPreprocess</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.html">021_DataPreprocess_Explain</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.html">03_ExplosiveAnalysis</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/04_DataVisualize.html">04_DataVisualize</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/05_Clustering.html">05_Clustering</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.html">06_DataPredicton_LR</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/07_DataPredicton_ARIMA.html" class="active">07_DataPredicton_ARIMA</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.html">08_DataPrediction_GP</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="prediction-with-time-series-model---arima"><a class="header" href="#prediction-with-time-series-model---arima">Prediction with Time Series model - ARIMA</a></h2>
+</div>
+<div class="cell markdown">
+<p>In this notebook, we do prediction with the time series method - Autoregressive integrated moving average (ARIMA). We preprocess the data and prepare for prediction. Then we predicted the new cases (smoothed) and new deaths (smoothed) for world and Sweden. We predict the future value from the history value. After the prediction part we evaluated our results.</p>
+</div>
+<div class="cell markdown">
+<ol>
+<li>Import data and preprocess</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// You need to uncomment this line if you haven't preprocess data yet.
+
+%run &quot;./02_DataPreprocess&quot;
+</code></pre>
+</div>
+<div class="cell markdown">
+<ol start="2">
+<li>Prepare for data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df_cleaned_time_series)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">df_cleaned_time_series.printSchema
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- iso_code: string (nullable = true)
+ |-- continent: string (nullable = false)
+ |-- location: string (nullable = true)
+ |-- date: string (nullable = true)
+ |-- total_cases: double (nullable = false)
+ |-- new_cases: double (nullable = true)
+ |-- new_cases_smoothed: double (nullable = false)
+ |-- total_deaths: double (nullable = false)
+ |-- new_deaths: double (nullable = true)
+ |-- new_deaths_smoothed: double (nullable = false)
+ |-- reproduction_rate: double (nullable = false)
+ |-- icu_patients: double (nullable = true)
+ |-- icu_patients_per_million: double (nullable = true)
+ |-- hosp_patients: double (nullable = true)
+ |-- hosp_patients_per_million: double (nullable = true)
+ |-- weekly_icu_admissions: double (nullable = true)
+ |-- weekly_icu_admissions_per_million: double (nullable = true)
+ |-- weekly_hosp_admissions: double (nullable = true)
+ |-- weekly_hosp_admissions_per_million: double (nullable = true)
+ |-- total_tests: double (nullable = false)
+ |-- new_tests: double (nullable = true)
+ |-- total_tests_per_thousand: double (nullable = true)
+ |-- new_tests_per_thousand: double (nullable = true)
+ |-- new_tests_smoothed: double (nullable = true)
+ |-- new_tests_smoothed_per_thousand: double (nullable = true)
+ |-- tests_per_case: double (nullable = true)
+ |-- positive_rate: double (nullable = true)
+ |-- tests_units: double (nullable = true)
+ |-- stringency_index: double (nullable = false)
+ |-- population: double (nullable = true)
+ |-- population_density: double (nullable = true)
+ |-- median_age: double (nullable = true)
+ |-- aged_65_older: double (nullable = true)
+ |-- aged_70_older: double (nullable = true)
+ |-- gdp_per_capita: double (nullable = true)
+ |-- extreme_poverty: double (nullable = true)
+ |-- cardiovasc_death_rate: double (nullable = true)
+ |-- diabetes_prevalence: double (nullable = true)
+ |-- female_smokers: double (nullable = true)
+ |-- male_smokers: double (nullable = true)
+ |-- handwashing_facilities: double (nullable = true)
+ |-- hospital_beds_per_thousand: double (nullable = true)
+ |-- life_expectancy: double (nullable = true)
+ |-- human_development_index: double (nullable = true)
+ |-- total_cases_per_million: double (nullable = true)
+ |-- new_cases_per_million: double (nullable = true)
+ |-- new_cases_smoothed_per_million: double (nullable = true)
+ |-- total_deaths_per_million: double (nullable = true)
+ |-- new_deaths_per_million: double (nullable = true)
+ |-- new_deaths_smoothed_per_million: double (nullable = true)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// There is no &quot;World&quot; in the 126 countries. we need to calculate it.
+val countries = df_cleaned_time_series.groupBy(&quot;location&quot;).count().sort($&quot;location&quot;)
+display(countries)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="21-data-for-all-over-the-world"><a class="header" href="#21-data-for-all-over-the-world">2.1 Data for all over the world</a></h3>
+</div>
+<div class="cell markdown">
+<h4 id="211-the-smoothed-new-cases-of-the-world"><a class="header" href="#211-the-smoothed-new-cases-of-the-world">2.1.1 The smoothed new cases of the world.</a></h4>
+<p>We use the smoothed new cases because the raw data fluctuates greatly by day - on workdays, there are more new cases than on weekends.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// prediction for all over the world
+import org.apache.spark.sql.functions._
+// val df_world = df_cleaned_time_series.withColumn(&quot;date&quot;, (col(&quot;date&quot;).cast(&quot;Timestamp&quot;))).where(&quot;location == 'World'&quot;).select($&quot;date&quot;,$&quot;new_cases_smoothed&quot;)
+
+val df_world = df_cleaned_time_series.groupBy(&quot;date&quot;).sum(&quot;new_cases_smoothed&quot;).sort(col(&quot;date&quot;)).withColumnRenamed(&quot;sum(new_cases_smoothed)&quot;,&quot;new_cases_smoothed&quot;)
+
+display(df_world)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_world.printSchema
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- date: string (nullable = true)
+ |-- new_cases_smoothed: double (nullable = true)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_world.createOrReplaceTempView(&quot;df_world&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h4 id="212-the-smoothed-new-deaths-of-the-world"><a class="header" href="#212-the-smoothed-new-deaths-of-the-world">2.1.2 The smoothed new deaths of the world</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// val df_world_deaths = df_cleaned_time_series.withColumn(&quot;date&quot;, (col(&quot;date&quot;).cast(&quot;Timestamp&quot;))).where(&quot;location == 'World'&quot;).select($&quot;date&quot;,$&quot;new_deaths_smoothed&quot;)
+val df_world_deaths = df_cleaned_time_series.groupBy(&quot;date&quot;).sum(&quot;new_deaths_smoothed&quot;).sort(col(&quot;date&quot;)).withColumnRenamed(&quot;sum(new_deaths_smoothed)&quot;,&quot;new_deaths_smoothed&quot;)
+
+df_world_deaths.createOrReplaceTempView(&quot;df_world_deaths&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_world_deaths: org.apache.spark.sql.DataFrame = [date: string, new_deaths_smoothed: double]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="22-data-for-sweden"><a class="header" href="#22-data-for-sweden">2.2 Data for Sweden</a></h3>
+</div>
+<div class="cell markdown">
+<h4 id="221-the-smoothed-new-cases-of-sweden"><a class="header" href="#221-the-smoothed-new-cases-of-sweden">2.2.1 The smoothed new cases of Sweden</a></h4>
+<p>In addition to the new cases all over the world, we also care about the cases in Sweden. Here we deal with smoothed new cases of Sweden.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Select one contry for prediction
+import org.apache.spark.sql.functions._
+
+val df_sw = df_cleaned_time_series.withColumn(&quot;date&quot;, (col(&quot;date&quot;).cast(&quot;Timestamp&quot;))).where(&quot;location == 'Sweden'&quot;).select($&quot;date&quot;,$&quot;new_cases_smoothed&quot;)
+display(df_sw)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_sw.printSchema
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- date: timestamp (nullable = true)
+ |-- new_cases_smoothed: double (nullable = false)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_sw.createOrReplaceTempView(&quot;df_sw&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h4 id="222-the-smoothed-new-deaths-of-sweden"><a class="header" href="#222-the-smoothed-new-deaths-of-sweden">2.2.2 The smoothed new deaths of Sweden</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df_sw_deaths = df_cleaned_time_series.withColumn(&quot;date&quot;, (col(&quot;date&quot;).cast(&quot;Timestamp&quot;))).where(&quot;location == 'Sweden'&quot;).select($&quot;date&quot;,$&quot;new_deaths_smoothed&quot;)
+df_sw_deaths.createOrReplaceTempView(&quot;df_sw_deaths&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_sw_deaths: org.apache.spark.sql.DataFrame = [date: timestamp, new_deaths_smoothed: double]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="3">
+<li>Time series regression with ARIMA</li>
+</ol>
+<hr />
+<p>ARIMA - Autoregressive Integrated Moving Average model. It's widely used in time series analysis. see defination here: https://en.wikipedia.org/wiki/Autoregressive<em>integrated</em>moving_average</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># import some libraries
+# dbutils.library.installPyPI('numpy','1.16.3')
+# dbutils.library.installPyPI('pandas','1.1.5')
+# dbutils.library.restartPython()
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="31-prediction-for-all-over-the-world"><a class="header" href="#31-prediction-for-all-over-the-world">3.1 Prediction for all over the world</a></h3>
+</div>
+<div class="cell markdown">
+<h4 id="311-prediction-of-smoothed-new-cases-one_step"><a class="header" href="#311-prediction-of-smoothed-new-cases-one_step">3.1.1 Prediction of smoothed new cases (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import pandas
+from matplotlib import pyplot
+print(pandas.__version__)
+data = spark.table(&quot;df_world&quot;)
+
+print(type(data))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>1.0.1
+&lt;class 'pyspark.sql.dataframe.DataFrame'&gt;
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.sql.functions import *
+from datetime import datetime
+from pyspark.sql.functions import to_date, to_timestamp
+data_pd = data.toPandas()
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import numpy as np
+import pandas as pd
+from statsmodels.tsa.arima_model import ARIMA
+import sklearn
+import statsmodels
+from datetime import date
+print(data_pd.columns)
+data_pd['date'] = pd.to_datetime(data_pd['date'])
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Index(['date', 'new_cases_smoothed'], dtype='object')
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// # %python
+// # data_pd.plot(x='date', y = 'new_cases_smoothed', figsize=(8,5))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import math
+def Predict_by_ARIMA(data_pd, one_step = True, training_length = 0.9):
+  data_pd1 = data_pd.set_index('date')
+  X = data_pd1.values
+  train_size = int(len(X) * training_length) #the length you need for training.
+  train, test = X[0:train_size], X[train_size:len(X)]
+  test_date = data_pd1.index[train_size:len(X)]
+  history = [x for x in train]
+  predictions = list()
+  print(&quot;training_series_size: &quot;, train_size)
+  print(&quot;test_series_size: &quot;, len(test))
+  for t in range(len(test)):
+    model = ARIMA(history, order=(2,1,0))
+    model_fit = model.fit(disp=0)
+    output = model_fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    if one_step:
+      obs = test[t] # use real value, only predict next step
+    else:
+      obs = yhat # use predicted value, predict all test data
+    history.append(obs)
+    current_date = test_date[t]
+    print(str(current_date.date()), 'pred=%f, gt=%f' % (yhat, obs))
+  return test, predictions
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">test_world, predictions_world = Predict_by_ARIMA(data_pd, True, 0.9)
+print(&quot;test size: &quot;, len(test_world))
+print(&quot;predicted size: &quot;, len(predictions_world))
+# plot
+fig_world = pyplot.figure()  
+pyplot.plot(test_world)
+pyplot.plot(predictions_world, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_4.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="312-prediction-of-smoothed-new-cases-multi_step"><a class="header" href="#312-prediction-of-smoothed-new-cases-multi_step">3.1.2 Prediction of smoothed new cases (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">print(data_pd)
+_, predictions_world_multi = Predict_by_ARIMA(data_pd, False)
+print(&quot;test size: &quot;, len(test_world))
+print(&quot;predicted size: &quot;, len(predictions_world))
+# plot
+fig_world_multi = pyplot.figure()  
+pyplot.plot(test_world)
+pyplot.plot(predictions_world_multi, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_5.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="313-prediction-of-smoothed-new-deaths-one_step"><a class="header" href="#313-prediction-of-smoothed-new-deaths-one_step">3.1.3 Prediction of smoothed new deaths (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_world_death = spark.table(&quot;df_world_deaths&quot;)
+data_world_death_pd = data_world_death.toPandas()
+print(data_world_death_pd.columns)
+data_world_death_pd['date'] = pd.to_datetime(data_world_death_pd['date'])
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Index(['date', 'new_deaths_smoothed'], dtype='object')
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">test_world_death, predictions_world_death = Predict_by_ARIMA(data_world_death_pd)
+print(&quot;test size: &quot;, len(test_world_death))
+print(&quot;predicted size: &quot;, len(predictions_world_death))
+# plot
+fig_world_death = pyplot.figure()  
+pyplot.plot(test_world_death)
+pyplot.plot(predictions_world_death, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_6.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="314-prediction-of-smoothed-new-deaths-multi_step"><a class="header" href="#314-prediction-of-smoothed-new-deaths-multi_step">3.1.4 Prediction of smoothed new deaths (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">_, predictions_world_death_multi = Predict_by_ARIMA(data_world_death_pd, False)
+print(&quot;test size: &quot;, len(test_world_death))
+print(&quot;predicted size: &quot;, len(predictions_world_death_multi))
+# plot
+fig_world_death = pyplot.figure()  
+pyplot.plot(test_world_death)
+pyplot.plot(predictions_world_death_multi, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_7.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="32-prediction-for-sweden"><a class="header" href="#32-prediction-for-sweden">3.2 Prediction for Sweden</a></h3>
+</div>
+<div class="cell markdown">
+<h4 id="321-prediction-of-smoothed-new-cases"><a class="header" href="#321-prediction-of-smoothed-new-cases">3.2.1 Prediction of smoothed new cases</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from datetime import datetime
+from datetime import date
+from matplotlib import pyplot
+import numpy as np
+import pandas as pd
+from pyspark.sql.functions import to_date, to_timestamp
+from pyspark.sql.functions import *
+from statsmodels.tsa.arima_model import ARIMA
+import sklearn
+import statsmodels
+
+data_sw = spark.table(&quot;df_sw&quot;)
+data_sw_pd = data_sw.toPandas()
+print(data_sw_pd.columns)
+data_sw_pd['date'] = pd.to_datetime(data_sw_pd['date'])
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Index(['date', 'new_cases_smoothed'], dtype='object')
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_sw_pd.plot(x='date', y = 'new_cases_smoothed', figsize=(8,5))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_8.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">test_sw, predictions_sw = Predict_by_ARIMA(data_sw_pd)
+print(&quot;test size: &quot;, len(test_sw))
+print(&quot;predicted size: &quot;, len(predictions_sw))
+# plot
+fig_sw = pyplot.figure()  
+pyplot.plot(test_sw)
+pyplot.plot(predictions_sw, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_9.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="322-prediction-of-smoothed-new-cases-multi_step"><a class="header" href="#322-prediction-of-smoothed-new-cases-multi_step">3.2.2 Prediction of smoothed new cases (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">_, predictions_sw_multi = Predict_by_ARIMA(data_sw_pd, False)
+print(&quot;test size: &quot;, len(test_sw))
+print(&quot;predicted size: &quot;, len(predictions_sw))
+# plot
+fig_sw = pyplot.figure()  
+pyplot.plot(test_sw)
+pyplot.plot(predictions_sw_multi, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_10.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="323-prediction-of-smoothed-new-deaths-one_step"><a class="header" href="#323-prediction-of-smoothed-new-deaths-one_step">3.2.3 Prediction of smoothed new deaths (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_sw_death = spark.table(&quot;df_sw_deaths&quot;)
+data_sw_death_pd = data_sw_death.toPandas()
+print(data_sw_death_pd.columns)
+data_sw_death_pd['date'] = pd.to_datetime(data_sw_death_pd['date'])
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Index(['date', 'new_deaths_smoothed'], dtype='object')
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">test_sw_death, predictions_sw_death = Predict_by_ARIMA(data_sw_death_pd)
+print(&quot;test size: &quot;, len(test_sw_death))
+print(&quot;predicted size: &quot;, len(predictions_sw_death))
+# plot
+fig_sw_death = pyplot.figure()  
+pyplot.plot(test_sw_death)
+pyplot.plot(predictions_sw_death, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_11.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="324-prediction-of-smoothed-new-deaths-multi_step"><a class="header" href="#324-prediction-of-smoothed-new-deaths-multi_step">3.2.4 Prediction of smoothed new deaths (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">_, predictions_sw_death_multi = Predict_by_ARIMA(data_sw_death_pd, False)
+print(&quot;test size: &quot;, len(test_sw_death))
+print(&quot;predicted size: &quot;, len(predictions_sw_death_multi))
+# plot
+fig_sw_death = pyplot.figure()  
+pyplot.plot(test_sw_death)
+pyplot.plot(predictions_sw_death_multi, color='red')
+pyplot.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_07_12.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<ol start="4">
+<li>Evaluation</li>
+</ol>
+<hr />
+</div>
+<div class="cell markdown">
+<h3 id="41-evaluation-of-world-result"><a class="header" href="#41-evaluation-of-world-result">4.1 Evaluation of world result</a></h3>
+</div>
+<div class="cell markdown">
+<h4 id="411-evaluation-of-new-cases-smoothed-one_step"><a class="header" href="#411-evaluation-of-new-cases-smoothed-one_step">4.1.1 Evaluation of new cases smoothed (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import math
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+
+def Evaluation(test, predictions):
+  error_mse = mean_squared_error(test, predictions)
+  error_rmse = math.sqrt(error_mse)
+  error_abs = mean_absolute_error(test, predictions)
+  avg_gt = test[:,0].sum() / len(test)
+
+  mse_percentage = error_rmse / avg_gt * 100
+  abs_percentage = error_abs / avg_gt * 100
+  print('Average of groundtruth: %.3f' % avg_gt)
+  print('Test MSE: %.3f' % error_mse)
+  print('Test RMSE: %.3f' % error_rmse)
+  print('RMSE percentage error: %.3f' % mse_percentage, '%')
+  print('Test ABS: %.3f' % error_abs)
+  print('ABS percentage error: %.3f' % abs_percentage, '%')
+
+Evaluation(test_world, predictions_world)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 763744.916
+Test MSE: 1382104096.548
+Test RMSE: 37176.661
+RMSE percentage error: 4.868 %
+Test ABS: 19644.392
+ABS percentage error: 2.572 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="412-evaluation-of-new-cases-smoothed-multi_step"><a class="header" href="#412-evaluation-of-new-cases-smoothed-multi_step">4.1.2 Evaluation of new cases smoothed (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_world, predictions_world_multi)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 763744.916
+Test MSE: 16372759781.212
+Test RMSE: 127956.085
+RMSE percentage error: 16.754 %
+Test ABS: 114514.607
+ABS percentage error: 14.994 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="413-evaluation-of-new-death-smoothed-one_step"><a class="header" href="#413-evaluation-of-new-death-smoothed-one_step">4.1.3 Evaluation of new death smoothed (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_world_death, predictions_world_death)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 11412.091
+Test MSE: 358938.532
+Test RMSE: 599.115
+RMSE percentage error: 5.250 %
+Test ABS: 290.352
+ABS percentage error: 2.544 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="414-evaluation-of-new-death-smoothed-multi_step"><a class="header" href="#414-evaluation-of-new-death-smoothed-multi_step">4.1.4 Evaluation of new death smoothed (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_world_death, predictions_world_death_multi)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 11412.091
+Test MSE: 5567620.973
+Test RMSE: 2359.581
+RMSE percentage error: 20.676 %
+Test ABS: 2110.218
+ABS percentage error: 18.491 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="42-evaluation-of-sweden-results"><a class="header" href="#42-evaluation-of-sweden-results">4.2 Evaluation of Sweden results</a></h3>
+</div>
+<div class="cell markdown">
+<h4 id="421-evaluation-of-new-cases-smoothed-one_step"><a class="header" href="#421-evaluation-of-new-cases-smoothed-one_step">4.2.1 Evaluation of new cases smoothed (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_sw, predictions_sw)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 4564.277
+Test MSE: 26457.989
+Test RMSE: 162.659
+RMSE percentage error: 3.564 %
+Test ABS: 82.412
+ABS percentage error: 1.806 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="422-evaluation-of-new-cases-smoothed-multi_step"><a class="header" href="#422-evaluation-of-new-cases-smoothed-multi_step">4.2.2 Evaluation of new cases smoothed (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_sw, predictions_sw_multi)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 4564.277
+Test MSE: 1514028.102
+Test RMSE: 1230.458
+RMSE percentage error: 26.958 %
+Test ABS: 1172.056
+ABS percentage error: 25.679 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="423-evaluation-of-new-death-smoothed-one_step"><a class="header" href="#423-evaluation-of-new-death-smoothed-one_step">4.2.3 Evaluation of new death smoothed (one_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_sw_death, predictions_sw_death)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 31.862
+Test MSE: 24.933
+Test RMSE: 4.993
+RMSE percentage error: 15.672 %
+Test ABS: 3.072
+ABS percentage error: 9.643 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="424-evaluation-of-new-death-smoothed-multi_step"><a class="header" href="#424-evaluation-of-new-death-smoothed-multi_step">4.2.4 Evaluation of new death smoothed (multi_step)</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">Evaluation(test_sw_death, predictions_sw_death_multi)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average of groundtruth: 31.862
+Test MSE: 775.703
+Test RMSE: 27.851
+RMSE percentage error: 87.414 %
+Test ABS: 25.094
+ABS percentage error: 78.759 %
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="5">
+<li>Conclusion and Reflections</li>
+</ol>
+<hr />
+</div>
+<div class="cell markdown">
+<p>With this time series method - ARIMA, we can get quite resonable results. We predicted the new cases (smoothed) and new deaths (smoothed) for world and Sweden. The evaluation of one step shows that we can get good results with a small error. But the multi step results is not good when we want to predict long term results. The prediction model and evaluation function can also been used for other countries.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

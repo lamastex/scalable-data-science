@@ -1,0 +1,1660 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/01_Introduction.html">01_Introduction</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/02_Data_Processing.html">02_Data_Processing</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/03_LDA.html">03_LDA</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/04_Classification_CountVector.html">04_Classification_CountVector</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/05_Classification.html">05_Classification</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/06_Results.html">06_Results</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="topic-modeling-with-sars-cov-2-genome-"><a class="header" href="#topic-modeling-with-sars-cov-2-genome-">Topic Modeling with SARS-Cov-2 Genome 🧬</a></h1>
+</div>
+<div class="cell markdown">
+<p>Group Project Authors:</p>
+<ul>
+<li>Hugo Werner</li>
+<li>Gizem Çaylak <a href="mailto:caylak@kth.se">e-mail</a></li>
+</ul>
+</div>
+<div class="cell markdown">
+<p>Video link: https://kth.box.com/s/y3jsb9lgp6cll6op15o6z77rchaefh24</p>
+</div>
+<div class="cell markdown">
+<h4 id="problem-description"><a class="header" href="#problem-description">Problem description:</a></h4>
+<p>SARS-CoV-2 is spreading across the world and as it spreads mutations are occuring. A way to understand the spreading and the mutations is to explore the structure and information hidden in the genome.</p>
+</div>
+<div class="cell markdown">
+<h4 id="project-goal"><a class="header" href="#project-goal">Project goal:</a></h4>
+<p>The Goal of this project is to explore a SARS-CoV-2 genome dataset and try to predict the origin of a SARS-CoV-2 genome sample.</p>
+</div>
+<div class="cell markdown">
+<h4 id="data"><a class="header" href="#data">Data:</a></h4>
+<p>We will use publicly available NCBI SARS-CoV-2 genome with their geographic region information.</p>
+<table><thead><tr><th align="center">Geographic region | #</th><th align="center">#samples |</th></tr></thead><tbody>
+<tr><td align="center">Africa</td><td align="center">397 |</td></tr>
+<tr><td align="center">Asia |</td><td align="center">2534 |</td></tr>
+<tr><td align="center">Europe |</td><td align="center">1418 |</td></tr>
+<tr><td align="center">North America |</td><td align="center">26836</td></tr>
+<tr><td align="center">Oceania |</td><td align="center">13304</td></tr>
+<tr><td align="center">South America |</td><td align="center">158 |</td></tr>
+</tbody></table>
+<p>Data link: https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType<em>s=Nucleotide&amp;VirusLineage</em>ss=Severe%20acute%20respiratory%20syndrome%20coronavirus%202%20(SARS-CoV-2),%20taxid:2697049</p>
+</div>
+<div class="cell markdown">
+<h4 id="background"><a class="header" href="#background">Background:</a></h4>
+<ul>
+<li>Genome: Sequence of nucleotides (A-T-G-C) [https://en.wikipedia.org/wiki/Genome]</li>
+<li>k-mer: Subsequences of length k of a genome [https://en.wikipedia.org/wiki/K-mer]</li>
+<li>Sequence analysis of SARS-CoV-2 genome reveals features important for vaccine design [https://www.nature.com/articles/s41598-020-72533-2]</li>
+<li>Latent Dirichlet Allocation (LDA) tutorial from the course</li>
+</ul>
+</div>
+<div class="cell markdown">
+<h4 id="challenges"><a class="header" href="#challenges">Challenges:</a></h4>
+<ul>
+<li>How to encode genome sequence?
+<ul>
+<li><em>Project solution :</em>
+<ul>
+<li>Represent genome as k-mers and use countVectorizer to convert k-mers into a matrix of token counts (term-frequency table)</li>
+<li>Extract features with Latent Dirichlet Allocation (LDA) by considering each genome sequence as a document and each 3-mer as a word. So, we have a collection of genomes consisting of 3-mers.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>How to relate encoded features to the origins?
+<ul>
+<li><em>Project solution:</em> We used a Random Forest Classifier and tried both topic distributions, LDA output, and k-mer frequencies directly. One advantage is interpretability: we can understand the positive or negative relations a topic has on the origin.</li>
+</ul>
+</li>
+<li>How to solve unbalanced class problem? E.g. North America has 26836 samples but South America has only 158
+<ul>
+<li><em>Project solution:</em> Use f1 measure as metric</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell markdown">
+<h4 id="project-steps"><a class="header" href="#project-steps">Project steps:</a></h4>
+<ol>
+<li>Get SARS-CoV-2 data from NCBI</li>
+<li>Process data:</li>
+<li>Extract 3-mers:</li>
+<li>Split train/test dataset with split ratio 0.7</li>
+<li>Extract topic features: We used Latent Dirichlet Allocation to extract patterns from k-mers features.</li>
+<li>Classify: We used Random Forest Classifier
+<ul>
+<li>(Classification directly on k-mers features) To find a mapping from extracted k-mers features to labels (multiclass problem).</li>
+<li>(Classification on LDA features) To find a mapping from extracted topic distributions to labels (multiclass problem).</li>
+</ul>
+</li>
+<li>Evaluation: We use (accuracy and f1) measure as our evaluation metrics. We compared Classification on LDA features vs Classification directly on k-mers features to see whether LDA is capable of summarizing the data (and thus reducing the feature dimensionality)</li>
+</ol>
+</div>
+<div class="cell markdown">
+<h4 id="what-we-lack-mainly"><a class="header" href="#what-we-lack-mainly">What we lack mainly:</a></h4>
+<ul>
+<li>A biological interpretation of the results (whether found terms in topic distributions are significant/connected in a biological network).</li>
+</ul>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="data-processing"><a class="header" href="#data-processing">Data Processing</a></h1>
+</div>
+<div class="cell markdown">
+<h3 id="load-datasets"><a class="header" href="#load-datasets">Load datasets</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Paths to datasets of different regions.
+val paths: List[String] = List(&quot;dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_oceania.fasta&quot;,
+                               &quot;dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_northamerica.fasta&quot;,
+                               &quot;dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_southamerica.fasta&quot;,
+                               &quot;dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_europe.fasta&quot;,
+                               &quot;dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_africa.fasta&quot;,
+                               &quot;dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_asia.fasta&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>paths: List[String] = List(dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_oceania.fasta, dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_northamerica.fasta, dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_southamerica.fasta, dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_europe.fasta, dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_africa.fasta, dbfs:/FileStore/shared_uploads/hugower@kth.se/sequences_asia.fasta)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import scala.util.matching.Regex
+
+// regex pattern to take region name, label, from complete path name (Must be changed accordingly if path follows a different structure)
+val pattern: Regex = &quot;/[a-zA-Z]+_([a-zA-Z]+)\\.&quot;.r 
+
+def read_datasets(paths:List[String]): List[RDD[(String,String)]] = {
+  if (paths.size &lt; 1) { // return an empty RDD
+    return List.fill(0) (sc.emptyRDD)
+  }
+  else {
+    pattern.findFirstMatchIn(paths.head) match { // extract the label based on the pattern defined above
+      case Some(x) =&gt; {
+        val label:String = x.group(1)  // create the label based on the path name
+        return (sc.textFile(paths.head).filter(_ != &quot;&quot;).map(_.trim()).map(s =&gt; (s,label)))::read_datasets(paths.tail) // read the file in path and attach the data with its label to RDD list
+      }
+      case None =&gt; throw new RuntimeException(&quot;no label found&quot;)
+    }
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import scala.util.matching.Regex
+pattern: scala.util.matching.Regex = /[a-zA-Z]+_([a-zA-Z]+)\.
+read_datasets: (paths: List[String])List[org.apache.spark.rdd.RDD[(String, String)]]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// read data and set the delimiter as &quot;&gt;&quot; which seperates each sample in fasta format
+sc.hadoopConfiguration.set(&quot;textinputformat.record.delimiter&quot;,&quot;&gt;&quot;)
+val datasets = read_datasets(paths)
+  
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>datasets: List[org.apache.spark.rdd.RDD[(String, String)]] = List(MapPartitionsRDD[202189] at map at command-3103574048361361:13, MapPartitionsRDD[202196] at map at command-3103574048361361:13, MapPartitionsRDD[202205] at map at command-3103574048361361:13, MapPartitionsRDD[202210] at map at command-3103574048361361:13, MapPartitionsRDD[202215] at map at command-3103574048361361:13, MapPartitionsRDD[202220] at map at command-3103574048361361:13)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">datasets.length
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res0: Int = 6
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">datasets(0).take(1)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// combine the datasets into one and cache for optimization
+val data = datasets.reduce( (a,b) =&gt; a++b).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>data: org.apache.spark.rdd.RDD[(String, String)] = UnionRDD[202273] at $plus$plus at command-3103574048361373:1
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">data.take(1)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// get the headers for each sample (the first line of each sample is a header)
+val headers = data.map( {case (genome,label) =&gt; (genome.split(&quot;\n&quot;).head.split('|'),label)})
+headers.count
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>headers: org.apache.spark.rdd.RDD[(Array[String], String)] = MapPartitionsRDD[35] at map at command-3103574048360661:1
+res2: Long = 31550
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">headers.take(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res3: Array[(Array[String], String)] = Array((Array(&quot;MW320729.1 &quot;, Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/AUS/VIC16982/2020, complete genome),oceania), (Array(&quot;MW320730.1 &quot;, Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/AUS/VIC17307/2020, complete genome),oceania), (Array(&quot;MW320731.1 &quot;, Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/AUS/VIC17193/2020, complete genome),oceania), (Array(&quot;MW320733.1 &quot;, Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/AUS/VIC16732/2020, complete genome),oceania), (Array(&quot;MW320735.1 &quot;, Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/AUS/VIC16821/2020, complete genome),oceania))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// remove the headers and only get genome sequences of samples.
+val samples = data.map( {case (genome,label) =&gt; (genome.split(&quot;\n&quot;).tail.mkString(&quot;&quot;), label)}).cache()
+samples.count
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>samples: org.apache.spark.rdd.RDD[(String, String)] = MapPartitionsRDD[202309] at map at command-3103574048360662:2
+res0: Long = 31550
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// get the genome lengths per sample (this is just to check if there are extreme cases so we would remove those)
+val genome_length_per_s = samples.map({case (genome,label) =&gt; genome.length()})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>genome_length_per_s: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[14298] at map at command-3103574048360664:1
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// check the statistics if there is any significant variation
+genome_length_per_s.stats
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res6: org.apache.spark.util.StatCounter = (count: 31550, mean: 29812.288621, stdev: 81.069114, max: 30018.000000, min: 28645.000000)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="extract-overlapping-or-nonoverlapping-3-mers"><a class="header" href="#extract-overlapping-or-nonoverlapping-3-mers">Extract (overlapping or nonoverlapping) 3-mers</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// A tail recursive overlapping subsequence function 
+// ex1: input: (&quot;abcd&quot;, 2, true) -&gt; output: &quot;ab bc cd&quot;: 
+// ex2: input: (&quot;abcd&quot;, 2, false) -&gt; output: &quot;ab cd&quot;
+def subsequence_str( sequence:String, k:Int, overlapping:Boolean ): String = {
+  def helper(seq:String, acc:String): String = {
+    if (seq.length &lt; k ) {
+      return acc
+    }
+    else {
+      val sub = seq.substring(0,k)
+      if(overlapping) helper(seq.tail, acc + sub + &quot; &quot;)
+      else helper(seq.substring(k), acc + sub + &quot; &quot;)
+    }
+  }
+  return helper(sequence, &quot;&quot;)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>subsequence_str: (sequence: String, k: Int, overlapping: Boolean)String
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Extract the subsequences, kmers, for each sample
+val k_mers = samples.map( {case (genome,label) =&gt; (subsequence_str(genome, 3, false),label)} ).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>k_mers: org.apache.spark.rdd.RDD[(String, String)] = MapPartitionsRDD[202801] at map at command-3103574048360668:1
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">k_mers.take(1)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// index kmers
+val kmers_df = k_mers.zipWithIndex.map({case ((a,b),c) =&gt; (a,b,c)}).toDF(&quot;genome&quot;, &quot;label&quot;, &quot;id&quot;).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>kmers_df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">kmers_df.take(1)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="split-dataset-as-train-and-test"><a class="header" href="#split-dataset-as-train-and-test">Split dataset as train and test</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// split train and test data
+val split = kmers_df.randomSplit(Array(0.7, 0.3), seed=42)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>split: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] = Array([genome: string, label: string ... 1 more field], [genome: string, label: string ... 1 more field])
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val train = split(0).cache()
+train.take(1)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">train.count
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res6: Long = 22155
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val test = split(1).cache()
+test.take(1)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">test.count
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res9: Long = 9395
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="save-the-results"><a class="header" href="#save-the-results">Save the results</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// save the results for the next notebook
+dbutils.fs.rm(&quot;/FileStore/shared_uploads/caylak@kth.se/data_test_nonoverlapping&quot;, recurse=true) // remove existing folder
+test.write.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_test_nonoverlapping&quot;)
+
+dbutils.fs.rm(&quot;/FileStore/shared_uploads/caylak@kth.se/data_train_nonoverlapping&quot;, recurse=true) // remove existing folder
+train.write.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_train_nonoverlapping&quot;)
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="lda---extract-features"><a class="header" href="#lda---extract-features">LDA - Extract Features</a></h1>
+</div>
+<div class="cell markdown">
+<h3 id="load-processed-data"><a class="header" href="#load-processed-data">Load processed data</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val k_mers_df_train = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_train_nonoverlapping&quot;).cache()
+val k_mers_df_test = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_test_nonoverlapping&quot;).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>k_mers_df_train: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+k_mers_df_test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="prepare-data-for-lda"><a class="header" href="#prepare-data-for-lda">Prepare data for LDA</a></h3>
+</div>
+<div class="cell markdown">
+<p>This part is adapted from the LDA course tutorial '034<em>LDA</em>20NewsGroupsSmall'.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.RegexTokenizer
+
+// Set params for RegexTokenizer
+val tokenizer = new RegexTokenizer()
+.setPattern(&quot;[\\W_]+&quot;) // break by white space character(s) 
+.setInputCol(&quot;genome&quot;) // name of the input column
+.setOutputCol(&quot;tokens&quot;) // name of the output column
+
+// Tokenize train and test documents
+val tokenized_df_train = tokenizer.transform(k_mers_df_train)
+val tokenized_df_test = tokenizer.transform(k_mers_df_test)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.RegexTokenizer
+tokenizer: org.apache.spark.ml.feature.RegexTokenizer = RegexTokenizer: uid=regexTok_b3a99fc4c607, minTokenLength=1, gaps=true, pattern=[\W_]+, toLowercase=true
+tokenized_df_train: org.apache.spark.sql.DataFrame = [genome: string, label: string ... 2 more fields]
+tokenized_df_test: org.apache.spark.sql.DataFrame = [genome: string, label: string ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(tokenized_df_train.select(&quot;tokens&quot;))
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(tokenized_df_test.select(&quot;tokens&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Since there are 64 = 4*4*4 possible words (3-mers) for a genome (which consists of A-T-G-C, 4 letters), we initially planned to use a fixed vocabulary.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.CountVectorizerModel
+// create a dictionary array from all possible k-mers 
+val k = 3
+val fixed_vocab = List.fill((k))(List(&quot;a&quot;,&quot;t&quot;,&quot;g&quot;,&quot;c&quot;)).flatten.combinations(k).flatMap(_.permutations).toArray.map(_.mkString(&quot;&quot;)) // https://stackoverflow.com/questions/38406959/creating-all-permutations-of-a-list-with-a-limited-range-in-scala
+val fixed_vectorizer = new CountVectorizerModel(fixed_vocab)
+.setInputCol(&quot;tokens&quot;)
+.setOutputCol(&quot;features&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.CountVectorizerModel
+k: Int = 3
+fixed_vocab: Array[String] = Array(aaa, aat, ata, taa, aag, aga, gaa, aac, aca, caa, att, tat, tta, atg, agt, tag, tga, gat, gta, atc, act, tac, tca, cat, cta, agg, gag, gga, agc, acg, gac, gca, cag, cga, acc, cac, cca, ttt, ttg, tgt, gtt, ttc, tct, ctt, tgg, gtg, ggt, tgc, tcg, gtc, gct, ctg, cgt, tcc, ctc, cct, ggg, ggc, gcg, cgg, gcc, cgc, ccg, ccc)
+fixed_vectorizer: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVecModel_4bd2f56ddf2e, vocabularySize=64
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>However, we observed that there are some unexpected rare k-mers such as aay, ktg in the genome sequences. If they are really rare (less than 10), we have decided to eliminate them. But if they are more common, with the intuition that this sequencing error (could not find a document indicating what they refer to so we assumed they are errors) might indicate some pattern for that sample, we keep them. This approach provided us better topic diversity and results.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.CountVectorizer
+
+// Create a dictionary of kmers
+val vectorizer = new CountVectorizer()
+      .setInputCol(&quot;tokens&quot;)
+      .setOutputCol(&quot;features&quot;)
+      .setMinDF(10)  // a term must appear at least in 10 documents to be included in the vocabulary.
+      .fit(tokenized_df_train) // create the vocabulary based on the train data
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.CountVectorizer
+vectorizer: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_cf83465b3abd, vocabularySize=241
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Vocabulary of k-mers which contains some weird nucleotides
+val vocabList = vectorizer.vocabulary
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>vocabList: Array[String] = Array(ttt, tgt, aaa, tta, aca, ttg, taa, att, aat, ctt, caa, tga, gtt, atg, act, aga, tat, tac, aac, tgg, tgc, aag, tca, cta, ttc, tct, gtg, agt, gaa, cat, gct, ctg, cac, gta, ata, tag, gat, ggt, cag, acc, gca, cca, atc, agg, gac, cct, agc, gag, gga, ctc, gtc, ggc, tcc, gcc, acg, cgt, ggg, ccc, tcg, cgc, cga, gcg, cgg, ccg, nnn, nna, naa, ntt, tnn, cnn, gnn, ann, nnt, nng, nnc, agn, ttn, aan, acn, tan, nat, tcn, ngt, nct, can, gtn, ctn, nta, atn, ana, tgn, nca, ggn, nga, tna, nac, ntg, gcn, gan, tgk, ngc, ccn, ncc, ngg, tnt, ntc, nag, agk, yta, cnt, ktt, aya, gkt, kta, gnt, nan, ytt, ktg, gkc, tty, ayt, tay, yaa, acy, gsc, aay, tgy, ggk, ant, tyt, yac, yat, tya, ang, anc, cay, tkt, cng, cak, rcc, cna, cgn, aty, akt, ggw, gyt, tng, raa, cyt, acw, ytg, aak, yca, ntn, gna, gay, cty, kat, kct, tkg, gnc, ngn, yag, tnc, kca, ayc, tyg, gka, ygt, aka, cnc, cya, ayg, ttk, gng, tth, maa, ncn, yga, tka, ama, aar, ytc, gtk, kag, cch, ncg, ctk, kaa, gty, yct, ara, rtg, ckt, tar, gya, tkc, tak, tgr, ccy, akg, kac, crc, grt, ggr, trt, gcy, tyc, ygg, gak, wga, ygc, cgk, gcr, kgt, wtc, tck, cwt, waa, tcy, vcc, tma, atr, agy, rgc, rac, tgs, kgc, gam, atk, cyc, haa, agr, tha, rgt, gwg, tra, cra, gtr, gkg, nam)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">vocabList.size
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res4: Int = 241
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Create vector of token counts
+val countVectors_train = vectorizer.transform(tokenized_df_train).select(&quot;id&quot;, &quot;features&quot;)
+val countVectors_test = vectorizer.transform(tokenized_df_test).select(&quot;id&quot;, &quot;features&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>countVectors_train: org.apache.spark.sql.DataFrame = [id: bigint, features: vector]
+countVectors_test: org.apache.spark.sql.DataFrame = [id: bigint, features: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">tokenized_df_train.take(1)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">countVectors_train.take(5)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">countVectors_test.take(5)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Fix the incompatibility between mllib Vector and ml Vector, which causes conflict when LDA topic distribution is given as RandomForestClassifier input</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.linalg.{Vector =&gt; MLVector}
+import org.apache.spark.mllib.{linalg =&gt; mllib}
+import org.apache.spark.ml.{linalg =&gt; ml}
+// convert each sample from ml to mllib vectors (because this causes problems in classifier step)
+val lda_countVector_train = countVectors_train.map { case Row(id: Long, countVector: MLVector) =&gt; (id, mllib.Vectors.fromML(countVector)) }.cache()
+val lda_countVector_test = countVectors_test.map { case Row(id: Long, countVector: MLVector) =&gt; (id, mllib.Vectors.fromML(countVector)) }.cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.linalg.{Vector=&gt;MLVector}
+import org.apache.spark.mllib.{linalg=&gt;mllib}
+import org.apache.spark.ml.{linalg=&gt;ml}
+lda_countVector_train: org.apache.spark.sql.Dataset[(Long, org.apache.spark.mllib.linalg.Vector)] = [_1: bigint, _2: vector]
+lda_countVector_test: org.apache.spark.sql.Dataset[(Long, org.apache.spark.mllib.linalg.Vector)] = [_1: bigint, _2: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// format: Array(id, (VocabSize, Array(indexedTokens), Array(Token Frequency)))
+lda_countVector_test.take(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res10: Array[(Long, org.apache.spark.mllib.linalg.Vector)] = Array((13340,(241,[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63],[334.0,211.0,327.0,282.0,288.0,277.0,95.0,278.0,315.0,259.0,245.0,70.0,310.0,311.0,291.0,129.0,213.0,181.0,189.0,99.0,87.0,221.0,189.0,183.0,136.0,217.0,181.0,152.0,251.0,136.0,265.0,150.0,108.0,174.0,183.0,89.0,213.0,245.0,163.0,99.0,158.0,138.0,107.0,78.0,142.0,146.0,53.0,116.0,98.0,93.0,101.0,90.0,56.0,73.0,42.0,67.0,34.0,31.0,39.0,29.0,28.0,37.0,20.0,19.0])))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// The number of topics 
+val num_topics = 20
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>num_topics: Int = 20
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="run-lda"><a class="header" href="#run-lda">Run LDA</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.clustering.{LDA, EMLDAOptimizer,DistributedLDAModel}
+
+val lda = new LDA()
+.setOptimizer(new EMLDAOptimizer())
+.setK(num_topics)
+.setMaxIterations(20000)
+.setDocConcentration(-1) // use default values
+.setTopicConcentration(-1) // use default values
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.clustering.{LDA, EMLDAOptimizer, DistributedLDAModel}
+lda: org.apache.spark.mllib.clustering.LDA = org.apache.spark.mllib.clustering.LDA@53a22046
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Run the LDA based on the model described  
+val lda_countVector_train_mllib = lda_countVector_train.rdd
+val lda_countVector_test_mllib = lda_countVector_test.rdd
+val ldaModel = lda.run(lda_countVector_train_mllib)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>lda_countVector_train_mllib: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[399] at rdd at command-685894176420037:2
+lda_countVector_test_mllib: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[404] at rdd at command-685894176420037:3
+ldaModel: org.apache.spark.mllib.clustering.LDAModel = org.apache.spark.mllib.clustering.DistributedLDAModel@4e5ac90e
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Cast to distributed LDA model (which is possible through EMLDAOptimizer in the model) so we can get topic distributions
+val distLDAModel = ldaModel.asInstanceOf[DistributedLDAModel]
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>distLDAModel: org.apache.spark.mllib.clustering.DistributedLDAModel = org.apache.spark.mllib.clustering.DistributedLDAModel@4e5ac90e
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val topicIndices = distLDAModel.describeTopics(maxTermsPerTopic = 10)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// https://spark.apache.org/docs/1.5.0/api/scala/index.html#org.apache.spark.mllib.clustering.DistributedLDAModel
+// Get the topic distributions for each train document which we will use as features in the classification step
+val topicDistributions_train = distLDAModel.topicDistributions.cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>topicDistributions_train: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[828598] at map at LDAModel.scala:768
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">lda_countVector_test_mllib.take(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res11: Array[(Long, org.apache.spark.mllib.linalg.Vector)] = Array((13340,(241,[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63],[334.0,211.0,327.0,282.0,288.0,277.0,95.0,278.0,315.0,259.0,245.0,70.0,310.0,311.0,291.0,129.0,213.0,181.0,189.0,99.0,87.0,221.0,189.0,183.0,136.0,217.0,181.0,152.0,251.0,136.0,265.0,150.0,108.0,174.0,183.0,89.0,213.0,245.0,163.0,99.0,158.0,138.0,107.0,78.0,142.0,146.0,53.0,116.0,98.0,93.0,101.0,90.0,56.0,73.0,42.0,67.0,34.0,31.0,39.0,29.0,28.0,37.0,20.0,19.0])))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Get the topic distributions for each test document which we will use as features in the classification step
+val topicDistributions_test = distLDAModel.toLocal.topicDistributions(lda_countVector_test_mllib).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>topicDistributions_test: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[828874] at map at LDAModel.scala:373
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">assert (topicDistributions_train.take(1)(0)._2.size == num_topics)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">topicDistributions_train.take(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res13: Array[(Long, org.apache.spark.mllib.linalg.Vector)] = Array((31198,[0.050970660127433086,0.03854914539182694,0.04233208760127245,0.05520192993035042,0.04529229810049971,0.044746575004622195,0.04738680077580458,0.04917176116296172,0.028216072817023714,0.06235014298552372,0.07282634237929085,0.05367477019497316,0.02834755979614659,0.007634148695007966,0.0747900052332216,0.07432157320344387,0.05619372014685311,0.05917612984447815,0.059889692006826215,0.048928584602440005]))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">topicDistributions_test.take(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res14: Array[(Long, org.apache.spark.mllib.linalg.Vector)] = Array((13340,[0.05125119795748651,0.05590356021965471,0.057337790514388406,0.053942804029345516,0.03184697426952284,0.054473799789446706,0.055602712254395316,0.07875351104584705,0.05294681251741617,0.03326797507323466,0.04996448701691076,0.06303737755619679,0.07611049117795103,0.009242706964001621,0.017554379171811085,0.026326662949499827,0.040104268572631795,0.09709248658013904,0.03851877943786023,0.05672122290225994]))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.linalg.{Vectors =&gt; OldVectors}
+import org.apache.spark.ml.linalg.{Vectors =&gt; NewVectors}
+
+val n_topicDistributions_train = topicDistributions_train.map({case (a,b) =&gt;(a,b.asML)})
+val n_topicDistributions_test = topicDistributions_test.map({case (a,b) =&gt;(a,b.asML)})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.linalg.{Vectors=&gt;OldVectors}
+import org.apache.spark.ml.linalg.{Vectors=&gt;NewVectors}
+n_topicDistributions_train: org.apache.spark.rdd.RDD[(Long, org.apache.spark.ml.linalg.Vector)] = MapPartitionsRDD[828876] at map at command-685894176420046:4
+n_topicDistributions_test: org.apache.spark.rdd.RDD[(Long, org.apache.spark.ml.linalg.Vector)] = MapPartitionsRDD[828877] at map at command-685894176420046:5
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// save the topic distributions for train and test with partitioning for the next notebook
+dbutils.fs.rm(&quot;/FileStore/shared_uploads/caylak@kth.se/topic_dist_train_t20_i20k_no_cv&quot;, recurse=true) // remove existing folder
+n_topicDistributions_train.toDF.write.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/topic_dist_train_t20_i20k_no_cv&quot;)
+
+dbutils.fs.rm(&quot;/FileStore/shared_uploads/caylak@kth.se/topic_dist_test_t20_i20k_no_cv&quot;, recurse=true) // remove existing folder
+n_topicDistributions_test.toDF.write.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/topic_dist_test_t20_i20k_no_cv&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Get the top word distributions for each topic
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+println(s&quot;$num_topics topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="visualise-results"><a class="header" href="#visualise-results">Visualise Results</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Zip topic terms with topic IDs
+val termArray = topics.zipWithIndex
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Transform data into the form (term, probability, topicId)
+val termRDD = sc.parallelize(termArray)
+val termRDD2 =termRDD.flatMap( (x: (Array[(String, Double)], Int)) =&gt; {
+  val arrayOfTuple = x._1
+  val topicId = x._2
+  arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>termRDD: org.apache.spark.rdd.RDD[(Array[(String, Double)], Int)] = ParallelCollectionRDD[829330] at parallelize at command-685894176420051:2
+termRDD2: org.apache.spark.rdd.RDD[(String, Double, Int)] = MapPartitionsRDD[829331] at flatMap at command-685894176420051:3
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Create DF with proper column names
+val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>termDF: org.apache.spark.sql.DataFrame = [term: string, probability: double ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">Create JSON data
+val rawJson = termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var json = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1000,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r)
+    .attr(&quot;height&quot;, r)
+    .attr(&quot;class&quot;, &quot;bubble&quot;);
+
+  
+var node = vis.selectAll(&quot;g.node&quot;)
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/9_03_1.JPG?raw=true" alt="" /></p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="classification-countvector"><a class="header" href="#classification-countvector">Classification CountVector</a></h1>
+</div>
+<div class="cell markdown">
+<h4 id="load-processed-data-1"><a class="header" href="#load-processed-data-1">Load processed data</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val k_mers_df_train = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_train&quot;).cache()
+val k_mers_df_test = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_test&quot;).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>k_mers_df_train: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+k_mers_df_test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val k_mers_df_train = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_train_nonoverlapping&quot;).cache()
+val k_mers_df_test = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_test_nonoverlapping&quot;).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>k_mers_df_train: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+k_mers_df_test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [genome: string, label: string ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="format-data"><a class="header" href="#format-data">Format data</a></h4>
+<p>Generate word count vectors</p>
+</div>
+<div class="cell markdown">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.RegexTokenizer
+
+// Set params for RegexTokenizer
+val tokenizer = new RegexTokenizer()
+.setPattern(&quot;[\\W_]+&quot;) // break by white space character(s)  - try to remove emails and other patterns
+.setInputCol(&quot;genome&quot;) // name of the input column
+.setOutputCol(&quot;tokens&quot;) // name of the output column
+
+// Tokenize document
+val tokenized_df_train = tokenizer.transform(k_mers_df_train)
+val tokenized_df_test = tokenizer.transform(k_mers_df_test)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.RegexTokenizer
+tokenizer: org.apache.spark.ml.feature.RegexTokenizer = RegexTokenizer: uid=regexTok_5df744efa843, minTokenLength=1, gaps=true, pattern=[\W_]+, toLowercase=true
+tokenized_df_train: org.apache.spark.sql.DataFrame = [genome: string, label: string ... 2 more fields]
+tokenized_df_test: org.apache.spark.sql.DataFrame = [genome: string, label: string ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(tokenized_df_train.select(&quot;tokens&quot;))
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.CountVectorizer
+val vectorizer = new CountVectorizer()
+      .setInputCol(&quot;tokens&quot;)
+      .setOutputCol(&quot;features&quot;)
+      .setMinDF(10)
+      .fit(tokenized_df_train)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.CountVectorizer
+vectorizer: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_9226a16a835f, vocabularySize=241
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val vocabList = vectorizer.vocabulary
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>vocabList: Array[String] = Array(ttt, tgt, aaa, tta, aca, ttg, taa, att, aat, ctt, caa, tga, gtt, atg, act, aga, tat, tac, aac, tgg, tgc, aag, tca, cta, ttc, tct, gtg, agt, gaa, cat, gct, ctg, cac, gta, ata, tag, gat, ggt, cag, acc, gca, cca, atc, agg, gac, cct, agc, gag, gga, ctc, gtc, ggc, tcc, gcc, acg, cgt, ggg, ccc, tcg, cgc, cga, gcg, cgg, ccg, nnn, nna, naa, ntt, tnn, cnn, gnn, ann, nnt, nng, nnc, agn, ttn, aan, acn, tan, nat, tcn, ngt, nct, can, gtn, ctn, nta, atn, tgn, ana, nca, ggn, nga, tna, nac, ntg, gcn, gan, tgk, ngc, ccn, ncc, ngg, tnt, ntc, nag, agk, yta, cnt, ktt, aya, gkt, kta, gnt, nan, ytt, ktg, gkc, tty, ayt, tay, yaa, acy, gsc, aay, tgy, ggk, ant, tyt, yac, tya, yat, anc, ang, cay, tkt, cak, cna, cng, rcc, akt, ggw, aty, cgn, gyt, tng, acw, aak, cyt, ytg, raa, yca, ntn, gay, gna, kat, kct, gnc, ngn, cty, tkg, tnc, yag, ayc, kca, aka, tyg, gka, ygt, cnc, cya, ttk, ayg, tka, gng, maa, tth, yga, ncn, ama, aar, kag, ytc, gtk, cch, ncg, kaa, ctk, gty, yct, ara, rtg, ckt, tar, gya, kac, tgr, crc, ccy, tkc, tak, akg, tyc, grt, gcy, trt, ggr, ygg, gak, gcr, kgt, ygc, cgk, wga, wtc, tma, tck, atr, waa, vcc, cwt, tcy, tgs, rgc, rac, agy, kgc, gam, haa, agr, rgt, tha, cyc, atk, gtr, tra, nam, gkg, gwg, cra)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">vocabList.size
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res17: Int = 241
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Create vector of token counts
+val countVectors_train = vectorizer.transform(tokenized_df_train).select(&quot;id&quot;, &quot;features&quot;)
+val countVectors_test = vectorizer.transform(tokenized_df_test).select(&quot;id&quot;, &quot;features&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>countVectors_train: org.apache.spark.sql.DataFrame = [id: bigint, features: vector]
+countVectors_test: org.apache.spark.sql.DataFrame = [id: bigint, features: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.linalg.{Vector =&gt; MLVector}
+import org.apache.spark.mllib.{linalg =&gt; mllib}
+import org.apache.spark.ml.{linalg =&gt; ml}
+
+val lda_countVector_train = countVectors_train.map { case Row(id: Long, countVector: MLVector) =&gt; (id, mllib.Vectors.fromML(countVector)) }.cache()
+val lda_countVector_test = countVectors_test.map { case Row(id: Long, countVector: MLVector) =&gt; (id, mllib.Vectors.fromML(countVector)) }.cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.linalg.{Vector=&gt;MLVector}
+import org.apache.spark.mllib.{linalg=&gt;mllib}
+import org.apache.spark.ml.{linalg=&gt;ml}
+lda_countVector_train: org.apache.spark.sql.Dataset[(Long, org.apache.spark.mllib.linalg.Vector)] = [_1: bigint, _2: vector]
+lda_countVector_test: org.apache.spark.sql.Dataset[(Long, org.apache.spark.mllib.linalg.Vector)] = [_1: bigint, _2: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.linalg.{Vectors =&gt; OldVectors}
+import org.apache.spark.ml.linalg.{Vectors =&gt; NewVectors}
+
+
+val lda_countVector_train_1 = lda_countVector_train.map({case (a,b) =&gt;(a,b.asML)})
+val lda_countVector_test_1 = lda_countVector_test.map({case (a,b) =&gt;(a,b.asML)})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.linalg.{Vectors=&gt;OldVectors}
+import org.apache.spark.ml.linalg.{Vectors=&gt;NewVectors}
+lda_countVector_train_1: org.apache.spark.sql.Dataset[(Long, org.apache.spark.ml.linalg.Vector)] = [_1: bigint, _2: vector]
+lda_countVector_test_1: org.apache.spark.sql.Dataset[(Long, org.apache.spark.ml.linalg.Vector)] = [_1: bigint, _2: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val trainDF = lda_countVector_train_1.toDF()
+val testDF = lda_countVector_test_1.toDF()
+
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>trainDF: org.apache.spark.sql.DataFrame = [_1: bigint, _2: vector]
+testDF: org.apache.spark.sql.DataFrame = [_1: bigint, _2: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">spark.conf.set(&quot;spark.sql.autoBroadcastJoinThreshold&quot;, -1)
+
+val mergedTrainingData = trainDF.join(k_mers_df_train,trainDF(&quot;_1&quot;) === k_mers_df_train(&quot;id&quot;),&quot;inner&quot;).withColumnRenamed(&quot;_2&quot;,&quot;features&quot;).drop(&quot;_1&quot;)
+val mergedTestData = testDF.join(k_mers_df_test,testDF(&quot;_1&quot;) === k_mers_df_test(&quot;id&quot;),&quot;inner&quot;).withColumnRenamed(&quot;_2&quot;,&quot;features&quot;).drop(&quot;_1&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>mergedTrainingData: org.apache.spark.sql.DataFrame = [features: vector, genome: string ... 2 more fields]
+mergedTestData: org.apache.spark.sql.DataFrame = [features: vector, genome: string ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="classification"><a class="header" href="#classification">Classification</a></h3>
+<p>The count vectors are used as features for classification</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.{StringIndexer,VectorAssembler}
+import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.feature.LabeledPoint
+import org.apache.spark.ml.classification.RandomForestClassifier
+import org.apache.spark.ml.linalg.Vector
+
+val transformers = Array(
+              new StringIndexer().setInputCol(&quot;label&quot;).setOutputCol(&quot;label_id&quot;))
+
+// Train a RandomForest model.
+val rf = new RandomForestClassifier() 
+              .setLabelCol(&quot;label_id&quot;)
+              .setFeaturesCol(&quot;features&quot;)
+              .setNumTrees(500)
+              .setFeatureSubsetStrategy(&quot;auto&quot;)
+              .setImpurity(&quot;gini&quot;)
+              .setMaxDepth(20)
+              .setMaxBins(32)
+              .setSeed(12345)
+
+val model = new Pipeline().setStages(transformers :+ rf).fit(mergedTrainingData)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.{StringIndexer, VectorAssembler}
+import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.feature.LabeledPoint
+import org.apache.spark.ml.classification.RandomForestClassifier
+import org.apache.spark.ml.linalg.Vector
+transformers: Array[org.apache.spark.ml.feature.StringIndexer] = Array(strIdx_e8cf65204547)
+rf: org.apache.spark.ml.classification.RandomForestClassifier = rfc_0a45a46b7366
+model: org.apache.spark.ml.PipelineModel = pipeline_14ad91398432
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="evaluation"><a class="header" href="#evaluation">Evaluation</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.evaluation.MulticlassMetrics
+
+def evaluateModel(model: org.apache.spark.ml.PipelineModel, df: org.apache.spark.sql.DataFrame){
+  val predictionsOnData = model.transform(df)
+  val predictionAndLabelsRdd = predictionsOnData.select(&quot;prediction&quot;, &quot;label_id&quot;).as[(Double,Double)].rdd
+
+  val metricsMulti = new MulticlassMetrics(predictionAndLabelsRdd)
+  val accuracy = metricsMulti.accuracy
+  
+  val fm0 = metricsMulti.fMeasure(0)
+  val fm1 = metricsMulti.fMeasure(1)
+  val fm2 = metricsMulti.fMeasure(2)
+  val fm3 = metricsMulti.fMeasure(3)
+  val fm4 = metricsMulti.fMeasure(4)
+  val fm5 = metricsMulti.fMeasure(5)
+  
+  println(&quot;Confusion matrix:&quot;)
+  println(metricsMulti.confusionMatrix)
+  
+  println(&quot;Summary Statistics&quot;)
+  println(s&quot;Accuracy = $accuracy&quot;)
+  
+  println(s&quot;fm0 = $fm0&quot;)
+  println(s&quot;fm1 = $fm1&quot;)
+  println(s&quot;fm2 = $fm2&quot;)
+  println(s&quot;fm3 = $fm3&quot;)
+  println(s&quot;fm4 = $fm4&quot;)
+  println(s&quot;fm5 = $fm5&quot;)
+
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h6 id="evaluation-training-data"><a class="header" href="#evaluation-training-data">Evaluation Training data</a></h6>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">evaluateModel(model, mergedTrainingData)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Confusion matrix:
+12776.0  0.0     0.0     0.0    0.0    0.0   
+70.0     6955.0  3.0     0.0    0.0    0.0   
+139.0    1.0     1002.0  1.0    0.0    0.0   
+133.0    0.0     4.0     756.0  0.0    0.0   
+36.0     0.0     0.0     0.0    175.0  0.0   
+33.0     0.0     0.0     0.0    0.0    71.0  
+Summary Statistics
+Accuracy = 0.981042654028436
+fm0 = 0.9841697800716405
+fm1 = 0.99470823798627
+fm2 = 0.9312267657992566
+fm3 = 0.9163636363636364
+fm4 = 0.9067357512953368
+fm5 = 0.8114285714285714
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h5 id="evaluation-test-data"><a class="header" href="#evaluation-test-data">Evaluation Test data</a></h5>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">evaluateModel(model, mergedTestData)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Confusion matrix:
+5450.0  8.0     6.0    4.0    0.0   0.0   
+140.0   2743.0  8.0    0.0    0.0   0.0   
+189.0   7.0     314.0  6.0    0.0   0.0   
+116.0   1.0     7.0    269.0  0.0   0.0   
+44.0    2.0     1.0    3.0    46.0  0.0   
+9.0     0.0     0.0    0.0    0.0   22.0  
+Summary Statistics
+Accuracy = 0.9413517828632251
+fm0 = 0.9548002803083393
+fm1 = 0.9706298655343242
+fm2 = 0.7370892018779341
+fm3 = 0.7970370370370371
+fm4 = 0.647887323943662
+fm5 = 0.8301886792452831
+</code></pre>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="classification-1"><a class="header" href="#classification-1">Classification</a></h1>
+</div>
+<div class="cell markdown">
+<h4 id="load-processed-data-2"><a class="header" href="#load-processed-data-2">Load processed data</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Load LDA model or the topic distributions
+// data format: org.apache.spark.sql.DataFrame = [genome:string, label:string, id:long]
+val k_mers_df_train = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_train_nonoverlapping&quot;)
+val k_mers_df_test = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/data_test_nonoverlapping&quot;)
+
+// data format: org.apache.spark.sql.DataFrame = [_1: bigint, _2: vector] the vector part contains the topic distributions
+val trainingData = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/topic_dist_train_t20_i20k_no_cv&quot;)
+val testData = spark.read.parquet(&quot;dbfs:/FileStore/shared_uploads/caylak@kth.se/topic_dist_test_t20_i20k_no_cv&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>k_mers_df_train: org.apache.spark.sql.DataFrame = [genome: string, label: string ... 1 more field]
+k_mers_df_test: org.apache.spark.sql.DataFrame = [genome: string, label: string ... 1 more field]
+trainingData: org.apache.spark.sql.DataFrame = [_1: bigint, _2: vector]
+testData: org.apache.spark.sql.DataFrame = [_1: bigint, _2: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Merge data sources to get labels 
+spark.conf.set(&quot;spark.sql.autoBroadcastJoinThreshold&quot;, -1)
+val mergedTrainingData = trainingData.join(k_mers_df_train,trainingData(&quot;_1&quot;) === k_mers_df_train(&quot;id&quot;),&quot;inner&quot;).withColumnRenamed(&quot;_2&quot;,&quot;features&quot;).drop(&quot;_1&quot;)
+val mergedTestData = testData.join(k_mers_df_test,testData(&quot;_1&quot;) === k_mers_df_test(&quot;id&quot;),&quot;inner&quot;).withColumnRenamed(&quot;_2&quot;,&quot;features&quot;).drop(&quot;_1&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>mergedTrainingData: org.apache.spark.sql.DataFrame = [features: vector, genome: string ... 2 more fields]
+mergedTestData: org.apache.spark.sql.DataFrame = [features: vector, genome: string ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">mergedTrainingData.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+--------------------+--------------------+-------+----+
+|            features|              genome|  label|  id|
++--------------------+--------------------+-------+----+
+|[0.05124403025197...|CTT GTA GAT CTG T...|oceania|  26|
+|[0.04866065493877...|CTC TTG TAG ATC T...|oceania|  29|
+|[0.04856023665158...|ACT TTC GAT CTC T...|oceania| 474|
+|[0.05114514533282...|CTT GTA GAT CTG T...|oceania| 964|
+|[0.04856846330546...|ACT TTC GAT CTC T...|oceania|1677|
++--------------------+--------------------+-------+----+
+only showing top 5 rows
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">mergedTestData.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+--------------------+--------------------+-------+----+
+|            features|              genome|  label|  id|
++--------------------+--------------------+-------+----+
+|[0.04856691976914...|ACT TTC GAT CTC T...|oceania|2250|
+|[0.04775129705622...|ACT TTC GAT CTC T...|oceania|3091|
+|[0.04856692420144...|ACT TTC GAT CTC T...|oceania|7279|
+|[0.04881282010425...|ACT TTC GAT CTC T...|oceania|8075|
+|[0.05110516016513...|CTT GTA GAT CTG T...|oceania|9458|
++--------------------+--------------------+-------+----+
+only showing top 5 rows
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="explore-data"><a class="header" href="#explore-data">Explore data</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions._
+import org.apache.spark.ml._
+
+
+//Split the feature vector into seprate columns
+val vecToArray = udf( (xs: linalg.Vector) =&gt; xs.toArray )
+val dfArr = mergedTrainingData.withColumn(&quot;featuresArr&quot; , vecToArray($&quot;features&quot;) )
+val elements = Array(&quot;f1&quot;, &quot;f2&quot;, &quot;f3&quot;, &quot;f4&quot;, &quot;f5&quot;, &quot;f6&quot;,&quot;f7&quot;, &quot;f8&quot;, &quot;f9&quot;,&quot;f10&quot;)
+val sqlExpr = elements.zipWithIndex.map{ case (alias, idx) =&gt; col(&quot;featuresArr&quot;).getItem(idx).as(alias) }
+val df_feats = dfArr.select((col(&quot;label&quot;) +: sqlExpr) : _*)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions._
+import org.apache.spark.ml._
+vecToArray: org.apache.spark.sql.expressions.UserDefinedFunction = SparkUserDefinedFunction($Lambda$9301/1088827103@108f1ec1,ArrayType(DoubleType,false),List(Some(class[value[0]: vector])),None,true,true)
+dfArr: org.apache.spark.sql.DataFrame = [features: vector, genome: string ... 3 more fields]
+elements: Array[String] = Array(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10)
+sqlExpr: Array[org.apache.spark.sql.Column] = Array(featuresArr[0] AS `f1`, featuresArr[1] AS `f2`, featuresArr[2] AS `f3`, featuresArr[3] AS `f4`, featuresArr[4] AS `f5`, featuresArr[5] AS `f6`, featuresArr[6] AS `f7`, featuresArr[7] AS `f8`, featuresArr[8] AS `f9`, featuresArr[9] AS `f10`)
+df_feats: org.apache.spark.sql.DataFrame = [label: string, f1: double ... 9 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_feats.describe().show()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-------+------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|summary|       label|                  f1|                  f2|                  f3|                  f4|                  f5|                  f6|                  f7|                  f8|                  f9|                 f10|
++-------+------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|  count|       22155|               22155|               22155|               22155|               22155|               22155|               22155|               22155|               22155|               22155|               22155|
+|   mean|        null| 0.04931437716125177| 0.05103219325119624| 0.05043777410343692| 0.04985720003755815| 0.05109828486193199|0.049969419011346175|0.049612622552246397| 0.05172608119915934| 0.05519918725594238|0.050902505322165705|
+| stddev|        null| 0.00376757883941906|0.012025788212709033|0.008575417672641356|0.007216341887817029|   0.017036551424972|0.006744772303600655|0.006141190111960429|0.015925101732795318|0.028248525286887288|0.011750518257958392|
+|    min|      africa|7.597652484573448E-5|7.931226826328689E-5|7.472127009799751E-5|8.488001247712824E-5|5.737788781311747E-5|7.510235436716417E-5| 8.01478429209781E-5|1.102376409869290...|7.060888276954563E-5|5.730971677795215...|
+|    max|southamerica| 0.07096255125893133| 0.08483680076143339| 0.07401129608174387| 0.09129137902172121| 0.07569705042586143| 0.09892558758161725| 0.12033929830179531| 0.08811599095688616| 0.09753703174079206| 0.08152012057643862|
++-------+------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions.rand
+display(df_feats.sample(true,0.5).orderBy(rand()))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/9_05_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h4 id="classification-2"><a class="header" href="#classification-2">Classification</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.{StringIndexer,VectorAssembler}
+import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.feature.LabeledPoint
+import org.apache.spark.ml.classification.RandomForestClassifier
+import org.apache.spark.ml.linalg.Vector
+
+val transformers = Array(
+              new StringIndexer().setInputCol(&quot;label&quot;).setOutputCol(&quot;label_id&quot;))
+
+// Train a RandomForest model.
+val rf = new RandomForestClassifier() 
+              .setLabelCol(&quot;label_id&quot;)
+              .setFeaturesCol(&quot;features&quot;)
+              .setNumTrees(500)
+              .setFeatureSubsetStrategy(&quot;auto&quot;)
+              .setImpurity(&quot;gini&quot;)
+              .setMaxDepth(20)
+              .setMaxBins(32)
+              .setSeed(12345)
+
+val model = new Pipeline().setStages(transformers :+ rf).fit(mergedTrainingData)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.{StringIndexer, VectorAssembler}
+import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.feature.LabeledPoint
+import org.apache.spark.ml.classification.RandomForestClassifier
+import org.apache.spark.ml.linalg.Vector
+transformers: Array[org.apache.spark.ml.feature.StringIndexer] = Array(strIdx_5c4c8beb7d03)
+rf: org.apache.spark.ml.classification.RandomForestClassifier = rfc_c92cc57e8554
+model: org.apache.spark.ml.PipelineModel = pipeline_fd80c4a01f49
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="evaluation-1"><a class="header" href="#evaluation-1">Evaluation</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.evaluation.MulticlassMetrics
+
+def evaluateModel(model: org.apache.spark.ml.PipelineModel, df: org.apache.spark.sql.DataFrame){
+  val predictionsOnData = model.transform(df)
+  val predictionAndLabelsRdd = predictionsOnData.select(&quot;prediction&quot;, &quot;label_id&quot;).as[(Double,Double)].rdd
+
+  val metricsMulti = new MulticlassMetrics(predictionAndLabelsRdd)
+  
+  val accuracy = metricsMulti.accuracy
+  val fm0 = metricsMulti.fMeasure(0)
+  val fm1 = metricsMulti.fMeasure(1)
+  val fm2 = metricsMulti.fMeasure(2)
+  val fm3 = metricsMulti.fMeasure(3)
+  val fm4 = metricsMulti.fMeasure(4)
+  val fm5 = metricsMulti.fMeasure(5)
+  
+  println(&quot;Confusion matrix:&quot;)
+  println(metricsMulti.confusionMatrix)
+  
+  println(&quot;Summary Statistics&quot;)
+  println(s&quot;Accuracy = $accuracy&quot;)
+  
+  println(s&quot;fm0 = $fm0&quot;)
+  println(s&quot;fm1 = $fm1&quot;)
+  println(s&quot;fm2 = $fm2&quot;)
+  println(s&quot;fm3 = $fm3&quot;)
+  println(s&quot;fm4 = $fm4&quot;)
+  println(s&quot;fm5 = $fm5&quot;)
+
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.evaluation.MulticlassMetrics
+evaluateModel: (model: org.apache.spark.ml.PipelineModel, df: org.apache.spark.sql.DataFrame)Unit
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Review fit of training dataset</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">evaluateModel(model, mergedTrainingData)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Confusion matrix:
+12688.0  80.0    7.0     1.0    0.0    0.0   
+137.0    6891.0  0.0     0.0    0.0    0.0   
+53.0     18.0    1071.0  1.0    0.0    0.0   
+47.0     3.0     0.0     843.0  0.0    0.0   
+16.0     2.0     0.0     1.0    192.0  0.0   
+19.0     0.0     0.0     0.0    0.0    85.0  
+Summary Statistics
+Accuracy = 0.9826224328593997
+fm0 = 0.9860118122474355
+fm1 = 0.9828840393667095
+fm2 = 0.9644304367402071
+fm3 = 0.9695227142035653
+fm4 = 0.9528535980148882
+fm5 = 0.8994708994708994
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Performance on Test dataset</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">evaluateModel(model, mergedTestData)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Confusion matrix:
+5373.0  89.0    3.0   3.0    0.0  0.0   
+368.0   2522.0  0.0   1.0    0.0  0.0   
+478.0   15.0    20.0  3.0    0.0  0.0   
+193.0   8.0     0.0   192.0  0.0  0.0   
+89.0    5.0     0.0   1.0    1.0  0.0   
+14.0    0.0     0.0   0.0    0.0  17.0  
+Summary Statistics
+Accuracy = 0.8648217136774881
+fm0 = 0.896770424768422
+fm1 = 0.9121157323688969
+fm2 = 0.07421150278293136
+fm3 = 0.6475548060708264
+fm4 = 0.020618556701030924
+fm5 = 0.7083333333333333
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="results-and-conclusion"><a class="header" href="#results-and-conclusion">Results and Conclusion</a></h1>
+</div>
+<div class="cell markdown">
+<h4 id="word-count-vectors-as-features-for-classification-overlapping-k-mers"><a class="header" href="#word-count-vectors-as-features-for-classification-overlapping-k-mers">Word count vectors as features for classification, overlapping k-mers</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5453.0</td><td align="center">8.0</td><td align="center">6.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">135.0</td><td align="center">2754.0</td><td align="center">1.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">211.0</td><td align="center">4.0</td><td align="center">297.0</td><td align="center">4.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">115.0</td><td align="center">0.0</td><td align="center">3.0</td><td align="center">275.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">42.0</td><td align="center">1.0</td><td align="center">2.0</td><td align="center">3.0</td><td align="center">48.0</td></tr>
+<tr><td align="center">7.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">2.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.942</p>
+<h4 id="word-count-vectors-as-features-for-classification-overlapping-k-mers-1"><a class="header" href="#word-count-vectors-as-features-for-classification-overlapping-k-mers-1">Word count vectors as features for classification, overlapping k-mers</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5446.0</td><td align="center">8.0</td><td align="center">10.0</td><td align="center">4.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">137.0</td><td align="center">2746.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">186.0</td><td align="center">7.0</td><td align="center">314.0</td><td align="center">9.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">112.0</td><td align="center">2.0</td><td align="center">9.0</td><td align="center">270.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">43.0</td><td align="center">3.0</td><td align="center">1.0</td><td align="center">3.0</td><td align="center">46.0</td></tr>
+<tr><td align="center">10.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.941</p>
+<h4 id="word-count-vectors-as-features-for-classification-overlapping-k-mers-2"><a class="header" href="#word-count-vectors-as-features-for-classification-overlapping-k-mers-2">Word count vectors as features for classification, overlapping k-mers</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5446.0</td><td align="center">8.0</td><td align="center">10.0</td><td align="center">4.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">137.0</td><td align="center">2746.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">186.0</td><td align="center">7.0</td><td align="center">314.0</td><td align="center">9.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">112.0</td><td align="center">2.0</td><td align="center">9.0</td><td align="center">270.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">43.0</td><td align="center">3.0</td><td align="center">1.0</td><td align="center">3.0</td><td align="center">46.0</td></tr>
+<tr><td align="center">10.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.941</p>
+<h4 id="number-of-topics10-number-of-iterations-100-nonoverlapping-accuracy-table"><a class="header" href="#number-of-topics10-number-of-iterations-100-nonoverlapping-accuracy-table">Number of topics:10 Number of iterations: 100 Nonoverlapping accuracy table:</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5167.0</td><td align="center">288.0</td><td align="center">0.0</td><td align="center">11.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">2414.0</td><td align="center">472.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">496.0</td><td align="center">20.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">217.0</td><td align="center">5.0</td><td align="center">0.0</td><td align="center">170.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">94.0</td><td align="center">2.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">28.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">3.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.618 * fm0 = 0.744 * fm1 = 0.257 * fm2 = 0.0 * fm3 = 0.588 * fm4 = 0.0</p>
+<h4 id="number-of-topics10-number-of-iterations-1000-nonoverlapping-accuracy-table"><a class="header" href="#number-of-topics10-number-of-iterations-1000-nonoverlapping-accuracy-table">Number of topics:10 Number of iterations: 1000 Nonoverlapping accuracy table:</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5290.0</td><td align="center">113.0</td><td align="center">10.0</td><td align="center">3.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">1012.0</td><td align="center">1667.0</td><td align="center">22.0</td><td align="center">0.0</td><td align="center">3.0</td></tr>
+<tr><td align="center">430.0</td><td align="center">10.0</td><td align="center">76.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">213.0</td><td align="center">6.0</td><td align="center">3.0</td><td align="center">169.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">93.0</td><td align="center">2.0</td><td align="center">1.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">31.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.787 * fm0 = 0.847 * fm1 = 0.740 * fm2 = 0.242 * fm3 = 0.600 * fm4 = 0.0</p>
+<h4 id="number-of-topics20-number-of-iterations-100-nonoverlapping-accuracy-table"><a class="header" href="#number-of-topics20-number-of-iterations-100-nonoverlapping-accuracy-table">Number of topics:20 Number of iterations: 100 Nonoverlapping accuracy table:</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">4174.0</td><td align="center">1286.0</td><td align="center">0.0</td><td align="center">8.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">829.0</td><td align="center">2056.0</td><td align="center">0.0</td><td align="center">6.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">408.0</td><td align="center">108.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">189.0</td><td align="center">34.0</td><td align="center">0.0</td><td align="center">170.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">48.0</td><td align="center">48.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">29.0</td><td align="center">1.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.681 * fm0 = 0.749 * fm1 = 0.640 * fm2 = 0.0 * fm3 = 0.588 * fm4 = 0.0</p>
+<h4 id="number-of-topics20-number-of-iterations-20000-nonverlapping-accuracy-table"><a class="header" href="#number-of-topics20-number-of-iterations-20000-nonverlapping-accuracy-table">Number of topics:20 Number of iterations: 20000 Nonverlapping accuracy table:</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5373.0</td><td align="center">89.0</td><td align="center">3.0</td><td align="center">3.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">368.0</td><td align="center">2522.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">478.0</td><td align="center">15.0</td><td align="center">20.0</td><td align="center">3.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">193.0</td><td align="center">8.0</td><td align="center">0.0</td><td align="center">192.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">89.0</td><td align="center">5.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">1.0</td></tr>
+<tr><td align="center">14.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.865 * fm0 = 0.897 * fm1 = 0.912 * fm2 = 0.074 * fm3 = 0.648 * fm4 = 0.021</p>
+<h4 id="number-of-topics20-number-of-iterations-15000-overlapping-accuracy-table"><a class="header" href="#number-of-topics20-number-of-iterations-15000-overlapping-accuracy-table">Number of topics:20 Number of iterations: 15000 Overlapping accuracy table:</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5419.0</td><td align="center">25.0</td><td align="center">12.0</td><td align="center">12.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">190.0</td><td align="center">2687.0</td><td align="center">7.0</td><td align="center">7.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">398.0</td><td align="center">13.0</td><td align="center">89.0</td><td align="center">15.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">193.0</td><td align="center">2.0</td><td align="center">2.0</td><td align="center">196.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">89.0</td><td align="center">2.0</td><td align="center">3.0</td><td align="center">1.0</td><td align="center">1.0</td></tr>
+<tr><td align="center">11.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.895 * fm0 = 0.921 * fm1 = 0.956 * fm2 = 0.283 * fm3 = 0.628 * fm4 = 0.021</p>
+<h4 id="number-of-topics50-number-of-iterations-100-nonoverlapping-accuracy-table"><a class="header" href="#number-of-topics50-number-of-iterations-100-nonoverlapping-accuracy-table">Number of topics:50 Number of iterations: 100 Nonoverlapping accuracy table:</a></h4>
+<table><thead><tr><th align="center">Confusion matrix</th><th align="center"></th><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody>
+<tr><td align="center">5250.0</td><td align="center">217.0</td><td align="center">0.0</td><td align="center">1.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">2667.0</td><td align="center">224.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">503.0</td><td align="center">13.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">220.0</td><td align="center">3.0</td><td align="center">0.0</td><td align="center">170.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">94.0</td><td align="center">2.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+<tr><td align="center">30.0</td><td align="center">1.0</td><td align="center">0.0</td><td align="center">0.0</td><td align="center">0.0</td></tr>
+</tbody></table>
+<p>Summary Statistics * Accuracy = 0.601 * fm0 = 0.738 * fm1 = 0.134 * fm2 = 0.0 * fm3 = 0.603 * fm4 = 0.0</p>
+</div>
+<div class="cell markdown">
+<h4 id="summary-tables-for-lda--classification-and-classification"><a class="header" href="#summary-tables-for-lda--classification-and-classification">Summary Tables for (LDA + Classification) and Classification</a></h4>
+<ul>
+<li>(LDA + Classification) Varying number of topics and fixed number of iterations = 100:</li>
+</ul>
+<table><thead><tr><th align="center"># topics</th><th align="center">Accuracy</th></tr></thead><tbody>
+<tr><td align="center">10</td><td align="center">0.618</td></tr>
+<tr><td align="center">20</td><td align="center">0.681</td></tr>
+<tr><td align="center">50</td><td align="center">0.601</td></tr>
+</tbody></table>
+<p><em>Conclusion</em>: 20, approximately the number of aminoacids, is a good candidate for the number of topics</p>
+<ul>
+<li>We tried both nonoverlapping and overlapping k-mer features directly on classifier:</li>
+</ul>
+<table><thead><tr><th align="center">Data type</th><th align="center">Accuracy</th></tr></thead><tbody>
+<tr><td align="center">Nonoverlapping k-mers</td><td align="center">0.941</td></tr>
+<tr><td align="center">Overlapping k-mers</td><td align="center">0.942</td></tr>
+</tbody></table>
+<ul>
+<li>Also, on (LDA + classification) for number of topics = 20. While for nonoverlapping the number of iterations are 20000, for overlapping the number of iterations are 15000. Due to 'unexpected shutdown' of clusters we couldn't run LDA on overlapping clusters for 20000 iterations. However results suggests that overlapping k-mers helps LDA to learn structure better in terms of prediction power (but not efficiently) :</li>
+</ul>
+<table><thead><tr><th align="center">Data type</th><th align="center">Accuracy</th></tr></thead><tbody>
+<tr><td align="center">Nonoverlapping k-mers</td><td align="center">0.865</td></tr>
+<tr><td align="center">Overlapping k-mers</td><td align="center">0.895</td></tr>
+</tbody></table>
+<p><em>Conclusion</em>: For classifier, there is not much difference on overlapping or nonoverlapping k-mer features; however for LDA having overlapping helps to learn structure more. But increased time complexity of overlapping k-mers requires LDA to have more iterations to learn.</p>
+<ul>
+<li>(LDA + Classification) Varying number of iterations and topics :</li>
+</ul>
+<table><thead><tr><th align="center">(# iterations, # topics, overlapping)</th><th align="center">Accuracy</th></tr></thead><tbody>
+<tr><td align="center">(100, 10, false)</td><td align="center">0.618</td></tr>
+<tr><td align="center">(1000, 10, false)</td><td align="center">0.787</td></tr>
+<tr><td align="center">(100, 20, false)</td><td align="center">0.681</td></tr>
+<tr><td align="center">(15000, 20, true)</td><td align="center">0.895</td></tr>
+<tr><td align="center">(20000, 20, false)</td><td align="center">0.865</td></tr>
+</tbody></table>
+<p><em>Conclusion</em>: Also considering the topic summaries, we can conclude that the number of iterations highly affect the topic diversity, and thus classifier performance. Although we can check convergence of EM algorithm to stop, this migh be problematic due to increasing computation time with the number of iterations.</p>
+<ul>
+<li>The best of (LDA + Classification) where the number of topics is 20 and the number of iterations is 15000 and vs direct Classification on k-mers performance comparision.</li>
+</ul>
+<table><thead><tr><th align="center">Method</th><th align="center">Accuracy</th></tr></thead><tbody>
+<tr><td align="center">(LDA + Classification)</td><td align="center">0.895</td></tr>
+<tr><td align="center">Direct Classification</td><td align="center">0.942</td></tr>
+</tbody></table>
+<p><em>Conclusion</em>: We couldn't perform higher number of iterations (due to limited time and cluster restarts); however, this result shows that LDA is capable of summarizing k-mer features. Once, we learn the mapping from k-mers to reduced topic distribution space via LDA, then we can use this reduced number of features to train classifier. This makes the data more scalable and may save computation time in the long run.</p>
+</div>
+<div class="cell markdown">
+<h4 id="our-conclusions"><a class="header" href="#our-conclusions">Our conclusions</a></h4>
+<ul>
+<li>What we have tried and failed? What we have learned?
+<ul>
+<li>Overlapping k-mers with low iteration led poor diversity in topics</li>
+<li>With expectation maximization LDA required iteration increases significantly. Where to stop the iteration becomes a problem due to computation time concerns.</li>
+<li>Changing doc or term concentration did not lead better results</li>
+<li>We tried several number of topics (10, 20, 50) and #topics = 20, which is almost equal to number of aminoacids, yields the best result (coincidence or the number of aminoacids is a good choice for topic number?)</li>
+<li>Using a fixed vocabulary of k-mers (using nucleotide alphabet A-T-G-C) yields poor topic diversity [since there are sequencing errors in genomes, there are different k-mers such as TAK, TAR. And, we concluded that these errors actually give some insight on the virus]</li>
+</ul>
+</li>
+<li>The comparison between LDA-based classifier and directly-k-mers classifier demonstrates that with enough iterations LDA is capable of summarising the data.</li>
+<li>There is not much difference between overlapping and nonoverlapping k-mer features when we directly give them to classifier. However, for LDA overlapping features require much higher number of iterations for convergence [or topic divergence]</li>
+<li>Very final conclusion: Directly giving k-mers to classifier works better. However, once we learn from LDA with reduced number of features (from k-mers to topic distributions), we can have a good result on classification which can save computation time and make it scalable (by reducing the number of features to the number of topics chosen).</li>
+</ul>
+<p>“Everything should be made as simple as possible, but no simpler.”<br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Albert_Einstein_1947.jpg/98px-Albert_Einstein_1947.jpg" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

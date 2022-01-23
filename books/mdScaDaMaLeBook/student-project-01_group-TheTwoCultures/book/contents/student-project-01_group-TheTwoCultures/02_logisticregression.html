@@ -1,0 +1,610 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>02_logisticregression - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html">00_download_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html">01_load_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html" class="active">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="the-two-cultures---classifying-threads-with-logistic-regression"><a class="header" href="#the-two-cultures---classifying-threads-with-logistic-regression">The two cultures - Classifying threads with logistic regression</a></h1>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Imports
+import org.apache.spark.ml.feature.StopWordsRemover
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.feature.CountVectorizer
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.StopWordsRemover
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.feature.CountVectorizer
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol>
+<li>Load the data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Load dataframes
+val file_path_familjeliv = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df&quot;
+val file_path_flashback = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex_df&quot;
+val df_familjeliv = load_df(file_path_familjeliv)
+val df_flashback = load_df(file_path_flashback)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_path_familjeliv: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df
+file_path_flashback: String = dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+df_familjeliv: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+df_flashback: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Extract the text
+val df_text_flashback = df_flashback.select(&quot;w&quot;)
+val df_text_familjeliv = df_familjeliv.select(&quot;w&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_text_flashback: org.apache.spark.sql.DataFrame = [w: string]
+df_text_familjeliv: org.apache.spark.sql.DataFrame = [w: string]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="2">
+<li>Add labels</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Add label columns and make sure that we have exactly the same amount of data from both forums
+val df_text_flashback_c = df_text_flashback.withColumn(&quot;c&quot;, lit(0))
+val df_text_familjeliv_c = df_text_familjeliv.orderBy(rand()).limit(df_text_flashback_c.count().toInt).withColumn(&quot;c&quot;, lit(1))
+val df_text_full = df_text_flashback_c.union(df_text_familjeliv_c)
+
+//Check the counts
+println(df_text_flashback_c.count())
+println(df_text_familjeliv_c.count())
+println(df_text_full.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>56621
+56621
+113242
+df_text_flashback_c: org.apache.spark.sql.DataFrame = [w: string, c: int]
+df_text_familjeliv_c: org.apache.spark.sql.DataFrame = [w: string, c: int]
+df_text_full: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [w: string, c: int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="3">
+<li>Extract single words</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val tokenizer = new RegexTokenizer()
+  .setPattern(&quot;(?U),&quot;) // break by whitespace
+  .setMinTokenLength(5) // Filter away tokens with length &lt; 5
+  .setInputCol(&quot;w&quot;) // name of the input column
+  .setOutputCol(&quot;text&quot;) // name of the output column
+val tokenized_df = tokenizer.transform(df_text_full).select(&quot;c&quot;, &quot;text&quot;)
+tokenized_df.show(3, false)
+</code></pre>
+</div>
+<div class="cell markdown">
+<ol start="4">
+<li>Remove stopwords</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Stopwordsremover (similar to lda notebook)
+val stoppord = sc.textFile(&quot;dbfs:/datasets/student-project-01/stoppord.csv&quot;).collect()
+val stopwordList = Array(&quot;bara&quot;,&quot;lite&quot;,&quot;finns&quot;,&quot;vill&quot;,&quot;samt&quot;,&quot;inga&quot;,&quot;även&quot;,&quot;finns&quot;,&quot;ganska&quot;,&quot;också&quot;,&quot;igen&quot;,&quot;just&quot;,&quot;that&quot;,&quot;with&quot;,&quot;http&quot;,&quot;jpg&quot;,  &quot;kanske&quot;,&quot;tycker&quot;,&quot;gillar&quot;,&quot;bra&quot;,&quot;000&quot;,&quot;måste&quot;,&quot;tjej&quot;,&quot;tjejer&quot;,&quot;tjejen&quot;,&quot;tjejerna&quot;,&quot;kvinna&quot;,&quot;kvinnor&quot;,&quot;kille&quot;,&quot;killar&quot;,&quot;killen&quot;,&quot;män&quot;,&quot;rätt&quot;,&quot;män&quot;,&quot;com&quot;,&quot;and&quot;,&quot;html&quot;,&quot;många&quot;,&quot;aldrig&quot;,&quot;www&quot;,&quot;mpg&quot;,&quot;avi&quot;,&quot;wmv&quot;,&quot;riktigt&quot;,&quot;känner&quot;,&quot;väldigt&quot;,&quot;font&quot;,&quot;size&quot;,&quot;mms&quot;,&quot;2008&quot;,&quot;2009&quot;, &quot;flashback&quot;, &quot;familjeliv&quot;).union(stoppord).union(StopWordsRemover.loadDefaultStopWords(&quot;swedish&quot;))
+
+val remover = new StopWordsRemover()
+  .setStopWords(stopwordList)
+  .setInputCol(&quot;text&quot;)
+  .setOutputCol(&quot;filtered&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Run the stopwordsremover
+val removed_df = remover.transform(tokenized_df).select(&quot;c&quot;, &quot;filtered&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>removed_df: org.apache.spark.sql.DataFrame = [c: int, filtered: array&lt;string&gt;]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="5">
+<li>Count words and create vocabulary vector</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Unlimited size vocabulary just to see how much there is
+val vectorizerall = new CountVectorizer()
+   .setInputCol(&quot;filtered&quot;)
+   .setOutputCol(&quot;features&quot;)
+   .setMinDF(5) // Only count words that occur in at least 5 threadss
+   .fit(removed_df) // returns CountVectorizerModel
+
+//This is the one we use, limit size of vocabulary
+val vectorizer = new CountVectorizer()
+   .setInputCol(&quot;filtered&quot;)
+   .setOutputCol(&quot;features&quot;)
+   .setVocabSize(1000) // Size of dictonary
+   .setMinDF(5) // Only count words that occur in at least 5 threadss
+   .fit(removed_df) // returns CountVectorizerModel
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>vectorizerall: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_e9a01f8ad0fe, vocabularySize=129204
+vectorizer: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_9d51ff227f19, vocabularySize=1000
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Let's take a look at the vocabulary
+vectorizer.vocabulary
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Count the word frequencies
+val tf = vectorizer.transform(removed_df.select(&quot;c&quot;, &quot;filtered&quot;)).select(&quot;c&quot;, &quot;features&quot;).cache()
+
+//Print the feature vector to show what it looks like
+tf.take(1).foreach(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>[0,(1000,[0,4,5,6,12,16,33,34,48,53,56,60,64,66,68,73,83,84,91,100,101,105,107,119,123,125,127,141,143,163,171,201,205,210,212,261,273,302,325,338,341,348,361,367,383,414,424,453,454,491,571,621,632,635,667,684,693,701,829,849,933,981],[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,2.0,2.0,1.0,1.0,3.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0])]
+tf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="6">
+<li>Split data into training and test data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Train test split
+val random_order = tf.orderBy(rand())
+val splits = random_order.randomSplit(Array(0.8, 0.2), seed = 1337)
+val training = splits(0)
+val test = splits(1)
+println(training.count())
+println(test.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>90818
+22424
+random_order: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+splits: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] = Array([c: int, features: vector], [c: int, features: vector])
+training: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: int, features: vector]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="7">
+<li>Logistic Regression model</li>
+</ol>
+<hr />
+<p>\[P(y = 1) = \frac{1}{1+exp(-\beta X^T)}\]</p>
+<p>\[
+X = [1,x_1, \dots, x_m], \quad
+\beta = [\beta_0, \beta_1, ..., \beta_m]
+\]</p>
+<p>where \(x_i\) is occurrence for word \(i\), \(m\) is 1000.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Logistic regression
+val lr = new LogisticRegression()
+  .setLabelCol(&quot;c&quot;)
+  .setMaxIter(100) //Run for 100 iterations (not necessary but let's stay on safe side)
+  .setRegParam(0.0001) //Just a tiny bit of regularization to avoid overfitting
+  .setElasticNetParam(0.5) // 50-50 between L1 and L2 loss
+
+// Fit the model
+val lrModel = lr.fit(training)
+
+// Print the coefficients and intercept for logistic regression
+println(s&quot;Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}&quot;)
+
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Check the training progress
+lrModel.binarySummary.objectiveHistory.foreach(loss =&gt; println(loss))
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Ugly code to lookup maximum and minimum values
+var maxarray = Array.ofDim[Double](5,2)
+def findmax(idx: Int, value: Double) = {
+  if (value &gt; maxarray(4)(1)){
+    maxarray(4)(0) = idx
+    maxarray(4)(1) = value
+    maxarray = maxarray.sortBy(- _(1))
+  }
+}
+var minarray = Array.ofDim[Double](5,2)
+def findmin(idx: Int, value: Double) = {
+  if (value &lt; minarray(4)(1)){
+    minarray(4)(0) = idx
+    minarray(4)(1) = value
+    minarray = minarray.sortBy(_(1))
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>maxarray: Array[Array[Double]] = Array(Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0))
+findmax: (idx: Int, value: Double)Unit
+minarray: Array[Array[Double]] = Array(Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0), Array(0.0, 0.0))
+findmin: (idx: Int, value: Double)Unit
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Let's check which words are considered most important for classification
+lrModel.coefficients.foreachActive((idx, value) =&gt; findmax(idx, value))
+
+//First check familjeliv
+println(maxarray.deep.foreach(println))
+println(vectorizer.vocabulary(maxarray(0)(0).toInt))
+println(vectorizer.vocabulary(maxarray(1)(0).toInt))
+println(vectorizer.vocabulary(maxarray(2)(0).toInt))
+println(vectorizer.vocabulary(maxarray(3)(0).toInt))
+println(vectorizer.vocabulary(maxarray(4)(0).toInt))
+lrModel.coefficients.foreachActive((idx, value) =&gt; findmin(idx, value))
+
+//Check for flashback
+println(minarray.deep.foreach(println))
+println(vectorizer.vocabulary(minarray(0)(0).toInt))
+println(vectorizer.vocabulary(minarray(1)(0).toInt))
+println(vectorizer.vocabulary(minarray(2)(0).toInt))
+println(vectorizer.vocabulary(minarray(3)(0).toInt))
+println(vectorizer.vocabulary(minarray(4)(0).toInt))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Array(46.0, 1.8647655096872564)
+Array(885.0, 1.275281418044729)
+Array(950.0, 1.224376631679196)
+Array(380.0, 0.9577079595234373)
+Array(32.0, 0.8432880748567715)
+()
+anonym
+förlossningen
+maken
+sambon
+sambo
+Array(990.0, -2.2314223680319945)
+Array(664.0, -1.8291269454715258)
+Array(857.0, -1.4232104863197035)
+Array(275.0, -1.3427561053936439)
+Array(173.0, -1.1857533047141897)
+()
+topic
+bruden
+vafan
+brudar
+jävligt
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="8">
+<li>Predict on test data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">val predictions = lrModel.transform(test)
+predictions.orderBy(rand()).select(&quot;c&quot;, &quot;prediction&quot;, &quot;probability&quot;).show(30, false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+---+----------+-------------------------------------------+
+|c  |prediction|probability                                |
++---+----------+-------------------------------------------+
+|0  |0.0       |[0.9721401017870042,0.027859898212995764]  |
+|0  |0.0       |[0.975623998737009,0.02437600126299096]    |
+|1  |1.0       |[4.6730789993111417E-7,0.9999995326921002] |
+|0  |0.0       |[0.933249707175278,0.066750292824722]      |
+|0  |0.0       |[0.9902085789245901,0.009791421075409966]  |
+|0  |0.0       |[0.5279677569376853,0.47203224306231467]   |
+|0  |0.0       |[0.9932461412304279,0.00675385876957205]   |
+|1  |1.0       |[2.43269453308815E-5,0.9999756730546691]   |
+|1  |1.0       |[8.266454051870882E-10,0.9999999991733546] |
+|0  |0.0       |[0.9997151003194746,2.8489968052548283E-4] |
+|1  |0.0       |[0.5514931570249911,0.44850684297500887]   |
+|0  |0.0       |[0.5858664716477586,0.41413352835224143]   |
+|1  |1.0       |[0.002100566198113697,0.9978994338018863]  |
+|1  |1.0       |[0.07917634407205193,0.920823655927948]    |
+|0  |0.0       |[0.9970675008521647,0.0029324991478353007] |
+|0  |0.0       |[0.9999595461915014,4.045380849869759E-5]  |
+|0  |1.0       |[0.33337692071405434,0.6666230792859457]   |
+|1  |1.0       |[0.36761800025826114,0.6323819997417389]   |
+|1  |1.0       |[0.3245585295503879,0.6754414704496121]    |
+|1  |1.0       |[0.2355899833856519,0.7644100166143482]    |
+|0  |0.0       |[0.9999999999997755,2.2452150253864004E-13]|
+|1  |1.0       |[0.18608690603389255,0.8139130939661074]   |
+|0  |0.0       |[0.740890026139782,0.25910997386021795]    |
+|0  |0.0       |[0.963586227883629,0.036413772116371014]   |
+|1  |1.0       |[0.0021508873399861557,0.9978491126600139] |
+|1  |1.0       |[0.3858439417926455,0.6141560582073544]    |
+|1  |1.0       |[0.4517753939274335,0.5482246060725665]    |
+|1  |1.0       |[0.02573645474447229,0.9742635452555276]   |
+|0  |0.0       |[0.8022052550237544,0.19779474497624555]   |
+|1  |1.0       |[0.042382658471976975,0.9576173415280229]  |
++---+----------+-------------------------------------------+
+only showing top 30 rows
+
+predictions: org.apache.spark.sql.DataFrame = [c: int, features: vector ... 3 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Check auroc value
+val evaluator = new BinaryClassificationEvaluator().setLabelCol(&quot;c&quot;)
+evaluator.evaluate(predictions)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>evaluator: org.apache.spark.ml.evaluation.BinaryClassificationEvaluator = BinaryClassificationEvaluator: uid=binEval_0812f13ed2be, metricName=areaUnderROC, numBins=1000
+res19: Double = 0.928445521562674
+</code></pre>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

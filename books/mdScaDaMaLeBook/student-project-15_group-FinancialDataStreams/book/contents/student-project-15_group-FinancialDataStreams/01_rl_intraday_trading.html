@@ -1,0 +1,732 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_rl_intraday_trading - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/00_video.html">00_video</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/01_rl_intraday_trading.html" class="active">01_rl_intraday_trading</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/02_rl_intraday_trading_elephas.html">02_rl_intraday_trading_elephas</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/03_resources.html">03_resources</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="reinforcement-learning"><a class="header" href="#reinforcement-learning">Reinforcement Learning</a></h1>
+<p>In this project, our aim is to implement a Reinforcement Learning (RL) strategy for trading stocks. Adopting a learning-based approach, in particular using RL, entails several potential benefits over current approaches. Firstly, several ML methods allow learning-based pre-processing steps, such as convolutional layers which enable automatic feature extraction and detection, and may be used to focus the computation on the most relevant features. Secondly, constructing an end-to-end learning-based pipeline makes the prediction step implicit, and potentially reduces the problem complexity to predicting only certain aspects or features of the time series which are necessary for the control strategy, as opposed to attempting to predict the exact time series values. Thirdly, an end-to-end learning-based approach alleviates potential bounds of the step-wise modularization that a human-designed pipeline would entail, and allows the learning algorithm to automatically deduce the optimal strategy for utilizing any feature signal, in order to execute the most efficient control strategy.</p>
+<p>The main idea behind RL algorithms is to learn by trial-and-error how to act optimally. An agent gathers experience by iteratively interacting with an environment. Starting in state S<em>t, the agent takes an action A</em>t and receives a reward R<em>t+1 as it moves to state S</em>t+1, as seen below (<a href="https://upload.wikimedia.org/wikipedia/commons/d/da/Markov_diagram_v2.svg">source</a>). Using this experience, RL algorithms can learn either a value function or a policy directly. We learn the former, which can then be used to compute optimal actions, by chosing the action that maximizes the action value, Q. Specifically, we use the DQN -- Deep Q-Network -- algorithm to train an agent which trades Brent Crude Oil (BCOUSD) stocks, in order to maximize profit.</p>
+<img src=https://upload.wikimedia.org/wikipedia/commons/d/da/Markov_diagram_v2.svg width=600>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Scala imports
+import org.lamastex.spark.trendcalculus._
+import spark.implicits._
+import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import java.sql.Timestamp
+import org.apache.spark.sql.expressions._
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.lamastex.spark.trendcalculus._
+import spark.implicits._
+import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import java.sql.Timestamp
+import org.apache.spark.sql.expressions._
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="brent-crude-oil-dataset"><a class="header" href="#brent-crude-oil-dataset">Brent Crude Oil Dataset</a></h2>
+<p>The dataset consists of historical data starting from the <em>14th of October 2010</em> to the <em>21st of June 2019</em>. Since the data in the first and last day is incomplete, we remove it from the dataset. The BCUSD data is sampled approximatly every minute with a specific timestamp and registered in US dollars.</p>
+<p>To read the BCUSD dataset, we use the same parsers provided by the <a href="https://github.com/lamastex/spark-trend-calculus">TrendCalculus</a> library. This allows us to load the FX data into a Spark Dataset. The <strong>fx1m</strong> function returns the dataset as <strong>TickerPoint</strong> objects with values <strong>x</strong> and <strong>y</strong>, which are <strong>time</strong> and a <strong>close</strong> values respectively. The first consists of the name of the stock, the second is the timestamp of the data point and the latter consists of the value of the stock at the end of each 1 minute bin.</p>
+<p>Finally we add the <strong>index</strong> column to facilitate retrieving values from the table, since there are gaps in the data meaning that not all minutes have an entry. Further a **diff_close** column was added, which consists of the relative difference between the <strong>close</strong> value at the current and the previous <strong>time</strong>. Note hat since <strong>ticker</strong> is always the same, we remove that column.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Load dataset
+val oilDS = spark.read.fx1m(&quot;dbfs:/FileStore/shared_uploads/fabiansi@kth.se/*csv.gz&quot;).toDF.withColumn(&quot;ticker&quot;, lit(&quot;BCOUSD&quot;)).select($&quot;ticker&quot;, $&quot;time&quot; as &quot;x&quot;, $&quot;close&quot; as &quot;y&quot;).as[TickerPoint].orderBy(&quot;time&quot;)
+
+// Add column with difference from previous close value (expected 'x', 'y' column names)
+val windowSpec = Window.orderBy(&quot;x&quot;)
+val oilDS1 = oilDS 
+.withColumn(&quot;diff_close&quot;, $&quot;y&quot; - when((lag(&quot;y&quot;, 1).over(windowSpec)).isNull, 0).otherwise(lag(&quot;y&quot;, 1).over(windowSpec)))
+
+// Rename variables
+val oilDS2 = oilDS1.withColumnRenamed(&quot;x&quot;,&quot;time&quot;).withColumnRenamed(&quot;y&quot;,&quot;close&quot;)
+
+// Remove incomplete data from first day (2010-11-14) and last day (2019-06-21)
+val oilDS3 = oilDS2.filter(to_date(oilDS2(&quot;time&quot;)) &gt;= lit(&quot;2010-11-15&quot;) &amp;&amp; to_date(oilDS2(&quot;time&quot;)) &lt;= lit(&quot;2019-06-20&quot;))
+
+// Add index column
+val windowSpec1 = Window.orderBy(&quot;time&quot;)
+val oilDS4 = oilDS3
+.withColumn(&quot;index&quot;, row_number().over(windowSpec1))
+
+// Drop ticker column
+val oilDS5 = oilDS4.drop(&quot;ticker&quot;)
+
+// Store loaded data as temp view, to be accessible in Python
+oilDS5.createOrReplaceTempView(&quot;temp&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>oilDS: org.apache.spark.sql.Dataset[org.lamastex.spark.trendcalculus.TickerPoint] = [ticker: string, x: timestamp ... 1 more field]
+windowSpec: org.apache.spark.sql.expressions.WindowSpec = org.apache.spark.sql.expressions.WindowSpec@347f9beb
+oilDS1: org.apache.spark.sql.DataFrame = [ticker: string, x: timestamp ... 2 more fields]
+oilDS2: org.apache.spark.sql.DataFrame = [ticker: string, time: timestamp ... 2 more fields]
+oilDS3: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [ticker: string, time: timestamp ... 2 more fields]
+windowSpec1: org.apache.spark.sql.expressions.WindowSpec = org.apache.spark.sql.expressions.WindowSpec@3c3c818a
+oilDS4: org.apache.spark.sql.DataFrame = [ticker: string, time: timestamp ... 3 more fields]
+oilDS5: org.apache.spark.sql.DataFrame = [time: timestamp, close: double ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="preparing-the-data-in-python"><a class="header" href="#preparing-the-data-in-python">Preparing the data in Python</a></h3>
+<p>Because the <a href="https://github.com/lamastex/spark-trend-calculus">TrendCalculus</a> library we use is implemented in Scala and we want to do our implementation in Python, we have to make sure that the data loaded in Scala is correctly read in Python, before moving on. To that end, we select the first 10 data points and show them in a table.</p>
+<p>We can see that there are roughly <strong>2.5 million data points</strong> in the BCUSD dataset.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Python imports
+import datetime
+import gym
+import math
+import random
+import json
+import collections
+import numpy as np
+import matplotlib.pyplot as plt
+from keras.models import Sequential
+from keras.layers.core import Dense
+from keras.layers import Conv1D, MaxPool1D, Flatten, BatchNormalization
+from keras import optimizers
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Create Dataframe from temp data
+oilDF_py = spark.table(&quot;temp&quot;)
+
+# Select the 10 first Rows of data and print them
+ten_oilDF_py = oilDF_py.limit(10)
+ten_oilDF_py.show()
+
+# Check number of data points
+last_index = oilDF_py.count()
+print(&quot;Number of data points: {}&quot;.format(last_index))
+
+# Select the date of the last data point
+print(&quot;Last data point: {}&quot;.format(np.array(oilDF_py.where(oilDF_py.index == last_index).select('time').collect()).item()))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-------------------+-----+--------------------+-----+
+|               time|close|          diff_close|index|
++-------------------+-----+--------------------+-----+
+|2010-11-15 00:00:00| 86.6|-0.01000000000000...|    1|
+|2010-11-15 00:01:00| 86.6|                 0.0|    2|
+|2010-11-15 00:02:00|86.63|0.030000000000001137|    3|
+|2010-11-15 00:03:00|86.61|-0.01999999999999602|    4|
+|2010-11-15 00:05:00|86.61|                 0.0|    5|
+|2010-11-15 00:07:00| 86.6|-0.01000000000000...|    6|
+|2010-11-15 00:08:00|86.58|-0.01999999999999602|    7|
+|2010-11-15 00:09:00|86.58|                 0.0|    8|
+|2010-11-15 00:10:00|86.58|                 0.0|    9|
+|2010-11-15 00:12:00|86.57|-0.01000000000000...|   10|
++-------------------+-----+--------------------+-----+
+
+Number of data points: 2523078
+Last data point: 2019-06-20 23:59:00
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="rl-environment"><a class="header" href="#rl-environment">RL Environment</a></h2>
+<p>In order to train RL agents, we first need to create the environment with which the agent will interact to gather experience. In our case, that consist of a stock market simulation which plays out historical data from the BCUSD dataset. This is valid, under the assumption that the trading on the part of our agent has no affect on the stock market. An RL problem can be formally defined by a Markov Decision Process (MDP).</p>
+<p>For our application, we have the following MDP: - State, s: a window of **diff<em>close** values for a given <strong>scope</strong>, i.e. the current value and history leading up to it. - Action, a: either <strong>LONG</strong> for buying stock, or <strong>SHORT</strong> for selling stock. Note that <strong>PASS</strong> is not required, since if stock is already owned, buying means holding and if stock is not owned then shorting means pass. - Reward, r: if a</em>t=**LONG** r<em>t=s</em>t+1=**diff_close**; if a<em>t=<strong>SHORT</strong> r</em>t=-s_t+1=-**diff_close**. Essentially, the reward is negative if we sell and the stock goes up or if we buy and the stock goes down in the next timestep. Conversely, the reward is positive if we buy and the stock goes up or if we sell and the stock goes down in the next timestep.</p>
+<p>This environment is very simplified, with only binary actions. An alternative could be to use continuos actions to determine how much stock to buy or sell. However, since we aim to compare to TrendCalculus results which only predict reversals, these actions are more adequate. For the implementation, we used OpenAI Gym's formalism, which includes a <strong>done</strong> variable to indicate the end of an episode. In <strong>MarketEnv</strong>, by setting the **start_date** and **end_date** atttributes, we can select the part of the dataset we wish to use. Finally, the and **episode_size** parameter determines the episode size. An episode's starting point can be sampled at random or not, which is defined when calling <strong>reset</strong>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Adapted from: https://github.com/kh-kim/stock_market_reinforcement_learning/blob/master/market_env.py
+
+
+class MarketEnv(gym.Env):
+    def __init__(self, full_data, start_date, end_date, episode_size=30*24*60, scope=60):
+        self.episode_size = episode_size
+        self.actions = [&quot;LONG&quot;, &quot;SHORT&quot;] 
+        self.action_space = gym.spaces.Discrete(len(self.actions))
+        self.state_space = gym.spaces.Box(np.ones(scope) * -1, np.ones(scope))
+
+        self.diff_close = np.array(full_data.filter(full_data[&quot;time&quot;] &gt; start_date).filter(full_data[&quot;time&quot;] &lt;= end_date).select('diff_close').collect())
+        max_diff_close = np.max(self.diff_close)
+        self.diff_close = self.diff_close*max_diff_close
+        self.close = np.array(full_data.filter(full_data[&quot;time&quot;] &gt; start_date).filter(full_data[&quot;time&quot;] &lt;= end_date).select('close').collect())
+        self.num_ticks_train = np.shape(self.diff_close)[0]
+
+        self.scope = scope # N values to be included in a state vector
+        self.time_index = self.scope  # start N steps in, to ensure that we have enough past values for history 
+        self.episode_init_time = self.time_index  # initial time index of the episode
+
+
+    def step(self, action):
+        info = {'index': int(self.time_index), 'close': float(self.close[self.time_index])}
+        self.time_index += 1
+        self.state = self.diff_close[self.time_index - self.scope:self.time_index]
+        self.reward = float( - (2 * action - 1) * self.state[-1] )
+        
+        # Check if done
+        if self.time_index - self.episode_init_time &gt; self.episode_size:
+            self.done = True
+        if self.time_index &gt; self.diff_close.shape[0] - self.scope -1:
+            self.done = True
+
+        return self.state, self.reward, self.done, info
+
+    def reset(self, random_starttime=True):
+        self.done = False
+        self.reward = 0.
+        self.time_index = self.scope 
+        self.state = self.diff_close[self.time_index - self.scope:self.time_index]
+        
+        if random_starttime:
+            self.time_index += random.randint(0, self.num_ticks_train - self.scope)
+        
+        self.episode_init_time = self.time_index
+        
+        return self.state
+
+    def seed(self):
+        pass
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">states = []
+actions = []
+rewards = []
+reward_sum = 0.
+
+# Verify environment for 1 hour
+start = datetime.datetime(2010, 11, 15, 0, 0)
+end = datetime.datetime(2010, 11, 15, 1, 0)
+
+env = MarketEnv(oilDF_py, start, end, episode_size=np.inf, scope=1)
+state = env.reset(random_starttime=False)
+done = False
+while not done:
+    states.append(state[-1])
+    # Take random actions
+    action = env.action_space.sample()
+    actions.append(action)
+    state, reward, done, info = env.step(action)
+    rewards.append(reward)
+    reward_sum += reward
+print(&quot;Return = {}&quot;.format(reward_sum))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Return = 0.005
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Plot samples
+timesteps = np.linspace(1,len(states),len(states))
+longs = np.argwhere(np.asarray(actions) ==  0)
+shorts = np.argwhere(np.asarray(actions) ==  1)
+states = np.asarray(states)
+fig, ax = plt.subplots(2, 1, figsize=(16, 8))
+ax[0].grid(True)
+ax[0].plot(timesteps, states, label='diff_close')
+ax[0].plot(timesteps[longs], states[longs].flatten(), '*g', markersize=12, label='long')
+ax[0].plot(timesteps[shorts], states[shorts].flatten(), '*r', markersize=12, label='short')
+ax[0].set_ylabel(&quot;(s,a)&quot;)
+ax[0].set_xlabel(&quot;Timestep&quot;)
+ax[0].set_xlim(1,len(states))
+ax[0].set_xticks(np.arange(1, len(states), 1.0))
+ax[0].legend()
+ax[1].grid(True)
+ax[1].plot(timesteps, rewards, 'o-r')
+ax[1].set_ylabel(&quot;r&quot;)
+ax[1].set_xlabel(&quot;Timestep&quot;)
+ax[1].set_xlim(1,len(states))
+ax[1].set_xticks(np.arange(1, len(states), 1.0))
+plt.tight_layout()
+display(fig)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/15_01_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>To illustarte how the reward works, we can look at timestep 9, where there is a large negative reward because the agent shorted (red) and at step 10 the stock went up. Conversely, at timestep 27 there is a large positive reward, since the agent decided to short and in the next timestep (28), the stock went down.</p>
+</div>
+<div class="cell markdown">
+<h2 id="dqn-algorithm"><a class="header" href="#dqn-algorithm">DQN Algorithm</a></h2>
+<p>Since we have discrete actions, we can use Q-learning to train our agent. Specifically we use the DQN algorithm with Experience Replay, which was first described in DeepMind's: <a href="https://arxiv.org/pdf/1312.5602.pdf">Playing Atari with Deep Reinforcement Learning</a>. The algorithm is described below, where equation [3], refers to the gradient: <img src="https://imgur.com/eGhNC9m.png" width=650></p>
+<img src="https://imgur.com/mvopoh8.png" width=800>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Adapted from: /scalable-data-science/000_6-sds-3-x-dl/063_DLbyABr_07-ReinforcementLearning
+
+class ExperienceReplay:
+    def __init__(self, max_memory=100, discount=.9):
+        self.max_memory = max_memory
+        self.memory = list()
+        self.discount = discount
+
+    def remember(self, states, done):
+        self.memory.append([states, done])
+        if len(self.memory) &gt; self.max_memory:
+            del self.memory[0]
+
+    def get_batch(self, model, batch_size=10):
+        len_memory = len(self.memory)
+        num_actions = model.output_shape[-1]
+
+        env_dim = self.memory[0][0][0].shape[1]
+        inputs = np.zeros((min(len_memory, batch_size), env_dim, 1))
+        targets = np.zeros((inputs.shape[0], num_actions))
+        for i, idx in enumerate(np.random.randint(0, len_memory, size=inputs.shape[0])):
+            state_t, action_t, reward_t, state_tp1 = self.memory[idx][0]
+            done = self.memory[idx][1]
+
+            inputs[i:i + 1] = state_t
+            # There should be no target values for actions not taken.
+            targets[i] = model.predict(state_t)[0]
+            Q_sa = np.max(model.predict(state_tp1)[0])
+            if done: # if done is True
+                targets[i, action_t] = reward_t
+            else:
+                # reward_t + gamma * max_a' Q(s', a')
+                targets[i, action_t] = reward_t + self.discount * Q_sa
+        return inputs, targets
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="training-rl-agent"><a class="header" href="#training-rl-agent">Training RL agent</a></h2>
+<p>In order to train the RL agent, we use the data from 2014 to 2018, leaving the data from 2019 for testing. RL implementations are quite difficult to train, due to the large amount of parameters which need to be tuned. We have spent little time seraching for better hyperparameters as this was beyond the scope of the course. We have picked parameters based on a similar implementation of RL for trading, however we have designed an new Q-network, since the state is different in our implementation. Sine we are dealing wih sequential data, we could have opted for an RNN, however 1-dimensional CNNs are also a common choice which is less computationally heavy.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Adapted from: https://dbc-635ca498-e5f1.cloud.databricks.com/?o=445287446643905#notebook/4201196137758409/command/4201196137758410
+
+# RL parameters
+epsilon = .5  # exploration
+min_epsilon = 0.1
+max_memory = 5000
+batch_size = 512
+discount = 0.8
+
+# Environment parameters
+num_actions = 2  # [long, short]
+episodes = 500 # 100000
+episode_size = 1 * 1 * 60  # roughly an hour worth of data in each training episode
+
+# Define state sequence scope (approx. 1 hour)
+sequence_scope = 60
+input_shape = (batch_size, sequence_scope, 1)
+
+# Create Q Network
+hidden_size = 128
+model = Sequential()
+model.add(Conv1D(32, (5), strides=2, input_shape=input_shape[1:], activation='relu'))
+model.add(MaxPool1D(pool_size=2, strides=1))
+model.add(BatchNormalization())
+model.add(Conv1D(32, (5), strides=1, activation='relu'))
+model.add(MaxPool1D(pool_size=2, strides=1))
+model.add(BatchNormalization())
+model.add(Flatten())
+model.add(Dense(hidden_size, activation='relu'))
+model.add(BatchNormalization())
+model.add(Dense(num_actions))
+opt = optimizers.Adam(lr=0.01)
+model.compile(loss='mse', optimizer=opt)
+
+# Define training interval
+start = datetime.datetime(2010, 11, 15, 0, 0)
+end = datetime.datetime(2018, 12, 31, 23, 59)
+
+# Initialize Environment
+env = MarketEnv(oilDF_py, start, end, episode_size=episode_size, scope=sequence_scope)
+
+# Initialize experience replay object
+exp_replay = ExperienceReplay(max_memory=max_memory, discount=discount)
+
+# Train
+returns = []
+for e in range(1, episodes):
+    loss = 0.
+    counter = 0
+    reward_sum = 0.
+    done = False
+    
+    state = env.reset()
+    input_t = state.reshape(1, sequence_scope, 1) 
+    
+    while not done:     
+        counter += 1
+        input_tm1 = input_t
+        # get next action
+        if np.random.rand() &lt;= epsilon:
+            action = np.random.randint(0, num_actions, size=1)
+        else:
+            q = model.predict(input_tm1)
+            action = np.argmax(q[0])
+
+        # apply action, get rewards and new state
+        state, reward, done, info = env.step(action)
+        reward_sum += reward
+        input_t = state.reshape(1, sequence_scope, 1)         
+
+        # store experience
+        exp_replay.remember([input_tm1, action, reward, input_t], done)
+
+        # adapt model
+        inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
+        loss += model.train_on_batch(inputs, targets)
+    
+    
+    print(&quot;Episode {:03d}/{:d} | Average Loss {:.4f} | Cumulative Reward {:.4f}&quot;.format(e, episodes, loss / counter, reward_sum))
+    epsilon = max(min_epsilon, epsilon * 0.99)
+    returns.append(reward_sum)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Plotting training results
+fig, ax = plt.subplots(figsize=(16, 8))
+ax.plot(returns)
+ax.set_ylabel(&quot;Return&quot;)
+ax.set_xlabel(&quot;Episode&quot;)
+display(fig)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/15_01_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We have trained our model for 500 episodes and the returns are plotted above. Note that the loss was still quite high at the end of training, which indicates that the algorithm hasn't converged. A possible explanation for this is that RL algorithms typically require significantly more steps to converge. Further, considering the size of the tranining dataset, the neural network used is very small. Besides that, DQN is known to be quite unstable and prone to diverge, which is why several new versions of this algorithm have been proposed since it was first introduced. A very common implementation consists of the Double DQN, which introduced a target Q-network used to compute the actions, which is updated at a lower rate than the main Q-network. In our implementation, the max operator uses the same network both to select and to evaluate an action. This may lead to wrongly selecting overestimated values. Having a separate target network can help prevent this, by decoupling the selection from the evaluation.</p>
+</div>
+<div class="cell markdown">
+<h2 id="testing-rl-agent"><a class="header" href="#testing-rl-agent">Testing RL agent</a></h2>
+<p>In order to test our agent, we select the whole data from the 1st of January 2019, which wasn't included during training.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">done = False
+states = []
+actions = []
+rewards = []
+reward_sum = 0.
+
+# Define testing interval, January 2019
+start = datetime.datetime(2019, 1, 1, 0, 0)
+end = datetime.datetime(2019, 1, 1, 23, 59)
+
+# Test learned model
+env = MarketEnv(oilDF_py, start, end, episode_size=np.inf, scope=sequence_scope)
+state = env.reset(random_starttime=False)
+input_t = state.reshape(1, sequence_scope, 1)
+while not done:    
+    states.append(state[-1])
+    q = model.predict(input_t)
+    action = np.argmax(q[0])
+    actions.append(action)
+    state, reward, done, info = env.step(action)
+    rewards.append(reward)
+    reward_sum += reward
+    input_t = state.reshape(1, sequence_scope, 1)      
+print(&quot;Return = {}&quot;.format(reward_sum))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Return = 0.096
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Plotting testing results
+timesteps = np.linspace(1,len(states),len(states))
+longs = np.argwhere(np.asarray(actions) ==  0)
+shorts = np.argwhere(np.asarray(actions) ==  1)
+states = np.asarray(states)
+fig, ax = plt.subplots(2, 1, figsize=(16, 8))
+ax[0].grid(True)
+ax[0].plot(timesteps, states, label='diff_close')
+ax[0].plot(timesteps[longs], states[longs].flatten(), '*g', markersize=12, label='long')
+ax[0].plot(timesteps[shorts], states[shorts].flatten(), '*r', markersize=12, label='short')
+ax[0].set_ylabel(&quot;(s,a)&quot;)
+ax[0].set_xlabel(&quot;Timestep&quot;)
+ax[0].set_xlim(1,len(states))
+ax[0].legend()
+ax[1].grid(True)
+ax[1].plot(timesteps, rewards, 'o-r')
+ax[1].set_ylabel(&quot;r&quot;)
+ax[1].set_xlabel(&quot;Timestep&quot;)
+ax[1].set_xlim(1,len(states))
+plt.tight_layout()
+display(fig)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/15_01_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We can see that the policy converged to always shorting, meaning that the agent never buys any stock. While abstaining from investments in fossil fuels may be good advice, the result is not very useful for our intended application. Nevertherless, reaching a successful automatic intraday trading bot in the short time we spent implementing this project would be a high bar. After all, this is more or less the holy grail of computational economy.</p>
+</div>
+<div class="cell markdown">
+<h1 id="summary-and-outlook"><a class="header" href="#summary-and-outlook">Summary and Outlook</a></h1>
+<p>In this project we have trained and tested an RL agent, using DQN for intraday trading. We started by processing the data and adding a **diff_close** column which contains the differece of the closing stock value between two timesteps. We then implemented our own Gym environment <strong>MarketEnv</strong>, to be able to read data from the BCUSD dataset and feed it to an agents, as weel as compute the reward given the agent's action. We used a DQN implementation, to train a convolutional Q-Network. Since we are using TensorFlow in the background, the training is automatically scaled to use all cpu cores available (see <a href="https://www.xspdf.com/resolution/52582340.html">here</a>). Finally, we have tested our agent on new data, and concluded that more work needs to be put into making the algorithm convege.</p>
+<p>As future work we believe we can still improve the state and reward definitions. For the state, used a window of **close_diff** values as our state definiion. However, augmenting the state with longer term trends computed by the TrendCalculus algorithm could yield significant improvements. The TrendCalculus algorithm provides an analytical framework effective for identifying trends in historical price data, including <a href="https://lamastex.github.io/spark-trend-calculus-examples/notebooks/db/01trend-calculus-showcase.html">trend pattern analysis</a> and <a href="https://lamastex.github.io/spark-trend-calculus-examples/notebooks/db/03streamable-trend-calculus-estimators.html">prediction of trend changes</a>. Below we present the idea behind TrendCalculus and how it relates to **close_diff**, as well as a few ideas on how it could be used for our application.</p>
+<h2 id="trend-calculus"><a class="header" href="#trend-calculus">Trend Calculus</a></h2>
+<p>Taken from: <a href="https://github.com/lamastex/spark-trend-calculus-examples">https://github.com/lamastex/spark-trend-calculus-examples</a></p>
+<p>Trend Calculus is an algorithm invented by Andrew Morgan that is used to find trend changes in a time series (see <a href="https://github.com/bytesumo/TrendCalculus/blob/master/HowToStudyTrends_v1.03.pdf">here</a>). It works by grouping the observations in the time series into windows and defining a trend upwards as “higher highs and higher lows” compared to the previous window. A downwards trend is similarly defined as “lower highs and lower lows”.</p>
+<img src=https://lamastex.github.io/spark-trend-calculus-examples/notebooks/db/images/HigherHighHigherLow.png width=300>
+<p>If there is a higher high and lower low (or lower high and higher low), no trend is detected. This is solved by introducing intermediate windows that split the non-trend into two trends, ensuring that every point can be labeled with either an up or down trend.</p>
+<img src=https://lamastex.github.io/spark-trend-calculus-examples/notebooks/db/images/OuterInnerBars.png  width=600>
+<p>When the trends have been calculated for all windows, the points where the trends change sign are labeled as reversals. If the reversal is from up to down, the previous high is the reversal point and if the reversal is from down to up, the previous low is the reversal. This means that the reversals always are the appropriate extrema (maximum for up to down, minimum for down to up).</p>
+<img src=https://lamastex.github.io/spark-trend-calculus-examples/notebooks/db/images/trendReversals.png width=600>
+<p>The output of the algorithm is a time series consisting of all the labelled reversal points. It is therefore possible to use this as the input for another run of the Trend Calculus algorithm, finding more long term trends. This can be seen when TrendCalculus is applied to the BCUSD datset, shown in column <strong>reversal1</strong> of the table below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val windowSize = 2
+val numReversals = 1 // we look at 1 iteration of the algorithm. 
+
+val dfWithReversals = new TrendCalculus2(oilDS, windowSize, spark).nReversalsJoinedWithMaxRev(numReversals)
+display(dfWithReversals)
+
+val windowSpec = Window.orderBy(&quot;x&quot;)
+val dfWithReversalsDiff = dfWithReversals 
+.withColumn(&quot;diff_close&quot;, $&quot;y&quot; - when((lag(&quot;y&quot;, 1).over(windowSpec)).isNull, 0).otherwise(lag(&quot;y&quot;, 1).over(windowSpec)))
+
+// Store loaded data as temp view, to be accessible in Python
+dfWithReversalsDiff.createOrReplaceTempView(&quot;temp&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In conjunction with TrendCalculus, a complete automatic trading pipeline can be constructed, consisting of (i) trend analysis with TrendCalculus (ii) time series prediction and (iii) control, i.e. buy or sell. Implementing and evaluating a pipeline such as the one outlined in the aforementioned steps is left as a suggestion for future work, and it is of particular interest to compare the performance of such a method to a learning-based one.</p>
+<p>Below we show that sign(**diff_close**) is equivalent to sign of the output of a single iteration of TrendCalculus with window size 2, over our **scope**. A possible improvement of our algorithm would be to use TrendCalculus to compute long term trends from historical data and include it on our state definition. This way, if for example the agent observes a long term downward trend, then it can be encouraged to buy stock since it is bound to bounce up again.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Taken from: https://lamastex.github.io/spark-trend-calculus-examples/notebooks/db/01trend-calculus-showcase.html
+
+# Create Dataframe from temp data
+fullDS = spark.table(&quot;temp&quot;)
+fullTS = fullDS.select(&quot;x&quot;, &quot;y&quot;, &quot;reversal1&quot;, &quot;diff_close&quot;).collect()
+
+startDate = datetime.datetime(2019, 1, 1, 1, 0) # first window used as scope
+endDate = datetime.datetime(2019, 1, 1, 23, 59)
+TS = [row for row in fullTS if startDate &lt;= row['x'] and row['x'] &lt;= endDate]
+
+allData = {'x': [row['x'] for row in TS], 'close': [row['y'] for row in TS], 'diff_close': [row['diff_close'] for row in TS], 'reversal1': [row['reversal1'] for row in TS]}
+
+# Plot reversals
+close = np.asarray(allData['close'])
+diff_close = np.asarray(allData['diff_close'])
+timesteps = np.linspace(1,len(diff_close),len(diff_close))
+revs = np.asarray(allData['reversal1'])
+pos_rev_ind = np.argwhere(revs ==  1)
+neg_rev_ind = np.argwhere(revs ==  -1)
+fig, ax = plt.subplots(2, 1, figsize=(16, 8))
+ax[0].grid(True)
+ax[0].plot(timesteps, close, label='close')
+ax[0].plot(timesteps[pos_rev_ind], close[pos_rev_ind].flatten(), '*g', markersize=12, label='+ reversal')
+ax[0].plot(timesteps[neg_rev_ind], close[neg_rev_ind].flatten(), '*r', markersize=12, label='- reversal')
+ax[0].set_ylabel(&quot;close&quot;)
+ax[0].set_xlabel(&quot;Timestep&quot;)
+ax[0].set_xlim(1,len(close))
+ax[0].legend()
+ax[1].grid(True)
+ax[1].plot(timesteps, diff_close, label='diff_close')
+ax[1].plot(timesteps[pos_rev_ind], diff_close[pos_rev_ind].flatten(), '*g', markersize=12, label='+ reversal')
+ax[1].plot(timesteps[neg_rev_ind], diff_close[neg_rev_ind].flatten(), '*r', markersize=12, label='- reversal')
+ax[1].set_ylabel(&quot;diff_close&quot;)
+ax[1].set_xlabel(&quot;Timestep&quot;)
+ax[1].set_xlim(1,len(diff_close))
+plt.tight_layout()
+display(fig)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/15_01_4.JPG?raw=true" alt="" /></p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-15_group-FinancialDataStreams/00_video.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-15_group-FinancialDataStreams/02_rl_intraday_trading_elephas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-15_group-FinancialDataStreams/00_video.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-15_group-FinancialDataStreams/02_rl_intraday_trading_elephas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

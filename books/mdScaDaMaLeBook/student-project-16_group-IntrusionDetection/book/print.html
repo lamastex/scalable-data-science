@@ -1,0 +1,715 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-16_group-IntrusionDetection/00_Introduction.html">00_Introduction</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="intrusion-detection"><a class="header" href="#intrusion-detection">Intrusion Detection</a></h1>
+<p><strong>Group Project Team</strong>:</p>
+<ul>
+<li>MohamedReza Faridghasemnia</li>
+<li>Javad Forough</li>
+<li>Quantao Yang</li>
+<li>Arman Rahbar</li>
+</ul>
+<p>**Video **</p>
+<p>https://chalmersuniversity.box.com/s/hbfurlolj3ax8aarxow0fdcuzjxeo206</p>
+<p>**Dataset Source **</p>
+<p>https://www.unsw.adfa.edu.au/unsw-canberra-cyber/cybersecurity/ADFA-NB15-Datasets/</p>
+</div>
+<div class="cell markdown">
+<h2 id="problem-definition"><a class="header" href="#problem-definition">Problem Definition</a></h2>
+<p>With the evolution and pervasive usage of the computer networks and cloud environments, Cyber-attacks such as Distributed Denial of Service (DDoS) become major threads for such environments. For an example, DDoS attacks can prohibit normal usage of the web services through saturating their underlying system’s resources and even in most recent type of attacks namely Low-rate DDoS attacks, they drop the Quality of Service (QoS) of the cloud service providers significantly and bypass the detection systems by behaving similar to the normal users. Modern networked business environments require a high level of security to ensure safe and trusted communication of information between various organizations and to counter such attacks. An Intrusion Detection System is the foremost important step against such threads happening in the network and act as an adaptable safeguard technology for system security after traditional technologies fail. As the network attacks become more sophisticated, it is crucial to equip the system with the state-of-the-art intrusion detection systems. In this project, we investigate different types of learning-based Intrusion detection systems and evaluate them based on different metrics on a large benchmark dataset in a distributed manner using Apache Spark, which is an open-source distributed general-purpose cluster-computing framework.</p>
+</div>
+<div class="cell markdown">
+<h2 id="loading-and-preprocessing-data"><a class="header" href="#loading-and-preprocessing-data">Loading and Preprocessing Data</a></h2>
+<p>For detecting intrusion in the network, we use a dataset named UNSW-NB15, a collection of network traffic data collected by Australian Centre for Cyber Security (ACCS).</p>
+<p><img src="https://www.unsw.adfa.edu.au/unsw-canberra-cyber/cybersecurity/ADFA-NB15-Datasets/img/unsw-nb15-testbed.jpg" alt="UNSW-NB15 Testbed" title="UNSW-NB15 Testbed" /> UNSW-NB15 Testbed. Image from <a href="https://www.unsw.adfa.edu.au/unsw-canberra-cyber/cybersecurity/ADFA-NB15-Datasets/">UNSW-NB15 website</a></p>
+<p>The raw data of UNSW-NB15 Dataset is a pcap file of network traffic with the size of 100gb, that 49 features (including labels) is extracted from the dataset using Argus, Bro-IDS tools and twelve other algorithms. The extracted features desription is given below.</p>
+<table><thead><tr><th>No.</th><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>0</td><td>srcip</td><td>nominal</td><td>Source IP address</td></tr>
+<tr><td>1</td><td>sport</td><td>integer</td><td>Source port number</td></tr>
+<tr><td>2</td><td>dstip</td><td>nominal</td><td>Destination IP address</td></tr>
+<tr><td>3</td><td>dsport</td><td>integer</td><td>Destination port number</td></tr>
+<tr><td>4</td><td>proto</td><td>nominal</td><td>Transaction protocol</td></tr>
+<tr><td>5</td><td>state</td><td>nominal</td><td>Indicates to the state and its dependent protocol, e.g. ACC, CLO, CON, ECO, ECR, FIN, INT, MAS, PAR, REQ, RST, TST, TXD, URH, URN, and (-) (if not used state)</td></tr>
+<tr><td>6</td><td>dur</td><td>Float</td><td>Record total duration</td></tr>
+<tr><td>7</td><td>sbytes</td><td>Integer</td><td>Source to destination transaction bytes</td></tr>
+<tr><td>8</td><td>dbytes</td><td>Integer</td><td>Destination to source transaction bytes</td></tr>
+<tr><td>9</td><td>sttl</td><td>Integer</td><td>Source to destination time to live value</td></tr>
+<tr><td>10</td><td>dttl</td><td>Integer</td><td>Destination to source time to live value</td></tr>
+<tr><td>11</td><td>sloss</td><td>Integer</td><td>Source packets retransmitted or dropped</td></tr>
+<tr><td>12</td><td>dloss</td><td>Integer</td><td>Destination packets retransmitted or dropped</td></tr>
+<tr><td>13</td><td>service</td><td>nominal</td><td>http, ftp, smtp, ssh, dns, ftp-data ,irc and (-) if not much used service</td></tr>
+<tr><td>14</td><td>Sload</td><td>Float</td><td>Source bits per second</td></tr>
+<tr><td>15</td><td>Dload</td><td>Float</td><td>Destination bits per second</td></tr>
+<tr><td>16</td><td>Spkts</td><td>integer</td><td>Source to destination packet count</td></tr>
+<tr><td>17</td><td>Dpkts</td><td>integer</td><td>Destination to source packet count</td></tr>
+<tr><td>18</td><td>swin</td><td>integer</td><td>Source TCP window advertisement value</td></tr>
+<tr><td>19</td><td>dwin</td><td>integer</td><td>Destination TCP window advertisement value</td></tr>
+<tr><td>20</td><td>stcpb</td><td>integer</td><td>Source TCP base sequence number</td></tr>
+<tr><td>21</td><td>dtcpb</td><td>integer</td><td>Destination TCP base sequence number</td></tr>
+<tr><td>22</td><td>smeansz</td><td>integer</td><td>Mean of the ?ow packet size transmitted by the src</td></tr>
+<tr><td>23</td><td>dmeansz</td><td>integer</td><td>Mean of the ?ow packet size transmitted by the dst</td></tr>
+<tr><td>24</td><td>trans_depth</td><td>integer</td><td>Represents the pipelined depth into the connection of http request/response transaction</td></tr>
+<tr><td>25</td><td>res<em>bdy</em>len</td><td>integer</td><td>Actual uncompressed content size of the data transferred from the server’s http service.</td></tr>
+<tr><td>26</td><td>Sjit</td><td>Float</td><td>Source jitter (mSec)</td></tr>
+<tr><td>27</td><td>Djit</td><td>Float</td><td>Destination jitter (mSec)</td></tr>
+<tr><td>28</td><td>Stime</td><td>Timestamp</td><td>record start time</td></tr>
+<tr><td>29</td><td>Ltime</td><td>Timestamp</td><td>record last time</td></tr>
+<tr><td>30</td><td>Sintpkt</td><td>Float</td><td>Source interpacket arrival time (mSec)</td></tr>
+<tr><td>31</td><td>Dintpkt</td><td>Float</td><td>Destination interpacket arrival time (mSec)</td></tr>
+<tr><td>32</td><td>tcprtt</td><td>Float</td><td>TCP connection setup round-trip time, the sum of ’synack’ and ’ackdat’.</td></tr>
+<tr><td>33</td><td>synack</td><td>Float</td><td>TCP connection setup time, the time between the SYN and the SYN_ACK packets.</td></tr>
+<tr><td>34</td><td>ackdat</td><td>Float</td><td>TCP connection setup time, the time between the SYN_ACK and the ACK packets.</td></tr>
+<tr><td>35</td><td>is<em>sm</em>ips_ports</td><td>Binary</td><td>If source (1) and destination (3)IP addresses equal and port numbers (2)(4) equal then, this variable takes value 1 else 0</td></tr>
+<tr><td>36</td><td>ct<em>state</em>ttl</td><td>Integer</td><td>No. for each state (6) according to specific range of values for source/destination time to live (10) (11).</td></tr>
+<tr><td>37</td><td>ct<em>flw</em>http_mthd</td><td>Integer</td><td>No. of flows that has methods such as Get and Post in http service.</td></tr>
+<tr><td>38</td><td>is<em>ftp</em>login</td><td>Binary</td><td>If the ftp session is accessed by user and password then 1 else 0.</td></tr>
+<tr><td>39</td><td>ct<em>ftp</em>cmd</td><td>integer</td><td>No of flows that has a command in ftp session.</td></tr>
+<tr><td>40</td><td>ct<em>srv</em>src</td><td>integer</td><td>No. of connections that contain the same service (14) and source address (1) in 100 connections according to the last time (26).</td></tr>
+<tr><td>41</td><td>ct<em>srv</em>dst</td><td>integer</td><td>No. of connections that contain the same service (14) and destination address (3) in 100 connections according to the last time (26).</td></tr>
+<tr><td>42</td><td>ct<em>dst</em>ltm</td><td>integer</td><td>No. of connections of the same destination address (3) in 100 connections according to the last time (26).</td></tr>
+<tr><td>43</td><td>ct<em>src</em> ltm</td><td>integer</td><td>No. of connections of the same source address (1) in 100 connections according to the last time (26).</td></tr>
+<tr><td>44</td><td>ct<em>src</em>dport_ltm</td><td>integer</td><td>No of connections of the same source address (1) and the destination port (4) in 100 connections according to the last time (26).</td></tr>
+<tr><td>45</td><td>ct<em>dst</em>sport_ltm</td><td>integer</td><td>No of connections of the same destination address (3) and the source port (2) in 100 connections according to the last time (26).</td></tr>
+<tr><td>46</td><td>ct<em>dst</em>src_ltm</td><td>integer</td><td>No of connections of the same source (1) and the destination (3) address in in 100 connections according to the last time (26).</td></tr>
+<tr><td>47</td><td>attack_cat</td><td>nominal</td><td>The name of each attack category. In this data set , nine categories e.g. Fuzzers, Analysis, Backdoors, DoS Exploits, Generic, Reconnaissance, Shellcode and Worms</td></tr>
+<tr><td>48</td><td>Label</td><td>binary</td><td>0 for normal and 1 for attack records</td></tr>
+</tbody></table>
+<p>The data is accessible from the <a href="https://www.unsw.adfa.edu.au/unsw-canberra-cyber/cybersecurity/ADFA-NB15-Datasets/">dataset source</a>.</p>
+<p>We used Spark csv for reading the dataset. In the following cell a spark dataframe from csv is created. In this dataset, the last label is the label, indicating whether an attack happened or not. The problem is a binary classification problem, which the machine learning algorithm has to predict the attack record label.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># load csv with pyspark
+# File location and type
+file_location = &quot;/FileStore/tables/IDdataset.csv&quot;
+file_type = &quot;csv&quot;
+
+# CSV options
+infer_schema = &quot;false&quot;
+first_row_is_header = &quot;false&quot;
+delimiter = &quot;,&quot;
+
+# The applied options are for CSV files. For other file types, these will be ignored.
+df = spark.read.format(file_type) \
+  .option(&quot;inferSchema&quot;, infer_schema) \
+  .option(&quot;header&quot;, first_row_is_header) \
+  .option(&quot;sep&quot;, delimiter) \
+  .load(file_location)
+
+display(df)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="removing-unnecessary-data"><a class="header" href="#removing-unnecessary-data">Removing unnecessary data</a></h3>
+<p>In the dataaset, ip and port of source and destination are not useful, so we drop those columns.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#dropping ip and port of source and destination 
+df= df.drop(&quot;_c0&quot;,&quot;_c1&quot;,&quot;_c2&quot;, &quot;_c3&quot;, &quot;_c47&quot;)
+
+display(df)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="numerization"><a class="header" href="#numerization">Numerization</a></h3>
+<p>Now we have to change categorical data (that are columns 4,5,13) to number, that is called ordinal encoding, and we can do it by StringIndexer.</p>
+<p>The next step is to convert all columns types to Double. It is neccesssary, as it seems pyspark returned a string dataframe from csv, and doesnot change data types for numbers.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#handling categorical data
+from pyspark.ml.feature import StringIndexer
+
+
+indexer = StringIndexer(inputCols=[&quot;_c4&quot;, &quot;_c5&quot;, &quot;_c13&quot;], outputCols=[&quot;c4&quot;, &quot;c5&quot;, &quot;c13&quot;])
+
+dff = indexer.fit(df).transform(df)
+
+dff = dff.drop(&quot;_c4&quot;, &quot;_c5&quot;, &quot;_c13&quot;)
+
+
+#changing type to double
+from pyspark.sql.types import DoubleType
+
+
+for col in dff.columns:
+  dff = dff.withColumn(col, dff[col].cast(DoubleType()))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="handling-null-values"><a class="header" href="#handling-null-values">Handling null values</a></h3>
+<h4 id="check-which-cells-have-null-values"><a class="header" href="#check-which-cells-have-null-values">Check which cells have null values</a></h4>
+<p>One another step in preprocessing is to check if the data has null values. For this, we use .isNull() over rows of each column, and count null values in each column.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#check if it has missing data
+
+#showing number of null data  
+from pyspark.sql.functions import isnan, when, count, col
+
+for cl in dff.columns:
+  dff.select([count(when(col(cl).isNull(),True))]).show()
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<h4 id="filling-null-values"><a class="header" href="#filling-null-values">Filling null values</a></h4>
+<p>We noticed that column 37(ct<em>flw</em>http<em>mthd) has 1348145, column 38(is</em>ftp<em>login) has 1429879, and column 39(ct</em>ftp_cmd) has 1429879 null values. So we fill them by using Imputer function of pyspark. This function fill the missing values with the mean of the column.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#handling null data
+
+from pyspark.ml.feature import Imputer
+
+dff= Imputer(inputCols= dff.columns, outputCols=dff.columns).fit(dff).transform(dff)
+
+#for cl in dff.columns:
+#  dff.select([count(when(col(cl).isNull(),True))]).show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="creating-dataset"><a class="header" href="#creating-dataset">Creating dataset</a></h3>
+<p>For creating dataset, we take the following steps:</p>
+<h4 id="vectorizing"><a class="header" href="#vectorizing">Vectorizing</a></h4>
+<p>We firstly have to put all features into one big vector, using VectorAssembler. We take all the columns of data, except the first 4 columns(are irrelevant) an the last two (are the labels) into &quot;features&quot; column. Notice that VectorAssembler generates either Sparse, or Dense vectors, in favour of the memory.</p>
+<h4 id="normalization"><a class="header" href="#normalization">Normalization</a></h4>
+<p>Next, we normalize data that is vectorized in one column. For this dataset, VEctorAssembler returned a sparse vector, and we chose a normalizer that is compatible with sparse vectors. So we used ml.feature.Normalizer for normalizing data.</p>
+<h4 id="sparse-to-dense"><a class="header" href="#sparse-to-dense">Sparse to Dense</a></h4>
+<p>After normalization, we convert the sparse vectors of features to dense vectors. For this we defined a UDF function.</p>
+<h4 id="selecting-columns-of-features-and-labels"><a class="header" href="#selecting-columns-of-features-and-labels">Selecting columns of features and labels</a></h4>
+<p>Finally, we select two columns in the dataframe to use in further steps, that are &quot;labels&quot;, and &quot;features&quot;.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.ml.feature import StandardScaler, VectorAssembler
+from pyspark.ml.feature import MinMaxScaler
+
+
+from pyspark.sql import functions as F
+from pyspark.ml.linalg import SparseVector, DenseVector,VectorUDT, Vector
+from pyspark.sql import types as T
+from pyspark.ml.feature import Normalizer
+
+
+numCols = ['c4', 'c5', '_c6', '_c7', '_c8', '_c9', '_c10', '_c11', '_c12', 'c13', '_c14', '_c15', '_c16', '_c17', '_c18', '_c19', '_c20', '_c21', '_c22', '_c23', '_c24', '_c25', '_c26', '_c27', '_c28', '_c29', '_c30', '_c31', '_c32', '_c33', '_c34', '_c35', '_c36', '_c37', '_c38', '_c39', '_c40', '_c41', '_c42', '_c43', '_c44', '_c45', '_c46']
+
+
+dfff = VectorAssembler(inputCols=numCols, outputCol=&quot;features&quot;).transform(dff)
+
+
+nrm = Normalizer(inputCol=&quot;features&quot;, outputCol=&quot;features_norm&quot;, p=1).transform(dfff)
+
+
+
+def sparse_to_array(v):
+  v = DenseVector(v)
+  new_array = list([float(x) for x in v])
+  return new_array
+
+
+sparse_to_array_udf = F.udf(sparse_to_array, T.ArrayType(T.FloatType()))
+featArr = nrm.withColumn('featuresArray', sparse_to_array_udf('features_norm'))
+
+
+featArr=featArr.withColumnRenamed(&quot;_c48&quot;, &quot;labels&quot;)
+
+
+trainSet = featArr.select('labels', &quot;featuresArray&quot;)
+
+display(trainSet)
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="preparing-the-dataframe-for-training-classifers"><a class="header" href="#preparing-the-dataframe-for-training-classifers">Preparing the DataFrame for training classifers</a></h1>
+<p>In order to use a dataframe for training the classifiers in the Spark ML Library, we should have a particular format. Specifically, we need to have a single columns for all features and another column for the labels. In this section we first create the the desired format and then use the resulting dataframe for training different classifiers.</p>
+</div>
+<div class="cell markdown">
+<p>Based on the DataFrame created in the preprocessing step (trainSet), we first create an rdd from all available columns (features<em>to</em>assemble). To this end, we map all rows in trainSet using the method &quot;functionForRdd&quot;.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">features_to_assemble = []
+for f in range(2,45):
+  features_to_assemble.append('_'+str(f))
+print(features_to_assemble)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>['_2', '_3', '_4', '_5', '_6', '_7', '_8', '_9', '_10', '_11', '_12', '_13', '_14', '_15', '_16', '_17', '_18', '_19', '_20', '_21', '_22', '_23', '_24', '_25', '_26', '_27', '_28', '_29', '_30', '_31', '_32', '_33', '_34', '_35', '_36', '_37', '_38', '_39', '_40', '_41', '_42', '_43', '_44']
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># random forest implementation
+def functionForRdd(r):
+  l = []
+  l.append(r[0])
+  l = l+list(r[1])
+  return l
+
+trainSetRdd = trainSet.rdd.map(functionForRdd)
+randomForestDf = trainSetRdd.toDF()
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="using-vectorassembler-for-creating-the-dataframe"><a class="header" href="#using-vectorassembler-for-creating-the-dataframe">Using VectorAssembler for creating the DataFrame</a></h2>
+<p>The best option to create the required format, is using VectorAssembler. Calling the transform function of the assembler object gives us a new DataFrame which includes a new columns called &quot;features&quot;. This column together with the labels column (&quot;_1&quot;) will be used for training. We also divide our data into train and test in the cell below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">assembler = VectorAssembler(
+    inputCols=features_to_assemble,
+    outputCol=&quot;features&quot;)
+
+randomForestDf = assembler.transform(randomForestDf)
+train, test = randomForestDf.randomSplit([0.7, 0.3], seed = 2018)
+newtrainSet = train.sample(fraction=0.00001)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="randomforestclassifier"><a class="header" href="#randomforestclassifier">RandomForestClassifier</a></h2>
+<p>The first classifier we use is the RandomForestClassifier avaiable in Spark ML. As mentioned before this classifier requires a single columns for all attributes (features) and a label column (_1). We specify these columns before training and then we use the method fit to train the classifer.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.ml.classification import RandomForestClassifier
+rf = RandomForestClassifier(featuresCol = 'features', labelCol = '_1')
+rfModel = rf.fit(train)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="evaluation"><a class="header" href="#evaluation">Evaluation</a></h2>
+<p>In this part we use the BinaryClassificationMetrics and MulticlassMetrics for evaluating our classifiers. First we need to use our trained model to predict the labels in the test DataFrame. To this aim, we use the transform method. This method add some columns to the test DataFrame. We use the prediction columns which is the predicted classes for data pionts in our test set. BinaryClassificationMetrics and MulticlassMetrics require an rdd of (prediction, truelabel) tuples. We create this rdd using the map function on prediction (rdd) and then calculate different metrics.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.mllib.evaluation import BinaryClassificationMetrics
+
+prediction = rfModel.transform(test)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">predictionAndLabels = prediction.rdd.map(lambda r: (r.prediction, r._1))
+
+metrics = BinaryClassificationMetrics(predictionAndLabels)
+print(&quot;Area under ROC = %s&quot; % metrics.areaUnderROC)
+
+from pyspark.mllib.evaluation import MulticlassMetrics
+metrics2 = MulticlassMetrics(predictionAndLabels)
+print(&quot;Precions = %s&quot; % metrics2.precision(1.0))
+print(&quot;Recall = %s&quot; % metrics2.recall(1.0))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Area under ROC = 0.9893749378235688
+Precions = 0.921533690334014
+Recall = 0.9909789543458447
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">print(&quot;Accuracy = %s&quot; % metrics2.accuracy)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Accuracy = 0.9881770066509254
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="logistic-regression-classifier"><a class="header" href="#logistic-regression-classifier">Logistic Regression classifier</a></h2>
+<p>We have trained and tested the Logistic Regression classifer on our training and testing set respectively as follows:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Logistic Regression Classification
+from pyspark.ml.classification import LogisticRegression
+logr = LogisticRegression(featuresCol = 'features', labelCol = '_1')
+logrmodel = logr.fit(train)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.mllib.evaluation import BinaryClassificationMetrics
+
+lr_prediction = logrmodel.transform(test)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="logistic-regression-classifier-evaluation"><a class="header" href="#logistic-regression-classifier-evaluation">Logistic Regression classifier evaluation</a></h3>
+<p>We have evaluated the Logistic Regression classifier using binary and also multi-class evaluation metrics as follows:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Logistic Regression Evaluation
+lr_predictionAndLabels = lr_prediction.rdd.map(lambda r: (r.prediction, r._1))
+
+
+metrics = BinaryClassificationMetrics(lr_predictionAndLabels)
+print(&quot;Area under ROC = %s&quot; % metrics.areaUnderROC)
+
+from pyspark.mllib.evaluation import MulticlassMetrics
+metrics2 = MulticlassMetrics(lr_predictionAndLabels)
+print(&quot;Precions = %s&quot; % metrics2.precision(1.0))
+print(&quot;Recall = %s&quot; % metrics2.recall(1.0))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Area under ROC = 0.9814394501866226
+Precions = 0.9305169153391484
+Recall = 0.9734132902477421
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="gradient-boosted-trees-gbts-classifier"><a class="header" href="#gradient-boosted-trees-gbts-classifier">Gradient-Boosted Trees (GBTs) classifier</a></h2>
+<p>We have trained and tested the GBTs classifer on our training and testing set respectively as follows:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.ml.classification import GBTClassifier
+
+gbt = GBTClassifier(featuresCol = 'features', labelCol = '_1', maxDepth=5)
+gbtmodel = gbt.fit(train)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.mllib.evaluation import BinaryClassificationMetrics
+
+gbt_prediction = gbtmodel.transform(test)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="gradient-boosted-trees-gbts-classifier-evaluation"><a class="header" href="#gradient-boosted-trees-gbts-classifier-evaluation">Gradient-Boosted Trees (GBTs) classifier evaluation</a></h3>
+<p>We have evaluated the GBTs classifier using binary and also multi-class evaluation metrics as follows:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">gbt_predictionAndLabels = gbt_prediction.rdd.map(lambda r: (r.prediction, r._1))
+
+metrics = BinaryClassificationMetrics(gbt_predictionAndLabels)
+print(&quot;Area under ROC = %s&quot; % metrics.areaUnderROC)
+
+from pyspark.mllib.evaluation import MulticlassMetrics
+metrics2 = MulticlassMetrics(gbt_predictionAndLabels)
+print(&quot;Precions = %s&quot; % metrics2.precision(1.0))
+print(&quot;Recall = %s&quot; % metrics2.recall(1.0))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Area under ROC = 0.9801886786459773
+Precions = 0.962630715074687
+Recall = 0.9658111691109454
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># import sys
+# # !{sys.executable} -m pip install tensorflow
+# # !{sys.executable} -m pip uninstall keras
+# # !{sys.executable} -m pip install keras
+# # !{sys.executable} -m pip install dist-keras
+# # !{sys.executable} -m pip install elephas
+
+
+# import keras
+# from keras.optimizers import *
+# from keras.models import Sequential
+# from keras.layers import Dense, Dropout, Activation
+
+# from distkeras.trainers import *
+# from distkeras.predictors import *
+# from distkeras.transformers import *
+# from distkeras.evaluators import *
+# from distkeras.utils import *
+
+# from pyspark.ml.linalg import Vectors
+# from elephas.utils.rdd_utils import to_simple_rdd
+# from elephas.spark_model import SparkModel
+
+# trainSett = trainSet.rdd.map(lambda row: Row(
+#     labels=row[&quot;labels&quot;], 
+#     featuresArray=Vectors.dense(row[&quot;featuresArray&quot;])
+# )).toDF()
+
+# inpDim= len(trainSett.select(&quot;featuresArray&quot;).first()[0])
+
+# inpDim= len(train.select(&quot;features&quot;).first()[0])
+
+# model = Sequential()
+# model.add(Dense(128, input_dim = inpDim,activation='relu',use_bias=True))
+# model.add(Dropout(0.5))
+# model.add(Dense(1,activation='sigmoid',use_bias=True)) 
+# model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+# print(&quot;compile done&quot;)
+# # model.build()
+# print(model.summary())
+# trainer = SingleTrainer(keras_model=model, worker_optimizer='adam', loss='binary_crossentropy', num_epoch=1)
+# print(&quot;trainer done&quot;)  
+# trained_model = trainer.train(train)#newtrainSet
+# print(&quot;training done&quot;)
+# predictor = ModelPredictor(keras_model=trained_model)
+# ff=predictor.predict(test.take(50)[15].features)
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="multilayer-perceptron-classifier"><a class="header" href="#multilayer-perceptron-classifier">Multilayer Perceptron Classifier</a></h2>
+<p>MLPC consists of multiple layers of nodes. Each layer is fully connected to the next layer in the network. Following code snippet is the implementation of such a model in pyspark. The input layer and the output layer have the size of 43 and 2, with two hidden layers of 5 and 4 neurons respectively.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Multilayer Perceptron Classifier
+from pyspark.ml.classification import MultilayerPerceptronClassifier
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+
+# specify layers for the neural network:
+# input layer of size 43 (features), two intermediate of size 5 and 4
+# and output of size 2 (classes)
+layers = [43, 5, 4, 2]
+
+# create the trainer and set its parameters
+mlpc = MultilayerPerceptronClassifier(maxIter=100, layers=layers, blockSize=128, seed=1234, featuresCol = 'features', labelCol = '_1')
+
+# train the model
+mlpcModel = mlpc.fit(train)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally, a trained MLPC model is returned that is ready to evaluate on the test data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># compute accuracy on the test set
+testLabeled = test.withColumnRenamed( '_1', &quot;label&quot;)
+mlpc_prediction = mlpcModel.transform(testLabeled)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The model is tested using MulticlassClassificationEvaluator with accuracy as an evaluation metric.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">predictionAndLabels = mlpc_prediction.select(&quot;prediction&quot;, &quot;label&quot;)
+evaluator = MulticlassClassificationEvaluator(metricName=&quot;accuracy&quot;)
+print(&quot;Test set accuracy = &quot; + str(evaluator.evaluate(predictionAndLabels)))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Test set accuracy = 0.9290082871081126
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="decision-tree"><a class="header" href="#decision-tree">Decision Tree</a></h2>
+<p>The spark.ml implementation supports decision trees for binary and multiclass classification and for regression.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Decision Tree
+from pyspark.ml.classification import DecisionTreeClassifier
+
+# Train a DecisionTree model.
+dt = DecisionTreeClassifier(featuresCol = 'features', labelCol = '_1')
+dtModel = dt.fit(train)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The decision tree model is tested for ROC, Precision, and recall. The area under ROC is 0.9738, Precision is 0.9626 and recall is 0.9531.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Decision Tree Metrics
+prediction = dtModel.transform(test)
+predictionAndLabels = prediction.rdd.map(lambda r: (r.prediction, r._1))
+
+from pyspark.mllib.evaluation import BinaryClassificationMetrics
+metrics = BinaryClassificationMetrics(predictionAndLabels)
+print(&quot;Area under ROC = %s&quot; % metrics.areaUnderROC)
+
+from pyspark.mllib.evaluation import MulticlassMetrics
+metrics2 = MulticlassMetrics(predictionAndLabels)
+print(&quot;Precisions = %s&quot; % metrics2.precision(1.0))
+print(&quot;Recall = %s&quot; % metrics2.recall(1.0))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Area under ROC = 0.9738847246751252
+Precisions = 0.9626855522893936
+Recall = 0.9531237053608418
+</code></pre>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

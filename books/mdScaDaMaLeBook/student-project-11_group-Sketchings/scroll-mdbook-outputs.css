@@ -1,0 +1,13 @@
+div.output.execute_result {
+       	padding: 0 10px 0 10px;
+}
+
+div.output.execute_result.tabular_result {
+       	max-height: 300px;
+       	overflow: auto;
+}
+
+div.output.execute_result > pre > code {
+       	max-height: 300px;
+       	overflow: auto;
+}

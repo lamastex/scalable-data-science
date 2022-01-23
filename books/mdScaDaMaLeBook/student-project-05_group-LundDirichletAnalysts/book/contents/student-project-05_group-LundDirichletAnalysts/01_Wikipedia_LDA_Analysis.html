@@ -1,0 +1,1364 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_Wikipedia_LDA_Analysis - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-05_group-LundDirichletAnalysts/01_Wikipedia_LDA_Analysis.html" class="active">01_Wikipedia_LDA_Analysis</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="wikipedia-analysis-using-latent-dirichlet-allocation-lda"><a class="header" href="#wikipedia-analysis-using-latent-dirichlet-allocation-lda">Wikipedia analysis using Latent Dirichlet Allocation (LDA)</a></h1>
+<p>Authors: Axel Berg, Johan Grönqvist, Jens Gulin</p>
+<p><a href="https://lunduniversityo365-my.sharepoint.com/:v:/g/personal/ax8107be_lu_se/EU2uVibnZShNsXfbPWXEmJQBDcc6dR9kFVCGCgo1TSckcQ?e=Gow6lI">Link to video presentation</a></p>
+<p>Completed: 2021-01-13 Edited: 2021-01-25</p>
+</div>
+<div class="cell markdown">
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>As part of the course assignment to set up a scalable pipeline, we run topic analysis on Wikipedia articles. Latent Dirichlet Allocation (LDA) extracts topics from the corpus and we use those to assign each article to the most covered topic. As a proof-of-concept system, we make a simple recommender system, highlighting the highest scoring articles for the topic as a follow-up of the currently read article.</p>
+<p>Although the pipeline is meant to be generalizable, this workbook is not streamlined, but also explores the data. This is to help presentation, and also to support any effort to re-use the pipeline on another data source. If this was an automatic job on a stable data source, the throughput would benefit from removing the intermediate snapshot storage and sample output.</p>
+<p>We currently run the pipeline on Swedish Wikipedia. Changing the download and data cleaning slightly, it should work on other sources. Most of the cells are language agnostic, but stopwords and tokenization needs to be adapted to new languages. Swedish Wikipedia is a bit peculiar, having a high number of articles automatically generated from structured data by bots. We discard those articles from the analysis, since their relatively high number and uniform wording skewed the results. The detection of auto-generated articles is thus specific and could be skipped or changed for other languages.</p>
+<h3 id="results"><a class="header" href="#results">Results</a></h3>
+<p>We provide a notebook, primarily in Scala programming language, that can run on a Databricks cluster (7.3 LTS, including Apache Spark 3.0.1, Scala 2.12). Since this was a shared cluster with dynamic scaling, the runtime performance isn't clearly defined, but some notable measures are mentioned for reference. The reference cluster has up to 8 workers, each with 4 CPU and no GPU.</p>
+<p>The pipeline works well and the topics produced seems ok. We have done no further qualitative evaluation and no systematic search for optimal hyper-parameters. In regards to runtime performance, the scalable cluster handles the workload in a fair manner and we have not focused on optimization at this point.</p>
+<p>There are several potential improvements that are outside of the scope of this project. They include changes to improve execution time and topic quality, as well as use-cases utilizing the created model.</p>
+<h3 id="scope"><a class="header" href="#scope">Scope</a></h3>
+<p>This notebook exemplifies topic analysis on Swedish Wikipedia. For overview and documentation, the code is divided into sections. Use the outline to navigate to relevant parts. The following stages illustrate the flow of the pipeline.</p>
+<ol>
+<li>Folders and Files
+<ol>
+<li>Prepare language specific stop-word lists.</li>
+<li>Download a data dump of all pages from Wikipedia (compressed XML of current state).</li>
+</ol>
+</li>
+<li>Clean the data
+<ol>
+<li>Keep only article-space pages not automatically generated by algorithms.</li>
+<li>Filter the XML to extract meta data and raw article text.</li>
+<li>Remove links and other markup-formatting.</li>
+</ol>
+</li>
+<li>Generate the LDA model
+<ol>
+<li>Remove stopwords</li>
+<li>Train the model</li>
+</ol>
+</li>
+<li>Analyse the model
+<ol>
+<li>Pick an article and explore its topics.</li>
+<li>Recommend similar articles.</li>
+</ol>
+</li>
+</ol>
+<h3 id="references"><a class="header" href="#references">References</a></h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation" class="uri">https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation</a></li>
+<li><a href="https://spark.apache.org/docs/latest/api/scala/org/apache/spark/mllib/clustering/LDA.html" class="uri">https://spark.apache.org/docs/latest/api/scala/org/apache/spark/mllib/clustering/LDA.html</a></li>
+<li><a href="https://dumps.wikimedia.org/svwiki/20201120/" class="uri">https://dumps.wikimedia.org/svwiki/20201120/</a></li>
+<li><a href="scalable-data-science/000_2-sds-3-x-ml/034_LDA_20NewsGroupSmall.ipynb">034_LDA_20NewsGroupsSmall</a> see notebook <code>scalable-data-science/000_2-sds-3-x-ml/034_LDA_20NewsGroupSmall</code></li>
+<li><a href="https://dbc-635ca498-e5f1.cloud.databricks.com/?o=445287446643905#notebook/2972105651606635/command/2972105651606636">034_LDA_20NewsGroupsSmall</a> (link to databricks)</li>
+</ul>
+<h3 id="acknowledgements"><a class="header" href="#acknowledgements">Acknowledgements</a></h3>
+<p>This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program (WASP) funded by the Knut and Alice Wallenberg Foundation.</p>
+</div>
+<div class="cell markdown">
+<h2 id="folders-and-files"><a class="header" href="#folders-and-files">Folders and Files</a></h2>
+<p>Define variables to make the rest of the notebook more generic.</p>
+<p>To allow pipelines running in parallel and to simplify configurability, work is parameterized in a file and folder structure.</p>
+<p>To simplify exploration, the data is saved to file as snapshots. This also avoids the need to rerun previous sections in every session.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Setup Wikipedia source
+val lang = &quot;sv&quot;
+val freeze_date = &quot;20201120&quot;
+val wp_file = s&quot;${lang}wiki-${freeze_date}-pages-articles.xml&quot;
+val wp_zip_remote = s&quot;https://dumps.wikimedia.org/${lang}wiki/${freeze_date}/${wp_file}.bz2&quot;
+
+// Stopwords download soure
+val stopwords_remote = &quot;https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv&quot;
+
+// Setup base paths for storage
+val group = &quot;05_lda&quot;  // directory name to separate file structure, allows to run different instances in parallel
+val localpath=s&quot;file:/databricks/driver/$group/&quot;
+val dir_local = s&quot;$group/&quot;
+val dir = s&quot;dbfs:/datasets/$group/&quot;
+
+// Some file names
+val stopwords_file = &quot;stopwords.csv&quot;
+val stopwords_store = s&quot;${dir}${stopwords_file}&quot;
+
+val wp_store = s&quot;${dir}${wp_file}&quot;
+
+val filtered_articles_store = s&quot;${dir}filtered_articles_${lang}_${freeze_date}&quot;
+val lda_countVector_store = s&quot;${dir}lda_countvector_${lang}_${freeze_date}&quot;
+
+val lda_model_store = s&quot;${dir}lda_${lang}_${freeze_date}.model&quot;
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>lang: String = sv
+freeze_date: String = 20201120
+wp_file: String = svwiki-20201120-pages-articles.xml
+wp_zip_remote: String = https://dumps.wikimedia.org/svwiki/20201120/svwiki-20201120-pages-articles.xml.bz2
+stopwords_remote: String = https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv
+group: String = 05_lda
+localpath: String = file:/databricks/driver/05_lda/
+dir_local: String = 05_lda/
+dir: String = dbfs:/datasets/05_lda/
+stopwords_file: String = stopwords.csv
+stopwords_store: String = dbfs:/datasets/05_lda/stopwords.csv
+wp_store: String = dbfs:/datasets/05_lda/svwiki-20201120-pages-articles.xml
+filtered_articles_store: String = dbfs:/datasets/05_lda/filtered_articles_sv_20201120
+lda_countVector_store: String = dbfs:/datasets/05_lda/lda_countvector_sv_20201120
+lda_model_store: String = dbfs:/datasets/05_lda/lda_sv_20201120.model
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh"># Just check where local path is
+pwd
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>/databricks/driver
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Run this only to force a clean start
+/*
+// Delete DBFS store
+dbutils.fs.rm(dir,recurse=true)
+// Delete local files
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+FileUtils.deleteDirectory(new File(dir_local))
+*/
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.commons.io.FileUtils
+import java.io.File
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Prepare DBFS store
+dbutils.fs.mkdirs(dir)
+display(dbutils.fs.ls(dir))
+// Prepare local folder
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+FileUtils.forceMkdir(new File(dir_local));
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Check local files
+import sys.process._  // For spawning shell commands
+s&quot;ls -l ./  ${dir_local}&quot; !!
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>warning: there was one feature warning; for details, enable `:setting -feature' or `:replay -feature'
+import sys.process._
+res19: String =
+&quot;./:
+total 24
+drwxr-xr-x 2 root root 4096 Jan 26 04:22 05_lda
+drwxr-xr-x 2 root root 4096 Jan  1  1970 conf
+-rw-r--r-- 1 root root  733 Jan 26 03:34 derby.log
+drwxr-xr-x 3 root root 4096 Jan 26 03:33 eventlogs
+drwxr-xr-x 2 root root 4096 Jan 26 04:15 ganglia
+drwxr-xr-x 2 root root 4096 Jan 26 04:03 logs
+
+05_lda/:
+total 0
+&quot;
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="stopwords-download"><a class="header" href="#stopwords-download">Stopwords Download</a></h3>
+</div>
+<div class="cell markdown">
+<p>We download a list of suitable stopwords from a separate location.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Download stopwords to store.
+val local = s&quot;${dir_local}${stopwords_file}&quot;
+val remote = stopwords_remote
+try
+{
+  // -nc prevents download if already exist. !! converts wget output to string.
+  s&quot;wget -nc -O${local} ${remote}&quot; !!
+} 
+catch
+{
+  case e: Throwable =&gt; println(&quot;Exception: &quot; + e)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>--2021-01-26 04:23:45--  https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.52.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.52.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1936 (1.9K) [text/plain]
+Saving to: ‘05_lda/stopwords.csv’
+
+     0K .                                                     100% 15.9M=0s
+
+2021-01-26 04:23:45 (15.9 MB/s) - ‘05_lda/stopwords.csv’ saved [1936/1936]
+
+warning: there was one feature warning; for details, enable `:setting -feature' or `:replay -feature'
+local: String = 05_lda/stopwords.csv
+remote: String = https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv
+res20: Any = &quot;&quot;
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Check local stopwords file
+s&quot;ls -l ${dir_local}&quot; !!
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>warning: there was one feature warning; for details, enable `:setting -feature' or `:replay -feature'
+res21: String =
+&quot;total 4
+-rw-r--r-- 1 root root 1936 Jan 26 04:23 stopwords.csv
+&quot;
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Move stopwords to DBFS</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">dbutils.fs.cp(localpath + stopwords_file, dir)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res22: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Check that the file exists, and has some contents.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(stopwords_store))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/datasets/05_lda/stopwords.csv</td>
+<td>stopwords.csv</td>
+<td>1936.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="wikipedia-download"><a class="header" href="#wikipedia-download">Wikipedia Download</a></h3>
+</div>
+<div class="cell markdown">
+<p>Wikipedia downloads are available as compressed files, and language and data is chosen via the name of the file. For a specific date, <a href="https://dumps.wikimedia.org/svwiki/20201120/">file share looks like this</a> on Wikimedia.</p>
+<p>There are several files, we use &quot;pages-articles&quot;. This monolith file requires unpacking on driver node. To allow parallel download and unpacking the multistream may be a better choice.</p>
+<p>In the current setup, download takes 6 minutes, extracting takes 10 minutes, moving to DBFS an additional 3 min.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Download Wikipedia xml to store. -nc prevents overwrite if already exist. !! converts wget output to string.
+val local = s&quot;${dir_local}${wp_file}.bz2&quot;
+val remote = wp_zip_remote
+try
+{
+  s&quot;wget -nc -O${local} ${remote}&quot; !!
+} 
+catch
+{
+  case e: Throwable =&gt; println(&quot;Exception: &quot; + e)
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Extract the .xml-file</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Unpack bz2 to xml. 
+val local = s&quot;${dir_local}${wp_file}.bz2&quot;
+try
+{
+  // -d unpack, -k keep source file, -v activate some output. !! converts output to string.
+  s&quot;bzip2 -dk -f -v ${local}&quot; !!
+} 
+catch
+{
+  case e: Throwable =&gt; println(&quot;Exception: &quot; + e)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>  05_lda/svwiki-20201120-pages-articles.xml.bz2: done
+warning: there was one feature warning; for details, enable `:setting -feature' or `:replay -feature'
+local: String = 05_lda/svwiki-20201120-pages-articles.xml.bz2
+res27: Any = &quot;&quot;
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">s&quot;ls ${dir_local}&quot; !!
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>warning: there was one feature warning; for details, enable `:setting -feature' or `:replay -feature'
+res28: String =
+&quot;stopwords.csv
+svwiki-20201120-pages-articles.xml
+svwiki-20201120-pages-articles.xml.bz2
+&quot;
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Copy file to DBFS cluster</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val local = s&quot;${localpath}${wp_file}&quot;
+dbutils.fs.cp(local, dir)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>local: String = file:/databricks/driver/05_lda/svwiki-20201120-pages-articles.xml
+res29: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Verify that we now have an xml file with some contents. Swedish Wikipedia is 18 Gb unpacked.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(wp_store))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/datasets/05_lda/svwiki-20201120-pages-articles.xml</td>
+<td>svwiki-20201120-pages-articles.xml</td>
+<td>1.8963312968e10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Discard the local files no longer needed
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+FileUtils.cleanDirectory(new File(dir_local))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.commons.io.FileUtils
+import java.io.File
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="clean-the-data"><a class="header" href="#clean-the-data">Clean the data</a></h2>
+<p>Before we can try to build an LDA model, we need to split the contents into separate pages, and discard anything that is not relevant article content.</p>
+<p>In the current setup, loading and filtering takes 4 minutes, cleaning and saving snapshot takes another 6 minutes.</p>
+</div>
+<div class="cell markdown">
+<h3 id="extracting-pages"><a class="header" href="#extracting-pages">Extracting Pages</a></h3>
+<p>The full wikipedia dump is a very large xml files, each page (with meta data) is enclosed in <code>&lt;page&gt; &lt;/page&gt;</code> tags, so we split it into an RDD.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// ---------------spark_import
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkConf
+import org.apache.spark.sql.SQLContext
+
+// ----------------xml_loader_import
+import org.apache.hadoop.io.LongWritable
+import org.apache.hadoop.io.Text
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.io.{ LongWritable, Text }
+import com.databricks.spark.xml._
+
+import org.apache.hadoop.conf.Configuration
+
+// ---- Matching
+import scala.util.matching.UnanchoredRegex
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.SparkContext
+import org.apache.spark.SparkConf
+import org.apache.spark.sql.SQLContext
+import org.apache.hadoop.io.LongWritable
+import org.apache.hadoop.io.Text
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.io.{LongWritable, Text}
+import com.databricks.spark.xml._
+import org.apache.hadoop.conf.Configuration
+import scala.util.matching.UnanchoredRegex
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Our function to read the data uses a library call to extract pages into an RDD.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def readWikiDump(sc: SparkContext, file: String) : RDD[String] = {
+  val conf = new Configuration()
+  conf.set(XmlInputFormat.START_TAG_KEY, &quot;&lt;page&gt;&quot;)
+  conf.set(XmlInputFormat.END_TAG_KEY, &quot;&lt;/page&gt;&quot;)
+  val rdd = sc.newAPIHadoopFile(file, 
+                                classOf[XmlInputFormat], 
+                                classOf[LongWritable], 
+                                classOf[Text], 
+                                conf)
+  rdd.map{case (k,v) =&gt; (new String(v.copyBytes()))}
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>readWikiDump: (sc: org.apache.spark.SparkContext, file: String)org.apache.spark.rdd.RDD[String]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>We look at a small sample to see that we succeeded in extracting pages, but we see that the pages still contain a lof of uninteresting bits in their text.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Read the wiki dump
+val dump = readWikiDump(sc, wp_store)
+
+val n_wp_pages = dump.count()
+dump.take(5)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Before we begin filtering the contents of pages, we want to discard:</p>
+<ol>
+<li>Pages that are redirects, i.e., pages containing a <code>&lt;redirect_title=&quot;...&quot;&gt;</code> tag.</li>
+<li>Non-articles, i.e., pages not in namespace 0 (not containing <code>&lt;ns&gt;0&lt;/ns&gt;</code>).</li>
+<li>Any page containing the macro tag stating that it was generated by a robot.</li>
+</ol>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val redirection = &quot;&lt;redirect title=&quot;.r
+def is_not_redirect(source : String) = { redirection.findFirstIn(source) == None }
+
+val ns0 = &quot;&lt;ns&gt;0&lt;/ns&gt;&quot;.r
+def is_article(source : String) = { ns0.findFirstIn(source) != None }
+
+val autogenerated = &quot;robotskapad|Robotskapad&quot;.r
+def is_not_autogenerated(source : String) = { autogenerated.findFirstIn(source) == None }
+
+val articles = dump.filter(is_not_redirect).filter(is_article).filter(is_not_autogenerated)
+
+val n_articles = articles.count()
+articles.take(5)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Note that we have filtered away around 80% of the pages. Our initial list turned out to be mostly autogenerated articles, and those are not very interesting to our topic analysis pursuits, so better off discarded.</p>
+</div>
+<div class="cell markdown">
+<h3 id="meta-data"><a class="header" href="#meta-data">Meta data</a></h3>
+<p>Before we clean the xml and markup, we extract the article id and title, as we may want to use them when we analyze the resulting LDA model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val id_regexp = raw&quot;&lt;id&gt;([0-9]*)&lt;/id&gt;&quot;.r
+def extract_id(source : String) = {
+  val m = id_regexp.findFirstMatchIn(source).get
+  m.group(1).toLong
+}
+
+val title_regexp = raw&quot;&lt;title&gt;([^\&lt;\&gt;]*)&lt;/title&gt;&quot;.r
+def extract_title(source : String) = {
+  val m = title_regexp.findFirstMatchIn(source).get
+  m.group(1)
+}
+
+val labelled_articles = articles.map(source =&gt; (extract_id(source), extract_title(source), source))
+
+labelled_articles.take(5).map({case(id, title, contents) =&gt; title})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>id_regexp: scala.util.matching.Regex = &lt;id&gt;([0-9]*)&lt;/id&gt;
+extract_id: (source: String)Long
+title_regexp: scala.util.matching.Regex = &lt;title&gt;([^\&lt;\&gt;]*)&lt;/title&gt;
+extract_title: (source: String)String
+labelled_articles: org.apache.spark.rdd.RDD[(Long, String, String)] = MapPartitionsRDD[1021] at map at command-2629358840275853:13
+res11: Array[String] = Array(Amager, Afrika, Amerika, Abbekås, Alingsås)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="clean-xml-and-markup"><a class="header" href="#clean-xml-and-markup">Clean xml and markup</a></h3>
+</div>
+<div class="cell markdown">
+<p>To break out of the xml structure we perform the following steps:</p>
+<ol>
+<li>Replace html-strings <code>&amp;amp;</code>, <code>&amp;quot;</code>, <code>&amp;nbsp;</code>, <code>&amp;lt;</code> and <code>&amp;gt;</code> by <code>&amp;</code>, `<code>,</code> <code>,</code>&lt;<code>and</code>&gt;<code>, repsectively.     * First the</code>&amp;<code>, as it's used as the</code>&amp;<code>in other sequences, e.g.</code> <code>.     * The</code>&lt;<code>and</code>&gt;<code>from</code>&lt;<code>and</code>&amp;gt<code>are used in tags.     * The</code>&quot;<code>from</code>&quot;` is irrelevant, so we drop it entirely.
+<ul>
+<li>This is not an exhaustive list, so there may be other</li>
+</ul>
+</li>
+<li>Remove the following start- and stop-tags, and the contents in between:
+<ul>
+<li>id</li>
+<li>ns</li>
+<li>parentid</li>
+<li>timestamp</li>
+<li>contributor</li>
+<li>comment</li>
+<li>model</li>
+<li>format</li>
+<li>sha1</li>
+</ul>
+</li>
+<li>We remove any tag, i.e., anything of the form <code>&lt;A&gt;</code> for any string <code>A</code>.</li>
+<li>We remove anything enclosed in double-curly-braces, i.e., anything on the form <code>{{A}}</code> for any <code>A</code>.</li>
+</ol>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def filter_xml(source : String) = {
+  val noAmp = raw&quot;&amp;amp;&quot;.r.replaceAllIn(source, &quot;&amp;&quot;)
+  val noNbsp = raw&quot;&amp;nbsp;&quot;.r.replaceAllIn(noAmp, &quot; &quot;)
+  val noQuot = raw&quot;&amp;quot;&quot;.r.replaceAllIn(noNbsp, &quot;&quot;)
+  val noLt = raw&quot;&amp;lt;&quot;.r.replaceAllIn(noQuot, &quot;&lt;&quot;)
+  val noGt = raw&quot;&amp;gt;&quot;.r.replaceAllIn(noLt, &quot;&gt;&quot;)
+  
+    
+  
+  val tags = Seq(&quot;id&quot;, &quot;ns&quot;, &quot;parentid&quot;, &quot;timestamp&quot;, &quot;contributor&quot;, &quot;comment&quot;, &quot;model&quot;, &quot;format&quot;, &quot;sha1&quot;)
+  var current = noGt
+  for (tag &lt;- tags) {
+    val start = s&quot;&lt;$tag&gt;&quot;.r
+    val end = s&quot;&lt;/$tag&gt;&quot;.r
+    while (start.findAllIn(current).hasNext) {
+      val a = start.findAllIn(current).start
+      val b = end.findAllIn(current).start
+      val len = current.length
+      current = current.substring(0, a) + current.substring(b+tag.length+3, current.length)
+      assert (current.length &lt; len)
+    }
+  }
+  current = raw&quot;&lt;[^&lt;&gt;]*&gt;&quot;.r.replaceAllIn(current, &quot;&quot;)
+
+  // A loop to remove innermost curly braces, then outer such things.
+  val curly = raw&quot;\{[^\{\}]*\}&quot;.r
+  while (curly.findAllIn(current).hasNext)
+  {
+     current = curly.replaceAllIn(current, &quot;&quot;)
+  }
+
+  current
+  }
+
+  
+val filtered_xml = labelled_articles.map({ case(id, title, source) =&gt; (id, title, filter_xml(source)) })
+  
+filtered_xml.take(5)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The resulting strings contain a lot of markup structure, and we clean it by:</p>
+<ol>
+<li>Removing all <code>$</code> and <code>\</code>, as scala will otherwise try to help us by doing magic to them.</li>
+<li>Removing all of the sections &quot;Se även&quot;, &quot;Referenser&quot;, &quot;Noter&quot;, &quot;Källor&quot; and &quot;Externa länkar&quot;</li>
+<li>Remove links:
+<ol>
+<li>Replace unnamed internal links <code>[[LinkName]]</code> by <code>LinkName</code></li>
+<li>Replace named internal links <code>[[Link|Properties|Name]]</code> by <code>Name</code></li>
+<li>Replace unnamed internal links again to clean up</li>
+<li>Replace named external links <code>[Link Name]</code> by <code>Name</code></li>
+<li>Replace unnamed external links <code>[Link]</code> by <code>Link</code></li>
+</ol>
+</li>
+<li>Convert all text to lower case</li>
+<li>Remove quotation marks <code>'</code></li>
+<li>Remove repeated whitespace, as the obtained results contain a lot of whitespace.</li>
+</ol>
+</div>
+<div class="cell markdown">
+<p>Note: The last line in the cell below incorrectly gets rendered as a string, as the databricks notebook does not realize that (on line 3) the string <code>raw&quot;\&quot;</code> ends there, but it guesses that <code>\&quot;</code> is a quoted character and that the string continues to the end of the cell.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def sanitize(source: String) : String = {
+  val noDollar = source.replaceAllLiterally(&quot;$&quot;, &quot;&quot;)
+  val noBackSlash = noDollar.replaceAllLiterally(raw&quot;\&quot;, &quot;&quot;)
+  noBackSlash
+}
+
+val sanitized_xml = filtered_xml.map({case(id, title, source) =&gt; (id, title, sanitize(source))})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>sanitize: (source: String)String
+sanitized_xml: org.apache.spark.rdd.RDD[(Long, String, String)] = MapPartitionsRDD[1026] at map at command-2629358840275860:7
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def filterMarkup(source: String) : String = {
+  
+  // Loop to remove some specific sections
+  val sections = Seq(&quot;Se även&quot;, &quot;Referenser&quot;, &quot;Noter&quot;, &quot;Källor&quot;, &quot;Externa länkar&quot;)
+  var current = source
+  for (section &lt;- sections) {
+    val regexp = s&quot;[=]+ *$section *[=]+&quot;.r
+    if (regexp.findAllIn(current).hasNext)
+    {
+      val a = regexp.findAllIn(current).start
+      val pre = current.substring(0, a)
+      var post = current.substring(a, current.length)
+      post = regexp.replaceAllIn(post, &quot;&quot;)
+      if (&quot;^=&quot;.r.findAllIn(post).hasNext) {
+        val b = &quot;^=&quot;.r.findAllIn(post).start
+        post = post.substring(b, post.length)
+      }
+      else {
+        post = &quot;&quot;        
+      }
+      current = pre + post
+    }
+  }
+  
+  // Unnamed internal links appear in figure captions, confusing later matching
+  val noUnnamedInternalLinks = raw&quot;\[\[([^\|\]]*)\]\]&quot;.r.replaceAllIn(current, m =&gt; m.group(1))
+
+  // Loop to remove internal links and their properties
+  current = noUnnamedInternalLinks
+  val regexp = raw&quot;\[\[[^\|\[]*\|([^\[\]]*)\]\]&quot;.r 
+  while (regexp.findAllIn(current).hasNext) {
+    val len = current.length
+    current = regexp.replaceAllIn(current, m =&gt; &quot;[[&quot; + m.group(1) + &quot;]]&quot;)
+    assert (current.length &lt; len)
+  }
+  val noNamedInternalLinks = current
+  
+  val noInternalLinks = raw&quot;\[\[([^\]]*)\]\]&quot;.r.replaceAllIn(noNamedInternalLinks, m =&gt; m.group(1))
+  val noNamedExternalLinks = raw&quot;\[[^ \[]*\ ([^\]]*)\]&quot;.r.replaceAllIn(noInternalLinks, m =&gt; m.group(1))
+  val noExternalLinks = raw&quot;\[([^\]]*)\]&quot;.r.replaceAllIn(noNamedExternalLinks, m =&gt; m.group(1))
+  
+  
+ val lowerCase = noExternalLinks.toLowerCase  
+
+  val noQuoteChars = raw&quot;'&quot;.r.replaceAllIn(lowerCase, &quot;&quot;)
+  // Loop to remove double whitespace characters
+  current = noQuoteChars
+  val doubleWhitespace = raw&quot;\s(\s)&quot;.r
+  while (doubleWhitespace.findAllIn(current).hasNext) {
+    current = doubleWhitespace.replaceAllIn(current, m =&gt; m.group(1))
+  }
+  val noDoubleWhitespace = current
+  noDoubleWhitespace
+}
+
+
+val filtered = sanitized_xml.map({case (id, title, source) =&gt; (id, title, filterMarkup(source))})
+
+filtered.take(2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Before leaving this section, we may want to save our results, so that the next section can reload it.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// dbutils.fs.rm(filtered_articles_store, recurse=true)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res19: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val outputs = filtered.map({case (id, title, contents) =&gt; (id, title.replaceAllLiterally(&quot;,&quot;, &quot;**COMMA**&quot;), contents.replaceAllLiterally(&quot;\n&quot;, &quot;**NEWLINE**&quot;))})
+outputs.saveAsTextFile(filtered_articles_store);
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>outputs: org.apache.spark.rdd.RDD[(Long, String, String)] = MapPartitionsRDD[1038] at map at command-4443336225071544:1
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="prepare-for-lda"><a class="header" href="#prepare-for-lda">Prepare for LDA</a></h2>
+</div>
+<div class="cell markdown">
+<p>We now turn to the spark library for our next set of preparatory steps, and as the library work on dataframes, we do so as well.</p>
+</div>
+<div class="cell markdown">
+<h3 id="loading-previous-results"><a class="header" href="#loading-previous-results">Loading previous results</a></h3>
+<p>If we want to continue from the result saved at the end of the previous section, we can reload the data here.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val format = &quot;^\\(([^,]*),([^,]*),(.*)\\)$&quot;.r
+def parse_line(s : String) = {
+  assert (s(0) == '(')
+  val firstComma = s.indexOf(&quot;,&quot;)
+  val id = s.substring(1, firstComma).toLong
+  val afterId = s.substring(firstComma+1, s.length)
+  val nextComma = afterId.indexOf(&quot;,&quot;)
+  val title = afterId.substring(0, nextComma)
+  val contents = afterId.substring(nextComma+1, afterId.length-1)
+          
+  assert (afterId(afterId.length-1) == ')')
+  (id, title.replaceAllLiterally(&quot;**COMMA**&quot;, &quot;,&quot;), contents.replaceAllLiterally(&quot;**NEWLINE**&quot;, &quot;\n&quot;))
+}
+
+val filtered = spark.sparkContext.textFile(filtered_articles_store).map(parse_line)
+val n_articles = filtered.count()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>format: scala.util.matching.Regex = ^\(([^,]*),([^,]*),(.*)\)$
+parse_line: (s: String)(Long, String, String)
+filtered: org.apache.spark.rdd.RDD[(Long, String, String)] = MapPartitionsRDD[1042] at map at command-4443336225071727:15
+n_articles: Long = 813245
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="dataframe"><a class="header" href="#dataframe">DataFrame</a></h3>
+<p>The tokenization and stopword removal work on dataframes, so we create one, and look at some samples.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val corpus_df = filtered.toDF(&quot;id&quot;, &quot;title&quot;, &quot;contents&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>corpus_df: org.apache.spark.sql.DataFrame = [id: bigint, title: string ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The command below is the first step that requires all of the above steps to be completed for all the elements in the rdd, and it therefore takes a few minutes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(corpus_df.sample(0.0001))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="tokenization"><a class="header" href="#tokenization">Tokenization</a></h3>
+<p>In order to feed the articles into the LDA model, we first need to perform word tokenization. This splits the article into words, each matching the regular expression. In this case we ignore all non-alphabetic characters and only keep words with a minimal length of 4 characters in order to avoid short words that are not relevant to the subject.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.RegexTokenizer
+
+// Set params for RegexTokenizer
+val tokenizer = new RegexTokenizer()
+  .setGaps(true) // pattern below identifies non-word alphabet
+  .setPattern(&quot;[^a-zåäö]+&quot;) // break word and remove any detected non-word character(s). 
+  .setMinTokenLength(4) // Filter away tokens with length &lt; 4
+  .setInputCol(&quot;contents&quot;) // name of the input column
+  .setOutputCol(&quot;tokens&quot;) // name of the output column
+
+// Tokenize document
+val tokenized_df = tokenizer.transform(corpus_df)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.RegexTokenizer
+tokenizer: org.apache.spark.ml.feature.RegexTokenizer = RegexTokenizer: uid=regexTok_5d41547188e0, minTokenLength=4, gaps=true, pattern=[^a-zåäö]+, toLowercase=true
+tokenized_df: org.apache.spark.sql.DataFrame = [id: bigint, title: string ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(tokenized_df.sample(0.0001))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="remove-stopwords"><a class="header" href="#remove-stopwords">Remove Stopwords</a></h3>
+<p>Next, we remove the stopwords from the article. This should be done iteratively, as the final model might find patterns in words that are not relevant. In our first iteration we found several words being used that were not relevant so we added them to the list of stopwords and repeated the experiment, which lead to better results. This step can be repeated several times in order to improve the model further.</p>
+</div>
+<div class="cell markdown">
+<p>We load the stopwords we downloaded near the beginning of this notebook, and we add some custom stopwords that are relevant to wikipedia pages and articles.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val swedish_stopwords = sc.textFile(stopwords_store).collect()
+val wikipedia_stopwords = Array(&quot;label&quot;, &quot;note&quot;, &quot;area&quot;, &quot;unit&quot;, &quot;type&quot;, &quot;mark&quot;, &quot;long&quot;, &quot;right&quot;, &quot;kartposition&quot;, &quot;quot&quot;, &quot;text&quot;, &quot;title&quot;, &quot;page&quot;, &quot;timestamp&quot;, &quot;revision&quot;, &quot;name&quot;, &quot;username&quot;, &quot;sha1&quot;, &quot;format&quot;, &quot;coord&quot;, &quot;left&quot;, &quot;center&quot;, &quot;align&quot;, &quot;region&quot;, &quot;nasa&quot;, &quot;source&quot;, &quot;mouth&quot;, &quot;species&quot;, &quot;highest&quot;, &quot;style&quot;, &quot;kategori&quot;, &quot;http&quot;, &quot;wikipedia&quot;, &quot;referenser&quot;, &quot;källor&quot;, &quot;noter&quot;)
+// Combine newly identified stopwords to our exising list of stopwords
+val stopwords = swedish_stopwords.union(wikipedia_stopwords)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The spark ML library gives us functions to remove stopwords.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.StopWordsRemover
+
+val remover = new StopWordsRemover()
+  .setStopWords(stopwords) 
+  .setInputCol(&quot;tokens&quot;)
+  .setOutputCol(&quot;filtered&quot;)
+
+val filtered_df = remover.transform(tokenized_df)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.StopWordsRemover
+remover: org.apache.spark.ml.feature.StopWordsRemover = StopWordsRemover: uid=stopWords_ecf00fa02fd5, numStopWords=366, locale=en, caseSensitive=false
+filtered_df: org.apache.spark.sql.DataFrame = [id: bigint, title: string ... 3 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="vector-of-token-counts"><a class="header" href="#vector-of-token-counts">Vector of token counts</a></h3>
+<p>The LDA model takes word counts as input, so the next step is to count words that appear in the articles.</p>
+<p>There are some hyperparameters to consider here, we focus on two:</p>
+<ul>
+<li>vocabSize - the number of words kept as the vocabulary. The vectorizer will pick the words that appear most frequently in all articles.</li>
+<li>minDF - the minimum number of articles that each word must appear in (i.e. document frequency). Will discard words that are very frequent in a small number of articles, but less frequent in general, and thus not generalizing to a larger topic.</li>
+</ul>
+<p>We found that using a vocab size of 10 000 and a minDF of 5 worked well, but these can be experimented with further in order to obtain even better clusterings.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.feature.CountVectorizer
+
+val vectorizer = new CountVectorizer()
+  .setInputCol(&quot;filtered&quot;)
+  .setOutputCol(&quot;features&quot;)
+  .setVocabSize(10000) 
+  .setMinDF(5) // the minimum number of different documents a term must appear in to be included in the vocabulary.
+  .fit(filtered_df)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.CountVectorizer
+vectorizer: org.apache.spark.ml.feature.CountVectorizerModel = CountVectorizerModel: uid=cntVec_ad38aa4e1641, vocabularySize=10000
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Next, we convert the dataframe to an RDD that contains the word counts</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.linalg.Vector
+
+val countVectors = vectorizer.transform(filtered_df).select(&quot;id&quot;, &quot;features&quot;)
+val lda_countVector = countVectors.map { case Row(id: Long, countVector: Vector) =&gt; (id, countVector) }
+val lda_countVector_mllib = lda_countVector.map { case (id, vector) =&gt; (id, org.apache.spark.mllib.linalg.Vectors.fromML(vector)) }.rdd
+
+lda_countVector_mllib.take(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.linalg.Vector
+countVectors: org.apache.spark.sql.DataFrame = [id: bigint, features: vector]
+lda_countVector: org.apache.spark.sql.Dataset[(Long, org.apache.spark.ml.linalg.Vector)] = [_1: bigint, _2: vector]
+lda_countVector_mllib: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[1088] at rdd at command-4443336225071537:5
+res41: Array[(Long, org.apache.spark.mllib.linalg.Vector)] = Array((1,(10000,[1,2,8,9,15,17,20,26,37,38,39,42,48,50,51,55,64,67,68,71,75,80,81,85,86,94,95,96,106,114,117,118,128,129,140,149,150,156,161,189,195,208,216,297,299,332,336,399,409,427,452,457,459,461,465,535,540,572,603,612,686,739,747,806,849,904,922,983,1002,1013,1037,1081,1128,1167,1170,1175,1272,1274,1295,1334,1374,1387,1474,1578,1593,1602,1707,1750,1764,1792,1835,1852,1927,2022,2027,2114,2182,2268,2358,2612,2726,2766,2929,3316,3386,3415,3468,3486,3588,3593,3634,3693,3735,4156,4184,4335,4339,4470,4579,4675,4691,4851,5046,5083,5118,5186,5355,5653,5712,5801,6051,6080,6140,6751,7381,7491,7602,8758,8892,8944,8990,9148,9185,9375,9416,9737,9779,9870],[7.0,2.0,1.0,3.0,3.0,1.0,1.0,4.0,4.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,1.0,3.0,1.0,1.0,1.0,1.0,1.0,5.0,2.0,2.0,1.0,4.0,2.0,1.0,4.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,2.0,2.0,1.0,1.0,1.0,1.0,3.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,4.0,1.0,3.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,2.0,1.0,1.0,1.0,4.0,1.0,1.0,1.0,1.0,2.0,1.0,2.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,3.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0])))
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>We can also save the countvector file for later use.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(lda_countVector_store)
+
+// lda_countVector_mllib.saveAsTextFile(lda_countVector_store);
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/05_lda/lda_countvector_sv_20201120
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="lda"><a class="header" href="#lda">LDA</a></h2>
+</div>
+<div class="cell markdown">
+<h3 id="hyper-parameters"><a class="header" href="#hyper-parameters">Hyper-parameters</a></h3>
+<p>It's now time to define our LDA model. We choose the online LDA due to speed and simplicity, altough one could also try using the expectation maximization algorithm here instead.</p>
+<p>The online LDA takes two hyperparameters:</p>
+<ul>
+<li>The number of topics to cluster - this should be set to some reasonable number depending on what the purpose of the clustering is. Sometimes we might have a-priori knowledge of what the number of topics ought to be, but for Wikipedia it is not obvious how this parameter should be determined.</li>
+<li>The number of iterations - this can be increased in order to trade off between increased computational time and better clustering.</li>
+</ul>
+<p>In this examples, we choose 50 topics since this makes it easy to visualize the results. We use 20 iterations, which yields a reasonable runtime (about 16 minutes).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val numTopics = 50
+val maxIterations = 20
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>numTopics: Int = 50
+maxIterations: Int = 20
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="lda-model"><a class="header" href="#lda-model">LDA model</a></h3>
+<p>Let's review what the LDA model does.</p>
+<p><img alt="Smoothed LDA" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Smoothed_LDA.png"><BR> Illustration of the LDA algorithm (CC BY-SA: <a href="https://commons.wikimedia.org/wiki/File:Smoothed_LDA.png" class="uri">https://commons.wikimedia.org/wiki/File:Smoothed_LDA.png</a>)</p>
+<p>Explaining the notation, we have:</p>
+<ul>
+<li>\(K\) - number of topics</li>
+<li>\(M\) - number of documents</li>
+<li>\(N_i\) - the number of words per document (different for each document i, of course)</li>
+<li>\(\theta_i\) - the topic distribution for document i</li>
+<li>\(\varphi_k\) - the word distribution for topic k</li>
+<li>\(z_{ij}\) - the topic for the j-th word in document i</li>
+<li>\(w_{ij}\) - the j-th word in document i</li>
+<li>\(\alpha\) - Dirichlet prior on the per-document topic distributions</li>
+<li>\(\beta\) - Dirichlet prior on the per-topic word distribution</li>
+</ul>
+<p>When performing online LDA, we are fitting the data to this model by estimating values for \(\alpha\) and \(\beta\) iteratively. First, each word is randomly assigned to a topic. Then, using variational inference, the topics are reassigned in an iterative way using the empirical distributions of words within each document.</p>
+<p>This can all be done using spark's built-in LDA optimizer.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.clustering.{LDA, OnlineLDAOptimizer}
+
+val lda = new LDA()
+  .setOptimizer(new OnlineLDAOptimizer().setMiniBatchFraction(0.8))
+  .setK(numTopics)
+  .setMaxIterations(maxIterations)
+  .setDocConcentration(-1) // use default values
+  .setTopicConcentration(-1) // use default values
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.clustering.{LDA, OnlineLDAOptimizer}
+lda: org.apache.spark.mllib.clustering.LDA = org.apache.spark.mllib.clustering.LDA@54e767e2
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The next cell is where the magic happens. We invole the disitributed LDA training functionality to obtain the model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val ldaModel = lda.run(lda_countVector_mllib)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>ldaModel: org.apache.spark.mllib.clustering.LDAModel = org.apache.spark.mllib.clustering.LocalLDAModel@5c324bb0
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Save the model to file for later use.
+dbutils.fs.rm(lda_model_store, recurse=true)
+ldaModel.save(sc, lda_model_store) 
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="analyze-the-model"><a class="header" href="#analyze-the-model">Analyze the model</a></h2>
+</div>
+<div class="cell markdown">
+<h3 id="topics"><a class="header" href="#topics">Topics</a></h3>
+</div>
+<div class="cell markdown">
+<p>We prepare by extracting a few relevant terms per topic, looking them up in the vocabulary.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val maxTermsPerTopic = 8
+val topicIndices = ldaModel.describeTopics(maxTermsPerTopic)
+val vocabList = vectorizer.vocabulary
+val topics = topicIndices.map { case (terms, termWeights) =&gt;
+  terms.map(vocabList(_)).zip(termWeights)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(s&quot;$numTopics topics:&quot;)
+topics.zipWithIndex.foreach { case (topic, i) =&gt;
+  println(s&quot;TOPIC $i&quot;)
+  topic.foreach { case (term, weight) =&gt; println(s&quot;$term\t$weight&quot;) }
+  println(s&quot;==========&quot;)
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="visualization"><a class="header" href="#visualization">Visualization</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">Zip topic terms with topic IDs
+val termArray = topics.zipWithIndex
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Transform data into the form (term, probability, topicId)
+val termRDD = sc.parallelize(termArray)
+val termRDD2 = termRDD.flatMap( (x: (Array[(String, Double)], Int) ) =&gt; {
+  val arrayOfTuple = x._1
+  val topicId = x._2
+  arrayOfTuple.map(el =&gt; (el._1, el._2, topicId))
+})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>termRDD: org.apache.spark.rdd.RDD[(Array[(String, Double)], Int)] = ParallelCollectionRDD[1881] at parallelize at command-4443336225072171:2
+termRDD2: org.apache.spark.rdd.RDD[(String, Double, Int)] = MapPartitionsRDD[1882] at flatMap at command-4443336225072171:3
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Create DF with proper column names
+val termDF = termRDD2.toDF.withColumnRenamed(&quot;_1&quot;, &quot;term&quot;).withColumnRenamed(&quot;_2&quot;, &quot;probability&quot;).withColumnRenamed(&quot;_3&quot;, &quot;topicId&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>termDF: org.apache.spark.sql.DataFrame = [term: string, probability: double ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala"> display(termDF)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">Create JSON data
+val rawJson = termDF.toJSON.collect().mkString(&quot;,\n&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Plot visualization</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">displayHTML(s&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;style&gt;
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: 0.5;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 14px sans-serif;
+}
+
+&lt;/style&gt;
+&lt;body&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var json = {
+ &quot;name&quot;: &quot;data&quot;,
+ &quot;children&quot;: [
+  {
+     &quot;name&quot;: &quot;topics&quot;,
+     &quot;children&quot;: [
+      ${rawJson}
+     ]
+    }
+   ]
+};
+
+var r = 1000,
+    format = d3.format(&quot;,d&quot;),
+    fill = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([r, r])
+    .padding(1.5);
+
+var vis = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, r)
+    .attr(&quot;height&quot;, r)
+    .attr(&quot;class&quot;, &quot;bubble&quot;);
+
+  
+var node = vis.selectAll(&quot;g.node&quot;)
+    .data(bubble.nodes(classes(json))
+    .filter(function(d) { return !d.children; }))
+    .enter().append(&quot;g&quot;)
+    .attr(&quot;class&quot;, &quot;node&quot;)
+    .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.x + &quot;,&quot; + d.y + &quot;)&quot;; })
+    color = d3.scale.category20();
+  
+  node.append(&quot;title&quot;)
+      .text(function(d) { return d.className + &quot;: &quot; + format(d.value); });
+
+  node.append(&quot;circle&quot;)
+      .attr(&quot;r&quot;, function(d) { return d.r; })
+      .style(&quot;fill&quot;, function(d) {return color(d.topicName);});
+
+var text = node.append(&quot;text&quot;)
+    .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;.3em&quot;)
+    .text(function(d) { return d.className.substring(0, d.r / 3)});
+  
+  text.append(&quot;tspan&quot;)
+      .attr(&quot;dy&quot;, &quot;1.2em&quot;)
+      .attr(&quot;x&quot;, 0)
+      .text(function(d) {return Math.ceil(d.value * 10000) /10000; });
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(term, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.term, child); });
+    else classes.push({topicName: node.topicId, className: node.term, value: node.probability});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+&lt;/script&gt;
+&quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/5_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="finding-articles"><a class="header" href="#finding-articles">Finding Articles</a></h3>
+<p>If we are reading an article, we can use our LDA model to find other articles on the same topic.</p>
+</div>
+<div class="cell markdown">
+<p>When we created our model earlier, we did it as an <code>LDA</code>, but we need to be more specific, so we reload it as a <code>LocalLDAModel</code>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Load the model
+import org.apache.spark.mllib.clustering.LocalLDAModel
+val model = LocalLDAModel.load(sc, lda_model_store)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.clustering.LocalLDAModel
+model: org.apache.spark.mllib.clustering.LocalLDAModel = org.apache.spark.mllib.clustering.LocalLDAModel@6067f4d5
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Load the countvector
+// val lda_countVector_mllib_loaded = sc.textFile(&quot;lda_countvector_sv_20201208&quot;) // This doesn't work, need to figure out how to parse the loaded rdd
+// print(lda_countVector_mllib_loaded)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We sample some articles.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val numsample = 20
+val sample = lda_countVector_mllib.takeSample(false, numsample)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Compute topic distributions, and extract some additional information about them.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val sampleRdd = sc.makeRDD(sample)
+val topicDistributions = model.topicDistributions(sampleRdd)
+val MLTopics = topicDistributions.map({case(id, vs) =&gt; (id, vs.argmax)})
+val ids = MLTopics.map({case(id, vs)=&gt;id}).collect()
+val selection = filtered.filter({case(id, title, contents) =&gt; ids.contains(id)}).map({case(id, title, contents) =&gt; (id, title)}).collect()
+val allTopicProbs = model.topicDistributions(lda_countVector_mllib)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>sampleRdd: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = ParallelCollectionRDD[2329] at makeRDD at command-4443336225072182:1
+topicDistributions: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[2330] at map at LDAModel.scala:373
+MLTopics: org.apache.spark.rdd.RDD[(Long, Int)] = MapPartitionsRDD[2331] at map at command-4443336225072182:3
+ids: Array[Long] = Array(2779114, 226060, 1613204, 4970370, 700470, 636341, 4987605, 766457, 4965484, 82392, 7982574, 7973374, 367933, 1204225, 1225253, 503655, 821159, 8299631, 4684122, 1695311)
+selection: Array[(Long, String)] = Array((82392,Senmedeltiden), (226060,Río Verde, San Luis Potosí), (367933,Kontrollsumma), (503655,Adam Kårsnäs), (636341,Live at McCabe's Guitar Shop), (700470,R2-0), (766457,Pakistanska muslimska förbundet - L), (821159,Fisher Athletic FC), (1204225,Financial Institutions Reform, Recovery and Enforcement Act of 1989), (1225253,Gardar), (1613204,Bessan), (1695311,Borneol), (2779114,Sara Branham Matthews), (4684122,Cecil Blachford), (4965484,Riddarsynerätt), (4970370,Kenyaskratthärfågel), (4987605,Rihannas diskografi), (7973374,Ahtisaariplanen), (7982574,James S. Brown), (8299631,Mount Roper))
+allTopicProbs: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.linalg.Vector)] = MapPartitionsRDD[2335] at map at LDAModel.scala:373
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>For each of our selected articles, we can now look for other articles that very strongly belong to the same topic.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for ( (article_id, topic_id) &lt;- MLTopics.collect() ) {
+  val title = selection.filter({case(id, title) =&gt; id == article_id})(0)._2
+  val topicProbs = allTopicProbs.map({case(id, vs) =&gt; (id, vs(topic_id))})
+  val top5articles = topicProbs.takeOrdered(5)(Ordering[Double].reverse.on(_._2))
+  val top5ids = top5articles.map(_._1)
+  val top5titles = filtered.filter({case(id, title, contents) =&gt; top5ids.contains(id) }).map({case(id, title, contents) =&gt; (title)}).collect
+  println(s&quot;Top 5 articles on the same topic as ${title}:&quot;)
+  
+  for (t &lt;- top5titles) println(s&quot; * ${t}&quot;)
+  println(&quot;&quot;)
+}
+</code></pre>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

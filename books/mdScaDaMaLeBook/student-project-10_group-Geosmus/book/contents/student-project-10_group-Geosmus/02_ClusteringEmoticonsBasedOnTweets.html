@@ -1,0 +1,775 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>02_ClusteringEmoticonsBasedOnTweets - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/01_Introduction.html">01_Introduction</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/02_ClusteringEmoticonsBasedOnTweets.html" class="active">02_ClusteringEmoticonsBasedOnTweets</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.html">03_Dynamic_Tweet_Maps</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/04_conclusion.html">04_conclusion</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.html">05_appendix_get-cc-data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.html">06_appendix_tweet_carto_functions</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.html">07_a_appendix_extendedTwitterUtils2run</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/07_b_appendix_TTTDFfunctions.html">07_b_appendix_TTTDFfunctions</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="clustering-emoticons-based-on-tweets"><a class="header" href="#clustering-emoticons-based-on-tweets">Clustering emoticons based on tweets</a></h1>
+<p>In this notebook we will look at the symbols in the Unicode block <em>Emoticons</em>, which contains 80 commonly used emojis. The goal is to find out which emoticons are related to each other and hopefully finding clusters that correspond vaguely to some sentiment of an emoticon. We will do this in a fairly naïve way since our focus was on learning streaming, spark and scala. First let's have a look at the emojis in question, they are presented in the table from Wikipedia below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe 
+ src="https://en.wikipedia.org/wiki/Emoticons_(Unicode_block)#Descriptions"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
+</div>
+</div>
+<div class="cell markdown">
+<p>In the following two cells we create a list of these emoticons and load the previously collected dataset of tweets.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonsList = List(
+  &quot;😀&quot;, &quot;😁&quot;, &quot;😂&quot;,	&quot;😃&quot;, &quot;😄&quot;,	&quot;😅&quot;, &quot;😆&quot;,	&quot;😇&quot;, &quot;😈&quot;,	&quot;😉&quot;, &quot;😊&quot;,	&quot;😋&quot;, &quot;😌&quot;, &quot;😍&quot;, &quot;😎&quot;, &quot;😏&quot;,
+  &quot;😐&quot;,	&quot;😑&quot;, &quot;😒&quot;,	&quot;😓&quot;, &quot;😔&quot;, &quot;😕&quot;, &quot;😖&quot;, &quot;😗&quot;, &quot;😘&quot;, &quot;😙&quot;, &quot;😚&quot;, &quot;😛&quot;, &quot;😜&quot;, &quot;😝&quot;, &quot;😞&quot;, &quot;😟&quot;,
+  &quot;😠&quot;,	&quot;😡&quot;, &quot;😢&quot;, &quot;😣&quot;, &quot;😤&quot;, &quot;😥&quot;, &quot;😦&quot;, &quot;😧&quot;, &quot;😨&quot;, &quot;😩&quot;, &quot;😪&quot;, &quot;😫&quot;, &quot;😬&quot;, &quot;😭&quot;, &quot;😮&quot;, &quot;😯&quot;,
+  &quot;😰&quot;,	&quot;😱&quot;, &quot;😲&quot;, &quot;😳&quot;, &quot;😴&quot;, &quot;😵&quot;, &quot;😶&quot;, &quot;😷&quot;, &quot;😸&quot;, &quot;😹&quot;, &quot;😺&quot;, &quot;😻&quot;, &quot;😼&quot;, &quot;😽&quot;, &quot;😾&quot;, &quot;😿&quot;,
+  &quot;🙀&quot;,	&quot;🙁&quot;, &quot;🙂&quot;, &quot;🙃&quot;, &quot;🙄&quot;, &quot;🙅&quot;, &quot;🙆&quot;, &quot;🙇&quot;, &quot;🙈&quot;, &quot;🙉&quot;, &quot;🙊&quot;, &quot;🙋&quot;, &quot;🙌&quot;, &quot;🙍&quot;, &quot;🙎&quot;, &quot;🙏&quot;
+)
+
+val emoticonsMap = emoticonsList.zipWithIndex.toMap
+val nbrEmoticons = emoticonsList.length
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val fullDF = sqlContext.read.parquet(&quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/{2020,2021,continuous_22_12}/*/*/*/*/*&quot;)
+println(fullDF.count)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>2013137
+fullDF: org.apache.spark.sql.DataFrame = [CurrentTweetDate: timestamp, CurrentTwID: bigint ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="how-to-cluster-emoticons"><a class="header" href="#how-to-cluster-emoticons">How to cluster emoticons</a></h3>
+<p>We could just look at the descriptions and appearances of the various emoticons and cluster them into broad categories based on that. However, instead we will try to use our collected tweet dataset to create a clustering. Then we will use the intuition based on the descriptions and appearances to judge how successful this approach was.</p>
+<p>We will use the Jaccard distance between emoticons to try to cluster them. The Jaccard distance between emoticons \(e_1\) and \(e_2\) is given by</p>
+<p>\[
+d(e_1, e_2) = 1 - \frac{\# (e_1\wedge e_2)}{\# (e_1) + \# (e_2) - \# (e_1\wedge e_2)},
+\]</p>
+<p>where \(\#(e)\) is the number of tweets collected containing the emoticon \(e\), and \(\# (e_1\wedge e_2)\) is the number of tweets collected containing both \(e_1\) and \(e_2\).</p>
+</div>
+<div class="cell markdown">
+<p>In order to find the Jaccard distances between emoticons, we must create a matrix containing for each pair of emoticons how often they appear together in the dataset of tweets and also in how many tweets each emoticon appears individually. First we define a function to create such a matrix for an individual tweet. Then we will sum these matrices for all the tweets. The matrices will be represented by a 1D array following a certain indexing scheme and containing the entries of the upper triangular part of the matrix (there would be redundancy in finding the whole matrix since it will be symmetric).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def emoticonPairToIndex (a : Int, b : Int) : Int = { // helper function for indexing
+  val i = if (a &lt; b) a else b // makes sure j &gt;= i
+  val j = if (a &lt; b) b else a
+  return i*nbrEmoticons - (i * (i+1))/2 + j 
+}
+
+def createEmoticonIterator (s : String) : scala.util.matching.Regex.MatchIterator = { // helper function for iterating through the emoticons in a string s
+  return s&quot;&quot;&quot;[${emoticonsList.mkString}]&quot;&quot;&quot;.r.findAllIn(s)
+}
+
+def createEmoticonMatrix (s : String) : Array[Int] = { // The pair (i, j) will be at location i*(nbrEmoticons - (i+1)/2) + j in this array (this is compatible with later scipy functions)
+  var m = Array.fill((nbrEmoticons*nbrEmoticons + nbrEmoticons)/2)(0) // there are 80 emoticons and thus 80^2 / 2 + 80 / 2 emoticon pairs including pairs of the same emoticon
+  val emoticonIterator = createEmoticonIterator(s)
+  // sets m to 1 for each index corresponding to a pair of emoticons present in the string s (very hacky code...)
+  emoticonIterator.zipWithIndex.foreach(em_pair =&gt; // iterate over emoticons in s
+                                        (createEmoticonIterator(s).drop(em_pair._2)).foreach( // iterate over remaining emoticons in s
+                                          second_em =&gt; 
+                                            (m(emoticonPairToIndex(
+                                                emoticonsMap(em_pair._1),
+                                                emoticonsMap(second_em))
+                                              )
+                                            = 1) // set m to 1 for each emoticon pair found in s
+                                         )
+                                       )
+  return m
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>emoticonPairToIndex: (a: Int, b: Int)Int
+createEmoticonIterator: (s: String)util.matching.Regex.MatchIterator
+createEmoticonMatrix: (s: String)Array[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>In the cell below we sum all the &quot;occurence-matrices&quot; and print the diagonal of the summed matrix, i.e. the number of tweets containing each individual emoticon. It is clear that some emoticons are used far more often than others.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonsMatrix = fullDF.select(&quot;CurrentTweet&quot;)
+                            .filter($&quot;CurrentTweet&quot;.rlike(emoticonsList.mkString(&quot;|&quot;))) // filters tweets with emoticons
+                            .map(row =&gt; createEmoticonMatrix(row.mkString)) // creates an &quot;adjacency matrix&quot; for each tweet
+                            .reduce((_, _).zipped.map(_ + _)) // sums the matrices elementwise
+
+emoticonsList.zipWithIndex.foreach({case (e, i) =&gt; println(e + &quot;, &quot; + Integer.toString(emoticonsMatrix(emoticonPairToIndex(i, i))) + &quot; occurences&quot;)})
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In the following two cells we create the Jaccard distance matrix which we want to use to cluster the emoticons.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def jaccardDistance (e1 : Int, e2 : Int) : Double = { // specify the emojis in terms of their indices in the list
+  return 1.0 - 1.0 * emoticonsMatrix(emoticonPairToIndex(e1, e2)) / 
+    (emoticonsMatrix(emoticonPairToIndex(e1, e1)) +  emoticonsMatrix(emoticonPairToIndex(e2, e2)) - emoticonsMatrix(emoticonPairToIndex(e1, e2)))
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>jaccardDistance: (e1: Int, e2: Int)Double
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var jaccardMatrix = Array.fill(emoticonsMatrix.length)(1.0)
+(0 until nbrEmoticons).foreach(i =&gt; (i until nbrEmoticons).foreach(j =&gt; (jaccardMatrix(emoticonPairToIndex(i, j)) = jaccardDistance(i, j))))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally we write the Jaccard distance matrix and the emoticon list to file so that we don't have to keep rerunning the above cells and so that we can load them into python cells next.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//scala.tools.nsc.io.File(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonsList.txt&quot;).writeAll(emoticonsList.mkString(&quot;\n&quot;))
+//scala.tools.nsc.io.File(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/jMatrix.txt&quot;).writeAll(jaccardMatrix.mkString(&quot;\n&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="clustering-using-python"><a class="header" href="#clustering-using-python">Clustering using python</a></h2>
+<p>We now switch to python cells in order to use various clustering methods implemented in SciPy and scikit-learn. First we install and import some packages for later use, then we load the previously saved Jaccard matrix and emoticons list.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">%pip install pycountry
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Python interpreter will be restarted.
+Collecting pycountry
+  Downloading pycountry-20.7.3.tar.gz (10.1 MB)
+Building wheels for collected packages: pycountry
+  Building wheel for pycountry (setup.py): started
+  Building wheel for pycountry (setup.py): finished with status 'done'
+  Created wheel for pycountry: filename=pycountry-20.7.3-py2.py3-none-any.whl size=10746863 sha256=870cc02de7d6d11499effd59f2b73acdbffc04146079c4a4f9a841ca30f2b587
+  Stored in directory: /root/.cache/pip/wheels/57/e8/3f/120ccc1ff7541c108bc5d656e2a14c39da0d824653b62284c6
+Successfully built pycountry
+Installing collected packages: pycountry
+Successfully installed pycountry-20.7.3
+Python interpreter will be restarted.
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import json
+import os
+from matplotlib import font_manager as fm, pyplot as plt, rcParams
+import numpy as np
+import pandas as pd
+import pycountry
+from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.manifold import locally_linear_embedding, TSNE
+from sklearn.neighbors import NearestNeighbors
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">jMatrix = np.loadtxt(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/jMatrix.txt&quot;)
+
+emoticonsList = []
+
+with open(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonsList.txt&quot;, 'r') as filehandle:
+    for line in filehandle:
+        e = line.strip() #remove line break
+        emoticonsList.append(e)
+
+nbrEmoticons = len(emoticonsList)
+print(emoticonsList)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😇', '😈', '😉', '😊', '😋', '😌', '😍', '😎', '😏', '😐', '😑', '😒', '😓', '😔', '😕', '😖', '😗', '😘', '😙', '😚', '😛', '😜', '😝', '😞', '😟', '😠', '😡', '😢', '😣', '😤', '😥', '😦', '😧', '😨', '😩', '😪', '😫', '😬', '😭', '😮', '😯', '😰', '😱', '😲', '😳', '😴', '😵', '😶', '😷', '😸', '😹', '😺', '😻', '😼', '😽', '😾', '😿', '🙀', '🙁', '🙂', '🙃', '🙄', '🙅', '🙆', '🙇', '🙈', '🙉', '🙊', '🙋', '🙌', '🙍', '🙎', '🙏']
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Some of the SciPy clustering implementations require a full distance matrix, rather than the condensed representation consisting of only the upper triangular part which we have been using thus far. So we create a full matrix in the cell below. In the cell after that we define a helper function for plotting 2D embeddings of emoticons, note that this function loads the unifont-upper font for emoticon rendering, which can be downloaded from <code>http://unifoundry.com/unifont/index.html</code>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def emoticonPairToIndex(a, b): # same helper function as already defined in scala previously
+  i = min(a, b) # makes sure j &gt;= i
+  j = max(a, b)
+  return i * nbrEmoticons - (i * (i+1))//2 + j 
+
+fullDistanceMatrix = np.zeros([nbrEmoticons, nbrEmoticons])
+for r in range(nbrEmoticons):
+  for c in range(nbrEmoticons):
+    fullDistanceMatrix[r, c] = jMatrix[emoticonPairToIndex(r, c)]
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def scatterEmojis(emoticonsEmbedded):
+  # This function plots a scatter plot of emoticons.
+  # emoticonsEmbedded should be an 80x2 array 
+  # containing 2D coordinates for each of the
+  # 80 emoticons in the unicode emoticon block (in the correct order).
+  
+  # standardize the embedding for nicer plotting:
+  emoticonsEmbedded = emoticonsEmbedded - np.mean(emoticonsEmbedded)
+  emoticonsEmbedded = emoticonsEmbedded/np.std(emoticonsEmbedded) 
+
+  # for proper emoji rendering change the font
+  fpath = os.path.join(rcParams[&quot;datapath&quot;], &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/unifont_upper-13.0.05.ttf&quot;)
+  prop = fm.FontProperties(fname=fpath, size=50)
+
+  fig = plt.figure(figsize=(14, 14))
+  for i, label in enumerate(emoticonsList):
+      plt.text(emoticonsEmbedded[i, 0], emoticonsEmbedded[i, 1], label, fontproperties=prop)
+  plt.setp(plt.gca(), frame_on=False, xticks=(), yticks=())
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="locally-linear-embedding"><a class="header" href="#locally-linear-embedding">Locally linear embedding</a></h3>
+<p>First off we will look at embedding the emoticons into 2D in ways that respect the Jaccard distances at least to a degree.</p>
+<p>Locally linear embedding (LLE) is one such method, which is focused on good presentation of local neighborhoods. You can read more about it in the scikit-learn documentation embedded below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe 
+ src="https://scikit-learn.org/stable/modules/manifold.html#locally-linear-embedding"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">nbrNeighbors = 8
+emoticonsNeighbors = NearestNeighbors(n_neighbors=nbrNeighbors, metric=&quot;precomputed&quot;).fit(fullDistanceMatrix)
+emoticonsEmbedded, err = locally_linear_embedding(emoticonsNeighbors, n_neighbors=nbrNeighbors, n_components=2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>As we can see in the scatter plot below, LLE succeeds in separating the emoticons broadly into happy (down to the left), sad (up) and animal (down to the right) categories. Also some local clusters can be spotted, such as the three emoticons sticking out their tongues, close to the lower left corner.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">scatterEmojis(emoticonsEmbedded)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="t-distributed-stochastic-neighbor-embedding-t-sne"><a class="header" href="#t-distributed-stochastic-neighbor-embedding-t-sne">t-distributed Stochastic Neighbor Embedding (t-SNE)</a></h3>
+<p>Another approach for embedding the distances into 2D is t-SNE. You can read more about this method in the sk-learn documentation below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe 
+ src="https://scikit-learn.org/stable/modules/manifold.html#t-sne"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">emoticonsEmbedded = TSNE(n_components=2, perplexity=20.0, early_exaggeration=12.0, learning_rate=2.0, n_iter=10000,
+                         metric='precomputed', angle=0.01).fit_transform(fullDistanceMatrix)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>t-SNE also does a good job at showing a separation between happy and sad emojis but the result is not as convincing as the LLE case. One could spend more time on optimizing the hyperparameters and probably find a better embedding here.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">scatterEmojis(emoticonsEmbedded)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_2.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="hierarchical-clustering"><a class="header" href="#hierarchical-clustering">Hierarchical clustering</a></h3>
+<p>Instead of trying to embed the distances into 2D, we can also create a nice graphical representation in the form of a dendrogram or hierarchical clustering. For this we need to process the distance matrix somewhat again in the following cell.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># remove diagonal from jMatrix, as this is expected by the scipy linkage function:
+diagonalIndices = [emoticonPairToIndex(i, i) for i in range(nbrEmoticons)]
+jMatrixUpper = jMatrix[[i for i in range((nbrEmoticons**2 + nbrEmoticons)//2) if not i in diagonalIndices]]
+assert len(jMatrixUpper) == len(jMatrix) - nbrEmoticons, &quot;the upper matrix should have exactly 80 elements fewer than the upper+diagonal&quot;
+
+# creating a linkage matrix
+Z = linkage(jMatrixUpper, 'complete', optimal_ordering=True)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Hierarchical clustering works by starting of with clusters of size one which are just the emoticons and then iteratively joining those clusters which are closest together. The distance between clusters can be defined in various ways, here we somewhat arbitrarily choose so called &quot;complete linkage&quot; which means that the distance between clusters \(a\) and \(b\) is given by the maximum Jaccard distance between some emoticon in \(a\) and some emoticon in \(b\).</p>
+<p>We can use dendrograms to neatly represent hirearchical clusterings graphically. The closer two emoticons (or rather emoticon clusters) are to each other, the further down in the dendrogram their branches merge.</p>
+<p>The interested WASP PhD student could consider taking the WASP Topological Data Analysis course to learn more about hierarchical clustering.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># plotting a dendrogram
+fig = plt.figure(figsize=(40, 8))
+dn = dendrogram(Z, labels=emoticonsList, leaf_rotation=0, color_threshold=1.)
+ax = plt.gca()
+
+# for proper emoji rendering change the font
+fpath = os.path.join(rcParams[&quot;datapath&quot;], &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/unifont_upper-13.0.05.ttf&quot;)
+prop = fm.FontProperties(fname=fpath, size=28)
+x_labels = ax.get_xmajorticklabels()
+for x in x_labels:
+    x.set_fontproperties(prop)
+
+ax.set_ylim([.85, 1.01])
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We identify six main clusters in the dendrogram above. From left to right:</p>
+<ul>
+<li>The green &quot;prayer&quot; cluster (🙌🙏😊🙇🙋😷) which also contains the mask emoji and a common smile emoji,</li>
+<li>the teal &quot;happy&quot; cluster (😝😛😜😎😉😏😈😌😋😍😘😇😀😃😄😁😆😅🙂🙃),</li>
+<li>the magenta &quot;cat&quot; cluster (😹😸😽😺😻😿😾🙀😼),</li>
+<li>the yellow &quot;shocked and kisses&quot; or &quot;SK&quot; cluster (😶😬😲😮😯😗😙😚),</li>
+<li>a combined &quot;not happy&quot; cluster consisting of the next black, green, red, teal and magenta clusters (😵😧😦😨😰😱😳😂😭😩😔😢😞😥😓😪😴😫😖😣😟🙁😕😐😑😒🙄😤😡😠),</li>
+<li>finally the yellow &quot;monkey&quot; cluster (🙈🙊🙉).</li>
+</ul>
+<p>We proceed with these clusters as they appeal sufficiently to our intuition to seem worthwhile. The observant reader will however have noted some curiosities such as the fact that the &quot;not happy&quot; cluster contains the crying laughing emoji 😂 which is the most popular emoticon in our tweet dataset and which might be used in both happy and not so happy contexts.</p>
+<p>Next, we finish the clustering part of this notebook by saving the clusters to file.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">monkeyEmoticons = dn[&quot;leaves&quot;][76:79]
+prayerEmoticons = dn[&quot;leaves&quot;][0:6]
+shockedAndKissesEmoticons = dn[&quot;leaves&quot;][38:46]
+happyEmoticons = dn[&quot;leaves&quot;][9:29]
+notHappyEmoticons = dn[&quot;leaves&quot;][46:76]
+catEmoticons = dn[&quot;leaves&quot;][29:38]
+emoticonsDict = {&quot;monkey&quot; : monkeyEmoticons,
+                 &quot;prayer&quot; : prayerEmoticons,
+                 &quot;SK&quot; : shockedAndKissesEmoticons,
+                &quot;happy&quot; : happyEmoticons,
+                &quot;notHappy&quot; : notHappyEmoticons,
+                &quot;cat&quot; : catEmoticons}
+print(emoticonsDict)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>{'monkey': [72, 74, 73], 'prayer': [76, 79, 10, 71, 75, 55], 'SK': [54, 44, 50, 46, 47, 23, 25, 26], 'happy': [29, 27, 28, 14, 9, 15, 8, 12, 11, 13, 24, 7, 0, 3, 4, 1, 6, 5, 66, 67], 'notHappy': [53, 39, 38, 40, 48, 49, 51, 2, 45, 41, 20, 34, 30, 37, 19, 42, 52, 43, 22, 35, 31, 65, 21, 16, 17, 18, 68, 36, 33, 32], 'cat': [57, 56, 61, 58, 59, 63, 62, 64, 60]}
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#with open('/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonClusters.json', 'w+') as f:
+#    json.dump(emoticonsDict, f)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="filtering-the-tweets-by-cluster"><a class="header" href="#filtering-the-tweets-by-cluster">Filtering the tweets by cluster</a></h2>
+<p>We return to scala cells to filter the original dataset by what emoticons are present in each tweet. First we load the clusters from the just created json-file.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.json4s.jackson.JsonMethods.parse
+val jsonString = scala.io.Source.fromFile(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonClusters.json&quot;).mkString 
+val emoticonClusters = parse(jsonString).values.asInstanceOf[Map[String, List[BigInt]]]
+emoticonClusters.foreach({case (key, list) =&gt; println(key + &quot;: &quot; + list.map(i =&gt; emoticonsList(i.toInt)).mkString)})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>prayer: 🙌🙏😊🙇🙋😷
+monkey: 🙈🙊🙉
+happy: 😝😛😜😎😉😏😈😌😋😍😘😇😀😃😄😁😆😅🙂🙃
+SK: 😶😬😲😮😯😗😙😚
+cat: 😹😸😽😺😻😿😾🙀😼
+notHappy: 😵😧😦😨😰😱😳😂😭😩😔😢😞😥😓😪😴😫😖😣😟🙁😕😐😑😒🙄😤😡😠
+import org.json4s.jackson.JsonMethods.parse
+jsonString: String = {&quot;monkey&quot;: [72, 74, 73], &quot;prayer&quot;: [76, 79, 10, 71, 75, 55], &quot;SK&quot;: [54, 44, 50, 46, 47, 23, 25, 26], &quot;happy&quot;: [29, 27, 28, 14, 9, 15, 8, 12, 11, 13, 24, 7, 0, 3, 4, 1, 6, 5, 66, 67], &quot;notHappy&quot;: [53, 39, 38, 40, 48, 49, 51, 2, 45, 41, 20, 34, 30, 37, 19, 42, 52, 43, 22, 35, 31, 65, 21, 16, 17, 18, 68, 36, 33, 32], &quot;cat&quot;: [57, 56, 61, 58, 59, 63, 62, 64, 60]}
+emoticonClusters: Map[String,List[BigInt]] = Map(prayer -&gt; List(76, 79, 10, 71, 75, 55), monkey -&gt; List(72, 74, 73), happy -&gt; List(29, 27, 28, 14, 9, 15, 8, 12, 11, 13, 24, 7, 0, 3, 4, 1, 6, 5, 66, 67), SK -&gt; List(54, 44, 50, 46, 47, 23, 25, 26), cat -&gt; List(57, 56, 61, 58, 59, 63, 62, 64, 60), notHappy -&gt; List(53, 39, 38, 40, 48, 49, 51, 2, 45, 41, 20, 34, 30, 37, 19, 42, 52, 43, 22, 35, 31, 65, 21, 16, 17, 18, 68, 36, 33, 32))
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Next, we create a dataframe <code>emoticonDF</code> with a row for each tweet containing at least one emoticon. We add a column for each cluster indicating if the cluster is represented by some emoticon in the tweet. This dataframe is saved to file to be used in the next notebook 03 which focuses more on data visualization. Here we will finish this notebook by using the databricks <code>display</code> function to plot geopraphic information.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonDF = fullDF.filter($&quot;CurrentTweet&quot;.rlike(emoticonsList.mkString(&quot;|&quot;))) // filter tweets with emoticons
+                       .select(($&quot;countryCode&quot; :: // select the countryCode column
+                                $&quot;CurrentTweetDate&quot; :: // and the timestamp
+                                (for {(name, cluster) &lt;- emoticonClusters.toList} yield  // also create a new column for each emoticon cluster indicating if the tweet contains an emoticon of that cluster
+                                 $&quot;CurrentTweet&quot;.rlike(cluster.map(i =&gt; emoticonsList(i.toInt)).mkString(&quot;|&quot;))
+                                                .alias(name))) // rename new column
+                                                : _*) // expand list
+      
+emoticonDF.show(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-----------+-------------------+------+------+-----+-----+-----+--------+
+|countryCode|   CurrentTweetDate|prayer|monkey|happy|   SK|  cat|notHappy|
++-----------+-------------------+------+------+-----+-----+-----+--------+
+|         EG|2020-12-31 15:59:54| false| false|false|false|false|    true|
+|         SA|2020-12-31 15:59:54|  true| false|false|false|false|   false|
+|         DO|2020-12-31 15:59:54| false| false| true|false|false|   false|
++-----------+-------------------+------+------+-----+-----+-----+--------+
+only showing top 3 rows
+
+emoticonDF: org.apache.spark.sql.DataFrame = [countryCode: string, CurrentTweetDate: timestamp ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// save to file
+// emoticonDF.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(&quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/processedEmoticonClusterParquets/emoticonCluster.parquet&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The goal for the last part of this notebook will be to display for each country what proportion of its total tweets correspond to a certain cluster. First we create a dataframe <code>emoticonCCDF</code> which contains the total number of tweets with some emoticon for each country. Using that dataframe we create dataframes containing the described proportions for each cluster and transfer these dataframes from scala to python by using the <code>createOrReplaceTmpView</code> function.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonCCDF = emoticonDF.groupBy($&quot;countryCode&quot;)
+                             .count
+emoticonCCDF.show(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-----------+-----+
+|countryCode|count|
++-----------+-----+
+|         DZ|  157|
+|         MM|   44|
+|         TC|    5|
++-----------+-----+
+only showing top 3 rows
+
+emoticonCCDF: org.apache.spark.sql.DataFrame = [countryCode: string, count: bigint]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def createPropClusterDF (cluster : org.apache.spark.sql.Column) : org.apache.spark.sql.DataFrame = {  
+  // This function filters the emoticonDF by a cluster-column and then
+  // creates a dataframe with a row per country and columns for the countryCode and proportion
+  // of tweets from that country that fall into the cluster as well as the count of tweets
+  // falling into the cluster.
+  val nbrClusterTweets = emoticonDF.filter(cluster).count
+  val clusterDF = emoticonDF.filter(cluster)
+                            .groupBy($&quot;countryCode&quot;)
+                            .count
+  val propDF = emoticonCCDF.alias(&quot;total&quot;)
+                           .join(clusterDF.alias(&quot;cluster&quot;), &quot;countryCode&quot;)
+                           .select($&quot;countryCode&quot;, $&quot;cluster.count&quot;.alias(&quot;count&quot;), ($&quot;cluster.count&quot; / $&quot;total.count&quot;).alias(&quot;proportion&quot;))
+  return propDF
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>createPropClusterDF: (cluster: org.apache.spark.sql.Column)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Below we see an example of the dataframes generated by <code>createPropClusterDF</code>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val clusterColumn = $&quot;notHappy&quot;
+val propClusterDF = createPropClusterDF(clusterColumn)
+propClusterDF.show(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-----------+-----+------------------+
+|countryCode|count|        proportion|
++-----------+-----+------------------+
+|         DZ|   80|0.5095541401273885|
+|         MM|   14|0.3181818181818182|
+|         CI|  164|0.6507936507936508|
++-----------+-----+------------------+
+only showing top 3 rows
+
+clusterColumn: org.apache.spark.sql.ColumnName = notHappy
+propClusterDF: org.apache.spark.sql.DataFrame = [countryCode: string, count: bigint ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def createPropClusterDFAndCreateTmpView (clusterName : String) = {
+  // function for creating proportion dataframes for each cluster and making them available for later python code
+  val propClusterDF = createPropClusterDF(org.apache.spark.sql.functions.col(clusterName))
+  // make df available to python/sql etc
+  propClusterDF.createOrReplaceTempView(clusterName)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>createPropClusterDFAndCreateTmpView: (clusterName: String)Unit
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// create proportion dataframes for each cluster and make them available for later python code
+emoticonClusters.keys.foreach(createPropClusterDFAndCreateTmpView _)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Now we turn to python to use the <code>pycountry</code> package in order to translate the country codes into another standard (three letters instead of two) which makes plotting with the built in databricks <code>display</code> a breeze. The cell below contains some functions that read the dataframes from the temporary view created in scala and translate them to pandas dataframes with the three letter country codes. Also, we filter out countries for which there are fewer than 100 tweets.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def add_iso_a3_col(df_cc):
+  cc_dict = {}
+  for country in pycountry.countries:
+    cc_dict[country.alpha_2] = country.alpha_3
+
+    df_cc[&quot;iso_a3&quot;] = df_cc[&quot;countryCode&quot;].map(cc_dict)
+  return df_cc
+
+def cc_df_from_spark_to_pandas_and_process(df_cc, columnOfInterest):
+  #df_cc should be a dataframe with a column &quot;countryCode&quot; and a column columnOfInterest which has some interesting numerical data
+  df_cc = df_cc.toPandas()
+  add_iso_a3_col(df_cc)
+  df_cc = df_cc[[&quot;iso_a3&quot;, columnOfInterest]]  #reorder to have iso_a3 as first column (required in order to use the map view in display), and select the useful columns
+  return df_cc
+
+from pyspark.sql.functions import col
+def createProps(clusterName):
+  df = sql(&quot;select * from &quot; + clusterName)
+  return cc_df_from_spark_to_pandas_and_process(df.filter(col(&quot;count&quot;)/col(&quot;proportion&quot;) &gt;= 100), &quot;proportion&quot;) # filter so that only countries with at least 100 tweets in a given country are used
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally, we can show the proportion of tweets in each country that fall into each cluster. Make sure that the plot type is set to <code>map</code> in the outputs from the cells below. It is possible to hover over the countries to see the precise values.</p>
+<p>If anything interesting can actually be read from these plots we leave for the reader to decide.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;happy&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_4.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;notHappy&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_5.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;monkey&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_6.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;cat&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_7.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;SK&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_8.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;prayer&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_9.JPG?raw=true" alt="" /></p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-10_group-Geosmus/01_Introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-10_group-Geosmus/01_Introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

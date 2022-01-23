@@ -1,0 +1,926 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>00_project - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-08_group-DistributedEnsemble/00_project.html">00_project</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="distributed-ensembles"><a class="header" href="#distributed-ensembles">Distributed ensembles</a></h1>
+<p><em>Amanda Olmin, Amirhossein Ahmadian and Jakob Lindqvist</em></p>
+<p><a href="https://www.youtube.com/watch?v=zbYewn3nDtk">Video presentation</a></p>
+</div>
+<div class="cell markdown">
+<p>Python version: python 3.7</p>
+<p><strong>Library dependencies</strong> - PySpark - PyTorch - toolz - matplotlib</p>
+</div>
+<div class="cell markdown">
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>In this project, we create a distributed ensemble of neural networks that we can train and make predictions with in a distributed fashion, and we also apply this model to the out-of-distribution detection problem [2] (detecting inputs that are highly dissimilar from the training data).</p>
+<h4 id="why-ensembles"><a class="header" href="#why-ensembles">Why ensembles?</a></h4>
+<p>Ensembles of neural networks - often have better predictive performance than single ensemble members [1] - have shown to provide reliable uncertainty estimates</p>
+<p>The latter quality is beneficial in itself but is especially useful when it comes to tasks such as out-of-distribution detection, where a model’s uncertainty estimates can be used to determine if a sample is in-distribution or not. We demonstrate this in the experiments below.</p>
+<h4 id="distributed-ensembles-1"><a class="header" href="#distributed-ensembles-1">Distributed ensembles</a></h4>
+<p>In Spark, it is common to distribute <em>data</em> over several worker nodes. In this way, the same function is performed on several nodes on different parts of the data. The result from each node is then communicated and aggregated to a final function output. Similarily, we can train a neural network (a single ensemble member) in a distributed way by distributing the data that we use to train it. This can for example be done using the built-in MLP and MLPC classes in Pyspark [3]. However, this approach requires continuous communication between nodes to update model weights (possibly at every iteration) since every node keeps its own version of the model weights. The approach therefore scales badly as - the number of model parameters grow (more information to communicate between nodes) - when the complexity of the training algorithm increases, e.g. we wish to use a stochastic training algorithm</p>
+<p>In this regard, the communication becomes a bottleneck. Asynchronous updating can reduce the amount of communication, but might also hurt model performance [4].</p>
+<p>Considering that the ensemble members are independent models, they never need to communicate during the training phase. Hence, training ensemble members in a way that requires the otherwise independent training processes to integrate or synchronize, would cause unnecessary costs, for example since the training processes all need to communicate through the driver node. The same holds for prediction; no communication is needed between ensemble members except at the very end when the predictions are aggregated.</p>
+<p>To avoid unnecessary communication, we distribute the <em>ensemble members</em> and train them on separate worker nodes such that we - are able to train several ensemble members in parallell (limited by the number of nodes in our cluster) and independently - avoid communication between worker nodes</p>
+<p>To achieve this, we implement our own training processes below. In addition, we implement our own MLP class with the help of PyTorch. MLP objects and their training data are then distributed on worker nodes using Spark. This is not only to avoid distributing the training data over several nodes during training but also to package the ensemble members in a way that makes it possible for us to send them between the driver and the worker nodes prior to and at the end of training.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/8_4.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h2 id="imports"><a class="header" href="#imports">Imports</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from random import randrange
+import random
+from pathlib import Path
+# External libs added to cluster
+from pyspark.mllib.random import RandomRDDs
+from pyspark.ml.feature import StringIndexer, OneHotEncoder, StandardScaler, VectorAssembler
+from pyspark.ml import Pipeline
+from pyspark.rdd import PipelinedRDD
+from toolz.itertoolz import partition_all
+from toolz.itertoolz import cons
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from matplotlib import pyplot as plt
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="data"><a class="header" href="#data">Data</a></h2>
+<p>We introduce the functions that we use to load the data for the experiments that we conduct. We split the available training data between ensemble members using sampling with or without replacement. The number of training data points that we can distribute to each ensemble member is only limited by the memory available to each worker node.</p>
+</div>
+<div class="cell markdown">
+<p><strong>TOY DATA</strong></p>
+<p>We create a function for generating data consisting of Gaussian clusters. The function takes as input, user defined means and variances for each cluster in the data as well as the total number of observations and a vector of intended class proportions. It also comes with an option to split the final RDD into train and test sets.</p>
+<p>We will use this data later on to demonstrate our distributed ensembles framework as well as to generate out-of-distribution data for OOD detection.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def create_gaussian_RDD(means, variances, num_observations, class_proportions, train_test_split=False):
+  &quot;&quot;&quot;Create toy Gaussian classification data
+  Let C := number of clusters/classes and P := number of data features
+  
+  Args: 
+    means (np.array[float]): mean vector of shape (C, P)
+    variances (np.array[float]): vector of variances, shape (C, P)
+    num_observations (scalar[int]): the total number of observations in the final data set
+    class_proportions (np.array[float]): vector of class proportions, length C
+    train_test_split: whether to split the data into train/test sets or not
+    
+  Returns:
+    Gaussian data, RDD of tuples (list(features), int(label))
+  &quot;&quot;&quot;
+  
+  assert means.shape[0] == variances.shape[0]
+  assert means.shape[1] == variances.shape[1]
+  assert class_proportions.sum() == 1
+    
+  num_classes = means.shape[0]
+  num_features = means.shape[1]
+  
+  data_rdd = sc.emptyRDD() 
+  for k in range(num_classes):
+    
+    # Generate standard normal data
+    class_size = int(num_observations * class_proportions[k])
+    class_rdd = RandomRDDs.normalVectorRDD(sc, numRows=class_size, numCols=num_features, numPartitions=1) #, seed=123)
+
+    # Map to true distribution
+    class_rdd_transformed = class_rdd.map(lambda v: means[k, :] + (variances[k, :]**0.5) * v)
+    
+    # Add labels
+    class_rdd_w_label = class_rdd_transformed.map(lambda v: (v, k)) 
+    
+    data_rdd = data_rdd.union(class_rdd_w_label)
+    
+  # We will shuffle and repartition the data
+  num_partitions = 10
+  shuffled_rdd =  data_rdd.sortBy(lambda v: randrange(num_observations)).repartition(num_partitions)
+  final_rdd = shuffled_rdd.map(tuple).map(lambda v: (list(v[0]), int(v[1])))
+  
+  if train_test_split:
+    train_rdd, test_rdd = final_rdd.randomSplit(weights=[0.8, 0.2], seed=12)
+    final_rdd = (train_rdd, test_rdd)
+    
+  return final_rdd                                   
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><strong>FIRE WALL DATA</strong></p>
+<p>We will also consider some real data. The dataset that we will use consits of traffic from a firewall tracking record. We have accessed it through the UCI Machine Learning repository [4]: https://archive.ics.uci.edu/ml/datasets/Internet+Firewall+Data.</p>
+<ul>
+<li>
+<p>Number of data points: 65,532.</p>
+</li>
+<li>
+<p>Number of features: 11 (all numerical).</p>
+</li>
+<li>
+<p>Number of classes: 4 (allow/deny/drop/reset both).</p>
+</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def load_firewall_data(train_test_split=False,file_location=&quot;/FileStore/shared_uploads/amanda.olmin@liu.se/fire_wall_data.csv&quot;):
+  &quot;&quot;&quot;Load and preprocess firewall data
+  Args:
+     file_location: file location from which to load the data
+     train_test_split: whether to split the data into train/test sets or not
+  
+  Returns:
+     Firewall data, RDD of tuples (list(features), int(label))
+  &quot;&quot;&quot;
+  
+  # File location and type
+  # file_location = &quot;/FileStore/shared_uploads/amanda.olmin@liu.se/fire_wall_data.csv&quot; 
+  file_type = &quot;csv&quot;
+
+  # CSV options
+  infer_schema = &quot;true&quot;
+  first_row_is_header = &quot;true&quot;
+  delimiter = &quot;,&quot;
+
+  # Load the data from file
+  df = spark.read.format(file_type) \
+      .option(&quot;inferSchema&quot;, infer_schema) \
+      .option(&quot;header&quot;, first_row_is_header) \
+      .option(&quot;sep&quot;, delimiter) \
+      .load(file_location)
+  
+  # Preprocess data
+  col_num = [&quot;Source Port&quot;, &quot;Destination Port&quot;, &quot;NAT Source Port&quot;, &quot;NAT Destination Port&quot;, &quot;Bytes&quot;, &quot;Bytes Sent&quot;, &quot;Bytes Received&quot;, &quot;Packets&quot;, &quot;Elapsed Time (sec)&quot;, &quot;pkts_sent&quot;, &quot;pkts_received&quot;]
+
+  # Index qualitative variable
+  indexer = StringIndexer(inputCol = &quot;Action&quot;, outputCol = &quot;label&quot;)
+
+  # Scale numerical features
+  va = VectorAssembler(inputCols = col_num, outputCol = &quot;numerical_features&quot;) 
+  scaler = StandardScaler(inputCol = &quot;numerical_features&quot;, outputCol = &quot;features&quot;)
+  
+  # Apply pipeline 
+  pipeline = Pipeline(stages=[indexer, va, scaler])
+  final_df = pipeline.fit(df).transform(df).select(&quot;features&quot;, &quot;label&quot;) 
+  
+  # Convert to RDD
+  final_rdd = final_df.rdd.map(tuple).map(lambda v: (list(v[0]), int(v[1])))
+  
+  if train_test_split:
+    train_rdd, test_rdd = final_rdd.randomSplit(weights=[0.8, 0.2], seed=12)
+    final_rdd = (train_rdd, test_rdd)
+
+  return final_rdd
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>** RDD partition **</p>
+<p>Below, we provide a function that partitions an RDD. We will use it to distribute data between ensemble members.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def get_partitioned_rdd(input_rdd, partition_size=1000):
+  &quot;&quot;&quot;Partition RDD 
+  
+  Args:
+    input_rdd: RDD to be partitioned
+  
+  Returns:
+    Partitioned RDD
+  &quot;&quot;&quot;
+  
+  return input_rdd.mapPartitions(lambda partition: partition_all(partition_size, partition))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="distributed-ensemble-of-neural-networks"><a class="header" href="#distributed-ensemble-of-neural-networks">Distributed ensemble of neural networks</a></h2>
+</div>
+<div class="cell markdown">
+<p><strong>PyTorch Model</strong></p>
+</div>
+<div class="cell markdown">
+<p>To implement the ensemble members, we first write an ordinary feedforward (MLP) neural network class using PyTorch, which has a Softmax output and Tanh activation functions. The number of layers and neurons in each layer is passed as an argument to the constructor of this class. Moreover, any instance of this network class (parameters and structure) can be easily stored in and loaded from a state dictionary (state_dict) object.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Feedforward network for classification
+class MLP(nn.Module):
+  
+  def __init__(self,shape):
+    #shape: number of neurons in each layer (including the input and output layers)
+    super(MLP,self).__init__()
+    
+    self.units=nn.ModuleList()
+    for i in range(len(shape)-1):
+      self.units.append(nn.Linear(shape[i],shape[i+1]))
+    
+    self._shape=shape
+    self._nlayers=len(shape)
+  
+  def forward(self,x):
+    
+    y=x
+    
+    for i,layer in enumerate(self.units):
+      if i&lt;self._nlayers-2:
+        y=nn.functional.tanh(layer(y))
+      else:
+        y=nn.functional.softmax(layer(y),dim=1)
+    
+    return y
+  
+  #constructing an instance of this class based on a state dictionary (network parameters)
+  @staticmethod
+  def from_state_dict(state_dict):
+    net_shape = MLP.shape_from_state_dict(state_dict)
+    net=MLP(net_shape)
+    net.load_state_dict(state_dict)
+    return net
+
+  @staticmethod
+  def shape_from_state_dict(state_dict):
+    &quot;&quot;&quot;Infer MLP layer shapes from state_dict&quot;&quot;&quot;
+    iter_ = iter(state_dict.items())
+    _, input_size = next(iter_)
+    bias_tensors = filter(lambda key_val: key_val[0].find(&quot;bias&quot;) != -1, iter_)
+    shapes = map(lambda key_val: key_val[1].size(0), bias_tensors)
+    return list(cons(input_size.size(1), shapes))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><strong>Functions for training and testing networks</strong></p>
+</div>
+<div class="cell markdown">
+<p>Here we have some functions that are used to train/test each individual network in the ensemble. The <em>Train</em> function takes the initial weights of a network, trains it on a set of input-taraget data based on stochastic gradient optimization and cross-entropy loss, and returns the state dictionary of the trained network. PyTorch's backpropagation and optimization tools are used to implement this function as usual. The <em>Predict</em> function simply takes the state dictionary corresponding to a network as well as a data point (or batch of data), and returns the output (probabilities) of the network at that point.</p>
+<p>We note that Spark can automatically distribute these functions on the nodes, and thus writing them for a distributed ensemble is not basically different from a local setup.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#utility class for pytorch data loader
+class DataSet(torch.utils.data.Dataset):
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+
+  def __len__(self):
+    return self.x.shape[0]
+
+  def __getitem__(self, ind):
+    x = self.x[ind]
+    y = self.y[ind]
+
+    return x, y
+
+#The main training function (is run on worker nodes)
+def Train(net_params,x,y):
+  #net_params: initial parameters of the feedforward network (state dictionary) 
+  #x,y: training data (pytorch tensors)
+
+  n_epochs=100
+  batchsize=10
+  
+  net=MLP.from_state_dict(net_params)
+  
+  train_data = DataSet(x, y)
+  dataloader = torch.utils.data.DataLoader(train_data, batch_size=batchsize)
+  
+  opt=optim.Adam(net.parameters())
+  loss=nn.CrossEntropyLoss()
+
+  for i in range(n_epochs):
+    for batch in dataloader:
+      
+      opt.zero_grad()
+      
+      xb,yb=batch
+      
+      yhat=net(xb)
+      err=loss(yhat,yb)
+      err.backward()
+  
+      opt.step()
+  
+  err=loss(net(x),y)
+  lossval=float(err.detach().numpy())
+  
+  #returns parameters of the trained network and loss
+  return (net.state_dict(),lossval)
+
+#Get the output of a feedforward network given an input tensor
+def Predict(net_params, x):
+  #net_params: parameters (state dictionary) of the network
+  #x: input (pytorch tensor)
+  net = MLP.from_state_dict(net_params)
+  net.eval()
+  return net(x)
+
+#Reshaping and converting the tuples stored in a dataset RDD into input and target tensors
+def Totensor(d):
+  #d: the dataset (list of tuples)
+  
+  x=[v[0] for v in d]
+  y=[v[1] for v in d]
+  x=torch.tensor(x,dtype=torch.float)
+  y=torch.tensor(y,dtype=torch.long)
+  
+  return (x,y)
+
+def make_prediction(state_dict, x):
+  print(state_dict)
+  return Predict(state_dict, x)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><strong>Creating an ensemble of networks, and training them in parallel</strong></p>
+</div>
+<div class="cell markdown">
+<p>We now use the class and functions defined above to create an ensemble of feedforward neural networks, and train it in a distributed fashion, where each network is trained on a single worker independently from the other ones. Firstly, several networks are initialized using the MLP class with a random number of hidden layers and neurons, and random initial weights. Using randomness helps to increase the diversity in the ensemble (without which, the outputs of ensemble members could get correlated with each other).</p>
+<p>As mentioned before, the training data is partioned into equal size parts, and each of the networks in the ensemble is assigned one part. Since the dataset is assumed to be an RDD (to let it be huge), an iterator object is needed which collects one part of the data RDD (transfers it from the cloud to the driver node) in each call. Note that we here implicitly assume that each part of the data (but not the whole dataset) fits into the memory of a single machine.</p>
+<p>After constructing the network object and loading data for each member of the ensemble, the state dictionary of the network and its corresponding training data are packed into a tuple, and appended to a list. The list of state_dict/data tuples is then parallelized to obtain an Spark RDD. We found out that it is difficult to directly put the PyTorch neural network objects in an RDD, apparently becasue Spark does not know by default how to encode these objects and transfer them between nodes. Therefore, we use the state dictionary instead, which contains all the necessary information about a network.</p>
+<p>Finally, the network training function (<em>Train</em> defined above) is applied to each element of the model/data RDD, in the form of a <em>map</em> operation. This tells Spark to run the function on each element in parallel (on worker machines) independently.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def train_ensemble(n_models, inputdims, nclasses, max_layers, min_neurons, max_neurons, data_iterator):
+  &quot;&quot;&quot;Constructing and training a distributed ensemble of feedforward networks
+  
+    Args:
+      n_models: number of the ensemble memebrs
+      inputdims: number of features dimesnions
+      nclasses: number of the classes
+      max_layers: maximum allowed number of hidden layers for the networks
+      min_neurons,max_neurons: the valid range for the number of neurons in each hidden layer
+      data_iterator: a Python iterator over the parts of the training data (one part per each member of the ensemble)
+
+    Returns: a list of state dictionaries of the trained networks
+  &quot;&quot;&quot;
+  
+  # initialization
+  model_data=[] # pairs of model parameters and their training data
+  for i in range(n_models):
+    # pick random number of hidden layers and neurons for each network
+    nhidden=random.randint(1, max_layers)
+    shape=[inputdims]
+    for k in range(nhidden):
+      shape.append(random.randint(min_neurons, max_neurons))
+    shape.append(nclasses)
+    
+    net=MLP(shape)
+    
+    #fetch the next part of data
+    d=next(data_iterator)
+    x=d[0]
+    y=d[1]
+  
+    model_data.append((net.state_dict(),x,y))
+
+  # distribute the array
+  model_data_par= sc.parallelize(model_data)
+  # execute the train function on the worker nodes
+  models_trained = model_data_par.map(lambda t: Train(*t))
+  
+  #transfer the trained models and loss values to the driver
+  models_trained=models_trained.collect()
+  
+  #print the training loss values
+  print(&quot;training losses:&quot;)
+  print([v[1] for v in models_trained])
+
+  # return the state dicts
+  return [v[0] for v in models_trained]
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>** Utility functions for saving and loading the ensemble model from the disk **</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def save_models_distr(models, dir_, model_names=None):
+  dir_ = Path(dir_)
+  dir_.mkdir(exist_ok=True, parents=True)
+  
+  if model_names is None:
+    model_names = [f&quot;m{idx}.pt&quot; for idx in range(0, models.count())]
+  assert len(model_names) == models.count()
+  model_paths = [dir_ / model_name for model_name in model_names]
+  model_paths = sc.parallelize(model_paths)
+  models.zip(model_paths).foreach(lambda dict_and_path: torch.save(*dict_and_path))
+
+def save_models(models, dir_, model_names=None):
+  dir_ = Path(dir_)
+  dir_.mkdir(exist_ok=True, parents=True)
+  
+  if model_names is None:
+    model_names = [f&quot;m{idx}.pt&quot; for idx in range(0, len(models))]
+  assert len(model_names) == len(models)
+  model_paths = [dir_ / model_name for model_name in model_names]
+  for state_dict, path in zip(models, model_paths):
+    torch.save(state_dict, path)
+  
+def load_models(model_names, dir_):
+  dir_ = Path(dir_)
+  model_paths = [dir_ / model_name for model_name in model_names]
+  state_dicts = [torch.load(path) for path in model_paths]
+  return sc.parallelize(state_dicts)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="distributed-ensembles-prediction-api"><a class="header" href="#distributed-ensembles-prediction-api">Distributed ensembles prediction API</a></h1>
+<p>From the training process we get a distributed iterator <code>models</code> over the trained models. (NB. the <code>train_ensemble</code> function actually collects the trained models for convenience.) Internally this is an iterator over <code>torch.state_dicts</code> holding the param's of each model respectively.</p>
+<p>There are different ways in which we can do predictions:</p>
+<ul>
+<li>
+<p>Distributed predictions with <code>ens_preds(models, test_x)</code>, which maps the combined model and test data to predictions for each data point. This iterator can be collected to a list of the predictions for each ensemble member, or further processed in a distributed and functional manner. This is the most flexible variant since it preserves the prediction of every member on every datapoint. It is also the most expensive (if we do collect all the data).</p>
+</li>
+<li>
+<p>Reduced/aggregated predictions with <code>ens_preds_reduced(models, test_x, red_fn)</code>. Working with an ensemble, we are often concerned with some aggregate of the members' predictions, eg., the average prediction. For this we provide an reducing version of <code>ens_preds</code> where the user need only supply the reduce function <code>red_fn</code>, describing how to combine the predictions of two ensemble members. For instance, if you would like to get the average probability vector of a classifier ensemble for every data point you would use:</p>
+<pre><code class="language-python">avg_prob_vecs = ens_preds_reduced(models, x, lambda x, y: (x+y)/2)
+</code></pre>
+<p>Internally, this simply calls <code>.reduce(red_fn)</code> on the iterator returned from <code>ens_preds</code>. This is merely a convenience function.</p>
+</li>
+<li>
+<p>Metrics per ensemble member. If the number of test samples is large, we will collect a lot of predictions over the cluster. If we know that we only want an aggregate metric for each member across the whole test data, we use the <code>ens_metrics</code> method for aggregation on the worker nodes.</p>
+<pre><code class="language-python">avg_acc_per_member = ens_metrics(models, test_input, test_true_labels, &lt;list of metric functions&gt;)
+</code></pre>
+<p>Note that each metric function must be on the form: f: R^(N x D_x) x R^(N) --&gt; T</p>
+</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def ens_preds(models, test_x):
+  &quot;&quot;&quot;Distributed ensemble predictions
+  Takes a set of models and test data and makes distributed predictions
+  Let N := number of data points and D_x := the dimension of a single datapoint x
+  
+  Args:
+    models (list[state_dict]): set of models represented as a list (state_dict, shape)
+    test_x (torch.Tensor): Tensor of size (N, D_x)
+  
+  Returns:
+    Distributed iterator over the predictions. E.g. an iterator over probability vectors in the case of a classifier ens.
+  &quot;&quot;&quot;
+  pred_iter = _pred_models_iter(models, test_x)
+  return pred_iter.map(lambda t: Predict(*t))
+
+def ens_preds_reduced(models, test_x, red_fn):
+  &quot;&quot;&quot;Reduced/aggregated ensemble predictions
+  Takes a set of models and test data and makes distributed predictions and reduces them with a provided `red_fn`
+  Let N := number of data points and D_x := the dimension of a single datapoint x
+  
+  Args:
+    models (list[state_dict]): set of models represented as a list (state_dict, shape)
+    test_x (torch.Tensor): Tensor of size (N, D_x)
+    red_fn function: f: R^D_x x R^D_x --&gt; R^D_x
+  
+  Returns:
+    Single reduced/aggregated prediction of the whole ensemble
+  &quot;&quot;&quot;
+  return ens_preds(models, test_x).reduce(red_fn)
+
+def ens_metrics(models, test_x, test_y, metrics):
+  &quot;&quot;&quot;Distributed ensemble metrics
+  Takes a set of models and test data, predicts probability vectors and calculates the provided metrics
+  given true labels `test_y`
+  Let N := number of data points and D_x := the dimension of a single datapoint x
+  
+  Args:
+    models (list[state_dict]): set of models represented as a list (state_dict, shape)
+    test_x (torch.Tensor): Tensor of size (N, D_x)
+    test_y (torch.Tensor): Tensor of size (N). NB: hard labels
+    metrics (list[functions]): List of functions where each funcion f: R^(N x D_x) x R^(N) --&gt; T, where T is a generic output type.
+  &quot;&quot;&quot;
+  return ens_preds(models, test_x).map(lambda prob_vecs: [metric(prob_vecs, test_y) for metric in metrics])
+
+
+def _pred_models_iter(models, test_x):
+  &quot;&quot;&quot;Helper function to generate a distributed iterator over models and test data
+  NB: the same `test_x` is given to all elements in the iterator
+  
+  Args:
+    models (list[state_dict]): set of models represented as a list (state_dict, shape)
+    test_x (torch.Tensor): Tensor of size (N, D_x)
+  &quot;&quot;&quot;
+  if isinstance(models, PipelinedRDD):
+    return models.map(lambda model: (model, test_x))
+  elif isinstance(models, list):
+    models_and_data = [(params, test_x) for params in models]
+    return sc.parallelize(models_and_data)
+  else:
+    raise TypeError(&quot;'models' must be an RDD or a list&quot;)
+
+def avg_accuracy(prob_vecs, labels):
+  &quot;&quot;&quot;Example metrics function: average accuracy
+  Let N := number of data points and C := the number of classes
+  
+  Args:
+    prob_vecs (torch.Tensor): Tensor of size (N, C)
+    labels (torch.Tensor): Tensor of size (N), hard labels, with classes corresponding to indices 0, ..., C-1
+  
+  Returns:
+    torch.Tensor: Tensor of size (N), average accuracy over all datapoints.
+  &quot;&quot;&quot;
+  hard_preds = torch.argmax(prob_vecs, 1)
+  return (hard_preds == labels).float().mean()
+
+def entropy(prob_vecs):
+  return - (prob_vecs * torch.log(prob_vecs)).sum(1)
+
+def avg_entropy(prob_vec_1, prob_vec_2):
+  e_1 = entropy(prob_vec_1)
+  e_2 = entropy(prob_vec_2)
+  return (e_1 + e_2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="application-example-distributed-predictions"><a class="header" href="#application-example-distributed-predictions">Application example: Distributed predictions</a></h1>
+<p>Let's first demonstrate our distributed ensembles with a simple toy example. We'll create gaussian toy data with three slightly overlapping clusters:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">means = np.array([(0, 0), (1,0), (1, 1)])
+variances = 0.1 * np.ones((3, 2))
+num_observations = 5000
+class_proportions = np.array([1/3, 1/3, 1/3])
+data_train, data_test = create_gaussian_RDD(means, variances, num_observations, class_proportions, train_test_split=True)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Now we'll create and distributedly train a classifier ensemble and save it to file. This is not necessary, we can -- in fact -- make predictions with the trained ensemble without ever collecting it from the worker nodes, but in most use cases it will be convenient to save the ensemble on disk.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_iterator=get_partitioned_rdd(data_train).map(Totensor).toLocalIterator()
+n_models=5 # ensemble size
+inputdims=2 # features dimensions
+nclasses=3 # number of classes
+max_layers=2
+min_neurons=2
+max_neurons=5
+
+models_trained = train_ensemble(n_models, inputdims, nclasses, max_layers, min_neurons, max_neurons, data_iterator)
+saved_models_dir = Path(&quot;saved_models/gaussian&quot;)
+save_models(models_trained, saved_models_dir)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>training losses:
+[0.6597320437431335, 0.6314507126808167, 0.6506103277206421, 0.6424266695976257, 0.657072901725769]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="making-distributed-predictions"><a class="header" href="#making-distributed-predictions">Making distributed predictions</a></h2>
+<p>With the trained ensemble we can make predictions and calculate metrics, all in a distributed manner.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">test_xx, test_yy = Totensor(data_test.collect())
+model_names = [f&quot;m{idx}.pt&quot; for idx in range(n_models)]
+models = load_models(model_names, saved_models_dir).collect()
+avg_prob_vecs = ens_preds_reduced(models, test_xx, lambda x, y: (x+y)/2) # (A single) Average prob. vec for all data points.
+avg_acc = ens_metrics(models, test_xx, test_yy, [avg_accuracy]).collect() # Average acc. for each ens. over all data points
+
+print(f&quot;Average accuracy for each ensemble member: {[acc[0].item() for acc in avg_acc]}&quot;)
+print(f&quot;Average accuracy for the whole ensemble: {avg_accuracy(avg_prob_vecs, test_yy).item()}&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Average accuracy for each ensemble member: [0.9240759015083313, 0.9240759015083313, 0.9160839319229126, 0.9110888838768005, 0.9220778942108154]
+Average accuracy for the whole ensemble: 0.9210789203643799
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>We can also make use of the uncertainty description provided by the ensemble. We'll plot the test data, each point coloured the predicted distribution, which will illustrate the certain predictions with distinct colur and uncertain with muddied colours.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">preds = avg_prob_vecs.detach().numpy()
+hard_preds = avg_prob_vecs.argmax(1).detach().numpy()
+every_nth = 5
+train_xx, train_yy = Totensor(data_train.collect())
+
+(fig, (ax_1, ax_2)) = plt.subplots(1, 2)
+# For the train data we use the true labels to simulate a completely certain prediction.
+color_map = {0: [1, 0 ,0], 1: [0, 1, 0], 2: [0, 0, 1]}
+ax_1.scatter(train_xx[:, 0], train_xx[:, 1], c=[color_map[class_.item()] for class_ in train_yy], label=&quot;Train&quot;)
+ax_2.scatter(test_xx[::every_nth, 0], test_xx[::every_nth, 1], c=preds[::every_nth], label=&quot;Test&quot;)
+ax_1.set_title(&quot;Train&quot;)
+ax_2.set_title(&quot;Test&quot;)
+plt.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/8_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h1 id="application-example-out-of-distribution-detection"><a class="header" href="#application-example-out-of-distribution-detection">Application example: Out of distribution detection</a></h1>
+<p>Our distributed ensemble can be used for out of distribution (OOD) detection. A simple way is to measure the entropy of the combined ensemble prediction; high entropy signals weird data, not seen in the training distribution.</p>
+<p>&quot;Real world&quot; out of distribution data can be hard to come by, but a typical example would be images in different contexts. E.g. scenic vistas or pathology scans may share the same feature space but have very different distribution. For the data we have collected, no such OOD set exists, so we will showcase it with an OOD set of gaussian noise. Of course, noise that is very far from the in distribution (ID) data will saturate the classifiers softmax for one element, actually yielding very confident, low entropy, nonsense predictions.</p>
+<p>Regardless, let's see how to do this with the distributed ensemble. First, we train it and again, save the trained parameters to file</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_train, data_test = load_firewall_data(True)
+data_iterator=get_partitioned_rdd(data_train).map(Totensor).toLocalIterator()
+
+n_models=10
+models_trained=train_ensemble(n_models,
+                              inputdims=11,
+                              nclasses=4,
+                              max_layers=4,
+                              min_neurons=5,
+                              max_neurons=15,
+                              data_iterator=data_iterator) 
+saved_models_dir = Path(&quot;saved_models/firewall&quot;)
+save_models(models_trained, saved_models_dir)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>training losses:
+[0.7487057447433472, 0.750811755657196, 0.7578539252281189, 0.7506877183914185, 0.7623474597930908, 0.7521470785140991, 0.7517384886741638, 0.7481321692466736, 0.750828742980957, 0.7547193765640259]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def gen_ood_data(test_x, num_samples):
+  num_test_samples, dim_x = test_x.size()
+  random_mean = np.random.rand(dim_x).reshape(1, dim_x)
+  random_cov = np.random.rand(dim_x).reshape(1, dim_x) * 10
+  ood_x, _ = Totensor(create_gaussian_RDD(random_mean, random_cov, num_test_samples, np.array([1.0]), train_test_split=False).collect())
+  return ood_x
+
+  
+data = data_test.collect()
+batch_size = -1
+batch = data[0:batch_size]
+test_xx, test_yy = Totensor(batch)
+ood_x = gen_ood_data(test_xx, batch_size)
+
+models_p = load_models(model_names, saved_models_dir).collect()
+
+# We can either calculate the average entropy of the ensemble members
+avg_entropy_id = ens_preds(models_p, test_xx).map(entropy).reduce(lambda x, y: (x+y)/2).detach().numpy()
+avg_entropy_ood = ens_preds(models_p, ood_x).map(entropy).reduce(lambda x, y: (x+y)/2).detach().numpy()
+
+# ... or we the entropy of the average ensemble prediction.
+entropy_avg_id = entropy(ens_preds_reduced(models_p, test_xx, lambda x, y: (x+y)/2)).detach().numpy()
+entropy_avg_ood = entropy(ens_preds_reduced(models_p, ood_x, lambda x, y: (x+y)/2)).detach().numpy()
+
+# Set entropy measure
+entropy_id = avg_entropy_id
+entropy_ood = avg_entropy_ood
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><strong>Comparison of the entropy of the ensemble classifier on in-distribution and OOD data</strong></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def entropy_hist(id_, ood, n_bins, upper_x_bound):
+  (fig, (ax_1, ax_2)) = plt.subplots(2, 1)
+  _plot_hist(ax_1, id_, n_bins, &quot;ID&quot;, &quot;b&quot;, upper_x_bound)
+  _plot_hist(ax_2, ood, n_bins, &quot;OOD&quot;, &quot;r&quot;, upper_x_bound)
+  fig.suptitle(&quot;Entropy histogram&quot;)
+  ax_2.set_xlabel(&quot;entropy&quot;)
+  plt.show()
+
+def _plot_hist(ax, counts, n_bins, label, color, upper_x_bound):
+    ax.hist(counts, bins=n_bins, label=label, color=color, density=True)
+    ax.set_xbound(lower = 0.0, upper = upper_x_bound)
+    ax.set_ylabel(&quot;rel freq&quot;)
+    ax.legend()
+  
+n_bins = 100
+entropy_bound = 0.15
+entropy_hist(entropy_id, entropy_ood, n_bins, entropy_bound)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/8_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p><strong>Evaluation of the OOD detection in terms of ROC curve and area under this curve (AUROC)</strong></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def is_ood(entropies, cut_off_entropy):
+  return entropies &gt; cut_off_entropy
+
+def fpr_and_tpr(id_, ood, res):
+  max_entropy = max(id_.max(), ood.max())
+  # max_entropy = id_.max()
+  thresholds = np.arange(0.0, max_entropy, max_entropy / res)
+  roc = np.array([(fpr(id_, th), tpr(ood, th)) for th in thresholds])
+  roc = roc[roc[:,0].argsort()]
+  fprs, tprs = (roc[:, 0], roc[:, 1])
+  return fprs, tprs
+
+def fpr(id_, th):
+  id_pred = is_ood(id_, th)
+  fp = id_pred.sum()
+  tn = id_pred.shape[0] - fp
+  return fp / (tn + fp)
+
+def tpr(ood, th):
+  ood_pred = is_ood(ood, th)
+  tp = ood_pred.sum()
+  fn = ood_pred.shape[0] - tp
+  return tp / (tp + fn)
+
+fpr, tpr = fpr_and_tpr(avg_entropy_id, avg_entropy_ood, res = 100)
+(fig, ax) = plt.subplots()
+
+ax.plot(fpr, tpr)
+ax.set_xlabel(&quot;FPR&quot;)
+ax.set_ylabel(&quot;TPR&quot;)
+ax.set_title(&quot;ROC&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/8_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">print(f&quot;AUROC: {np.trapz(tpr, fpr)}&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>AUROC: 0.6480554090292237
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="references"><a class="header" href="#references">References</a></h2>
+<p>[1] Lakshminarayanan, B., Pritzel, A., &amp; Blundell, C. (2017). Simple and scalable predictive uncertainty estimation using deep ensembles. In Advances in neural information processing systems (pp. 6402-6413).</p>
+<p>[2] Ovadia, Y., Fertig, E., Ren, J., Nado, Z., Sculley, D., Nowozin, S., ... &amp; Snoek, J. (2019). Can you trust your model's uncertainty? Evaluating predictive uncertainty under dataset shift. In Advances in Neural Information Processing Systems (pp. 13991-14002).</p>
+<p>[3] Apache Spark. (2021, 01, 11). Classification and Regression [https://spark.apache.org/docs/latest/ml-classification-regression.html].</p>
+<p>[4] Chen, J., Pan, X., Monga, R., Bengio, S., &amp; Jozefowicz, R. (2016). Revisiting distributed synchronous SGD. arXiv preprint arXiv:1604.00981.</p>
+<p>[5] Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

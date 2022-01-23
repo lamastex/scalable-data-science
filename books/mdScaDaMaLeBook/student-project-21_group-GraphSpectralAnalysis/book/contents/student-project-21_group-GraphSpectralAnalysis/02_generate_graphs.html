@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>02_generate_graphs - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-21_group-GraphSpectralAnalysis/00_introduction.html">00_introduction</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html">01_preprocess_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-21_group-GraphSpectralAnalysis/02_generate_graphs.html" class="active">02_generate_graphs</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.html">03_compute_rsvd.</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-21_group-GraphSpectralAnalysis/04_analyse_eigenvalues.html">04_analyse_eigenvalues</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="generate-random-graphs"><a class="header" href="#generate-random-graphs">Generate random graphs</a></h1>
+<p>Here random graphs are generated, first using Erdös-Renyi method and then using R-MAT.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.graphx.util.GraphGenerators
+import scala.util.Random
+import org.apache.spark.sql.{Row, DataFrame}
+import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.{functions =&gt; F}
+import org.apache.spark.sql.types.{IntegerType, LongType, DoubleType, StringType, StructField, StructType}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.graphx.util.GraphGenerators
+import scala.util.Random
+import org.apache.spark.sql.{Row, DataFrame}
+import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.{functions=&gt;F}
+import org.apache.spark.sql.types.{IntegerType, LongType, DoubleType, StringType, StructField, StructType}
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Values taken from the Ethereum graph
+val numNodes = 1520925
+val numEdges = 2152835
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>numNodes: Int = 1520925
+numEdges: Int = 2152835
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="function-for-making-a-canonical-ordering-for-the-edges-of-a-graph"><a class="header" href="#function-for-making-a-canonical-ordering-for-the-edges-of-a-graph">Function for making a canonical ordering for the edges of a graph</a></h2>
+<ul>
+<li>Input is a dataframe with rows of &quot;src&quot; and &quot;dst&quot; node numbers</li>
+<li>A new node id is computed such that the nodes have ids 0,1,2,...</li>
+<li>The canonical ordering is made such that each edge will point from lower to higher index</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def makeEdgesCanonical (edgeDF : org.apache.spark.sql.DataFrame): org.apache.spark.sql.DataFrame = {
+  // Remove self-loops
+  val edgeDFClean = edgeDF.distinct().where(F.col(&quot;src&quot;) =!= F.col(&quot;dst&quot;))
+  
+  // Provide each node with an index id
+  val nodes = edgeDFClean.select(F.col(&quot;src&quot;).alias(&quot;node&quot;)).union(edgeDFClean.select(F.col(&quot;dst&quot;).alias(&quot;node&quot;))).distinct()
+  val nodes_window = Window.orderBy(&quot;node&quot;)
+  val nodesWithids = nodes.withColumn(&quot;id&quot;, F.row_number().over(nodes_window))
+  
+  // Add the canonical node ids to the edgeDF and drop the old ids
+  val dstNodes = nodesWithids.withColumnRenamed(&quot;node&quot;, &quot;dst&quot;).withColumnRenamed(&quot;id&quot;, &quot;dst__&quot;)
+  val srcNodes = nodesWithids.withColumnRenamed(&quot;node&quot;, &quot;src&quot;).withColumnRenamed(&quot;id&quot;, &quot;src__&quot;)
+  val edgesWithBothIds = edgeDFClean.join(dstNodes, dstNodes(&quot;dst&quot;) === edgeDFClean(&quot;dst&quot;))
+                           .join(srcNodes, srcNodes(&quot;src&quot;) === edgeDFClean(&quot;src&quot;))
+                           .drop(&quot;src&quot;).drop(&quot;dst&quot;)
+  
+  val edgesWithCanonicalIds = edgesWithBothIds.withColumn(&quot;src&quot;,
+                    F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), F.col(&quot;src__&quot;)).otherwise(F.col(&quot;dst__&quot;))
+                  ).withColumn(&quot;dst&quot;,
+                    F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), F.col(&quot;dst__&quot;)).otherwise(F.col(&quot;src__&quot;))
+                  ).drop(&quot;src__&quot;).drop(&quot;dst__&quot;).distinct().where(F.col(&quot;src&quot;) =!= F.col(&quot;dst&quot;))
+  
+  val edges_window = Window.orderBy(F.col(&quot;src&quot;), F.col(&quot;dst&quot;))
+  val GroupedCanonicalEdges = edgesWithCanonicalIds.withColumn(&quot;id&quot;, F.row_number().over(edges_window))
+  return GroupedCanonicalEdges
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>makeEdgesCanonical: (edgeDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="generate-erdös-renyi-graph-uniform-edge-sampling"><a class="header" href="#generate-erdös-renyi-graph-uniform-edge-sampling">Generate Erdös-Renyi graph (uniform edge sampling)</a></h2>
+</div>
+<div class="cell markdown">
+<h4 id="function-for-sampling-an-erdös-renyi-graph"><a class="header" href="#function-for-sampling-an-erdös-renyi-graph">Function for sampling an Erdös-Renyi graph</a></h4>
+<p>The resulting graph will have at most the number of nodes given by numNodes and at most numEdges edges. The number of nodes is less than numNodes if some nodes did not have an edge to another node. The number of edges is less than numEdges if some edges are duplicates or if some edges are self-loops.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def sampleERGraph (numNodes : Int, numEdges : Int, iter : Int): org.apache.spark.sql.DataFrame = {
+  val randomEdges = sc.parallelize(0 until numEdges).map {
+    idx =&gt;
+      val random = new Random(42 + iter * numEdges + idx)
+      val src = random.nextInt(numNodes)
+      val dst = random.nextInt(numNodes)
+      if (src &gt; dst) Row(dst, src) else Row(src, dst)
+  }
+
+  val schema = new StructType()
+    .add(StructField(&quot;src&quot;, IntegerType, true))
+    .add(StructField(&quot;dst&quot;, IntegerType, true))
+
+  val groupedCanonicalEdges = makeEdgesCanonical(spark.createDataFrame(randomEdges, schema))
+  return groupedCanonicalEdges
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>sampleERGraph: (numNodes: Int, numEdges: Int, iter: Int)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="sample-and-save-10-different-erdös-renyi-graphs-with-different-seeds-and-save-each-to-parquet"><a class="header" href="#sample-and-save-10-different-erdös-renyi-graphs-with-different-seeds-and-save-each-to-parquet">Sample and save 10 different Erdös-Renyi graphs with different seeds and save each to parquet</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for(i &lt;- 0 to 9) {
+  val groupedCanonicalEdges = sampleERGraph(numNodes, numEdges, iter=i)
+  groupedCanonicalEdges.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(&quot;/projects/group21/uniform_random_graph&quot; + i)
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="generate-r-mat-graph"><a class="header" href="#generate-r-mat-graph">Generate R-MAT graph</a></h2>
+</div>
+<div class="cell markdown">
+<h4 id="the-default-parameters-for-r-mat-generation"><a class="header" href="#the-default-parameters-for-r-mat-generation">The default parameters for R-MAT generation</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(&quot;RMAT a: &quot; + GraphGenerators.RMATa)
+println(&quot;RMAT b: &quot; + GraphGenerators.RMATb)
+println(&quot;RMAT c: &quot; + GraphGenerators.RMATc)
+println(&quot;RMAT d: &quot; + GraphGenerators.RMATd)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>RMATa: 0.45
+RMATb: 0.15
+RMATc: 0.15
+RMATd: 0.25
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="function-for-generating-a-r-mat-graph-storing-the-edges-as-a-dataframe-and-applying-makeedgescanonical"><a class="header" href="#function-for-generating-a-r-mat-graph-storing-the-edges-as-a-dataframe-and-applying-makeedgescanonical">Function for generating a R-MAT graph, storing the edges as a Dataframe and applying makeEdgesCanonical</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def sampleRMATGraph (numNodes : Int, numEdges : Int): org.apache.spark.sql.DataFrame = {
+  val rmatGraphraw = GraphGenerators.rmatGraph(sc=spark.sparkContext, requestedNumVertices=numNodes, numEdges=numEdges)
+  val rmatedges = rmatGraphraw.edges.map{ 
+    edge =&gt; Row(edge.srcId, edge.dstId)
+  }
+
+  val schema = new StructType()
+    .add(StructField(&quot;src&quot;, LongType, true))
+    .add(StructField(&quot;dst&quot;, LongType, true))
+
+  val rmatGroupedCanonicalEdges = makeEdgesCanonical(spark.createDataFrame(rmatedges, schema))
+  return rmatGroupedCanonicalEdges
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>sampleRMATGraph: (numNodes: Int, numEdges: Int)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="sample-10-r-mat-graphs-and-save-each-to-parquet"><a class="header" href="#sample-10-r-mat-graphs-and-save-each-to-parquet">Sample 10 R-MAT graphs and save each to parquet</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for(i &lt;- 0 to 9) {
+  val groupedCanonicalEdges = sampleRMATGraph(numNodes, numEdges)
+  groupedCanonicalEdges.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(&quot;/projects/group21/rmat_random_graph&quot; + i)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_FundamentalMatrix - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-19_group-Featuring/01_FundamentalMatrix.html">01_FundamentalMatrix</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="fundamental-matrix"><a class="header" href="#fundamental-matrix">Fundamental Matrix</a></h1>
+</div>
+<div class="cell markdown">
+<p>Group members: Linn Öström, Patrik Persson, Johan Oxenstierna, and Alexander Dürr</p>
+<p><strong>Link to our video explaining the 1) theory, 2) preprocessing the dataset, 3) algorithm and 4) results</strong> <a href="https://drive.google.com/drive/folders/1zEWj6JsJEUu9f8Q5Xy_avwxQ3yJ9oI7Z?usp=sharing">https://drive.google.com/drive/folders/1zEWj6JsJEUu9f8Q5Xy_avwxQ3yJ9oI7Z?usp=sharing</a></p>
+<p>alternatively: <a href="https://youtu.be/eJ2LDtNad08">https://youtu.be/eJ2LDtNad08</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="problem-formulation"><a class="header" href="#problem-formulation">Problem formulation</a></h2>
+<p>A common problem in computer vision is estimating the fundamental matrix based on a image pair. The fundamental matrix relates corresponding points in stereo geometry, and is useful as a pre-processing step for example when one wants to perform reconstruction of a captured scene. In this small project we use a scalable distributed algorithm to compute fundamental matrices between a large set of images.</p>
+<h3 id="short-theory-section"><a class="header" href="#short-theory-section">Short theory section</a></h3>
+<p>Assume that we want to link points in some image taken by camera <img src="https://latex.codecogs.com/svg.latex?&space;P_1"  /> to points in an image taken by another camera <img src="https://latex.codecogs.com/svg.latex?&space;P_2"  />. Let <img src="https://latex.codecogs.com/svg.latex?&space;x_i" /> and <img src="https://latex.codecogs.com/svg.latex?&space;x_i'" /> denote the projections of global point <img src="https://latex.codecogs.com/svg.latex?&space;X_i" /> onto the cameras <img src="https://latex.codecogs.com/svg.latex?&space;P_1" /> and <img src="https://latex.codecogs.com/svg.latex?&space;P_2" />, respectivly. Then the points are related as follows</p>
+<p><img src="https://latex.codecogs.com/svg.latex?&space;\begin{cases}\lambda_i x_i = P_1X_i \\ \lambda_i' x_i' = P_2X_i
+          \end{cases} \Leftrightarrow \quad \begin{cases}\lambda_i x_i = P_1HH^{-1}X_i \\ \lambda_i' x_i' = P_2HH^{-1}X_i
+          \end{cases} \Leftrightarrow \quad \begin{cases}\lambda_i x_i = \tilde{P_1}\tilde{X_i} \\ \lambda_i' x_i' = \tilde{P_2}\tilde{X_i}
+          \end{cases}"  /></p>
+<p>where <img src="https://latex.codecogs.com/svg.latex?&space;\lambda, \lambda'" /> are scale factors. Since we always can apply a projective transformation <img src="https://latex.codecogs.com/svg.latex?&space;H"  /> to set one of the cameras to <img src="https://latex.codecogs.com/svg.latex?&space;P_1 = [I \quad 0]" /> and the other to some <img src="https://latex.codecogs.com/svg.latex?&space;P_2 = [A \quad t]" /> we can parametrize the global point <img src="https://latex.codecogs.com/svg.latex?&space;X_i" /> by <img src="https://latex.codecogs.com/svg.latex?&space;X_i(\lambda) = [\lambda x_i \quad 1]^T" />. Thus the projected point onto camera <img src="https://latex.codecogs.com/svg.latex?&space;P_2" /> is represented by the line <img src="https://latex.codecogs.com/svg.latex?&space;P_2X_i(\lambda) = \lambda Ax_i + t " />. This line is called the epipolar line to the point <img src="https://latex.codecogs.com/svg.latex?&space;x_i" /> in epipolar geomtry, and descirbes how the point <img src="https://latex.codecogs.com/svg.latex?&space;x_i" /> in image 1 is related to points on in image 2. Since all scene points that can project to <img src="https://latex.codecogs.com/svg.latex?&space;x_i" /> are on the viewing ray, all points in the second image that can correspond <img src="https://latex.codecogs.com/svg.latex?&space;x_i" /> have to be on the epipolar line. This condition is called the epipolar constraint.</p>
+<p><img src="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT10/img17.gif" alt="plot" /></p>
+<p>Taking two points on this line (one of them being <img src="https://latex.codecogs.com/svg.latex?&space;e'" /> using <img src="https://latex.codecogs.com/svg.latex?&space;\lambda = 0" />), (add what is e_2) we can derive an expression of this line <img src="https://latex.codecogs.com/svg.latex?&space;\ell" />, as any point x on the line <img src="https://latex.codecogs.com/svg.latex?&space;\ell" /> must fulfill <img src="https://latex.codecogs.com/svg.latex?&space;\ell^Tx = 0" />. Thus the line is thus given by</p>
+<p><img src="https://latex.codecogs.com/svg.latex?&space;\ell = t 
+          \times (Ax +t ) = t \times (Ax) = e' \times Ax_i.\\" /></p>
+<p>Let <img src="https://latex.codecogs.com/svg.latex?&space;F = e' \times A " />, this is called the fundamental matrix. The fundamental matrix thus is a mathematical formulation which links points in image 1 to lines in image 2 (and vice versa). If <img src="https://latex.codecogs.com/svg.latex?&space;x'" /> corresponds to <img src="https://latex.codecogs.com/svg.latex?&space;x" /> then the epipolar constraint can be written</p>
+<img src="https://latex.codecogs.com/svg.latex?&space;x'^T\ell = x'^T F x = 0 " />
+<p>F is a 3x 3 matrix with 9 entiers and has 7 degrees of freedom. It can be estimated using 7 points using the 7-point algorithm.</p>
+<p>Before we have assumed the the correspndeces between points in the imagaes are known, however these are found by first extracting features in the images using some form of feature extractor (e.g. SIFT) and subsequently finding matches using some mathcing criterion/algorithm (e.g. using Lowes criterion or in our case FLANN based matcher)</p>
+<h3 id="sift"><a class="header" href="#sift">SIFT</a></h3>
+<p>Scale-invariant feature transform (SIFT) is a feature detection algorithm which detect and describe local features in images, see examples of detected SIFT features in the two images (a) and (b). SIFT finds local features present in the image and compute desriptors and locations of these features. Next we need to link the features present in image 1 to the features in image 2, which can be done using e.g. a FLANN (Fast Library for Approximate Nearest Neighbors) based matcher. In short the features in the images are compared and the matches are found using a nearest neighbor search. After a matching algorithm is used we have correspandence between the detected points in image 1 and image 2, see example in image (c) below. Note that there is still a high probaility that some of these matches are incorrect.</p>
+<p><img src="https://www.researchgate.net/profile/Hieu_Nguyen144/publication/259952213/figure/fig1/AS:614330479439873@1523479208356/Scale-invariant-feature-transform-SIFT-matching-result-of-a-few-objects-placed-in.png" alt="plot" /></p>
+<h3 id="ransac"><a class="header" href="#ransac">RANSAC</a></h3>
+<p>Some matches found by the FLANN may be incorrect, and a common robust method used for reducing the influence of these outliers in the estimation of F is RANSAC (RANdom SAmpling Consensus). In short, it relies on the fact that the inliers will tend to a consesus regarding the correct estimation, whereas the outlier estimation will show greater variation. By sampling random sets of points with size corresponding to the degrees of freedom of the model, calculating their corresponding estimations, and grouping all estimations with a difference below a set threshold, the largest consesus group is found. This set is then lastly used for the final estimate of F.</p>
+</div>
+<div class="cell markdown">
+<h3 id="for-a-more-joyful-presentation-of-the-theory-listed-to-the-fundamental-matrix-song-link"><a class="header" href="#for-a-more-joyful-presentation-of-the-theory-listed-to-the-fundamental-matrix-song-link">For a more joyful presentation of the theory, listed to The Fundamental Matrix Song! (link)</a></h3>
+<p><a href="https://www.youtube.com/watch?v=DgGV3l82NTk"><img src="https://img.youtube.com/vi/DgGV3l82NTk/0.jpg" alt="The Fundamental matrix" /></a></p>
+</div>
+<div class="cell markdown">
+<p>OpenCV is an well-known open-source library for computer vision, machine learning, and image processing tasks. In this project we will use it for feature extraction (SIFT), feature matching (FLANN) and the estimation of the fundamental matrix (using the 7-point algorithm). Let us install opencv</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-pip">install opencv-python
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Also we need to download a dataset that we can work with, this dataset is collected by Carl Olsson from LTH. This is achieved by the bash shell script below. The dataset is placed in the /tmp folder using the -P &quot;prefix&quot;</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">rm -r /tmp/0019
+rm -r /tmp/eglise_int1.zip
+
+wget -P /tmp vision.maths.lth.se/calledataset/eglise_int/eglise_int1.zip
+unzip /tmp/eglise_int1.zip -d /tmp/0019/
+rm -r /tmp/eglise_int1.zip
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">rm -r /tmp/eglise_int2.zip
+
+wget -P /tmp vision.maths.lth.se/calledataset/eglise_int/eglise_int2.zip
+unzip /tmp/eglise_int2.zip -d /tmp/0019/
+rm -r /tmp/eglise_int2.zip
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">rm -r /tmp/eglise_int3.zip
+
+wget -P /tmp vision.maths.lth.se/calledataset/eglise_int/eglise_int3.zip
+unzip /tmp/eglise_int3.zip -d /tmp/0019/
+rm -r /tmp/eglise_int3.zip
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">cd /tmp/0019/
+for f in *; do mv &quot;$f&quot; &quot;eglise_$f&quot;; done
+cd /databricks/driver
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># for an experiment to detect if images from an unrelated scene are not matched to pictures from another scene
+%sh
+rm -r /tmp/gbg.zip
+
+wget -P /tmp vision.maths.lth.se/calledataset/gbg/gbg.zip
+unzip /tmp/gbg.zip -d /tmp/0019/
+rm -r /tmp/gbg.zip
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import sys.process._
+
+//&quot;wget -P /tmp vision.maths.lth.se/calledataset/door/door.zip&quot; !!
+//&quot;unzip /tmp/door.zip -d /tmp/door/&quot;!!
+
+//move downloaded dataset to dbfs
+
+val localpath=&quot;file:/tmp/0019/&quot;
+
+dbutils.fs.rm(&quot;dbfs:/datasets/0019/mixedimages&quot;, true)  // the boolean is for recursive rm
+
+dbutils.fs.mkdirs(&quot;dbfs:/datasets/0019/mixedimages&quot;)
+
+dbutils.fs.cp(localpath, &quot;dbfs:/datasets/0019/mixedimages&quot;, true)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import sys.process._
+localpath: String = file:/tmp/0019/
+res5: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">rm -r /tmp/0019
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(&quot;dbfs:/datasets/0019/mixedimages&quot;)) 
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Loading one image from the dataset for testing
+
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
+def plot_img(figtitle,img):
+  
+  #create figure with std size
+  fig = plt.figure(figtitle, figsize=(10, 5))
+    
+  plt.imshow(img)
+
+  display(plt.show())
+
+img1 = cv2.imread(&quot;/dbfs/datasets/0019/mixedimages/eglise_DSC_0133.JPG&quot;)
+#img2 = cv2.imread(&quot;/dbfs/datasets/0019/mixedimages/DSC_0133.JPG&quot;)
+
+plot_img(&quot;eglise&quot;, img1)
+#plot_img(&quot;gbg&quot;, img2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/19_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-fs">ls /dbfs/datasets/0019/mixedimages/eglise_DSC_0133.JPG
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Read Image Dataset</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import glob
+import numpy as np
+import cv2
+import os
+
+dataset_path  = &quot;/dbfs/datasets/0019/mixedimages/&quot;
+
+#get all filenames in folder
+files = glob.glob(os.path.join(dataset_path,&quot;*.JPG&quot;))
+
+dataset = []
+ 
+#load all images names
+for i, file in enumerate(files): # Alex: changed
+  # Load an color image
+  #img = cv2.imread(file)
+ 
+  #add image and image name as a tupel to the list
+  dataset.append((file))
+  if i &gt;= 150: # Alex: changed
+    break
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Define maps</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import glob
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
+max_features = 1000
+
+def plot_img(figtitle,s):
+  
+  img = cv2.imread(s)
+  
+  #create figure with std size
+  fig = plt.figure(figtitle, figsize=(10, 5))
+  
+  plt.imshow(img)
+
+  display(plt.show())
+  
+  
+def extract_features(s): 
+  &quot;&quot;&quot;
+  &quot;&quot;&quot;
+  # Here we load the images on the executor from dbfs into memory
+  img = cv2.imread(s) 
+    
+  #convert to gray scale
+  gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+  
+  sift = cv2.SIFT_create(max_features)
+
+  #extract sift features and descriptors
+  kp, des = sift.detectAndCompute(gray, None)
+  
+  #convert keypoint class to list of feature locations (for serialization)
+  points=[]
+  for i in range(len(kp)): 
+    points.append(kp[i].pt)
+  
+  #return a tuple of image name, feature points, descriptors, called a feature tuple
+  return (s, points, des)
+
+def estimate_fundamental_matrix(s): 
+  &quot;&quot;&quot;
+  &quot;&quot;&quot;
+  
+  # s[0] is a feature tuple for the first image, s[1] is the same for the second image
+  a = s[0]
+  b = s[1]
+  
+  # unpacks the tuples
+  name1, kp1, desc1 = a
+  name2, kp2, desc2 = b
+  
+  # Create FLANN matcher object 
+  FLANN_INDEX_KDTREE = 0
+  indexParams = dict(algorithm=FLANN_INDEX_KDTREE, 
+                   trees=5) 
+  searchParams = dict(checks=50) 
+  flann = cv2.FlannBasedMatcher(indexParams, 
+                              searchParams) 
+  
+  # matches the descriptors, for each query descriptor it finds the two best matches among the train descriptors
+  matches = flann.knnMatch(desc1, desc2, k=2)
+  
+  goodMatches = [] 
+  pts1 = [] 
+  pts2 = [] 
+
+  # compares the best with the second best match and only adds those where the best match is significantly better than the next best.
+  for i,(m,n) in enumerate(matches):
+    if m.distance &lt; 0.8*n.distance:
+        goodMatches.append([m.queryIdx, m.trainIdx])
+        pts2.append(kp2[m.trainIdx])
+        pts1.append(kp1[m.queryIdx])
+        
+  pts1 = np.array(pts1, dtype=np.float32)
+  pts2 = np.array(pts2, dtype=np.float32)
+
+  # finds the fundamental matrix using ransac: 
+  # selects minimal sub-set of the matches, 
+  # estimates the fundamental matrix, 
+  # checks how many of the matches satisfy the epipolar geometry (the inlier set)
+  # iterates this for a number of iterations,
+  # returns the fundamental matrix and mask with the largest number of inliers.
+  F, mask = cv2.findFundamentalMat(pts1, pts2, cv2.FM_RANSAC)
+   
+  inlier_matches = []
+  
+  # removes all matches that are not inliers
+  if mask is not None:  
+    for i, el in enumerate(mask):
+      if el == 1:
+        inlier_matches.append(goodMatches[i])
+  
+  # returns a tuple containing the feature tuple of image one and image two, the fundamental matrix and the inlier matches
+  return (a, b, F, inlier_matches)
+
+def display_data(data):
+  for el in data:
+  
+    print(el[2])
+  
+    print(&quot;#######################################################&quot;)
+
+
+  
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Perform Calculations</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># creates an rdd from the loaded images (im_name)
+rdd = sc.parallelize(dataset,20)
+print(&quot;num partitions: &quot;,rdd.getNumPartitions())
+
+# applys the feature extraction to the images
+rdd_features = rdd.map(extract_features) # Alex: we could leave the name but remove the image in a and b
+print(&quot;num partitions: &quot;,rdd_features.getNumPartitions())
+
+# forms pairs of images by applying the cartisian product and filtering away the identity pair
+rdd_pairs = rdd_features.cartesian(rdd_features).filter(lambda s: s[0][0] != s[1][0])
+print(&quot;num partitions: &quot;,rdd_pairs.getNumPartitions())
+
+# applys the fundamental matrix estimation function on the pairs formed in the previous step and filters away all pairs with a low inlier set.
+rdd_fundamental_matrix = rdd_pairs.map(estimate_fundamental_matrix).filter(lambda s: len(s[3]) &gt; 50)
+print(&quot;num partitions: &quot;,rdd_fundamental_matrix.getNumPartitions())
+
+# collects the result from the nodes
+data = rdd_fundamental_matrix.collect()
+
+# displays the fundamental matrices
+display_data(data)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
+<ol>
+<li>Time complexity of our algorithm</li>
+<li>Visualizing epipolar lines</li>
+<li>Visualizing matching points</li>
+</ol>
+</div>
+<div class="cell markdown">
+<p>Now we have computed the fundamental matrices, let us have a look at them by present the epipolar lines.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import random
+
+def drawlines(img1,img2,lines,pts1,pts2):
+  #from opencv tutorial
+    ''' img1 - image on which we draw the epilines for the points in img2
+        lines - corresponding epilines '''
+    r,c,_ = img1.shape
+    for r,pt1,pt2 in zip(lines,pts1,pts2):
+        color = tuple(np.random.randint(0,255,3).tolist())
+        x0,y0 = map(int, [0, -r[2]/r[1] ])
+        x1,y1 = map(int, [c, -(r[2]+r[0]*c)/r[1] ])
+        img1 = cv2.line(img1, (x0,y0), (x1,y1), color,3)
+        img1 = cv2.circle(img1,tuple(pt1),10,color,-1)
+        img2 = cv2.circle(img2,tuple(pt2),10,color,-1)
+    return img1,img2
+
+# draws a random subset of the data
+sampling = random.choices(data, k=4)
+  
+#plotts the inlier features in the first image and the corresponding epipolar lines in the second image
+i = 0
+fig, axs = plt.subplots(1, 8, figsize=(25, 5))
+for el in sampling:
+    
+  a, b, F, matches = el;
+  
+  if F is None:
+    continue
+
+  name1, kp1, desc1 = a
+  name2, kp2, desc2 = b
+  im1 = cv2.imread(name1)
+  im2 = cv2.imread(name2)
+  
+  pts1 = [] 
+  pts2 = [] 
+  
+  for m in matches:
+    pts1.append(kp1[m[0]]);
+    pts2.append(kp2[m[1]]);
+    
+  pts1 = np.array(pts1, dtype=np.float32)
+  pts2 = np.array(pts2, dtype=np.float32)
+  
+  lines1 = cv2.computeCorrespondEpilines(pts2.reshape(-1,1,2), 2, F)
+  lines1 = lines1.reshape(-1,3)
+  
+  img1, img2 = drawlines(im1,im2,lines1,pts1,pts2)
+  
+  axs[i].imshow(img2), axs[i].set_title('Image pair '+str(i+1)+': Features')
+  axs[i+1].imshow(img1), axs[i+1].set_title('Image pair '+str(i+1)+': Epipolar lines')
+
+  i += 2
+  #plt.subplot(121),plt.imshow(img1), plt.title('Epipolar lines')
+  #plt.subplot(122),plt.imshow(img2), plt.title('Points')
+display(plt.show())
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/19_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p><img src="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT10/img17.gif" alt="plot" /></p>
+</div>
+<div class="cell markdown">
+<p>Present Matches</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import random
+
+# draws a random subset of the data
+sampling = random.choices(data, k=4)
+  
+j = 0
+fig, axs = plt.subplots(1, 4, figsize=(25, 5))
+# draws lines between the matched feature in the two images (not epipolar lines!)
+for el in sampling:
+    
+  a, b, F, matches = el;
+  
+  if F is None:
+    continue
+
+  name1, kp1, desc1 = a
+  name2, kp2, desc2 = b
+  im1 = cv2.imread(name1)
+  im2 = cv2.imread(name2)
+  
+  kp1_vec = [] 
+  kp2_vec = [] 
+  matches_vec = []
+  
+  for i,m in enumerate(matches):
+    kp1_vec.append(cv2.KeyPoint(kp1[m[0]][0], kp1[m[0]][1],1))
+    kp2_vec.append(cv2.KeyPoint(kp2[m[1]][0], kp2[m[1]][1],1))
+                   
+    matches_vec.append(cv2.DMatch(i, i, 1))    
+    
+  matched_image = im1.copy()
+      
+  matched_image = cv2.drawMatches(im1, kp1_vec, im2, kp2_vec, matches_vec, matched_image)
+    
+  axs[j].imshow(matched_image), axs[j].set_title('Image pair '+str(j+1)+': Matches')
+  j += 1
+  #plot_img(&quot;matches&quot;, matched_image)
+display(plt.show())
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/19_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p><img src="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT10/img17.gif" alt="plot" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

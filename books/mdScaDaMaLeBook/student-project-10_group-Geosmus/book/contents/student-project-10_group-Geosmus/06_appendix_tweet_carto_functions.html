@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>06_appendix_tweet_carto_functions - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/01_Introduction.html">01_Introduction</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/02_ClusteringEmoticonsBasedOnTweets.html">02_ClusteringEmoticonsBasedOnTweets</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.html">03_Dynamic_Tweet_Maps</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/04_conclusion.html">04_conclusion</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.html">05_appendix_get-cc-data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.html" class="active">06_appendix_tweet_carto_functions</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.html">07_a_appendix_extendedTwitterUtils2run</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/07_b_appendix_TTTDFfunctions.html">07_b_appendix_TTTDFfunctions</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import pycountry
+import geopandas
+from cartogram_geopandas import make_cartogram
+import imageio
+
+def load_twitter_geo_data(path):
+  df = spark.read.parquet(path)
+  df = df.select('countryCode', &quot;CurrentTweetDate&quot;)
+  df = df.toPandas()
+  
+  # Add some new datetime derived columns.
+  df[&quot;date&quot;] = df[&quot;CurrentTweetDate&quot;].dt.date
+  df[&quot;year&quot;] = df[&quot;CurrentTweetDate&quot;].dt.year
+  df[&quot;month&quot;] = df[&quot;CurrentTweetDate&quot;].dt.month
+  df[&quot;day&quot;] = df[&quot;CurrentTweetDate&quot;].dt.day
+  df[&quot;dayofweek&quot;] = df[&quot;CurrentTweetDate&quot;].dt.dayofweek
+  df[&quot;hour&quot;] = df[&quot;CurrentTweetDate&quot;].dt.hour
+  df[&quot;minute&quot;] = df[&quot;CurrentTweetDate&quot;].dt.minute
+  df[&quot;second&quot;] = df[&quot;CurrentTweetDate&quot;].dt.second
+  return df
+
+def load_twitter_geo_data_with_filter(path, filter_str):
+  df = spark.read.parquet(path)
+  df = df.filter(filter_str).select('countryCode', &quot;CurrentTweetDate&quot;)
+  df = df.toPandas()
+  
+  # Add some new datetime derived columns.
+  df[&quot;year&quot;] = df[&quot;CurrentTweetDate&quot;].dt.year
+  df[&quot;month&quot;] = df[&quot;CurrentTweetDate&quot;].dt.month
+  df[&quot;day&quot;] = df[&quot;CurrentTweetDate&quot;].dt.day
+  df[&quot;dayofweek&quot;] = df[&quot;CurrentTweetDate&quot;].dt.dayofweek
+  df[&quot;hour&quot;] = df[&quot;CurrentTweetDate&quot;].dt.hour
+  df[&quot;minute&quot;] = df[&quot;CurrentTweetDate&quot;].dt.minute
+  df[&quot;second&quot;] = df[&quot;CurrentTweetDate&quot;].dt.second
+  return df
+
+def country_code_grouping(df):
+  df['count'] = df.groupby('countryCode')['countryCode'].transform('count') #The count inside the transform function calls pandas count function
+  df_cc = df.drop_duplicates(subset=['countryCode'])
+  df_cc = df_cc.filter(['countryCode', 'count']).reset_index()
+  return df_cc
+
+def country_code_grouping_extra(df, key):
+  #df['count'] = df.groupby('countryCode')['countryCode'].transform('count') #The count inside the transform function calls pandas count function
+  df_cc = df[[&quot;countryCode&quot;, key]].groupby('countryCode').sum().reset_index() #df.drop_duplicates(subset=['countryCode'])
+  return df_cc
+
+def add_iso_a3_col(df_cc):
+  cc_dict = {}
+  for country in pycountry.countries:
+    cc_dict[country.alpha_2] = country.alpha_3
+
+    df_cc[&quot;iso_a3&quot;] = df_cc[&quot;countryCode&quot;].map(cc_dict)
+  return df_cc
+
+def create_geo_df(df_cc):
+  df_world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+  # natural earth has missing iso_a3 names for France, Norway, Somalia, Kosovo and Northen Cypruys..
+  # See the following issue: https://github.com/geopandas/geopandas/issues/1041
+  # The following lines manually fixes it for all but Northern Cyprus, which does not have an iso_a3 code.
+  df_world.loc[df_world['name'] == 'France', 'iso_a3'] = 'FRA'
+  df_world.loc[df_world['name'] == 'Norway', 'iso_a3'] = 'NOR'
+  df_world.loc[df_world['name'] == 'Somaliland', 'iso_a3'] = 'SOM'
+  df_world.loc[df_world['name'] == 'Kosovo', 'iso_a3'] = 'RKS'
+
+  numTweetDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      numTweetDict[countryCode] = 0
+  for index, row in df_cc.iterrows():
+      numTweetDict[row[&quot;iso_a3&quot;]] = row[&quot;count&quot;]
+
+  df_world[&quot;numTweets&quot;] = df_world[&quot;iso_a3&quot;].map(numTweetDict)
+  
+  # Could be useful to throw away antarctica and antarctic isles.
+  # df_world = df_world.query(&quot;(continent != 'Antarctica') or (continent != 'Seven seas (open ocean)')&quot;) 
+
+  # Redundant
+  # df_world_proj = df_world.to_crs({'init': 'EPSG:4326'})
+  # df_world[&quot;area&quot;] = df_world_proj['geometry'].area
+  # df_world[&quot;tweetDensity&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;area&quot;]
+  # df_world[&quot;tweetPerCapita&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;pop_est&quot;]
+  return df_world
+
+
+def create_geo_df_extra(df_cc, data_of_interest=&quot;count&quot;, default_value=0):
+  df_world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+  # natural earth has missing iso_a3 names for France, Norway, Somalia, Kosovo and Northen Cypruys..
+  # See the following issue: https://github.com/geopandas/geopandas/issues/1041
+  # The following lines manually fixes it for all but Northern Cyprus, which does not have an iso_a3 code.
+  df_world.loc[df_world['name'] == 'France', 'iso_a3'] = 'FRA'
+  df_world.loc[df_world['name'] == 'Norway', 'iso_a3'] = 'NOR'
+  df_world.loc[df_world['name'] == 'Somaliland', 'iso_a3'] = 'SOM'
+  df_world.loc[df_world['name'] == 'Kosovo', 'iso_a3'] = 'RKS'
+
+  dataTweetDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      dataTweetDict[countryCode] = default_value
+  for index, row in df_cc.iterrows():
+      dataTweetDict[row[&quot;iso_a3&quot;]] = row[data_of_interest]
+
+  df_world[data_of_interest] = df_world[&quot;iso_a3&quot;].map(dataTweetDict)
+  
+  # Could be useful to throw away antarctica and antarctic isles.
+  # df_world = df_world.query(&quot;(continent != 'Antarctica') or (continent != 'Seven seas (open ocean)')&quot;) 
+
+  # Redundant
+  # df_world_proj = df_world.to_crs({'init': 'EPSG:4326'})
+  # df_world[&quot;area&quot;] = df_world_proj['geometry'].area
+  # df_world[&quot;tweetDensity&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;area&quot;]
+  # df_world[&quot;tweetPerCapita&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;pop_est&quot;]
+  return df_world
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def animate_cartogram(df, filterKey, filterList, out_path, nIter, cartogram_key, legend=&quot;&quot;):
+  vmax = max(df.groupby([filterKey, &quot;countryCode&quot;]).count()[&quot;index&quot;]) # Get maximum count within a single country in a single hour. We will use this to fix the colorbar.
+  images=[] # array for storing the png frames for the gif
+  for i in filterList:
+    # Load the data and add ISOa3 codes.
+    df_filtered = df.query(&quot;%s==%d&quot;%(filterKey, i)).reset_index()
+    df_cc = country_code_grouping(df_filtered)
+    df_cc = add_iso_a3_col(df_cc)
+
+    # Create the geopandas dataframe
+    df_world = create_geo_df(df_cc)
+    #Create cartogram
+    # The make_cartogram function can not handle a tweetcount of zero, so a not so elegant solution is to clip the tweet count at 1.
+    # The alternative (to remove countries without tweets) is not elegant either, and causes problems when we look at the time evolution, since countries will be popping in and out of existence.
+    df_world2 = df_world.copy(deep=True)
+    df_world2[&quot;numTweets&quot;] = df_world2[&quot;numTweets&quot;].clip(lower=1)
+    df_cartogram = make_cartogram(df_world2, cartogram_key, nIter, inplace=False)
+    plot = df_cartogram.plot(column=cartogram_key, cmap='viridis', figsize=(20, 8), legend=True, vmin=0, vmax=vmax) 
+
+    # Plot a vertical line indicating midnight. 360degrees/24hours = 15 degrees/hour
+    if i&lt;12:
+      t_midnight = -15*i #15deg per hour
+      t_noon = t_midnight + 180
+    else:
+      t_midnight = 180 - (i-12)*15
+      t_noon = t_midnight - 180
+
+    plt.axvline(x=t_midnight, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;black&quot;)
+    plt.axvline(x=t_noon, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;yellow&quot;)
+    plt.title(legend + &quot;Time of day (GMT): %02d&quot;%i, fontsize=24)
+    plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+    plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+    plt.ylim(-90,90)
+    plt.xlim(-180,180)
+
+    #Save cartogram as a png
+    fig = plot.get_figure()
+    fig.savefig(out_path + &quot;%d.png&quot;%i)
+    plt.close(fig)
+    #Append images to image list
+    images.append(imageio.imread(out_path + &quot;%d.png&quot;%i))
+  #create gif from the image list
+  imageio.mimsave(out_path + &quot;.gif&quot;, images, duration=0.5)
+  
+def animate_cartogram_extra(df, filterKey, filterList, out_path, nIter, cartogram_key, default_value, scale_factor=2, vmin=0.0, vmax=1.0):
+  # uses scaling proportional to original area of country
+  images=[] # array for storing the png frames for the gif
+  
+  for i in filterList:
+    # Load the data and add ISOa3 codes.
+    df_filtered = df.query(&quot;%s==%d&quot;%(filterKey, i)).reset_index()
+    df_cc = country_code_grouping_extra(df_filtered, cartogram_key)
+    df_cc = add_iso_a3_col(df_cc)
+
+    # Create the geopandas dataframe
+    df_world = create_geo_df_extra(df_cc, cartogram_key, default_value)
+     
+    # scale by area
+    df_world[&quot;__scaled&quot;] = (scale_factor - 1) * df_world[cartogram_key] * pd.to_numeric(df_world['geometry'].area)
+      
+    # make sure the quantity of interest &gt; 0, add area to every value
+    df_world[&quot;__scaled&quot;] = pd.to_numeric(df_world['geometry'].area) + df_world[&quot;__scaled&quot;]
+    
+    #Create cartogram
+    df_cartogram = make_cartogram(df_world, &quot;__scaled&quot;, nIter, inplace=False)
+    
+    plot = df_cartogram.plot(column=cartogram_key, cmap='viridis', figsize=(20, 8), legend=cartogram_key, vmin=vmin, vmax=vmax)
+    
+    # Plot a vertical line indicating midnight and one indicating noon. 360degrees/24hours = 15 degrees/hour
+    if i&lt;12:
+      t_midnight = -15*i #15deg per hour
+      t_noon = t_midnight + 180
+    else:
+      t_midnight = 180 - (i-12)*15
+      t_noon = t_midnight - 180
+
+    plt.axvline(x=t_midnight, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;black&quot;)
+    plt.axvline(x=t_noon, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;yellow&quot;)
+    
+    plt.title(&quot;Time of day (GMT): %02d&quot;%i, fontsize=24)
+    plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+    plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+    plt.ylim(-90,90)
+    plt.xlim(-180,180)
+    
+    #Save cartogram as a png
+    fig = plot.get_figure()
+    fig.savefig(out_path + &quot;%d.png&quot;%i)
+    plt.close(fig)
+    #Append images to image list
+    images.append(imageio.imread(out_path + &quot;%d.png&quot;%i))
+  #create gif from the image list
+  imageio.mimsave(out_path + &quot;.gif&quot;, images, duration=0.5)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def load_twitter_geo_data_sentiment(path):
+  df = spark.read.parquet(path)
+  df = df.select('countryCode', &quot;CurrentTweetDate&quot;, &quot;prayer&quot;, &quot;monkey&quot;, &quot;happy&quot;, &quot;SK&quot;, &quot;cat&quot;, &quot;notHappy&quot;)
+  df = df.toPandas()
+  
+  # Add some new datetime derived columns.
+  df[&quot;date&quot;] = df[&quot;CurrentTweetDate&quot;].dt.date
+  df[&quot;year&quot;] = df[&quot;CurrentTweetDate&quot;].dt.year
+  df[&quot;month&quot;] = df[&quot;CurrentTweetDate&quot;].dt.month
+  df[&quot;day&quot;] = df[&quot;CurrentTweetDate&quot;].dt.day
+  df[&quot;dayofweek&quot;] = df[&quot;CurrentTweetDate&quot;].dt.dayofweek
+  df[&quot;hour&quot;] = df[&quot;CurrentTweetDate&quot;].dt.hour
+  df[&quot;minute&quot;] = df[&quot;CurrentTweetDate&quot;].dt.minute
+  df[&quot;second&quot;] = df[&quot;CurrentTweetDate&quot;].dt.second
+  return df
+
+def country_code_grouping_sentiment(df):
+  df['count'] = df.groupby(['countryCode', 'sentiment'])['countryCode'].transform('count') #The count inside the transform function calls pandas count function
+  df[&quot;sentiment&quot;] = df.groupby(['countryCode'])[&quot;sentiment&quot;].transform(&quot;mean&quot;)
+  df = df.drop_duplicates(&quot;countryCode&quot;)
+  df_cc = df.filter(['countryCode', 'count', &quot;sentiment&quot;]).reset_index()
+  return df_cc
+
+def create_geo_df_sentiment(df_cc):
+  df_world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+  # natural earth has missing iso_a3 names for France, Norway, Somalia, Kosovo and Northen Cypruys..
+  # See the following issue: https://github.com/geopandas/geopandas/issues/1041
+  # The following lines manually fixes it for all but Northern Cyprus, which does not have an iso_a3 code.
+  df_world.loc[df_world['name'] == 'France', 'iso_a3'] = 'FRA'
+  df_world.loc[df_world['name'] == 'Norway', 'iso_a3'] = 'NOR'
+  df_world.loc[df_world['name'] == 'Somaliland', 'iso_a3'] = 'SOM'
+  df_world.loc[df_world['name'] == 'Kosovo', 'iso_a3'] = 'RKS'
+
+  numTweetDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      numTweetDict[countryCode] = 0
+  for index, row in df_cc.iterrows():
+      numTweetDict[row[&quot;iso_a3&quot;]] = row[&quot;count&quot;]
+  df_world[&quot;numTweets&quot;] = df_world[&quot;iso_a3&quot;].map(numTweetDict)
+
+  sentimentDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      sentimentDict[countryCode] = 0
+  for index, row in df_cc.iterrows():
+      sentimentDict[row[&quot;iso_a3&quot;]] = row[&quot;sentiment&quot;]
+  df_world[&quot;sentiment&quot;] = df_world[&quot;iso_a3&quot;].map(sentimentDict)
+  
+  # Could be useful to throw away antarctica and antarctic isles.
+  # df_world = df_world.query(&quot;(continent != 'Antarctica') or (continent != 'Seven seas (open ocean)')&quot;) 
+
+  # Redundant
+  # df_world_proj = df_world.to_crs({'init': 'EPSG:4326'})
+  # df_world[&quot;area&quot;] = df_world_proj['geometry'].area
+  # df_world[&quot;tweetDensity&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;area&quot;]
+  # df_world[&quot;tweetPerCapita&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;pop_est&quot;]
+  return df_world
+
+def animate_cartogram_sentiment(df, filterKey, filterList, out_path, nIter, cartogram_key, minSamples, cmap, vmin, vmax, legendList):
+
+  images=[] # array for storing the png frames for the gif
+  frameCount = 0
+  for i in filterList:
+    
+    # Load the data and add ISOa3 codes.
+    df_filtered = df.query(&quot;%s==%d&quot;%(filterKey, i)).reset_index()
+    df_cc = country_code_grouping_sentiment(df_filtered)
+    df_cc = add_iso_a3_col(df_cc)
+
+    # Create the geopandas dataframe
+    df_world = create_geo_df_sentiment(df_cc)
+    
+    #Create cartogram
+    # The make_cartogram function can not handle a tweetcount of zero, so a not so elegant solution is to clip the tweet count at 1.
+    # The alternative (to remove countries without tweets) is not elegant either, and causes problems when we look at the time evolution, since countries will be popping in and out of existence.
+    df_world2 = df_world.copy(deep=True)
+    df_world2[&quot;numTweets&quot;] = df_world2[&quot;numTweets&quot;].clip(lower=1)
+    
+    # We want to color all countries with less than minSamples tweets grey.
+    # The colormap will do this if these countries sentiment score is below vmin.
+    df_world2.loc[df_world[&quot;numTweets&quot;] &lt; minSamples, 'sentiment'] = vmin -1
+    df_cartogram = make_cartogram(df_world2, cartogram_key, nIter, inplace=False)
+    plot = df_cartogram.plot(column=&quot;sentiment&quot;, cmap=cmap, figsize=(20, 8), legend=True, vmin=vmin, vmax=vmax)
+
+    plt.title(legendList[frameCount], fontsize=24)
+    plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+    plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+    plt.ylim(-90,90)
+    plt.xlim(-180,180)
+    
+    frameCount += 1
+    #Save cartogram as a png
+    fig = plot.get_figure()
+    fig.savefig(out_path + &quot;%d.png&quot;%i)
+    plt.close(fig)
+    #Append images to image list
+    images.append(imageio.imread(out_path + &quot;%d.png&quot;%i))
+  #create gif from the image list
+  imageio.mimsave(out_path + &quot;.gif&quot;, images, duration=1)
+</code></pre>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_methodology - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-17_group-TowardsScalableTDA/00_introduction.html">00_introduction</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-17_group-TowardsScalableTDA/01_methodology.html" class="active">01_methodology</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-17_group-TowardsScalableTDA/02_gaussian_analysis.html">02_gaussian_analysis</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-17_group-TowardsScalableTDA/03_robotics_dataset.html">03_robotics_dataset</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="methodology"><a class="header" href="#methodology">Methodology</a></h1>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.random.RandomRDDs
+import org.apache.spark.mllib.feature.Normalizer
+import org.apache.spark.rdd.RDD
+import breeze.linalg._
+import breeze.numerics._
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.random.RandomRDDs
+import org.apache.spark.mllib.feature.Normalizer
+import org.apache.spark.rdd.RDD
+import breeze.linalg._
+import breeze.numerics._
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Constants required for the method.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Constants
+val N = 250 // train size
+val M = 250 // test size
+val D = 2 // dimensionality
+val T = 500 // number of rays
+val one_vs_all = true
+
+assert((!one_vs_all) || N == M)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>N: Int = 250
+M: Int = 250
+D: Int = 2
+T: Int = 500
+one_vs_all: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Generate points from standard Gaussian distribution.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val train_data = RandomRDDs.normalVectorRDD(sc, N, D).zipWithIndex().map { case (v, i) =&gt; (i, new DenseVector(v.toArray)) }
+val test_data = if(one_vs_all) train_data else RandomRDDs.normalVectorRDD(sc, M, D).zipWithIndex().map { case (v, i) =&gt; (i, new DenseVector(v.toArray)) }
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>train_data: org.apache.spark.rdd.RDD[(Long, breeze.linalg.DenseVector[Double])] = MapPartitionsRDD[10486] at map at command-1767923094595286:1
+test_data: org.apache.spark.rdd.RDD[(Long, breeze.linalg.DenseVector[Double])] = MapPartitionsRDD[10486] at map at command-1767923094595286:1
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Generate T random rays</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def get_uni_sphere() = {
+  var u = RandomRDDs.normalVectorRDD(sc, T, D)
+  u = new Normalizer().transform(u)
+  var t = u.zipWithIndex().map { case (v, i) =&gt; (i, new DenseVector(v.toArray)) }
+  t
+}
+  
+val rays = get_uni_sphere()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>get_uni_sphere: ()org.apache.spark.rdd.RDD[(Long, breeze.linalg.DenseVector[Double])]
+rays: org.apache.spark.rdd.RDD[(Long, breeze.linalg.DenseVector[Double])] = MapPartitionsRDD[10490] at map at command-685894176423986:4
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Compute optimizations: all squared distances and all dot products of points with directions vectors.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def compute_dst_sq() = { // (N, M)
+  // dst[n, m] = |x_n - x'_m|^2
+  val dst = train_data.cartesian(test_data).map { case ((n, train_vec), (m, test_vec)) =&gt; ((n, m), sum(((train_vec - test_vec) *:* (train_vec - test_vec)) ^:^ 2.0) ) }
+  dst
+}
+
+def compute_pu(data: RDD[(Long, DenseVector[Double])]) = { // (data.N, T)
+  // pu[n, t] = &lt;data_n, ray_t&gt;
+  val pu = data.cartesian(rays).map { case ((n, data_vec), (t, ray_vec)) =&gt; ((n, t), data_vec dot ray_vec) }
+  pu
+}
+
+val dst = compute_dst_sq()
+val pu_train = compute_pu(train_data)
+val pu_test = compute_pu(test_data)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>compute_dst_sq: ()org.apache.spark.rdd.RDD[((Long, Long), Double)]
+compute_pu: (data: org.apache.spark.rdd.RDD[(Long, breeze.linalg.DenseVector[Double])])org.apache.spark.rdd.RDD[((Long, Long), Double)]
+dst: org.apache.spark.rdd.RDD[((Long, Long), Double)] = MapPartitionsRDD[10492] at map at command-685894176423990:3
+pu_train: org.apache.spark.rdd.RDD[((Long, Long), Double)] = MapPartitionsRDD[10494] at map at command-685894176423990:9
+pu_test: org.apache.spark.rdd.RDD[((Long, Long), Double)] = MapPartitionsRDD[10496] at map at command-685894176423990:9
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Compute the lengths of all rays. The most expensive step.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def compute_ray_lengths() = { // (M, T)
+  // lengths[m, t, n] = dst[n, m] / (2 * (pu_train[n, t] - pu_test[m, t]))
+  def compute_length(n: Long, m: Long, dst_val: Double, pu_train_val: Double, pu_test_val: Double) = {
+    if (one_vs_all &amp;&amp; n == m) {
+      Double.PositiveInfinity
+    } else {
+      val res = dst_val / (2 * (pu_train_val - pu_test_val))
+      if (res &lt; 0) Double.PositiveInfinity else res
+    }
+  }
+  
+  def my_min(a: Double, b: Double) = {min(a, b)}
+        
+  val lengths = dst.cartesian(sc.range(0, T))
+    .map { case (((n, m), dst_val), t) =&gt; ((n, t), (m, dst_val)) }  
+    .join(pu_train) 
+    .map { case ((n, t), ((m, dst_val), pu_train_val)) =&gt; ((m, t), (n, dst_val, pu_train_val)) }
+    .join(pu_test) 
+    .map { case ((m, t), ((n, dst_val, pu_train_val), pu_test_val)) =&gt; ((m, t), compute_length(n, m, dst_val, pu_train_val, pu_test_val)) } 
+    .aggregateByKey(Double.PositiveInfinity)(my_min, my_min)  
+  lengths
+}
+
+val lengths = compute_ray_lengths()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>compute_ray_lengths: ()org.apache.spark.rdd.RDD[((Long, Long), Double)]
+lengths: org.apache.spark.rdd.RDD[((Long, Long), Double)] = ShuffledRDD[10509] at aggregateByKey at command-685894176423991:20
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Compute the approximated weights.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def compute_weights() = { // (M, )
+  def agg_f(a: (Double, Double), b: (Double, Double)) = { (a._1 + b._1, a._2 + b._2) }
+  
+  val weights = lengths.map { case ((m, t), length) =&gt; (m, if (!length.isInfinity) (1.0, length) else (0.0, 0.0)) }
+    .aggregateByKey((0.0, 0.0))(agg_f, agg_f)
+    .map { case (m, (val1, val2)) =&gt; (m, if (val1 &gt; 0) val1 / val2 else 0.0) }
+  weights
+}
+
+val weights = compute_weights()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>compute_weights: ()org.apache.spark.rdd.RDD[(Long, Double)]
+weights: org.apache.spark.rdd.RDD[(Long, Double)] = MapPartitionsRDD[10512] at map at command-685894176424002:6
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Save obtained data in csv.</p>
+<p>Note: we repartition the tables here to work with one csv only; this should be removed for larger data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def save_data(name: String, data: RDD[(Long, DenseVector[Double])]) = {
+  data.map { case (k, v) =&gt; k.toString() + &quot;,&quot; + v.toArray.mkString(&quot;,&quot;)}
+    .toDF.repartition(1).write.format(&quot;csv&quot;).mode(SaveMode.Overwrite).option(&quot;quote&quot;, &quot; &quot;).save(&quot;dbfs:/FileStore/group17/data/&quot; + name)
+}
+
+def save_weights(name: String, data: RDD[(Long, Double)]) = {
+  data.map { case (k, v) =&gt; k.toString() + &quot;,&quot; + v.toString}
+    .toDF.repartition(1).write.format(&quot;csv&quot;).mode(SaveMode.Overwrite).option(&quot;quote&quot;, &quot; &quot;).save(&quot;dbfs:/FileStore/group17/data/&quot; + name)
+}
+
+save_data(&quot;gaussian_train&quot;, train_data)
+save_data(&quot;gaussian_test&quot;, test_data)
+save_weights(&quot;gaussian_weights&quot;, weights)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_data: (name: String, data: org.apache.spark.rdd.RDD[(Long, breeze.linalg.DenseVector[Double])])Unit
+save_weights: (name: String, data: org.apache.spark.rdd.RDD[(Long, Double)])Unit
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-17_group-TowardsScalableTDA/00_introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-17_group-TowardsScalableTDA/02_gaussian_analysis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-17_group-TowardsScalableTDA/00_introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-17_group-TowardsScalableTDA/02_gaussian_analysis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

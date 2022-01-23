@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>05_appendix_get-cc-data - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/01_Introduction.html">01_Introduction</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/02_ClusteringEmoticonsBasedOnTweets.html">02_ClusteringEmoticonsBasedOnTweets</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.html">03_Dynamic_Tweet_Maps</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/04_conclusion.html">04_conclusion</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.html" class="active">05_appendix_get-cc-data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.html">06_appendix_tweet_carto_functions</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.html">07_a_appendix_extendedTwitterUtils2run</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-10_group-Geosmus/07_b_appendix_TTTDFfunctions.html">07_b_appendix_TTTDFfunctions</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="notebook-for-collecting-tweets-with-country-codes"><a class="header" href="#notebook-for-collecting-tweets-with-country-codes">Notebook for collecting tweets with country codes</a></h1>
+</div>
+<div class="cell markdown">
+<h2 id="this-notebook-is-used-for-running-jobs-do-not-edit-without-stopping-the-scheduled-jobs"><a class="header" href="#this-notebook-is-used-for-running-jobs-do-not-edit-without-stopping-the-scheduled-jobs">This notebook is used for running jobs, do not edit without stopping the scheduled jobs!</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// parameter for number of minutes of streaming (can be used in Jobs feature)
+dbutils.widgets.text(&quot;nbr_minutes&quot;, &quot;3&quot;, label = &quot;Minutes of streaming (int)&quot;)
+val nbr_minutes = dbutils.widgets.get(&quot;nbr_minutes&quot;).toInt
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>nbr_minutes: Int = 2
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>If the cluster was shut down, then start a new cluster and install the following libraries on it (via maven).</p>
+<ul>
+<li>gson with maven coordinates <code>com.google.code.gson:gson:2.8.6</code></li>
+<li>twitter4j-examples with maven coordinates <code>org.twitter4j:twitter4j-examples:4.0.7</code></li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">&quot;./07_a_appendix_extendedTwitterUtils2run&quot;
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import twitter4j._
+import twitter4j.auth.Authorization
+import twitter4j.conf.ConfigurationBuilder
+import twitter4j.auth.OAuthAuthorization
+import org.apache.spark.streaming._
+import org.apache.spark.streaming.dstream._
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.receiver.Receiver
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>defined class ExtendedTwitterReceiver
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>defined class ExtendedTwitterInputDStream
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import twitter4j.Status
+import twitter4j.auth.Authorization
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.StreamingContext
+import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
+defined object ExtendedTwitterUtils
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>done running the extendedTwitterUtils2run notebook - ready to stream from twitter
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">&quot;./07_b_appendix_TTTDFfunctions&quot;
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF(&quot;parquetFileName&quot;)))
+                  val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF(&quot;parquetFileName&quot;)))
+                  
+import org.apache.spark.sql.types.{StructType, StructField, StringType}
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.ColumnName
+import org.apache.spark.sql.DataFrame
+fromParquetFile2DF: (InputDFAsParquetFilePatternString: String)org.apache.spark.sql.DataFrame
+tweetsJsonStringDF2TweetsDF: (tweetsAsJsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+tweetsIDLong_JsonStringPairDF2TweetsDF: (tweetsAsIDLong_JsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+tweetsDF2TTTDF: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+tweetsDF2TTTDFWithURLsAndHashtags: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>tweetsDF2TTTDFLightWeight: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="loading-twitter-credentials"><a class="header" href="#loading-twitter-credentials">Loading twitter credentials</a></h3>
+<p>You need to have a twitter developer account to run the data collection. Save your credentials in a notebook called <code>KeysAndTokens</code>, in your user home directory.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// needs upgraded databricks subscription, works on project shard
+
+var usr = dbutils.notebook.getContext.tags(&quot;user&quot;)
+var keys_notebook_location = &quot;/Users/&quot; + usr + &quot;/KeysAndTokens&quot;
+dbutils.notebook.run(keys_notebook_location, 100)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Warning: No value returned from the notebook run. To return a value from a notebook, use dbutils.notebook.exit(value)
+usr: String = bokman@chalmers.se
+keys_notebook_location: String = /Users/bokman@chalmers.se/KeysAndTokens
+res18: String = null
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import com.google.gson.Gson 
+import org.apache.spark.sql.functions._
+//import org.apache.spark.sql.types._
+
+val outputDirectoryRoot = &quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus&quot; // output directory
+
+
+val batchInterval = 1 // in minutes
+val timeoutJobLength =  batchInterval * 5
+
+var newContextCreated = false
+var numTweetsCollected = 0L // track number of tweets collected
+
+// This is the function that creates the SteamingContext and sets up the Spark Streaming job.
+def streamFuncWithProcessing(): StreamingContext = {
+  // Create a Spark Streaming Context.
+  val ssc = new StreamingContext(sc, Minutes(batchInterval))
+  // Create the OAuth Twitter credentials 
+  val auth = Some(new OAuthAuthorization(new ConfigurationBuilder().build()))
+  
+  // Create filter
+  val locationsQuery = new FilterQuery().locations(Array(-180.0, -90.0), Array(180.0, 90.0)) // all locations
+  
+  // Create a Twitter Stream for the input source.  
+  val twitterStream = ExtendedTwitterUtils.createStream(ssc, auth, Some(locationsQuery))
+  // Transform the discrete RDDs into JSON
+  val twitterStreamJson = twitterStream.map(x =&gt; { val gson = new Gson();
+                                                 val xJson = gson.toJson(x)
+                                                 xJson
+                                               }) 
+  // take care
+  val partitionsEachInterval = 1 // This tells the number of partitions in each RDD of tweets in the DStream.
+  
+  // get some time fields from current `.Date()`, use the same for each batch in the job
+  val year = (new java.text.SimpleDateFormat(&quot;yyyy&quot;)).format(new java.util.Date())
+  val month = (new java.text.SimpleDateFormat(&quot;MM&quot;)).format(new java.util.Date())
+  val day = (new java.text.SimpleDateFormat(&quot;dd&quot;)).format(new java.util.Date())
+  val hour = (new java.text.SimpleDateFormat(&quot;HH&quot;)).format(new java.util.Date())
+  
+  // what we want done with each discrete RDD tuple: (rdd, time)
+  twitterStreamJson.foreachRDD((rdd, time) =&gt; { // for each filtered RDD in the DStream
+      val count = rdd.count() //We count because the following operations can only be applied to non-empty RDD's
+      if (count &gt; 0) {
+        val outputRDD = rdd.repartition(partitionsEachInterval) // repartition as desired
+        // to write to parquet directly in append mode in one directory per 'time'------------       
+        val outputDF = outputRDD.toDF(&quot;tweetAsJsonString&quot;)
+        val processedDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(outputDF)).filter($&quot;countryCode&quot; =!= lit(&quot;&quot;))
+
+        
+        // Writing the full processed df (We probably don't need it, but useful for exploring the data initially)
+        processedDF.write.mode(SaveMode.Append)
+                .parquet(outputDirectoryRoot + &quot;/&quot; + year + &quot;/&quot; + month + &quot;/&quot; + day + &quot;/&quot; + hour + &quot;/&quot; + time.milliseconds) 
+        
+        // end of writing as parquet file-------------------------------------
+        numTweetsCollected += count // update with the latest count
+      }
+  })
+  newContextCreated = true
+  ssc
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import com.google.gson.Gson
+import org.apache.spark.sql.functions._
+outputDirectoryRoot: String = /datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus
+batchInterval: Int = 1
+timeoutJobLength: Int = 5
+newContextCreated: Boolean = false
+numTweetsCollected: Long = 0
+streamFuncWithProcessing: ()org.apache.spark.streaming.StreamingContext
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Now just use the function to create a Spark Streaming Context
+val ssc = StreamingContext.getActiveOrCreate(streamFuncWithProcessing)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@212f8bef
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// you only need one of these to start
+ssc.start()
+// ssc.awaitTerminationOrTimeout(30000) //time in milliseconds
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Note, this is not fool-proof...
+Thread.sleep(nbr_minutes*60*1000) //time in milliseconds
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">ssc.stop(stopSparkContext = false)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">numTweetsCollected // number of tweets collected so far
+</code></pre>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-10_group-Geosmus/04_conclusion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-10_group-Geosmus/04_conclusion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

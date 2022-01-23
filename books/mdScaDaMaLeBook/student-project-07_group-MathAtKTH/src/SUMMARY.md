@@ -1,0 +1,3 @@
+- [01_Coding_Motifs](./contents/student-project-07_group-MathAtKTH/01_Coding_Motifs.md)
+- [02_Data_Processing](./contents/student-project-07_group-MathAtKTH/02_Data_Processing.md)
+- [03_graph_string_converter](./contents/student-project-07_group-MathAtKTH/03_graph_string_converter.md)

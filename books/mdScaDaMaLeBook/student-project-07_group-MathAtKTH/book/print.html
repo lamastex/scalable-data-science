@@ -1,0 +1,986 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-07_group-MathAtKTH/01_Coding_Motifs.html">01_Coding_Motifs</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-07_group-MathAtKTH/02_Data_Processing.html">02_Data_Processing</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-07_group-MathAtKTH/03_graph_string_converter.html">03_graph_string_converter</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="motif-finding"><a class="header" href="#motif-finding">Motif Finding</a></h1>
+<p>Finding motifs in graphs is no just fun, it also has applications! Here we study the possibility to use GraphFrames as a tool to be used in practice.</p>
+<p>Math tells us that motifs has important implications on the general structure of the graphs. For example, two DAG models are the same if they have the same of two motifs, v-structures and skeletons.</p>
+<p>Motif finding in graphframes uses a domain specific language (DSL). Here we mention the restrictions of that language and why another might be desirable. One problem is that more complicated queries are (seemingly) not supported. Our man probem however will be the way we count the motifs. GraphFrames uses motif finding algorithms and returns a list of all found subgraphs. Thus we will quickly run out of memory. More specialized software can preform this counting, but uses highly specialized tools not suitable for general motif finding.</p>
+<p>Link to intro video: https://www.youtube.com/watch?v=GFG5MGKxJTs</p>
+</div>
+<div class="cell markdown">
+<p>First we load the packages we need.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+
+import org.graphframes._
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import org.graphframes._
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="special-graphs"><a class="header" href="#special-graphs">Special Graphs</a></h2>
+<p>Here we code some usual motifs that are common within graph theory.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** A function counting the number of multiple edges.
+*/
+def count_mult_edges(input_graph: GraphFrame) = {
+  input_graph.find(&quot;(a)-[e1]-&gt;(b); (a)-[e2]-&gt;(b)&quot;).filter(&quot;e1 != e2&quot;).count
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_mult_edges: (input_graph: org.graphframes.GraphFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** A function counting the number of 3-cycles.
+*/
+def count_3_cycle(input_graph: GraphFrame): Long = {
+  input_graph.find(&quot;(a)-[]-&gt;(b); (b)-[]-&gt;(c); (c)-[]-&gt;(a)&quot;).count
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_3_cycle: (input_graph: org.graphframes.GraphFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** A function counting the number of loop edges.
+*/
+def count_loop(input_graph: GraphFrame) = {
+  input_graph.find(&quot;(a)-[]-&gt;(a)&quot;).count
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_loop: (input_graph: org.graphframes.GraphFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** A function counting the number of bidirected edges.
+*/
+def count_bidir_edges(input_graph: GraphFrame) = {
+  input_graph.find(&quot;(a)-[]-&gt;(b); (b)-[]-&gt;(a)&quot;).filter(&quot;a.id != b.id&quot;).count
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_bidir_edges: (input_graph: org.graphframes.GraphFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="complete-graphs"><a class="header" href="#complete-graphs">Complete graphs</a></h2>
+<p>We code the motifs of the simplest complete graphs, we include an edge i-&gt;j if i comes before j alphabetically. That is, we code for the edges a-&gt;b and a-&gt;c but not for c-&gt;b. As we will see later the graphs of interest does not contain any loops, thus we do not have to filter the result ensuring that all nodes are distinct.</p>
+<p>For simplicial abstract complexes these graphs correspond to the faces. Thus counting them corresponds to finding entries in the f-vector.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** Two functions counting the number of 2- and 4-dimensional faces of a 
+** simplicial graphical simplex. It is assumed the the input_graph does
+** not contain any loops.
+*/
+
+def count_K2(input_graph: GraphFrame): Long = { // Should be the same as the number of edges.
+  input_graph.find(&quot;(a)-[]-&gt;(b)&quot;).count
+}
+
+def count_K3(input_graph: GraphFrame): Long = {
+  input_graph.find(&quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (b)-[]-&gt;(c)&quot;).count
+}
+
+def count_K4(input_graph: GraphFrame): Long = {
+  input_graph.find(&quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (a)-[]-&gt;(d); (b)-[]-&gt;(c); (b)-[]-&gt;(d); (c)-[]-&gt;(d)&quot;).count
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_K2: (input_graph: org.graphframes.GraphFrame)Long
+count_K3: (input_graph: org.graphframes.GraphFrame)Long
+count_K4: (input_graph: org.graphframes.GraphFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h1 id="application"><a class="header" href="#application">Application</a></h1>
+<p>Here we will see an example where we have done motif fining in a rats brain-network. Here we will also see the restrictions of what we can do without more specialized code.</p>
+</div>
+<div class="cell markdown">
+<p>Read the edges.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** The file edges.csv contains lines on the form &quot;1,5,edge&quot; indicating
+** we have an edge from vertex 1 to vertex 5. As we do not care about the 
+** third entry (i just says &quot;edge&quot;) we choose just the two first entries.
+*/
+
+val edges = spark.read.format(&quot;csv&quot;).option(&quot;sep&quot;,&quot;,&quot;).load(&quot;/FileStore/shared_uploads/petterre@kth.se/edges.csv&quot;).withColumnRenamed(&quot;_c0&quot;, &quot;src&quot;).withColumnRenamed(&quot;_c1&quot;, &quot;dst&quot;).select(&quot;src&quot;, &quot;dst&quot;)
+
+edges.count
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>edges: org.apache.spark.sql.DataFrame = [src: string, dst: string]
+res0: Long = 7822274
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Get the vertices from the edges.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** For simplicity we read all the nodes from the column &quot;scr&quot;. Notice 
+** that we use the fact that every node is the source of at least one 
+** edge. Thus we can get the vertices like this.
+*/
+
+val vertices = edges.select(&quot;src&quot;).groupBy(&quot;src&quot;).count().select(&quot;src&quot;).sort(desc(&quot;src&quot;)).withColumnRenamed(&quot;src&quot;, &quot;id&quot;)
+
+vertices.count
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>vertices: org.apache.spark.sql.DataFrame = [id: string]
+res2: Long = 31346
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Since every node is the source of another, we are good to go.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** Now we can create out graph of interest.
+*/
+
+val rat_brain_graph = GraphFrame(vertices, edges)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>rat_brain_graph: org.graphframes.GraphFrame = GraphFrame(v:[id: string], e:[src: string, dst: string])
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="graph-specifics"><a class="header" href="#graph-specifics">Graph specifics</a></h2>
+<p>As we can see above we have 31,346 vertices and 7,822,274 edges. The adjacancy matrix would be very sparse with only 0.7% of it's entries being 1. Thus it is generally better to store this as a list of edges (as graphframes does) as opposed to an adjacancy matrix. Despite the matrix being sparse, this is a rather dense graph with the average degree of each node being just above 499.</p>
+<p>Here we will look closer at some specifics of this graph. Some of these are very important for designing better algorithms.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** As mentioned before, we do not want loops in this graph. Thus we
+** call our above function and check whether we have any.
+*/
+count_loop(rat_brain_graph) // 0
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res4: Long = 0
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** A very relevant question is if this graph is connected. If it is not
+** it would be more efficient to just look at the induvidual components.
+** That is not the case.
+*/
+
+spark.sparkContext.setCheckpointDir(&quot;/FileStore/shared_uploads/petterre@kth.se/&quot;)
+
+val rat_brain_graph_connected_components = rat_brain_graph.connectedComponents.run()
+rat_brain_graph_connected_components.select(&quot;component&quot;).describe().show()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-------+---------+
+|summary|component|
++-------+---------+
+|  count|    31346|
+|   mean|      0.0|
+| stddev|      0.0|
+|    min|        0|
+|    max|        0|
++-------+---------+
+
+rat_brain_graph_connected_components: org.apache.spark.sql.DataFrame = [id: string, component: bigint]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** Let us continue to look at some stastistics for this graph. We can 
+** count the number of 3-cycles.
+*/
+
+count_3_cycle(rat_brain_graph) //25 630 728
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res7: Long = 25630728
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** Let us continue to look at some stastistics for this graph. We can 
+** count the number of multiple edges.
+*/
+
+count_mult_edges(rat_brain_graph) // 0
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res8: Long = 0
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** Let us continue to look at some stastistics for this graph. We can 
+** count the number of bidirected edges.
+*/
+
+count_bidir_edges(rat_brain_graph) //165 220
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res9: Long = 165220
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="count-complete-graphs"><a class="header" href="#count-complete-graphs">Count complete graphs</a></h2>
+<p>Now we will (try to) run the motif finding algorithms and see how they preform.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** First we look after K2. As that is the graph a-&gt;b, we expect this to 
+** be equal to the number of edges, otherwise something is wrong.
+*/
+count_K2(rat_brain_graph) //7 822 274
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res11: Long = 7822274
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/* 
+** Now we find K3. As we will see, this takes a lot of time, longer than
+** we want it to. This is because 'find' does a general search algorithm.
+** See below for a discussion.
+*/
+
+count_K3(rat_brain_graph) //35 976 731
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res12: Long = 35976731
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//count_K4(rat_brain_graph)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="troubles-and-fixes"><a class="header" href="#troubles-and-fixes">Troubles and fixes</a></h2>
+<p>As we saw above finding K3 takes a lot of time, and when running &quot;count<em>K4(rat</em>brain<em>graph)&quot; we run out of memory. This is because we do not use any of the structure of the graphs. Finding graphical simplicies can be made a lot quicker since we can use the structure of the graph \(K_n\) and the structure of the &quot;rat</em>brain_graph&quot;.</p>
+<p>How this can be done quicker can be read in &quot;Computing persistent homology of directed flag complexes&quot; by Daniel Luetgehetmann, Dejan Govc, Jason Smith, and Ran Levi (https://arxiv.org/abs/1906.10458).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">This is a direct implementation. 
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** A implementation of counting cells. It is not parallelized but could be
+** if we start collecting the results in a better way.
+*/
+
+def count_cells(old_child_set: DataFrame, f_vector: List[Int], edges: DataFrame, cut_of: Int, dim: Int): List[Int] = {
+  // Make a new f-vector that is mutable
+  var f_vector_new = f_vector;
+  // For each new node
+  for (vert &lt;- old_child_set.collect()){
+    // Update the f-vector 
+    f_vector_new = f_vector_new.updated(dim, f_vector_new(dim) +1);
+    // If we have not reached our cut off limit
+    if (cut_of &gt; dim){
+      // Find the children of &quot;vert&quot; and find the intersection.
+      // val child_set = old_child_set.intersect(edges.filter(edges(&quot;src&quot;) === vert(0)).select(&quot;dst&quot;));
+      // Call this function recursively
+      f_vector_new = count_cells(old_child_set.intersect(edges.filter(edges(&quot;src&quot;) === vert(0)).select(&quot;dst&quot;)), f_vector_new, edges, cut_of, dim+1);
+    }
+  }
+  // Return the f-vector
+  f_vector_new
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_cells: (old_child_set: org.apache.spark.sql.DataFrame, f_vector: List[Int], edges: org.apache.spark.sql.DataFrame, cut_of: Int, dim: Int)List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">This is a parallelized version. Notice that the parallelization is very naive and it starts to many threads.
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** Helper function to count_cells_par. Does a component-wise addition. 
+** Badly written.
+*/
+
+def component_addition(a: List[Int], b:List[Int]): List[Int] = {
+  // Do it the dumb way
+  List(a(0)+b(0),a(1)+b(1),a(2)+b(2),a(3)+b(3),a(4)+b(4),a(5)+b(5),a(6)+b(6),a(7)+b(7),a(8)+b(8),a(9)+b(9))
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>component_addition: (a: List[Int], b: List[Int])List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** A parallel (?) implementation of counting cells. 
+*/
+
+def count_cells_par(old_child_set: DataFrame, edges: DataFrame, cut_of: Int, dim: Int): List[Int] = {
+  if ((cut_of &gt; dim) &amp;&amp; (old_child_set.count &gt; 0)){
+    return old_child_set.collect().par.map(vert =&gt; count_cells_par(old_child_set.intersect(edges.filter(edges(&quot;src&quot;) === vert(0)).select(&quot;dst&quot;)), edges, cut_of, dim+1)/* vert_to_f-vector*/).reduce(component_addition(_,_)).updated(dim, 1)
+  }
+  else{
+    return List(0,0,0,0,0,0,0,0,0,0).updated(dim, 1);
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_cells_par: (old_child_set: org.apache.spark.sql.DataFrame, edges: org.apache.spark.sql.DataFrame, cut_of: Int, dim: Int)List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Here we implement a version with hopefully better parallelization. It does just one step of parallelization, as oppose to starting to many threads.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** A parallel (?) implementation of counting cells. 
+*/
+
+def count_cells_opt(old_child_set: DataFrame, edges: DataFrame, cut_of: Int, dim: Int): List[Int] = {
+  if ((cut_of &gt; dim) &amp;&amp; (old_child_set.count &gt; 0)){
+    return old_child_set.collect().par.map(vert =&gt; count_cells_opt_helper(old_child_set.intersect(edges.filter(edges(&quot;src&quot;) === vert(0)).select(&quot;dst&quot;)), edges, cut_of, dim+1)/* vert_to_f-vector*/).reduce(component_addition(_,_)).updated(dim, 1)
+  }
+  else{
+    return List(0,0,0,0,0,0,0,0,0,0).updated(dim, 1);
+  }
+}
+
+def count_cells_opt_helper(old_child_set: DataFrame, edges: DataFrame, cut_of: Int, dim: Int): List[Int] = {
+  if ((cut_of &gt; dim) &amp;&amp; (old_child_set.count &gt; 0)){
+    // The next line should not parallelize the process.
+    return old_child_set.collect().map(vert =&gt; count_cells_par(old_child_set.intersect(edges.filter(edges(&quot;src&quot;) === vert(0)).select(&quot;dst&quot;)), edges, cut_of, dim+1)/* vert_to_f-vector*/).reduce(component_addition(_,_)).updated(dim, 1)
+  }
+  else{
+    return List(0,0,0,0,0,0,0,0,0,0).updated(dim, 1);
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>count_cells_opt: (old_child_set: org.apache.spark.sql.DataFrame, edges: org.apache.spark.sql.DataFrame, cut_of: Int, dim: Int)List[Int]
+count_cells_opt_helper: (old_child_set: org.apache.spark.sql.DataFrame, edges: org.apache.spark.sql.DataFrame, cut_of: Int, dim: Int)List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="graphframe-calling"><a class="header" href="#graphframe-calling">GraphFrame calling</a></h3>
+<p>Here we have funcions so that we can call the count_cellst directly on a GraphFrame.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** Makes it easier to call &quot;count_cells&quot; on a GraphFrame object. Notice
+** that we can get wrong results if the input graph has loops. We recommend
+** running &quot;count_loops&quot; to see if that is the case.
+*/
+
+def f_vector_of_graphframe(graph: GraphFrame, cut_of: Int): List[Int] = {
+  var f_vector = List(0,0,0,0,0,0,0,0,0,0);
+  if (cut_of &gt; 9){
+    print(&quot;Too big cut_of&quot;)
+    f_vector
+  }
+  count_cells(graph.vertices.select(&quot;id&quot;), f_vector, graph.edges.select(&quot;src&quot;, &quot;dst&quot;), cut_of, 0);
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>f_vector_of_graphframe: (graph: org.graphframes.GraphFrame, cut_of: Int)List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** Makes it easier to call &quot;count_cells_par&quot; on a GraphFrame object. Notice
+** that we can get wrong results if the input graph has loops. We recommend
+** running &quot;count_loops&quot; to see if that is the case.
+*/
+
+def f_vector_of_graphframe_par(graph: GraphFrame, cut_of: Int): List[Int] = {
+  var temp_int = 0;
+  if (cut_of &gt; 9){
+    print(&quot;Too big cut_of&quot;)
+    temp_int = 9;
+  }
+  else{
+    temp_int = cut_of;
+  }
+  count_cells_par(graph.vertices.select(&quot;id&quot;), graph.edges.select(&quot;src&quot;, &quot;dst&quot;), temp_int, 0);
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>f_vector_of_graphframe_par: (graph: org.graphframes.GraphFrame, cut_of: Int)List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** Makes it easier to call &quot;count_cells_opt&quot; on a GraphFrame object. Notice
+** that we can get wrong results if the input graph has loops. We recommend
+** running &quot;count_loops&quot; to see if that is the case.
+*/
+
+def f_vector_of_graphframe_opt(graph: GraphFrame, cut_of: Int): List[Int] = {
+  var f_vector = List(0,0,0,0,0,0,0,0,0,0);
+  if (cut_of &gt; 9){
+    print(&quot;Too big cut_of&quot;)
+    f_vector
+  }
+  count_cells_opt(graph.vertices.select(&quot;id&quot;), graph.edges.select(&quot;src&quot;, &quot;dst&quot;), cut_of, 0);
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>f_vector_of_graphframe_opt: (graph: org.graphframes.GraphFrame, cut_of: Int)List[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>Let us take a small example that we can run in a fair time and show.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** First we will define a small graph that is manageable by hand. This 
+** graph encodes for a simplicial complex with f-vector (6, 11, 7, 1).
+*/
+// Vertex DataFrame
+val v = sqlContext.createDataFrame(List(
+  (&quot;a&quot;, 1),
+  (&quot;b&quot;, 2),
+  (&quot;c&quot;, 3),
+  (&quot;d&quot;, 4),
+  (&quot;e&quot;, 5),
+  (&quot;f&quot;, 6)
+)).toDF(&quot;id&quot;, &quot;no&quot;)
+
+// Edge DataFrame
+val e = sqlContext.createDataFrame(List(
+  (&quot;a&quot;, &quot;b&quot;),
+  (&quot;a&quot;, &quot;c&quot;),
+  (&quot;b&quot;, &quot;c&quot;),
+  (&quot;b&quot;, &quot;d&quot;),
+  (&quot;d&quot;, &quot;c&quot;),
+  (&quot;b&quot;, &quot;e&quot;),
+  (&quot;c&quot;, &quot;e&quot;),
+  (&quot;d&quot;, &quot;e&quot;), 
+  (&quot;a&quot;, &quot;f&quot;),
+  (&quot;c&quot;, &quot;a&quot;),
+  (&quot;c&quot;, &quot;f&quot;)
+)).toDF(&quot;src&quot;, &quot;dst&quot;)
+
+val g = GraphFrame(v, e);
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>v: org.apache.spark.sql.DataFrame = [id: string, no: int]
+e: org.apache.spark.sql.DataFrame = [src: string, dst: string]
+g: org.graphframes.GraphFrame = GraphFrame(v:[id: string, no: int], e:[src: string, dst: string])
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">f_vector_of_graphframe(g, 5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res18: List[Int] = List(6, 11, 7, 1, 0, 0, 0, 0, 0, 0)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">f_vector_of_graphframe_par(g, 5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res19: List[Int] = List(1, 6, 11, 7, 1, 0, 0, 0, 0, 0)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">f_vector_of_graphframe_opt(g, 5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res20: List[Int] = List(1, 6, 11, 7, 1, 0, 0, 0, 0, 0)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(g.vertices.count)
+println(count_K2(g))
+println(count_K3(g))
+println(count_K4(g))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>6
+11
+7
+1
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//f_vector_of_graphframe_opt(rat_brain_graph, cut_of = 2)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="data-processing"><a class="header" href="#data-processing">Data Processing</a></h1>
+<p>Here we will load the data as it was given to us, as a &quot;.npy&quot; file, and rewrite it in a simpler format. Why we do this is motivated in &quot;Coding_Motifs&quot;, subsection &quot;application&quot;.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Load packages
+
+import numpy as np
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Read the data as a numpy object (since we got it like that), and save it as a &quot;.csv&quot; since scala can read that.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">
+M = np.load('/dbfs/FileStore/shared_uploads/adlindhe@kth.se/M.npy')
+np.savetxt(&quot;/dbfs/FileStore/shared_uploads/adlindhe@kth.se/M.csv&quot;, M, delimiter=&quot;,&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Right now the data is an adjacency matrix of size 31346 times 31346 but only 0.7% of all entries are 1. Thus we would like to save it down as something a little easier to handle. We can read the adjacency matrix directly as a dataframe, but that does not work well with graphframes. Instead we want it as an edgelist.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">/*
+** Example on how we can read the data.
+*/
+val Ms = spark.read.format(&quot;csv&quot;).option(&quot;sep&quot;,&quot;,&quot;).option(&quot;MaxColumns&quot;,40000).load(&quot;/FileStore/shared_uploads/adlindhe@kth.se/M.csv&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Thus we rewrite it as a edgelist. Thus we can more easily load it into graphframes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Loop over the whole matrix. This takes time (~ 1h).
+
+edges_file = open(&quot;/dbfs/FileStore/shared_uploads/petterre@kth.se/edges.csv&quot;, &quot;w&quot;)
+
+for i in range(len(M)):
+  for j in range(len(M[i])):
+    for k in range(M[i][j]):
+      edges_file.write(str(i) + &quot;,&quot; + str(j) + &quot;,edge\n&quot;)
+
+edges_file.close()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Look at it to see if it looks ok.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">head /dbfs/FileStore/shared_uploads/petterre@kth.se/edges.csv
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">Ms.cache // cache the DataFrame this time
+Ms.count // now after this action, the next count will be fast...
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(Ms)
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="intro"><a class="header" href="#intro">Intro</a></h1>
+<p>In this notebook we create a code-writing program. Coding a specific motif generally makes for very long strings, the length grows as \(n^2\). Thus coding them directly is very inefficient. We solved this problem via a simple program. Here we can simply feed the adjacancy matrix of the motif we want to find, and it gives us the scala code.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import numpy as np
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In this funtion we input the adjacancy matrix of the motif we want to find. Then it produces the text of a scala command. Than command can then be copy-pasted into another notebook.</p>
+<p>Here we simply go through the adjacancy matrix and fix the string thereafter. In this function the motif we want to find is induced by the graph. Thus each edge is either wanted or forbidden.</p>
+<p>loops - Do we care about loops or not.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def matrix_to_string(input_matrix, input_function_name, loops = True):
+  ret_string = &quot;def &quot; + input_function_name + &quot;(input_graph: GraphFrame) = {\n\tval string_&quot; +input_function_name+ &quot; = \&quot;&quot;
+  filter_string = &quot;&quot;
+  pos_edges = &quot;&quot;
+  neg_edges = &quot;&quot;
+  alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  
+  for i in range(len(input_matrix)):
+    for j in range(len(input_matrix[i])):
+      if i == j:
+        if loops and input_matrix[i][j] != 0:
+          pos_edges += &quot;(&quot; + alphabet[i] + &quot;)-[]-&gt;(&quot; + alphabet[j] + &quot;); &quot;
+        elif loops:
+          neg_edges += &quot;!(&quot; + alphabet[i] + &quot;)-[]-&gt;(&quot; + alphabet[j] + &quot;); &quot;
+      elif input_matrix[i][j] != 0:
+        pos_edges += &quot;(&quot; + alphabet[i] + &quot;)-[]-&gt;(&quot; + alphabet[j] + &quot;); &quot;
+      else:
+        neg_edges += &quot;!(&quot; + alphabet[i] + &quot;)-[]-&gt;(&quot; + alphabet[j] + &quot;); &quot;
+      if i &gt; j:
+        filter_string += &quot;.filter(\&quot;&quot; + alphabet[j] + &quot;.id != &quot; + alphabet[i] + &quot;.id\&quot;)&quot;
+  ret_string += pos_edges + neg_edges
+  ret_string = ret_string[0:-2]
+  ret_string += &quot;\&quot;\n\tinput_graph.find(g_1)&quot;
+  ret_string += filter_string
+  ret_string += &quot;.count\n}\n&quot;
+  return ret_string
+  
+  
+  
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In this funtion we input the signed adjacancy matrix of the motif we want to find. Then it produces the text of a scala command. Than command can then be copy-pasted into another notebook.</p>
+<p>Here we simply go through the adjacancy matrix and fix the string thereafter. In this function each edge can either be demanded, forbidden, or allowed. The three states are represented by 1, -1, and all other values.</p>
+<p>loops - Do we care about loops or not.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def matrix_to_string_signed(input_matrix, input_function_name):
+  ret_string = &quot;def &quot; + input_function_name + &quot;(input_graph: GraphFrame) = {\n\tval string_&quot; +input_function_name+ &quot; = \&quot;&quot;
+  filter_string = &quot;&quot;
+  pos_edges = &quot;&quot;
+  neg_edges = &quot;&quot;
+  alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  
+  for i in range(len(input_matrix)):
+    for j in range(len(input_matrix[i])):
+      if input_matrix[i][j] == 1:
+        pos_edges += &quot;(&quot; + alphabet[i] + &quot;)-[]-&gt;(&quot; + alphabet[j] + &quot;); &quot;
+      elif input_matrix[i][j] == -1:
+        neg_edges += &quot;!(&quot; + alphabet[i] + &quot;)-[]-&gt;(&quot; + alphabet[j] + &quot;); &quot;
+      if i &gt; j:
+        filter_string += &quot;.filter(\&quot;&quot; + alphabet[j] + &quot;.id != &quot; + alphabet[i] + &quot;.id\&quot;)&quot;
+  ret_string += pos_edges + neg_edges
+  ret_string = ret_string[0:-2]
+  ret_string += &quot;\&quot;\n\tinput_graph.find(g_1)&quot;
+  ret_string += filter_string
+  ret_string += &quot;.count\n}\n&quot;
+  return ret_string
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="examples"><a class="header" href="#examples">Examples</a></h1>
+<p>Here is a quick example where we have coded for a &quot;claw&quot;. Another name for the claw is a star of size 3, meaning it has 4 vertices.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">print(matrix_to_string([[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,0]], &quot;count_claw&quot;, loops = False))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>def count_claw(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(d); (b)-[]-&gt;(d); (c)-[]-&gt;(d); !(a)-[]-&gt;(b); !(a)-[]-&gt;(c); !(b)-[]-&gt;(a); !(b)-[]-&gt;(c); !(c)-[]-&gt;(a); !(c)-[]-&gt;(b); !(d)-[]-&gt;(a); !(d)-[]-&gt;(b); !(d)-[]-&gt;(c)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).filter(&quot;a.id != d.id&quot;).filter(&quot;b.id != d.id&quot;).filter(&quot;c.id != d.id&quot;).count
+}
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Here we cave coded for a v-structure.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">print(matrix_to_string([[0,0,1],[0,0,1],[0,0,0]], &quot;count_v_struc&quot;, loops = False))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>def count_v_struc(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(c); (b)-[]-&gt;(c); !(a)-[]-&gt;(b); !(b)-[]-&gt;(a); !(c)-[]-&gt;(a); !(c)-[]-&gt;(b)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).count
+}
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Counting how many loops</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">print(matrix_to_string([[1]], &quot;count_loop&quot;))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>def count_loop(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(a)&quot;
+	input_graph.find(g_1).count
+}
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>A very important thing we want to look at is complete graphs.</p>
+<p>As these can grow big, we write a function to generate them.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def adj_matrix_complete_graph(size):
+  adj_matrix = np.zeros((size,size))
+  for i in range(len(adj_matrix)):
+    for j in range(i+1, len(adj_matrix[i])):
+      adj_matrix[i][j] = 1
+  return adj_matrix
+  
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Now we can generate the code of interest.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">for i in range(3,7+1):
+  print(matrix_to_string_signed(adj_matrix_complete_graph(i), &quot;count_K&quot;+str(i)))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>def count_K3(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (b)-[]-&gt;(c)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).count
+}
+
+def count_K4(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (a)-[]-&gt;(d); (b)-[]-&gt;(c); (b)-[]-&gt;(d); (c)-[]-&gt;(d)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).filter(&quot;a.id != d.id&quot;).filter(&quot;b.id != d.id&quot;).filter(&quot;c.id != d.id&quot;).count
+}
+
+def count_K5(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (a)-[]-&gt;(d); (a)-[]-&gt;(e); (b)-[]-&gt;(c); (b)-[]-&gt;(d); (b)-[]-&gt;(e); (c)-[]-&gt;(d); (c)-[]-&gt;(e); (d)-[]-&gt;(e)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).filter(&quot;a.id != d.id&quot;).filter(&quot;b.id != d.id&quot;).filter(&quot;c.id != d.id&quot;).filter(&quot;a.id != e.id&quot;).filter(&quot;b.id != e.id&quot;).filter(&quot;c.id != e.id&quot;).filter(&quot;d.id != e.id&quot;).count
+}
+
+def count_K6(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (a)-[]-&gt;(d); (a)-[]-&gt;(e); (a)-[]-&gt;(f); (b)-[]-&gt;(c); (b)-[]-&gt;(d); (b)-[]-&gt;(e); (b)-[]-&gt;(f); (c)-[]-&gt;(d); (c)-[]-&gt;(e); (c)-[]-&gt;(f); (d)-[]-&gt;(e); (d)-[]-&gt;(f); (e)-[]-&gt;(f)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).filter(&quot;a.id != d.id&quot;).filter(&quot;b.id != d.id&quot;).filter(&quot;c.id != d.id&quot;).filter(&quot;a.id != e.id&quot;).filter(&quot;b.id != e.id&quot;).filter(&quot;c.id != e.id&quot;).filter(&quot;d.id != e.id&quot;).filter(&quot;a.id != f.id&quot;).filter(&quot;b.id != f.id&quot;).filter(&quot;c.id != f.id&quot;).filter(&quot;d.id != f.id&quot;).filter(&quot;e.id != f.id&quot;).count
+}
+
+def count_K7(input_graph: GraphFrame) = {
+	val g_1 = &quot;(a)-[]-&gt;(b); (a)-[]-&gt;(c); (a)-[]-&gt;(d); (a)-[]-&gt;(e); (a)-[]-&gt;(f); (a)-[]-&gt;(g); (b)-[]-&gt;(c); (b)-[]-&gt;(d); (b)-[]-&gt;(e); (b)-[]-&gt;(f); (b)-[]-&gt;(g); (c)-[]-&gt;(d); (c)-[]-&gt;(e); (c)-[]-&gt;(f); (c)-[]-&gt;(g); (d)-[]-&gt;(e); (d)-[]-&gt;(f); (d)-[]-&gt;(g); (e)-[]-&gt;(f); (e)-[]-&gt;(g); (f)-[]-&gt;(g)&quot;
+	input_graph.find(g_1).filter(&quot;a.id != b.id&quot;).filter(&quot;a.id != c.id&quot;).filter(&quot;b.id != c.id&quot;).filter(&quot;a.id != d.id&quot;).filter(&quot;b.id != d.id&quot;).filter(&quot;c.id != d.id&quot;).filter(&quot;a.id != e.id&quot;).filter(&quot;b.id != e.id&quot;).filter(&quot;c.id != e.id&quot;).filter(&quot;d.id != e.id&quot;).filter(&quot;a.id != f.id&quot;).filter(&quot;b.id != f.id&quot;).filter(&quot;c.id != f.id&quot;).filter(&quot;d.id != f.id&quot;).filter(&quot;e.id != f.id&quot;).filter(&quot;a.id != g.id&quot;).filter(&quot;b.id != g.id&quot;).filter(&quot;c.id != g.id&quot;).filter(&quot;d.id != g.id&quot;).filter(&quot;e.id != g.id&quot;).filter(&quot;f.id != g.id&quot;).count
+}
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>02_Random_Forest - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/01_Background.html">01_Background</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/02_Random_Forest.html" class="active">02_Random_Forest</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/03_CNN_MNIST.html">03_CNN_MNIST</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/04_CNN_Intel_Image.html">04_CNN_Intel_Image</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-20_group-Generalization/05_Horovod_test.html">05_Horovod_test</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="random-forests-and-mixup"><a class="header" href="#random-forests-and-mixup">Random Forests and MixUp</a></h2>
+<p>First off, we will implement MixUp for a Random Forest applied to the Fashion-MNIST data set. Fashion-MNIST consists of black and white 28x28 images of clothing items [[6]]. We will use the scikit-learn package to implement the Random Forest algorithm, and then perform a distributed hyperparameter search with Ray tune. Thus, scalability enters this part of the project through the hyperparameter search.</p>
+<p>First, we will just train the Random Forest using the basic training data and observe the performance. Next, we will do the same but utilizing MixUp. Typically, MixUp is used for iterative algorithms, where a new batch of MixUp data is created at each iteration. However, since a Random Forest is not trained iteratively, we use MixUp to augment our data set by adding a number of MixUp data points to our original data set.</p>
+<p>First, we will load the data set.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Loading Fashion-mnist
+
+import tensorflow as tf
+(X, y),(testX,testY) = tf.keras.datasets.fashion_mnist.load_data()
+X = X.reshape(60000, 28*28)
+
+from sklearn.preprocessing import LabelBinarizer
+
+enc = LabelBinarizer()
+y = enc.fit_transform(y)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Next, we define a function that can be used to generated new MixUp data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Function to create MixUp data
+
+def create_mixup(X, y, beta_param):
+  n = np.shape(X)[0]
+  shuffled_indices = np.arange(n).tolist()
+  np.random.shuffle(shuffled_indices)
+  X_s = X[shuffled_indices]
+  y_s = y[shuffled_indices]
+  mixup_l = np.random.beta(beta_param,beta_param)
+  X_mixed = X*(1-mixup_l) + mixup_l*X_s
+  y_mixed = y*(1-mixup_l) + (mixup_l)*(y_s)
+  return X_mixed, y_mixed
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Next, we split the data into training and validation sets.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Fixes the issue &quot;AttributeError: 'ConsoleBuffer has no attribute 'fileno'&quot;
+import sys
+sys.stdout.fileno = lambda: False
+
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
+# Prepare the data
+num_classes = 10
+np.random.seed(1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 1, test_size=0.5)
+X_train_base = X_train.copy()
+y_train_base = y_train.copy()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We now define the training function that will be used by Ray Tune. For each set of hyperparameters, we initialize a Random Forest and train on the data, either with or without added folds of MixUp data. We then evaluate on some metrics of interest.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Fixes the issue &quot;AttributeError: 'ConsoleBuffer has no attribute 'fileno'&quot;
+import sys
+sys.stdout.fileno = lambda: False
+
+from sklearn import metrics
+import numpy as np
+
+from sklearn.ensemble import RandomForestRegressor
+
+def training_function(config, checkpoint_dir=None):
+    # Hyperparameters
+    n_estimators, max_depth, mixup_folds = config[&quot;n_estimators&quot;], config[&quot;max_depth&quot;], config[&quot;mixup_folds&quot;]
+    
+    X_train_data = X_train_base.copy()
+    y_train_data = y_train_base.copy()
+    
+    for i in range(mixup_folds):
+      X_mixed, y_mixed = create_mixup(X_train_base, y_train_base, 0.2)
+      X_train_data = np.concatenate([X_train_data, X_mixed])
+      y_train_data = np.concatenate([y_train_data, y_mixed])
+    
+    # Instantiate model with n_estimators decision trees
+    rf = RandomForestRegressor(n_estimators = n_estimators, max_depth = max_depth, random_state = 1)
+    # Train the model on training data
+    rf.fit(X_train_data, y_train_data)
+    
+    &quot;&quot;&quot;
+    Logg the results
+    &quot;&quot;&quot;
+    
+    #x_mix, y_mix = mixup_data( x_val, y_val)
+    #mix_loss, mix_acc = model.evaluate( x_mix, y_mix )
+    y_pred_probs = rf.predict(X_test)
+    y_pred = np.zeros_like(y_pred_probs)
+    y_pred[np.arange(len(y_pred_probs)), y_pred_probs.argmax(1)] = 1
+    val_acc = np.mean(np.argmax(y_test,1) == np.argmax(y_pred,1))
+    
+    y_pred_probs = rf.predict(X_train_base)
+    y_pred = np.zeros_like(y_pred_probs)
+    y_pred[np.arange(len(y_pred_probs)), y_pred_probs.argmax(1)] = 1
+    train_acc = np.mean(np.argmax(y_train_base,1) == np.argmax(y_pred,1))
+    
+    mean_loss = 1
+    
+    tune.report(mean_loss=mean_loss, train_accuracy = train_acc, val_accuracy = val_acc)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally, we run the actual hyperparameter search in a distributed fashion. Regarding the amount of MixUp data, we try using no MixUp, or we add 2 folds, effectively tripling the size of the data set.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from ray import tune
+from ray.tune import CLIReporter
+# Limit the number of rows.
+reporter = CLIReporter(max_progress_rows=10)
+
+reporter.add_metric_column(&quot;val_accuracy&quot;)
+reporter.add_metric_column(&quot;train_accuracy&quot;)
+
+
+
+analysis = tune.run(
+    training_function,
+    config={
+      'n_estimators': tune.grid_search([10, 20]),
+      'max_depth': tune.grid_search([5, 10]),
+      'mixup_folds': tune.grid_search([0, 2])
+    },
+    local_dir='ray_results',
+    progress_reporter=reporter
+) 
+
+print(&quot;Best config: &quot;, analysis.get_best_config(
+    metric=&quot;val_accuracy&quot;, mode=&quot;max&quot;))
+
+#Get a dataframe for analyzing trial results.
+df = analysis.results_df
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Let's look at the data from the different trials to see if we can conclude anything about the efficacy of MixUp.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<pre><code class="language-python">df[['config.n_estimators', 'config.max_depth', 'config.mixup_folds', 'train_accuracy', 'val_accuracy']]
+</code></pre>
+<div class="output execute_result html_result" execution_count="1">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>config.n_estimators</th>
+      <th>config.max_depth</th>
+      <th>config.mixup_folds</th>
+      <th>train_accuracy</th>
+      <th>val_accuracy</th>
+    </tr>
+    <tr>
+      <th>trial_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7e269_00000</th>
+      <td>10</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0.735533</td>
+      <td>0.728100</td>
+    </tr>
+    <tr>
+      <th>7e269_00001</th>
+      <td>10</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0.887033</td>
+      <td>0.835733</td>
+    </tr>
+    <tr>
+      <th>7e269_00002</th>
+      <td>10</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0.729433</td>
+      <td>0.720333</td>
+    </tr>
+    <tr>
+      <th>7e269_00003</th>
+      <td>10</td>
+      <td>10</td>
+      <td>2</td>
+      <td>0.888467</td>
+      <td>0.827867</td>
+    </tr>
+    <tr>
+      <th>7e269_00004</th>
+      <td>20</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0.734367</td>
+      <td>0.729667</td>
+    </tr>
+    <tr>
+      <th>7e269_00005</th>
+      <td>20</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0.888367</td>
+      <td>0.837833</td>
+    </tr>
+    <tr>
+      <th>7e269_00006</th>
+      <td>20</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0.724567</td>
+      <td>0.715700</td>
+    </tr>
+    <tr>
+      <th>7e269_00007</th>
+      <td>20</td>
+      <td>10</td>
+      <td>2</td>
+      <td>0.865267</td>
+      <td>0.818967</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell markdown">
+<p><strong>Conclusions</strong></p>
+<p>Based on the results, MixUp does not seem to help in this context. The validation accuracy achieved with MixUp is actually slightly lower than without it. The reasons for this may be that the data is too simple, that Random Forests cannot fully utilize the power of MixUp augmentation due to not being iterative, or that the piecewise constant nature Decision Trees means that MixUp cannot help too much.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-20_group-Generalization/01_Background.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-20_group-Generalization/03_CNN_MNIST.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-20_group-Generalization/01_Background.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-20_group-Generalization/03_CNN_MNIST.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

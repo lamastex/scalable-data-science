@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_load_data - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html">00_download_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html" class="active">01_load_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<ol start="3">
+<li>Methods to load data</li>
+</ol>
+<hr />
+</div>
+<div class="cell markdown">
+<h3 id="preprocessing-and-loading-the-relevant-data"><a class="header" href="#preprocessing-and-loading-the-relevant-data">Preprocessing and loading the relevant data</a></h3>
+<p>Each forum comes as an XML-file with the structure given below:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Data comes in XML-files with the following structure.
+/*
+&lt;corpus id=&quot;familjeliv-adoption&quot;&gt;
+&lt;forum id=&quot;13-242&quot; title=&quot;Adoption &amp;gt; Intresserad&quot; url=&quot;http://www.familjeliv.
+se/forum/13/242&quot;&gt;
+&lt;thread id=&quot;34277335&quot; title=&quot;Tips för att välja land&quot; postcount=&quot;25&quot; lastpost=&quot;2
+008-07-08 17:55:14&quot; url=&quot;http://www.familjeliv.se/forum/thread/34277335-tips-for
+-att-valja-land&quot;&gt;
+&lt;text datefrom=&quot;20080707&quot; dateto=&quot;20080707&quot; timefrom=&quot;220854&quot; timeto=&quot;220854&quot; lix=&quot;30.55&quot; ovix=&quot;60.74&quot; nk=&quot;0.51&quot; id=&quot;34284994&quot; username=&quot;Miss TN&quot; date=&quot;2008-07-07 22:08:54&quot; url=&quot;http://www.familjeliv.se/forum/thread/34277335-tips-for-att-valja-land/2#anchor-m16&quot;&gt;
+&lt;sentence id=&quot;bacc55562-baca83a75&quot; _geocontext=&quot;|&quot;&gt;
+&lt;w pos=&quot;VB&quot; msd=&quot;VB.PRS.AKT&quot; lemma=&quot;|känna|&quot; lex=&quot;|känna..vb.2|känna..vb.1|&quot; sense=&quot;|känna..1:0.522|känna..2:0.313|känna..4:0.158|känna..3:0.006|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;01&quot; dephead=&quot;07&quot; deprel=&quot;AA&quot;&gt;Känner&lt;/w&gt;
+&lt;w pos=&quot;PN&quot; msd=&quot;PN.UTR.SIN.DEF.SUB&quot; lemma=&quot;|ni|&quot; lex=&quot;|ni..pn.1|&quot; sense=&quot;|ni..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;02&quot; dephead=&quot;01&quot; deprel=&quot;OO&quot;&gt;ni&lt;/w&gt;
+&lt;w pos=&quot;PP&quot; msd=&quot;PP&quot; lemma=&quot;|för|&quot; lex=&quot;|för..pp.1|&quot; sense=&quot;|för..1:-1.000|för..5:-1.000|för..6:-1.000|för..7:-1.000|för..9:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;03&quot; dephead=&quot;01&quot; deprel=&quot;OA&quot;&gt;för&lt;/w&gt;
+&lt;w pos=&quot;DT&quot; msd=&quot;DT.NEU.SIN.IND&quot; lemma=&quot;|en|&quot; lex=&quot;|en..al.1|&quot; sense=&quot;|den..1:-1.000|en..2:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;04&quot; dephead=&quot;06&quot; deprel=&quot;DT&quot;&gt;ett&lt;/w&gt;
+&lt;w pos=&quot;JJ&quot; msd=&quot;JJ.POS.NEU.SIN.IND.NOM&quot; lemma=&quot;|låg|&quot; lex=&quot;|låg..av.1|&quot; sense=&quot;|låg..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;05&quot; dephead=&quot;06&quot; deprel=&quot;AT&quot;&gt;lågt&lt;/w&gt;
+&lt;w pos=&quot;NN&quot; msd=&quot;NN.NEU.SIN.IND.NOM&quot; lemma=&quot;|medgivande|&quot; lex=&quot;|medgivande..nn.1|&quot; sense=&quot;|medgivande..1:0.595|medgivande..2:0.405|&quot; prefix=&quot;|medge..vb.1|mede..nn.1|&quot; suffix=&quot;|givande..nn.1|ande..nn.1|&quot; compwf=&quot;|medgiv+ande|med+givande|med+giv+ande|&quot; complemgram=&quot;|medge..vb.1+ande..nn.1:4.632e-17|mede..nn.1+givande..nn.1:6.075e-27|mede..nn.1+giv..nn.1+ande..nn.1:5.387e-27|mede..nn.1+ge..vb.1+ande..nn.1:1.257e-29|&quot; ref=&quot;06&quot; dephead=&quot;03&quot; deprel=&quot;PA&quot;&gt;medgivande&lt;/w&gt;
+&lt;w pos=&quot;VB&quot; msd=&quot;VB.PRS.AKT&quot; lemma=&quot;|skola|&quot; lex=&quot;|skola..vb.2|&quot; sense=&quot;|skola..4:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;07&quot; deprel=&quot;ROOT&quot;&gt;ska&lt;/w&gt;
+&lt;w pos=&quot;PN&quot; msd=&quot;PN.UTR.PLU.DEF.SUB&quot; lemma=&quot;|ni|&quot; lex=&quot;|ni..pn.1|&quot; sense=&quot;|ni..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;08&quot; dephead=&quot;07&quot; deprel=&quot;SS&quot;&gt;ni&lt;/w&gt;
+&lt;w pos=&quot;AB&quot; msd=&quot;AB&quot; lemma=&quot;|verkligen|&quot; lex=&quot;|verkligen..ab.1|&quot; sense=&quot;|verkligen..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;09&quot; dephead=&quot;07&quot; deprel=&quot;MA&quot;&gt;verkligen&lt;/w&gt;
+&lt;w pos=&quot;VB&quot; msd=&quot;VB.INF.AKT&quot; lemma=&quot;|sträva|&quot; lex=&quot;|sträva..vb.1|&quot; sense=&quot;|sträva..1:-1.000|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;10&quot; dephead=&quot;07&quot; deprel=&quot;VG&quot;&gt;sträva&lt;/w&gt;
+.
+.
+.
+&lt;/sentence&gt;
+&lt;/text&gt;
+&lt;/thread&gt;
+&lt;thread id=&quot;42755312&quot; title=&quot;Om vi planerar ett barn om sju år, när ska vi dra igång adoptionsprocessen?&quot; postcount=&quot;3&quot; lastpost=&quot;2009-04-01 18:39:55&quot; url=&quot;http://www.familjeliv.se/forum/thread/42755312-om-vi-planerar-ett-barn-om-sju-ar-nar-ska-vi-dra-igang-adoptionsprocessen&quot;&gt;
+&lt;text datefrom=&quot;20090331&quot; dateto=&quot;20090331&quot; timefrom=&quot;201724&quot; timeto=&quot;201724&quot; lix=&quot;27.48&quot; ovix=&quot;50.60&quot; nk=&quot;0.37&quot; id=&quot;42755312&quot; username=&quot;alvaereva&quot; date=&quot;2009-03-31 20:17:24&quot; url=&quot;http://www.familjeliv.se/forum/thread/42755312-om-vi-planerar-ett-barn-om-sju-ar-nar-ska-vi-dra-igang-adoptionsprocessen/1&quot;&gt;
+&lt;sentence id=&quot;bac2ec05f-bace4e647&quot; _geocontext=&quot;|&quot;&gt;
+&lt;w pos=&quot;KN&quot; msd=&quot;KN&quot; lemma=&quot;|&quot; lex=&quot;|&quot; sense=&quot;|&quot; prefix=&quot;|&quot; suffix=&quot;|&quot; compwf=&quot;|&quot; complemgram=&quot;|&quot; ref=&quot;01&quot; deprel=&quot;ROOT&quot;&gt;Som&lt;/w&gt;
+.
+.
+.
+*/
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions.{col,concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ ArrayType, StructType, StructField, StringType, IntegerType }
+import com.databricks.spark.xml._ // Add the DataFrame.read.xml() method
+import org.apache.spark.sql.functions._
+
+
+def read_xml(file_name: String): org.apache.spark.sql.DataFrame = {
+  val sentence_schema = StructType(Array(
+    StructField(&quot;w&quot;, ArrayType(StringType, true), nullable=true)
+  ))
+  val text_schema = StructType(Array(
+     StructField(&quot;sentence&quot;, ArrayType(sentence_schema), nullable=false)
+  ))
+
+  val thread_schema = StructType(Array(
+    StructField(&quot;_id&quot;, StringType, nullable = false),
+    StructField(&quot;_title&quot;, StringType, nullable = false),
+    StructField(&quot;_url&quot;, StringType, nullable = false),
+    StructField(&quot;text&quot;, text_schema, nullable=false)
+  ))
+
+  val forum_schema = StructType(Array(
+    StructField(&quot;_id&quot;, StringType, nullable = false),
+    StructField(&quot;_title&quot;, StringType, nullable = false),
+    StructField(&quot;_url&quot;, StringType, nullable = false),
+    StructField(&quot;thread&quot;, ArrayType(thread_schema), nullable=false)
+  ))
+
+  val corpus_schema = StructType(Array(
+    StructField(&quot;_id&quot;, StringType, nullable = false),
+    StructField(&quot;forum&quot;, forum_schema, nullable=false)
+  ))
+
+  spark.read
+    .option(&quot;rowTag&quot;, &quot;forum&quot;)
+    .schema(forum_schema)
+    .xml(file_name)
+ }
+
+def get_dataset(file_name: String) : org.apache.spark.sql.DataFrame = {
+  val xml_df = read_xml(file_name)
+  val ds = xml_df.withColumn(&quot;thread&quot;, explode($&quot;thread&quot;))
+  val splitted_name = file_name.split(&quot;/&quot;)
+  val forum = splitted_name(splitted_name.size-2)
+  val corpus = splitted_name(splitted_name.size-1)
+  val value = udf((arr: Seq[String]) =&gt; arr.mkString(&quot;,&quot;))
+  ds.select(col(&quot;_id&quot;) as &quot;forum_id&quot;,
+                     col(&quot;_title&quot;) as &quot;forum_title&quot;,
+                     col(&quot;thread._id&quot;) as &quot;thread_id&quot;,
+                     col(&quot;thread._title&quot;) as &quot;thread_title&quot;,
+                     flatten(col(&quot;thread.text.sentence.w&quot;)) as &quot;w&quot;)
+                .withColumn(&quot;w&quot;, explode($&quot;w&quot;))
+               .groupBy(&quot;thread_id&quot;)
+               .agg(first(&quot;thread_title&quot;) as(&quot;thread_title&quot;),
+                    collect_list(&quot;w&quot;) as &quot;w&quot;,
+                    first(&quot;forum_id&quot;) as &quot;forum_id&quot;,
+                    first(&quot;forum_title&quot;) as &quot;forum_title&quot;)
+               .withColumn(&quot;w&quot;, concat_ws(&quot;,&quot;,col(&quot;w&quot;)))
+               .withColumn(&quot;platform&quot;, lit(forum))
+               .withColumn(&quot;corpus_id&quot;, lit(corpus))
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def save_df(df: org.apache.spark.sql.DataFrame, filePath:String){
+  df.write.format(&quot;parquet&quot;).save(filePath)  
+}
+
+def load_df(filePath: String): org.apache.spark.sql.DataFrame = {
+  spark.read.format(&quot;parquet&quot;).load(filePath)
+ }
+
+def no_forums(df: org.apache.spark.sql.DataFrame): Long = {
+  val forums = df.select(&quot;forum_title&quot;).distinct()
+  forums.show(false)
+  forums.count()
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<ol start="4">
+<li>Save preprocessed data</li>
+</ol>
+<hr />
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var fl_root = &quot;dbfs:/datasets/student-project-01/familjeliv/&quot;
+var fb_root = &quot;dbfs:/datasets/student-project-01/flashback/&quot;
+
+val fl_data = Array(&quot;familjeliv-allmanna-ekonomi&quot;,
+                    &quot;familjeliv-sexsamlevnad&quot;)
+
+val fb_data = Array(&quot;flashback-ekonomi&quot;,
+                    &quot;flashback-sex&quot;)
+
+for (name &lt;- fl_data){
+  try{
+    println(s&quot;${fb_root}${name}_df&quot;)
+    dbutils.fs.ls(s&quot;${fl_root}${name}_df&quot;)
+    println(s&quot;${name}_df already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      val file_name = s&quot;${fl_root}${name}.xml&quot;
+      val df = get_dataset(file_name)
+      val file_path = s&quot;${fl_root}${name}_df&quot;
+      save_df(df, file_path)
+    }
+  }
+}
+
+for (name &lt;- fb_data){
+  try{
+    println(s&quot;${fb_root}${name}_df&quot;)
+    dbutils.fs.ls(s&quot;${fb_root}${name}_df&quot;)
+    println(s&quot;${name}_df already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      val file_name = s&quot;${fb_root}${name}.xml&quot;
+      val df = get_dataset(file_name)
+      val file_path = s&quot;${fb_root}${name}_df&quot;
+      save_df(df, file_path)
+    }
+  }
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

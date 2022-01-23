@@ -1,0 +1,538 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>02_rl_intraday_trading_elephas - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/00_video.html">00_video</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/01_rl_intraday_trading.html">01_rl_intraday_trading</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/02_rl_intraday_trading_elephas.html" class="active">02_rl_intraday_trading_elephas</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-15_group-FinancialDataStreams/03_resources.html">03_resources</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="reinforcement-learning---distributed-model-tuning-with-elephas"><a class="header" href="#reinforcement-learning---distributed-model-tuning-with-elephas">Reinforcement Learning - Distributed model tuning with Elephas</a></h1>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Scala imports
+import org.lamastex.spark.trendcalculus._
+import spark.implicits._
+import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import java.sql.Timestamp
+import org.apache.spark.sql.expressions._
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.lamastex.spark.trendcalculus._
+import spark.implicits._
+import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import java.sql.Timestamp
+import org.apache.spark.sql.expressions._
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Load dataset
+val oilDS = spark.read.fx1m(&quot;dbfs:/FileStore/shared_uploads/fabiansi@kth.se/*csv.gz&quot;).toDF.withColumn(&quot;ticker&quot;, lit(&quot;BCOUSD&quot;)).select($&quot;ticker&quot;, $&quot;time&quot; as &quot;x&quot;, $&quot;close&quot; as &quot;y&quot;).as[TickerPoint].orderBy(&quot;time&quot;)
+
+// Add column with difference from previous close value (expected 'x', 'y' column names)
+val windowSpec = Window.orderBy(&quot;x&quot;)
+val oilDS1 = oilDS 
+.withColumn(&quot;diff_close&quot;, $&quot;y&quot; - when((lag(&quot;y&quot;, 1).over(windowSpec)).isNull, 0).otherwise(lag(&quot;y&quot;, 1).over(windowSpec)))
+
+// Rename variables
+val oilDS2 = oilDS1.withColumnRenamed(&quot;x&quot;,&quot;time&quot;).withColumnRenamed(&quot;y&quot;,&quot;close&quot;)
+
+// Remove incomplete data from first day (2010-11-14) and last day (2019-06-21)
+val oilDS3 = oilDS2.filter(to_date(oilDS2(&quot;time&quot;)) &gt;= lit(&quot;2010-11-15&quot;) &amp;&amp; to_date(oilDS2(&quot;time&quot;)) &lt;= lit(&quot;2019-06-20&quot;))
+
+// Add index column
+val windowSpec1 = Window.orderBy(&quot;time&quot;)
+val oilDS4 = oilDS3
+.withColumn(&quot;index&quot;, row_number().over(windowSpec1))
+
+// Drop ticker column
+val oilDS5 = oilDS4.drop(&quot;ticker&quot;)
+
+// Store loaded data as temp view, to be accessible in Python
+oilDS5.createOrReplaceTempView(&quot;temp&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>oilDS: org.apache.spark.sql.Dataset[org.lamastex.spark.trendcalculus.TickerPoint] = [ticker: string, x: timestamp ... 1 more field]
+windowSpec: org.apache.spark.sql.expressions.WindowSpec = org.apache.spark.sql.expressions.WindowSpec@6dd55d65
+oilDS1: org.apache.spark.sql.DataFrame = [ticker: string, x: timestamp ... 2 more fields]
+oilDS2: org.apache.spark.sql.DataFrame = [ticker: string, time: timestamp ... 2 more fields]
+oilDS3: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [ticker: string, time: timestamp ... 2 more fields]
+windowSpec1: org.apache.spark.sql.expressions.WindowSpec = org.apache.spark.sql.expressions.WindowSpec@5be434ff
+oilDS4: org.apache.spark.sql.DataFrame = [ticker: string, time: timestamp ... 3 more fields]
+oilDS5: org.apache.spark.sql.DataFrame = [time: timestamp, close: double ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Python imports
+import datetime
+import gym
+import math
+import random
+import json
+import collections
+import numpy as np
+import matplotlib.pyplot as plt
+from keras.models import Sequential
+from keras.layers.core import Dense
+from keras.layers import Conv1D, MaxPool1D, Flatten, BatchNormalization
+from keras import optimizers
+
+from elephas.utils.rdd_utils import to_simple_rdd
+from elephas.spark_model import SparkModel
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Using TensorFlow backend.
+WARNING
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Create Dataframe from temp data
+oilDF_py = spark.table(&quot;temp&quot;)
+
+# Select the 10 first Rows of data and print them
+ten_oilDF_py = oilDF_py.limit(10)
+ten_oilDF_py.show()
+
+# Check number of data points
+last_index = oilDF_py.count()
+print(&quot;Number of data points: {}&quot;.format(last_index))
+
+# Select the date of the last data point
+print(&quot;Last data point: {}&quot;.format(np.array(oilDF_py.where(oilDF_py.index == last_index).select('time').collect()).item()))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-------------------+-----+--------------------+-----+
+|               time|close|          diff_close|index|
++-------------------+-----+--------------------+-----+
+|2010-11-15 00:00:00| 86.6|-0.01000000000000...|    1|
+|2010-11-15 00:01:00| 86.6|                 0.0|    2|
+|2010-11-15 00:02:00|86.63|0.030000000000001137|    3|
+|2010-11-15 00:03:00|86.61|-0.01999999999999602|    4|
+|2010-11-15 00:05:00|86.61|                 0.0|    5|
+|2010-11-15 00:07:00| 86.6|-0.01000000000000...|    6|
+|2010-11-15 00:08:00|86.58|-0.01999999999999602|    7|
+|2010-11-15 00:09:00|86.58|                 0.0|    8|
+|2010-11-15 00:10:00|86.58|                 0.0|    9|
+|2010-11-15 00:12:00|86.57|-0.01000000000000...|   10|
++-------------------+-----+--------------------+-----+
+
+Number of data points: 2523078
+Last data point: 2019-06-20 23:59:00
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Adapted from: https://github.com/kh-kim/stock_market_reinforcement_learning/blob/master/market_env.py
+
+
+class MarketEnv(gym.Env):
+    def __init__(self, full_data, start_date, end_date, episode_size=30*24*60, scope=60):
+        self.episode_size = episode_size
+        self.actions = [&quot;LONG&quot;, &quot;SHORT&quot;] 
+        self.action_space = gym.spaces.Discrete(len(self.actions))
+        self.state_space = gym.spaces.Box(np.ones(scope) * -1, np.ones(scope))
+
+        self.diff_close = np.array(full_data.filter(full_data[&quot;time&quot;] &gt; start_date).filter(full_data[&quot;time&quot;] &lt;= end_date).select('diff_close').collect())
+        max_diff_close = np.max(self.diff_close)
+        self.diff_close = self.diff_close*max_diff_close
+        self.close = np.array(full_data.filter(full_data[&quot;time&quot;] &gt; start_date).filter(full_data[&quot;time&quot;] &lt;= end_date).select('close').collect())
+        self.num_ticks_train = np.shape(self.diff_close)[0]
+
+        self.scope = scope # N values to be included in a state vector
+        self.time_index = self.scope  # start N steps in, to ensure that we have enough past values for history 
+        self.episode_init_time = self.time_index  # initial time index of the episode
+
+
+    def step(self, action):
+        info = {'index': int(self.time_index), 'close': float(self.close[self.time_index])}
+        self.time_index += 1
+        self.state = self.diff_close[self.time_index - self.scope:self.time_index]
+        self.reward = float( - (2 * action - 1) * self.state[-1] )
+        
+        # Check if done
+        if self.time_index - self.episode_init_time &gt; self.episode_size:
+            self.done = True
+        if self.time_index &gt; self.diff_close.shape[0] - self.scope -1:
+            self.done = True
+
+        return self.state, self.reward, self.done, info
+
+    def reset(self, random_starttime=True):
+        self.done = False
+        self.reward = 0.
+        self.time_index = self.scope 
+        self.state = self.diff_close[self.time_index - self.scope:self.time_index]
+        
+        if random_starttime:
+            self.time_index += random.randint(0, self.num_ticks_train - self.scope)
+        
+        self.episode_init_time = self.time_index
+        
+        return self.state
+
+    def seed(self):
+        pass
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Adapted from: https://dbc-635ca498-e5f1.cloud.databricks.com/?o=445287446643905#notebook/4201196137758409/command/4201196137758410
+
+class ExperienceReplay:
+    def __init__(self, max_memory=100, discount=.9):
+        self.max_memory = max_memory
+        self.memory = list()
+        self.discount = discount
+
+    def remember(self, states, done):
+        self.memory.append([states, done])
+        if len(self.memory) &gt; self.max_memory:
+            del self.memory[0]
+
+    def get_batch(self, model, batch_size=10):
+        len_memory = len(self.memory)
+        num_actions = model.output_shape[-1]
+
+        env_dim = self.memory[0][0][0].shape[1]
+        inputs = np.zeros((min(len_memory, batch_size), env_dim, 1))
+        targets = np.zeros((inputs.shape[0], num_actions))
+        for i, idx in enumerate(np.random.randint(0, len_memory, size=inputs.shape[0])):
+            state_t, action_t, reward_t, state_tp1 = self.memory[idx][0]
+            done = self.memory[idx][1]
+
+            inputs[i:i + 1] = state_t
+            # There should be no target values for actions not taken.
+            targets[i] = model.predict(state_t)[0]
+            Q_sa = np.max(model.predict(state_tp1)[0])
+            if done: # if done is True
+                targets[i, action_t] = reward_t
+            else:
+                # reward_t + gamma * max_a' Q(s', a')
+                targets[i, action_t] = reward_t + self.discount * Q_sa
+        return inputs, targets
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Adapted from: https://dbc-635ca498-e5f1.cloud.databricks.com/?o=445287446643905#notebook/4201196137758409/command/4201196137758410
+
+# RL parameters
+epsilon = .5  # exploration
+min_epsilon = 0.1
+max_memory = 5000
+batch_size = 512
+discount = 0.8
+
+# Environment parameters
+num_actions = 2  # [long, short]
+episodes = 500 # 100000
+episode_size = 1 * 1 * 60  # roughly an hour worth of data in each training episode
+
+# Define state sequence scope (approx. 1 hour)
+sequence_scope = 60
+input_shape = (batch_size, sequence_scope, 1)
+
+# Create Q Network
+hidden_size = 128
+model = Sequential()
+model.add(Conv1D(32, (5), strides=2, input_shape=input_shape[1:], activation='relu'))
+model.add(MaxPool1D(pool_size=2, strides=1))
+model.add(BatchNormalization())
+model.add(Conv1D(32, (5), strides=1, activation='relu'))
+model.add(MaxPool1D(pool_size=2, strides=1))
+model.add(BatchNormalization())
+model.add(Flatten())
+model.add(Dense(hidden_size, activation='relu'))
+model.add(BatchNormalization())
+model.add(Dense(num_actions))
+opt = optimizers.Adam(lr=0.01)
+model.compile(loss='mse', optimizer=opt)
+
+# Define training interval
+start = datetime.datetime(2010, 11, 15, 0, 0)
+end = datetime.datetime(2018, 12, 31, 23, 59)
+
+# Initialize Environment
+env = MarketEnv(oilDF_py, start, end, episode_size=episode_size, scope=sequence_scope)
+
+# Initialize experience replay object
+exp_replay = ExperienceReplay(max_memory=max_memory, discount=discount)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>WARNING:tensorflow:From /databricks/python/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+/databricks/python/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: &lt;span class=&quot;ansi-yellow-fg&quot;&gt;WARN: Box bound precision lowered by casting to float32&lt;/span&gt;
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h1 id="elephas"><a class="header" href="#elephas">Elephas</a></h1>
+<p>https://github.com/danielenricocahall/elephas</p>
+<p>Elephas is a third party library that allows to train distributed Keras models on Spark. To run a distributed training session, a Keras model is first declared and compiled on one (singular) master node. Then, copies of the Master model are serialized and shipped to an arbitrary number of worker nodes. Elephas uses RDD's internally to make the data dynamically available to the workers when required. After gradient computating and the update of the weights, the updated model parameters are pushed to the master model.</p>
+<img src=https://raw.githubusercontent.com/danielenricocahall/elephas/master/elephas.gif>
+<p>For updating the parameters of the master_model, Elephas provides three modes, Synchronous, Asynchronous and HOGWILD (https://arxiv.org/abs/1106.5730).</p>
+<h2 id="integrating-distributed-model-training-in-our-rl-framework"><a class="header" href="#integrating-distributed-model-training-in-our-rl-framework">Integrating Distributed model training in our RL-framework</a></h2>
+<p>Elephas supports in the current version only supervised model training. We therefore opt to distribute the supervised training step based on the experience replay buffer and keep the surrounding for loops from the previeous RL-implementation.</p>
+<h3 id="training-data-conversion"><a class="header" href="#training-data-conversion">Training data conversion</a></h3>
+<p>Data must be provided as either RDD or pyspark dataframe (that will internally be converted to RDD's). A more elaborate pipeline might slice and evaluate replay buffer instances from the original dataframe, however, since most of our implementation expects numpy arrays, we convert the buffer to an RDD manually each step.</p>
+<h3 id="elephas-sparkmodel-for-retraining-in-the-rl-loop"><a class="header" href="#elephas-sparkmodel-for-retraining-in-the-rl-loop">Elephas SparkModel for retraining in the RL-loop</a></h3>
+<p>When Elephas finished its training epochs (here, one Experiancereplay buffer training in one of the RL-loop sweeps), the used processes get terminated. This leads to a crash when trying to retrain a already trained model. As a workaround, we initialize theelephas in each training step newly by using the keras model from the previous training step.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># elephas variables
+ele_epochs = 10
+ele_batchsize = 32
+ele_verbose = 0
+ele_valsplit = 0.1
+
+# Train
+returns = []
+for e in range(1, episodes):
+    loss = 0.
+    counter = 0
+    reward_sum = 0.
+    done = False
+    
+    state = env.reset()
+    input_t = state.reshape(1, sequence_scope, 1) 
+    
+    while not done:     
+        counter += 1
+        input_tm1 = input_t
+        # get next action
+        if np.random.rand() &lt;= epsilon:
+            action = np.random.randint(0, num_actions, size=1)
+        else:
+            q = model.predict(input_tm1)
+            action = np.argmax(q[0])
+
+        # apply action, get rewards and new state
+        state, reward, done, info = env.step(action)
+        reward_sum += reward
+        input_t = state.reshape(1, sequence_scope, 1)         
+
+        # store experience
+        exp_replay.remember([input_tm1, action, reward, input_t], done)
+
+        # adapt model
+        inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
+        
+        # elephas calls for distributed gradient optimization
+        train_rdd = to_simple_rdd(sc, inputs, targets)  # note that we provide the spark context sc (sc variable automatically set in databricks)
+        
+        spark_model = SparkModel(model, frequency='epoch', mode='asynchronous')  # 'asynchronous', 'hogwild' or 'synchronous'
+        spark_model.fit(train_rdd, epochs=ele_epochs, batch_size=ele_batchsize, verbose=ele_verbose, validation_split=ele_valsplit)
+        model = spark_model._master_network # hacky!
+        
+        loss += model.train_on_batch(inputs, targets)
+    
+    
+    print(&quot;Episode {:03d}/{:d} | Average Loss {:.4f} | Cumulative Reward {:.4f}&quot;.format(e, episodes, loss / counter, reward_sum))
+    epsilon = max(min_epsilon, epsilon * 0.99)
+    returns.append(reward_sum)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="notes-to-the-elephas-training"><a class="header" href="#notes-to-the-elephas-training">Notes to the elephas training</a></h1>
+<p>The pipeline in this notebook serves as a proof of concept to demonstrate how RL-training can be distributed on a spark cluster. During testing, we observed that the experience replay is a bottleneck during distributed model training, when comparing to running keras out-of the box in parallel.</p>
+<h2 id="error-that-sometimes-appears-when-running-on-databricks"><a class="header" href="#error-that-sometimes-appears-when-running-on-databricks">Error that sometimes appears when running on databricks</a></h2>
+<p>We notice occasional crashes in the distributed training at line 180 in https://github.com/danielenricocahall/elephas/blob/master/elephas/spark_model.py, more precisely at <code>rdd.mapPartitions(worker.train).collect()</code>, with a <code>Py4JJavaError</code>. Restarting the cluster does not resolve the issue, however sometimes it was possible to re-run a training succesfully after a bit of time. We assume that it is connected with the jvm, but lacking precise insight regarding the nature of this bug.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-15_group-FinancialDataStreams/01_rl_intraday_trading.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-15_group-FinancialDataStreams/03_resources.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-15_group-FinancialDataStreams/01_rl_intraday_trading.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-15_group-FinancialDataStreams/03_resources.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

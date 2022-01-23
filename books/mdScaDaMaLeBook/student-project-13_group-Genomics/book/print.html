@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-13_group-Genomics/01_1000genomes.html">01_1000genomes</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="genomics-analysis-with-glow-and-spark"><a class="header" href="#genomics-analysis-with-glow-and-spark">Genomics Analysis with Glow and Spark</a></h1>
+<p><strong>Link to video:</strong> https://youtu.be/6VMeHixsJ3g</p>
+<p>The aim of this notebook is to analyze genomic data in the form of SNPs, and see how different variations of SNPs correlated to ethnicity. This work is inspired by the paper from Huang et al., <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-2328-0">Genetic differences among ethnic groups</a> (2015), and the notebook https://glow.readthedocs.io/en/latest/_static/notebooks/tertiary/gwas.html.</p>
+<h3 id="problem-background"><a class="header" href="#problem-background">Problem background</a></h3>
+<p>Each person as a unique setup of DNA. The DNA consitst of necleotides, structured as a double helix, where each neucliotide binds to one other. The DNA is split between 23 pairs of chromosomes. There are four different neucliotides, commonly denoted as A, T, C, and G.</p>
+<p>Single nucleotide polymorphisms (SNPs) are the most common genetic variation between individuals. Each SNP represents a variation of a specific neucleotide. For example, a SNP may replace the nucleotide cytosine (C) with the nucleotide thymine (T) in a certain stretch of DNA. The recent sharp decrease in the cost of sequencing a human genome, made it possible to collect and make publically available such datasets for research.</p>
+<img src ='https://www.genome.gov/sites/default/files/inline-images/NHGRISequencing_Cost_per_Genome_Aug2020.jpg'>
+<h3 id="data"><a class="header" href="#data">Data</a></h3>
+<p>Genomic data is collected from the <a href="https://www.internationalgenome.org/">1000 Genomes project</a>, with corresponding sample annotations for all individuals in the dataset. For simiplicty, we are only analyzing SNPs assosiated to chromosome 1, however this study can easily be extended to include SNPs from all chromosomes.</p>
+<p>The data consists of approximatly 6.5 million SNPs from 2504 subjects.</p>
+<h3 id="method"><a class="header" href="#method">Method</a></h3>
+<p>After reading the data, we filter low quality SNPs. After this operation, we end up with approx. 400'000 SNPs.</p>
+<p>By doing a correlation analysis using PCA, we see that different ethnicities cluster together. There is therfore a good reason to suppose that SNPs can be used to predict ethnicity. However, since not all SNPs are correlated to ethnicity, we want to only use the most relevant ones for linear regression analysis.</p>
+<p>For each SNPs, we calculate the correlation between the values and ethnicity, and take the SNPs with a higher correlation than a threshold value of 0.6 (or maximum 2000 SNPs).</p>
+<p>Using the selected SNPs as features, we do a linear regression analysis. We make some plots.</p>
+</div>
+<div class="cell markdown">
+<h1 id="load-libs-and-define-helper-functions"><a class="header" href="#load-libs-and-define-helper-functions">Load libs and define helper functions</a></h1>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+from pyspark.sql.functions import array_min, col, monotonically_increasing_id, when, log10
+from pyspark.sql.types import StringType
+from pyspark.ml.linalg import Vector, Vectors, SparseVector, DenseMatrix
+from pyspark.ml.stat import Summarizer
+from pyspark.mllib.linalg.distributed import RowMatrix
+from pyspark.mllib.util import MLUtils
+from pyspark.ml.feature import IndexToString, StringIndexer
+from pyspark.ml.feature import OneHotEncoder
+from pyspark.sql.functions import col,lit
+
+from dataclasses import dataclass
+
+import mlflow
+import glow
+glow.register(spark)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Helper functions
+
+def plot_layout(plot_title, plot_style, xlabel):
+  plt.style.use(plot_style) #e.g. ggplot, seaborn-colorblind, print(plt.style.available)
+  plt.title(plot_title)
+  plt.xlabel(r'${0}$'.format(xlabel))
+  plt.gca().spines['right'].set_visible(False)
+  plt.gca().spines['top'].set_visible(False)
+  plt.gca().yaxis.set_ticks_position('left')
+  plt.gca().xaxis.set_ticks_position('bottom')
+  plt.tight_layout()
+  
+def plot_histogram(df, col, xlabel, xmin, xmax, nbins, plot_title, plot_style, color, vline, out_path):
+  plt.close()
+  plt.figure()
+  bins = np.linspace(xmin, xmax, nbins)
+  df = df.toPandas()
+  plt.hist(df[col], bins, alpha=1, color=color)
+  if vline:
+    plt.axvline(x=vline, linestyle='dashed', linewidth=2.0, color='black')
+  plot_layout(plot_title, plot_style, xlabel)
+  plt.savefig(out_path)
+  plt.show()
+  
+def calculate_pval_bonferroni_cutoff(df, cutoff=0.05):
+  bonferroni_p =  cutoff / df.count()
+  return bonferroni_p
+
+def get_sample_info(vcf_df, sample_metadata_df):
+  &quot;&quot;&quot;
+  get sample IDs from VCF dataframe, index them, then join to sample metadata dataframe
+  &quot;&quot;&quot;
+  sample_id_list = vcf_df.limit(1).select(&quot;genotypes.sampleId&quot;).collect()[0].__getitem__(&quot;sampleId&quot;)
+  sample_id_indexed = spark.createDataFrame(sample_id_list, StringType()). \
+                            coalesce(1). \
+                            withColumnRenamed(&quot;value&quot;, &quot;Sample&quot;). \
+                            withColumn(&quot;index&quot;, monotonically_increasing_id())
+  sample_id_annotated = sample_id_indexed.join(sample_metadata_df, &quot;Sample&quot;)
+  return sample_id_annotated
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Paths to store/find data.
+# Since a lot of the processing takes a long time, we store intermediate results.
+vcf_path = &quot;dbfs:///datasets/sds/genomics/ALL.chr1.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz&quot;
+delta_silver_path = &quot;/mnt/gwas_test/snps.delta&quot;
+
+gwas_results_path = &quot;/mnt/gwas_test/gwas_results.delta&quot;
+phenotype_path = &quot;/databricks-datasets/genomics/1000G/phenotypes.normalized&quot;
+sample_info_path = &quot;/databricks-datasets/genomics/1000G/samples/populations_1000_genomes_samples.csv&quot;
+
+principal_components_path = &quot;/dbfs/datasets/sds/genomics/pcs.delta&quot;
+hwe_path = &quot;dbfs:///datasets/sds/genomics/hwe.delta&quot;
+vectorized_path = &quot;dbfs:///datasets/sds/genomics/vectorized.delta&quot;
+delta_gold_path = &quot;dbfs:///datasets/sds/genomics/snps.qced.delta.delta&quot;
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="setup-and-loading-data"><a class="header" href="#setup-and-loading-data">Setup and loading data</a></h2>
+</div>
+<div class="cell markdown">
+<p>The data used was dowloaded from ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr1.phase3<em>shapeit2</em>mvncall<em>integrated</em>v5a.20130502.genotypes.vcf.gz</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr1.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="read-data"><a class="header" href="#read-data">Read data</a></h1>
+<p>The data is read using the <a href="https://projectglow.io/">Glow</a>, an open-source library for working with genomics data in a scallable way. It is inlcuded when enabling &quot;Databricks Runtime for Genomics&quot;, allowing easy read of genomic-specific file formats, and other helper methods.</p>
+</div>
+<div class="cell markdown">
+<h2 id="data-exploration-and-filtering"><a class="header" href="#data-exploration-and-filtering">Data exploration and filtering</a></h2>
+</div>
+<div class="cell markdown">
+<p>Load and view the vcf files. The info fields are combined to one column.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">vcf_view_unsplit = spark.read.format(&quot;vcf&quot;). \
+   option(&quot;flattenInfoFields&quot;, &quot;false&quot;). \
+   load(vcf_path)
+
+display(vcf_view_unsplit.withColumn(&quot;genotypes&quot;, col(&quot;genotypes&quot;)[1]))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In the dataframe above, we see that we have columns named &quot;referenceAllele&quot; and &quot;alternateAlleles&quot;. The data so called variations, i.e., genetic sequences which are different between two individuals. The difference may appear differently, and each difference is called an allele. In the data, we have reference genomes, and the alternate alleles are all the variations at a specific position which is found amoung the analyzed subjects.</p>
+<p>We do not want multiple alternative allelels in one row, so we split them using the <code>split_miltiallelics</code> function from Glow.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">vcf_view = glow.transform(&quot;split_multiallelics&quot;, vcf_view_unsplit)
+display(vcf_view.withColumn(&quot;genotypes&quot;, col(&quot;genotypes&quot;)[1]))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We now save our modified dataframe in the Delta format (which compared to VCF is more user friendly). At the same time, we calulcate som neccessary statistics, which we will use later, using the Glow functions <code>call_summary_stats</code> and <code>hardy_weinberg</code>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># NOTE - this takes approx 2 hours
+
+vcf_view.selectExpr(&quot;*&quot;, &quot;expand_struct(call_summary_stats(genotypes))&quot;, &quot;expand_struct(hardy_weinberg(genotypes))&quot;). \
+   write. \
+   mode(&quot;overwrite&quot;). \
+   format(&quot;delta&quot;). \
+   save(delta_silver_path)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The statistics we calculated, as well as the Hardy-Weinberg equilibrium p-values (which basically denotes the probability of a given allele is probable to be true or may be a reading mistake), are used to filter out low quality SNPs.</p>
+<p>We read the saved dataframe, and filter the dataframe.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Hyper paramters
+allele_freq_cutoff = 0.05
+num_pcs = 5 #number of principal components
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">hwe = spark.read.format(&quot;delta&quot;). \
+                 load(delta_silver_path). \
+                 where((col(&quot;alleleFrequencies&quot;).getItem(0) &gt;= allele_freq_cutoff) &amp; 
+                       (col(&quot;alleleFrequencies&quot;).getItem(0) &lt;= (1.0 - allele_freq_cutoff))). \
+                 withColumn(&quot;log10pValueHwe&quot;, when(col(&quot;pValueHwe&quot;) == 0, 26).otherwise(-log10(col(&quot;pValueHwe&quot;))))
+
+hwe.write. \
+   mode(&quot;overwrite&quot;). \
+   format(&quot;delta&quot;).save(hwe_path)
+
+hwe = spark.read.format('delta').load(hwe_path)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">hwe_cutoff = calculate_pval_bonferroni_cutoff(hwe)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Filter and save new dataframe, only alleles with in the frequency band, and where the Hardy-Weiburg value is higher than cutoff.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">spark.read.format(&quot;delta&quot;). \
+   load(hwe_path). \
+   where((col(&quot;alleleFrequencies&quot;).getItem(0) &gt;= allele_freq_cutoff) &amp; 
+         (col(&quot;alleleFrequencies&quot;).getItem(0) &lt;= (1.0 - allele_freq_cutoff)) &amp;
+         (col(&quot;pValueHwe&quot;) &gt;= hwe_cutoff)). \
+   write. \
+   mode(&quot;overwrite&quot;). \
+   format(&quot;delta&quot;). \
+   save(delta_gold_path)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># We saved the results to disc and here we jus tload them as the above computation takes a lot of time
+hwe_filtered = spark.read.format('delta').load(delta_gold_path)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="pca"><a class="header" href="#pca">PCA</a></h1>
+<p>We perform a PCA analysis for data exploration purposes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">vectorized = spark.read.format(&quot;delta&quot;). \
+                        load(delta_gold_path). \
+                        selectExpr(&quot;array_to_sparse_vector(genotype_states(genotypes)) as features&quot;). \
+                        cache()
+
+vectorized.write. \
+   mode(&quot;overwrite&quot;). \
+   format(&quot;delta&quot;).save(&quot;dbfs:///datasets/sds/genomics/vectorized.delta&quot;)
+
+# We saved the results to disc and here we jus tload them as the above computation takes a lot of time
+vectorized = spark.read.format('delta').load(vectorized_path)
+display(vectorized)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Note - takes approx 30 min
+
+matrix = RowMatrix(MLUtils.convertVectorColumnsFromML(vectorized, &quot;features&quot;).rdd.map(lambda x: x.features))
+pcs = matrix.computeSVD(num_pcs)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">@dataclass()
+class Covariates:
+    covariates: DenseMatrix
+      
+spark.createDataFrame([Covariates(pcs.V.asML())]). \
+      write. \
+      format(&quot;delta&quot;). \
+      save(principal_components_path)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">pcs_df = spark.createDataFrame(pcs.V.toArray().tolist(), [&quot;pc&quot; + str(i) for i in range(num_pcs)])
+
+display(pcs_df)
+
+pcs_df.coalesce(1).write.format(&quot;com.databricks.spark.csv&quot;).option(&quot;header&quot;, &quot;true&quot;).save(&quot;dbfs:///datasets/sds/genomics/pcs_df.csv&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Read already caluclated pca
+pcs_df = spark.read.format('csv').load(&quot;dbfs:///datasets/sds/genomics/pcs_df.csv&quot;)
+display(pcs_df)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>**Read sample metadata and add to PCA components **</p>
+<p>We load the subject meta data (which includes information about ethnicity).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">sample_metadata = spark.read.option(&quot;header&quot;, True).csv(sample_info_path)
+sample_info = get_sample_info(vcf_view, sample_metadata)
+
+sample_count = sample_info.count()
+
+pcs_indexed = pcs_df.coalesce(1).withColumn(&quot;index&quot;, monotonically_increasing_id())
+pcs_with_samples = pcs_indexed.join(sample_info, &quot;index&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>View 1st and 2nd principal component</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(pcs_with_samples)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/13_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We see that there there are some clustering based on ethnicity, showing that it could be possible to tell ethnicity from the SNP information of a subject.</p>
+</div>
+<div class="cell markdown">
+<h1 id="predicting-ethinicity"><a class="header" href="#predicting-ethinicity">Predicting Ethinicity</a></h1>
+</div>
+<div class="cell markdown">
+<p>Replication of the paper &quot;Genetic differences among ethnic groups&quot;, Huang et al. https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-2328-0</p>
+<p>Originally, we had approx. 6.5 milj genetic variations, from 2500 individuals. We first did a quality control by filtering only alleles which occur frequently enough, and those above the Hardy-Weinberg P value cutoff.</p>
+<p>Since we still have over 400 000 variations, we need to filter further and only keep the SNPs that have significant correlation to ethnicity. We experiment with several different sizes of the final data set.</p>
+</div>
+<div class="cell markdown">
+<p>Here we read the dataset that contains the population information and encode it for regression</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Read sample information
+sample_metadata = spark.read.option(&quot;header&quot;, True).csv(sample_info_path)
+sample_info = get_sample_info(vcf_view, sample_metadata)
+
+sample_count = sample_info.count()
+
+mlflow.log_param(&quot;number of samples&quot;, sample_count)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>From the plot below we can see that our data set is not balanced as we have more samples from african ethnicity than any other. We decided not to balance the data and see if this would have obvious negative impact on our results.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(sample_info)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/13_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># One hot encoding of the labels
+from pyspark.ml.feature import IndexToString, StringIndexer
+from pyspark.ml.feature import OneHotEncoder
+
+# indexer = StringIndexer(inputCol=&quot;Population&quot;, outputCol=&quot;Population_index&quot;)
+indexer = StringIndexer(inputCol=&quot;super_population&quot;, outputCol=&quot;Population_index&quot;)
+model = indexer.fit(sample_info)
+indexed = model.transform(sample_info)
+
+# indexed.select(&quot;Population&quot;, &quot;Population_index&quot;).distinct().show(30)
+
+encoder = OneHotEncoder(inputCols=[&quot;Population_index&quot;],
+                        outputCols=[&quot;population_onehot&quot;])
+model = encoder.fit(indexed)
+encoded = model.transform(indexed)
+encoded.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<h1 id="filtering-of-snps-based-on-chi-squared-test"><a class="header" href="#filtering-of-snps-based-on-chi-squared-test">Filtering of SNPs based on chi-squared test</a></h1>
+<p>According to <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-2328-0">Tao Huang et al. (2015)</a>, 85 % of SNPs are the same in all human populations, hence we will apply chi-squared based feature selection to try to identify the approximately 15 % of SNPs that are population-specific. We decided to test our classifiers with several sizes of the feature vectors: * all 416,005 available SNPs from Chromosome 1 * most relevant 200,000 SNPs * most relevant 20,000 SNPs * most relevant 2,000 SNPs * most relevant 1,000 SNPs * most relevant 100 SNPs * most relevant 50 SNPs</p>
+<p>This would give us a better understanding if the ChiSqSelector is appropriate method for selecting the features in genomics. We aklowedge that <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-2328-0">Tao Huang et al. (2015)</a> used different metric based on chi-squared distribution, but ChiSqSelector is the closest already implemented method in spark that we could find.</p>
+<p>In order to use ChiSqSelector from pyspark.ml.feature, we first need to format the data into a sparce feature vectors and numeric corresponding label.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Load earlier-filtered data
+delta_gold_path = &quot;dbfs:///datasets/sds/genomics/snps.qced.delta.delta&quot;
+hwe_filtered = spark.read.format('delta').load(delta_gold_path)
+vectorized_2 = hwe_filtered.select(glow.genotype_states('genotypes').alias('states')).collect()
+vectorized_df = spark.createDataFrame(vectorized_2)
+display(vectorized_df)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="transformation-of-dataframe-to-fit-chisqselector"><a class="header" href="#transformation-of-dataframe-to-fit-chisqselector">Transformation of dataframe to fit ChiSqSelector</a></h3>
+</div>
+<div class="cell markdown">
+<p>We use monotonically<em>increasing</em>id, poseexplode and collect_list methods to achieve the required format of the data:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Add a column that indicates to which SNP the states belong and then explode SNPs
+from pyspark.sql.functions import monotonically_increasing_id 
+from pyspark.sql.functions import explode, posexplode
+from pyspark.sql.functions import col, concat, desc, first, lit, row_number, collect_list
+
+vec_df_dummy = vectorized_df.withColumn(&quot;SNP&quot;, monotonically_increasing_id())
+#vec_exploded_states = vec_df_dummy.withColumn(&quot;expanded_states&quot;, explode(&quot;states&quot;))
+vec_exploded_states = vec_df_dummy.select(&quot;SNP&quot;,posexplode(&quot;states&quot;))
+vec_exploded_states = vec_exploded_states.withColumnRenamed(&quot;pos&quot;, &quot;subjectID&quot;)
+vec_exploded_states = vec_exploded_states.withColumnRenamed(&quot;col&quot;, &quot;expandedState&quot;)
+features_df = vec_exploded_states.groupBy(&quot;subjectID&quot;).agg(collect_list(&quot;expandedState&quot;).alias(&quot;Features&quot;))
+features_df = features_df.join(encoded, features_df.subjectID == encoded.index).select(&quot;Features&quot;,&quot;Population_index&quot;, &quot;population_onehot&quot;)
+features_df.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally, Glow utility function array<em>to</em>sparse_vector is used to convert the dense feature vectors into sparse vectors</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">features_df = features_df.selectExpr(&quot;array_to_sparse_vector(Features) as features_sparse&quot;,&quot;Population_index&quot;, &quot;population_onehot&quot;)
+features_df.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="fitting-chisqselector"><a class="header" href="#fitting-chisqselector">Fitting ChiSqSelector</a></h3>
+<p>As the computation time of ChiSqSelector takes roughly 3 hours for each subset of features, we are saving them to disc.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">feature_selection_200_000 = &quot;dbfs:///datasets/sds/genomics/selected_feat_200_000.delta&quot;
+from pyspark.ml.feature import ChiSqSelector
+# selector = ChiSqSelector(featuresCol='features_sparse', outputCol='ChiSq',labelCol='Population_index', numTopFeatures = 200000)
+# selected_feat_200_000 = selector.fit(features_df).transform(features_df)
+# selected_feat_200_000.write.format(&quot;delta&quot;).save(feature_selection_200_000)
+selected_feat_200_000 = spark.read.format('delta').load(feature_selection_200_000)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">feature_selection_20_000 = &quot;dbfs:///datasets/sds/genomics/selected_feat_20_000.delta&quot;
+# selector = ChiSqSelector(featuresCol='features_sparse', outputCol='ChiSq',labelCol='Population_index', numTopFeatures = 20000)
+# selected_feat_20_000 = selector.fit(features_df).transform(features_df)
+# selected_feat_20_000.write.format(&quot;delta&quot;).save(feature_selection_20_000)
+selected_feat_20_000 = spark.read.format('delta').load(feature_selection_20_000)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">feature_selection_2000 = &quot;dbfs:///datasets/sds/genomics/selected_feat_2000.delta&quot;
+# from pyspark.ml.feature import ChiSqSelector
+# selector = ChiSqSelector(featuresCol='features_sparse', outputCol='ChiSq',labelCol='Population_index', numTopFeatures = 2000)
+# selected_feat_2000 = selector.fit(features_df).transform(features_df)
+# selected_feat_2000.write.format(&quot;delta&quot;).save(feature_selection_2000)
+
+selected_feat_2000 = spark.read.format('delta').load(feature_selection_2000)
+selected_feat_2000.show()
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">feature_selection_results_1000 = &quot;dbfs:///datasets/sds/genomics/selected_feat_1000.delta&quot;
+# selector = ChiSqSelector(featuresCol='features_sparse', outputCol='ChiSq',labelCol='Population_index', numTopFeatures = 1000)
+# selected_feat_1000 = selector.fit(features_df).transform(features_df)
+# selected_feat_1000.write.format(&quot;delta&quot;).save(feature_selection_results_1000)
+#result = selector.fit(features_df).transform(features_df)
+selected_feat_1000 = spark.read.format('delta').load(feature_selection_results_1000)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">feature_selection_results_100 = &quot;dbfs:///datasets/sds/genomics/selected_feat_100.delta&quot;
+# selector = ChiSqSelector(featuresCol='features_sparse', outputCol='ChiSq',labelCol='Population_index', numTopFeatures = 100)
+# selected_feat_100 = selector.fit(features_df).transform(features_df)
+# selected_feat_100.write.format(&quot;delta&quot;).save(feature_selection_results_100)
+#result = selector.fit(features_df).transform(features_df)
+selected_feat_100 = spark.read.format('delta').load(feature_selection_results_100)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">feature_selection_50 = &quot;dbfs:///datasets/sds/genomics/selected_feat_50.delta&quot;
+# selector = ChiSqSelector(featuresCol='features_sparse', outputCol='ChiSq',labelCol='Population_index', numTopFeatures = 50)
+# selected_feat_50 = selector.fit(features_df).transform(features_df)
+# selected_feat_50.write.format(&quot;delta&quot;).save(feature_selection_50)
+selected_feat_50 = spark.read.format('delta').load(feature_selection_50)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="train-logistic-regression-and-random-forest-models"><a class="header" href="#train-logistic-regression-and-random-forest-models">Train logistic regression and random forest models</a></h2>
+<p>The code below implements a loop over datasets with different number of SNPs, test-train split and fitting of logistic regression and random forest models. The performance is measured in accuracy.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">from pyspark.ml.classification import LogisticRegression
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.ml.classification import RandomForestClassifier
+
+def fit_ML_model(trainSet,testSet, model_in):
+
+  # Train model.  
+  model = model_in.fit(trainSet)
+
+  # Make predictions.
+  predictions = model.transform(testSet)
+
+  # Evaluate the classifier based on accuracy
+  evaluator = MulticlassClassificationEvaluator(
+      labelCol=&quot;Population_index&quot;, predictionCol=&quot;prediction&quot;, metricName=&quot;accuracy&quot;)
+  accuracy = evaluator.evaluate(predictions)
+  return accuracy
+
+
+rf = RandomForestClassifier(labelCol=&quot;Population_index&quot;, featuresCol=&quot;final_features&quot;, numTrees=20)
+lr = LogisticRegression(featuresCol=&quot;final_features&quot;, labelCol=&quot;Population_index&quot;, maxIter=100)
+
+acc_rf = []
+acc_lr = []
+
+# Run the models on full features set (without ChiSqSelector)
+features_ready = selected_feat_2000.selectExpr(&quot;features_sparse as final_features&quot;,&quot;Population_index&quot;)
+trainSet, testSet = features_ready.randomSplit((0.8, 0.2), seed=123)
+acc_rf.append(fit_ML_model(trainSet, testSet, rf))
+acc_lr.append(fit_ML_model(trainSet, testSet, lr))
+
+# Run the models on selected features by ChiSqSelector
+for data_item in [selected_feat_200_000, selected_feat_20_000, selected_feat_2000, selected_feat_1000, selected_feat_100, selected_feat_50]:
+    # Work around for the bug in ChiSqSelector - otherwise does not work with the random forest model
+    #ChiSqSelector has a bug that it formats data in a way that RandomForest does not accept. We found this work around to work. Bug reported in https://stackoverflow.com/questions/46269275/spark-ml-issue-in-training-after-using-chisqselector-for-feature-selection
+    features_ready = data_item.select(glow.vector_to_array('ChiSq').alias('features_dense'), &quot;Population_index&quot;, &quot;ChiSq&quot;)
+    features_ready = features_ready.selectExpr(&quot;array_to_sparse_vector(features_dense) as final_features&quot;,&quot;Population_index&quot;)
+    trainSet, testSet = features_ready.randomSplit((0.8, 0.2), seed=123)
+    acc_rf.append(fit_ML_model(trainSet, testSet, rf))
+    acc_lr.append(fit_ML_model(trainSet, testSet, lr))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="results-and-discussion"><a class="header" href="#results-and-discussion">Results and Discussion</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+rf_plot = plt.scatter(x=['all_feat', '200,000', '20,000', '2,000', '1,000', '100', '50'], y=acc_rf, c='r')
+lf_plot = plt.scatter(x=['all_feat', '200,000', '20,000', '2,000', '1,000', '100', '50'], y=acc_lr, c='b')
+plt.xlabel(&quot;Number of features&quot;)
+plt.ylabel(&quot;Accuracy&quot;)
+plt.legend((rf_plot, lf_plot),
+           ('Random forest', 'Logistic regression'),
+           scatterpoints=1,
+           bbox_to_anchor=(1.5, 1),
+           ncol=1,
+           fontsize=12)
+plt.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/13_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>The plot above shows the accuracy of random forest and logistic regression classifiers on predicting the ethnicity from prepared SNPs. Both classifiers preformed much better than random guessing, hence the ethnicity information is clearly encoded in SNPs. The logistic regression consistently outperformed random forest and reached accuracy over 90 %. We can also see that random forest was sensitive to the feature selection and it's performance droped once fewer that the all available SNPs (416,005 SNPs) were used. In contrast, logistic regression performed equally well with half of the available features (200,000 SNPs). This indicates that having well-tuned classifier and an appropriate feature selector allows us to reduce the required number of features dramatically without compromising the performance.</p>
+<p>The work could be improved by testing other ways of selecting the relevant SNPs, tuning the hyperparameters in a grid-search manner, building confidence intervals based on bootstrapping or cross-validation and testing other types of classifiers.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

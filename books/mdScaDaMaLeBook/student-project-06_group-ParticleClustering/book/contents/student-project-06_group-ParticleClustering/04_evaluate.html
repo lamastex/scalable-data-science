@@ -1,0 +1,492 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>04_evaluate - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-06_group-ParticleClustering/00_Introduction.html">00_Introduction</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-06_group-ParticleClustering/01_data_and_preprocessing.html">01_data_and_preprocessing</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-06_group-ParticleClustering/02_dl_single_machine.html">02_dl_single_machine</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-06_group-ParticleClustering/03_dl_horovod.html">03_dl_horovod</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-06_group-ParticleClustering/04_evaluate.html" class="active">04_evaluate</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-06_group-ParticleClustering/TF1version.html">TF1version</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="evaluation"><a class="header" href="#evaluation">Evaluation</a></h2>
+<p>In this notebook we evaluate the trained model on new data. The data has already been downloaded in notebook 11 and is stored in the h5 directory together with the training data. At the end of this notebook we will have the clustering accuracy of the model on this new data.</p>
+</div>
+<div class="cell markdown">
+<p>Import packages needed for the script and set the correct paths</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import argparse
+from argparse import Namespace
+from math import *
+import numpy as np
+from datetime import datetime
+import json
+import os, ast
+import sys
+import socket
+from sklearn.cluster import KMeans
+np.set_printoptions(edgeitems=1000)
+from scipy.optimize import linear_sum_assignment
+import h5py
+import tensorflow as tf
+from tqdm import tqdm
+
+
+from scipy.optimize import linear_sum_assignment
+
+BASE_DIR = os.path.join(os.getcwd(), '06_LHC','scripts')  
+sys.path.append(BASE_DIR)
+sys.path.append(os.path.join(BASE_DIR, '..', 'models'))
+sys.path.append(os.path.join(BASE_DIR, '..', 'utils'))
+import provider
+import gapnet_classify as MODEL
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Default settings</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">parserdict = {'gpu':0, #help='GPUs to use [default: 0]')
+              'n_clusters':3,# type=int, default=3, #help='Number of clusters [Default: 3]')
+              'max_dim':3, #type=int, default=3, #help='Dimension of the encoding layer [Default: 3]')
+              'log_dir': 'log',#default='log', #help='Log dir [default: log]')
+              'batch':1024,# type=int, default=512, #help='Batch Size  during training [default: 512]')
+              'num_point':100, # type=int, default=100, #help='Point Number [default: 100]')
+              'data_dir':'../h5/', #default='../h5', #help='directory with data [default: ../h5]')
+              'nfeat':8,# type=int, default=8, #help='Number of features [default: 8]')
+              'ncat':20, # type=int, default=20, #help='Number of categories [default: 20]')
+              'name': &quot;evaluation&quot;, #default=&quot;&quot;, #help='name of the output file')
+              'h5_folder':'../h5/', #default=&quot;../h5/&quot;, #help='folder to store output files')
+              'full_train':True,# default=False, action='store_true',
+                    #help='load full training results [default: False]')
+              'checkpoint_folder':'/dbfs/databricks/driver/06_LHC/logs/train/', #help: The folder where the checkpoint is saved. The script
+                   #will retrieved the latest checkpoint created here.
+             }
+
+FLAGS = Namespace(**parserdict)
+#LOG_DIR = os.path.join('..', 'logs', FLAGS.log_dir)
+LOG_DIR = os.path.join(os.getcwd(), '06_LHC', 'logs', FLAGS.log_dir)
+DATA_DIR = FLAGS.data_dir
+H5_DIR = os.path.join(BASE_DIR, DATA_DIR)
+H5_OUT = FLAGS.h5_folder
+CHECKPOINT_PATH = FLAGS.checkpoint_folder
+if not os.path.exists(H5_OUT): os.mkdir(H5_OUT)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Some helper functions</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Calculate the clustering accuracy
+def cluster_acc(y_true, y_pred):
+    &quot;&quot;&quot;
+    Calculate clustering accuracy. Require scikit-learn installed
+    &quot;&quot;&quot;
+    y_true = y_true.astype(np.int64)
+    D = max(y_pred.max(), y_true.max()) + 1
+    w = np.zeros((D, D), dtype=np.int64)
+    for i in range(y_pred.size):
+        w[y_pred[i], y_true[i]] += 1
+    ind = linear_sum_assignment(w.max() - w)
+    ind = np.asarray(ind)
+    ind = np.transpose(ind)
+    return sum([w[i, j] for i, j in ind]) * 1.0 / y_pred.size
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Find the latest checkpoint (the training script saves one every 1000th step)
+def find_ckpt(path,base):
+  files = os.listdir(os.path.join(path,os.listdir(path)[-1]))
+  s=base+&quot;.ckpt-&quot;
+  ckpts = [r for r in files if s in r]
+  numbers = [int(r.split('.')[1].split('-')[1]) for r in ckpts]
+  ckpt = base+'.ckpt-'+str(np.max(numbers))
+  return os.path.join(path,os.listdir(path)[-1],ckpt)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">ls /dbfs/databricks/driver/06_LHC/logs/train/
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>1608312111.5291479
+1608312856.6910331
+1608316348.7265332
+1608316368.303585
+1608316645.5256958
+1608317160.1003277
+1608317514.0408154
+1608317816.3961644
+1608545228.287947
+1609765453.8899894
+1614197922.0756063
+1614199473.6461
+1614199773.0030868
+1614199944.5590024
+1614205764.5543048
+1614253383.643093
+1614266637.6848218
+1614283969.6952937
+1614352318.071854
+1614372841.6587343
+1614427683.679712
+1614435113.1720457
+1614435261.5545285
+1614447752.0912156
+1614447848.5286212
+1614516429.048815
+1614516851.6496608
+1618854193.501687
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Run the evaluation script</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">NUM_POINT = FLAGS.num_point
+BATCH_SIZE = FLAGS.batch
+NFEATURES = FLAGS.nfeat
+FULL_TRAINING = FLAGS.full_train
+
+NUM_CATEGORIES = FLAGS.ncat
+# Only used to get how many parts per categor
+print('#### Batch Size : {0}'.format(BATCH_SIZE))
+print('#### Point Number: {0}'.format(NUM_POINT))
+print('#### Using GPUs: {0}'.format(FLAGS.gpu))
+
+print('### Starting evaluation')
+
+EVALUATE_FILES = provider.getDataFiles(os.path.join(H5_DIR, 'evaluate_files_wztop.txt'))
+
+
+def eval():
+    with tf.Graph().as_default():
+        with tf.device('/gpu:' + str(FLAGS.gpu)):
+            pointclouds_pl, labels_pl = MODEL.placeholder_inputs(BATCH_SIZE, NUM_POINT, NFEATURES)
+            batch = tf.Variable(0, trainable=False)
+            alpha = tf.compat.v1.placeholder(tf.float32, shape=())
+            is_training_pl = tf.compat.v1.placeholder(tf.bool, shape=())
+            pred, max_pool = MODEL.get_model(pointclouds_pl, is_training=is_training_pl, num_class=NUM_CATEGORIES)
+            mu = tf.Variable(tf.zeros(shape=(FLAGS.n_clusters, FLAGS.max_dim)), name=&quot;mu&quot;,
+                             trainable=False)  # k centroids
+
+            classify_loss = MODEL.get_focal_loss(pred, labels_pl, NUM_CATEGORIES)
+            kmeans_loss, stack_dist = MODEL.get_loss_kmeans(max_pool, mu, FLAGS.max_dim,
+                                                            FLAGS.n_clusters, alpha)
+
+            saver = tf.compat.v1.train.Saver()
+
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.allow_soft_placement = True
+        sess = tf.compat.v1.Session(config=config)
+
+        if FULL_TRAINING:
+            #saver.restore(sess, os.path.join(LOG_DIR, 'cluster.ckpt'))
+            saver.restore(sess, find_ckpt(CHECKPOINT_PATH,'cluster'))
+        else:
+            saver.restore(sess, find_ckpt(CHECKPOINT_PATH,'model'))
+            #saver.restore(sess, os.path.join(LOG_DIR, 'model.ckpt'))
+        print('model restored')
+
+        ops = {'pointclouds_pl': pointclouds_pl,
+               'labels_pl': labels_pl,
+               'stack_dist': stack_dist,
+               'kmeans_loss': kmeans_loss,
+               'pred': pred,
+               'alpha': alpha,
+               'max_pool': max_pool,
+               'is_training_pl': is_training_pl,
+               'classify_loss': classify_loss, }
+
+        eval_one_epoch(sess, ops)
+
+
+def get_batch(data, label, start_idx, end_idx):
+    batch_label = label[start_idx:end_idx]
+    batch_data = data[start_idx:end_idx, :, :]
+    return batch_data, batch_label
+
+
+def eval_one_epoch(sess, ops):
+    is_training = False
+
+    eval_idxs = np.arange(0, len(EVALUATE_FILES))
+    y_val = []
+    acc = 0
+    
+    for fn in range(len(EVALUATE_FILES)):
+        current_file = os.path.join(H5_DIR, EVALUATE_FILES[eval_idxs[fn]])
+        current_data, current_label, current_cluster = provider.load_h5_data_label_seg(current_file)
+        adds = provider.load_add(current_file, ['masses'])
+
+        current_label = np.squeeze(current_label)
+
+        file_size = current_data.shape[0]
+        num_batches = file_size // BATCH_SIZE
+       # num_batches = 5
+
+        for batch_idx in range(num_batches):
+            start_idx = batch_idx * BATCH_SIZE
+            end_idx = (batch_idx + 1) * BATCH_SIZE
+
+            batch_data, batch_label = get_batch(current_data, current_label, start_idx, end_idx)
+            batch_cluster = current_cluster[start_idx:end_idx]
+            cur_batch_size = end_idx - start_idx
+
+            feed_dict = {ops['pointclouds_pl']: batch_data,
+                         ops['labels_pl']: batch_label,
+                         ops['alpha']: 1,  # No impact on evaluation,
+                         ops['is_training_pl']: is_training,
+                         }
+
+            loss, dist, max_pool = sess.run([ops['kmeans_loss'], ops['stack_dist'],
+                                             ops['max_pool']], feed_dict=feed_dict)
+            cluster_assign = np.zeros((cur_batch_size), dtype=int)
+            for i in range(cur_batch_size):
+                index_closest_cluster = np.argmin(dist[:, i])
+                cluster_assign[i] = index_closest_cluster
+
+            batch_cluster = np.array([np.where(r == 1)[0][0] for r in current_cluster[start_idx:end_idx]])
+
+            if len(y_val) == 0:
+                y_val = batch_cluster
+                y_assign = cluster_assign
+                y_pool = np.squeeze(max_pool)
+                y_mass = adds['masses'][start_idx:end_idx]
+            else:
+                y_val = np.concatenate((y_val, batch_cluster), axis=0)
+                y_assign = np.concatenate((y_assign, cluster_assign), axis=0)
+                y_pool = np.concatenate((y_pool, np.squeeze(max_pool)), axis=0)
+                y_mass = np.concatenate((y_mass, adds['masses'][start_idx:end_idx]), axis=0)
+
+    with h5py.File(os.path.join(H5_OUT, '{0}.h5'.format(FLAGS.name)), &quot;w&quot;) as fh5:
+        dset = fh5.create_dataset(&quot;pid&quot;, data=y_val)  # Real jet categories
+        dset = fh5.create_dataset(&quot;label&quot;, data=y_assign)  # Cluster labeling
+        dset = fh5.create_dataset(&quot;max_pool&quot;, data=y_pool)
+        dset = fh5.create_dataset(&quot;masses&quot;, data=y_mass)
+    
+    print(&quot;Clustering accuracy is &quot;,cluster_acc(y_val,y_assign))
+
+################################################
+
+
+if __name__ == '__main__':
+    eval()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>#### Batch Size : 1024
+#### Point Number: 100
+#### Using GPUs: 0
+### Starting evaluation
+INFO:tensorflow:Restoring parameters from /dbfs/databricks/driver/06_LHC/logs/train/1614516851.6496608/cluster.ckpt-13000
+model restored
+loaded 143984 events
+loaded 302664 events
+loaded 75666 events
+Clustering accuracy is  0.5005421075295275
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The clustering accuracy for the fully trained model should be output above. In addition, the .h5 file ../h5/evaluate.h5 containing information about true and predicted labels (as well as masses and pooling) has been written. This can be used to make visualizations such as the one in the introduction notebook (taken from the paper).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">os.listdir(H5_OUT)
+from tsne import bh_sne
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-06_group-ParticleClustering/03_dl_horovod.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-06_group-ParticleClustering/TF1version.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-06_group-ParticleClustering/03_dl_horovod.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-06_group-ParticleClustering/TF1version.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

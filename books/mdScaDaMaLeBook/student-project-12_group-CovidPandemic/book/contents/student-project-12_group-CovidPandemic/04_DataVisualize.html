@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>04_DataVisualize - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/00_ProjectDescriptionAndPlanning.html">00_ProjectDescriptionAndPlanning</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.html">01_DownloadFilesPeriodicallyScript</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_StreamToFile.html">01_StreamToFile</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/02_DataPreprocess.html">02_DataPreprocess</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.html">021_DataPreprocess_Explain</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.html">03_ExplosiveAnalysis</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/04_DataVisualize.html" class="active">04_DataVisualize</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/05_Clustering.html">05_Clustering</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.html">06_DataPredicton_LR</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/07_DataPredicton_ARIMA.html">07_DataPredicton_ARIMA</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.html">08_DataPrediction_GP</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">pip install plotly
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">&quot;./DataPreprocess&quot;
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="show-reproduction-rate-of-selected-countries-ie-sweden-germany-danmark-finland-norway"><a class="header" href="#show-reproduction-rate-of-selected-countries-ie-sweden-germany-danmark-finland-norway">Show reproduction rate of selected countries i.e. Sweden, Germany, Danmark, Finland, Norway</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df_cleaned_time_series.select($&quot;reproduction_rate&quot;, $&quot;location&quot;, $&quot;date&quot;).filter($&quot;reproduction_rate&quot;.isNotNull).filter(
+                                                                                       $&quot;location&quot;===&quot;Sweden&quot; ||
+                                                                                       $&quot;location&quot;===&quot;Germany&quot; ||
+                                                                                       $&quot;location&quot;===&quot;Danmark&quot; ||
+                                                                                       $&quot;location&quot;===&quot;Finland&quot; ||
+                                                                                       $&quot;location&quot;===&quot;Norway&quot;).sort(&quot;date&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_04_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="visualize-total-cases-total-deaths-new-cases-and-new-deaths-during-pandemic"><a class="header" href="#visualize-total-cases-total-deaths-new-cases-and-new-deaths-during-pandemic">Visualize total cases, total deaths, new cases and new deaths during pandemic</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_cleaned_time_series.createOrReplaceTempView(&quot;visual_rdd&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+import plotly.express as px
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">test_table = spark.table(&quot;visual_rdd&quot;)
+
+country = np.array(test_table.select(&quot;iso_code&quot;).rdd.map(lambda l: l[0]).collect())
+dates = np.array(test_table.select(&quot;date&quot;).rdd.map(lambda l: l[0]).collect())
+total_cases = np.array(test_table.select(&quot;total_cases&quot;).rdd.map(lambda l: l[0]).collect())
+total_deaths = np.array(test_table.select(&quot;total_deaths&quot;).rdd.map(lambda l: l[0]).collect())
+new_cases = np.array(test_table.select(&quot;new_cases&quot;).rdd.map(lambda l: l[0]).collect())
+new_deaths = np.array(test_table.select(&quot;new_deaths&quot;).rdd.map(lambda l: l[0]).collect())
+
+visual_data = {'country':country.tolist(), 'total_cases':total_cases, 'date':dates, 
+             'total_deaths': total_deaths, 'new_cases': new_cases, 'new_deaths': new_deaths}
+visual_df = pd.DataFrame(data = visual_data).sort_values(by='date')
+visual_df
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Total Cases</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">fig = px.choropleth(visual_df[~visual_df.country.str.contains(&quot;WLD&quot;, na=False)], locations=&quot;country&quot;,
+                     color=&quot;total_cases&quot;, # total_cases is a column of gapminder
+                     hover_name=&quot;country&quot;, # column to add to hover information
+                     color_continuous_scale=px.colors.sequential.Plasma,
+                     animation_frame = 'date')
+fig.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_04_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="total-deaths"><a class="header" href="#total-deaths">Total Deaths</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">fig = px.choropleth(visual_df[~visual_df.country.str.contains(&quot;WLD&quot;, na=False)], locations=&quot;country&quot;,
+                    color=&quot;total_deaths&quot;, # total_deaths is a column of gapminder
+                    hover_name=&quot;country&quot;, # column to add to hover information
+                    color_continuous_scale=px.colors.sequential.Plasma,
+                    animation_frame = 'date')
+fig.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_04_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="new-cases"><a class="header" href="#new-cases">New Cases</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">fig = px.choropleth(visual_df[~visual_df.country.str.contains(&quot;WLD&quot;, na=False)], locations=&quot;country&quot;,
+                    color=&quot;new_cases&quot;, # new_cases is a column of gapminder
+                    hover_name=&quot;country&quot;, # column to add to hover information
+                    color_continuous_scale=px.colors.sequential.Plasma,
+                    animation_frame = 'date')
+fig.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_04_4.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="new-deaths"><a class="header" href="#new-deaths">New Deaths</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">fig = px.choropleth(visual_df[~visual_df.country.str.contains(&quot;WLD&quot;, na=False)], locations=&quot;country&quot;,
+                    color=&quot;new_deaths&quot;, # new_deaths is a column of gapminder
+                    hover_name=&quot;country&quot;, # column to add to hover information
+                    color_continuous_scale=px.colors.sequential.Plasma,
+                    animation_frame = 'date')
+fig.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/12_04_5.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/05_Clustering.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/05_Clustering.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

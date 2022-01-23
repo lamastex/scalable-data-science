@@ -1,0 +1,1129 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-04_group-DistributedLinearAlgebra/01_DistributedSVD.html">01_DistributedSVD</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-04_group-DistributedLinearAlgebra/02_CollaborativeFiltering.html">02_CollaborativeFiltering</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="distributed-linear-algebra"><a class="header" href="#distributed-linear-algebra">Distributed Linear Algebra</a></h1>
+<p>** Authors: ** - Måns Williamson - Jonatan Vallin</p>
+<p>This project consists of two parts. In the first part we consider the theory and algorithms for distributed singular value decomposition of matrices, whereas in the second part we implement a music recommendation system closely related to low rank matrix factorization.</p>
+<p>The video presentation for this project can be found <a href="https://vimeo.com/499834997"> here</a>.</p>
+</div>
+<div class="cell markdown">
+<h2 id="distributed-singular-value-decomposition"><a class="header" href="#distributed-singular-value-decomposition">Distributed singular value decomposition</a></h2>
+<p>This part of the project deals with distributed singular value decomposition. The singular value decomposition of a real matrix \(A\) is given by \[A= U S V^T,\]</p>
+<p>where \(S\) is a diagonal matrix of size \(n\times n\) and \(U\) (\(m\times n\) ) and \(V\) (\(n\times n\)) are real matrices such that \(U^T U =I\) and \(V^T V=I\). (See for example <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition">wikipedia </a>, <a href="https://web.mit.edu/be.400/www/SVD/Singular_Value_Decomposition.htm">MIT </a> and <a href="https://mathworld.wolfram.com/SingularValueDecomposition.html">WolframMathworld </a>). A standard way of computing this is to first compute the product \(A^T A= VDV^T\). The matrix S is then obtained by taking the square root of the diagonal of \(D\) and finally we obtain \(U\) by computing \(U = AV S^{-1}\).</p>
+<p>When one has large matrices and wants to compute the SVD distributed one takes into account the structure of the matrix and choose an algorithm that takes advantage of this.</p>
+<p>One particular case is when one wants to compute the singular value decomposition of a so called &quot;tall and skinny&quot; matrix \(A\). This means that the number of rows \(m\) is much larger than the number of columns \(n\). An example of where this is the case is the Audioscrobbler recommender system used by <a href="https://en.wikipedia.org/wiki/Last.fm">Last.fm </a>. The typicall dataset will be a tall and skinny matrix where each row contains three entries; an identifier for a song, an identifier for a user and a player count (so each row tells us how many times a user has played a song).</p>
+<p>We will look at an algorithm in spark for computing the SVD where one make use of the structure of the tall and skinny matrix \(A\). The algorithm has the following steps:</p>
+<ul>
+<li>
+<p>It is computationally expensive to compute the product \(A^T A\) so we compute this distributed (map-reduce).</p>
+</li>
+<li>
+<p>\(A^T A\) is of size \(n\times n\) ( \(n\) is small) so we can compute \(V\) and \(S\) locally by computing the eigenvectors and -values of \(A^TA\).</p>
+</li>
+<li>
+<p>We then compute \(U= AVS^{-1}\) as distributed matrix multiplication by broadcasting \(VS^{-1}\) to each partition and compute the multiplication with the rows of \(A\).</p>
+</li>
+</ul>
+<p>In the spark mllib library theres a package for distributed linear algebra (<a href="https://spark.apache.org/docs/2.2.0/mllib-data-types.html">Data Types</a>) and an object that we will use is the IndexedRow-object . This takes two parameters; a vector and an index that indicates on which row of the matrix the index is located. We can then create an RDD in spark of IndexedRow-objects. Below we use the matrix</p>
+<p>\[A = 
+\begin{pmatrix} 1 &amp; 2 \\ 3&amp; 4 \\ 0&amp; 0\\0&amp;0 \end{pmatrix}
+\] to test the algorithm on. We start by creating the matrix as an array of tuples. We then map each partittion (tuple) to a dense vector that we zip with its index (so we have a (vector,index)-tuple) that we use to create an IndexedRow. (It's worth mentioning that there is an implementation of <a href="https://spark.apache.org/docs/2.2.0/mllib-dimensionality-reduction.html">SVD</a> in Spark for <a href="https://spark.apache.org/docs/2.2.0/api/scala/index.html#org.apache.spark.mllib.linalg.distributed.RowMatrix">RowMatrices</a> - an RDD of rows of a matrix without indices).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Import the necessary objects:
+import org.apache.spark.mllib.linalg.distributed.IndexedRow
+import org.apache.spark.mllib.linalg.Matrices
+
+
+
+//Create the matrix A above as a dense matrix:
+val Amatrix = Matrices.dense(4,2,Array(1,3,0,0,2,4,0,0))
+
+//Zip each row of a with its index and map it to an indexed row object (x._2 is the index and x._1 the array).
+//Once we have an IndexedRow r we can get the index and vector by calling r.index and r.vector 
+val A = sc.parallelize(Amatrix.rowIter.toArray.zipWithIndex.map(x=&gt;new IndexedRow(x._2,x._1)))
+
+ A.take(2)
+
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.linalg.distributed.IndexedRow
+import org.apache.spark.mllib.linalg.Matrices
+Amatrix: org.apache.spark.mllib.linalg.Matrix =
+1.0  2.0
+3.0  4.0
+0.0  0.0
+0.0  0.0
+A: org.apache.spark.rdd.RDD[org.apache.spark.mllib.linalg.distributed.IndexedRow] = ParallelCollectionRDD[689] at parallelize at command-1767923094594942:13
+res0: Array[org.apache.spark.mllib.linalg.distributed.IndexedRow] = Array(IndexedRow(0,[1.0,2.0]), IndexedRow(1,[3.0,4.0]))
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The first part of the algorithm that is &quot;expensive&quot; is the computation of the product \(A^T A\) (we compute \(A^T A\) rather than \(A A^T\) since the former has the shape \(n \times n\) which we assume is small enough to fit on a local machine and \(A A^T\) is of size \(m\times m\) ) . We note that
+\[ \left( A^T A\right)<em>{j,k} = \sum</em>{i=1}^m   a_{ij}  a_{ik}. \]</p>
+<p>This means that we can compute \(A^T A\) by mapping a row (say the i:th row) \[a_i = \left(a_{i1}, \dots , a_{in}  \right) \]</p>
+<p>to all the products of its elements. We thus create a function that takes an IndexedRow \[a_i \] and maps it to key-value pairs \[ ((j,k), a_{ij} a_{ik}), 1\leq j \leq m, 1\leq k \leq n. \]</p>
+<p>We then have an key-value RDD of ((Int,Int),Double)-tuples:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import scala.collection.mutable.ArrayBuffer
+
+
+//Function that maps an indexed row (index,(a_1,...,a_n)) to   ((j,k),a_j*a_k), j=1,..,n and k=1,...,n
+def f(v: IndexedRow): Array[((Int,Int),Double)]={
+var keyvaluepairs = ArrayBuffer[((Int,Int),Double)]()
+for(j&lt;-0 to v.vector.size-1){
+  for(k&lt;-0 to v.vector.size-1){
+  keyvaluepairs.append(((j,k),v.vector(j)*v.vector(k)))
+  }
+}
+keyvaluepairs.toArray
+}
+
+//map M to key-value rdd where key =(j,k) and value = a_ij*a_ik.
+//We use flatmap since we don't need to keep the row structure.
+val keyvalRDD = A.flatMap(row =&gt;f(row))
+
+keyvalRDD.take(5)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We can now perform a reduceByKey-operation (join on \((j,k)\) ) and then sum over\[ ((j,k), a_{ij} a_{ik}) \] for all \(i\) to compute</p>
+<p>\[ \left( A^T A\right)<em>{j,k} = \sum</em>{i=1}^m   a_{ij}  a_{ik}. \]</p>
+<p>We then have a key-value RDD of ((Int,Int),Double)-tuples, where the value is an entry in the matrix \(A\) and the key indicates on what position in the matrix it is located:</p>
+<p>\[\left( (j,k), \left( A^T A\right)_{j,k} \right), 1\leq j \leq m, 1\leq k \leq n.\]</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Sum up all key-value pairs that have the same key (j,k) (corresponts to getting the element of A.T*A on the j:th row and k:th column).
+val keyvalSum = keyvalRDD.reduceByKey((x,y)=&gt;x+y)
+
+keyvalSum.take(2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We now make use of another object in the distributer linear algebra package in spark mllib; <a href="https://spark.apache.org/docs/2.2.0/api/scala/index.html#org.apache.spark.mllib.linalg.distributed.MatrixEntry">MatrixEntry </a>. We map each key-value pair to a MatrixEntry-object (which has a row index, column index and a value). With this we can create a <a href="https://spark.apache.org/docs/2.2.0/mllib-data-types.html#coordinatematrix">CoordinateMatrix </a>. We can transform this to a <a href="https://spark.apache.org/docs/2.2.0/mllib-data-types.html#rowmatrix">RowMatrix </a> that we finally collect.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.linalg.distributed.{CoordinateMatrix, MatrixEntry}
+import breeze.linalg.DenseMatrix
+
+//map to matrix entries
+val matrix = keyvalSum.map(el =&gt; MatrixEntry(el._1._1, el._1._2, el._2))   
+
+//Create a CoordinateMatrix
+val mat = new CoordinateMatrix(matrix)
+
+
+//Transform to RowMatrix and collect.
+val ATArowmatrix = mat.toRowMatrix().rows.collect()
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We now want to calculate the eigen values and eigen vectors of \(A^T A\) (locally) and in order to do this we transform it to a DenseMatrix (from the Breeze linear algebra package):</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val m = mat.numRows()
+val n = mat.numCols()
+
+//Create an empty DenseMatrix (in which we will store the product A.T*A).
+val ATA = DenseMatrix.zeros[Double](m.toInt,n.toInt)
+
+//Each row will be a sparse vector. For each row we iterate over the non-zeros indices (foreachActive) and fill the i:th row of the ATA-matrix.
+var i = 0
+ATArowmatrix.foreach { vec =&gt;
+  vec.foreachActive { case (index, value) =&gt;
+    ATA(i, index) = value
+  }
+  i += 1
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We compute the eigenvalues and eigenvectors. The matrix \(S\) in the SVD is obtained by computing the square root of the eigenvalues and inserting them in a diagonal matrix and the matrix \(V\) are the eigenvectors:</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import scala.collection.mutable.ArrayBuffer
+import breeze.linalg._, eigSym.EigSym
+
+//lambda is a vector with the eigenvalues of A.T*A and evs the eigenvector matrix.
+val EigSym(lambda, evs) = eigSym(ATA) 
+//det(evs)
+
+val w=lambda.map(x=&gt;if(x &gt;0) Math.sqrt(x) else 0) //square root of eigen values to compute the S matrix.
+val S =diag(w)  
+val V =evs
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In the last step we need to compute \[U = AVS^{-1}.\]</p>
+<p>Since both \(V\) and \(S^{-1}\) are of size \(n\times n\) (and \(n\) is relatively small) we can compute the product \(VS^{-1}\) locally and then broadcast it to each partition of \(A\) (which is an RDD of IndexedRow).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Compute the inverse of S.
+val Sinv = S.map(x=&gt;if(x==0) 0 else 1/x)   //invert the diagonal matrix.
+
+//Compute the product of V and inverse of S.
+val M = V*Sinv
+
+//Broadcast to the spark context.
+sc.broadcast(M)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We define a function that we can use to multiply an IndexedRow with a DenseMatrix on the left. We use this to map each row of \(A\) to its product with \(VS^{-1}\):</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.linalg.distributed.{IndexedRowMatrix}
+
+//Function that multiplies an indexedRow object with a DenseMatrix (from breeze.linalg.DenseMatrix) on the left and returns an Array.
+def prod(u: IndexedRow, m: DenseMatrix[Double]): Array[Double]={
+var w = ArrayBuffer[Double]()
+for(i&lt;-0 to m.cols-1){
+  var x: Double =0
+  for(j&lt;-0 to m.rows-1){
+      x=x+m(j,i)*u.vector(j)
+  }
+  w.append(x)
+}
+w.toArray
+}
+
+
+//COmpute the matrix product by multiplying each indexed row with the Matrix M (and then collect the result)
+val Urows =A.map(row =&gt; prod(row,M)).collect() 
+
+//Create a dense matrix U with the rows.
+val U = DenseMatrix(Urows:_*)   
+
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally we print the product \(USV^T\) and check that it corresponds to \(A\)</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Print the product USV.t to check that it equals A:
+println(U*S*V.t)
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="music-recommendation-system"><a class="header" href="#music-recommendation-system">Music Recommendation System</a></h2>
+<p>In general, <a href="https://en.wikipedia.org/wiki/Recommender_system">recommender systems</a> are algorithms designed for suggesting relevant items/products to users. In the last decades they have gained much interest because of the potential of increasing the user experience at the same time as generating more profit to companies. Nowadays, these systems can be found in several well-known services like Netfilx, Amazon, YouTube and Spotify. As an indicator of how valuable these algorithms are for such companies: back in 2006 Netflix announced the open <a href="https://www.netflixprize.com/">Netflix Prize Competition</a> for the best algorithm to predict users movie ratings based on collected data. The winning team with the best algorithm improving the state-of-the-art performance with at least 10% was promised an award of 1 000 000$. <strong>In this notebook we are going to develope a system for recommending musical artists to users given their listening history</strong>. We will implement a model related to matrix factorization discussed in the preceeding chapter.</p>
+</div>
+<div class="cell markdown">
+<h3 id="problem-setting"><a class="header" href="#problem-setting">Problem Setting</a></h3>
+<p>We let \(U\) be the set containing all \(m\) users and let \(I\) be the set containing all \(n\) available items. Now, we introduce the matrix \(R\in \mathbb{R}^{m \times n}\) with elements \(r{_u}{_i}\) as values encoding possible interactions between users \(u\in U\) and items \(i \in I\). This matrix is often very sparse because of the huge number of possible user-item interactions never observed. Depending on the type of information encoded in the interaction matrix \(R\) one usally refers to either <em>explicit</em> or <em>implicit</em> data.</p>
+<p>For explicit data, \(r{_u}{_i}\) contains information directly related to user \(u\)'s preference for item \(i\), e.g movie ratings. In the case of implicit data, \(r{_u}{_i}\) contains indirect information of a user's preference for an item by observing past user behavior. Examples could be the number of times a user played a song or visited a webpage. Note that in the implicit case we are lacking information about items that the user dislikes because e.g if a user of a music service has not played any songs from a particular artist it could either mean that the user simply doesn't like that artist or that the user hasn't encountered that artist before but would potentially like it if the user had discovered the artist.</p>
+<p>Given the observations in the interaction matrix \(R\), we would like our model to suggest unseen items relevant to the users.</p>
+</div>
+<div class="cell markdown">
+<h3 id="collaborative-filtering"><a class="header" href="#collaborative-filtering">Collaborative Filtering</a></h3>
+<p>Broadly speaking, recommender algorithms can be divided into two categories: <a href="https://en.wikipedia.org/wiki/Recommender_system#Content-based_filtering">content based</a> and <a href="https://en.wikipedia.org/wiki/Collaborative_filtering">collaborative filtering</a> (CF). Here, we will just focus on collaborative filtering which is a technique using patterns of user-item interactions and discarding any additional information about the users or items themselves. It is based on the assumption that if a user similar to you likes an item, then there is a high probability that you also like that particular item. In other words, similar users have similar tastes.</p>
+<p>There are different approaches to CF, and we have chosen a laten factor model approach inspired by low-rank SVD factorization of matrices. The aim is to uncover latent features explaining the observed \(r{_u}{_i}\) values. Each user \(u\) is associated to a user-feature vector \(x{_u}\in \mathbb{R}^f\) and similarly each item \(i\) is associated to an item-feature vector \(y{_i} \in \mathbb{R}^f\). Then we want the dot products \(x{_u}^Ty{_i}\) to explain the observed \(r{_u}{_i}\) values. With all user- and item-features at hand in the latent space \(\mathbb{R}^f\) we can estimate a user \(u\)'s preference for an unseen item \(j\) by simply computing \(x{_u}^Ty{_j}\).</p>
+<p>We transorm the problem of finding the vectors \(x{_u}, y{_i}\) into a minimization problem as suggested in the paper <a href="https://www.researchgate.net/publication/220765111_Collaborative_Filtering_for_Implicit_Feedback_Datasets">Collaborative Filtering for Implicit Feedback Datasets</a>. First we introduce the binarized quantitiy \(p{_u}{_i}\) defined by:</p>
+<p>\[p_{ui}=\begin{cases}1 \text{   if  } r_{ui}&gt;0, \\ 0 \text{   if  } r_{ui}=0,\end{cases}\] encoding whether user \(u\) has interacted with and supposedly likes item \(i\). However, our confidence that user \(u\) likes item \(i\) given that \(p{_u}{_i}=1\) should vary with the actual observed \(r{_u}{_i}\) value. As an example, we would be more confident that a user likes an artist he/she has listened to hundreds of times than an artist played by the user only once. Therefore we introduce the confidence \(c{_u}{_i}\):</p>
+<p>\[c_{ui}=1+\alpha r_{ui}\],</p>
+<p>where \(\alpha\) is a hyperparameter. From the above equation we can see that the confidence for non observed user-item interaction defaults to 1. Now we formulize the minimization problem:</p>
+<p>\[\min_{X,Y}\sum_{u\in U,i \in I}c_{ui}(p_{ui}-x_u^Ty_i)^2+\lambda(\sum_{u\in U}||x_u||^2+\sum_{i\in I}||y_i||^2),\] where \(X,Y\) are matrices holding the \(x_u,y_i\) as columns respectively. In addition, we also have a regularization term to avoid overfitting. Notice that this is closely related to regularized low-rank matrix factorization of the matrix \(P\) with \(p{_u}{_i}\) as elements. We want to approximate \(P\approx X^TY\) where both \(X,Y\) have low rank (\(f\)). Because of the weights \(c{_u}{_i}\) we care more about recover entries in \(P\) with high confidence, directly related to the observations.</p>
+</div>
+<div class="cell markdown">
+<h3 id="dataset"><a class="header" href="#dataset">Dataset</a></h3>
+<p>For this application we use a <a href="https://grouplens.org/datasets/hetrec-2011/">dataset</a> containing user-artist listening information from the online music service <a href="http://www.last.fm">Last.fm</a>.</p>
+<p>One of the available files contains triplets (<code>userID</code> <code>artistID</code> <code>play_count</code>) describing the number of times a user has played an artist. Another file contains tuples (<code>artistID</code> <code>name</code>) mapping the artistID:s to actual artist names. There are a total of 92834 (<code>userID</code> <code>artistID</code> <code>play_count</code>) triplets containing 1892 unique <code>userID</code>s and 17632 unique <code>artistID</code>s. Since the observations in the dataset do not contain direct information about artist preferences, this is an implicit dataset as discussed erlier. Based on this dataset we want our model to give artist recommendations to the users.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import spark.implicits._
+import org.apache.spark.sql.functions._
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import spark.implicits._
+import org.apache.spark.sql.functions._
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p><strong>Lets load the data!</strong></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Load the (userID, artistID, play_count) triplets.
+val fileName_data=&quot;dbfs:/FileStore/tables/project4/hetrec2011-lastfm-2k/user_artists.dat&quot;
+val df_raw = spark.read.format(&quot;csv&quot;).option(&quot;header&quot;, &quot;true&quot;).option(&quot;delimiter&quot;, &quot;\t&quot;).option(&quot;inferSchema&quot;,&quot;true&quot;).load(fileName_data).withColumnRenamed(&quot;weight&quot;,&quot;play_count&quot;)
+df_raw.cache()
+df_raw.orderBy(rand()).show(5)
+
+// Load the (artistID, name) tuples.
+val fileName_names=&quot;dbfs:/FileStore/tables/project4/hetrec2011-lastfm-2k/artists.dat&quot;
+val artist_names = spark.read.format(&quot;csv&quot;).option(&quot;header&quot;, &quot;true&quot;).option(&quot;delimiter&quot;, &quot;\t&quot;).option(&quot;inferSchema&quot;,&quot;true&quot;).load(fileName_names).withColumnRenamed(&quot;id&quot;,&quot;artistID&quot;).select(&quot;artistID&quot;,&quot;name&quot;)
+artist_names.cache()
+artist_names.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------+----------+
+|userID|artistID|play_count|
++------+--------+----------+
+|  1553|    2478|       171|
+|    65|    1858|       254|
+|   496|       9|       161|
+|   304|     163|        19|
+|   747|     507|       626|
++------+--------+----------+
+only showing top 5 rows
+
++--------+-----------------+
+|artistID|             name|
++--------+-----------------+
+|       1|     MALICE MIZER|
+|       2|  Diary of Dreams|
+|       3|Carpathian Forest|
+|       4|     Moi dix Mois|
+|       5|      Bella Morte|
++--------+-----------------+
+only showing top 5 rows
+
+fileName_data: String = dbfs:/FileStore/tables/project4/hetrec2011-lastfm-2k/user_artists.dat
+df_raw: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 1 more field]
+fileName_names: String = dbfs:/FileStore/tables/project4/hetrec2011-lastfm-2k/artists.dat
+artist_names: org.apache.spark.sql.DataFrame = [artistID: int, name: string]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>We print some statistics and visualize the raw data.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val n_data = df_raw.count().asInstanceOf[Long].floatValue(); // Number of observations
+val n_users = df_raw.agg(countDistinct(&quot;userID&quot;)).collect()(0)(0).asInstanceOf[Long].floatValue(); // Number of unique users
+val n_artists = df_raw.agg(countDistinct(&quot;artistID&quot;)).collect()(0)(0).asInstanceOf[Long].floatValue(); // Number of unique artists
+val sparsity = 1-n_data/(n_users*n_artists) //Sparsity of the data
+
+println(&quot;Number of data points: &quot; + n_data)
+println(&quot;Number of users: &quot; + n_users)
+println(&quot;Number of artists: &quot; + n_artists)
+print(&quot;Sparsity:&quot; + sparsity.toString + &quot;\n&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Number of data points: 92834.0
+Number of users: 1892.0
+Number of artists: 17632.0
+Sparsity:0.9972172
+n_data: Float = 92834.0
+n_users: Float = 1892.0
+n_artists: Float = 17632.0
+sparsity: Float = 0.9972172
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Below we see that the play count variable tends to vary over a large range. From 1 to over 350 000.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df_raw.select(&quot;play_count&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df_raw.select(&quot;play_count&quot;).filter($&quot;play_count&quot;&lt;1000))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We count the total plays and number of unique listeners for each artist.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Compute some statistics for the artists.
+val artist_data_raw = df_raw.groupBy(&quot;artistID&quot;).agg(count(&quot;artistID&quot;) as &quot;unique_users&quot;,
+                                                      sum(&quot;play_count&quot;) as &quot;total_plays_artist&quot;)
+artist_data_raw.sort(desc(&quot;total_plays_artist&quot;)).join(artist_names,&quot;artistID&quot;).show(5) // Top artists based on total plays
+artist_data_raw.sort(desc(&quot;unique_users&quot;)).join(artist_names,&quot;artistID&quot;).show(5) // Top artists based on number of unique listener
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+--------+------------+------------------+------------------+
+|artistID|unique_users|total_plays_artist|              name|
++--------+------------+------------------+------------------+
+|     289|         522|           2393140|    Britney Spears|
+|      72|         282|           1301308|      Depeche Mode|
+|      89|         611|           1291387|         Lady Gaga|
+|     292|         407|           1058405|Christina Aguilera|
+|     498|         399|            963449|          Paramore|
++--------+------------+------------------+------------------+
+only showing top 5 rows
+
++--------+------------+------------------+--------------+
+|artistID|unique_users|total_plays_artist|          name|
++--------+------------+------------------+--------------+
+|      89|         611|           1291387|     Lady Gaga|
+|     289|         522|           2393140|Britney Spears|
+|     288|         484|            905423|       Rihanna|
+|     227|         480|            662116|   The Beatles|
+|     300|         473|            532545|    Katy Perry|
++--------+------------+------------------+--------------+
+only showing top 5 rows
+
+artist_data_raw: org.apache.spark.sql.DataFrame = [artistID: int, unique_users: bigint ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(artist_data_raw.select(&quot;total_plays_artist&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(artist_data_raw.select(&quot;total_plays_artist&quot;).filter($&quot;total_plays_artist&quot;&lt;10000))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_4.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(artist_data_raw.select(&quot;unique_users&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_5.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We count the total plays and the number of unique artists each user has listened to.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Compute statistics for each user.
+val user_data_raw = df_raw.groupBy(&quot;userID&quot;).agg(count(&quot;userID&quot;) as &quot;unique_artists&quot;,
+                                                  sum(&quot;play_count&quot;) as &quot;total_plays_user&quot;)
+user_data_raw.sort(desc(&quot;total_plays_user&quot;)).show(5) // Show users with most total plays
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------------+----------------+
+|userID|unique_artists|total_plays_user|
++------+--------------+----------------+
+|   757|            50|          480039|
+|  2000|            50|          468409|
+|  1418|            50|          416349|
+|  1642|            50|          388251|
+|  1094|            50|          379125|
++------+--------------+----------------+
+only showing top 5 rows
+
+user_data_raw: org.apache.spark.sql.DataFrame = [userID: int, unique_artists: bigint ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(user_data_raw.select(&quot;total_plays_user&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_6.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>Now we join all statistics into a single dataframe.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Merge all statistics and data into a single dataframe.
+val df_joined = df_raw.join(artist_data_raw, &quot;artistID&quot;).join(user_data_raw, &quot;userID&quot;).join(artist_names,&quot;artistID&quot;).select(&quot;userID&quot;, &quot;artistID&quot;,&quot;play_count&quot;, &quot;name&quot;, &quot;unique_artists&quot;,&quot;unique_users&quot;, &quot;total_plays_user&quot;,&quot;total_plays_artist&quot;)
+df_joined.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------+----------+-------------+--------------+------------+----------------+------------------+
+|userID|artistID|play_count|         name|unique_artists|unique_users|total_plays_user|total_plays_artist|
++------+--------+----------+-------------+--------------+------------+----------------+------------------+
+|     2|      51|     13883|  Duran Duran|            50|         111|          168737|            348919|
+|     2|      52|     11690|    Morcheeba|            50|          23|          168737|             18787|
+|     2|      53|     11351|          Air|            50|          75|          168737|             44230|
+|     2|      54|     10300| Hooverphonic|            50|          18|          168737|             15927|
+|     2|      55|      8983|Kylie Minogue|            50|         298|          168737|            449292|
++------+--------+----------+-------------+--------------+------------+----------------+------------------+
+only showing top 5 rows
+
+df_joined: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Collaborative filtering models suffer from the <a href="https://yuspify.com/blog/cold-start-problem-recommender-systems/">cold-start problem</a>, meaning they have difficulties in making inference of new users or items. Therefore we will filter out artists with fewer than 20 unique listeners and users that have listened to less than 5 artists.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Remove artists with less than 20 unique users, and recompute the statistics.
+val df_filtered_1 = df_joined.filter($&quot;unique_users&quot;&gt;=20).select(df_joined(&quot;userID&quot;),df_joined(&quot;artistID&quot;),df_joined(&quot;play_count&quot;))
+val artist_data_1 = df_filtered_1.groupBy(&quot;artistID&quot;).agg(count(&quot;artistID&quot;) as &quot;unique_users&quot;,
+                                                          sum(&quot;play_count&quot;) as &quot;total_plays_artist&quot;)
+                                                     .withColumnRenamed(&quot;artistID&quot;,&quot;artistID_1&quot;)
+
+val user_data_1 = df_filtered_1.groupBy(&quot;userID&quot;).agg(count(&quot;userID&quot;) as &quot;unique_artists&quot;,
+                                                          sum(&quot;play_count&quot;) as &quot;total_plays_user&quot;)
+                                                     .withColumnRenamed(&quot;userID&quot;,&quot;userID_1&quot;)
+
+val df_joined_filtered_1 = df_filtered_1.join(artist_data_1, artist_data_1(&quot;artistID_1&quot;)===df_filtered_1(&quot;artistID&quot;))
+                                        .join(user_data_1, user_data_1(&quot;userID_1&quot;)===df_filtered_1(&quot;userID&quot;))
+                                        .select(df_filtered_1(&quot;userID&quot;),df_filtered_1(&quot;artistID&quot;),df_filtered_1(&quot;play_count&quot;), 
+                                                 artist_data_1(&quot;unique_users&quot;),artist_data_1(&quot;total_plays_artist&quot;),
+                                                 user_data_1(&quot;unique_artists&quot;), user_data_1(&quot;total_plays_user&quot;))
+
+// Remove users with less than 5 unique users, and recompute the statistics.
+val df_filtered_2 = df_joined_filtered_1.filter($&quot;unique_artists&quot;&gt;=5).select(df_filtered_1(&quot;userID&quot;),df_filtered_1(&quot;artistID&quot;),
+                                                                             df_filtered_1(&quot;play_count&quot;))
+
+val artist_data = df_filtered_2.groupBy(&quot;artistID&quot;).agg(count(&quot;artistID&quot;) as &quot;unique_users&quot;,
+                                                        sum(&quot;play_count&quot;) as &quot;total_plays_artist&quot;)
+                                                   .withColumnRenamed(&quot;artistID&quot;,&quot;artistID_2&quot;)
+
+val user_data = df_filtered_2.groupBy(&quot;userID&quot;).agg(count(&quot;userID&quot;) as &quot;unique_artists&quot;,
+                                                         sum(&quot;play_count&quot;) as &quot;total_plays_user&quot;)
+                                                   .withColumnRenamed(&quot;userID&quot;,&quot;userID_2&quot;)
+
+// Now we collect our new filtered data.
+val user_artist_data = df_filtered_2.join(artist_data, artist_data(&quot;artistID_2&quot;)===df_filtered_2(&quot;artistID&quot;))
+                                    .join(user_data, user_data(&quot;userID_2&quot;)===df_filtered_2(&quot;userID&quot;))
+                                    .select(&quot;userID&quot;,&quot;artistID&quot;,&quot;play_count&quot;,&quot;unique_users&quot;,&quot;total_plays_artist&quot;,&quot;unique_artists&quot;,&quot;total_plays_user&quot;)
+
+user_artist_data.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------+----------+------------+------------------+--------------+----------------+
+|userID|artistID|play_count|unique_users|total_plays_artist|unique_artists|total_plays_user|
++------+--------+----------+------------+------------------+--------------+----------------+
+|   148|    1118|       214|          62|             53915|            12|            3026|
+|   148|    1206|       245|          50|             32827|            12|            3026|
+|   148|     206|       214|          83|             36944|            12|            3026|
+|   148|     233|       170|         138|            160317|            12|            3026|
+|   148|     429|       430|         162|             91740|            12|            3026|
++------+--------+----------+------------+------------------+--------------+----------------+
+only showing top 5 rows
+
+df_filtered_1: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 1 more field]
+artist_data_1: org.apache.spark.sql.DataFrame = [artistID_1: int, unique_users: bigint ... 1 more field]
+user_data_1: org.apache.spark.sql.DataFrame = [userID_1: int, unique_artists: bigint ... 1 more field]
+df_joined_filtered_1: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 5 more fields]
+df_filtered_2: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 1 more field]
+artist_data: org.apache.spark.sql.DataFrame = [artistID_2: int, unique_users: bigint ... 1 more field]
+user_data: org.apache.spark.sql.DataFrame = [userID_2: int, unique_artists: bigint ... 1 more field]
+user_artist_data: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Below we can see that we have reduced the amount of data. The number of users are quite similar as before but the number of artists is significantly reduced indicating there were many artists in the raw data only played by a small fraction of users.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val n_data_new = user_artist_data.count().asInstanceOf[Long].floatValue(); // Number of observations
+val n_users_new = user_artist_data.agg(countDistinct(&quot;userID&quot;)).collect()(0)(0).asInstanceOf[Long].floatValue(); // Number of unique users
+val n_artists_new = user_artist_data.agg(countDistinct(&quot;artistID&quot;)).collect()(0)(0).asInstanceOf[Long].floatValue(); // Number of unique artists
+val sparsity_new = 1-n_data/(n_users*n_artists) // Compute the sparsity
+
+println(&quot;Number of data points: &quot; + n_data_new)
+println(&quot;Number of users: &quot; + n_users_new)
+println(&quot;Number of artists: &quot; + n_artists_new)
+print(&quot;Sparsity:&quot; + sparsity.toString + &quot;\n&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Number of data points: 53114.0
+Number of users: 1819.0
+Number of artists: 804.0
+Sparsity:0.9972172
+n_data_new: Float = 53114.0
+n_users_new: Float = 1819.0
+n_artists_new: Float = 804.0
+sparsity_new: Float = 0.9972172
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(user_artist_data.select(&quot;play_count&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_7.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(artist_data.select(&quot;total_plays_artist&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_8.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(artist_data.select(&quot;unique_users&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_9.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>The total number of plays are correlated to the number of unique listeners (as expected) as illustrated in the figure below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(artist_data)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_10.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>In the <a href="https://www.researchgate.net/publication/220765111_Collaborative_Filtering_for_Implicit_Feedback_Datasets">paper</a> mentioned above, the authors suggest scaling the \(r{_u}{_i}\) if the values tends to vary over large range as in our case. They presented a log scaling scheme but after testing different approaches we found that scaling by taking the square root of the observed play counts (thus reducing the range) worked best.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Scaling the play_counts
+val user_artist_data_scaled = user_artist_data
+.withColumn(&quot;scaled_value&quot;, sqrt(col(&quot;play_count&quot;))).drop(&quot;play_count&quot;).withColumnRenamed(&quot;scaled_value&quot;,&quot;play_count&quot;)
+user_artist_data_scaled.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------+------------+------------------+--------------+----------------+------------------+
+|userID|artistID|unique_users|total_plays_artist|unique_artists|total_plays_user|        play_count|
++------+--------+------------+------------------+--------------+----------------+------------------+
+|   148|     436|         124|             88270|            12|            3026| 18.33030277982336|
+|   148|    1206|          50|             32827|            12|            3026|15.652475842498529|
+|   148|     512|          67|             62933|            12|            3026|15.620499351813308|
+|   148|     429|         162|             91740|            12|            3026| 20.73644135332772|
+|   148|    1943|          25|             13035|            12|            3026| 17.26267650163207|
++------+--------+------------+------------------+--------------+----------------+------------------+
+only showing top 5 rows
+
+user_artist_data_scaled: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Plotting the scaled data. We ca see that the range is smaller after the scaling.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(user_artist_data_scaled.select(&quot;play_count&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_9.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(user_artist_data_scaled.select(&quot;play_count&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/4_02_12.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We split our scaled dataset into training, validation and test sets.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Split data into training, validation and test sets.
+val Array(training_set, validation_set, test_set) = user_artist_data_scaled.select(&quot;userID&quot;,&quot;artistID&quot;,&quot;play_count&quot;).randomSplit(Array(0.6, 0.2, 0.2))
+training_set.cache()
+validation_set.cache()
+test_set.cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>training_set: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [userID: int, artistID: int ... 1 more field]
+validation_set: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [userID: int, artistID: int ... 1 more field]
+test_set: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [userID: int, artistID: int ... 1 more field]
+res109: test_set.type = [userID: int, artistID: int ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="alternating-least-squares"><a class="header" href="#alternating-least-squares">Alternating Least Squares</a></h3>
+<p>By looking at the minimization problem again, we see that if one of \(X\) and \(Y\) is fixed, the cost function is just quadratic and hence the minimum can be computed easily. Thus, we can alternate between re-computing the user and artist features while holding the other one fixed. It turns out that the over all const function is guaranteed to decrease in each iteration. This procedure is called <a href="https://datasciencemadesimpler.wordpress.com/tag/alternating-least-squares/">Alternating Least Squares</a> and is available in Spark. \[\min_{X,Y}\sum_{u\in U,i \in I}c_{ui}(p_{ui}-x_u^Ty_i)^2+\lambda(\sum_{u\in U}||x_u||^2+\sum_{i\in I}||y_i||^2),\]</p>
+<p>The solution to the respective quadratic problems are:</p>
+<p>\[x_u=(Y^TC^uY+\lambda Id )^{-1}Y^TC^up(u) \quad \forall u\in U,\] \[y_i=(X^TC^iX+\lambda Id )^{-1}X^TC^ip(i) \quad \forall i\in I,\]</p>
+<p>where \(C^u, C^i\) are a diagonal matrices with diagonal entries \(c{_u}{_i}\) \(i \in I\) and \(c{_u}{_i}\) \(u \in U\) respectively. The \(p(u)\) and \(p(i)\) are vectors containing all binarized user and artist observations for user \(u\) and artist \(i\) respectively. The computational bottlneck is to compute the \(Y^TC^uY\) (require time \(O(f^2n)\) for each user). However, we can rewrite the product as \(Y^TC^uY=Y^TY+Y^T(C^u-I)Y\) and now we see that the term \(Y^TY\) does not depend on \(u\) and that \((C^u-I)\) will only have a number of non-zero entries equal to the number of artists user \(u\) has interacted with (which is usually much smaller than the total number of artists). Hence, that representation is much more beneficial computationally. A similar approach can be applied to \(X^TC^iX\). The matrix inversions need to be done on matrices of size \(f \times f\) where \(f\) is the dimension of the latent feature space and thus relatively small compared to \(m,n\).</p>
+<p>When we have all the user and artist features we can produce a recommendation list of artist for user \(u\) by taking the dot products \(x{_u}^Ty{_i}\) for all artists and arrange them in a list in descending order with respect to these computed values.</p>
+</div>
+<div class="cell markdown">
+<h3 id="evaluation"><a class="header" href="#evaluation">Evaluation</a></h3>
+<p>One approach to measure the performance of the model would be to measure the RMSE:</p>
+<p>\[\sqrt{\frac{1}{\#\text{observations}}\sum_{u, i}(p_{ui}^t-x_u^Ty_i)^2},\] where \(p_{ui}^t\) is the binarized observations from the test set. However, this metric is not very suitable for this particular application since for the zero entries of \(p^t{_u}{_i}\) we don't know if the user dislikes the artist or just hasn't discovered it. In the <a href="https://www.researchgate.net/publication/220765111_Collaborative_Filtering_for_Implicit_Feedback_Datasets">paper</a> they suggest the mean percentile rank metric:</p>
+<p>\[\overline{rank}=\frac{\sum_{u, i}r^t_{ui}rank_{ui}}{\sum_{u, i} r^t_{ui}},\] where \(rank_{ui}\) is the percentile rank of artist \(i\) in the produced recommendation list for user \(u\). Hence if artist \(j\) is in the first place in the list for user \(u\) we get that \(rank{_u}{_j}=0%\) and if it is in the last place we get \(rank{_u}{_j}=100%\). Thus, this metric is an weighted average of the percentiles of the artists the users have listened to. If user \(u\) has listened to artist \(j\) many times we have a large \(r{_u}{_j}\) value, but if the artist is ranked very low in the recommendation list for this user, it will increase the value of \(\overline{rank}\) drastically. If the model instead ranks this artist correctly in the top, the product \(r{_u}{_j}rank{_u}{_j}\) will get small. Hence, low values of \(\overline{rank}\) is desired.</p>
+</div>
+<div class="cell markdown">
+<p>Unfortunately, the \(\overline{rank}\) metric is not implemented in Spark yet, so below we have written our own function for computing it given the ranked artist lists for each user. We also remove an artist from the recommendation list for a user if we have observed that the user listened to that artist in the training data. This eliminates the easy recommendation, that is, recommending the same artists we know that the user has already listened to.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.Dataset 
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.DataFrame
+
+// Function for computing the mean rank metric.
+// Input: 
+// - prediction_scores_new: DataFrame with userIDs and corresponding recommendation lists.
+// - training_set: DataFrame with observations in training set
+// - validation_set: DataFrame with the observations needed for the evaluation of the metric.
+// Output: Float corresponind to the mean_rank score.
+def eval_model(predictions_scores_new: DataFrame, training_set: DataFrame, validation_set: DataFrame) : Float = {
+  
+  val predictions_scores = predictions_scores_new.withColumnRenamed(&quot;userID&quot;,&quot;userID_new&quot;) // Avoinding duplicate column names.
+  val recommendations = predictions_scores.withColumn(&quot;recommendations&quot;, explode($&quot;recommendations&quot;)) // Rearrange the recommendation lists.
+                                      .select(&quot;userID_new&quot;,&quot;recommendations.artistID&quot;, &quot;recommendations.rating&quot;)
+  
+  val recommendations_filtered = recommendations.join(training_set, training_set(&quot;userID&quot;)===recommendations(&quot;userID_new&quot;) &amp;&amp; training_set(&quot;artistID&quot;)===recommendations(&quot;artistID&quot;), &quot;leftanti&quot;) // Erase artists appearing in the training for each user.
+  
+  // Compute ranking percentiles.
+  val recommendations_percentiles = recommendations_filtered.withColumn(&quot;rank&quot;,percent_rank()
+                                                            .over(Window.partitionBy(&quot;userID_new&quot;).orderBy(desc(&quot;rating&quot;)))) 
+  // Store everything in single DataFrame.
+  val table_data = recommendations_percentiles.join(validation_set, recommendations_percentiles(&quot;userID_new&quot;)===validation_set(&quot;userID&quot;) &amp;&amp; recommendations_percentiles(&quot;artistID&quot;)===validation_set(&quot;artistID&quot;))
+  
+  // Compute the sum in the numerator for the metric.
+  val numerator = table_data.withColumn(&quot;ru1rankui&quot;, $&quot;rank&quot;*$&quot;play_count&quot;*100.0)
+                            .agg(sum(&quot;ru1rankui&quot;))
+                            .collect()(0)(0).asInstanceOf[Double]
+  
+  // Compute the sum in the denominator for the metric.
+  val denumerator = table_data.agg(sum(&quot;play_count&quot;))
+                              .collect()(0)(0)
+                              .asInstanceOf[Double]
+  // Compute the mean percentile rank.
+  val rank_score = numerator/denumerator
+  rank_score.toFloat
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.Dataset
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.DataFrame
+eval_model: (predictions_scores_new: org.apache.spark.sql.DataFrame, training_set: org.apache.spark.sql.DataFrame, validation_set: org.apache.spark.sql.DataFrame)Float
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Now we import the <a href="https://spark.apache.org/docs/latest/api/scala/org/apache/spark/ml/recommendation/ALSModel.html">ALS module</a> from Spark and start the training. We perform a grid search over the hyper-parameters: the latent dimension \(f\), confidence parameter \(\alpha\) and regularization parameter \(\lambda\). We choose the parameter combinations based on the performance on the validation set.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.recommendation.ALS
+// Number of iterations in the ALS algorithm
+val numIter = 10
+
+ 
+ val ranks = List(10,50,100,150) // Dimension of latent feature space
+ val lambdas=List(0.1, 1.0, 2.0) // Regularization parameter
+ val alphas=List(0.5, 1.0, 5.0) // Confidence parameter
+
+// Loop over all parameter combinations
+for ( alpha &lt;- alphas ){
+  for ( lambda &lt;- lambdas ){
+    for ( rank &lt;- ranks ){
+      val als = new ALS()
+        .setRank(rank)
+        .setMaxIter(numIter)
+        .setRegParam(lambda)
+        .setUserCol(&quot;userID&quot;)
+        .setItemCol(&quot;artistID&quot;)
+        .setRatingCol(&quot;play_count&quot;)
+        .setImplicitPrefs(true) // Indicate we have implicit data
+        .setAlpha(alpha)
+        .setNonnegative(true) // Constrain to non-negative values
+      
+      // Fit the model
+      val model = als.fit(training_set)
+      
+      model.setColdStartStrategy(&quot;drop&quot;) // This is to ensure we handle unseen users or unseen artist saftely during the prediction.
+           .setUserCol(&quot;userID&quot;)
+           .setItemCol(&quot;artistID&quot;)
+      // Generate the recommendations
+      val predictions_scores = model.recommendForUserSubset(validation_set,n_artists_new.toInt)
+      
+      // Evaluate the model
+      println(&quot;rank=&quot; + rank + &quot;, alpha=&quot; + alpha + &quot;, lambda=&quot; + lambda + &quot;, mean_rank=&quot; + eval_model(predictions_scores, training_set, validation_set))
+    }
+  }
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We get our final model by choosing \(f=150, \alpha=0.5\) and \(\lambda=2.0\) train the model again and evaluating it on the test set. We observe a test error of 7.75 %.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Retrain the best model.
+
+val numIter_final=10
+val rank_final=150
+val alpha_final=0.5
+val lambda_final=2.0
+val als_final = new ALS()
+        .setRank(rank_final)
+        .setMaxIter(numIter_final)
+        .setRegParam(lambda_final)
+        .setUserCol(&quot;userID&quot;)
+        .setItemCol(&quot;artistID&quot;)
+        .setRatingCol(&quot;play_count&quot;)
+        .setImplicitPrefs(true)
+        .setAlpha(alpha_final)
+        .setNonnegative(true)
+val model_final = als_final.fit(training_set)
+model_final.setColdStartStrategy(&quot;drop&quot;)
+     .setUserCol(&quot;userID&quot;)
+     .setItemCol(&quot;artistID&quot;)
+
+// Evaluate on the validation set.
+val predictions_scores_val = model_final.recommendForUserSubset(validation_set,n_artists_new.toInt)
+println(&quot;Validation set: mean_rank=&quot; + eval_model(predictions_scores_val, training_set, validation_set))
+
+// Evaluate on the test set.
+val predictions_scores_test = model_final.recommendForUserSubset(test_set,n_artists_new.toInt)
+println(&quot;Test set: mean_rank=&quot; + eval_model(predictions_scores_val, training_set, test_set))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Validation set: mean_rank=7.7979865
+Test set: mean_rank=7.75016
+numIter_final: Int = 10
+rank_final: Int = 150
+alpha_final: Double = 0.5
+lambda_final: Double = 2.0
+als_final: org.apache.spark.ml.recommendation.ALS = als_f778f6cc23db
+model_final: org.apache.spark.ml.recommendation.ALSModel = als_f778f6cc23db
+predictions_scores_val: org.apache.spark.sql.DataFrame = [userID: int, recommendations: array&lt;struct&lt;artistID:int,rating:float&gt;&gt;]
+predictions_scores_test: org.apache.spark.sql.DataFrame = [userID: int, recommendations: array&lt;struct&lt;artistID:int,rating:float&gt;&gt;]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="model-comparison"><a class="header" href="#model-comparison">Model Comparison</a></h3>
+<p>We compare our model with two naive ones.</p>
+<p><strong>Random Recommendations</strong>: First we just produce a ranom recommendation list for each user and evaluate the metric. Note that for a random ranking the expected ranking percentile for an artist would be 50%, expected value of the mean percentile rank should be: \(\mathbb{E}(\overline{rank})=\mathbb{E}(\frac{\sum{_u}{_i}r^t{_u}{_i}rank{_u}{_i}}{\sum{_u}{_i} r^t{_u}{_i}} ) = \frac{\sum{_u}{_i}r^t{_u}{_i}\mathbb{E}(rank{_u}{_i})}{\sum{_u}{_i} r^t{_u}{_i}}= \frac{\sum{_u}{_i}r^t{_u}{_i}\cdot 0.5}{\sum{_u}{_i} r^t{_u}{_i}}=0.5\) for this random model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">case class Rating(artistID: Int, rating: Float) // Simple class for getting the recommendations in suitable form.
+
+// Generating random array of artistIDs.
+val random = artist_data.select(&quot;artistID_2&quot;).distinct().orderBy(rand()).withColumn(&quot;idx&quot;,monotonically_increasing_id)
+           .withColumn(&quot;rownumber&quot;,row_number.over(Window.orderBy(desc(&quot;idx&quot;)))).drop(&quot;idx&quot;).sort(desc(&quot;rownumber&quot;))
+          .collect.map(row =&gt;Rating(row.getInt(0),row.getInt(1).toFloat))
+
+val test_users = test_set.select(&quot;userID&quot;).distinct()
+
+//Append the arrays to DataFrame.
+val prediction_scores = user_artist_data.select(&quot;userID&quot;).distinct().withColumn(&quot;recommendations&quot;,typedLit(random))
+                                        .join(test_users,&quot;userID&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The actual value we get is \(\overline{rank}\approx 50.86 %\) which agrees with the above reasoning.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(&quot;Random_model: mean_rank=&quot; + eval_model(prediction_scores, training_set, test_set))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Random_model: mean_rank=50.860817
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p><strong>Popular Recommendations:</strong> We recommend each user the list of artist sorted by the number of total plays in the training dataset. Hence the list with the over all most popular artist will be presented as the recommendations independent of the user. Hence, this is not personalized recommenations.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//Generating arrays of artistIDs w.r.t most plays.
+val most_popular = artist_data.select(&quot;artistID_2&quot;, &quot;total_plays_artist&quot;).sort(desc(&quot;total_plays_artist&quot;))
+                              .collect.map(row =&gt;Rating(row.getInt(0),row.getLong(1).toFloat))
+val test_users = test_set.select(&quot;userID&quot;).distinct()
+
+//Append the arrays to DataFrame.
+val prediction_scores = user_artist_data.select(&quot;userID&quot;).distinct().withColumn(&quot;recommendations&quot;,typedLit(most_popular))
+                                        .join(test_users,&quot;userID&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>For this model we get \(\overline{rank}\approx 24.6 %\) which is better than the random one but much worse than our ALS model that got \(\overline{rank}\approx 7.75 %\)</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(&quot;Popular_model: mean_rank=&quot; + eval_model(prediction_scores, training_set, test_set))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Popular_model: mean_rank=24.553421
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Below we define one functions for presenting a users top artists based on observations in the train set and recommended undiscovered artists generated by our model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.ml.recommendation.ALSModel
+
+// Function for showing the favorit artists for a given user based on the training set.
+// Input:
+// - userID: Int, the id of the user.
+// - n: Int, number of top artists that should be presented.
+// - user_artist_data: DataFrame with observations.
+// - artist_names: Dataframe mapping artistIDs to actual artist names
+// Output:
+// - DataFrame with the users top artists
+def userHistory(userID: Int, n: Int, user_artist_data: DataFrame, artist_names: DataFrame): DataFrame = {
+  
+  // Filter the userID and sort the artists w.r.t the play count. Append the actual artist names. 
+  val data = user_artist_data.filter($&quot;userID&quot;===userID).sort(desc(&quot;play_count&quot;)).join(artist_names, &quot;artistID&quot;)
+  data.select(&quot;userID&quot;,&quot;artistID&quot;,&quot;name&quot;).show(n)                            
+  data.select(&quot;userID&quot;,&quot;artistID&quot;,&quot;name&quot;)
+}
+
+// Function for presenting recommended artist for a user.
+// Input:
+// - Model: ALSModel, the trained model
+// - userID: DataFrame, with userID
+// - n: Int, number of top artists that should be presented.
+// - training_set: DataFrame used during the training.
+// - artist_names: Dataframe mapping artistIDs to actual artist names
+// Output:
+// - DataFrame with the users recommended artists
+def recommendToUser(model: ALSModel, userID: DataFrame, n: Int, training_set: DataFrame, artist_names: DataFrame) : DataFrame = {
+  // Generate recommendations using the model.
+  val recommendations = model.recommendForUserSubset(userID, n_artists_new.toInt).withColumn(&quot;recommendations&quot;, explode($&quot;recommendations&quot;))
+                                      .select(&quot;userID&quot;,&quot;recommendations.artistID&quot;, &quot;recommendations.rating&quot;).join(artist_names, &quot;artistID&quot;).select(&quot;userID&quot;,&quot;artistID&quot;,&quot;name&quot;,&quot;rating&quot;)
+  
+  // Remove possible artists observed in the training set
+  recommendations.join(training_set,training_set(&quot;userID&quot;)===recommendations(&quot;userID&quot;) &amp;&amp; training_set(&quot;artistID&quot;)===recommendations(&quot;artistID&quot;),&quot;leftanti&quot;)
+}
+
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.recommendation.ALSModel
+userHistory: (userID: Int, n: Int, user_artist_data: org.apache.spark.sql.DataFrame, artist_names: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+recommendToUser: (model: org.apache.spark.ml.recommendation.ALSModel, userID: org.apache.spark.sql.DataFrame, n: Int, training_set: org.apache.spark.sql.DataFrame, artist_names: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let's generate some recommenations for a user.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(&quot;Listening history:&quot;)
+// Print top 5 artists for userID 302
+val sub_data = userHistory(302, 5, training_set, artist_names)
+
+// Generate top 5 recommendations of undiscovered artists,
+val recommendations = recommendToUser(model_final, sub_data, 5, training_set, artist_names)
+println(&quot;Recommendations:&quot;)
+recommendations.show(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Listening history:
++------+--------+--------------+
+|userID|artistID|          name|
++------+--------+--------------+
+|   302|      55| Kylie Minogue|
+|   302|      89|     Lady Gaga|
+|   302|     265|   Céline Dion|
+|   302|     288|       Rihanna|
+|   302|     299|Jennifer Lopez|
++------+--------+--------------+
+only showing top 5 rows
+
+Recommendations:
++------+--------+------------------+----------+
+|userID|artistID|              name|    rating|
++------+--------+------------------+----------+
+|   302|     289|    Britney Spears|0.88509434|
+|   302|     292|Christina Aguilera| 0.8353728|
+|   302|     300|        Katy Perry| 0.7862937|
+|   302|      67|           Madonna| 0.7838166|
+|   302|     295|           Beyoncé|0.76221865|
++------+--------+------------------+----------+
+only showing top 5 rows
+
+sub_data: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 1 more field]
+recommendations: org.apache.spark.sql.DataFrame = [userID: int, artistID: int ... 2 more fields]
+</code></pre>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

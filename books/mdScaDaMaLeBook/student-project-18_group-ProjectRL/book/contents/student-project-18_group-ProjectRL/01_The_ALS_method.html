@@ -1,0 +1,788 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_The_ALS_method - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-18_group-ProjectRL/00_Problem_Description.html">00_Problem_Description</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-18_group-ProjectRL/01_The_ALS_method.html" class="active">01_The_ALS_method</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-18_group-ProjectRL/02_Extensions.html">02_Extensions</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="the-alternating-least-squares-method-als"><a class="header" href="#the-alternating-least-squares-method-als"><a href="">The Alternating Least Squares method (ALS)</a></a></h1>
+</div>
+<div class="cell markdown">
+<h2 id="the-als-algorithm"><a class="header" href="#the-als-algorithm">The ALS algorithm</a></h2>
+<p>The ALS algorithm was proposed in 2008 by <em>F. Zhang, E.Shang, Y. Xu and X. Wu</em> in a paper titled : <strong>Large-scale Parallel Colaborative Filtering for the Netflix Prize</strong> <a href="https://link.springer.com/chapter/10.1007/978-3-540-68880-8_32">(paper)</a>. We will briefly describe the main ideas behind the ALS algorithm.</p>
+<h4 id="what-are-we-learning-"><a class="header" href="#what-are-we-learning-">What are we learning ?</a></h4>
+<p>In order to finding the missing values of the rating matrix R, the authors of the ALS algorithm considered approximating this matrix by a product of two tall matrices U and M of low rank. In other words, the goal is to find a low rank approximation of the ratings matrix R:</p>
+<p>\[
+R \approx U M^\top = \begin{bmatrix} u_1 &amp; \dots &amp; u_N \end{bmatrix}^\top  \begin{bmatrix}
+m_1 &amp; \dots &amp; m_M \end{bmatrix} \qquad \text{where} \qquad U \in \mathbb{R}^{N \times K}, M \in \mathbb{R}^{M \times K}
+\]</p>
+<p>Intuitively we think of U (resp. M) as a matrix of users' features (resp. movies features) and we may rewrite this approximation entrywise as</p>
+<p>\[
+\forall i,j \qquad r_{i,j} \approx u_i^\top m_j. 
+\]</p>
+<h4 id="the-loss-function"><a class="header" href="#the-loss-function">The loss function</a></h4>
+<p>If all entries of the rating matrix R were known, one may use an SVD decomposition to reconstruct U and M. However, not all ratings are known therefore one has to learn the matrices U and M. The authors of the paper proposed to minimize the following loss which corresponds to the sum of squares errors with a Thikonov rigularization that weighs the users matrix U (resp. the movies matrix M) using the Gamma<em>U (resp. Gamma</em>M)</p>
+<p>\[
+\mathcal{L}<em>{U,M}^{wheighted}(R) = \sum</em>{(i,j)\in S}
+(r_{i,j} - u_i^\top m_j)^2 + \lambda \Vert M \Gamma_m \Vert^2 + \lambda \Vert U \Gamma_u \Vert^2 
+\]</p>
+<p>where S corresponds to the set of known ratings, \lambda is a regularaziation parameter. In fact this loss corresponds to the Alternating Least Squares with Weigted Regularization (ALS-WR). We will be using a variant of that algorithm a.k.a. the ALS algorithm which corresponds to minimizing the following slighltly similar loss without wheighing:</p>
+<p>\[
+\mathcal{L}<em>{U,M}(R) = \sum</em>{(i,j)\in S}
+(r_{i,j} - u_i^\top m_j)^2 + \lambda \Vert M \Vert^2 + \lambda \Vert U \Vert^2 
+\]</p>
+<p>and the goal of the algorithm will be find a condidate (U,M) that</p>
+<p>\[
+\min_{U,M} \mathcal{L}_{U,M}(R)
+\]</p>
+<h4 id="the-als-algorithm-1"><a class="header" href="#the-als-algorithm-1">The ALS algorithm</a></h4>
+<p>The authors approach to solve the aforementioned minimization problem as follows: - <strong>Step 1.</strong> Initialize matrix M, by assigning the average rating for that movie as the first row and small random numbers for the remaining entries. - <strong>Step 2.</strong> Fix M, Solve for U by minimizing the aformentioned loss. - <strong>Step 3.</strong> Fix U, solve for M by minimizing the aformentioned loss similarly. - <strong>Step 4.</strong> Repeat Steps 2 and 3 until a stopping criterion is satisfied.</p>
+<p>Note that when one of the matrices is fixed, say M, the loss becomes quadratic in U and the solution corresponds to that of the least squares.</p>
+<h4 id="key-parameters-of-the-algorithm"><a class="header" href="#key-parameters-of-the-algorithm">Key parameters of the algorithm</a></h4>
+<p>The key parameters of the lagorithm are the <strong>rank K</strong>, the <strong>regularization parameter lambda</strong>, and the <strong>number of iterations</strong> befor stopping the algorithm. Indeed, since we don not have full knowledge of the matrix R, we do not know its rank. To find the best rank we will use cross-validation and dedicate part of the data to that. There is no straight way to choosing the regularization parameter, we will base our choice on reported values that work for the considered datasets. As for the number of iterations, we will proceed similarly.</p>
+<h4 id="practically-speaking"><a class="header" href="#practically-speaking">Practically speaking</a></h4>
+<p>We will use the following mllib library in scala wich contain classes dedicated to recommendation systems (See <a href="http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.recommendation.ALS">http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.mllib.recommendation.ALS</a>). More specifically, it contains the ALS class which allows for using the ALS algorithm as described earlier.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.recommendation.ALS
+import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
+import org.apache.spark.mllib.recommendation.Rating
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.recommendation.ALS
+import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
+import org.apache.spark.mllib.recommendation.Rating
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h1 id="on-a-small-dataset"><a class="header" href="#on-a-small-dataset"><a href="">On a small dataset</a></a></h1>
+<p>This part of the notebook is borrowed from the notebook on the ALS we had in the course.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(&quot;/databricks-datasets/cs100/lab4/data-001/&quot;)) // The data is already here
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/databricks-datasets/cs100/lab4/data-001/movies.dat</td>
+<td>movies.dat</td>
+<td>171308.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz</td>
+<td>ratings.dat.gz</td>
+<td>2837683.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="loading-the-data"><a class="header" href="#loading-the-data">Loading the data</a></h3>
+<p>We read in each of the files and create an RDD consisting of parsed lines. Each line in the ratings dataset (<code>ratings.dat.gz</code>) is formatted as: <code>UserID::MovieID::Rating::Timestamp</code> Each line in the movies (<code>movies.dat</code>) dataset is formatted as: <code>MovieID::Title::Genres</code> The <code>Genres</code> field has the format <code>Genres1|Genres2|Genres3|...</code> The format of these files is uniform and simple, so we can use <code>split()</code>.</p>
+<p>Parsing the two files yields two RDDs</p>
+<ul>
+<li>For each line in the ratings dataset, we create a tuple of (UserID, MovieID, Rating). We drop the timestamp because we do not need it for this exercise.</li>
+<li>For each line in the movies dataset, we create a tuple of (MovieID, Title). We drop the Genres because we do not need them for this exercise.</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// take a peek at what's in the rating file
+sc.textFile(&quot;/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz&quot;).map { line =&gt; line.split(&quot;::&quot;) }.take(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res33: Array[Array[String]] = Array(Array(1, 1193, 5, 978300760), Array(1, 661, 3, 978302109), Array(1, 914, 3, 978301968), Array(1, 3408, 4, 978300275), Array(1, 2355, 5, 978824291))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val timedRatingsRDD = sc.textFile(&quot;/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;::&quot;)
+      // format: (timestamp % 10, Rating(userId, movieId, rating))
+      (fields(3).toLong % 10, Rating(fields(0).toInt, fields(1).toInt, fields(2).toDouble))
+    }
+
+timedRatingsRDD.take(10).map(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>(0,Rating(1,1193,5.0))
+(9,Rating(1,661,3.0))
+(8,Rating(1,914,3.0))
+(5,Rating(1,3408,4.0))
+(1,Rating(1,2355,5.0))
+(8,Rating(1,1197,3.0))
+(9,Rating(1,1287,5.0))
+(9,Rating(1,2804,5.0))
+(8,Rating(1,594,4.0))
+(8,Rating(1,919,4.0))
+timedRatingsRDD: org.apache.spark.rdd.RDD[(Long, org.apache.spark.mllib.recommendation.Rating)] = MapPartitionsRDD[9561] at map at command-3389902380791711:1
+res34: Array[Unit] = Array((), (), (), (), (), (), (), (), (), ())
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val ratingsRDD = sc.textFile(&quot;/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;::&quot;)
+      // format: Rating(userId, movieId, rating)
+      Rating(fields(0).toInt, fields(1).toInt, fields(2).toDouble)
+    }
+
+ratingsRDD.take(10).map(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Rating(1,1193,5.0)
+Rating(1,661,3.0)
+Rating(1,914,3.0)
+Rating(1,3408,4.0)
+Rating(1,2355,5.0)
+Rating(1,1197,3.0)
+Rating(1,1287,5.0)
+Rating(1,2804,5.0)
+Rating(1,594,4.0)
+Rating(1,919,4.0)
+ratingsRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[9564] at map at command-3389902380791714:1
+res35: Array[Unit] = Array((), (), (), (), (), (), (), (), (), ())
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val movies = sc.textFile(&quot;/databricks-datasets/cs100/lab4/data-001/movies.dat&quot;).map { line =&gt;
+      val fields = line.split(&quot;::&quot;)
+      // format: (movieId, movieName)
+      (fields(0).toInt, fields(1))
+    }.collect.toMap
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Let's make a data frame to visually explore the data next.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">sc.textFile(&quot;/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz&quot;).map { line =&gt; line.split(&quot;::&quot;) }.take(5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res36: Array[Array[String]] = Array(Array(1, 1193, 5, 978300760), Array(1, 661, 3, 978302109), Array(1, 914, 3, 978301968), Array(1, 3408, 4, 978300275), Array(1, 2355, 5, 978824291))
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val timedRatingsDF = sc.textFile(&quot;/databricks-datasets/cs100/lab4/data-001/ratings.dat.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;::&quot;)
+      // format: (timestamp % 10, Rating(userId, movieId, rating))
+      (fields(3).toLong, fields(0).toInt, fields(1).toInt, fields(2).toDouble)
+    }.toDF(&quot;timestamp&quot;, &quot;userId&quot;, &quot;movieId&quot;, &quot;rating&quot;)
+
+
+display(timedRatingsDF)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Here we simply check the size of the datasets we are using</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val numRatings = ratingsRDD.count
+val numUsers = ratingsRDD.map(_.user).distinct.count
+val numMovies = ratingsRDD.map(_.product).distinct.count
+
+println(&quot;Got &quot; + numRatings + &quot; ratings from &quot;
+        + numUsers + &quot; users on &quot; + numMovies + &quot; movies.&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Got 487650 ratings from 2999 users on 3615 movies.
+numRatings: Long = 487650
+numUsers: Long = 2999
+numMovies: Long = 3615
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Now that we have the dataset we need, let's make a recommender system.</p>
+<p><strong>Creating a Training Set, test Set and Validation Set</strong></p>
+<p>Before we jump into using machine learning, we need to break up the <code>ratingsRDD</code> dataset into three pieces:</p>
+<ul>
+<li>A training set (RDD), which we will use to train models</li>
+<li>A validation set (RDD), which we will use to choose the best model</li>
+<li>A test set (RDD), which we will use for our experiments</li>
+</ul>
+<p>To randomly split the dataset into the multiple groups, we can use the <code>randomSplit()</code> transformation. <code>randomSplit()</code> takes a set of splits and seed and returns multiple RDDs.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val Array(trainingRDD, validationRDD, testRDD) = ratingsRDD.randomSplit(Array(0.60, 0.20, 0.20), 0L)
+// let's find the exact sizes we have next
+println(&quot; training data size = &quot; + trainingRDD.count() +
+        &quot;, validation data size = &quot; + validationRDD.count() +
+        &quot;, test data size = &quot; + testRDD.count() + &quot;.&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code> training data size = 292318, validation data size = 97175, test data size = 98157.
+trainingRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[9584] at randomSplit at command-3389902380791722:1
+validationRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[9585] at randomSplit at command-3389902380791722:1
+testRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[9586] at randomSplit at command-3389902380791722:1
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>After splitting the dataset, your training set has about 293,000 entries and the validation and test sets each have about 97,000 entries (the exact number of entries in each dataset varies slightly due to the random nature of the <code>randomSplit()</code> transformation.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// let's find the exact sizes we have next
+println(&quot; training data size = &quot; + trainingRDD.count() +
+        &quot;, validation data size = &quot; + validationRDD.count() +
+        &quot;, test data size = &quot; + testRDD.count() + &quot;.&quot;)
+                                                                                                                                          
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code> training data size = 292318, validation data size = 97175, test data size = 98157.
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="training-the-recommender-system"><a class="header" href="#training-the-recommender-system">Training the recommender system</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Build the recommendation model using ALS by fitting to the validation data
+// just trying three different hyper-parameter (rank) values to optimise over
+val ranks = List(4, 8, 12); 
+var rank=0;
+for ( rank &lt;- ranks ){
+  val numIterations = 10
+  val regularizationParameter = 0.01
+  val model = ALS.train(trainingRDD, rank, numIterations, regularizationParameter)
+
+  // Evaluate the model on test data
+  val usersProductsValidate = validationRDD.map { case Rating(user, product, rate) =&gt;
+                                              (user, product)
+  }
+
+  // get the predictions on test data
+  val predictions = model.predict(usersProductsValidate)
+                         .map { case Rating(user, product, rate)
+                                     =&gt; ((user, product), rate)
+    }
+
+  // find the actual ratings and join with predictions
+  val ratesAndPreds = validationRDD.map { case Rating(user, product, rate) 
+                                     =&gt; ((user, product), rate)
+                                   }.join(predictions)
+  
+
+  val MSE = ratesAndPreds.map { case ((user, product), (r1, r2)) =&gt;
+    val err = (r1 - r2)
+    err * err
+  }.mean()
+  
+  println(&quot;rank and Mean Squared Error = &quot; +  rank + &quot; and &quot; + MSE)
+} // end of loop over ranks
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>rank and Mean Squared Error = 4 and 0.8479974514693542
+rank and Mean Squared Error = 8 and 0.9300503484148622
+rank and Mean Squared Error = 12 and 1.02609274473932
+ranks: List[Int] = List(4, 8, 12)
+rank: Int = 0
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Here we have the best model</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">  val rank = 4
+  val numIterations = 10
+  val regularizationParameter = 0.01
+  val model = ALS.train(trainingRDD, rank, numIterations, regularizationParameter)
+
+  // Evaluate the model on test data
+  val usersProductsTest = testRDD.map { case Rating(user, product, rate) =&gt;
+                                              (user, product)
+  }
+
+  // get the predictions on test data
+  val predictions = model.predict(usersProductsTest)
+                         .map { case Rating(user, product, rate)
+                                     =&gt; ((user, product), rate)
+    }
+
+  // find the actual ratings and join with predictions
+  val ratesAndPreds = testRDD.map { case Rating(user, product, rate) 
+                                     =&gt; ((user, product), rate)
+                                   }.join(predictions)
+
+  val MSE = ratesAndPreds.map { case ((user, product), (r1, r2)) =&gt;
+    val err = (r1 - r2)
+    err * err
+  }.mean()
+  
+  println(&quot;rank and Mean Squared Error for test data = &quot; +  rank + &quot; and &quot; + MSE)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>rank and Mean Squared Error for test data = 4 and 0.8339905882351633
+rank: Int = 4
+numIterations: Int = 10
+regularizationParameter: Double = 0.01
+model: org.apache.spark.mllib.recommendation.MatrixFactorizationModel = org.apache.spark.mllib.recommendation.MatrixFactorizationModel@4861c837
+usersProductsTest: org.apache.spark.rdd.RDD[(Int, Int)] = MapPartitionsRDD[10463] at map at command-3389902380791728:7
+predictions: org.apache.spark.rdd.RDD[((Int, Int), Double)] = MapPartitionsRDD[10472] at map at command-3389902380791728:13
+ratesAndPreds: org.apache.spark.rdd.RDD[((Int, Int), (Double, Double))] = MapPartitionsRDD[10476] at join at command-3389902380791728:20
+MSE: Double = 0.8339905882351633
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h1 id="on-a-large-dataset---netflix-dataset"><a class="header" href="#on-a-large-dataset---netflix-dataset"><a href="">On a large dataset - Netflix dataset</a></a></h1>
+<h2 id="loading-the-data-1"><a class="header" href="#loading-the-data-1">Loading the data</a></h2>
+<p>Netflix held a competition to improve recommendation systems. The dataset can be found in <a href="https://www.kaggle.com/netflix-inc/netflix-prize-data">kaggle</a>. Briefly speaking, the dataset contains users' ratings to movies, with 480189 users and 17770 movies. Ratings are given on an integral scale from 1 to 5. The first step is to download the data and store it in databricks. Originally, the dataset is plit into four files each with the following format:</p>
+<pre><code>MovieID:
+UserID, rating, date
+.
+.
+.
+MovieID: 
+UserID, rating, date
+.
+.
+.
+</code></pre>
+<p>We process these files so that each line has the format <code>MovieID, UserID, rating, date</code></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Path where the data is stored 
+display(dbutils.fs.ls(&quot;/FileStore/tables/Netflix&quot;)) 
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/FileStore/tables/Netflix/combined_data_1_tar.xz</td>
+<td>combined_data_1_tar.xz</td>
+<td>1.19273784e8</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/tables/Netflix/combined_data_2_tar.xz</td>
+<td>combined_data_2_tar.xz</td>
+<td>1.33487548e8</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/tables/Netflix/combined_data_3_tar.xz</td>
+<td>combined_data_3_tar.xz</td>
+<td>1.11976904e8</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/tables/Netflix/combined_data_4_tar.xz</td>
+<td>combined_data_4_tar.xz</td>
+<td>1.32669964e8</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/tables/Netflix/formatted_combined_data_1_txt.gz</td>
+<td>formatted_combined_data_1_txt.gz</td>
+<td>1.66682858e8</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/tables/Netflix/formatted_combined_data_2_txt.gz</td>
+<td>formatted_combined_data_2_txt.gz</td>
+<td>1.87032103e8</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/tables/Netflix/formatted_combined_data_3_txt.gz</td>
+<td>formatted_combined_data_3_txt.gz</td>
+<td>1.56042358e8</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/tables/Netflix/formatted_combined_data_4_txt.gz</td>
+<td>formatted_combined_data_4_txt.gz</td>
+<td>1.85177843e8</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/tables/Netflix/movie_titles.csv</td>
+<td>movie_titles.csv</td>
+<td>577547.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let us load first the movie titles.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Create a Movie class 
+case class Movie(movieID: Int, year: Int, tilte: String)
+
+// Load the movie titles in an RDD
+val moviesTitlesRDD: RDD[Movie] = sc.textFile(&quot;/FileStore/tables/Netflix/movie_titles.csv&quot;).map { line =&gt;
+      val fields = line.split(&quot;,&quot;)
+      // format: Rating(movieId, year, title)
+      Movie(fields(0).toInt, fields(1).toInt, fields(2))
+    }
+
+// Print the titles of the first 3 movies 
+moviesTitlesRDD.take(5).foreach(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Movie(1,2003,Dinosaur Planet)
+Movie(2,2004,Isle of Man TT 2004 Review)
+Movie(3,1997,Character)
+Movie(4,1994,Paula Abdul's Get Up &amp; Dance)
+Movie(5,2004,The Rise and Fall of ECW)
+defined class Movie
+moviesTitlesRDD: org.apache.spark.rdd.RDD[Movie] = MapPartitionsRDD[129] at map at command-3389902380789882:3
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.mllib.recommendation.ALS
+import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
+import org.apache.spark.mllib.recommendation.Rating
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.mllib.recommendation.ALS
+import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
+import org.apache.spark.mllib.recommendation.Rating
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val RatingsRDD_1 = sc.textFile(&quot;/FileStore/tables/Netflix/formatted_combined_data_1_txt.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;,&quot;)
+      // format: Rating(userId, movieId, rating))
+      Rating(fields(1).toInt, fields(0).toInt, fields(2).toDouble)
+    }
+
+val RatingsRDD_2 = sc.textFile(&quot;/FileStore/tables/Netflix/formatted_combined_data_2_txt.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;,&quot;)
+      // format: Rating(userId, movieId, rating))
+      Rating(fields(1).toInt, fields(0).toInt, fields(2).toDouble)
+    }
+
+val RatingsRDD_3 = sc.textFile(&quot;/FileStore/tables/Netflix/formatted_combined_data_3_txt.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;,&quot;)
+      // format: Rating(userId, movieId, rating))
+      Rating(fields(1).toInt, fields(0).toInt, fields(2).toDouble)
+    }
+
+val RatingsRDD_4 = sc.textFile(&quot;/FileStore/tables/Netflix/formatted_combined_data_4_txt.gz&quot;).map { line =&gt;
+      val fields = line.split(&quot;,&quot;)
+      // format: Rating(userId, movieId, rating))
+      Rating(fields(1).toInt, fields(0).toInt, fields(2).toDouble)
+    }
+
+
+RatingsRDD_4.take(5).foreach(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Rating(2385003,13368,4.0)
+Rating(659432,13368,3.0)
+Rating(751812,13368,2.0)
+Rating(2625420,13368,2.0)
+Rating(1650301,13368,1.0)
+RatingsRDD_1: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[258] at map at command-3389902380789875:2
+RatingsRDD_2: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[261] at map at command-3389902380789875:8
+RatingsRDD_3: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[264] at map at command-3389902380789875:14
+RatingsRDD_4: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[267] at map at command-3389902380789875:20
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Concatenating the ratings RDDs (could not find a nice way of doing this)
+val r1 = RatingsRDD_1.union(RatingsRDD_2) 
+val r2 = r1.union(RatingsRDD_3)
+val RatingsRDD = r2.union(RatingsRDD_4)
+RatingsRDD.take(5).foreach(println)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>r1: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = UnionRDD[278] at union at command-3389902380791426:2
+r2: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = UnionRDD[279] at union at command-3389902380791426:3
+RatingsRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = UnionRDD[280] at union at command-3389902380791426:4
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let us put our dataset in a dataframe to visulaize it more nicely</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val RatingsDF = RatingsRDD.toDF
+display(RatingsDF)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="training-the-movie-recommender-system"><a class="header" href="#training-the-movie-recommender-system">Training the movie recommender system</a></h2>
+<p>In the training process we will start by splitting the dataset into - a training set (60%) - a validation set (20%) - a test set (20%)</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Splitting the dataset 
+val Array(trainingRDD, validationRDD, testRDD) = RatingsRDD.randomSplit(Array(0.60, 0.20, 0.20), 0L)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code> training data size = 60288922, validation data size = 20097527, test data size = 20094058.
+trainingRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[8350] at randomSplit at command-3389902380791433:1
+validationRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[8351] at randomSplit at command-3389902380791433:1
+testRDD: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] = MapPartitionsRDD[8352] at randomSplit at command-3389902380791433:1
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>After splitting the dataset, your training set has about 60,288,922 entries and the validation and test sets each have about 20,097,527 entries (the exact number of entries in each dataset varies slightly due to the random nature of the <code>randomSplit()</code> transformation.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// let's find the exact sizes we have next
+println(&quot; training data size = &quot; + trainingRDD.count() +
+        &quot;, validation data size = &quot; + validationRDD.count() +
+        &quot;, test data size = &quot; + testRDD.count() + &quot;.&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code> training data size = 60288922, validation data size = 20097527, test data size = 20094058.
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Build the recommendation model using ALS by fitting to the validation data
+// just trying three different hyper-parameter (rank) values to optimise over
+val ranks = List(50, 100, 150, 300, 400, 500); 
+var rank=0;
+for ( rank &lt;- ranks ){
+  val numIterations = 12
+  val regularizationParameter = 0.05
+  val model = ALS.train(trainingRDD, rank, numIterations, regularizationParameter)
+
+  // Evaluate the model on test data
+  val usersProductsValidate = validationRDD.map { case Rating(user, product, rate) =&gt;
+                                              (user, product)
+  }
+
+  // get the predictions on test data
+  val predictions = model.predict(usersProductsValidate)
+                         .map { case Rating(user, product, rate)
+                                     =&gt; ((user, product), rate)
+    }
+
+  // find the actual ratings and join with predictions
+  val ratesAndPreds = validationRDD.map { case Rating(user, product, rate) 
+                                     =&gt; ((user, product), rate)
+                                   }.join(predictions)
+  
+
+  val MSE = ratesAndPreds.map { case ((user, product), (r1, r2)) =&gt;
+    val err = (r1 - r2)
+    err * err
+  }.mean()
+  
+  println(&quot;rank and Mean Squared Error = &quot; +  rank + &quot; and &quot; + MSE)
+} // end of loop over ranks
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>rank and Mean Squared Error = 50 and 0.7060806826621556
+rank and Mean Squared Error = 100 and 0.7059490573655225
+rank and Mean Squared Error = 150 and 0.7056407494686934
+</code></pre>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-18_group-ProjectRL/00_Problem_Description.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-18_group-ProjectRL/02_Extensions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-18_group-ProjectRL/00_Problem_Description.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-18_group-ProjectRL/02_Extensions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

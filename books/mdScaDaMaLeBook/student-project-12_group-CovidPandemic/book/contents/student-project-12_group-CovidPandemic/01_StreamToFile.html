@@ -1,0 +1,1250 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_StreamToFile - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/00_ProjectDescriptionAndPlanning.html">00_ProjectDescriptionAndPlanning</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.html">01_DownloadFilesPeriodicallyScript</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/01_StreamToFile.html" class="active">01_StreamToFile</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/02_DataPreprocess.html">02_DataPreprocess</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.html">021_DataPreprocess_Explain</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.html">03_ExplosiveAnalysis</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/04_DataVisualize.html">04_DataVisualize</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/05_Clustering.html">05_Clustering</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.html">06_DataPredicton_LR</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/07_DataPredicton_ARIMA.html">07_DataPredicton_ARIMA</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.html">08_DataPrediction_GP</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="stream-to-parquet-file"><a class="header" href="#stream-to-parquet-file">Stream to parquet file</a></h1>
+<p>This notebook allows for setup and execution of the data streaming and querying into a parquet file. The idea is thereafter to perform analysis on the parquet file.</p>
+<p>Note that this notebooks assumes one has already has downloaded several &quot;Our World in Data&quot; dataset csv files. This can be done by first running &quot;DownloadFilesPeriodicallyScript&quot; at least once.</p>
+<p>Content is based on &quot;038_StructuredStreamingProgGuide&quot; by Raazesh Sainudiin.</p>
+</div>
+<div class="cell markdown">
+<p>start by copying latest downloaded csv data to data analysis folder</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">dbutils.fs.cp(&quot;file:///databricks/driver/projects/group12/logsEveryXSecs/&quot;,&quot;/datasets/group12/&quot;,true)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res0: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>check that data is in the group12 folder</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(&quot;/datasets/group12/&quot;))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/datasets/group12/20_12_04_08_31_44.csv</td>
+<td>20_12_04_08_31_44.csv</td>
+<td>1.4181338e7</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/group12/20_12_04_08_32_40.csv</td>
+<td>20_12_04_08_32_40.csv</td>
+<td>1.4181338e7</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/group12/20_12_04_10_47_08.csv</td>
+<td>20_12_04_10_47_08.csv</td>
+<td>1.4190774e7</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/group12/21_01_07_08_50_05.csv</td>
+<td>21_01_07_08_50_05.csv</td>
+<td>1.4577033e7</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/group12/21_01_07_09_05_33.csv</td>
+<td>21_01_07_09_05_33.csv</td>
+<td>1.4577033e7</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/group12/analysis/</td>
+<td>analysis/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/group12/chkpoint/</td>
+<td>chkpoint/</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell markdown">
+<p>check the schema for the csv files.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df_csv = spark.read.format(&quot;csv&quot;).option(&quot;header&quot;, &quot;true&quot;).option(&quot;inferSchema&quot;, &quot;true&quot;).csv(&quot;/datasets/group12/21_01_07_09_05_33.csv&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_csv: org.apache.spark.sql.DataFrame = [iso_code: string, continent: string ... 52 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df_csv.printSchema
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The stream requires a user defined schema. Note that the January 2021 schema is different compared to the December 2020 schema. Below, the user defined schemas are created.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.types._
+
+val OurWorldinDataSchema2021 = new StructType()                      
+                      .add(&quot;iso_code&quot;, &quot;string&quot;)
+                      .add(&quot;continent&quot;, &quot;string&quot;)
+                      .add(&quot;location&quot;, &quot;string&quot;)
+                      .add(&quot;date&quot;, &quot;string&quot;)
+                      .add(&quot;total_cases&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases_smoothed&quot;,&quot;double&quot;)
+                      .add(&quot;total_deaths&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths_smoothed&quot;,&quot;double&quot;)
+                      .add(&quot;total_cases_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases_smoothed_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;total_deaths_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths_smoothed_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;reproduction_rate&quot;, &quot;double&quot;)
+                      .add(&quot;icu_patients&quot;, &quot;double&quot;)
+                      .add(&quot;icu_patients_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;hosp_patients&quot;, &quot;double&quot;)
+                      .add(&quot;hosp_patients_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_icu_admissions&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_icu_admissions_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_hosp_admissions&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_hosp_admissions_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests&quot;, &quot;double&quot;)
+                      .add(&quot;total_tests&quot;, &quot;double&quot;)
+                      .add(&quot;total_tests_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests_smoothed&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests_smoothed_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;positive_rate&quot;, &quot;double&quot;)
+                      .add(&quot;tests_per_case&quot;, &quot;double&quot;)
+                      .add(&quot;tests_units&quot;, &quot;double&quot;)
+                      .add(&quot;total_vaccinations&quot;, &quot;double&quot;)
+                      .add(&quot;new_vaccinations&quot;, &quot;double&quot;)
+                      .add(&quot;stringency_index&quot;,&quot;double&quot;)
+                      .add(&quot;population&quot;,&quot;double&quot;)
+                      .add(&quot;population_density&quot;,&quot;double&quot;)
+                      .add(&quot;median_age&quot;, &quot;double&quot;)
+                      .add(&quot;aged_65_older&quot;, &quot;double&quot;)
+                      .add(&quot;aged_70_older&quot;, &quot;double&quot;)
+                      .add(&quot;gdp_per_capita&quot;,&quot;double&quot;)
+                      .add(&quot;extreme_poverty&quot;,&quot;double&quot;)
+                      .add(&quot;cardiovasc_death_rate&quot;,&quot;double&quot;)
+                      .add(&quot;diabetes_prevalence&quot;,&quot;double&quot;)
+                      .add(&quot;female_smokers&quot;, &quot;double&quot;)
+                      .add(&quot;male_smokers&quot;, &quot;double&quot;)
+                      .add(&quot;handwashing_facilities&quot;, &quot;double&quot;)
+                      .add(&quot;hospital_beds_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;life_expectancy&quot;,&quot;double&quot;)
+                      .add(&quot;human_development_index&quot;,&quot;double&quot;)
+
+val OurWorldinDataSchema2020 = new StructType()                      
+                      .add(&quot;iso_code&quot;, &quot;string&quot;)
+                      .add(&quot;continent&quot;, &quot;string&quot;)
+                      .add(&quot;location&quot;, &quot;string&quot;)
+                      .add(&quot;date&quot;, &quot;string&quot;)
+                      .add(&quot;total_cases&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases_smoothed&quot;,&quot;double&quot;)
+                      .add(&quot;total_deaths&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths_smoothed&quot;,&quot;double&quot;)
+                      .add(&quot;total_cases_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_cases_smoothed_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;total_deaths_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;new_deaths_smoothed_per_million&quot;,&quot;double&quot;)
+                      .add(&quot;reproduction_rate&quot;, &quot;double&quot;)
+                      .add(&quot;icu_patients&quot;, &quot;double&quot;)
+                      .add(&quot;icu_patients_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;hosp_patients&quot;, &quot;double&quot;)
+                      .add(&quot;hosp_patients_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_icu_admissions&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_icu_admissions_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_hosp_admissions&quot;, &quot;double&quot;)
+                      .add(&quot;weekly_hosp_admissions_per_million&quot;, &quot;double&quot;)
+                      .add(&quot;total_tests&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests&quot;, &quot;double&quot;)
+                      .add(&quot;total_tests_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests_smoothed&quot;, &quot;double&quot;)
+                      .add(&quot;new_tests_smoothed_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;tests_per_case&quot;, &quot;double&quot;)
+                      .add(&quot;positive_rate&quot;, &quot;double&quot;)
+                      .add(&quot;tests_units&quot;, &quot;double&quot;)
+                      .add(&quot;stringency_index&quot;,&quot;double&quot;)
+                      .add(&quot;population&quot;,&quot;double&quot;)
+                      .add(&quot;population_density&quot;,&quot;double&quot;)
+                      .add(&quot;median_age&quot;, &quot;double&quot;)
+                      .add(&quot;aged_65_older&quot;, &quot;double&quot;)
+                      .add(&quot;aged_70_older&quot;, &quot;double&quot;)
+                      .add(&quot;gdp_per_capita&quot;,&quot;double&quot;)
+                      .add(&quot;extreme_poverty&quot;,&quot;double&quot;)
+                      .add(&quot;cardiovasc_death_rate&quot;,&quot;double&quot;)
+                      .add(&quot;diabetes_prevalence&quot;,&quot;double&quot;)
+                      .add(&quot;female_smokers&quot;, &quot;double&quot;)
+                      .add(&quot;male_smokers&quot;, &quot;double&quot;)
+                      .add(&quot;handwashing_facilities&quot;, &quot;double&quot;)
+                      .add(&quot;hospital_beds_per_thousand&quot;, &quot;double&quot;)
+                      .add(&quot;life_expectancy&quot;,&quot;double&quot;)
+                      .add(&quot;human_development_index&quot;,&quot;double&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="start-stream"><a class="header" href="#start-stream">Start stream</a></h3>
+<p>In January 2021, the schema was updated compared to the schema in December 2020. Below, one can choose which type of csv files to stream below.</p>
+</div>
+<div class="cell markdown">
+<p>Stream for 2020</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.types._
+
+val OurWorldinDataStream = spark
+  .readStream
+  .schema(OurWorldinDataSchema2020) 
+  .option(&quot;MaxFilesPerTrigger&quot;, 1)
+  .option(&quot;latestFirst&quot;, &quot;true&quot;)
+  .format(&quot;csv&quot;)
+  .option(&quot;header&quot;, &quot;true&quot;)
+  .load(&quot;/datasets/group12/20*.csv&quot;)
+  .dropDuplicates()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.types._
+OurWorldinDataStream: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [iso_code: string, continent: string ... 48 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Stream for 2021</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.types._
+
+val OurWorldinDataStream2021 = spark
+  .readStream
+  .schema(OurWorldinDataSchema2021) 
+  .option(&quot;MaxFilesPerTrigger&quot;, 1)
+  .option(&quot;latestFirst&quot;, &quot;true&quot;)
+  .format(&quot;csv&quot;)
+  .option(&quot;header&quot;, &quot;true&quot;)
+  .load(&quot;/datasets/group12/21*.csv&quot;)
+  .dropDuplicates()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.types._
+OurWorldinDataStream2021: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [iso_code: string, continent: string ... 50 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>display stream 2020</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">OurWorldinDataStream.isStreaming
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res81: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(OurWorldinDataStream) 
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="query-to-file-2020"><a class="header" href="#query-to-file-2020">Query to File (2020)</a></h3>
+<p>query that saves file into a parquet file at periodic intervalls. Analysis will thereafter be performed on the parquet file</p>
+</div>
+<div class="cell markdown">
+<p>create folders for parquet file and checkpoint data</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// remove any previous folders if exists
+dbutils.fs.rm(&quot;datasets/group12/chkpoint&quot;,recurse=true)
+dbutils.fs.rm(&quot;datasets/group12/analysis&quot;,recurse=true)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res14: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">dbutils.fs.mkdirs(&quot;datasets/group12/chkpoint&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res15: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">dbutils.fs.mkdirs(&quot;/datasets/group12/analysis&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res16: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>initialize query to store data in parquet files based on column selection</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions._
+import org.apache.spark.sql.streaming.Trigger
+
+val query = OurWorldinDataStream
+                 .select($&quot;iso_code&quot;, $&quot;continent&quot;, $&quot;location&quot;, $&quot;date&quot;, $&quot;total_cases&quot;, $&quot;new_cases&quot;, $&quot;new_cases_smoothed&quot;, $&quot;total_deaths&quot;, $&quot;new_deaths&quot;,$&quot;new_deaths_smoothed&quot;, $&quot;total_cases_per_million&quot;, $&quot;new_cases_per_million&quot;, $&quot;new_cases_smoothed_per_million&quot;, $&quot;total_deaths_per_million&quot;, $&quot;new_deaths_per_million&quot;, $&quot;new_deaths_smoothed_per_million&quot;, $&quot;reproduction_rate&quot;, $&quot;icu_patients&quot;, $&quot;icu_patients_per_million&quot;, $&quot;hosp_patients&quot;, $&quot;hosp_patients_per_million&quot;, $&quot;weekly_icu_admissions&quot;, $&quot;weekly_icu_admissions_per_million&quot;, $&quot;weekly_hosp_admissions&quot;, $&quot;weekly_hosp_admissions_per_million&quot;, $&quot;total_tests&quot;,$&quot;new_tests&quot;, $&quot;total_tests_per_thousand&quot;, $&quot;new_tests_per_thousand&quot;, $&quot;new_tests_smoothed&quot;,$&quot;new_tests_smoothed_per_thousand&quot;, $&quot;tests_per_case&quot;, $&quot;positive_rate&quot;, $&quot;tests_units&quot;, $&quot;stringency_index&quot;, $&quot;population&quot;, $&quot;population_density&quot;, $&quot;median_age&quot;, $&quot;aged_65_older&quot;, $&quot;aged_70_older&quot;, $&quot;gdp_per_capita&quot;, $&quot;extreme_poverty&quot;, $&quot;cardiovasc_death_rate&quot;, $&quot;diabetes_prevalence&quot;, $&quot;female_smokers&quot;, $&quot;male_smokers&quot;, $&quot;handwashing_facilities&quot;, $&quot;hospital_beds_per_thousand&quot;, $&quot;life_expectancy&quot;, $&quot;human_development_index&quot;)
+                 .writeStream
+                 //.trigger(Trigger.ProcessingTime(&quot;20 seconds&quot;)) // debugging
+                 .trigger(Trigger.ProcessingTime(&quot;216000 seconds&quot;)) // for each day
+                 .option(&quot;checkpointLocation&quot;, &quot;/datasets/group12/chkpoint&quot;)
+                 .format(&quot;parquet&quot;)  
+                 .option(&quot;path&quot;, &quot;/datasets/group12/analysis&quot;)
+                 .start()
+                 
+query.awaitTermination() // hit cancel to terminate
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>check saved parquet file contents</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(dbutils.fs.ls(&quot;/datasets/group12/analysis&quot;))
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val parquetFileDF = spark.read.parquet(&quot;dbfs:/datasets/group12/analysis/*.parquet&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>parquetFileDF: org.apache.spark.sql.DataFrame = [iso_code: string, continent: string ... 48 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(parquetFileDF.describe())
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>summary</th>
+<th>iso_code</th>
+<th>continent</th>
+<th>location</th>
+<th>date</th>
+<th>total_cases</th>
+<th>new_cases</th>
+<th>new_cases_smoothed</th>
+<th>total_deaths</th>
+<th>new_deaths</th>
+<th>new_deaths_smoothed</th>
+<th>total_cases_per_million</th>
+<th>new_cases_per_million</th>
+<th>new_cases_smoothed_per_million</th>
+<th>total_deaths_per_million</th>
+<th>new_deaths_per_million</th>
+<th>new_deaths_smoothed_per_million</th>
+<th>reproduction_rate</th>
+<th>icu_patients</th>
+<th>icu_patients_per_million</th>
+<th>hosp_patients</th>
+<th>hosp_patients_per_million</th>
+<th>weekly_icu_admissions</th>
+<th>weekly_icu_admissions_per_million</th>
+<th>weekly_hosp_admissions</th>
+<th>weekly_hosp_admissions_per_million</th>
+<th>total_tests</th>
+<th>new_tests</th>
+<th>total_tests_per_thousand</th>
+<th>new_tests_per_thousand</th>
+<th>new_tests_smoothed</th>
+<th>new_tests_smoothed_per_thousand</th>
+<th>tests_per_case</th>
+<th>positive_rate</th>
+<th>tests_units</th>
+<th>stringency_index</th>
+<th>population</th>
+<th>population_density</th>
+<th>median_age</th>
+<th>aged_65_older</th>
+<th>aged_70_older</th>
+<th>gdp_per_capita</th>
+<th>extreme_poverty</th>
+<th>cardiovasc_death_rate</th>
+<th>diabetes_prevalence</th>
+<th>female_smokers</th>
+<th>male_smokers</th>
+<th>handwashing_facilities</th>
+<th>hospital_beds_per_thousand</th>
+<th>life_expectancy</th>
+<th>human_development_index</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>count</td>
+<td>62184</td>
+<td>61867</td>
+<td>62500</td>
+<td>62500</td>
+<td>53761</td>
+<td>62377</td>
+<td>61421</td>
+<td>45901</td>
+<td>62377</td>
+<td>61421</td>
+<td>53460</td>
+<td>62061</td>
+<td>61110</td>
+<td>45613</td>
+<td>62061</td>
+<td>61110</td>
+<td>41680</td>
+<td>5582</td>
+<td>5582</td>
+<td>6730</td>
+<td>6730</td>
+<td>538</td>
+<td>538</td>
+<td>885</td>
+<td>885</td>
+<td>25647</td>
+<td>25606</td>
+<td>25647</td>
+<td>25606</td>
+<td>28408</td>
+<td>28408</td>
+<td>26927</td>
+<td>26336</td>
+<td>0</td>
+<td>54546</td>
+<td>62184</td>
+<td>60592</td>
+<td>59340</td>
+<td>58383</td>
+<td>59024</td>
+<td>59329</td>
+<td>40812</td>
+<td>59902</td>
+<td>60595</td>
+<td>46712</td>
+<td>46080</td>
+<td>30696</td>
+<td>54818</td>
+<td>61868</td>
+<td>59646</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>235416.1718904038</td>
+<td>2397.8407425814003</td>
+<td>2367.056380553872</td>
+<td>8908.311256835363</td>
+<td>55.19233050643667</td>
+<td>54.80704391006325</td>
+<td>3798.2407507482267</td>
+<td>43.13754119334201</td>
+<td>42.41964747177225</td>
+<td>108.27332865630407</td>
+<td>0.761575578865955</td>
+<td>0.7475491572574053</td>
+<td>1.049197216890596</td>
+<td>1171.3697599426728</td>
+<td>18.08625438910784</td>
+<td>5656.88558692422</td>
+<td>104.44401604754825</td>
+<td>320.92</td>
+<td>10.748325278810405</td>
+<td>2961.1632870056505</td>
+<td>81.23565310734462</td>
+<td>3233707.097438297</td>
+<td>37267.77532609545</td>
+<td>103.08093254571695</td>
+<td>1.1276385222213543</td>
+<td>35891.313679245286</td>
+<td>1.0969730005632223</td>
+<td>0.07456953986704766</td>
+<td>171.59424362089905</td>
+<td>null</td>
+<td>53.312537674623144</td>
+<td>8.17052256214782E7</td>
+<td>307.3537588625577</td>
+<td>30.42868217054277</td>
+<td>8.773048729938651</td>
+<td>5.539936330984043</td>
+<td>19213.552059313115</td>
+<td>13.465191610310459</td>
+<td>258.8075386297629</td>
+<td>7.891889759881105</td>
+<td>10.66726918136675</td>
+<td>32.47178591579883</td>
+<td>50.99304310007871</td>
+<td>3.0230664197891057</td>
+<td>73.0352230555375</td>
+<td>0.7137129396774315</td>
+</tr>
+<tr class="odd">
+<td>stddev</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2063317.939351184</td>
+<td>20722.406766273503</td>
+<td>20188.721091973344</td>
+<td>62835.10460453239</td>
+<td>420.0315418848828</td>
+<td>404.7550597418351</td>
+<td>7537.842859063191</td>
+<td>144.63668342422923</td>
+<td>115.82591210719889</td>
+<td>201.80463357477137</td>
+<td>3.003047037105768</td>
+<td>2.17917077365699</td>
+<td>0.38591731058680295</td>
+<td>2792.1448587365685</td>
+<td>24.026044243287902</td>
+<td>13218.496002944645</td>
+<td>149.63443300155708</td>
+<td>596.5733008531096</td>
+<td>25.857485153686934</td>
+<td>6410.029575144745</td>
+<td>233.24453357627317</td>
+<td>1.45235647300503E7</td>
+<td>144743.48405262225</td>
+<td>209.81522035476976</td>
+<td>2.1450449484564924</td>
+<td>134865.99995119465</td>
+<td>1.9561605087188363</td>
+<td>0.09616514922644583</td>
+<td>861.1206108534275</td>
+<td>null</td>
+<td>27.591030251926593</td>
+<td>5.716608354719421E8</td>
+<td>1525.663259783739</td>
+<td>9.09237871864885</td>
+<td>6.230404954288745</td>
+<td>4.248965298848258</td>
+<td>20089.06946024988</td>
+<td>19.988201128228035</td>
+<td>120.99438607360678</td>
+<td>4.172554929946806</td>
+<td>10.429062017422085</td>
+<td>13.415141793587788</td>
+<td>31.83056463184429</td>
+<td>2.4310237026014865</td>
+<td>7.529274919111957</td>
+<td>0.15483301083721898</td>
+</tr>
+<tr class="even">
+<td>min</td>
+<td>AFG</td>
+<td>Africa</td>
+<td>Afghanistan</td>
+<td>2020-01-01</td>
+<td>1.0</td>
+<td>-10034.0</td>
+<td>-525.0</td>
+<td>1.0</td>
+<td>-1918.0</td>
+<td>-232.143</td>
+<td>0.001</td>
+<td>-2153.437</td>
+<td>-276.825</td>
+<td>0.001</td>
+<td>-76.445</td>
+<td>-10.921</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>-3743.0</td>
+<td>0.0</td>
+<td>-0.398</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.4</td>
+<td>null</td>
+<td>0.0</td>
+<td>809.0</td>
+<td>1.98</td>
+<td>15.1</td>
+<td>1.144</td>
+<td>0.526</td>
+<td>661.24</td>
+<td>0.1</td>
+<td>79.37</td>
+<td>0.99</td>
+<td>0.1</td>
+<td>7.7</td>
+<td>1.188</td>
+<td>0.1</td>
+<td>53.28</td>
+<td>0.354</td>
+</tr>
+<tr class="odd">
+<td>max</td>
+<td>ZWE</td>
+<td>South America</td>
+<td>Zimbabwe</td>
+<td>2020-12-03</td>
+<td>6.5220557E7</td>
+<td>690127.0</td>
+<td>600775.429</td>
+<td>1506251.0</td>
+<td>12825.0</td>
+<td>10538.571</td>
+<td>89354.818</td>
+<td>8652.658</td>
+<td>2648.773</td>
+<td>1469.678</td>
+<td>218.329</td>
+<td>63.14</td>
+<td>6.68</td>
+<td>19396.0</td>
+<td>127.183</td>
+<td>100226.0</td>
+<td>988.567</td>
+<td>4375.407</td>
+<td>190.051</td>
+<td>50887.393</td>
+<td>2645.194</td>
+<td>1.92122147E8</td>
+<td>1949384.0</td>
+<td>2248.144</td>
+<td>26.154</td>
+<td>1703410.0</td>
+<td>19.244</td>
+<td>0.729</td>
+<td>44258.7</td>
+<td>null</td>
+<td>100.0</td>
+<td>7.794798729E9</td>
+<td>19347.5</td>
+<td>48.2</td>
+<td>27.049</td>
+<td>18.493</td>
+<td>116935.6</td>
+<td>77.6</td>
+<td>724.417</td>
+<td>30.53</td>
+<td>44.0</td>
+<td>78.1</td>
+<td>98.999</td>
+<td>13.8</td>
+<td>86.75</td>
+<td>0.953</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(parquetFileDF.orderBy($&quot;date&quot;.desc))
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">parquetFileDF.count()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res5: Long = 62500
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="query-to-file-2021"><a class="header" href="#query-to-file-2021">Query to File (2021)</a></h3>
+<p>query that saves file into a parquet file at periodic intervalls.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// remove any previous folders if exists
+dbutils.fs.rm(&quot;datasets/group12/chkpoint2021&quot;,recurse=true)
+dbutils.fs.rm(&quot;datasets/group12/analysis2021&quot;,recurse=true)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">dbutils.fs.mkdirs(&quot;datasets/group12/chkpoint2021&quot;)
+dbutils.fs.mkdirs(&quot;datasets/group12/analysis2021&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res18: Boolean = true
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.functions._
+import org.apache.spark.sql.streaming.Trigger
+
+val query = OurWorldinDataStream2021
+                 .select($&quot;iso_code&quot;, $&quot;continent&quot;, $&quot;location&quot;, $&quot;date&quot;, $&quot;total_cases&quot;, $&quot;new_cases&quot;, $&quot;new_cases_smoothed&quot;, $&quot;total_deaths&quot;, $&quot;new_deaths&quot;,$&quot;new_deaths_smoothed&quot;, $&quot;total_cases_per_million&quot;, $&quot;new_cases_per_million&quot;, $&quot;new_cases_smoothed_per_million&quot;, $&quot;total_deaths_per_million&quot;, $&quot;new_deaths_per_million&quot;, $&quot;new_deaths_smoothed_per_million&quot;, $&quot;reproduction_rate&quot;, $&quot;icu_patients&quot;, $&quot;icu_patients_per_million&quot;, $&quot;hosp_patients&quot;, $&quot;hosp_patients_per_million&quot;, $&quot;weekly_icu_admissions&quot;, $&quot;weekly_icu_admissions_per_million&quot;, $&quot;weekly_hosp_admissions&quot;, $&quot;weekly_hosp_admissions_per_million&quot;, $&quot;total_tests&quot;,$&quot;new_tests&quot;, $&quot;total_tests_per_thousand&quot;, $&quot;new_tests_per_thousand&quot;, $&quot;new_tests_smoothed&quot;,$&quot;new_tests_smoothed_per_thousand&quot;, $&quot;tests_per_case&quot;, $&quot;positive_rate&quot;, $&quot;tests_units&quot;, $&quot;stringency_index&quot;, $&quot;population&quot;, $&quot;population_density&quot;, $&quot;median_age&quot;, $&quot;aged_65_older&quot;, $&quot;aged_70_older&quot;, $&quot;gdp_per_capita&quot;, $&quot;extreme_poverty&quot;, $&quot;cardiovasc_death_rate&quot;, $&quot;diabetes_prevalence&quot;, $&quot;female_smokers&quot;, $&quot;male_smokers&quot;, $&quot;handwashing_facilities&quot;, $&quot;hospital_beds_per_thousand&quot;, $&quot;life_expectancy&quot;, $&quot;human_development_index&quot;)
+                 .writeStream
+                 //.trigger(Trigger.ProcessingTime(&quot;20 seconds&quot;)) // debugging
+                 .trigger(Trigger.ProcessingTime(&quot;216000 seconds&quot;)) // each day
+                 .option(&quot;checkpointLocation&quot;, &quot;/datasets/group12/chkpoint2021&quot;)
+                 .format(&quot;parquet&quot;)  
+                 .option(&quot;path&quot;, &quot;/datasets/group12/analysis2021&quot;)
+                 .start()
+                 
+query.awaitTermination() // hit cancel to terminate
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val parquetFile2021DF = spark.read.parquet(&quot;dbfs:/datasets/group12/analysis2021/*.parquet&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>parquetFile2021DF: org.apache.spark.sql.DataFrame = [iso_code: string, continent: string ... 48 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(parquetFile2021DF.describe())
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>summary</th>
+<th>iso_code</th>
+<th>continent</th>
+<th>location</th>
+<th>date</th>
+<th>total_cases</th>
+<th>new_cases</th>
+<th>new_cases_smoothed</th>
+<th>total_deaths</th>
+<th>new_deaths</th>
+<th>new_deaths_smoothed</th>
+<th>total_cases_per_million</th>
+<th>new_cases_per_million</th>
+<th>new_cases_smoothed_per_million</th>
+<th>total_deaths_per_million</th>
+<th>new_deaths_per_million</th>
+<th>new_deaths_smoothed_per_million</th>
+<th>reproduction_rate</th>
+<th>icu_patients</th>
+<th>icu_patients_per_million</th>
+<th>hosp_patients</th>
+<th>hosp_patients_per_million</th>
+<th>weekly_icu_admissions</th>
+<th>weekly_icu_admissions_per_million</th>
+<th>weekly_hosp_admissions</th>
+<th>weekly_hosp_admissions_per_million</th>
+<th>total_tests</th>
+<th>new_tests</th>
+<th>total_tests_per_thousand</th>
+<th>new_tests_per_thousand</th>
+<th>new_tests_smoothed</th>
+<th>new_tests_smoothed_per_thousand</th>
+<th>tests_per_case</th>
+<th>positive_rate</th>
+<th>tests_units</th>
+<th>stringency_index</th>
+<th>population</th>
+<th>population_density</th>
+<th>median_age</th>
+<th>aged_65_older</th>
+<th>aged_70_older</th>
+<th>gdp_per_capita</th>
+<th>extreme_poverty</th>
+<th>cardiovasc_death_rate</th>
+<th>diabetes_prevalence</th>
+<th>female_smokers</th>
+<th>male_smokers</th>
+<th>handwashing_facilities</th>
+<th>hospital_beds_per_thousand</th>
+<th>life_expectancy</th>
+<th>human_development_index</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>count</td>
+<td>58196</td>
+<td>57845</td>
+<td>58531</td>
+<td>58531</td>
+<td>58008</td>
+<td>58001</td>
+<td>57046</td>
+<td>49657</td>
+<td>49656</td>
+<td>57046</td>
+<td>57673</td>
+<td>57666</td>
+<td>56716</td>
+<td>49335</td>
+<td>49334</td>
+<td>56716</td>
+<td>44995</td>
+<td>6086</td>
+<td>6086</td>
+<td>6845</td>
+<td>6845</td>
+<td>544</td>
+<td>544</td>
+<td>878</td>
+<td>878</td>
+<td>27006</td>
+<td>27145</td>
+<td>27006</td>
+<td>27145</td>
+<td>30478</td>
+<td>30478</td>
+<td>28331</td>
+<td>28797</td>
+<td>0</td>
+<td>241</td>
+<td>278</td>
+<td>52358</td>
+<td>58196</td>
+<td>56964</td>
+<td>55692</td>
+<td>55044</td>
+<td>55376</td>
+<td>55710</td>
+<td>38159</td>
+<td>56294</td>
+<td>56942</td>
+<td>44455</td>
+<td>43846</td>
+<td>28176</td>
+<td>51737</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>280856.96293614677</td>
+<td>2977.974862502371</td>
+<td>2957.9528833748072</td>
+<td>9440.825059910989</td>
+<td>75.87175769292735</td>
+<td>64.76055386880755</td>
+<td>4803.329924592101</td>
+<td>55.43429124614151</td>
+<td>54.92539389237602</td>
+<td>123.92782108036903</td>
+<td>1.1725306887744764</td>
+<td>0.9930127300938001</td>
+<td>1.0397301922435842</td>
+<td>924.7643772592836</td>
+<td>17.942194544857045</td>
+<td>4767.396055514974</td>
+<td>112.35477647918188</td>
+<td>389.18459375</td>
+<td>23.096417279411764</td>
+<td>2770.236054669703</td>
+<td>90.94211161731207</td>
+<td>3296570.453047471</td>
+<td>33334.96798673789</td>
+<td>113.1671816263053</td>
+<td>1.1168154724627004</td>
+<td>32438.389395629634</td>
+<td>1.0890064636787196</td>
+<td>166.36620662878127</td>
+<td>0.08254411917908085</td>
+<td>null</td>
+<td>0.9067634854771786</td>
+<td>849.6284532374101</td>
+<td>59.32707265365355</td>
+<td>9.113860612012853E7</td>
+<td>323.8082390457141</td>
+<td>30.631115779645334</td>
+<td>8.842210231814642</td>
+<td>5.6059546915631415</td>
+<td>19206.748390809662</td>
+<td>13.14487276920222</td>
+<td>256.0564316090542</td>
+<td>7.763601383864184</td>
+<td>10.57440184456196</td>
+<td>32.64338559959862</td>
+<td>51.16526313174358</td>
+<td>3.042046311150612</td>
+</tr>
+<tr class="odd">
+<td>stddev</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2748559.5139726754</td>
+<td>26447.176041635634</td>
+<td>25947.18346899017</td>
+<td>74852.02463395565</td>
+<td>554.179232738698</td>
+<td>496.3241880037069</td>
+<td>9770.196467368594</td>
+<td>159.8367692227782</td>
+<td>130.23859384700643</td>
+<td>231.3831543436838</td>
+<td>3.814136613643414</td>
+<td>2.592627124113058</td>
+<td>0.37314466501106797</td>
+<td>2607.447792980141</td>
+<td>23.096588581017723</td>
+<td>13142.595210484165</td>
+<td>162.19963589630862</td>
+<td>1062.8669629409615</td>
+<td>84.43280553001314</td>
+<td>6258.389649510214</td>
+<td>237.96388901304604</td>
+<td>1.5192379103534836E7</td>
+<td>135667.97569510888</td>
+<td>232.08417747765577</td>
+<td>2.101753078690164</td>
+<td>126446.58519497044</td>
+<td>1.9266264256088346</td>
+<td>842.7776724543986</td>
+<td>0.09966680167946733</td>
+<td>null</td>
+<td>2.447811842168661</td>
+<td>2276.8853139301373</td>
+<td>22.403193236864983</td>
+<td>6.204846769231012E8</td>
+<td>1577.4914969226447</td>
+<td>9.117030300574706</td>
+<td>6.256325795927324</td>
+<td>4.27334121579429</td>
+<td>19680.321466247937</td>
+<td>19.8684806478708</td>
+<td>117.99197986122954</td>
+<td>3.878859778205247</td>
+<td>10.419107338482048</td>
+<td>13.45549336530331</td>
+<td>31.775955000809844</td>
+<td>2.473749904640983</td>
+</tr>
+<tr class="even">
+<td>min</td>
+<td>AFG</td>
+<td>Africa</td>
+<td>Afghanistan</td>
+<td>2020-01-01</td>
+<td>1.0</td>
+<td>-46076.0</td>
+<td>-1121.714</td>
+<td>1.0</td>
+<td>-1918.0</td>
+<td>-232.143</td>
+<td>0.001</td>
+<td>-2153.437</td>
+<td>-276.825</td>
+<td>0.001</td>
+<td>-76.445</td>
+<td>-10.921</td>
+<td>-0.01</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>-47510.0</td>
+<td>0.0</td>
+<td>-0.786</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.6</td>
+<td>0.0</td>
+<td>null</td>
+<td>0.0</td>
+<td>1.57</td>
+<td>0.0</td>
+<td>809.0</td>
+<td>1.98</td>
+<td>15.1</td>
+<td>1.144</td>
+<td>0.526</td>
+<td>661.24</td>
+<td>0.1</td>
+<td>79.37</td>
+<td>0.99</td>
+<td>0.1</td>
+<td>7.7</td>
+<td>1.188</td>
+<td>0.1</td>
+</tr>
+<tr class="odd">
+<td>max</td>
+<td>ZWE</td>
+<td>South America</td>
+<td>Zimbabwe</td>
+<td>2021-01-06</td>
+<td>8.718654E7</td>
+<td>780613.0</td>
+<td>646630.286</td>
+<td>1883761.0</td>
+<td>15525.0</td>
+<td>11670.429</td>
+<td>108043.746</td>
+<td>8652.658</td>
+<td>2648.773</td>
+<td>1826.861</td>
+<td>218.329</td>
+<td>63.14</td>
+<td>6.74</td>
+<td>23707.0</td>
+<td>127.183</td>
+<td>132476.0</td>
+<td>922.018</td>
+<td>10301.189</td>
+<td>888.829</td>
+<td>50887.393</td>
+<td>2645.194</td>
+<td>2.4798603E8</td>
+<td>2133928.0</td>
+<td>2705.599</td>
+<td>28.716</td>
+<td>1840248.0</td>
+<td>23.701</td>
+<td>44258.7</td>
+<td>0.636</td>
+<td>null</td>
+<td>17.14</td>
+<td>14497.77</td>
+<td>100.0</td>
+<td>7.794798729E9</td>
+<td>19347.5</td>
+<td>48.2</td>
+<td>27.049</td>
+<td>18.493</td>
+<td>116935.6</td>
+<td>77.6</td>
+<td>724.417</td>
+<td>30.53</td>
+<td>44.0</td>
+<td>78.1</td>
+<td>98.999</td>
+<td>13.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/02_DataPreprocess.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-12_group-CovidPandemic/02_DataPreprocess.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

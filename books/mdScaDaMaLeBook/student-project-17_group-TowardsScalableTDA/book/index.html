@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>00_introduction - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-17_group-TowardsScalableTDA/00_introduction.html">00_introduction</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-17_group-TowardsScalableTDA/01_methodology.html">01_methodology</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-17_group-TowardsScalableTDA/02_gaussian_analysis.html">02_gaussian_analysis</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-17_group-TowardsScalableTDA/03_robotics_dataset.html">03_robotics_dataset</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="density-estimation-via-voronoi-diagrams-in-high-dimensions"><a class="header" href="#density-estimation-via-voronoi-diagrams-in-high-dimensions">Density Estimation via Voronoi Diagrams in High Dimensions</a></h1>
+</div>
+<div class="cell markdown">
+<p>Robert Gieselmann and Vladislav Polianskii</p>
+<p><a href="https://drive.google.com/file/d/14E_igECN6hDZieWNn9VVTepCo5mu-rzy/view?usp=sharing">Video of project presentation</a></p>
+</div>
+<div class="cell markdown">
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+</div>
+<div class="cell markdown">
+<p><strong>Density estimation</strong> is a wide sub-area of statistics, tasked with understanding an underlying probability distribution of a given set of points, sampled from an unknown distribution. It can be used as a way of data investigation, like determining the location of low- and high-density regions in data, clusters and outliers, as well as for visualization purposes.</p>
+<p>A histogram can be considered as a simple density estimator. Other well-known methods include: - a k-nearest-neighbor density estimator, which describes the density <em>p()</em> at a point <em>x</em> as \[p(x) \cong \frac{1}{d_k(x)}\] where d_k(x) is the distance to the <em>k</em>th nearest neighbor of <em>x</em>; - a kernel density estimator, which requires a selection of a kernel probability distribution <em>K</em> and a bandwidth <em>h</em> and essentially places the distributions at the data points, giving the density estimation \[p(x) \cong \sum_i K(\frac{x - x_i}{h})\]</p>
+<p>All of the mentioned methods are sensitive to parameter selection, such as choosing the right number of neighbors or a fitting bandwidth.</p>
+</div>
+<div class="cell markdown">
+<p><strong>Voronoi diagrams</strong> are widely used in many areas, including computer science, and provide a natural cell decomposition of space based on the nearest-neighbor rule. For a given data point <em>x</em>, its corresponding cell contains all the points of the metric space, for which <em>x</em> is the closest point among all in the dataset.</p>
+<p>An example of a 2D Voronoi diagram built over a set of points sampled from a normal distribution can be seen below in the methodology part.</p>
+<p>One of the biggest drawbacks of Voronoi diagrams is their geometric complexity, which grows exponentially with dimensionality and essentially prevents their exact computation in dimensions above 6 for a reasonable number of points. In the worst case, the number of geometric elements of the diagram (such as Voronoi vertices, edges and polyhedra of different dimensions that arise on the cell boundaries) grows as</p>
+<p>\[O(n^{\lceil{d/2}\rceil})\]</p>
+</div>
+<div class="cell markdown">
+<p><strong>Our method.</strong> In this work, we use some intuition about the Voronoi diagrams to develop a new method of density estimation. In addition, we apply a methodology from our previous work which allows one to work with Voronoi diagrams in high dimensions without their explicit construction.</p>
+</div>
+<div class="cell markdown">
+<h2 id="methodology"><a class="header" href="#methodology">Methodology</a></h2>
+</div>
+<div class="cell markdown">
+<p><strong>Intuition:</strong> if we construct a Voronoi diagram over a set of points sampled from an unknown distribution then Voronoi cells in regions with higher density will be of a smaller <em>size</em>.</p>
+<p>Consider the image below, which depicts a Voronoi diagram in a two-dimensional space built over points sampled from a Gaussian distribution. Voronoi cells in the center of the distribution appear naturally smaller in comparison with other cells, and the cell size increases when we move away from the center.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/voronoi_gaussian.png?raw=true" alt="" /></p>
+<p>This intuition follows, in a way, a one-nearest-neighbor density estimator: the distance <em>d</em> to the nearest neighbor is inversly proportional to the estimated density of the point, and at the same time, a ball of radius <em>d/2</em> centered at the query point always fits into (and touches the boundary of) the Voronoi cell.</p>
+<p>On the discussed image, one of the cells is marked with a blue color. Assume that the point inside that cell is our query point, at which we want to understand the density, and all other points are the training (unlabeled) data that provides information about the density. Then, let us try to find a reasonable approximation of the density in a form of</p>
+<p>\[p(x) = \frac{c}{size(Cell(x))}\]</p>
+<p>where <em>c</em> is some constant, <em>Cell</em> denotes the Voronoi cell of <em>x</em>, and <em>size</em> is some measure of a cell.</p>
+<p>Note: at any moment, the Voronoi diagram consists of only one query point and all dataset points.</p>
+</div>
+<div class="cell markdown">
+<p><strong>Volume function</strong></p>
+<p>Let us assume for a while that cell's geometry is known to us. What would be a natural way to describe the size of the cell?</p>
+<p>Perhaps, one of the first ideas that comes to mind is to use the cell's <em>volume</em> as a size measure. Here we run into an issue of infinite cells, whose volume would also be infinite. Potentially, this could be resolved by computing a weighted volume with an integrable weight function that rapidly decays at infinity.</p>
+<p>However, instead, we propose a way to describe the size via <em>volume functions</em>, inspired by how alpha-complexes are motivated and constructed in the area of topological data analysis, where we consider a set of balls of an increasing radius with intersection with voronoi cells:</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/alpha_1.png?raw=true" alt="" /> <img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/alpha_2.png?raw=true" alt="" /> <img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/alpha_3.png?raw=true" alt="" /></p>
+<p>We define the volume function as follows:</p>
+<p>\[\overline{Vol}_d(x)(r) = \frac{Vol_d(Cell(x) \cap B_r(x))}{Vol_d(B_r)}\]</p>
+<p>Here, <em>r</em> is a positive radius, <em>Vol()</em> denotes the standard d-dimensional volume, and *B_r(x)* is a d-dimensional ball of radius <em>r</em> centered at <em>x</em>. The volume function of <em>x</em> returns a function that takes a radius <em>r</em> and returns a ratio of the volume of the intersection of the ball with the cell to the whole volume of the ball. Clearly, at the limit to zero, the ratio is equal to 1 (when the ball fully fits inside the cell), but starts to decrease as soon as parts of the ball start to leave the boundary.</p>
+<p>Below are two images. On the left, a simple rectangular Voronoi cell with a point, generating it. On the right, a depiction of the volume function for this cell.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/rect.png?raw=true" alt="" /> <img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/rect_vol.png?raw=true" alt="" /></p>
+<p>If we go into higher dimensions, we will not be able to see the steps that the function makes anymore. Below is an example, which we approximated (with a method described below) on MNIST data (784-dimensional) some time ago of volume functions for different data points:</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/mnist_vol.png?raw=true" alt="" /></p>
+<p>On the picture above, we can guess that, for example, the point with the light-blue volume curve is located in a lower-density region than other given points, based on the fact that its volume function is greater than other functions at every radius.</p>
+<p>A couple of things to consider here. 1. If a cell is infinite, then its volume function will not tend to 0 at infinity. Instead, it will tend to the angular size of this infinity. 2. If one cell can be placed inside another cell, identifying their generator points and rotating arbitrarily, the first volume function will be below the second volume function.</p>
+<p>The second bullet point provides an idea that maybe we want to integrate this volume functions and compare them: a function with a larger integral would denote a lower-density region. At the same time, the first bullet point tells us that the functions are not always integrable. Thus, in this project we do the following modifications: we do not consider the directions of the balls which end up in infinity. To be more precise, we replace *B_r* with its <em>sector</em> where the voronoi cell is finite, in the formula for the volume function. This helps to mitigate the integrability issues.</p>
+<p>Before we go into details about the computational aspects, we need to mention another modification to the formula. Instead of computing the d-dimensional volumes of balls, we decided to compute the (d-1)-dimensional volumes of spheres (or, the surface area of the balls). This modification makes the computation much easier. For example, the approximations of the volume functions become piecewise-constant.</p>
+<p>Therefore, the formula for the <em>size(x)</em> becomes:</p>
+<p>\[size(x) = \int_0^{inf}{\overline{Vol}<em>{d-1}(x)(r) dr} = \int_0^{inf}{ \frac{Vol</em>{d-1}(Cell(x) \cap \hat{S}<em>r(x))}{Vol</em>{d-1}( \hat{S}_r )} dr}\]</p>
+<p>where *S_r(x)* denotes a hypersphere of radius <em>r</em>, and a &quot;^&quot; denotes that we only consider sections of a sphere where the cell is finite.</p>
+</div>
+<div class="cell markdown">
+<p><strong>Integral computation.</strong></p>
+<p>We perform a Monte-Carlo sampling integration method to approximate the volume function, a motivation for which is described in detail in one of our earlier papers about Voronoi Boundary Classification (http://proceedings.mlr.press/v97/polianskii19a.html).</p>
+<p>In short details, we sample random rays in uniform directions (equivalently, we sample points uniformly on the unit hypersphere), starting from the query point. For each ray, we record where it hits the boundary of the Voronoi cell. The length is computed by the following equation:</p>
+<p>\[l(x, m) = \min_{i=1..N, \langle m, x - x_i \rangle &gt; 0} \frac{\lVert x - x_i \rVert^2}{2\langle m, x - x_i \rangle }\]</p>
+<p>Here, <em>x</em> is the origin of the ray (the generator/query point), <em>m</em> is the directional unit vector, *x_i* are other data points. The &quot;infinite&quot; directions are excluded. The condition in the minimum signifies, that we are only interested in the positive length, i.e. we can't find an intersection behind the ray.</p>
+<p>After casting <em>T</em> rays from a point, we can approximate the volume function as:</p>
+<p>\[\overline{Vol}<em>{d-1}(x)(r) = \frac{1}{T}\sum</em>{t=1}^{T} \mathbb{1}\left[l(x, m_t) \ge r \right]\]</p>
+<p>The integral of the function can be easily computed as a sum of all lengths:</p>
+<p>\[size(x) = \frac{1}{T}\sum_{t=1}^{T} l(x, m_t)\]</p>
+<p>And, our (unnormalized) density:</p>
+<p>\[\tilde{p}(x) = \frac{T}{\sum_{t=1}^{T} l(x, m_t)}\]</p>
+<p>Overall, the method's compexity with some optimizations is:</p>
+<p>\[O(NMT + NMD + NTD + MTD)\]</p>
+<p>where <em>N</em> is the number of train points, <em>M</em> is the number of query points, <em>T</em> is the number of rays from each point and <em>D</em> is data dimensionality.</p>
+</div>
+<div class="cell markdown">
+<p><strong>Ranking loss.</strong></p>
+<p>At the moment, we do not have any proofs that this indeed generates an unnormalized approximation for the density.</p>
+<p>However, we are fairly certain (though also without a proof) that the approximation, when the dataset size tends to infinity, approximates the correct &quot;ranking&quot; of the estimates. Namely,</p>
+<p>\[p(x_1) &lt; p(x_2) \Leftrightarrow \tilde{p}(x_1) &lt; \tilde{p}(x_2)\]</p>
+<p>with probability 1 when data size is large enough. Here <em>p</em> is the real density used for point sampling, and <em>\tilde{p}</em> is the approximation.</p>
+<p>This quality is meaningful in tasks when we need to sort points according to their density. For example, if we want to exclude noise (say, 5% of the all points with the lowest density), or use for density filtration in topological data analysis.</p>
+<p>A measure that we use to estimate how well we approximate the correct density ranking works as following: 1. Sort available query points according to their true density. 2. Sort available query points according to the approximated density. 3. Find the number of inverses (swaps of two consecutive elements) required to obtain the first sequence of points from the second one.</p>
+<p>The can easily be counted with a merge-sort algorithm in n log n time, but for simplicity and testing purposes (also because we use python for that) we do it in a simple quadratic time.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="contents/student-project-17_group-TowardsScalableTDA/01_methodology.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="contents/student-project-17_group-TowardsScalableTDA/01_methodology.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

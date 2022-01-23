@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/00_introduction.html">00_introduction</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html">01_preprocess_data</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/02_generate_graphs.html">02_generate_graphs</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.html">03_compute_rsvd.</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/04_analyse_eigenvalues.html">04_analyse_eigenvalues</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="graph-spectral-analysis"><a class="header" href="#graph-spectral-analysis">Graph Spectral Analysis</a></h1>
+<h5 id="project-by-ciwan-ceylan-and-hanna-hultin"><a class="header" href="#project-by-ciwan-ceylan-and-hanna-hultin">Project by Ciwan Ceylan and Hanna Hultin</a></h5>
+<p>Link to project video: &quot;https://drive.google.com/file/d/1ctILEsMskFgpsVnu-6ucCMZqM1TLXfEB/view?usp=sharing&quot;</p>
+</div>
+<div class="cell markdown">
+<h2 id="background-on-graphs"><a class="header" href="#background-on-graphs">Background on graphs</a></h2>
+<p>A graph can be represented by its incidence matrix <strong>B*0</strong>. Each row of <strong>B*0</strong> corresponds to an edge in the graph and each column to a node. Say that row <em>k</em> corresponds to edge <em>i</em> -&gt; <em>j</em>. Then element <em>i</em> of row <em>k</em> is <em>-1</em> and element <em>j</em> is <em>1</em>. All other elements are zero. See the figure below for an example of the indicence matrix with the corresponding graph.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/incidence_matrix.png?raw=true" alt="" /> <img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/simple_graph.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="graph-laplacian"><a class="header" href="#graph-laplacian">Graph Laplacian</a></h3>
+<p>The Laplacian lies at the center of <em>specral graph theory</em>. Its spectrum (its eigenvalues) encodes the geometry of the graph and can be used in various applications ranging from computer graphics to machine learning. Therefore, one approximative approach for comparing graphs (a problem which is NP-hard) is to compare their spectra. Graphs with similar geometry are expected to have similar spectrum and vice-versa. Below is an example of the Laplacian for the graph seen in the cell above. The diagonal elements contain the degree of the corresponding node, while all other elements at index (<em>i</em>,<em>j</em>) are -1 if there is an edge between the nodes <em>i</em> and <em>j</em> and zero otherwise.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/simple_laplacian.png?raw=true" alt="" /></p>
+<p>The Laplacian can be constructed from the indicence matrix as \[ \mathbf{L} = \mathbf{B}_0^T \mathbf{B}_0 \] Thus, we can compute the top eigenvalues of <strong>L</strong> by instead computing the top singular values of **B_0**. This follows from the following: \[ \mathbf{B}_0 = \mathbf{U} \mathbf{D}^{1/2} \mathbf{V}^T \] \[ \mathbf{L}= \mathbf{V}  \mathbf{D}^{1/2} \mathbf{U}^T \mathbf{U} \mathbf{D}^{1/2} \mathbf{V}^T =  \mathbf{V}  \mathbf{D} \mathbf{V}^T \]</p>
+<h4 id="scaling-to-large-graphs-using-randomized-svd"><a class="header" href="#scaling-to-large-graphs-using-randomized-svd">Scaling to large graphs using randomized SVD</a></h4>
+<p>In the new age of big data, it is often interesting to analyze very large graphs of for example financial transactions. Doing the spectral graph analysis for these large graphs is challenging, since the full singular value decomposition of an <em>m x n</em> matrix scales as <em>O(m n min(m,n))</em>. To handle this, we turn to low rank approximations and specifically we use Randomized SVD.</p>
+<p>Randomized SVD was introduced in 2011 in the article &quot;Finding structure with randomness: Probabilistic algorithms for constructing approximate matrix decompositions&quot; (https://arxiv.org/abs/0909.4061), and is a smart way of finding a low-rank approximation for the singular value decomposition using Gaussian vectors.</p>
+<p>The basic idea is that given the <em>m x n</em> matrix <em>A</em>, we can create a sampling matrix <em>Y = AG</em> where <em>G</em> is a <em>n x k</em> Gaussian random matrix and it turns out that <em>Y</em> is then a quite good approximate basis for the column space of A.</p>
+<p>A nice summary of the methods and some variations written by one of the authors of the original article can be found in the following link: https://sinews.siam.org/Details-Page/randomized-projection-methods-in-linear-algebra-and-data-analysis</p>
+</div>
+<div class="cell markdown">
+<h3 id="methods-for-generating-random-graphs"><a class="header" href="#methods-for-generating-random-graphs">Methods for generating random graphs</a></h3>
+<h4 id="erdősrényi-model"><a class="header" href="#erdősrényi-model">Erdős–Rényi model</a></h4>
+<p>In &quot;On the Evoluation of Random Graphs&quot; (https://users.renyi.hu/~p_erdos/1960-10.pdf), Erdős and Rényi describes the random graph with <em>n</em> vertices and <em>N</em> edges where the <em>N</em> edges are chosen at random among all the undirected possible edges.</p>
+<h4 id="r-mat-model"><a class="header" href="#r-mat-model">R-MAT model</a></h4>
+<p>The Recursive Matrix (R-MAT) model introduced in the article &quot;R-MAT: A Recursive Model for Graph Mining&quot; (https://kilthub.cmu.edu/articles/R-MAT<em>A</em>Recursive<em>Model</em>for<em>Graph</em>Mining/6609113/files/12101195.pdf) is described as follows by the authors:</p>
+<blockquote>
+<p>&quot;The basic idea behind R-MAT is to recursively subdivide the adjacency matrix into four equal-sized partitions, and distribute edges with in these partitions with unequal probabilities: starting off with an empty adjacency matrix, we &quot;drop&quot; edges into the matrix one at a time. Each edge chooses one of the four partitions with probabilities a; b; c; d respectively (see Figure1). Of course, a+b+c+d=1. The chosen partition is again subdivided into four smaller partitions, and the procedure is repeated until we reach a simplecell (=1 x 1 partition). This is the cell of the adjacency matrix occupied by the edge.&quot;</p>
+</blockquote>
+<p>This is visualized in the following image.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/rmat_picture.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h2 id="project-specifications"><a class="header" href="#project-specifications">Project specifications</a></h2>
+<p>The goal of the project is to compare spectra of the Laplacian for different graphs.</p>
+<h3 id="data"><a class="header" href="#data">Data</a></h3>
+<ul>
+<li>Ethereum transactions:
+<ul>
+<li>Original data from google cloud (https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-public-dataset-smart-contract-analytics)</li>
+<li>The dataset contains transactions from March 2018 to March 2020, aggregating per edge (same sender and receiver) and only keeping edges with at least 10 transactions with positive value</li>
+</ul>
+</li>
+<li>Randomly generated graphs using the two different methods explained above</li>
+</ul>
+<h3 id="notebooks"><a class="header" href="#notebooks">Notebooks</a></h3>
+<ul>
+<li><strong>01<em>preprocess</em>data</strong>: preprocesses the Ethereum data using Python and PySpark and saves the graph information as parquet file</li>
+<li><strong>02<em>generate</em>graphs</strong>: generates random graphs in Scala using Spark (SQL and GraphX) and saves the graph information as parquet files</li>
+<li><strong>03<em>compute</em>rsvd</strong>: computes RSVD for the different graphs in Scala using Spark and the library Spark-RSVD and saves the singular values as parquet files</li>
+<li><strong>04<em>analyse</em>eigenvalues</strong>: computes the eigenvalues from the singular values and plots these for different graphs</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="preprocess-the-data"><a class="header" href="#preprocess-the-data">Preprocess the data</a></h1>
+<p>Here the raw Ethereum transaction data read from google big query is preprocessed. - Remove any rows with nulls - Drop all self-loops - Enumerate all the distict addresses - Make a canonical ordering for the edges - Each edge will point from lower to higher index - The sign of the transaction is changed for flipped edges - Aggregate transactions based on src, dst pair - Enumerate the edges with a unique edge id</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import pyspark.sql.functions as F
+from pyspark.sql.window import Window
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="load-data-into-dataframe"><a class="header" href="#load-data-into-dataframe">Load data into DataFrame</a></h3>
+<p>And drop nans and self-loop</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_path = &quot;FileStore/tables/ethereum_march_2018_2020&quot;
+
+df = spark.read.format('csv').option(&quot;header&quot;, &quot;true&quot;).load(data_path)\
+  .select(F.col(&quot;from_address&quot;), F.col(&quot;to_address&quot;), F.col(&quot;value&quot;))\
+  .na.drop()\
+  .where(F.col(&quot;from_address&quot;) != F.col(&quot;to_address&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="enumerate-the-addresses-with-a-unique-id"><a class="header" href="#enumerate-the-addresses-with-a-unique-id">Enumerate the addresses with a unique id</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">addresses = df.select(F.col(&quot;from_address&quot;).alias(&quot;address&quot;)).union(df.select(F.col(&quot;to_address&quot;).alias(&quot;address&quot;))).distinct()
+address_window = Window.orderBy(&quot;address&quot;)
+addresses = addresses.withColumn(&quot;id&quot;, F.row_number().over(address_window))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="make-the-edges-canonical"><a class="header" href="#make-the-edges-canonical">Make the edges canonical</a></h3>
+<ul>
+<li>Each edge will point from lower to higher index</li>
+<li>The sign of the transaction is changed for flipped edges</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Exchange string addresses for node ids
+df_with_ids = df.join(addresses.withColumnRenamed(&quot;address&quot;, &quot;to_address&quot;).withColumnRenamed(&quot;id&quot;, &quot;dst__&quot;), on=&quot;to_address&quot;)\
+  .join(addresses.withColumnRenamed(&quot;address&quot;, &quot;from_address&quot;).withColumnRenamed(&quot;id&quot;, &quot;src__&quot;), on=&quot;from_address&quot;)
+
+canonical_edges = df_with_ids.withColumn(&quot;src&quot;,
+  F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), F.col(&quot;src__&quot;)).otherwise(F.col(&quot;dst__&quot;))
+).withColumn(&quot;dst&quot;,
+  F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), F.col(&quot;dst__&quot;)).otherwise(F.col(&quot;src__&quot;))
+).withColumn(&quot;direction__&quot;,
+  F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), 1).otherwise(-1)
+).withColumn(&quot;flow&quot;,
+F.col(&quot;value&quot;) * F.col(&quot;direction__&quot;)
+)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="group-the-edges-by-source-src-and-destination-dst-by-taking-the-sum-of-the-flow"><a class="header" href="#group-the-edges-by-source-src-and-destination-dst-by-taking-the-sum-of-the-flow">Group the edges by source (src) and destination (dst) by taking the sum of the flow</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">grouped_canonical_edges = canonical_edges.select(F.col(&quot;src&quot;), F.col(&quot;dst&quot;), F.col(&quot;flow&quot;)).groupBy(F.col(&quot;src&quot;), F.col(&quot;dst&quot;)).agg(F.sum(F.col(&quot;flow&quot;)).alias(&quot;flow&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="enumerate-the-edges-with-a-unique-edge-id"><a class="header" href="#enumerate-the-edges-with-a-unique-edge-id">Enumerate the edges with a unique edge id</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">edges_window = Window.orderBy(F.col(&quot;src&quot;), F.col(&quot;dst&quot;))
+grouped_canonical_edges = grouped_canonical_edges.withColumn(&quot;id&quot;, F.row_number().over(edges_window))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="save-the-results-in-parquet-files"><a class="header" href="#save-the-results-in-parquet-files">Save the results in parquet files</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">preprocessed_edges_path = &quot;/projects/group21/test_ethereum_canonical_edges&quot;
+preprocessed_addresses_path = &quot;/projects/group21/test_ethereum_addresses&quot;
+
+grouped_canonical_edges.write.format('parquet').mode(&quot;overwrite&quot;).save(preprocessed_edges_path)
+addresses.write.format('parquet').mode(&quot;overwrite&quot;).save(preprocessed_addresses_path)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="generate-random-graphs"><a class="header" href="#generate-random-graphs">Generate random graphs</a></h1>
+<p>Here random graphs are generated, first using Erdös-Renyi method and then using R-MAT.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.graphx.util.GraphGenerators
+import scala.util.Random
+import org.apache.spark.sql.{Row, DataFrame}
+import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.{functions =&gt; F}
+import org.apache.spark.sql.types.{IntegerType, LongType, DoubleType, StringType, StructField, StructType}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.graphx.util.GraphGenerators
+import scala.util.Random
+import org.apache.spark.sql.{Row, DataFrame}
+import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.{functions=&gt;F}
+import org.apache.spark.sql.types.{IntegerType, LongType, DoubleType, StringType, StructField, StructType}
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Values taken from the Ethereum graph
+val numNodes = 1520925
+val numEdges = 2152835
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>numNodes: Int = 1520925
+numEdges: Int = 2152835
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="function-for-making-a-canonical-ordering-for-the-edges-of-a-graph"><a class="header" href="#function-for-making-a-canonical-ordering-for-the-edges-of-a-graph">Function for making a canonical ordering for the edges of a graph</a></h2>
+<ul>
+<li>Input is a dataframe with rows of &quot;src&quot; and &quot;dst&quot; node numbers</li>
+<li>A new node id is computed such that the nodes have ids 0,1,2,...</li>
+<li>The canonical ordering is made such that each edge will point from lower to higher index</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def makeEdgesCanonical (edgeDF : org.apache.spark.sql.DataFrame): org.apache.spark.sql.DataFrame = {
+  // Remove self-loops
+  val edgeDFClean = edgeDF.distinct().where(F.col(&quot;src&quot;) =!= F.col(&quot;dst&quot;))
+  
+  // Provide each node with an index id
+  val nodes = edgeDFClean.select(F.col(&quot;src&quot;).alias(&quot;node&quot;)).union(edgeDFClean.select(F.col(&quot;dst&quot;).alias(&quot;node&quot;))).distinct()
+  val nodes_window = Window.orderBy(&quot;node&quot;)
+  val nodesWithids = nodes.withColumn(&quot;id&quot;, F.row_number().over(nodes_window))
+  
+  // Add the canonical node ids to the edgeDF and drop the old ids
+  val dstNodes = nodesWithids.withColumnRenamed(&quot;node&quot;, &quot;dst&quot;).withColumnRenamed(&quot;id&quot;, &quot;dst__&quot;)
+  val srcNodes = nodesWithids.withColumnRenamed(&quot;node&quot;, &quot;src&quot;).withColumnRenamed(&quot;id&quot;, &quot;src__&quot;)
+  val edgesWithBothIds = edgeDFClean.join(dstNodes, dstNodes(&quot;dst&quot;) === edgeDFClean(&quot;dst&quot;))
+                           .join(srcNodes, srcNodes(&quot;src&quot;) === edgeDFClean(&quot;src&quot;))
+                           .drop(&quot;src&quot;).drop(&quot;dst&quot;)
+  
+  val edgesWithCanonicalIds = edgesWithBothIds.withColumn(&quot;src&quot;,
+                    F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), F.col(&quot;src__&quot;)).otherwise(F.col(&quot;dst__&quot;))
+                  ).withColumn(&quot;dst&quot;,
+                    F.when(F.col(&quot;dst__&quot;) &gt; F.col(&quot;src__&quot;), F.col(&quot;dst__&quot;)).otherwise(F.col(&quot;src__&quot;))
+                  ).drop(&quot;src__&quot;).drop(&quot;dst__&quot;).distinct().where(F.col(&quot;src&quot;) =!= F.col(&quot;dst&quot;))
+  
+  val edges_window = Window.orderBy(F.col(&quot;src&quot;), F.col(&quot;dst&quot;))
+  val GroupedCanonicalEdges = edgesWithCanonicalIds.withColumn(&quot;id&quot;, F.row_number().over(edges_window))
+  return GroupedCanonicalEdges
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>makeEdgesCanonical: (edgeDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="generate-erdös-renyi-graph-uniform-edge-sampling"><a class="header" href="#generate-erdös-renyi-graph-uniform-edge-sampling">Generate Erdös-Renyi graph (uniform edge sampling)</a></h2>
+</div>
+<div class="cell markdown">
+<h4 id="function-for-sampling-an-erdös-renyi-graph"><a class="header" href="#function-for-sampling-an-erdös-renyi-graph">Function for sampling an Erdös-Renyi graph</a></h4>
+<p>The resulting graph will have at most the number of nodes given by numNodes and at most numEdges edges. The number of nodes is less than numNodes if some nodes did not have an edge to another node. The number of edges is less than numEdges if some edges are duplicates or if some edges are self-loops.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def sampleERGraph (numNodes : Int, numEdges : Int, iter : Int): org.apache.spark.sql.DataFrame = {
+  val randomEdges = sc.parallelize(0 until numEdges).map {
+    idx =&gt;
+      val random = new Random(42 + iter * numEdges + idx)
+      val src = random.nextInt(numNodes)
+      val dst = random.nextInt(numNodes)
+      if (src &gt; dst) Row(dst, src) else Row(src, dst)
+  }
+
+  val schema = new StructType()
+    .add(StructField(&quot;src&quot;, IntegerType, true))
+    .add(StructField(&quot;dst&quot;, IntegerType, true))
+
+  val groupedCanonicalEdges = makeEdgesCanonical(spark.createDataFrame(randomEdges, schema))
+  return groupedCanonicalEdges
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>sampleERGraph: (numNodes: Int, numEdges: Int, iter: Int)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="sample-and-save-10-different-erdös-renyi-graphs-with-different-seeds-and-save-each-to-parquet"><a class="header" href="#sample-and-save-10-different-erdös-renyi-graphs-with-different-seeds-and-save-each-to-parquet">Sample and save 10 different Erdös-Renyi graphs with different seeds and save each to parquet</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for(i &lt;- 0 to 9) {
+  val groupedCanonicalEdges = sampleERGraph(numNodes, numEdges, iter=i)
+  groupedCanonicalEdges.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(&quot;/projects/group21/uniform_random_graph&quot; + i)
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="generate-r-mat-graph"><a class="header" href="#generate-r-mat-graph">Generate R-MAT graph</a></h2>
+</div>
+<div class="cell markdown">
+<h4 id="the-default-parameters-for-r-mat-generation"><a class="header" href="#the-default-parameters-for-r-mat-generation">The default parameters for R-MAT generation</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(&quot;RMAT a: &quot; + GraphGenerators.RMATa)
+println(&quot;RMAT b: &quot; + GraphGenerators.RMATb)
+println(&quot;RMAT c: &quot; + GraphGenerators.RMATc)
+println(&quot;RMAT d: &quot; + GraphGenerators.RMATd)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>RMATa: 0.45
+RMATb: 0.15
+RMATc: 0.15
+RMATd: 0.25
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="function-for-generating-a-r-mat-graph-storing-the-edges-as-a-dataframe-and-applying-makeedgescanonical"><a class="header" href="#function-for-generating-a-r-mat-graph-storing-the-edges-as-a-dataframe-and-applying-makeedgescanonical">Function for generating a R-MAT graph, storing the edges as a Dataframe and applying makeEdgesCanonical</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def sampleRMATGraph (numNodes : Int, numEdges : Int): org.apache.spark.sql.DataFrame = {
+  val rmatGraphraw = GraphGenerators.rmatGraph(sc=spark.sparkContext, requestedNumVertices=numNodes, numEdges=numEdges)
+  val rmatedges = rmatGraphraw.edges.map{ 
+    edge =&gt; Row(edge.srcId, edge.dstId)
+  }
+
+  val schema = new StructType()
+    .add(StructField(&quot;src&quot;, LongType, true))
+    .add(StructField(&quot;dst&quot;, LongType, true))
+
+  val rmatGroupedCanonicalEdges = makeEdgesCanonical(spark.createDataFrame(rmatedges, schema))
+  return rmatGroupedCanonicalEdges
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>sampleRMATGraph: (numNodes: Int, numEdges: Int)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h4 id="sample-10-r-mat-graphs-and-save-each-to-parquet"><a class="header" href="#sample-10-r-mat-graphs-and-save-each-to-parquet">Sample 10 R-MAT graphs and save each to parquet</a></h4>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for(i &lt;- 0 to 9) {
+  val groupedCanonicalEdges = sampleRMATGraph(numNodes, numEdges)
+  groupedCanonicalEdges.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(&quot;/projects/group21/rmat_random_graph&quot; + i)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="compute-rsvd"><a class="header" href="#compute-rsvd">Compute RSVD</a></h1>
+<p>Here we read the preprcessed data and compute the rSVD</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import com.criteo.rsvd._
+import scala.util.Random
+import org.apache.spark.mllib.linalg.distributed.MatrixEntry
+import org.apache.spark.sql.functions.{min, max}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import com.criteo.rsvd._
+import scala.util.Random
+import org.apache.spark.mllib.linalg.distributed.MatrixEntry
+import org.apache.spark.sql.functions.{min, max}
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="set-up-rsvd-config-with-json-file"><a class="header" href="#set-up-rsvd-config-with-json-file">Set up RSVD config with JSON file</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// code snippet for saving config as json
+val config_map = Map(&quot;embeddingDim&quot; -&gt; 100, &quot;oversample&quot; -&gt; 30, &quot;powerIter&quot; -&gt; 1, &quot;seed&quot; -&gt; 0, &quot;blockSize&quot; -&gt; 50000, &quot;partitionWidthInBlocks&quot; -&gt; 35, &quot;partitionHeightInBlocks&quot; -&gt; 10)
+val config_spark_save = config_map.toSeq.toDF(&quot;key&quot;,&quot;value&quot;)
+config_spark_save.write.mode(&quot;overwrite&quot;).json(&quot;/projects/group21/rsvd_config.json&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>config_map: scala.collection.immutable.Map[String,Int] = Map(seed -&gt; 0, oversample -&gt; 30, blockSize -&gt; 50000, partitionWidthInBlocks -&gt; 35, partitionHeightInBlocks -&gt; 10, powerIter -&gt; 1, embeddingDim -&gt; 100)
+config_spark_save: org.apache.spark.sql.DataFrame = [key: string, value: int]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// load config from json (assuming only integer values)
+val config_spark = spark.read.json(&quot;/projects/group21/rsvd_config.json&quot;).rdd.map(r =&gt; (r(0).toString -&gt; r(1).toString.toInt)).collect.toMap
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>config_spark: scala.collection.immutable.Map[String,Int] = Map(seed -&gt; 0, oversample -&gt; 30, blockSize -&gt; 50000, partitionWidthInBlocks -&gt; 35, partitionHeightInBlocks -&gt; 10, powerIter -&gt; 1, embeddingDim -&gt; 100)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Create RSVD configuration
+val config = RSVDConfig(
+  embeddingDim = config_spark(&quot;embeddingDim&quot;),
+  oversample = config_spark(&quot;oversample&quot;),
+  powerIter = config_spark(&quot;powerIter&quot;),
+  seed = config_spark(&quot;seed&quot;),
+  blockSize = config_spark(&quot;blockSize&quot;),
+  partitionWidthInBlocks = config_spark(&quot;partitionWidthInBlocks&quot;),
+  partitionHeightInBlocks = config_spark(&quot;partitionHeightInBlocks&quot;),
+  computeLeftSingularVectors = false,
+  computeRightSingularVectors = false
+)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>config: com.criteo.rsvd.RSVDConfig = RSVDConfig(100,30,1,0,50000,35,10,false,false)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="create-pipeline-for-computing-rsvd-from-dataframe-of-edge"><a class="header" href="#create-pipeline-for-computing-rsvd-from-dataframe-of-edge">Create pipeline for computing RSVD from dataframe of edge</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def computeRSVD (groupedCanonicalEdges : org.apache.spark.sql.DataFrame, config : RSVDConfig): RsvdResults = {
+  val matHeight = groupedCanonicalEdges.count()
+  val Row(maxValue: Int) = groupedCanonicalEdges.agg(max(&quot;dst&quot;)).head
+  val matWidth = maxValue
+  val incidenceMatrixEntries = groupedCanonicalEdges.rdd.flatMap{
+    case Row(src: Int, dst: Int, id: Int) =&gt; List(MatrixEntry(id-1, src-1, -1), MatrixEntry(id-1, dst-1, 1))
+  }
+  // Create block matrix and compute RSVD
+  val matrixToDecompose = BlockMatrix.fromMatrixEntries(incidenceMatrixEntries, matHeight = matHeight, matWidth = matWidth, config.blockSize, config.partitionHeightInBlocks, config.partitionWidthInBlocks)
+  return RSVD.run(matrixToDecompose, config, sc)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>computeRSVD: (groupedCanonicalEdges: org.apache.spark.sql.DataFrame, config: com.criteo.rsvd.RSVDConfig)com.criteo.rsvd.RsvdResults
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="compute-and-save-rsvd-for-ethereum-graph"><a class="header" href="#compute-and-save-rsvd-for-ethereum-graph">Compute and save RSVD for Ethereum graph</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val groupedCanonicalEdges = spark.read.format(&quot;parquet&quot;).load(&quot;/projects/group21/test_ethereum_canonical_edges&quot;).drop(&quot;flow&quot;)
+val rsvd_results_path: String = &quot;/projects/group21/test_ethereum_&quot;
+
+val RsvdResults(leftSingularVectors, singularValues, rightSingularVectors) = computeRSVD(groupedCanonicalEdges, config)
+val singularDF = sc.parallelize(singularValues.toArray).toDF()
+
+singularDF.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(rsvd_results_path + &quot;SingularValues&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="compute-and-save-rsvd-for-erdös-renyi-graphs"><a class="header" href="#compute-and-save-rsvd-for-erdös-renyi-graphs">Compute and save RSVD for Erdös-Renyi graphs</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for(i &lt;- 0 to 9) {
+  val groupedCanonicalEdges = spark.read.format(&quot;parquet&quot;).load(&quot;/projects/group21/uniform_random_graph&quot; + i)
+  val rsvd_results_path: String = &quot;/projects/group21/uniform_random_graph_&quot;
+
+  val RsvdResults(leftSingularVectors, singularValues, rightSingularVectors) = computeRSVD(groupedCanonicalEdges, config)
+  
+  val singularDF = sc.parallelize(singularValues.toArray).toDF()
+
+  singularDF.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(rsvd_results_path + &quot;SingularValues&quot; + i)
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="compute-and-save-rsvd-for-r-mat-graphs"><a class="header" href="#compute-and-save-rsvd-for-r-mat-graphs">Compute and save RSVD for R-MAT graphs</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">for(i &lt;- 0 to 9) {
+  val groupedCanonicalEdges = spark.read.format(&quot;parquet&quot;).load(&quot;/projects/group21/rmat_random_graph&quot; + i)
+  val rsvd_results_path: String = &quot;/projects/group21/rmat_random_graph_&quot;
+
+  val RsvdResults(leftSingularVectors, singularValues, rightSingularVectors) = computeRSVD(groupedCanonicalEdges, config)
+  
+  val singularDF = sc.parallelize(singularValues.toArray).toDF()
+
+  singularDF.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(rsvd_results_path + &quot;SingularValues&quot; + i)
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="analyse-the-eigenvalue-spectrum"><a class="header" href="#analyse-the-eigenvalue-spectrum">Analyse the eigenvalue spectrum</a></h1>
+</div>
+<div class="cell markdown">
+<ul>
+<li>Load the singular values computed in 03<em>compute</em>rsvd, sort them and convert to eigenvalues taking the square</li>
+<li>Plot the spectrum for each graph in a semi-log plot for comparison</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import pyspark.sql.functions as F
+import numpy as np
+import pandas as pd
+import seaborn as sns
+%matplotlib inline
+import matplotlib.pyplot as plt
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="function-for-getting-sorted-eigenvalues-of-graph-laplacian-l-from-singular-values-of-incidence-matrix-b"><a class="header" href="#function-for-getting-sorted-eigenvalues-of-graph-laplacian-l-from-singular-values-of-incidence-matrix-b">Function for getting sorted eigenvalues of graph Laplacian L from singular values of incidence matrix B</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def to_eigen(singular_values):
+  singular_values = singular_values.sort_values(by='value', ascending=False)
+  eigen_values = np.power(singular_values, 2)
+  return eigen_values
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="get-eigenvalues-of-ethereum-graph"><a class="header" href="#get-eigenvalues-of-ethereum-graph">Get eigenvalues of Ethereum graph</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">data_path = &quot;/projects/group21/test_ethereum_SingularValues&quot;
+singular_values_eth = spark.read.format('parquet').load(data_path).toPandas()
+eigen_values_eth = to_eigen(singular_values_eth)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="get-eigenvalues-of-erdös-renyi-graphs"><a class="header" href="#get-eigenvalues-of-erdös-renyi-graphs">Get eigenvalues of Erdös-Renyi graphs</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">eigen_values_uniform = []
+for i in range(10):
+  data_path = &quot;/projects/group21/uniform_random_graph_SingularValues&quot; + str(i)
+  singular_values = spark.read.format('parquet').load(data_path).toPandas()
+  eigen_values_uniform.append(to_eigen(singular_values))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="get-eigenvalues-of-r-mat-graphs"><a class="header" href="#get-eigenvalues-of-r-mat-graphs">Get eigenvalues of R-MAT graphs</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">eigen_values_rmat = []
+for i in range(10):
+  data_path = &quot;/projects/group21/rmat_random_graph_SingularValues&quot; + str(i)
+  singular_values = spark.read.format('parquet').load(data_path).toPandas()
+  eigen_values_rmat.append(to_eigen(singular_values))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="plot-sorted-eigenvalues-for-all-graphs"><a class="header" href="#plot-sorted-eigenvalues-for-all-graphs">Plot sorted eigenvalues for all graphs</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">colors = sns.color_palette()
+fig, ax = plt.subplots(figsize=(16, 9))
+x = np.arange(len(eigen_values_eth))
+ax = sns.lineplot(x=x, y=eigen_values_eth.to_numpy().ravel(), color=colors[0], label='ethereum')
+for i in range(9):
+  ax = sns.lineplot(x=x, y=eigen_values_uniform[i].to_numpy().ravel(), color=colors[1], alpha=0.4)
+  ax = sns.lineplot(x=x, y=eigen_values_rmat[i].to_numpy().ravel(), color=colors[2], alpha=0.4)
+  
+ax = sns.lineplot(x=x, y=eigen_values_uniform[9].to_numpy().ravel(), color=colors[1], alpha=0.4, label='erdös-renyi')
+ax = sns.lineplot(x=x, y=eigen_values_rmat[9].to_numpy().ravel(), color=colors[2], alpha=0.4, label='rmat')
+ax.set_yscale('log')
+ax.legend()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/21_04_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>We observe a large descrepency in the spectrums between the Erdös-Renyi, R-MAT and Ethereum transaction graphs. As can be expected, the spectrum of the Erdös-Renyi graphs is almost constant due to the isotropy of the graph topology. The Ethereum transaction graph has very large eigenvalues compared to the random graphs. A likely explanation is the presence of nodes of very high degree in the graph.</p>
+<p>We can see that the R-MAT graph lies in between uniform Erdös-Renyi and Ethereum graph. This is also as expected since the R-MAT model is designed to better mimic the behaviour of real graphs. In this project we used the default parameters for the R-MAT graph and it is likely that with further experimentation one could find a setting which better fit the spectum of the transaction graph.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

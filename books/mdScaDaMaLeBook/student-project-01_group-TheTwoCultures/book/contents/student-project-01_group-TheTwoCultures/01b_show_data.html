@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01b_show_data - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html">00_download_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html">01_load_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html" class="active">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var file_name = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi.xml&quot;
+var xml_df = read_xml(file_name).cache()
+var df = get_dataset(file_name).cache()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_name: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-allmanna-ekonomi.xml
+xml_df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [_id: string, _title: string ... 2 more fields]
+df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">xml_df.printSchema()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- _id: string (nullable = false)
+ |-- _title: string (nullable = false)
+ |-- _url: string (nullable = false)
+ |-- thread: array (nullable = false)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- _id: string (nullable = false)
+ |    |    |-- _title: string (nullable = false)
+ |    |    |-- _url: string (nullable = false)
+ |    |    |-- text: struct (nullable = false)
+ |    |    |    |-- sentence: array (nullable = false)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- w: array (nullable = true)
+ |    |    |    |    |    |    |-- element: string (containsNull = true)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">xml_df.show(10)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+------+--------------------+--------------------+--------------------+
+|   _id|              _title|                _url|              thread|
++------+--------------------+--------------------+--------------------+
+|19-290|Allmänna rubriker...|http://www.familj...|[[70148929, Frivi...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[58302374, Missh...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[36330819, Är så...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[75852809, Hur k...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[42304381, Hej a...|
+|19-290|Allmänna rubriker...|http://www.familj...|[[41294375, när p...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[47653437, Har v...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[75266317, Anmäl...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[76559817, Fel a...|
+|19-295|Allmänna rubriker...|http://www.familj...|[[62028128, Vad g...|
++------+--------------------+--------------------+--------------------+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.printSchema()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- thread_id: string (nullable = true)
+ |-- thread_title: string (nullable = true)
+ |-- w: string (nullable = false)
+ |-- forum_id: string (nullable = true)
+ |-- forum_title: string (nullable = true)
+ |-- platform: string (nullable = false)
+ |-- corpus_id: string (nullable = false)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df)
+</code></pre>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

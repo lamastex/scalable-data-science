@@ -1,0 +1,851 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_triads - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-03_group-GuangyiZhang/01_triads.html">01_triads</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="signed-triads-in-social-media"><a class="header" href="#signed-triads-in-social-media">Signed Triads in Social Media</a></h1>
+</div>
+<div class="cell markdown">
+<p>By <strong>Guangyi Zhang</strong> (guaz@kth.se)</p>
+<p>Please click <a href="https://drive.google.com/file/d/1TrxhdSxsU1qKk_SywKf2nUA8mUAO4CG4/view?usp=sharing">HERE</a> to watch the accompanying video.</p>
+</div>
+<div class="cell markdown">
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+</div>
+<div class="cell markdown">
+<p>This project aims to verify the friend-foe motifs in a large-scale signed social network.</p>
+<p>A signed network is a graph that contains both positive and negative links. The sign of a link contains rich semantics in different appliations. For example, in a social network, positive links can indicate friendly relationships, while negative ones indicate antagonistic interactions.</p>
+<p>In on-line discussion sites such as Slashdot, users can tag other users as “friends” and “foes”. These provide us exemplary datasets to study a online signed network. In this notebook we explore the a dataset from Epinions, which contains up to 119,217 nodes, 841,200 edges, and millions of motifs. Epinions is the trust network of the Epinions product review web site, where users can indicate their trust or distrust of the reviews of others. We analyze the network data in an undirected representation.</p>
+<p>References:</p>
+<p>Leskovec, Jure, Daniel Huttenlocher, and Jon Kleinberg. &quot;Signed networks in social media.&quot; Proceedings of the SIGCHI conference on human factors in computing systems. 2010.</p>
+</div>
+<div class="cell markdown">
+<p>Regarding the motifs, we investigate several interesting triads that are related to <em>structural balance theory</em> in an online social signed network. Structural balance originates in social psychology in the mid-20th-century, and considers the possible ways in which triangles on three individuals can be signed.</p>
+<p>Let us explain different types of triads, which is shown in the figure below,</p>
+<ul>
+<li>T3: “the friend of my friend is my friend”</li>
+<li>T1: “the friend of my enemy is my enemy,” “the enemy of my friend is my enemy” and “the enemy of my enemy is my friend”</li>
+<li>T2 and T0: does not quite make sense in social network. For example, two friends of mine are unlikely to be enemy to each other.</li>
+</ul>
+<p>Our goal is to compare the numbers of different triads in our appointed dataset.</p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1QY9ouqxbVqpH3KLl-x-QyR72yxtE0vSX" alt="triads" /></p>
+</div>
+<div class="cell markdown">
+<h2 id="download-dataset"><a class="header" href="#download-dataset">Download dataset</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">pwd
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>/databricks/driver
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">wget http://snap.stanford.edu/data/soc-sign-epinions.txt.gz
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">ls -l
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>total 2924
+drwxr-xr-x  2 root root    4096 Jan  1  1970 conf
+-rw-r--r--  1 root root     733 Nov 24 15:24 derby.log
+drwxr-xr-x 10 root root    4096 Nov 24 15:24 eventlogs
+drwxr-xr-x  2 root root    4096 Nov 24 16:15 ganglia
+drwxr-xr-x  2 root root    4096 Nov 24 16:04 logs
+-rw-r--r--  1 root root 2972840 Dec  3  2009 soc-sign-epinions.txt.gz
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">gunzip soc-sign-epinions.txt.gz
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">ls -l
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>total 11000
+drwxr-xr-x  2 root root     4096 Jan  1  1970 conf
+-rw-r--r--  1 root root      733 Nov 24 15:24 derby.log
+drwxr-xr-x 10 root root     4096 Nov 24 15:24 eventlogs
+drwxr-xr-x  2 root root     4096 Nov 24 16:15 ganglia
+drwxr-xr-x  2 root root     4096 Nov 24 16:04 logs
+-rw-r--r--  1 root root 11243141 Dec  3  2009 soc-sign-epinions.txt
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">head soc-sign-epinions.txt
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code># Directed graph: soc-sign-epinions
+# Epinions signed social network
+# Nodes: 131828 Edges: 841372
+# FromNodeId	ToNodeId	Sign
+0	1	-1
+1	128552	-1
+2	3	1
+4	5	-1
+4	155	-1
+4	558	1
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">mkdir -p epinions
+mv soc-sign-epinions.txt epinions/
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">ls -l /dbfs/FileStore
+mv epinions /dbfs/FileStore/
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>total 33
+drwxrwxrwx 2 root root   24 May  1  2018 datasets_magellan
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 DIGSUM-files
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 import-stage
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 jars
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 plots
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 shared_uploads
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 simon_temp_files_feel_free_to_delete_any_time
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 tables
+drwxrwxrwx 2 root root 4096 Nov 24 11:14 timelinesOfInterest
+mv: preserving permissions for ‘/dbfs/FileStore/epinions/soc-sign-epinions.txt’: Operation not permitted
+mv: preserving permissions for ‘/dbfs/FileStore/epinions’: Operation not permitted
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-fs">ls /
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/FileStore/</td>
+<td>FileStore/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/_checkpoint/</td>
+<td>_checkpoint/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/databricks/</td>
+<td>databricks/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/databricks-datasets/</td>
+<td>databricks-datasets/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/databricks-results/</td>
+<td>databricks-results/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/</td>
+<td>datasets/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/digsum-dataframe.csv/</td>
+<td>digsum-dataframe.csv/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/local_disk0/</td>
+<td>local_disk0/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/ml/</td>
+<td>ml/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/mnt/</td>
+<td>mnt/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/mytmpdir-forUserTimeLine/</td>
+<td>mytmpdir-forUserTimeLine/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/results/</td>
+<td>results/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/test/</td>
+<td>test/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/tmp/</td>
+<td>tmp/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/tmpdir/</td>
+<td>tmpdir/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/user/</td>
+<td>user/</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-fs">ls /FileStore
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/FileStore/DIGSUM-files/</td>
+<td>DIGSUM-files/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/datasets_magellan/</td>
+<td>datasets_magellan/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/epinions/</td>
+<td>epinions/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/import-stage/</td>
+<td>import-stage/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/jars/</td>
+<td>jars/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/plots/</td>
+<td>plots/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/shared_uploads/</td>
+<td>shared_uploads/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/simon_temp_files_feel_free_to_delete_any_time/</td>
+<td>simon_temp_files_feel_free_to_delete_any_time/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/FileStore/tables/</td>
+<td>tables/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/FileStore/timelinesOfInterest/</td>
+<td>timelinesOfInterest/</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-fs">ls file:/databricks/driver
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>file:/databricks/driver/conf/</td>
+<td>conf/</td>
+<td>4096.0</td>
+</tr>
+<tr class="even">
+<td>file:/databricks/driver/logs/</td>
+<td>logs/</td>
+<td>4096.0</td>
+</tr>
+<tr class="odd">
+<td>file:/databricks/driver/derby.log</td>
+<td>derby.log</td>
+<td>733.0</td>
+</tr>
+<tr class="even">
+<td>file:/databricks/driver/ganglia/</td>
+<td>ganglia/</td>
+<td>4096.0</td>
+</tr>
+<tr class="odd">
+<td>file:/databricks/driver/eventlogs/</td>
+<td>eventlogs/</td>
+<td>4096.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//%fs mv file:///databricks/driver/epinions /FileStore/
+%fs ls /FileStore/epinions/
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/FileStore/epinions/soc-sign-epinions.txt</td>
+<td>soc-sign-epinions.txt</td>
+<td>1.1243141e7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="preprocess-dataset"><a class="header" href="#preprocess-dataset">Preprocess dataset</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+
+import org.graphframes._
+
+// This import is needed to use the $-notation
+import spark.implicits._
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import org.graphframes._
+import spark.implicits._
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var df = spark.read.format(&quot;csv&quot;)
+//   .option(&quot;header&quot;, &quot;true&quot;)
+  .option(&quot;inferSchema&quot;, &quot;true&quot;)
+  .option(&quot;comment&quot;, &quot;#&quot;)
+  .option(&quot;sep&quot;, &quot;\t&quot;)
+  .load(&quot;/FileStore/epinions&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df: org.apache.spark.sql.DataFrame = [_c0: int, _c1: int ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.count()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res1: Long = 841372
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.rdd.getNumPartitions 
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res36: Int = 3
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.head(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res37: Array[org.apache.spark.sql.Row] = Array([0,1,-1], [1,128552,-1], [2,3,1])
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">df.printSchema()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- _c0: integer (nullable = true)
+ |-- _c1: integer (nullable = true)
+ |-- _c2: integer (nullable = true)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val newNames = Seq(&quot;src&quot;, &quot;dst&quot;, &quot;rela&quot;)
+val e = df.toDF(newNames: _*)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>newNames: Seq[String] = List(src, dst, rela)
+e: org.apache.spark.sql.DataFrame = [src: int, dst: int ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">e.printSchema()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>root
+ |-- src: integer (nullable = true)
+ |-- dst: integer (nullable = true)
+ |-- rela: integer (nullable = true)
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Vertex DataFrame
+val v = spark.range(1, 131827).toDF(&quot;id&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>v: org.apache.spark.sql.DataFrame = [id: bigint]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val g = GraphFrame(v, e)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>g: org.graphframes.GraphFrame = GraphFrame(v:[id: bigint], e:[src: int, dst: int ... 1 more field])
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">g.edges.take(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>res15: Array[org.apache.spark.sql.Row] = Array([0,1,-1], [1,128552,-1], [2,3,1])
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="count-triads"><a class="header" href="#count-triads">Count triads</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// val results = g.triangleCount.run()
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We can not make use of the convenient API <code>triangleCount()</code> because it does not take the sign of edges into consideration. We need to write our own code to find triads.</p>
+</div>
+<div class="cell markdown">
+<p>First, a triad should be undirected, but our graph concists of only directed edges.</p>
+<p>One strategy is to keep only bi-direction edges of the same sign. But we need to examine how large is the proportion of edges we will lose.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Search for pairs of vertices with edges in both directions between them, i.e., find undirected or bidirected edges.
+val pair = g.find(&quot;(a)-[e1]-&gt;(b); (b)-[e2]-&gt;(a)&quot;)
+println(pair.count())
+val filtered = pair.filter(&quot;e1.rela == e2.rela&quot;)
+println(filtered.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>259751
+254345
+pair: org.apache.spark.sql.DataFrame = [a: struct&lt;id: bigint&gt;, e1: struct&lt;src: int, dst: int ... 1 more field&gt; ... 2 more fields]
+filtered: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [a: struct&lt;id: bigint&gt;, e1: struct&lt;src: int, dst: int ... 1 more field&gt; ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Fortunately, we only lose a very small amount of edges.</p>
+<p>It also makes sense for this dataset, because if A trusts B, then it is quite unlikely that B does not trust A.</p>
+</div>
+<div class="cell markdown">
+<p>In order to count different triads, first we have to find all triads.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val triad = g.find(&quot;(a)-[eab]-&gt;(b); (b)-[eba]-&gt;(a); (b)-[ebc]-&gt;(c); (c)-[ecb]-&gt;(b); (c)-[eca]-&gt;(a); (a)-[eac]-&gt;(c)&quot;)
+println(triad.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>3314925
+triad: org.apache.spark.sql.DataFrame = [a: struct&lt;id: bigint&gt;, eab: struct&lt;src: int, dst: int ... 1 more field&gt; ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>After finding all triads, we find each type by filtering.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val t111 = triad.filter(&quot;eab.rela = 1 AND eab.rela = ebc.rela AND ebc.rela = eca.rela&quot;)
+println(t111.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>3232357
+t111: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [a: struct&lt;id: bigint&gt;, eab: struct&lt;src: int, dst: int ... 1 more field&gt; ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val t000 = triad.filter(&quot;eab.rela = -1 AND eab.rela = ebc.rela AND ebc.rela = eca.rela&quot;)
+println(t000.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>1610
+t000: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [a: struct&lt;id: bigint&gt;, eab: struct&lt;src: int, dst: int ... 1 more field&gt; ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val t110 = triad.filter(&quot;eab.rela + ebc.rela + eca.rela = 1&quot;)
+println(t110.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>62634
+t110: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [a: struct&lt;id: bigint&gt;, eab: struct&lt;src: int, dst: int ... 1 more field&gt; ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val t001 = triad.filter(&quot;eab.rela + ebc.rela + eca.rela = -1&quot;)
+println(t001.count())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>18324
+t001: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [a: struct&lt;id: bigint&gt;, eab: struct&lt;src: int, dst: int ... 1 more field&gt; ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val n111 = t111.count()
+val n001 = t001.count()
+val n000 = t000.count() 
+val n110 = t110.count()
+val imbalanced = n000 + n110
+val balanced = n111 + n001
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>n111: Long = 3232357
+n001: Long = 18324
+n000: Long = 1610
+n110: Long = 62634
+imbalanced: Long = 64244
+balanced: Long = 3250681
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>As we can see, the number of balanced triads overwhelms the number of imbalanced ones, which verifies the effectiveness of structural balance theory.</p>
+</div>
+<div class="cell markdown">
+<h2 id="duplicates"><a class="header" href="#duplicates">Duplicates</a></h2>
+</div>
+<div class="cell markdown">
+<p>Some tests about duplicated motifs</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val g: GraphFrame = examples.Graphs.friends
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>g: org.graphframes.GraphFrame = GraphFrame(v:[id: string, name: string ... 1 more field], e:[src: string, dst: string ... 1 more field])
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(g.edges)
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>src</th>
+<th>dst</th>
+<th>relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>friend</td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>c</td>
+<td>follow</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>b</td>
+<td>follow</td>
+</tr>
+<tr class="even">
+<td>f</td>
+<td>c</td>
+<td>follow</td>
+</tr>
+<tr class="odd">
+<td>e</td>
+<td>f</td>
+<td>follow</td>
+</tr>
+<tr class="even">
+<td>e</td>
+<td>d</td>
+<td>friend</td>
+</tr>
+<tr class="odd">
+<td>d</td>
+<td>a</td>
+<td>friend</td>
+</tr>
+<tr class="even">
+<td>a</td>
+<td>e</td>
+<td>friend</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val motifs = g.find(&quot;(a)-[e]-&gt;(b); (b)-[e2]-&gt;(a)&quot;)
+motifs.show()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+----------------+--------------+----------------+--------------+
+|               a|             e|               b|            e2|
++----------------+--------------+----------------+--------------+
+|    [b, Bob, 36]|[b, c, follow]|[c, Charlie, 30]|[c, b, follow]|
+|[c, Charlie, 30]|[c, b, follow]|    [b, Bob, 36]|[b, c, follow]|
++----------------+--------------+----------------+--------------+
+
+motifs: org.apache.spark.sql.DataFrame = [a: struct&lt;id: string, name: string ... 1 more field&gt;, e: struct&lt;src: string, dst: string ... 1 more field&gt; ... 2 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>As shown above, bi-direction edges are reported twice. Therefore, each triad is counted three times. However, this does not matter in our project, because the ratios between different triads remain the same.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

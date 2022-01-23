@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>03_word2vec - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html">00_download_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html">01_load_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html" class="active">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="classification-using-word2vec"><a class="header" href="#classification-using-word2vec">Classification using Word2Vec</a></h1>
+<h2 id="word-embeddings"><a class="header" href="#word-embeddings">Word embeddings</a></h2>
+<p>Word embeddings map words to vectors of real numbers. Frequency analysis, which we did in a another notebook, is an example of this. There, the 1000 most common words in a collection of text words were mapped to a 1000-dimensional space using one-hot encoding, while the other words were sent to the zero vector. An array of words is mapped to the sum of the one-hot encoded vectors.</p>
+<p>A more sophisticated word embedding is Word2Vec, which uses the skip-gram model and hierarchical softmax. The idea is to map words to the vector so that it predicts the other words around it well. We refer to <a href="https://arxiv.org/abs/1301.3781">Efficient Estimation of Word Representations in Vector Space</a> and <a href="https://arxiv.org/abs/1310.4546">Distributed Representations of Words and Phrases and their Compositionality</a> for details.</p>
+<p>The practical difference is that Word2Vec maps every word to a non-zero vector, and that the output dimension can be chosen freely. Also, the embedding itself has to be trained before use, using some large collection of words. An array of words is mapped to the average of these words.</p>
+<p>This case study uses the sex forums on Flashback and Familjeliv. The aim is to determine which forum a thread comes from by using the resulting word embeddings, using logistic regression.</p>
+</div>
+<div class="cell markdown">
+<h2 id="preamble"><a class="header" href="#preamble">Preamble</a></h2>
+<p>This section loads libraries and imports functions from another notebook.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// import required libraries
+import org.apache.spark.ml.feature.{Word2Vec,Word2VecModel}
+import org.apache.spark.ml.{Pipeline, PipelineModel}
+import org.apache.spark.ml.linalg.{Vector, Vectors}
+import org.apache.spark.sql.Row
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.ml.feature.{Word2Vec, Word2VecModel}
+import org.apache.spark.ml.{Pipeline, PipelineModel}
+import org.apache.spark.ml.linalg.{Vector, Vectors}
+import org.apache.spark.sql.Row
+import org.apache.spark.ml.feature.RegexTokenizer
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">/scalable-data-science/000_0-sds-3-x-projects/student-project-01_group-TheTwoCultures/01_load_data
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell markdown">
+<h2 id="loading-the-data"><a class="header" href="#loading-the-data">Loading the data</a></h2>
+<p>To extract the data from the .xml-file we use get_dataset().</p>
+<p>Scraping the data takes quite some time, so we also supply a second cell that loads saved results.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// process .xml-files
+val file_name = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad.xml&quot;
+val df = get_dataset(file_name)
+val file_name2 = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex.xml&quot;
+val df2 = get_dataset(file_name2)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// paths to saved dataframes
+val file_path_familjeliv = &quot;dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df&quot; 
+val file_path_flashback = &quot;dbfs:/datasets/student-project-01/flashback/flashback-sex_df&quot;
+
+// load saved data frame
+val df_familjeliv = load_df(file_path_familjeliv)
+val df_flashback = load_df(file_path_flashback)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>file_path_familjeliv: String = dbfs:/datasets/student-project-01/familjeliv/familjeliv-sexsamlevnad_df
+file_path_flashback: String = dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+df_familjeliv: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+df_flashback: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 5 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The dataframes consist of 7 fields: * thread<em>id - a unique numerical signifier for each thread * thread</em>title - the title of the thread, set by the person who created it * w - a comma separated string of all posts in a thread * forum<em>id - a numerical forum signifier * forum</em>title - name of the forum to which the thread belongs * platform - the platform from which the thread comes (flashback or familjeliv) * corpus_id - the corpus from which the data was gathered</p>
+<p>Let's have a look at the dataframes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(df_familjeliv)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We add labels and merge the two dataframes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df = df_flashback.withColumn(&quot;c&quot;, lit(0.0)).union(df_familjeliv.withColumn(&quot;c&quot;, lit(1.0)))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="preprocessing-the-data"><a class="header" href="#preprocessing-the-data">Preprocessing the data</a></h2>
+<p>Next, we must split and clean the text. For this we use Regex Tokenizers. We do not eliminate stop words.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// define the tokenizer
+val tokenizer = new RegexTokenizer()
+  .setPattern(&quot;(?U),&quot;) // break by commas
+  .setMinTokenLength(5) // Filter away tokens with length &lt; 5
+  .setInputCol(&quot;w&quot;) // name of the input column
+  .setOutputCol(&quot;text&quot;) // name of the output column
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>tokenizer: org.apache.spark.ml.feature.RegexTokenizer = regexTok_f0701eaf4f60
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let's tokenize and check out the result.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// define the thread title tokenizer
+
+val df_tokenized = tokenizer.transform(df)
+display(df_tokenized.select(&quot;w&quot;,&quot;text&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="define-and-training-a-word2vec-model"><a class="header" href="#define-and-training-a-word2vec-model">Define and training a Word2Vec model</a></h2>
+<p>We use the text from the threads to train the Word2Vec model. First we define the model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// define the model
+val word2Vec = new Word2Vec()
+  .setInputCol(&quot;text&quot;)
+  .setOutputCol(&quot;result&quot;)
+  .setVectorSize(200)
+  .setMinCount(0)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>word2Vec: org.apache.spark.ml.feature.Word2Vec = w2v_945abe6fab57
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>We train the model by fitting it to any dataframe we wish. Here, we use the tokenized one. Training the model takes roughly 2h30m, so we save the result to avoid the hassle of redoing calculations.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// train it
+val word2Vec_model = word2Vec.fit(df_tokenized)
+
+// save it
+word2Vec_model.save(&quot;dbfs:/datasets/student-project-01/word2vec_model_sex&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We can also load a saved model.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// load a saved model
+
+val model = Word2VecModel.load(&quot;dbfs:/datasets/student-project-01/word2vec_model_sex&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>model: org.apache.spark.ml.feature.Word2VecModel = w2v_854b46dceacc
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import org.apache.spark.sql.functions.{col, concat_ws, udf, flatten, explode, collect_list, collect_set, lit}
+import org.apache.spark.sql.types.{ArrayType, StructType, StructField, StringType, IntegerType}
+import com.databricks.spark.xml._
+import org.apache.spark.sql.functions._
+read_xml: (file_name: String)org.apache.spark.sql.DataFrame
+get_dataset: (file_name: String)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>save_df: (df: org.apache.spark.sql.DataFrame, filePath: String)Unit
+load_df: (filePath: String)org.apache.spark.sql.DataFrame
+no_forums: (df: org.apache.spark.sql.DataFrame)Long
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>dbfs:/datasets/student-project-01/flashback/familjeliv-allmanna-ekonomi_df
+familjeliv-allmanna-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/familjeliv-sexsamlevnad_df
+familjeliv-sexsamlevnad_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-ekonomi_df
+flashback-ekonomi_df already exists!
+dbfs:/datasets/student-project-01/flashback/flashback-sex_df
+flashback-sex_df already exists!
+fl_root: String = dbfs:/datasets/student-project-01/familjeliv/
+fb_root: String = dbfs:/datasets/student-project-01/flashback/
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi, familjeliv-sexsamlevnad)
+fb_data: Array[String] = Array(flashback-ekonomi, flashback-sex)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="embedding-using-word2vec"><a class="header" href="#embedding-using-word2vec">Embedding using Word2Vec</a></h2>
+<p>Let's embedd the text and view the results.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// transform the text using the model
+
+val embedded_text = model.transform(df_tokenized)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>embedded_text: org.apache.spark.sql.DataFrame = [thread_id: string, thread_title: string ... 8 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Let's have a look!</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">display(embedded_text.select(&quot;c&quot;,&quot;result&quot;,&quot;text&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="classification-using-word2vec-1"><a class="header" href="#classification-using-word2vec-1">Classification using Word2Vec</a></h2>
+<p>For classification we use logistic regression to compare with results from earlier. First we define the logistic regression model, using the same settings as before.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Logistic regression
+val logreg = new LogisticRegression()
+  .setLabelCol(&quot;c&quot;)
+  .setFeaturesCol(&quot;result&quot;)
+  .setMaxIter(100)
+  .setRegParam(0.0001)
+  .setElasticNetParam(0.5)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>logreg: org.apache.spark.ml.classification.LogisticRegression = logreg_55ef614f783e
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>The easiest way to do the classification is to gather the tokenizer, Word2Vec and logistic regression into a pipeline.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val pipeline = new Pipeline().setStages(Array(tokenizer, word2Vec, logreg))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>pipeline: org.apache.spark.ml.Pipeline = pipeline_2254409a91a2
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Split the data into training and test data</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val random_order = df.orderBy(rand())
+val splits = random_order.randomSplit(Array(0.8, 0.2))
+val training = splits(0)
+val test = splits(1)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>random_order: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+splits: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] = Array([thread_id: string, thread_title: string ... 6 more fields], [thread_id: string, thread_title: string ... 6 more fields])
+training: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+test: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Fit the model to the training data. This will take a while, so we make sure to save the result.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// fit the model to the training data
+val logreg_model = pipeline.fit(training)
+
+// save the model to filesystem
+logreg_model.save(&quot;dbfs:/datasets/student-project-01/word2vec_logreg_model&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// load saved model
+
+val loaded_model = PipelineModel.load(&quot;dbfs:/datasets/student-project-01/word2vec_logreg_model&quot;)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>loaded_model: org.apache.spark.ml.PipelineModel = pipeline_25839437fccb
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val predictions = loaded_model.transform(test).orderBy(rand())
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>predictions: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [thread_id: string, thread_title: string ... 11 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-scala">predictions.select(&quot;c&quot;,&quot;prediction&quot;,&quot;probability&quot;).show(30,false)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+---+----------+------------------------------------------+
+|c  |prediction|probability                               |
++---+----------+------------------------------------------+
+|1.0|1.0       |[0.005855361335036372,0.9941446386649635] |
+|1.0|1.0       |[0.2712120894396273,0.7287879105603726]   |
+|1.0|1.0       |[0.0017886928649958375,0.9982113071350042]|
+|1.0|1.0       |[2.263165652125581E-4,0.9997736834347875] |
+|0.0|1.0       |[0.42059601285820825,0.5794039871417918]  |
+|1.0|1.0       |[6.566687042616189E-4,0.9993433312957383] |
+|0.0|0.0       |[0.7054463412596114,0.29455365874038864]  |
+|1.0|1.0       |[0.03103196407369915,0.9689680359263009]  |
+|0.0|0.0       |[0.9294663779954874,0.07053362200451263]  |
+|1.0|1.0       |[0.13974006800394764,0.8602599319960523]  |
+|1.0|1.0       |[0.08228914085494436,0.9177108591450557]  |
+|0.0|0.0       |[0.9788989176701534,0.021101082329846567] |
+|0.0|0.0       |[0.9975070728891363,0.0024929271108637065]|
+|1.0|1.0       |[0.0010781075297480556,0.998921892470252] |
+|0.0|0.0       |[0.9253825302681451,0.07461746973185476]  |
+|1.0|1.0       |[0.01751495449884683,0.9824850455011531]  |
+|1.0|0.0       |[0.9864736560167631,0.013526343983237045] |
+|1.0|1.0       |[0.002472519507918196,0.9975274804920817] |
+|0.0|0.0       |[0.6174112612306129,0.3825887387693872]   |
+|0.0|0.0       |[0.7130899106721519,0.2869100893278482]   |
+|0.0|0.0       |[0.9263664682801233,0.07363353171987672]  |
+|0.0|0.0       |[0.9561455191484204,0.04385448085157954]  |
+|0.0|0.0       |[0.5835745861693306,0.41642541383066944]  |
+|1.0|1.0       |[0.4296249407516458,0.5703750592483542]   |
+|1.0|1.0       |[0.0032969395487662213,0.9967030604512337]|
+|1.0|1.0       |[0.008645133666934816,0.9913548663330651] |
+|1.0|1.0       |[4.1492836709996625E-5,0.9999585071632902]|
+|0.0|1.0       |[0.43037903982909986,0.5696209601709002]  |
+|0.0|1.0       |[0.43707897641990706,0.562921023580093]   |
+|1.0|1.0       |[0.29846393214228517,0.7015360678577148]  |
++---+----------+------------------------------------------+
+only showing top 30 rows
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val evaluator = new BinaryClassificationEvaluator().setLabelCol(&quot;c&quot;)
+evaluator.evaluate(predictions)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>evaluator: org.apache.spark.ml.evaluation.BinaryClassificationEvaluator = binEval_0d518432d17a
+res13: Double = 0.9499399325125091
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>An AUCROC of 0.95 is good, but not notably better than the other, conceptually simpler model. More is not always better!</p>
+<p>Previously, we classified entire threads. Let's see if it works as well on thread titles.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val df_threads = df.select(&quot;c&quot;,&quot;thread_title&quot;).withColumnRenamed(&quot;thread_title&quot;,&quot;w&quot;)
+val evaluation = loaded_model.transform(df_threads).orderBy(rand())
+evaluator.evaluate(evaluation)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>df_threads: org.apache.spark.sql.DataFrame = [c: double, w: string]
+evaluation: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [c: double, w: string ... 5 more fields]
+res14: Double = 0.5261045467524708
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>This did not work at all. It is essentially equivalent to guessing randomly. Thread titles contain only a few words, so this is not surprising.</p>
+<p>Note: the same model was used as for both classifying tasks. Since thread titles were not part of the threads, the entire dataset could conceivably be used for training. Whether or not this would improve results is unclear.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

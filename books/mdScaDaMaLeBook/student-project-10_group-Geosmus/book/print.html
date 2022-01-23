@@ -1,0 +1,2586 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sds-3.x/ScaDaMaLe</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/01_Introduction.html">01_Introduction</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/02_ClusteringEmoticonsBasedOnTweets.html">02_ClusteringEmoticonsBasedOnTweets</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.html">03_Dynamic_Tweet_Maps</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/04_conclusion.html">04_conclusion</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.html">05_appendix_get-cc-data</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.html">06_appendix_tweet_carto_functions</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.html">07_a_appendix_extendedTwitterUtils2run</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-10_group-Geosmus/07_b_appendix_TTTDFfunctions.html">07_b_appendix_TTTDFfunctions</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="twitter-streaming-using-geolocation-and-emoji-based-sentiment-analysis"><a class="header" href="#twitter-streaming-using-geolocation-and-emoji-based-sentiment-analysis">Twitter Streaming Using Geolocation and Emoji Based Sentiment Analysis</a></h1>
+<h3 id="georg-bökman--rasmus-kjær-høier"><a class="header" href="#georg-bökman--rasmus-kjær-høier">Georg Bökman &amp; Rasmus Kjær Høier</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HMNcVTqmEMM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+<div class="cell markdown">
+<p>In this project we have used Spark Streaming and the twitter4j library to perform filtered streaming of tweets. As we were interested in combining location and sentiment information, we filtered for location tagged tweets. This was necessary as only around 1% of tweets coming straight from the twitter hose has information on the country of origin.</p>
+<p>In particular we hoped to explore the following ideas/questions: * Sentiment analysis of text can be difficult across different languages. However, the same emojis are used on twitter all over the world (although some emojis are more popular in some regions). Could this be used to compare sentiment across borders? * From the filtered stream we get tweets containing information on country of origin and timestamps. What insight can we get by visualizing tweets as a function of time and space?</p>
+<p>We saw this project as an opportunity to learn more about twitter and streaming in general as none of us had any prior experience with this.</p>
+</div>
+<div class="cell markdown">
+<h2 id="contents"><a class="header" href="#contents">Contents</a></h2>
+<p>Our project consists of 8 notebooks. We recommend you read through the first four, and if you are curious about some of the functions we use or how the data was collected, then have a look in the appendix notebooks as well. The appendices are not quite as tidy as the first four notebooks.</p>
+<ul>
+<li>01 Introduction</li>
+<li>02 Clustering emoticons based on tweets</li>
+<li>03 Dynamic Tweet Maps</li>
+<li>04 Conclusion</li>
+<li>05 Appendix get cc data</li>
+<li>06 Appendix Tweet carto functions</li>
+<li>07a Appendix ExtendedTwitterUtils2run</li>
+<li>07b Appendix TTTDFfunctions</li>
+</ul>
+</div>
+<div class="cell markdown">
+<h2 id="notes-on-data-collection"><a class="header" href="#notes-on-data-collection">Notes on data collection</a></h2>
+<p>Tweets were collected using functions from the course notebooks <code>07_a_appendix_extendedTwitterUtils</code> and <code>07_b_appendix_TTTDFfunctions</code> (originally numbered 025). Some minor changes were made in order to perform filtered streaming only of countries with a known country of origin.</p>
+<p>In notebook <code>05_appendix_get-cc-data</code> we run the function <code>streamFuncWithProcessing()</code>. This function creates a new twitter stream by calling the createStream methods from the <code>ExtendedTwitterUtils</code> object in notebook 07_a. One of the arguments to this method is a filterquery, which has been set to require that the tweet must have registered coordinates. Longitudes range from -180 to 180 degrees and latitudes range from -90 to 90 degrees, covering the entire globe.</p>
+<pre><code>// Create filter
+
+val locationsQuery = new FilterQuery().locations(Array(-180.0, -90.0), Array(180.0, 90.0)) // all locations
+
+// Create a Twitter Stream for the input source.
+
+val twitterStream = ExtendedTwitterUtils.createStream(ssc, auth, Some(locationsQuery))
+</code></pre>
+<p>We used the databricks jobs feature to automatically run the data acquisition for 3 minutes every hour from December 22nd 2020 until January 2nd 2021. We also acquired data continuously on the 22nd. In total this yielded around 2 million tweets.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="clustering-emoticons-based-on-tweets"><a class="header" href="#clustering-emoticons-based-on-tweets">Clustering emoticons based on tweets</a></h1>
+<p>In this notebook we will look at the symbols in the Unicode block <em>Emoticons</em>, which contains 80 commonly used emojis. The goal is to find out which emoticons are related to each other and hopefully finding clusters that correspond vaguely to some sentiment of an emoticon. We will do this in a fairly naïve way since our focus was on learning streaming, spark and scala. First let's have a look at the emojis in question, they are presented in the table from Wikipedia below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe 
+ src="https://en.wikipedia.org/wiki/Emoticons_(Unicode_block)#Descriptions"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
+</div>
+</div>
+<div class="cell markdown">
+<p>In the following two cells we create a list of these emoticons and load the previously collected dataset of tweets.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonsList = List(
+  &quot;😀&quot;, &quot;😁&quot;, &quot;😂&quot;,	&quot;😃&quot;, &quot;😄&quot;,	&quot;😅&quot;, &quot;😆&quot;,	&quot;😇&quot;, &quot;😈&quot;,	&quot;😉&quot;, &quot;😊&quot;,	&quot;😋&quot;, &quot;😌&quot;, &quot;😍&quot;, &quot;😎&quot;, &quot;😏&quot;,
+  &quot;😐&quot;,	&quot;😑&quot;, &quot;😒&quot;,	&quot;😓&quot;, &quot;😔&quot;, &quot;😕&quot;, &quot;😖&quot;, &quot;😗&quot;, &quot;😘&quot;, &quot;😙&quot;, &quot;😚&quot;, &quot;😛&quot;, &quot;😜&quot;, &quot;😝&quot;, &quot;😞&quot;, &quot;😟&quot;,
+  &quot;😠&quot;,	&quot;😡&quot;, &quot;😢&quot;, &quot;😣&quot;, &quot;😤&quot;, &quot;😥&quot;, &quot;😦&quot;, &quot;😧&quot;, &quot;😨&quot;, &quot;😩&quot;, &quot;😪&quot;, &quot;😫&quot;, &quot;😬&quot;, &quot;😭&quot;, &quot;😮&quot;, &quot;😯&quot;,
+  &quot;😰&quot;,	&quot;😱&quot;, &quot;😲&quot;, &quot;😳&quot;, &quot;😴&quot;, &quot;😵&quot;, &quot;😶&quot;, &quot;😷&quot;, &quot;😸&quot;, &quot;😹&quot;, &quot;😺&quot;, &quot;😻&quot;, &quot;😼&quot;, &quot;😽&quot;, &quot;😾&quot;, &quot;😿&quot;,
+  &quot;🙀&quot;,	&quot;🙁&quot;, &quot;🙂&quot;, &quot;🙃&quot;, &quot;🙄&quot;, &quot;🙅&quot;, &quot;🙆&quot;, &quot;🙇&quot;, &quot;🙈&quot;, &quot;🙉&quot;, &quot;🙊&quot;, &quot;🙋&quot;, &quot;🙌&quot;, &quot;🙍&quot;, &quot;🙎&quot;, &quot;🙏&quot;
+)
+
+val emoticonsMap = emoticonsList.zipWithIndex.toMap
+val nbrEmoticons = emoticonsList.length
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val fullDF = sqlContext.read.parquet(&quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/{2020,2021,continuous_22_12}/*/*/*/*/*&quot;)
+println(fullDF.count)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>2013137
+fullDF: org.apache.spark.sql.DataFrame = [CurrentTweetDate: timestamp, CurrentTwID: bigint ... 7 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="how-to-cluster-emoticons"><a class="header" href="#how-to-cluster-emoticons">How to cluster emoticons</a></h3>
+<p>We could just look at the descriptions and appearances of the various emoticons and cluster them into broad categories based on that. However, instead we will try to use our collected tweet dataset to create a clustering. Then we will use the intuition based on the descriptions and appearances to judge how successful this approach was.</p>
+<p>We will use the Jaccard distance between emoticons to try to cluster them. The Jaccard distance between emoticons \(e_1\) and \(e_2\) is given by</p>
+<p>\[
+d(e_1, e_2) = 1 - \frac{\# (e_1\wedge e_2)}{\# (e_1) + \# (e_2) - \# (e_1\wedge e_2)},
+\]</p>
+<p>where \(\#(e)\) is the number of tweets collected containing the emoticon \(e\), and \(\# (e_1\wedge e_2)\) is the number of tweets collected containing both \(e_1\) and \(e_2\).</p>
+</div>
+<div class="cell markdown">
+<p>In order to find the Jaccard distances between emoticons, we must create a matrix containing for each pair of emoticons how often they appear together in the dataset of tweets and also in how many tweets each emoticon appears individually. First we define a function to create such a matrix for an individual tweet. Then we will sum these matrices for all the tweets. The matrices will be represented by a 1D array following a certain indexing scheme and containing the entries of the upper triangular part of the matrix (there would be redundancy in finding the whole matrix since it will be symmetric).</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def emoticonPairToIndex (a : Int, b : Int) : Int = { // helper function for indexing
+  val i = if (a &lt; b) a else b // makes sure j &gt;= i
+  val j = if (a &lt; b) b else a
+  return i*nbrEmoticons - (i * (i+1))/2 + j 
+}
+
+def createEmoticonIterator (s : String) : scala.util.matching.Regex.MatchIterator = { // helper function for iterating through the emoticons in a string s
+  return s&quot;&quot;&quot;[${emoticonsList.mkString}]&quot;&quot;&quot;.r.findAllIn(s)
+}
+
+def createEmoticonMatrix (s : String) : Array[Int] = { // The pair (i, j) will be at location i*(nbrEmoticons - (i+1)/2) + j in this array (this is compatible with later scipy functions)
+  var m = Array.fill((nbrEmoticons*nbrEmoticons + nbrEmoticons)/2)(0) // there are 80 emoticons and thus 80^2 / 2 + 80 / 2 emoticon pairs including pairs of the same emoticon
+  val emoticonIterator = createEmoticonIterator(s)
+  // sets m to 1 for each index corresponding to a pair of emoticons present in the string s (very hacky code...)
+  emoticonIterator.zipWithIndex.foreach(em_pair =&gt; // iterate over emoticons in s
+                                        (createEmoticonIterator(s).drop(em_pair._2)).foreach( // iterate over remaining emoticons in s
+                                          second_em =&gt; 
+                                            (m(emoticonPairToIndex(
+                                                emoticonsMap(em_pair._1),
+                                                emoticonsMap(second_em))
+                                              )
+                                            = 1) // set m to 1 for each emoticon pair found in s
+                                         )
+                                       )
+  return m
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>emoticonPairToIndex: (a: Int, b: Int)Int
+createEmoticonIterator: (s: String)util.matching.Regex.MatchIterator
+createEmoticonMatrix: (s: String)Array[Int]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>In the cell below we sum all the &quot;occurence-matrices&quot; and print the diagonal of the summed matrix, i.e. the number of tweets containing each individual emoticon. It is clear that some emoticons are used far more often than others.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonsMatrix = fullDF.select(&quot;CurrentTweet&quot;)
+                            .filter($&quot;CurrentTweet&quot;.rlike(emoticonsList.mkString(&quot;|&quot;))) // filters tweets with emoticons
+                            .map(row =&gt; createEmoticonMatrix(row.mkString)) // creates an &quot;adjacency matrix&quot; for each tweet
+                            .reduce((_, _).zipped.map(_ + _)) // sums the matrices elementwise
+
+emoticonsList.zipWithIndex.foreach({case (e, i) =&gt; println(e + &quot;, &quot; + Integer.toString(emoticonsMatrix(emoticonPairToIndex(i, i))) + &quot; occurences&quot;)})
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>In the following two cells we create the Jaccard distance matrix which we want to use to cluster the emoticons.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def jaccardDistance (e1 : Int, e2 : Int) : Double = { // specify the emojis in terms of their indices in the list
+  return 1.0 - 1.0 * emoticonsMatrix(emoticonPairToIndex(e1, e2)) / 
+    (emoticonsMatrix(emoticonPairToIndex(e1, e1)) +  emoticonsMatrix(emoticonPairToIndex(e2, e2)) - emoticonsMatrix(emoticonPairToIndex(e1, e2)))
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>jaccardDistance: (e1: Int, e2: Int)Double
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var jaccardMatrix = Array.fill(emoticonsMatrix.length)(1.0)
+(0 until nbrEmoticons).foreach(i =&gt; (i until nbrEmoticons).foreach(j =&gt; (jaccardMatrix(emoticonPairToIndex(i, j)) = jaccardDistance(i, j))))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally we write the Jaccard distance matrix and the emoticon list to file so that we don't have to keep rerunning the above cells and so that we can load them into python cells next.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//scala.tools.nsc.io.File(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonsList.txt&quot;).writeAll(emoticonsList.mkString(&quot;\n&quot;))
+//scala.tools.nsc.io.File(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/jMatrix.txt&quot;).writeAll(jaccardMatrix.mkString(&quot;\n&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="clustering-using-python"><a class="header" href="#clustering-using-python">Clustering using python</a></h2>
+<p>We now switch to python cells in order to use various clustering methods implemented in SciPy and scikit-learn. First we install and import some packages for later use, then we load the previously saved Jaccard matrix and emoticons list.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">%pip install pycountry
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Python interpreter will be restarted.
+Collecting pycountry
+  Downloading pycountry-20.7.3.tar.gz (10.1 MB)
+Building wheels for collected packages: pycountry
+  Building wheel for pycountry (setup.py): started
+  Building wheel for pycountry (setup.py): finished with status 'done'
+  Created wheel for pycountry: filename=pycountry-20.7.3-py2.py3-none-any.whl size=10746863 sha256=870cc02de7d6d11499effd59f2b73acdbffc04146079c4a4f9a841ca30f2b587
+  Stored in directory: /root/.cache/pip/wheels/57/e8/3f/120ccc1ff7541c108bc5d656e2a14c39da0d824653b62284c6
+Successfully built pycountry
+Installing collected packages: pycountry
+Successfully installed pycountry-20.7.3
+Python interpreter will be restarted.
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import json
+import os
+from matplotlib import font_manager as fm, pyplot as plt, rcParams
+import numpy as np
+import pandas as pd
+import pycountry
+from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.manifold import locally_linear_embedding, TSNE
+from sklearn.neighbors import NearestNeighbors
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">jMatrix = np.loadtxt(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/jMatrix.txt&quot;)
+
+emoticonsList = []
+
+with open(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonsList.txt&quot;, 'r') as filehandle:
+    for line in filehandle:
+        e = line.strip() #remove line break
+        emoticonsList.append(e)
+
+nbrEmoticons = len(emoticonsList)
+print(emoticonsList)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😇', '😈', '😉', '😊', '😋', '😌', '😍', '😎', '😏', '😐', '😑', '😒', '😓', '😔', '😕', '😖', '😗', '😘', '😙', '😚', '😛', '😜', '😝', '😞', '😟', '😠', '😡', '😢', '😣', '😤', '😥', '😦', '😧', '😨', '😩', '😪', '😫', '😬', '😭', '😮', '😯', '😰', '😱', '😲', '😳', '😴', '😵', '😶', '😷', '😸', '😹', '😺', '😻', '😼', '😽', '😾', '😿', '🙀', '🙁', '🙂', '🙃', '🙄', '🙅', '🙆', '🙇', '🙈', '🙉', '🙊', '🙋', '🙌', '🙍', '🙎', '🙏']
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Some of the SciPy clustering implementations require a full distance matrix, rather than the condensed representation consisting of only the upper triangular part which we have been using thus far. So we create a full matrix in the cell below. In the cell after that we define a helper function for plotting 2D embeddings of emoticons, note that this function loads the unifont-upper font for emoticon rendering, which can be downloaded from <code>http://unifoundry.com/unifont/index.html</code>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def emoticonPairToIndex(a, b): # same helper function as already defined in scala previously
+  i = min(a, b) # makes sure j &gt;= i
+  j = max(a, b)
+  return i * nbrEmoticons - (i * (i+1))//2 + j 
+
+fullDistanceMatrix = np.zeros([nbrEmoticons, nbrEmoticons])
+for r in range(nbrEmoticons):
+  for c in range(nbrEmoticons):
+    fullDistanceMatrix[r, c] = jMatrix[emoticonPairToIndex(r, c)]
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def scatterEmojis(emoticonsEmbedded):
+  # This function plots a scatter plot of emoticons.
+  # emoticonsEmbedded should be an 80x2 array 
+  # containing 2D coordinates for each of the
+  # 80 emoticons in the unicode emoticon block (in the correct order).
+  
+  # standardize the embedding for nicer plotting:
+  emoticonsEmbedded = emoticonsEmbedded - np.mean(emoticonsEmbedded)
+  emoticonsEmbedded = emoticonsEmbedded/np.std(emoticonsEmbedded) 
+
+  # for proper emoji rendering change the font
+  fpath = os.path.join(rcParams[&quot;datapath&quot;], &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/unifont_upper-13.0.05.ttf&quot;)
+  prop = fm.FontProperties(fname=fpath, size=50)
+
+  fig = plt.figure(figsize=(14, 14))
+  for i, label in enumerate(emoticonsList):
+      plt.text(emoticonsEmbedded[i, 0], emoticonsEmbedded[i, 1], label, fontproperties=prop)
+  plt.setp(plt.gca(), frame_on=False, xticks=(), yticks=())
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="locally-linear-embedding"><a class="header" href="#locally-linear-embedding">Locally linear embedding</a></h3>
+<p>First off we will look at embedding the emoticons into 2D in ways that respect the Jaccard distances at least to a degree.</p>
+<p>Locally linear embedding (LLE) is one such method, which is focused on good presentation of local neighborhoods. You can read more about it in the scikit-learn documentation embedded below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe 
+ src="https://scikit-learn.org/stable/modules/manifold.html#locally-linear-embedding"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">nbrNeighbors = 8
+emoticonsNeighbors = NearestNeighbors(n_neighbors=nbrNeighbors, metric=&quot;precomputed&quot;).fit(fullDistanceMatrix)
+emoticonsEmbedded, err = locally_linear_embedding(emoticonsNeighbors, n_neighbors=nbrNeighbors, n_components=2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>As we can see in the scatter plot below, LLE succeeds in separating the emoticons broadly into happy (down to the left), sad (up) and animal (down to the right) categories. Also some local clusters can be spotted, such as the three emoticons sticking out their tongues, close to the lower left corner.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">scatterEmojis(emoticonsEmbedded)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="t-distributed-stochastic-neighbor-embedding-t-sne"><a class="header" href="#t-distributed-stochastic-neighbor-embedding-t-sne">t-distributed Stochastic Neighbor Embedding (t-SNE)</a></h3>
+<p>Another approach for embedding the distances into 2D is t-SNE. You can read more about this method in the sk-learn documentation below.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<div class="output execute_result html_result" execution_count="1">
+<iframe 
+ src="https://scikit-learn.org/stable/modules/manifold.html#t-sne"
+ width="95%" height="350"
+ sandbox>
+  <p>
+    <a href="http://spark.apache.org/docs/latest/index.html">
+      Fallback link for browsers that, unlikely, don't support frames
+    </a>
+  </p>
+</iframe>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">emoticonsEmbedded = TSNE(n_components=2, perplexity=20.0, early_exaggeration=12.0, learning_rate=2.0, n_iter=10000,
+                         metric='precomputed', angle=0.01).fit_transform(fullDistanceMatrix)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>t-SNE also does a good job at showing a separation between happy and sad emojis but the result is not as convincing as the LLE case. One could spend more time on optimizing the hyperparameters and probably find a better embedding here.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">scatterEmojis(emoticonsEmbedded)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_2.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="hierarchical-clustering"><a class="header" href="#hierarchical-clustering">Hierarchical clustering</a></h3>
+<p>Instead of trying to embed the distances into 2D, we can also create a nice graphical representation in the form of a dendrogram or hierarchical clustering. For this we need to process the distance matrix somewhat again in the following cell.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># remove diagonal from jMatrix, as this is expected by the scipy linkage function:
+diagonalIndices = [emoticonPairToIndex(i, i) for i in range(nbrEmoticons)]
+jMatrixUpper = jMatrix[[i for i in range((nbrEmoticons**2 + nbrEmoticons)//2) if not i in diagonalIndices]]
+assert len(jMatrixUpper) == len(jMatrix) - nbrEmoticons, &quot;the upper matrix should have exactly 80 elements fewer than the upper+diagonal&quot;
+
+# creating a linkage matrix
+Z = linkage(jMatrixUpper, 'complete', optimal_ordering=True)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Hierarchical clustering works by starting of with clusters of size one which are just the emoticons and then iteratively joining those clusters which are closest together. The distance between clusters can be defined in various ways, here we somewhat arbitrarily choose so called &quot;complete linkage&quot; which means that the distance between clusters \(a\) and \(b\) is given by the maximum Jaccard distance between some emoticon in \(a\) and some emoticon in \(b\).</p>
+<p>We can use dendrograms to neatly represent hirearchical clusterings graphically. The closer two emoticons (or rather emoticon clusters) are to each other, the further down in the dendrogram their branches merge.</p>
+<p>The interested WASP PhD student could consider taking the WASP Topological Data Analysis course to learn more about hierarchical clustering.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># plotting a dendrogram
+fig = plt.figure(figsize=(40, 8))
+dn = dendrogram(Z, labels=emoticonsList, leaf_rotation=0, color_threshold=1.)
+ax = plt.gca()
+
+# for proper emoji rendering change the font
+fpath = os.path.join(rcParams[&quot;datapath&quot;], &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/unifont_upper-13.0.05.ttf&quot;)
+prop = fm.FontProperties(fname=fpath, size=28)
+x_labels = ax.get_xmajorticklabels()
+for x in x_labels:
+    x.set_fontproperties(prop)
+
+ax.set_ylim([.85, 1.01])
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>We identify six main clusters in the dendrogram above. From left to right:</p>
+<ul>
+<li>The green &quot;prayer&quot; cluster (🙌🙏😊🙇🙋😷) which also contains the mask emoji and a common smile emoji,</li>
+<li>the teal &quot;happy&quot; cluster (😝😛😜😎😉😏😈😌😋😍😘😇😀😃😄😁😆😅🙂🙃),</li>
+<li>the magenta &quot;cat&quot; cluster (😹😸😽😺😻😿😾🙀😼),</li>
+<li>the yellow &quot;shocked and kisses&quot; or &quot;SK&quot; cluster (😶😬😲😮😯😗😙😚),</li>
+<li>a combined &quot;not happy&quot; cluster consisting of the next black, green, red, teal and magenta clusters (😵😧😦😨😰😱😳😂😭😩😔😢😞😥😓😪😴😫😖😣😟🙁😕😐😑😒🙄😤😡😠),</li>
+<li>finally the yellow &quot;monkey&quot; cluster (🙈🙊🙉).</li>
+</ul>
+<p>We proceed with these clusters as they appeal sufficiently to our intuition to seem worthwhile. The observant reader will however have noted some curiosities such as the fact that the &quot;not happy&quot; cluster contains the crying laughing emoji 😂 which is the most popular emoticon in our tweet dataset and which might be used in both happy and not so happy contexts.</p>
+<p>Next, we finish the clustering part of this notebook by saving the clusters to file.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">monkeyEmoticons = dn[&quot;leaves&quot;][76:79]
+prayerEmoticons = dn[&quot;leaves&quot;][0:6]
+shockedAndKissesEmoticons = dn[&quot;leaves&quot;][38:46]
+happyEmoticons = dn[&quot;leaves&quot;][9:29]
+notHappyEmoticons = dn[&quot;leaves&quot;][46:76]
+catEmoticons = dn[&quot;leaves&quot;][29:38]
+emoticonsDict = {&quot;monkey&quot; : monkeyEmoticons,
+                 &quot;prayer&quot; : prayerEmoticons,
+                 &quot;SK&quot; : shockedAndKissesEmoticons,
+                &quot;happy&quot; : happyEmoticons,
+                &quot;notHappy&quot; : notHappyEmoticons,
+                &quot;cat&quot; : catEmoticons}
+print(emoticonsDict)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>{'monkey': [72, 74, 73], 'prayer': [76, 79, 10, 71, 75, 55], 'SK': [54, 44, 50, 46, 47, 23, 25, 26], 'happy': [29, 27, 28, 14, 9, 15, 8, 12, 11, 13, 24, 7, 0, 3, 4, 1, 6, 5, 66, 67], 'notHappy': [53, 39, 38, 40, 48, 49, 51, 2, 45, 41, 20, 34, 30, 37, 19, 42, 52, 43, 22, 35, 31, 65, 21, 16, 17, 18, 68, 36, 33, 32], 'cat': [57, 56, 61, 58, 59, 63, 62, 64, 60]}
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#with open('/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonClusters.json', 'w+') as f:
+#    json.dump(emoticonsDict, f)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="filtering-the-tweets-by-cluster"><a class="header" href="#filtering-the-tweets-by-cluster">Filtering the tweets by cluster</a></h2>
+<p>We return to scala cells to filter the original dataset by what emoticons are present in each tweet. First we load the clusters from the just created json-file.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.json4s.jackson.JsonMethods.parse
+val jsonString = scala.io.Source.fromFile(&quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/emoticonClusters.json&quot;).mkString 
+val emoticonClusters = parse(jsonString).values.asInstanceOf[Map[String, List[BigInt]]]
+emoticonClusters.foreach({case (key, list) =&gt; println(key + &quot;: &quot; + list.map(i =&gt; emoticonsList(i.toInt)).mkString)})
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>prayer: 🙌🙏😊🙇🙋😷
+monkey: 🙈🙊🙉
+happy: 😝😛😜😎😉😏😈😌😋😍😘😇😀😃😄😁😆😅🙂🙃
+SK: 😶😬😲😮😯😗😙😚
+cat: 😹😸😽😺😻😿😾🙀😼
+notHappy: 😵😧😦😨😰😱😳😂😭😩😔😢😞😥😓😪😴😫😖😣😟🙁😕😐😑😒🙄😤😡😠
+import org.json4s.jackson.JsonMethods.parse
+jsonString: String = {&quot;monkey&quot;: [72, 74, 73], &quot;prayer&quot;: [76, 79, 10, 71, 75, 55], &quot;SK&quot;: [54, 44, 50, 46, 47, 23, 25, 26], &quot;happy&quot;: [29, 27, 28, 14, 9, 15, 8, 12, 11, 13, 24, 7, 0, 3, 4, 1, 6, 5, 66, 67], &quot;notHappy&quot;: [53, 39, 38, 40, 48, 49, 51, 2, 45, 41, 20, 34, 30, 37, 19, 42, 52, 43, 22, 35, 31, 65, 21, 16, 17, 18, 68, 36, 33, 32], &quot;cat&quot;: [57, 56, 61, 58, 59, 63, 62, 64, 60]}
+emoticonClusters: Map[String,List[BigInt]] = Map(prayer -&gt; List(76, 79, 10, 71, 75, 55), monkey -&gt; List(72, 74, 73), happy -&gt; List(29, 27, 28, 14, 9, 15, 8, 12, 11, 13, 24, 7, 0, 3, 4, 1, 6, 5, 66, 67), SK -&gt; List(54, 44, 50, 46, 47, 23, 25, 26), cat -&gt; List(57, 56, 61, 58, 59, 63, 62, 64, 60), notHappy -&gt; List(53, 39, 38, 40, 48, 49, 51, 2, 45, 41, 20, 34, 30, 37, 19, 42, 52, 43, 22, 35, 31, 65, 21, 16, 17, 18, 68, 36, 33, 32))
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Next, we create a dataframe <code>emoticonDF</code> with a row for each tweet containing at least one emoticon. We add a column for each cluster indicating if the cluster is represented by some emoticon in the tweet. This dataframe is saved to file to be used in the next notebook 03 which focuses more on data visualization. Here we will finish this notebook by using the databricks <code>display</code> function to plot geopraphic information.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonDF = fullDF.filter($&quot;CurrentTweet&quot;.rlike(emoticonsList.mkString(&quot;|&quot;))) // filter tweets with emoticons
+                       .select(($&quot;countryCode&quot; :: // select the countryCode column
+                                $&quot;CurrentTweetDate&quot; :: // and the timestamp
+                                (for {(name, cluster) &lt;- emoticonClusters.toList} yield  // also create a new column for each emoticon cluster indicating if the tweet contains an emoticon of that cluster
+                                 $&quot;CurrentTweet&quot;.rlike(cluster.map(i =&gt; emoticonsList(i.toInt)).mkString(&quot;|&quot;))
+                                                .alias(name))) // rename new column
+                                                : _*) // expand list
+      
+emoticonDF.show(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-----------+-------------------+------+------+-----+-----+-----+--------+
+|countryCode|   CurrentTweetDate|prayer|monkey|happy|   SK|  cat|notHappy|
++-----------+-------------------+------+------+-----+-----+-----+--------+
+|         EG|2020-12-31 15:59:54| false| false|false|false|false|    true|
+|         SA|2020-12-31 15:59:54|  true| false|false|false|false|   false|
+|         DO|2020-12-31 15:59:54| false| false| true|false|false|   false|
++-----------+-------------------+------+------+-----+-----+-----+--------+
+only showing top 3 rows
+
+emoticonDF: org.apache.spark.sql.DataFrame = [countryCode: string, CurrentTweetDate: timestamp ... 6 more fields]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// save to file
+// emoticonDF.write.format(&quot;parquet&quot;).mode(&quot;overwrite&quot;).save(&quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/processedEmoticonClusterParquets/emoticonCluster.parquet&quot;)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The goal for the last part of this notebook will be to display for each country what proportion of its total tweets correspond to a certain cluster. First we create a dataframe <code>emoticonCCDF</code> which contains the total number of tweets with some emoticon for each country. Using that dataframe we create dataframes containing the described proportions for each cluster and transfer these dataframes from scala to python by using the <code>createOrReplaceTmpView</code> function.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val emoticonCCDF = emoticonDF.groupBy($&quot;countryCode&quot;)
+                             .count
+emoticonCCDF.show(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-----------+-----+
+|countryCode|count|
++-----------+-----+
+|         DZ|  157|
+|         MM|   44|
+|         TC|    5|
++-----------+-----+
+only showing top 3 rows
+
+emoticonCCDF: org.apache.spark.sql.DataFrame = [countryCode: string, count: bigint]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def createPropClusterDF (cluster : org.apache.spark.sql.Column) : org.apache.spark.sql.DataFrame = {  
+  // This function filters the emoticonDF by a cluster-column and then
+  // creates a dataframe with a row per country and columns for the countryCode and proportion
+  // of tweets from that country that fall into the cluster as well as the count of tweets
+  // falling into the cluster.
+  val nbrClusterTweets = emoticonDF.filter(cluster).count
+  val clusterDF = emoticonDF.filter(cluster)
+                            .groupBy($&quot;countryCode&quot;)
+                            .count
+  val propDF = emoticonCCDF.alias(&quot;total&quot;)
+                           .join(clusterDF.alias(&quot;cluster&quot;), &quot;countryCode&quot;)
+                           .select($&quot;countryCode&quot;, $&quot;cluster.count&quot;.alias(&quot;count&quot;), ($&quot;cluster.count&quot; / $&quot;total.count&quot;).alias(&quot;proportion&quot;))
+  return propDF
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>createPropClusterDF: (cluster: org.apache.spark.sql.Column)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Below we see an example of the dataframes generated by <code>createPropClusterDF</code>.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">val clusterColumn = $&quot;notHappy&quot;
+val propClusterDF = createPropClusterDF(clusterColumn)
+propClusterDF.show(3)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>+-----------+-----+------------------+
+|countryCode|count|        proportion|
++-----------+-----+------------------+
+|         DZ|   80|0.5095541401273885|
+|         MM|   14|0.3181818181818182|
+|         CI|  164|0.6507936507936508|
++-----------+-----+------------------+
+only showing top 3 rows
+
+clusterColumn: org.apache.spark.sql.ColumnName = notHappy
+propClusterDF: org.apache.spark.sql.DataFrame = [countryCode: string, count: bigint ... 1 more field]
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">def createPropClusterDFAndCreateTmpView (clusterName : String) = {
+  // function for creating proportion dataframes for each cluster and making them available for later python code
+  val propClusterDF = createPropClusterDF(org.apache.spark.sql.functions.col(clusterName))
+  // make df available to python/sql etc
+  propClusterDF.createOrReplaceTempView(clusterName)
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>createPropClusterDFAndCreateTmpView: (clusterName: String)Unit
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// create proportion dataframes for each cluster and make them available for later python code
+emoticonClusters.keys.foreach(createPropClusterDFAndCreateTmpView _)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Now we turn to python to use the <code>pycountry</code> package in order to translate the country codes into another standard (three letters instead of two) which makes plotting with the built in databricks <code>display</code> a breeze. The cell below contains some functions that read the dataframes from the temporary view created in scala and translate them to pandas dataframes with the three letter country codes. Also, we filter out countries for which there are fewer than 100 tweets.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def add_iso_a3_col(df_cc):
+  cc_dict = {}
+  for country in pycountry.countries:
+    cc_dict[country.alpha_2] = country.alpha_3
+
+    df_cc[&quot;iso_a3&quot;] = df_cc[&quot;countryCode&quot;].map(cc_dict)
+  return df_cc
+
+def cc_df_from_spark_to_pandas_and_process(df_cc, columnOfInterest):
+  #df_cc should be a dataframe with a column &quot;countryCode&quot; and a column columnOfInterest which has some interesting numerical data
+  df_cc = df_cc.toPandas()
+  add_iso_a3_col(df_cc)
+  df_cc = df_cc[[&quot;iso_a3&quot;, columnOfInterest]]  #reorder to have iso_a3 as first column (required in order to use the map view in display), and select the useful columns
+  return df_cc
+
+from pyspark.sql.functions import col
+def createProps(clusterName):
+  df = sql(&quot;select * from &quot; + clusterName)
+  return cc_df_from_spark_to_pandas_and_process(df.filter(col(&quot;count&quot;)/col(&quot;proportion&quot;) &gt;= 100), &quot;proportion&quot;) # filter so that only countries with at least 100 tweets in a given country are used
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Finally, we can show the proportion of tweets in each country that fall into each cluster. Make sure that the plot type is set to <code>map</code> in the outputs from the cells below. It is possible to hover over the countries to see the precise values.</p>
+<p>If anything interesting can actually be read from these plots we leave for the reader to decide.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;happy&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_4.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;notHappy&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_5.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;monkey&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_6.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;cat&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_7.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;SK&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_8.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(createProps(&quot;prayer&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_02_9.JPG?raw=true" alt="" /></p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="dynamic-tweet-maps"><a class="header" href="#dynamic-tweet-maps">Dynamic Tweet Maps</a></h1>
+<p>In this notebook we are going to make some maps depicting when and where tweets are sent.</p>
+<p>We will also use the sentiment classes from the previous notebooks to illustrate which type of tweets are frequent at different times in different countries.</p>
+</div>
+<div class="cell markdown">
+<h2 id="dependencies"><a class="header" href="#dependencies">Dependencies:</a></h2>
+<p>In order to run this notebook you need to install some dependencies, via apt, pip and git. To install the dependencies run the following three cells (it might take a few minutes).</p>
+<p>(We have used the cluster &quot;small-2-8Ws-class-01-sp3-sc2-12&quot; for our experiments.)</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-sh">sudo apt-get -y install libproj-dev
+sudo apt-get -y install libgeos++-dev
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Reading package lists...
+Building dependency tree...
+Reading state information...
+libproj-dev is already the newest version (4.9.3-2).
+The following packages were automatically installed and are no longer required:
+  libcap2-bin libpam-cap zulu-repo
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 17 not upgraded.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libgeos++-dev is already the newest version (3.6.2-1build2).
+The following packages were automatically installed and are no longer required:
+  libcap2-bin libpam-cap zulu-repo
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 17 not upgraded.
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-python">%pip install plotly
+%pip install pycountry
+%pip install geopandas
+%pip install geoplot
+%pip install imageio
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Python interpreter will be restarted.
+Collecting plotly
+  Downloading plotly-4.14.3-py2.py3-none-any.whl (13.2 MB)
+Requirement already satisfied: six in /databricks/python3/lib/python3.7/site-packages (from plotly) (1.14.0)
+Collecting retrying&gt;=1.3.3
+  Downloading retrying-1.3.3.tar.gz (10 kB)
+Building wheels for collected packages: retrying
+  Building wheel for retrying (setup.py): started
+  Building wheel for retrying (setup.py): finished with status 'done'
+  Created wheel for retrying: filename=retrying-1.3.3-py3-none-any.whl size=11430 sha256=d44981ab5b644b464561fdd8ffbda5b3b476a52efe985dab72bd1549d6a6d1f0
+  Stored in directory: /root/.cache/pip/wheels/f9/8d/8d/f6af3f7f9eea3553bc2fe6d53e4b287dad18b06a861ac56ddf
+Successfully built retrying
+Installing collected packages: retrying, plotly
+Successfully installed plotly-4.14.3 retrying-1.3.3
+Python interpreter will be restarted.
+Python interpreter will be restarted.
+Collecting pycountry
+  Downloading pycountry-20.7.3.tar.gz (10.1 MB)
+Building wheels for collected packages: pycountry
+  Building wheel for pycountry (setup.py): started
+  Building wheel for pycountry (setup.py): finished with status 'done'
+  Created wheel for pycountry: filename=pycountry-20.7.3-py2.py3-none-any.whl size=10746863 sha256=2b60c51268a303df86bea421d372ba1ed4001f8ffa211a0d9e98601fa0ab1ed5
+  Stored in directory: /root/.cache/pip/wheels/57/e8/3f/120ccc1ff7541c108bc5d656e2a14c39da0d824653b62284c6
+Successfully built pycountry
+Installing collected packages: pycountry
+Successfully installed pycountry-20.7.3
+Python interpreter will be restarted.
+Python interpreter will be restarted.
+Collecting geopandas
+  Downloading geopandas-0.8.2-py2.py3-none-any.whl (962 kB)
+Requirement already satisfied: pandas&gt;=0.23.0 in /databricks/python3/lib/python3.7/site-packages (from geopandas) (1.0.1)
+Collecting pyproj&gt;=2.2.0
+  Downloading pyproj-3.0.0.post1-cp37-cp37m-manylinux2010_x86_64.whl (6.4 MB)
+Collecting fiona
+  Downloading Fiona-1.8.18-cp37-cp37m-manylinux1_x86_64.whl (14.8 MB)
+Collecting shapely
+  Downloading Shapely-1.7.1-cp37-cp37m-manylinux1_x86_64.whl (1.0 MB)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in /databricks/python3/lib/python3.7/site-packages (from pandas&gt;=0.23.0-&gt;geopandas) (2.8.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /databricks/python3/lib/python3.7/site-packages (from pandas&gt;=0.23.0-&gt;geopandas) (1.18.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /databricks/python3/lib/python3.7/site-packages (from pandas&gt;=0.23.0-&gt;geopandas) (2019.3)
+Requirement already satisfied: certifi in /databricks/python3/lib/python3.7/site-packages (from pyproj&gt;=2.2.0-&gt;geopandas) (2020.6.20)
+Requirement already satisfied: six&gt;=1.5 in /databricks/python3/lib/python3.7/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;=0.23.0-&gt;geopandas) (1.14.0)
+Collecting munch
+  Downloading munch-2.5.0-py2.py3-none-any.whl (10 kB)
+Collecting click-plugins&gt;=1.0
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting attrs&gt;=17
+  Downloading attrs-20.3.0-py2.py3-none-any.whl (49 kB)
+Collecting cligj&gt;=0.5
+  Downloading cligj-0.7.1-py3-none-any.whl (7.1 kB)
+Collecting click&lt;8,&gt;=4.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Installing collected packages: click, munch, cligj, click-plugins, attrs, shapely, pyproj, fiona, geopandas
+Successfully installed attrs-20.3.0 click-7.1.2 click-plugins-1.1.1 cligj-0.7.1 fiona-1.8.18 geopandas-0.8.2 munch-2.5.0 pyproj-3.0.0.post1 shapely-1.7.1
+Python interpreter will be restarted.
+Python interpreter will be restarted.
+Collecting geoplot
+  Downloading geoplot-0.4.1-py3-none-any.whl (28 kB)
+Requirement already satisfied: seaborn in /databricks/python3/lib/python3.7/site-packages (from geoplot) (0.10.0)
+Requirement already satisfied: matplotlib in /databricks/python3/lib/python3.7/site-packages (from geoplot) (3.1.3)
+Collecting mapclassify&gt;=2.1
+  Downloading mapclassify-2.4.2-py3-none-any.whl (38 kB)
+Collecting contextily&gt;=1.0.0
+  Downloading contextily-1.0.1-py3-none-any.whl (23 kB)
+Collecting cartopy
+  Downloading Cartopy-0.18.0.tar.gz (14.4 MB)
+Requirement already satisfied: pandas in /databricks/python3/lib/python3.7/site-packages (from geoplot) (1.0.1)
+Requirement already satisfied: geopandas in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from geoplot) (0.8.2)
+Collecting descartes
+  Downloading descartes-1.1.0-py3-none-any.whl (5.8 kB)
+Collecting mercantile
+  Downloading mercantile-1.1.6-py3-none-any.whl (13 kB)
+Collecting pillow
+  Downloading Pillow-8.1.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting geopy
+  Downloading geopy-2.1.0-py3-none-any.whl (112 kB)
+Requirement already satisfied: joblib in /databricks/python3/lib/python3.7/site-packages (from contextily&gt;=1.0.0-&gt;geoplot) (0.14.1)
+Collecting rasterio
+  Downloading rasterio-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (19.1 MB)
+Requirement already satisfied: requests in /databricks/python3/lib/python3.7/site-packages (from contextily&gt;=1.0.0-&gt;geoplot) (2.22.0)
+Requirement already satisfied: scipy&gt;=1.0 in /databricks/python3/lib/python3.7/site-packages (from mapclassify&gt;=2.1-&gt;geoplot) (1.4.1)
+Requirement already satisfied: numpy&gt;=1.3 in /databricks/python3/lib/python3.7/site-packages (from mapclassify&gt;=2.1-&gt;geoplot) (1.18.1)
+Requirement already satisfied: scikit-learn in /databricks/python3/lib/python3.7/site-packages (from mapclassify&gt;=2.1-&gt;geoplot) (0.22.1)
+Collecting networkx
+  Downloading networkx-2.5-py3-none-any.whl (1.6 MB)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in /databricks/python3/lib/python3.7/site-packages (from pandas-&gt;geoplot) (2.8.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /databricks/python3/lib/python3.7/site-packages (from pandas-&gt;geoplot) (2019.3)
+Requirement already satisfied: six&gt;=1.5 in /databricks/python3/lib/python3.7/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas-&gt;geoplot) (1.14.0)
+Requirement already satisfied: shapely&gt;=1.5.6 in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from cartopy-&gt;geoplot) (1.7.1)
+Collecting pyshp&gt;=1.1.4
+  Downloading pyshp-2.1.3.tar.gz (219 kB)
+Requirement already satisfied: setuptools&gt;=0.7.2 in /usr/local/lib/python3.7/dist-packages (from cartopy-&gt;geoplot) (45.2.0)
+Requirement already satisfied: pyproj&gt;=2.2.0 in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from geopandas-&gt;geoplot) (3.0.0.post1)
+Requirement already satisfied: fiona in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from geopandas-&gt;geoplot) (1.8.18)
+Requirement already satisfied: certifi in /databricks/python3/lib/python3.7/site-packages (from pyproj&gt;=2.2.0-&gt;geopandas-&gt;geoplot) (2020.6.20)
+Requirement already satisfied: munch in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from fiona-&gt;geopandas-&gt;geoplot) (2.5.0)
+Requirement already satisfied: click-plugins&gt;=1.0 in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from fiona-&gt;geopandas-&gt;geoplot) (1.1.1)
+Requirement already satisfied: attrs&gt;=17 in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from fiona-&gt;geopandas-&gt;geoplot) (20.3.0)
+Requirement already satisfied: cligj&gt;=0.5 in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from fiona-&gt;geopandas-&gt;geoplot) (0.7.1)
+Requirement already satisfied: click&lt;8,&gt;=4.0 in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from fiona-&gt;geopandas-&gt;geoplot) (7.1.2)
+Collecting geographiclib&lt;2,&gt;=1.49
+  Downloading geographiclib-1.50-py3-none-any.whl (38 kB)
+Requirement already satisfied: cycler&gt;=0.10 in /databricks/python3/lib/python3.7/site-packages (from matplotlib-&gt;geoplot) (0.10.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /databricks/python3/lib/python3.7/site-packages (from matplotlib-&gt;geoplot) (2.4.6)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /databricks/python3/lib/python3.7/site-packages (from matplotlib-&gt;geoplot) (1.1.0)
+Requirement already satisfied: decorator&gt;=4.3.0 in /databricks/python3/lib/python3.7/site-packages (from networkx-&gt;mapclassify&gt;=2.1-&gt;geoplot) (4.4.1)
+Collecting affine
+  Downloading affine-2.3.0-py2.py3-none-any.whl (15 kB)
+Collecting snuggs&gt;=1.4.1
+  Downloading snuggs-1.4.7-py3-none-any.whl (5.4 kB)
+Requirement already satisfied: idna&lt;2.9,&gt;=2.5 in /databricks/python3/lib/python3.7/site-packages (from requests-&gt;contextily&gt;=1.0.0-&gt;geoplot) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /databricks/python3/lib/python3.7/site-packages (from requests-&gt;contextily&gt;=1.0.0-&gt;geoplot) (1.25.8)
+Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /usr/lib/python3/dist-packages (from requests-&gt;contextily&gt;=1.0.0-&gt;geoplot) (3.0.4)
+Building wheels for collected packages: cartopy, pyshp
+  Building wheel for cartopy (setup.py): started
+  Building wheel for cartopy (setup.py): finished with status 'done'
+  Created wheel for cartopy: filename=Cartopy-0.18.0-cp37-cp37m-linux_x86_64.whl size=15127828 sha256=a7843bd96a5753ca15c4c1952b65a93a5ae9378f67d5c17cf1398436b77dfb80
+  Stored in directory: /root/.cache/pip/wheels/0b/a9/54/172056df34478378e0636d30cd4d1a868de00e37254649bf1a
+  Building wheel for pyshp (setup.py): started
+  Building wheel for pyshp (setup.py): finished with status 'done'
+  Created wheel for pyshp: filename=pyshp-2.1.3-py3-none-any.whl size=37262 sha256=f31c01d2d2d597d89e643a155abbf55b7de6db2c096a5aa21a9d267d548ed9b3
+  Stored in directory: /root/.cache/pip/wheels/43/f8/87/53c8cd41545ba20e536ea29a8fcb5431b5f477ca50d5dffbbe
+Successfully built cartopy pyshp
+Installing collected packages: snuggs, geographiclib, affine, rasterio, pyshp, pillow, networkx, mercantile, geopy, mapclassify, descartes, contextily, cartopy, geoplot
+Successfully installed affine-2.3.0 cartopy-0.18.0 contextily-1.0.1 descartes-1.1.0 geographiclib-1.50 geoplot-0.4.1 geopy-2.1.0 mapclassify-2.4.2 mercantile-1.1.6 networkx-2.5 pillow-8.1.0 pyshp-2.1.3 rasterio-1.2.0 snuggs-1.4.7
+Python interpreter will be restarted.
+Python interpreter will be restarted.
+Collecting imageio
+  Downloading imageio-2.9.0-py3-none-any.whl (3.3 MB)
+Requirement already satisfied: numpy in /databricks/python3/lib/python3.7/site-packages (from imageio) (1.18.1)
+Requirement already satisfied: pillow in /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages (from imageio) (8.1.0)
+Installing collected packages: imageio
+Successfully installed imageio-2.9.0
+Python interpreter will be restarted.
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="true">
+<pre><code class="language-sh">git clone https://github.com/mthh/cartogram_geopandas.git
+cd cartogram_geopandas/
+python setup.py install
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Cloning into 'cartogram_geopandas'...
+Compiling cycartogram.pyx because it changed.
+[1/1] Cythonizing cycartogram.pyx
+running install
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-3.7
+copying cartogram_geopandas.py -&gt; build/lib.linux-x86_64-3.7
+running build_ext
+building 'cycartogram' extension
+creating build/temp.linux-x86_64-3.7
+x86_64-linux-gnu-gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/usr/include/python3.7m -I/local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/include/python3.7m -c cycartogram.c -o build/temp.linux-x86_64-3.7/cycartogram.o
+cycartogram.c: In function ‘__pyx_f_11cycartogram_transform_geom’:
+cycartogram.c:2084:39: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       for (__pyx_t_16 = 0; __pyx_t_16 &lt; __pyx_t_15; __pyx_t_16+=1) {
+                                       ^
+cycartogram.c:2134:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         for (__pyx_t_21 = 0; __pyx_t_21 &lt; __pyx_t_20; __pyx_t_21+=1) {
+                                         ^
+cycartogram.c: In function ‘__pyx_pf_11cycartogram_9Cartogram_4cartogram’:
+cycartogram.c:3835:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (__pyx_t_13 = 0; __pyx_t_13 &lt; __pyx_t_12; __pyx_t_13+=1) {
+                                     ^
+x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-Bsymbolic-functions -Wl,-z,relro -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 build/temp.linux-x86_64-3.7/cycartogram.o -o build/lib.linux-x86_64-3.7/cycartogram.cpython-37m-x86_64-linux-gnu.so
+running install_lib
+copying build/lib.linux-x86_64-3.7/cycartogram.cpython-37m-x86_64-linux-gnu.so -&gt; /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages
+copying build/lib.linux-x86_64-3.7/cartogram_geopandas.py -&gt; /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages
+byte-compiling /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages/cartogram_geopandas.py to cartogram_geopandas.cpython-37.pyc
+running install_egg_info
+Writing /local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages/cartogram_geopandas-0.0.0c.egg-info
+/databricks/python/lib/python3.7/site-packages/Cython/Compiler/Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release! File: /databricks/driver/cartogram_geopandas/cycartogram.pyx
+  tree = Parsing.p_module(s, pxd, full_module_name)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="defining-some-functions"><a class="header" href="#defining-some-functions">Defining some functions</a></h2>
+<p>We will process the collected data a bit before making any plots. To do this we will load some functions from notebook 06<em>appendix</em>tweet<em>carto</em>functions.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">&quot;./06_appendix_tweet_carto_functions&quot;
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell markdown">
+<h2 id="initial-processing-of-dataframe"><a class="header" href="#initial-processing-of-dataframe">Initial processing of dataframe</a></h2>
+<p>This step only needs to be run if you want to overwrite the existing preprocessed dataframea &quot;processedDF.csv&quot;. Otherwise you can just skip to the next cell and load the already generated dataframe.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">path = &quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/{2020,2021}/*/*/*/*/*&quot;
+df = load_twitter_geo_data(path)
+#Data collection was continuous during the 22nd December whereas for the remaining days we only streamed for 3 minutes per hour.
+df = df[(df['day'] != 22) &amp; (df['day'] != 2 )].reset_index() #Data collection was continuous during the 22nd December whereas for the remaining days we only streamed for 3 minutes per hour. Data collection ended in the middle of Jan second so to only have full day we disregard Jan 2.
+pre_proc_path = &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/tmp/processedDF.csv&quot;
+df.to_csv(pre_proc_path)
+</code></pre>
+</div>
+<div class="cell markdown">
+<h2 id="quick-initial-data-exploration"><a class="header" href="#quick-initial-data-exploration">Quick initial data exploration</a></h2>
+<p>Let's start by having a look at the first 5 elements.</p>
+<p>For now we are only looking at country of origin and timestamp, so we have neither loaded the tweets or the derived sentiment classes from before.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Load the data
+pre_proc_path = &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/tmp/processedDF.csv&quot;
+df = pd.read_csv(pre_proc_path)
+display(df.head(5))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>Unnamed: 0</th>
+<th>index</th>
+<th>countryCode</th>
+<th>CurrentTweetDate</th>
+<th>date</th>
+<th>year</th>
+<th>month</th>
+<th>day</th>
+<th>dayofweek</th>
+<th>hour</th>
+<th>minute</th>
+<th>second</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.0</td>
+<td>3654.0</td>
+<td>ID</td>
+<td>2020-12-31 12:59:54</td>
+<td>2020-12-31</td>
+<td>2020.0</td>
+<td>12.0</td>
+<td>31.0</td>
+<td>3.0</td>
+<td>12.0</td>
+<td>59.0</td>
+<td>54.0</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>3655.0</td>
+<td>GB</td>
+<td>2020-12-31 12:59:54</td>
+<td>2020-12-31</td>
+<td>2020.0</td>
+<td>12.0</td>
+<td>31.0</td>
+<td>3.0</td>
+<td>12.0</td>
+<td>59.0</td>
+<td>54.0</td>
+</tr>
+<tr class="odd">
+<td>2.0</td>
+<td>3656.0</td>
+<td>TH</td>
+<td>2020-12-31 12:59:54</td>
+<td>2020-12-31</td>
+<td>2020.0</td>
+<td>12.0</td>
+<td>31.0</td>
+<td>3.0</td>
+<td>12.0</td>
+<td>59.0</td>
+<td>54.0</td>
+</tr>
+<tr class="even">
+<td>3.0</td>
+<td>3657.0</td>
+<td>PK</td>
+<td>2020-12-31 12:59:54</td>
+<td>2020-12-31</td>
+<td>2020.0</td>
+<td>12.0</td>
+<td>31.0</td>
+<td>3.0</td>
+<td>12.0</td>
+<td>59.0</td>
+<td>54.0</td>
+</tr>
+<tr class="odd">
+<td>4.0</td>
+<td>3658.0</td>
+<td>ID</td>
+<td>2020-12-31 12:59:54</td>
+<td>2020-12-31</td>
+<td>2020.0</td>
+<td>12.0</td>
+<td>31.0</td>
+<td>3.0</td>
+<td>12.0</td>
+<td>59.0</td>
+<td>54.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell markdown">
+<p>The tweets we have loaded were sent between Dec 23 and Jan 1, and the timestamps are given in Greenwich Mean Time (GMT). We can use the display function again to have a look at how tweets are distributed as a function of time of day. To get tweets from a single timezone we just have a look at tweets from the United Kingdom (which has the country code <em>GB</em>).</p>
+<p>The histograms below show a clear dip in twitter activity from around eleven at night untill around eight in the morning. The night between the 24th and 25th of December shows a small spike right after midnight and new years shows a large spike after midnight. It seems that people like to tweet when celebrating!</p>
+<p>There is an abnormal peak on December 27th at 21. We have not been able to determine what this is due to.</p>
+<p>NOTE: The cell below has been configured (via the display user interface) to show histograms using date as key and hour as values.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(df.query(&quot;countryCode=='GB'&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_03_1.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>If we look at Saudi Arabia it seems that something is happening on December 31rst and December 28th.</p>
+<ul>
+<li>
+<p>The timestamps are in GMT, so the smalller peak at 21:00 on December 31rst is actually located at midnight. Although Saudi Arabia follows the islamic calendar it looks like there are still people celebrating the gregorian new year. We do not know what could be the reason for the larger peak on December 31rst.</p>
+</li>
+<li>
+<p>The largest spike is located on December 28th. It covers tweets send between 12:00 and 16:00 GMT, which would correspond to 15:00-18:00 local time. We have tried to find the cause of this peak, and we think it might be due to the conviction of female rights activist Loujain al-Hathloul who was sentenced to five years and 8 months of prison on this date. We could not find an exact timestamp for this event, but the report from france24 is timestamped to 12:20 (presumably Western European time), which corresponds to 14:20 in Saudi Arabia. It might be that there was a bit of lag time between media starting to report on the events and the case gaining traction on social media. Of course the spike could also be due to something else, but this sentencing seems like a likely cause.</p>
+</li>
+</ul>
+<p>Links: * https://www.thehindu.com/news/international/saudi-activist-loujain-al-hathloul-sentenced-to-5-years-8-months-in-prison/article33437467.ece Timestamp: 17:30 IST corresponding to 15:00 in Saudi Arabia * https://www.aljazeera.com/news/2020/12/28/saudi-court-hands-jail-sentence-to-womens-rights-activist No timestamp * https://www.france24.com/en/live-news/20201228-saudi-activist-loujain-al-hathloul-jailed-for-5-years-8-months Timestamp: 12:20 CET corresponding to 14:20 in Saudi Arabia</p>
+<p>NOTE: The articles from thehindu.com and France24 are identical, as they both come from AFP.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(df.query(&quot;countryCode=='SA'&quot;))
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_03_2.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>The display function produces normalized histograms, so the below cell prints the daily number of tweets.</p>
+<p>There is indeed a lot more tweets collected on the 28th and on the 31rst.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">dateList = [&quot;2020-12-23&quot;, &quot;2020-12-24&quot;, &quot;2020-12-25&quot;, &quot;2020-12-26&quot;, &quot;2020-12-27&quot;, &quot;2020-12-28&quot;, &quot;2020-12-29&quot;, &quot;2020-12-30&quot;, &quot;2020-12-31&quot;, &quot;2021-01-01&quot;]
+for d in dateList:
+  N = len(df.query(&quot;(countryCode=='SA') and (date=='%s')&quot;%d))
+  print(&quot;%d tweets were collected in Saudi Arabia on %s&quot;%(N, d))
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>1519 tweets were collected in Saudi Arabia on 2020-12-23
+1437 tweets were collected in Saudi Arabia on 2020-12-24
+1556 tweets were collected in Saudi Arabia on 2020-12-25
+1871 tweets were collected in Saudi Arabia on 2020-12-26
+1529 tweets were collected in Saudi Arabia on 2020-12-27
+3123 tweets were collected in Saudi Arabia on 2020-12-28
+1700 tweets were collected in Saudi Arabia on 2020-12-29
+1643 tweets were collected in Saudi Arabia on 2020-12-30
+3127 tweets were collected in Saudi Arabia on 2020-12-31
+1486 tweets were collected in Saudi Arabia on 2021-01-01
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h2 id="mapping-the-tweets"><a class="header" href="#mapping-the-tweets">Mapping the tweets</a></h2>
+<p>To create maps using the tweets we will first group the tweets by country codes, producing a new dataframe with one row per country.</p>
+<p>The map below is generated by selecting the map option in the display UI. This view only offers a simple discrete colorbar, but we can see that the most tweet producing countries are the United States and Brazil. Hovering above countries gives more detailed information, and shows that the Japan, the UK and India also produce a lot of tweets.</p>
+<p>We also get tweets from a number of countries which have blocked access to twitter (China: 1825, North Korea: 5, Iran: 1590 and Turkmenistan: 7).</p>
+<p>https://en.wikipedia.org/wiki/Censorship<em>of</em>Twitter#Government<em>blocking</em>of<em>Twitter</em>access</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># Group by country code
+df_cc = country_code_grouping(df)
+df_cc = add_iso_a3_col(df_cc)
+df_cc = df_cc[[&quot;iso_a3&quot;, &quot;count&quot;]] #reorder to have iso_a3 as first column (required in order to use the map view in display). Also we don't need countryCode and index columns.
+
+# Inspect result
+display(df_cc)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_03_3.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>Right now we are dealing with a regular dataframe. But to make some more advanced plots we will need information about the shapes of the countries (in the form of polygons). We get the shapes via the function create<em>geo</em>df(), which relies on the geopandas library. When calling display on a geopandas dataframe we just get the raw table, and none of the premade visualizations we get when displaying pandas dataframes.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="auto">
+<pre><code class="language-python"># Create the geopandas dataframe
+df_world = create_geo_df(df_cc)
+# Inspect result
+display(df_world.head())
+</code></pre>
+<div class="output execute_result html_result" execution_count="1">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pop_est</th>
+      <th>continent</th>
+      <th>name</th>
+      <th>iso_a3</th>
+      <th>gdp_md_est</th>
+      <th>geometry</th>
+      <th>numTweets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>920938</td>
+      <td>Oceania</td>
+      <td>Fiji</td>
+      <td>FJI</td>
+      <td>8374.0</td>
+      <td>MULTIPOLYGON (((180.00000 -16.06713, 180.00000...</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>53950935</td>
+      <td>Africa</td>
+      <td>Tanzania</td>
+      <td>TZA</td>
+      <td>150600.0</td>
+      <td>POLYGON ((33.90371 -0.95000, 34.07262 -1.05982...</td>
+      <td>877.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>603253</td>
+      <td>Africa</td>
+      <td>W. Sahara</td>
+      <td>ESH</td>
+      <td>906.5</td>
+      <td>POLYGON ((-8.66559 27.65643, -8.66512 27.58948...</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>35623680</td>
+      <td>North America</td>
+      <td>Canada</td>
+      <td>CAN</td>
+      <td>1674000.0</td>
+      <td>MULTIPOLYGON (((-122.84000 49.00000, -122.9742...</td>
+      <td>12069.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>326625791</td>
+      <td>North America</td>
+      <td>United States of America</td>
+      <td>USA</td>
+      <td>18560000.0</td>
+      <td>MULTIPOLYGON (((-122.84000 49.00000, -120.0000...</td>
+      <td>205916.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="choropleth-maps"><a class="header" href="#choropleth-maps">Choropleth maps</a></h3>
+<ul>
+<li>A choropleth map is a map in which regions are assigned a color based on a numerical attribute. This could for example be each regions population, average life expectancy, or number of geo tagged tweets.</li>
+</ul>
+<h3 id="cartograms"><a class="header" href="#cartograms">Cartograms</a></h3>
+<ul>
+<li>A cartogram is a way to represent geograpic differences in some variable, by altering the size of regions. The areas and shapes of regions are distorted in order to create an approximately equal density of the selected variable across all regions. In our case there are a lot of tweets coming from brazil and the US so these regions will grow in order to produce a lower tweet density. There is a tradeoff between shape preservation and getting equal density. This is especially evident when the density you are trying to equalize differs by several orders of magnitude.</li>
+<li>The available python cartogram package cartogram<em>geopandas is based on Dougenik, J. A, N. R. Chrisman, and D. R. Niemeyer: 1985. &quot;An algorithm to construct continuous cartograms&quot;. It is very sparsely documented and does not report error scores and tends to diverge if allowed to run for too many iterations. We found the Gui program Scapetoad to offer superior performance. Scapetoad is based on Mark Newman's C-code &quot;Cart&quot;, which is based on his and Michael T. Gastner's paper &quot;Diffusion-based method for producingdensity-equalizing maps&quot; from 2004. Scapetoad is working on a Python API, but it has not been released yet. So inspite of its shortcomings we will be using cartogram</em>geopandas, since Scapetoad can not be called from a notebook.</li>
+<li>Due to the limitations of the cartogram_geopandas library, we choose to run for a modest number of iterations. This means we do not have direct proportionality between distorted area and number of tweets, rather the distortions give us a qualitative representation of where tweeting is frequent.</li>
+</ul>
+<p>Links: * mthh, 2015: https://github.com/mthh/cartogram_geopandas * Dougenik, Chrisman and Niemeyer, 1985: https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.0033-0124.1985.00075.x * Gastner and Newman: https://arxiv.org/abs/physics/0401102</p>
+</div>
+<div class="cell markdown">
+<p>To begin with we will plot all the tweets collected between 23:00:00 and 23:59:59 (GMT) on December 31rst. On the left side a world map with colors indicating number of tweets is shown, and on the right side a cartogram. It seems the United kingdom is tweeting a lot at this moment, which makes sense as they are about to enter 2021. Happy new year!</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">df = pd.read_csv(pre_proc_path)
+df = df.query(&quot;(day==31) and (hour==23)&quot;)
+# Group by country code
+df_cc = country_code_grouping(df)
+df_cc = add_iso_a3_col(df_cc)
+df_cc = df_cc[[&quot;iso_a3&quot;, &quot;count&quot;]] #reorder to have iso_a3 as first column (required in order to use the map view in display). Also we don't need countryCode and index columns.
+# Create the geopandas dataframe
+df_world = create_geo_df(df_cc)
+
+
+#fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(30,15))
+
+# Make a choropleth plot
+# df_world.plot(column='numTweets', cmap='viridis', ax=axes[0])
+
+# The make_cartogram function can not handle a tweetcount of zero, so a not so elegant solution is to clip the tweet count at 1.
+# The alternative (to remove countries without tweets) is not elegant either (and causes problems when we look at the time evolution, since countries will be popping in and out of existence).
+df_world[&quot;numTweets&quot;] = df_world[&quot;numTweets&quot;].clip(1, max(df_world[&quot;numTweets&quot;])) 
+
+df_cartogram = make_cartogram(df_world, 'numTweets', 5, inplace=False)
+# df_cartogram.plot(column='numTweets', cmap='viridis', ax=axes[1]) 
+
+
+# plt.show()
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>/local_disk0/.ephemeral_nfs/envs/pythonEnv-318e9509-84da-4944-ac59-77216123051e/lib/python3.7/site-packages/cartogram_geopandas.py:48: UserWarning: Geometry is in a geographic CRS. Results from 'area' are likely incorrect. Use 'GeoSeries.to_crs()' to re-project geometries to a projected CRS before this operation.
+
+  return crtgm.make()
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<img src ='https://raw.githubusercontent.com/Rasmuskh/ScaDaMaLe_notebook_resources/main/choropleth_and_cartogram.png'>
+</div>
+<div class="cell markdown">
+<h3 id="animating-the-time-evolution-of-tweets"><a class="header" href="#animating-the-time-evolution-of-tweets">Animating the time evolution of tweets</a></h3>
+<p>Rather than looking at a snapshot of the worlds twitter activity it would be interesting to look at how twitter activity looks across hours and days.</p>
+<p>The following cell generates a number of png cartograms. One for every hour between December 23rd 2020 and January 2nd 2021.</p>
+<p>It takes quite long to generate them all (around eight minutes) so you might want to just load the pregenerated pngs in the cell below.</p>
+<p>NOTE: Geopandas prints some warnings related to using unprojected geometries (We work in longitude and latitude rather than some standard 2D map projection). This is not an issue since we are not using the area function.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">pre_proc_path = &quot;/dbfs/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/tmp/processedDF.csv&quot;
+df = pd.read_csv(pre_proc_path)
+key = &quot;hour&quot;
+timeOfDayList = list(range(0, 24))
+nIter = 5
+cartogram_key = &quot;numTweets&quot;
+for day in range(23,32):
+  out_path = &quot;/dbfs/FileStore/group10/cartogram/2020_Dec_%d_hour_&quot;%day
+  legend = &quot;2020 December %d: &quot;%day
+  animate_cartogram(df.query(&quot;(day==%d) and (year==2020)&quot;%day), key, timeOfDayList, out_path, nIter, cartogram_key, legend)
+for day in range(1,2):
+  out_path = &quot;/dbfs/FileStore/group10/cartogram/2021_Jan_%d_hour_&quot;%day
+  legend = &quot;2021 January %d: &quot;%day
+  animate_cartogram(df.query(&quot;(day==%d) and (year==2021)&quot;%day), key, timeOfDayList, out_path, nIter, cartogram_key, legend)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Now that we have generated the PNGs we can go ahead and combine them into a gif using the python imageIO library.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">images=[] # array for storing the png frames for the gif
+timeOfDayList = list(range(0, 24))
+#Append images to image list
+for day in range(23,32):
+  for hour in timeOfDayList:
+    out_path = &quot;/dbfs/FileStore/group10/cartogram/2020_Dec_%d_hour_%d.png&quot;%(day, hour)
+    images.append(imageio.imread(out_path))
+for day in range(1,2):
+  for hour in timeOfDayList:
+    out_path = &quot;/dbfs/FileStore/group10/cartogram/2021_Jan_%d_hour_%d.png&quot;%(day, hour)
+    images.append(imageio.imread(out_path))
+#create gif from the image list
+imageio.mimsave(&quot;/dbfs/FileStore/group10/cartogram/many_days_cartogram.gif&quot;, images, duration=0.2)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>The result is the following animation. The black vertical bar indicates where in the world it is midnight, the yellow vertical bar indicates where it is noon, and the time shown at the top is the current GMT time. The color/z-axis denotes the number of tweets produced in the given hour. Unsurprisingly we see countries inflate during the daytime and deflate close to midnight when people tend to sleep.</p>
+</div>
+<div class="cell markdown">
+<img src ='https://raw.githubusercontent.com/Rasmuskh/ScaDaMaLe_notebook_resources/main/cartogram.gif'>
+</div>
+<div class="cell markdown">
+<h3 id="sentiment-mapping"><a class="header" href="#sentiment-mapping">Sentiment mapping</a></h3>
+<p>This cartogram animation expresses the amount of tweets both through the size distortions and the z-axis (the color). In a way it is a bit redundant to illustrate the same things in two ways. The plot would be more informative if instead the z-axis is used to express some measure of sentiment.</p>
+<p>We will load a dataframe containing sentiment cluster information extracted in the previous notebook. This dataframe only contains tweets which contained &quot;Unicode block Emoticons&quot;, which is about 14% of the tweets we collected between December 23rd and January 1rst. The dataframe has boolean columns indicating if an emoji from a certain cluster is present. We will use the happy and not happy clusters found in the previous notebooks to express a single sentiment score:</p>
+<blockquote>
+<p>df[&quot;sentiment&quot;] = (1 + df[&quot;happy&quot;] - df[&quot;notHappy&quot;])/2 This is useful since it allows us to make a map containing information about both clusters. A caveat is that the although these clusters mostly contain what we would consider happy and unhappy emojis respectively, they do also contain some rather ambivalent emojis. The unhappy cluster for example contains a smiley that is both smiling and crying. On top of this emojis can take on different meanings in different contexts. Expressed in this way we get that: * A sentiment value of 0 means that the tweet contains unhappy emojis and no happy emojis. * A sentiment value of 0.5 means that the tweet either contain both happy and unhappy emojis or that it contains neither happy or unhappy emojis. * A sentiment value of 1 means that the tweet did not contain unhappy emojis but did contain happy emojis.</p>
+</blockquote>
+<p>The pie chart below reveals that unhappy tweets are significantly more common than happy ones.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">path = &quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/processedEmoticonClusterParquets/emoticonCluster.parquet&quot;
+cluster_names = [&quot;all&quot;, &quot;happy&quot;, &quot;notHappy&quot;, &quot;cat&quot;, &quot;monkey&quot;, &quot;SK&quot;, &quot;prayer&quot;]
+df = load_twitter_geo_data_sentiment(path)
+df = df[(df['day'] != 22) &amp; (df['day'] != 2 )] #Data collection was continuous during the 22nd December whereas for the remaining days we only streamed for 3 minutes per hour. Data collection ended in the middle of Jan second so to only have full day we disregard Jan 2.
+
+# Let's try combining the happy and sad columns to one &quot;sentiment&quot; column. 
+df[&quot;sentiment&quot;] = (1 + df[&quot;happy&quot;] - df[&quot;notHappy&quot;])/2
+
+display(df[[&quot;happy&quot;, &quot;notHappy&quot;, &quot;sentiment&quot;]])
+</code></pre>
+</div>
+<div class="cell markdown">
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/10_03_4.JPG?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<p>Next we will look at a choropleth world map using the &quot;sentiment&quot; score as z-axis. Countries with fewer than 100 tweets are not shown here.</p>
+<p>It looks like the tweets from Africa, The US and the middle east are less happy than those from latin America, Europe, Asia and Oceania.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">df_cc = country_code_grouping_sentiment(df)
+df_cc = add_iso_a3_col(df_cc)
+df_cc = df_cc[[&quot;iso_a3&quot;, &quot;count&quot;, &quot;sentiment&quot;]] #reorder to have iso_a3 as first column (required in order to use the map view in display). Also we don't need countryCode and index columns.
+df_cc
+# Create the geopandas dataframe
+df_world = create_geo_df_sentiment(df_cc)
+
+vmin = min(df_world.query(&quot;numTweets&gt;=20&quot;)[&quot;sentiment&quot;])
+vmax = max(df_world.query(&quot;numTweets&gt;=20&quot;)[&quot;sentiment&quot;])
+cmap = matplotlib.colors.LinearSegmentedColormap.from_list(&quot;&quot;, [&quot;red&quot;,&quot;yellow&quot;,&quot;green&quot;])
+cmap.set_under(color='gray', alpha=0.5)
+
+#We filter out countries with very few emojii tweets
+df_world.loc[df_world[&quot;numTweets&quot;] &lt; 100, 'sentiment'] = vmin -1
+# df_world = df_world.query(&quot;numTweets&gt;10&quot;).reset_index()
+
+# Make a choropleth plot
+# df_world.plot(column='sentiment', cmap=cmap, legend=True, vmin=vmin, vmax=vmax, figsize=(20,8))
+# plt.title(&quot;Sentiment by country&quot;, fontsize=24)
+# plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+# plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+# plt.show()
+</code></pre>
+</div>
+<div class="cell markdown">
+<img src ='https://raw.githubusercontent.com/Rasmuskh/ScaDaMaLe_notebook_resources/main/choropleth_sentiment.png'>
+</div>
+<div class="cell markdown">
+<p>Let us have a look at how this sentiment score ranks the countries (with more than 100 emoji tweets) from happiest to unhappiest.</p>
+<p>Japan, Sweden and Netherlands are in the lead.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">display(df_world.query(&quot;numTweets&gt;=100&quot;).sort_values(&quot;sentiment&quot;, ascending=False)[[&quot;name&quot;, &quot;continent&quot;, &quot;numTweets&quot;, &quot;sentiment&quot;]])
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>We are now ready to generate an animated cartogram using the number of tweets to determine the area distortions and using the sentiment score as the color dimension.</p>
+<p>We do not have as many emoji tweets, so here we limit ourselves to only one frame per day. We color countries with less than 30 tweets per day grey, since their sentiment score will be extremely unreliable.</p>
+<p>The following cell generates the animation, but as we already have produced it you can skip straight to the next cell where it is displayed.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">#Load data
+path = &quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/processedEmoticonClusterParquets/emoticonCluster.parquet&quot;
+cluster_names = [&quot;all&quot;, &quot;happy&quot;, &quot;notHappy&quot;, &quot;cat&quot;, &quot;monkey&quot;, &quot;SK&quot;, &quot;prayer&quot;]
+df = load_twitter_geo_data_sentiment(path)
+df = df[(df['day'] != 22) &amp; (df['day'] != 2 )] #Data collection was continuous during the 22nd December whereas for the remaining days we only streamed for 3 minutes per hour. Data collection ended in the middle of Jan second so to only have full day we disregard Jan 2.
+
+# Combine the happy and sad columns into one &quot;sentiment&quot; column. 
+df[&quot;sentiment&quot;] = (1 + df[&quot;happy&quot;] - df[&quot;notHappy&quot;])/2
+
+# Arguments for the function animate_cartogram_sentiment(...)
+legendList = [&quot;2020-12-23&quot;, &quot;2020-12-24&quot;, &quot;2020-12-25&quot;, &quot;2020-12-26&quot;, &quot;2020-12-27&quot;, &quot;2020-12-28&quot;, &quot;2020-12-29&quot;, &quot;2020-12-30&quot;, &quot;2020-12-31&quot;, &quot;2021-01-01&quot;]
+key = &quot;day&quot;
+nIter = 5
+minSamples = 30
+cartogram_key = &quot;numTweets&quot;
+dayList = [23, 24, 25, 26, 27, 28, 29, 30, 31, 1]
+cmap = matplotlib.colors.LinearSegmentedColormap.from_list(&quot;&quot;, [&quot;red&quot;,&quot;yellow&quot;,&quot;green&quot;])
+cmap.set_under(color='gray', alpha=0.5)
+cmap.set_bad(color='gray', alpha=0.5)
+
+# Find upper and lower range for the color dimension.
+# We want to utilize the full dynamic range of the z-axis.
+vmin = 0.45
+vmax = 0.55
+for day in dayList:
+  df_filtered = df.query(&quot;day==%d&quot;%day).reset_index()
+  df_cc = country_code_grouping_sentiment(df_filtered)
+  df_cc = df_cc.query(&quot;count&gt;%d&quot;%minSamples)
+  lower = min(df_cc[&quot;sentiment&quot;])
+  upper = max(df_cc[&quot;sentiment&quot;])
+  if lower&lt;vmin:
+    vmin = lower
+  if upper&gt;vmax:
+    vmax = upper
+
+out_path = &quot;/dbfs/FileStore/group10/cartogram/sentiment&quot;
+animate_cartogram_sentiment(df.reset_index(), key, dayList, out_path, nIter, cartogram_key, minSamples, cmap, vmin, vmax, legendList)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Unfortunately we do not have enough data to color all the countries, but some interesting things can still be observed. * Most countries tweet happier at Christmas and New Years. Take a look at Spain and Brazil for example. * Japan and most of Europe looks consistently happy, while Africa, Saudi Arabia and the US looks unhappy. * The UK looks comparatively less happy than the rest of Europe.</p>
+<p>We keep in mind that these differences may be caused by or exaggerated by differences in how emojis are used differently in different countries.</p>
+</div>
+<div class="cell markdown">
+<img src ='https://raw.githubusercontent.com/Rasmuskh/ScaDaMaLe_notebook_resources/main/cartogram_sentiment.gif'>
+</div>
+<div class="cell markdown">
+<h3 id="looking-at-trends-in-emoticon-use-over-times-of-the-day"><a class="header" href="#looking-at-trends-in-emoticon-use-over-times-of-the-day">Looking at trends in emoticon use over times of the day</a></h3>
+<p>Next we aggregate all of the tweet data into one set of 24 hours, i.e. we merge all the days into one to try to see trends in emoticon use depending on time of day.</p>
+<p>We want to visualize the different clusters in cartogram animations. First we filter the tweets by cluster so that we get a dataframe per cluster containing only the tweets wherein there is an emoticon from that cluster. In the cartograms we scale each country by how large a proportion of the total tweets from that country pertaining to that cluster are tweeted in a given hour. So if the area (in the current projection...) of a particular country is \(A\), then its &quot;mass&quot; (recall that these plots aim for equal &quot;density&quot;) at hour \(h\) in these plots will be \[A + \sigma p_h A,\] where \(p_h\) is the proportion of tweets in that country and cluster that is tweeted at hour \(h\) and \(\sigma\) is a scaling factor which we set to 2. In order to reduce noise, all countries which have fewer than 100 tweets of a given cluster are set to have constant &quot;mass&quot; corresponding to their area.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">path = &quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus/processedEmoticonClusterParquets/emoticonCluster.parquet&quot;
+cluster_names = [&quot;all&quot;, &quot;happy&quot;, &quot;notHappy&quot;, &quot;cat&quot;, &quot;monkey&quot;, &quot;SK&quot;, &quot;prayer&quot;]
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python"># # This cell might take 15-20 minutes to run
+
+# for cluster_name in cluster_names:
+#    if cluster_name == &quot;all&quot;:
+#      df = load_twitter_geo_data(path)
+#    else:
+#      df = load_twitter_geo_data_with_filter(path, cluster_name)
+    
+#    df = df[df['day'] != 22].reset_index() #Data collection was continuous during the 22nd December whereas for the remaining days we only streamed for 3 minutes per hour.
+#    df = df[(df['day'] != 22) &amp; (df['day'] != 2 )].reset_index() #Data collection was continuous during the 22nd December whereas for the remaining days we only streamed for 3 minutes per hour. Data collection ended in the middle of Jan second so to only have full day we disregard Jan 2.
+  
+#    # add column in order to be able to display ratio of total tweets
+#    df['numTweets'] = df.groupby('countryCode')['countryCode'].transform('count')
+#    df[&quot;proportion&quot;] = 1 / df[&quot;numTweets&quot;]
+  
+#    # filter out countries with very few tweets
+#    df = df[df.numTweets &gt;= 100]
+#    # create cartogram
+#    key = &quot;hour&quot;
+#    timeOfDayList = list(range(0, 24))
+#    out_path = &quot;/dbfs/FileStore/group10/cartogram_&quot; + cluster_name
+#    nIter = 30
+#    cartogram_key = &quot;proportion&quot;
+
+#    animate_cartogram_extra(df[[&quot;index&quot;, &quot;countryCode&quot;, &quot;proportion&quot;, &quot;hour&quot;]], key, timeOfDayList, out_path, nIter, cartogram_key, default_value=0, scale_factor=3, vmin=0.0, vmax=0.15)
+</code></pre>
+</div>
+<div class="cell markdown">
+<p>Below are the obtained plots for emoticon use by time of day in the different countries. The colorbar corresponds to the proportion of tweets from a country tweeted in a given hour and the areas are scaled as described above. The black line is again midnight and the yellow line noon.</p>
+<p>For some of the clusters, for instance &quot;cat&quot; and &quot;monkey&quot;, it is clear that we have too little data to be able to say anything interesting. Perhaps the one conclusion one can draw there is that the monkey emoticons are not used very often in the US or Japan (since those countries tweet a lot but did not have more than 100 total tweets with monkey emoticons).</p>
+<p>The other plots mostly show that people tweet more during the day than at night. Perhaps the amount of emoticons in each of the &quot;happy&quot; and &quot;notHappy&quot; clusters is too large to be able to find some distinctiveness in the time of day that people use them.</p>
+<p>The most interesting cluster to look at in this way might be the prayer cluster where it appears that we can see glimpses of the regular prayers in countries such Egypt and Saudi Arabia.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">clusters_to_plot = [&quot;happy&quot;, &quot;notHappy&quot;, &quot;SK&quot;, &quot;cat&quot;, &quot;monkey&quot;, &quot;prayer&quot;]
+html_str = &quot;\n&quot;.join([f&quot;&quot;&quot;
+  &lt;figure&gt;
+  &lt;img src=&quot;/files/group10/cartogram_{cluster_name}.gif&quot; style=&quot;width:60%&quot;&gt;
+  &lt;figcaption&gt;The &quot;{cluster_name}&quot; cluster.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+  &lt;hr style=&quot;height:3px;border:none;color:#333;background-color:#333;&quot; /&gt;
+  &quot;&quot;&quot; for cluster_name in clusters_to_plot])
+  
+displayHTML(html_str)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h1>
+<p>We identified 6 clusters of tweets. Interestingly the most common emoticon 😂 was placed in the not happy cluster. This emoji is supposed to mean &quot;laughing with tears of joy&quot;. However it seems it oftentimes appear in tweets together with unhappy looking emojis. Perhaps it is often used to indicate a sense of humorous despair. Considering this one should be a bit skeptical about using our emoji clusters to estimate sentiment of individual tweets, since our model just assigns each emojis one of six meanings (or clusters).</p>
+<p>By plotting the collected data as cartograms/choropleth maps across different time intervals we were able to visualize change in tweet frequency around the holidays. In particular we noticed an increase in happy tweets around Christmas and New Year's Eve, in many countries. So although our simple model has some issues it does seem to work to some extent.</p>
+<p>We also identified a spike in twitter activity in Saudi Arabia on December 28th, which we speculate may have been caused by the jail sentence given to the activist Loujain al-Hathloul. To tell if this is the case it would be necessary to analyze the particular tweets and hashtags from Saudi Arabia in our dataset.</p>
+<p>Mapping the sentiment clusters showed that in particular african countries had a large proportion of unhappy tweets. It also showed that the US, tweets significantly less happy tweets than other &quot;western&quot; countries, which may be related to the recent divisive political campaigns. However, both cases might also be caused by regional differences in use of for example the crying while laughing emoji.</p>
+<p>We were probably a bit too cautious when only collecting data for three minutes per hour. We were afraid of spending too many of the courses resources. However, in the end both the size and processing time of our dataset was modest, so we could easily have been collecting data continuously, which would have allowed us to generate animations at a better time resolution. Due to the same concerns regarding computational resources we only collected data for around 10 days. This unfortunately meant that we didn't record the storming of the US congress or Donald Trumps ban from twitter, which would have been interesting to study. But we did learn that you can never have too much data 😂.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="notebook-for-collecting-tweets-with-country-codes"><a class="header" href="#notebook-for-collecting-tweets-with-country-codes">Notebook for collecting tweets with country codes</a></h1>
+</div>
+<div class="cell markdown">
+<h2 id="this-notebook-is-used-for-running-jobs-do-not-edit-without-stopping-the-scheduled-jobs"><a class="header" href="#this-notebook-is-used-for-running-jobs-do-not-edit-without-stopping-the-scheduled-jobs">This notebook is used for running jobs, do not edit without stopping the scheduled jobs!</a></h2>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// parameter for number of minutes of streaming (can be used in Jobs feature)
+dbutils.widgets.text(&quot;nbr_minutes&quot;, &quot;3&quot;, label = &quot;Minutes of streaming (int)&quot;)
+val nbr_minutes = dbutils.widgets.get(&quot;nbr_minutes&quot;).toInt
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>nbr_minutes: Int = 2
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>If the cluster was shut down, then start a new cluster and install the following libraries on it (via maven).</p>
+<ul>
+<li>gson with maven coordinates <code>com.google.code.gson:gson:2.8.6</code></li>
+<li>twitter4j-examples with maven coordinates <code>org.twitter4j:twitter4j-examples:4.0.7</code></li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">&quot;./07_a_appendix_extendedTwitterUtils2run&quot;
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import twitter4j._
+import twitter4j.auth.Authorization
+import twitter4j.conf.ConfigurationBuilder
+import twitter4j.auth.OAuthAuthorization
+import org.apache.spark.streaming._
+import org.apache.spark.streaming.dstream._
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.receiver.Receiver
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>defined class ExtendedTwitterReceiver
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>defined class ExtendedTwitterInputDStream
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import twitter4j.Status
+import twitter4j.auth.Authorization
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.StreamingContext
+import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
+defined object ExtendedTwitterUtils
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>done running the extendedTwitterUtils2run notebook - ready to stream from twitter
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-run">&quot;./07_b_appendix_TTTDFfunctions&quot;
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF(&quot;parquetFileName&quot;)))
+                  val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF(&quot;parquetFileName&quot;)))
+                  
+import org.apache.spark.sql.types.{StructType, StructField, StringType}
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.ColumnName
+import org.apache.spark.sql.DataFrame
+fromParquetFile2DF: (InputDFAsParquetFilePatternString: String)org.apache.spark.sql.DataFrame
+tweetsJsonStringDF2TweetsDF: (tweetsAsJsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+tweetsIDLong_JsonStringPairDF2TweetsDF: (tweetsAsIDLong_JsonStringInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+tweetsDF2TTTDF: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+tweetsDF2TTTDFWithURLsAndHashtags: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>tweetsDF2TTTDFLightWeight: (tweetsInputDF: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<h3 id="loading-twitter-credentials"><a class="header" href="#loading-twitter-credentials">Loading twitter credentials</a></h3>
+<p>You need to have a twitter developer account to run the data collection. Save your credentials in a notebook called <code>KeysAndTokens</code>, in your user home directory.</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// needs upgraded databricks subscription, works on project shard
+
+var usr = dbutils.notebook.getContext.tags(&quot;user&quot;)
+var keys_notebook_location = &quot;/Users/&quot; + usr + &quot;/KeysAndTokens&quot;
+dbutils.notebook.run(keys_notebook_location, 100)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>Warning: No value returned from the notebook run. To return a value from a notebook, use dbutils.notebook.exit(value)
+usr: String = bokman@chalmers.se
+keys_notebook_location: String = /Users/bokman@chalmers.se/KeysAndTokens
+res18: String = null
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import com.google.gson.Gson 
+import org.apache.spark.sql.functions._
+//import org.apache.spark.sql.types._
+
+val outputDirectoryRoot = &quot;/datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus&quot; // output directory
+
+
+val batchInterval = 1 // in minutes
+val timeoutJobLength =  batchInterval * 5
+
+var newContextCreated = false
+var numTweetsCollected = 0L // track number of tweets collected
+
+// This is the function that creates the SteamingContext and sets up the Spark Streaming job.
+def streamFuncWithProcessing(): StreamingContext = {
+  // Create a Spark Streaming Context.
+  val ssc = new StreamingContext(sc, Minutes(batchInterval))
+  // Create the OAuth Twitter credentials 
+  val auth = Some(new OAuthAuthorization(new ConfigurationBuilder().build()))
+  
+  // Create filter
+  val locationsQuery = new FilterQuery().locations(Array(-180.0, -90.0), Array(180.0, 90.0)) // all locations
+  
+  // Create a Twitter Stream for the input source.  
+  val twitterStream = ExtendedTwitterUtils.createStream(ssc, auth, Some(locationsQuery))
+  // Transform the discrete RDDs into JSON
+  val twitterStreamJson = twitterStream.map(x =&gt; { val gson = new Gson();
+                                                 val xJson = gson.toJson(x)
+                                                 xJson
+                                               }) 
+  // take care
+  val partitionsEachInterval = 1 // This tells the number of partitions in each RDD of tweets in the DStream.
+  
+  // get some time fields from current `.Date()`, use the same for each batch in the job
+  val year = (new java.text.SimpleDateFormat(&quot;yyyy&quot;)).format(new java.util.Date())
+  val month = (new java.text.SimpleDateFormat(&quot;MM&quot;)).format(new java.util.Date())
+  val day = (new java.text.SimpleDateFormat(&quot;dd&quot;)).format(new java.util.Date())
+  val hour = (new java.text.SimpleDateFormat(&quot;HH&quot;)).format(new java.util.Date())
+  
+  // what we want done with each discrete RDD tuple: (rdd, time)
+  twitterStreamJson.foreachRDD((rdd, time) =&gt; { // for each filtered RDD in the DStream
+      val count = rdd.count() //We count because the following operations can only be applied to non-empty RDD's
+      if (count &gt; 0) {
+        val outputRDD = rdd.repartition(partitionsEachInterval) // repartition as desired
+        // to write to parquet directly in append mode in one directory per 'time'------------       
+        val outputDF = outputRDD.toDF(&quot;tweetAsJsonString&quot;)
+        val processedDF = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(outputDF)).filter($&quot;countryCode&quot; =!= lit(&quot;&quot;))
+
+        
+        // Writing the full processed df (We probably don't need it, but useful for exploring the data initially)
+        processedDF.write.mode(SaveMode.Append)
+                .parquet(outputDirectoryRoot + &quot;/&quot; + year + &quot;/&quot; + month + &quot;/&quot; + day + &quot;/&quot; + hour + &quot;/&quot; + time.milliseconds) 
+        
+        // end of writing as parquet file-------------------------------------
+        numTweetsCollected += count // update with the latest count
+      }
+  })
+  newContextCreated = true
+  ssc
+}
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>import com.google.gson.Gson
+import org.apache.spark.sql.functions._
+outputDirectoryRoot: String = /datasets/ScaDaMaLe/twitter/student-project-10_group-Geosmus
+batchInterval: Int = 1
+timeoutJobLength: Int = 5
+newContextCreated: Boolean = false
+numTweetsCollected: Long = 0
+streamFuncWithProcessing: ()org.apache.spark.streaming.StreamingContext
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Now just use the function to create a Spark Streaming Context
+val ssc = StreamingContext.getActiveOrCreate(streamFuncWithProcessing)
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>ssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@212f8bef
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// you only need one of these to start
+ssc.start()
+// ssc.awaitTerminationOrTimeout(30000) //time in milliseconds
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// Note, this is not fool-proof...
+Thread.sleep(nbr_minutes*60*1000) //time in milliseconds
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">ssc.stop(stopSparkContext = false)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">numTweetsCollected // number of tweets collected so far
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import pycountry
+import geopandas
+from cartogram_geopandas import make_cartogram
+import imageio
+
+def load_twitter_geo_data(path):
+  df = spark.read.parquet(path)
+  df = df.select('countryCode', &quot;CurrentTweetDate&quot;)
+  df = df.toPandas()
+  
+  # Add some new datetime derived columns.
+  df[&quot;date&quot;] = df[&quot;CurrentTweetDate&quot;].dt.date
+  df[&quot;year&quot;] = df[&quot;CurrentTweetDate&quot;].dt.year
+  df[&quot;month&quot;] = df[&quot;CurrentTweetDate&quot;].dt.month
+  df[&quot;day&quot;] = df[&quot;CurrentTweetDate&quot;].dt.day
+  df[&quot;dayofweek&quot;] = df[&quot;CurrentTweetDate&quot;].dt.dayofweek
+  df[&quot;hour&quot;] = df[&quot;CurrentTweetDate&quot;].dt.hour
+  df[&quot;minute&quot;] = df[&quot;CurrentTweetDate&quot;].dt.minute
+  df[&quot;second&quot;] = df[&quot;CurrentTweetDate&quot;].dt.second
+  return df
+
+def load_twitter_geo_data_with_filter(path, filter_str):
+  df = spark.read.parquet(path)
+  df = df.filter(filter_str).select('countryCode', &quot;CurrentTweetDate&quot;)
+  df = df.toPandas()
+  
+  # Add some new datetime derived columns.
+  df[&quot;year&quot;] = df[&quot;CurrentTweetDate&quot;].dt.year
+  df[&quot;month&quot;] = df[&quot;CurrentTweetDate&quot;].dt.month
+  df[&quot;day&quot;] = df[&quot;CurrentTweetDate&quot;].dt.day
+  df[&quot;dayofweek&quot;] = df[&quot;CurrentTweetDate&quot;].dt.dayofweek
+  df[&quot;hour&quot;] = df[&quot;CurrentTweetDate&quot;].dt.hour
+  df[&quot;minute&quot;] = df[&quot;CurrentTweetDate&quot;].dt.minute
+  df[&quot;second&quot;] = df[&quot;CurrentTweetDate&quot;].dt.second
+  return df
+
+def country_code_grouping(df):
+  df['count'] = df.groupby('countryCode')['countryCode'].transform('count') #The count inside the transform function calls pandas count function
+  df_cc = df.drop_duplicates(subset=['countryCode'])
+  df_cc = df_cc.filter(['countryCode', 'count']).reset_index()
+  return df_cc
+
+def country_code_grouping_extra(df, key):
+  #df['count'] = df.groupby('countryCode')['countryCode'].transform('count') #The count inside the transform function calls pandas count function
+  df_cc = df[[&quot;countryCode&quot;, key]].groupby('countryCode').sum().reset_index() #df.drop_duplicates(subset=['countryCode'])
+  return df_cc
+
+def add_iso_a3_col(df_cc):
+  cc_dict = {}
+  for country in pycountry.countries:
+    cc_dict[country.alpha_2] = country.alpha_3
+
+    df_cc[&quot;iso_a3&quot;] = df_cc[&quot;countryCode&quot;].map(cc_dict)
+  return df_cc
+
+def create_geo_df(df_cc):
+  df_world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+  # natural earth has missing iso_a3 names for France, Norway, Somalia, Kosovo and Northen Cypruys..
+  # See the following issue: https://github.com/geopandas/geopandas/issues/1041
+  # The following lines manually fixes it for all but Northern Cyprus, which does not have an iso_a3 code.
+  df_world.loc[df_world['name'] == 'France', 'iso_a3'] = 'FRA'
+  df_world.loc[df_world['name'] == 'Norway', 'iso_a3'] = 'NOR'
+  df_world.loc[df_world['name'] == 'Somaliland', 'iso_a3'] = 'SOM'
+  df_world.loc[df_world['name'] == 'Kosovo', 'iso_a3'] = 'RKS'
+
+  numTweetDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      numTweetDict[countryCode] = 0
+  for index, row in df_cc.iterrows():
+      numTweetDict[row[&quot;iso_a3&quot;]] = row[&quot;count&quot;]
+
+  df_world[&quot;numTweets&quot;] = df_world[&quot;iso_a3&quot;].map(numTweetDict)
+  
+  # Could be useful to throw away antarctica and antarctic isles.
+  # df_world = df_world.query(&quot;(continent != 'Antarctica') or (continent != 'Seven seas (open ocean)')&quot;) 
+
+  # Redundant
+  # df_world_proj = df_world.to_crs({'init': 'EPSG:4326'})
+  # df_world[&quot;area&quot;] = df_world_proj['geometry'].area
+  # df_world[&quot;tweetDensity&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;area&quot;]
+  # df_world[&quot;tweetPerCapita&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;pop_est&quot;]
+  return df_world
+
+
+def create_geo_df_extra(df_cc, data_of_interest=&quot;count&quot;, default_value=0):
+  df_world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+  # natural earth has missing iso_a3 names for France, Norway, Somalia, Kosovo and Northen Cypruys..
+  # See the following issue: https://github.com/geopandas/geopandas/issues/1041
+  # The following lines manually fixes it for all but Northern Cyprus, which does not have an iso_a3 code.
+  df_world.loc[df_world['name'] == 'France', 'iso_a3'] = 'FRA'
+  df_world.loc[df_world['name'] == 'Norway', 'iso_a3'] = 'NOR'
+  df_world.loc[df_world['name'] == 'Somaliland', 'iso_a3'] = 'SOM'
+  df_world.loc[df_world['name'] == 'Kosovo', 'iso_a3'] = 'RKS'
+
+  dataTweetDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      dataTweetDict[countryCode] = default_value
+  for index, row in df_cc.iterrows():
+      dataTweetDict[row[&quot;iso_a3&quot;]] = row[data_of_interest]
+
+  df_world[data_of_interest] = df_world[&quot;iso_a3&quot;].map(dataTweetDict)
+  
+  # Could be useful to throw away antarctica and antarctic isles.
+  # df_world = df_world.query(&quot;(continent != 'Antarctica') or (continent != 'Seven seas (open ocean)')&quot;) 
+
+  # Redundant
+  # df_world_proj = df_world.to_crs({'init': 'EPSG:4326'})
+  # df_world[&quot;area&quot;] = df_world_proj['geometry'].area
+  # df_world[&quot;tweetDensity&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;area&quot;]
+  # df_world[&quot;tweetPerCapita&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;pop_est&quot;]
+  return df_world
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def animate_cartogram(df, filterKey, filterList, out_path, nIter, cartogram_key, legend=&quot;&quot;):
+  vmax = max(df.groupby([filterKey, &quot;countryCode&quot;]).count()[&quot;index&quot;]) # Get maximum count within a single country in a single hour. We will use this to fix the colorbar.
+  images=[] # array for storing the png frames for the gif
+  for i in filterList:
+    # Load the data and add ISOa3 codes.
+    df_filtered = df.query(&quot;%s==%d&quot;%(filterKey, i)).reset_index()
+    df_cc = country_code_grouping(df_filtered)
+    df_cc = add_iso_a3_col(df_cc)
+
+    # Create the geopandas dataframe
+    df_world = create_geo_df(df_cc)
+    #Create cartogram
+    # The make_cartogram function can not handle a tweetcount of zero, so a not so elegant solution is to clip the tweet count at 1.
+    # The alternative (to remove countries without tweets) is not elegant either, and causes problems when we look at the time evolution, since countries will be popping in and out of existence.
+    df_world2 = df_world.copy(deep=True)
+    df_world2[&quot;numTweets&quot;] = df_world2[&quot;numTweets&quot;].clip(lower=1)
+    df_cartogram = make_cartogram(df_world2, cartogram_key, nIter, inplace=False)
+    plot = df_cartogram.plot(column=cartogram_key, cmap='viridis', figsize=(20, 8), legend=True, vmin=0, vmax=vmax) 
+
+    # Plot a vertical line indicating midnight. 360degrees/24hours = 15 degrees/hour
+    if i&lt;12:
+      t_midnight = -15*i #15deg per hour
+      t_noon = t_midnight + 180
+    else:
+      t_midnight = 180 - (i-12)*15
+      t_noon = t_midnight - 180
+
+    plt.axvline(x=t_midnight, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;black&quot;)
+    plt.axvline(x=t_noon, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;yellow&quot;)
+    plt.title(legend + &quot;Time of day (GMT): %02d&quot;%i, fontsize=24)
+    plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+    plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+    plt.ylim(-90,90)
+    plt.xlim(-180,180)
+
+    #Save cartogram as a png
+    fig = plot.get_figure()
+    fig.savefig(out_path + &quot;%d.png&quot;%i)
+    plt.close(fig)
+    #Append images to image list
+    images.append(imageio.imread(out_path + &quot;%d.png&quot;%i))
+  #create gif from the image list
+  imageio.mimsave(out_path + &quot;.gif&quot;, images, duration=0.5)
+  
+def animate_cartogram_extra(df, filterKey, filterList, out_path, nIter, cartogram_key, default_value, scale_factor=2, vmin=0.0, vmax=1.0):
+  # uses scaling proportional to original area of country
+  images=[] # array for storing the png frames for the gif
+  
+  for i in filterList:
+    # Load the data and add ISOa3 codes.
+    df_filtered = df.query(&quot;%s==%d&quot;%(filterKey, i)).reset_index()
+    df_cc = country_code_grouping_extra(df_filtered, cartogram_key)
+    df_cc = add_iso_a3_col(df_cc)
+
+    # Create the geopandas dataframe
+    df_world = create_geo_df_extra(df_cc, cartogram_key, default_value)
+     
+    # scale by area
+    df_world[&quot;__scaled&quot;] = (scale_factor - 1) * df_world[cartogram_key] * pd.to_numeric(df_world['geometry'].area)
+      
+    # make sure the quantity of interest &gt; 0, add area to every value
+    df_world[&quot;__scaled&quot;] = pd.to_numeric(df_world['geometry'].area) + df_world[&quot;__scaled&quot;]
+    
+    #Create cartogram
+    df_cartogram = make_cartogram(df_world, &quot;__scaled&quot;, nIter, inplace=False)
+    
+    plot = df_cartogram.plot(column=cartogram_key, cmap='viridis', figsize=(20, 8), legend=cartogram_key, vmin=vmin, vmax=vmax)
+    
+    # Plot a vertical line indicating midnight and one indicating noon. 360degrees/24hours = 15 degrees/hour
+    if i&lt;12:
+      t_midnight = -15*i #15deg per hour
+      t_noon = t_midnight + 180
+    else:
+      t_midnight = 180 - (i-12)*15
+      t_noon = t_midnight - 180
+
+    plt.axvline(x=t_midnight, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;black&quot;)
+    plt.axvline(x=t_noon, ymin=-90, ymax=90, ls=&quot;--&quot;, c=&quot;yellow&quot;)
+    
+    plt.title(&quot;Time of day (GMT): %02d&quot;%i, fontsize=24)
+    plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+    plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+    plt.ylim(-90,90)
+    plt.xlim(-180,180)
+    
+    #Save cartogram as a png
+    fig = plot.get_figure()
+    fig.savefig(out_path + &quot;%d.png&quot;%i)
+    plt.close(fig)
+    #Append images to image list
+    images.append(imageio.imread(out_path + &quot;%d.png&quot;%i))
+  #create gif from the image list
+  imageio.mimsave(out_path + &quot;.gif&quot;, images, duration=0.5)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-python">def load_twitter_geo_data_sentiment(path):
+  df = spark.read.parquet(path)
+  df = df.select('countryCode', &quot;CurrentTweetDate&quot;, &quot;prayer&quot;, &quot;monkey&quot;, &quot;happy&quot;, &quot;SK&quot;, &quot;cat&quot;, &quot;notHappy&quot;)
+  df = df.toPandas()
+  
+  # Add some new datetime derived columns.
+  df[&quot;date&quot;] = df[&quot;CurrentTweetDate&quot;].dt.date
+  df[&quot;year&quot;] = df[&quot;CurrentTweetDate&quot;].dt.year
+  df[&quot;month&quot;] = df[&quot;CurrentTweetDate&quot;].dt.month
+  df[&quot;day&quot;] = df[&quot;CurrentTweetDate&quot;].dt.day
+  df[&quot;dayofweek&quot;] = df[&quot;CurrentTweetDate&quot;].dt.dayofweek
+  df[&quot;hour&quot;] = df[&quot;CurrentTweetDate&quot;].dt.hour
+  df[&quot;minute&quot;] = df[&quot;CurrentTweetDate&quot;].dt.minute
+  df[&quot;second&quot;] = df[&quot;CurrentTweetDate&quot;].dt.second
+  return df
+
+def country_code_grouping_sentiment(df):
+  df['count'] = df.groupby(['countryCode', 'sentiment'])['countryCode'].transform('count') #The count inside the transform function calls pandas count function
+  df[&quot;sentiment&quot;] = df.groupby(['countryCode'])[&quot;sentiment&quot;].transform(&quot;mean&quot;)
+  df = df.drop_duplicates(&quot;countryCode&quot;)
+  df_cc = df.filter(['countryCode', 'count', &quot;sentiment&quot;]).reset_index()
+  return df_cc
+
+def create_geo_df_sentiment(df_cc):
+  df_world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+  # natural earth has missing iso_a3 names for France, Norway, Somalia, Kosovo and Northen Cypruys..
+  # See the following issue: https://github.com/geopandas/geopandas/issues/1041
+  # The following lines manually fixes it for all but Northern Cyprus, which does not have an iso_a3 code.
+  df_world.loc[df_world['name'] == 'France', 'iso_a3'] = 'FRA'
+  df_world.loc[df_world['name'] == 'Norway', 'iso_a3'] = 'NOR'
+  df_world.loc[df_world['name'] == 'Somaliland', 'iso_a3'] = 'SOM'
+  df_world.loc[df_world['name'] == 'Kosovo', 'iso_a3'] = 'RKS'
+
+  numTweetDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      numTweetDict[countryCode] = 0
+  for index, row in df_cc.iterrows():
+      numTweetDict[row[&quot;iso_a3&quot;]] = row[&quot;count&quot;]
+  df_world[&quot;numTweets&quot;] = df_world[&quot;iso_a3&quot;].map(numTweetDict)
+
+  sentimentDict = {}
+  for countryCode in df_world[&quot;iso_a3&quot;]:
+      sentimentDict[countryCode] = 0
+  for index, row in df_cc.iterrows():
+      sentimentDict[row[&quot;iso_a3&quot;]] = row[&quot;sentiment&quot;]
+  df_world[&quot;sentiment&quot;] = df_world[&quot;iso_a3&quot;].map(sentimentDict)
+  
+  # Could be useful to throw away antarctica and antarctic isles.
+  # df_world = df_world.query(&quot;(continent != 'Antarctica') or (continent != 'Seven seas (open ocean)')&quot;) 
+
+  # Redundant
+  # df_world_proj = df_world.to_crs({'init': 'EPSG:4326'})
+  # df_world[&quot;area&quot;] = df_world_proj['geometry'].area
+  # df_world[&quot;tweetDensity&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;area&quot;]
+  # df_world[&quot;tweetPerCapita&quot;] = df_world[&quot;numTweets&quot;]/df_world[&quot;pop_est&quot;]
+  return df_world
+
+def animate_cartogram_sentiment(df, filterKey, filterList, out_path, nIter, cartogram_key, minSamples, cmap, vmin, vmax, legendList):
+
+  images=[] # array for storing the png frames for the gif
+  frameCount = 0
+  for i in filterList:
+    
+    # Load the data and add ISOa3 codes.
+    df_filtered = df.query(&quot;%s==%d&quot;%(filterKey, i)).reset_index()
+    df_cc = country_code_grouping_sentiment(df_filtered)
+    df_cc = add_iso_a3_col(df_cc)
+
+    # Create the geopandas dataframe
+    df_world = create_geo_df_sentiment(df_cc)
+    
+    #Create cartogram
+    # The make_cartogram function can not handle a tweetcount of zero, so a not so elegant solution is to clip the tweet count at 1.
+    # The alternative (to remove countries without tweets) is not elegant either, and causes problems when we look at the time evolution, since countries will be popping in and out of existence.
+    df_world2 = df_world.copy(deep=True)
+    df_world2[&quot;numTweets&quot;] = df_world2[&quot;numTweets&quot;].clip(lower=1)
+    
+    # We want to color all countries with less than minSamples tweets grey.
+    # The colormap will do this if these countries sentiment score is below vmin.
+    df_world2.loc[df_world[&quot;numTweets&quot;] &lt; minSamples, 'sentiment'] = vmin -1
+    df_cartogram = make_cartogram(df_world2, cartogram_key, nIter, inplace=False)
+    plot = df_cartogram.plot(column=&quot;sentiment&quot;, cmap=cmap, figsize=(20, 8), legend=True, vmin=vmin, vmax=vmax)
+
+    plt.title(legendList[frameCount], fontsize=24)
+    plt.xlabel(&quot;Longitude $^\circ$&quot;, fontsize=20)
+    plt.ylabel(&quot;Latitude $^\circ$&quot;, fontsize=20)
+    plt.ylim(-90,90)
+    plt.xlim(-180,180)
+    
+    frameCount += 1
+    #Save cartogram as a png
+    fig = plot.get_figure()
+    fig.savefig(out_path + &quot;%d.png&quot;%i)
+    plt.close(fig)
+    #Append images to image list
+    images.append(imageio.imread(out_path + &quot;%d.png&quot;%i))
+  #create gif from the image list
+  imageio.mimsave(out_path + &quot;.gif&quot;, images, duration=1)
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<p><strong>Note, this notebook has been edited slightly from the course notebook supplied by Raaz.</strong></p>
+</div>
+<div class="cell markdown">
+<h1 id="scadamale-scalable-data-science-and-distributed-machine-learning"><a class="header" href="#scadamale-scalable-data-science-and-distributed-machine-learning"><a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">ScaDaMaLe, Scalable Data Science and Distributed Machine Learning</a></a></h1>
+</div>
+<div class="cell markdown">
+<h1 id="extended-sparkstreamingtwittertwitterutils"><a class="header" href="#extended-sparkstreamingtwittertwitterutils">Extended spark.streaming.twitter.TwitterUtils</a></h1>
+<h3 id="2016-2020-ivan-sadikov-and-raazesh-sainudiin"><a class="header" href="#2016-2020-ivan-sadikov-and-raazesh-sainudiin">2016-2020 Ivan Sadikov and Raazesh Sainudiin</a></h3>
+<p>We extend twitter utils from Spark to allow for filtering by user-ids using <code>.follow</code> and strings in the tweet using <code>.track</code> method of <code>twitter4j</code>.</p>
+<p>This is part of <em>Project MEP: Meme Evolution Programme</em> and supported by databricks, AWS and a Swedish VR grant.</p>
+<p>The analysis is available in the following databricks notebook: * <a href="http://lamastex.org/lmse/mep/src/extendedTwitterUtil.html">http://lamastex.org/lmse/mep/src/extendedTwitterUtils.html</a></p>
+<pre><code>Copyright 2016-2020 Ivan Sadikov and Raazesh Sainudiin
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import twitter4j._
+import twitter4j.auth.Authorization
+import twitter4j.conf.ConfigurationBuilder
+import twitter4j.auth.OAuthAuthorization
+
+import org.apache.spark.streaming._
+import org.apache.spark.streaming.dstream._
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.receiver.Receiver
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="twitter-receiver-and-stream"><a class="header" href="#twitter-receiver-and-stream">Twitter receiver and stream</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// modifications inspired by https://github.com/apache/bahir/blob/master/streaming-twitter/src/main/scala/org/apache/spark/streaming/twitter/TwitterInputDStream.scala
+class ExtendedTwitterReceiver(
+    twitterAuth: Authorization,
+    query: Option[FilterQuery],
+    storageLevel: StorageLevel
+  ) extends Receiver[Status](storageLevel) {
+
+  @volatile private var twitterStream: TwitterStream = _
+  @volatile private var stopped = false
+
+  def onStart() {
+    try {
+      val newTwitterStream = new TwitterStreamFactory().getInstance(twitterAuth)
+      newTwitterStream.addListener(new StatusListener {
+        def onStatus(status: Status): Unit = {
+          store(status)
+        }
+        // Unimplemented
+        def onDeletionNotice(statusDeletionNotice: StatusDeletionNotice) {}
+        def onTrackLimitationNotice(i: Int) {}
+        def onScrubGeo(l: Long, l1: Long) {}
+        def onStallWarning(stallWarning: StallWarning) {}
+        def onException(e: Exception) {
+          if (!stopped) {
+            restart(&quot;Error receiving tweets&quot;, e)
+          }
+        }
+      })
+
+      // do filtering only when filters are available
+      if (query.isDefined) {
+        newTwitterStream.filter(query.get)
+      } else {
+        newTwitterStream.sample()
+      }
+      setTwitterStream(newTwitterStream)
+      println(&quot;Twitter receiver started&quot;)
+      stopped = false
+    } catch {
+      case e: Exception =&gt; restart(&quot;Error starting Twitter stream&quot;, e)
+    }
+  }
+
+  def onStop() {
+    stopped = true
+    setTwitterStream(null)
+    println(&quot;Twitter receiver stopped&quot;)
+  }
+
+  private def setTwitterStream(newTwitterStream: TwitterStream) = synchronized {
+    if (twitterStream != null) {
+      twitterStream.shutdown()
+    }
+    twitterStream = newTwitterStream
+  }
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">class ExtendedTwitterInputDStream(
+    ssc_ : StreamingContext,
+    twitterAuth: Option[Authorization],
+    query: Option[FilterQuery],
+    storageLevel: StorageLevel
+  ) extends ReceiverInputDStream[Status](ssc_)  {
+
+  private def createOAuthAuthorization(): Authorization = {
+    new OAuthAuthorization(new ConfigurationBuilder().build())
+  }
+
+  private val authorization = twitterAuth.getOrElse(createOAuthAuthorization())
+
+  override def getReceiver(): Receiver[Status] = {
+    new ExtendedTwitterReceiver(authorization, query, storageLevel)
+  }
+}
+</code></pre>
+</div>
+<div class="cell markdown">
+<h3 id="extended-twitter-utils"><a class="header" href="#extended-twitter-utils">Extended twitter utils</a></h3>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import twitter4j.Status
+import twitter4j.auth.Authorization
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.StreamingContext
+import org.apache.spark.streaming.dstream.{ReceiverInputDStream, DStream}
+
+object ExtendedTwitterUtils {
+  def createStream(
+      ssc: StreamingContext,
+      twitterAuth: Option[Authorization],
+      query: Option[FilterQuery] = None,
+      storageLevel: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER_2
+    ): ReceiverInputDStream[Status] = {
+    new ExtendedTwitterInputDStream(ssc, twitterAuth, query, storageLevel)
+  }
+}
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">println(&quot;done running the extendedTwitterUtils2run notebook - ready to stream from twitter&quot;)
+</code></pre>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<p><strong>Note, this notebook has been edited slightly from the course notebook supplied by Raaz.</strong></p>
+</div>
+<div class="cell markdown">
+<h1 id="scadamale-scalable-data-science-and-distributed-machine-learning-1"><a class="header" href="#scadamale-scalable-data-science-and-distributed-machine-learning-1"><a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">ScaDaMaLe, Scalable Data Science and Distributed Machine Learning</a></a></h1>
+</div>
+<div class="cell markdown">
+<h3 id="tweet-transmission-tree-function"><a class="header" href="#tweet-transmission-tree-function">Tweet Transmission Tree Function</a></h3>
+<p>This is part of <em>Project MEP: Meme Evolution Programme</em> and supported by databricks, AWS and a Swedish VR grant.</p>
+<p>Please see the following notebook to understand the rationale for the Tweet Transmission Tree Functions: * <a href="http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.htmll">http://lamastex.org/lmse/mep/src/TweetAnatomyAndTransmissionTree.html</a></p>
+<pre><code>Copyright 2016-2020 Akinwande Atanda and Raazesh Sainudiin
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import org.apache.spark.sql.types.{StructType, StructField, StringType};
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.ColumnName
+import org.apache.spark.sql.DataFrame
+
+spark.sql(&quot;set spark.sql.legacy.timeParserPolicy=LEGACY&quot;)
+
+def fromParquetFile2DF(InputDFAsParquetFilePatternString: String): DataFrame = {
+      sqlContext.
+        read.parquet(InputDFAsParquetFilePatternString)
+}
+
+def tweetsJsonStringDF2TweetsDF(tweetsAsJsonStringInputDF: DataFrame): DataFrame = {
+      sqlContext
+        .read
+        .json(tweetsAsJsonStringInputDF.map({case Row(val1: String) =&gt; val1}))
+      }
+
+def tweetsIDLong_JsonStringPairDF2TweetsDF(tweetsAsIDLong_JsonStringInputDF: DataFrame): DataFrame = {
+      sqlContext
+        .read
+        .json(tweetsAsIDLong_JsonStringInputDF.map({case Row(val0:Long, val1: String) =&gt; val1}))
+      }
+
+def tweetsDF2TTTDF(tweetsInputDF: DataFrame): DataFrame = {
+ tweetsInputDF.select(
+  unix_timestamp($&quot;createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CurrentTweetDate&quot;),
+  $&quot;id&quot;.as(&quot;CurrentTwID&quot;),
+  $&quot;lang&quot;.as(&quot;lang&quot;),
+  $&quot;place.countryCode&quot;.as(&quot;countryCode&quot;),
+  //$&quot;geo.coordinates&quot;.as(&quot;coordinates&quot;),
+  //$&quot;geoLocation.latitude&quot;.as(&quot;lat&quot;),
+  //$&quot;geoLocation.longitude&quot;.as(&quot;lon&quot;),
+  //unix_timestamp($&quot;retweetedStatus.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CreationDateOfOrgTwInRT&quot;), 
+  //$&quot;retweetedStatus.id&quot;.as(&quot;OriginalTwIDinRT&quot;),  
+  //unix_timestamp($&quot;quotedStatus.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CreationDateOfOrgTwInQT&quot;), 
+  //$&quot;quotedStatus.id&quot;.as(&quot;OriginalTwIDinQT&quot;), 
+  //$&quot;inReplyToStatusId&quot;.as(&quot;OriginalTwIDinReply&quot;), 
+  //$&quot;user.id&quot;.as(&quot;CPostUserId&quot;),
+  //unix_timestamp($&quot;user.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;userCreatedAtDate&quot;),
+  //$&quot;retweetedStatus.user.id&quot;.as(&quot;OPostUserIdinRT&quot;), 
+  //$&quot;quotedStatus.user.id&quot;.as(&quot;OPostUserIdinQT&quot;),
+  //$&quot;inReplyToUserId&quot;.as(&quot;OPostUserIdinReply&quot;),
+  //$&quot;user.name&quot;.as(&quot;CPostUserName&quot;), 
+  //$&quot;retweetedStatus.user.name&quot;.as(&quot;OPostUserNameinRT&quot;), 
+  //$&quot;quotedStatus.user.name&quot;.as(&quot;OPostUserNameinQT&quot;), 
+  //$&quot;user.screenName&quot;.as(&quot;CPostUserSN&quot;), 
+  //$&quot;retweetedStatus.user.screenName&quot;.as(&quot;OPostUserSNinRT&quot;), 
+  //$&quot;quotedStatus.user.screenName&quot;.as(&quot;OPostUserSNinQT&quot;),
+  //$&quot;inReplyToScreenName&quot;.as(&quot;OPostUserSNinReply&quot;),
+  $&quot;user.favouritesCount&quot;,
+  $&quot;user.followersCount&quot;,
+  $&quot;user.friendsCount&quot;,
+  //$&quot;user.isVerified&quot;,
+  $&quot;user.isGeoEnabled&quot;,
+  $&quot;text&quot;.as(&quot;CurrentTweet&quot;),
+  //$&quot;retweetedStatus.userMentionEntities.id&quot;.as(&quot;UMentionRTiD&quot;), 
+  //$&quot;retweetedStatus.userMentionEntities.screenName&quot;.as(&quot;UMentionRTsN&quot;), 
+  //$&quot;quotedStatus.userMentionEntities.id&quot;.as(&quot;UMentionQTiD&quot;), 
+  //$&quot;quotedStatus.userMentionEntities.screenName&quot;.as(&quot;UMentionQTsN&quot;), 
+  //$&quot;userMentionEntities.id&quot;.as(&quot;UMentionASiD&quot;), 
+  //$&quot;userMentionEntities.screenName&quot;.as(&quot;UMentionASsN&quot;)
+ )//.withColumn(&quot;TweetType&quot;,
+    //when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+    //  &quot;Original Tweet&quot;)
+    //.when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+    //  &quot;Reply Tweet&quot;)
+   // .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp;$&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+     // &quot;ReTweet&quot;)
+    //.when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+    //  &quot;Quoted Tweet&quot;)
+    //.when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+    //  &quot;Retweet of Quoted Tweet&quot;)
+    //.when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+    //  &quot;Retweet of Reply Tweet&quot;)
+    //.when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+    //  &quot;Reply of Quoted Tweet&quot;)
+    //.when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+    //  &quot;Retweet of Quoted Rely Tweet&quot;)
+    //  .otherwise(&quot;Unclassified&quot;))
+//.withColumn(&quot;MentionType&quot;, 
+//    when($&quot;UMentionRTid&quot;.isNotNull &amp;&amp; $&quot;UMentionQTid&quot;.isNotNull, &quot;RetweetAndQuotedMention&quot;)
+//    .when($&quot;UMentionRTid&quot;.isNotNull &amp;&amp; $&quot;UMentionQTid&quot;.isNull, &quot;RetweetMention&quot;)
+//    .when($&quot;UMentionRTid&quot;.isNull &amp;&amp; $&quot;UMentionQTid&quot;.isNotNull, &quot;QuotedMention&quot;)
+//    .when($&quot;UMentionRTid&quot;.isNull &amp;&amp; $&quot;UMentionQTid&quot;.isNull, &quot;AuthoredMention&quot;)
+//    .otherwise(&quot;NoMention&quot;))
+//.withColumn(&quot;Weight&quot;, lit(1L))
+}
+
+def tweetsDF2TTTDFWithURLsAndHashtags(tweetsInputDF: DataFrame): DataFrame = {
+ tweetsInputDF.select(
+  unix_timestamp($&quot;createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CurrentTweetDate&quot;),
+  $&quot;id&quot;.as(&quot;CurrentTwID&quot;),
+  $&quot;lang&quot;.as(&quot;lang&quot;),
+  $&quot;geoLocation.latitude&quot;.as(&quot;lat&quot;),
+  $&quot;geoLocation.longitude&quot;.as(&quot;lon&quot;),
+  unix_timestamp($&quot;retweetedStatus.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CreationDateOfOrgTwInRT&quot;), 
+  $&quot;retweetedStatus.id&quot;.as(&quot;OriginalTwIDinRT&quot;),  
+  unix_timestamp($&quot;quotedStatus.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CreationDateOfOrgTwInQT&quot;), 
+  $&quot;quotedStatus.id&quot;.as(&quot;OriginalTwIDinQT&quot;), 
+  $&quot;inReplyToStatusId&quot;.as(&quot;OriginalTwIDinReply&quot;), 
+  $&quot;user.id&quot;.as(&quot;CPostUserId&quot;),
+  unix_timestamp($&quot;user.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;userCreatedAtDate&quot;),
+  $&quot;retweetedStatus.user.id&quot;.as(&quot;OPostUserIdinRT&quot;), 
+  $&quot;quotedStatus.user.id&quot;.as(&quot;OPostUserIdinQT&quot;),
+  $&quot;inReplyToUserId&quot;.as(&quot;OPostUserIdinReply&quot;),
+  $&quot;user.name&quot;.as(&quot;CPostUserName&quot;), 
+  $&quot;retweetedStatus.user.name&quot;.as(&quot;OPostUserNameinRT&quot;), 
+  $&quot;quotedStatus.user.name&quot;.as(&quot;OPostUserNameinQT&quot;), 
+  $&quot;user.screenName&quot;.as(&quot;CPostUserSN&quot;), 
+  $&quot;retweetedStatus.user.screenName&quot;.as(&quot;OPostUserSNinRT&quot;), 
+  $&quot;quotedStatus.user.screenName&quot;.as(&quot;OPostUserSNinQT&quot;),
+  $&quot;inReplyToScreenName&quot;.as(&quot;OPostUserSNinReply&quot;),
+  $&quot;user.favouritesCount&quot;,
+  $&quot;user.followersCount&quot;,
+  $&quot;user.friendsCount&quot;,
+  $&quot;user.isVerified&quot;,
+  $&quot;user.isGeoEnabled&quot;,
+  $&quot;text&quot;.as(&quot;CurrentTweet&quot;), 
+  $&quot;retweetedStatus.userMentionEntities.id&quot;.as(&quot;UMentionRTiD&quot;), 
+  $&quot;retweetedStatus.userMentionEntities.screenName&quot;.as(&quot;UMentionRTsN&quot;), 
+  $&quot;quotedStatus.userMentionEntities.id&quot;.as(&quot;UMentionQTiD&quot;), 
+  $&quot;quotedStatus.userMentionEntities.screenName&quot;.as(&quot;UMentionQTsN&quot;), 
+  $&quot;userMentionEntities.id&quot;.as(&quot;UMentionASiD&quot;), 
+  $&quot;userMentionEntities.screenName&quot;.as(&quot;UMentionASsN&quot;),
+  $&quot;urlEntities.expandedURL&quot;.as(&quot;URLs&quot;),
+  $&quot;hashtagEntities.text&quot;.as(&quot;hashTags&quot;)
+ ).withColumn(&quot;TweetType&quot;,
+    when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;Original Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Reply Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp;$&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;ReTweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;Quoted Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;Retweet of Quoted Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Retweet of Reply Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Reply of Quoted Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Retweet of Quoted Rely Tweet&quot;)
+      .otherwise(&quot;Unclassified&quot;))
+.withColumn(&quot;MentionType&quot;, 
+    when($&quot;UMentionRTid&quot;.isNotNull &amp;&amp; $&quot;UMentionQTid&quot;.isNotNull, &quot;RetweetAndQuotedMention&quot;)
+    .when($&quot;UMentionRTid&quot;.isNotNull &amp;&amp; $&quot;UMentionQTid&quot;.isNull, &quot;RetweetMention&quot;)
+    .when($&quot;UMentionRTid&quot;.isNull &amp;&amp; $&quot;UMentionQTid&quot;.isNotNull, &quot;QuotedMention&quot;)
+    .when($&quot;UMentionRTid&quot;.isNull &amp;&amp; $&quot;UMentionQTid&quot;.isNull, &quot;AuthoredMention&quot;)
+    .otherwise(&quot;NoMention&quot;))
+.withColumn(&quot;Weight&quot;, lit(1L))
+}
+
+println(&quot;&quot;&quot;USAGE: val df = tweetsDF2TTTDF(tweetsJsonStringDF2TweetsDF(fromParquetFile2DF(&quot;parquetFileName&quot;)))
+                  val df = tweetsDF2TTTDF(tweetsIDLong_JsonStringPairDF2TweetsDF(fromParquetFile2DF(&quot;parquetFileName&quot;)))
+                  &quot;&quot;&quot;)
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">// try to modify the function tweetsDF2TTTDF so some fields are not necessarily assumed to be available
+// there are better ways - https://stackoverflow.com/questions/35904136/how-do-i-detect-if-a-spark-dataframe-has-a-column
+
+def tweetsDF2TTTDFLightWeight(tweetsInputDF: DataFrame): DataFrame = {
+ tweetsInputDF.select(
+  unix_timestamp($&quot;createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CurrentTweetDate&quot;),
+  $&quot;id&quot;.as(&quot;CurrentTwID&quot;),
+  $&quot;lang&quot;.as(&quot;lang&quot;),
+  //$&quot;geoLocation.latitude&quot;.as(&quot;lat&quot;),
+  //$&quot;geoLocation.longitude&quot;.as(&quot;lon&quot;),
+  unix_timestamp($&quot;retweetedStatus.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CreationDateOfOrgTwInRT&quot;), 
+  $&quot;retweetedStatus.id&quot;.as(&quot;OriginalTwIDinRT&quot;),  
+  unix_timestamp($&quot;quotedStatus.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;CreationDateOfOrgTwInQT&quot;), 
+  $&quot;quotedStatus.id&quot;.as(&quot;OriginalTwIDinQT&quot;), 
+  $&quot;inReplyToStatusId&quot;.as(&quot;OriginalTwIDinReply&quot;), 
+  $&quot;user.id&quot;.as(&quot;CPostUserId&quot;),
+  unix_timestamp($&quot;user.createdAt&quot;, &quot;&quot;&quot;MMM dd, yyyy hh:mm:ss a&quot;&quot;&quot;).cast(TimestampType).as(&quot;userCreatedAtDate&quot;),
+  $&quot;retweetedStatus.user.id&quot;.as(&quot;OPostUserIdinRT&quot;), 
+  $&quot;quotedStatus.user.id&quot;.as(&quot;OPostUserIdinQT&quot;),
+  $&quot;inReplyToUserId&quot;.as(&quot;OPostUserIdinReply&quot;),
+  $&quot;user.name&quot;.as(&quot;CPostUserName&quot;), 
+  $&quot;retweetedStatus.user.name&quot;.as(&quot;OPostUserNameinRT&quot;), 
+  $&quot;quotedStatus.user.name&quot;.as(&quot;OPostUserNameinQT&quot;), 
+  $&quot;user.screenName&quot;.as(&quot;CPostUserSN&quot;), 
+  $&quot;retweetedStatus.user.screenName&quot;.as(&quot;OPostUserSNinRT&quot;), 
+  $&quot;quotedStatus.user.screenName&quot;.as(&quot;OPostUserSNinQT&quot;),
+  $&quot;inReplyToScreenName&quot;.as(&quot;OPostUserSNinReply&quot;),
+  $&quot;user.favouritesCount&quot;,
+  $&quot;user.followersCount&quot;,
+  $&quot;user.friendsCount&quot;,
+  $&quot;user.isVerified&quot;,
+  $&quot;user.isGeoEnabled&quot;,
+  $&quot;text&quot;.as(&quot;CurrentTweet&quot;), 
+  $&quot;retweetedStatus.userMentionEntities.id&quot;.as(&quot;UMentionRTiD&quot;), 
+  $&quot;retweetedStatus.userMentionEntities.screenName&quot;.as(&quot;UMentionRTsN&quot;), 
+  $&quot;quotedStatus.userMentionEntities.id&quot;.as(&quot;UMentionQTiD&quot;), 
+  $&quot;quotedStatus.userMentionEntities.screenName&quot;.as(&quot;UMentionQTsN&quot;), 
+  $&quot;userMentionEntities.id&quot;.as(&quot;UMentionASiD&quot;), 
+  $&quot;userMentionEntities.screenName&quot;.as(&quot;UMentionASsN&quot;)
+ ).withColumn(&quot;TweetType&quot;,
+    when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;Original Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Reply Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp;$&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;ReTweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;Quoted Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; === -1,
+      &quot;Retweet of Quoted Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Retweet of Reply Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Reply of Quoted Tweet&quot;)
+    .when($&quot;OriginalTwIDinRT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinQT&quot;.isNotNull &amp;&amp; $&quot;OriginalTwIDinReply&quot; &gt; -1,
+      &quot;Retweet of Quoted Rely Tweet&quot;)
+      .otherwise(&quot;Unclassified&quot;))
+.withColumn(&quot;MentionType&quot;, 
+    when($&quot;UMentionRTid&quot;.isNotNull &amp;&amp; $&quot;UMentionQTid&quot;.isNotNull, &quot;RetweetAndQuotedMention&quot;)
+    .when($&quot;UMentionRTid&quot;.isNotNull &amp;&amp; $&quot;UMentionQTid&quot;.isNull, &quot;RetweetMention&quot;)
+    .when($&quot;UMentionRTid&quot;.isNull &amp;&amp; $&quot;UMentionQTid&quot;.isNotNull, &quot;QuotedMention&quot;)
+    .when($&quot;UMentionRTid&quot;.isNull &amp;&amp; $&quot;UMentionQTid&quot;.isNull, &quot;AuthoredMention&quot;)
+    .otherwise(&quot;NoMention&quot;))
+.withColumn(&quot;Weight&quot;, lit(1L))
+}
+</code></pre>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </body>
+</html>

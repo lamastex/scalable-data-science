@@ -1,0 +1,5 @@
+- [00_introduction](./contents/student-project-21_group-GraphSpectralAnalysis/00_introduction.md)
+- [01_preprocess_data](./contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.md)
+- [02_generate_graphs](./contents/student-project-21_group-GraphSpectralAnalysis/02_generate_graphs.md)
+- [03_compute_rsvd.](./contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.md)
+- [04_analyse_eigenvalues](./contents/student-project-21_group-GraphSpectralAnalysis/04_analyse_eigenvalues.md)

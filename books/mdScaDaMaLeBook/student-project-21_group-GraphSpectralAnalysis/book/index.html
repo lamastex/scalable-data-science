@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>00_introduction - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/00_introduction.html">00_introduction</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html">01_preprocess_data</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/02_generate_graphs.html">02_generate_graphs</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.html">03_compute_rsvd.</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-21_group-GraphSpectralAnalysis/04_analyse_eigenvalues.html">04_analyse_eigenvalues</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="graph-spectral-analysis"><a class="header" href="#graph-spectral-analysis">Graph Spectral Analysis</a></h1>
+<h5 id="project-by-ciwan-ceylan-and-hanna-hultin"><a class="header" href="#project-by-ciwan-ceylan-and-hanna-hultin">Project by Ciwan Ceylan and Hanna Hultin</a></h5>
+<p>Link to project video: &quot;https://drive.google.com/file/d/1ctILEsMskFgpsVnu-6ucCMZqM1TLXfEB/view?usp=sharing&quot;</p>
+</div>
+<div class="cell markdown">
+<h2 id="background-on-graphs"><a class="header" href="#background-on-graphs">Background on graphs</a></h2>
+<p>A graph can be represented by its incidence matrix <strong>B*0</strong>. Each row of <strong>B*0</strong> corresponds to an edge in the graph and each column to a node. Say that row <em>k</em> corresponds to edge <em>i</em> -&gt; <em>j</em>. Then element <em>i</em> of row <em>k</em> is <em>-1</em> and element <em>j</em> is <em>1</em>. All other elements are zero. See the figure below for an example of the indicence matrix with the corresponding graph.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/incidence_matrix.png?raw=true" alt="" /> <img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/simple_graph.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h3 id="graph-laplacian"><a class="header" href="#graph-laplacian">Graph Laplacian</a></h3>
+<p>The Laplacian lies at the center of <em>specral graph theory</em>. Its spectrum (its eigenvalues) encodes the geometry of the graph and can be used in various applications ranging from computer graphics to machine learning. Therefore, one approximative approach for comparing graphs (a problem which is NP-hard) is to compare their spectra. Graphs with similar geometry are expected to have similar spectrum and vice-versa. Below is an example of the Laplacian for the graph seen in the cell above. The diagonal elements contain the degree of the corresponding node, while all other elements at index (<em>i</em>,<em>j</em>) are -1 if there is an edge between the nodes <em>i</em> and <em>j</em> and zero otherwise.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/simple_laplacian.png?raw=true" alt="" /></p>
+<p>The Laplacian can be constructed from the indicence matrix as \[ \mathbf{L} = \mathbf{B}_0^T \mathbf{B}_0 \] Thus, we can compute the top eigenvalues of <strong>L</strong> by instead computing the top singular values of **B_0**. This follows from the following: \[ \mathbf{B}_0 = \mathbf{U} \mathbf{D}^{1/2} \mathbf{V}^T \] \[ \mathbf{L}= \mathbf{V}  \mathbf{D}^{1/2} \mathbf{U}^T \mathbf{U} \mathbf{D}^{1/2} \mathbf{V}^T =  \mathbf{V}  \mathbf{D} \mathbf{V}^T \]</p>
+<h4 id="scaling-to-large-graphs-using-randomized-svd"><a class="header" href="#scaling-to-large-graphs-using-randomized-svd">Scaling to large graphs using randomized SVD</a></h4>
+<p>In the new age of big data, it is often interesting to analyze very large graphs of for example financial transactions. Doing the spectral graph analysis for these large graphs is challenging, since the full singular value decomposition of an <em>m x n</em> matrix scales as <em>O(m n min(m,n))</em>. To handle this, we turn to low rank approximations and specifically we use Randomized SVD.</p>
+<p>Randomized SVD was introduced in 2011 in the article &quot;Finding structure with randomness: Probabilistic algorithms for constructing approximate matrix decompositions&quot; (https://arxiv.org/abs/0909.4061), and is a smart way of finding a low-rank approximation for the singular value decomposition using Gaussian vectors.</p>
+<p>The basic idea is that given the <em>m x n</em> matrix <em>A</em>, we can create a sampling matrix <em>Y = AG</em> where <em>G</em> is a <em>n x k</em> Gaussian random matrix and it turns out that <em>Y</em> is then a quite good approximate basis for the column space of A.</p>
+<p>A nice summary of the methods and some variations written by one of the authors of the original article can be found in the following link: https://sinews.siam.org/Details-Page/randomized-projection-methods-in-linear-algebra-and-data-analysis</p>
+</div>
+<div class="cell markdown">
+<h3 id="methods-for-generating-random-graphs"><a class="header" href="#methods-for-generating-random-graphs">Methods for generating random graphs</a></h3>
+<h4 id="erdősrényi-model"><a class="header" href="#erdősrényi-model">Erdős–Rényi model</a></h4>
+<p>In &quot;On the Evoluation of Random Graphs&quot; (https://users.renyi.hu/~p_erdos/1960-10.pdf), Erdős and Rényi describes the random graph with <em>n</em> vertices and <em>N</em> edges where the <em>N</em> edges are chosen at random among all the undirected possible edges.</p>
+<h4 id="r-mat-model"><a class="header" href="#r-mat-model">R-MAT model</a></h4>
+<p>The Recursive Matrix (R-MAT) model introduced in the article &quot;R-MAT: A Recursive Model for Graph Mining&quot; (https://kilthub.cmu.edu/articles/R-MAT<em>A</em>Recursive<em>Model</em>for<em>Graph</em>Mining/6609113/files/12101195.pdf) is described as follows by the authors:</p>
+<blockquote>
+<p>&quot;The basic idea behind R-MAT is to recursively subdivide the adjacency matrix into four equal-sized partitions, and distribute edges with in these partitions with unequal probabilities: starting off with an empty adjacency matrix, we &quot;drop&quot; edges into the matrix one at a time. Each edge chooses one of the four partitions with probabilities a; b; c; d respectively (see Figure1). Of course, a+b+c+d=1. The chosen partition is again subdivided into four smaller partitions, and the procedure is repeated until we reach a simplecell (=1 x 1 partition). This is the cell of the adjacency matrix occupied by the edge.&quot;</p>
+</blockquote>
+<p>This is visualized in the following image.</p>
+<p><img src="https://github.com/r-e-x-a-g-o-n/scalable-data-science/blob/master/images/ScaDaMaLe/000_0-sds-3-x-projects/rmat_picture.png?raw=true" alt="" /></p>
+</div>
+<div class="cell markdown">
+<h2 id="project-specifications"><a class="header" href="#project-specifications">Project specifications</a></h2>
+<p>The goal of the project is to compare spectra of the Laplacian for different graphs.</p>
+<h3 id="data"><a class="header" href="#data">Data</a></h3>
+<ul>
+<li>Ethereum transactions:
+<ul>
+<li>Original data from google cloud (https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-public-dataset-smart-contract-analytics)</li>
+<li>The dataset contains transactions from March 2018 to March 2020, aggregating per edge (same sender and receiver) and only keeping edges with at least 10 transactions with positive value</li>
+</ul>
+</li>
+<li>Randomly generated graphs using the two different methods explained above</li>
+</ul>
+<h3 id="notebooks"><a class="header" href="#notebooks">Notebooks</a></h3>
+<ul>
+<li><strong>01<em>preprocess</em>data</strong>: preprocesses the Ethereum data using Python and PySpark and saves the graph information as parquet file</li>
+<li><strong>02<em>generate</em>graphs</strong>: generates random graphs in Scala using Spark (SQL and GraphX) and saves the graph information as parquet files</li>
+<li><strong>03<em>compute</em>rsvd</strong>: computes RSVD for the different graphs in Scala using Spark and the library Spark-RSVD and saves the singular values as parquet files</li>
+<li><strong>04<em>analyse</em>eigenvalues</strong>: computes the eigenvalues from the singular values and plots these for different graphs</li>
+</ul>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

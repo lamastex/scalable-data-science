@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>00_download_data - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/00_download_data.html" class="active">00_download_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html">01_load_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/01b_show_data.html">01b_show_data</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/02_logisticregression.html">02_logisticregression</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/03_word2vec.html">03_word2vec</a></li><li class="chapter-item expanded affix "><a href="../../contents/student-project-01_group-TheTwoCultures/04_LDA.html">04_LDA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="the-two-cultures"><a class="header" href="#the-two-cultures">The two cultures</a></h1>
+</div>
+<div class="cell markdown">
+<p>Link to video presentation: https://www.youtube.com/watch?v=NzxBRxheJ9s&amp;feature=youtu.be</p>
+</div>
+<div class="cell markdown">
+<ol>
+<li>Introduction</li>
+</ol>
+<hr />
+<p>This is the final project in the Scalable Data Science and Distributed Machine Learning (6 credits) course. Our aim is to compare and distinguish forum threads from two of the most popular forum sites in Sweden; Familjeliv and Flashback. For this we will use both logisitic regression models and topic modelling. We will compare two different feature approaches using logistic regression; one using word occurencies as our input features and one using more advanced word2vec features. For topic modelling we will use an LDA model and observe the most significant words in each forum.</p>
+<p><img src="https://kwiss.me/assets/quiz/1512031277717651576.png" alt="flvsfb" /></p>
+<p><strong>Project members:</strong> - Daniel Ahlsén - Martin Andersson - Niklas Gunnarsson - Jonathan Styrud</p>
+</div>
+<div class="cell markdown">
+<ol start="2">
+<li>Download data</li>
+</ol>
+<hr />
+<p>For this project we use data resources from the swedish research unit Språkbanken (https://spraakbanken.gu.se/)</p>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">var root = &quot;dbfs:/datasets/student-project-01&quot;
+try{
+  dbutils.fs.ls(root)
+} catch {
+  case e: java.io.FileNotFoundException =&gt; dbutils.fs.mkdirs(root)
+}
+
+display(dbutils.fs.ls(root)) 
+
+var fl_root = &quot;dbfs:/datasets/student-project-01/familjeliv/&quot;
+try{
+  dbutils.fs.ls(fl_root)
+} catch {
+  case e: java.io.FileNotFoundException =&gt; dbutils.fs.mkdirs(fl_root)
+}
+
+var fb_root = &quot;dbfs:/datasets/student-project-01/flashback/&quot;
+try{
+  dbutils.fs.ls(fb_root)
+} catch {
+  case e: java.io.FileNotFoundException =&gt; dbutils.fs.mkdirs(fb_root)
+}
+
+display(dbutils.fs.ls(root))
+</code></pre>
+<div class="output execute_result tabular_result" execution_count="1">
+<table>
+<thead>
+<tr class="header">
+<th>path</th>
+<th>name</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dbfs:/datasets/student-project-01/familjeliv/</td>
+<td>familjeliv/</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/student-project-01/flashback/</td>
+<td>flashback/</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/student-project-01/stoppord.csv</td>
+<td>stoppord.csv</td>
+<td>1936.0</td>
+</tr>
+<tr class="even">
+<td>dbfs:/datasets/student-project-01/stopwords2.csv</td>
+<td>stopwords2.csv</td>
+<td>145866.0</td>
+</tr>
+<tr class="odd">
+<td>dbfs:/datasets/student-project-01/word2vec_model_sex/</td>
+<td>word2vec_model_sex/</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">//[   ]	familjeliv-adoption.xml.bz2	            2017-07-23 17:39	195M	 
+//[   ]	familjeliv-allmanna-ekonomi.xml.bz2	    2017-09-18 13:50	838M	 
+//[   ]	familjeliv-allmanna-familjeliv.xml.bz2	2017-09-19 15:49	1.1G	 
+//[   ]	familjeliv-allmanna-fritid.xml.bz2	    2017-09-19 17:30	588M	 
+//[   ]	familjeliv-allmanna-husdjur.xml.bz2	    2017-09-20 15:31	846M	 
+//[   ]	familjeliv-allmanna-hushem.xml.bz2	    2017-09-21 12:27	1.3G	 
+//[   ]	familjeliv-allmanna-kropp.xml.bz2	    2017-09-21 18:41	2.3G	 
+//[   ]	familjeliv-allmanna-noje.xml.bz2	    2017-09-21 19:57	1.6G	 
+//[   ]	familjeliv-allmanna-samhalle.xml.bz2	2017-09-22 03:52	5.0G	 
+//[   ]	familjeliv-allmanna-sandladan.xml.bz2	2017-09-22 10:43	778M	 
+//[   ]	familjeliv-anglarum.xml.bz2	            2017-07-23 18:10	336M	 
+//[   ]	familjeliv-expert.xml.bz2	            2017-07-20 11:32	142M	 
+//[   ]	familjeliv-foralder.xml.bz2	            2017-08-04 19:16	10G	 
+//[   ]	familjeliv-gravid.xml.bz2	            2017-07-15 04:50	7.5G	 
+//[   ]	familjeliv-kansliga.xml.bz2	            2017-09-05 18:13	14G	 
+//[   ]	familjeliv-medlem-allmanna.xml.bz2	    2017-07-24 03:47	4.4G	 
+//[   ]	familjeliv-medlem-foraldrar.xml.bz2	    2017-07-20 22:11	4.5G	 
+//[   ]	familjeliv-medlem-planerarbarn.xml.bz2	2017-07-18 15:08	1.9G	 
+//[   ]	familjeliv-medlem-vantarbarn.xml.bz2	2017-07-17 08:04	4.5G	 
+//[   ]	familjeliv-pappagrupp.xml.bz2	        2017-06-28 16:18	38M	 
+//[   ]	familjeliv-planerarbarn.xml.bz2	        2017-08-28 20:55	2.8G	 
+//[   ]	familjeliv-sexsamlevnad.xml.bz2	        2017-08-25 16:39	2.3G	 
+//[   ]	familjeliv-svartattfabarn.xml.bz2	    2017-07-03 07:04	2.6G
+
+//[   ]	flashback-dator.xml.bz2	                2017-04-06 09:08	4.5G	 
+//[   ]	flashback-droger.xml.bz2	            2017-04-06 08:59	3.5G	 
+//[   ]	flashback-ekonomi.xml.bz2	            2017-04-06 10:53	1.2G	 
+//[   ]	flashback-flashback.xml.bz2	            2017-04-05 18:16	429M	 
+//[   ]	flashback-fordon.xml.bz2	            2017-04-06 12:00	1.0G	 
+//[   ]	flashback-hem.xml.bz2	                2017-04-07 03:10	4.6G	 
+//[   ]	flashback-kultur.xml.bz2	            2017-04-06 22:51	5.5G	 
+//[   ]	flashback-livsstil.xml.bz2	            2017-04-07 00:11	1.7G	 
+//[   ]	flashback-mat.xml.bz2	                2017-04-07 08:52	1.0G	 
+//[   ]	flashback-ovrigt.xml.bz2	            2017-04-07 18:54	1.9G	 
+//[   ]	flashback-politik.xml.bz2	            2017-04-14 17:06	9.0G	 
+//[   ]	flashback-resor.xml.bz2	                2017-04-09 15:52	566M	 
+//[   ]	flashback-samhalle.xml.bz2	            2017-04-12 20:36	8.3G	 
+//[   ]	flashback-sex.xml.bz2	                2017-04-11 20:32	1.3G	 
+//[   ]	flashback-sport.xml.bz2	                2017-04-12 22:10	3.3G	 
+//[   ]	flashback-vetenskap.xml.bz2	            2017-04-14 20:34	5.8G	 
+</code></pre>
+</div>
+<div class="cell code" execution_count="1" scrolled="false">
+<pre><code class="language-scala">import sys.process._
+
+val fl_data = Array(&quot;familjeliv-allmanna-ekonomi.xml&quot;,
+                    &quot;familjeliv-sexsamlevnad.xml&quot;)
+
+val fb_data = Array(&quot;flashback-ekonomi.xml&quot;,
+                    &quot;flashback-sex.xml&quot;)
+
+val url = &quot;http://spraakbanken.gu.se/lb/resurser/meningsmangder/&quot;
+val tmp_folder_fl = &quot;/tmp/familjeliv/&quot;
+val tmp_folder_fb = &quot;/tmp/flashback/&quot;
+
+s&quot;rm -f -r ${tmp_folder_fl}&quot; .!! // Remove tmp folder if exists
+s&quot;rm -f -r ${tmp_folder_fb}&quot; .!!
+
+for (name &lt;- fl_data){
+  try{
+    dbutils.fs.ls(s&quot;${fl_root}${name}&quot;)
+    println(s&quot;${name} already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      println(s&quot;Downloading ${name} ...&quot;)
+      s&quot;wget -P ${tmp_folder_fl} ${url}${name}.bz2&quot; .!!
+      println(&quot;Unzipping ...&quot;)
+      s&quot;bzip2 -d ${tmp_folder_fl}${name}.bz2&quot; .!!
+      println(&quot;Moving ... &quot;)
+      val localpath=s&quot;file:${tmp_folder_fl}${name}&quot;
+      dbutils.fs.mv(localpath, fl_root)
+      println(s&quot;Done ${name}!&quot;)
+    }
+  }
+}
+
+s&quot;rm -f -r ${tmp_folder_fl}&quot; .!!
+
+for (name &lt;- fb_data){
+  try{
+    dbutils.fs.ls(s&quot;${fb_root}${name}&quot;)
+    println(s&quot;${name} already exists!&quot;)
+  }
+  catch{
+    case e: java.io.FileNotFoundException =&gt; {
+      println(s&quot;Downloading ${name} ...&quot;)
+      s&quot;wget -P ${tmp_folder_fb} ${url}${name}.bz2&quot; .!!
+      println(&quot;Unzipping ...&quot;)
+      s&quot;bzip2 -d ${tmp_folder_fb}${name}.bz2&quot; .!!
+      println(&quot;Moving ... &quot;)
+      val localpath=s&quot;file:${tmp_folder_fb}${name}&quot;
+      dbutils.fs.mv(localpath, fb_root)
+      println(s&quot;Done ${name}!&quot;)
+    }
+  }
+}
+s&quot;rm -f -r ${tmp_folder_fb}&quot; .!!
+</code></pre>
+<div class="output execute_result plain_result" execution_count="1">
+<pre><code>familjeliv-allmanna-ekonomi.xml already exists!
+familjeliv-sexsamlevnad.xml already exists!
+flashback-ekonomi.xml already exists!
+flashback-sex.xml already exists!
+import sys.process._
+fl_data: Array[String] = Array(familjeliv-allmanna-ekonomi.xml, familjeliv-sexsamlevnad.xml)
+fb_data: Array[String] = Array(flashback-ekonomi.xml, flashback-sex.xml)
+url: String = http://spraakbanken.gu.se/lb/resurser/meningsmangder/
+tmp_folder_fl: String = /tmp/familjeliv/
+tmp_folder_fb: String = /tmp/flashback/
+res14: String = &quot;&quot;
+</code></pre>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="../../contents/student-project-01_group-TheTwoCultures/01_load_data.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

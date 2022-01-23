@@ -1,0 +1,1 @@
+- [01_1000genomes](./contents/student-project-13_group-Genomics/01_1000genomes.md)

@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>01_Introduction - sds-3.x/ScaDaMaLe</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="scroll-mdbook-outputs.css">
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/01_Introduction.html">01_Introduction</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/02_Data_Processing.html">02_Data_Processing</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/03_LDA.html">03_LDA</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/04_Classification_CountVector.html">04_Classification_CountVector</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/05_Classification.html">05_Classification</a></li><li class="chapter-item expanded affix "><a href="contents/student-project-09_group-TopicModeling/06_Results.html">06_Results</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sds-3.x/ScaDaMaLe</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="cell markdown">
+<p>ScaDaMaLe Course <a href="https://lamastex.github.io/scalable-data-science/sds/3/x/">site</a> and <a href="https://lamastex.github.io/ScaDaMaLe/index.html">book</a></p>
+</div>
+<div class="cell markdown">
+<h1 id="topic-modeling-with-sars-cov-2-genome-"><a class="header" href="#topic-modeling-with-sars-cov-2-genome-">Topic Modeling with SARS-Cov-2 Genome 🧬</a></h1>
+</div>
+<div class="cell markdown">
+<p>Group Project Authors:</p>
+<ul>
+<li>Hugo Werner</li>
+<li>Gizem Çaylak <a href="mailto:caylak@kth.se">e-mail</a></li>
+</ul>
+</div>
+<div class="cell markdown">
+<p>Video link: https://kth.box.com/s/y3jsb9lgp6cll6op15o6z77rchaefh24</p>
+</div>
+<div class="cell markdown">
+<h4 id="problem-description"><a class="header" href="#problem-description">Problem description:</a></h4>
+<p>SARS-CoV-2 is spreading across the world and as it spreads mutations are occuring. A way to understand the spreading and the mutations is to explore the structure and information hidden in the genome.</p>
+</div>
+<div class="cell markdown">
+<h4 id="project-goal"><a class="header" href="#project-goal">Project goal:</a></h4>
+<p>The Goal of this project is to explore a SARS-CoV-2 genome dataset and try to predict the origin of a SARS-CoV-2 genome sample.</p>
+</div>
+<div class="cell markdown">
+<h4 id="data"><a class="header" href="#data">Data:</a></h4>
+<p>We will use publicly available NCBI SARS-CoV-2 genome with their geographic region information.</p>
+<table><thead><tr><th align="center">Geographic region | #</th><th align="center">#samples |</th></tr></thead><tbody>
+<tr><td align="center">Africa</td><td align="center">397 |</td></tr>
+<tr><td align="center">Asia |</td><td align="center">2534 |</td></tr>
+<tr><td align="center">Europe |</td><td align="center">1418 |</td></tr>
+<tr><td align="center">North America |</td><td align="center">26836</td></tr>
+<tr><td align="center">Oceania |</td><td align="center">13304</td></tr>
+<tr><td align="center">South America |</td><td align="center">158 |</td></tr>
+</tbody></table>
+<p>Data link: https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType<em>s=Nucleotide&amp;VirusLineage</em>ss=Severe%20acute%20respiratory%20syndrome%20coronavirus%202%20(SARS-CoV-2),%20taxid:2697049</p>
+</div>
+<div class="cell markdown">
+<h4 id="background"><a class="header" href="#background">Background:</a></h4>
+<ul>
+<li>Genome: Sequence of nucleotides (A-T-G-C) [https://en.wikipedia.org/wiki/Genome]</li>
+<li>k-mer: Subsequences of length k of a genome [https://en.wikipedia.org/wiki/K-mer]</li>
+<li>Sequence analysis of SARS-CoV-2 genome reveals features important for vaccine design [https://www.nature.com/articles/s41598-020-72533-2]</li>
+<li>Latent Dirichlet Allocation (LDA) tutorial from the course</li>
+</ul>
+</div>
+<div class="cell markdown">
+<h4 id="challenges"><a class="header" href="#challenges">Challenges:</a></h4>
+<ul>
+<li>How to encode genome sequence?
+<ul>
+<li><em>Project solution :</em>
+<ul>
+<li>Represent genome as k-mers and use countVectorizer to convert k-mers into a matrix of token counts (term-frequency table)</li>
+<li>Extract features with Latent Dirichlet Allocation (LDA) by considering each genome sequence as a document and each 3-mer as a word. So, we have a collection of genomes consisting of 3-mers.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>How to relate encoded features to the origins?
+<ul>
+<li><em>Project solution:</em> We used a Random Forest Classifier and tried both topic distributions, LDA output, and k-mer frequencies directly. One advantage is interpretability: we can understand the positive or negative relations a topic has on the origin.</li>
+</ul>
+</li>
+<li>How to solve unbalanced class problem? E.g. North America has 26836 samples but South America has only 158
+<ul>
+<li><em>Project solution:</em> Use f1 measure as metric</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell markdown">
+<h4 id="project-steps"><a class="header" href="#project-steps">Project steps:</a></h4>
+<ol>
+<li>Get SARS-CoV-2 data from NCBI</li>
+<li>Process data:</li>
+<li>Extract 3-mers:</li>
+<li>Split train/test dataset with split ratio 0.7</li>
+<li>Extract topic features: We used Latent Dirichlet Allocation to extract patterns from k-mers features.</li>
+<li>Classify: We used Random Forest Classifier
+<ul>
+<li>(Classification directly on k-mers features) To find a mapping from extracted k-mers features to labels (multiclass problem).</li>
+<li>(Classification on LDA features) To find a mapping from extracted topic distributions to labels (multiclass problem).</li>
+</ul>
+</li>
+<li>Evaluation: We use (accuracy and f1) measure as our evaluation metrics. We compared Classification on LDA features vs Classification directly on k-mers features to see whether LDA is capable of summarizing the data (and thus reducing the feature dimensionality)</li>
+</ol>
+</div>
+<div class="cell markdown">
+<h4 id="what-we-lack-mainly"><a class="header" href="#what-we-lack-mainly">What we lack mainly:</a></h4>
+<ul>
+<li>A biological interpretation of the results (whether found terms in topic distributions are significant/connected in a biological network).</li>
+</ul>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="contents/student-project-09_group-TopicModeling/02_Data_Processing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="contents/student-project-09_group-TopicModeling/02_Data_Processing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
