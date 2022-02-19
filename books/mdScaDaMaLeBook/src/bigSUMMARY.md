@@ -127,3 +127,133 @@
 - [01_trend_calculus_showcase](./contents/000_9-sds-3-x-trends/01_trend_calculus_showcase.md)
 - [02_streamable_trend_calculus](./contents/000_9-sds-3-x-trends/02_streamable_trend_calculus.md)
 - [030a_gdelt_EOI_detection](./contents/000_9-sds-3-x-trends/030a_gdelt_EOI_detection.md)
+
+#StudentProject1
+- [00_download_data](./contents/student-project-01_group-TheTwoCultures/00_download_data.md)
+- [01_load_data](./contents/student-project-01_group-TheTwoCultures/01_load_data.md)
+- [01b_show_data](./contents/student-project-01_group-TheTwoCultures/01b_show_data.md)
+- [02_logisticregression](./contents/student-project-01_group-TheTwoCultures/02_logisticregression.md)
+- [03_word2vec](./contents/student-project-01_group-TheTwoCultures/03_word2vec.md)
+- [04_LDA](./contents/student-project-01_group-TheTwoCultures/04_LDA.md)
+
+#StudentProject2
+- [01_SceneGraphMotifs](./contents/student-project-02_group-LiUUmeaSceneGraphMotifs/01_SceneGraphMotifs.md)
+
+#StudentProject3
+- [01_triads](./contents/student-project-03_group-GuangyiZhang/01_triads.md)
+
+#StudentProject4
+- [01_DistributedSVD](./contents/student-project-04_group-DistributedLinearAlgebra/01_DistributedSVD.md)
+- [02_CollaborativeFiltering](./contents/student-project-04_group-DistributedLinearAlgebra/02_CollaborativeFiltering.md)
+
+#StudentProject5
+- [01_Wikipedia_LDA_Analysis](./contents/student-project-05_group-LundDirichletAnalysts/01_Wikipedia_LDA_Analysis.md)
+
+#StudentProject6 #with parquet
+- [00_Introduction](./contents/student-project-06_group-ParticleClustering/00_Introduction.md)
+- [01_data_and_preprocessing](./contents/student-project-06_group-ParticleClustering/01_data_and_preprocessing.md)
+- [02_dl_single_machine](./contents/student-project-06_group-ParticleClustering/02_dl_single_machine.md)
+- [03_dl_horovod](./contents/student-project-06_group-ParticleClustering/03_dl_horovod.md)
+- [04_evaluate](./contents/student-project-06_group-ParticleClustering/04_evaluate.md)
+- [TF1version](./contents/student-project-06_group-ParticleClustering/TF1version.md)
+
+#StudentProject7
+- [01_Coding_Motifs](./contents/student-project-07_group-MathAtKTH/01_Coding_Motifs.md)
+- [02_Data_Processing](./contents/student-project-07_group-MathAtKTH/02_Data_Processing.md)
+- [03_graph_string_converter](./contents/student-project-07_group-MathAtKTH/03_graph_string_converter.md)
+
+#StudentProject8
+- [00_project](./contents/student-project-08_group-DistributedEnsemble/00_project.md)
+
+#StudentProject9
+- [01_Introduction](./contents/student-project-09_group-TopicModeling/01_Introduction.md)
+- [02_Data_Processing](./contents/student-project-09_group-TopicModeling/02_Data_Processing.md)
+- [03_LDA](./contents/student-project-09_group-TopicModeling/03_LDA.md)
+- [04_Classification_CountVector](./contents/student-project-09_group-TopicModeling/04_Classification_CountVector.md)
+- [05_Classification](./contents/student-project-09_group-TopicModeling/05_Classification.md)
+- [06_Results](./contents/student-project-09_group-TopicModeling/06_Results.md)
+
+#StudentProject10
+- [01_Introduction](./contents/student-project-10_group-Geosmus/01_Introduction.md)
+- [02_ClusteringEmoticonsBasedOnTweets](./contents/student-project-10_group-Geosmus/02_ClusteringEmoticonsBasedOnTweets.md)
+- [03_Dynamic_Tweet_Maps](./contents/student-project-10_group-Geosmus/03_Dynamic_Tweet_Maps.md)
+- [04_conclusion](./contents/student-project-10_group-Geosmus/04_conclusion.md)
+- [05_appendix_get-cc-data](./contents/student-project-10_group-Geosmus/05_appendix_get-cc-data.md)
+- [06_appendix_tweet_carto_functions](./contents/student-project-10_group-Geosmus/06_appendix_tweet_carto_functions.md)
+- [07_a_appendix_extendedTwitterUtils2run](./contents/student-project-10_group-Geosmus/07_a_appendix_extendedTwitterUtils2run.md)
+- [07_b_appendix_TTTDFfunctions](./contents/student-project-10_group-Geosmus/07_b_appendix_TTTDFfunctions.md)
+
+#StudentProject11
+- [00_QuantileEstimation](./contents/student-project-11_group-Sketchings/00_QuantileEstimation.md)
+
+#StudentProject12
+- [00_ProjectDescriptionAndPlanning](./contents/student-project-12_group-CovidPandemic/00_ProjectDescriptionAndPlanning.md)
+- [01_DownloadFilesPeriodicallyScript](./contents/student-project-12_group-CovidPandemic/01_DownloadFilesPeriodicallyScript.md)
+- [01_StreamToFile](./contents/student-project-12_group-CovidPandemic/01_StreamToFile.md)
+- [02_DataPreprocess](./contents/student-project-12_group-CovidPandemic/02_DataPreprocess.md)
+- [021_DataPreprocess_Explain](./contents/student-project-12_group-CovidPandemic/021_DataPreprocess_Explain.md)
+- [03_ExplosiveAnalysis](./contents/student-project-12_group-CovidPandemic/03_ExplosiveAnalysis.md)
+- [04_DataVisualize](./contents/student-project-12_group-CovidPandemic/04_DataVisualize.md)
+- [05_Clustering](./contents/student-project-12_group-CovidPandemic/05_Clustering.md)
+- [06_DataPredicton_LR](./contents/student-project-12_group-CovidPandemic/06_DataPredicton_LR.md)
+- [07_DataPredicton_ARIMA](./contents/student-project-12_group-CovidPandemic/07_DataPredicton_ARIMA.md)
+- [08_DataPrediction_GP](./contents/student-project-12_group-CovidPandemic/08_DataPrediction_GP.md)
+
+#StudentProject13
+- [01_1000genomes](./contents/student-project-13_group-Genomics/01_1000genomes.md)
+
+#StudentProject14
+- [00_distributed_combinatorial_bandit](./contents/student-project-14_group-NullHypothesisEvaluationCriteria/00_distributed_combinatorial_bandit.md)
+
+#StudentProject15
+- [00_video](./contents/student-project-15_group-FinancialDataStreams/00_video.md)
+- [01_rl_intraday_trading](./contents/student-project-15_group-FinancialDataStreams/01_rl_intraday_trading.md)
+- [02_rl_intraday_trading_elephas](./contents/student-project-15_group-FinancialDataStreams/02_rl_intraday_trading_elephas.md)
+- [03_resources](./contents/student-project-15_group-FinancialDataStreams/03_resources.md)
+
+#StudentProject16
+- [00_Introduction](./contents/student-project-16_group-IntrusionDetection/00_Introduction.md)
+
+#StudentProject17
+- [00_introduction](./contents/student-project-17_group-TowardsScalableTDA/00_introduction.md)
+- [01_methodology](./contents/student-project-17_group-TowardsScalableTDA/01_methodology.md)
+- [02_gaussian_analysis](./contents/student-project-17_group-TowardsScalableTDA/02_gaussian_analysis.md)
+- [03_robotics_dataset](./contents/student-project-17_group-TowardsScalableTDA/03_robotics_dataset.md)
+
+#StudentProject18
+- [00_Problem_Description](./contents/student-project-18_group-ProjectRL/00_Problem_Description.md)
+- [01_The_ALS_method](./contents/student-project-18_group-ProjectRL/01_The_ALS_method.md)
+- [02_Extensions](./contents/student-project-18_group-ProjectRL/02_Extensions.md)
+
+#StudentProject19 #images
+- [01_FundamentalMatrix](./contents/student-project-19_group-Featuring/01_FundamentalMatrix.md)
+
+#StudentProject20
+- [01_Background](./contents/student-project-20_group-Generalization/01_Background.md)
+- [02_Random_Forest](./contents/student-project-20_group-Generalization/02_Random_Forest.md)
+- [03_CNN_MNIST](./contents/student-project-20_group-Generalization/03_CNN_MNIST.md)
+- [04_CNN_Intel_Image](./contents/student-project-20_group-Generalization/04_CNN_Intel_Image.md)
+- [05_Horovod_test](./contents/student-project-20_group-Generalization/05_Horovod_test.md)
+
+#StudentProject21
+- [00_introduction](./contents/student-project-21_group-GraphSpectralAnalysis/00_introduction.md)
+- [01_preprocess_data](./contents/student-project-21_group-GraphSpectralAnalysis/01_preprocess_data.md)
+- [02_generate_graphs](./contents/student-project-21_group-GraphSpectralAnalysis/02_generate_graphs.md)
+- [03_compute_rsvd.](./contents/student-project-21_group-GraphSpectralAnalysis/03_compute_rsvd.md)
+- [04_analyse_eigenvalues](./contents/student-project-21_group-GraphSpectralAnalysis/04_analyse_eigenvalues.md)
+
+#StudentProject22 #images
+- [00_Introduction](./contents/student-project-22_group-SwapWithDDP/00_Introduction.md)
+- [01_SWAP_with_DDP](./contents/student-project-22_group-SwapWithDDP/01_SWAP_with_DDP.md)
+
+#VoluntaryStudentProject_01
+- [00_Introduction](./contents/voluntary-student-project-01_group-DDLInMining/00_Introduction.md)
+- [01_ImageSegmentation_UNet](./contents/voluntary-student-project-01_group-DDLInMining/01_ImageSegmentation_UNet.md)
+- [02_ImageSegmenation_PSPNet](./contents/voluntary-student-project-01_group-DDLInMining/02_ImageSegmenation_PSPNet.md)
+- [03_ICNet_Function](./contents/voluntary-student-project-01_group-DDLInMining/03_ICNet_Function.md)
+- [04_ICNet_Function_hvd](./contents/voluntary-student-project-01_group-DDLInMining/04_ICNet_Function_hvd.md)
+- [05_ICNet_Function_Tuning_parallel](./contents/voluntary-student-project-01_group-DDLInMining/05_ICNet_Function_Tuning_parallel.md)
+- [XX_ICNet_Class](./contents/voluntary-student-project-01_group-DDLInMining/XX_ICNet_Class.md)
+- [XX_ICNet_Function_hvd_tuning](./contents/voluntary-student-project-01_group-DDLInMining/XX_ICNet_Function_hvd_tuning.md)
+- [XX_ImageSegmentation_ICNet](./contents/voluntary-student-project-01_group-DDLInMining/XX_ImageSegmentation_ICNet.md)
+- [XXNOTWORKING_ICNet_Function_Tuning](./contents/voluntary-student-project-01_group-DDLInMining/XXNOTWORKING_ICNet_Function_Tuning.md)
