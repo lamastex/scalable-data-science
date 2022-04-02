@@ -1,4 +1,4 @@
-## Step for making Spark scala notebook (spark_notebook.scala)
+## Step for generating Spark scala notebook (spark_notebook.scala)
 
 1. Prepare *spark_notebook.json* by putting image numbers in the value of the key *slideshow*.
 
