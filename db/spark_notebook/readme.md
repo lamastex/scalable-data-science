@@ -15,7 +15,8 @@ For example, see the dict of one cell below.
 ```
 
 *"12-17"* means making gif out of images 12-17 and insert it to the cell.<br>
-Then, *"18"* means just appending image 18 to the same cell. We will get one cell with one gif (12-17) and one image (18).
+Then, *"18"* means just appending image 18 to the same cell. <br>
+We will get one cell with one gif (12-17) and one image (18).
 
 You may add description in *desc*, or leave it blank.
 
