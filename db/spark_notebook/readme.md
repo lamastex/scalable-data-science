@@ -20,8 +20,11 @@ We will get one cell with one gif (12-17) and one image (18).
 
 You may add description in *desc* for the description of this dict, or leave it blank.
 
-2. Run the following command. Then, you will get the notebook with a name *spark_notebook.scala* and a *gif* directory storing successful creation of *gifs* images. It may take some time to complete.
+2. Run the following command.<br>
 
 `./makeSparkNotebook.sh`
 
-4. You will see in the notebook that the first cell is intentionally left blank. This cell is for you to add a title and description of the notebook.
+Then, you will get the notebook with a name *spark_notebook.scala* and a *gif* directory storing successful creation of *gifs* images.<br>
+It may take some time to complete.
+
+3. You will see in the notebook that the first cell is intentionally left blank. This cell is for you to add a title and description of the notebook.
