@@ -1,6 +1,6 @@
 ## Step for making Spark scala notebook
 
-1. Prepare the *spark_notebook.json* by putting image numbers in the value of the key *slideshow*.
+1. Prepare *spark_notebook.json* by putting image numbers in the value of the key *slideshow*.
 
 For example, see the dict of one cell below.
 
@@ -18,7 +18,7 @@ For example, see the dict of one cell below.
 Then, *"18"* means just appending image 18 to the same cell. <br>
 We will get one cell with one gif (12-17) and one image (18).
 
-You may add description in *desc*, or leave it blank.
+You may add description in *desc* for the description of this dict, or leave it blank.
 
 2. Run the following command. Then, you will get the notebook with a name *spark_notebook.scala* and a *gif* directory storing successful creation of *gifs* images. It may take some time to complete.
 
