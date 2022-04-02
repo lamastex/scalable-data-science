@@ -28,4 +28,8 @@ Then, you will get the Spark notebook with a name *spark_notebook.scala* and a *
 It may take some time to complete.
 
 3. You will see in the notebook that the first cell is intentionally left blank. This cell is for you to add a title and description of the notebook.
-4. You need to push gifs in *gif* directory to GitHub manually. You may push gifs after the notebook is generated.
+4. You need to push *gif* directory to GitHub within this dir manually. 
+
+`https://github.com/lamastex/scalable-data-science/blob/master/db/visualapi/med`
+
+You may push gifs after the notebook is generated.
