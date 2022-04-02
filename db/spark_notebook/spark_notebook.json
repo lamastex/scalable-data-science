@@ -1,0 +1,241 @@
+{
+  "cells": [
+    {
+      "desc": "title_page",
+      "slideshow": [
+        "0"
+      ]
+    },
+    {
+      "desc": "credit",
+      "slideshow": [
+        "1"
+      ]
+    },
+    {
+      "desc": "legend",
+      "slideshow": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "desc": "operations",
+      "slideshow": [
+        "5"
+      ]
+    },
+    {
+      "desc": "content",
+      "slideshow": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "desc": "narrow,wide,lineage",
+      "slideshow": [
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "desc": "transformations",
+      "slideshow": [
+        "11"
+      ]
+    },
+    {
+      "desc": "map",
+      "slideshow": [
+        "12-17",
+        "18"
+      ]
+    },
+    {
+      "desc": "filter",
+      "slideshow": [
+        "19-23",
+        "24"
+      ]
+    },
+    {
+      "desc": "flatmap",
+      "slideshow": [
+        "25-30",
+        "31"
+      ]
+    },
+    {
+      "desc": "groupby",
+      "slideshow": [
+        "32-36",
+        "37"
+      ]
+    },
+    {
+      "desc": "groupbykey",
+      "slideshow": [
+        "38-40",
+        "41"
+      ]
+    },
+    {
+      "desc": "mappartitions",
+      "slideshow": [
+        "42-45",
+        "46",
+        "47"
+      ]
+    },
+    {
+      "desc": "mappartitionswithindex",
+      "slideshow": [
+        "48",
+        "49",
+        "50"
+      ]
+    },
+    {
+      "desc": "sample",
+      "slideshow": [
+        "51",
+        "52"
+      ]
+    },
+    {
+      "desc": "union",
+      "slideshow": [
+        "53",
+        "54"
+      ]
+    },
+    {
+      "desc": "join",
+      "slideshow": [
+        "55-58",
+        "59"
+      ]
+    },
+    {
+      "desc": "distinct",
+      "slideshow": [
+        "60-62",
+        "63"
+      ]
+    },
+    {
+      "desc": "coalesce",
+      "slideshow": [
+        "64-66",
+        "67"
+      ]
+    },
+    {
+      "desc": "keyby",
+      "slideshow": [
+        "68-71",
+        "72"
+      ]
+    },
+    {
+      "desc": "partitionby",
+      "slideshow": [
+        "73-77",
+        "78",
+        "79"
+      ]
+    },
+    {
+      "desc": "zip",
+      "slideshow": [
+        "80-83",
+        "84"
+      ]
+    },
+    {
+      "desc": "actions",
+      "slideshow": [
+        "85"
+      ]
+    },
+    {
+      "desc": "distributedVSdriver",
+      "slideshow": [
+        "86"
+      ]
+    },
+    {
+      "desc": "getnumpartiotions",
+      "slideshow": [
+        "87",
+        "88"
+      ]
+    },
+    {
+      "desc": "collect",
+      "slideshow": [
+        "89",
+        "90"
+      ]
+    },
+    {
+      "desc": "reduce",
+      "slideshow": [
+        "91-93",
+        "94"
+      ]
+    },
+    {
+      "desc": "aggregate",
+      "slideshow": [
+        "95-105",
+        "106",
+        "107"
+      ]
+    },
+    {
+      "desc": "max",
+      "slideshow": [
+        "108",
+        "109"
+      ]
+    },
+    {
+      "desc": "sum",
+      "slideshow": [
+        "110",
+        "111"
+      ]
+    },
+    {
+      "desc": "mean",
+      "slideshow": [
+        "112",
+        "113"
+      ]
+    },
+    {
+      "desc": "stdev",
+      "slideshow": [
+        "114",
+        "115"
+      ]
+    },
+    {
+      "desc": "countbykey",
+      "slideshow": [
+        "116",
+        "117"
+      ]
+    },
+    {
+      "desc": "saveastextfile",
+      "slideshow": [
+        "118",
+        "119"
+      ]
+    }
+  ]
+}
