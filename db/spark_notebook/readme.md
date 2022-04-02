@@ -24,7 +24,7 @@ You may add description in *desc* for the description of this dict, or leave it 
 
 `./makeSparkNotebook.sh`
 
-Then, you will get the notebook with a name *spark_notebook.scala* and a *gif* directory storing successful creation of *gifs* images.<br>
+Then, you will get the Spark notebook with a name *spark_notebook.scala* and a *gif* directory storing successful creation of *gifs* images.<br>
 It may take some time to complete.
 
 3. You will see in the notebook that the first cell is intentionally left blank. This cell is for you to add a title and description of the notebook.
