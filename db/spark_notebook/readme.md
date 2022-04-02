@@ -1,6 +1,6 @@
 ## Step for making Spark scala notebook
 
-1. Prepare the *spark_notebook.json* by putting image numbers in the key *slideshow*.
+1. Prepare the *spark_notebook.json* by putting image numbers in the value of the key *slideshow*.
 
 For example, see the dict of one cell below.
 
