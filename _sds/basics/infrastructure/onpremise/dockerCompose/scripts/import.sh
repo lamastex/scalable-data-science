@@ -7,7 +7,7 @@ cd ..
 #docker run --rm -v $PWD/dbc/scalable-data-science:/root/tilowiklund/pinot/dbc -v $PWD/zp:/root/tilowiklund/pinot/zp lamastex/haskell-pinot /bin/bash < scripts/pinot.sh
 
 #Dear Raaz, this is only temporary. We will mount all of the git directory with environment variables later.
-docker run --rm -v $PWD/dbc/scalable-data-science:/root/tilowiklund/pinot/dbc -v $PWD/zp:/root/tilowiklund/pinot/zp --name "pinot" -v $PWD/scripts:/root/tilowiklund/pinot/scripts lamastex/haskell-pinot /bin/bash /root/tilowiklund/pinot/scripts/pinot.sh
+docker run --rm -v $PWD/dbc/scalable-data-science:/root/tmp/dbc -v $PWD/zp:/root/tmp/zp --name "pinot" -v $PWD/scripts:/root/scripts lamastex/haskell-pinot /bin/bash /root/scripts/convToZeppelin.sh
 docker kill pinot
 #docker kill zeppelin
 #docker run -d -it -u $(id -u) -p 8080:8080 -p 4040:4040 --rm -v $PWD/data:/datasets/sds -v $PWD/logs:/logs -v $PWD/notebook:/notebook  -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' --name zeppelin lamastex/zeppelin-spark
