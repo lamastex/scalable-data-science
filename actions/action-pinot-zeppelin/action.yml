@@ -1,0 +1,11 @@
+name: "First testmannen"
+description: "first test"
+author: "oskarasbrink@github.com"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
+branding:
+  icon: "mic"
+  color: "purple"
