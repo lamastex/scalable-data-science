@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #loads DBC files from databricks shard and "zips" into dbc-archive
-
+cd ..
 mkdir -p dbc                            #$1
-#look into only files inside the folder
+
 databricks workspace ls --absolute /scalable-data-science > temp_modules.txt
 while read module; do
     echo $module
@@ -15,7 +15,7 @@ while read module; do
     unzip -o \*.scala
     unzip -o \*.sql
     unzip -o \*.py
-    #add this what the heck is it doing?
+    #unzip .py generates .python files so .py files are not overwritten and thus removed
     rm *.py
     cd ..
     zip -r $(basename $module).dbc $(basename $module)/ 
