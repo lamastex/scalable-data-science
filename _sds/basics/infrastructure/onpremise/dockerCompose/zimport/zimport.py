@@ -6,6 +6,7 @@ import requests
 import time
 import os
 from os.path import isfile, join
+import ast
 
 parser = argparse.ArgumentParser(description = "Import one or more Zeppelin \
     notebooks into a running Zeppelin server. The imported files will be found \
@@ -24,20 +25,17 @@ host = "http://{}:{}".format(args.host, args.port)
 
 def import_notebook(note):
     requestURL = "{}/api/notebook/import".format(host)
-    try:
-        r = requests.post(requestURL, data = note.encode('utf-8')).json()
-    except:
-        r = requests.post(requestURL, data = note.encode('utf-8'))
-    if r["status"] == "OK":
-        return r["body"]
-    else:
-        raise IOError(str(r))
+    note = json.loads(note)
+    note['name'] = args.notebook_dir + '/' + note['name']
+    note = json.dumps(note)
+    r = requests.post(requestURL, data = note.encode('utf-8')).json()
+    print(r)
 
 if __name__ == "__main__":
     files = [join(args.notebook_dir, f) for f in os.listdir(args.notebook_dir)
              if isfile(join(args.notebook_dir, f))]
     for f in files:
-        json = open(f, "r").read()
-        import_notebook(json)
+        json_data = open(f, "r").read()
+        import_notebook(json_data)
 
 
