@@ -1,3 +1,7 @@
 #! /bin/bash
-cd ..
+
+set -x -v
+
+pushd $localgitdockerComposeDIRPATH
+
 databricks fs cp -r dbfs:/datasets/sds data/

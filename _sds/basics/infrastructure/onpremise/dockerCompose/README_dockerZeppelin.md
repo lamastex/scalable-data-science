@@ -2,22 +2,33 @@
 
 ### In the scripts folder is a collection of scripts to simplify the dbc-to-zeppelin coversion of the ScaDaMaLe course material
 
-## 0 - Stand in the right place
-
-    Run all the following scripts while standing in the dockerCompose/scripts folder. Should be updated to work from anywhere.
 
 ## 1 - Fetch archives from databricks
 
-    Run fetch_dbc_notebook.sh This will download notebooks from the "scalable-data-science" workspace folder in the databricks shard and write them into 
-    dockerCompose/dbc. 
+    Run `fetch_dbc.sh` in docker. This will download notebooks from the "scalable-data-science" workspace folder in the databricks shard and write them locally. 
     
-    There will be some errors since the script so far can only search one level into a folder. So "projects", for example, is not fetched correctly. 
+```
+cp env.list.template env.list
+```
 
-    And it is not possible to choose specific modules for downloads. To be added.
+Change  `${HOME}/all/git` in docker command below to the directory containing your git repos, including:
+
+- tilowiklund/pinot
+- lamastex/scalable-data-science
+
+Other details include databricks config file in default loation of `${HOME}/.databrickscfg`.
+
+```
+docker run --rm -it --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:withzip /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.s
+```
 
 ## 2 - Download data
 
-    Run fetchData.sh This downloads everything from the path dbfs:/datasets/sds in the databricks shard and saves it in dockerCompose/data folder. Note that the wikipedia clickstream is 1+ gb and so this script will take some time as long as that dataset is included. (est time for whole script: 10+ minutes)
+    Run fetchData.sh This downloads everything from the path dbfs:/datasets/sds in the databricks shard and saves it in dockerCompose/data folder. 
+
+```
+docker run --rm -it --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:withzip /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_data.sh
+```
 
 ## 3 - Start/restart zeppelin server
 
@@ -30,12 +41,9 @@
 
 ## 4 - Convert to zeppelin and upload to the running server
 
+```
+docker run --rm  -it --name=haskell-pinot --env-file env.list --mount type=bind,source=${HOME}/all/git/,destination=/root/GIT lamastex/haskell-pinot:zeppelin /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/db2zp.sh
+```
     Go back to the dockerCompose/scripts folder and run the import.sh. 
 
 
-
-## Questions
-
-- Should these dbc, zp, data, etc folders really be created in the dockerCompose folder? It kinda clutters things up and also might have to be ignored when commiting back to github!
-
-- Shouldn't the scripts be able to be called from anywhere? Right now they have to be called while standing in a specific folder which seems quite annoying!
