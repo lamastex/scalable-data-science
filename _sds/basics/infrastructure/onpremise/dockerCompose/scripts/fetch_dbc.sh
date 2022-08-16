@@ -3,7 +3,7 @@
 ## loads DBC files from databricks shard and "zips" into dbc-archive
 
 ## how to run it in docker
-# docker run --rm  -it --name=python-dbcli --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.sh
+# docker run --rm  --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:withzip /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.sh
 
 set -x -v
 
@@ -11,7 +11,7 @@ pushd $localgitdockerComposeDIRPATH
 mkdir -p $localgitdbcDIRPATH
 
 ## get the source files from databricks workspace dir /scalable-data-science
-rm -r ./scalable-data-science
+rm -r ./scalable-data-science*
 databricks workspace export_dir /scalable-data-science  ./scalable-data-science
 cp -r scalable-data-science scalable-data-science-source 
 find scalable-data-science/ -type f > sds-files
