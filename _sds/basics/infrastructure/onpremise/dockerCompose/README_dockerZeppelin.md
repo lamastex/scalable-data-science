@@ -44,6 +44,9 @@ docker run --rm -it --env-file env.list --mount type=bind,readonly,source=${HOME
 ```
 docker run --rm  -it --name=haskell-pinot --env-file env.list --mount type=bind,source=${HOME}/all/git/,destination=/root/GIT lamastex/haskell-pinot:zeppelin /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/db2zp.sh
 ```
-    Go back to the dockerCompose/scripts folder and run the import.sh. 
+    Go back to the dockerCompose/scripts folder and run 
+```
+bash scripts/serveZpNotes.sh
+```
 
 
