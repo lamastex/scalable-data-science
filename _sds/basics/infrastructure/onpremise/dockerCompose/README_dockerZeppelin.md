@@ -34,8 +34,9 @@ docker run --rm -it --env-file env.list --mount type=bind,readonly,source=${HOME
 
     For all mounts to work correctly move up to the dockerCompose folder and run
 
-    docker run -d -it -u $(id -u) -p 8080:8080 -p 4040:4040 --rm -v $PWD/logs:/logs -v $PWD/notebook:/notebook -v $PWD/data/data:/datasets/sds -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' --name zeppelin lamastex/zeppelin-spark
-
+```
+docker run -d -it -u $(id -u) --hostname localhost -p 8080:8080 -p 4040:4040 --rm -v $PWD/logs:/logs -v $PWD/notebook:/notebook -v $PWD/data:/datasets/sds  -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' --name zeppelin lamastex/zeppelin-spark
+```
     // It's annoying to have to stand in specific folders. $PWD should be changed to either a set path or to be read from an environment file. 
 
 
@@ -49,4 +50,21 @@ docker run --rm  -it --name=haskell-pinot --env-file env.list --mount type=bind,
 bash scripts/serveZpNotes.sh
 ```
 
+## 5 package ScaDaMaLeZp
 
+```
+mkdir ScaDaMaLeZp
+cp -r data ScaDaMaLeZp/
+cp -r notebbok ScaDaMaLeZp/
+zip -r ScaDaMaLeZp.zip ScaDaMaLeZp
+```
+
+## 6 To learn in Zeppelin
+
+download ScaDaMaLeZp.zip
+
+```
+unzip ScaDaMaLeZp.zip
+cd ScaDaMaLeZp
+docker run -d -it -u $(id -u) --hostname localhost -p 8080:8080 -p 4040:4040 --rm -v $PWD/logs:/logs -v $PWD/notebook:/notebook -v $PWD/data:/datasets/sds  -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' --name zeppelin lamastex/zeppelin-spark
+```
