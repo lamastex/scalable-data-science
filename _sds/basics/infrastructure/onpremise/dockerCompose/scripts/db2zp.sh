@@ -10,5 +10,6 @@ do
 stack exec pinot -- --from databricks --to zeppelin $zpDIRPATH/$module.dbc -o $zpDIRPATH/zp 
 done
 
+rm -rf $localgitdockerComposeDIRPATH/zp
 mv $zpDIRPATH/zp $localgitdockerComposeDIRPATH
 popd

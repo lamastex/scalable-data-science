@@ -16,10 +16,10 @@ Change  `${HOME}/all/git` in docker command below to the directory containing yo
 - tilowiklund/pinot
 - lamastex/scalable-data-science
 
-Other details include databricks config file in default loation of `${HOME}/.databrickscfg`.
+Other details include databricks config file in default location of `${HOME}/.databrickscfg`.
 
 ```
-docker run --rm -it --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:withzip /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.s
+docker run --rm -it --env-file env.list --mount type=bind,readonly,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/python-dbcli:withzip /bin/bash /root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.sh
 ```
 
 ## 2 - Download data
