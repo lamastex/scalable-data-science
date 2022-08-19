@@ -4,5 +4,5 @@ set -x -v
 
 pushd $localgitdockerComposeDIRPATH
 
-rm -rf data
-databricks fs cp -r dbfs:/datasets/sds data/
+rm -rf datasets-sds
+databricks fs cp -r dbfs:/datasets/sds datasets-sds
