@@ -2,8 +2,7 @@ import requests
 
 '''
     A collection of functions to help interface with the Zeppelin 0.10.0 REST API 
-    Currently only covers the "notebook" section.
-    Read the documentation at https://zeppelin.apache.org/docs/0.10.0/usage/rest_api/notebook.html
+    Read the documentation at https://zeppelin.apache.org/docs/0.7.2/rest-api/
 
     - K.T 2022
 '''
@@ -11,7 +10,7 @@ import requests
 
 
 '''
-    Returns a list with basic information of every notebook on the zeppelin server
+    Returns a list with basic information of every notebook on the given zeppelin server
     https://zeppelin.apache.org/docs/0.10.0/usage/rest_api/notebook.html#list-of-the-notes
 '''
 def list_notebooks(host):
@@ -22,7 +21,18 @@ def list_notebooks(host):
 
 
 '''
-    Returns a map of id:path pairs of every notebook on the zeppelin server
+    Reloads all notebooks on the given zeppelin server
+    https://zeppelin.apache.org/docs/0.7.2/rest-api/rest-notebookRepo.html#reload-a-notebook-repository
+'''
+def reload_notebooks(host):
+    requestURL = "{}/api/notebook-repositories/reload".format(host)
+    r = requests.get(requestURL)
+    return r
+
+
+
+'''
+    Returns a map of id:path pairs of every notebook on the given zeppelin server
 '''
 def get_notebook_ids(host, path):
     r = list_notebooks(host)
