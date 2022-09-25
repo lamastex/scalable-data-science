@@ -31,7 +31,7 @@ jobs:
       - name: fetch dbc notebooks
         run:  |
           #fetch dbc notebooks using fetch_dbc_notebooks.sh and put them in /home/runner/work/temp
-          mkdir -p $GITHUB_TEMPBOOKDIR
+          mkdir -p $GITHUB_TEMPMDBOOKDIR
           cd $SCRIPTS_DIR
           docker run --rm  -i --name=python-dbcli --env-file env.list -v $GITHUB_TEMPBOOKDIR:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO/scalable-data-science,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc_notebooks.sh
           
