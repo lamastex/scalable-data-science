@@ -1,0 +1,59 @@
+name: A workflow for mdbook generation
+  #on: push
+  #branches: whatever we like
+  # -book-actions/books/latest
+  #paths: readme.md
+  #for example, we can choose the "docker-run-pinot-mdbook.sh" as trigger, which already decides on what modules to pick
+on: [push,workflow_dispatch]
+env:
+  SCRIPTS_DIR: ./actions/scripts
+  GITHUB_TEMPMDBOOKDIR: /home/runner/work/temp #this will be /github/home/_temp/mdbooks once we are out of the runner
+  GITHUB_MDPUSHDIR: /home/runner/work/_temp/_github_home/temp
+  GITHUB_DIR_TO_REPO: /home/runner/work/scalable-data-science
+  LOCAL_SCRIPT_DIR: /root/GIT/scalable-data-science/actions/scripts
+  #MDBOOK_FILES_DIR: /home/runner/work/scalable-data-science/books/mdScaDaMaLeBook
+
+
+jobs:
+  build:
+    name: fetch dbc - generate books
+    runs-on: ubuntu-latest
+    steps:
+        #check out repo so that workflow can access it
+      - uses: actions/checkout@v2
+      #- uses: ./actions/action-a
+      #- uses: ./actions/action-b
+      - name: get .databrickscfg file
+        run: |
+          # create .databrickscfg in runner by echoing it from secrets
+          touch ${HOME}/.databrickscfg
+          echo '${{ secrets.DB_KEY }}' > ${HOME}/.databrickscfg
+      - name: fetch dbc notebooks
+        run:  |
+          #fetch dbc notebooks using fetch_dbc_notebooks.sh and put them in /home/runner/work/temp
+          mkdir $GITHUB_TEMPBOOKDIR
+          cd $SCRIPTS_DIR
+          docker run --rm  -i --name=python-dbcli --env-file env.list -v $GITHUB_TEMPBOOKDIR:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO/scalable-data-science,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc_notebooks.sh
+          
+      - name: run pinot and rust
+        run: |
+          cd $SCRIPTS_DIR
+          source docker-run-pinot-mdbook.sh
+          source move-books-actions.sh
+          
+      - name: where are the dbc files 2?
+        run: |
+          sudo apt-get install tree
+          tree /home/runner/work/_temp/github_home/temp
+      - name: Push to another repo
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
+        with:
+          source_file: '/github/home/temp/.'
+          destination_repo: 'oskarasbrink/ScaDaMaLe'
+          destination_branch: 'gh-pages'
+          #destination_folder: 'test-dir' # optional
+          user_email: 'oskarasbrink@gmail.com' # your email
+          user_name: 'oskarasbrink'           # your login
+          commit_message: 'first auto-commit-man'
