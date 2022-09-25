@@ -21,7 +21,8 @@ while read module; do
     zip -r $(basename $module).dbc $(basename $module)/ 
     rm -r $(basename $module)
     cd ../..
-  
+    ls -l
+    pwd
   
 done < temp_modules.txt
 rm temp_modules.txt && rm temp_notebooks.txt
