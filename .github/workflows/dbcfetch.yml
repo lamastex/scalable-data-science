@@ -39,7 +39,7 @@ jobs:
       - name: move dbc-files
         run:  |
           #no script yet to download single dbc-files. We will download all and then choose which ones to upload
-          source $SCRIPTs_DIR/move-dbc-files.sh
+          source $SCRIPTS_DIR/move-dbc-files.sh
       - name: Push to another repo
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
