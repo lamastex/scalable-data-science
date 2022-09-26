@@ -34,7 +34,7 @@ jobs:
           #mkdir $GITHUB_TEMPMDBOOKDIR
           mkdir /home/runner/work/temp
           cd $SCRIPTS_DIR
-          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc_notebooks.sh
+          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc.sh
 
       - name: move dbc-files
         run:  |
