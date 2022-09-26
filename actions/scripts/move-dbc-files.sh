@@ -22,7 +22,6 @@ cd /home/runner/work/temp/dbc/scalable-data-science
 ls
 for module in $modules
 do
-ls -l $module
-cp $module/${module}.dbc $GITHUB_MDPUSHDIR
+cp ${module}.dbc $GITHUB_MDPUSHDIR
 done
 
