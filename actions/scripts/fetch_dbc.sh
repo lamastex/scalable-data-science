@@ -54,6 +54,8 @@ do
 zip -r ${module}.dbc $module
 done
 ## 000_2-sds-3-x-ml-b 000_2-sds-3-x-nlp
+pwd
+ls
 popd
 
 ## replace older dirs with latest dirs 
