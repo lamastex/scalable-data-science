@@ -24,5 +24,5 @@ ls
 echo $MODULES
 for module in $MODULES
 do
-cp ${module}.dbc /home/runner/work/scalable-data-science/dbcArchives/latest
+cp ${module}.dbc ${GITHUB_WORKSPACE}/dbcArchives/latest
 done
