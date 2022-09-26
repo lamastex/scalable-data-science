@@ -25,5 +25,5 @@ echo $MODULES
 for module in $MODULES
 do
 ls ${GITHUB_WORKSPACE} 
-cp ${module}.dbc ${GITHUB_WORKSPACE}/dbcArchives/latest
+cp ${module}.dbc $GITHUB_DBC_DIR
 done
