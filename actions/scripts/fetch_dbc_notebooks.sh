@@ -4,7 +4,7 @@
 apt-get -y update && apt-get install zip unzip
 cd /root/temp
 mkdir -p dbc
-databricks workspace ls --absolute /scalable-data-science > temp_modules.txt
+databricks workspace ls --absolute $DBC_SHARD_DIR > temp_modules.txt
 while read module; do
     echo $module
     mkdir -p dbc$module
