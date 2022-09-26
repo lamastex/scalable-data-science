@@ -43,7 +43,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with: 
-          commit message: Github Actions Automated fetch of dbc-files
+          commit_message: Github Actions Automated fetch of dbc-files
 
       #- name: Push to another repo
       #  uses: dmnemec/copy_file_to_another_repo_action@main
