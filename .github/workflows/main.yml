@@ -35,6 +35,7 @@ jobs:
           mkdir /home/runner/work/temp
           cd $SCRIPTS_DIR
           docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc.sh
+        
           
       - name: run pinot and rust
         run: |
@@ -42,10 +43,6 @@ jobs:
           source docker-run-pinot-mdbook.sh
           source move-books-actions.sh
           
-      - name: where are the dbc files 2?
-        run: |
-          sudo apt-get install tree
-          tree /home/runner/work/_temp/github_home/temp
       - name: Push to another repo
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
