@@ -9,8 +9,8 @@
 #/root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.sh
 
 set -x -v
-mkdir -p dbc
-cd dbc
+mkdir -p /root/temp/dbc
+cd /root/temp/dbc
 ls -al .
 #pushd $localgitdockerComposeDIRPATH
 #mkdir -p $localgitdbcDIRPATH
