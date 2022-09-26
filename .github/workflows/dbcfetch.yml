@@ -34,21 +34,26 @@ jobs:
           #mkdir $GITHUB_TEMPMDBOOKDIR
           mkdir /home/runner/work/temp
           cd $SCRIPTS_DIR
-          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc_notebooks.sh
+          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc_notebooks.sh
 
       - name: move dbc-files
         run:  |
           #no script yet to download single dbc-files. We will download all and then choose which ones to upload
           source $SCRIPTS_DIR/move-dbc-files.sh
-      - name: Push to another repo
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
-        with:
-          source_file: '/github/home/temp/.'
-          destination_repo: 'oskarasbrink/ScaDaMaLe'
-          destination_branch: 'gh-pages'
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with: 
+          commit message: Github Actions Automated fetch of dbc-files
+
+      #- name: Push to another repo
+      #  uses: dmnemec/copy_file_to_another_repo_action@main
+      #  env:
+      #    API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
+      #  with:
+      #    source_file: '/github/home/temp/.'
+      #    destination_repo: 'oskarasbrink/ScaDaMaLe'
+      #    destination_branch: 'gh-pages'
           #destination_folder: 'test-dir' # optional
-          user_email: 'oskarasbrink@gmail.com' # your email
-          user_name: 'oskarasbrink'           # your login
-          commit_message: 'first auto-commit-man'
+      #    user_email: 'oskarasbrink@gmail.com' # your email
+      #    user_name: 'oskarasbrink'           # your login
+      #    commit_message: 'first auto-commit-man'
