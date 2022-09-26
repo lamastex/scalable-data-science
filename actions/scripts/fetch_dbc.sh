@@ -9,7 +9,8 @@
 #/root/GIT/lamastex/scalable-data-science/_sds/basics/infrastructure/onpremise/dockerCompose/scripts/fetch_dbc.sh
 
 set -x -v
-
+mkdir -p dbc
+cd dbc
 #pushd $localgitdockerComposeDIRPATH
 #mkdir -p $localgitdbcDIRPATH
 
@@ -55,8 +56,8 @@ done
 popd
 
 ## replace older dirs with latest dirs 
-rm -r $localgitdbcDIRPATH/scalable-data-science*
-mv scalable-data-science* $localgitdbcDIRPATH
+#rm -r $localgitdbcDIRPATH/scalable-data-science*
+#mv scalable-data-science* $localgitdbcDIRPATH
 
 
 
