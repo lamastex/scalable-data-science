@@ -44,7 +44,7 @@ find scalable-data-science/* -depth -name '*.py' -execdir rm {} \;
 
 ## zip into BDC archive files for importing as files into databricks
 pushd scalable-data-science
-modules='000_5-sds-2-x-geo 000_1-sds-3-x-spark'
+modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 for module in $modules
 do 
