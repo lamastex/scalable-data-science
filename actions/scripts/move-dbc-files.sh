@@ -18,12 +18,12 @@
 
 #modules='000_0-sds-3-x-projects'
 modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
-mkdir -p /home/runner/work/temp/dbc
+
 ls /home/runner/work/temp
 ls /home/runner/work/temp/scalable-data-science
 cd /home/runner/work/temp/scalable-data-science
 ls
-for module in $modules
+for module in $MODULES
 do
 cp ${module}.dbc /home/runner/work/temp/dbc
 done
