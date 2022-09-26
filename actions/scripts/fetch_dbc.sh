@@ -11,6 +11,7 @@
 set -x -v
 mkdir -p dbc
 cd dbc
+ls -al .
 #pushd $localgitdockerComposeDIRPATH
 #mkdir -p $localgitdbcDIRPATH
 
