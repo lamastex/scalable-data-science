@@ -19,13 +19,9 @@
 #modules='000_0-sds-3-x-projects'
 modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
-ls /home/runner/work
-ls /home/runner/work/temp/scalable-data-science/scalable-data-science
-echo "source"
-ls /home/runner/work/temp/scalable-data-science-source
 cd /home/runner/work/temp/scalable-data-science
 ls
 for module in $MODULES
 do
-cp ${module}.dbc /home/runner/work/temp/dbc
+cp ${module}.dbc /home/runner/work/scalable-data-science/dbcArchives/latest
 done
