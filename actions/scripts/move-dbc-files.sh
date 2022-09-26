@@ -19,8 +19,10 @@
 #modules='000_0-sds-3-x-projects'
 modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 cd /home/runner/work/temp/dbc/scalable-data-science
+ls
 for module in $modules
 do
+
 cp $module/${module}.dbc $GITHUB_MDPUSHDIR
 done
 
