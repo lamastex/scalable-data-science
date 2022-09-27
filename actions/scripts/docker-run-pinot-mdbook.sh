@@ -29,7 +29,7 @@ echo "done echoing env variables in use inside docker"
 modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 #from env list
-echo ${{env.MODULES}}
+echo $MODULES
 for module in $modules
 do
 #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
