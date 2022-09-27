@@ -26,10 +26,10 @@ echo "done echoing env variables in use inside docker"
 #docker run --rm  -it --name=rust-mdbook --env-file env.list --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/rustMdBook.sh $module
 
 #modules='000_0-sds-3-x-projects'
-#modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
+modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 #from env list
-for module in $MODULES
+for module in $modules
 do
 ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
                                                                     #localdbcTEMPDIR = /home/runner/work/temp
