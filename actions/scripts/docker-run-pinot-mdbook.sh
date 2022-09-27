@@ -30,7 +30,7 @@ modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 #from env list
 echo $MODULES
-for module in $MODULES
+for module in *
 do
 #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
                                                                     #localdbcTEMPDIR = /home/runner/work/temp
