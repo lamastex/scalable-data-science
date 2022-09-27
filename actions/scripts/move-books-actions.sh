@@ -2,7 +2,7 @@
 
 cd $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science/mdbooks
 ls $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science/mdbooks
-modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
+#modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 for d in $1
 do
     if [ $d != "src/" ] ; then
