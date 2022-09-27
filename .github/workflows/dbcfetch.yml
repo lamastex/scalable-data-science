@@ -32,7 +32,7 @@ jobs:
           touch ${HOME}/.databrickscfg
           echo '${{ secrets.DB_KEY }}' > ${HOME}/.databrickscfg
           #echo MODULES="000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st"
-          echo "MODULES='000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st'"
+          #echo "MODULES='000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st'"
       - name: fetch dbc notebooks
         run:  |
           #fetch dbc notebooks using fetch_dbc_notebooks.sh and put them in /home/runner/work/temp
