@@ -6,7 +6,7 @@ name: A workflow for mdbook generation
   #for example, we can choose the "docker-run-pinot-mdbook.sh" as trigger, which already decides on what modules to pick
 on: workflow_dispatch
 env:
-  SCRIPTS_DIR: ./actions/scripts
+  SCRIPTS_DIR: /home/runner/work/scalable-data-science/scalable-data-science/actions/scripts
   GITHUB_TEMPMDBOOKDIR: /home/runner/work/temp #this will be /github/home/_temp/mdbooks once we are out of the runner
   GITHUB_MDPUSHDIR: /home/runner/work/_temp/_github_home/temp
   GITHUB_DIR_TO_REPO: /home/runner/work/scalable-data-science
