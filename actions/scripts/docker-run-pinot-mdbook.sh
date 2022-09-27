@@ -30,11 +30,10 @@ modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 #from env list
 echo $MODULES
-for module in *.dbc
+for module in /home/runner/work/temp/dbc/scalable-data-science/zipped
 do
 echo "${module%%.*}" >> noext
 echo $module
-echo $module2
 echo $noext
 
 #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
