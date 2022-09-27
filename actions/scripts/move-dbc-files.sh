@@ -17,7 +17,7 @@
 #docker run --rm  -it --name=rust-mdbook --env-file env.list --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/rustMdBook.sh $module
 
 #modules='000_0-sds-3-x-projects'
-modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
+#modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 #ls /home/runner/work/temp/
 cd /home/runner/work/temp/dbc/scalable-data-science/zipped
 ls
