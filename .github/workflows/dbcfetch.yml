@@ -47,7 +47,7 @@ jobs:
           #set -o allexport
           #source $SCRIPTS_DIR/env.list
           #set +o allexport
-          source $SCRIPTS_DIR/move-dbc-files.sh $MODULES
+          source $SCRIPTS_DIR/move-dbc-files.sh
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with: 

@@ -16,7 +16,7 @@ ls -al .
 #mkdir -p $localgitdbcDIRPATH
 
 ## get the source files from databricks workspace dir /scalable-data-science
-rm -r ./scalable-data-science*
+#rm -r ./scalable-data-science*
 apt-get -y update && apt-get install zip unzip
 databricks workspace export_dir /scalable-data-science  ./scalable-data-science
 #cp -r scalable-data-science scalable-data-science-source 
