@@ -18,7 +18,7 @@ ls -al .
 ## get the source files from databricks workspace dir /scalable-data-science
 #rm -r ./scalable-data-science*
 apt-get -y update && apt-get install zip unzip
-databricks workspace export_dir /scalable-data-science  ./scalable-data-science
+databricks workspace export_dir $DBC_SHARD_DIR  ./scalable-data-science
 #cp -r scalable-data-science scalable-data-science-source 
 find scalable-data-science/ -type f > sds-files
 
@@ -52,7 +52,7 @@ modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 echo $1
 mkdir -p zipped
 
-for module in $1
+for module in $modules
 do 
 # 000_1-sds-3-x-sql 000_2-sds-3-x-ml xtraResources 000_3-sds-3-x-st 000_4-sds-3-x-ss 000_5-sds-2-x-geo 000_6-sds-3-x-dl 000_7-sds-3-x-ddl 000_8-sds-3-x-pri 000_9-sds-3-x-trends do
 zip -r ${module}.dbc $module
