@@ -29,7 +29,7 @@ jobs:
           # create .databrickscfg in runner by echoing it from secrets
           touch ${HOME}/.databrickscfg
           echo '${{ secrets.DB_KEY }}' > ${HOME}/.databrickscfg
-          echo MODULES='000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st' >> $GITHUB_ENV
+          echo MODULES='000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st' >> $MODULES_MAN
           
           
           
@@ -39,7 +39,7 @@ jobs:
           #mkdir $GITHUB_TEMPMDBOOKDIR
           mkdir -p /home/runner/work/temp/dbc
           cd $SCRIPTS_DIR
-          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc.sh $MODULES
+          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc.sh $MODULES_MAN
         
           
       - name: run pinot and rust
