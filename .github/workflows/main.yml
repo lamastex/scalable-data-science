@@ -29,7 +29,7 @@ jobs:
           # create .databrickscfg in runner by echoing it from secrets
           touch ${HOME}/.databrickscfg
           echo '${{ secrets.DB_KEY }}' > ${HOME}/.databrickscfg
-          echo "MODULES='000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st'" >> $GITHUB_ENV
+          echo MODULES='000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st' >> $GITHUB_ENV
           
           
           
