@@ -24,6 +24,15 @@ sleep 10
 mkdir notebook
 bash scripts/serveZpNotes.sh
 
+# some checks
+python3 scripts/zputils/injectHelperFunctions.py --dir 000_1-sds-3-x-spark/
+python3 scripts/zputils/injectHelperFunctions.py --dir 000_1-sds-3-x-sql
+python3 scripts/zputils/runMarkdownParagraphs.py --dir 000_1-sds-3-x-spark
+python3 scripts/zputils/runMarkdownParagraphs.py --dir 000_1-sds-3-x-sql
+# etc
+python3 scripts/zputils/checkErrors.py --dir 000_1-sds-3-x-spark/
+python3 scripts/zputils/checkErrors.py --dir 000_1-sds-3-x-sql
+
 sleep 30
 docker-compose -f docker-compose-sds-zeppelin.yml down
 
