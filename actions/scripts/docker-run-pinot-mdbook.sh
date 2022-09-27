@@ -40,7 +40,7 @@ docker run --rm  -i --name=haskell-pinot --env-file $SCRIPTS_DIR/env.list -v $GI
 docker run --rm  -i --name=rust-mdbook --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash $localscriptDIRPATH/rustMdBook.sh ${module%%.*}
 done
 
-
+cd $SCRIPTS_DIR
 
 #pushd $localGITDIRPATH/scalable-data-science/books/mdScaDaMaLeBook/
 #echo "pwd before chown chgrp"
