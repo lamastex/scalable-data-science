@@ -17,7 +17,7 @@ env:
   #MODULES: "000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st"
 
   #MDBOOK_FILES_DIR: /home/runner/work/scalable-data-science/books/mdScaDaMaLeBook
-
+  
 
 jobs:
   build:
