@@ -11,6 +11,7 @@ env:
   GITHUB_MDPUSHDIR: /home/runner/work/_temp/_github_home/temp
   GITHUB_DIR_TO_REPO: /home/runner/work/scalable-data-science
   LOCAL_SCRIPT_DIR: /root/GIT/scalable-data-science/actions/scripts
+  MODULES: '000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
   #MDBOOK_FILES_DIR: /home/runner/work/scalable-data-science/books/mdScaDaMaLeBook
 
 
@@ -34,14 +35,14 @@ jobs:
           #mkdir $GITHUB_TEMPMDBOOKDIR
           mkdir /home/runner/work/temp
           cd $SCRIPTS_DIR
-          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc.sh
+          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc.sh 
         
           
       - name: run pinot and rust
         run: |
           cd $SCRIPTS_DIR
-          source docker-run-pinot-mdbook.sh
-          source move-books-actions.sh
+          source docker-run-pinot-mdbook.sh $MODULES
+          source move-books-actions.sh $MODULES
           
       - name: Push to another repo
         uses: dmnemec/copy_file_to_another_repo_action@main

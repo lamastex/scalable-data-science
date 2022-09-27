@@ -10,7 +10,7 @@ cd /root/temp
 ls -l
 cd $1
 ls -l
-pushd $MDBOOKdir/$1/src
+pushd $MDBOOKdir/mdbooks/$1/src
   ################ to generate SUMMARY.md for mdbook
 
 echo "we should find source and contents here"
