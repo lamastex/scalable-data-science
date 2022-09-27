@@ -45,9 +45,9 @@ jobs:
           
       - name: run pinot and rust
         run: |
-          cd $SCRIPTS_DIR
-          source docker-run-pinot-mdbook.sh
-          source move-books-actions.sh
+          #cd $SCRIPTS_DIR
+          source $SCRIPTS_DIR/docker-run-pinot-mdbook.sh
+          source $SCRIPTS_DIR/move-books-actions.sh
           
       - name: Push to another repo
         uses: dmnemec/copy_file_to_another_repo_action@main
