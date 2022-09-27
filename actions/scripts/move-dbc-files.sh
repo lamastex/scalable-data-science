@@ -22,8 +22,9 @@ modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 cd /home/runner/work/temp/dbc/scalable-data-science/zipped
 ls
 echo $MODULES
+echo $GITHUB_HOME
 for module in $modules
 do
-cp ${module}.dbc /home/runner/work/scalable-data-science/dbcArchives/latest
+cp ${module}.dbc /home/runner/work/scalable-data-science/scalable-data-science/dbcArchives/latest/
 done
 done
