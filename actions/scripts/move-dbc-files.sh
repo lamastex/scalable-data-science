@@ -24,6 +24,6 @@ ls
 echo $MODULES
 for module in $modules
 do
-cp ${module}.dbc /home/runner/work/temp/dbc/scalable-data-science/dbcArchives/latest
+cp ${module}.dbc /home/runner/work/scalable-data-science/dbcArchives/latest
 done
 done
