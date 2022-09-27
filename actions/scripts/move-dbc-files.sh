@@ -25,6 +25,5 @@ echo $MODULES
 echo $GITHUB_HOME
 for module in $modules
 do
-cp ${module}.dbc /home/runner/work/scalable-data-science/scalable-data-science/dbcArchives/latest/
-done
+cp ${module}.dbc /home/runner/work/scalable-data-science/scalable-data-science/dbcArchives/latest
 done
