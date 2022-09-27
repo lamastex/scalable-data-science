@@ -23,7 +23,7 @@ cd /home/runner/work/temp/dbc/scalable-data-science/zipped
 ls
 echo $MODULES
 echo $GITHUB_HOME
-for module in $modules
+for module in *
 do
 cp ${module}.dbc /home/runner/work/scalable-data-science/scalable-data-science/dbcArchives/latest
 done
