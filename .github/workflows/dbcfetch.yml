@@ -12,7 +12,7 @@ env:
   GITHUB_DIR_TO_REPO: /home/runner/work/scalable-data-science
   LOCAL_SCRIPT_DIR: /root/GIT/scalable-data-science/actions/scripts
   GITHUB_DBC_DIR: ${GITHUB_WORKSPACE}/dbcArchives/latest
-  MODULES: '000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
+  MODULES: '000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st'
 
   #MDBOOK_FILES_DIR: /home/runner/work/scalable-data-science/books/mdScaDaMaLeBook
 

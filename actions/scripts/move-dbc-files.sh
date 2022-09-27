@@ -18,8 +18,8 @@
 
 #modules='000_0-sds-3-x-projects'
 modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
-
-cd /home/runner/work/temp/scalable-data-science
+ls /home/runner/work/temp/
+cd /home/runner/work/temp
 ls
 echo $MODULES
 for module in $MODULES
