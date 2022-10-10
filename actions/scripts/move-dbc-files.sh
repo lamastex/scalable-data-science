@@ -17,12 +17,10 @@
 #docker run --rm  -it --name=rust-mdbook --env-file env.list --mount type=bind,source=${HOME}/all/git,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash /root/GIT/lamastex/scalable-data-science/books/latest/rustMdBook.sh $module
 
 #modules='000_0-sds-3-x-projects'
-modules='000_1-sds-3-x-spark'
+
 #ls /home/runner/work/temp/
 cd /home/runner/work/temp/dbc/scalable-data-science/zipped
 ls
-echo $MODULES
-echo $GITHUB_HOME
 for module in *
 do
 cp $module /home/runner/work/scalable-data-science/scalable-data-science/dbcArchives/latest
