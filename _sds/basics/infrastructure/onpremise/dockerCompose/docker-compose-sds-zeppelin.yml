@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  zeppelin:
+    image: lamastex/zeppelin-spark
+    hostname: localhost
+    environment:
+      - ZEPPELIN_LOG_DIR=/logs
+      - ZEPPELIN_NOTEBOOK_DIR=/notebook
+    ports:
+      - published: 8080
+        target: 8080
+      - published: 4040
+        target: 4040
+    volumes:
+      - type: bind
+        source: ./confZp
+        target: /opt/zeppelin/conf/
+        read_only: false
+      - type: bind
+        source: ./datasets-sds
+        target: /datasets/sds
+        read_only: false
+      - type: bind
+        source: ./notebook
+        target: /notebook
+        read_only: false
+      - type: bind
+        source: ./logs
+        target: /logs
+        read_only: false
