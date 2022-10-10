@@ -2,7 +2,7 @@
 
 set -x -v
 set -o allexport
-source env.list
+source $SCRIPTS_DIR/env.list
 set +o allexport
 
 echo "one"
