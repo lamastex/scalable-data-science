@@ -21,6 +21,17 @@ cp SUMMARY.md bigSUMMARY.md
 
 #mkdir -p $1/src && cat src/bigSUMMARY.md | grep "${1}"  > $1/src/SUMMARY.md && cp scroll-mdbook-outputs.css $1/ &&
 cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
+#add editors
+echo "# Editors" > editors.md
+echo "\n" >> editors.md
+echo "Here is a list of the editors who have helped improve this book" >> editors.md
+echo "\n" >> editors.md
+echo "- [Raazesh Sainudiin](https://www.linkedin.com/in/raazesh-sainudiin-45955845/)" >> editors.md
+echo "- [Kristoffer Torp](https://github.com/kTorp)" >> editors.md
+echo "- [Oskar Åsbrink](https://www.linkedin.com/in/oskar-åsbrink-847a76231/)" >> editors.md
+
+echo "- [editors](./editors.md)" >> SUMMARY.md
+cat SUMMARY.md
 cd ..
 cp $MDBOOK_FILES_DIR/scroll-mdbook-outputs.css .
 cp $MDBOOK_FILES_DIR/book.toml .
