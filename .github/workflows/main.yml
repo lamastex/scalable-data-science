@@ -54,9 +54,9 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
         with:
           source_file: '/github/home/temp/.'
-          destination_repo: 'oskarasbrink/ScaDaMaLe'
+          destination_repo: ${{ secrets.USERNAME_GITHUB }}/ScaDaMaLe
           destination_branch: 'gh-pages'
           #destination_folder: 'test-dir' # optional
-          user_email: 'oskarasbrink@gmail.com' # your email
-          user_name: 'oskarasbrink'           # your login
+          user_email: ${{ secrets.EMAIL_GITHUB }}    # your email
+          user_name: ${{ secrets.USERNAME_GITHUB }}            # your login
           commit_message: 'first auto-commit-man'
