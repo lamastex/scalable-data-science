@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#move files into a directory before commiting to another repo
 pwd
 ls -l $GITHUB_TEMPMDBOOKDIR/dbc
 ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
