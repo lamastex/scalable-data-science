@@ -1,4 +1,4 @@
-#Github Actions for mdbook-generation and fetching DBC-files from databricks.
+# Github Actions for mdbook-generation and fetching DBC-files from databricks.
 
 Important: With the current fetch-script, all modules will be exported from databricks, but only modules given at the bottom `fetch-db.sh` will be processed and commited.
 
@@ -15,5 +15,8 @@ Add a key called DB_KEY and paste the contents of your local .databrickscfg
 ## You may need to edit and do this step many times...
 
 5. In `fetch_dbc.sh` you can add and remove modules to be processed, acting for both fetch_dbc and mdbook-generate actions.
+
+6. go to https://github.com/lamastex/scalable-data-science/actions and click "A workflow for mdbook generation" and "Run Workflow".
+
 
 
