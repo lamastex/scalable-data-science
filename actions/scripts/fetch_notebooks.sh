@@ -23,3 +23,6 @@ while read module; do
   
 done < temp_modules.txt
 rm temp_modules.txt && rm temp_notebooks.txt
+mkdir -p /root/temp/zipped
+mv /root/temp/dbc/* /root/temp/dbc/zipped
+ls -al /root/temp/dbc/zipped
