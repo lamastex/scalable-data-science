@@ -17,9 +17,9 @@ pwd
 
 for d in contents/*; do
 echo "">>SUMMARY.md
-echo "#$d">>SUMMARY.md
+echo "#$(filename $d)">>SUMMARY.md
 echo "">>SUMMARY.md
-find contents/$d -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
 echo "">>SUMMARY.md
 echo "---" >> SUMMARY.md
 done
