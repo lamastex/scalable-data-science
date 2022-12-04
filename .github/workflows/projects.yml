@@ -45,7 +45,7 @@ jobs:
       - name: run pinot and rust
         run: |
           #cd $SCRIPTS_DIR
-          cd /home/runner/work/temp/dbc/scalable-data-science/zipped
+          cd /home/runner/work/temp/dbc/scalable-data-science/000_0-sds-3-x-projects-2022/zipped
           for module in *;
           do
           #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
