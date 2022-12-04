@@ -23,6 +23,6 @@ while read module; do
   
 done < temp_modules.txt
 rm temp_modules.txt && rm temp_notebooks.txt
-mkdir -p /root/temp/dbc/zipped
-mv /root/temp/dbc/* /root/temp/dbc/zipped
-ls -al /root/temp/dbc/zipped
+ls -al /root/temp/dbc
+ls -al /root/temp/dbc/000_0-sds-3-x-projects-2022
+ls -al /root/temp/dbc/scalable-data-science
