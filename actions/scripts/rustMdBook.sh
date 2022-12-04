@@ -16,11 +16,13 @@ pushd $MDBOOKdir/mdbooks/$1/src
 echo "we should find source and contents here"
 pwd
 find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done > SUMMARY.md
+cat SUMMARY.md
 cp SUMMARY.md bigSUMMARY.md
 ###################################################
 
 #mkdir -p $1/src && cat src/bigSUMMARY.md | grep "${1}"  > $1/src/SUMMARY.md && cp scroll-mdbook-outputs.css $1/ &&
 cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
+
 #add editors
 echo "# Editors" > editors.md
 echo "Here is a list of the editors who have helped improve this book" >> editors.md
