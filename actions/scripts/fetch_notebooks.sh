@@ -20,10 +20,10 @@ ls -al .
 apt-get -y update && apt-get install zip unzip
 databricks workspace export_dir $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022  ./scalable-data-science
 #cp -r scalable-data-science scalable-data-science-source 
-find scalable-data-science/ -type f > sds-files
+#find scalable-data-science/ -type f > sds-files
 path=$DBC_SHARD_DIR
 ## loop through the files to fetch in DBC format
-cat ./projectpaths.txt > sds-files
+#cat ./projectpaths.txt > sds-files
 while read -a F
 do 
 echo $F
@@ -50,12 +50,12 @@ pushd scalable-data-science
 #modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 #modules='000_1-sds-3-x-spark 000_1-sds-3-x-sql'
-
+modules='student-project-02_group-DDLOfVision student-project-03_group-WikiKG90mv2 student-project-04_group-FedMLMedicalApp student-project-05_group-DistOpt'
 #echo $MODULES
 echo $1
 mkdir -p zipped
 
-for module in *
+for module in modules
 do 
 # 000_1-sds-3-x-sql 000_2-sds-3-x-ml xtraResources 000_3-sds-3-x-st 000_4-sds-3-x-ss 000_5-sds-2-x-geo 000_6-sds-3-x-dl 000_7-sds-3-x-ddl 000_8-sds-3-x-pri 000_9-sds-3-x-trends do
 zip -r ${module}.dbc $module
