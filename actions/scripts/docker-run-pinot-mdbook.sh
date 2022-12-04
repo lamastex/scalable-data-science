@@ -51,3 +51,6 @@ cd $SCRIPTS_DIR
 
 ## to view the built book
 #firefox ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_1-sds-3-x/book/index.html
+
+#chapter for each project
+#subchapter for each notebook
