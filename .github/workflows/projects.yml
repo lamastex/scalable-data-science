@@ -35,7 +35,7 @@ jobs:
           
       - name: fetch dbc notebooks
         run:  |
-          #fetch dbc notebooks using fetch_dbc_notebooks.sh and put them in /home/runner/work/temp
+          #fetch dbc notebooks using fetch_notebooks.sh and put them in /home/runner/work/temp
           #mkdir $GITHUB_TEMPMDBOOKDIR.
           mkdir -p /home/runner/work/temp/dbc
           cd $SCRIPTS_DIR
