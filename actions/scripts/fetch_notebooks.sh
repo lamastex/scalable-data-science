@@ -54,16 +54,16 @@ modules='student-project-10_group-RD student-project-08_group-WikiSearch'
 echo $1
 mkdir -p zipped
 
-for module in *
-do 
+for module in $modules; do 
 rm -rf $module/*/
+ls -al $module
 # 000_1-sds-3-x-sql 000_2-sds-3-x-ml xtraResources 000_3-sds-3-x-st 000_4-sds-3-x-ss 000_5-sds-2-x-geo 000_6-sds-3-x-dl 000_7-sds-3-x-ddl 000_8-sds-3-x-pri 000_9-sds-3-x-trends do
 zip -r ${module}.dbc $module
 cp ${module}.dbc zipped
 done
 
 pwd
-ls zipped
+ls -al zipped
 popd
 
 ## replace older dirs with latest dirs 

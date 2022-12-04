@@ -5,8 +5,7 @@ set -x -v
 pushd $PINOTdir
 #rm -r $MDBOOKdir/$1/src/contents/* #first clean the md files to avoid pre-pumped files
 #ls -al /root/temp
-echo $MDBOOKdir/zipped/$1.dbc
-mkdir -p $MDBOOKdir/mdbooks
+
 stack exec pinot -- --from databricks --to mdbook $MDBOOKdir/zipped/$1.dbc -o $MDBOOKdir/mdbooks/$1/src/contents
 
 echo "in new mdbook dir"
