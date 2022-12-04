@@ -8,8 +8,7 @@
 #set +o allexport
 cd /root/temp
 ls -l
-cd $1
-ls -l
+
 pushd $MDBOOKdir/mdbooks/$1/src
   ################ to generate SUMMARY.md for mdbook
 
@@ -21,7 +20,7 @@ cp SUMMARY.md bigSUMMARY.md
 ###################################################
 
 #mkdir -p $1/src && cat src/bigSUMMARY.md | grep "${1}"  > $1/src/SUMMARY.md && cp scroll-mdbook-outputs.css $1/ &&
-cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
+#cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
 
 #add editors
 echo "# Editors" > editors.md
