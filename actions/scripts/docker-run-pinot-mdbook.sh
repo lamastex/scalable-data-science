@@ -30,6 +30,7 @@ echo "done echoing env variables in use inside docker"
 
 
 cd /home/runner/work/temp/dbc/scalable-data-science/zipped
+ls -al
 for module in *
 do
 #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
