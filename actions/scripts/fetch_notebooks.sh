@@ -23,6 +23,7 @@ databricks workspace export_dir $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022  ./sc
 find scalable-data-science/ -type f > sds-files
 path=$DBC_SHARD_DIR
 ## loop through the files to fetch in DBC format
+cat ./projectpaths.txt > sds-files
 while read -a F
 do 
 echo $F
@@ -47,7 +48,7 @@ find scalable-data-science/* -depth -name '*.py' -execdir rm {} \;
 ## zip into BDC archive files for importing as files into databricks
 pushd scalable-data-science
 #modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
-modules='000_1-sds-3-x-spark 000_1-sds-3-x-sql'
+
 #modules='000_1-sds-3-x-spark 000_1-sds-3-x-sql'
 
 #echo $MODULES
