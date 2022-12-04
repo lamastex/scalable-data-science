@@ -4,7 +4,7 @@ mkdir -p dbc
 databricks workspace ls --absolute $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022 > temp_modules.txt
 while read module; do
     echo $module
-    mkdir -p dbc$module
+    mkdir -p $module
     databricks workspace ls $module > temp_notebooks.txt
     cat temp_notebooks.txt | xargs -I '{}' databricks workspace export --format DBC --overwrite $module/'{}' dbc$module
     cd dbc$module
