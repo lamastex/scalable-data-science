@@ -16,11 +16,11 @@ echo "we should find source and contents here"
 pwd
 echo "#Projects" > SUMMARY.md
 for d in contents/*; do
-echo "\n">>SUMMARY.md
-echo "#$d">>SUMMARY.md
-echo "\n">>SUMMARY.md
+
+echo "\ #$d \ ">>SUMMARY.md
+#echo "\n">>SUMMARY.md
 find $d -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
-echo "\n">>SUMMARY.md
+echo "\ ">>SUMMARY.md
 echo "---" >> SUMMARY.md
 done
 
