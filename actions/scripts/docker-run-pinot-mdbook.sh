@@ -29,7 +29,7 @@ echo "done echoing env variables in use inside docker"
 #modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 
 
-cd /home/runner/work/temp/dbc/zipped
+cd /home/runner/work/temp/dbc/scalable-data-science/zipped
 for module in *
 do
 #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
