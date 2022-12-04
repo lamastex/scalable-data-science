@@ -4,7 +4,7 @@
 apt-get -y update && apt-get install zip unzip
 cd /root/temp
 mkdir -p dbc
-databricks workspace ls --absolute $DBC_SHARD_DIR > temp_modules.txt
+databricks workspace ls --absolute $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022 > temp_modules.txt
 while read module; do
     echo $module
     mkdir -p dbc$module
@@ -18,11 +18,11 @@ while read module; do
     #unzip .py generates .python files so .py files are not overwritten and thus removed
     rm *.py
     cd ..
-    zip -r $(basename $module).dbc $(basename $module)/ 
+    zip -r $(basename $module).dbc /root/temp/dbc/scalable-data-science/$(basename $module)/ 
     rm -r $(basename $module)
-    cd ../..
+    cd ../../..
     ls -l
     pwd
   
-done < temp_modules.txt
-rm temp_modules.txt && rm temp_notebooks.txt
+done < projectpaths.txt
+#rm temp_modules.txt && rm temp_notebooks.txt
