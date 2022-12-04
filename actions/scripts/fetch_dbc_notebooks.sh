@@ -4,6 +4,7 @@
 apt-get -y update && apt-get install zip unzip
 cd /root/temp
 mkdir -p dbc
+cat /root/GIT/scalable-data-science/scalable-data-science/actions/scripts/project_paths.txt >> projectpaths
 databricks workspace ls --absolute $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022 > temp_modules.txt
 while read module; do
     echo $module
@@ -24,5 +25,5 @@ while read module; do
     ls -l
     pwd
   
-done < $SCRIPTS_DIR/projectpaths.txt
+done < projectpaths
 #rm temp_modules.txt && rm temp_notebooks.txt
