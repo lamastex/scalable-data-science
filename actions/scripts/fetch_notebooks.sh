@@ -18,7 +18,7 @@ ls -al .
 ## get the source files from databricks workspace dir /scalable-data-science
 #rm -r ./scalable-data-science*
 apt-get -y update && apt-get install zip unzip
-databricks workspace export_dir $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022  ./scalable-data-science
+databricks workspace export_dir $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022  ./scalable-data-science/000_0-sds-3-x-projects-2022
 #cp -r scalable-data-science scalable-data-science-source 
 find scalable-data-science/ -type f > sds-files
 
@@ -49,12 +49,12 @@ pushd scalable-data-science
 #modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 #modules='000_1-sds-3-x-spark 000_1-sds-3-x-sql'
 #modules='student-project-02_group-DDLOfVision student-project-03_group-WikiKG90mv2 student-project-04_group-FedMLMedicalApp student-project-05_group-DistOpt'
-modules='student-project-10_group-RD'
+modules='student-project-10_group-RD student-project-08_group-WikiSearch'
 #echo $MODULES
 echo $1
 mkdir -p zipped
 
-for module in modules
+for module in $modules
 do 
 cd $module
 rm -rf $module/*/
