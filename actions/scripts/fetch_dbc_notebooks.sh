@@ -19,7 +19,7 @@ while read module; do
     #unzip .py generates .python files so .py files are not overwritten and thus removed
     rm *.py
     cd ..
-    zip -r $(basename $module).dbc /root/temp/dbc/scalable-data-science/$(basename $module)/ 
+    zip -r $(basename $module).dbc $(basename $module) 
     rm -r $(basename $module)
     cd ../../..
     ls -l
