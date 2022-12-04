@@ -24,5 +24,5 @@ while read module; do
     ls -l
     pwd
   
-done < projectpaths.txt
+done < $SCRIPTS_DIR/projectpaths.txt
 #rm temp_modules.txt && rm temp_notebooks.txt
