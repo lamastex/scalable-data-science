@@ -20,7 +20,7 @@ ls -al .
 apt-get -y update && apt-get install zip unzip
 databricks workspace export_dir $DBC_SHARD_DIR/000_0-sds-3-x-projects-2022  ./scalable-data-science/000_0-sds-3-x-projects-2022
 #cp -r scalable-data-science scalable-data-science-source 
-find scalable-data-science/ -type f > sds-files
+find scalable-data-science/000_0-sds-3-x-projects-2022 -type f > sds-files
 
 ## loop through the files to fetch in DBC format
 while read -a F
@@ -45,7 +45,7 @@ find scalable-data-science/* -depth -name '*.scala' -execdir unzip -o {} \;
 find scalable-data-science/* -depth -name '*.py' -execdir rm {} \; 
 
 ## zip into BDC archive files for importing as files into databricks
-pushd scalable-data-science
+pushd scalable-data-science/000_0-sds-3-x-projects-2022
 #modules='000_5-sds-2-x-geo  000_4-sds-3-x-ss    000_3-sds-3-x-st'
 #modules='000_1-sds-3-x-spark 000_1-sds-3-x-sql'
 #modules='student-project-02_group-DDLOfVision student-project-03_group-WikiKG90mv2 student-project-04_group-FedMLMedicalApp student-project-05_group-DistOpt'
@@ -54,7 +54,7 @@ modules='student-project-10_group-RD student-project-08_group-WikiSearch'
 echo $1
 mkdir -p zipped
 
-for module in $modules
+for module in *
 do 
 rm -rf $module/*/
 # 000_1-sds-3-x-sql 000_2-sds-3-x-ml xtraResources 000_3-sds-3-x-st 000_4-sds-3-x-ss 000_5-sds-2-x-geo 000_6-sds-3-x-dl 000_7-sds-3-x-ddl 000_8-sds-3-x-pri 000_9-sds-3-x-trends do
