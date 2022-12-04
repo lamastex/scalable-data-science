@@ -26,5 +26,6 @@ while read module; do
     pwd
   
 done < projectpaths
-mv /root/temp/dbc/scalable-data-science/000_0-sds-3-x-projects-2022/*.dbc /root/temp/dbc/scalable-data-science/zipped
+mkdir /root/temp/dbc/scalable-data-science/zipped
+mv /root/temp/dbc/scalable-data-science/000_0-sds-3-x-projects-2022/* /root/temp/dbc/scalable-data-science/zipped/
 #rm temp_modules.txt && rm temp_notebooks.txt
