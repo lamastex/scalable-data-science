@@ -19,7 +19,7 @@ echo "# Projects" > SUMMARY.md
 for d in contents/*; do
 #echo "# $(basename $d)">>SUMMARY.md
 echo "">>SUMMARY.md
-find $d -iname '*.md' -type f | sort -h | while read f; do echo "  - ["$(basename $f .md)"](./$f)"; done >> temp.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done >> temp.md
 sed -i 's/ //g' temp.md
 cat temp.md >> SUMMARY.md
 echo "">>SUMMARY.md
