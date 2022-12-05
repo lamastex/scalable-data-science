@@ -78,4 +78,4 @@ jobs:
           #destination_folder: 'test-dir' # optional
           user_email: ${{ secrets.EMAIL_GITHUB }}    # your email
           user_name: ${{ secrets.USERNAME_GITHUB }}            # your login
-          commit_message: 'first auto-commit-man'
+          commit_message: 'WASP2022'
