@@ -15,12 +15,12 @@ pushd $MDBOOKdir/mdbooks/$1/src
 echo "we should find source and contents here"
 pwd
 #echo "#Projects" > SUMMARY.md
-#echo "" >> SUMMARY.md
+echo "" >> SUMMARY.md
 for d in contents/*; do
 echo "# $(basename $d)">>SUMMARY.md
 #echo "\n">>SUMMARY.md
 echo "">>SUMMARY.md
-find $d -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "  - ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
 echo "">>SUMMARY.md
 done
 #find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"]($f)"; done > SUMMARY.md
