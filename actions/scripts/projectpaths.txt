@@ -1,4 +1,4 @@
-/scalable-data-science/000_0-sds-3-x-projects-2022/student-project-01_group-GraphOfWiki/
+/scalable-data-science/000_0-sds-3-x-projects-2022/student-project-01_group-GraphOfWiki
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-02_group-DDLOfVision
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-03_group-WikiKG90mv2
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-04_group-FedMLMedicalApp
