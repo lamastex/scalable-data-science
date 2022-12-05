@@ -19,7 +19,7 @@ pwd
 for d in contents/*; do
 echo "# $(basename $d)">>temp.md
 echo "">>temp.md
-find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done > temp.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done >> temp.md
 sed -i '1 s/^ *//' temp.md
 echo "">>temp.md
 echo "---">>temp.md
