@@ -21,7 +21,7 @@ for d in contents/*; do
 #echo "">>temp.md
 find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done > temp.md
 sed -i '1 s/^ *//' temp.md
-sed -i '1 s/./&"$(basename $d)"_/3' temp.md
+sed -i '1 s/./&${$(basename $d)}_/3' temp.md
 cat temp.md >> SUMMARY.md
 echo "">>SUMMARY.md
 echo "---">>SUMMARY.md
