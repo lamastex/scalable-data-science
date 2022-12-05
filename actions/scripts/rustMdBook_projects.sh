@@ -20,7 +20,7 @@ for d in contents/*; do
 echo "# $(basename $d)">>SUMMARY.md
 #echo "\n">>SUMMARY.md
 echo "">>SUMMARY.md
-find $d -iname '*.md' -type f | sort -h | while read f; do echo "  - ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
 echo "">>SUMMARY.md
 done
 #find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"]($f)"; done > SUMMARY.md
@@ -31,6 +31,7 @@ cp SUMMARY.md bigSUMMARY.md
 #cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
 
 #add editors
+
 echo "# Editors" > editors.md
 echo "Here is a list of the editors who have helped improve this book" >> editors.md
 echo "- [Raazesh Sainudiin](https://www.linkedin.com/in/raazesh-sainudiin-45955845/)" >> editors.md
@@ -38,6 +39,7 @@ echo "- [Kristoffer Torp](https://github.com/kTorp)" >> editors.md
 echo "- [Oskar Åsbrink](https://www.linkedin.com/in/oskar-åsbrink-847a76231/)" >> editors.md
 echo "- [Tilo Wiklund](https://www.linkedin.com/in/tilo-wiklund-682aa496/)" >> editors.md
 echo "- [Dan Lilja](https://www.linkedin.com/in/dan-lilja-a2ab8096/)" >> editors.md
+echo "---"  >> SUMMARY.md
 echo "- [Editors](./editors.md)" >> SUMMARY.md
 cat SUMMARY.md
 cd ..
