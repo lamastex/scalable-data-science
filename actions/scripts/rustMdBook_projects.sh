@@ -40,7 +40,6 @@ echo "- [Kristoffer Torp](https://github.com/kTorp)" >> editors.md
 echo "- [Oskar Åsbrink](https://www.linkedin.com/in/oskar-åsbrink-847a76231/)" >> editors.md
 echo "- [Tilo Wiklund](https://www.linkedin.com/in/tilo-wiklund-682aa496/)" >> editors.md
 echo "- [Dan Lilja](https://www.linkedin.com/in/dan-lilja-a2ab8096/)" >> editors.md
-echo "---"  >> SUMMARY.md
 echo "- [Editors](./editors.md)" >> SUMMARY.md
 cat SUMMARY.md
 cd ..
