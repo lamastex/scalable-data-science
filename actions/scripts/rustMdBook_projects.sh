@@ -20,7 +20,7 @@ for d in contents/*; do
 #echo "# $(basename $d)">>SUMMARY.md
 echo "">>SUMMARY.md
 find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done >> temp.md
-sed -i 's/ //g' temp.md
+sed -i 's/^ *//' temp.md
 cat temp.md >> SUMMARY.md
 echo "">>SUMMARY.md
 echo "---"
