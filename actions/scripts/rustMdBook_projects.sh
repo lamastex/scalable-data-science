@@ -23,9 +23,7 @@ echo "#$(basename $d)">>SUMMARY.md
 echo "">>SUMMARY.md
 find $d -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
 echo "">>SUMMARY.md
-echo "---" >> SUMMARY.md
 done
-echo "">>SUMMARY.md
 #find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"]($f)"; done > SUMMARY.md
 cp SUMMARY.md bigSUMMARY.md
 ###################################################
