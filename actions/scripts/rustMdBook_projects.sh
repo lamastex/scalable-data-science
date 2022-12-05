@@ -19,7 +19,11 @@ echo "# Projects" > SUMMARY.md
 for d in contents/*; do
 #echo "# $(basename $d)">>SUMMARY.md
 echo "">>SUMMARY.md
-find $d -iname '*.md' -type f | sort -h | while read f; do echo "  - ["$(basename $f .md)"](./$f)"; done >> SUMMARY.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "  - ["$(basename $f .md)"](./$f)"; done >> temp.md
+sed -i 's/ //g' temp.md
+cat temp.md >> SUMMARY.md
+echo "">>SUMMARY.md
+echo "---"
 
 done
 #find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"]($f)"; done > SUMMARY.md
@@ -30,8 +34,6 @@ done
 #cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
 
 #add editors
-echo "">>SUMMARY.md
-echo "---">>SUMMARY.md
 echo "">>SUMMARY.md
 echo "# Editors" > editors.md
 echo "Here is a list of the editors who have helped improve this book" >> editors.md
