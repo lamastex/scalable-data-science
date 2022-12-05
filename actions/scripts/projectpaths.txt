@@ -3,3 +3,6 @@
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-03_group-WikiKG90mv2
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-04_group-FedMLMedicalApp
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-05_group-DistOpt
+/scalable-data-science/000_0-sds-3-x-projects-2022/student-project-07_group-ExpsZerOInit
+/scalable-data-science/000_0-sds-3-x-projects-2022/student-project-08_group-WikiSearch
+/scalable-data-science/000_0-sds-3-x-projects-2022/student-project-09_group-DistEnsembles
