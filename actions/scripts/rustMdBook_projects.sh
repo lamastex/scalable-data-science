@@ -10,16 +10,12 @@ cd /root/temp
 ls -l
 
 pushd $MDBOOKdir/mdbooks/$1/src
-cp /root/temp/README.md
   ################ to generate SUMMARY.md for mdbook
 
 echo "we should find source and contents here"
 pwd
 echo "# Projects" > SUMMARY.md
-echo "" >> SUMMARY.md
-echo "["$(Introduction)"](/root/temp/introduction.md)" >> SUMMARY.md
-echo "" >> SUMMARY.md
-echo README.md
+echo "" > SUMMARY.md
 for d in contents/*; do
 #echo "# $(basename $d)">temp.md
 #echo "">>temp.md
