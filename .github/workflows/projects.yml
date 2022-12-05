@@ -55,7 +55,8 @@ jobs:
           for module in *;
           do
           #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
-          echo $module                                                                    #localdbcTEMPDIR = /home/runner/work/temp
+          echo $module
+          git update-index --chmod=+x /home/runner/work/scalable-data-science/scalable-data-science/books/2022/introduction.md                                                                  #localdbcTEMPDIR = /home/runner/work/temp
           cp /home/runner/work/scalable-data-science/scalable-data-science/books/2022/introduction.md $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science/
           docker run --rm  -i --name=haskell-pinot --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/haskell-pinot:latest /bin/bash $localscriptDIRPATH/pinotMdBook_bigbook.sh ${module%%.*}
 
