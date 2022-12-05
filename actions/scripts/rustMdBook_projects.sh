@@ -20,14 +20,13 @@ for d in contents/*; do
 #echo "">>temp.md
 find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done >> temp.md
 sed -i '1 s/^ *//' temp.md
-sed -i '1 s/./&$(basename $d)_/3' temp.md
+sed -i '1 s/./&"$(basename $d)"_/3' temp.md
 cat temp.md >> SUMMARY.md
 echo "">>SUMMARY.md
 echo "---">>SUMMARY.md
-
-#echo "---"
-
+echo "" >> SUMMARY.md
 done
+#echo "---"
 #find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"]($f)"; done > SUMMARY.md
 #cp SUMMARY.md bigSUMMARY.md
 ###################################################
@@ -38,7 +37,6 @@ done
 #add editors
 #echo "">>SUMMARY.md
 #echo "---"
-echo ""
 echo "# Editors" > editors.md
 echo "Here is a list of the editors who have helped improve this book" >> editors.md
 echo "- [Raazesh Sainudiin](https://www.linkedin.com/in/raazesh-sainudiin-45955845/)" >> editors.md
