@@ -1,0 +1,81 @@
+name: A workflow for projects mdbook generation
+  #on: push
+  #branches: whatever we like
+  # -book-actions/books/latest
+  #paths: readme.md
+  #for example, we can choose the "docker-run-pinot-mdbook.sh" as trigger, which already decides on what modules to pick
+on: workflow_dispatch 
+env:
+  SCRIPTS_DIR: /home/runner/work/scalable-data-science/scalable-data-science/actions/scripts
+  GITHUB_TEMPMDBOOKDIR: /home/runner/work/temp #this will be /github/home/_temp/mdbooks once we are out of the runner
+  GITHUB_MDPUSHDIR: /home/runner/work/_temp/_github_home/temp
+  GITHUB_DIR_TO_REPO: /home/runner/work/scalable-data-science
+  LOCAL_SCRIPT_DIR: /root/GIT/scalable-data-science/actions/scripts
+  DBC_SHARD_DIR: /scalable-data-science
+  #MODULES: "000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st"
+  #MDBOOK_FILES_DIR: /home/runner/work/scalable-data-science/books/mdScaDaMaLeBook
+
+
+jobs:
+  build:
+    name: fetch dbc - generate books
+    runs-on: ubuntu-latest
+    steps:
+        #check out repo so that workflow can access it
+      - uses: actions/checkout@v2
+      #- uses: ./actions/action-a
+      #- uses: ./actions/action-b
+      - name: get .databrickscfg file
+        run: |
+          # create .databrickscfg in runner by echoing it from secrets
+          touch ${HOME}/.databrickscfg
+          echo '${{ secrets.DB_KEY }}' > ${HOME}/.databrickscfg
+          
+          
+          
+      - name: fetch dbc notebooks
+        run:  |
+          #fetch dbc notebooks using fetch_notebooks.sh and put them in /home/runner/work/temp
+          mkdir -p /home/runner/work/temp/dbc
+          cd $SCRIPTS_DIR
+          docker run --rm  -i --name=python-dbcli --env-file env.list -v /home/runner/work/temp:/root/temp --mount type=bind,source=${HOME}/.databrickscfg,destination=/root/.databrickscfg --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/python-dbcli:latest /bin/bash $LOCAL_SCRIPT_DIR/fetch_dbc_notebooks.sh
+        
+          
+      - name: run pinot and rust
+        run: |
+          set -x -v
+          set -o allexport
+          source $SCRIPTS_DIR/env.list
+          set +o allexport
+
+        
+          
+          cd /home/runner/work/temp/dbc/scalable-data-science/zipped
+          for module in *;
+          do
+          #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
+          echo $module
+          
+          
+          docker run --rm  -i --name=haskell-pinot --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/haskell-pinot:latest /bin/bash $localscriptDIRPATH/pinotMdBook_bigbook.sh ${module%%.*}
+
+          
+          done
+          #chmod u+x /home/runner/work/scalable-data-science/scalable-data-science/books/2022/introduction.md 
+          #cp -f /home/runner/work/scalable-data-science/scalable-data-science/books/2022/introduction.md $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science/
+          docker run --rm  -i --name=rust-mdbook --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash $localscriptDIRPATH/rustMdBook_projects.sh 000_0-sds-3-x-projects-2022
+          cd $SCRIPTS_DIR
+          source $SCRIPTS_DIR/move-books-actions.sh
+          
+      - name: Push to another repo
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
+        with:
+          source_file: '/github/home/temp/.'
+          destination_repo: ${{ secrets.USERNAME_GITHUB }}/ScaDaMaLe
+          destination_branch: 'gh-pages'
+          #destination_folder: 'test-dir' # optional
+          user_email: ${{ secrets.EMAIL_GITHUB }}    # your email
+          user_name: ${{ secrets.USERNAME_GITHUB }}            # your login
+          commit_message: 'WASP2022'

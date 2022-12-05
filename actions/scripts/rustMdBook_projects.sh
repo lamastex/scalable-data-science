@@ -14,15 +14,30 @@ pushd $MDBOOKdir/mdbooks/$1/src
 
 echo "we should find source and contents here"
 pwd
-find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"](./$f)"; done > SUMMARY.md
-cat SUMMARY.md
-cp SUMMARY.md bigSUMMARY.md
+echo "# Projects" > SUMMARY.md
+echo "" >> SUMMARY.md
+for d in contents/*; do
+#echo "# $(basename $d)">temp.md
+#echo "">>temp.md
+find $d -iname '*.md' -type f | sort -h | while read f; do echo "   - ["$(basename $f .md)"](./$f)"; done > temp.md
+sed -i '1 s/^ *//' temp.md
+sed -i '1 s/./&'"$(basename $d)"'_/3' temp.md
+cat temp.md >> SUMMARY.md
+echo "">>SUMMARY.md
+echo "---">>SUMMARY.md
+echo "" >> SUMMARY.md
+done
+#echo "---"
+#find contents -iname '*.md' -type f | sort -h | while read f; do echo "- ["$(basename $f .md)"]($f)"; done > SUMMARY.md
+#cp SUMMARY.md bigSUMMARY.md
 ###################################################
 
 #mkdir -p $1/src && cat src/bigSUMMARY.md | grep "${1}"  > $1/src/SUMMARY.md && cp scroll-mdbook-outputs.css $1/ &&
 #cat bigSUMMARY.md | grep "${1}"  > SUMMARY.md
 
 #add editors
+#echo "">>SUMMARY.md
+#echo "---"
 echo "# Editors" > editors.md
 echo "Here is a list of the editors who have helped improve this book" >> editors.md
 echo "- [Raazesh Sainudiin](https://www.linkedin.com/in/raazesh-sainudiin-45955845/)" >> editors.md

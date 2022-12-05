@@ -33,7 +33,7 @@ cd /home/runner/work/temp/dbc/scalable-data-science/zipped
 for module in *
 do
 #ls -l $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
-                                                                    #localdbcTEMPDIR = /home/runner/work/temp
+echo $module                                                                    #localdbcTEMPDIR = /home/runner/work/temp
 docker run --rm  -i --name=haskell-pinot --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/haskell-pinot:latest /bin/bash $localscriptDIRPATH/pinotMdBook.sh ${module%%.*}
 
 docker run --rm  -i --name=rust-mdbook --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash $localscriptDIRPATH/rustMdBook.sh ${module%%.*}
@@ -51,3 +51,6 @@ cd $SCRIPTS_DIR
 
 ## to view the built book
 #firefox ~/all/git/lamastex/scalable-data-science/books/mdScaDaMaLeBook/000_1-sds-3-x/book/index.html
+
+#chapter for each project
+#subchapter for each notebook
