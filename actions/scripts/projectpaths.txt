@@ -11,4 +11,4 @@
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-12_group-FedLearnOpt
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-13_group-DRL
 /scalable-data-science/000_0-sds-3-x-projects-2022/student-project-14_group-EarthObs
-
+/scalable-data-science/000_0-sds-3-x-projects-2022/student-projects-BrIntSuSvConclusion
