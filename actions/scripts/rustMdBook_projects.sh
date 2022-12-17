@@ -18,6 +18,7 @@ pwd
 echo "# Summary" > SUMMARY.md
 echo "" >> SUMMARY.md
 echo "[Introduction](./introduction.md)" >> SUMMARY.md
+echo "" >> SUMMARY.md
 echo "# Projects" >> SUMMARY.md
 echo "" >> SUMMARY.md
 for d in contents/*; do
