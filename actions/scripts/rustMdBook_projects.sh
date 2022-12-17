@@ -14,7 +14,11 @@ pushd $MDBOOKdir/mdbooks/$1/src
 
 echo "we should find source and contents here"
 pwd
-echo "# Projects" > SUMMARY.md
+
+echo "# Summary" > SUMMARY.md
+echo "" >> SUMMARY.md
+echo "[Introduction](./introduction.md)" >> SUMMARY.md
+echo "# Projects" >> SUMMARY.md
 echo "" >> SUMMARY.md
 for d in contents/*; do
 #echo "# $(basename $d)">temp.md
