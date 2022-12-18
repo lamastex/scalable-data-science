@@ -21,6 +21,7 @@ while read module; do
     cd ..
     zip -r $(basename $module).dbc $(basename $module) 
     rm -r $(basename $module)
+    ls -l
     cd ../../..
     ls -l
     pwd

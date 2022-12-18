@@ -12,8 +12,8 @@ env:
   GITHUB_DIR_TO_REPO: /home/runner/work/scalable-data-science
   LOCAL_SCRIPT_DIR: /root/GIT/scalable-data-science/actions/scripts
   DBC_SHARD_DIR: /scalable-data-science
-  #MODULES: "000_5-sds-2-x-geo 000_4-sds-3-x-ss 000_3-sds-3-x-st"
-  #MDBOOK_FILES_DIR: /home/runner/work/scalable-data-science/books/mdScaDaMaLeBook
+  README_DIR: /home/runner/work/scalable-data-science/scalable-data-science/actions/scripts
+  
 
 
 jobs:
@@ -62,7 +62,8 @@ jobs:
           
           done
           #chmod u+x /home/runner/work/scalable-data-science/scalable-data-science/books/2022/introduction.md 
-          #cp -f /home/runner/work/scalable-data-science/scalable-data-science/books/2022/introduction.md $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science/
+          sudo chmod -R 777 $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science
+          cp $README_DIR/introduction.md $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science/mdbooks/000_0-sds-3-x-projects-2022/src
           docker run --rm  -i --name=rust-mdbook --env-file $SCRIPTS_DIR/env.list -v $GITHUB_TEMPMDBOOKDIR/dbc/scalable-data-science:/root/temp --mount type=bind,source=$GITHUB_DIR_TO_REPO,destination=/root/GIT lamastex/rust-mdbook:latest /bin/bash $localscriptDIRPATH/rustMdBook_projects.sh 000_0-sds-3-x-projects-2022
           cd $SCRIPTS_DIR
           source $SCRIPTS_DIR/move-books-actions.sh
