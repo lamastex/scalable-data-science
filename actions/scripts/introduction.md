@@ -8,8 +8,22 @@ Peer-reviewed by project authors according to [these instructions](https://githu
 
 A total of 13 PhD Student Groups did Projects of their choosing in Scalable Data Science and Distributed Machine Learning, a mandatory as well as elective course of The WASP Graduate School AI-track in 2022-2023. See [ScaDaMaLe Course Pathways](https://lamastex.github.io/ScaDaMaLe/) to appreciate the pre-requisite modules 000_1 through 000_9 for the union of all 13 projects.
 
-Best Group Project: The Group Project **TBD** by **TBC** won the Best Group-Project Prize on the basis of peer-review. 
+Best Group Project: The Group Project **TBD** by **TBC** won the Best Group-Project Prize on the basis of peer-review.
 
 # Table of Contents
 
-In progress... see left drop-down for now.
+1. [Graph of Wiki](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-01_group-GraphOfWiki/student-project-01_group-GraphOfWiki/00_Introduction.html) by Vilhelm Agdur, Henrik Ekström, Simon Johansson and Albin Toft.
+2. [Visual Question Answering using Transformers](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-02_group-DDLOfVision/student-project-02_group-DDLOfVision/00_vqa_introduction.html) by Ehsan Doostmohammadi and Hariprasath Govindarajan.
+3. [Scalable Analysis of a Massive Knowledge Graph](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-03_group-WikiKG2/student-project-03_group-WikiKG2/00_ingest_data.html) by Filip Cornell, Yifei Jin, Joel Oskarsson and Tianyi Zho.
+4. [Federated Learning for Brain Tumor Segmentation](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-04_group-FedMLMedicalApp/student-project-04_group-FedMLMedicalApp/00_Notebook_Presentation.html) by Jingru Fu, Lidia Kidane and Romuald Esdras Wandji.
+5. [Scalable Bayesian optimization with distributed Gaussian processes and deep kernel learning](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-05_group-DistOpt/student-project-05_group-DistOpt/00_introduction.html) by Carl Hvarfner, Leonard Papenmeier and Manu Upadhyaya.
+6. [Experiments with ZerO initialisation](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-07_group-ExpsZerOInit/student-project-07_group-ExpsZerOInit/00_introduction_resnet.html) by Livia Qian and Rajmund Nagy.
+7. [Smart Search in Wikipedia](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-08_group-WikiSearch/student-project-08_group-WikiSearch/00_Introduction.html) by David Mohlin, Erik Englesson and Fereidoon Zangeneh.
+8. [Distributed Ensembles for 3D Human Pose Estimation](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-09_group-DistEnsembles/student-project-09_group-DistEnsembles/00_Introduction.html) by Hampus Gummesson Svensson, Xixi Liu, Yaroslava Lochman and Erik Wallin.
+9. [Predicting the load in wireless networks](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-10_group-RDI/student-project-10_group-RDI/00_introduction.html) by Sofia Ek and Oscar Stenhammar.
+10. [Collaborative Filtering in Movie Recommender Systems](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-11_group-CollaborativeFiltering/student-project-11_group-CollaborativeFiltering/01_Introduction.html) by Jacob Lindbäck, Rebecka Winqvist, Robert Bereza and Damianos Tranos.
+11. [Federated Learning Using Horovod](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-12_group-FedLearnOpt/student-project-12_group-FedLearnOpt/01_Federated_Learning_Introduction.html) by Amandine Caut, Ali Dadras, Hoomaan Maskan and Seyedsaeed Razavikia.
+12. [Distributed Reinforcement Learning](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-13_group-DRL/student-project-13_group-DRL/00_DistributedRL.html) by Johan Edstedt, Arvi Jonnarth and Yushan Zhang.
+13. [Earth Observation](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-14_group-EarthObs/student-project-14_group-EarthObs/00_Introduction.html) by Daniel Brunnsåker, Alexander H. Gower and Filip Kronström.
+14. [Conclusion and BrIntSuSb](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-projects-BrIntSuSvConclusion/student-projects-BrIntSuSvConclusion/BrIntSuSv.html) by Raazesh Sainudiin.
+15. [Editors](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/editors.html)
