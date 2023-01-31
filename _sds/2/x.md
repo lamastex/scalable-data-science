@@ -98,13 +98,6 @@ Course 1 involved 32 hours of face-to-face training and 32 hours of homework.
 	*  [T-Digest Normal Mixture Streaming Files](db/040a_TDigestInputStream/)
 	*  [Sketching with T-Digest](db/041_SketchingWithTDigest/)
 	*  [Streaming with T-Digest](db/042_streamingWithTDigest/)
-11. Spark Performance Tuning
-	*  [Tuning Utilities](db/00_dbcTuningUtilities2run/)
-	*  [Tuning Transformations and Actions](db/01_TransformationsActions/)
-	*  [Tuning Utilities in Action](db/02_tuningUtilitiesInAction/)
-	*  [Tuning for Caching](db/03_caching/)
-	*  [Tuning for Partitioning](db/04_partitioning/)
-
 
 ## Course 2: Data Science with Apache Spark
 
