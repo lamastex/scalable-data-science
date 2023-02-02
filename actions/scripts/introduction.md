@@ -6,9 +6,18 @@ Peer-reviewed by project authors according to [these instructions](https://githu
 
 # Introduction
 
-A total of 13 PhD Student Groups did Projects of their choosing in Scalable Data Science and Distributed Machine Learning, a mandatory as well as elective course of The WASP Graduate School AI-track in 2022-2023. See [ScaDaMaLe Course Pathways](https://lamastex.github.io/ScaDaMaLe/) to appreciate the pre-requisite modules 000_1 through 000_9 for the union of all 13 projects.
+A total of 42 PhD students in 13 groups did projects of their choosing in Scalable Data Science and Distributed Machine Learning, a mandatory as well as elective course of The WASP Graduate School in 2022-2023. See [ScaDaMaLe Course Pathways](https://lamastex.github.io/ScaDaMaLe/) to appreciate the pre-requisite modules 000_1 through 000_9 for the union of all 13 projects.
 
-Best Group Project: The Group Project **TBD** by **TBC** won the Best Group-Project Prize on the basis of peer-review.
+
+## The Best Student Group Projects on the basis of peer-review and industrial feed-back are:
+        
+- Group 5 on *Scalable Bayesian optimization with distributed Gaussian processes and deep kernel learning* (academic-track)
+  - Carl Hvarfner, Lund University
+  - Leonard Papenmeier, Lund University 
+  - Manu Upadhyaya, Lund University
+- Group 9 on  *Predicting the load in wireless networks* (industry-track)
+  - Sofia Ek, Department of Information Technology, Uppsala University
+  - Oscar Stenhammar, Network and System Engineering, KTH and Ericsson
 
 # Table of Contents
 
@@ -27,3 +36,14 @@ Best Group Project: The Group Project **TBD** by **TBC** won the Best Group-Proj
 13. [Earth Observation](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-project-14_group-EarthObs/student-project-14_group-EarthObs/00_Introduction.html) by Daniel Brunnsåker, Alexander H. Gower and Filip Kronström.
 14. [Conclusion and BrIntSuSb](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/contents/student-projects-BrIntSuSvConclusion/student-projects-BrIntSuSvConclusion/BrIntSuSv.html) by Raazesh Sainudiin.
 15. [Editors](https://lamastex.github.io/ScaDaMaLe/000_0-sds-3-x-projects-2022/editors.html)
+
+## Invited Talks from Industry
+
+Thanks to the inspiring talks from the following invited speakers from industry:
+
+- Vivian Ribeiro, Nanxu Su and Tomas Carvalho, [trase](https://www.trase.earth/) (Stockholm, Sweden), *Transparency for sustainable trade*. 
+- Reza Zadeh, [Matroid](https://www.matroid.com/) and Stanford University (Palo Alto, California, USA), *Computer Vision from an academic perspective*.
+- Andreas Hellander, [Scaleout Systems](https://www.scaleoutsystems.com/) and Uppsala University (Uppsala, Sweden), *Taking Federated Learning to Production - towards privacy-preserving ML at scale*. 
+- Ali Sarrafi, Christian Von Koch and William Anzen, [Combient Mix](https://www.themix.ai/) (Stockholm, Sweden), *Slag segmentation with deep neural networks at LKAB*.
+- Juozas Vaicenavicius, [SENSmetry](https://sensmetry.com/) (Uppsala, Sweden and Vilnius, Lithuania), *Autonomous systems safety: what is so difficult?*
+- Jim Dowling, [Logical Clocks, hopsworks](https://www.hopsworks.ai/) and KTH Royal Institute of Technology (Stockholm, Sweden), *Serverless Machine Learning with Hopsworks*.
